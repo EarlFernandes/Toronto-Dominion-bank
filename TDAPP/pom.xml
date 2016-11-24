@@ -1,0 +1,186 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<distributionManagement>
+
+
+ 
+ <repository>
+ <id>internal</id>
+ <url>http://49.3.145.118:8080/repository/internal</url>
+  </repository>
+  
+ </distributionManagement>
+ 
+<repositories>
+
+<repository>
+ <id>snapshots</id>
+ <name>Archiva Managed Snapshot Repository</name>
+ <url>http://49.3.145.118:8080/repository/internal</url>
+<releases>
+ <enabled>true</enabled>
+ </releases>
+<snapshots>
+ <enabled>true</enabled>
+ </snapshots>
+ </repository>
+ 
+  
+   
+    
+ </repositories>
+ 
+<pluginRepositories>
+<pluginRepository>
+ <id>internal</id>
+ <name>Archiva Managed internal Repository</name>
+ <url>http://49.3.145.118:8080/repository/internal</url>
+<releases>
+ <enabled>true</enabled>
+ </releases>
+<snapshots>
+ <enabled>true</enabled>
+ </snapshots>
+ </pluginRepository>
+ 
+    
+ </pluginRepositories>
+
+  
+  
+   <modelVersion>4.0.0</modelVersion>
+  <groupId>com.td.test.tdapp</groupId>
+  <artifactId>tdapp</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>tdappappium</name>
+  <description>tdap Selenium test</description>
+ 
+  <build>
+<pluginManagement>
+<plugins>
+<plugin>
+ <artifactId>maven-resources-plugin</artifactId>
+ <version>2.6</version>
+ </plugin>
+<plugin>
+ <artifactId>maven-surefire-plugin</artifactId>
+ <version>2.12.4</version>
+ </plugin>
+ </plugins>
+ </pluginManagement>
+ <sourceDirectory>src</sourceDirectory>
+<resources>
+<resource>
+ <directory>TestData</directory>
+<excludes>
+ <exclude>**/*.java</exclude>
+ </excludes>
+ </resource>
+ </resources>
+<plugins>
+<plugin>
+ <artifactId>maven-assembly-plugin</artifactId>
+ <version>2.6</version>
+<configuration>
+<descriptorRefs>
+ <descriptorRef>jar-with-dependencies</descriptorRef>
+ </descriptorRefs>
+<archive>
+<manifest>
+ <mainClass>com.td.test.tdapp.main</mainClass>
+ </manifest>
+ </archive>
+ </configuration>
+<executions>
+<execution>
+ <id>make-assembly</id>
+<!--
+ this is used for inheritance merges 
+ 
+
+ 
+
+ -->
+ <phase>package</phase>
+<!--
+ bind to the packaging phase 
+ 
+
+ 
+
+ -->
+<goals>
+ <goal>single</goal>
+ </goals>
+ </execution>
+ </executions>
+ </plugin>
+<plugin>
+ <groupId>org.apache.maven.plugins</groupId>
+ <artifactId>maven-compiler-plugin</artifactId>
+ <version>3.1</version>
+<configuration>
+ <source>1.7</source>
+ <target>1.7</target>
+ </configuration>
+ </plugin>
+<plugin>
+ <groupId>org.apache.maven.plugins</groupId>
+ <artifactId>maven-eclipse-plugin</artifactId>
+ <version>2.10</version>
+ </plugin>
+<plugin>
+ <groupId>org.apache.maven.plugins</groupId>
+ <artifactId>maven-jar-plugin</artifactId>
+ <version>2.6</version>
+<configuration>
+<archive>
+<manifest>
+ <mainClass>com.td.test.CDNMobile.main</mainClass>
+ </manifest>
+ </archive>
+ </configuration>
+ </plugin>
+ </plugins>
+ </build>
+  
+  
+  <dependencies>
+  <dependency>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-deploy-plugin</artifactId>
+  <version>2.7</version>
+</dependency>
+  	<dependency>
+  		<groupId>org.seleniumhq.selenium</groupId>
+  		<artifactId>selenium-java</artifactId>
+  		<version>2.53.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.poi</groupId>
+  		<artifactId>poi</artifactId>
+  		<version>3.12</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.pdfbox</groupId>
+  		<artifactId>pdfbox</artifactId>
+  		<version>1.8.9</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.td.test.alm</groupId>
+  		<artifactId>ALM</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.td.test.framework</groupId>
+  		<artifactId>com.td.test.framework</artifactId>
+  		<version>0.0.3f</version>
+  	</dependency>
+  	  	<dependency>
+  <groupId>io.appium</groupId>
+  <artifactId>java-client</artifactId>
+  <version>4.0.0</version>
+</dependency>
+  </dependencies>
+ 
+</project>
