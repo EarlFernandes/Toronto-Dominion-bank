@@ -23,7 +23,7 @@ public class HomeScreen extends _CommonPage {
 
 	private static HomeScreen HomeScreen;
 
-	@iOSFindBy(xpath="//*[@label='Menu']")
+	@iOSFindBy(xpath="//*[@label='Menu' or @label='Menu en en-tête']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
@@ -67,10 +67,10 @@ public class HomeScreen extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='VIREMENTS'] ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='VIREMENTS']")
 	private MobileElement french_transfers;
-	
-	@iOSFindBy(xpath ="//*[@label='Menu en en-tête']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement Menu_button;
+//	
+//	@iOSFindBy(xpath ="//*[@label='Menu en en-tête' or @label='Menu' ]")
+//	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
+//	private MobileElement Menu_button;
 	
 	@iOSFindBy(xpath="//*[@label='TD for Me']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/td_zones_dashboard' and @text='TD FOR ME']")
@@ -338,7 +338,7 @@ public class HomeScreen extends _CommonPage {
 	public void clickMenu_french() {
 		try {
 			Decorator();
-			mobileAction.FuncClick(Menu_button, "French_Menu");
+			mobileAction.FuncClick(menu, "French_Menu");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

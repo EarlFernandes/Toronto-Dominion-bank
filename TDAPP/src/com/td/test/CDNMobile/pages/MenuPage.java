@@ -29,9 +29,13 @@ public class MenuPage extends _CommonPage {
 	private MobileElement bills;
 	
 	
-	@iOSFindBy(xpath= "//*[contains(@label,'Investing')]")
+	@iOSFindBy(xpath= "//*[contains(@label,'Investing') or @label='Comptes Placements directs TD']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing']")
 	private MobileElement investing;
+
+	@iOSFindBy(xpath= "//*[@label='Comptes Placements directs TD']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing']")
+	private MobileElement investingFRE;
 	
 	@iOSFindBy(xpath ="//*[@label='Mobile Deposit']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Mobile Deposit']")
@@ -58,6 +62,13 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
 	private MobileElement home_button;
 
+
+	
+	//French
+	
+//	@iOSFindBy(xpath = "//*[@label='Comptes Placements directs TD']")
+//	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Comptes Placements directs TD']")
+//	private MobileElement investing_FRE;
 	
 	public synchronized static MenuPage get() {
 		if (MenuPage == null) {
@@ -183,7 +194,12 @@ public class MenuPage extends _CommonPage {
 
 		Decorator();
 		try {
-			mobileAction.FuncClick(investing, "Investing");
+
+			boolean isLanguageFrench = getTestdata("Language", "UserIDs").equals("FRE");
+
+
+			MobileElement investingElement = isLanguageFrench ? investingFRE : investing;
+			mobileAction.FuncClick(investingElement, "Investing");
 			mobileAction.waitForElementToVanish(progressBar);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -263,5 +279,21 @@ public class MenuPage extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	
+//	public void clickMenuInvestingFRE() {
+//
+//		
+//		
+//		Decorator();
+//		try {
+//			mobileAction.FuncClick(investing_FRE, "Investing");
+//			mobileAction.waitForElementToVanish(progressBar);
+//		} catch (NoSuchElementException | InterruptedException | IOException e) {
+//			System.err.println("TestCase has failed.");
+//			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+//		}
+//
+//	}
 
 }

@@ -1,6 +1,7 @@
 package com.td;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.support.PageFactory;
@@ -59,26 +60,17 @@ public class MainScreen extends _CommonPage {
 	public void Splash_Conitnue() throws IOException {
 
 		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
+		System.out.println();
+		
+
 		String udid = CL.getTestDataInstance().getDeviceUdid();
 		CL.getTestDataInstance().setALMUser("dharmm2");
 		CL.getTestDataInstance().setALMUserpwd("");
 		CL.getTestDataInstance().setALMDomain("");
 		CL.getTestDataInstance().setALMProject("");
 		CL.getTestDataInstance().setALMHost("");
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 
-		if (udid.equalsIgnoreCase("3d8b025ce19ab79fd4fc535b566f70df57747b9a")) {
+		if (udid.equalsIgnoreCase("6a48a007a301c5b4058cdf9a90fd5a6edb0a5819")) {
 
 			try {
 				if (CL.getTestDataInstance().getAppFilePath() == null
@@ -90,7 +82,7 @@ public class MainScreen extends _CommonPage {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
 				}
-				CL.mobileApp("http://0.0.0.0:4723/wd/hub");
+				CL.mobileApp("http://127.0.0.1:4723/wd/hub");
 				Decorator();
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");

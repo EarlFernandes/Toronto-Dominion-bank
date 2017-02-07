@@ -19,7 +19,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
-import javafx.scene.control.ProgressBar;
+
 
 public class PendingInteracTransfer extends _CommonPage{
 	
