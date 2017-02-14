@@ -7,6 +7,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.MainScreen;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -69,7 +70,7 @@ public class SearchPage extends _CommonPage {
 			
 			mobileAction.FuncClick(searchBar, "Clicked on search bar");
 			
-			String searchBar_Value= getTestdata("Search", "UserIDs");
+			String searchBar_Value= MainScreen.valueMap.get("Search");
 			mobileAction.FuncSendKeys(searchBar,searchBar_Value );
 		
 			Thread.sleep(5000);

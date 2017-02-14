@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.MainScreen;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -80,14 +81,14 @@ public class AddRecipient extends _CommonPage {
 		Decorator();
 		try {
 			addRecipient_Interac_header.isDisplayed();
-			String recipient_name_value=getTestdata("RecipientName","UserIDs" );
+			String recipient_name_value=MainScreen.valueMap.get("RecipientName" );
 			
 
 			
 			mobileAction.FuncClick(recipient_name, "Recipient_Name");
 			mobileAction.FuncSendKeys(recipient_name, recipient_name_value);
 			
-			String recipient_Email_value=getTestdata("RecipientMail","UserIDs" );
+			String recipient_Email_value=MainScreen.valueMap.get("RecipientMail" );
 			mobileAction.FuncClick(recipient_Email,"Recipient_Email");
 			
 			mobileAction.FuncSendKeys(recipient_Email,recipient_Email_value);
@@ -95,14 +96,14 @@ public class AddRecipient extends _CommonPage {
 			
 			
 			mobileAction.FuncClick(security_Question, "Security_Question");
-			String security_Question_value =getTestdata("Security_Question","UserIDs" );
+			String security_Question_value =MainScreen.valueMap.get("Security_Question" );
 		
 			mobileAction.FuncSendKeys(security_Question, security_Question_value);
 			mobileAction.FuncClick(done,"Done");
 			
 		
 			mobileAction.FuncClick(answer, "Answer");
-			String answer_value=getTestdata("SecurityAnswer","UserIDs" );
+			String answer_value=MainScreen.valueMap.get("SecurityAnswer" );
 			
 			
 			mobileAction.FuncSendKeys(answer, answer_value);

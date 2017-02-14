@@ -87,7 +87,9 @@ public class OrderReciept extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='Good 'til']")
 	private MobileElement btnorders;
 
-	@iOSFindBy(xpath = "//*[@label='Reçu']")
+	
+
+	@iOSFindBy(xpath = "//*[@label='Receipt' or @label='Reçu']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Receipt']")
 	private MobileElement receipt_header;
 
@@ -127,6 +129,18 @@ public class OrderReciept extends _CommonPage {
 	@iOSFindBy(xpath = "//*[contains(@label,'our request to cancel the order was received.')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/thank_you' and @text='Thank you!']")
 	private MobileElement verify_cancel_order;
+	
+	
+
+	
+
+
+
+	@iOSFindBy(xpath = "//*[contains(@label,'The change to your order') or contains(@label,'Demande de modification')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/message']")
+	private MobileElement updated_message;
+
+
 
 	public synchronized static OrderReciept get() {
 		if (OrderReciept == null) {
@@ -471,6 +485,36 @@ public class OrderReciept extends _CommonPage {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
+	}
+
+
+
+
+
+
+	/**
+	* This method will verify the updated orders details
+	* 
+	* @return void
+	* 
+	* @throws InterruptedException
+	*             In case an exception occurs while clicking over the element.
+	* @throws IOException
+	*             If there is problem while reporting.
+	* @throws NoSuchElementException
+	*             In case the element is not found over the screen.
+	*/
+
+	public void updatedReceipt() throws IOException {
+	try {
+	Decorator();
+	mobileAction.verifyElementIsDisplayed(receipt_header, "Receipt Header");
+	mobileAction.verifyElementIsDisplayed(updated_message, "Updated Message");
+	mobileAction.verifyElementIsDisplayed(confirmation_val, "Confirmation Number");
+	} catch (NoSuchElementException e) {
+	System.err.println("TestCase has failed.");
+	CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	}
 	}
 
 }

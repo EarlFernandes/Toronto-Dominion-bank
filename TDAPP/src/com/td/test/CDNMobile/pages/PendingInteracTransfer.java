@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.td.MainScreen;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -167,15 +168,42 @@ public class PendingInteracTransfer extends _CommonPage{
 	@AndroidFindBy(xpath = "")
 	private MobileElement selectSenderVal;
 	
+	@iOSFindBy(xpath = "//*[contains(@label,'-Balance')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccountAmountTransfer']")
+	private MobileElement Balance;
 	
-	String sender_SelectSender = getTestdata("Sender", "UserIDs");
+	
+	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@value='My Accounts']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='My Accounts']")
+	private MobileElement my_accounts;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'-Balance')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccountAmountTransfer']")
+	private MobileElement Balance1;
+	
+
+	String accountsPage_Table="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/"
+			+ "XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
+	String accountsSecondPart = "]/XCUIElementTypeStaticText[2]";
+	String from_account = MainScreen.valueMap.get("FromAccount");
+	
+	
+	
+
+
+	
+	
+	
+	
+	
+	String sender_SelectSender = MainScreen.valueMap.get("Sender");
 	String select_SenderValue = "//android.widget.TextView[starts-with(@text,'" + sender_SelectSender+ "')]";
 	
-	String transferRecipient = getTestdata("FromAccount", "UserIDs");
+	String transferRecipient = MainScreen.valueMap.get("FromAccount");
 	String select_Recipient = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_from_account' and @text='" + transferRecipient + "')]";
 	
 	String platformName=CL.getTestDataInstance().getMobilePlatForm();
-	String transfer_fromAccount = getTestdata("FromAccount", "UserIDs");
+	String transfer_fromAccount = MainScreen.valueMap.get("FromAccount");
 	
 	int i=1;
 	String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
@@ -265,7 +293,7 @@ public class PendingInteracTransfer extends _CommonPage{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@label='-Sender']")));
 				
 				mobileAction.FuncClick(selectSender, "Sender");
-				String senderVal=getTestdata("Sender", "UserIDs");
+				String senderVal=MainScreen.valueMap.get("Sender");
 				String selectSender=selectSenderVal.getAttribute("label");
 				mobileAction.verifyTextEquality(senderVal, selectSender);
 				
@@ -701,5 +729,76 @@ public class PendingInteracTransfer extends _CommonPage{
 				}
 			}
 			
+			
+
+			/**
+			 * This method will cancel the interac e transfer and deposit the the amount to the account
+			 * 
+			 * 
+			 * @return void
+			 * 
+			 */
+			public void verify_CancelPendingTransfer() {
+				System.out.println("Trial for Page factory class");
+				Decorator();
+				try {
+					
+					if(platformName.equalsIgnoreCase("ios")){
+						mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
+						mobileAction.FuncClick(selectSender, "Sender");
+						mobileAction.FuncSelectElementInTable(senderTable, Firstpart, Secondpart,sender_SelectSender );
+						mobileAction.FuncClick(selectTransaction, "Select Transaction");
+						mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
+						mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
+						String balance = Balance.getAttribute("value");
+						mobileAction.FuncClick(depositToContinue,"Continue");
+						mobileAction.FuncClick(cnfrmCancellation, "Confirm");
+						mobileAction.verifyElementIsDisplayed(cancelSuccessmsg, "Interac e-Transfer reclaimed and deposited successfully");
+						String conf_val = mobileAction.getText(cancelCnfrmnVal);
+						mobileAction.FuncClick(menu, "Menu");
+						mobileAction.FuncClick(my_accounts, "My Accounts");
+						mobileAction.FuncSelectElementInTable(accountsPage_Table,Firstpart,accountsSecondPart,from_account);
+						String balance1 = Balance1.getAttribute("value");
+						
+						if(balance.equalsIgnoreCase(balance1)){
+							System.err.println("TestCase has failed.");
+						}
+						else{
+							mobileAction.FuncClick(home, "home button");
+						}
+						
+						
+					}else{
+					
+						mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
+						mobileAction.FuncClick(selectSender, "Sender");
+						mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_SenderValue, 0, "down", true);
+						mobileAction.FuncClick(selectTransaction, "Select Transaction");
+						mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
+						String balance = Balance.getAttribute("value");
+						mobileAction.FuncClick(depositToContinue,"Continue");
+						mobileAction.FuncClick(cnfrmCancellation, "Confirm");
+						mobileAction.verifyElementIsDisplayed(cancelSuccessmsg, "Interac e-Transfer reclaimed and deposited successfully");
+						String conf_val = mobileAction.getText(cancelCnfrmnVal);
+						mobileAction.FuncClick(menu, "Menu");
+						mobileAction.FuncClick(my_accounts, "My Accounts");
+						mobileAction.FuncSelectElementInTable(accountsPage_Table,Firstpart,accountsSecondPart,from_account);
+						String balance1 = Balance1.getAttribute("value");
+						
+						if(balance.equalsIgnoreCase(balance1)){
+							System.err.println("TestCase has failed.");
+						}
+						else{
+							mobileAction.FuncClick(home, "home button");
+						}
+					}
+				} catch (NoSuchElementException | InterruptedException | IOException e) {
+					System.err.println("TestCase has failed.");
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				} catch (Exception e) {
+					System.err.println("TestCase has failed.");
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				}
+			}
 }
 

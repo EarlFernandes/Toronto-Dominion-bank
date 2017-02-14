@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.MainScreen;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -15,7 +16,6 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
-import junit.framework.Assert;
 
 public class Pay_US_Bill extends _CommonPage {
 
@@ -78,9 +78,9 @@ public class Pay_US_Bill extends _CommonPage {
 	String Secondpart = "]/XCUIElementTypeStaticText[1]";
 	String Finalpart = Firstpart + i + Secondpart;
 
-	String to_accountno = getTestdata("ToAccount", "UserIDs");
+	String to_accountno = MainScreen.valueMap.get("ToAccount");
 	String to_account = "//android.widget.TextView[@resource-id='com.td:id/subtitle' and @text='" + to_accountno + "']";
-	String us_accountno = getTestdata("USAccount", "UserIDs");
+	String us_accountno = MainScreen.valueMap.get("USAccount");
 	String select_from_account = "//android.widget.TextView[starts-with(@text,'" + us_accountno + "']";
 
 	public synchronized static Pay_US_Bill get() {
@@ -119,17 +119,17 @@ public class Pay_US_Bill extends _CommonPage {
 			String verification_message = "As this involves a large amount in foreign exchange, please ensure the Amount is correct";
 			String paybill = "Verification Page Is Dispalyed with PayBill Button";
 
-			String amount_value = getTestdata("Amount", "UserIDs");
-			String reason_value = getTestdata("Reason", "UserIDs");
+			String amount_value = MainScreen.valueMap.get("Amount");
+			String reason_value = MainScreen.valueMap.get("Reason");
 
-			String to_accountno = getTestdata("ToAccount", "UserIDs");
+			String to_accountno = MainScreen.valueMap.get("ToAccount");
 			String to_account = "//android.widget.TextView[@resource-id='com.td:id/subtitle' and @text='" + to_accountno
 					+ "']";
 			if (platformName.equalsIgnoreCase("ios")) {
 				boolean flag = US_Bill_Header.isDisplayed();
 				if (flag)
 				mobileAction.FuncClick(from_account, "From_Account");
-				String select_accountno = getTestdata("FromAccount", "UserIDs");
+				String select_accountno = MainScreen.valueMap.get("FromAccount");
 				mobileAction.FuncSelectElementInTable(select_account_table, Firstpart, Secondpart, select_accountno);
 
 				mobileAction.FuncClick(select_account, "Select_Account");
@@ -201,7 +201,7 @@ public class Pay_US_Bill extends _CommonPage {
 
 				if (flag)
 				mobileAction.FuncClick(from_account, "From_Account");
-				String us_accountno = getTestdata("USAccount", "UserIDs");
+				String us_accountno = MainScreen.valueMap.get("USAccount");
 				mobileAction.FuncSelectElementInTable(select_account_table, Firstpart, Secondpart, us_accountno);
 				boolean elementExists = currency_switchbox.isDisplayed();
 				mobileAction.verifyElementIsDisplayed(currency_switchbox, "");
@@ -210,7 +210,7 @@ public class Pay_US_Bill extends _CommonPage {
 
 					CL.GetDriver().findElement(By.xpath(Finalpart)).click();;
 
-					String from_accountno = getTestdata("FromAccount", "UserIDs");
+					String from_accountno = MainScreen.valueMap.get("FromAccount");
 					mobileAction.FuncSelectElementInTable(select_account_table, Firstpart, Secondpart, from_accountno);
 					mobileAction.verifyElementIsDisplayed(currency_switchbox, "t_currencyswitchbox");
 				

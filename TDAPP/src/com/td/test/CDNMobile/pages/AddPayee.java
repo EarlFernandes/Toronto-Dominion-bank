@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.MainScreen;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -31,7 +32,7 @@ public class AddPayee extends _CommonPage {
 	@AndroidFindBy(xpath = "")
 	private MobileElement errorMessage;
 	
-	String selectVal=getTestdata("Search","UserIDs");
+	String selectVal=MainScreen.valueMap.get("Search");
 	
 	
 	

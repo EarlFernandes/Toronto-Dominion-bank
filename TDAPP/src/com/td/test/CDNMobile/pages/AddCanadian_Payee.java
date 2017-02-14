@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.MainScreen;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -73,12 +74,12 @@ public class AddCanadian_Payee extends _CommonPage{
 		try {
 			Decorator();
 		
-			String payee_value=getTestdata("Payee", "UserIDs");
+			String payee_value=MainScreen.valueMap.get("Payee");
 			mobileAction.FuncClick(payee_accountno, "PayeeAccount");
 			mobileAction.FuncSendKeys(payee_accountno, payee_value);
 			
 			
-			String description_value=getTestdata("Description", "UserIDs");
+			String description_value=MainScreen.valueMap.get("Description");
 			mobileAction.FuncClick(description, "Description");
 			mobileAction.FuncSendKeys(description, description_value);
 			

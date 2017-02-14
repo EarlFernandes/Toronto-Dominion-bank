@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.MainScreen;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -101,15 +102,15 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_account']")
     private MobileElement accountname;
 
-    String sender_SelectSender = getTestdata("FromAccount", "UserIDs");
+    String sender_SelectSender = MainScreen.valueMap.get("FromAccount");
     String select_SenderValue = "//android.widget.TextView[starts-with(@text,'" + sender_SelectSender + "')]";
     String t_interacHeader = "Interac e-Transfer";
 
-    String transfer_fromAccount = getTestdata("FromAccount", "UserIDs");
+    String transfer_fromAccount = MainScreen.valueMap.get("FromAccount");
     String select_Account = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_from_account' and @text='"
 	    + transfer_fromAccount + "')]";
 
-    String transferRecipient = getTestdata("ToAccount", "UserIDs");
+    String transferRecipient = MainScreen.valueMap.get("ToAccount");
     String select_Recipient = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_from_account' and @text='"
 	    + transferRecipient + "')]";
 
@@ -126,7 +127,7 @@ public class Interac_e_Transfer extends _CommonPage {
     String Secondpart = "]/XCUIElementTypeStaticText[1]";
     String Finalpart = Firstpart + i + Secondpart;
 
-    String ValueofAmount = getTestdata("Amount", "UserIDs");
+    String ValueofAmount = MainScreen.valueMap.get("Amount");
 
     public synchronized static Interac_e_Transfer get() {
 	if (Interac_e_Transfer == null) {
@@ -171,7 +172,7 @@ public class Interac_e_Transfer extends _CommonPage {
 		mobileAction.FuncClick(recipient, "Recipient");
 
 		mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Recipient, 0, "down", true);
-		String ValueofAmount = getTestdata("Amount", "UserIDs");
+		String ValueofAmount = MainScreen.valueMap.get("Amount");
 		mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
 		mobileAction.FuncClickBackButton();
 		mobileAction.FuncClick(transfer_Continue, "Continue");
@@ -266,7 +267,7 @@ public class Interac_e_Transfer extends _CommonPage {
 		mobileAction.FuncClick(recipient, "Recipient");
 
 		mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Recipient, 0, "down", true);
-		String ValueofAmount = getTestdata("Amount", "UserIDs");
+		String ValueofAmount = MainScreen.valueMap.get("Amount");
 		mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
 		mobileAction.FuncClickBackButton();
 		mobileAction.FuncClick(transfer_Continue, "Continue");
@@ -319,7 +320,7 @@ public class Interac_e_Transfer extends _CommonPage {
 		mobileAction.FuncClick(recipient, "Recipient");
 
 		mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Recipient, 0, "down", true);
-		String ValueofAmount = getTestdata("Amount", "UserIDs");
+		String ValueofAmount = MainScreen.valueMap.get("Amount");
 		mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
 		mobileAction.FuncClickBackButton();
 		mobileAction.FuncClick(transfer_Continue, "Continue");
@@ -372,13 +373,13 @@ public class Interac_e_Transfer extends _CommonPage {
 	try {
 	    if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 		String val = etransfer_Amount.getAttribute("value");
-		String excelVal = getTestdata("Amount", "UserIDs");
+		String excelVal = MainScreen.valueMap.get("Amount");
 
 		mobileAction.verifyTextEquality(val, excelVal);
 
 	    } else {
 		String val = etransfer_Amount.getText();
-		String excelVal = getTestdata("Amount", "UserIDs");
+		String excelVal = MainScreen.valueMap.get("Amount");
 
 		mobileAction.verifyTextEquality(val, excelVal);
 	    }

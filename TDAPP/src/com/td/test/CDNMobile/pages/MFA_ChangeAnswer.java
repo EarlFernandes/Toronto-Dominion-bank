@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.MainScreen;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -86,7 +87,7 @@ public class MFA_ChangeAnswer extends _CommonPage {
 			if(security_Question_header.isDisplayed()){
 			mobileAction.FuncClick(security_Question, "Security_Question");
 			mobileAction.FuncClick(security_Answer, "security_Answer");
-			String secret_Answer_value = getTestdata("SecurityAnswer", "UserIDs");
+			String secret_Answer_value = MainScreen.valueMap.get("SecurityAnswer");
 			mobileAction.FuncSendKeys(security_Answer, secret_Answer_value);
 			
 			
@@ -101,7 +102,7 @@ public class MFA_ChangeAnswer extends _CommonPage {
 			else{
 				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(confirm_security_Answer, "Confirm_Security_Answer");
-				String confirm_Sec_Answer_value = getTestdata("SecurityAnswer", "UserIDs");
+				String confirm_Sec_Answer_value = MainScreen.valueMap.get("SecurityAnswer");
 				mobileAction.FuncSendKeys(confirm_security_Answer, confirm_Sec_Answer_value);
 				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(save_Changes, "Save_Changes");

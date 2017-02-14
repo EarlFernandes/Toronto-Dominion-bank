@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.MainScreen;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -62,7 +63,9 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
 	private MobileElement home_button;
 
-
+	@iOSFindBy(xpath = "//*[@label='Trade']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
+	private MobileElement trade;
 	
 	//French
 	
@@ -195,7 +198,7 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 
-			boolean isLanguageFrench = getTestdata("Language", "UserIDs").equals("FRE");
+			boolean isLanguageFrench = MainScreen.valueMap.get("Language").equals("FRE");
 
 
 			MobileElement investingElement = isLanguageFrench ? investingFRE : investing;
@@ -296,4 +299,16 @@ public class MenuPage extends _CommonPage {
 //
 //	}
 
+	public void clickMenuTrade() {
+
+		Decorator();
+		try {
+			mobileAction.FuncClick(trade, "Trade");
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
+	}
+	
 }

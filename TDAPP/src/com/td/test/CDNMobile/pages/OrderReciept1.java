@@ -8,10 +8,10 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.MainScreen;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -83,13 +83,13 @@ public class OrderReciept1 extends _CommonPage {
 	@iOSFindBy(xpath = " //*[contains(@label,'Copy')]")
 	private MobileElement copy_confirmation;
 
-	String priceValue = getTestdata("Price", "UserIDs");
-	String goodtil_value = getTestdata("Good'til", "UserIDs");
-	String searchValue = getTestdata("Search", "UserIDs");
+	String priceValue = MainScreen.valueMap.get("Price");
+	String goodtil_value = MainScreen.valueMap.get("Good'til");
+	String searchValue = MainScreen.valueMap.get("Search");
 	String account_no = "//*[contains(@label,'Account')]";
-	String actionToPerform = getTestdata("Action", "UserIDs");
-	String symbol = getTestdata("Symbol", "UserIDs");
-	String Qty = getTestdata("Quantity", "UserIDs");
+	String actionToPerform = MainScreen.valueMap.get("Action");
+	String symbol = MainScreen.valueMap.get("Symbol");
+	String Qty = MainScreen.valueMap.get("Quantity");
 	String home = "//*[contains(@label,'Home')]";
 	String orders = "//*[contains(@label,'Orders')]";
 	String trade = "//*[contains(@label,'Trade')]";

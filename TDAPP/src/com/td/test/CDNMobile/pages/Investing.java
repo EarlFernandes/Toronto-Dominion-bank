@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.MainScreen;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -18,6 +19,10 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class Investing extends _CommonPage {
 	private static Investing Investing;
+
+	@iOSFindBy(xpath = "//*[@label='TRADE']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='' and @text='']")
+	private MobileElement tradeicon;
 
 	@iOSFindBy(xpath = " //*[@label='Investing']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Investing']")
@@ -96,6 +101,10 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='My Accounts']")
 	private MobileElement accounts_Header;
 
+	@iOSFindBy(xpath = "//*[@label='Back']")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
+	private MobileElement Backbtn;
+
 	@iOSFindBy(xpath = "//*[contains(@label,'Open an account today for fast and convenient access to cash whe')]")
 	// @AndroidFindBy(xpath =
 	// "//android.widget.TableRow[@resource-id='com.td:id/watchlistRow']")
@@ -111,7 +120,7 @@ public class Investing extends _CommonPage {
 	String Finalpart = Firstpart + i + Secondpart;
 
 	String platformName = CL.getTestDataInstance().getMobilePlatForm();
-	String InvestingAccountsXL = getTestdata("FromAccount", "UserIDs");
+	String InvestingAccountsXL = MainScreen.valueMap.get("FromAccount");
 	String InvestingAccountsXpath = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
 			+ InvestingAccountsXL + "']";
 
@@ -146,7 +155,6 @@ public class Investing extends _CommonPage {
 		try {
 			Decorator();
 			Thread.sleep(2000);
-			System.out.println(CL.GetDriver().getPageSource());
 			mobileAction.FuncClick(trade, "Trade");
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -377,14 +385,14 @@ public class Investing extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				diAccountXL = "//*[contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "')]";
 				diAccountXL2 = "//*[contains(@label,'" + CL.getTestDataInstance().getSecondryAccount() + "')]";
-				diAccountXL3 = "//*[contains(@label,'" + getTestdata("FromAccount", "UserIDs") + "')]";
+				diAccountXL3 = "//*[contains(@label,'" + MainScreen.valueMap.get("FromAccount") + "')]";
 			} else {
 				diAccountXL = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
 						+ CL.getTestDataInstance().getPrimaryAccount() + "']";
 				diAccountXL2 = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
 						+ CL.getTestDataInstance().getSecondryAccount() + "']";
 				diAccountXL3 = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-						+ getTestdata("FromAccount", "UserIDs") + "']";
+						+ MainScreen.valueMap.get("FromAccount") + "']";
 			}
 
 			mobileAction.verifyElementUsingXPath(diAccountXL, "The DI Account");
@@ -475,7 +483,7 @@ public class Investing extends _CommonPage {
 			String diAccountXL = null;
 			String diAccountXL2 = null;
 			mobileAction.waitForElementToVanish(progressBar);
-			String fromAccount = getTestdata("FromAccount", "UserIDs");
+			String fromAccount = MainScreen.valueMap.get("FromAccount");
 			String fromAccountArr[] = fromAccount.split(",");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -521,4 +529,32 @@ public class Investing extends _CommonPage {
 		}
 	}
 
+	public void clickTradeIcon() {
+
+		try {
+			mobileAction.FuncClick(tradeicon, "Click Trade Icon");
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void clickBackbtn() {
+
+		Decorator();
+		try {
+			Thread.sleep(5000);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
+				mobileAction.FuncClick(Backbtn, "BACK");
+			} else {
+
+				mobileAction.FuncClickBackButton();
+			}
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
+	}
 }

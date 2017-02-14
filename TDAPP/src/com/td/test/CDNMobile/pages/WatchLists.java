@@ -1,13 +1,13 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.MainScreen;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -44,7 +44,7 @@ public class WatchLists extends _CommonPage {
 
 	String t_recent_searches = "RECENT SEARCHES";
 
-	String symbolXL = getTestdata("Symbol", "UserIDs");
+	String symbolXL = MainScreen.valueMap.get("Symbol");
 	String symbolXpath = "//android.widget.TextView[@resource-id='com.td:id/market_name' and @text='" + symbolXL + "']";
 	@SuppressWarnings("unchecked")
 	MobileElement symbol = (MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(symbolXpath));
@@ -67,10 +67,14 @@ public class WatchLists extends _CommonPage {
 	MobileElement symbolinWatchList = (MobileElement) ((AppiumDriver) CL.GetDriver())
 			.findElement(By.xpath(symbolInWatchListXpath)); // once
 
-	String SymbolsXL = getTestdata("Symbols", "UserIDs");
+	String SymbolsXL = MainScreen.valueMap.get("Symbols");
 	String[] symbolList = SymbolsXL.split(":");
 
-	int numberOfWatchlists = Integer.parseInt(getTestdata("WatchListNum", "UserIDs"));
+	int numberOfWatchlists = Integer.parseInt(MainScreen.valueMap.get("WatchListNum"));
+
+	@iOSFindBy(xpath="//*[contains(@label,'CA']")
+	private MobileElement symbolInWatchList;
+	
 
 	public synchronized static WatchLists get() {
 		if (WatchLists == null) {
@@ -228,6 +232,22 @@ public class WatchLists extends _CommonPage {
 		}
 
 	}
+
+public void verify_newOrderFlow_Watchlists(){
+		
+		
+		try {
+			for(int i=0;i<numberOfWatchlists;i++){
+			mobileAction.verifyElement(symbolInWatchList, symbolXL);
+			mobileAction.FuncClick(symbolInWatchList, symbolXL);
+			
+			}
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+				System.out.println(e.toString());
+		}
+		
+	}
+
 
 	public void swipeToNextWatchList() {
 

@@ -19,9 +19,6 @@ public class Env_Settings extends _CommonPage {
 	private static Env_Settings Env_Settings;
 
 	@iOSFindBy(xpath = "//*[@label='Menu']")
-	// String t_home =
-	// "//android.widget.TextView[@resource-id='com.td:id/navText' and
-	// @text='Home']";
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
@@ -45,7 +42,7 @@ public class Env_Settings extends _CommonPage {
 	private MobileElement envToSetup;
 
 	
-	String env_need_set = getTestdata("Env", "UserIDs");
+	String env_need_set = MainScreen.valueMap.get("Env");
 
 	String cnfgrn = "//android.widget.TextView[@resource-id='com.td:id/title'and @text='" + env_need_set + "']";
 	String env_Set = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]";
@@ -90,7 +87,7 @@ public class Env_Settings extends _CommonPage {
 			if (platformName.equalsIgnoreCase("ios")) {
 
 				mobileAction.FunCSwipeandScroll(network_settings, true);
-				String env = getTestdata("Env", "UserIDs");
+				String env = MainScreen.valueMap.get("Env");
 
 				mobileAction.FuncSelectElementInTable(env_Set, Firstpart, Secondpart, env);
 			} 

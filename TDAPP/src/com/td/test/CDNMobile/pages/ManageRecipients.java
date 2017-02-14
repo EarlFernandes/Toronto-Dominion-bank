@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.MainScreen;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -46,8 +47,8 @@ public class ManageRecipients extends _CommonPage {
     @iOSFindBy(xpath = "//*[@label='Re-enter your answer']")
     private MobileElement reEnterAnswer;
 
-    String recipientMail = getTestdata("RecipientMail", "UserIDs");
-    String answer = getTestdata("SecurityAnswer", "UserIDs");
+    String recipientMail = MainScreen.valueMap.get("RecipientMail");
+    String answer = MainScreen.valueMap.get("SecurityAnswer");
 
     public synchronized static ManageRecipients get() {
 	if (ManageRecipients == null) {

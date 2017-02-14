@@ -3,10 +3,10 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.MainScreen;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -53,7 +53,7 @@ public class Confirm_Payee extends _CommonPage{
 	@iOSFindBy(xpath = "//*[@label='Select Payee']")
 	private MobileElement select_payee;
 	
-	String accountNoXL=getTestdata("Payee", "UserIDs");
+	String accountNoXL=MainScreen.valueMap.get("Payee");
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[3]")
 	private MobileElement payee_table;

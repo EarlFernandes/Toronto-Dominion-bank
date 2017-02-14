@@ -30,6 +30,10 @@ public class HoldingDetails extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
     private MobileElement trade_header;
 
+	@iOSFindBy(xpath = "//*[@label='Holding Details']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Holding Details']")
+	private MobileElement HoldingDetails_header;
+
     @iOSFindBy(xpath = "//*[contains(@label,'Good 'til, Day')]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
     private MobileElement Good;
@@ -93,6 +97,34 @@ public class HoldingDetails extends _CommonPage {
 	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 	}
 
+	
     }
+    /**
+     * This method will click Buy button in HoldingDetails page.
+     * 
+     * @return void
+     * @throws InterruptedException 
+     *             In case an exception occurs while clicking over the element.
+     * @throws IOException
+     *             If there is problem while reporting.
+     * @throws NoSuchElementException
+     *             In case the element is not found over the screen.
+     */
+    public void click_BuyButton(){
+    	
+    	
+    	try {
+    		Decorator();
+    		String verify_HoldingDetails = "Verifying HoldingDetails Page Header";
+    		mobileAction.verifyElementIsDisplayed(HoldingDetails_header, verify_HoldingDetails);
+    		mobileAction.FuncClick(Buy, "Buy");
+    		
+    		}
+    	 catch (IOException | NoSuchElementException | InterruptedException e) {
+    			System.out.println(e.toString());
+    	}
+    	
+    }
+
 
 }

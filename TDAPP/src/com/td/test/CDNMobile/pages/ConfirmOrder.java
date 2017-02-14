@@ -454,17 +454,113 @@ public class ConfirmOrder extends _CommonPage {
 	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 	}
     }
-//    public void clicksendorderFRE() {
-//	Decorator();
-//	try {
-//			mobileAction.FuncClick(send_orderFRE, "Click Send Order Button");
-//
-//	    mobileAction.waitForElementToVanish(progressBarFRE);
-//	} catch (NoSuchElementException | InterruptedException | IOException e) {
-//	    System.err.println("TestCase has failed.");
-//	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-//	}
-//    }
-//    
+    
+    
+    /**
+    * This method will verify confirm order details page 
+    * 
+    * @return void
+    * 
+    * @throws InterruptedException
+    *             In case an exception occurs while clicking over the element.
+    * @throws IOException
+    *             If there is problem while reporting.
+    * @throws NoSuchElementException
+    *             In case the element is not found over the screen.
+    */
+    public void cdnmargin_sell_trailingstopmarket() throws InterruptedException{
+
+    try {
+    Decorator();
+    mobileAction.verifyElementIsDisplayed(confirmorder_header,"Verifying Confirm Order Page Header");
+    mobileAction.verifyElementIsDisplayed(verifyaccount,"account verified");
+    mobileAction.verifyElementIsDisplayed(action_quantity,"Action And Quantity" );
+    mobileAction.verifyElementIsDisplayed(price, "Price");
+    mobileAction.verifyElementIsDisplayed(triggerdelta, "Trigger Delta");
+    mobileAction.verifyElementIsDisplayed(goodtill,"GoodTill");
+    //mobileAction.verifyElementIsDisplayed(shareholdertype, "Verify Shareholder Type");
+    mobileAction.verifyElementIsDisplayed(buyingpower_required,"Buying Power Required");
+    //mobileAction.FuncScrollToText(estimatedprinciple);
+    mobileAction.verifyElementIsDisplayed(estimate_principle_value, "Verify Estimated Principal Value");
+    mobileAction.verifyElementIsDisplayed(estimate_comission,"Estimated Commission");
+    mobileAction.verifyElementIsDisplayed(estimated_total_cost,"Estimated Total Proceeds");
+    mobileAction.verifyElementIsDisplayed(cancel,"Cancel Button");
+    mobileAction.verifyElementIsDisplayed(send_order,"Send Order Button");
+    } catch (NoSuchElementException | IOException e) {
+    System.err.println("TestCase has failed.");
+    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+    }
+    }
+    
+    /**
+    * This method will verify confirm order details page 
+    * 
+    * @return void
+    * 
+    * @throws InterruptedException
+    *             In case an exception occurs while clicking over the element.
+    * @throws IOException
+    *             If there is problem while reporting.
+    * @throws NoSuchElementException
+    *             In case the element is not found over the screen.
+    */
+    public void cdncash_sell_trailingstoplimit() throws InterruptedException{
+
+    try {
+    Decorator();
+    mobileAction.verifyElementIsDisplayed(confirmorder_header,"Verifying Confirm Order Page Header");
+    mobileAction.verifyElementIsDisplayed(verifyaccount,"account verified");
+    mobileAction.verifyElementIsDisplayed(action_quantity,"Action And Quantity" );
+    mobileAction.verifyElementIsDisplayed(price, "Price");
+    mobileAction.verifyElementIsDisplayed(triggerdelta, "Trigger Delta");
+    mobileAction.verifyElementIsDisplayed(goodtill,"GoodTill");
+    mobileAction.verifyElementIsDisplayed(shareholdertype, "Verify Shareholder Type");
+    //mobileAction.FuncScrollToText(estimatedprinciple);
+    mobileAction.verifyElementIsDisplayed(estimate_principle_value, "Verify Estimated Principal Value");
+    mobileAction.verifyElementIsDisplayed(estimate_comission,"Estimated Commission");
+    mobileAction.verifyElementIsDisplayed(estimated_total_cost,"Estimated Total Proceeds");
+    mobileAction.verifyElementIsDisplayed(cancel,"Cancel Button");
+    mobileAction.verifyElementIsDisplayed(send_order,"Send Order Button");
+    } catch (NoSuchElementException | IOException e) {
+    System.err.println("TestCase has failed.");
+    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+    }
+    }
+
+    
+    /**
+    * This method will verify confirm order details page 
+    * 
+    * @return void
+    *  @throws InterruptedException
+    *             In case an exception occurs while clicking over the element.
+    * @throws IOException
+    *             If there is problem while reporting.
+    * @throws NoSuchElementException
+    *             In case the element is not found over the screen.
+    */
+    public void usmarginshort_buytocover_market() throws InterruptedException{
+
+    try {
+    Decorator();
+    mobileAction.verifyElementIsDisplayed(confirmorder_header,"Verifying Confirm Order Page Header");
+    mobileAction.verifyElementIsDisplayed(verifyaccount,"account verified");
+    mobileAction.verifyElementIsDisplayed(action_quantity,"Action And Quantity" );
+    mobileAction.verifyElementIsDisplayed(price, "Price");
+    mobileAction.verifyElementIsDisplayed(goodtill,"GoodTill");
+    mobileAction.verifyElementIsDisplayed(shareholdertype, "Verify Shareholder Type");
+    mobileAction.verifyElementIsDisplayed(buyingpower_required,"Buying Power Required");
+    //mobileAction.FuncScrollToText(estimatedprinciple);
+    mobileAction.verifyElementIsDisplayed(estimate_principle_value, "Verify Estimated Principal Value");
+    mobileAction.verifyElementIsDisplayed(estimate_comission,"Estimated Commission");
+    mobileAction.verifyElementIsDisplayed(estimated_total_cost,"Estimated Total Cost");
+    mobileAction.verifyElementIsDisplayed(cancel,"Cancel Button");
+    mobileAction.verifyElementIsDisplayed(send_order,"Send Order Button");
+    } catch (NoSuchElementException | IOException e) {
+    System.err.println("TestCase has failed.");
+    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+    }
+    }
+
     
 }

@@ -23,27 +23,29 @@ public class HomeScreen extends _CommonPage {
 
 	private static HomeScreen HomeScreen;
 
-	@iOSFindBy(xpath="//*[@label='Menu' or @label='Menu en en-tête']")
+	@iOSFindBy(xpath = "//*[@label='Menu' or @label='Menu en en-tête']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
-	@iOSFindBy(xpath="//*[@label='Bills']")
+	@iOSFindBy(xpath = "//*[@label='Bills']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Bills']")
 	private MobileElement bills;
-	
-	//@iOSFindBy(xpath="//*[@label='Bills']")
-	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Bills']")
-	//private MobileElement bills;
 
-	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@value='Accounts']")
+	// @iOSFindBy(xpath="//*[@label='Bills']")
+	// @AndroidFindBy(xpath =
+	// "//android.widget.TextView[@resource-id='com.td:id/title' and
+	// @text='Bills']")
+	// private MobileElement bills;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='Accounts']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Accounts']")
 	private MobileElement my_accounts;
 
-	@iOSFindBy(xpath="//*[@label='Transfers']")
+	@iOSFindBy(xpath = "//*[@label='Transfers']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Transfers']")
 	private MobileElement transfers;
-	
-	@iOSFindBy(xpath="//*[@label='Markets']")
+
+	@iOSFindBy(xpath = "//*[@label='Markets']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Transfers']")
 	private MobileElement markets;
 
@@ -51,50 +53,55 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='TRANSFERS']")
 	private MobileElement transfer_button_dashboard;
 
-	@iOSFindBy(xpath ="//*[@label='Quick Access']")
+	@iOSFindBy(xpath = "//*[@label='Quick Access']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access']")
 	private MobileElement quickAccess;
-	
-	@iOSFindBy(xpath ="//*[@label='Investing Accounts']")
+
+	@iOSFindBy(xpath = "//*[@label='Investing Accounts']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access' and @text='Investing Accounts']")
 	private MobileElement investing_button;
-	
-	@iOSFindBy(xpath ="////XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]//XCUIElementTypeCell[1]/XCUIElementTypeButton[7]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='']")
+
+	// @iOSFindBy(xpath
+	// ="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]//XCUIElementTypeCell[1]/XCUIElementTypeButton[2]")
+	// @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='']")
+	// private MobileElement trade;
+
+	@iOSFindBy(xpath = "//*[contains(@label,'TRADE')]")
+	@AndroidFindBy(xpath = "//android.widget.TableRow[@text='TRADE']")
 	private MobileElement trade;
 
-	
 	@iOSFindBy(xpath = "//*[@label='VIREMENTS'] ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='VIREMENTS']")
 	private MobileElement french_transfers;
-//	
-//	@iOSFindBy(xpath ="//*[@label='Menu en en-tête' or @label='Menu' ]")
-//	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-//	private MobileElement Menu_button;
-	
-	@iOSFindBy(xpath="//*[@label='TD for Me']")
+	//
+	// @iOSFindBy(xpath ="//*[@label='Menu en en-tête' or @label='Menu' ]")
+	// @AndroidFindBy(xpath =
+	// "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
+	// private MobileElement Menu_button;
+
+	@iOSFindBy(xpath = "//*[@label='TD for Me']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/td_zones_dashboard' and @text='TD FOR ME']")
 	private MobileElement dashboard_Location;
-	
-	@iOSFindBy(xpath ="//*[@label='TD For Me']")
+
+	@iOSFindBy(xpath = "//*[@label='TD For Me']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='TD for Me']")
-	private MobileElement TD_For_Me ;
-	
-	@iOSFindBy(xpath="//*[@label='In progress'] ")
+	private MobileElement TD_For_Me;
+
+	@iOSFindBy(xpath = "//*[@label='In progress'] ")
 	private MobileElement progressBarIos;
 
-	@iOSFindBy(xpath ="//*[@label='DEPOSIT']")
+	@iOSFindBy(xpath = "//*[@label='DEPOSIT']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mrdc_dashboard' and @text='DEPOSIT']")
 	private MobileElement deposit;
-	
+
 	@iOSFindBy(id = " ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/your_location_text_view']")
 	private MobileElement nearByLoaction;
-	
+
 	@iOSFindBy(id = " ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/viewing_text_view' and @text='Nearby']")
 	private MobileElement viewingDetail;
-	
+
 	@iOSFindBy(id = " ")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/chevron_button_up']")
 	private MobileElement chevron_Button;
@@ -102,46 +109,47 @@ public class HomeScreen extends _CommonPage {
 	@iOSFindBy(id = " ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/zone_name'][1]")
 	private MobileElement zone_Name;
-	
+
 	@iOSFindBy(id = " ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @enabled='true']")
 	private MobileElement zone_Header;
-	
-	@iOSFindBy(xpath="//*[@label='Investing']")
+
+	@iOSFindBy(xpath = "//*[@label='Investing']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing']")
 	private MobileElement InvestingHamburgeMenu;
-	
+
 	@iOSFindBy(xpath = "//*[@label='Logout']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 
-	
 	String progressBar = "//android.widget.ProgressBar[@resource-id='android:id/progress' and @enabled='true']";
 
-	@iOSFindBy(xpath ="//*[@value='SEND MONEY']")
+	@iOSFindBy(xpath = "//*[@value='SEND MONEY']")
 	private MobileElement send_money_button;
-	
-	@iOSFindBy(xpath ="//*[@label='Back']")
-	private MobileElement back_button; 
-	
-	@iOSFindBy(xpath="//*[@label='Locations']")
+
+	@iOSFindBy(xpath = "//*[@label='Back']")
+	private MobileElement back_button;
+
+	@iOSFindBy(xpath = "//*[@label='Locations']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
 	private MobileElement location;
 
-	@iOSFindBy(xpath="//*[@label='Find Locations']")
+	@iOSFindBy(xpath = "//*[@label='Find Locations']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Find Locations']")
 	private MobileElement locationheader;
 
-	
-	@iOSFindBy(xpath ="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]//XCUIElementTypeCell[1]/XCUIElementTypeButton[7]")
-	private MobileElement Watchlists; 
-	
-	int i=1;
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]//XCUIElementTypeCell[1]/XCUIElementTypeButton[7]")
+	private MobileElement Watchlists;
+
+	@iOSFindBy(xpath = "//*[@label='Trade']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='']")
+	private MobileElement clickmenu_trade;
+
+	int i = 1;
 	String Firstpart = "//XCUIElementTypeCell[";
 	String Secondpart = "]/XCUIElementTypeButton[1]";
 	String Finalpart = Firstpart + i + Secondpart;
-	
-	
+
 	public synchronized static HomeScreen get() {
 		if (HomeScreen == null) {
 			HomeScreen = new HomeScreen();
@@ -153,10 +161,11 @@ public class HomeScreen extends _CommonPage {
 		PageFactory.initElements(
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
 				this);
-		
+
 	}
 
-	String platformName=CL.getTestDataInstance().getMobilePlatForm();
+	String platformName = CL.getTestDataInstance().getMobilePlatForm();
+
 	/**
 	 * This method will click on the bill button on home page
 	 * 
@@ -179,7 +188,7 @@ public class HomeScreen extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
+
 	/**
 	 * This method will click on the bill button on home page
 	 * 
@@ -203,7 +212,6 @@ public class HomeScreen extends _CommonPage {
 		}
 	}
 
-	
 	/**
 	 * This method will click on the Market button on home page
 	 * 
@@ -226,12 +234,12 @@ public class HomeScreen extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
+
 	/**
 	 * This method will click on the Watchlists button on home page
 	 * 
 	 * @return void
-	 * @throws Exception 
+	 * @throws Exception
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -244,13 +252,14 @@ public class HomeScreen extends _CommonPage {
 
 		try {
 			Decorator();
-		
+
 			mobileAction.FuncClick(Watchlists, "Watchlists");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+
 	/**
 	 * This method will click on the quick access button on home page
 	 * 
@@ -289,10 +298,9 @@ public class HomeScreen extends _CommonPage {
 	public void clickMyAccounts() {
 		try {
 			Decorator();
-		
-			
+
 			mobileAction.FuncClick(my_accounts, "My Accounts");
-			
+
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -315,14 +323,14 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.FuncClick(menu, "Menu");
-		
+
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
 	}
-	
+
 	/**
 	 * This method will click on the Menu button on home page
 	 * 
@@ -367,7 +375,7 @@ public class HomeScreen extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
+
 	/**
 	 * This method will click on the Deposit button on home page
 	 * 
@@ -389,7 +397,7 @@ public class HomeScreen extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
+
 	/**
 	 * This method will click on the Trade button on home page
 	 * 
@@ -405,13 +413,13 @@ public class HomeScreen extends _CommonPage {
 	public void clickTrade() {
 		try {
 			Decorator();
+			mobileAction.verifyElementIsDisplayed(trade, "TRADE");
 			mobileAction.FuncClick(trade, "Trade");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-
 
 	/**
 	 * This method will click on the Transfers button on dashboard page
@@ -435,7 +443,6 @@ public class HomeScreen extends _CommonPage {
 		}
 
 	}
-	
 
 	/**
 	 * This method will click on the Transfers button on dashboard page
@@ -459,8 +466,10 @@ public class HomeScreen extends _CommonPage {
 		}
 
 	}
+
 	/**
-	 * This method will click on the Transfers button on home page in French language
+	 * This method will click on the Transfers button on home page in French
+	 * language
 	 * 
 	 * @return void
 	 * 
@@ -481,22 +490,24 @@ public class HomeScreen extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
-}
+	}
+
 	public void sendMoney() {
 		try {
 			Decorator();
 			WebDriverWait wait = new WebDriverWait(CL.GetDriver(), 100);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@label,'The right mortgage can save you money')]")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(
+					By.xpath("//*[contains(@label,'The right mortgage can save you money')]")));
 			mobileAction.FuncClick(send_money_button, "sendMoney");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
-}
-	
+	}
+
 	/**
-	 * This method will click on the Back  button 
+	 * This method will click on the Back button
 	 * 
 	 * @return void
 	 * 
@@ -511,22 +522,22 @@ public class HomeScreen extends _CommonPage {
 
 		Decorator();
 		try {
-			
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-		
-				mobileAction.FuncClick(back_button, "BACK");
-			}else{
+			Thread.sleep(5000);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-			mobileAction.FuncClickBackButton();
+				mobileAction.FuncClick(back_button, "BACK");
+			} else {
+
+				mobileAction.FuncClickBackButton();
 			}
+
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
+	}
 
-}
-	
 	/**
 	 * This method will click on the locations from the flyout menu
 	 * 
@@ -539,37 +550,38 @@ public class HomeScreen extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	
+
 	public void flyoutMenu_Locations() {
 		Decorator();
 		try {
-			
-				String PlatformName=getTestdata("MobilePlatform", "Batch Run");
-			if(PlatformName.equalsIgnoreCase("ios")){
-				
+
+			String PlatformName = "";
+			if (PlatformName.equalsIgnoreCase("")) {
+
 				mobileAction.FuncClick(dashboard_Location, "TD Zone Dashboard");
 				mobileAction.waitForElementToVanish(progressBarIos);
-				mobileAction.verifyElement(TD_For_Me,"TD for Me");
-				
-				
-			}else{
-			
-			AppiumDriver<WebElement> driver = ((AppiumDriver<WebElement>) CL.GetDriver());
-			WebDriverWait wait = new WebDriverWait(driver, 10);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.TextView[@resource-id='com.td:id/td_zones_dashboard' and @text='TD FOR ME']")));
-			mobileAction.FuncClick(dashboard_Location, "TD Zone Dashboard");
-			//mobileAction.waitForElementToVanish(progressBarIos);a
-			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='TD for Me']")));
-			mobileAction.verifyElement(TD_For_Me,"TD for Me");
-			
-			}	
+				mobileAction.verifyElement(TD_For_Me, "TD for Me");
+
+			} else {
+
+				AppiumDriver<WebElement> driver = ((AppiumDriver<WebElement>) CL.GetDriver());
+				WebDriverWait wait = new WebDriverWait(driver, 10);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+						"//android.widget.TextView[@resource-id='com.td:id/td_zones_dashboard' and @text='TD FOR ME']")));
+				mobileAction.FuncClick(dashboard_Location, "TD Zone Dashboard");
+				// mobileAction.waitForElementToVanish(progressBarIos);a
+				// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.TextView[@resource-id='android:id/action_bar_title'
+				// and @text='TD for Me']")));
+				mobileAction.verifyElement(TD_For_Me, "TD for Me");
+
+			}
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
 	}
-	
+
 	/**
 	 * This method will click on the locations and verify the nearby locations
 	 * 
@@ -588,24 +600,21 @@ public class HomeScreen extends _CommonPage {
 			String location = mobileAction.getText(nearByLoaction);
 			mobileAction.verifyElement(viewingDetail, "Nearby");
 			mobileAction.FuncClick(chevron_Button, "Chevron Button");
-			mobileAction.FunctionSwipe("Up", 100, 0);			
-			String addr =mobileAction.getText(zone_Name);
-			mobileAction.FuncClick(zone_Name, "Zone Name");						
+			mobileAction.FunctionSwipe("Up", 100, 0);
+			String addr = mobileAction.getText(zone_Name);
+			mobileAction.FuncClick(zone_Name, "Zone Name");
 			mobileAction.waitForElementToDisappear(progressBar);
-			mobileAction.verifyElement(zone_Header,addr);
-			
-			
-			
+			mobileAction.verifyElement(zone_Header, addr);
+
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
 	}
-	
+
 	/**
-	 * This method will click investing button from the hamburger menu.
-	 * language
+	 * This method will click investing button from the hamburger menu. language
 	 * 
 	 * @return void
 	 * 
@@ -626,7 +635,7 @@ public class HomeScreen extends _CommonPage {
 
 		}
 
-		  catch (NoSuchElementException e) {
+		catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		} catch (InterruptedException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -635,11 +644,9 @@ public class HomeScreen extends _CommonPage {
 		}
 
 	}
-	
 
 	/**
-	 * This method will click investing button from the hamburger menu.
-	 * language
+	 * This method will click investing button from the hamburger menu. language
 	 * 
 	 * @return void
 	 * 
@@ -653,25 +660,23 @@ public class HomeScreen extends _CommonPage {
 	public void verifyFlyOut_Home() {
 
 		Decorator();
-		
 
 		try {
-			
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
 
-			mobileAction.FuncClick(back_button, "Back");
-			mobileAction.FuncClick(menu, "Menu");
-			
-			}else{
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
+				mobileAction.FuncClick(back_button, "Back");
+				mobileAction.FuncClick(menu, "Menu");
+
+			} else {
 				mobileAction.FuncClick(menu, "Menu");
 			}
-			
-			
+
 		}
 
-		  catch (NoSuchElementException |InterruptedException | IOException e) {
+		catch (NoSuchElementException | InterruptedException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		  }
+		}
 
 	}
 
@@ -693,16 +698,16 @@ public class HomeScreen extends _CommonPage {
 		Decorator();
 
 		try {
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(back_button, "Back Button");
 			}
-			
+
 			mobileAction.FuncClick(menu, "Menu");
 			mobileAction.verifyElementIsDisplayed(logout, "Logout");
 
 		}
 
-		  catch (NoSuchElementException e) {
+		catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		} catch (InterruptedException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -711,7 +716,7 @@ public class HomeScreen extends _CommonPage {
 		}
 
 	}
-	
+
 	/**
 	 * This method will verify whether the user is unauntheticated
 	 * 
@@ -730,50 +735,70 @@ public class HomeScreen extends _CommonPage {
 		Decorator();
 
 		try {
-			
+
 			boolean flag = mobileAction.verifyElementNotPresent(logout, "Logout");
 
 		}
 
-		  catch (NoSuchElementException e) {
+		catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
 	}
 
-
 	/**
-	* This method will click on the locations from the flyout menu
-	* 
-	* @return void
-	* 
-	* @throws InterruptedException
-	*             In case an exception occurs while clicking over the element.
-	* @throws IOException
-	*             If there is problem while reporting.
-	* @throws NoSuchElementException
-	*             In case the element is not found over the screen.
-	*/
+	 * This method will click on the locations from the flyout menu
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void clicklocation() {
 
-	Decorator();
+		Decorator();
 
-	try {
+		try {
 
-	mobileAction.FuncClick(location, "Location");
-	String verifylocation = "Location Header Verified";
-	mobileAction.verifyElementIsDisplayed(locationheader,verifylocation);
+			mobileAction.FuncClick(location, "Location");
+			String verifylocation = "Location Header Verified";
+			mobileAction.verifyElementIsDisplayed(locationheader, verifylocation);
+
+		}
+
+		catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void clickmenu_trade() {
+
+		Decorator();
+		try {
+			mobileAction.FuncClick(clickmenu_trade, "Click Menu Trade");
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
 
 	}
 
-	  catch (NoSuchElementException e) {
-	CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-	} catch (InterruptedException e) {
-	CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-	} catch (IOException e) {
-	CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-	}
+	public void menuTradeEasyWebCustomer() throws Exception {
+
+		Decorator();
+		try {
+			mobileAction.verifyElementNotPresent(clickmenu_trade, "Menu Trade");
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
 	}
 
-	
 }
