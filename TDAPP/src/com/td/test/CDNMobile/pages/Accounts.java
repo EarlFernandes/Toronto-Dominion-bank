@@ -39,7 +39,7 @@ public class Accounts extends _CommonPage {
 
     @iOSFindBy(xpath = "//*[@label='Menu']")
     @AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up' and @index='0']")
-    private MobileElement homeButton;
+    private MobileElement btnHome;
 
     @iOSFindBy(xpath = "//*[@label='Preferences']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Preferences']")
@@ -50,7 +50,8 @@ public class Accounts extends _CommonPage {
     private MobileElement txtAccount_Banking_header;
 
     @iOSFindBy(xpath = "//*[@label='INVESTING']")
-    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and @text='INVESTING']")
+    //@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and @text='INVESTING']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Investing']")
     private MobileElement txtAccount_Investing_header;
 
     @iOSFindBy(xpath = "//*[contains@(label,'USD $')]")
@@ -116,14 +117,14 @@ public class Accounts extends _CommonPage {
     @iOSFindBy(xpath = "//*[contains(@label,'Avaliable Balance')]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/availableBalance']")
     private MobileElement available_balance;
+    
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]") 
+    private MobileElement currencyCheck;
 
     int i = 1;
 
     String Firstpart = "//XCUIElementTypeCell[";
     String accountsSecondPart = "]/XCUIElementTypeStaticText[2]";
-
-//    String platformName = MainScreen.valueMap.get("MobilePlatform", "Batch Run");
-    String from_account = MainScreen.valueMap.get("FromAccount");
     String Account_header = "My Accounts";
     String ios_Account_header = "Accounts";
     String can_account_value = "$";
@@ -179,13 +180,10 @@ public class Accounts extends _CommonPage {
 
 	    Thread.sleep(4000);
 	    mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, Account_header);
-	    System.out.println("Accounts header verified");
-	    mobileAction.FuncSelectElementInTable(accountsPage_Table, Firstpart, accountsSecondPart, from_account);
+	  
+	  //  mobileAction.FuncSelectElementInTable(accountsPage_Table, Firstpart, accountsSecondPart, from_account);
 	    mobileAction.waitForElementToVanish(progresssBar);
-	    System.out.println("Selected the account");
 	    Thread.sleep(4000);
-
-	    Decorator();
 	    mobileAction.FuncClick(summaryButton, "Summary");
 	    mobileAction.waitForElementToVanish(progresssBar);
 	    mobileAction.verifyElementIsDisplayed(current_balance, "Current balance");
@@ -223,10 +221,7 @@ public class Accounts extends _CommonPage {
 	    mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, "Accounts");
 	    mobileAction.FunCnewSwipe(txtCredit, false, 2);
 	    Thread.sleep(5000);
-	    String multiCurencyCheck = CL.GetDriver()
-		    .findElement(By
-			    .xpath("//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]"))
-		    .getText();
+	    String multiCurencyCheck = currencyCheck.getText();
 	    if (us_Account_value.contains(multiCurencyCheck)) {
 		CL.GetReporting().FuncReport("Pass", "The test is verified");
 	    }
@@ -275,7 +270,7 @@ public class Accounts extends _CommonPage {
 	try {
 
 	    mobileAction.verifyElement(txtMy_Account_Header, Account_header);
-	    mobileAction.FuncClick(homeButton, "HOMEBUTTON");
+	    mobileAction.FuncClick(btnHome, "HOMEBUTTON");
 	} catch (NoSuchElementException | InterruptedException | IOException e) {
 	    System.err.println("TestCase has failed.");
 	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -300,7 +295,7 @@ public class Accounts extends _CommonPage {
 	try {
 	    txtMy_Account_Header.isDisplayed();
 	    mobileAction.FuncClick(ios_back_button, "Back_Button");
-	    mobileAction.FuncClick(homeButton, "HOMEBUTTON");
+	    mobileAction.FuncClick(btnHome, "HOMEBUTTON");
 	} catch (NoSuchElementException | InterruptedException | IOException e) {
 	    System.err.println("TestCase has failed.");
 	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -324,7 +319,7 @@ public class Accounts extends _CommonPage {
 	Decorator();
 	try {
 	    mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, Account_header);
-	    mobileAction.FuncSelectElementInTable(accountsPage_Table, Firstpart, accountsSecondPart, from_account);
+	  //  mobileAction.FuncSelectElementInTable(accountsPage_Table, Firstpart, accountsSecondPart, from_account);
 	    mobileAction.waitForElementToVanish(progresssBar);
 	    mobileAction.FuncClick(txtActivity, "Activity");
 	    mobileAction.waitForElementToVanish(progresssBar);
@@ -503,7 +498,7 @@ public class Accounts extends _CommonPage {
 	    mobileAction.FunCnewSwipe(txtCredit, false, 2);
 	    Thread.sleep(5000);
 
-	    mobileAction.FuncSelectElementInTable(accountsPage_Table, Firstpart, accountsSecondPart, from_account);
+	   // mobileAction.FuncSelectElementInTable(accountsPage_Table, Firstpart, accountsSecondPart, from_account);
 	    mobileAction.waitForElementToVanish(progresssBar);
 
 	    mobileAction.FuncClick(txtActivity, "Activity");

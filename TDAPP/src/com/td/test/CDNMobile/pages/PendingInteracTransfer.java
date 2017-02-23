@@ -185,7 +185,7 @@ public class PendingInteracTransfer extends _CommonPage{
 	String accountsPage_Table="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/"
 			+ "XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
 	String accountsSecondPart = "]/XCUIElementTypeStaticText[2]";
-	String from_account = MainScreen.valueMap.get("FromAccount");
+	String from_account = getTestdata("FromAccount");
 	
 	
 	
@@ -196,14 +196,14 @@ public class PendingInteracTransfer extends _CommonPage{
 	
 	
 	
-	String sender_SelectSender = MainScreen.valueMap.get("Sender");
+	String sender_SelectSender = getTestdata("Sender");
 	String select_SenderValue = "//android.widget.TextView[starts-with(@text,'" + sender_SelectSender+ "')]";
 	
-	String transferRecipient = MainScreen.valueMap.get("FromAccount");
+	String transferRecipient = getTestdata("FromAccount");
 	String select_Recipient = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_from_account' and @text='" + transferRecipient + "')]";
 	
 	String platformName=CL.getTestDataInstance().getMobilePlatForm();
-	String transfer_fromAccount = MainScreen.valueMap.get("FromAccount");
+	String transfer_fromAccount = getTestdata("FromAccount");
 	
 	int i=1;
 	String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
@@ -293,7 +293,7 @@ public class PendingInteracTransfer extends _CommonPage{
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@label='-Sender']")));
 				
 				mobileAction.FuncClick(selectSender, "Sender");
-				String senderVal=MainScreen.valueMap.get("Sender");
+				String senderVal=getTestdata("Sender");
 				String selectSender=selectSenderVal.getAttribute("label");
 				mobileAction.verifyTextEquality(senderVal, selectSender);
 				
@@ -739,7 +739,7 @@ public class PendingInteracTransfer extends _CommonPage{
 			 * 
 			 */
 			public void verify_CancelPendingTransfer() {
-				System.out.println("Trial for Page factory class");
+			
 				Decorator();
 				try {
 					

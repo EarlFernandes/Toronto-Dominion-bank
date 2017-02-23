@@ -31,14 +31,14 @@ public class Trade extends _CommonPage {
 	private MobileElement trigger_type;
 
 	@iOSFindBy(xpath = "//*[@label='%']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='Trigger Delta']")
 	private MobileElement trigger_Delta;
 
 	@iOSFindBy(xpath = "//*[@label='Stocks & ETFs'] ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Stocks & ETFs' and @index='1']")
 	private MobileElement stocks_ETFs;
 
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText' and @text='Limit Delta ($), ']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText' and contains(@text,'Limit Delta)']")
 	private MobileElement btnLimitDelta;
 
 	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]")
@@ -52,7 +52,7 @@ public class Trade extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText' and @index='0']")
 	private MobileElement selectLimitPrice;
 
-	String CDNMarginAccountXL = MainScreen.valueMap.get("CDNMarginAccount");
+	String CDNMarginAccountXL = getTestdata("CDNMarginAccount");
 
 	String CDNMarginAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
 			+ CDNMarginAccountXL + "']";
@@ -61,7 +61,7 @@ public class Trade extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/caption'")
 	private MobileElement tradeAction;
 
-	String Action = MainScreen.valueMap.get("Action");
+	String Action = getTestdata("Action");
 	String txtAction = "//android.widget.TextView[@resource-id='com.td:id/txtActionType' and @text='" + Action + "']";
 
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']")
@@ -79,7 +79,7 @@ public class Trade extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='Day']")
 	private MobileElement btngood;
 
-	String good = MainScreen.valueMap.get("Good'til");
+	String good = getTestdata("Good'til");
 	String txtgood = "//android.widget.TextView[@resource-id='com.td:id/txtDateType' and @text='" + good + "']";
 
 	@iOSFindBy(xpath = "//*[@value='Enter your trading password' or @value='Entrer votre mot de passe de négociation']")
@@ -99,18 +99,18 @@ public class Trade extends _CommonPage {
 	private MobileElement send_order;
 
 	@iOSFindBy(xpath = "//*[@label='CANCEL']")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='' and @text='']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@text='Cancel']")
 	private MobileElement cancelbutton;
 
 	@iOSFindBy(xpath = "//*[@label='Back']")
 	private MobileElement backButton;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Price')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='Market']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Price' or @text='Cours']")
 	private MobileElement selectPrice;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Cours')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='Market']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Price' or @text='Cours']")
 	private MobileElement selectPriceFRE;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Options']")
@@ -143,7 +143,7 @@ public class Trade extends _CommonPage {
 	private MobileElement selectActionFRE;
 
 	@iOSFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Chercher un nom de')]")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtSearchTitle' and @text='Enter name or symbol']")
 	private MobileElement symbol;
 
 	@iOSFindBy(xpath = "//*[@label='Search']")
@@ -151,7 +151,7 @@ public class Trade extends _CommonPage {
 	private MobileElement CancelSearchbtn;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeSearchField")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_search_field_search_mode' and @text='Enter name or symbol']")
 	private MobileElement symbol1;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Quantity Type')]")
@@ -193,7 +193,7 @@ public class Trade extends _CommonPage {
 	private MobileElement txtaction;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tdticker']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/market_name'][1]")
 	private MobileElement selectTD;
 
 	@iOSFindBy(xpath = "//*[@label='Cancel']")
@@ -205,7 +205,7 @@ public class Trade extends _CommonPage {
 	private MobileElement ClickOnPreviewOrderBtn;
 
 	@iOSFindBy(xpath = "//*[@label='Send Order']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tdticker' and @text='TORONTO DOMINION BANK']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Send Order']")
 	private MobileElement Send_Order;
 
 	@iOSFindBy(xpath = "//*[@label='Change Order']")
@@ -215,9 +215,9 @@ public class Trade extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Important Information']")
 	private MobileElement importantInfo;
 
-	String TriggerPrice = MainScreen.valueMap.get("TriggerPrice");
+	String TriggerPrice = getTestdata("TriggerPrice");
 	@iOSFindBy(xpath = "//*[contains(@label,'Trigger Price')]")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText' and @text='Trigger Price ($), ']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText' and contains(@text,'Trigger Price')]")
 	private MobileElement selectTriggerPrice;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'I consent to receiving the Fund Facts electronically')]")
@@ -230,9 +230,11 @@ public class Trade extends _CommonPage {
 	private MobileElement insider;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtActionType' and @text='Short Sell']")
 	private MobileElement shortSell;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtActionType' and @text='Buy to Cover']")
 	private MobileElement buyToCover;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
@@ -258,36 +260,36 @@ public class Trade extends _CommonPage {
 
 	String progressBar = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
 
-	String trade_accountXL = MainScreen.valueMap.get("CDNMarginAccount");
+	String trade_accountXL = getTestdata("CDNMarginAccount");
 	String accselected = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
 			+ trade_accountXL + "']";
-	String actionToPerform = MainScreen.valueMap.get("Action");
+	String actionToPerform = getTestdata("Action");
 	String actionselected = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='"
 			+ actionToPerform + "']";
-	String strSelect = MainScreen.valueMap.get("Symbol");
+	String strSelect = getTestdata("Symbol");
 	String selectSymbol = "//*[contains(@label,'" + strSelect + "')]";
-	String quantityType = MainScreen.valueMap.get("QuantityType");
-	String dividendOption = MainScreen.valueMap.get("Dividend");
-	String trading_pwd_value = MainScreen.valueMap.get("Trading_Pwd");
-	String Qty = MainScreen.valueMap.get("QuantityType");
+	String quantityType = getTestdata("QuantityType");
+	String dividendOption = getTestdata("Dividend");
+	String trading_pwd_value = getTestdata("Trading_Pwd");
+	String Qty = getTestdata("QuantityType");
 	String qtyselected = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='" + Qty + "']";
-	String div = MainScreen.valueMap.get("Dividend");
+	String div = getTestdata("Dividend");
 	String dividentopt = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='" + div + "']";
-	String limitPrice = MainScreen.valueMap.get("SelectLimitPrice");
+	String limitPrice = getTestdata("SelectLimitPrice");
 
-	String findaccount = MainScreen.valueMap.get("FromAccount");
+	String findaccount = getTestdata("FromAccount");
 	String find_account = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
 			+ findaccount + "')]";
 
-	String price_value = MainScreen.valueMap.get("Price");
+	String price_value = getTestdata("Price");
 	String pricetype = "//android.widget.TextView[@resource-id='com.td:id/txtOrderType' and @text='" + price_value
 			+ "']";
 
-	String shareHolderXl = MainScreen.valueMap.get("ShareHolder");
+	String shareHolderXl = getTestdata("ShareHolder");
 	String shareholder_select = "//android.widget.TextView[@resource-id='com.td:id/txtShareHolderType' and @text='"
 			+ shareHolderXl + "']";
 
-	String goodXL = MainScreen.valueMap.get("Good'til");
+	String goodXL = getTestdata("Good'til");
 	String selectgoodtill = "//android.widget.TextView[@resource-id='com.td:id/txtDateType' and @text='" + goodXL
 			+ "']";
 
@@ -315,19 +317,19 @@ public class Trade extends _CommonPage {
 	String Firstpart = "//XCUIElementTypeCell[";
 	String Secondpart = "]/XCUIElementTypeStaticText[1]";
 	String Finalpart = Firstpart + i + Secondpart;
-	String quantityXL = MainScreen.valueMap.get("Quantity");
+	String quantityXL = getTestdata("Quantity");
 
 	@iOSFindBy(xpath = "//*[contains(@label,'CA, AR, ARGONAUT GOLD INC')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='CA, AR, ARGONAUT GOLD INC']")
 	private MobileElement ARSymbol;
 
-	String trade_account_no = MainScreen.valueMap.get("CDNMarginAccount");
+	String trade_account_no = getTestdata("CDNMarginAccount");
 	String accountToSelect = "//*[contains(@label,'" + trade_account_no + "')]";
 
 	/***************************************************************
 	 * Mutual Fund
 	 **********************************************/
-	String searchSymbolXL = MainScreen.valueMap.get("Search");
+	String searchSymbolXL = getTestdata("Search");
 	String strSymbol[] = searchSymbolXL.split(":");
 
 	@iOSFindBy(xpath = "//*[@label='Enter name or symbol' or @label='Chercher un nom de société ou un symbole']")
@@ -363,11 +365,11 @@ public class Trade extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText']")
 	private MobileElement amountZero;
 
-	String comissionXL = MainScreen.valueMap.get("Comission");
+	String comissionXL = getTestdata("Comission");
 	String comissionXpath = "//android.widget.RadioButton[@text='" + comissionXL + "']";
 	String comissionXpathiOS = "//*[@label='" + comissionXL + "']";
 
-	String amountXL = MainScreen.valueMap.get("Amount");
+	String amountXL = getTestdata("Amount");
 	@iOSFindBy(xpath = "//*[contains(@label,'Dividend Option') or contains(@label,'Option de dividendes') or contains(@label,'Option dividendes')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Dividend Option']/following-sibling::android.widget.TextView[@text='Please Select' or @text='Choisissez']")
 	private MobileElement dividendOptions;
@@ -470,7 +472,7 @@ public class Trade extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='GO BACK HOME']")
 	private MobileElement home_widget;
 
-	String strQuantity = MainScreen.valueMap.get("Quantity");
+	String strQuantity = getTestdata("Quantity");
 
 	@iOSFindBy(xpath = "//*[@label='Ordres']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='ORDERS']")
@@ -480,7 +482,7 @@ public class Trade extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='TRADE']")
 	private MobileElement trade_widget;
 
-	String appLanguage = MainScreen.valueMap.get("Language");
+	String appLanguage = getTestdata("Language");
 
 	@iOSFindBy(xpath = "//*[@label='Retour' or @label='Back']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
@@ -500,6 +502,9 @@ public class Trade extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='The symbol you entered is not valid']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'The symbol you entered is not valid') and @index='1']")
 	private MobileElement searchmsg;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[7]/XCUIElementTypeTextField[1]")
+	private MobileElement quantityVal;
 
 	String dividendXpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='"
 			+ dividendOption + "']";
@@ -611,16 +616,16 @@ public class Trade extends _CommonPage {
 						.findElement(By.xpath(orderType));
 
 				mobileAction.FuncClick(OrderType, "OrderType");
-				String orderValueXL = MainScreen.valueMap.get("Ordervalue");
+				String orderValueXL = getTestdata("Ordervalue");
 				String orderValue = "//*[contains(@label,'" + orderValueXL + "')]";
 				MobileElement ordertypeval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(orderValue));
 				mobileAction.FunCSwipeandScroll(ordertypeval, true);
 			} else {
 				mobileAction.FuncClick(order_Type, "OrderType");
-				String orderValueXL = MainScreen.valueMap.get("Ordervalue");
-				String orderValue = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='"
-						+ orderValueXL + "']";
+				String orderValueXL = getTestdata("Ordervalue");
+				String orderValue = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and contains(@text,'"
+						+ orderValueXL + "')]";
 				MobileElement ordertypeval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(orderValue));
 				mobileAction.FunCSwipeandScroll(ordertypeval, true);
@@ -633,17 +638,31 @@ public class Trade extends _CommonPage {
 
 	}
 
+	/**
+	 * This method will verify the Trade Page Header is present or not
+	 *
+	 * @return void
+	 * @throws Exception
+	 *
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+
 	public void tradeDetails() throws Exception {
 		Decorator();
 		try {
 			mobileAction.FuncClick(selectAccount, "AccountSelected");
 			if (platformName.equalsIgnoreCase("ios")) {
 
-				String trade_account_no = MainScreen.valueMap.get("FromAccount");
+				String trade_account_no = getTestdata("FromAccount");
 				mobileAction.FuncSelectElementInTable(select_Accounts_table, Firstpart, Secondpart, trade_account_no);
 
 				mobileAction.FuncClick(tradeAction, "Action");
-				String actionToPerform = MainScreen.valueMap.get("Action");
+				String actionToPerform = getTestdata("Action");
 				mobileAction.FuncSelectElementInTable(action_table, Firstpart, Secondpart, actionToPerform);
 				mobileAction.FuncClick(selectQuantity, "quantity");
 				mobileAction.FuncSendKeys(selectQuantity, quantityXL);
@@ -651,11 +670,11 @@ public class Trade extends _CommonPage {
 
 				mobileAction.FuncClick(selectPrice, "Price selected");
 
-				String price_value = MainScreen.valueMap.get("Price");
+				String price_value = getTestdata("Price");
 				mobileAction.FuncSelectElementInTable(price_table, Firstpart, Secondpart, price_value);
 
 				mobileAction.FuncClick(btngood, "Good 'til");
-				String goodtil_value = MainScreen.valueMap.get("Good'til");
+				String goodtil_value = getTestdata("Good'til");
 				mobileAction.FuncSelectElementInTable(goodtilTable, Firstpart, Secondpart, goodtil_value);
 				mobileAction.FunCSwipeandScroll(trading_pwd, true);
 
@@ -708,11 +727,11 @@ public class Trade extends _CommonPage {
 			mobileAction.FuncClick(selectAccount, "AccountSelected");
 			if (platformName.equalsIgnoreCase("ios")) {
 
-				String trade_account_no = MainScreen.valueMap.get("FromAccount");
+				String trade_account_no = getTestdata("FromAccount");
 				mobileAction.FuncSelectElementInTable(select_Accounts_table, Firstpart, Secondpart, trade_account_no);
 
 				mobileAction.FuncClick(tradeAction, "Action");
-				String actionToPerform = MainScreen.valueMap.get("Action");
+				String actionToPerform = getTestdata("Action");
 				mobileAction.FuncSelectElementInTable(action_table, Firstpart, Secondpart, actionToPerform);
 				mobileAction.FuncClick(selectQuantity, "quantity");
 				mobileAction.FuncSendKeys(selectQuantity, quantityXL);
@@ -720,14 +739,14 @@ public class Trade extends _CommonPage {
 
 				mobileAction.FuncClick(selectPrice, "Price selected");
 
-				String price_value = MainScreen.valueMap.get("Price");
+				String price_value = getTestdata("Price");
 				mobileAction.FuncSelectElementInTable(price_table, Firstpart, Secondpart, price_value);
 				mobileAction.FuncClick(selectLimitPrice, "Limit price selected");
 				mobileAction.FuncSendKeys(selectLimitPrice, limitPrice);
 				mobileAction.FuncClick(done, "Done");
 
 				mobileAction.FuncClick(btngood, "Good 'til");
-				String goodtil_value = MainScreen.valueMap.get("Good'til");
+				String goodtil_value = getTestdata("Good'til");
 				mobileAction.FuncSelectElementInTable(goodtilTable, Firstpart, Secondpart, goodtil_value);
 				mobileAction.FunCSwipeandScroll(trading_pwd, true);
 
@@ -768,6 +787,16 @@ public class Trade extends _CommonPage {
 
 	}
 
+	/**
+	 * This method is used to click agree button on Trade page.
+	 *
+	 * @throws NoSuchElementException
+	 *
+	 * @throws InterruptedException
+	 *
+	 *
+	 */
+
 	public void clickOnAgree() {
 		Decorator();
 
@@ -776,15 +805,21 @@ public class Trade extends _CommonPage {
 			mobileAction.FuncClick(AgreeButton, "Clicked on agree button");
 
 			mobileAction.waitForElementToDisappear(progressBar);
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
 	}
+
+	/**
+	 * This method is used to Select agree button on Trade page.
+	 *
+	 * @throws NoSuchElementException
+	 *
+	 * @throws InterruptedException
+	 *
+	 *
+	 */
 
 	public void selectQuantity() {
 
@@ -792,15 +827,11 @@ public class Trade extends _CommonPage {
 
 		try {
 
-			mobileAction.FuncSendKeys(selectQuantity, MainScreen.valueMap.get("Quantity"));
+			mobileAction.FuncSendKeys(selectQuantity, getTestdata("Quantity"));
 
-		} catch (NoSuchElementException e) {
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			e.printStackTrace();
 
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
 
@@ -831,17 +862,15 @@ public class Trade extends _CommonPage {
 		Decorator();
 		try {
 
-			// String
-			// margin_account="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]/XCUIElementTypeCell[11]/XCUIElementTypeStaticText[1]";
 			mobileAction.FuncClick(selectAccount, "AccountSelected");
 			if (platformName.equalsIgnoreCase("ios")) {
 
-				String trade_account_no = MainScreen.valueMap.get("FromAccount");
+				String trade_account_no = getTestdata("FromAccount");
 				mobileAction.FuncSelectElementInTable(select_Accounts_table, Firstpart, Secondpart, trade_account_no);
 
 				// CL.GetDriver().findElement(By.xpath(margin_account)).click();
 				mobileAction.FuncClick(tradeAction, "Action");
-				String actionToPerform = MainScreen.valueMap.get("Action");
+				String actionToPerform = getTestdata("Action");
 				mobileAction.FuncSelectElementInTable(action_table, Firstpart, Secondpart, actionToPerform);
 				mobileAction.FuncClick(selectQuantity, "quantity");
 				mobileAction.FuncSendKeys(selectQuantity, quantityXL);
@@ -849,20 +878,20 @@ public class Trade extends _CommonPage {
 
 				mobileAction.FuncClick(selectPrice, "Price selected");
 
-				String price_value = MainScreen.valueMap.get("Price");
+				String price_value = getTestdata("Price");
 				mobileAction.FuncSelectElementInTable(price_table, Firstpart, Secondpart, price_value);
 
 				mobileAction.FuncClick(btngood, "Good 'til");
-				String goodtil_value = MainScreen.valueMap.get("Good'til");
+				String goodtil_value = getTestdata("Good'til");
 				mobileAction.FuncSelectElementInTable(goodtilTable, Firstpart, Secondpart, goodtil_value);
 				mobileAction.FunCSwipeandScroll(share_holder, true);
 				mobileAction.FuncClick(share_holder, "Share_Holder");
-				String shareHolder_value = MainScreen.valueMap.get("Trading_Pwd");
+				String shareHolder_value = getTestdata("Trading_Pwd");
 				mobileAction.FuncSelectElementInTable(shareHolder_table, Firstpart, Secondpart, shareHolder_value);
 
 				mobileAction.FuncClick(trading_pwd, "Trading_Pwd");
 
-				String trading_pwd_value = MainScreen.valueMap.get("Trading_Pwd");
+				String trading_pwd_value = getTestdata("Trading_Pwd");
 				mobileAction.FuncSendKeys(trading_pwd, trading_pwd_value);
 				mobileAction.FuncClick(done, "Done");
 
@@ -886,11 +915,11 @@ public class Trade extends _CommonPage {
 			mobileAction.FuncClick(selectAccount, "AccountSelected");
 			if (platformName.equalsIgnoreCase("ios")) {
 
-				String trade_account_no = MainScreen.valueMap.get("FromAccount");
+				String trade_account_no = getTestdata("FromAccount");
 				mobileAction.FuncSelectElementInTable(select_Accounts_table, Firstpart, Secondpart, trade_account_no);
 
 				mobileAction.FuncClick(tradeAction, "Action");
-				String actionToPerform = MainScreen.valueMap.get("Action");
+				String actionToPerform = getTestdata("Action");
 				mobileAction.FuncSelectElementInTable(action_table, Firstpart, Secondpart, actionToPerform);
 				mobileAction.FuncClick(selectQuantity, "quantity");
 				mobileAction.FuncSendKeys(selectQuantity, quantityXL);
@@ -898,21 +927,21 @@ public class Trade extends _CommonPage {
 
 				mobileAction.FuncClick(selectPrice, "Price selected");
 
-				String price_value = MainScreen.valueMap.get("Price");
+				String price_value = getTestdata("Price");
 				mobileAction.FuncSelectElementInTable(price_table, Firstpart, Secondpart, price_value);
 
-				String triggerDelta_value = MainScreen.valueMap.get("TriggerDelta");
+				String triggerDelta_value = getTestdata("TriggerDelta");
 				mobileAction.FunCSwipeandScroll(btngood, true);
 				mobileAction.FuncClick(btnTriggerDelta, "TriggerDelta");
 				mobileAction.FuncSendKeys(btnTriggerDelta, triggerDelta_value);
 
 				mobileAction.FuncClick(btngood, "Good 'til");
-				String goodtil_value = MainScreen.valueMap.get("Good'til");
+				String goodtil_value = getTestdata("Good'til");
 				mobileAction.FuncSelectElementInTable(goodtilTable, Firstpart, Secondpart, goodtil_value);
 
 				mobileAction.FuncClick(trading_pwd, "Trading_Pwd");
 
-				String trading_pwd_value = MainScreen.valueMap.get("Trading_Pwd");
+				String trading_pwd_value = getTestdata("Trading_Pwd");
 				mobileAction.FuncSendKeys(trading_pwd, trading_pwd_value);
 				mobileAction.FuncClick(done, "Done");
 
@@ -989,7 +1018,7 @@ public class Trade extends _CommonPage {
 			Decorator();
 
 			if (platformName.equalsIgnoreCase("ios")) {
-				String searchKeyword = MainScreen.valueMap.get("Search");
+				String searchKeyword = getTestdata("Search");
 
 				mobileAction.waitForElementToVanish(progresssBar);
 				mobileAction.FuncClick(selectAccount, "AccountSelected");
@@ -1014,15 +1043,8 @@ public class Trade extends _CommonPage {
 				mobileAction.FuncClick(txtqnt, "Quantity Type");
 				mobileAction.FuncSelectElementInTable(quantity_TypeTable, Firstpart, Secondpart, quantityType);
 
-				CL.GetDriver()
-						.findElement(By
-								.xpath("//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[7]/XCUIElementTypeTextField[1]"))
-						.click();
-				CL.GetDriver()
-						.findElement(By
-								.xpath("//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[7]/XCUIElementTypeTextField[1]"))
-						.sendKeys("10");
-
+				mobileAction.FuncClick(quantityVal, "Quantity");
+				mobileAction.FuncSendKeys(quantityVal, getTestdata("Amount"));
 				mobileAction.FuncClick(done, "Done");
 				if (quantityType.equalsIgnoreCase("Units")) {
 					mobileAction.FuncClick(includesCommissionNo, "Include Commission No");
@@ -1050,13 +1072,13 @@ public class Trade extends _CommonPage {
 				mobileAction.FuncClick(txtaction, "Action");
 				mobileAction.FuncElementSwipeWhileNotFound(list, actionselected, 1, "up", true);
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
-				mobileAction.FuncSendKeys(symbol, MainScreen.valueMap.get("Search"));
+				mobileAction.FuncSendKeys(symbol, getTestdata("Search"));
 				String selectedTD = mobileAction.getText(selectTD);
 				mobileAction.FuncClick(selectTD, selectedTD);
 				mobileAction.FunctionSwipe("Up", 200, 200);
 				mobileAction.FuncClick(txtqnt, "Quantity Type");
 				mobileAction.FuncElementSwipeWhileNotFound(list, qtyselected, 1, "down", true);
-				mobileAction.FuncSendKeys(txtamount, MainScreen.valueMap.get("Amount"));
+				mobileAction.FuncSendKeys(txtamount, getTestdata("Amount"));
 				mobileAction.FuncClick(txtdividendopt, "Dividend Option");
 				mobileAction.FuncElementSwipeWhileNotFound(list, dividentopt, 1, "down", true);
 				mobileAction.FuncClick(preview_order, "Preview order button clicked");
@@ -1095,9 +1117,8 @@ public class Trade extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.FuncClick(selectAccount, "AccountSelected");
-				String trade_account_no = MainScreen.valueMap.get("CDNMarginAccount");
+				String trade_account_no = getTestdata("CDNMarginAccount");
 				String[] trade_accountValue = trade_account_no.split(":");
-				System.out.println(trade_accountValue[0]);
 
 				String accountno = "//*[contains(@label,'" + trade_accountValue[0] + "')]";
 
@@ -1120,7 +1141,7 @@ public class Trade extends _CommonPage {
 								.xpath("//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[6]/XCUIElementTypeTextField[1]"))
 						.sendKeys("100");
 				mobileAction.FuncClick(done, "Done");
-				String price_value = MainScreen.valueMap.get("Price");
+				String price_value = getTestdata("Price");
 				mobileAction.FuncSelectElementInTable(price_table, Firstpart, Secondpart, price_value);
 				mobileAction.FuncClick(share_holder, "Share_holder");
 				mobileAction.verifyElementIsDisplayed(insider, "Insider");
@@ -1161,13 +1182,13 @@ public class Trade extends _CommonPage {
 
 	public void tradingPassword() throws Exception {
 		Decorator();
-		boolean isLanguageFrench = MainScreen.valueMap.get("Language").equals("FRE");
+		boolean isLanguageFrench = getTestdata("Language").equals("FRE");
 		MobileElement doneOK = isLanguageFrench ? ok : done;
 
 		try {
 			mobileAction.FunCSwipeandScroll(trading_pwd, false);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				String trading_pwd_XL = MainScreen.valueMap.get("Trading_Pwd");
+				String trading_pwd_XL = getTestdata("Trading_Pwd");
 				mobileAction.FuncClick(trading_pwd, "Trading Password");
 				mobileAction.FuncSendKeys(trading_pwd, trading_pwd_XL);
 
@@ -1175,7 +1196,7 @@ public class Trade extends _CommonPage {
 				mobileAction.FuncClick(doneOK, "Done");
 			} else {
 				mobileAction.FuncClick(trading_pwd, "Trading Password");
-				mobileAction.FuncSendKeys(trading_pwd, MainScreen.valueMap.get("Trading_Pwd"));
+				mobileAction.FuncSendKeys(trading_pwd, getTestdata("Trading_Pwd"));
 				mobileAction.FuncHideKeyboard();
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -1204,7 +1225,7 @@ public class Trade extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				String searchKeyword = MainScreen.valueMap.get("Search");
+				String searchKeyword = getTestdata("Search");
 				String accountno = "//*[contains(@label,'" + trade_accountXL + "')]";
 				mobileAction.FuncClick(selectAccount, "AccountSelected");
 				MobileElement marginAccVal = (MobileElement) ((AppiumDriver) CL.GetDriver())
@@ -1225,10 +1246,10 @@ public class Trade extends _CommonPage {
 				mobileAction.FuncClick(done, "Done");
 				mobileAction.FuncClick(trigger_type, "Trigger type");
 
-				String price_value = MainScreen.valueMap.get("Price");
+				String price_value = getTestdata("Price");
 				mobileAction.FuncSelectElementInTable(price_table, Firstpart, Secondpart, price_value);
 
-				String limitDataXL = MainScreen.valueMap.get("LimitDelta");
+				String limitDataXL = getTestdata("LimitDelta");
 
 			}
 		} catch (NoSuchElementException | IOException | InterruptedException e) {
@@ -1257,7 +1278,7 @@ public class Trade extends _CommonPage {
 
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				String searchKeyword = MainScreen.valueMap.get("Search");
+				String searchKeyword = getTestdata("Search");
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
 				mobileAction.FuncClick(symbol1, "Enter name or symbol");
 				mobileAction.FuncSendKeys(symbol1, searchKeyword);
@@ -1265,7 +1286,7 @@ public class Trade extends _CommonPage {
 				mobileAction.waitForElementToDisappear(progressBar);
 				mobileAction.FuncClick(selectTD, "Symbol");
 			} else {
-				String searchKeyword = MainScreen.valueMap.get("Search");
+				String searchKeyword = getTestdata("Search");
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
 				mobileAction.FuncClick(symbol1, "Enter name or symbol");
 				mobileAction.FuncSendKeys(symbol1, searchKeyword);
@@ -1324,7 +1345,7 @@ public class Trade extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(btngood, "Good 'til");
-				String goodXL = MainScreen.valueMap.get("Good'til");
+				String goodXL = getTestdata("Good'til");
 				mobileAction.FuncSelectElementInTable(goodtilTable, Firstpart, Secondpart, goodXL);
 				mobileAction.FunCSwipeandScroll(trading_pwd, false);
 			} else {
@@ -1340,17 +1361,17 @@ public class Trade extends _CommonPage {
 	public void clickQuantity() {
 		Decorator();
 
-		boolean isLanguageFrench = MainScreen.valueMap.get("Language").equals("FRE");
+		boolean isLanguageFrench = getTestdata("Language").equals("FRE");
 		MobileElement doneOK = isLanguageFrench ? ok : done;
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(quantity, "Quantity");
-				mobileAction.FuncSendKeys(quantity, MainScreen.valueMap.get("Quantity"));
+				mobileAction.FuncSendKeys(quantity, getTestdata("Quantity"));
 				mobileAction.FuncClick(doneOK, "Done");
 
 			} else {
 				mobileAction.FuncClick(selectQuantity, "quantity");
-				mobileAction.FuncSendKeys(selectQuantity, MainScreen.valueMap.get("Quantity"));
+				mobileAction.FuncSendKeys(selectQuantity, getTestdata("Quantity"));
 				mobileAction.FuncHideKeyboard();
 
 			}
@@ -1362,17 +1383,22 @@ public class Trade extends _CommonPage {
 	public void triggerPrice() {
 
 		Decorator();
-		boolean isLanguageFrench = MainScreen.valueMap.get("Language").equals("FRE");
+		boolean isLanguageFrench = getTestdata("Language").equals("FRE");
 		MobileElement doneOK = isLanguageFrench ? ok : done;
-
+		String bidPrice = CL.GetDriver()
+				.findElement(By
+						.xpath("//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeStaticText[2]"))
+				.getText();
+		String triggerPriceValue = String.valueOf(Integer.parseInt(bidPrice.replaceAll("\\D+", "") + 5));
+		System.out.println(bidPrice + " added value" + triggerPriceValue);
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(trigger_price, "TriggerPrice");
-				mobileAction.FuncSendKeys(trigger_price, MainScreen.valueMap.get("TriggerPrice"));
+				mobileAction.FuncSendKeys(trigger_price, triggerPriceValue);
 				mobileAction.FuncClick(doneOK, "Done");
 			} else {
 				mobileAction.FuncClick(trigger_price, "Trigger Price");
-				mobileAction.FuncSendKeys(trigger_price, MainScreen.valueMap.get("TriggerPrice"));
+				mobileAction.FuncSendKeys(trigger_price, triggerPriceValue);
 				mobileAction.FuncHideKeyboard();
 			}
 
@@ -1385,7 +1411,7 @@ public class Trade extends _CommonPage {
 
 		Decorator();
 
-		boolean isLanguageFrench = MainScreen.valueMap.get("Language").equals("FRE");
+		boolean isLanguageFrench = getTestdata("Language").equals("FRE");
 		MobileElement doneOK = isLanguageFrench ? ok : done;
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -1406,16 +1432,16 @@ public class Trade extends _CommonPage {
 
 		Decorator();
 
-		boolean isLanguageFrench = MainScreen.valueMap.get("Language").equals("FRE");
+		boolean isLanguageFrench = getTestdata("Language").equals("FRE");
 		MobileElement doneOK = isLanguageFrench ? ok : done;
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(triggerDelta, "Trigger Delta");
-				mobileAction.FuncSendKeys(triggerDelta, MainScreen.valueMap.get("TriggerDelta"));
+				mobileAction.FuncSendKeys(triggerDelta, getTestdata("TriggerDelta"));
 				mobileAction.FuncClick(doneOK, "Done");
 			} else {
 				mobileAction.FuncClick(triggerDelta, "Trigger Delta");
-				mobileAction.FuncSendKeys(triggerDelta, MainScreen.valueMap.get("TriggerDelta"));
+				mobileAction.FuncSendKeys(triggerDelta, getTestdata("TriggerDelta"));
 				mobileAction.FuncHideKeyboard();
 			}
 		} catch (NoSuchElementException | IOException | InterruptedException e) {
@@ -1426,12 +1452,12 @@ public class Trade extends _CommonPage {
 	public void limitDelta() {
 
 		Decorator();
-		boolean isLanguageFrench = MainScreen.valueMap.get("Language").equals("FRE");
+		boolean isLanguageFrench = getTestdata("Language").equals("FRE");
 		MobileElement doneOK = isLanguageFrench ? ok : done;
 
 		try {
 			mobileAction.FuncClick(limitDelta, "Limit Delta");
-			mobileAction.FuncSendKeys(limitDelta, MainScreen.valueMap.get("LimitDelta"));
+			mobileAction.FuncSendKeys(limitDelta, getTestdata("LimitDelta"));
 			mobileAction.FuncClick(doneOK, "Done");
 
 		} catch (NoSuchElementException | IOException | InterruptedException e) {
@@ -1456,12 +1482,12 @@ public class Trade extends _CommonPage {
 	public void clickPrice() throws Exception {
 		Decorator();
 
-		boolean isLanguageFrench = MainScreen.valueMap.get("Language").equals("FRE");
+		boolean isLanguageFrench = getTestdata("Language").equals("FRE");
 		MobileElement priceElement = isLanguageFrench ? selectPriceFRE : selectPrice;
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(priceElement, "Price Selected");
-				String price_value = MainScreen.valueMap.get("Price");
+				String price_value = getTestdata("Price");
 
 				mobileAction.FuncSelectElementInTable(price_table, Firstpart, Secondpart, price_value);
 				mobileAction.FunCSwipeandScroll(trading_pwd, false);
@@ -1480,7 +1506,7 @@ public class Trade extends _CommonPage {
 
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				String shareHolderXl = MainScreen.valueMap.get("ShareHolder");
+				String shareHolderXl = getTestdata("ShareHolder");
 				mobileAction.FuncClick(share_holder, "ShareHolder");
 				mobileAction.FuncSelectElementInTable(shareHolder_table, Firstpart, Secondpart, shareHolderXl);
 				mobileAction.FunCSwipeandScroll(trading_pwd, false);
@@ -1497,11 +1523,19 @@ public class Trade extends _CommonPage {
 	public void clickAction() throws Exception {
 		Decorator();
 
-		boolean isLanguageFrench = MainScreen.valueMap.get("Language").equals("FRE");
+		boolean isLanguageFrench = getTestdata("Language").equals("FRE");
 		MobileElement actionElement = isLanguageFrench ? selectActionFRE : selectAction;
+		String bidPrice = CL.GetDriver()
+				.findElement(By
+						.xpath("//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeStaticText[2]"))
+				.getText();
+		String triggerPriceValue = String.valueOf(Integer.parseInt(bidPrice.replaceAll("\\D+", "") + 5));
+		System.out.println(bidPrice + " added value" + triggerPriceValue);
+
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				String actionToPerformXL = MainScreen.valueMap.get("Action");
+
+				String actionToPerformXL = getTestdata("Action");
 				mobileAction.FuncClick(actionElement, "Action clicked");
 				mobileAction.FuncSelectElementInTable(action_table, Firstpart, Secondpart, actionToPerformXL);
 
@@ -1547,7 +1581,12 @@ public class Trade extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(buyToCover, "Buy to Cover is Displayed");
 
 			} else {
-
+				mobileAction.FuncClick(selectAccount, "Click Account");
+				mobileAction.FuncElementSwipeWhileNotFound(acntLists, find_account, 2, "down", true);
+				mobileAction.FunCnewSwipe(selectAction, false, 1);
+				mobileAction.FuncClick(selectAction, "Click Action");
+				mobileAction.verifyElementIsDisplayed(shortSell, "Short Sell is Displayed");
+				mobileAction.verifyElementIsDisplayed(buyToCover, "Buy to Cover is Displayed");
 			}
 		} catch (NoSuchElementException | IOException | InterruptedException e) {
 
@@ -1616,7 +1655,7 @@ public class Trade extends _CommonPage {
 			Decorator();
 			clickAction();
 			mobileAction.FunCSwipeandScroll(trading_pwd, true);
-			String actionToPerformXL = MainScreen.valueMap.get("Action");
+			String actionToPerformXL = getTestdata("Action");
 			mobileAction.FuncClick(selectAction, "Action clicked");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncSelectElementInTable(action_table, Firstpart, Secondpart, actionToPerformXL);
@@ -1651,7 +1690,7 @@ public class Trade extends _CommonPage {
 				mobileAction.FuncSendKeys(quantity, quantityXL);
 				mobileAction.FuncClick(done, "Done");
 				mobileAction.FuncClick(trading_pwd, "Trading_Pwd");
-				String trading_pwd_value = MainScreen.valueMap.get("Trading_Pwd");
+				String trading_pwd_value = getTestdata("Trading_Pwd");
 				mobileAction.FuncSendKeys(trading_pwd, trading_pwd_value);
 				mobileAction.FuncClick(done, "Done");
 			} else {
@@ -1726,7 +1765,7 @@ public class Trade extends _CommonPage {
 				mobileAction.FuncSendKeys(selectLimitPrice, limitPrice);
 				mobileAction.FuncClick(done, "Done");
 				mobileAction.FuncClick(trigger_price, "Trigger Price");
-				mobileAction.FuncSendKeys(trigger_price, MainScreen.valueMap.get("TriggerPrice"));
+				mobileAction.FuncSendKeys(trigger_price, getTestdata("TriggerPrice"));
 				mobileAction.FuncClick(done, "Done");
 				mobileAction.FunCSwipeandScroll(trading_pwd, false);
 				mobileAction.FuncClick(trading_pwd, "Trading_Pwd");
@@ -1763,10 +1802,10 @@ public class Trade extends _CommonPage {
 				mobileAction.FuncClick(selectPrice, "Price Selected");
 				mobileAction.FuncSelectElementInTable(price_table, Firstpart, Secondpart, price_value);
 				mobileAction.FuncClick(triggerDelta, "Trigger Delta");
-				mobileAction.FuncSendKeys(triggerDelta, MainScreen.valueMap.get("TriggerDelta"));
+				mobileAction.FuncSendKeys(triggerDelta, getTestdata("TriggerDelta"));
 				mobileAction.FuncClick(done, "Done");
 				mobileAction.FuncClick(limitDelta, "Trigger Delta");
-				mobileAction.FuncSendKeys(limitDelta, MainScreen.valueMap.get("LimitDelta"));
+				mobileAction.FuncSendKeys(limitDelta, getTestdata("LimitDelta"));
 				mobileAction.FuncClick(done, "Done");
 				mobileAction.FunCSwipeandScroll(trading_pwd, false);
 				mobileAction.FuncClick(trading_pwd, "Trading_Pwd");
@@ -1799,7 +1838,7 @@ public class Trade extends _CommonPage {
 
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				String searchKeyword = MainScreen.valueMap.get("Search");
+				String searchKeyword = getTestdata("Search");
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
 				mobileAction.FuncClick(symbol1, "Enter name or symbol");
 				mobileAction.FuncSendKeys(symbol1, searchKeyword);
@@ -1807,7 +1846,7 @@ public class Trade extends _CommonPage {
 				mobileAction.waitForElementToDisappear(progressBar);
 				mobileAction.verifyElementIsDisplayed(ARSymbol, "ARSymbol");
 			} else {
-				String searchKeyword = MainScreen.valueMap.get("Search");
+				String searchKeyword = getTestdata("Search");
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
 				mobileAction.FuncClick(symbol1, "Enter name or symbol");
 				mobileAction.FuncSendKeys(symbol1, searchKeyword);
@@ -1825,7 +1864,7 @@ public class Trade extends _CommonPage {
 
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				String searchKeyword = MainScreen.valueMap.get("Search");
+				String searchKeyword = getTestdata("Search");
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
 				mobileAction.FuncClick(symbol1, "Enter name or symbol");
 				mobileAction.FuncSendKeys(symbol1, searchKeyword);
@@ -1835,7 +1874,7 @@ public class Trade extends _CommonPage {
 				mobileAction.FuncClick(searchCancel, "Cancel");
 
 			} else {
-				String searchKeyword = MainScreen.valueMap.get("Search");
+				String searchKeyword = getTestdata("Search");
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
 				mobileAction.FuncClick(symbol1, "Enter name or symbol");
 				mobileAction.FuncSendKeys(symbol1, searchKeyword);
@@ -1856,7 +1895,7 @@ public class Trade extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				String searchKeyword = MainScreen.valueMap.get("Search");
+				String searchKeyword = getTestdata("Search");
 				String searchKeyword_List[] = searchKeyword.split(":");
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
 				for (int i = 0; i < 12; i++) {
@@ -1872,7 +1911,7 @@ public class Trade extends _CommonPage {
 				mobileAction.FuncClickBackButton();
 
 			} else {
-				String searchKeyword = MainScreen.valueMap.get("Search");
+				String searchKeyword = getTestdata("Search");
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
 				mobileAction.FuncClick(symbol1, "Enter name or symbol");
 				mobileAction.FuncSendKeys(symbol1, searchKeyword);
@@ -1912,7 +1951,7 @@ public class Trade extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(selectAccount, "AccountSelected");
-				String trade_account_no = MainScreen.valueMap.get("FromAccount");
+				String trade_account_no = getTestdata("FromAccount");
 				mobileAction.FuncSelectElementInTable(select_Accounts_table, Firstpart, Secondpart, trade_account_no);
 				mobileAction.verifyElementTextContains(btngood, goodXL);
 
@@ -2639,11 +2678,11 @@ public class Trade extends _CommonPage {
 	 */
 	public void TrailingStopLimit() throws Exception {
 		Decorator();
-		String triggerDelta_value = MainScreen.valueMap.get("TriggerDelta");
+		String triggerDelta_value = getTestdata("TriggerDelta");
 		mobileAction.FuncClick(btnTriggerDelta, "TriggerDelta");
 		mobileAction.FuncSendKeys(btnTriggerDelta, triggerDelta_value);
 
-		String limitDelta_value = MainScreen.valueMap.get("LimitDelta");
+		String limitDelta_value = getTestdata("LimitDelta");
 		mobileAction.FuncClick(btnLimitDelta, "LimitDelta");
 		mobileAction.FuncSendKeys(btnLimitDelta, limitDelta_value);
 
@@ -2661,7 +2700,7 @@ public class Trade extends _CommonPage {
 		Decorator();
 
 		try {
-			String searchKeyword = getTestdata("Search", "UserIDs");
+			String searchKeyword = getTestdata("Search");
 			mobileAction.FuncClick(symbol, "Enter name or symbol");
 			mobileAction.waitForElementToDisappear(progressBar1);
 			mobileAction.FuncSendKeys(symbol, searchKeyword);
@@ -2676,7 +2715,7 @@ public class Trade extends _CommonPage {
 	public void enterAndSearch() {
 		Decorator();
 		try {
-			String searchKeyword = getTestdata("Search", "UserIDs");
+			String searchKeyword = getTestdata("Search");
 			mobileAction.FuncClick(symbol, "Enter name or symbol");
 			if (platformName.equalsIgnoreCase("Android")) {
 				mobileAction.waitForElementToDisappear(progressBar1);

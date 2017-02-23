@@ -121,7 +121,7 @@ public class HoldingDetails extends _CommonPage {
     		
     		}
     	 catch (IOException | NoSuchElementException | InterruptedException e) {
-    			System.out.println(e.toString());
+    			e.printStackTrace();
     	}
     	
     }

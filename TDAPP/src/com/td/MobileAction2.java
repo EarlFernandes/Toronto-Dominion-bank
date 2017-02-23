@@ -98,7 +98,7 @@ public class MobileAction2 extends CommonLib {
 	try {
 
 	    WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-	    wait.until(ExpectedConditions.elementToBeClickable(objElement));
+	    wait.until(ExpectedConditions.visibilityOf(objElement));
 
 	    objElement.click();
 
@@ -175,7 +175,7 @@ public class MobileAction2 extends CommonLib {
 	    TouchAction action = new TouchAction(((MobileDriver) GetDriver()));
 	    while (i < clickCount) {
 		action.tap(x, y).perform();
-		System.out.println("Click number " + i + 1 + " completed successfully." + " Waiting for 80 ms");
+
 		i++;
 		Thread.sleep(80);
 	    }
@@ -341,7 +341,7 @@ public class MobileAction2 extends CommonLib {
 		else
 		    throw new NoSuchElementException("");
 	    } catch (NoSuchElementException e) {
-		System.out.println("Element Not found, thus swiping");
+		
 		((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
 	    }
 
@@ -650,14 +650,14 @@ public class MobileAction2 extends CommonLib {
 
 			flag = false;
 		    } else {
-			System.out.println("Element not found Swiping");
+			
 			((MobileDriver) GetDriver()).swipe(startx / 2, starty - starty / 4, startx / 2, starty / 4,
 				600);
 			count++;
 		    }
 		} catch (Exception e) {
-		    System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		    System.out.println("Element not found Swiping");
+			System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		    ((MobileDriver) GetDriver()).swipe(startx / 2, starty - starty / 4, startx / 2, starty / 4, 600);
 		    count++;
 		}
@@ -1233,14 +1233,14 @@ public class MobileAction2 extends CommonLib {
 	    try {
 		GetReporting().FuncReport("Pass", "The text '" + text + "' is verified");
 	    } catch (IOException e) {
-		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	    	System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 	    }
 	    return true;
 	} else {
 	    try {
 		GetReporting().FuncReport("Fail", "The text '" + text + "' is not verified");
 	    } catch (IOException e) {
-		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	    	System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 	    }
 	    return false;
 	}
@@ -1286,14 +1286,14 @@ public class MobileAction2 extends CommonLib {
 	    try {
 		GetReporting().FuncReport("Fail", "The '" + expectedText + "' is verified");
 	    } catch (IOException e) {
-		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	    	System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 	    }
 	    return true;
 	} else {
 	    try {
 		GetReporting().FuncReport("Pass", "The '" + expectedText + "' is not verified");
 	    } catch (IOException e) {
-		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	    	System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 	    }
 	    return false;
 	}
@@ -1356,14 +1356,14 @@ public class MobileAction2 extends CommonLib {
 	    try {
 		GetReporting().FuncReport("Pass", "The symbol'" + delimiter + "' is verified");
 	    } catch (IOException e) {
-		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	    	System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 	    }
 	    return true;
 	} else {
 	    try {
 		GetReporting().FuncReport("Fail", "The symbol'" + delimiter + "' is not verified");
 	    } catch (IOException e) {
-		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	    	System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 	    }
 	    return false;
 	}
@@ -1388,14 +1388,14 @@ public class MobileAction2 extends CommonLib {
 	    try {
 		GetReporting().FuncReport("Pass", "The text '" + expectedText + "' is verified");
 	    } catch (IOException e) {
-		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	    	System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 	    }
 	    return true;
 	} else {
 	    try {
 		GetReporting().FuncReport("Fail", "The text '" + expectedText + "' is not verified");
 	    } catch (IOException e) {
-		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	    	System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 	    }
 	    return false;
 	}
@@ -1406,14 +1406,14 @@ public class MobileAction2 extends CommonLib {
 	    try {
 		GetReporting().FuncReport("Pass", "The text is verified");
 	    } catch (IOException e) {
-		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	    	System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 	    }
 	    return true;
 	} else {
 	    try {
 		GetReporting().FuncReport("Fail", "The text is not verified");
 	    } catch (IOException e) {
-		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	    	System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 	    }
 	    return false;
 	}
@@ -1431,7 +1431,7 @@ public class MobileAction2 extends CommonLib {
      * 
      */
     public void waitForElementToAppear(String locater, String text) throws InterruptedException, IOException {
-	long timeoutInSeconds = 60;
+	long timeoutInSeconds = 660;
 	try {
 	    WebDriverWait wait = new WebDriverWait(GetDriver(), timeoutInSeconds);
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locater)));
@@ -1460,9 +1460,10 @@ public class MobileAction2 extends CommonLib {
 	    try {
 		WebDriverWait wait = new WebDriverWait(GetDriver(), timeoutInSeconds);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
+		
 		flag = true;
 	    } catch (Exception e) {
-		System.out.println("Waiting for element");
+	
 		flag = false;
 	    }
 	}
@@ -1495,7 +1496,7 @@ public class MobileAction2 extends CommonLib {
 		}
 	    }
 	} catch (Exception e) {
-		System.out.println("Exception from Method " + this.getClass().toString());
+		System.out.print("Exception from Method " + this.getClass().toString());
 	}
     }
 
@@ -1538,9 +1539,26 @@ public class MobileAction2 extends CommonLib {
     			FunCSwipeandScroll(elementVal,clickable);
    
     		} catch (Exception e) {
-    			System.out.println("Exception from Method " + this.getClass().toString());
+    			System.out.print("Exception from Method " + this.getClass().toString());
     		}
     }
+    
+	/**
+	 * This method will click on allow button.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void FuncClickAllow() {
+		if (((AndroidDriver) GetDriver()).currentActivity().contains("GrantPermissionsActivity")) {
+			GetDriver().findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).click();
+			GetDriver().findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).click();
+		}
+	}
 
 }
 

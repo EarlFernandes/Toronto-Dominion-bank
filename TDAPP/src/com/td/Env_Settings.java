@@ -42,7 +42,9 @@ public class Env_Settings extends _CommonPage {
 	private MobileElement envToSetup;
 
 	
-	String env_need_set = MainScreen.valueMap.get("Env");
+	//String env_need_set = getTestdata("Env");
+	String env_need_set = getTestdata("Env");
+			
 
 	String cnfgrn = "//android.widget.TextView[@resource-id='com.td:id/title'and @text='" + env_need_set + "']";
 	String env_Set = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]";
@@ -87,9 +89,9 @@ public class Env_Settings extends _CommonPage {
 			if (platformName.equalsIgnoreCase("ios")) {
 
 				mobileAction.FunCSwipeandScroll(network_settings, true);
-				String env = MainScreen.valueMap.get("Env");
+				//String env = getTestdata("Env");
 
-				mobileAction.FuncSelectElementInTable(env_Set, Firstpart, Secondpart, env);
+				mobileAction.FuncSelectElementInTable(env_Set, Firstpart, Secondpart, env_need_set);
 			} 
 			else {
 

@@ -126,6 +126,7 @@ public class Between_My_accounts extends _CommonPage {
 	private MobileElement back_button;
 
 	@iOSFindBy(xpath = "//*[@label='Cancel']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/myaccounts_entry_btn_cancel' and @text='Cancel']")
 	private MobileElement cancelBtn;
 
 	@iOSFindBy(xpath = "//*[@label='In Progress']")
@@ -214,18 +215,17 @@ public class Between_My_accounts extends _CommonPage {
 
 	String accountsPage_Table = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/"
 			+ "XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
-	String ValueofAmount = MainScreen.valueMap.get("Amount");
+	String ValueofAmount = getTestdata("Amount");
+	String from_account = getTestdata("FromAccount");
 
-	String from_account = MainScreen.valueMap.get("FromAccount");
-
-	String to_account = MainScreen.valueMap.get("ToAccount");
+	String to_account = getTestdata("ToAccount");
 
 	String progressBar = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
 
 	String verify_to_acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='" + to_account
 			+ "']";
 	int i = 1;
-	String from_accounts_table = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]";
+	String from_accounts_table = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]";
 	String Firstpart = "//XCUIElementTypeCell[";
 	String Secondpart = "]/XCUIElementTypeStaticText[1]";
 
@@ -269,10 +269,10 @@ public class Between_My_accounts extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.FuncClick(txtFrom_acnt, "From Account");
-				String from_accountNo = MainScreen.valueMap.get("FromAccount");
+				String from_accountNo = getTestdata("FromAccount");
 				mobileAction.FuncSelectElementInTable(from_accounts_table, Firstpart, Secondpart, from_accountNo);
 				mobileAction.FuncClick(txtTo_acnt, "To Account");
-				String to_accountNo = MainScreen.valueMap.get("ToAccount");
+				String to_accountNo = getTestdata("ToAccount");
 				mobileAction.FuncSelectElementInTable(from_accounts_table, Firstpart, Secondpart, to_accountNo);
 			} else {
 				mobileAction.FuncClick(txtFrom_acnt, "From Account");
@@ -315,14 +315,14 @@ public class Between_My_accounts extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.FuncClick(txtFrom_acnt, "From Account");
-				String from_accountNo = MainScreen.valueMap.get("FromAccount");
+				String from_accountNo = getTestdata("FromAccount");
 
 				String account_value = "//*[contains(@label,'" + from_accountNo + "')]";
 				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(account_value));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 				mobileAction.FuncClick(txtTo_acnt, "To Account");
-				String to_accountNo = MainScreen.valueMap.get("ToAccount");
+				String to_accountNo = getTestdata("ToAccount");
 
 				String toAccount_value = "//*[contains(@label,'" + to_accountNo + "')]";
 				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
@@ -362,14 +362,14 @@ public class Between_My_accounts extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.FuncClick(txtFrom_acnt, "From Account");
-				String from_accountNo = MainScreen.valueMap.get("FromAccount");
+				String from_accountNo = getTestdata("FromAccount");
 				String account_value = "//*[contains(@label,'" + from_accountNo + "')]";
 				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(account_value));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 
 				mobileAction.FuncClick(txtTo_acnt, "To Account");
-				String to_accountNo = MainScreen.valueMap.get("ToAccount");
+				String to_accountNo = getTestdata("ToAccount");
 				String toAccount_value = "//*[contains(@label,'" + to_accountNo + "')]";
 				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(toAccount_value));
@@ -425,8 +425,8 @@ public class Between_My_accounts extends _CommonPage {
 		try {
 			perFormTransfer();
 			mobileAction.FuncClick(btnContinue_transfer, "Continue");
-			int timeout = Integer.valueOf(MainScreen.valueMap.get("Timeout"));
-			int Sndtimeout = Integer.valueOf(MainScreen.valueMap.get("SecondTimeout"));
+			int timeout = Integer.valueOf(getTestdata("Timeout"));
+			int Sndtimeout = Integer.valueOf(getTestdata("SecondTimeout"));
 			mobileAction.FuncWaitForElement(ok_button, timeout, "Ok");
 			mobileAction.FuncClick(ok_button, "OK");
 			mobileAction.FuncWaitForElement(ok_button, Sndtimeout, "Ok");
@@ -458,7 +458,7 @@ public class Between_My_accounts extends _CommonPage {
 	}
 
 	private void Decorator() {
-		PageFactory.initElements(new AppiumFieldDecorator((CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
+		PageFactory.initElements(new AppiumFieldDecorator((CL.GetDriver()), new TimeOutDuration(10, TimeUnit.SECONDS)),
 				this);
 
 	}
@@ -470,15 +470,15 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.FuncClick(txtFrom_acnt, "From Account");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				String accountNo = MainScreen.valueMap.get("FromAccount");
+				String accountNo = getTestdata("FromAccount");
 				mobileAction.FuncSelectElementInTable(from_accounts_table, Firstpart, Secondpart, accountNo);
 
 				mobileAction.FuncClick(txtTo_acnt, "To Account");
-				String to_accountNo = MainScreen.valueMap.get("ToAccount");
+				String to_accountNo = getTestdata("ToAccount");
 				mobileAction.FuncSelectElementInTable(from_accounts_table, Firstpart, Secondpart, to_accountNo);
 				mobileAction.FuncClick(usd_button, "USD");
 				mobileAction.FuncClick(txtAmount, "Amount");
-				String ValueofAmount = MainScreen.valueMap.get("Amount");
+				String ValueofAmount = getTestdata("Amount");
 				mobileAction.FuncSendKeys(txtAmount, ValueofAmount);
 				mobileAction.FuncClick(done, "Done");
 				mobileAction.FuncClick(btnContinue_transfer, "Continue");
@@ -521,7 +521,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(cad_button, "CAD");
 				mobileAction.FuncClick(usd_button, "USD");
 				mobileAction.FuncClick(txtAmount, "Amount");
-				String ValueofAmount = MainScreen.valueMap.get("Amount");
+				String ValueofAmount = getTestdata("Amount");
 				mobileAction.FuncSendKeys(txtAmount, ValueofAmount);
 				mobileAction.FuncClickBackButton();
 				mobileAction.FuncClick(btnContinue_transfer, "Continue");
@@ -597,13 +597,13 @@ public class Between_My_accounts extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.FuncClick(txtFrom_acnt, "From Account");
-				String accountNo = MainScreen.valueMap.get("FromAccount");
+				String accountNo = getTestdata("FromAccount");
 				String account_value = "//*[contains(@label,'" + accountNo + "')]";
 				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(account_value));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 				mobileAction.FuncClick(txtAmount, "Amount");
-				mobileAction.FuncSendKeys(txtAmount, MainScreen.valueMap.get("Amount"));
+				mobileAction.FuncSendKeys(txtAmount, getTestdata("Amount"));
 				mobileAction.FuncClick(done, "Done");
 				mobileAction.FuncClick(usd_button, "USD");
 				mobileAction.FuncClick(btnContinue_transfer, "Continue");
@@ -670,7 +670,7 @@ public class Between_My_accounts extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(btnContinue_transfer, "Continue");
-			int timeout = Integer.valueOf(MainScreen.valueMap.get("Timeout"));
+			int timeout = Integer.valueOf(getTestdata("Timeout"));
 			mobileAction.FuncWaitForElement(ok_button, timeout, "Ok");
 			mobileAction.FuncClick(ok_button, "OK");
 			mobileAction.FuncWaitForElement(ok_button, timeout, "Ok");
@@ -706,7 +706,7 @@ public class Between_My_accounts extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.FuncClick(txtFrom_acnt, "From Account");
-				String from_accountNo = MainScreen.valueMap.get("FromAccount");
+				String from_accountNo = getTestdata("FromAccount");
 
 				String account_value = "//*[contains(@label,'" + from_accountNo + "')]";
 				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
@@ -714,7 +714,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 
 				mobileAction.FuncClick(txtTo_acnt, "To Account");
-				String to_accountNo = MainScreen.valueMap.get("ToAccount");
+				String to_accountNo = getTestdata("ToAccount");
 
 				String toAccount_value = "//*[contains(@label,'" + to_accountNo + "')]";
 				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
@@ -722,7 +722,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FunCSwipeandScroll(toAccountval, true);
 
 				mobileAction.FuncClick(txtAmount, "Amount");
-				mobileAction.FuncSendKeys(txtAmount, MainScreen.valueMap.get("Amount"));
+				mobileAction.FuncSendKeys(txtAmount, getTestdata("Amount"));
 				mobileAction.FuncClick(done, "Done");
 				mobileAction.FuncClick(btnContinue_transfer, "Continue");
 				mobileAction.waitForElementToVanish(txtProgresssBar);
@@ -734,13 +734,13 @@ public class Between_My_accounts extends _CommonPage {
 
 			} else {
 				mobileAction.FuncClick(txtFrom_acnt, "From Account");
-				String from_accountNo = MainScreen.valueMap.get("FromAccount");
+				String from_accountNo = getTestdata("FromAccount");
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_from_acnt, 3, "down", true);
 				mobileAction.FuncClick(txtTo_acnt, "To Account");
-				String to_accountNo = MainScreen.valueMap.get("ToAccount");
+				String to_accountNo = getTestdata("ToAccount");
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_to_acnt, 3, "down", true);
 				mobileAction.FuncClick(txtAmount, "Amount");
-				mobileAction.FuncSendKeys(txtAmount, MainScreen.valueMap.get("Amount"));
+				mobileAction.FuncSendKeys(txtAmount, getTestdata("Amount"));
 				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(btnContinue_transfer, "Continue");
 				mobileAction.waitForElementToVanish(txtProgresssBar);
@@ -780,14 +780,14 @@ public class Between_My_accounts extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.FuncClick(txtFrom_acnt, "From Account");
-				String from_accountNo = MainScreen.valueMap.get("FromAccount");
+				String from_accountNo = getTestdata("FromAccount");
 				String account_value = "//*[contains(@label,'" + from_accountNo + "')]";
 				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(account_value));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 
 				mobileAction.FuncClick(txtTo_acnt, "To Account");
-				String to_accountNo = MainScreen.valueMap.get("ToAccount");
+				String to_accountNo = getTestdata("ToAccount");
 
 				String toAccount_value = "//*[contains(@label,'" + to_accountNo + "')]";
 				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
@@ -829,7 +829,7 @@ public class Between_My_accounts extends _CommonPage {
 			FinishButton();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				String from_accountNo = MainScreen.valueMap.get("FromAccount");
+				String from_accountNo = getTestdata("FromAccount");
 
 				Thread.sleep(5000);
 				String conf_val = mobileAction.getText(confirmation_val);
@@ -925,13 +925,13 @@ public class Between_My_accounts extends _CommonPage {
 
 	public void transfer_NotSupported() throws Exception {
 		Decorator();
-		String toAcc = MainScreen.valueMap.get("ToAccount");
+		String toAcc = getTestdata("ToAccount");
 		String toAccount = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='" + toAcc
 				+ "']";
 		boolean flag = false;
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				String accounts = MainScreen.valueMap.get("FromAccount");
+				String accounts = getTestdata("FromAccount");
 				String accountsList[] = accounts.split(":");
 				for (int i = 0; i < accountsList.length && flag == false; i++) {
 
@@ -957,7 +957,7 @@ public class Between_My_accounts extends _CommonPage {
 				}
 			} else {
 
-				String accounts = MainScreen.valueMap.get("FromAccount");
+				String accounts = getTestdata("FromAccount");
 				String accountsList[] = accounts.split(",");
 				for (int i = 0; i < accountsList.length && flag == false; i++) {
 					mobileAction.FuncClick(txtFrom_acnt, "Select From Account");
@@ -1030,7 +1030,7 @@ public class Between_My_accounts extends _CommonPage {
 			perFormTransfer();
 			mobileAction.FuncClick(cad_button, "CAD");
 			mobileAction.FuncClick(btnContinue_transfer, "Continue");
-			int timeout = Integer.valueOf(MainScreen.valueMap.get("Timeout"));
+			int timeout = Integer.valueOf(getTestdata("Timeout"));
 			mobileAction.FuncWaitForElement(ok_button, timeout, "Ok");
 			mobileAction.FuncClick(ok_button, "OK");
 			mobileAction.FuncWaitForElement(ok_button, timeout, "Ok");
@@ -1101,19 +1101,19 @@ public class Between_My_accounts extends _CommonPage {
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-					String from_accountNo = MainScreen.valueMap.get("FromAccount");
+					String from_accountNo = getTestdata("FromAccount");
 					String account_value = "//*[contains(@label,'" + from_accountNo + "')]";
 					MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 							.findElement(By.xpath(account_value));
 					mobileAction.FunCSwipeandScroll(fromAccountval, true);
 
 					mobileAction.FuncClick(txtTo_acnt, "To Account");
-					String to_accountNo = MainScreen.valueMap.get("ToAccount");
+					String to_accountNo = getTestdata("ToAccount");
 					String toAccount_value = "//*[contains(@label,'" + to_accountNo + "')]";
 					MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 							.findElement(By.xpath(toAccount_value));
 					mobileAction.FunCSwipeandScroll(toAccountval, true);
-					String amountXL = MainScreen.valueMap.get("Amount");
+					String amountXL = getTestdata("Amount");
 					mobileAction.FuncSendKeys(txtAmount, amountXL);
 					mobileAction.FuncClick(done, "Done");
 					mobileAction.FuncClick(btnContinue_transfer, "Continue");
@@ -1163,13 +1163,13 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.FuncClick(from_acnt, "From Account");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				String from_accountNo = getTestdata("FromAccount", "UserIDs");
+				String from_accountNo = getTestdata("FromAccount");
 				String account_value = "//*[contains(@label,'" + from_accountNo + "')]";
 				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(account_value));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 				mobileAction.FuncClick(to_acnt, "To Account");
-				String to_accountNo = getTestdata("ToAccount", "UserIDs");
+				String to_accountNo = getTestdata("ToAccount");
 				String accountValue = "//*[contains(@label,'" + to_accountNo + "')]";
 				MobileElement ToAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(accountValue));
@@ -1213,19 +1213,19 @@ public class Between_My_accounts extends _CommonPage {
 			if (btw_My_Accounts_Header.isDisplayed() == true) {
 				mobileAction.FuncClick(from_acnt, "From Account");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					String from_accountNo = getTestdata("FromAccount", "UserIDs");
+					String from_accountNo = getTestdata("FromAccount");
 					String account_value = "//*[contains(@label,'" + from_accountNo + "')]";
 					MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 							.findElement(By.xpath(account_value));
 					mobileAction.FunCSwipeandScroll(fromAccountval, true);
 
 					mobileAction.FuncClick(to_acnt, "To Account");
-					String to_accountNo = getTestdata("ToAccount", "UserIDs");
+					String to_accountNo = getTestdata("ToAccount");
 					String toAccount_value = "//*[contains(@label,'" + to_accountNo + "')]";
 					MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 							.findElement(By.xpath(toAccount_value));
 					mobileAction.FunCSwipeandScroll(toAccountval, true);
-					String amountXL = getTestdata("Amount", "UserIDs");
+					String amountXL = getTestdata("Amount");
 					mobileAction.FuncSendKeys(amount, amountXL);
 					mobileAction.FuncClick(done, "Done");
 					mobileAction.FuncClick(btnContinue_transfer, "Continue");

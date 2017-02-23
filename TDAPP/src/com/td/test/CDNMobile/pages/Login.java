@@ -161,7 +161,7 @@ public class Login extends _CommonPage {
 	private MobileElement thanks_button;
 
 	@iOSFindBy(xpath = "//*[@label='Clear text']")
-	@AndroidFindBy(xpath = " ")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement clearText;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Remember')]")
@@ -170,7 +170,7 @@ public class Login extends _CommonPage {
 
 	String verifyLogin_ios = "//*[contains(@label,'Your Login Info Please')]";
 	String verifyLogin_android = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
-	String login_password = MainScreen.valueMap.get("Password");
+	String login_password = getTestdata("Password");
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Investing')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing Accounts']")
@@ -183,9 +183,9 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_launch_browser'and contains(@text,'do this later on my computer')]")
 	private MobileElement popup_ok_button;
 
-	String securityPassword = MainScreen.valueMap.get("SecurityPassword");
+	String securityPassword = getTestdata("SecurityPassword");
 
-	// String passwords = MainScreen.valueMap.get("Password", "Payment");
+	// String passwords = getTestdata("Password", "Payment");
 	String platFormName = CL.getTestDataInstance().getMobilePlatForm();
 	String progressBarFrench = "//android.widget.ProgressBar[@resource-id='android:id/progress']";
 
@@ -213,7 +213,7 @@ public class Login extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(8, TimeUnit.SECONDS)),
+				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(6, TimeUnit.SECONDS)),
 				this);
 
 	}
@@ -227,13 +227,13 @@ public class Login extends _CommonPage {
 					mobileAction.FuncClick(addUser, "AddUser");
 					flag = true;
 				} catch (NoSuchElementException | InterruptedException | IOException e) {
-					System.out.println("Exception from Method " + this.getClass().toString());
+					System.out.print("Exception from Method " + this.getClass().toString());
 				}
 			} else {
 				flag = false;
 			}
 		} catch (Exception e) {
-			System.out.println("Exception from Method " + this.getClass().toString());
+			System.out.print("Exception from Method " + this.getClass().toString());
 		}
 		return flag;
 	}
@@ -247,13 +247,13 @@ public class Login extends _CommonPage {
 					mobileAction.FuncClick(addUser, "AddUser");
 					flag = true;
 				} catch (NoSuchElementException | InterruptedException | IOException e) {
-					System.out.println("Exception from Method " + this.getClass().toString());
+					System.out.print("Exception from Method " + this.getClass().toString());
 				}
 			} else {
 				flag = false;
 			}
 		} catch (Exception e) {
-			System.out.println("Exception from Method " + this.getClass().toString());
+			System.out.print("Exception from Method " + this.getClass().toString());
 		}
 		return flag;
 	}
@@ -264,7 +264,7 @@ public class Login extends _CommonPage {
 				CL.GetReporting().FuncReport("Fail", "System exception occured during login");
 			}
 		} catch (Exception e) {
-			System.out.println("Exception from Method " + this.getClass().toString());
+			System.out.print("Exception from Method " + this.getClass().toString());
 		}
 
 	}
@@ -302,7 +302,7 @@ public class Login extends _CommonPage {
 
 			}
 		} catch (Exception e) {
-			System.out.println("Exception from Method " + this.getClass().toString());
+			System.out.print("Exception from Method " + this.getClass().toString());
 		}
 	}
 
@@ -334,15 +334,16 @@ public class Login extends _CommonPage {
 				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(login, "Login");
 				mobileAction.waitForElementToVanish(progressBar);
-				Thread.sleep(3000);
+				
 			} else {
 				mobileAction.FuncClick(login, "Login");
-
 				mobileAction.waitForElementToVanish(progressBar);
+				Thread.sleep(5000);
 			}
 			verifySystemError();
 			verifySecurityQuestion();
 			verifyTandC();
+			Thread.sleep(10000);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -522,12 +523,12 @@ public class Login extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.FuncClick(username_login, "Username");
-			String userId = MainScreen.valueMap.get("UserID");
+			String userId = getTestdata("UserID");
 
 			mobileAction.FuncSendKeys(username_login, userId);
 
 			mobileAction.FuncClick(password_sendMoney, "Password");
-			String passwords = MainScreen.valueMap.get("Password");
+			String passwords = getTestdata("Password");
 			mobileAction.FuncSendKeys(password_sendMoney, passwords);
 
 			mobileAction.FuncClick(login_sendMoney, "Login");
@@ -553,7 +554,7 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				String connectIDs = MainScreen.valueMap.get("ConnectID");
+				String connectIDs = getTestdata("ConnectID");
 				String userid[] = connectIDs.split(",");
 
 				for (int i = 0; i < userid.length; i++) {
@@ -566,7 +567,7 @@ public class Login extends _CommonPage {
 					mobileAction.FuncClick(username, "Username");
 					mobileAction.FuncSendKeys(username, userid[i]);
 					mobileAction.FuncClick(password, "Password");
-					String passwords = MainScreen.valueMap.get("Password");
+					String passwords = getTestdata("Password");
 
 					mobileAction.FuncSendKeys(password, passwords);
 					mobileAction.FuncClick(login, "Login");
@@ -1085,9 +1086,10 @@ public class Login extends _CommonPage {
 
 	}
 
-	// This method verifies the expired session dialogbox appearing after 10
+	// This method verifies the expired session dialog box appearing after 10
 	// minutes of inactivity
 	public void expired_session() {
+		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 				mobileAction.waitForElementToAppear(session1, message);

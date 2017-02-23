@@ -27,7 +27,7 @@ public class InvestingAccountSummary extends _CommonPage {
 
 	String iOSProgressBar = "//*[@label='In progress' or @label='En cours']";
 
-	String strAccount = getTestdata("Account", "UserIDs");
+	String strAccount = getTestdata("Account");
 	String strAcc[] = strAccount.split(":");
 
 	String platformName = CL.getTestDataInstance().getMobilePlatForm();

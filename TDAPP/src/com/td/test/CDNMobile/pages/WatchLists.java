@@ -44,7 +44,7 @@ public class WatchLists extends _CommonPage {
 
 	String t_recent_searches = "RECENT SEARCHES";
 
-	String symbolXL = MainScreen.valueMap.get("Symbol");
+	String symbolXL = getTestdata("Symbol");
 	String symbolXpath = "//android.widget.TextView[@resource-id='com.td:id/market_name' and @text='" + symbolXL + "']";
 	@SuppressWarnings("unchecked")
 	MobileElement symbol = (MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(symbolXpath));
@@ -67,10 +67,10 @@ public class WatchLists extends _CommonPage {
 	MobileElement symbolinWatchList = (MobileElement) ((AppiumDriver) CL.GetDriver())
 			.findElement(By.xpath(symbolInWatchListXpath)); // once
 
-	String SymbolsXL = MainScreen.valueMap.get("Symbols");
+	String SymbolsXL = getTestdata("Symbols");
 	String[] symbolList = SymbolsXL.split(":");
 
-	int numberOfWatchlists = Integer.parseInt(MainScreen.valueMap.get("WatchListNum"));
+	int numberOfWatchlists = Integer.parseInt(getTestdata("WatchListNum"));
 
 	@iOSFindBy(xpath="//*[contains(@label,'CA']")
 	private MobileElement symbolInWatchList;
@@ -113,7 +113,7 @@ public class WatchLists extends _CommonPage {
 		try {
 			mobileAction.FuncClick(searchBar, "Symbol Search Bar");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.out.println(e.toString());
+			System.out.print(e.toString());
 		}
 	}
 
@@ -122,7 +122,7 @@ public class WatchLists extends _CommonPage {
 		try {
 			mobileAction.verifyElement(recentSearches, t_recent_searches);
 		} catch (NoSuchElementException e) {
-			System.out.println(e.toString());
+			System.out.print(e.toString());
 		}
 	}
 
@@ -152,7 +152,7 @@ public class WatchLists extends _CommonPage {
 			clickCancel();
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.out.println(e.toString());
+			System.out.print(e.toString());
 		}
 	}
 
@@ -161,7 +161,7 @@ public class WatchLists extends _CommonPage {
 		try {
 			mobileAction.FuncClick(CancelBtn, "Cancel Button");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.out.println(e.toString());
+		e.printStackTrace();
 		}
 	}
 
@@ -173,7 +173,7 @@ public class WatchLists extends _CommonPage {
 				mobileAction.FunctionSwipe("left", 2, 100);
 			}
 		} catch (IOException e) {
-			System.out.println(e.toString());
+			System.out.print(e.toString());
 		}
 
 	}
@@ -182,7 +182,7 @@ public class WatchLists extends _CommonPage {
 		try {
 			mobileAction.FuncClick(editBtn, "Cancel Button");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.out.println(e.toString());
+	e.printStackTrace();
 		}
 	}
 
@@ -200,7 +200,7 @@ public class WatchLists extends _CommonPage {
 				// mobileAction.FuncClick(Symbol, symbolList[i]);
 				mobileAction.FuncElementSwipeWhileNotFound(listView, Symbol, 3, "up", true);
 			} catch (NoSuchElementException | IOException e) {
-				System.out.println(e.toString());
+				System.out.print(e.toString());
 			}
 		}
 
@@ -227,7 +227,7 @@ public class WatchLists extends _CommonPage {
 			try {
 				mobileAction.verifyElementNotPresent(Symbol, symbolList[i]);
 			} catch (NoSuchElementException e) {
-				System.out.println(e.toString());
+				e.printStackTrace();
 			}
 		}
 
@@ -243,7 +243,7 @@ public void verify_newOrderFlow_Watchlists(){
 			
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
-				System.out.println(e.toString());
+			e.printStackTrace();
 		}
 		
 	}
@@ -254,7 +254,7 @@ public void verify_newOrderFlow_Watchlists(){
 		try {
 			mobileAction.FunctionSwipe("left", 2, 20);
 		} catch (IOException e) {
-			System.out.println(e.toString());
+			e.printStackTrace();
 		}
 
 	}

@@ -74,12 +74,14 @@ public class AddCanadian_Payee extends _CommonPage{
 		try {
 			Decorator();
 		
-			String payee_value=MainScreen.valueMap.get("Payee");
+			//String payee_value=getTestdata("Payee");
+			String payee_value=getTestdata("Payee");
 			mobileAction.FuncClick(payee_accountno, "PayeeAccount");
 			mobileAction.FuncSendKeys(payee_accountno, payee_value);
 			
 			
-			String description_value=MainScreen.valueMap.get("Description");
+			//String description_value=getTestdata("Description");
+			String description_value=getTestdata("Description");
 			mobileAction.FuncClick(description, "Description");
 			mobileAction.FuncSendKeys(description, description_value);
 			

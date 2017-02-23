@@ -70,7 +70,7 @@ public class SearchPage extends _CommonPage {
 			
 			mobileAction.FuncClick(searchBar, "Clicked on search bar");
 			
-			String searchBar_Value= MainScreen.valueMap.get("Search");
+			String searchBar_Value= getTestdata("Search");
 			mobileAction.FuncSendKeys(searchBar,searchBar_Value );
 		
 			Thread.sleep(5000);

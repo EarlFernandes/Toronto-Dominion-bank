@@ -34,6 +34,7 @@ public class Managee_Payee extends _CommonPage {
 	private MobileElement thirdAccessCard;
 	
 	@iOSFindBy(xpath="//*[@label='Add Canadian Payees Now']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Canadian Payee']")
 	private MobileElement addCanadianPayee;
 	
 	@iOSFindBy(xpath="//*[@label='Manage Payees']")
@@ -119,19 +120,16 @@ public class Managee_Payee extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-
 	public void verifyAddCanadianPayeeButton()  {
 		Decorator();
 		try {
-			
-			mobileAction.verifyElementIsDisplayed(managePayeeHeader, "Manage Payees");
-			mobileAction.verifyElementIsDisplayed(addCanadianPayee, "Add Canadian Payee");
-			
+		mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees");
+		mobileAction.verifyElementIsDisplayed(addCanadianPayee, "Add Canadian Payee");
 		} catch (NoSuchElementException | IOException   e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.err.println("TestCase has failed.");
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
-	}
+		}
 	
 	/**
 	 * This method will click on add payee button

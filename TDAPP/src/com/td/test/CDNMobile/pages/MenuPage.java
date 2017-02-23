@@ -20,45 +20,42 @@ public class MenuPage extends _CommonPage {
 
 	private static MenuPage MenuPage;
 
-	@iOSFindBy(xpath= "//*[@label='Transfers']")
+	@iOSFindBy(xpath = "//*[@label='Transfers']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Transfers']")
 	private MobileElement transfers;
 
-
-	@iOSFindBy(xpath= "//*[@label='Bills']")
+	@iOSFindBy(xpath = "//*[@label='Bills']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Bills']")
 	private MobileElement bills;
-	
-	
-	@iOSFindBy(xpath= "//*[contains(@label,'Investing') or @label='Comptes Placements directs TD']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing']")
+
+	@iOSFindBy(xpath = "//*[@label='Investing Accounts']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing Accounts']")
 	private MobileElement investing;
 
-	@iOSFindBy(xpath= "//*[@label='Comptes Placements directs TD']")
+	@iOSFindBy(xpath = "//*[@label='Comptes Placements directs TD']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing']")
 	private MobileElement investingFRE;
-	
-	@iOSFindBy(xpath ="//*[@label='Mobile Deposit']")
+
+	@iOSFindBy(xpath = "//*[@label='Mobile Deposit']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Mobile Deposit']")
 	private MobileElement mobile_Deposit_button;
-	
-	
-	@iOSFindBy(xpath ="//*[@label='My Accounts']")
+
+	@iOSFindBy(xpath = "//*[@label='My Accounts']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='My Accounts']")
 	private MobileElement accounts_button;
-	
+
 	@iOSFindBy(xpath = "//*[@label='Virements'] ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard'and @text='VIREMENTS']")
 	private MobileElement french_transfers;
-	
+
 	@iOSFindBy(xpath = "//*[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
-	
+
 	@iOSFindBy(xpath = "//*[@label='Contact Us']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Contact Us']")
 	private MobileElement contactUs;
-	
+
 	@iOSFindBy(xpath = "//*[@label='Home']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
 	private MobileElement home_button;
@@ -66,13 +63,11 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Trade']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
 	private MobileElement trade;
-	
-	//French
-	
-//	@iOSFindBy(xpath = "//*[@label='Comptes Placements directs TD']")
-//	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Comptes Placements directs TD']")
-//	private MobileElement investing_FRE;
-	
+
+	@iOSFindBy(xpath = "//*[@label='TD Mobile Payment']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='TD Mobile Payment']")
+	private MobileElement mobilePayment;
+
 	public synchronized static MenuPage get() {
 		if (MenuPage == null) {
 			MenuPage = new MenuPage();
@@ -109,6 +104,7 @@ public class MenuPage extends _CommonPage {
 		}
 
 	}
+
 	/**
 	 * This method will click on the Home button on menu page
 	 * 
@@ -132,8 +128,7 @@ public class MenuPage extends _CommonPage {
 		}
 
 	}
-	
-	
+
 	/**
 	 * This method will click on the Transfers button on menu page
 	 * 
@@ -157,6 +152,7 @@ public class MenuPage extends _CommonPage {
 		}
 
 	}
+
 	/**
 	 * This method will click on the Transfers button on menu page
 	 * 
@@ -180,7 +176,7 @@ public class MenuPage extends _CommonPage {
 		}
 
 	}
-	
+
 	/**
 	 * This method will click on the Investing button on menu page
 	 * 
@@ -198,8 +194,7 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 
-			boolean isLanguageFrench = MainScreen.valueMap.get("Language").equals("FRE");
-
+			boolean isLanguageFrench = getTestdata("Language").equals("FRE");
 
 			MobileElement investingElement = isLanguageFrench ? investingFRE : investing;
 			mobileAction.FuncClick(investingElement, "Investing");
@@ -228,13 +223,14 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(contactUs, "contactUs");
-			
+
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
 	}
+
 	/**
 	 * This method will click on the Transfers button on menu page
 	 * 
@@ -275,29 +271,13 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 			String mobile_Deposit = "Mobile Deposit";
-			
+
 			mobileAction.FuncClick(mobile_Deposit_button, "Mobile_Deposit_Button");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
-	
-//	public void clickMenuInvestingFRE() {
-//
-//		
-//		
-//		Decorator();
-//		try {
-//			mobileAction.FuncClick(investing_FRE, "Investing");
-//			mobileAction.waitForElementToVanish(progressBar);
-//		} catch (NoSuchElementException | InterruptedException | IOException e) {
-//			System.err.println("TestCase has failed.");
-//			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-//		}
-//
-//	}
 
 	public void clickMenuTrade() {
 
@@ -310,5 +290,29 @@ public class MenuPage extends _CommonPage {
 		}
 
 	}
-	
+
+	/**
+	 * This method will click on the TD Mobile Payment in the menu page
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void clickMobilePayment() {
+
+		try {
+			Decorator();
+			mobileAction.FuncClick(mobilePayment, "Mobilepayment");
+			mobileAction.waitForElementToVanish(progressBar);
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
 }

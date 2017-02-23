@@ -25,7 +25,7 @@ public class Investing extends _CommonPage {
 	private MobileElement tradeicon;
 
 	@iOSFindBy(xpath = " //*[@label='Investing']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Investing']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing Accounts']")
 	private MobileElement investing_header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade' or @label='Négociation']")
@@ -120,7 +120,7 @@ public class Investing extends _CommonPage {
 	String Finalpart = Firstpart + i + Secondpart;
 
 	String platformName = CL.getTestDataInstance().getMobilePlatForm();
-	String InvestingAccountsXL = MainScreen.valueMap.get("FromAccount");
+	String InvestingAccountsXL = getTestdata("FromAccount");
 	String InvestingAccountsXpath = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
 			+ InvestingAccountsXL + "']";
 
@@ -154,7 +154,8 @@ public class Investing extends _CommonPage {
 
 		try {
 			Decorator();
-			Thread.sleep(2000);
+			Thread.sleep(10000);
+			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncClick(trade, "Trade");
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -385,14 +386,14 @@ public class Investing extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				diAccountXL = "//*[contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "')]";
 				diAccountXL2 = "//*[contains(@label,'" + CL.getTestDataInstance().getSecondryAccount() + "')]";
-				diAccountXL3 = "//*[contains(@label,'" + MainScreen.valueMap.get("FromAccount") + "')]";
+				diAccountXL3 = "//*[contains(@label,'" + getTestdata("FromAccount") + "')]";
 			} else {
 				diAccountXL = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
 						+ CL.getTestDataInstance().getPrimaryAccount() + "']";
 				diAccountXL2 = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
 						+ CL.getTestDataInstance().getSecondryAccount() + "']";
 				diAccountXL3 = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-						+ MainScreen.valueMap.get("FromAccount") + "']";
+						+ getTestdata("FromAccount") + "']";
 			}
 
 			mobileAction.verifyElementUsingXPath(diAccountXL, "The DI Account");
@@ -483,7 +484,7 @@ public class Investing extends _CommonPage {
 			String diAccountXL = null;
 			String diAccountXL2 = null;
 			mobileAction.waitForElementToVanish(progressBar);
-			String fromAccount = MainScreen.valueMap.get("FromAccount");
+			String fromAccount = getTestdata("FromAccount");
 			String fromAccountArr[] = fromAccount.split(",");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {

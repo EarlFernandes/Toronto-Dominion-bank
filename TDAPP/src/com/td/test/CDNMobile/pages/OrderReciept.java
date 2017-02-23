@@ -1,19 +1,17 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
-
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
-
-import java.util.Date;
-import java.util.Locale;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileDriver;
@@ -52,16 +50,12 @@ public class OrderReciept extends _CommonPage {
 	private MobileElement price;
 
 	@iOSFindBy(xpath = "//*[@label='']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='Limit Price']")
-	private MobileElement limitprice;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='Shareholder Type']")
+	private MobileElement shareholdertype;
 
 	@iOSFindBy(xpath = "//*[@label='']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='Trigger Price']")
 	private MobileElement triggerprice;
-
-	@iOSFindBy(xpath = "//*[@label='']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='Shareholder Type']")
-	private MobileElement shareholdertype;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Good')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='Good 'til']")
@@ -84,15 +78,27 @@ public class OrderReciept extends _CommonPage {
 	private MobileElement confirmation;
 
 	@iOSFindBy(xpath = "//*[@label='Orders']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='Good 'til']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Good 'til']")
 	private MobileElement btnorders;
 
-	
+	@iOSFindBy(xpath = "//*[@label='ORDERS']")
+	@AndroidFindBy(xpath = "android.widget.TextView[@text='ORDERS']")
+	private MobileElement ordersicon;
 
-	@iOSFindBy(xpath = "//*[@label='Receipt' or @label='Reçu']")
+	@iOSFindBy(xpath = " //*[contains(@label,'Receipt')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Receipt']")
+	private MobileElement receiptConfirmation_header;
+
+	@iOSFindBy(xpath = " //*[contains(@label,'Copy')]")
+	private MobileElement copy_confirmation;
+
+	@iOSFindBy(xpath = "//*[@label='']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='Limit Price']")
+	private MobileElement limitprice;
+
+	@iOSFindBy(xpath = "//*[@label='Reçu']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Receipt']")
 	private MobileElement receipt_header;
-
 
 	@iOSFindBy(xpath = "//*[@label='Ordre transmis avec succès.']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/message' and @text='Order sent successfully']")
@@ -105,10 +111,6 @@ public class OrderReciept extends _CommonPage {
 	@iOSFindBy(id = " ")
 	@AndroidFindBy(xpath = "android.widget.TextView[@text='GO BACK HOME']")
 	private MobileElement gohomeicon;
-
-	@iOSFindBy(xpath = "//*[@label='ORDERS']")
-	@AndroidFindBy(xpath = "android.widget.TextView[@text='ORDERS']")
-	private MobileElement ordersicon;
 
 	@iOSFindBy(id = " ")
 	@AndroidFindBy(xpath = "android.widget.TextView[@text='TRADE']")
@@ -129,18 +131,31 @@ public class OrderReciept extends _CommonPage {
 	@iOSFindBy(xpath = "//*[contains(@label,'our request to cancel the order was received.')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/thank_you' and @text='Thank you!']")
 	private MobileElement verify_cancel_order;
-	
-	
-
-	
-
-
 
 	@iOSFindBy(xpath = "//*[contains(@label,'The change to your order') or contains(@label,'Demande de modification')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/message']")
 	private MobileElement updated_message;
 
+	String priceValue = getTestdata("Price");
+	String goodtil_value = getTestdata("Good'til");
+	String searchValue = getTestdata("Search");
+	String account_no = "//*[contains(@label,'Account')]";
+	String actionToPerform = getTestdata("Action");
+	String symbol = getTestdata("Symbol");
+	String Qty = getTestdata("Quantity");
+	String home = "//*[contains(@label,'Home')]";
+	String orders = "//*[contains(@label,'Orders')]";
+	String trade = "//*[contains(@label,'Trade')]";
+	String order_details_path = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[2]";
+	String validateDate = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]";
+	String shareHolderPath = "//*[contains(@label,'Shareholder Type')]";
 
+	String stockMarketDay = actionToPerform + " " + Qty + " " + symbol + " @ " + price + " Good 'til " + goodtil_value;
+	String stockLimitDay = actionToPerform + " " + Qty + " " + symbol + " " + searchValue + " @ Trigger $" + priceValue
+			+ " Good 'til " + goodtil_value;
+	String orderDetailsValue = "";
+	double qtyValue = Double.parseDouble(Qty);
+	DecimalFormat df = new DecimalFormat("#.00");
 
 	public synchronized static OrderReciept get() {
 		if (OrderReciept == null) {
@@ -153,6 +168,30 @@ public class OrderReciept extends _CommonPage {
 		PageFactory.initElements(
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
 				this);
+	}
+
+	/**
+	 * This method will verify the orders details
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void ordertab() throws IOException {
+		try {
+			Decorator();
+			mobileAction.verifyElementIsDisplayed(order, "Order");
+			mobileAction.verifyElementIsDisplayed(account, "Account");
+			mobileAction.verifyElementIsDisplayed(orderplaced, "Order Placed");
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+
+		}
 	}
 
 	public void orderDetails() {
@@ -194,11 +233,11 @@ public class OrderReciept extends _CommonPage {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		} catch (InterruptedException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+
+			e.printStackTrace();
 		} catch (IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+
+			e.printStackTrace();
 		}
 
 	}
@@ -219,143 +258,107 @@ public class OrderReciept extends _CommonPage {
 		}
 	}
 
-	/**
-	 * This method will verify the orders details
-	 * 
-	 * @return void
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 */
+	public void confirmReceipt() throws IOException {
 
-	public void receipt() throws IOException {
+		Decorator();
 		try {
-			Decorator();
-			TouchAction action2 = null;
-			mobileAction.verifyElementIsDisplayed(receipt_header, "Verify Receipt Header");
-			mobileAction.verifyElementIsDisplayed(success_message, "Verify Success Message");
-			mobileAction.verifyElementIsDisplayed(confirmation_val, "Verify Confirmation Number");
-			String confrmVal = mobileAction.getText(confirmation_val);
-			action2 = new TouchAction(((MobileDriver) CL.GetDriver())).longPress(confirmation_val, 2);
-			CL.GetReporting().FuncReport("Pass", "Confirmation displays and selectable");
-		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-	}
 
-	/**
-	 * This method will verify the orders details
-	 * 
-	 * @return void
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 */
-	public void ordertab() throws IOException {
-		try {
-			Decorator();
-			mobileAction.verifyElementIsDisplayed(order, "Order");
-			mobileAction.verifyElementIsDisplayed(account, "Account");
-			mobileAction.verifyElementIsDisplayed(orderplaced, "Order Placed");
-		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-	}
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.verifyElementIsDisplayed(receiptConfirmation_header, "Verifying Receipt Page Header");
+				mobileAction.verifyElementUsingXPath(account_no, "Account No");
+				MobileElement order_details = mobileAction.verifyElementUsingXPath(order_details_path, "Order Details");
+				orderDetailsValue = order_details.getText();
+				mobileAction.verifyElementUsingXPath(shareHolderPath, "Share Holder");
+				mobileAction.verifyElementUsingXPath(home, "Home");
+				mobileAction.verifyElementUsingXPath(orders, "Orders");
+				mobileAction.verifyElementUsingXPath(trade, "Trade");
+				if (orderDetailsValue.contains(stockMarketDay)) {
+					CL.GetReporting().FuncReport("PASS", stockMarketDay + " verified");
+				} else if (orderDetailsValue.contains(stockLimitDay)) {
+					CL.GetReporting().FuncReport("PASS", stockLimitDay + " verified");
+				}
+				mobileAction.FuncClick(ordersicon, "ORDERS");
 
-	/**
-	 * This method will verify the Quick Link Icons
-	 * 
-	 * @return void
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 */
+			} else {
 
-	public void quicklinkicon() throws IOException {
-		try {
-			Decorator();
-			mobileAction.verifyElementIsDisplayed(gohomeicon, "Verify Go Back Home Icon");
-			mobileAction.verifyElementIsDisplayed(ordersicon, "Verify Orders Icon");
-			mobileAction.verifyElementIsDisplayed(tradeicon, "Verify Trade Icon");
-		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-	}
-
-	/**
-	 * This method will Click Any Quick Link Icons and Verify the respective
-	 * details
-	 * 
-	 * @return void
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 */
-
-	public void clickgohomeicon() throws IOException {
-		try {
-			Decorator();
-			mobileAction.FuncClick(gohomeicon, "Click Go Back Home Icon");
-			mobileAction.FuncClick(menu, "Click Menu");
-			mobileAction.FuncClick(accounts_button, "Accounts");
-			mobileAction.verifyElementIsDisplayed(accounts_header, "Verify Accounts Header");
-		} catch (NoSuchElementException | InterruptedException e) {
-			e.printStackTrace();
-
-		}
-	}
-
-	/**
-	 * This method will verify Order Details with LimitPrice
-	 * 
-	 * @return void
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 */
-
-	public void orderDetailLimitPrice_ShareHolder() {
-		try {
-			Decorator();
-			mobileAction.FuncClick(orderdetails, "Order Detail");
-			mobileAction.verifyElementIsDisplayed(actionquty, "Action & Quantity");
-			mobileAction.verifyElementIsDisplayed(price, "Price");
-			mobileAction.verifyElementIsDisplayed(limitprice, "Limit Price");
-			mobileAction.verifyElementIsDisplayed(Good, "Good 'til");
-			mobileAction.verifyElementIsDisplayed(shareholdertype, "ShareHolder Type");
+				mobileAction.FuncClick(ordersicon, "ORDERS");
+			}
 		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		} catch (InterruptedException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-			System.err.println("TestCase has failed.");
+			e.printStackTrace();
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
+
+	}
+
+	/**
+	 * This method will check if the date is in valid format
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifytimestamp() throws IOException {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
+				MobileElement validateDateValue = mobileAction.verifyElementUsingXPath(validateDate, "Validate Date");
+				String dateVal = validateDateValue.getText();
+				String[] tokensVal = dateVal.split(", ");
+				String secondDateValue = "";
+				if (tokensVal[1].contains("PM")) {
+					String[] dateValueParts = tokensVal[1].split("PM");
+					secondDateValue = dateValueParts[0] + "PM";
+				} else {
+					String[] dateValueParts = tokensVal[1].split("AM");
+					secondDateValue = dateValueParts[0] + "AM";
+				}
+				if (isValidFormat("MMMM dd", tokensVal[0]) || isValidFormat("yyyy hh:mm:ss a", secondDateValue)) {
+					CL.GetReporting().FuncReport("PASS", "Validated Date");
+				}
+			} else {
+				String firstPartDate = "//android.widget.TextView[@resource-id='com.td:id/item_row_value_main']";
+				String secondPartDate = "//android.widget.TextView[@resource-id='com.td:id/item_row_subvalue']";
+				MobileElement firstVal = mobileAction.verifyElementUsingXPath(firstPartDate, "Time Stamp first part");
+				MobileElement secondVal = mobileAction.verifyElementUsingXPath(secondPartDate,
+						"Time Stamp Second part");
+				if (isValidFormat("MMMM dd", firstVal.getText())
+						|| isValidFormat("yyyy hh:mm:ss a zZ", secondVal.getText())) {
+					CL.GetReporting().FuncReport("PASS", "Validated Date");
+				}
+			}
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * This method will check if the date is in valid format
+	 * 
+	 * @return void
+	 * 
+	 * @throws ParseException
+	 *             Check whether the input is in the Valid Date format
+	 */
+
+	public static boolean isValidFormat(String format, String value) {
+		Date date = null;
+
+		SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.US);
+		try {
+			date = sdf.parse(value);
+
+			if (!value.equals(sdf.format(date))) {
+				date = null;
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return date != null;
 	}
 
 	/**
@@ -392,7 +395,7 @@ public class OrderReciept extends _CommonPage {
 	}
 
 	/**
-	 * This method will verify Time Stamp Details
+	 * This method will verify Order Details with LimitPrice and Share Holder
 	 * 
 	 * @return void
 	 * 
@@ -403,54 +406,110 @@ public class OrderReciept extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public static boolean isValidFormat(String format, String value) {
-		Date date = null;
 
-		SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.US);
-
+	public void orderDetailLimitPrice_ShareHolder() {
 		try {
-			date = sdf.parse(value);
-
-			if (!value.equals(sdf.format(date))) {
-				date = null;
-			}
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return date != null;
-	}
-
-	public void verifytimestamp() throws IOException {
-		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-
-				String validateDate = "//*[contains(@label,'Order Placed,')]";
-				MobileElement validateDateValue = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(validateDate));
-				String dateVal = validateDateValue.getText();
-				String[] tokensVal = dateVal.split(", ");
-				if (isValidFormat("MMMM dd", tokensVal[1]) || isValidFormat("yyyy hh:mm:ss a zZ", tokensVal[2])) {
-					CL.GetReporting().FuncReport("PASS", "Validated Date");
-				}
-			} else {
-				String firstPartDate = "//android.widget.TextView[@resource-id='com.td:id/item_row_value_main']";
-				String secondPartDate = "//android.widget.TextView[@resource-id='com.td:id/item_row_subvalue']";
-				MobileElement firstVal = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(firstPartDate));
-				MobileElement secondVal = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(secondPartDate));
-				if (isValidFormat("MMMM dd", firstVal.getText())
-						|| isValidFormat("yyyy hh:mm:ss a zZ", secondVal.getText())) {
-					CL.GetReporting().FuncReport("PASS", "Validated Date");
-				}
-			}
+			Decorator();
+			mobileAction.FuncClick(orderdetails, "Order Detail");
+			mobileAction.verifyElementIsDisplayed(actionquty, "Action & Quantity");
+			mobileAction.verifyElementIsDisplayed(price, "Price");
+			mobileAction.verifyElementIsDisplayed(limitprice, "Limit Price");
+			mobileAction.verifyElementIsDisplayed(Good, "Good 'til");
+			mobileAction.verifyElementIsDisplayed(shareholdertype, "ShareHolder Type");
 		} catch (NoSuchElementException e) {
-			e.printStackTrace();
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (InterruptedException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
-
 	}
+
+	/**
+	 * This method will verify the receipt orders details
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+
+	public void receipt() throws IOException {
+		try {
+			Decorator();
+			TouchAction action2 = null;
+			mobileAction.verifyElementIsDisplayed(receipt_header, "Verify Receipt Header");
+			mobileAction.verifyElementIsDisplayed(success_message, "Verify Success Message");
+			mobileAction.verifyElementIsDisplayed(confirmation_val, "Verify Confirmation Number");
+			String confrmVal = mobileAction.getText(confirmation_val);
+			action2 = new TouchAction(((MobileDriver) CL.GetDriver())).longPress(confirmation_val, 2);
+			CL.GetReporting().FuncReport("Pass", "Confirmation displays and selectable");
+		} catch (NoSuchElementException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	/**
+	 * This method will verify the Quick Link Icons
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+
+	public void quicklinkicon() throws IOException {
+		try {
+			Decorator();
+			mobileAction.verifyElementIsDisplayed(gohomeicon, "Verify Go Back Home Icon");
+			mobileAction.verifyElementIsDisplayed(ordersicon, "Verify Orders Icon");
+			mobileAction.verifyElementIsDisplayed(tradeicon, "Verify Trade Icon");
+		} catch (NoSuchElementException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	/**
+	 * This method will Click Go Home Icon
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+
+	public void clickgohomeicon() throws IOException {
+		try {
+			Decorator();
+			mobileAction.FuncClick(gohomeicon, "Click Go Back Home Icon");
+			mobileAction.FuncClick(menu, "Click Menu");
+			mobileAction.FuncClick(accounts_button, "Accounts");
+			mobileAction.verifyElementIsDisplayed(accounts_header, "Verify Accounts Header");
+		} catch (NoSuchElementException | InterruptedException e) {
+			e.printStackTrace();
+
+		}
+	}
+
+	/**
+	 * This method will Clicks the Cancel Order Icon
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void cancelOrdersIcon() {
 
@@ -464,6 +523,14 @@ public class OrderReciept extends _CommonPage {
 
 	}
 
+	/**
+	 * This method will verify the element Cancel Order Receipt
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 */
 	public void cancelOrderReceipt() {
 
 		Decorator();
@@ -476,6 +543,12 @@ public class OrderReciept extends _CommonPage {
 
 	}
 
+	/**
+	 * This method will verify the Confirm Receipt page and the Success message
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void confirmreceipt() throws IOException {
 		try {
 			Decorator();
@@ -487,34 +560,28 @@ public class OrderReciept extends _CommonPage {
 		}
 	}
 
-
-
-
-
-
 	/**
-	* This method will verify the updated orders details
-	* 
-	* @return void
-	* 
-	* @throws InterruptedException
-	*             In case an exception occurs while clicking over the element.
-	* @throws IOException
-	*             If there is problem while reporting.
-	* @throws NoSuchElementException
-	*             In case the element is not found over the screen.
-	*/
+	 * This method will verify the updated orders details
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void updatedReceipt() throws IOException {
-	try {
-	Decorator();
-	mobileAction.verifyElementIsDisplayed(receipt_header, "Receipt Header");
-	mobileAction.verifyElementIsDisplayed(updated_message, "Updated Message");
-	mobileAction.verifyElementIsDisplayed(confirmation_val, "Confirmation Number");
-	} catch (NoSuchElementException e) {
-	System.err.println("TestCase has failed.");
-	CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		try {
+			Decorator();
+			mobileAction.verifyElementIsDisplayed(receipt_header, "Receipt Header");
+			mobileAction.verifyElementIsDisplayed(updated_message, "Updated Message");
+			mobileAction.verifyElementIsDisplayed(confirmation_val, "Confirmation Number");
+		} catch (NoSuchElementException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
 	}
-	}
-
 }

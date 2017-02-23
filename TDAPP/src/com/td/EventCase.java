@@ -11,6 +11,8 @@ import com.td.test.CDNMobile.pages.AddRecipient;
 import com.td.test.CDNMobile.pages.Between_My_accounts;
 import com.td.test.CDNMobile.pages.Bill_PayCanada;
 import com.td.test.CDNMobile.pages.Bills;
+import com.td.test.CDNMobile.pages.CMOB_InitialSwipe;
+import com.td.test.CDNMobile.pages.CardDetails;
 import com.td.test.CDNMobile.pages.ConfirmOrder;
 import com.td.test.CDNMobile.pages.Confirm_Payee;
 import com.td.test.CDNMobile.pages.ContactUs;
@@ -24,9 +26,11 @@ import com.td.test.CDNMobile.pages.Login;
 import com.td.test.CDNMobile.pages.Logout;
 import com.td.test.CDNMobile.pages.MFA_ChangeAnswer;
 import com.td.test.CDNMobile.pages.ManageRecipients;
+import com.td.test.CDNMobile.pages.ManageSettings;
 import com.td.test.CDNMobile.pages.Managee_Payee;
 import com.td.test.CDNMobile.pages.MenuPage;
 import com.td.test.CDNMobile.pages.MobileDeposit;
+import com.td.test.CDNMobile.pages.MobilePayment;
 import com.td.test.CDNMobile.pages.Multitasking_System;
 import com.td.test.CDNMobile.pages.OrderDetails;
 import com.td.test.CDNMobile.pages.OrderReciept;
@@ -43,83 +47,227 @@ public class EventCase {
 
 	private enum functionNames {
 
-		Account_Home_Button, Account_Prefer_Button, Accounts_EW_WB_Functionality, Accounts_Header,
-		Accounts_sessionTimedOut, Accounts_Verify_Page, Accounts_VerifyAccountsPage, Accounts_VerifyTFSA_Activity,
-		Add_Recipient_ErrorPage, AddCanadianPayee, AddPayee_SearchPayee, Banking_Header, Between_My_accounts, 
-		Between_My_accounts_CanadianToUS, Between_My_accounts_exchange_rate_expired,
-		Between_My_accounts_Exchange_Rate_Expired, Between_My_Accounts_LIRA, Between_My_accounts_Mobile_Rate_Expiry,
-		Between_My_Accounts_Permissible_Transfer, Between_My_accounts_transfer, Between_My_Accounts_Transfer_less, 
-		Between_My_accounts_transfer_verify_receipt, Between_My_accounts_VerifyFromAccounts, 
-		BetweenMyAccounts_CADTFSA_TDCTTFSA, BetweenMyAccounts_MobileRateExpiryOnSmartphones, 
-		BetweenMyAccounts_NegativeTestingTransferFunds, BetweenMyAccounts_permissible_transfer_on_mobile, 
-		BetweenMyAccounts_TDCTTFSA_CADTFSA, BetweenMyAccounts_TDCTTFSAMessage, BetweenMyAccounts_TransferNotSupported, 
-		Bill_PayCanada_AmountSelection, Bill_PayCanada_BillPaymentCurrentDate, Bill_PayCanada_PayBillCancel, 
-		Bill_PayCanada_VerifyBackButton, Bill_PayCanada_VerifyQuickAccess, Bills_ScheduledPayments, BillsHeader, 
-		CanadianPayee_ConfirmPage, Cancel, CDNCash, CDNCash_Sell_StopMarket, CDNMargin_Buy, CDNMargin_Buy_TriggerDelta, 
-		CDNMargin_Sell_TrailingStopLimit, CDNMargin_Sell_TrailingStopMarket, CDNMarginLimit, CDNMarginLimitTradePreviewOrder,
-		Check_Remember_Me_Default, ClickBack, clickChangeOrder, clickChangeorder_MarketToLimit, ClickContact, 
-		ClickDepositCheque, ClickMenu, ClickMenu_French, ClickMenuHome, clickMenuTrade, Confirm_order, Confirm_order_French,
-		ConfirmOrderCancel, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, 
-		Dashboard_Authentication, Dashboard_UnAuthentication, Delete_usr, Deposit_Header, DepositChequeHeader, 
-		END, Env_set, FlyOut_HOME, Flyout_Location, HoldingDetails_click_BuyButton, HoldingDetails_verify_Account_CADCash,
-		HoldingDetails_verify_Account_US_MarginShort, HomeScreen_ClickAccounts, HomeScreen_ClickBills, HomeScreen_ClickDeposit,
-		HomeScreen_clickInvestingFromHamburger, HomeScreen_ClickMarkets, HomeScreen_ClickQuickAccess, HomeScreen_ClickTrade,
-		HomeScreen_clickTradeDashboard, HomeScreen_ClickTransfers, HomeScreen_ClickTransfersFrench, HomeScreen_clickWatchLists,
-		HomeScreen_Investing, HomeScreen_Location_Details, HomeScreen_Transfer_Button, HomeScreen_WatchLists, 
-		Interac_AddRecipient, Interac_e_Transfer_verify_interacTransfer, Interac_Header, InteracTransfer_Cancel,
-		InteracTransfer_VerifyAmount, Investing_clickBackbtn, Investing_clickHoldings, Investing_clickInvestingAccount,
-		Investing_clickInvestingAccounts, Investing_clickMarkets, Investing_clickOrderTab, Investing_clickPlacedorder, 
-		Investing_clickTrade, Investing_clickTrade_French, Investing_clickWatchLists, Investing_Header, 
-		Investing_verifyAdvanceorderdetails, Investingacc_verifySummary, InvestingHeader, IOS_Account_Home_Button, Login, 
-		Login_and_Logout, Login_clearPasswordField, Login_Error, Login_Ntimes, Login_PasswordFieldDelete,
-		Login_usernameFieldDelete, Login_verifyPasswordField, Login_verifyUsernameField, login_without_tandc, LoginFrench,
-		Loginverify, LoginWithRemember, Logout, LogoutFrench, ManagePayee_AddCanadianPayee, ManagePayee_MutlipleAccesscard,
-		ManagePayee_VerifyAddCanadianPayeeBtn, ManagePayees_Button, ManageRecipient_EditManageRecipient,
-		ManageRecipient_ModifyRecipient, ManageRecipients_VerifyRegisterButton, mask_user, Menu_Accounts, 
-		Menu_ClickTransfersFrench, Menu_Investing, Menu_Investing_French, Menu_Location, Menu_Mobile_deposit, MenuBills,
-		MenuTrade, MenuTradeEasyWebCustomer, MenuTransfer, MFA_Change, Mobile_Deposit, Multitasking_System, OpenApp, 
-		OrderDetails_CancelOrder, OrderDetails_clickChangeorder, OrderDetailsLimitPrice, OrderDetailsPage_orderConfirmDetails,
-		OrderDetailsPage_verifyStockChangeorderConfirmScreen, OrderDetailsTriggerPrice, OrderReciept_CancelOrderReceipt, 
-		OrderReciept_French, OrderReciept_orderdetailMutualfund, OrderReciept_orderDetails, OrderReciept_orders, 
-		OrderReciept_OrdersIcon, OrderReciept_ordertab, OrderReciept_updatemsg, OrderReciept_verifyOrderScreen, 
-		Ordertype_Cancel, Pay_US_bill_From_US_Account, Pay_US_bill_FromCanada_Account, PayBill_Canada_Button, 
-		PayBill_US_Button, PayBill_VerifyAddCanadianPayeeBtn, PayBillCanada_Add_Canadian_Payee, 
-		PayCanada_NegativeTestingBillPayment, PayCanadaBill_Post_Dated, PayCanadaBillP_Pay_Candadian_Bill, 
-		PendingInterac_e_Transfer, PendingInterac_e_Transfer_cancel, PendingInterac_e_Transfer_canceltransfer, 
-		PendingInterac_e_Transfer_confirm, PendingInterac_e_Transfer_confirmscreen, 
-		PendingInterac_e_Transfer_verifyconfirmation, PendingInterac_e_Transfer_verifylist, 
-		PendingInterac_e_Transfer_verifystatus, PendingInteracTransfer_verify_CancelPendingTransfer, PermissibleTransfer,
-		Preferences_Update_Question, QuickAccess, SearchPage_searchBar, Select_Account, SenderList_Cancel, Session_expired, 
-		TDDirectInvestingContact, Trade_changeAccountTypeLongtoShortFre_French, Trade_clickAction, Trade_clickCross, 
-		Trade_clickFundFactLink, Trade_clickMutualFunds, Trade_clickMutualPreviewOrder, Trade_clickOnAgree, 
-		Trade_clickOnPreviewOrderBtn, Trade_clickOptions, Trade_clickOrderType, Trade_clickOrderType_French, 
-		Trade_clickQuantity, Trade_clickStockETFs, Trade_clickSymbol, Trade_clickSymbol_French, Trade_confirmCancelOrder, 
-		Trade_ConfirmSendOrder, Trade_createMutualfund, Trade_Details, Trade_enterAmount, Trade_enterAndSearch, 
-		Trade_enterTradingPassword, Trade_includesComission, Trade_Limit, Trade_nosearch, Trade_placeStockOrder, 
-		Trade_selectAccount, Trade_selectAcknowledgement, Trade_selectDividendOption, Trade_selectMutualQuantity,
-		Trade_selectMutualSymbol, Trade_selectQuantity, Trade_sendOrder, Trade_trade_account, Trade_Trigger, 
-		Trade_verifyMutualConfirmDetails, Trade_verifymutualconfirmsell, Trade_verifyRelaventMatchInResult, 
-		Trade_verifysearchbar, Trade_verifySendOrderDisplayed, Trade_verifySendOrderState, Trade_verifySuccessMessage,
-		Trade_verifySwitchMutualConfirmDetails, Trade_verifySymbol, Trade_verifyTrade, 
-		Trade_verifyTradeActionShortAccountFre_French, TradeAccount, TradeAccount_French, TradeAction, TradeAction_French, 
-		TradeAgree, TradeAgree_French, TradeDate, TradeGoodTill, TradeGoodTill_French, TradeHeader, TradeIcon, 
-		TradeLimitPrice, TradeMarginAccount, TradePreviewOrder, TradePreviewOrder_French, TradePrice, TradePrice_French, 
-		TradeQuantity, TradeQuantity_French, TradeShareHolder, TradeTriggerDelta, TradeTriggerPrice, TradeTriggerPrice_French,
-		TradingPassword, TradingPassword_French, Trans_TFSA_To_Othr_Accounts, Transfer_InteracTransfer, TransferHeader, 
-		Transfers, Transfers_Click_Between_My_Accounts, Transfers_clickInterac_e_Transfer, 
-		Transfers_clickPendingInterac_e_Transfer, Transfers_ManageRecipients, USMarAccLongToShort, USMarginShort_Buy_Market, 
-		verify_access_to_WB, Verify_account_activity_credit, Verify_Combined_Account, Verify_FP_Account, verify_login_5_times, 
-		Verify_PIA_Account, VerifyAccessCard, VerifyAccessCardDetails, VerifyActionFields, verifybill_landingpage, 
-		VerifyCombinedAccounts, verifyconfirm_order, VerifyDIAccounts, verifyErrorMessage, VerifyFPAccounts, VerifyIconDetails,
-		VerifyInvestingScreen, VerifyNoEligibleAccounts, VerifyNoTradingAccounts, VerifyPIAAccounts, VerifyQuickIcons, 
-		VerifyReceipt, VerifySender, VerifySenderList, VerifyShareholderType, Verifytimestamp, VerifyTwoAccessCardDetails,
-		VerifyUser, WatchLists_addSymbolToWatchLists, WatchLists_clickSearchBar, WatchLists_Header,
-		Watchlists_verify_newOrderFlow_Watchlists, WatchLists_verifyRecentSearches, WatchLists_verifySymbol, 
-		WatchLists_verifySymbolAdded
+		Account_Home_Button, 
+		Account_Prefer_Button, 
+		Accounts_EW_WB_Functionality, 
+		Accounts_Header, 
+		Accounts_sessionTimedOut,
+
+		Accounts_Verify_Page, 
+		Accounts_VerifyAccountsPage, 
+		Accounts_VerifyTFSA_Activity,
+
+		Add_Recipient_ErrorPage,
+		AddCanadianPayee,
+		AddPayee_SearchPayee, 
+		AddCard_MobilePayment, 
+		AddToTDMobilePayment,
+
+		Banking_Header,
+
+		Between_My_accounts, 
+		Between_My_accounts_CanadianToUS, 
+		Between_My_accounts_exchange_rate_expired, 
+		Between_My_accounts_Exchange_Rate_Expired, 
+		Between_My_Accounts_LIRA, 
+		Between_My_accounts_Mobile_Rate_Expiry, 
+		Between_My_Accounts_Permissible_Transfer, 
+		Between_My_accounts_transfer, 
+		Between_My_Accounts_Transfer_less, 
+		Between_My_accounts_transfer_verify_receipt,
+		Between_My_accounts_VerifyFromAccounts,
+
+		BetweenMyAccounts_CADTFSA_TDCTTFSA, 
+		BetweenMyAccounts_MobileRateExpiryOnSmartphones, 
+		BetweenMyAccounts_NegativeTestingTransferFunds, 
+		BetweenMyAccounts_permissible_transfer_on_mobile, 
+		BetweenMyAccounts_TDCTTFSA_CADTFSA, 
+		BetweenMyAccounts_TDCTTFSAMessage, 
+		BetweenMyAccounts_TransferNotSupported,
+
+		Bill_PayCanada_AmountSelection, 
+		Bill_PayCanada_BillPaymentCurrentDate, 
+		Bill_PayCanada_PayBillCancel, 
+		Bill_PayCanada_VerifyBackButton, 
+		Bill_PayCanada_VerifyQuickAccess, 
+		Bills_ScheduledPayments, 
+		BillsHeader,
+
+		CanadianPayee_ConfirmPage, 
+		Cancel,
+
+		CDNCash, 
+		CDNCash_Sell_StopMarket, 
+		CDNMargin_Buy, 
+		CDNMargin_Buy_TriggerDelta, 
+		CDNMargin_Sell_TrailingStopLimit, 
+		CDNMargin_Sell_TrailingStopMarket, 
+		CDNMarginLimit, 
+		CDNMarginLimitTradePreviewOrder,
+
+		Check_Remember_Me_Default, 
+		ClickBack, 
+		clickChangeOrder, 
+		clickChangeorder_MarketToLimit, 
+		ClickContact, 
+		ClickDepositCheque,
+
+		ClickMenu, 
+		ClickMenu_French, 
+		ClickMenuHome, 
+		clickMenuTrade, 
+		Confirm_order, 
+		Confirm_order_French,
+
+		ConfirmOrderCancel, 
+		ConfirmOrderReciept, 
+		ConfirmOrderSendOrder, 
+		ConfirmOrderSendOrder_French, 
+		ConfirmPayee, ChangeDefaultCard,
+
+		Dashboard_Authentication, 
+		Dashboard_UnAuthentication,
+
+		Delete_usr, 
+		Deposit_Header, 
+		DepositChequeHeader, 
+		END,
+
+		Env_set, 
+		FlyOut_HOME, 
+		Flyout_Location, 
+		HoldingDetails_click_BuyButton, 
+		HoldingDetails_verify_Account_CADCash, 
+		HoldingDetails_verify_Account_US_MarginShort,
+
+		HomeScreen_ClickAccounts, 
+		HomeScreen_ClickBills, 
+		HomeScreen_ClickDeposit, 
+		HomeScreen_clickInvestingFromHamburger, 
+		HomeScreen_ClickMarkets, 
+		HomeScreen_ClickQuickAccess, 
+		HomeScreen_ClickTrade, 
+		HomeScreen_clickTradeDashboard, 
+		HomeScreen_ClickTransfers, 
+		HomeScreen_ClickTransfersFrench, 
+		HomeScreen_clickWatchLists, 
+		HomeScreen_Investing, 
+		HomeScreen_Location_Details, 
+		HomeScreen_Transfer_Button, 
+		HomeScreen_WatchLists, 
+		HomeScreen_PayNow,
+
+		Interac_AddRecipient, 
+		Interac_e_Transfer_verify_interacTransfer, 
+		Interac_Header, 
+		InteracTransfer_Cancel, 
+		InteracTransfer_VerifyAmount,
+
+		Investing_clickBackbtn, 
+		Investing_clickHoldings, 
+		Investing_clickInvestingAccount, 
+		Investing_clickInvestingAccounts,
+
+		Investing_clickMarkets, 
+		Investing_clickOrderTab, 
+		Investing_clickPlacedorder, 
+		Investing_clickTrade, 
+		Investing_clickTrade_French, 
+		Investing_clickWatchLists, 
+		Investing_Header, 
+		Investing_verifyAdvanceorderdetails, 
+		Investingacc_verifySummary, 
+		InvestingHeader, 
+		IOS_Account_Home_Button,
+
+		Login, 
+		Login_and_Logout, 
+		Login_clearPasswordField, 
+		Login_Error, 
+		Login_Ntimes, 
+		Login_PasswordFieldDelete, 
+		Login_usernameFieldDelete, 
+		Login_verifyPasswordField, 
+		Login_verifyUsernameField, 
+		login_without_tandc, 
+		LoginFrench, 
+		Loginverify, 
+		LoginWithRemember, 
+		Logout, 
+		LogoutFrench,
+
+		ManagePayee_AddCanadianPayee, 
+		ManagePayee_MutlipleAccesscard, 
+		ManagePayee_VerifyAddCanadianPayeeBtn, 
+		ManagePayees_Button, 
+		ManageRecipient_EditManageRecipient, 
+		ManageRecipient_ModifyRecipient, 
+		ManageRecipients_VerifyRegisterButton, 
+		mask_user,
+
+		Menu_Accounts, 
+		Menu_ClickTransfersFrench, 
+		Menu_Investing, 
+		Menu_Investing_French, 
+		Menu_Location, 
+		Menu_Mobile_deposit, 
+		MenuBills, 
+		MenuTrade, 
+		MenuTradeEasyWebCustomer, 
+		MenuTransfer,
+
+		MFA_Change, 
+		Mobile_Deposit, 
+		Multitasking_System,
+
+		OpenApp, 
+		OrderDetails_CancelOrder, 
+		OrderDetails_clickChangeorder, 
+		OrderDetailsLimitPrice, 
+		OrderDetailsPage_orderConfirmDetails, 
+		OrderDetailsPage_verifyStockChangeorderConfirmScreen, OrderDetailsTriggerPrice, OrderReciept_CancelOrderReceipt, OrderReciept_French, OrderReciept_orderdetailMutualfund, OrderReciept_orderDetails, OrderReciept_orders, OrderReciept_OrdersIcon, OrderReciept_ordertab, OrderReciept_updatemsg, OrderReciept_verifyOrderScreen, Ordertype_Cancel,
+
+		Pay_US_bill_From_US_Account, 
+		Pay_US_bill_FromCanada_Account, 
+		PayBill_Canada_Button, 
+		PayBill_US_Button, PayBill_VerifyAddCanadianPayeeBtn, PayBillCanada_Add_Canadian_Payee, PayCanada_NegativeTestingBillPayment, PayCanadaBill_Post_Dated, PayCanadaBillP_Pay_Candadian_Bill,
+
+		PendingInterac_e_Transfer, 
+		PendingInterac_e_Transfer_cancel, 
+		PendingInterac_e_Transfer_canceltransfer, 
+		PendingInterac_e_Transfer_confirm, 
+		PendingInterac_e_Transfer_confirmscreen, PendingInterac_e_Transfer_verifyconfirmation, PendingInterac_e_Transfer_verifylist, PendingInterac_e_Transfer_verifystatus, PendingInteracTransfer_verify_CancelPendingTransfer,
+
+		PermissibleTransfer, 
+		Preferences_Update_Question, 
+		QuickAccess, 
+		SearchPage_searchBar, 
+		Select_Account, 
+		SenderList_Cancel, Session_expired, SetupWalletPasscode,
+
+		TDDirectInvestingContact, 
+		Trade_changeAccountTypeLongtoShortFre_French, Trade_clickAction, Trade_clickCross, Trade_clickFundFactLink, Trade_clickMutualFunds, Trade_clickMutualPreviewOrder, Trade_clickOnAgree, Trade_clickOnPreviewOrderBtn, Trade_clickOptions, Trade_clickOrderType, Trade_clickOrderType_French, Trade_clickQuantity, Trade_clickStockETFs, Trade_clickSymbol, Trade_clickSymbol_French, Trade_confirmCancelOrder, Trade_ConfirmSendOrder, Trade_createMutualfund, Trade_Details, Trade_enterAmount, Trade_enterAndSearch, Trade_enterTradingPassword, Trade_includesComission, Trade_Limit, Trade_nosearch, Trade_placeStockOrder, Trade_selectAccount, Trade_selectAcknowledgement, Trade_selectDividendOption, Trade_selectMutualQuantity, Trade_selectMutualSymbol, Trade_selectQuantity, Trade_sendOrder, Trade_trade_account, Trade_Trigger, Trade_verifyMutualConfirmDetails, Trade_verifymutualconfirmsell, Trade_verifyRelaventMatchInResult, Trade_verifysearchbar, Trade_verifySendOrderDisplayed, Trade_verifySendOrderState, Trade_verifySuccessMessage, Trade_verifySwitchMutualConfirmDetails, Trade_verifySymbol, Trade_verifyTrade, Trade_verifyTradeActionShortAccountFre_French, TradeAccount, TradeAccount_French, TradeAction, TradeAction_French, TradeAgree, TradeAgree_French, TradeDate, TradeGoodTill, TradeGoodTill_French, TradeHeader, TradeIcon, TradeLimitPrice, TradeMarginAccount, TradePreviewOrder, TradePreviewOrder_French, TradePrice, TradePrice_French, TradeQuantity, TradeQuantity_French, TradeShareHolder, TradeTriggerDelta, TradeTriggerPrice, TradeTriggerPrice_French, TradingPassword, TradingPassword_French,
+
+		Trans_TFSA_To_Othr_Accounts, 
+		Transfer_InteracTransfer, TransferHeader, Transfers, Transfers_Click_Between_My_Accounts, Transfers_clickInterac_e_Transfer, Transfers_clickPendingInterac_e_Transfer, Transfers_ManageRecipients,
+
+		USMarAccLongToShort, 
+		USMarginShort_Buy_Market,
+
+		verify_access_to_WB, 
+		Verify_account_activity_credit, Verify_Combined_Account, Verify_FP_Account, verify_login_5_times, Verify_PIA_Account, VerifyAccessCard, VerifyAccessCardDetails, VerifyActionFields, verifybill_landingpage, VerifyCombinedAccounts, verifyconfirm_order, VerifyDIAccounts, verifyErrorMessage, VerifyFPAccounts, VerifyIconDetails, VerifyInvestingScreen, VerifyNoEligibleAccounts, VerifyNoTradingAccounts, VerifyPIAAccounts, VerifyQuickIcons, VerifyReceipt, VerifySender, VerifySenderList, VerifyShareholderType, Verifytimestamp, VerifyTwoAccessCardDetails, VerifyUser, VerifyNickName,
+
+		WatchLists_addSymbolToWatchLists, 
+		WatchLists_clickSearchBar, WatchLists_Header, Watchlists_verify_newOrderFlow_Watchlists, WatchLists_verifyRecentSearches, WatchLists_verifySymbol, WatchLists_verifySymbolAdded, ClickPrivacy
+
+		, Menu_ClickMobilePayment, 
+		MobilePayment_SwipeMobilePayment, MobilePayment_AddACard, MobilePayment_ClickSettings, ManagePayment_ManageSettings, ManageSettings_Changepasscode, ManageTDMobilePayment_Selectcard, CardDetails_ToggleButton, MobilePayment_InitialSwipe, MobilePayment_SecurityQuestion, MW_verifycard, MW_expire
+
+		
+		,CardDetails_deleteicon, HomeScreen_ClickTDMobilePayment, MobilePayment_Settingsicon, MobilePayment_SetPasscode, ManagePayment_clickcard, CardDetails_save, passcode_Ntimes, verifydefaultcard
 
 	}
 
-	// @Override
 	public void FuncCOREEventCase(String sFunctionname)
 			throws IOException, NoSuchElementException, InterruptedException, Exception {
 
@@ -1222,8 +1370,113 @@ public class EventCase {
 		case OrderReciept_updatemsg:
 			OrderReciept.get().updatedReceipt();
 			break;
+			
 
+		case ClickPrivacy:
+			HomeScreen.get().clickPrivacy_Security();
+			break;
+
+		case HomeScreen_PayNow:
+			HomeScreen.get().clickPayNow();
+			break;
+
+		case AddCard_MobilePayment:
+			MobilePayment.get().addCard_MobilePayment();
+			break;
+
+		case AddToTDMobilePayment:
+			MobilePayment.get().addToTDMobilePayment();
+			break;
+
+		case SetupWalletPasscode:
+			MobilePayment.get().setupWalletPasscode();
+			break;
+
+		case VerifyNickName:
+			MobilePayment.get().verifyNickName();
+			break;
+
+		case ChangeDefaultCard:
+			MobilePayment.get().changeDefaultCard();
+			break;
+
+		case MW_verifycard:
+			MobilePayment.get().verify_card();
+			break;
+
+		case MW_expire:
+			MobilePayment.get().Pay_expire();
+			break;
+
+		case Menu_ClickMobilePayment:
+			MenuPage.get().clickMobilePayment();
+			break;
+
+		case MobilePayment_SwipeMobilePayment:
+			MobilePayment.get().swipeMobilePayment();
+			break;
+
+		case MobilePayment_SecurityQuestion:
+			MobilePayment.get().securityQuestion();
+			break;
+
+		case MobilePayment_AddACard:
+			MobilePayment.get().addACard();
+			break;
+
+		case MobilePayment_ClickSettings:
+			MobilePayment.get().clickSettings();
+			break;
+
+		case ManagePayment_ManageSettings:
+			MobilePayment.get().managesettings();
+			break;
+
+		case ManageSettings_Changepasscode:
+			ManageSettings.get().changePasscode();
+			break;
+
+		case ManageTDMobilePayment_Selectcard:
+			MobilePayment.get().selectcard();
+			break;
+
+		case CardDetails_ToggleButton:
+			CardDetails.get().enableToggleButton();
+			break;
+
+		case MobilePayment_InitialSwipe:
+			MobilePayment.get().InitialSwipe();
+			break;
+
+		case HomeScreen_ClickTDMobilePayment:
+			HomeScreen.get().clickt_tdmobilepayment();
+			break;
+			
+		case MobilePayment_Settingsicon:
+			MobilePayment.get().clicksettingsicon();
+			break;
+			
+		case MobilePayment_SetPasscode:
+			MobilePayment.get().click_enablepasscode();
+			break;
+			
+		case verifydefaultcard:
+			MobilePayment.get().verifydefaultcard();
+			break;
+			
+		case passcode_Ntimes:
+			MobilePayment.get().IncorrectPasscode_Ntimes();
+			break;
+			
+		case CardDetails_deleteicon:
+			CardDetails.get().deletecard();
+			break;
+			
+			
 		}
+		
+		
+		
 
 	}
 

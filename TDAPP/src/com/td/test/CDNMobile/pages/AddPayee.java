@@ -32,7 +32,8 @@ public class AddPayee extends _CommonPage {
 	@AndroidFindBy(xpath = "")
 	private MobileElement errorMessage;
 	
-	String selectVal=MainScreen.valueMap.get("Search");
+	//String selectVal=getTestdata("Search");
+	String selectVal=getTestdata("Search");
 	
 	
 	

@@ -24,8 +24,6 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class MainScreen extends _CommonPage {
 
-	public PropertyFileReader reader;
-
 	@AndroidFindBy(className = "android.widget.Button")
 	private MobileElement btnContinue;
 
@@ -61,8 +59,6 @@ public class MainScreen extends _CommonPage {
 
 	private MobileElement password;
 
-	public static HashMap<String, String> valueMap = new HashMap<String, String>();
-
 	private void Decorator() {
 		PageFactory.initElements(
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
@@ -70,129 +66,49 @@ public class MainScreen extends _CommonPage {
 
 	}
 
-	int findRow(HSSFSheet sheet, String cellContent) {
-		for (Row row : sheet) {
-			for (Cell cell : row) {
-				if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
-					if (cell.getRichStringCellValue().getString().trim().equals(cellContent)) {
-						return row.getRowNum();
-					}
-				}
+	String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env", "Amount",
+			"Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount", "AccessCard",
+			"Description", "Payee", "Timeout", "SecondTimeout", "MerchantName", "Price", "Quantity",
+			"Security_Question", "RecipientName", "RecipientMail", "Trading_Pwd", "Symbol", "ShareHolder",
+			"SecurityPassword", "TriggerDelta", "CDNMarginAccount", "QuantityType", "Dividend", "SelectLimitPrice",
+			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName", "Passcode" ,"NewPasscode"};
+
+
+	public void readSheet() {
+		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
+		String inputValue = "";
+		for (String columnName : fieldsArray) {
+			inputValue = CL.LoadData(columnName, CL.getTestDataInstance().getMasterTestData(), "UserIDs", "UserType",
+					CL.getTestDataInstance().sUserType);
+			if (!inputValue.equals("") || columnName.equals("Language")) {
+				CL.getTestDataInstance().TCParameters.put(columnName, inputValue);
+				
 			}
 		}
-		return 0;
-	}
 
-	public static boolean isCellEmpty(final Cell cell) {
-		if (cell == null || cell.getCellType() == Cell.CELL_TYPE_BLANK) {
-			return true;
-		}
-		if (cell.getCellType() == Cell.CELL_TYPE_STRING && cell.getStringCellValue().isEmpty()) {
-			return true;
-		}
-		return false;
-	}
-
-	public void readFirstRow(String sheetno) {
-		String filename = CL.getTestDataInstance().getMasterTestData();
-		List<String> fieldsArrayList = new ArrayList<String>();
-		List<String> valueArrayList = new ArrayList<String>();
-
-		try {
-
-			FileInputStream myInput = new FileInputStream(new File(filename));
-
-			Workbook workBook = null;
-
-			workBook = new HSSFWorkbook(myInput);
-
-			HSSFSheet sheet = (HSSFSheet) workBook.getSheetAt(Integer.parseInt(sheetno));
-
-			Row firstRow = sheet.getRow(0);
-			int length = firstRow.getLastCellNum();
-
-			Cell cell = null;
-
-			String testCaseID = CL.getTestDataInstance().TestCaseID;
-
-			// Row valueRow=sheet.getRow(CL.getTestDataInstance().TestCaseID);
-			for (int i = 0; i < length; i++)
-
-			{
-				cell = firstRow.getCell(i);
-
-				fieldsArrayList.add(cell.toString());
-
-			}
-
-			int testCaseIdRow = findRow(sheet, testCaseID);
-
-			Row valueRow = sheet.getRow(testCaseIdRow);
-
-			for (int i = 0; i < length; i++)
-
-			{
-				if (isCellEmpty(valueRow.getCell(i))) {
-					valueArrayList.add("");
-
-				} else {
-					cell = valueRow.getCell(i);
-					valueArrayList.add(cell.toString());
-				}
-			}
-
-			for (int i = 0; i < fieldsArrayList.size(); i++) {
-				valueMap.put(fieldsArrayList.get(i), valueArrayList.get(i));
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void Splash_Conitnue() throws IOException {
-		reader = new PropertyFileReader("/Users/MIIPL/Documents/workspace/TDAPP/Test.properties");
-
-		// initialize and load all data, Data will be available under TD class
 
 		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
-
-		CL.getTestDataInstance().setALMUser(reader.getProperty("AlmUser"));
-		CL.getTestDataInstance().setALMUserpwd(reader.getProperty("AlmPwd"));
-		CL.getTestDataInstance().setALMDomain(reader.getProperty("AlmDomain"));
-		CL.getTestDataInstance().setALMHost(reader.getProperty("AlmHost"));
-		CL.getTestDataInstance().setALMProject(reader.getProperty("AlmProject"));
-		System.out.println("ALM Project" + CL.getTestDataInstance().getALMProject() + "ALMhost "
-				+ CL.getTestDataInstance().getALMHost() + "ALM Domain " + CL.getTestDataInstance().getALMDomain()
-				+ "ALM User" + CL.getTestDataInstance().getALMUser());
-		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
-
-		System.out.println("ALM Project" + CL.getTestDataInstance().getALMProject() + "ALMhost "
-				+ CL.getTestDataInstance().getALMHost() + "ALM Domain " + CL.getTestDataInstance().getALMDomain()
-				+ "ALM User" + CL.getTestDataInstance().getALMUser());
-
-		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
-//		if (getTestdata("MobilePlatform", "Batch Run").equals("")) {
-			readFirstRow("2");
-//		} else {
-//			System.out.println("sheet value :" + getTestdata("MobilePlatform", "Batch Run"));
-//			readFirstRow(getTestdata("MobilePlatform", "Batch Run"));
-//		}
+		readSheet();
 
 		String udid = CL.getTestDataInstance().getDeviceUdid();
 
-		if (udid.equalsIgnoreCase("3d8b025ce19ab79fd4fc535b566f70df57747b9a")) {
+		if (udid.equalsIgnoreCase("ce0716070dbb753003")) {
 
 			try {
 				if (CL.getTestDataInstance().getAppFilePath() == null
 						|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
+
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_ANDROID"));
 					else
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
 				}
+
 				CL.mobileApp("http://127.0.0.1:4723/wd/hub");
 				Decorator();
 			} catch (Exception e) {
@@ -207,7 +123,7 @@ public class MainScreen extends _CommonPage {
 						|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_ANDROID"));
+								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_Android"));
 					else
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
@@ -222,13 +138,6 @@ public class MainScreen extends _CommonPage {
 		}
 	}
 
-	/*
-	 * 
-	 * 
-	 * Object Model Components supporting the Java singleton pattern for the
-	 * Page
-	 * 
-	 */
 	// Singleton object of self
 	private static MainScreen MainScreen;
 

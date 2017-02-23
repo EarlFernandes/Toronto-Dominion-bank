@@ -85,7 +85,7 @@ public class OrderDetails extends _CommonPage {
 			mobileAction.FunCSwipeandScroll(trading_pwd, true);
 			mobileAction.FuncClick(trading_pwd, "Trading_Pwd");
 
-			String trading_pwd_value = MainScreen.valueMap.get("Trading_Pwd");
+			String trading_pwd_value = getTestdata("Trading_Pwd");
 			mobileAction.FuncSendKeys(trading_pwd, trading_pwd_value);
 			mobileAction.FuncClick(done, "Done");
 			mobileAction.FuncClick(preview_order, "preview_Order");
@@ -107,7 +107,7 @@ public class OrderDetails extends _CommonPage {
 			mobileAction.FunCSwipeandScroll(trading_pwd, true);
 			mobileAction.FuncClick(trading_pwd, "Trading_Pwd");
 
-			String trading_pwd_value = MainScreen.valueMap.get("Trading_Pwd");
+			String trading_pwd_value = getTestdata("Trading_Pwd");
 			mobileAction.FuncSendKeys(trading_pwd, trading_pwd_value);
 
 			mobileAction.FuncClick(done, "Done");
@@ -142,12 +142,12 @@ public class OrderDetails extends _CommonPage {
 				Thread.sleep(3000);
 				mobileAction.FuncClick(selectPrice, "Price Selected");
 
-				String price_value = MainScreen.valueMap.get("Price");
+				String price_value = getTestdata("Price");
 				mobileAction.FuncSelectElementInTable(price_table, Firstpart, Secondpart, price_value);
 				mobileAction.FunCSwipeandScroll(trading_pwd, true);
 				mobileAction.FuncClick(trading_pwd, "Trading_Pwd");
 
-				String trading_pwd_value = MainScreen.valueMap.get("Trading_Pwd");
+				String trading_pwd_value = getTestdata("Trading_Pwd");
 				mobileAction.FuncSendKeys(trading_pwd, trading_pwd_value);
 				mobileAction.FuncClick(done, "Done");
 				mobileAction.FuncClick(preview_order, "preview_Order");
@@ -158,12 +158,12 @@ public class OrderDetails extends _CommonPage {
 				Thread.sleep(3000);
 				mobileAction.FuncClick(selectPrice, "Price Selected");
 
-				String price_value = MainScreen.valueMap.get("Price");
+				String price_value = getTestdata("Price");
 				mobileAction.FuncSelectElementInTable(price_table, Firstpart, Secondpart, price_value);
 				mobileAction.FunCSwipeandScroll(trading_pwd, true);
 				mobileAction.FuncClick(trading_pwd, "Trading_Pwd");
 
-				String trading_pwd_value = MainScreen.valueMap.get("Trading_Pwd");
+				String trading_pwd_value = getTestdata("Trading_Pwd");
 				mobileAction.FuncSendKeys(trading_pwd, trading_pwd_value);
 				// mobileAction.FuncClick(done, "Done");
 				mobileAction.FuncHideKeyboard();

@@ -47,8 +47,8 @@ public class ManageRecipients extends _CommonPage {
     @iOSFindBy(xpath = "//*[@label='Re-enter your answer']")
     private MobileElement reEnterAnswer;
 
-    String recipientMail = MainScreen.valueMap.get("RecipientMail");
-    String answer = MainScreen.valueMap.get("SecurityAnswer");
+    String recipientMail = getTestdata("RecipientMail");
+    String answer = getTestdata("SecurityAnswer");
 
     public synchronized static ManageRecipients get() {
 	if (ManageRecipients == null) {

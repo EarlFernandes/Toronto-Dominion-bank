@@ -127,6 +127,10 @@ public class HomeScreen extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@value='SEND MONEY']")
 	private MobileElement send_money_button;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Privacy, Security & Legal']")
+	private MobileElement privacy;
+
 	@iOSFindBy(xpath = "//*[@label='Back']")
 	private MobileElement back_button;
 
@@ -144,6 +148,14 @@ public class HomeScreen extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Trade']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='']")
 	private MobileElement clickmenu_trade;
+
+	@iOSFindBy(xpath = "//*[@label='PAY NOW']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mpay_dashboard' and @text='PAY NOW']")
+	private MobileElement pay_now_button;
+
+	@iOSFindBy(xpath = "//*[@label='']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='TD Mobile Payment']")
+	private MobileElement tdmobilepayment;
 
 	int i = 1;
 	String Firstpart = "//XCUIElementTypeCell[";
@@ -790,12 +802,79 @@ public class HomeScreen extends _CommonPage {
 
 	}
 
+	/**
+	 * This method will click on the Privacy,Security and Legal button on home
+	 * page
+	 * 
+	 * @return void
+	 * @throws Exception
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void clickPrivacy_Security() throws Exception {
+		try {
+			Decorator();
+			mobileAction.FunCnewSwipe(privacy, false, 1);
+			mobileAction.FuncClick(privacy, "Privacy,Security and Legal");
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
 	public void menuTradeEasyWebCustomer() throws Exception {
 
 		Decorator();
 		try {
 			mobileAction.verifyElementNotPresent(clickmenu_trade, "Menu Trade");
 		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
+	}
+
+	public void clickPayNow() {
+		try {
+			Decorator();
+			mobileAction.FuncClick(pay_now_button, "Pay Now");
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	/**
+	 * This method will click TD Mobile Payment button from the menu. language
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void clickt_tdmobilepayment() {
+
+		Decorator();
+
+		try {
+
+			mobileAction.FuncClick(tdmobilepayment, "TD Mobile Payment clicked");
+
+		}
+
+		catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 

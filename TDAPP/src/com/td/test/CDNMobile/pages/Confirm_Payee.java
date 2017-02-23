@@ -53,7 +53,7 @@ public class Confirm_Payee extends _CommonPage{
 	@iOSFindBy(xpath = "//*[@label='Select Payee']")
 	private MobileElement select_payee;
 	
-	String accountNoXL=MainScreen.valueMap.get("Payee");
+	String accountNoXL=getTestdata("Payee");
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[3]")
 	private MobileElement payee_table;

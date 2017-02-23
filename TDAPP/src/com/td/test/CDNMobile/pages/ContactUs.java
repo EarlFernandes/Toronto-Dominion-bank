@@ -46,6 +46,18 @@ public class ContactUs extends _CommonPage {
 				this);
 		
 	}
+	/**
+	 * This method will click on add payee button
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void verifyTDInvesting_Contact()  {
 		Decorator();

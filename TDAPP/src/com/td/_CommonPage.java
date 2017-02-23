@@ -23,8 +23,8 @@ public class _CommonPage {
 	protected com.td.test.framework.CommonLib CL = new com.td.test.framework.CommonLib();
 	protected com.td.test.framework.PerformAction PerformAction = new com.td.test.framework.PerformAction();
 	protected com.td.MobileAction2 mobileAction = new com.td.MobileAction2();
-	// public Reporting report;// = CL.GetReporting();
 
+	// public Reporting report;// = CL.GetReporting();
 	// calculated or discovered values
 	protected By foundElement = null;
 	// public com.td.test.framework.GlobalVariables GV;// =
@@ -64,6 +64,26 @@ public class _CommonPage {
 	}
 
 	/**
+	 * This method is used to retrieve the values from excel sheet
+	 *
+	 * 
+	 * 
+	 * @param key
+	 */
+
+	public String getTestdata(String aColumn) {
+		return CL.getTestDataInstance().TCParameters.get(aColumn);
+	}
+
+	/**
+	 * 
+	 * @param key
+	 */
+	public void readVerifyMessages(String key) {
+		CL.getTestDataInstance().VerificationStrings.get(key);
+	}
+
+	/**
 	 * <p>
 	 * Handle an Exception
 	 * </p>
@@ -73,15 +93,11 @@ public class _CommonPage {
 	 */
 	protected static void handleException(Exception e) {
 		System.err.println(e.getLocalizedMessage());
-		// e.printStackTrace();
-
 	}
 
-	public String getTestdata(String aColumn, String aSheetName) {
+	public String getTestdataOtherSheet(String aColumn, String aSheetName) {
 		return CL.LoadData(aColumn, CL.getTestDataInstance().getMasterTestData(), aSheetName, "UserType",
 				CL.getTestDataInstance().TestCaseID);
-				
-				//CL.getTestDataInstance().TestCaseID);
 	}
 	
 
