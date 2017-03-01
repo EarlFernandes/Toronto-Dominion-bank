@@ -19,7 +19,7 @@ public class DepositCheque  extends _CommonPage{
 	private static DepositCheque DepositCheque;
 
 	@iOSFindBy(xpath = "//*[@label='Deposit Cheque']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Deposit Cheque']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Mobile Deposit']")
 	private MobileElement DepositCheque_Header;
 	
 	String t_DepositCheque_Header="Deposit Cheque";

@@ -23,7 +23,7 @@ public class HomeScreen extends _CommonPage {
 
 	private static HomeScreen HomeScreen;
 
-	@iOSFindBy(xpath = "//*[@label='Menu' or @label='Menu en en-tête']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu' or @label='Menu en en-tête']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
@@ -31,18 +31,12 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Bills']")
 	private MobileElement bills;
 
-	// @iOSFindBy(xpath="//*[@label='Bills']")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.TextView[@resource-id='com.td:id/title' and
-	// @text='Bills']")
-	// private MobileElement bills;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='Accounts']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Accounts']")
 	private MobileElement my_accounts;
 
-	@iOSFindBy(xpath = "//*[@label='Transfers']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Transfers']")
+	@iOSFindBy(xpath = "//*[@label='Transfers' or @label='Virments']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' or @text='Transfers' or @text='Virments']")
 	private MobileElement transfers;
 
 	@iOSFindBy(xpath = "//*[@label='Markets']")
@@ -61,11 +55,6 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access' and @text='Investing Accounts']")
 	private MobileElement investing_button;
 
-	// @iOSFindBy(xpath
-	// ="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]//XCUIElementTypeCell[1]/XCUIElementTypeButton[2]")
-	// @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='']")
-	// private MobileElement trade;
-
 	@iOSFindBy(xpath = "//*[contains(@label,'TRADE')]")
 	@AndroidFindBy(xpath = "//android.widget.TableRow[@text='TRADE']")
 	private MobileElement trade;
@@ -73,11 +62,6 @@ public class HomeScreen extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='VIREMENTS'] ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='VIREMENTS']")
 	private MobileElement french_transfers;
-	//
-	// @iOSFindBy(xpath ="//*[@label='Menu en en-tête' or @label='Menu' ]")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	// private MobileElement Menu_button;
 
 	@iOSFindBy(xpath = "//*[@label='TD for Me']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/td_zones_dashboard' and @text='TD FOR ME']")
@@ -153,10 +137,12 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mpay_dashboard' and @text='PAY NOW']")
 	private MobileElement pay_now_button;
 
-	@iOSFindBy(xpath = "//*[@label='']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='TD Mobile Payment']")
-	private MobileElement tdmobilepayment;
+	private MobileElement tdMobilePayment;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[@label='Apple Pay']")
+	private MobileElement applePayBtn;
+	
 	int i = 1;
 	String Firstpart = "//XCUIElementTypeCell[";
 	String Secondpart = "]/XCUIElementTypeButton[1]";
@@ -866,18 +852,42 @@ public class HomeScreen extends _CommonPage {
 
 		try {
 
-			mobileAction.FuncClick(tdmobilepayment, "TD Mobile Payment clicked");
+			mobileAction.FuncClick(tdMobilePayment, "TD Mobile Payment clicked");
 
 		}
 
-		catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
+		catch (NoSuchElementException|InterruptedException|IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
 	}
+	
+	/**
+	 * This method will click Apple Pay Button on the dashboard page 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void clickApplePay() {
+
+		Decorator();
+
+		try {
+			mobileAction.FuncClick(applePayBtn, "Apple Pay");
+
+		}
+
+		catch (NoSuchElementException|InterruptedException|IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
+	}
+
 
 }

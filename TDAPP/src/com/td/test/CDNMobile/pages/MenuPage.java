@@ -20,7 +20,8 @@ public class MenuPage extends _CommonPage {
 
 	private static MenuPage MenuPage;
 
-	@iOSFindBy(xpath = "//*[@label='Transfers']")
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Virements' or @label='Transfers']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Transfers']")
 	private MobileElement transfers;
 
@@ -35,12 +36,12 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Comptes Placements directs TD']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing']")
 	private MobileElement investingFRE;
-
-	@iOSFindBy(xpath = "//*[@label='Mobile Deposit']")
+	
+	@iOSFindBy(xpath = "//[@label='Mobile Deposit']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Mobile Deposit']")
 	private MobileElement mobile_Deposit_button;
 
-	@iOSFindBy(xpath = "//*[@label='My Accounts']")
+	@iOSFindBy(xpath = "//[@label='My Accounts']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='My Accounts']")
 	private MobileElement accounts_button;
 
@@ -67,6 +68,14 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='TD Mobile Payment']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='TD Mobile Payment']")
 	private MobileElement mobilePayment;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Apple Pay']")
+	private MobileElement applePay;
+	
+	@iOSFindBy(xpath = "//*[@label='Locations']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
+	private MobileElement locations;
+
 
 	public synchronized static MenuPage get() {
 		if (MenuPage == null) {
@@ -314,5 +323,52 @@ public class MenuPage extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	
+	/**
+	 * This method will click on the Apple Pay button in the menu page
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void clickApplePay() {
 
+		try {
+			Decorator();
+			mobileAction.FuncClick(applePay, "Apple Pay");
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	/**
+	 * This method will click on the Locations on menu page
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void clickFindLocations() {
+
+		Decorator();
+		try {
+			mobileAction.FuncClick(locations, "Locations");
+			Thread.sleep(2000);
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
+	}
 }

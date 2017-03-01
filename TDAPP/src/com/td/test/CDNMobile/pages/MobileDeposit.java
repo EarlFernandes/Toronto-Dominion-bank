@@ -86,21 +86,13 @@ public class MobileDeposit extends _CommonPage {
 		Decorator();
 		try {
 			
-
-			String firstLine_Value = "We";
-			String secondLine_Value = "not eligible to use TD Mobile Deposit at this time";
-			String t_thirdLine_Value = "To deposit a cheque using the TD";
-			String t_fourthLine_Value = "Be a TD Canada Trust customer";
-			String t_fifthLine_Value = "Have at least one eligible Chequing or Savings account";
-			String t_sixthLine_Value = "To make a deposit,please visit a Branch or ATM";
-
 			mobileAction.verifyElementIsDisplayed(mobile_deposit_header, mobile_Header_value);
-			mobileAction.verifyElementIsDisplayed(validation_firstLine, firstLine_Value);
-			mobileAction.verifyElementIsDisplayed(validation_secondLine, secondLine_Value);
-			mobileAction.verifyElementIsDisplayed(validation_thirdLine, t_thirdLine_Value);
-			mobileAction.verifyElementIsDisplayed(validationfourthLine, t_fourthLine_Value);
-			mobileAction.verifyElementIsDisplayed(validation_fifthLine, t_fifthLine_Value);
-			mobileAction.verifyElementIsDisplayed(validation_sixthLine, t_sixthLine_Value);
+			mobileAction.verifyElementIsDisplayed(validation_firstLine, ConstantClass.firstLine_Value);
+			mobileAction.verifyElementIsDisplayed(validation_secondLine,ConstantClass.secondLine_Value);
+			mobileAction.verifyElementIsDisplayed(validation_thirdLine, ConstantClass.t_thirdLine_Value);
+			mobileAction.verifyElementIsDisplayed(validationfourthLine, ConstantClass.t_fourthLine_Value);
+			mobileAction.verifyElementIsDisplayed(validation_fifthLine, ConstantClass.t_fifthLine_Value);
+			mobileAction.verifyElementIsDisplayed(validation_sixthLine, ConstantClass.t_sixthLine_Value);
 
 		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");

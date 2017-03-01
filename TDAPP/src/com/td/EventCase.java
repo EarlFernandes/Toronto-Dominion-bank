@@ -5,18 +5,20 @@ import java.io.IOException;
 import org.openqa.selenium.NoSuchElementException;
 
 import com.td.test.CDNMobile.pages.Accounts;
+import com.td.test.CDNMobile.pages.Accounts_Credit;
 import com.td.test.CDNMobile.pages.AddCanadian_Payee;
 import com.td.test.CDNMobile.pages.AddPayee;
 import com.td.test.CDNMobile.pages.AddRecipient;
+import com.td.test.CDNMobile.pages.ApplePay;
 import com.td.test.CDNMobile.pages.Between_My_accounts;
 import com.td.test.CDNMobile.pages.Bill_PayCanada;
 import com.td.test.CDNMobile.pages.Bills;
-import com.td.test.CDNMobile.pages.CMOB_InitialSwipe;
 import com.td.test.CDNMobile.pages.CardDetails;
 import com.td.test.CDNMobile.pages.ConfirmOrder;
 import com.td.test.CDNMobile.pages.Confirm_Payee;
 import com.td.test.CDNMobile.pages.ContactUs;
 import com.td.test.CDNMobile.pages.DepositCheque;
+import com.td.test.CDNMobile.pages.FindLocations;
 import com.td.test.CDNMobile.pages.HoldingDetails;
 import com.td.test.CDNMobile.pages.HomeScreen;
 import com.td.test.CDNMobile.pages.Interac_e_Transfer;
@@ -39,13 +41,26 @@ import com.td.test.CDNMobile.pages.PendingInteracTransfer;
 import com.td.test.CDNMobile.pages.Preferences;
 import com.td.test.CDNMobile.pages.QuickAccessPage;
 import com.td.test.CDNMobile.pages.SearchPage;
+import com.td.test.CDNMobile.pages.StatementBalance;
 import com.td.test.CDNMobile.pages.Trade;
+import com.td.test.CDNMobile.pages.Transaction;
 import com.td.test.CDNMobile.pages.Transfers;
 import com.td.test.CDNMobile.pages.WatchLists;
 
 public class EventCase {
 
 	private enum functionNames {
+		
+		AccountsCredit_clickSummaryTab,
+		AccountsCredit_VerifySummaryDetails,
+		AccountsCredit_clickStatementTab,
+		AccountsCredit_VeifyStatementDetails,
+		Accounts_SelectAccount,
+
+
+		AccountsCredit_ClickPayBill,
+		AccountsCredit_verifyLastTranaction,
+		AccountsCredit_clickLastTranaction,
 
 		Account_Home_Button, 
 		Account_Prefer_Button, 
@@ -56,13 +71,22 @@ public class EventCase {
 		Accounts_Verify_Page, 
 		Accounts_VerifyAccountsPage, 
 		Accounts_VerifyTFSA_Activity,
+	
 
 		Add_Recipient_ErrorPage,
 		AddCanadianPayee,
 		AddPayee_SearchPayee, 
 		AddCard_MobilePayment, 
 		AddToTDMobilePayment,
-
+		ApplePay_AddCard,
+		ApplePay_SelectACard,
+		ApplePay_CheckEligibleCard,
+		ApplePay_ChangeDefaultCard,
+		ApplePay_CheckPersonalCard,
+		ApplePay_CheckBusinessCard,
+	
+		
+		
 		Banking_Header,
 
 		Between_My_accounts, 
@@ -84,6 +108,7 @@ public class EventCase {
 		BetweenMyAccounts_TDCTTFSA_CADTFSA, 
 		BetweenMyAccounts_TDCTTFSAMessage, 
 		BetweenMyAccounts_TransferNotSupported,
+		BetweenMyAccounts_TransferTDCTCADUSDVISA,
 
 		Bill_PayCanada_AmountSelection, 
 		Bill_PayCanada_BillPaymentCurrentDate, 
@@ -92,6 +117,7 @@ public class EventCase {
 		Bill_PayCanada_VerifyQuickAccess, 
 		Bills_ScheduledPayments, 
 		BillsHeader,
+		BetweenMyAccounts_TFSAUSD_TFSACAD(),
 
 		CanadianPayee_ConfirmPage, 
 		Cancel,
@@ -111,6 +137,7 @@ public class EventCase {
 		clickChangeorder_MarketToLimit, 
 		ClickContact, 
 		ClickDepositCheque,
+		CardDetails_save,
 
 		ClickMenu, 
 		ClickMenu_French, 
@@ -118,12 +145,16 @@ public class EventCase {
 		clickMenuTrade, 
 		Confirm_order, 
 		Confirm_order_French,
+		ClickPrivacy,
 
 		ConfirmOrderCancel, 
 		ConfirmOrderReciept, 
 		ConfirmOrderSendOrder, 
 		ConfirmOrderSendOrder_French, 
-		ConfirmPayee, ChangeDefaultCard,
+		ConfirmPayee, 
+		ChangeDefaultCard,
+		CardDetails_deleteicon,
+		ConfirmPayee_InvalidAmount,
 
 		Dashboard_Authentication, 
 		Dashboard_UnAuthentication,
@@ -134,6 +165,8 @@ public class EventCase {
 		END,
 
 		Env_set, 
+		Env_EnableMobilePayment,
+		
 		FlyOut_HOME, 
 		Flyout_Location, 
 		HoldingDetails_click_BuyButton, 
@@ -156,6 +189,8 @@ public class EventCase {
 		HomeScreen_Transfer_Button, 
 		HomeScreen_WatchLists, 
 		HomeScreen_PayNow,
+		Homescreen_ApplePay,
+		HomeScreen_ClickTDMobilePayment,
 
 		Interac_AddRecipient, 
 		Interac_e_Transfer_verify_interacTransfer, 
@@ -215,8 +250,25 @@ public class EventCase {
 		MenuTrade, 
 		MenuTradeEasyWebCustomer, 
 		MenuTransfer,
+		Menu_ClickMobilePayment, 
+		MobilePayment_SwipeMobilePayment,
+		MobilePayment_AddACard,
+		MobilePayment_ClickSettings,
+		ManagePayment_ManageSettings, 
+		ManageSettings_Changepasscode,
+		ManageTDMobilePayment_Selectcard, 
+		CardDetails_ToggleButton,
+		MobilePayment_InitialSwipe,
+		MobilePayment_SecurityQuestion,
+		MW_verifycard,
+		MW_expire,
+		MobilePayment_Settingsicon,
+		MobilePayment_SetPasscode,
+		ManagePayment_clickcard,
+		MenuApplePay,
+		MenuPage_FindLocations,
 
-		MFA_Change, 
+	    MFA_Change, 
 		Mobile_Deposit, 
 		Multitasking_System,
 
@@ -225,48 +277,184 @@ public class EventCase {
 		OrderDetails_clickChangeorder, 
 		OrderDetailsLimitPrice, 
 		OrderDetailsPage_orderConfirmDetails, 
-		OrderDetailsPage_verifyStockChangeorderConfirmScreen, OrderDetailsTriggerPrice, OrderReciept_CancelOrderReceipt, OrderReciept_French, OrderReciept_orderdetailMutualfund, OrderReciept_orderDetails, OrderReciept_orders, OrderReciept_OrdersIcon, OrderReciept_ordertab, OrderReciept_updatemsg, OrderReciept_verifyOrderScreen, Ordertype_Cancel,
+		OrderDetailsPage_verifyStockChangeorderConfirmScreen,
+		OrderDetailsTriggerPrice, 
+		OrderReciept_CancelOrderReceipt,
+		OrderReciept_French, 
+		OrderReciept_orderdetailMutualfund, 
+		OrderReciept_orderDetails, 
+		OrderReciept_orders, 
+		OrderReciept_OrdersIcon, 
+		OrderReciept_ordertab, 
+		OrderReciept_updatemsg, 
+		OrderReciept_verifyOrderScreen, 
+		Ordertype_Cancel,
 
 		Pay_US_bill_From_US_Account, 
 		Pay_US_bill_FromCanada_Account, 
 		PayBill_Canada_Button, 
-		PayBill_US_Button, PayBill_VerifyAddCanadianPayeeBtn, PayBillCanada_Add_Canadian_Payee, PayCanada_NegativeTestingBillPayment, PayCanadaBill_Post_Dated, PayCanadaBillP_Pay_Candadian_Bill,
+		PayBill_US_Button, 
+		PayBill_VerifyAddCanadianPayeeBtn,
+		PayBillCanada_Add_Canadian_Payee, 
+		PayCanada_NegativeTestingBillPayment,
+		PayCanadaBill_Post_Dated, 
+		PayCanadaBillP_Pay_Candadian_Bill,
+		PayCanadianBill_InvalidAmount,
 
 		PendingInterac_e_Transfer, 
 		PendingInterac_e_Transfer_cancel, 
 		PendingInterac_e_Transfer_canceltransfer, 
 		PendingInterac_e_Transfer_confirm, 
-		PendingInterac_e_Transfer_confirmscreen, PendingInterac_e_Transfer_verifyconfirmation, PendingInterac_e_Transfer_verifylist, PendingInterac_e_Transfer_verifystatus, PendingInteracTransfer_verify_CancelPendingTransfer,
+		PendingInterac_e_Transfer_confirmscreen,
+		PendingInterac_e_Transfer_verifyconfirmation, 
+		PendingInterac_e_Transfer_verifylist, 
+		PendingInterac_e_Transfer_verifystatus,
+		PendingInteracTransfer_verify_CancelPendingTransfer,
+		passcode_Ntimes, 
+		Addicon,
 
 		PermissibleTransfer, 
 		Preferences_Update_Question, 
 		QuickAccess, 
 		SearchPage_searchBar, 
 		Select_Account, 
-		SenderList_Cancel, Session_expired, SetupWalletPasscode,
+		SenderList_Cancel, 
+		Session_expired, 
+		SetupWalletPasscode,
 
 		TDDirectInvestingContact, 
-		Trade_changeAccountTypeLongtoShortFre_French, Trade_clickAction, Trade_clickCross, Trade_clickFundFactLink, Trade_clickMutualFunds, Trade_clickMutualPreviewOrder, Trade_clickOnAgree, Trade_clickOnPreviewOrderBtn, Trade_clickOptions, Trade_clickOrderType, Trade_clickOrderType_French, Trade_clickQuantity, Trade_clickStockETFs, Trade_clickSymbol, Trade_clickSymbol_French, Trade_confirmCancelOrder, Trade_ConfirmSendOrder, Trade_createMutualfund, Trade_Details, Trade_enterAmount, Trade_enterAndSearch, Trade_enterTradingPassword, Trade_includesComission, Trade_Limit, Trade_nosearch, Trade_placeStockOrder, Trade_selectAccount, Trade_selectAcknowledgement, Trade_selectDividendOption, Trade_selectMutualQuantity, Trade_selectMutualSymbol, Trade_selectQuantity, Trade_sendOrder, Trade_trade_account, Trade_Trigger, Trade_verifyMutualConfirmDetails, Trade_verifymutualconfirmsell, Trade_verifyRelaventMatchInResult, Trade_verifysearchbar, Trade_verifySendOrderDisplayed, Trade_verifySendOrderState, Trade_verifySuccessMessage, Trade_verifySwitchMutualConfirmDetails, Trade_verifySymbol, Trade_verifyTrade, Trade_verifyTradeActionShortAccountFre_French, TradeAccount, TradeAccount_French, TradeAction, TradeAction_French, TradeAgree, TradeAgree_French, TradeDate, TradeGoodTill, TradeGoodTill_French, TradeHeader, TradeIcon, TradeLimitPrice, TradeMarginAccount, TradePreviewOrder, TradePreviewOrder_French, TradePrice, TradePrice_French, TradeQuantity, TradeQuantity_French, TradeShareHolder, TradeTriggerDelta, TradeTriggerPrice, TradeTriggerPrice_French, TradingPassword, TradingPassword_French,
+		Trade_changeAccountTypeLongtoShortFre_French, 
+		Trade_clickAction,
+		Trade_clickCross, 
+		Trade_clickFundFactLink, 
+		Trade_clickMutualFunds, 
+		Trade_clickMutualPreviewOrder,
+		Trade_clickOnAgree, 
+		Trade_clickOnPreviewOrderBtn, 
+		Trade_clickOptions,
+		Trade_clickOrderType,
+		Trade_clickOrderType_French,
+		Trade_clickQuantity, 
+		Trade_clickStockETFs, 
+		Trade_clickSymbol, 
+		Trade_clickSymbol_French, 
+		Trade_confirmCancelOrder, 
+		Trade_ConfirmSendOrder, 
+		Trade_createMutualfund, 
+		Trade_Details, 
+		Trade_enterAmount,
+		Trade_enterAndSearch, 
+		Trade_enterTradingPassword, 
+		Trade_includesComission,
+		Trade_Limit, 
+		Trade_nosearch,
+		Trade_placeStockOrder, 
+		Trade_selectAccount, 
+		Trade_selectAcknowledgement,
+		Trade_selectDividendOption, 
+		Trade_selectMutualQuantity, 
+		Trade_selectMutualSymbol, 
+		Trade_selectQuantity, 
+		Trade_sendOrder,
+		Trade_trade_account, 
+		Trade_Trigger, 
+		Trade_verifyMutualConfirmDetails,
+		Trade_verifymutualconfirmsell,
+		Trade_verifyRelaventMatchInResult,
+		Trade_verifysearchbar, 
+		Trade_verifySendOrderDisplayed, 
+		Trade_verifySendOrderState,
+		Trade_verifySuccessMessage,
+		Trade_verifySwitchMutualConfirmDetails, 
+		Trade_verifySymbol, 
+		Trade_verifyTrade,
+		Trade_verifyTradeActionShortAccountFre_French,
+		TradeAccount, 
+		TradeAccount_French, 
+		TradeAction, 
+		TradeAction_French,
+		TradeAgree, 
+		TradeAgree_French, 
+		TradeDate, 
+		TradeGoodTill, 
+		TradeGoodTill_French, 
+		TradeHeader, 
+		TradeIcon, 
+		TradeLimitPrice, 
+		TradeMarginAccount,
+		TradePreviewOrder,
+		TradePreviewOrder_French, 
+		TradePrice, 
+		TradePrice_French, 
+		TradeQuantity, 
+		TradeQuantity_French,
+		TradeShareHolder,
+		TradeTriggerDelta, 
+		TradeTriggerPrice,
+		TradeTriggerPrice_French, 
+		TradingPassword, 
+		TradingPassword_French,
 
 		Trans_TFSA_To_Othr_Accounts, 
-		Transfer_InteracTransfer, TransferHeader, Transfers, Transfers_Click_Between_My_Accounts, Transfers_clickInterac_e_Transfer, Transfers_clickPendingInterac_e_Transfer, Transfers_ManageRecipients,
+		Transfer_InteracTransfer,
+		TransferHeader, 
+		Transfers, 
+		Transfers_Click_Between_My_Accounts,
+		Transfers_clickInterac_e_Transfer,
+		Transfers_clickPendingInterac_e_Transfer,
+		Transfers_ManageRecipients,
 
 		USMarAccLongToShort, 
 		USMarginShort_Buy_Market,
 
 		verify_access_to_WB, 
-		Verify_account_activity_credit, Verify_Combined_Account, Verify_FP_Account, verify_login_5_times, Verify_PIA_Account, VerifyAccessCard, VerifyAccessCardDetails, VerifyActionFields, verifybill_landingpage, VerifyCombinedAccounts, verifyconfirm_order, VerifyDIAccounts, verifyErrorMessage, VerifyFPAccounts, VerifyIconDetails, VerifyInvestingScreen, VerifyNoEligibleAccounts, VerifyNoTradingAccounts, VerifyPIAAccounts, VerifyQuickIcons, VerifyReceipt, VerifySender, VerifySenderList, VerifyShareholderType, Verifytimestamp, VerifyTwoAccessCardDetails, VerifyUser, VerifyNickName,
+		Verify_account_activity_credit, 
+		Verify_Combined_Account, 
+		Verify_FP_Account, 
+		verify_login_5_times,
+		Verify_PIA_Account,
+		VerifyAccessCard, 
+		VerifyAccessCardDetails, 
+		VerifyActionFields,
+		verifybill_landingpage, 
+		VerifyCombinedAccounts,
+		verifyconfirm_order, 
+		VerifyDIAccounts, 
+		verifyErrorMessage,
+		VerifyFPAccounts, 
+		VerifyIconDetails, 
+		VerifyInvestingScreen, 
+		VerifyNoEligibleAccounts, 
+		VerifyNoTradingAccounts, 
+		VerifyPIAAccounts, 
+		VerifyQuickIcons, 
+		VerifyReceipt, 
+		VerifySender,
+		VerifySenderList, 
+		VerifyShareholderType,
+		Verifytimestamp, 
+		VerifyTwoAccessCardDetails,
+		VerifyUser,
+		VerifyNickName,
+		 verifydefaultcard,
 
 		WatchLists_addSymbolToWatchLists, 
-		WatchLists_clickSearchBar, WatchLists_Header, Watchlists_verify_newOrderFlow_Watchlists, WatchLists_verifyRecentSearches, WatchLists_verifySymbol, WatchLists_verifySymbolAdded, ClickPrivacy
-
-		, Menu_ClickMobilePayment, 
-		MobilePayment_SwipeMobilePayment, MobilePayment_AddACard, MobilePayment_ClickSettings, ManagePayment_ManageSettings, ManageSettings_Changepasscode, ManageTDMobilePayment_Selectcard, CardDetails_ToggleButton, MobilePayment_InitialSwipe, MobilePayment_SecurityQuestion, MW_verifycard, MW_expire
+		WatchLists_clickSearchBar, 
+		WatchLists_Header,
+		Watchlists_verify_newOrderFlow_Watchlists, 
+		WatchLists_verifyRecentSearches,
+		WatchLists_verifySymbol,
+		WatchLists_verifySymbolAdded,
+		
+		FindLoactions_VerifyFindlocations,
+		
 
 		
-		,CardDetails_deleteicon, HomeScreen_ClickTDMobilePayment, MobilePayment_Settingsicon, MobilePayment_SetPasscode, ManagePayment_clickcard, CardDetails_save, passcode_Ntimes, verifydefaultcard
-
-	}
+		Transaction_VerifyTransac,
+		
+		StatementBalance_VerifyBalanceDetails,Bill_PayCanada_verifyCurrentBalance
+	
+		 }
 
 	public void FuncCOREEventCase(String sFunctionname)
 			throws IOException, NoSuchElementException, InterruptedException, Exception {
@@ -1472,13 +1660,121 @@ public class EventCase {
 			CardDetails.get().deletecard();
 			break;
 			
+		case Homescreen_ApplePay:
+			HomeScreen.get().clickApplePay();
+			break;
 			
-		}
-		
-		
-		
+		case MenuApplePay:
+			MenuPage.get().clickApplePay();
+			break;
+			
+		case Env_EnableMobilePayment:
+			Env_Settings.get().enableMobilePayment();
+			break;
+			
+		case ApplePay_AddCard:
+			ApplePay.get().clickAddCard();
+			break;
+			
+		case ApplePay_SelectACard:
+			ApplePay.get().selectCard();
+			break;
 
-	}
+		case ApplePay_CheckEligibleCard:
+			ApplePay.get().checkEligibleCard();
+			break;
+		case ApplePay_ChangeDefaultCard:
+			ApplePay.get().changeDefaultCard();
+			break;
+
+		case ApplePay_CheckPersonalCard:
+			ApplePay.get().checkPersonalCard();
+			break;
+			
+
+		case ApplePay_CheckBusinessCard:
+			ApplePay.get().checkBusinessCard();
+			break;
+			
+			
+		case PayCanadianBill_InvalidAmount:
+			Bill_PayCanada.get().payCanadianBill_InvalidAmount();
+			break;	
+			
+		case ConfirmPayee_InvalidAmount:
+			Confirm_Payee.get().ConfirmPayee_InvalidAmount();
+			break;
+			
+		case MenuPage_FindLocations:
+			MenuPage.get().clickFindLocations();
+			break;
+			
+		case FindLoactions_VerifyFindlocations:
+			FindLocations.get().verifyFindLocations();
+			break;
+			
+		case BetweenMyAccounts_TransferTDCTCADUSDVISA:
+			Between_My_accounts.get().transferTDCTCad_USDVisa();
+			break;
+			
+		case BetweenMyAccounts_TFSAUSD_TFSACAD:
+			Between_My_accounts.get().transfer_TFSAUSD_TFSACAD();
+			break;
+			
+		case Addicon:
+			MobilePayment.get().addacard();
+			break;
+		
+		case Accounts_SelectAccount:
+			Accounts.get().selectAccount();
+			break;
+			
+		case AccountsCredit_ClickPayBill:
+			Accounts_Credit.get().clickPayBill();
+			break;
+			
+		case AccountsCredit_verifyLastTranaction:
+			Accounts_Credit.get().verifyLatestTransactions();
+			break;
+			
+		case AccountsCredit_clickLastTranaction:
+			Accounts_Credit.get().clickLastTransac();
+			break;
+			
+		case Transaction_VerifyTransac:
+			Transaction.get().verifyTransac();
+			break;
+			
+		case AccountsCredit_clickSummaryTab:
+			Accounts_Credit.get().clickSummary();
+			break;
+			
+		case AccountsCredit_VerifySummaryDetails:
+			Accounts_Credit.get().verifySummaryDetails();
+			break;
+			
+		case AccountsCredit_clickStatementTab:
+			Accounts_Credit.get().clickStatement();
+			break;
+			
+		case AccountsCredit_VeifyStatementDetails:
+			Accounts_Credit.get().verifyStatementDetails();
+			break;
+			
+		case StatementBalance_VerifyBalanceDetails:
+			StatementBalance.get().verifyStatementBalanceDetails();
+			break;
+			
+		case Bill_PayCanada_verifyCurrentBalance:
+			Bill_PayCanada.get().verifyCurrentBalance();
+			break;
+			
+			
+			
+			
+
+		}
+		}
 
 	public void generateReport() {
 	}

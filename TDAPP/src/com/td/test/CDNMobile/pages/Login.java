@@ -221,7 +221,7 @@ public class Login extends _CommonPage {
 	public boolean verifyAccessCard() {
 		boolean flag = false;
 		try {
-			if (select_accesscard.isDisplayed()) {
+		if(mobileAction.FuncISDisplayed(select_accesscard)){
 				try {
 					mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 					mobileAction.FuncClick(addUser, "AddUser");
@@ -241,7 +241,7 @@ public class Login extends _CommonPage {
 	public boolean verifyAccessCardFRE() {
 		boolean flag = false;
 		try {
-			if (select_accesscard.isDisplayed()) {
+			if(mobileAction.FuncISDisplayed(select_accesscard)){
 				try {
 					mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 					mobileAction.FuncClick(addUser, "AddUser");
@@ -369,12 +369,7 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 
-			// mobileAction.FuncClick(select_accesscard, "Select Accesscard");
-			// mobileAction.FuncClick(french_addUser, "AddUser");
-			//
-			// mobileAction.FuncClick(username_InFrench, "Username");
-			// mobileAction.FuncSendKeys(username_InFrench,
-			// CL.getTestDataInstance().Userid);
+			
 			mobileAction.FuncClick(password_InFrench, "Password");
 			mobileAction.FuncSendKeys(password_InFrench, CL.getTestDataInstance().UserPassword);
 
@@ -519,27 +514,7 @@ public class Login extends _CommonPage {
 
 	}
 
-	public void sendMoneyLogin() {
-		try {
-			Decorator();
-			mobileAction.FuncClick(username_login, "Username");
-			String userId = getTestdata("UserID");
-
-			mobileAction.FuncSendKeys(username_login, userId);
-
-			mobileAction.FuncClick(password_sendMoney, "Password");
-			String passwords = getTestdata("Password");
-			mobileAction.FuncSendKeys(password_sendMoney, passwords);
-
-			mobileAction.FuncClick(login_sendMoney, "Login");
-			Thread.sleep(10000);
-
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-
-	}
+	
 
 	/**
 	 * Function to login 'N' times

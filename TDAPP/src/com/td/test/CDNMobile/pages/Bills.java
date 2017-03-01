@@ -120,6 +120,7 @@ public class Bills extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.FuncClick(manage_payees, "Manage Payees");
+			Thread.sleep(2000);
 			mobileAction.waitForElementToVanish(progrees_bar);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {

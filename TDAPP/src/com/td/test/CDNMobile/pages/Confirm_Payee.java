@@ -53,6 +53,14 @@ public class Confirm_Payee extends _CommonPage{
 	@iOSFindBy(xpath = "//*[@label='Select Payee']")
 	private MobileElement select_payee;
 	
+	@iOSFindBy(xpath = "//*[@label='Pay Bill']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue'and @text='Pay Bill']")
+	private MobileElement pay_bill;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Invalid transaction amount.')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
+	private MobileElement errorMsg;
+	
 	String accountNoXL=getTestdata("Payee");
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[3]")
@@ -117,6 +125,31 @@ public class Confirm_Payee extends _CommonPage{
 	
 }
 	
+	/**
+	 * This method will verify the error message when invalid amount is entered
+	 * 
+	 * 
+	 * 
+	 */
 	
+	public void ConfirmPayee_InvalidAmount() throws Exception {
+
+		try {
+			Decorator();
+			
+			mobileAction.verifyElementIsDisplayed(confirm_header, "Confirm");
+			mobileAction.FuncClick(pay_bill, "Pay Bill");
+			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.verifyElementIsDisplayed(errorMsg, "Error Message");
+				
+			
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
+	}
+
 	
 }

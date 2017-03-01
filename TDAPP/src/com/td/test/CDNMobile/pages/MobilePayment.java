@@ -202,6 +202,13 @@ public class MobilePayment extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.view.View[@resource-id='android:id/action_bar']")
 	private MobileElement landingpageheader;
+	
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button' and @text='Continue']")
+	private MobileElement continuebtn;
+
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/carousel_card_image' and @content-desc='Add a Card']")
+	private MobileElement addicon;
+
 
 	String passcode = getTestdata("Passcode");
 
@@ -528,6 +535,31 @@ public class MobilePayment extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	/**
+	* This method will add card
+	* 
+	* @return void
+	* 
+	* @throws InterruptedException
+	*             In case an exception occurs while clicking over the element.
+	* @throws IOException
+	*             If there is problem while reporting.
+	* @throws NoSuchElementException
+	*             In case the element is not found over the screen.
+	*/
+	public void addacard() throws InterruptedException, IOException {
+
+	try {
+	Decorator();
+
+	mobileAction.FuncClick(addicon, "Click Add Icon");
+
+	} catch (NoSuchElementException e) {
+	System.err.println("TestCase has failed.");
+	CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	}
+	}
+
 
 	/**
 	 * This method will click manage settings

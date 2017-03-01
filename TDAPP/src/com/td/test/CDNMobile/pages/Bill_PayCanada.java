@@ -27,7 +27,7 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccount' and @text='Select From Account']")
 	private MobileElement from_account_post;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber'and @text='6450943']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber']")
 	private MobileElement frm_acnt_post;
 
 	@iOSFindBy(xpath = "//*[@label='Payee, Select Payee']")
@@ -49,11 +49,9 @@ public class Bill_PayCanada extends _CommonPage {
 	String FromAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountDesc' and @text='"
 			+ FromAccountXL + "']";
 
-	@iOSFindBy(xpath = "//*[@label='From Account, Select from account']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountDesc' and @text='PREFERRED CHEQUING ACCOUNT']")
+	@iOSFindBy(xpath = "//[@label='From Account, Select from account']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountDesc']")
 	private MobileElement select_from_acnt;
-
-	String t_select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountDesc' and @text='PREFERRED CHEQUING ACCOUNT']";
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/dialog_button' and @text='Cancel']")
 	private MobileElement clickCancle;
@@ -83,8 +81,6 @@ public class Bill_PayCanada extends _CommonPage {
 	// private MobileElement amount;
 	// String t_amount = "$0.00";
 
-	
-
 	@iOSFindBy(xpath = "//*[@label='Continue']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue' and @text='Continue']")
 	private MobileElement continue_pay;
@@ -92,6 +88,10 @@ public class Bill_PayCanada extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Pay Bill']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue'and @text='Pay Bill']")
 	private MobileElement pay_bill;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeNavigationBar/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeSegmentedControl[1]/XCUIElementTypeButton[3]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id = 'com.td:id/buttonPayFullAmt']")
+	private MobileElement currBal;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Confirmation #')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_val']")
@@ -101,7 +101,7 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement menu;
 
 	@iOSFindBy(xpath = "//*[@label='Pay Bill']")
-	@AndroidFindBy(xpath ="//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Pay Bill']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Pay Bill']")
 	private MobileElement payBill_Header;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title'and @text='My Accounts']")
@@ -131,7 +131,7 @@ public class Bill_PayCanada extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
-	
+
 	@iOSFindBy(xpath = "//*[@label='Amount']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/amountLabel' and @text='Amount']")
 	private MobileElement amountHeader;
@@ -145,92 +145,75 @@ public class Bill_PayCanada extends _CommonPage {
 
 	@iOSFindBy(xpath = "//*[@label='Select Payee']")
 	private MobileElement select_payee;
-	
-	
+
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
 	private MobileElement homeBtn;
 
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']")
 	private MobileElement ListViewToAccount;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = " ")
 	private MobileElement currDate;
 
 	int m = 1;
 	String Conf = "Confirmation";
-	
-	
-	String fromAccountPost="6450943";
-	String toAccountPost = "GLOBE & MAIL 123456789012";
 
 	@iOSFindBy(xpath = "//*[@label='Thank you!']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Thank you!' and @resource-id='com.td:id/thank_you']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/thank_you']")
 	private MobileElement confirmationText;
-	
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtAccessCard']")
 	private MobileElement accesscard;
-	
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[3]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccount']")
 	private MobileElement AcntVal;
-	
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[3]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
 	private MobileElement PayeVal;
-	
+
 	@iOSFindBy(xpath = " //XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeStaticText[1][@label='ACCESS CARD']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title' and @text='Access Card']")
 	private MobileElement accesscardTableHeader;
-	
+
 	@iOSFindBy(xpath = " //XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard' and @index='1']/following::@index='0'[1]")
 	private MobileElement selectSecondAccessCard;
-	
-	@iOSFindBy(xpath="//*[@label='Cancel']")
+
+	@iOSFindBy(xpath = "//*[@label='Cancel']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel' and @text='Cancel']")
 	private MobileElement cancelBtn;
-	
+
 	@iOSFindBy(xpath = "//*[@label ='Bills']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Bills']")
 	private MobileElement bills_header;
 
-	@iOSFindBy(xpath ="//*[@label='Back']")
-	private MobileElement back_button; 
-	
-	@iOSFindBy(xpath= "//*[@label='Quick Access']")
+	@iOSFindBy(xpath = "//*[@label='Back']")
+	private MobileElement back_button;
+
+	@iOSFindBy(xpath = "//*[@label='Quick Access']")
 	@AndroidFindBy(xpath = "//*[@resource-id = 'android:id/action_bar_title']")
 	private MobileElement home;
-	
+
 	@iOSFindBy(xpath = "//*[@label='Back']")
 	private MobileElement backButton;
-	
+
 	@iOSFindBy(xpath = "//*[@label='PAY ANOTHER BILL']")
 	private MobileElement PayBillQuickAccess;
-	
-	@iOSFindBy(xpath="//*[@label='Add Canadian Payees Now']")
+
+	@iOSFindBy(xpath = "//*[@label='Add Canadian Payees Now']")
 	@AndroidFindBy(xpath = "//android.widget.Button[ @content-desc='Add Canadian Payee']")
 	private MobileElement addCanadianPayee;
-	
-	String accesscardTable=" //XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+
+	String accesscardTable = " //XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
 	String Firstpart = "//XCUIElementTypeCell[";
 	String Secondpart = "]/XCUIElementTypeStaticText[1]";
 	String Finalpart = Firstpart + m + Secondpart;
-	
-	
-	String t_confirmationText = "Thank you!";
 
-	String t_frm_acnt_post = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber'and @text='6450943']";
-
-	String t_to_acnt_post = "////android.widget.TextView[@resource-id='com.td:id/txtPayee' and @text='GLOBE & MAIL 123456789012']";
-	
-	
-
-	
+	String txtconfirmationText = "Thank you!";
 
 	String merchant_name = "//*[contains(@label,'";
 
@@ -254,10 +237,10 @@ public class Bill_PayCanada extends _CommonPage {
 
 		try {
 			String payeeAccount = getTestdataOtherSheet("FromAccount", "Payment");
-		
+
 			Decorator();
 
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
 				mobileAction.FuncClick(amount, "Amount button clicked");
@@ -270,6 +253,11 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.verifyElementIsDisplayed(confirmationText, "Thank You!");
 				mobileAction.verifyElementIsDisplayed(confirmation_val, "Confirmation Value");
+
+				String conf_val = mobileAction.getText(confirmation_val);
+				String[] confmVal = conf_val.split(":");
+
+				CL.getTestDataInstance().TCParameters.put("confirmation_val", confmVal[1].trim());
 
 			}
 
@@ -284,8 +272,10 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
 				mobileAction.FuncClick(pay_bill, "Pay Bill");
-				mobileAction.verifyElement(confirmationText, t_confirmationText);
-				
+				mobileAction.verifyElement(confirmationText, txtconfirmationText);
+
+				String conf_val = mobileAction.getText(confirmation_val);
+				CL.getTestDataInstance().TCParameters.put("confirmation_val", conf_val);
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 
@@ -293,90 +283,95 @@ public class Bill_PayCanada extends _CommonPage {
 		}
 
 	}
-	
+
 	/**
 	 * This method will verify the Payee Access card DropDown is present or Not
 	 * 
-	 * @throws NoSuchElementException and IOException
+	 * @throws NoSuchElementException
+	 *             and IOException
 	 */
-	
-	public void verifyAccessCard_dropdown(){
-		
+
+	public void verifyAccessCard_dropdown() {
+
 		Decorator();
-		try{
+		try {
 			mobileAction.verifyElementIsDisplayed(payBill_Header, "PayBillHeader");
 			Thread.sleep(2000);
 			mobileAction.FuncClick(accesscard, "Accesscard");
 			mobileAction.verifyElementIsDisplayed(accesscardTableHeader, "ACCESS CARD");
 
-			
-		}catch(NoSuchElementException |IOException  |InterruptedException e){
+		} catch (NoSuchElementException | IOException | InterruptedException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
+
 	/**
 	 * This method will verify the Payee Access card all Details
 	 * 
-	 * @throws NoSuchElementException and IOException
+	 * @throws NoSuchElementException
+	 *             and IOException
 	 */
-	public void verifyAccessCardDetails(){
-		
+	public void verifyAccessCardDetails() {
+
 		Decorator();
-		try{
+		try {
 			mobileAction.verifyElementIsDisplayed(payBill_Header, "PayBillHeader");
-			
-			mobileAction.verifyElementIsDisplayed(from_account,"From_Account");
+
+			mobileAction.verifyElementIsDisplayed(from_account, "From_Account");
 			mobileAction.verifyElementIsDisplayed(amountHeader, "amount");
 			mobileAction.verifyElementIsDisplayed(date, "Date");
-			}catch(NoSuchElementException |IOException e){
+		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+
 	/**
-	 * This method will verify both First and Second  Access cards having Payee and accounts details.
-	 * @throws Exception 
-	 * @throws InterruptedException 
+	 * This method will verify both First and Second Access cards having Payee
+	 * and accounts details.
 	 * 
-	 * @throws NoSuchElementException and IOException
+	 * @throws Exception
+	 * @throws InterruptedException
+	 * 
+	 * @throws NoSuchElementException
+	 *             and IOException
 	 */
 	public void accesscardsWithPayeeandAccounts() throws Exception {
-		
+
 		Decorator();
-		try{
+		try {
 			mobileAction.verifyElementIsDisplayed(payBill_Header, "PayBillHeader");
-			String accountVal=getTestdata("FromAccount");
-			String[] accountValue=accountVal.split(":");
+			String accountVal = getTestdata("FromAccount");
+			String[] accountValue = accountVal.split(":");
 			String payee = getTestdata("Payee");
-			
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-				for(int i=0;i<accountValue.length;i++){
-					String AccountVal=AcntVal.getAttribute("label");
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				for (int i = 0; i < accountValue.length; i++) {
+					String AccountVal = AcntVal.getAttribute("label");
 					mobileAction.verifyTextEquality(accountValue[i], AccountVal);
-					String payeeValue=PayeVal.getAttribute("label");
+					String payeeValue = PayeVal.getAttribute("label");
 					mobileAction.verifyTextEquality(payee, payeeValue);
 					mobileAction.FuncClick(accesscard, "Access Card");
-					mobileAction.FuncClick(selectSecondAccessCard,"Select Access Card from Access card table");
+					mobileAction.FuncClick(selectSecondAccessCard, "Select Access Card from Access card table");
 				}
-			
-			}else{
-				
-				for(int i=0;i<accountValue.length;i++){
-					String AccountVal=AcntVal.getText();
+
+			} else {
+
+				for (int i = 0; i < accountValue.length; i++) {
+					String AccountVal = AcntVal.getText();
 					mobileAction.verifyTextEquality(accountValue[i], AccountVal);
-					String payeeValue=PayeVal.getText();
+					String payeeValue = PayeVal.getText();
 					mobileAction.verifyTextEquality(payee, payeeValue);
 					mobileAction.FuncClick(accesscard, "Access Card");
-					mobileAction.FuncClick(selectSecondAccessCard,"Select Access Card from Access card table");//check the xpath
+					mobileAction.FuncClick(selectSecondAccessCard, "Select Access Card from Access card table");// check
+																												// the
+																												// xpath
 				}
 			}
-			
-			}catch(NoSuchElementException |IOException  | InterruptedException e){
+
+		} catch (NoSuchElementException | IOException | InterruptedException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
-	
 
 	public void pay_candadian_bill_post_dated() {
 
@@ -391,11 +386,10 @@ public class Bill_PayCanada extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(from_account_post, "From Account");
-			mobileAction.FuncClick(frm_acnt_post,fromAccountPost);
-			mobileAction.waitForElementToDisappear(t_frm_acnt_post);
+			mobileAction.FuncClick(frm_acnt_post, "fromAccountPost");
 
 			mobileAction.FuncClick(to_account_post, "Select Payee");
-			mobileAction.FuncClick(to_acnt_post,toAccountPost);
+			mobileAction.FuncClick(to_acnt_post, "toAccountPost");
 			mobileAction.waitForElementToDisappear(t_select_to_account);
 
 			mobileAction.FuncClick(amount, "Amount");
@@ -413,7 +407,7 @@ public class Bill_PayCanada extends _CommonPage {
 			mobileAction.FuncClick(pay_bill, "Pay bill");
 
 			// mobileAction.verifyTextContains(confirmation_text, Conf);
-			mobileAction.verifyElement(confirmationText, t_confirmationText);
+			mobileAction.verifyElement(confirmationText, txtconfirmationText);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
@@ -430,7 +424,7 @@ public class Bill_PayCanada extends _CommonPage {
 			mobileAction.waitForElementToVanish(progrees_bar);
 			mobileAction.FuncClick(search_bar, "SearchforCanadianPayees");
 			String search_bar_value = getTestdata("Search");
-		
+
 			mobileAction.FuncSendKeys(search_bar, search_bar_value);
 
 			mobileAction.waitForElementToVanish(progrees_bar);
@@ -446,22 +440,24 @@ public class Bill_PayCanada extends _CommonPage {
 			System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	/**
-	 * This method will cancel the pay bill 
-	 * @throws Exception 
-	 * @throws InterruptedException 
+	 * This method will cancel the pay bill
 	 * 
-	 * @throws NoSuchElementException and IOException
+	 * @throws Exception
+	 * @throws InterruptedException
+	 * 
+	 * @throws NoSuchElementException
+	 *             and IOException
 	 */
-	
+
 	public void payBillCancel() {
 		Decorator();
 		try {
 
 			String payeeAccount = getTestdataOtherSheet("FromAccount", "Payment");
-			
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
 				mobileAction.FuncClick(amount, "Amount button clicked");
@@ -484,132 +480,130 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.FuncClick(cancelBtn, "Cancel");
 				Bills.get().verifyBillHeader();
-				
-				
-				
-				
+
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	/**
 	 * This method will verify the default value of the amount
-	 * @throws Exception 
-	 * @throws InterruptedException 
 	 * 
-	 * @throws NoSuchElementException and IOException
+	 * @throws Exception
+	 * @throws InterruptedException
+	 * 
+	 * @throws NoSuchElementException
+	 *             and IOException
 	 */
-	
+
 	public void amountSelection() {
 		Decorator();
 		try {
 
-			String payeeAccount =getTestdataOtherSheet("FromAccount", "Payment");
-			
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			String payeeAccount = getTestdataOtherSheet("FromAccount", "Payment");
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
-				String amountVal=amount.getAttribute("value");
+				String amountVal = amount.getAttribute("value");
 				String Amount = getTestdata("Amount");
 				String[] amtVal = Amount.split(":");
 				mobileAction.verifyTextEquality(amountVal, amtVal[0]);
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				mobileAction.FuncSendKeys(amount, amtVal[1]);
 				mobileAction.FuncClick(done, "Done");
-				
+
 			}
 
 			else {
-				
+
 				mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
-				String amountVal=amount.getText();
+				String amountVal = amount.getText();
 				String Amount = getTestdata("Amount");
 				String[] amtVal = Amount.split(":");
-				mobileAction.verifyTextEquality(amountVal,amtVal[0]);
+				mobileAction.verifyTextEquality(amountVal, amtVal[0]);
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				mobileAction.FuncSendKeys(amount, amtVal[1]);
 				mobileAction.FuncHideKeyboard();
-				
+
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	/**
 	 * This method will verify the Back button on the Pay Bill landing page
 	 * 
-	 * @throws NoSuchElementException and IOException
+	 * @throws NoSuchElementException
+	 *             and IOException
 	 */
-	
-	public void verifyBackButton(){
-		
+
+	public void verifyBackButton() {
+
 		Decorator();
-		try{
+		try {
 			mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(backButton, "Back Button");
-			}else{
+			} else {
 				mobileAction.FuncHideKeyboard();
 			}
 			Bills.get().verifyBillHeader();
-			
 
-			
-		}catch(NoSuchElementException |IOException  |InterruptedException e){
+		} catch (NoSuchElementException | IOException | InterruptedException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
+
 	/**
 	 * This method will verify the the Add canadian Payee Now button
 	 * 
-	 * @throws NoSuchElementException and IOException
+	 * @throws NoSuchElementException
+	 *             and IOException
 	 */
-	
-	public void verifyAddCanadianPayeeButton(){
-		
+
+	public void verifyAddCanadianPayeeButton() {
+
 		Decorator();
-		try{
+		try {
 			mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
 			mobileAction.verifyElementIsDisplayed(addCanadianPayee, "Add Canadian Payee");
-			
 
-			
-		}catch(NoSuchElementException |IOException e){
+		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
+
 	/**
 	 * This method will click on the Pay Bill Quick Access In Receipt Page
-	 * @throws IOException 
-	 * @throws InterruptedException 
 	 * 
-	 * @throws NoSuchElementException and IOException
+	 * @throws IOException
+	 * @throws InterruptedException
+	 * 
+	 * @throws NoSuchElementException
+	 *             and IOException
 	 */
-	
-	public void payBillQuickAccessBtn() throws InterruptedException, IOException{
-		
+
+	public void payBillQuickAccessBtn() throws InterruptedException, IOException {
+
 		Decorator();
-		try{
-			
+		try {
+
 			mobileAction.FuncClick(PayBillQuickAccess, "Pay Bill Quick Access Button");
 			mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
 
-			
-		}catch(NoSuchElementException e){
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
+
 	public void negativeTestingBillPayment() throws Exception {
 		Decorator();
 		try {
 
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
 				mobileAction.FuncClick(amount, "Amount button clicked");
@@ -618,10 +612,10 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.FuncClick(cancelBtn, "Cancel");
-				mobileAction.verifyElementIsDisplayed(bills_header,"Bills");
-				mobileAction.FuncClick(back_button,"Back");
-				mobileAction.verifyElementIsDisplayed(home,"Home");
-				
+				mobileAction.verifyElementIsDisplayed(bills_header, "Bills");
+				mobileAction.FuncClick(back_button, "Back");
+				mobileAction.verifyElementIsDisplayed(home, "Home");
+
 			}
 
 			else {
@@ -632,11 +626,11 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.FuncClick(cancelBtn, "Cancel");
-				mobileAction.verifyElementIsDisplayed(bills_header,"Bills");
-				mobileAction.FuncClick(menu,"Menu");
+				mobileAction.verifyElementIsDisplayed(bills_header, "Bills");
+				mobileAction.FuncClick(menu, "Menu");
 				mobileAction.FuncClick(homeBtn, "Home Button");
-				mobileAction.verifyElementIsDisplayed(home,"Home");
-				
+				mobileAction.verifyElementIsDisplayed(home, "Home");
+
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 
@@ -644,46 +638,80 @@ public class Bill_PayCanada extends _CommonPage {
 		}
 
 	}
-	
-	/**
-	 * This method will click on the Pay Bill Quick Access In Receipt Page
-	 * @throws IOException 
-	 * @throws InterruptedException 
-	 * 
-	 * @throws NoSuchElementException and IOException
-	 */
-	
-	public void billPaymentCurrentDate() throws InterruptedException, IOException{
-		
-		Decorator();
-		try{
-			
-			String payeeAccount = getTestdataOtherSheet("FromAccount", "Payment");
-			 
-			Decorator();
 
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+	/**
+	 * This method will enter all the fields in pay bill page
+	 * 
+	 * 
+	 * 
+	 */
+	public void payCanadianBill_InvalidAmount() throws Exception {
+
+		try {
+			Decorator();
 
 			mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
 			mobileAction.FuncClick(amount, "Amount button clicked");
-			String Amount = getTestdataOtherSheet("Amount", "Payment");
+			String Amount = getTestdata("Amount");
 			mobileAction.FuncSendKeys(amount, Amount);
-			mobileAction.FuncClick(done, "Done");
-			String PaybillDate = currDate.getAttribute("Date");
-			String timeStamp = new SimpleDateFormat("ddMMyyyy").format(Calendar.getInstance().getTime());
-			mobileAction.verifyTextEquality(PaybillDate, timeStamp);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.FuncClick(done, "Done");
+			} else {
+				mobileAction.FuncHideKeyboard();
+			}
 			mobileAction.FuncClick(continue_pay, "Continue_pay");
 			mobileAction.waitForElementToVanish(progressBar);
-			mobileAction.FuncClick(pay_bill, "Pay Bill");
-			mobileAction.waitForElementToVanish(progressBar);
-			mobileAction.verifyElementIsDisplayed(confirmationText, "Thank You!");
-			mobileAction.verifyElementIsDisplayed(confirmation_val, "Confirmation Value");
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
+	}
+
+	/**
+	 * This method will click on the Pay Bill Quick Access In Receipt Page
+	 * 
+	 * @throws IOException
+	 * @throws InterruptedException
+	 * 
+	 * @throws NoSuchElementException
+	 *             and IOException
+	 */
+
+	public void billPaymentCurrentDate() throws InterruptedException, IOException {
+
+		Decorator();
+		try {
+
+			String payeeAccount = getTestdataOtherSheet("FromAccount", "Payment");
+
+			Decorator();
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
+				mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
+				mobileAction.FuncClick(amount, "Amount button clicked");
+				String Amount = getTestdataOtherSheet("Amount", "Payment");
+				mobileAction.FuncSendKeys(amount, Amount);
+				mobileAction.FuncClick(done, "Done");
+				String PaybillDate = currDate.getAttribute("Date");
+				String timeStamp = new SimpleDateFormat("ddMMyyyy").format(Calendar.getInstance().getTime());
+				mobileAction.verifyTextEquality(PaybillDate, timeStamp);
+				mobileAction.FuncClick(continue_pay, "Continue_pay");
+				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.FuncClick(pay_bill, "Pay Bill");
+				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.verifyElementIsDisplayed(confirmationText, "Thank You!");
+				mobileAction.verifyElementIsDisplayed(confirmation_val, "Confirmation Value");
 
 			}
 
 			else {
 				String ToPostAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and @text='"
-				+ payeeAccount + "']";
+						+ payeeAccount + "']";
 				mobileAction.FuncClick(to_account_post, "Select Payee");
 				mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, ToPostAccountXpath, 1, "up", true);
 				mobileAction.waitForElementToDisappear(t_select_to_account);
@@ -692,15 +720,34 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
 				mobileAction.FuncClick(pay_bill, "Pay Bill");
-				mobileAction.verifyElement(confirmationText, t_confirmationText);
-			} 
-		
-			
-		}catch(NoSuchElementException e){
+				mobileAction.verifyElement(confirmationText, txtconfirmationText);
+			}
+
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
-	
+
 	}
-	
-	
+
+	/**
+	 * This method will verify the current Balance button.
+	 * 
+	 * @return void
+	 * @throws InterruptedException
+	 * 
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyCurrentBalance() throws InterruptedException {
+		Decorator();
+		try {
+			mobileAction.verifyElementIsDisplayed(currBal, "Current Balance");
+		} catch (NoSuchElementException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
 }

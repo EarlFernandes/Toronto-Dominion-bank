@@ -30,7 +30,7 @@ public class Between_My_accounts extends _CommonPage {
 		}
 		return Between_My_accounts;
 	}
-
+    
 	@iOSFindBy(xpath = "//*[contains(@label,'This amount is either below the minimum or above the maximum foreign exchange limit. "
 			+ "Please enter a different amount. (BQ15)')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
@@ -48,7 +48,7 @@ public class Between_My_accounts extends _CommonPage {
 	private MobileElement txtTo_acnt;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='-Amount']")
-	@AndroidFindBy(id = "com.td:id/edtAmount")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/edtAmount']")
 	private MobileElement txtAmount;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue']")
@@ -122,8 +122,9 @@ public class Between_My_accounts extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Done']")
 	private MobileElement done;
 
-	@iOSFindBy(xpath = "//*[@label='Back']")
-	private MobileElement back_button;
+	@iOSFindBy(xpath ="//*[@label='Back']")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
+	private MobileElement back_button; 
 
 	@iOSFindBy(xpath = "//*[@label='Cancel']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/myaccounts_entry_btn_cancel' and @text='Cancel']")
@@ -149,15 +150,13 @@ public class Between_My_accounts extends _CommonPage {
 	private MobileElement homeBtn;
 
 	@iOSFindBy(xpath = "//*[@label='CANCEL']")
-	@AndroidFindBy(xpath = "")
 	private MobileElement btnCancel;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'When making deposits to this account, please ensure that you are')]")
-	@AndroidFindBy(xpath = " ")
 	private MobileElement TDCT_TFSAMessage;
 
 	@iOSFindBy(xpath = "//*[@label='Receipt']")
-	@AndroidFindBy(xpath = "")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'android:id/action_bar_title'and @text='Receipt']")
 	private MobileElement receiptHeader;
 
 
@@ -166,31 +165,47 @@ public class Between_My_accounts extends _CommonPage {
 	private MobileElement finish_transfer;
 	
 	@iOSFindBy(xpath = "//*[@name='-From Account']")
-	@AndroidFindBy(xpath = "")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/from_account_bal']")
 	private MobileElement fromAccountValue;
+	
+
+	@iOSFindBy(xpath = "//*[@name='']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/account_desc']")
+	private MobileElement fromAccountNumber;
+	
+	@iOSFindBy(xpath = "//*[@name='']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/current_balance']")
+	private MobileElement fromAccountbal;
+	
+	@iOSFindBy(xpath = "//*[@name='']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/account_desc']")
+	private MobileElement toAccountNumber;
+	
+	@iOSFindBy(xpath = "//*[@name='']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/current_balance']")
+	private MobileElement toAccountbal;
 
 	@iOSFindBy(xpath = "//*[@name='-To Account']")
-	@AndroidFindBy(xpath = "")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/to_account_bal']")
 	private MobileElement ToAccountValue;
 
 	@iOSFindBy(xpath = "//*[@name='-Detail']")
-	@AndroidFindBy(xpath = "")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/confirmation_val']")
 	private MobileElement cnfrDetail;
 
 	@iOSFindBy(xpath = "//*[@name='-Amount']")
-	@AndroidFindBy(xpath = "")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/amount_val']")
 	private MobileElement amountValue;
 
 	@iOSFindBy(xpath = "//*[@name='-Exchange Rate']")
-	@AndroidFindBy(xpath = "")
 	private MobileElement exchangeRate;
 
 	@iOSFindBy(xpath = "//*[@name='MAKE ANOTHER TRANSFER']")
-	@AndroidFindBy(xpath = "")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/transfers_make_another' and @text='MAKE ANOTHER TRANSFER']")
 	private MobileElement makeAnthTran_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/button_footer'and @text='Continue']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/button_footer' and @text='Continue']")
 	private MobileElement continue_transfer;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='-Amount']")
@@ -262,7 +277,15 @@ public class Between_My_accounts extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[4]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountBalance']")
 	private MobileElement fromAccountBalance;
-
+	
+	String select_fromaccountvalue ="//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='" + from_account+ "']";
+	
+	String select_toaccountvalue ="//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"+ to_account+ "']";
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[4]")
+	@AndroidFindBy(xpath = "")
+	private MobileElement accountVal;
+	
 	public void perFormTransfer() throws Exception {
 		Decorator();
 		try {
@@ -276,9 +299,9 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncSelectElementInTable(from_accounts_table, Firstpart, Secondpart, to_accountNo);
 			} else {
 				mobileAction.FuncClick(txtFrom_acnt, "From Account");
-				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_from_acnt, 3, "down", true);
+				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_from_acnt, 10, "down", true);
 				mobileAction.FuncClick(txtTo_acnt, "To Account");
-				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_to_acnt, 3, "down", true);
+				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_to_acnt, 10, "down", true);
 			}
 
 			mobileAction.FuncClick(txtAmount, "Amount");
@@ -425,12 +448,12 @@ public class Between_My_accounts extends _CommonPage {
 		try {
 			perFormTransfer();
 			mobileAction.FuncClick(btnContinue_transfer, "Continue");
-			int timeout = Integer.valueOf(getTestdata("Timeout"));
+			/*int timeout = Integer.valueOf(getTestdata("Timeout"));
 			int Sndtimeout = Integer.valueOf(getTestdata("SecondTimeout"));
 			mobileAction.FuncWaitForElement(ok_button, timeout, "Ok");
 			mobileAction.FuncClick(ok_button, "OK");
 			mobileAction.FuncWaitForElement(ok_button, Sndtimeout, "Ok");
-			mobileAction.FuncClick(ok_button, "OK");
+			mobileAction.FuncClick(ok_button, "OK");*/
 			mobileAction.FuncClick(btnFinish_transfer, "Finish");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.waitForElementToVanish(txtProgresssBar);
@@ -896,9 +919,7 @@ public class Between_My_accounts extends _CommonPage {
 						.findElement(By.xpath(verify_from_acnt));
 
 				mobileAction.FunCSwipeandScroll(accountVal, true);
-				mobileAction.verifyElementIsDisplayed(confirmation_val, "Confirmation Value");
-
-				mobileAction.verifyElementIsDisplayed(accountVal, "From Account");
+				mobileAction.verifyTextContains(last_transaction_list.get(0), conf_val);
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -1097,7 +1118,7 @@ public class Between_My_accounts extends _CommonPage {
 		Decorator();
 		try {
 			if (btw_My_Accounts_Header.isDisplayed() == true) {
-				mobileAction.FuncClick(txtFrom_acnt, "From Account");
+				//\mobileAction.FuncClick(txtFrom_acnt, "From Account");
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
@@ -1119,7 +1140,7 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.FuncClick(btnContinue_transfer, "Continue");
 					mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
 
-					Thread.sleep(105000);
+					//Thread.sleep(105000);
 					mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
 
 					mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
@@ -1133,8 +1154,33 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.FuncClick(btnLogout, "Logout");
 					mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
 				} else {
-
-				}
+					/*String select_fromaccountvalue ="//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='" + from_account+ "']";
+				    MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+							.findElement(By.xpath(select_fromaccountvalue));
+				    mobileAction.FunCnewSwipe(fromAccountval, false, 7);
+					//mobileAction.FunCSwipeandScroll(fromAccountval, true);
+					mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_fromaccountvalue, 6, "down", true);
+					mobileAction.waitForElementToDisappear(select_fromaccountvalue);
+					mobileAction.FuncClick(txtTo_acnt, "To Account");
+					mobileAction.FuncElementSwipeWhileNotFound(acntsList,select_toaccountvalue, 6, "down", true);
+					String amountXL = getTestdata("Amount");
+					mobileAction.FuncSendKeys(txtAmount, amountXL);
+					mobileAction.FuncHideKeyboard();*/
+					perFormTransfer() ;
+					mobileAction.FuncClick(btnContinue_transfer, "Continue");
+					mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
+					mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
+					mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
+					mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
+					mobileAction.verifyElementIsDisplayed(fromAccountValue, "From Account Value");
+					mobileAction.verifyElementIsDisplayed(ToAccountValue, "To Account Value");
+					mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
+					mobileAction.FunCnewSwipe(makeAnthTran_button, false, 1);
+					mobileAction.verifyElementIsDisplayed(makeAnthTran_button, "MAKE ANOTHER Transfer");
+					mobileAction.FuncClick(btnMenu, "Menu");
+					mobileAction.FuncClick(btnLogout, "Logout");
+					mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
+					}
 			}
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -1245,5 +1291,118 @@ public class Between_My_accounts extends _CommonPage {
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 		}
 	}
+	/**
+	 * This method will perform the transfer and get the amount of the from account
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
+	public double transferTDCTCad_USDVisa() throws Exception {
+		double fromAccountval=0.00;
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) 
+			{
+			perFormTransfer();
+			fromAccountval = Double.parseDouble(accountVal.getAttribute("value"));
+			System.out.println("Account Value" +fromAccountval);
+			continueButton();
+			FinishButton();
+			}
+			else
+			{
+				perFormTransfer();
+				MobileElement accountValue = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(select_fromaccountvalue));
+				fromAccountval = Double.parseDouble(mobileAction.getText(accountValue));
+				continueButton();
+				FinishButton();
+				mobileAction.FuncClick(btnMenu, "Menu");
+				mobileAction.FuncClick(txtMy_accounts, "My Accounts");
+				mobileAction.FuncElementSwipeWhileNotFound(acntsummaryList, verify_from_acnt, 3, "down", true);
+				String conf_val = mobileAction.getText(confirmation_val);
+				mobileAction.verifyTextContains(last_transaction_list.get(0), conf_val);
+				}
+			
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+
+		}
+		return fromAccountval;
+	}
+	/**
+	 * This method will perform the transfer and get the amount of the from account
+	 * 
+	 * @return void
+	 * @throws Exception
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+
+	public void transfer_TFSAUSD_TFSACAD() throws Exception {
+		Decorator();
+		try {
+			if (btw_My_Accounts_Header.isDisplayed() == true) {
+				mobileAction.FuncClick(from_acnt, "From Account");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					String from_accountNo = getTestdata("FromAccount");
+					String account_value = "//*[contains(@label,'" + from_accountNo + "')]";
+					MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+							.findElement(By.xpath(account_value));
+					mobileAction.FunCSwipeandScroll(fromAccountval, true);
+
+					mobileAction.FuncClick(to_acnt, "To Account");
+					String to_accountNo = getTestdata("ToAccount");
+					String toAccount_value = "//*[contains(@label,'" + to_accountNo + "')]";
+					MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+							.findElement(By.xpath(toAccount_value));
+					mobileAction.FunCSwipeandScroll(toAccountval, true);
+					String amountXL = getTestdata("Amount");
+					mobileAction.FuncSendKeys(amount, amountXL);
+					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClick(btnContinue_transfer, "Continue");
+					Thread.sleep(105000);
+					mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
+					mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
+					mobileAction.verifyElement(cnfrDetail, "Confirm Details");
+					mobileAction.FuncClick(btnMenu, "Menu");
+					mobileAction.FuncClick(txtMy_accounts, "My Accounts");
+					
+				} else 
+				{
+					perFormTransfer() ;
+					mobileAction.FuncClick(btnContinue_transfer, "Continue");
+					mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
+					mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
+					mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
+					mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
+					mobileAction.FuncClick(btnMenu, "Menu");
+					mobileAction.FuncClick(txtMy_accounts, "My Accounts");
+					mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_from_acnt, 10, "down", true);
+					mobileAction.verifyElementIsDisplayed(fromAccountNumber, "From Account Number");
+					mobileAction.verifyElementIsDisplayed(fromAccountbal, "From Account Balance Displayed");
+					mobileAction.FuncClick(back_button, "Back");
+					mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_to_acnt, 10, "down", true);
+					mobileAction.verifyElementIsDisplayed(toAccountNumber, "From Account Number");
+					mobileAction.verifyElementIsDisplayed(toAccountbal, "From Account Balance Displayed");
+					
+				}
+			}
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		}
+	}
 }
+
+
