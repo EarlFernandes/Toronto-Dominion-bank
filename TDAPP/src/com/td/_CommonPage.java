@@ -39,7 +39,7 @@ public class _CommonPage {
 	public static final String commonpassword = "abcde123";
 	// success/fail status
 	public String overallSuccess = PASS;
-
+	public static final String XLSheetUserIDs = "UserIDs"; //@Author - Sushil 01-Mar-2017
 	@iOSFindBy(id = "com.td:id/list_slidermenu")
 	@AndroidFindBy(id = "com.td:id/list_slidermenu")
 	public class widgetListview {
@@ -81,6 +81,10 @@ public class _CommonPage {
 	 */
 	public void readVerifyMessages(String key) {
 		CL.getTestDataInstance().VerificationStrings.get(key);
+	}
+	public String getTestdata(String aColumn, String aSheetName) {
+		return CL.LoadData(aColumn, CL.getTestDataInstance().getMasterTestData(), aSheetName, "UserType",
+				CL.getTestDataInstance().TestCaseID);
 	}
 
 	/**

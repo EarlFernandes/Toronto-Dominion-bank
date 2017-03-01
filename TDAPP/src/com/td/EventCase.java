@@ -25,6 +25,7 @@ import com.td.test.CDNMobile.pages.Interac_e_Transfer;
 import com.td.test.CDNMobile.pages.Investing;
 import com.td.test.CDNMobile.pages.InvestingAccountSummary;
 import com.td.test.CDNMobile.pages.Login;
+import com.td.test.CDNMobile.pages.LoginMIT;
 import com.td.test.CDNMobile.pages.Logout;
 import com.td.test.CDNMobile.pages.MFA_ChangeAnswer;
 import com.td.test.CDNMobile.pages.ManageRecipients;
@@ -41,8 +42,11 @@ import com.td.test.CDNMobile.pages.PendingInteracTransfer;
 import com.td.test.CDNMobile.pages.Preferences;
 import com.td.test.CDNMobile.pages.QuickAccessPage;
 import com.td.test.CDNMobile.pages.SearchPage;
+import com.td.test.CDNMobile.pages.SearchPageMIT;
 import com.td.test.CDNMobile.pages.StatementBalance;
 import com.td.test.CDNMobile.pages.Trade;
+import com.td.test.CDNMobile.pages.TradeMIT;
+import com.td.test.CDNMobile.pages.TradeMultiLeg;
 import com.td.test.CDNMobile.pages.Transaction;
 import com.td.test.CDNMobile.pages.Transfers;
 import com.td.test.CDNMobile.pages.WatchLists;
@@ -453,7 +457,13 @@ public class EventCase {
 		
 		Transaction_VerifyTransac,
 		
-		StatementBalance_VerifyBalanceDetails,Bill_PayCanada_verifyCurrentBalance
+		StatementBalance_VerifyBalanceDetails,Bill_PayCanada_verifyCurrentBalance,
+		OpenAppMIT,LoginMIT,
+		tapInvesting,verifyDefaultStrategies,navigateToSearchScreen,selectTradeAccount_OrderType,verifySymbolUS,
+		verifySymbolSearchResults,clickInvestingTrade,tapTradeSearchBar,clickFirstSymbol,
+		verifyStockOptionContents,verifyOptionOptionContents,verifySelectOption,verifyStockMidNaturalPrice,verifyOptionMidNaturalPrice,
+		verifyGoodTill,
+
 	
 		 }
 
@@ -1775,10 +1785,75 @@ public class EventCase {
 			Bill_PayCanada.get().verifyCurrentBalance();
 			break;
 			
-			
-			
-			
+		case OpenAppMIT:
+			MainScreenMIT.get().OpenApp();
+		break;
+	
+		case LoginMIT:
+			LoginMIT.get().MITLogin();
+		break;	
+		
+		case tapInvesting:
+			MainScreenMIT.get().tapInvesting();
+		break;
+		case clickInvestingTrade:
+			TradeMIT.get().clickInvestingTrade();
+		break;	
 
+		case verifyDefaultStrategies:
+			TradeMIT.get().verifyDefaultStrategies();
+		break;	
+		
+		case selectTradeAccount_OrderType:
+			TradeMIT.get().selectTradeAccount_OrderType();
+		break;	
+		case navigateToSearchScreen:
+			TradeMIT.get().tapTradeSearchBar();
+			SearchPageMIT.get().verifySearchScreen();
+		break;				
+		
+		case verifySymbolUS:
+			SearchPageMIT.get().verifySymbolUS();
+		break;	
+		case verifySymbolSearchResults:
+			SearchPageMIT.get().verifySymbolSearchResults();
+		break;
+		
+		case verifyStockOptionContents:
+			TradeMIT.get().tapTradeSearchBar();
+			TradeMultiLeg.get().verifyStockOptionContents();
+		break;	
+		case verifyOptionOptionContents:
+			TradeMIT.get().tapTradeSearchBar();
+			TradeMultiLeg.get().verifyOptionOptionContents();
+		break;	
+		
+		case verifySelectOption:
+			TradeMIT.get().tapTradeSearchBar();
+			TradeMultiLeg.get().verifySelectOption();
+		break;	
+		
+		case verifyStockMidNaturalPrice:
+			TradeMIT.get().tapTradeSearchBar();
+			TradeMultiLeg.get().verifyStockMidNaturalPrice();
+		break;	
+		
+		case verifyOptionMidNaturalPrice:
+			TradeMIT.get().tapTradeSearchBar();
+			TradeMultiLeg.get().verifyOptionMidNaturalPrice();
+		break;	
+		
+		case tapTradeSearchBar:
+			TradeMIT.get().tapTradeSearchBar();
+		break;	
+		
+		case clickFirstSymbol:
+			SearchPageMIT.get().clickFirstSymbol();
+		break;	
+
+		case verifyGoodTill:
+			TradeMultiLeg.get().verifyGoodTill();
+		break;			
 		}
 		}
 
