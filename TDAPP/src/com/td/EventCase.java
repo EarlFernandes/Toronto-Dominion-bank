@@ -166,6 +166,7 @@ public class EventCase {
 
 		Env_set, 
 		Env_EnableMobilePayment,
+		Env_ClearSavedCards,
 		
 		FlyOut_HOME, 
 		Flyout_Location, 
@@ -1691,6 +1692,11 @@ public class EventCase {
 			ApplePay.get().checkPersonalCard();
 			break;
 			
+
+		case Env_ClearSavedCards:
+			Env_Settings.get().clearSavedCards();
+			break;
+				
 
 		case ApplePay_CheckBusinessCard:
 			ApplePay.get().checkBusinessCard();

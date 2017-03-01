@@ -59,6 +59,9 @@ public class Env_Settings extends _CommonPage {
 
 	String env_need_set = getTestdata("Env");
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'SYS70')]")
+	private MobileElement environment;
+
 	String cnfgrn = "//android.widget.TextView[@resource-id='com.td:id/title'and @text='" + env_need_set + "']";
 	String env_Set = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]";
 
@@ -100,6 +103,9 @@ public class Env_Settings extends _CommonPage {
 		try {
 
 			if (platformName.equalsIgnoreCase("ios")) {
+
+				mobileAction.FunCSwipeandScroll(network_settings, true);
+				Thread.sleep(2000);
 
 				mobileAction.FunCSwipeandScroll(network_settings, true);
 				mobileAction.FuncSelectElementInTable(env_Set, Firstpart, Secondpart, env_need_set);
@@ -150,8 +156,6 @@ public class Env_Settings extends _CommonPage {
 			} else {
 				mobileAction.FuncClick(enableMobilePaymentTextField, "Enable mobile Payment TextField");
 
-				String textFieldValue = mobileAction.getText(enableMobilePaymentTextField);
-
 				enableMobilePaymentTextField.clear();
 
 				mobileAction.FuncClick(enableMobilePaymentSaveButton, "Enable mobile Payment SaveButton");
@@ -162,6 +166,28 @@ public class Env_Settings extends _CommonPage {
 			mobileAction.FuncClick(okButton, "OK");
 			mobileAction.FuncRunAppInBackground(8);
 			((InteractsWithApps) CL.GetDriver()).resetApp();
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void clearSavedCards() throws Exception {
+		Decorator();
+		try {
+
+			mobileAction.FunCSwipeandScroll(network_settings, true);
+			if (enableMobilePaymentSwitch.getAttribute("value").equals("false")) {
+				mobileAction.FuncClick(enableMobilePaymentSwitch, "Enable mobile Payment Switch");
+			} else {
+				mobileAction.FuncClick(enableMobilePaymentTextField, "Enable mobile Payment TextField");
+				enableMobilePaymentTextField.clear();
+
+				mobileAction.FuncClick(enableMobilePaymentSaveButton, "Enable mobile Payment SaveButton");
+				mobileAction.FuncClick(okButton, "OK");
+
+			}
+			mobileAction.FunCSwipeandScroll(environment, true);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
