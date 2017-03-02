@@ -162,6 +162,23 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trading Password' or @text='Mot de passe de négociation']")
 	private MobileElement labelTradingPassword;	
 	
+	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]")//@Author - Sushil 06-Feb-2017
+	@AndroidFindBy(id="com.td:id/commissionLink")
+	private MobileElement commissionLink;
+	
+	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]")//@Author - Sushil 06-Feb-2017
+	@AndroidFindBy(id="com.td:id/importantInfoLink")
+	private MobileElement importantInfoLink;
+
+	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]")//@Author - Sushil 06-Feb-2017
+	@AndroidFindBy(id="com.td:id/urlTitle")
+	private MobileElement urlTitle;
+	
+	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]")//@Author - Sushil 06-Feb-2017
+	@AndroidFindBy(id="com.td:id/btnDone")
+	private MobileElement btnDone;
+	
+	
 	String xpathSymbolFlag = "//android.widget.ImageView[@resource-id='com.td:id/market_symbol' and @content-desc='U S']";
 	String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'US')]";
 	String sSymbolVal = "";
@@ -182,6 +199,19 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.verifyElement(leg2Option, getTestdata("OptionDefault", XLSheetUserIDs));
 			mobileAction.verifyElement(leg2Action, getTestdata("TextDefaultListItem", XLSheetUserIDs));
 			mobileAction.verifyElement(leg2Quantity, defaultQtyVal);
+			
+			String[] sUrlTitle= getTestdata("urlTitle", XLSheetUserIDs).split(";");
+			
+			mobileAction.FuncSwipeWhileElementNotFound(commissionLink, false, 7, "up");
+			mobileAction.FuncClick(importantInfoLink, "importantInfoLink");
+			mobileAction.verifyElement(urlTitle, sUrlTitle[0]);
+			mobileAction.FuncClick(btnDone, "btnDone");
+			
+			mobileAction.FuncSwipeWhileElementNotFound(commissionLink, false, 7, "up");
+			mobileAction.FuncClick(commissionLink, "commissionLink");
+			mobileAction.verifyElement(urlTitle, sUrlTitle[1]);
+			mobileAction.FuncClick(btnDone, "btnDone");
+			
 		}
 		catch(Exception e)
 		{
@@ -232,6 +262,7 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.FuncClick(leg2Option, "Select Option Leg2");
 			mobileAction.FunCnewSwipe(firstStrikePUTS,false,5);
 			mobileAction.FuncClick(firstBidPUTS, "firstBidPUTS");
+			mobileAction.verifyElement(leg2Action, getTestdata("Leg2Action2", XLSheetUserIDs));
 			sExpFormat = getOptionFormat(expiryDate,"PUTS");
 			mobileAction.FuncClick(Continue, "Continue");
 			mobileAction.verifyElement(leg2Option,sExpFormat);
@@ -241,6 +272,7 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.FuncClick(leg1Option, "Select Option Leg1");
 			mobileAction.FunCnewSwipe(firstStrikeCALLS,false,5);
 			mobileAction.FuncClick(firstAskCALLS, "firstBidCALLS");
+			mobileAction.verifyElement(leg1Action, getTestdata("Leg1Action2", XLSheetUserIDs));
 			sExpFormat = getOptionFormat(expiryDate,"CALLS");
 			mobileAction.FuncClick(Continue, "Continue");
 			mobileAction.verifyElement(leg1Option,sExpFormat);
