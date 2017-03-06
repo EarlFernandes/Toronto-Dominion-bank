@@ -33,40 +33,40 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/edt_search_field_search_mode")
 	private MobileElement search_symbol;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'1ST') or contains(@label,'1RE')]/../following-sibling::XCUIElementTypeCell/*") //@Author - Sushil 16-Feb-2017
+	@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell/*") //@Author - Sushil 16-Feb-2017
 	@AndroidFindBy(id="com.td:id/ticker")
 	private MobileElement stockSymbol;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'1ST') or contains(@label,'1RE')]/../following-sibling::XCUIElementTypeCell/*") //@Author - Sushil 16-Feb-2017
+	@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell/*") //@Author - Sushil 16-Feb-2017
 	//@AndroidFindBy(id="com.td:id/ticker")
 	//@AndroidFindBy(xpath = "(//*[contains(@resource-id,'com.td:id/ticker')])[2]")
 	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/ticker_layout']/android.widget.TextView")
 	private MobileElement leg1Option;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'1ST') or contains(@label,'1RE')]/../following-sibling::XCUIElementTypeCell[2]/*[2]") //@Author - Sushil 17-Feb-2017
+	@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell[2]/*[2]") //@Author - Sushil 17-Feb-2017
 //	@AndroidFindBy(xpath = "(//*[contains(@text,'Please Select') or contains(@text,'Choisissez')])[1]")
 	//@AndroidFindBy(xpath = "(//*[contains(@resource-id,'com.td:id/selectedText')])[1]")
 	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/edtSpinner']/*/*[2]")
 	private MobileElement leg1Action;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'2ND') or contains(@label,'2E')]/../following-sibling::XCUIElementTypeCell[2]/*[2]") //@Author - Sushil 17-Feb-2017
+	@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell[2]/*[2]") //@Author - Sushil 17-Feb-2017
 //	@AndroidFindBy(xpath = "(//*[contains(@text,'Please Select') or contains(@text,'Choisissez')])[2]")
 	//@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::android.widget.LinearLayout[4]/*/*/android.widget.TextView[2]")
 	@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/edtSpinner']/*/*[2]")
 	
 	private MobileElement leg2Action;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'1ST') or contains(@label,'1RE')]/../following-sibling::XCUIElementTypeCell[3]/*[2]") //@Author - Sushil 17-Feb-2017
+	@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell[3]/*[2]") //@Author - Sushil 17-Feb-2017
 	//@AndroidFindBy(xpath = "//*[contains(@resource-id,'com.td:id/amountEditText')]")
 	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*[@resource-id='com.td:id/amountEditText']")
 	private MobileElement leg1Quantity;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'2ND') or contains(@label,'2E')]/../following-sibling::XCUIElementTypeCell[3]/*[2]") //@Author - Sushil 17-Feb-2017
+	@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell[3]/*[2]") //@Author - Sushil 17-Feb-2017
 	//@AndroidFindBy(xpath = "(//*[contains(@resource-id,'com.td:id/amountEditText')])[2]")
 	@AndroidFindBy(xpath = 	"//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*[@resource-id='com.td:id/amountEditText']")
 	private MobileElement leg2Quantity;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'2ND') or contains(@label,'2E')]/../following-sibling::XCUIElementTypeCell/*") //@Author - Sushil 17-Feb-2017
+	@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell/*") //@Author - Sushil 17-Feb-2017
 	///@AndroidFindBy(xpath = "(//*[contains(@resource-id,'com.td:id/ticker')])[4]")
 	@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/ticker_layout']/android.widget.TextView")
 	private MobileElement leg2Option;
@@ -158,26 +158,37 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']")
 	private MobileElement listview;
 
-	@iOSFindBy(xpath = " //XCUIElementTypeStaticText[contains(@label,'Trading Password') or contains(@label,'Mot de passe de négociation')]")//@Author - Sushil 06-Feb-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label,'Mot de passe de négociation']")//@Author - Sushil 06-Feb-2017
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trading Password' or @text='Mot de passe de négociation']")
 	private MobileElement labelTradingPassword;	
 	
-	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]")//@Author - Sushil 06-Feb-2017
+	@iOSFindBy(xpath = "//*[@label='Commission Schedule' or @label='Barème des commissions']")//@Author - Sushil 02-Mar-2017
 	@AndroidFindBy(id="com.td:id/commissionLink")
 	private MobileElement commissionLink;
 	
-	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]")//@Author - Sushil 06-Feb-2017
+	@iOSFindBy(xpath = "//*[@label='Important Information' or @label='Renseignements importants']")//@Author - Sushil 02-Mar-2017
 	@AndroidFindBy(id="com.td:id/importantInfoLink")
 	private MobileElement importantInfoLink;
 
-	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]")//@Author - Sushil 06-Feb-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'close x')]/../XCUIElementTypeStaticText[1]")//@Author - Sushil 06-Feb-2017
 	@AndroidFindBy(id="com.td:id/urlTitle")
 	private MobileElement urlTitle;
 	
-	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]")//@Author - Sushil 06-Feb-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'close x')]")//@Author - Sushil 06-Feb-2017
 	@AndroidFindBy(id="com.td:id/btnDone")
 	private MobileElement btnDone;
 	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label,'Mot de passe de négociation']/XCUIElementTypeSecureTextField[1]")//@Author - Sushil 03-Mar-2017
+	@AndroidFindBy(id="com.td:id/editTextPassword")
+	private MobileElement editTextPassword;
+	
+	@iOSFindBy(xpath="//XCUIElementTypeStaticText[contains(@label,'Trading Password is turned off') or contains(@label,'Votre mot de passe est inactif')]")//@Author - Sushil 03-Mar-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Trading Password is turned off') or contains(@text,'Votre mot de passe est inactif')]")
+	private MobileElement tradingPwdDisableMsg;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Shareholder') or contains(@label,'actionnaire')]/../*[2]") //@Author - Sushil 03-Mar-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Shareholder') or contains(@text,'actionnaire')]/../android.widget.TextView[@index=1]")
+	private MobileElement shareholderType;
 	
 	String xpathSymbolFlag = "//android.widget.ImageView[@resource-id='com.td:id/market_symbol' and @content-desc='U S']";
 	String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'US')]";
@@ -200,14 +211,20 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.verifyElement(leg2Action, getTestdata("TextDefaultListItem", XLSheetUserIDs));
 			mobileAction.verifyElement(leg2Quantity, defaultQtyVal);
 			
+			
+			
 			String[] sUrlTitle= getTestdata("urlTitle", XLSheetUserIDs).split(";");
 			
 			mobileAction.FuncSwipeWhileElementNotFound(commissionLink, false, 7, "up");
+			
+			mobileAction.verifyElement(tradingPwdDisableMsg, getTestdata("TradingPassword", XLSheetUserIDs));
+			
 			mobileAction.FuncClick(importantInfoLink, "importantInfoLink");
 			mobileAction.verifyElement(urlTitle, sUrlTitle[0]);
 			mobileAction.FuncClick(btnDone, "btnDone");
 			
 			mobileAction.FuncSwipeWhileElementNotFound(commissionLink, false, 7, "up");
+			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncClick(commissionLink, "commissionLink");
 			mobileAction.verifyElement(urlTitle, sUrlTitle[1]);
 			mobileAction.FuncClick(btnDone, "btnDone");
@@ -654,4 +671,35 @@ public class TradeMultiLeg extends _CommonPage{
 		}
 	}
 	
+	public void verifyGoodTillExpiryDate()
+	{
+		try
+		{
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public void verifySharehoderType()
+	{
+		try
+		{
+			String[] aShareholderType = getTestdata("ShareHolder", XLSheetUserIDs).split(";");
+			
+			mobileAction.FuncSwipeWhileElementNotFound(labelTradingPassword, false, 7, "up");
+			mobileAction.verifyElement(shareholderType, getTestdata("TextDefaultListItem", XLSheetUserIDs));
+			
+			for(int i=0;i < aShareholderType.length;i++)
+			{
+			mobileAction.verifyItemInList(aShareholderType[i]);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 }

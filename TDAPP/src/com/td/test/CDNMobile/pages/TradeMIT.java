@@ -837,7 +837,7 @@ public class TradeMIT extends _CommonPage {
 		{
 			mobileAction.waitForElement(defaultTradeAccount);
 			mobileAction.FuncClick(defaultTradeAccount, "defaultTradeAccount");
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount,true,10,"up");
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount,true,60,"up");
 			mobileAction.selectItemFromList(stocks_ETFs,getTestdata("OrderType","UserIDs"));
 		}
 		catch(Exception e)

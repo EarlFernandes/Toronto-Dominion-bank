@@ -458,11 +458,12 @@ public class EventCase {
 		Transaction_VerifyTransac,
 		
 		StatementBalance_VerifyBalanceDetails,Bill_PayCanada_verifyCurrentBalance,
+		//MIT Multi-Leg
 		OpenAppMIT,LoginMIT,
 		tapInvesting,verifyDefaultStrategies,navigateToSearchScreen,selectTradeAccount_OrderType,verifySymbolUS,
 		verifySymbolSearchResults,clickInvestingTrade,tapTradeSearchBar,clickFirstSymbol,
 		verifyStockOptionContents,verifyOptionOptionContents,verifySelectOption,verifyStockMidNaturalPrice,verifyOptionMidNaturalPrice,
-		verifyGoodTill,
+		verifyGoodTill,verifyGoodTillExpiryDate,verifySharehoderType,
 
 	
 		 }
@@ -1853,10 +1854,18 @@ public class EventCase {
 
 		case verifyGoodTill:
 			TradeMultiLeg.get().verifyGoodTill();
-		break;			
+		break;	
+		
+		case verifyGoodTillExpiryDate:
+			TradeMultiLeg.get().verifyGoodTillExpiryDate();
+		break;
+		case verifySharehoderType:
+			TradeMultiLeg.get().verifySharehoderType();
+		break;
+		
 		}
-		}
-
+	}
+		
 	public void generateReport() {
 	}
 

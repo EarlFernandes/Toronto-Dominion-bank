@@ -1866,7 +1866,7 @@ public class MobileAction2 extends CommonLib {
 	    			//GetDriver().findElement(By.xpath(xpathEle)).click();
 	    		FuncClick((MobileElement)GetDriver().findElement(By.xpath(xpathEle)), sEleName);
 	    	} catch (Exception e) {
-	    	    System.out.println("Element not found");
+	    	    GetReporting().FuncReport("Fail", "Element not found");
 	    	}
 
 	   }
@@ -1919,7 +1919,7 @@ public class MobileAction2 extends CommonLib {
 	    			FuncClick(elementToFind, sEleName);
 
 	    	} catch (Exception e) {
-	    	    System.out.println("Element not found");
+	    	    GetReporting().FuncReport("Fail", "Element not found");
 	    	}
 	     }
 		public boolean isObjExists(MobileElement element,int iTimeOut) //throws Exception @Author - Sushil 01-Mar-2017
@@ -1955,6 +1955,36 @@ public class MobileAction2 extends CommonLib {
 			{
 				e.printStackTrace();
 			}
+		}
+		
+		public void FuncSwipeOnce(String sDirection)
+		{
+			try
+			{
+		    	Dimension size = (GetDriver()).manage().window().getSize();
+		    	int startx = size.width;
+		    	int starty = size.height;
+		    	int endy = size.height;
+		    	int heightPer = (endy*30/100);
+
+			    if(sDirection.equalsIgnoreCase("up"))
+			    {
+				    ((MobileDriver) GetDriver()).swipe(startx / 2, heightPer, startx / 2, 60, 2000);
+			    		GetReporting().FuncReport("Pass", "Swipe Up once.");
+			    }
+				    else if(sDirection.equalsIgnoreCase("down"))
+				    {
+				    ((MobileDriver) GetDriver()).swipe(startx / 2, endy - heightPer, startx / 2,starty-20 , 2000);
+				    GetReporting().FuncReport("Pass", "Swipe Down once.");
+				    }
+				else
+					GetReporting().FuncReport("Fail", "Invalid direction given.");
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+				
 		}
 
 }
