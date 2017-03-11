@@ -1275,7 +1275,11 @@ public class MobileAction2 extends CommonLib {
 	 if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 	        elementText = mobileElement.getText();
 	 else
+	 {
 	        elementText = mobileElement.getAttribute("label");
+	        if(elementText == null)
+	        	elementText = mobileElement.getAttribute("value");
+	 }
 
 	if(elementText!=null)
 	{
@@ -1752,6 +1756,7 @@ public class MobileAction2 extends CommonLib {
 		{
 			try
 			{
+				Thread.sleep(5000);
 	    		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 	    		wait.until(ExpectedConditions.visibilityOf(element));
 				
@@ -1834,7 +1839,13 @@ public class MobileAction2 extends CommonLib {
 
 	    		try {
 	    		    if (GetDriver().findElement(By.xpath(xpathEle)).isDisplayed())
+	    		    {
 	    			flag = false;
+/*	    			if(direction.equalsIgnoreCase("up"))
+	    				FuncSwipeOnce("up");
+	    			if(direction.equalsIgnoreCase("down"))
+	    				FuncSwipeOnce("down");*/
+	    		    }
 	    		    else
 	    		    {
 	    			    if(direction.equalsIgnoreCase("up"))
@@ -1886,7 +1897,13 @@ public class MobileAction2 extends CommonLib {
 
 	    		try {
 	    		    if (elementToFind.isDisplayed())
+	    		    {
 	    			flag = false;
+/*	    			if(direction.equalsIgnoreCase("up"))
+	    				FuncSwipeOnce("up");
+	    			if(direction.equalsIgnoreCase("down"))
+	    				FuncSwipeOnce("down");*/
+	    		    }
 	    		    else
 	    		    {
 	    			    if(direction.equalsIgnoreCase("up"))
@@ -1926,6 +1943,7 @@ public class MobileAction2 extends CommonLib {
 		{
 			try
 			{
+				Thread.sleep(5000);
 	    		WebDriverWait wait = new WebDriverWait(GetDriver(), iTimeOut);
 	    		wait.until(ExpectedConditions.visibilityOf(element));
 				
@@ -1945,15 +1963,21 @@ public class MobileAction2 extends CommonLib {
 			try
 			{
 				if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-					xpathExpression = "//*[contains(@text,'" + sItem +"')]";
+					xpathExpression = "//*[@text='" + sItem +"']";
 				else
-					xpathExpression = "//*[contains(@label,'" + sItem +"')]";
+					xpathExpression = "//*[@label='" + sItem +"']";
 				
 				verifyElement((MobileElement) (GetDriver()).findElement(By.xpath(xpathExpression)), sItem);
 			}
 			catch(Exception e)
 			{
+				try{
+					GetReporting().FuncReport("Fail",sItem + " not found.");
+				}
+				catch(Exception e1)
+				{
 				e.printStackTrace();
+				}
 			}
 		}
 		
@@ -1986,5 +2010,116 @@ public class MobileAction2 extends CommonLib {
 				}
 				
 		}
-
+		
+		public void FuncVerifyBlankValue(MobileElement objMobileElement,String sDesc) //@Author - Sushil 06-Mar-2017
+		{
+			String sText = "";
+			try
+			{
+				sText = objMobileElement.getText();
+				if(sText != null)
+				{
+					if(sText.equalsIgnoreCase(""))
+						GetReporting().FuncReport("Pass", sDesc + "is blank.");
+					else
+						GetReporting().FuncReport("Fail", sDesc + "is not blank.");
+				}
+				else
+				{
+					sText = objMobileElement.getAttribute("label");
+					if(objMobileElement.getAttribute("label").equalsIgnoreCase(""))
+						GetReporting().FuncReport("Pass", sDesc + "is blank.");
+					else if(objMobileElement.getAttribute("value").equalsIgnoreCase(""))
+						GetReporting().FuncReport("Pass", sDesc + "is blank.");
+					else
+						GetReporting().FuncReport("Fail", sDesc + "is not blank.");
+				}
+			}
+			catch(Exception e)
+			{
+				try
+				{
+					GetReporting().FuncReport("Fail", "Blank value not verified.");
+					e.printStackTrace();
+				}
+				catch(Exception e1)
+				{
+					e1.printStackTrace();
+				}
+			}
+		}
+		
+		public void FuncVerifyNonBlankValue(MobileElement objMobileElement,String sDesc) //@Author - Sushil 06-Mar-2017
+		{
+			String sText = "";
+			try
+			{
+				sText = objMobileElement.getText();
+				if(sText != null)
+				{
+					if(sText.length() > 0)
+						GetReporting().FuncReport("Pass", sDesc + "is not blank. " + sText);
+					else
+						GetReporting().FuncReport("Fail", sDesc + "is blank.");
+				}
+				else
+				{
+					sText = objMobileElement.getAttribute("label");
+					if(objMobileElement.getAttribute("label").length() > 0)
+						GetReporting().FuncReport("Pass", sDesc + "is not blank. " + sText);
+					else if(objMobileElement.getAttribute("value").length() > 0)
+						GetReporting().FuncReport("Pass", sDesc + "is blank.");
+					else
+						GetReporting().FuncReport("Fail", sDesc + "is blank.");
+				}
+			}
+			catch(Exception e)
+			{
+				try
+				{
+					GetReporting().FuncReport("Fail", "Non Blank value not verified.");
+					e.printStackTrace();
+				}
+				catch(Exception e1)
+				{
+					e1.printStackTrace();
+				}
+			}
+		}
+		
+		public void FuncIsElementEnabled(MobileElement objMobileElement,String sDesc)
+		{
+    		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+    		wait.until(ExpectedConditions.visibilityOf(objMobileElement));
+    		
+			try
+			{
+/*				if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				{*/
+				if(objMobileElement.isEnabled())
+					GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is enabled.");
+				else
+					GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+				//}
+				/*else
+				{
+					if(objMobileElement.isDisplayed())
+						GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is enabled.");
+					else
+						GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+					}*/
+			}
+			catch(Exception e)
+			{
+				try
+				{
+					GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+					e.printStackTrace();
+				}
+				catch(Exception e1)
+				{
+					e1.printStackTrace();
+				}
+			}
+		}
 }

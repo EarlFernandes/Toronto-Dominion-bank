@@ -255,6 +255,7 @@ public class SearchPageMIT extends _CommonPage {
 			mobileAction.FuncClick(search_symbol, "search_symbol");
 			enterSymbol(search_symbol, getTestdata("Symbol", XLSheetUserIDs));
 			mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),"First Symbol");
+			
 		}
 		catch(Exception e)
 		{

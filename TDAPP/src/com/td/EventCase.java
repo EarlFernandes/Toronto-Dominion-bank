@@ -28,6 +28,7 @@ import com.td.test.CDNMobile.pages.Login;
 import com.td.test.CDNMobile.pages.LoginMIT;
 import com.td.test.CDNMobile.pages.Logout;
 import com.td.test.CDNMobile.pages.MFA_ChangeAnswer;
+import com.td.test.CDNMobile.pages.MLEnterOrderNegative;
 import com.td.test.CDNMobile.pages.ManageRecipients;
 import com.td.test.CDNMobile.pages.ManageSettings;
 import com.td.test.CDNMobile.pages.Managee_Payee;
@@ -463,8 +464,8 @@ public class EventCase {
 		tapInvesting,verifyDefaultStrategies,navigateToSearchScreen,selectTradeAccount_OrderType,verifySymbolUS,
 		verifySymbolSearchResults,clickInvestingTrade,tapTradeSearchBar,clickFirstSymbol,
 		verifyStockOptionContents,verifyOptionOptionContents,verifySelectOption,verifyStockMidNaturalPrice,verifyOptionMidNaturalPrice,
-		verifyGoodTill,verifyGoodTillExpiryDate,verifySharehoderType,
-
+		verifyGoodTill,verifyGoodTillExpiryDate,verifySharehoderType,verifyStockOptionBackButton,verifyOptionOptionBackButton,
+		verifyOptionOptionPreviewOrderButton,searchAndSelectAccount,
 	
 		 }
 
@@ -1861,6 +1862,21 @@ public class EventCase {
 		break;
 		case verifySharehoderType:
 			TradeMultiLeg.get().verifySharehoderType();
+		break;
+		
+		case verifyStockOptionBackButton:
+			TradeMultiLeg.get().verifyStockOptionBackButton();
+		break;
+		
+		case verifyOptionOptionBackButton:
+			TradeMultiLeg.get().verifyOptionOptionBackButton();
+		break;
+		
+		case verifyOptionOptionPreviewOrderButton:
+			TradeMultiLeg.get().verifyOptionOptionPreviewOrderButton();
+		break;
+		case searchAndSelectAccount:
+			MLEnterOrderNegative.get().searchAndSelectAccount();
 		break;
 		
 		}
