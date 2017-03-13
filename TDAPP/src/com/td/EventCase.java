@@ -465,7 +465,7 @@ public class EventCase {
 		verifySymbolSearchResults,clickInvestingTrade,tapTradeSearchBar,clickFirstSymbol,
 		verifyStockOptionContents,verifyOptionOptionContents,verifySelectOption,verifyStockMidNaturalPrice,verifyOptionMidNaturalPrice,
 		verifyGoodTill,verifyGoodTillExpiryDate,verifySharehoderType,verifyStockOptionBackButton,verifyOptionOptionBackButton,
-		verifyOptionOptionPreviewOrderButton,searchAndSelectAccount,
+		verifyOptionOptionPreviewOrderButton,searchAndSelectAccount,submitStockOptionOrder,
 	
 		 }
 
@@ -1877,6 +1877,9 @@ public class EventCase {
 		break;
 		case searchAndSelectAccount:
 			MLEnterOrderNegative.get().searchAndSelectAccount();
+		break;
+		case submitStockOptionOrder:
+			TradeMultiLeg.get().submitStockOptionOrder();
 		break;
 		
 		}

@@ -38,22 +38,15 @@ public class TradeMultiLeg extends _CommonPage{
 	private MobileElement stockSymbol;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell/*") //@Author - Sushil 16-Feb-2017
-	//@AndroidFindBy(id="com.td:id/ticker")
-	//@AndroidFindBy(xpath = "(//*[contains(@resource-id,'com.td:id/ticker')])[2]")
 	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/ticker_layout']/android.widget.TextView")
 	private MobileElement leg1Option;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell[2]/*[2]") //@Author - Sushil 17-Feb-2017
-//	@AndroidFindBy(xpath = "(//*[contains(@text,'Please Select') or contains(@text,'Choisissez')])[1]")
-	//@AndroidFindBy(xpath = "(//*[contains(@resource-id,'com.td:id/selectedText')])[1]")
 	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/edtSpinner']/*/*[2]")
 	private MobileElement leg1Action;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell[2]/*[2]") //@Author - Sushil 17-Feb-2017
-//	@AndroidFindBy(xpath = "(//*[contains(@text,'Please Select') or contains(@text,'Choisissez')])[2]")
-	//@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::android.widget.LinearLayout[4]/*/*/android.widget.TextView[2]")
 	@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/edtSpinner']/*/*[2]")
-	
 	private MobileElement leg2Action;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell[3]/*[2]") //@Author - Sushil 17-Feb-2017
@@ -124,11 +117,11 @@ public class TradeMultiLeg extends _CommonPage{
 	private MobileElement cancelButton;
 	
 	@iOSFindBy(xpath = "//*[@label='Do not agree' or contains(@label,'accepte pas')]") //@Author - Sushil 08-Feb-2017
-	@AndroidFindBy(id="android:id/button2")
+	@AndroidFindBy(id="com.td:id/negativeButton")
 	private MobileElement doNotAgreeButton;
 
 	@iOSFindBy(xpath = "//*[@label='Agree' or @label='Accepte']") //@Author - Sushil 08-Feb-2017
-	@AndroidFindBy(id="android:id/button1")
+	@AndroidFindBy(id="com.td:id/positiveButton")
 	private MobileElement agreeButton;
 	
 	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']") //@Author - Sushil 08-Feb-2017
@@ -218,9 +211,17 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/refresh_menu")
 	private MobileElement refreshButton;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeCell[4]/XCUIElementTypeStaticText[3]") //@Author - Sushil 08-Feb-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeCell[4]/XCUIElementTypeStaticText[3]") //@Author - Sushil 10-Mar-2017
 	@AndroidFindBy(id="com.td:id/txt_price")
 	private MobileElement Quote_price;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Limit Price') or contains(@label,'Cours limité')]/../*[2]") //@Author - Sushil 08-Feb-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'Limit Price') or contains(@text,'Cours limité')]/../*[@resource-id='com.td:id/amountEditText']")
+	private MobileElement LimitPrice;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Date')]/../*[2]") //@Author - Sushil 13-Mar-2017
+	@AndroidFindBy(id="com.td:id/selectedDate")
+	private MobileElement DateSpecify;
 	
 	String xpathSymbolFlag = "//android.widget.ImageView[@resource-id='com.td:id/market_symbol' and @content-desc='U S']";
 	String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'US')]";
@@ -809,14 +810,27 @@ public class TradeMultiLeg extends _CommonPage{
 			enterQuantity(leg2Quantity,getTestdata("Leg2Qunatity",XLSheetUserIDs));
 			mobileAction.FuncSwipeWhileElementNotFound(commissionLink,false,5,"up");
 			mobileAction.FuncSwipeOnce("up");
-			mobileAction.selectItemFromList(price,getTestdata("Price",XLSheetUserIDs));
-			if(mobileAction.isObjExists(shareholderType, 2))
+			String tempPrice = getTestdata("Price",XLSheetUserIDs);
+			mobileAction.selectItemFromList(price,tempPrice);
+			if(tempPrice.equalsIgnoreCase("Net Debit") || tempPrice.equalsIgnoreCase("Net Credit") || tempPrice.equalsIgnoreCase("Débit net") || tempPrice.equalsIgnoreCase("Crédit net"))
+			{
+				FuncEnterText(LimitPrice, "10");
+			}
+			
+			if(mobileAction.isObjExists(shareholderType, 2) && getTestdata("ShareHolder",XLSheetUserIDs)!="")
 			{
 				mobileAction.selectItemFromList(shareholderType, getTestdata("ShareHolder",XLSheetUserIDs));
 				mobileAction.FuncSwipeOnce("up");
 			}
-			mobileAction.selectItemFromList(goodTill, getTestdata("Good'til",XLSheetUserIDs));
+			
+			String tempGoodTill = getTestdata("Good'til",XLSheetUserIDs);
+			mobileAction.selectItemFromList(goodTill,tempGoodTill);
 			mobileAction.FuncSwipeOnce("up");
+			
+			if(tempGoodTill.equalsIgnoreCase("Specify") || tempGoodTill.equalsIgnoreCase("Préciser"))
+			{
+				//
+			}
 			if(mobileAction.isObjExists(editTextPassword, 2))
 			{
 				FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
@@ -859,17 +873,29 @@ public class TradeMultiLeg extends _CommonPage{
 			enterQuantity(leg2Quantity,"1");
 			mobileAction.FuncSwipeWhileElementNotFound(commissionLink,false,5,"up");
 			
-			mobileAction.selectItemFromList(price,getTestdata("Price",XLSheetUserIDs));
-			if(mobileAction.isObjExists(shareholderType, 2))
+			String tempPrice = getTestdata("Price",XLSheetUserIDs);
+			mobileAction.selectItemFromList(price,tempPrice);
+			if(tempPrice.equalsIgnoreCase("Net Debit") || tempPrice.equalsIgnoreCase("Net Credit") || tempPrice.equalsIgnoreCase("Débit net") || tempPrice.equalsIgnoreCase("Crédit net"))
+			{
+				FuncEnterText(LimitPrice, "10");
+			}
+			
+			if(mobileAction.isObjExists(shareholderType, 2) && getTestdata("ShareHolder",XLSheetUserIDs)!="")
 			{
 				mobileAction.selectItemFromList(shareholderType, getTestdata("ShareHolder",XLSheetUserIDs));
 				mobileAction.FuncSwipeOnce("up");
 			}
-			mobileAction.selectItemFromList(goodTill, getTestdata("Good'til",XLSheetUserIDs));
+			
+			String tempGoodTill = getTestdata("Good'til",XLSheetUserIDs);
+			mobileAction.selectItemFromList(goodTill,tempGoodTill);
 			mobileAction.FuncSwipeOnce("up");
+			
+			if(tempGoodTill.equalsIgnoreCase("Specify") || tempGoodTill.equalsIgnoreCase("Préciser"))
+			{
+				//
+			}
 			if(mobileAction.isObjExists(editTextPassword, 2))
 			{
-				//mobileAction.FuncSendKeys(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
 				FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
 			}
 
@@ -969,6 +995,98 @@ public class TradeMultiLeg extends _CommonPage{
 		}
 	}
 	
+	public void submitStockOptionOrder()
+	{
+		Decorator();
+		try
+		{
+			String sLeg2OptionChainVal = getTestdata("Leg2OptionChainVal",XLSheetUserIDs);
+			
+			if(sLeg2OptionChainVal.equalsIgnoreCase("AskCALLS"))
+				fillStockOptionOrder(firstAskCALLS, "firstAskCALLS");
+			else if(sLeg2OptionChainVal.equalsIgnoreCase("AskPUTS"))
+				fillStockOptionOrder(firstAskPUTS, "firstAskPUTS");
+			else if(sLeg2OptionChainVal.equalsIgnoreCase("BidCALLS"))
+				fillStockOptionOrder(firstBidCALLS, "firstBidCALLS");
+			else if(sLeg2OptionChainVal.equalsIgnoreCase("BidPUTS"))
+				fillStockOptionOrder(firstBidPUTS, "firstBidPUTS");
+							
+			mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
+			mobileAction.FuncClick(agreeButton, "agreeButton");
+			mobileAction.verifyElement(titleConfirmOrder, getTestdata("urlTitle",XLSheetUserIDs));
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public void submitOptionOptionOrder()
+	{
+		Decorator();
+		try
+		{
+			String sLeg1OptionChainVal = getTestdata("Leg1OptionChainVal",XLSheetUserIDs);
+			String sLeg2OptionChainVal = getTestdata("Leg2OptionChainVal",XLSheetUserIDs);
+			
+			if(sLeg1OptionChainVal.equalsIgnoreCase("AskCALLS") && sLeg2OptionChainVal.equalsIgnoreCase("AskCALLS"))
+				fillOptionOptionOrder(firstAskCALLS, "firstAskCALLS",firstAskCALLS, "firstAskCALLS");
+			
+			else if(sLeg1OptionChainVal.equalsIgnoreCase("AskCALLS") && sLeg2OptionChainVal.equalsIgnoreCase("AskPUTS"))
+				fillOptionOptionOrder(firstAskCALLS, "firstAskCALLS",firstAskPUTS, "firstAskPUTS");
+			
+			else if(sLeg1OptionChainVal.equalsIgnoreCase("AskCALLS") && sLeg2OptionChainVal.equalsIgnoreCase("BidCALLS"))
+				fillOptionOptionOrder(firstAskCALLS, "firstAskCALLS",firstBidCALLS, "firstBidCALLS");
+			
+			else if(sLeg1OptionChainVal.equalsIgnoreCase("AskCALLS") && sLeg2OptionChainVal.equalsIgnoreCase("BidPUTS"))
+				fillOptionOptionOrder(firstAskCALLS, "firstAskCALLS",firstBidPUTS, "firstBidPUTS");
+			
+			else if(sLeg1OptionChainVal.equalsIgnoreCase("AskPUTS") && sLeg2OptionChainVal.equalsIgnoreCase("AskCALLS"))
+				fillOptionOptionOrder(firstAskPUTS, "firstAskPUTS",firstAskCALLS, "firstAskCALLS");
+			
+			else if(sLeg1OptionChainVal.equalsIgnoreCase("AskPUTS") && sLeg2OptionChainVal.equalsIgnoreCase("AskPUTS"))
+				fillOptionOptionOrder(firstAskPUTS, "firstAskPUTS",firstAskPUTS, "firstAskPUTS");
+			
+			else if(sLeg1OptionChainVal.equalsIgnoreCase("AskPUTS") && sLeg2OptionChainVal.equalsIgnoreCase("BidCALLS"))
+				fillOptionOptionOrder(firstAskPUTS, "firstAskPUTS",firstBidCALLS, "firstBidCALLS");
+
+			else if(sLeg1OptionChainVal.equalsIgnoreCase("AskPUTS") && sLeg2OptionChainVal.equalsIgnoreCase("BidPUTS"))
+				fillOptionOptionOrder(firstAskPUTS, "firstAskPUTS",firstBidPUTS, "firstBidPUTS");
+			
+			
+			else if(sLeg1OptionChainVal.equalsIgnoreCase("BidCALLS") && sLeg2OptionChainVal.equalsIgnoreCase("BidCALLS"))
+				fillOptionOptionOrder(firstBidCALLS, "firstBidCALLS",firstBidCALLS, "firstBidCALLS");
+
+			else if(sLeg1OptionChainVal.equalsIgnoreCase("BidCALLS") && sLeg2OptionChainVal.equalsIgnoreCase("BidPUTS"))
+				fillOptionOptionOrder(firstBidCALLS, "firstBidCALLS",firstBidPUTS, "firstBidPUTS");
+			
+			else if(sLeg1OptionChainVal.equalsIgnoreCase("BidCALLS") && sLeg2OptionChainVal.equalsIgnoreCase("AskCALLS"))
+				fillOptionOptionOrder(firstBidCALLS, "firstBidCALLS",firstAskCALLS, "firstAskCALLS");
+			
+			else if(sLeg1OptionChainVal.equalsIgnoreCase("BidCALLS") && sLeg2OptionChainVal.equalsIgnoreCase("AskPUTS"))
+				fillOptionOptionOrder(firstBidCALLS, "firstBidCALLS",firstAskPUTS, "firstAskPUTS");
+			
+			else if(sLeg1OptionChainVal.equalsIgnoreCase("BidPUTS") && sLeg2OptionChainVal.equalsIgnoreCase("BidCALLS"))
+				fillOptionOptionOrder(firstBidPUTS, "firstBidPUTS",firstBidCALLS, "firstBidCALLS");
+			
+			else if(sLeg1OptionChainVal.equalsIgnoreCase("BidPUTS") && sLeg2OptionChainVal.equalsIgnoreCase("BidPUTS"))
+				fillOptionOptionOrder(firstBidPUTS, "firstBidPUTS",firstBidPUTS, "firstBidPUTS");
+			
+			else if(sLeg1OptionChainVal.equalsIgnoreCase("BidPUTS") && sLeg2OptionChainVal.equalsIgnoreCase("AskCALLS"))
+				fillOptionOptionOrder(firstBidPUTS, "firstBidPUTS",firstAskCALLS, "firstAskCALLS");
+			
+			else if(sLeg1OptionChainVal.equalsIgnoreCase("BidPUTS") && sLeg2OptionChainVal.equalsIgnoreCase("AskPUTS"))
+				fillOptionOptionOrder(firstBidPUTS, "firstBidPUTS",firstAskPUTS, "firstAskPUTS");
+							
+			mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
+			mobileAction.FuncClick(agreeButton, "agreeButton");
+			mobileAction.verifyElement(titleConfirmOrder, getTestdata("urlTitle",XLSheetUserIDs));
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 	public void verifyStockOptionFieldsReset()
 	{
 		try

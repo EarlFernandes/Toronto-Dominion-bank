@@ -107,7 +107,7 @@ public class MobileAction2 extends CommonLib {
 			GetReporting().FuncReport("Fail", "IllegalArgumentException");
 			throw e;
 		} catch (NoSuchElementException n) {
-			GetReporting().FuncReport("Fail", "Element not displayed" + text);
+			GetReporting().FuncReport("Fail", "Element not displayed " + text);
 			throw n;
 		} catch (Exception e) {
 			GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");

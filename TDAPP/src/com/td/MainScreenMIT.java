@@ -33,7 +33,7 @@ public class MainScreenMIT extends _CommonPage {
 	
 	//@iOSFindBy(accessibility="Investing")
 	@iOSFindBy(xpath = "//*[contains(@label,'Investing') or contains(@label,'Comptes Placements')]")
-	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Investing') or contains(@text,'Comptes Placements') and @resource-id='com.td:id/navText']")
+	@AndroidFindBy(xpath="//android.widget.TextView[(@text='Investing Accounts' or contains(@text,'Comptes Placements')) and @resource-id='com.td:id/navText']")
 	MobileElement  InvestingAccount;  
 	
 /*	@iOSFindBy(className="") // ipgone locator strat
@@ -101,7 +101,7 @@ public class MainScreenMIT extends _CommonPage {
 	    if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 	    {
 	    //CL.getTestDataInstance().SetAppFilePath("C:/Users/baraps2/MIT_Builds/Android/banking-wealth-17.3.1-20170130.145242-90-debug.apk");
-	    CL.getTestDataInstance().SetAppFilePath("C:/Automation/MIT_Builds/Android/banking-wealth-17.3.1-20170302.144812-316-debug.apk"); //path at simulator server
+	    CL.getTestDataInstance().SetAppFilePath("C:/Automation/MIT_Builds/Android/banking-wealth-17.3.1-20170308.204244-366-debug.apk"); //path at simulator server
 	      CL.mobileApp("http://0.0.0.0:4727/wd/hub"); // android
 	    }
 	// iOS
