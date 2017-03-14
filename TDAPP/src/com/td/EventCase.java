@@ -465,7 +465,7 @@ public class EventCase {
 		verifySymbolSearchResults,clickInvestingTrade,tapTradeSearchBar,clickFirstSymbol,
 		verifyStockOptionContents,verifyOptionOptionContents,verifySelectOption,verifyStockMidNaturalPrice,verifyOptionMidNaturalPrice,
 		verifyGoodTill,verifyGoodTillExpiryDate,verifySharehoderType,verifyStockOptionBackButton,verifyOptionOptionBackButton,
-		verifyOptionOptionPreviewOrderButton,searchAndSelectAccount,submitStockOptionOrder,
+		verifyOptionOptionPreviewOrderButton,searchAndSelectAccount,submitStockOptionOrder,selectDateSpecify_Android,
 	
 		 }
 
@@ -1880,6 +1880,10 @@ public class EventCase {
 		break;
 		case submitStockOptionOrder:
 			TradeMultiLeg.get().submitStockOptionOrder();
+		break;
+		
+		case selectDateSpecify_Android:
+			MLEnterOrderNegative.get().selectDateSpecify_Android();
 		break;
 		
 		}

@@ -2,6 +2,8 @@ package com.td;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -2121,5 +2123,33 @@ public class MobileAction2 extends CommonLib {
 					e1.printStackTrace();
 				}
 			}
+		}
+		
+		public String FuncGetValByRegx(String sText,String sPattern) //@Author - Sushil 14-Mar-2017
+		{
+			String sReturnVal = "";
+			try
+			{
+					//Pattern p = Pattern.compile("([0-9]+)([.|,])([0-9]+)");
+					Pattern p = Pattern.compile(sPattern);
+					
+				    Matcher m = p.matcher(sText);
+
+				    // if an occurrence if a pattern was found in a given string...
+				    if (m.find()) {
+				    	sReturnVal = m.group(0).trim();
+				    	GetReporting().FuncReport("Pass", "Regular expression return value: " + sReturnVal);
+						}
+				    else
+				    {
+				    	GetReporting().FuncReport("Fail", "Regular expression failed for Text:" + sText);
+				    }
+				    }
+			//}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			return sReturnVal;
 		}
 }

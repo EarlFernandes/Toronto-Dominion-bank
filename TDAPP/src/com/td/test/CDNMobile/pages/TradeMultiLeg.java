@@ -1,5 +1,8 @@
 package com.td.test.CDNMobile.pages;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -222,6 +225,10 @@ public class TradeMultiLeg extends _CommonPage{
 	@iOSFindBy(xpath = "//*[contains(@label,'Date')]/../*[2]") //@Author - Sushil 13-Mar-2017
 	@AndroidFindBy(id="com.td:id/selectedDate")
 	private MobileElement DateSpecify;
+	
+	@iOSFindBy(xpath = "//*[@label='Important Information' or @label='Renseignements importants']")//@Author - Sushil 02-Mar-2017
+	@AndroidFindBy(xpath="//android.widget.Button[@NAF='true' and @index=2]")
+	private MobileElement monthNextButton;
 	
 	String xpathSymbolFlag = "//android.widget.ImageView[@resource-id='com.td:id/market_symbol' and @content-desc='U S']";
 	String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'US')]";
@@ -829,7 +836,8 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			if(tempGoodTill.equalsIgnoreCase("Specify") || tempGoodTill.equalsIgnoreCase("Préciser"))
 			{
-				//
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				selectDateSpecify_Android(leg2Option);
 			}
 			if(mobileAction.isObjExists(editTextPassword, 2))
 			{
@@ -892,7 +900,8 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			if(tempGoodTill.equalsIgnoreCase("Specify") || tempGoodTill.equalsIgnoreCase("Préciser"))
 			{
-				//
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				selectDateSpecify_Android(leg2Option);
 			}
 			if(mobileAction.isObjExists(editTextPassword, 2))
 			{
@@ -1091,6 +1100,60 @@ public class TradeMultiLeg extends _CommonPage{
 	{
 		try
 		{
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public void selectDateSpecify_Android(MobileElement objOption)
+	{
+		Decorator();
+		try
+		{
+			Calendar now = Calendar.getInstance();
+
+			//System.out.println(now.getTime());
+			String format2 = new SimpleDateFormat("EE;d;MMM;yyyy", Locale.ENGLISH).format(now.getTime());
+			String sCurrentDay = format2.split(";")[0];
+			String sCurrentDate = format2.split(";")[1];
+			String sCurrentMonth = format2.split(";")[2];
+			
+			mobileAction.FuncSwipeWhileElementNotFound(objOption, false, 7, "down");
+			String sExpiryDate = mobileAction.FuncGetValByRegx(mobileAction.FuncGetText(objOption),"([0-9]+)");
+			int iSelectDate = 1;
+			String xpathDate = "";
+			
+			mobileAction.FuncSwipeWhileElementNotFound(DateSpecify, false, 7, "up");
+			mobileAction.FuncSwipeOnce("up");
+			mobileAction.FuncClick(DateSpecify, "DateSpecify");
+
+			if(sCurrentDate.equalsIgnoreCase(sExpiryDate))
+			{
+				xpathDate = "//android.view.View[@content-desc='"+ sCurrentDate + "']";
+				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(xpathDate)),sCurrentDate);
+			}
+			else if((Integer.parseInt(sCurrentDate) < Integer.parseInt(sExpiryDate)) && !sCurrentDay.equalsIgnoreCase("FRI"))
+			{
+				iSelectDate = Integer.parseInt(sCurrentDate) + 1;
+				xpathDate = "//android.view.View[@content-desc='"+ iSelectDate + "']";
+				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(xpathDate)),Integer.toString(iSelectDate));
+			}
+			else if((Integer.parseInt(sCurrentDate) < Integer.parseInt(sExpiryDate)) && sCurrentDay.equalsIgnoreCase("FRI"))
+			{
+				iSelectDate = Integer.parseInt(sCurrentDate) + 3;
+				xpathDate = "//android.view.View[@content-desc='"+ iSelectDate + "']";
+				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(xpathDate)),Integer.toString(iSelectDate));
+			}
+			else if((now.getActualMaximum(Calendar.DAY_OF_MONTH) == Integer.parseInt(sCurrentDate)))
+			{
+				mobileAction.FuncClick(monthNextButton, "monthNextButton");
+				iSelectDate = 3;
+				xpathDate = "//android.view.View[@content-desc='"+ iSelectDate + "']";
+				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(xpathDate)),Integer.toString(iSelectDate));
+			}
 			
 		}
 		catch(Exception e)
