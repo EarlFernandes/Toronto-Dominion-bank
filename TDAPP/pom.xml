@@ -136,7 +136,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 <configuration>
 <archive>
 <manifest>
- <mainClass>com.td.test.CDNMobile.main</mainClass>
+ <mainClass>com.td.test.ew.main</mainClass>
  </manifest>
  </archive>
  </configuration>
@@ -154,7 +154,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   	<dependency>
   		<groupId>org.seleniumhq.selenium</groupId>
   		<artifactId>selenium-java</artifactId>
-  		<version>2.53.0</version>
+  		<version>3.0.1</version>
   	</dependency>
   	<dependency>
   		<groupId>org.apache.poi</groupId>
@@ -179,7 +179,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   	  	<dependency>
   <groupId>io.appium</groupId>
   <artifactId>java-client</artifactId>
-  <version>4.0.0</version>
+  <version>4.1.2</version>
+</dependency>
+<dependency>
+     <groupId>com.google.guava</groupId>
+     <artifactId>guava</artifactId>
+     <version>21.0</version>
 </dependency>
   </dependencies>
  

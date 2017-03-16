@@ -51,6 +51,7 @@ import com.td.test.CDNMobile.pages.TradeMultiLeg;
 import com.td.test.CDNMobile.pages.Transaction;
 import com.td.test.CDNMobile.pages.Transfers;
 import com.td.test.CDNMobile.pages.WatchLists;
+import com.td.test.alm.Test;
 
 public class EventCase {
 
@@ -466,6 +467,7 @@ public class EventCase {
 		verifyStockOptionContents,verifyOptionOptionContents,verifySelectOption,verifyStockMidNaturalPrice,verifyOptionMidNaturalPrice,
 		verifyGoodTill,verifyGoodTillExpiryDate,verifySharehoderType,verifyStockOptionBackButton,verifyOptionOptionBackButton,
 		verifyOptionOptionPreviewOrderButton,searchAndSelectAccount,submitStockOptionOrder,selectDateSpecify_Android,
+		searchAndSelectAccountRapcode,
 	
 		 }
 
@@ -1875,16 +1877,16 @@ public class EventCase {
 		case verifyOptionOptionPreviewOrderButton:
 			TradeMultiLeg.get().verifyOptionOptionPreviewOrderButton();
 		break;
-		case searchAndSelectAccount:
-			MLEnterOrderNegative.get().searchAndSelectAccount();
+		case searchAndSelectAccountRapcode:
+			MLEnterOrderNegative.get().searchAndSelectAccountRapcode();
 		break;
 		case submitStockOptionOrder:
 			TradeMultiLeg.get().submitStockOptionOrder();
 		break;
 		
-		case selectDateSpecify_Android:
+/*		case selectDateSpecify_Android:
 			MLEnterOrderNegative.get().selectDateSpecify_Android();
-		break;
+		break;*/
 		
 		}
 	}

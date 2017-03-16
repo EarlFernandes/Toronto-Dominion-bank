@@ -131,7 +131,7 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(id="android:id/action_bar_title")
 	private MobileElement titleTrade;
 	
-	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']") //@Author - Sushil 08-Feb-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Confirm Order' or contains(@label='Confirmer l')]") //@Author - Sushil 08-Feb-2017
 	@AndroidFindBy(id="android:id/action_bar_title")
 	private MobileElement titleConfirmOrder;
 	
