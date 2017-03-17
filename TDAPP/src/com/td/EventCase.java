@@ -52,6 +52,15 @@ import com.td.test.CDNMobile.pages.Transaction;
 import com.td.test.CDNMobile.pages.Transfers;
 import com.td.test.CDNMobile.pages.WatchLists;
 
+import com.td.test.CDNMobile.pages.Security_Questions;
+import com.td.test.CDNMobile.pages.Notifications;
+import com.td.test.CDNMobile.pages.QuickAccess;
+import com.td.test.CDNMobile.pages.TDForMe;
+import com.td.test.CDNMobile.pages.WhatsNew;
+import com.td.test.CDNMobile.pages.Profile;
+import com.td.test.CDNMobile.pages.Profile_And_Settings;
+import com.td.test.CDNMobile.pages.LoginPNP;
+
 public class EventCase {
 
 	private enum functionNames {
@@ -420,6 +429,54 @@ public class EventCase {
 		USMarAccLongToShort, 
 		USMarginShort_Buy_Market,
 
+		//below is for profile and preference
+		OpenAppPNP,
+		LoginPNP,
+		Menu_Profile_And_Settings,
+		View_profile,
+		View_individual_profile,
+		View_business_profile,
+		VerifyProfileHeader,
+		VerifyContactInformationHeader,
+		getProfileInformation,
+		VerifyInitialNameforIndividual,
+		VerifyInitialNameforBusinessUser,
+		VerifyInitialNameInUpperCase,
+		VerifyHomePhoneMasked,
+		VerifyExtensionNotMasked,
+		verifyProfileandSettingLandingPage,
+		VerifyProfileNameLength,
+		EditEmailAddressWithInvalidChar,
+		VerifyErrorMessage,
+		VerifySecurityQuestionButton,
+		VeirfySecuirtyQuestionPageheader,
+		VerifyNotificationsButton,
+		VeirfyNotificationsPageheader,
+		VerifyQuickAccessSettings,
+		VerifyQuickAccessSettingsHeader,
+		VerifyTDForMeSettings,
+		VerifyTDForMeSettingsHeader,
+		VerifyWhatsNew, 
+		VerifyWhatsNewPageHeader,
+		VerifyProfileAndSettingslink,
+		VerifyEmailFormat,
+		VerifyEmailIDLength,
+		VerifyBlankEmailNotSuccesful,
+		NavigationBackToProfileandSettingPage,
+		EditEmailAddressWithNonAformat,
+		EditEmailAddressWithlonger60Char,
+		EditEmailAddressWithNolonger60Char,
+		VerifyErrorMessageOrLength,
+		VerifyEmailIDBlankorNot,
+		VerifyEmailAddedSuccesful,
+		VerifyPopUpWithCancelButton,
+		EditEmailAddressWithoutSave,
+		NavigationToHomePage,
+		SaveEmail,
+		AddVaildEmail,
+		
+		//end of profile and preference
+		
 		verify_access_to_WB, 
 		Verify_account_activity_credit, 
 		Verify_Combined_Account, 
@@ -1926,7 +1983,189 @@ public class EventCase {
 			QuickAccessPage.get().verifyQuickAccessBillPaidUpdate();
 			break;	 
 
+		//profile and preference
 
+		case OpenAppPNP:
+			MainScreenPNP.get().Splash_Conitnue();
+		    break;
+		    
+		case LoginPNP:
+		    LoginPNP.get().PNPLogin();
+		    break;
+		    
+		case Menu_Profile_And_Settings:
+		    MenuPage.get().clickProfileAndSettings();
+		    break;	    
+
+	    case View_profile:
+		    Profile_And_Settings.get().view_profile();
+		    break;	 	    
+
+	    case View_individual_profile:
+		    Profile_And_Settings.get().view_indivisual_profile();
+		    break;	
+
+	    case View_business_profile:
+		    Profile_And_Settings.get().view_business_profile();
+		    break;	
+			
+	    case VerifyProfileHeader:
+		    Profile.get().verify_profile_header();
+		    break;	
+
+	    case VerifyContactInformationHeader:
+		    Profile.get().verify_contact_information_header();
+		    break;	
+		    
+	    case getProfileInformation:
+		    Profile.get().get_profile_info();
+		    break;	
+
+	    case VerifyInitialNameforIndividual:
+		    Profile.get().VerifyInitialNameforIndividual();
+		    break;
+		    
+	    case VerifyInitialNameforBusinessUser:
+		    Profile.get().VerifyInitialNameforBusinessUser();
+		    break;
+		    
+	    case VerifyInitialNameInUpperCase:
+		    Profile.get().VerifyInitialNameInUpperCase();
+		    break;	
+		    	    
+	    case VerifyHomePhoneMasked:
+		    Profile.get().VerifyHomePhoneMasked();
+		    break;	
+
+	    case VerifyExtensionNotMasked:
+		    Profile.get().VerifyExtensionNotMasked();
+		    break;	
+		    
+	    case verifyProfileandSettingLandingPage:
+	    	Profile_And_Settings.get().verifyProfileandSettingLandingPage();
+		    break;	
+
+	    case VerifyProfileNameLength:
+	    	Profile.get().VerifyProfileNameLength();
+		    break;	
+		    
+	    case EditEmailAddressWithInvalidChar:
+	    	Profile.get().EditEmailAddressWithInvalidChar();
+		    break;	
+
+		    
+	    case VerifyErrorMessage:
+	    	Profile.get().VerifyErrorMessage();
+		    break;	
+		   	    
+	    case VerifySecurityQuestionButton:
+	    	Profile_And_Settings.get().VerifySecurityQuestionButton();
+		    break;	
+		
+	    case VeirfySecuirtyQuestionPageheader:
+	    	Security_Questions.get().VerifySecurityQuestionHeader();
+		    break;
+		    
+		    
+	    case VerifyNotificationsButton:
+	    	Profile_And_Settings.get().VerifyNotificationsButton();
+		    break;		    
+
+	    case VeirfyNotificationsPageheader:
+	    	Notifications.get().VerifyNotificationsPageHeader();
+		    break;
+		       
+	    case VerifyQuickAccessSettings:
+	    	Profile_And_Settings.get().VerifyQuickAccessSettings();
+		    break;		    
+
+	    case VerifyQuickAccessSettingsHeader:
+	    	QuickAccess.get().VerifyQuickAccessSettingsHeader();
+		    break;	
+
+	    case VerifyTDForMeSettings:
+	    	Profile_And_Settings.get().VerifyTDForMeSettings();
+		    break;		    
+
+	    case VerifyTDForMeSettingsHeader:
+	    	TDForMe.get().VerifyTDForMeSettingsHeader();
+		    break;
+
+	    case VerifyWhatsNew:
+	    	Profile_And_Settings.get().VerifyWhatsNew();
+		    break;		    
+
+	    case VerifyWhatsNewPageHeader:
+	    	WhatsNew.get().VerifyWhatsNewPageHeader();
+		    break;	
+		    
+	    case VerifyProfileAndSettingslink:
+	    	MenuPage.get().VerifyProfileAndSettingslink();
+		    break;	
+		            
+	    case VerifyEmailFormat:
+	    	Profile.get().VerifyEmailFormat();
+		    break;	
+
+	    case VerifyEmailIDLength:
+	    	Profile.get().VerifyEmailIDLength();
+		    break;
+
+	    case VerifyBlankEmailNotSuccesful:
+	    	Profile.get().VerifyBlankEmailNotSuccesful();
+		    break;	
+		    
+	    case NavigationBackToProfileandSettingPage:
+	    	Profile.get().NavigationBackToProfileandSettingPage();
+	    	//mobileAction.FuncClickBackButton();
+		    break;	
+		       
+	    case EditEmailAddressWithNonAformat:
+	    	Profile.get().EditEmailAddressWithNonAformat();
+		    break;	
+		    
+	    case EditEmailAddressWithlonger60Char:
+	    	Profile.get().EditEmailAddressWithlonger60Char();
+		    break;	    
+
+	    case EditEmailAddressWithNolonger60Char:
+	    	Profile.get().EditEmailAddressWithNolonger60Char();
+		    break;  
+		    
+		    
+	    case VerifyErrorMessageOrLength:
+	    	Profile.get().VerifyErrorMessageOrLength();
+		    break; 
+		    
+	    case VerifyEmailIDBlankorNot:
+	    	Profile.get().VerifyEmailIDBlankorNot();
+		    break;	
+
+	    case VerifyEmailAddedSuccesful:
+	    	Profile.get().VerifyEmailAddedSuccesful();
+		    break;	
+		    
+	    case VerifyPopUpWithCancelButton:
+	    	Profile.get().VerifyPopUpWithCancelButton();
+		    break;
+		    
+	    case EditEmailAddressWithoutSave:
+	    	Profile.get().EditEmailAddressWithoutSave();
+		    break;
+		    
+	    case NavigationToHomePage:
+	    	Accounts.get().NavigationToHomePage();
+		    break;
+		    		    
+	    case SaveEmail:
+	    	Profile.get().pressSaveButton();
+		    break;	
+		    
+	    case AddVaildEmail:
+	    	Profile.get().AddVaildEmail();
+		    break;
+		    
+		//end of profile and preference
 
 		
 		}

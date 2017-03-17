@@ -580,4 +580,34 @@ public class Accounts extends _CommonPage {
 		}
 	}
 
+	/**
+	 * This method will navigate to home page
+	 *
+	 * 
+	 * 
+	 * @return void
+	 * @throws Exception
+	 * 
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void NavigationToHomePage(){
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
+				mobileAction.FuncClickBackButton();
+				
+			} else {
+				//For android doing nothing				
+			}
+
+		} catch (Exception e  ) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
 }

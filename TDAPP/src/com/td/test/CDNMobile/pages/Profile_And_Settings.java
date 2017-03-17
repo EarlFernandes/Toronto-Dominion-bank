@@ -1,0 +1,294 @@
+package com.td.test.CDNMobile.pages;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.support.PageFactory;
+
+import com.td._CommonPage;
+
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.pagefactory.TimeOutDuration;
+import io.appium.java_client.pagefactory.iOSFindBy;
+
+public class Profile_And_Settings extends _CommonPage {
+
+	private static Profile_And_Settings ProfileAndSettings;
+
+	String preferences = "Profile & Settings | Profil et paramètres";
+	
+	@iOSFindBy(xpath = "//*[@label='Profile & Settings']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Profile & Settings']")
+	private MobileElement profile_preferences_Header;
+	
+	@iOSFindBy(xpath = "//*[@label='View profile >']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@text='View profile' or @text='Consulter le profil')]")
+	private MobileElement view_profile;
+	
+	@iOSFindBy(xpath = "//*[@label='View profile']")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index='0']")
+	private MobileElement view_profile_individual;
+	
+	@iOSFindBy(xpath = "//*[@label='View profile']")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index='1']")
+	private MobileElement view_profile_business;
+	
+	@iOSFindBy(xpath = "//*[@label='Click here to go to Business Profile Details :)']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='Click here to go to Business Profile Details :)']")
+	private MobileElement business_profile_details;
+	
+	@iOSFindBy(xpath = "//*[@label='Security Questions']")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_security']/android.widget.TextView")
+	private MobileElement security_questions;
+
+	@iOSFindBy(xpath = "//*[@label='Touch ID']")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_security']/android.widget.TextView")
+	private MobileElement touch_id;
+	
+	@iOSFindBy(xpath = "//*[@label='Notifications']")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_notifications']/android.widget.TextView")
+	private MobileElement notifications;
+	
+	
+	@iOSFindBy(xpath = "//*[@label='Quick Access Settings']")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_quick_access']/android.widget.TextView")
+	private MobileElement quickaccesssetting;
+	
+	@iOSFindBy(xpath = "//*[@label='TD for Me Settings']")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_tdforme']/android.widget.TextView")
+	private MobileElement tdformesettings;
+	
+	@iOSFindBy(xpath = "//*[@label=\"What's New\"]")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_whatsnew']/android.widget.TextView")
+	private MobileElement whatsnew;	
+		
+	
+	public synchronized static Profile_And_Settings get() {
+		if (ProfileAndSettings == null) {
+			ProfileAndSettings = new Profile_And_Settings();
+		}
+		return ProfileAndSettings;
+	}
+	
+	
+	
+	
+	
+	private void Decorator() {
+		PageFactory.initElements(
+				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
+				this);
+
+	}
+
+	public void prefernces_What_New_btn() {
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(whatsnew, "What_New_Button");
+		} catch (Exception e) {
+			System.out.println("What's new not found");
+		}
+	}
+
+	/**
+	 * This method will verify the preferences header and click on the update
+	 * security question button.
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void prefernces_Update_Security_Question() {
+
+		
+		Decorator();
+		try {
+			mobileAction.verifyElementIsDisplayed(profile_preferences_Header, preferences);
+			mobileAction.FuncClick(security_questions, "Secret_Question_button");
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	
+	/**
+	 * This method will verify click personal profile Details button
+	 * then go to personal profile details page
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void view_profile() {
+
+		
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(view_profile, "view profile");
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+	public void view_indivisual_profile() {
+
+		
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(view_profile_individual, "view individual profile");
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+	public void view_business_profile() {
+
+		
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(view_profile_business, "view business profile");
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+	/**
+	 * This method will verify click business profile Details button
+	 * then go to personal profile details page
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void view_business_profile_details() {
+
+		
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(business_profile_details, "business_profile_details_button");
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+	
+	public void verifyProfileandSettingLandingPage() {
+
+		
+		Decorator();
+		try {
+
+			mobileAction.verifyHeaderIsDisplayed(profile_preferences_Header, preferences);
+
+		} catch (NoSuchElementException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+	
+	public void VerifySecurityQuestionButton() {
+		
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(security_questions, "Security Questions");
+			Thread.sleep(2000);
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void VerifyNotificationsButton() {
+		
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(notifications, "Notifications");
+			Thread.sleep(2000);
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void VerifyQuickAccessSettings() {
+		
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(quickaccesssetting, "Quick Access Settings");
+			Thread.sleep(2000);
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void VerifyTDForMeSettings() {
+		
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(tdformesettings, "TD for Me Settings");
+			Thread.sleep(2000);
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void VerifyWhatsNew() {
+		
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(whatsnew, "What's New");
+			Thread.sleep(2000);
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+}

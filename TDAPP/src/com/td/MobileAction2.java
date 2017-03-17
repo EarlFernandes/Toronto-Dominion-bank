@@ -2172,4 +2172,192 @@ public class MobileAction2 extends CommonLib {
 
 		}
 
+		/**
+		 * This method will swipe within an element
+		 * 
+		 * @param swipeWithinElement
+		 *           The element identified by xpath 
+		 *        maxSwipes: maximum times swipe
+		 *        direction: swipe direction: down , up,  etc
+		 * 
+		 * @return  nothing
+		 * 
+		 */
+	    public void SwipeWithinElement(String swipeWithinElement, int maxSwipes,
+	    	    String direction) {
+
+	    	Point elementWithinLocation = ((AppiumDriver) GetDriver()).findElement(By.xpath(swipeWithinElement))
+	    		.getLocation();
+	    	Dimension elementWithinDimension = ((AppiumDriver) GetDriver()).findElement(By.xpath(swipeWithinElement))
+	    		.getSize();
+	    	int locationX = elementWithinLocation.getX();
+	    	int locationY = elementWithinLocation.getY();
+	    	int dimensionX = elementWithinDimension.width;
+	    	int dimensionY = elementWithinDimension.height;
+
+	    	int startx, starty, endx, endy;
+	    	if (direction.equalsIgnoreCase("up")) {
+	    	    startx = locationX + dimensionX / 2;
+	    	    endx = startx;
+	    	    starty = locationY + dimensionY - 5;
+	    	    endy = locationY + 10;
+	    	} else {
+	    	    startx = locationX + dimensionX / 2;
+	    	    endx = startx;
+	    	    starty = locationY + dimensionY - 10;
+	    	    endy = locationY + 10;
+	    	}
+
+	    	boolean elementFound = false;
+	    	for (int i = 1; i <= maxSwipes; i++) {
+
+	    		((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
+	    	    }
+	    	}
+	    
+	    /**
+	     * This method will verify the header text is displayed on the screen.
+	     * 
+	     * @param The
+	     *            element which has to be identified
+	     * 
+	     * @param expectedText
+	     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNÉES"
+	     *            if language is English then "CONTACT INFORMATION "to be printed in report
+	     *            if language is French then "COORDONNÉES" to be printed in report
+	     * 
+	     * @return nothing
+	     * 
+	     * 
+	     */
+	    public void verifyHeaderIsDisplayed(MobileElement mobileElement, String expectedText) throws IOException {
+	    	String[] expectedHeadertext = expectedText.split("\\|");
+	    	
+			try {
+				boolean verified = false;
+			    WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
+			    wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
+			    String capturedText="";
+			    if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			    	capturedText = mobileElement.getText();
+			    }else{
+			    	capturedText = mobileElement.getAttribute("label");
+			    }
+			    for (int i=0; i< expectedHeadertext.length; i++){
+			    	if (capturedText.equalsIgnoreCase(expectedHeadertext[i].trim())){
+			    		GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
+			    		verified = true;
+			    		break;
+			    	}
+			    }
+			    if(!verified){
+			    	GetReporting().FuncReport("Fail", "expected header not displayed:" + expectedText);	
+			    	
+			    }
+			} catch (IllegalArgumentException e) {
+			    GetReporting().FuncReport("Fail", "IllegalArgumentException");
+			    throw e;
+			    
+			} catch (NoSuchElementException n) {
+			    GetReporting().FuncReport("Fail", "Element not displayed: " + expectedText);
+			    throw n;
+			} catch (Exception e) {
+			    GetReporting().FuncReport("Fail", "The element <b>- " + expectedText + "</b> not present in current page");
+			    throw e;
+			}
+	    }
+	    
+		/**
+		 * This method will get a match string
+		 * 
+		 * @param Text
+		 *            text which is to be matched
+		 *        patternStr: reg expression string
+		 * 
+		 * @return  first matched string
+		 * 
+		 */
+       
+       public String getMatchedString(String text, String patternStr){
+        	Pattern p = Pattern.compile(patternStr);
+        	Matcher m = p.matcher(text);
+        	if(m.find()){
+        		return m.group(0);
+        	}
+        	return "";
+        } 
+        
+    	/**
+    	 * This method will return the text associated with the mobile element.
+    	 * 
+    	 * @param The
+    	 *            element whose text has to be retrieved.
+    	 * 
+    	 * @return String The text that is associated with the mobile element
+    	 *                  or value for iOS device
+    	 * 
+    	 */
+    public String getValue(MobileElement objElement) {
+    		if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+    			return objElement.getText();
+    		}else{
+    			return objElement.getAttribute("value");
+    		}
+    		
+
+    	}
+    
+	/**
+	 * This method will report pass
+	 * 
+	 * @param Text
+	 *            text which is verified.
+	 * 
+	 * @return  void
+	 * 
+	 */
+   
+    public void Report_Pass_Verified(String text){
+    	try {
+			GetReporting().FuncReport("Pass",  "'" +text + "' is verified");
+		    } catch (IOException e) {
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		    }
+    }
+    
+	/**
+	 * This method will report failure
+	 * 
+	 * @param Text
+	 *            text which is not verified.
+	 * 
+	 * @return  void
+	 * 
+	 */
+    public void Report_Fail_Not_Verified(String text){
+    	try {
+			GetReporting().FuncReport("Fail",  "'" + text + "' is not verified");
+		    } catch (IOException e) {
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		    }   	
+    }
+ 
+	/**
+	 * This method will report failure with error message
+	 * 
+	 * @param Text
+	 *            text : error message
+	 * 
+	 * @return  void
+	 * 
+	 */
+    public void Report_Fail(String text){
+    	try {
+			GetReporting().FuncReport("Fail",  text);
+		    } catch (IOException e) {
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		    }   	
+    }   		
+		
+
 }

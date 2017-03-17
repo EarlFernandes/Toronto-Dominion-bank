@@ -37,11 +37,11 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing']")
 	private MobileElement investingFRE;
 	
-	@iOSFindBy(xpath = "//[@label='Mobile Deposit']")
+	@iOSFindBy(xpath = "//*[@label='Mobile Deposit']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Mobile Deposit']")
 	private MobileElement mobile_Deposit_button;
 
-	@iOSFindBy(xpath = "//[@label='My Accounts']")
+	@iOSFindBy(xpath = "//*[@label='My Accounts']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='My Accounts']")
 	private MobileElement accounts_button;
 
@@ -75,6 +75,11 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Locations']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
 	private MobileElement locations;
+	
+	//Profile and preference
+	@iOSFindBy(xpath = "//*[@label='Profile & Settings']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Profile and Settings' or @text='Profil et paramètres')]")
+	private MobileElement profile_and_settings;
 
 
 	public synchronized static MenuPage get() {
@@ -371,4 +376,57 @@ public class MenuPage extends _CommonPage {
 		}
 
 	}
+	
+	//For profile and preference
+	
+	/**
+	 * This method will click on "Profile & Setting" on menu page
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void clickProfileAndSettings() {
+		Decorator();
+		try {
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
+			}
+			mobileAction.FuncClick(profile_and_settings, "Profile & Settings");
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	/**
+	 * This method will verify "Profile & Setting" is displayed on menu page
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void VerifyProfileAndSettingslink() {
+		Decorator();
+		try {
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
+			}
+			mobileAction.verifyElement(profile_and_settings, "Profile & Settings");
+		} catch (NoSuchElementException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
 }
