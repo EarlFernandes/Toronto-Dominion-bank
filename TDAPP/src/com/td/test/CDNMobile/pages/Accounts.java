@@ -27,6 +27,11 @@ public class Accounts extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Accounts']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Accounts']")
 	private MobileElement txtMy_Account_Header;
+	
+	@iOSFindBy(xpath = "//*[@label='INVESTING']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and @text='INVESTING']")
+	private MobileElement txtAccount_Investing_header;
+
 
 	@iOSFindBy(xpath = "//*[@label='CREDIT']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textView1'and @text='Total']")
@@ -47,13 +52,6 @@ public class Accounts extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='BANKING']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and @text='BANKING']")
 	private MobileElement txtAccount_Banking_header;
-
-	@iOSFindBy(xpath = "//*[@label='INVESTING']")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.TextView[@resource-id='com.td:id/classificationTexView'
-	// and @text='INVESTING']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Investing']")
-	private MobileElement txtAccount_Investing_header;
 
 	@iOSFindBy(xpath = "//*[contains@(label,'USD $')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[text='USD $'and @resource-id='com.td:id/usTotal')]")
@@ -82,7 +80,7 @@ public class Accounts extends _CommonPage {
 	private MobileElement progresssBar;
 
 	@iOSFindBy(xpath = "//*[@label='Activity']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and @text='INVESTING']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/activityTab' and @text='Activity']")
 	private MobileElement txtActivity;
 
 	@iOSFindBy(xpath = "//*[@label='Session Expired']")
@@ -92,6 +90,17 @@ public class Accounts extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='No Activity to display in this account']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and @text='INVESTING']")
 	private MobileElement txtNo_activity;
+	
+	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id= 'com.td:id/summaryContent']")
+	private MobileElement 	acntsListnew;
+	
+	  String from_account1 = getTestdata("FromAccount");
+      String verify_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
+			+ from_account1 + "']";
+
+@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/account_desc']")
+	private MobileElement account;
+
 
 	String sessionOutIos = "//*[@label='Session Expired']";
 	String sessionOutAndroid = "//android.widget.TextView[@resource-id='android:id/alertTitle' and @text='Session Expired']";
@@ -110,8 +119,16 @@ public class Accounts extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/account_desc']")
 	private MobileElement account_desc;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Summary')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/summaryTab' and @text='Summary']")
+	private MobileElement summaryBtn;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Account #')]")
+
+ 
+
+   
+    @iOSFindBy(xpath = "//*[contains(@label,'Account #')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/accountNumber']")
 	private MobileElement account_no;
 
@@ -185,15 +202,17 @@ public class Accounts extends _CommonPage {
 		Decorator();
 		try {
 
-			Thread.sleep(4000);
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, Account_header);
 
-			// mobileAction.FuncSelectElementInTable(accountsPage_Table,
-			// Firstpart, accountsSecondPart, from_account);
-			mobileAction.waitForElementToVanish(progresssBar);
-			Thread.sleep(4000);
-			mobileAction.FuncClick(summaryButton, "Summary");
-			mobileAction.waitForElementToVanish(progresssBar);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
+				mobileAction.FuncSelectElementInTable(accountsPage_Table, Firstpart, accountsSecondPart, from_account);
+			} else {
+				mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_from_acnt, 10, "down", true);
+
+			}
+
+			mobileAction.FuncClick(summaryBtn, "Summary");
 			mobileAction.verifyElementIsDisplayed(current_balance, "Current balance");
 			mobileAction.verifyElementIsDisplayed(account_desc, "Account Description");
 			mobileAction.verifyElementIsDisplayed(available_balance, "Available balance");
@@ -209,6 +228,7 @@ public class Accounts extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+
 
 	/**
 	 * This method will verify the Account page and checks the US and Canada
@@ -327,11 +347,10 @@ public class Accounts extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, Account_header);
-			// mobileAction.FuncSelectElementInTable(accountsPage_Table,
-			// Firstpart, accountsSecondPart, from_account);
-			mobileAction.waitForElementToVanish(progresssBar);
+			mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_from_acnt, 10, "down", true);
 			mobileAction.FuncClick(txtActivity, "Activity");
-			mobileAction.waitForElementToVanish(progresssBar);
+			mobileAction.verifyElementIsDisplayed(txtActivity, "Activity");
+			mobileAction.verifyElementIsDisplayed(account, "Account Number Displayed");
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -341,6 +360,8 @@ public class Accounts extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+
+
 
 	/**
 	 * This method will verify the Account page and banking Header is present .

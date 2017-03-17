@@ -51,7 +51,6 @@ import com.td.test.CDNMobile.pages.TradeMultiLeg;
 import com.td.test.CDNMobile.pages.Transaction;
 import com.td.test.CDNMobile.pages.Transfers;
 import com.td.test.CDNMobile.pages.WatchLists;
-import com.td.test.alm.Test;
 
 public class EventCase {
 
@@ -90,6 +89,10 @@ public class EventCase {
 		ApplePay_ChangeDefaultCard,
 		ApplePay_CheckPersonalCard,
 		ApplePay_CheckBusinessCard,
+		ApplePay_CheckDefaultCard,
+		ApplePay_AddAllCards,
+		ApplePay_OtherEligibleCards,
+		Accounts_Credit_clickTransfer,
 	
 		
 		
@@ -124,6 +127,8 @@ public class EventCase {
 		Bills_ScheduledPayments, 
 		BillsHeader,
 		BetweenMyAccounts_TFSAUSD_TFSACAD(),
+		Bill_PayCanada_Pay_Bill,
+		Between_My_Accounts_RTB_permissible_transfer,
 
 		CanadianPayee_ConfirmPage, 
 		Cancel,
@@ -173,6 +178,7 @@ public class EventCase {
 		Env_set, 
 		Env_EnableMobilePayment,
 		Env_ClearSavedCards,
+		Env_DeleteDefaultCard,
 		
 		FlyOut_HOME, 
 		Flyout_Location, 
@@ -444,6 +450,7 @@ public class EventCase {
 		VerifyUser,
 		VerifyNickName,
 		 verifydefaultcard,
+		 verifyQuickAccessBillPaidUpdate,
 
 		WatchLists_addSymbolToWatchLists, 
 		WatchLists_clickSearchBar, 
@@ -467,7 +474,6 @@ public class EventCase {
 		verifyStockOptionContents,verifyOptionOptionContents,verifySelectOption,verifyStockMidNaturalPrice,verifyOptionMidNaturalPrice,
 		verifyGoodTill,verifyGoodTillExpiryDate,verifySharehoderType,verifyStockOptionBackButton,verifyOptionOptionBackButton,
 		verifyOptionOptionPreviewOrderButton,searchAndSelectAccount,submitStockOptionOrder,selectDateSpecify_Android,
-		searchAndSelectAccountRapcode,
 	
 		 }
 
@@ -1877,16 +1883,51 @@ public class EventCase {
 		case verifyOptionOptionPreviewOrderButton:
 			TradeMultiLeg.get().verifyOptionOptionPreviewOrderButton();
 		break;
-		case searchAndSelectAccountRapcode:
-			MLEnterOrderNegative.get().searchAndSelectAccountRapcode();
+		case searchAndSelectAccount:
+			MLEnterOrderNegative.get().searchAndSelectAccount();
 		break;
 		case submitStockOptionOrder:
 			TradeMultiLeg.get().submitStockOptionOrder();
 		break;
 		
-/*		case selectDateSpecify_Android:
+		case selectDateSpecify_Android:
 			MLEnterOrderNegative.get().selectDateSpecify_Android();
-		break;*/
+		break;
+		
+		case Env_DeleteDefaultCard:
+			Env_Settings.get().deleteDefaultCard();
+			break;
+			
+		case ApplePay_CheckDefaultCard:
+			ApplePay.get().checkDefaultCard();
+			break;
+			
+		case ApplePay_AddAllCards:
+			ApplePay.get().addAllCards();
+			break;
+			
+		case ApplePay_OtherEligibleCards:
+			ApplePay.get().otherEligibleCards();
+			break;
+	
+		case Bill_PayCanada_Pay_Bill:
+			Bill_PayCanada.get().pay_bill();
+			break;	
+			
+		case Accounts_Credit_clickTransfer:
+			Accounts_Credit.get().clickTransfer();
+			break;
+
+		case Between_My_Accounts_RTB_permissible_transfer:
+			Between_My_accounts.get().RTB_permissible_transfer();
+			break;
+			
+		case verifyQuickAccessBillPaidUpdate:
+			QuickAccessPage.get().verifyQuickAccessBillPaidUpdate();
+			break;	 
+
+
+
 		
 		}
 	}

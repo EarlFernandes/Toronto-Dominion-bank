@@ -72,6 +72,10 @@ public class ApplePay extends _CommonPage {
 
 	@iOSFindBy(xpath = " //*[@label='Get Started')]")
 	private MobileElement getStartedButton;
+	
+	@iOSFindBy(xpath = "//*[@label='Login to add all your TD cards']")
+	private MobileElement addAllCardsButton;
+
 
 	public synchronized static ApplePay get() {
 		if (ApplePay == null) {
@@ -225,4 +229,53 @@ public class ApplePay extends _CommonPage {
 		}
 
 	}
+	
+	public void checkDefaultCard() {
+
+		infoPage();
+		Decorator();
+		try {
+			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.FuncClick(firstCard, "Select the card");
+
+			mobileAction.verifyElementIsDisplayed(defaultCard, "Default Card");
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
+	}
+	
+	public void addAllCards() {
+
+		infoPage();
+		Decorator();
+		try {
+			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.FuncClick(addAllCardsButton, "Select the card");
+	
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
+	}
+	
+	public void otherEligibleCards() {
+
+		infoPage();
+		Decorator();
+		try {
+			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.verifyElementIsDisplayed(tapCardHeader, "Select the card");
+	
+		} catch (NoSuchElementException  | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
+	}
+
 }
+
+

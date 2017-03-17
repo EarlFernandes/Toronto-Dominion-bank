@@ -34,16 +34,17 @@ public class ManageRecipients extends _CommonPage {
     @iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeLink[1]/XCUIElementTypeLink/XCUIElementTypeStaticText")
      private MobileElement selectRecipient;
 
+
     @iOSFindBy(xpath = "//*[@label='Edit']")
-    @AndroidFindBy(xpath = "//android.widget.TextView[@content-desc='Edit']")
+    @AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Edit']")
     private MobileElement editRecipient;
 
     @iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[6]/XCUIElementTypeTextField")
-    @AndroidFindBy(xpath = "//android.view.View[@index='4']")
+    @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Email')]/following-sibling::android.view.View/android.widget.EditText")
     private MobileElement recipientMailAddr;
 
     @iOSFindBy(xpath = "//*[@label='Done']")
-    @AndroidFindBy(xpath = "//android.widget.TextView[@content-desc='Done']")
+    @AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Done']")
     private MobileElement done;
 
     @iOSFindBy(xpath = "//*[@label='Enter the answer']")
@@ -138,21 +139,6 @@ public class ManageRecipients extends _CommonPage {
     	    mobileAction.FuncClick(selectRecipient, "Select Recipient");
     	    mobileAction.FuncClick(editRecipient, "Edit Recipient");
     	    mobileAction.FuncClick(recipientMailAddr,"recipientMail");
-    	    recipientMailAddr.clear();
-    	    recipientMailAddr.clear();
-    	    recipientMailAddr.clear();
-    	    recipientMailAddr.clear();
-    	    recipientMailAddr.clear();
-    	    recipientMailAddr.clear();
-    	    recipientMailAddr.clear();
-    	    recipientMailAddr.clear();
-    	    recipientMailAddr.clear();
-    	    recipientMailAddr.clear();
-    	    recipientMailAddr.clear();
-    	    recipientMailAddr.clear();
-    	    recipientMailAddr.clear();
-    	    recipientMailAddr.clear();
-    	    recipientMailAddr.clear();
     	    recipientMailAddr.clear();
     	    mobileAction.FuncSendKeys(recipientMailAddr, recipientMail);
     	    mobileAction.FuncHideKeyboard();

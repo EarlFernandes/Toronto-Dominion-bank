@@ -60,7 +60,7 @@ public class Interac_e_Transfer extends _CommonPage {
     private MobileElement confirmation_val;
 
     @iOSFindBy(xpath = "//*[@label='From account, Select from account']")
-    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_from_account']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_account_title']")
     private MobileElement fromAccount;
 
     @iOSFindBy(xpath = "//*[@label='-Balance-']")
@@ -74,7 +74,7 @@ public class Interac_e_Transfer extends _CommonPage {
     private MobileElement acntsListSender;
 
     @iOSFindBy(xpath = "//*[@label='Recipient, Select recipient']")
-    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_recipient']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/recipient_title' and @text='Recipient']")
     private MobileElement recipient;
 
     @iOSFindBy(xpath = "//*[@label='Done']")
@@ -111,10 +111,11 @@ public class Interac_e_Transfer extends _CommonPage {
     String select_Account = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_from_account' and @text='"
 	    + transfer_fromAccount + "')]";
 
-    String transferRecipient = getTestdata("ToAccount");
-    String select_Recipient = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_from_account' and @text='"
-	    + transferRecipient + "')]";
-
+    String transferRecipient = getTestdata("Accounts");
+    String select_Recipient = "//android.widget.TextView[@resource-id='com.td:id/txt_recipient_email' and @text='"
+    	    + transferRecipient + "']";
+    
+    
     @iOSFindBy(xpath = "//*[@label='From account, Select from account']")
     private MobileElement fromAccountData;
 
@@ -294,46 +295,43 @@ try {
      * 
      */
     public void interacTransfer_cancel() {
-	double accVal = 0.00;
-	Decorator();
-	try {
+    	double accVal = 0.00;
+    	Decorator();
+    	try {
 
-	    if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-		mobileAction.FuncClick(selectSender, "Sender");
-		mobileAction.FuncSelectElementInTable(senderTable, Firstpart, Secondpart, sender_SelectSender);
-		mobileAction.FuncClick(recipient, "Recipient");
-		mobileAction.FuncClick(etransfer_Amount, "Amount");
-		mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
-		mobileAction.FuncClick(done, "Done");
-		mobileAction.FuncClick(transfer_Continue, "Continue");
-		mobileAction.FuncClick(cancel, "Cancel");
+    	    if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+    		mobileAction.FuncClick(selectSender, "Sender");
+    		mobileAction.FuncSelectElementInTable(senderTable, Firstpart, Secondpart, sender_SelectSender);
+    		mobileAction.FuncClick(recipient, "Recipient");
+    		mobileAction.FuncClick(etransfer_Amount, "Amount");
+    		mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
+    		mobileAction.FuncClick(done, "Done");
+    		mobileAction.FuncClick(transfer_Continue, "Continue");
+    		mobileAction.FuncClick(cancel, "Cancel");
 
-	    } else {
+    	    } else {
 
-		mobileAction.verifyElement(Interac_Etransfer_Header, "Interac e-Transfer");
-		mobileAction.FuncClick(selectSender, "Sender");
-		mobileAction.FuncElementSwipeWhileNotFound(acntsListSender, select_SenderValue, 0, "down", true);
+    		mobileAction.verifyElement(Interac_Etransfer_Header, "Interac e-Transfer");
+    		mobileAction.FuncClick(selectSender, "Sender");
+    		mobileAction.FuncElementSwipeWhileNotFound(acntsListSender, select_SenderValue, 1, "down", true);
 
-		mobileAction.FuncClick(fromAccount, "From Account");
-		accVal = Double.parseDouble(mobileAction.getText(fromAccountVal));
-		mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Account, 0, "down", true);
-		mobileAction.FuncClick(recipient, "Recipient");
+    		mobileAction.FuncClick(recipient, "Recipient");
 
-		mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Recipient, 0, "down", true);
-		String ValueofAmount = getTestdata("Amount");
-		mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
-		mobileAction.FuncClickBackButton();
-		mobileAction.FuncClick(transfer_Continue, "Continue");
-		mobileAction.FuncClick(cancel, "Cancel");
-	    }
-	} catch (NoSuchElementException | InterruptedException | IOException e) {
-	    System.err.println("TestCase has failed.");
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-	} catch (Exception e) {
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-	}
+    		mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Recipient, 2, "down", true);
+    		String ValueofAmount = getTestdata("Amount");
+    		mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
+    		mobileAction.FuncClickBackButton();
+    		mobileAction.FuncClick(transfer_Continue, "Continue");
+    		mobileAction.FuncClick(cancel, "Cancel");
+    	    }
+    	} catch (NoSuchElementException | InterruptedException | IOException e) {
+    	    System.err.println("TestCase has failed.");
+    	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+    	} catch (Exception e) {
+    	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+    	}
 
-    }
+        }
 
     /**
      * This method will click sender dropdown and click cancel button in sender

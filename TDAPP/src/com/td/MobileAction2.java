@@ -2152,4 +2152,24 @@ public class MobileAction2 extends CommonLib {
 			}
 			return sReturnVal;
 		}
+		
+		/**
+		 * This method will get the Mobile element from XPATH
+		 * 
+		 *
+		 * @param objElement
+		 *            The MobileElement on which the click action has to be
+		 *            performed.
+		 * @throws Exception
+		 *             In case an exception occurs while clicking over the element.
+		 *             In case the element is not found over the screen.
+		 */
+		public MobileElement mobileElementUsingXPath(String objElement) throws IOException {
+
+			MobileElement objMobileElement = (MobileElement) ((AppiumDriver) GetDriver()).findElement(By.xpath(objElement));
+
+			return objMobileElement;
+
+		}
+
 }

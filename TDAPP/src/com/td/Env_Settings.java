@@ -61,7 +61,9 @@ public class Env_Settings extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'SYS70')]")
 	private MobileElement environment;
-
+	
+	
+	String env = "//XCUIElementTypeStaticText[@label='" + env_need_set + "']";
 	String cnfgrn = "//android.widget.TextView[@resource-id='com.td:id/title'and @text='" + env_need_set + "']";
 	String env_Set = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]";
 
@@ -193,4 +195,33 @@ public class Env_Settings extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	public void deleteDefaultCard() throws Exception {
+		Decorator();
+		try {
+
+			mobileAction.FunCSwipeandScroll(network_settings, true);
+			if (enableMobilePaymentSwitch.getAttribute("value").equals("false")) {
+				mobileAction.FuncClick(enableMobilePaymentSwitch, "Enable mobile Payment Switch");
+			} else {
+				mobileAction.FuncClick(enableMobilePaymentTextField, "Enable mobile Payment TextField");
+				String savedCards = mobileAction.getText(enableMobilePaymentTextField);
+				if (savedCards.contains(":")) {
+					enableMobilePaymentTextField.clear();
+					String noneDefaultCard = savedCards.substring(0, savedCards.indexOf(","));
+					System.out.println(noneDefaultCard);
+					mobileAction.FuncSendKeys(noneDefaultCard);
+					mobileAction.FuncClick(enableMobilePaymentSaveButton, "Enable mobile Payment SaveButton");
+					mobileAction.FuncClick(okButton, "OK");
+				}
+			}
+
+			mobileAction.FunCSwipeandScroll(mobileAction.mobileElementUsingXPath(env), true);
+			
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
 }

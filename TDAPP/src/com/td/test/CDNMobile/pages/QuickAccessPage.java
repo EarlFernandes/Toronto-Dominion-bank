@@ -25,6 +25,11 @@ public class QuickAccessPage extends _CommonPage {
 	@iOSFindBy(xpath= "//*[@label='Get Started']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_easy_access_enroll' and @text='Get Started']")
 	private MobileElement get_started;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'PREFERRED CHEQUING ACCOUNT')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccount' and @text='Select From Account']")
+	private MobileElement from_account;
+
 
 	public synchronized static QuickAccessPage get() {
 		if (QuickAccessPage == null) {
@@ -59,10 +64,28 @@ public class QuickAccessPage extends _CommonPage {
 			mobileAction.quitDriver();
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
+	
+	public void verifyQuickAccessBillPaidUpdate() {
+		Decorator();
+		try {
+			boolean flag=Access_header.isDisplayed();
+			if(flag){
+			//mobileAction.verifyElementIsDisplayed(get_started,t_getStarted);
+			//mobileAction.FuncClick(Access_header, "QuickAccess");
+			mobileAction.verifyElement(from_account, "PREFERRED CHEQUING ACCOUNT");
+			mobileAction.quitDriver();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	
+}
+
+
 
 }

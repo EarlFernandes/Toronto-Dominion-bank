@@ -22,13 +22,11 @@ public class Confirm_Payee extends _CommonPage{
 	private static Confirm_Payee Confirm_Payee;
 	
 	@iOSFindBy(xpath="//*[@label='Confirm']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Confirm']")
 	private MobileElement confirm_header;
-	
-	
-	
+
 	@iOSFindBy(xpath="//*[@label='Payee Name']")
 	private MobileElement payee_Name;
-	
 	
 	@iOSFindBy(xpath="//*[@label='Access Card']")
 	private MobileElement access_card;

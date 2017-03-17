@@ -79,6 +79,16 @@ public class Accounts_Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/three_statements_ago']")
 	private MobileElement threeStatementAgo;
 
+	@iOSFindBy(xpath = "//*[@label='TRANSFER']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transferTo' and @text='TRANSFERS']")
+	private MobileElement Transfer_btn;
+	
+	@iOSFindBy(xpath = "//*[@label='In Progress']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	private MobileElement progressBar;
+
+
+	
 	public synchronized static Accounts_Credit get() {
 		if (Accounts_Credit == null) {
 			Accounts_Credit = new Accounts_Credit();
@@ -269,5 +279,18 @@ public class Accounts_Credit extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	public void clickTransfer() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(Transfer_btn, "Transfer");
+			mobileAction.waitForElementToVanish(progressBar);
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
 
 }

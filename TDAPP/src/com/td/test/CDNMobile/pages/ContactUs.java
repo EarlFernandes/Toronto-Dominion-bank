@@ -28,8 +28,12 @@ public class ContactUs extends _CommonPage {
 	private MobileElement tdDirectInvesting;
 	
 	@iOSFindBy(xpath = "//*[@label='Call']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/accntBalanceSum']")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/ivTDWealthDINumberPhone']")
 	private MobileElement call_button;
+	
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='OK']")
+	private MobileElement ok;
+
 	
 	String t_call="Call";
 
@@ -63,10 +67,10 @@ public class ContactUs extends _CommonPage {
 		Decorator();
 		try {
 		if(contactUs.isDisplayed()==true){
-			mobileAction.FuncClick(tdDirectInvesting, "tdDirectInvesting");
 			
 			mobileAction.verifyElementIsDisplayed(call_button, t_call);
 			mobileAction.FuncClick(call_button, "Call");
+			mobileAction.FuncClick(ok, "Ok");
 		}
 		}catch (NoSuchElementException | IOException |InterruptedException e) {
 			e.printStackTrace();
@@ -74,3 +78,4 @@ public class ContactUs extends _CommonPage {
 		}
 		}
 }
+

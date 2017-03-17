@@ -44,12 +44,13 @@ public class MobileDeposit extends _CommonPage {
 	private MobileElement validationfourthLine;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Have at least one eligible Chequing or Savings account')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[starts-with(@text,'Have at least one eligible Chequing or Savings account')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Have at least one eligible Chequing')]")
 	private MobileElement validation_fifthLine;
 
 	@iOSFindBy(xpath = "//*[starts-with(@label,'To make a deposit, please visit a Branch or ATM')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[starts-with(@text,'To make a deposit, please visit a Branch or ATM')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'To make a deposit')]")
 	private MobileElement validation_sixthLine;
+
 	
 	String mobile_Header_value = "Mobile Deposit";
 
@@ -90,7 +91,7 @@ public class MobileDeposit extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(validation_firstLine, ConstantClass.firstLine_Value);
 			mobileAction.verifyElementIsDisplayed(validation_secondLine,ConstantClass.secondLine_Value);
 			mobileAction.verifyElementIsDisplayed(validation_thirdLine, ConstantClass.t_thirdLine_Value);
-			mobileAction.verifyElementIsDisplayed(validationfourthLine, ConstantClass.t_fourthLine_Value);
+			//mobileAction.verifyElementIsDisplayed(validationfourthLine, ConstantClass.t_fourthLine_Value);
 			mobileAction.verifyElementIsDisplayed(validation_fifthLine, ConstantClass.t_fifthLine_Value);
 			mobileAction.verifyElementIsDisplayed(validation_sixthLine, ConstantClass.t_sixthLine_Value);
 

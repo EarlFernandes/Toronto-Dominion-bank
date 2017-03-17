@@ -494,8 +494,9 @@ public class Login extends _CommonPage {
 				mobileAction.FuncClick(logout, "Logout");
 				mobileAction.FuncClick(backButton, "BackButton");
 			} else {
-
-			}
+				mobileAction.FuncClick(menu, "Menu");
+				mobileAction.FuncClick(logout, "Logout");
+}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -886,65 +887,36 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 
-			if (select_accesscard.isDisplayed() == true) {
+			verifyAccessCard();
+			mobileAction.FuncClick(username, "Username");
+			mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
+			mobileAction.FuncClick(password, "Password");
+			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 
-				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
-				mobileAction.FuncClick(addUser, "AddUser");
-				mobileAction.FuncClick(username, "Username");
-				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-				mobileAction.FuncClick(password, "Password");
-				mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-
-					mobileAction.FuncHideKeyboard();
-					mobileAction.FuncClick(login, "Login");
-					mobileAction.waitForElementToVanish(progressBar);
-				} else {
-					mobileAction.FuncClick(login, "Login");
-					mobileAction.waitForElementToVanish(progressBar);
-				}
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClick(login, "Login");
+				mobileAction.waitForElementToVanish(progressBar);
+				
 			} else {
-
-				mobileAction.FuncClick(username, "Username");
-				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-
-				mobileAction.FuncClick(password, "Password");
-				mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					mobileAction.FuncHideKeyboard();
-					mobileAction.FuncClick(login, "Login");
-					mobileAction.waitForElementToVanish(progressBar);
-				} else {
-					mobileAction.FuncClick(login, "Login");
-					mobileAction.waitForElementToVanish(progressBar);
-				}
+				mobileAction.FuncClick(login, "Login");
+				mobileAction.waitForElementToVanish(progressBar);
+				Thread.sleep(5000);
 			}
-			try {
-				if (errorText.isDisplayed() == true) {
-
-				}
-			} catch (Exception e) {
-				System.err.println("TestCase has failed.");
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			}
-			Thread.sleep(5000);
-
+			verifySystemError();
+			verifySecurityQuestion();
+			verifyTandC();
+			Thread.sleep(10000);
 			logout();
 
-		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (InterruptedException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
 	}
+
+
 
 	/**
 	 * This method will login the application

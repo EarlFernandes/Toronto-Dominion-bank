@@ -30,8 +30,9 @@ public class Transfers extends _CommonPage {
 	}
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Pending Interac e-Transfer')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/canTotal' and @text='View pending and cancelled Interac e-Transfers']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Pending Interac e-Transfer']")
 	private MobileElement pending_transfer;
+
 
 	@iOSFindBy(xpath= "//*[@label='Transfers']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Transfers']")

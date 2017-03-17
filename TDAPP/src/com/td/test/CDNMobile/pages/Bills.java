@@ -51,6 +51,10 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Pay Bill']")
 	private MobileElement pay_bills_header;
 	
+	@iOSFindBy(xpath ="//*[@label='Manage Payees']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Manage Payees']")
+	private MobileElement manage_payees_header;
+
 	@iOSFindBy(xpath ="//*[@label='Pay U.S. Bill']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay U.S. Bills']")
 	private MobileElement pay_us_bills_header;
@@ -249,7 +253,12 @@ public class Bills extends _CommonPage {
 		mobileAction.FuncClick(back_button,"back arrow button clicked");
 		mobileAction.FuncClick(pay_us_bills, "Pay US Bills");
 		mobileAction.verifyElementIsDisplayed(pay_us_bills_header, "Pay US Bill Functionality Page Displayed");
-		            mobileAction.FuncClick(back_button,"back arrow button clicked");
+		mobileAction.FuncClick(back_button,"back arrow button clicked");
+		mobileAction.FuncClick(manage_payees, "Manage Payees");
+
+
+		mobileAction.verifyElementIsDisplayed(manage_payees_header, "Manage Payees Page Displayed");
+		mobileAction.FuncClick(back_button,"back arrow button clicked");
 		mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
 		mobileAction.verifyElementIsDisplayed(scheduled_payments_header, "Scheduled Payments Functionality Page Displayed");
 		}
@@ -262,6 +271,8 @@ public class Bills extends _CommonPage {
 	CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 	}
 	}
+
+
 
 	/**
 	* This method will click on the Back  button 
