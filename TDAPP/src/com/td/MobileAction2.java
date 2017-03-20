@@ -2172,48 +2172,48 @@ public class MobileAction2 extends CommonLib {
 
 		}
 
-		/**
-		 * This method will swipe within an element
-		 * 
-		 * @param swipeWithinElement
-		 *           The element identified by xpath 
-		 *        maxSwipes: maximum times swipe
-		 *        direction: swipe direction: down , up,  etc
-		 * 
-		 * @return  nothing
-		 * 
-		 */
-	    public void SwipeWithinElement(String swipeWithinElement, int maxSwipes,
-	    	    String direction) {
-
-	    	Point elementWithinLocation = ((AppiumDriver) GetDriver()).findElement(By.xpath(swipeWithinElement))
-	    		.getLocation();
-	    	Dimension elementWithinDimension = ((AppiumDriver) GetDriver()).findElement(By.xpath(swipeWithinElement))
-	    		.getSize();
-	    	int locationX = elementWithinLocation.getX();
-	    	int locationY = elementWithinLocation.getY();
-	    	int dimensionX = elementWithinDimension.width;
-	    	int dimensionY = elementWithinDimension.height;
-
-	    	int startx, starty, endx, endy;
-	    	if (direction.equalsIgnoreCase("up")) {
-	    	    startx = locationX + dimensionX / 2;
-	    	    endx = startx;
-	    	    starty = locationY + dimensionY - 5;
-	    	    endy = locationY + 10;
-	    	} else {
-	    	    startx = locationX + dimensionX / 2;
-	    	    endx = startx;
-	    	    starty = locationY + dimensionY - 10;
-	    	    endy = locationY + 10;
-	    	}
-
-	    	boolean elementFound = false;
-	    	for (int i = 1; i <= maxSwipes; i++) {
-
-	    		((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
-	    	    }
-	    	}
+//		/**
+//		 * This method will swipe within an element
+//		 * 
+//		 * @param swipeWithinElement
+//		 *           The element identified by xpath 
+//		 *        maxSwipes: maximum times swipe
+//		 *        direction: swipe direction: down , up,  etc
+//		 * 
+//		 * @return  nothing
+//		 * 
+//		 */
+//	    public void SwipeWithinElement(String swipeWithinElement, int maxSwipes,
+//	    	    String direction) {
+//
+//	    	Point elementWithinLocation = ((AppiumDriver) GetDriver()).findElement(By.xpath(swipeWithinElement))
+//	    		.getLocation();
+//	    	Dimension elementWithinDimension = ((AppiumDriver) GetDriver()).findElement(By.xpath(swipeWithinElement))
+//	    		.getSize();
+//	    	int locationX = elementWithinLocation.getX();
+//	    	int locationY = elementWithinLocation.getY();
+//	    	int dimensionX = elementWithinDimension.width;
+//	    	int dimensionY = elementWithinDimension.height;
+//
+//	    	int startx, starty, endx, endy;
+//	    	if (direction.equalsIgnoreCase("up")) {
+//	    	    startx = locationX + dimensionX / 2;
+//	    	    endx = startx;
+//	    	    starty = locationY + dimensionY - 5;
+//	    	    endy = locationY + 10;
+//	    	} else {
+//	    	    startx = locationX + dimensionX / 2;
+//	    	    endx = startx;
+//	    	    starty = locationY + dimensionY - 10;
+//	    	    endy = locationY + 10;
+//	    	}
+//
+//	    	boolean elementFound = false;
+//	    	for (int i = 1; i <= maxSwipes; i++) {
+//
+//	    		((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
+//	    	    }
+//	    	}
 	    
 	    /**
 	     * This method will verify the header text is displayed on the screen.
@@ -2267,25 +2267,7 @@ public class MobileAction2 extends CommonLib {
 			}
 	    }
 	    
-		/**
-		 * This method will get a match string
-		 * 
-		 * @param Text
-		 *            text which is to be matched
-		 *        patternStr: reg expression string
-		 * 
-		 * @return  first matched string
-		 * 
-		 */
-       
-       public String getMatchedString(String text, String patternStr){
-        	Pattern p = Pattern.compile(patternStr);
-        	Matcher m = p.matcher(text);
-        	if(m.find()){
-        		return m.group(0);
-        	}
-        	return "";
-        } 
+
         
     	/**
     	 * This method will return the text associated with the mobile element.

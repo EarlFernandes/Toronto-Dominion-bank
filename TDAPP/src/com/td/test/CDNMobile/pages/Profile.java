@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
@@ -33,7 +34,7 @@ public class Profile extends _CommonPage {
 	int MAX_EMAIL_LENGTH =60;
 	int MAX_NAME_LENGTH = 40;
 	
-	@iOSFindBy(xpath = "//*[@label='Profile']")
+	@iOSFindBy(xpath = "//*[@label='Profile' or @label='Profil']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Profile' or @text='Profil')]")
 	private MobileElement profile_Header;
 
@@ -45,7 +46,7 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Home Phone' or @text='No de tél. (domicile)')]")
 	private MobileElement home_phone_label;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Home Phone']/../XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Home Phone' or @label='N° de tél. (domicile)']/../XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/home_phone']//android.widget.EditText[@resource-id='com.td:id/phone_number']")
 	private MobileElement home_phone_info;
 	
@@ -61,7 +62,7 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Mobile Phone' or @text='No de tél. (cell.)')]")
 	private MobileElement mobile_phone_label;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Mobile Phone']/../XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Mobile Phone' or @label='N° de tél. (cell.)']/../XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/mobile_phone']//android.widget.EditText[@resource-id='com.td:id/phone_number']")
 	private MobileElement mobile_phone_info;
 	
@@ -70,7 +71,7 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Business Phone' or @text='No de tél. (entreprise)']")
 	private MobileElement business_phone_label;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Business Phone']/../XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Business Phone' or @label='No de tél. (entreprise)']/../XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/business_phone']//android.widget.EditText[@resource-id='com.td:id/phone_number']")
 	private MobileElement business_phone_info;
 	
@@ -78,7 +79,7 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Fax' or @text='Télécopieur')]")
 	private MobileElement fax_label;
 	
-	@iOSFindBy(xpath = "//*[@label='Fax']")
+	@iOSFindBy(xpath = "//*[@label='Fax' or @label='Télécopieur']")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/fax_number']//android.widget.EditText[@resource-id='com.td:id/phone_number']")
 	private MobileElement fax_info;
 	
@@ -86,7 +87,7 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Ext. (optional)' or @text='Poste (facultatif)')]")
 	private MobileElement extention_label;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Ext. (optional)']/../XCUIElementTypeTextField[2]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Ext. (optional)' or @label='Poste (facultatif)']/../XCUIElementTypeTextField[2]")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/business_extension']//android.widget.EditText[@resource-id='com.td:id/extension']")
 	private MobileElement business_extension_info;
 	
@@ -98,11 +99,11 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Email' or @text='Adresse courriel')]")
 	private MobileElement email_label;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Email']/../XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Email' or @label='Adresse courriel']/../XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/business_email']//android.widget.EditText[@resource-id='com.td:id/description']")
 	private MobileElement business_email_info;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Email']/../XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Email' or @label='Adresse courriel']/../XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/personal_email']//android.widget.EditText[@resource-id='com.td:id/description']")
 	private MobileElement personal_email_info;
 	
@@ -130,7 +131,7 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
 	private MobileElement error_message;
 	
-	@iOSFindBy(xpath = "//*[@id='banner_info']")
+	@iOSFindBy(xpath = "//*[@id='Retour']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement back_arrow;	
 	
@@ -142,7 +143,7 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ScrollView[@resource-id='com.td:id/scrollView']/android.widget.TextView")
 	private List<MobileElement> text_Edit;
 	
-	@iOSFindBy(xpath = "//*[@label='Done']")
+	@iOSFindBy(xpath = "//*[@label='Done' or @label='OK']")
 	//@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/work_phone']//android.widget.EditText[@resource-id='com.td:id/phone_number']")
 	private MobileElement done;
 
@@ -281,9 +282,9 @@ public class Profile extends _CommonPage {
 			String homePhome = mobileAction.getValue(home_phone_info);
 			
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				homePhome = mobileAction.getMatchedString(homePhome, androidphoneReg);
+				homePhome = mobileAction.FuncGetValByRegx(homePhome, androidphoneReg);
 			}else{
-				homePhome = mobileAction.getMatchedString(homePhome, iosphoneReg);
+				homePhome = mobileAction.FuncGetValByRegx(homePhome, iosphoneReg);
 			}
 			System.out.println("homePhome :" +homePhome);
 			return homePhome;
@@ -300,9 +301,9 @@ public class Profile extends _CommonPage {
 
 			String mobilePhone = mobileAction.getValue(mobile_phone_info);
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				mobilePhone = mobileAction.getMatchedString(mobilePhone, androidphoneReg);
+				mobilePhone = mobileAction.FuncGetValByRegx(mobilePhone, androidphoneReg);
 			}else{
-				mobilePhone = mobileAction.getMatchedString(mobilePhone, iosphoneReg);
+				mobilePhone = mobileAction.FuncGetValByRegx(mobilePhone, iosphoneReg);
 			}
 			System.out.println("mobilephone :" +mobilePhone);
 			return mobilePhone;
@@ -320,9 +321,9 @@ public class Profile extends _CommonPage {
 			String workPhone = mobileAction.getValue(work_phone_info);
 			
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				workPhone = mobileAction.getMatchedString(workPhone, androidphoneReg);
+				workPhone = mobileAction.FuncGetValByRegx(workPhone, androidphoneReg);
 			}else{
-				workPhone = mobileAction.getMatchedString(workPhone, iosphoneReg);
+				workPhone = mobileAction.FuncGetValByRegx(workPhone, iosphoneReg);
 			}
 			System.out.println("workphone :" +workPhone);
 			return workPhone;
@@ -374,9 +375,9 @@ public class Profile extends _CommonPage {
 			
 			String business = mobileAction.getValue(business_phone_info);
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				business = mobileAction.getMatchedString(business, androidphoneReg);
+				business = mobileAction.FuncGetValByRegx(business, androidphoneReg);
 			}else{
-				business = mobileAction.getMatchedString(business, iosphoneReg);
+				business = mobileAction.FuncGetValByRegx(business, iosphoneReg);
 			}
 			System.out.println("business phone :" + business);
 			return business;
@@ -412,13 +413,14 @@ public class Profile extends _CommonPage {
 		
 	try {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){	
-				mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+				//mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+				mobileAction.FuncSwipeOnce("down");
 			}
 			String emailInfo = mobileAction.getValue(business_email_info);
 			
 			
 			emailInfo = emailInfo.replace(emailPlaceHolder, "");
-			emailInfo = mobileAction.getMatchedString(emailInfo, emailReg);
+			emailInfo = mobileAction.FuncGetValByRegx(emailInfo, emailReg);
 			System.out.println("email:" + emailInfo);
 			return emailInfo;
 
@@ -433,7 +435,8 @@ public class Profile extends _CommonPage {
 		
     try {
 		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			//mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			mobileAction.FuncSwipeOnce("down");
 		}
 		
 		String emailInfo = mobileAction.getValue(personal_email_info);
@@ -442,7 +445,7 @@ public class Profile extends _CommonPage {
 		//Remove placeholder
 		emailInfo = emailInfo.replace(emailPlaceHolder, "");
 		
-		emailInfo= mobileAction.getMatchedString(emailInfo, emailReg);
+		emailInfo= mobileAction.FuncGetValByRegx(emailInfo, emailReg);
 		System.out.println("email:" + emailInfo);
 		return emailInfo;
 
@@ -581,7 +584,7 @@ public class Profile extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			return;
 		}
-		String extensionDigit = mobileAction.getMatchedString(extension, extReg);
+		String extensionDigit = mobileAction.FuncGetValByRegx(extension, extReg);
 		if(!extensionDigit.isEmpty()){
 			mobileAction.Report_Pass_Verified(extensionDigit);
 		}else{
@@ -750,7 +753,8 @@ public class Profile extends _CommonPage {
 	}
 	public void EditEmailAddressWithInvalidChar(){
 		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			//mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			mobileAction.FuncSwipeOnce("down");
 		}
 		
 		String EmailAddress = CL.getTestDataInstance().TCParameters.get("EmailProfile");
@@ -768,7 +772,8 @@ public class Profile extends _CommonPage {
 	
 	public void EditEmailAddressWithNonAformat(){
 		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			//mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			mobileAction.FuncSwipeOnce("down");
 		}
 		String EmailAddress = CL.getTestDataInstance().TCParameters.get("EmailProfile");
 		System.out.println("Email got from Data table:" + EmailAddress);
@@ -783,7 +788,8 @@ public class Profile extends _CommonPage {
 
 	public void AddVaildEmail(){
 		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			//mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			mobileAction.FuncSwipeOnce("down");
 		}
 		String EmailAddress = CL.getTestDataInstance().TCParameters.get("EmailProfile");
 		System.out.println("Email from data table:" + EmailAddress);
@@ -835,7 +841,8 @@ public class Profile extends _CommonPage {
 	public void VerifyBlankEmailNotSuccesful(){
 		
 		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			//mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			mobileAction.FuncSwipeOnce("down");
 		}
 		
 		removeEmail();
@@ -889,7 +896,8 @@ public class Profile extends _CommonPage {
 	public void VerifyEmailFormat(){
 		Decorator();
 		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			//mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			mobileAction.FuncSwipeOnce("down");
 		}
 
 		String email_address= "";
@@ -905,7 +913,7 @@ public class Profile extends _CommonPage {
 		
 		if(!email_address.isEmpty() ){
 			email_address = email_address.replace(emailPlaceHolder, "");			
-			String emailInfo1 = mobileAction.getMatchedString(email_address, emailReg);
+			String emailInfo1 = mobileAction.FuncGetValByRegx(email_address, emailReg);
 			
 			if(!emailInfo1.isEmpty()){
 				mobileAction.Report_Pass_Verified(emailInfo1);
@@ -925,7 +933,8 @@ public class Profile extends _CommonPage {
 	public void VerifyEmailIDLength(){
 		Decorator();
 		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			//mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			mobileAction.FuncSwipeOnce("down");
 		}
 		String email_address= "";
 		try{
@@ -940,7 +949,7 @@ public class Profile extends _CommonPage {
 		
 		if(!email_address.isEmpty() ){
 			email_address = email_address.replace(emailPlaceHolder, "");			
-			String emailInfo1 = mobileAction.getMatchedString(email_address, emailReg);
+			String emailInfo1 = mobileAction.FuncGetValByRegx(email_address, emailReg);
 			if(!emailInfo1.isEmpty()){
 				System.out.println("Email:"+ emailInfo1);
 				if(emailInfo1.length() <= MAX_EMAIL_LENGTH){
@@ -980,7 +989,7 @@ public class Profile extends _CommonPage {
 		
 		if(email_address != null && !email_address.isEmpty()){
 			email_address = email_address.replace(emailPlaceHolder, "");			
-			String emailInfo1 = mobileAction.getMatchedString(email_address, emailReg);
+			String emailInfo1 = mobileAction.FuncGetValByRegx(email_address, emailReg);
 			if(!emailInfo1.isEmpty()){
 				System.out.println("Email:"+ emailInfo1);
 				mobileAction.Report_Pass_Verified(emailInfo1);
@@ -998,9 +1007,19 @@ public class Profile extends _CommonPage {
 	public void NavigationBackToProfileandSettingPage(){
 		
 		Decorator();
+		String back_xpath ="";
+
+		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			back_xpath = "//android.widget.ImageView[@resource-id='android:id/up']";
+		}else{
+			back_xpath = "//*[@label='Back' or @label='Retour']";
+		}
 		try{
-			//mobileAction.FuncClick(back_arrow, "<");
-			mobileAction.FuncClickBackButton();
+			MobileElement back_arrow = (MobileElement)CL.GetDriver().findElement(By.xpath(back_xpath));
+			Thread.sleep(3000);
+			mobileAction.FuncClick(back_arrow, "<");
+			Thread.sleep(3000);
+			//mobileAction.FuncClickBackButton();
 			Thread.sleep(3000);
 				
 		}catch (NoSuchElementException |  IOException e) {

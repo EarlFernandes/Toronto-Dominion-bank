@@ -18,7 +18,7 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class WhatsNew extends _CommonPage {
 
 	private static WhatsNew whatsnew;
-	String Whatsnew = "What\'s new";
+	String Whatsnew = "What\'s new | Nouveautés";
 
 	@iOSFindBy(xpath = "//*[@label='What\'s New']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")

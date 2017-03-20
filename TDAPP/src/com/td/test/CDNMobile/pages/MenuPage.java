@@ -41,8 +41,8 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Mobile Deposit']")
 	private MobileElement mobile_Deposit_button;
 
-	@iOSFindBy(xpath = "//*[@label='My Accounts']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='My Accounts']")
+	@iOSFindBy(xpath = "//*[@label='My Accounts' or @label='Mes comptes']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='My Accounts' or @text='Mes comptes')]")
 	private MobileElement accounts_button;
 
 	@iOSFindBy(xpath = "//*[@label='Virements'] ")
@@ -77,7 +77,7 @@ public class MenuPage extends _CommonPage {
 	private MobileElement locations;
 	
 	//Profile and preference
-	@iOSFindBy(xpath = "//*[@label='Profile & Settings']")
+	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label ='Profil et paramètres']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Profile and Settings' or @text='Profil et paramètres')]")
 	private MobileElement profile_and_settings;
 
@@ -395,7 +395,8 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
+				//mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
+				mobileAction.FuncSwipeOnce("down");
 			}
 			mobileAction.FuncClick(profile_and_settings, "Profile & Settings");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -420,7 +421,8 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
+				//mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
+				mobileAction.FuncSwipeOnce("down");
 			}
 			mobileAction.verifyElement(profile_and_settings, "Profile & Settings");
 		} catch (NoSuchElementException e) {

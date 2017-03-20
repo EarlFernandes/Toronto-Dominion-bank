@@ -24,8 +24,8 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/accntBalanceSum']")
 	private MobileElement txtBalance;
 
-	@iOSFindBy(xpath = "//*[@label='Accounts']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Accounts']")
+	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='Comptes']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Accounts' or @text='Comptes']")
 	private MobileElement txtMy_Account_Header;
 	
 	@iOSFindBy(xpath = "//*[@label='INVESTING']")
@@ -98,7 +98,7 @@ public class Accounts extends _CommonPage {
       String verify_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
 			+ from_account1 + "']";
 
-@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/account_desc']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/account_desc']")
 	private MobileElement account;
 
 
@@ -124,7 +124,9 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/summaryTab' and @text='Summary']")
 	private MobileElement summaryBtn;
 
-
+	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
+	private MobileElement back_button;
  
 
    
@@ -599,7 +601,7 @@ public class Accounts extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				mobileAction.FuncClickBackButton();
+				mobileAction.FuncClick(back_button, "<");
 				
 			} else {
 				//For android doing nothing				

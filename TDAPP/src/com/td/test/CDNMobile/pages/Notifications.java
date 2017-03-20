@@ -19,7 +19,7 @@ public class Notifications extends _CommonPage {
 
 	private static Notifications Notifications;
 
-	@iOSFindBy(xpath = "//*[@label='Notifications']")
+	@iOSFindBy(xpath = "//*[@label='Notifications' or @label='Avis']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement notification_title;
 
@@ -45,7 +45,7 @@ public class Notifications extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyHeaderIsDisplayed(notification_title, "Notifications");
+			mobileAction.verifyHeaderIsDisplayed(notification_title, "Notifications | Avis");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

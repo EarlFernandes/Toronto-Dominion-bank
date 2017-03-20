@@ -25,7 +25,7 @@ public class Profile_And_Settings extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Profile & Settings']")
 	private MobileElement profile_preferences_Header;
 	
-	@iOSFindBy(xpath = "//*[@label='View profile >']")
+	@iOSFindBy(xpath = "//*[@label='View profile >' or @label='Consulter le profil >']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[(@text='View profile' or @text='Consulter le profil')]")
 	private MobileElement view_profile;
 	
@@ -41,7 +41,7 @@ public class Profile_And_Settings extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@text='Click here to go to Business Profile Details :)']")
 	private MobileElement business_profile_details;
 	
-	@iOSFindBy(xpath = "//*[@label='Security Questions']")
+	@iOSFindBy(xpath = "//*[@label='Security Questions' or @label ='Questions de sécurité']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_security']/android.widget.TextView")
 	private MobileElement security_questions;
 
@@ -49,20 +49,20 @@ public class Profile_And_Settings extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_security']/android.widget.TextView")
 	private MobileElement touch_id;
 	
-	@iOSFindBy(xpath = "//*[@label='Notifications']")
+	@iOSFindBy(xpath = "//*[@label='Notifications' or @label='Avis']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_notifications']/android.widget.TextView")
 	private MobileElement notifications;
 	
 	
-	@iOSFindBy(xpath = "//*[@label='Quick Access Settings']")
+	@iOSFindBy(xpath = "//*[@label='Quick Access Settings' or @label='Paramètres du Accès rapide']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_quick_access']/android.widget.TextView")
 	private MobileElement quickaccesssetting;
 	
-	@iOSFindBy(xpath = "//*[@label='TD for Me Settings']")
+	@iOSFindBy(xpath = "//*[@label='TD for Me Settings' or @label='Paramètres de TD et moi']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_tdforme']/android.widget.TextView")
 	private MobileElement tdformesettings;
 	
-	@iOSFindBy(xpath = "//*[@label=\"What's New\"]")
+	@iOSFindBy(xpath = "//*[@label=\"What's New\" or @label='Nouveautés']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_whatsnew']/android.widget.TextView")
 	private MobileElement whatsnew;	
 		

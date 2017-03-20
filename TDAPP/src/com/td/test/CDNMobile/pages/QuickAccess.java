@@ -19,7 +19,7 @@ public class QuickAccess  extends _CommonPage {
 
 	private static QuickAccess Quickaccess;
 
-	@iOSFindBy(xpath = "//*[@label='Quick Access']")
+	@iOSFindBy(xpath = "//*[@label='Quick Access' or @label='Accès rapide']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement quickaccess_title;
 
@@ -44,8 +44,11 @@ public class QuickAccess  extends _CommonPage {
 	public void VerifyQuickAccessSettingsHeader() {
 		Decorator();
 		try {
-
-			mobileAction.verifyHeaderIsDisplayed(quickaccess_title, "Quick Access");
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				mobileAction.verifyHeaderIsDisplayed(quickaccess_title, "Quick Access Settings | Paramètres du Accès rapide");
+			}else{
+				mobileAction.verifyHeaderIsDisplayed(quickaccess_title, "Quick Access | Accès rapide");
+			}
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
