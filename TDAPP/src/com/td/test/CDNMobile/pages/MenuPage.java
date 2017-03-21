@@ -81,6 +81,11 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Profile and Settings' or @text='Profil et paramètres')]")
 	private MobileElement profile_and_settings;
 
+	//@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label ='Profil et paramètres']")
+	@AndroidFindBy(xpath = "//android.support.v4.widget.DrawerLayout")
+	private MobileElement menuLayout;
+	//android.support.v4.widget.DrawerLayout
+
 
 	public synchronized static MenuPage get() {
 		if (MenuPage == null) {
@@ -395,8 +400,15 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				//mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
-				mobileAction.FuncSwipeOnce("down");
+				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
+				//mobileAction.FuncSwipeOnce("down");
+//				try {
+//					mobileAction.FuncElementSwipeWhileNotFound(menuLayout, profile_and_settings, 2, "down", false);
+//					System.out.println("Swipe");
+//					} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 			}
 			mobileAction.FuncClick(profile_and_settings, "Profile & Settings");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -421,8 +433,14 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				//mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
-				mobileAction.FuncSwipeOnce("down");
+				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
+				//mobileAction.FuncSwipeOnce("down");
+//				try {
+//					mobileAction.FuncElementSwipeWhileNotFound(menuLayout, profile_and_settings, 2, "down", false);
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 			}
 			mobileAction.verifyElement(profile_and_settings, "Profile & Settings");
 		} catch (NoSuchElementException e) {

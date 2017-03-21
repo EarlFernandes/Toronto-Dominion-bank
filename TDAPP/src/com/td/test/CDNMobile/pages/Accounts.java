@@ -25,7 +25,7 @@ public class Accounts extends _CommonPage {
 	private MobileElement txtBalance;
 
 	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='Comptes']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Accounts' or @text='Comptes']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Accounts' or @text='Mes comptes']")
 	private MobileElement txtMy_Account_Header;
 	
 	@iOSFindBy(xpath = "//*[@label='INVESTING']")

@@ -233,13 +233,13 @@ public class LoginPNP extends _CommonPage {
 			}
 			
 
-			Thread.sleep(15000);
+			Thread.sleep(20000);
 			try{
 				String accountHeader = "";
 				if (!CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-					accountHeader = "//*[@label='Accounts']";
+					accountHeader = "//*[@label='Accounts' or @label='Comptes']";
 				}else{
-					accountHeader = "//android.widget.TextView[@text='My Accounts']";
+					accountHeader = "//android.widget.TextView[@text='My Accounts' or @text ='Mes comptes']";
 				}
 				MobileElement accountHeaderitem =(MobileElement) CL.GetDriver().findElement(By.xpath(accountHeader));
 				if(accountHeaderitem.isDisplayed()){

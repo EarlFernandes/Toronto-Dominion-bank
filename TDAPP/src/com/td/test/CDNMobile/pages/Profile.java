@@ -25,12 +25,12 @@ public class Profile extends _CommonPage {
 	String contactInfo = "CONTACT INFORMATION | COORDONNÉES";
 	String profileScrollView = "//android.widget.ScrollView[@resource-id='com.td:id/scrollView']";
 	String emailReg ="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
-	String androidphoneReg ="\\(\\*{3}\\)\\*{3}-\\d{4}";
+	String androidphoneReg ="\\(\\•{3}\\)\\•{3}-\\d{4}";
 	String iosphoneReg = "\\(\\•{3}\\) \\•{3} - \\d{4}";
 	String extReg = "\\d+";
 	String emailPlaceHolder = "example@address.com";
-	String phonePlaceHolder ="Enter number";
-	String extPlaceHolder ="Enter extension";
+	String phonePlaceHolder ="Enter number | Entrer le numéro";
+	String extPlaceHolder ="Enter extension | Entrer n° de poste";
 	int MAX_EMAIL_LENGTH =60;
 	int MAX_NAME_LENGTH = 40;
 	
@@ -274,12 +274,27 @@ public class Profile extends _CommonPage {
 		}	
 	}
 	
+	private String replacePlaceholderToNothing(String text, String placeHolder){
+		String [] replaceHolderList = placeHolder.split("\\|");
+		String returnedStr = text;
+		for (int i=0; i< replaceHolderList.length; i++){
+			returnedStr = returnedStr.replaceAll(replaceHolderList[i].trim(), "");
+		}
+		return returnedStr;
+	}
 	
 	public String get_home_phone_info() {
 			
 		try {
 			
 			String homePhome = mobileAction.getValue(home_phone_info);
+			
+			//homePhome = homePhome.replaceAll(phonePlaceHolder, "");
+			homePhome = replacePlaceholderToNothing(homePhome, phonePlaceHolder);
+			if (homePhome.isEmpty()){
+				System.out.println("homePhome is empty");
+				return "";
+			}
 			
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				homePhome = mobileAction.FuncGetValByRegx(homePhome, androidphoneReg);
@@ -300,6 +315,12 @@ public class Profile extends _CommonPage {
 		try {
 
 			String mobilePhone = mobileAction.getValue(mobile_phone_info);
+			//mobilePhone = mobilePhone.replaceAll(phonePlaceHolder, "");
+			mobilePhone = replacePlaceholderToNothing(mobilePhone, phonePlaceHolder);
+			if (mobilePhone.isEmpty()){
+				System.out.println("mobilePhone is empty");
+				return "";
+			}
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				mobilePhone = mobileAction.FuncGetValByRegx(mobilePhone, androidphoneReg);
 			}else{
@@ -319,6 +340,12 @@ public class Profile extends _CommonPage {
 		try {
 
 			String workPhone = mobileAction.getValue(work_phone_info);
+			//workPhone = workPhone.replaceAll(phonePlaceHolder, "");
+			workPhone = replacePlaceholderToNothing(workPhone, phonePlaceHolder);
+			if (workPhone.isEmpty()){
+				System.out.println("workphone is empty");
+				return "";
+			}
 			
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				workPhone = mobileAction.FuncGetValByRegx(workPhone, androidphoneReg);
@@ -370,10 +397,14 @@ public class Profile extends _CommonPage {
 	public String get_business_info() {
 			
 		try {
-					
-
-			
+								
 			String business = mobileAction.getValue(business_phone_info);
+			//business = business.replaceAll(phonePlaceHolder, "");
+			business = replacePlaceholderToNothing(business, phonePlaceHolder);
+			if (business.isEmpty()){
+				System.out.println("business phone is empty");
+				return "";
+			}
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				business = mobileAction.FuncGetValByRegx(business, androidphoneReg);
 			}else{
@@ -413,8 +444,11 @@ public class Profile extends _CommonPage {
 		
 	try {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){	
-				//mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
-				mobileAction.FuncSwipeOnce("down");
+				mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+				
+				//mobileAction.FunctionSwipe("down", 2, 500);
+				System.out.println("Swipe");
+			
 			}
 			String emailInfo = mobileAction.getValue(business_email_info);
 			
@@ -435,8 +469,9 @@ public class Profile extends _CommonPage {
 		
     try {
 		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			//mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
-			mobileAction.FuncSwipeOnce("down");
+			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			//mobileAction.FunctionSwipe("down", 2, 500);
+			System.out.println("Swipe");
 		}
 		
 		String emailInfo = mobileAction.getValue(personal_email_info);
@@ -471,6 +506,7 @@ public class Profile extends _CommonPage {
 	}
 	
 	private String get_email_info(){
+		
 		try{
 			if(business_email_info.isDisplayed()){
 				return get_business_email_info();
@@ -703,6 +739,11 @@ public class Profile extends _CommonPage {
 	}
 	
 	public void EditEmailAddress(String email){
+		
+		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			//mobileAction.FuncSwipeOnce("down");
+		}
 		try{
 			if(personal_email_info.isDisplayed()){
 				EditPersonalEmailAddress(email);
@@ -723,6 +764,11 @@ public class Profile extends _CommonPage {
 			return;
 		}
 		System.out.println("Email :" + EmailAddress);
+		
+		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			//mobileAction.FuncSwipeOnce("down");
+		}
 		
 		try{
 			if(personal_email_info.isDisplayed()){
@@ -753,8 +799,8 @@ public class Profile extends _CommonPage {
 	}
 	public void EditEmailAddressWithInvalidChar(){
 		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			//mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
-			mobileAction.FuncSwipeOnce("down");
+			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			//mobileAction.FuncSwipeOnce("down");
 		}
 		
 		String EmailAddress = CL.getTestDataInstance().TCParameters.get("EmailProfile");
@@ -772,8 +818,8 @@ public class Profile extends _CommonPage {
 	
 	public void EditEmailAddressWithNonAformat(){
 		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			//mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
-			mobileAction.FuncSwipeOnce("down");
+			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			//mobileAction.FuncSwipeOnce("down");
 		}
 		String EmailAddress = CL.getTestDataInstance().TCParameters.get("EmailProfile");
 		System.out.println("Email got from Data table:" + EmailAddress);
@@ -788,8 +834,8 @@ public class Profile extends _CommonPage {
 
 	public void AddVaildEmail(){
 		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			//mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
-			mobileAction.FuncSwipeOnce("down");
+			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			//mobileAction.FuncSwipeOnce("down");
 		}
 		String EmailAddress = CL.getTestDataInstance().TCParameters.get("EmailProfile");
 		System.out.println("Email from data table:" + EmailAddress);
@@ -841,8 +887,8 @@ public class Profile extends _CommonPage {
 	public void VerifyBlankEmailNotSuccesful(){
 		
 		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			//mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
-			mobileAction.FuncSwipeOnce("down");
+			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			//mobileAction.FuncSwipeOnce("down");
 		}
 		
 		removeEmail();
@@ -896,8 +942,8 @@ public class Profile extends _CommonPage {
 	public void VerifyEmailFormat(){
 		Decorator();
 		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			//mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
-			mobileAction.FuncSwipeOnce("down");
+			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			//mobileAction.FuncSwipeOnce("down");
 		}
 
 		String email_address= "";
@@ -933,8 +979,8 @@ public class Profile extends _CommonPage {
 	public void VerifyEmailIDLength(){
 		Decorator();
 		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			//mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
-			mobileAction.FuncSwipeOnce("down");
+			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			//mobileAction.FuncSwipeOnce("down");
 		}
 		String email_address= "";
 		try{
@@ -974,8 +1020,12 @@ public class Profile extends _CommonPage {
 	
 
 	public void VerifyEmailIDBlankorNot(){
+		
 		Decorator();
-
+		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
+			//mobileAction.FuncSwipeOnce("down");
+		}
 		String email_address= null;
 		try{
 			if(personal_email_info.isDisplayed()){
