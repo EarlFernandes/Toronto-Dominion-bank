@@ -20,7 +20,7 @@ public class Bills extends _CommonPage {
 	private static Bills Bills;
 
 	@iOSFindBy(xpath = "//*[@label='Pay Bill Pay a Canadian bill']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay a Canadian bill' and @index='1']")
+	@AndroidFindBy(xpath = "//android.widget.TableRow[@resource-id='com.td:id/tableRow1']")
 	private MobileElement pay_cananda_bill;
 
 	@iOSFindBy(xpath = "//*[@label='Manage Payees Add, edit or delete a Canadian or U.S. Payee']")
@@ -77,7 +77,7 @@ public class Bills extends _CommonPage {
 
 
 	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progrees_bar;
 
 	public synchronized static Bills get() {
@@ -301,6 +301,75 @@ public class Bills extends _CommonPage {
 	}
 
 
+	}
+	
+	/**
+	 * This method will verify text within elements for the bills page
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyBillsTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				// FIXME: Header is not detected?
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/action_bar_title' and @text='" + mobileAction.getAppString("bills_str") + "']", "Bills title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowPayBill") + "']", "Pay bills");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsHintTextPayBill") + "']", "Pay a Canadian Bill");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowPayUSBill") + "']", "Pay U.S. Bills");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsHintTextPayUSBill") + "']", "Pay a U.S. Bill");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowManagePayee") + "']", "Manage Payees");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsHintTextManagePayee") + "']", "Add, edit or delete");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowUpcomingBills") + "']", "Scheduled Payments");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("usbp_schedule_payment_hint_message") + "']", "View/Cancel pending");				
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	/**
+	 * This method will verify text within elements for the canadian bills page
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyPayCanadianBillTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				// FIXME: Header is not detected?
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/action_bar_title' and @text='" + mobileAction.getAppString("payBillPageHeader") + "']", "Pay Bills title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/lblAmount' and @text='" + mobileAction.getAppString("payBillConfirmFieldHeaderFromAccount") + "']", "From Account");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/payeeLabel' and @text='" + mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/amountLabel' and @text='" + mobileAction.getAppString("payBillDropdownHeaderAmount") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/lblDate' and @text='" + mobileAction.getAppString("payBillConfirmFieldHeaderDate") + "']", "Date");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/btn_continue' and @text='" + mobileAction.getAppString("payBillButtonContinue") + "']", "Continue");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
 	}
 
 }

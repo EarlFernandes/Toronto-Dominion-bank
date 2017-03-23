@@ -22,7 +22,6 @@ public class MenuPage extends _CommonPage {
 
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Virements' or @label='Transfers']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Transfers']")
 	private MobileElement transfers;
 
 	@iOSFindBy(xpath = "//*[@label='Bills']")
@@ -42,7 +41,6 @@ public class MenuPage extends _CommonPage {
 	private MobileElement mobile_Deposit_button;
 
 	@iOSFindBy(xpath = "//*[@label='My Accounts']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='My Accounts']")
 	private MobileElement accounts_button;
 
 	@iOSFindBy(xpath = "//*[@label='Virements'] ")
@@ -111,6 +109,11 @@ public class MenuPage extends _CommonPage {
 
 		Decorator();
 		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS xpath expression required
+			} else {
+				transfers = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("transfers_str") + "']", "Transfers");
+			}
 			mobileAction.FuncClick(transfers, "Transfers");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -183,6 +186,11 @@ public class MenuPage extends _CommonPage {
 
 		Decorator();
 		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS xpath expression required
+			} else {
+				accounts_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("str_My_Accounts") + "']", "My Accounts");
+			}
 			mobileAction.FuncClick(accounts_button, "Accounts");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -246,7 +254,7 @@ public class MenuPage extends _CommonPage {
 	}
 
 	/**
-	 * This method will click on the Transfers button on menu page
+	 * This method will click on the Bills button on menu page
 	 * 
 	 * @return void
 	 * 
@@ -261,6 +269,11 @@ public class MenuPage extends _CommonPage {
 
 		Decorator();
 		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS xpath expression required
+			} else {
+				bills = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("bills_str") + "']", "Bills");
+			}
 			mobileAction.FuncClick(bills, "Bills");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -424,6 +437,46 @@ public class MenuPage extends _CommonPage {
 			}
 			mobileAction.verifyElement(profile_and_settings, "Profile & Settings");
 		} catch (NoSuchElementException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	/**
+	 * This method will verify text within elements for the fly out menu
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyMenuTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("logoutSuccessQuickTaskHome") + "']", "Home");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("contact_str") + "']", "Contact Us");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("ActionBar_MobileDeposit") + "']", "Mobile Deposit");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("str_CrossBorder") + "']", "Cross Border Banking");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("logoutSuccessQuickTaskFindLocations") + "']", "Locations");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("str_My_Accounts") + "']", "My Accounts");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("bills_str") + "']", "Bills");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("transfers_str") + "']", "Transfers");
+				// FIXME: Chinese string is incorrect here
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("mobile_wallet_widget_label") + "']", "Mobile Pay");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("tts_td_zones") + "']", "TD for me");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("td_moneyfit_header") + "']", "TD MySpend");
+				// FIXME: Investing accounts is two strings apparently
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("str_Investing") + "']", "Investing Accounts");
+			}
+		} catch (IOException | NoSuchElementException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}

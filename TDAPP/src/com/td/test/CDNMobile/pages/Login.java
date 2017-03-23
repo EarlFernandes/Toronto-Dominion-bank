@@ -61,11 +61,10 @@ public class Login extends _CommonPage {
 	private MobileElement french_progressBar;
 
 	@iOSFindBy(xpath = "//*[@label='Select AccessCard']")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @content-desc='Username or Access Card']")
 	private MobileElement select_accesscard;
 
 	@iOSFindBy(xpath = "//*[@label='Add Username or Access Card' or @label='Ajouter un nom d’utilisateur ou un numéro de carte Accès']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard' and @text='Add Username or Access Card']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard']")
 	private MobileElement addUser;
 
 	@iOSFindBy(xpath = "//*[@label='Ajouter un nom d’utilisateur ou un numéro de carte Accès']")
@@ -118,7 +117,6 @@ public class Login extends _CommonPage {
 	private MobileElement terms_Conditions_Msg;
 
 	@iOSFindBy(xpath = "//*[@label='Logout']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 
 	@iOSFindBy(xpath = "//*[@label='Menu']")
@@ -145,7 +143,7 @@ public class Login extends _CommonPage {
 	private MobileElement done;
 
 	@iOSFindBy(xpath = "//*[@label='Login']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mfa_login_btn_txt' and @text='Login']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mfa_login_btn_txt']")
 	private MobileElement securityLogin;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'System Error')]")
@@ -221,20 +219,25 @@ public class Login extends _CommonPage {
 	public boolean verifyAccessCard() {
 		boolean flag = false;
 		try {
-		if(mobileAction.FuncISDisplayed(select_accesscard)){
-				try {
-					mobileAction.FuncClick(select_accesscard, "Select Accesscard");
-					mobileAction.FuncClick(addUser, "AddUser");
-					flag = true;
-				} catch (NoSuchElementException | InterruptedException | IOException e) {
-					System.out.print("Exception from Method " + this.getClass().toString());
-				}
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS xpath expression required
 			} else {
-				flag = false;
+				select_accesscard = mobileAction.verifyElementUsingXPath("//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @content-desc='" +  mobileAction.getAppString("username_str") + "']", "Username");
 			}
-		} catch (Exception e) {
-			System.out.print("Exception from Method " + this.getClass().toString());
-		}
+			if(mobileAction.FuncISDisplayed(select_accesscard)){
+					try {
+						mobileAction.FuncClick(select_accesscard, "Select Accesscard");
+						mobileAction.FuncClick(addUser, "AddUser");
+						flag = true;
+					} catch (NoSuchElementException | InterruptedException | IOException e) {
+						System.out.print("Exception from Method " + this.getClass().toString());
+					}
+				} else {
+					flag = false;
+				}
+			} catch (Exception e) {
+				System.out.print("Exception from Method " + this.getClass().toString());
+			}
 		return flag;
 	}
 
@@ -495,6 +498,7 @@ public class Login extends _CommonPage {
 				mobileAction.FuncClick(backButton, "BackButton");
 			} else {
 				mobileAction.FuncClick(menu, "Menu");
+				logout = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("logoutConfirmButtonLogout") + "']", "Logout");
 				mobileAction.FuncClick(logout, "Logout");
 }
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -1168,6 +1172,49 @@ public class Login extends _CommonPage {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		} catch (IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	/**
+	 * This method will verify text within elements for the login page
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyLoginScreenTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @text='" + mobileAction.getAppString("username_str") + "']", "Username");
+				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @content-desc='" + mobileAction.getAppString("password_str") + "']", "Password");
+				mobileAction.FuncHideKeyboard();
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id= 'com.td:id/remember_text' and @text='" + mobileAction.getAppString("remember_str") + "']", "Remember Me");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/loginBtnText' and @text='" + mobileAction.getAppString("login_str") + "']", "Login");
+				if(!Boolean.parseBoolean(rememberMe.getAttribute("checked"))) {
+					mobileAction.FuncClick(rememberMe, "Remember Me Switch");
+				}
+				mobileAction.verifyElementUsingXPath("//android.widget.Switch[@resource-id='com.td:id/remember_switch' and @index='1' and @text='" + mobileAction.getAppString("yes_str") + "']", "Yes");
+				if(Boolean.parseBoolean(rememberMe.getAttribute("checked"))) {
+					mobileAction.FuncClick(rememberMe, "Remember Me Switch");
+				}
+				mobileAction.verifyElementUsingXPath("//android.widget.Switch[@resource-id='com.td:id/remember_switch' and @index='1' and @text='" + mobileAction.getAppString("no_str") + "']", "No");
+				// Check it again for easier automation
+				if(!Boolean.parseBoolean(rememberMe.getAttribute("checked"))) {
+					mobileAction.FuncClick(rememberMe, "Remember Me Switch");
+				}
+			}
+		} catch (Exception e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}

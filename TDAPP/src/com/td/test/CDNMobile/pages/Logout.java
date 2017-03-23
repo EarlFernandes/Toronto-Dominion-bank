@@ -150,6 +150,36 @@ public class Logout extends _CommonPage {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			}
 		}
+	
+	/**
+	 * This method will verify text within elements for the logout page
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyLogoutScreenTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.verifyElementUsingXPath("//android.widget.RelativeLayout[@resource-id='com.td:id/receipt_info_layout']/android.widget.TextView[@text='" + mobileAction.getAppString("success") + "']", "Success");
+				mobileAction.verifyElementUsingXPath("//android.widget.RelativeLayout[@resource-id='com.td:id/receipt_info_layout']/android.widget.TextView[@text='" + mobileAction.getAppString("logoutSuccessCopy") + "']", "Success Message");
+				// FIXME: Header is not detected?
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/action_bar_title' and @text='" + mobileAction.getAppString("logoutSuccessPageHeader") + "']", "Logged Out header");
+			}
+		} catch (Exception e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
 
 			
 }

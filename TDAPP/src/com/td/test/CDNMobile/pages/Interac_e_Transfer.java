@@ -430,4 +430,37 @@ try {
 	}
     }
 
+	/**
+	 * This method will verify text within elements for interac e transfer
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyInteracETransferTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				// FIXME: Header is not detected?
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer") + "']", "Interac e-transfer title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/sender_title' and @text='" + mobileAction.getAppString("eTransferSenderLabel") + "']", "Sender");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/from_account_title' and @text='" + mobileAction.getAppString("eTransferFromAccountLabel") + "']", "From Account");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/recipient_title' and @text='" + mobileAction.getAppString("eTransferRecipientLabel") + "']", "Recipient");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/amount_label' and @text='" + mobileAction.getAppString("eTransferAmountLabel") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/button_footer' and @text='" + mobileAction.getAppString("btn_continue") + "']", "Continue");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
 }

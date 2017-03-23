@@ -35,16 +35,16 @@ public class Transfers extends _CommonPage {
 
 
 	@iOSFindBy(xpath= "//*[@label='Transfers']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Transfers']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement transfers_header;
 	
 
 	@iOSFindBy(xpath = "//*[@label='Interac e-Transfer']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Interac e-Transfer']")
+	@AndroidFindBy(xpath = "//android.widget.TableRow[@resource-id='com.td:id/tableRow2']")
 	private MobileElement Interac_e_Transfer_button;
 	
 	@iOSFindBy(xpath= "//*[@label='Between My Accounts']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textView1' and @text='Move money quickly and easily']")
+	@AndroidFindBy(xpath = "//android.widget.TableRow[@resource-id='com.td:id/tableRow1']")
 	private MobileElement btw_my_accnts;
 	
 	@iOSFindBy(xpath="//*[@label='In progress']")
@@ -164,6 +164,43 @@ public class Transfers extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer");
 			
 		} catch (NoSuchElementException   | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	/**
+	 * This method will verify text within elements for the transfer page
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyTransferTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				// FIXME: Header is not detected?
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/action_bar_title' and @text='" + mobileAction.getAppString("transfers_str") + "']", "Transfers title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderBetweenMyAccounts") + "']", "Between My accounts");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersTransfersHintTextBetweenMyAccounts") + "']", "Move money quickly");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersTransfersHintTextInteracETransfer") + "']", "Email money quickly");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("imtNavRowManageRecipients") + "']", "Manage recipients");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfer_faq_question") + "']", "Transfer faq");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("imtHintTextManageRecipients").replaceAll("\\<.*?>","") + "']", "Add, edit or delete");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersTransfersHintTextPendingInteracETransfer").replaceAll("\\<.*?>","") + "']", "View pending");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderPendingInteracETransfer").replaceAll("\\<.*?>","") + "']", "Pending interact");				
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer").replaceAll("\\<.*?>","") + "']", "Interac e-transfer");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}

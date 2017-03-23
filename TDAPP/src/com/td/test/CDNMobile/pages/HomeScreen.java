@@ -888,6 +888,76 @@ public class HomeScreen extends _CommonPage {
 		}
 
 	}
+	
+	/**
+	 * This method will verify text within elements for the home screen
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyHomeScreenTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				final String accounts = mobileAction.getAppString("easy_access_accounts").toLowerCase().substring(0,1).toUpperCase() + mobileAction.getAppString("easy_access_accounts").toLowerCase().substring(1);
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + accounts + "']", "Accounts");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("transfers_str") + "']", "Transfers");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("bills_str") + "']", "Bills");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("td_moneyfit_header") + "']", "TD My Spend");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("TDZonesNavRowHeader") + "']", "TD For Me");
+				// FIXME: There is a whitespace in between the text?
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("str_investing_cross_sell_message") + "']", "Open a direct investing account");
+				// FIXME: Need to scroll down to see these
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("trade_str") + "']", "Trade");
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("markets_str") + "']", "Markets");
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("contact_str") + "']", "Contact Us");
+			}
+		} catch (IOException | NoSuchElementException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
 
+	/**
+	 * This method will verify text within elements for the home screen dashboard buttons
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyHomeScreenDashboardButtonsTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/send_money_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_send_money") + "']", "Send Money Button");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='" + mobileAction.getAppString("str_TRANSFER") + "']", "Transfer Button");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mpay_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_pay_now") + "']", "Pay Now Button");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mrdc_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_deposit") + "']", "Deposit Button");
+				// FIXME: Need to swipe the dashboard to get these elements in view
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/watchlist_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_watchlist") + "']", "Watchlists Button");
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/quote_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_quote") + "']", "Quote Button");
+			}
+		} catch (IOException | NoSuchElementException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
 
 }

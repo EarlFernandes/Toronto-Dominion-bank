@@ -1562,17 +1562,37 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
+	public boolean verifyExpectedText(final String key, final String actual) {
+
+		final String expected = (String)((AppiumDriver) GetDriver()).getAppStringMap().get(key);
+		if (expected == null) {
+			try {
+				GetReporting().FuncReport("Fail", "The string key " + key + " is not defined in the app");
+			} catch (IOException e) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			return false;
+		}
+		return verifyTextEquality(expected, actual);
+	}
+
+	public String getAppString(final String key) {
+		final String s = (String)((AppiumDriver) GetDriver()).getAppStringMap().get(key);
+		//System.out.println("String returned from key is: " + s);
+		return s;
+	}
+
 	public boolean verifyTextEquality(String text1, String text2) {
 		if (text1.equalsIgnoreCase(text2)) {
 			try {
-				GetReporting().FuncReport("Pass", "The text is verified");
+				GetReporting().FuncReport("Pass", "The text is verified: " + text1 + " is equal to: " + text2);
 			} catch (IOException e) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			return true;
 		} else {
 			try {
-				GetReporting().FuncReport("Fail", "The text is not verified");
+				GetReporting().FuncReport("Fail", "The text is not verified: " + text1 + " is not equal to: " + text2);
 			} catch (IOException e) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}

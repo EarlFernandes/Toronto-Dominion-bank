@@ -118,6 +118,7 @@ public class EventCase {
 		Between_My_Accounts_Transfer_less, 
 		Between_My_accounts_transfer_verify_receipt,
 		Between_My_accounts_VerifyFromAccounts,
+		Between_My_accounts_VerifyTextElements,
 
 		BetweenMyAccounts_CADTFSA_TDCTTFSA, 
 		BetweenMyAccounts_MobileRateExpiryOnSmartphones, 
@@ -134,6 +135,7 @@ public class EventCase {
 		Bill_PayCanada_VerifyBackButton, 
 		Bill_PayCanada_VerifyQuickAccess, 
 		Bills_ScheduledPayments, 
+		Bills_VerifyTextElements,
 		BillsHeader,
 		BetweenMyAccounts_TFSAUSD_TFSACAD(),
 		Bill_PayCanada_Pay_Bill,
@@ -152,6 +154,9 @@ public class EventCase {
 		CDNMarginLimitTradePreviewOrder,
 
 		Check_Remember_Me_Default, 
+		ClickCrossBorderBanking,
+		ClickTDForMe,
+		ClickTDMySpend,
 		ClickBack, 
 		clickChangeOrder, 
 		clickChangeorder_MarketToLimit, 
@@ -178,7 +183,9 @@ public class EventCase {
 
 		Dashboard_Authentication, 
 		Dashboard_UnAuthentication,
-
+		HomeScreen_VerifyTextElements,
+		LoginScreen_VerifyTextElements,
+		HomeScreenDashboardButtons_VerifyTextEelements,
 		Delete_usr, 
 		Deposit_Header, 
 		DepositChequeHeader, 
@@ -215,6 +222,7 @@ public class EventCase {
 		HomeScreen_ClickTDMobilePayment,
 
 		Interac_AddRecipient, 
+		Interac_VerifyTextElements,
 		Interac_e_Transfer_verify_interacTransfer, 
 		Interac_Header, 
 		InteracTransfer_Cancel, 
@@ -251,6 +259,7 @@ public class EventCase {
 		Loginverify, 
 		LoginWithRemember, 
 		Logout, 
+		Logout_VerifyTextElements,
 		LogoutFrench,
 
 		ManagePayee_AddCanadianPayee, 
@@ -272,6 +281,7 @@ public class EventCase {
 		MenuTrade, 
 		MenuTradeEasyWebCustomer, 
 		MenuTransfer,
+		Menu_VerifyTextElements,
 		Menu_ClickMobilePayment, 
 		MobilePayment_SwipeMobilePayment,
 		MobilePayment_AddACard,
@@ -315,6 +325,7 @@ public class EventCase {
 		Pay_US_bill_From_US_Account, 
 		Pay_US_bill_FromCanada_Account, 
 		PayBill_Canada_Button, 
+		PayBill_Canada_VerifyTextElements,
 		PayBill_US_Button, 
 		PayBill_VerifyAddCanadianPayeeBtn,
 		PayBillCanada_Add_Canadian_Payee, 
@@ -420,6 +431,7 @@ public class EventCase {
 		Trans_TFSA_To_Othr_Accounts, 
 		Transfer_InteracTransfer,
 		TransferHeader, 
+		Transfer_VerifyTextElements,
 		Transfers, 
 		Transfers_Click_Between_My_Accounts,
 		Transfers_clickInterac_e_Transfer,
@@ -777,6 +789,22 @@ public class EventCase {
 			MenuPage.get().clickTransfers_InFrench();
 			break;
 
+		case Menu_VerifyTextElements:
+			MenuPage.get().verifyMenuTextElements();
+			break;
+
+		case LoginScreen_VerifyTextElements:
+			Login.get().verifyLoginScreenTextElements();
+			break;
+
+		case HomeScreen_VerifyTextElements:
+			HomeScreen.get().verifyHomeScreenTextElements();
+			break;
+
+		case HomeScreenDashboardButtons_VerifyTextEelements:
+			HomeScreen.get().verifyHomeScreenDashboardButtonsTextElements();
+			break;
+
 		case HomeScreen_WatchLists:
 			HomeScreen.get().clickWatchLists();
 			break;
@@ -860,8 +888,16 @@ public class EventCase {
 			Transfers.get().clickBetweenMyAccountsTransfers();
 			break;
 
+		case Transfer_VerifyTextElements:
+			Transfers.get().verifyTransferTextElements();
+			break;
+
 		case Between_My_accounts_transfer:
 			Between_My_accounts.get().transfer_between_my_accounts();
+			break;
+
+		case Between_My_accounts_VerifyTextElements:
+			Between_My_accounts.get().verifyBetweenMyAccountsTextElements();
 			break;
 
 		case HomeScreen_Transfer_Button:
@@ -941,6 +977,10 @@ public class EventCase {
 			Login.get().logout();
 			break;
 
+		case Logout_VerifyTextElements:
+			Logout.get().verifyLogoutScreenTextElements();
+			break;
+
 		case ClickBack:
 			HomeScreen.get().back_button();
 			break;
@@ -979,6 +1019,10 @@ public class EventCase {
 
 		case PayBill_Canada_Button:
 			Bills.get().clickPayCanadianBill();
+			break;
+
+		case PayBill_Canada_VerifyTextElements:
+			Bills.get().verifyPayCanadianBillTextElements();
 			break;
 
 		case ManageRecipient_ModifyRecipient:
@@ -1075,6 +1119,10 @@ public class EventCase {
 
 		case Transfers_clickInterac_e_Transfer:
 			Transfers.get().clickInterac_e_Transfer();
+			break;
+
+		case Interac_VerifyTextElements:
+			Interac_e_Transfer.get().verifyInteracETransferTextElements();
 			break;
 
 		case Interac_AddRecipient:
@@ -1271,6 +1319,10 @@ public class EventCase {
 
 		case Bills_ScheduledPayments:
 			Bills.get().scheduledPayments();
+			break;
+
+		case Bills_VerifyTextElements:
+			Bills.get().verifyBillsTextElements();
 			break;
 
 		case PayCanada_NegativeTestingBillPayment:
