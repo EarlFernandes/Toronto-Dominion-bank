@@ -119,6 +119,10 @@ public class EventCase {
 		Between_My_accounts_transfer_verify_receipt,
 		Between_My_accounts_VerifyFromAccounts,
 		Between_My_accounts_VerifyTextElements,
+		Between_My_accounts_performTransferToConfirmation,
+		Between_My_accounts_performTransferToSuccess,
+		Between_My_accounts_VerifyConfirmationText,
+		Between_My_accounts_VerifySuccessText,
 
 		BetweenMyAccounts_CADTFSA_TDCTTFSA, 
 		BetweenMyAccounts_MobileRateExpiryOnSmartphones, 
@@ -224,6 +228,8 @@ public class EventCase {
 		Interac_AddRecipient, 
 		Interac_VerifyTextElements,
 		Interac_e_Transfer_verify_interacTransfer, 
+		Interac_e_Transfer_VerifyConfirmationText,
+		Interac_e_Transfer_VerifySuccessText,
 		Interac_Header, 
 		InteracTransfer_Cancel, 
 		InteracTransfer_VerifyAmount,
@@ -302,6 +308,7 @@ public class EventCase {
 
 	    MFA_Change, 
 		Mobile_Deposit, 
+		MobileDeposit_VerifyTextElements,
 		Multitasking_System,
 
 		OpenApp, 
@@ -349,6 +356,7 @@ public class EventCase {
 		PermissibleTransfer, 
 		Preferences_Update_Question, 
 		QuickAccess, 
+		QuickAccess_VerifyActivateText,
 		SearchPage_searchBar, 
 		Select_Account, 
 		SenderList_Cancel, 
@@ -733,6 +741,10 @@ public class EventCase {
 			MenuPage.get().mobile_Deposit_click();
 			break;
 
+		case MobileDeposit_VerifyTextElements:
+			MobileDeposit.get().verifyOptionsTextElements();
+			break;
+
 		case Accounts_Header:
 			Accounts.get().verify_accounts_Header();
 			break;
@@ -884,6 +896,22 @@ public class EventCase {
 			Between_My_accounts.get().mobile_expiry_rate();
 			break;
 
+		case Between_My_accounts_performTransferToConfirmation:
+			Between_My_accounts.get().performTransferToConfirmationPage();
+			break;
+
+		case Between_My_accounts_performTransferToSuccess:
+			Between_My_accounts.get().performTransferToSuccessPage();
+			break;
+
+		case Between_My_accounts_VerifyConfirmationText:
+			Between_My_accounts.get().verifyConfirmationTextElements();
+			break;
+
+		case Between_My_accounts_VerifySuccessText:
+			Between_My_accounts.get().verifyTextSuccessPage();
+			break;
+
 		case Transfers_Click_Between_My_Accounts:
 			Transfers.get().clickBetweenMyAccountsTransfers();
 			break;
@@ -938,6 +966,10 @@ public class EventCase {
 
 		case QuickAccess:
 			QuickAccessPage.get().quickAccess();
+			break;
+
+		case QuickAccess_VerifyActivateText:
+			QuickAccess.get().verifyActivateQuickAccess();
 			break;
 
 		case Between_My_Accounts_Permissible_Transfer:
@@ -1123,6 +1155,14 @@ public class EventCase {
 
 		case Interac_VerifyTextElements:
 			Interac_e_Transfer.get().verifyInteracETransferTextElements();
+			break;
+
+		case Interac_e_Transfer_VerifyConfirmationText:
+			Interac_e_Transfer.get().verifyTextConfirmationPage();
+			break;
+
+		case Interac_e_Transfer_VerifySuccessText:
+			Interac_e_Transfer.get().verifyTextSuccessPage();
 			break;
 
 		case Interac_AddRecipient:

@@ -37,7 +37,7 @@ public class MenuPage extends _CommonPage {
 	private MobileElement investingFRE;
 	
 	@iOSFindBy(xpath = "//*[@label='Mobile Deposit']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Mobile Deposit']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText']")
 	private MobileElement mobile_Deposit_button;
 
 	@iOSFindBy(xpath = "//*[@label='My Accounts']")
@@ -297,6 +297,11 @@ public class MenuPage extends _CommonPage {
 	public void mobile_Deposit_click() {
 		Decorator();
 		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS xpath expression required
+			} else {
+				mobile_Deposit_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("ActionBar_MobileDeposit") + "']", "Mobile Deposit");
+			}
 			String mobile_Deposit = "Mobile Deposit";
 
 			mobileAction.FuncClick(mobile_Deposit_button, "Mobile_Deposit_Button");

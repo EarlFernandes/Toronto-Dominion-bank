@@ -37,7 +37,7 @@ public class Between_My_accounts extends _CommonPage {
 	private MobileElement errorMsg;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'From Account')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccount' and @text='Select From Account']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccount']")
 	private MobileElement txtFrom_acnt;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/second_amount_val']")
@@ -53,11 +53,11 @@ public class Between_My_accounts extends _CommonPage {
 	private MobileElement txtAmount;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/button_footer'and @text='Continue']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/button_footer']")
 	private MobileElement btnContinue_transfer;
 
 	@iOSFindBy(xpath = "//*[@label='Finish Transfer']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id= 'com.td:id/myaccounts_entry_btn_confirm'and @text='Finish Transfer']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id= 'com.td:id/myaccounts_entry_btn_confirm']")
 	private MobileElement btnFinish_transfer;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Confirmation #')]")
@@ -489,6 +489,27 @@ public class Between_My_accounts extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
+	}
+
+	public void performTransferToConfirmationPage() throws Exception {
+		try {
+			perFormTransfer();
+			continueButton();
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void performTransferToSuccessPage() throws Exception {
+		try {
+			perFormTransfer();
+			continueButton();
+			mobileAction.FuncClick(btnFinish_transfer, "Finish");
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
 	}
 
 	public void continueButton() {
@@ -1598,6 +1619,80 @@ public class Between_My_accounts extends _CommonPage {
 		}
 	}
 
+	/**
+	 * This method will verify text within elements for transfer confirmation page
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyConfirmationTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				// FIXME: Header is not detected?
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/action_bar_title' and @text='" + mobileAction.getAppString("ActionBar_Deposit_Confirm") + "']", "Confirm title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmNotice") + "']", "Please review message");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("from") + "']", "From");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("to") + "']", "To");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmAmount") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersFXExchangeRate") + "']", "Exchange Rate");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmFXTransferFeeValidStart") + "']", "Exchange Rate is valid for message");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmFXTransferFeeValidStart") + "']", "Exchange Rate is valid for message");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[contains(@text, '" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmFXTransferFeeValidEnd") + "')]", "Minutes message");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("btn_cancel") + "']", "Cancel");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmButtonFinishTransfer") + "']", "Finish Transfer");
+
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+	/**
+	 * This method will verify text within elements for transfer success page
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyTextSuccessPage() throws InterruptedException, IOException {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				// FIXME: Header is not detected?
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/action_bar_title' and @text='" + mobileAction.getAppString("actionBarHeadingReceipt") + "']", "Receipt title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/thank_you' and @text='" + mobileAction.getAppString("ThankYou") + "']", "Thank you!");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/message' and @text='" + mobileAction.getAppString("receipt_transfer_msg") + "']", "Transfer Successful");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/confirmation' and @text='" + mobileAction.getAppString("receipt_confirmation") + "']", "Confirmation");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/from_account' and @text='" + mobileAction.getAppString("receipt_from") + "']", "From");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/to_account' and @text='" + mobileAction.getAppString("receipt_to") + "']", "To");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/amount' and @text='" + mobileAction.getAppString("receipt_amount") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersFXExchangeRate") + "']", "Exchange Rate");
+				// FIXME: Need to scroll down here
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='home' and @text='" + mobileAction.getAppString("receipt_home") + "']", "HOME button");
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='etransfers' and @text='" + mobileAction.getAppString("receipt_another_transfer") + "']", "MAKE ANOTHER TRANSFER button");
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='transfers' and @text='" + mobileAction.getAppString("receipt_transfers") + "']", "TRANSFERS button");
+			}
+		} catch (NoSuchElementException | IOException e) {
+		    System.err.println("TestCase has failed.");
+		    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (Exception e) {
+		    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
 }
 
 
