@@ -1,6 +1,7 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,6 +18,9 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class StockOptionLeg extends _CommonPage{
     private static StockOptionLeg StockOptionLeg;
@@ -122,7 +126,22 @@ public class StockOptionLeg extends _CommonPage{
 	@iOSFindBy(xpath = "//*[@text='Net Debit']") 
 	@AndroidFindBy(xpath = "(//*[@text='Net Debit' and @index = '0']) | (//*[@text='Débit net' and @index = '0'])")
 	
-	private MobileElement netdebit;
+	private MobileElement priceNetDebit;
+	
+	@iOSFindBy(xpath = "//*[@text='Net Credit']") 
+	@AndroidFindBy(xpath = "(//*[@text='Net Credit' and @index = '0']) | (//*[@text='Crédit net' and @index = '0'])")
+	
+	private MobileElement priceNetCredit;
+	
+	@iOSFindBy(xpath = "//*[@text='Market']") 
+	@AndroidFindBy(xpath = "(//*[@text='Market' and @index = '0']) | (//*[@text='Cours du marché' and @index = '0'])")
+	
+	private MobileElement priceMarket;
+	
+	@iOSFindBy(xpath = "//*[@text='Even']") 
+	@AndroidFindBy(xpath = "(//*[@text='Even' and @index = '0']) | (//*[@text='Pair' and @index = '0'])")
+	
+	private MobileElement priceEven;
 	
 	@iOSFindBy(xpath = "//*[@text='Limit Price ($)']") 
 	@AndroidFindBy(xpath = "(//*[@text='Limit Price ($)' and @index = '1']) | (//*[@text='Cours limité ($)' and @index = '1'])")
@@ -144,6 +163,11 @@ public class StockOptionLeg extends _CommonPage{
 	
 	private MobileElement shareholderNeither;
 	
+	@iOSFindBy(xpath = "//*[@text='Significant']") 
+	@AndroidFindBy(xpath = "(//*[@text='Significant' and @index = '0']) | (//*[@text='Important' and @index = '0'])")
+	
+	private MobileElement shareholderSignificant;
+	
 	@iOSFindBy(xpath = "//*[@text='Trading Password']") 
 	@AndroidFindBy(xpath = "(//*[@text='Trading Password' and @index = '0']) | (//*[@text='Mot de passe de négociation' and @index = '0'])")
 	
@@ -163,6 +187,24 @@ public class StockOptionLeg extends _CommonPage{
 	@AndroidFindBy(xpath = "(//*[@text='Agree' and @index = '1']) | (//*[@text='Accepte' and @index = '1'])")
 	
 	private MobileElement agree;
+	
+	@iOSFindBy(xpath = "//*[@text='Do not agree']") 
+	@AndroidFindBy(xpath = "(//*[@text='Do not agree' and @index = '1']) | (//*[@text='Accepte' and @index = '1'])")
+	
+	private MobileElement dontAgree;
+	
+	
+	//Confirm Order labels
+	
+	@iOSFindBy(xpath = "//*[contains(@text,'')") 
+	@AndroidFindBy(xpath = "//*[@resource-id = 'com.td:id/timestamp']")
+	
+	private MobileElement timestamp;
+	
+	@iOSFindBy(xpath = "//*[@text='Buying Power']") 
+	@AndroidFindBy(xpath = "(//*[@text='Buying Power' and @index = '5']) | (//*[@text='1re Volet' and @index = '0'])")
+	
+	private MobileElement lblBuyingPower;
 	
 	@iOSFindBy(xpath = "//*[@text='1st Leg']") 
 	@AndroidFindBy(xpath = "(//*[@text='1st Leg' and @index = '0']) | (//*[@text='1re Volet' and @index = '0'])")
@@ -247,12 +289,12 @@ public class StockOptionLeg extends _CommonPage{
 	@iOSFindBy(xpath = "//*[@text='Buying Power Required']") 
 	@AndroidFindBy(xpath = "(//*[@text='Buying Power Required' and @index = '0']) | (//*[@text='Pouvoir d’achat requis' and @index = '0'])")
 	
-	private MobileElement lblBuyingPower;
+	private MobileElement lblBuyingPowerReqd;
 	
 	@iOSFindBy(xpath = "//*[@text='Buying Power Required']") 
 	@AndroidFindBy(xpath = "(//*[@text='Buying Power Required' and @index = '0']/following-sibling::*[1]) | (//*[@text='Pouvoir d’achat requis' and @index = '0']/following-sibling::*[1])")
 	
-	private MobileElement lblBuyingPowerValue;
+	private MobileElement lblBuyingPowerReqdValue;
 	
 	@iOSFindBy(xpath = "//*[@text='Important Information']") 
 	@AndroidFindBy(xpath = "(//*[@text='Important Information' and @index = '0']) | (//*[@text='Renseignements importants' and @index = '0'])")
@@ -274,26 +316,7 @@ public class StockOptionLeg extends _CommonPage{
 	
 	private MobileElement btnOrderSent;
 	
-	@iOSFindBy(xpath = "//*[@text='Thank you!']") 
-	@AndroidFindBy(xpath = "(//*[@text='Thank you!' and @index = '0']) | (//*[@text='Merci!' and @index = '0'])")	
-	
-	private MobileElement lblThankYou;
-	
-	@iOSFindBy(xpath = "//*[@text='1st Leg Confirmation # : ']") 
-	@AndroidFindBy(xpath = "(//*[@text='1st Leg Confirmation # : ' and @index = '0']) | (//*[@text='1re Volet Confirmation # : ' and @index = '0'])")	
-	
-	private MobileElement lblFirstLegConfirmation;
-	
-	@iOSFindBy(xpath = "//*[@text='2nd Leg Confirmation # : ']") 
-	@AndroidFindBy(xpath = "(//*[@text='2nd Leg Confirmation # : ' and @index = '0']) | (//*[@text='2re Volet Confirmation # : ' and @index = '0'])")
-	
-	private MobileElement lblSecondLegConfirmation;
-	
-	@iOSFindBy(xpath = "//*[@text='Order Placed']") 
-	@AndroidFindBy(xpath = "(//*[@text='Order Placed' and @index = '0']) | (//*[@text='Ordre passé le' and @index = '0']) ")
-	
-	private MobileElement lblOrderPlaced;
-	
+		
 		
 	@iOSFindBy(xpath = "//*[@text='HOME']") 
 	@AndroidFindBy(xpath = "(//*[@text='HOME' and @index = '0']) | (//*[@text='RETOUR À L’ACCUEIL' and @index = '0'])")
@@ -374,6 +397,83 @@ public class StockOptionLeg extends _CommonPage{
 	@AndroidFindBy(xpath = "(//*[@text='Account' and @index = '0']/following-sibling::*[2]) | (//*[@text='Compte' and @index = '0']/following-sibling::*[2])")
 	
 	private MobileElement lblAccountNumber;
+	
+	//Receipt screen objects
+	
+	@iOSFindBy(xpath = "//*[@text='Thank you!']") 
+	@AndroidFindBy(xpath = "(//*[@text='Thank you!' and @index = '0']) | (//*[@text='Merci!' and @index = '0'])")	
+	
+	private MobileElement lblThankYou;
+	
+	@iOSFindBy(xpath = "//*[@text='1st Leg Confirmation # : ']") 
+	@AndroidFindBy(xpath = "(//*[@text='1st Leg Confirmation # : ' and @index = '0']) | (//*[@text='1re Volet Confirmation # : ' and @index = '0'])")	
+	
+	private MobileElement lblFirstLegConfirmation;
+	
+	@iOSFindBy(xpath = "//*[@text='2nd Leg Confirmation # : ']") 
+	@AndroidFindBy(xpath = "(//*[@text='2nd Leg Confirmation # : ' and @index = '0']) | (//*[@text='2re Volet Confirmation # : ' and @index = '0'])")
+	
+	private MobileElement lblSecondLegConfirmation;
+	
+	@iOSFindBy(xpath = "//*[@text='Order Placed']") 
+	@AndroidFindBy(xpath = "(//*[@text='Order Placed' and @index = '0']) | (//*[@text='Ordre passé le' and @index = '0']) ")
+	
+	private MobileElement lblOrderPlaced;
+	
+	@iOSFindBy(xpath = "//*[@text='Order sent successfully']") 
+	@AndroidFindBy(xpath = "(//*[@text='Order sent successfully' and @index = '1']) | (//*[@text='	Ordre transmis avec succès.' and @index = '1'])")
+	
+	private MobileElement lblOrderSentMsg;
+	
+	@iOSFindBy(xpath = "//*[@text='Order Placed']") 
+	@AndroidFindBy(xpath = "(//*[@text='Order Placed' and @index = '0']/../following-sibling::*[1]/*[1]) | (//*[@text='Order Placed' and @index = '0']/../following-sibling::*[1]/*[1])")
+	
+	private MobileElement lblOrderPlacedDate_Receipt;
+	
+	@iOSFindBy(xpath = "//*[@text='Order Placed']") 
+	@AndroidFindBy(xpath = "(//*[@text='Order Placed' and @index = '0']/../following-sibling::*[1]/*[2]) | (//*[@text='Order Placed' and @index = '0']/../following-sibling::*[1]/*[2])")
+	
+	private MobileElement lblOrderPlacedTime_Receipt;
+	
+	@iOSFindBy(xpath = "//*[@text='1st Leg']") 
+	@AndroidFindBy(xpath = "(//*[@text='1st Leg' and @index = '0']) | (//*[@text='1re Volet' and @index = '0'])")
+	
+	private MobileElement lblFirstLeg_Receipt;
+	
+	@iOSFindBy(xpath = "//*[@text='1st Leg']") 
+	@AndroidFindBy(xpath = "(//*[@text='1st Leg' and @index = '0']../following-sibling::*[1]/*[1]) | (//*[@text='1re Volet' and @index = '0']../following-sibling::*[1]/*[1])")
+	
+	private MobileElement lblFirstLegValue_Receipt;
+	
+	@iOSFindBy(xpath = "//*[@text='2nd Leg']") 
+	@AndroidFindBy(xpath = "(//*[@text='2nd Leg' and @index = '0']) | (//*[@text='2e Volet' and @index = '0'])")
+	
+	private MobileElement lblSecondLeg_Receipt;
+	
+	@iOSFindBy(xpath = "//*[@text='2nd Leg']") 
+	@AndroidFindBy(xpath = "(//*[@text='2nd Leg' and @index = '0']../following-sibling::*[1]/*[1]) | (//*[@text='2e Volet' and @index = '0']../following-sibling::*[1]/*[1])")
+	
+	private MobileElement lblSecondLegValue_Receipt;
+	
+	@iOSFindBy(xpath = "//*[@text='Price']") 
+	@AndroidFindBy(xpath = "(//*[@text='Price' and @index = '0']) | (//*[@text='Cours' and @index = '0'])")
+	
+	private MobileElement lblPrice_Receipt;
+	
+	@iOSFindBy(xpath = "//*[@text='Price']") 
+	@AndroidFindBy(xpath = "(//*[@text='Price' and @index = '0']/following-sibling::*[1]) | (//*[@text='Cours' and @index = '0']/following-sibling::*[1])")
+	
+	private MobileElement lblPriceValue_Receipt;
+	
+	@iOSFindBy(xpath = "//*[contains(@text,'Good')]") 
+	@AndroidFindBy(xpath = "(//*[contains(@text,'Good') and @index = '0']) | (//*[contains(@text,'Échéance') and @index = '0'])")
+	
+	private MobileElement lblGoodTil_Receipt;
+	
+	@iOSFindBy(xpath = "//*[contains(@text,'Good')]") 
+	@AndroidFindBy(xpath = "(//*[contains(@text,'Good') and @index = '0']/following-sibling::*[1]) | (//*[contains(@text,'Échéance') and @index = '0']/following-sibling::*[1])")
+	
+	private MobileElement lblGoodTilValue_Receipt;
 	
 	private void Decorator() {
 		PageFactory.initElements(
@@ -550,7 +650,7 @@ public class StockOptionLeg extends _CommonPage{
 		}		
 	}
 	
-	
+	//Selects Price Type Net Debit from the list of Price types
 	public void selectPriceNetDebit()
 	{
 		Decorator();
@@ -565,7 +665,70 @@ public class StockOptionLeg extends _CommonPage{
 		
 		try
 		{
-			mobileAction.FuncClick(netdebit, "Price Type - Net Debit");
+			mobileAction.FuncClick(priceNetDebit, "Price Type - Net Debit");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}		
+	}
+	
+	//Selects Price Type Net Credit from the list of Price types
+	public void selectPriceNetCredit()
+	{
+		Decorator();
+		try
+		{
+			mobileAction.FuncClick(price, "Price");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		try
+		{
+			mobileAction.FuncClick(priceNetCredit, "Price Type - Net Credit");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}		
+	}
+	
+	//Selects Price Type Market from the list of Price types
+	public void selectPriceMarket()
+	{
+		Decorator();
+		try
+		{
+			mobileAction.FuncClick(price, "Price");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		try
+		{
+			mobileAction.FuncClick(priceMarket, "Price Type - Market");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}		
+	}
+	
+	//Selects Price Type Even from the list of Price types
+	public void selectPriceEven()
+	{
+		Decorator();
+		try
+		{
+			mobileAction.FuncClick(price, "Price");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		try
+		{
+			mobileAction.FuncClick(priceMarket, "Price Type - Even");
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -591,7 +754,7 @@ public class StockOptionLeg extends _CommonPage{
 		}
 	}
 	
-	
+	//Selects the Shareholder Type if the Shareholder field is present
 	public void enterShareholderType()
 	{
 		Decorator();
@@ -617,7 +780,7 @@ public class StockOptionLeg extends _CommonPage{
 		} 	
 	}
 	
-	
+	//Enters Password if prompted
 	public void enterPassword()
 	{
 		Decorator();
@@ -642,6 +805,7 @@ public class StockOptionLeg extends _CommonPage{
 		} 	
 	}
 	
+	//Taps on the Preview Order button
 	public void tapPreviewOrder()
 	{
 		Decorator();
@@ -654,6 +818,7 @@ public class StockOptionLeg extends _CommonPage{
 		}		
 	}
 	
+	//Taps on the Agree button
 	public void tapAgree()
 	{
 		Decorator();
@@ -665,6 +830,8 @@ public class StockOptionLeg extends _CommonPage{
 			e.printStackTrace();
 		}		
 	}
+	
+	//Verifies the content of the Confirm Order screen for a Multi-leg Stock/Option order
 	
 	public void verifyConfirmOrder() 
 	{
@@ -726,6 +893,7 @@ public class StockOptionLeg extends _CommonPage{
 
 	}
 	
+	//Taps on the button Send Order
 	public void tapSendOrder()
 	{
 		Decorator();
@@ -738,16 +906,91 @@ public class StockOptionLeg extends _CommonPage{
 		}		
 	}
 	
+	//Taps on the button Cancel Order
 	public void tapCancelOrder()
 	{
 		Decorator();
 		try
 		{
-			mobileAction.FuncClick(btnCancelOrder, "Send Order button");
+			mobileAction.FuncClick(btnCancelOrder, "Cancel Order button");
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}		
+	}
+	
+	public void verifyReceiptScreen() 
+	{
+		Decorator();
+		
+		String firstLegDetail = getTestdata("Action", "UserIDs");
+		String secondLegDetail = getTestdata("Action1", "UserIDs");
+		String accountNumber = mobileAction.getText(lblAccountNumber);
+		
+		String tradeDate = mobileAction.getText(lblOrderPlacedDate_Receipt);
+	  	DateFormat dateFormatEng = new SimpleDateFormat("MMM dd, yyyy");
+	  	DateFormat dateFormatFrench = new SimpleDateFormat("MMM dd, yyyy",Locale.FRANCE);
+		try{
+			if ( mobileAction.isObjExists(lblOrderPlaced) && mobileAction.isObjExists(lblAccount)
+				&& 	mobileAction.isObjExists(lblFirstLeg_Receipt) && mobileAction.isObjExists(lblSecondLeg_Receipt)
+				&& 	mobileAction.isObjExists(lblPrice_Receipt) && mobileAction.isObjExists(lblGoodTil_Receipt)) {			
+				CL.GetReporting().FuncReport("Pass", "All labels are found" );
+			} else {
+				CL.GetReporting().FuncReport("Fail", "Some labels are missing" );
+			}
+		} catch(Exception e)
+		{			 
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		if (mobileAction.isObjExists(lblSecondLeg) && (mobileAction.getText(lblSecondLegValue).matches(secondLegDetail))) {			
+			System.out.println("2nd Leg order details match");
+		} else {
+			System.out.println("2nd Leg order details DON'T match!!");
+		}		
+		
+		if (mobileAction.isObjExists(lblPrice) && (mobileAction.getText(lblPriceValue).matches(secondLegDetail))) {			
+			System.out.println("Price details match");
+		} else {
+			System.out.println("Price details DON'T match!!");
+		}	
+		
+		if (mobileAction.isObjExists(lblGoodTil) && (mobileAction.getText(lblGoodTilValue).matches(secondLegDetail))) {			
+			System.out.println("Good til details match");
+		} else {
+			System.out.println("Good til details DON'T match!!");
+		}	
+		
+		if (mobileAction.isObjExists(lblEstimatedPrincipal) && (mobileAction.isObjExists(lblCommission)) && (mobileAction.isObjExists(lblEstimatedTotal))) {			
+			System.out.println("Labels match");
+		} else {
+			System.out.println("Labels DON'T match!!");
+		}	
+		
+		if (this.shareholderFlag)
+			if (mobileAction.isObjExists(lblShareholderType)) {
+				System.out.println("Shareholder Type exists on the Confirm page");
+			} else { System.out.println("Shareholder Type DOESN'T exist on the Confirm page"); }
+		else
+			if (mobileAction.isObjExists(lblShareholderType)) {
+				System.out.println("Shareholder Type exists on the Confirm page - FALSE POSITIVE");
+			} else { System.out.println("Shareholder Type DOESN'T exist on the Confirm page"); }
+		
+		if (accountNumber.matches(".*E$") | accountNumber.matches(".*F$") | accountNumber.matches(".*G$") | accountNumber.matches(".*H$") )
+			if (mobileAction.isObjExists(lblBuyingPower)) {
+				System.out.println("Buying Power exists on the Confirm page");
+			} else { System.out.println("Buying Power DOESN'T exist on the Confirm page"); }
+		try {
+			CL.GetReporting().FuncReport("Fail", "abc");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+
 	}
 	
 }	
