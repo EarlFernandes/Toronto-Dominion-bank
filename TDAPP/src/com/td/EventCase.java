@@ -69,6 +69,7 @@ public class EventCase {
 		AccountsCredit_VerifySummaryDetails,
 		AccountsCredit_clickStatementTab,
 		AccountsCredit_VeifyStatementDetails,
+		AccountsCredit_VerifySummaryText,
 		Accounts_SelectAccount,
 
 
@@ -331,7 +332,9 @@ public class EventCase {
 
 		Pay_US_bill_From_US_Account, 
 		Pay_US_bill_FromCanada_Account, 
-		PayBill_Canada_Button, 
+		PayBill_Canada_Button,
+		PayBill_US_VerifyTextElements,
+		PayBill_Canada_VerifyTextElementsConfirmation,
 		PayBill_Canada_VerifyTextElements,
 		PayBill_US_Button, 
 		PayBill_VerifyAddCanadianPayeeBtn,
@@ -1055,6 +1058,14 @@ public class EventCase {
 
 		case PayBill_Canada_VerifyTextElements:
 			Bills.get().verifyPayCanadianBillTextElements();
+			break;
+
+		case PayBill_US_VerifyTextElements:
+			Bills.get().verifyPayUSBillTextElements();
+			break;
+
+		case PayBill_Canada_VerifyTextElementsConfirmation:
+			Bill_PayCanada.get().verifyTextPayCanadianBillConfirmation();
 			break;
 
 		case ManageRecipient_ModifyRecipient:
@@ -1907,7 +1918,11 @@ public class EventCase {
 		case AccountsCredit_ClickPayBill:
 			Accounts_Credit.get().clickPayBill();
 			break;
-			
+
+		case AccountsCredit_VerifySummaryText:
+			Accounts_Credit.get().verifySummaryTabTextElements();
+			break;
+
 		case AccountsCredit_verifyLastTranaction:
 			Accounts_Credit.get().verifyLatestTransactions();
 			break;

@@ -1599,8 +1599,7 @@ public class Between_My_accounts extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				// FIXME: Header is not detected?
-				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderBetweenMyAccounts") + "']", "Between My accounts title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderBetweenMyAccounts") + "']", "Between My accounts title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/fromLabel' and @text='" + mobileAction.getAppString("from") + "']", "From");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/edtFromAccount' and @text='" + mobileAction.getAppString("from_account_hint") + "']", "Select From Account");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/toLabel' and @text='" + mobileAction.getAppString("to") + "']", "To");
@@ -1633,8 +1632,7 @@ public class Between_My_accounts extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				// FIXME: Header is not detected?
-				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/action_bar_title' and @text='" + mobileAction.getAppString("ActionBar_Deposit_Confirm") + "']", "Confirm title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("ActionBar_Deposit_Confirm") + "']", "Confirm title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmNotice") + "']", "Please review message");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("from") + "']", "From");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("to") + "']", "To");
@@ -1672,8 +1670,7 @@ public class Between_My_accounts extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				// FIXME: Header is not detected?
-				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/action_bar_title' and @text='" + mobileAction.getAppString("actionBarHeadingReceipt") + "']", "Receipt title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("actionBarHeadingReceipt") + "']", "Receipt title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/thank_you' and @text='" + mobileAction.getAppString("ThankYou") + "']", "Thank you!");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/message' and @text='" + mobileAction.getAppString("receipt_transfer_msg") + "']", "Transfer Successful");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/confirmation' and @text='" + mobileAction.getAppString("receipt_confirmation") + "']", "Confirmation");
@@ -1687,9 +1684,12 @@ public class Between_My_accounts extends _CommonPage {
 				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='transfers' and @text='" + mobileAction.getAppString("receipt_transfers") + "']", "TRANSFERS button");
 			}
 		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 		    System.err.println("TestCase has failed.");
-		    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (Exception e) {
 		    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}

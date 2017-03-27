@@ -1562,20 +1562,6 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
-	public boolean verifyExpectedText(final String key, final String actual) {
-
-		final String expected = (String)((AppiumDriver) GetDriver()).getAppStringMap().get(key);
-		if (expected == null) {
-			try {
-				GetReporting().FuncReport("Fail", "The string key " + key + " is not defined in the app");
-			} catch (IOException e) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-			}
-			return false;
-		}
-		return verifyTextEquality(expected, actual);
-	}
-
 	public String getAppString(final String key) {
 		final String s = (String)((AppiumDriver) GetDriver()).getAppStringMap().get(key);
 		//System.out.println("String returned from key is: " + s);

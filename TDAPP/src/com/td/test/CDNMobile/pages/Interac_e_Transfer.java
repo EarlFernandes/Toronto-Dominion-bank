@@ -48,7 +48,7 @@ public class Interac_e_Transfer extends _CommonPage {
     private MobileElement transfer_Continue;
 
     @iOSFindBy(xpath = "//*[@label='Send Money']")
-    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_send_money' and @text='Send Money']")
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_send_money']")
     private MobileElement sendMoney;
 
     @iOSFindBy(xpath = "//*[@label='Interac e-Transfer Sent']")
@@ -297,8 +297,7 @@ try {
 				mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
 				mobileAction.FuncClickBackButton();
 				mobileAction.FuncClick(transfer_Continue, "Continue");
-				// FIXME: Header is not detected?
-				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmPageHeader") + "']", "Confirm title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmPageHeader") + "']", "Confirm title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferConfirmNotice").replaceAll("\\<.*?>","") + "']", "Notice");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransfersReceiveAnswerSender") + "']", "Sender");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferConfirmFrom") + "']", "From");
@@ -313,9 +312,12 @@ try {
 			}
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 		    System.err.println("TestCase has failed.");
-		    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (Exception e) {
 		    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
@@ -327,23 +329,19 @@ try {
 				// TODO: iOS elements
 			} else {
 				// Get to confirmation page with default fields
-				// TODO: This is broken, talk with offshore
-				mobileAction.FuncClick(fromAccount, "From Account");
-				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Account, 0, "down", true);
 				String ValueofAmount = getTestdata("Amount");
 				mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
 				mobileAction.FuncClickBackButton();
 				mobileAction.FuncClick(transfer_Continue, "Continue");
 				mobileAction.FuncClick(sendMoney, "Send Money");
-				// FIXME: Header is not detected?
-				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/action_bar_title' and @text='" + mobileAction.getAppString("eTransferReceiveReceiptHeaderTitle") + "']", "Receipt title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("eTransferReceiveReceiptHeaderTitle") + "']", "Receipt title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/thank_you' and @text='" + mobileAction.getAppString("ThankYou") + "']", "Thank you!");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/message' and @text='" + mobileAction.getAppString("eTransferReceiptTransferSent").replaceAll("\\<.*?>","") + "']", "Interac e-transfer sent");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/confirmation' and @text='" + mobileAction.getAppString("receipt_confirmation") + "']", "Confirmation");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/sender' and @text='" + mobileAction.getAppString("eTransfersReceiveAnswerSender") + "']", "Sender");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/from_account' and @text='" + mobileAction.getAppString("eTransferConfirmFrom") + "']", "From");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/amount' and @text='" + mobileAction.getAppString("eTransferAmountLabel") + "']", "Amount");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/recipient' and @text='" + mobileAction.getAppString("eTransferConfirmRecipient") + "']", "Recipient");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/receipient' and @text='" + mobileAction.getAppString("eTransferConfirmRecipient") + "']", "Recipient");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/security_question' and @text='" + mobileAction.getAppString("eTransferReceiptQuestion") + "']", "Security Question");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/message' and @text='" + mobileAction.getAppString("eTransferMessageLabel") + "']", "Message");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/home' and @text='" + mobileAction.getAppString("receipt_home") + "']", "HOME button");
@@ -353,9 +351,12 @@ try {
 			}
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 		    System.err.println("TestCase has failed.");
-		    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (Exception e) {
 		    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
@@ -517,8 +518,7 @@ try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				// FIXME: Header is not detected?
-				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer") + "']", "Interac e-transfer title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer") + "']", "Interac e-transfer title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/sender_title' and @text='" + mobileAction.getAppString("eTransferSenderLabel") + "']", "Sender");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/from_account_title' and @text='" + mobileAction.getAppString("eTransferFromAccountLabel") + "']", "From Account");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/recipient_title' and @text='" + mobileAction.getAppString("eTransferRecipientLabel") + "']", "Recipient");

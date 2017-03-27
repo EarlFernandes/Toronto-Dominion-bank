@@ -297,6 +297,48 @@ public class Bill_PayCanada extends _CommonPage {
 	}
 
 	/**
+	 * This method will verify text within elements for the canadian bills page
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyTextPayCanadianBillConfirmation() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				// We just need to get to confirmation page, so select first payee
+				String ToPostAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and @index='0']";
+				mobileAction.FuncClick(to_account_post, "Select Payee");
+				mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, ToPostAccountXpath, 1, "down", true);
+				mobileAction.waitForElementToDisappear(t_select_to_account);
+				mobileAction.FuncClick(amount, "Amount button clicked");
+				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
+				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClick(continue_pay, "Continue_pay");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("review_details_title") + "']", "Confirm title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_From") + "']", "From");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_To") + "']", "To");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("date") + "']", "Date");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderAmount") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("str_cancel") + "']", "Cancel");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("payBillConfirmButtonPayBill") + "']", "Pay Bill");
+			}
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	/**
 	 * This method will verify the Payee Access card DropDown is present or Not
 	 * 
 	 * @throws NoSuchElementException

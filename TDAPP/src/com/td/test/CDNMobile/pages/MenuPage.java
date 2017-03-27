@@ -470,11 +470,11 @@ public class MenuPage extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("bills_str") + "']", "Bills");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("transfers_str") + "']", "Transfers");
 				// FIXME: Chinese string is incorrect here
-				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("mobile_wallet_widget_label") + "']", "Mobile Pay");
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and contains(@text, '" + mobileAction.getAppString("mobile_wallet_widget_label") + "')]", "Mobile Pay");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("tts_td_zones") + "']", "TD for me");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("td_moneyfit_header") + "']", "TD MySpend");
-				// FIXME: Investing accounts is two strings apparently
-				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("str_Investing") + "']", "Investing Accounts");
+				// FIXME: Investing Accounts is two separate strings apparently
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("str_Investing") + " " + mobileAction.getAppString("str_Accounts") + "']", "Investing Accounts");
 			}
 		} catch (IOException | NoSuchElementException e) {
 			try {

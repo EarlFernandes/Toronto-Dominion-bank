@@ -167,10 +167,9 @@ public class Logout extends _CommonPage {
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.RelativeLayout[@resource-id='com.td:id/receipt_info_layout']/android.widget.TextView[@text='" + mobileAction.getAppString("success") + "']", "Success");
 				mobileAction.verifyElementUsingXPath("//android.widget.RelativeLayout[@resource-id='com.td:id/receipt_info_layout']/android.widget.TextView[@text='" + mobileAction.getAppString("logoutSuccessCopy") + "']", "Success Message");
-				// FIXME: Header is not detected?
-				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/action_bar_title' and @text='" + mobileAction.getAppString("logoutSuccessPageHeader") + "']", "Logged Out header");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("logoutSuccessPageHeader") + "']", "Logged Out header");
 			}
-		} catch (Exception e) {
+		} catch (NoSuchElementException | IOException e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {
