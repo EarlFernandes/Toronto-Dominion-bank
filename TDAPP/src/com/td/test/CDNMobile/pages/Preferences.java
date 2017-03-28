@@ -21,20 +21,17 @@ public class Preferences extends _CommonPage {
 
 	String preferences = "Preferences";
 	
-	@iOSFindBy(xpath = "//*[@label='Preferences']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Preferences']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Preferences']")
 	private MobileElement preferences_Header;
 
-	@iOSFindBy(xpath = "//*[@label='What's New, Learn about new app features']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='What's New, Learn about new app features']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='What's New']")
 	private MobileElement what_New_Btn;
 	
-	
-	//@iOSFindBy(xpath = "//*[contains(@label,'Update Security Questions']")
-
-	@iOSFindBy(xpath = "//*[@label='Keep your info safe']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Keep your info safe']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Update Security Questions']")
-	private MobileElement secret_Question_button;
+	private MobileElement secret_Question_Button;
 
 	public synchronized static Preferences get() {
 		if (Preferences == null) {
@@ -79,7 +76,7 @@ public class Preferences extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(preferences_Header, preferences);
-			mobileAction.FuncClick(secret_Question_button, "Secret_Question_button");
+			mobileAction.FuncClick(secret_Question_Button, "Secret_Question_button");
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");

@@ -18,17 +18,17 @@ public class QuickAccessPage extends _CommonPage {
 
 	private static QuickAccessPage QuickAccessPage;
 
-	@iOSFindBy(xpath = "//*[@label='Quick Access']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Quick Access']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[ends-with(@text,'Quick Access']")
-	private MobileElement Access_header;
+	private MobileElement Access_Header;
 
-	@iOSFindBy(xpath= "//*[@label='Get Started']")
+	@iOSFindBy(xpath= "//XCUIElementTypeButton[@label='Get Started']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_easy_access_enroll' and @text='Get Started']")
-	private MobileElement get_started;
+	private MobileElement get_Started;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'PREFERRED CHEQUING ACCOUNT')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'From Account')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccount' and @text='Select From Account']")
-	private MobileElement from_account;
+	private MobileElement from_Account;
 
 
 	public synchronized static QuickAccessPage get() {
@@ -58,9 +58,9 @@ public class QuickAccessPage extends _CommonPage {
 		String t_getStarted="Get Started";
 		
 		try {
-			boolean flag=Access_header.isDisplayed();
+			boolean flag=Access_Header.isDisplayed();
 			if(flag){
-			mobileAction.verifyElementIsDisplayed(get_started,t_getStarted);
+			mobileAction.verifyElementIsDisplayed(get_Started,t_getStarted);
 			mobileAction.quitDriver();
 			}
 		} catch (IOException e) {
@@ -72,11 +72,11 @@ public class QuickAccessPage extends _CommonPage {
 	public void verifyQuickAccessBillPaidUpdate() {
 		Decorator();
 		try {
-			boolean flag=Access_header.isDisplayed();
+			boolean flag=Access_Header.isDisplayed();
 			if(flag){
 			//mobileAction.verifyElementIsDisplayed(get_started,t_getStarted);
 			//mobileAction.FuncClick(Access_header, "QuickAccess");
-			mobileAction.verifyElement(from_account, "PREFERRED CHEQUING ACCOUNT");
+			mobileAction.verifyElement(from_Account, "Account");
 			mobileAction.quitDriver();
 			}
 		} catch (Exception e) {

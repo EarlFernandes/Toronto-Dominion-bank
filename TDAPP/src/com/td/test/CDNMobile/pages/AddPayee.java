@@ -20,19 +20,16 @@ public class AddPayee extends _CommonPage {
 	
 	private static AddPayee AddPayee;
 	
-	@iOSFindBy(xpath = "//*[@label='In Progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 	
-	@iOSFindBy(xpath = "//*[@label='Search for Canadian payees']")
-	@AndroidFindBy(xpath = " ")
+	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Search for Canadian payees']")
 	private MobileElement searchForCanadianPayee ;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'found any matches. Please try again.')]")
-	@AndroidFindBy(xpath = "")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'found any matches. Please try again.')]")
 	private MobileElement errorMessage;
 	
-	//String selectVal=getTestdata("Search");
 	String selectVal=getTestdata("Search");
 	
 	

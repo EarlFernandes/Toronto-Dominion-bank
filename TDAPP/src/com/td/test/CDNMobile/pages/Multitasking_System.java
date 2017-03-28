@@ -25,8 +25,8 @@ public class Multitasking_System extends _CommonPage {
 		return Multitasking_System;
 	}
 
-	@iOSFindBy(xpath= "//*[@label='Quick Access']")
-	@AndroidFindBy(xpath = "//*[@resource-id = 'android:id/action_bar_title']")
+	@iOSFindBy(xpath= "//XCUIElementTypeButton[@label='Quick Access']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/easy_access' ]")
 	private MobileElement home;
 
 	private void Decorator() {

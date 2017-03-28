@@ -19,19 +19,19 @@ public class Transaction extends _CommonPage{
 
 	private static Transaction Transaction;
 	
-	 @iOSFindBy(xpath = "//*[@label='Transaction']")
+	 @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transaction']")
 	 @AndroidFindBy(xpath="//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Transaction']")
 	 private MobileElement transacHeader;
 	 
-	 @iOSFindBy(xpath = "//*[contains(@label,'Transaction Date')]")
+	 @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Transaction Date')]")
 	 @AndroidFindBy(xpath="//android.widget.TextView[@text='Transaction Date']")
 	 private MobileElement transacDate;
 	 
-	 @iOSFindBy(xpath = "//*[contains(@label,'Posted Date')]")
+	 @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Posted Date')]")
 	 @AndroidFindBy(xpath="//android.widget.TextView[@text='Posted Date']")
 	 private MobileElement postedDate;
 	 
-	 @iOSFindBy(xpath = "//*[contains(@label,'Card')]")
+	 @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Card')]")
 	 @AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Card')]")
 	 private MobileElement card;
 	

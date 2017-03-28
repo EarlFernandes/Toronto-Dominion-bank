@@ -22,10 +22,10 @@ public class ApplePay extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Add a Card']")
 	private MobileElement addACard;
 
-	@iOSFindBy(xpath = "//*[@label='Tap a Card to Add to Apple Pay']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Tap a Card to Add to Apple Pay']")
 	private MobileElement tapCardHeader;
 
-	@iOSFindBy(xpath = "//*[@label='In Progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
@@ -46,10 +46,10 @@ public class ApplePay extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[4]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeImage")
 	private MobileElement fourthCard;
 
-	@iOSFindBy(xpath = "//*[@label='Done']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
 	private MobileElement doneButton;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Yourcard is ready to use with Apple Pay.')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Yourcard is ready to use with Apple Pay.')]")
 	private MobileElement cardAddedMessage;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[1]/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeButton")
@@ -64,16 +64,16 @@ public class ApplePay extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[1]/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeStaticText")
 	private MobileElement defaultCardName;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Sorry, none of your cards are eligible to use Apple Pay')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Sorry, none of your cards are eligible to use Apple Pay')]")
 	private MobileElement noEligibleCardMessage;
 
-	@iOSFindBy(xpath = " //*[@label='Continue')]")
+	@iOSFindBy(xpath = " //XCUIElementTypeButton[@label='Continue')]")
 	private MobileElement continueButton;
 
-	@iOSFindBy(xpath = " //*[@label='Get Started')]")
+	@iOSFindBy(xpath = " //XCUIElementTypeButton[@label='Get Started')]")
 	private MobileElement getStartedButton;
 	
-	@iOSFindBy(xpath = "//*[@label='Login to add all your TD cards']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Login to add all your TD cards']")
 	private MobileElement addAllCardsButton;
 
 

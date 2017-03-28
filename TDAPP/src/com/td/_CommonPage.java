@@ -106,4 +106,47 @@ public class _CommonPage {
 	
 
 
+	public String[] getTestDataStringArray(String aColumn) {
+		String multiValue[] = null;
+		String currentCellValue = CL.getTestDataInstance().TCParameters.get(aColumn);
+
+		if (currentCellValue.contains(":")) {
+			multiValue = currentCellValue.split(":");
+
+		} else if (currentCellValue.contains(",")) {
+
+			multiValue = currentCellValue.split(",");
+
+		} else {
+			String value= currentCellValue;
+			multiValue=new String[1];
+			multiValue[0]=value;
+
+		}
+		return multiValue;
+	}
+	
+	
+	public String getTestdata(String aColumn, int index) {
+
+		String multiValue[] = null;
+		String currentCellValue = CL.getTestDataInstance().TCParameters.get(aColumn);
+
+		if (currentCellValue.contains(":")) {
+			multiValue = currentCellValue.split(":");
+		} else if (currentCellValue.contains(",")) {
+			multiValue = currentCellValue.split(",");
+		} else {
+			return currentCellValue;
+		}
+
+		if (index < currentCellValue.length()) {
+			return multiValue[index];
+		} else {
+			return multiValue[0];
+		}
+	}
+
+
+
 }

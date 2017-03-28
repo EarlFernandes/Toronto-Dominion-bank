@@ -20,14 +20,14 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class ManageRecipients extends _CommonPage {
 
     private static ManageRecipients ManageRecipients;
-    @iOSFindBy(xpath = "//*[@label='Manage Recipients']")
+    @iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Manage Recipients']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Manage Recipients']")
     private MobileElement manageRecipientHeader;
 
-    @iOSFindBy(xpath = "//*[@label='Register']")
+    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Register']")
     private MobileElement registerBtn;
 
-    @iOSFindBy(xpath = "//*[@label='In progress']")
+    @iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
     private MobileElement progressBar;
 
@@ -35,7 +35,7 @@ public class ManageRecipients extends _CommonPage {
      private MobileElement selectRecipient;
 
 
-    @iOSFindBy(xpath = "//*[@label='Edit']")
+    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Edit']")
     @AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Edit']")
     private MobileElement editRecipient;
 
@@ -43,20 +43,20 @@ public class ManageRecipients extends _CommonPage {
     @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Email')]/following-sibling::android.view.View/android.widget.EditText")
     private MobileElement recipientMailAddr;
 
-    @iOSFindBy(xpath = "//*[@label='Done']")
+    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
     @AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Done']")
     private MobileElement done;
 
-    @iOSFindBy(xpath = "//*[@label='Enter the answer']")
+    @iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Enter the answer']")
     @AndroidFindBy(xpath = "//android.view.View[@content-desc='Answer']")
     private MobileElement enterAnswer;
 
-    @iOSFindBy(xpath = "//*[@label='Re-enter your answer']")
+    @iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Re-enter your answer']")
     @AndroidFindBy(xpath = "//android.view.View[@content-desc='Confirm Answer']")
     private MobileElement reEnterAnswer;
     
     @AndroidFindBy(xpath = "//android.view.View[@content-desc='Success Recipient details have been saved.']")
-    private MobileElement recipient_changes;
+    private MobileElement recipient_Changes;
 
     String recipientMail = getTestdata("RecipientMail");
     String answer = getTestdata("SecurityAnswer");
@@ -149,7 +149,7 @@ public class ManageRecipients extends _CommonPage {
     	    mobileAction.FuncSendKeys(reEnterAnswer, answer);
     	    mobileAction.FuncHideKeyboard();
     	    mobileAction.FuncClick(done, "Done"); 
-    	    mobileAction.verifyElementIsDisplayed(recipient_changes,"Success Recipient details have been saved");
+    	    mobileAction.verifyElementIsDisplayed(recipient_Changes,"Success Recipient details have been saved");
     		 }
 
 	} catch (NoSuchElementException e) {

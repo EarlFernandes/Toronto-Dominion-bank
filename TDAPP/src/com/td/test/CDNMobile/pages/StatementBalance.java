@@ -18,7 +18,7 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class StatementBalance extends _CommonPage{
 	private static StatementBalance StatementBalance;
 	
-	@iOSFindBy(xpath = "//*[@label='Pay']") 
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Pay']") 
 	@AndroidFindBy(xpath="//android.widget.Button[@resource-id='com.td:id/btn_pay']")
 	 private MobileElement payBtn;
 	

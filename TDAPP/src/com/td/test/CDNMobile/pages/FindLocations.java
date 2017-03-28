@@ -20,7 +20,7 @@ public class FindLocations extends _CommonPage{
 	private static FindLocations FindLocations;
 	
 	
-	@iOSFindBy(xpath = "//*[@label='Find Locations']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Find Locations']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Find Locations']")
 	private MobileElement findLocations_Header;
 	

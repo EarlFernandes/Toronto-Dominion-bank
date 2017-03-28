@@ -21,7 +21,7 @@ public class SearchPage extends _CommonPage {
 	private static SearchPage SearchPage;
 	
 	
-	@iOSFindBy(xpath = "//*[@label='Enter name or symbol']")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
 	private MobileElement searchBar;
 	String t_searchBar = "Search";

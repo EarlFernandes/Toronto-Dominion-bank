@@ -19,13 +19,13 @@ public class ManageSettings extends _CommonPage {
 	private static ManageSettings ManageSettings;
 	
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/enable_passcode_switch' and @text='OFF']")
-	private MobileElement enablepasscode;
+	private MobileElement enablePasscode;
 	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/setup_passcode' and @text='Set Up Passcode']")
-	private MobileElement setuppasscode;
+	private MobileElement setupPasscode;
 	
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/setup_passcode_input1']")
-	private MobileElement sendppasscode;
+	private MobileElement sendPasscode;
 	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/setup_passcode' and @text='Change Passcode']")
 	private MobileElement changePasscode;
@@ -72,9 +72,9 @@ public void click_enablepasscode() {
 
 	Decorator();
 	try {
-		mobileAction.FuncClick(enablepasscode, "Enable Passcode");
-		mobileAction.FuncClick(setuppasscode, "Click Setup Passcode");
-		mobileAction.FuncSendKeys(sendppasscode, passcode);
+		mobileAction.FuncClick(enablePasscode, "Enable Passcode");
+		mobileAction.FuncClick(setupPasscode, "Click Setup Passcode");
+		mobileAction.FuncSendKeys(sendPasscode, passcode);
 		
 		} catch (NoSuchElementException|InterruptedException |IOException e) {
 		System.err.println("TestCase has failed.");

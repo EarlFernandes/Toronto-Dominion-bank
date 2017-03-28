@@ -18,38 +18,38 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class MobileDeposit extends _CommonPage {
 	private static MobileDeposit MobileDeposit;
 
-	@iOSFindBy(xpath = "//*[@label='Mobile Deposit']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Mobile Deposit']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Mobile Deposit']")
-	private MobileElement mobile_deposit_header;
+	private MobileElement mobile_Deposit_Header;
 	
-	@iOSFindBy(xpath = "//*[@label='Deposit Cheque']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Deposit Cheque']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/MobileDeposit_DepositCheque_Header_TextView' and @text='Deposit Cheque']")
-	private MobileElement dpstCheque_btn;
+	private MobileElement dpstCheque_Btn;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'We')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/enrollment_headertitle1' and starts-with(@text,'We')]")
-	private MobileElement validation_firstLine;
+	private MobileElement validation_FirstLine;
 	
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'not eligible to use TD Mobile Deposit at this time.')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/enrollment_headertitle_subtitle_1' and contains(@text,'not eligible to use TD Mobile Deposit at this time')]")
-	private MobileElement validation_secondLine;
+	private MobileElement validation_SecondLine;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'To deposit a cheque using the TD')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[starts-with(@text,'To deposit a cheque using the TD')]")
-	private MobileElement validation_thirdLine;
+	private MobileElement validation_ThirdLine;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Be a TD Canada Trust customer')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[starts-with(@text,'Be a TD Canada Trust customer')]")
-	private MobileElement validationfourthLine;
+	private MobileElement validationFourthLine;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Have at least one eligible Chequing or Savings account')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Have at least one eligible Chequing')]")
-	private MobileElement validation_fifthLine;
+	private MobileElement validation_FifthLine;
 
-	@iOSFindBy(xpath = "//*[starts-with(@label,'To make a deposit, please visit a Branch or ATM')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[starts-with(@label,'To make a deposit, please visit a Branch or ATM')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'To make a deposit')]")
-	private MobileElement validation_sixthLine;
+	private MobileElement validation_SixthLine;
 
 	
 	String mobile_Header_value = "Mobile Deposit";
@@ -87,13 +87,13 @@ public class MobileDeposit extends _CommonPage {
 		Decorator();
 		try {
 			
-			mobileAction.verifyElementIsDisplayed(mobile_deposit_header, mobile_Header_value);
-			mobileAction.verifyElementIsDisplayed(validation_firstLine, ConstantClass.firstLine_Value);
-			mobileAction.verifyElementIsDisplayed(validation_secondLine,ConstantClass.secondLine_Value);
-			mobileAction.verifyElementIsDisplayed(validation_thirdLine, ConstantClass.t_thirdLine_Value);
+			mobileAction.verifyElementIsDisplayed(mobile_Deposit_Header, mobile_Header_value);
+			mobileAction.verifyElementIsDisplayed(validation_FirstLine, ConstantClass.firstLine_Value);
+			mobileAction.verifyElementIsDisplayed(validation_SecondLine,ConstantClass.secondLine_Value);
+			mobileAction.verifyElementIsDisplayed(validation_ThirdLine, ConstantClass.t_thirdLine_Value);
 			//mobileAction.verifyElementIsDisplayed(validationfourthLine, ConstantClass.t_fourthLine_Value);
-			mobileAction.verifyElementIsDisplayed(validation_fifthLine, ConstantClass.t_fifthLine_Value);
-			mobileAction.verifyElementIsDisplayed(validation_sixthLine, ConstantClass.t_sixthLine_Value);
+			mobileAction.verifyElementIsDisplayed(validation_FifthLine, ConstantClass.t_fifthLine_Value);
+			mobileAction.verifyElementIsDisplayed(validation_SixthLine, ConstantClass.t_sixthLine_Value);
 
 		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
@@ -116,7 +116,7 @@ public class MobileDeposit extends _CommonPage {
 	
 		Decorator();
 		try {
-			mobileAction.verifyElementIsDisplayed(mobile_deposit_header, mobile_Header_value);
+			mobileAction.verifyElementIsDisplayed(mobile_Deposit_Header, mobile_Header_value);
 		}
 		catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
@@ -139,7 +139,7 @@ public class MobileDeposit extends _CommonPage {
 	
 		Decorator();
 		try {
-			mobileAction.FuncClick(dpstCheque_btn, "DepositCheque");
+			mobileAction.FuncClick(dpstCheque_Btn, "DepositCheque");
 		}
 		catch (NoSuchElementException  | IOException  |InterruptedException e) {
 			System.err.println("TestCase has failed.");

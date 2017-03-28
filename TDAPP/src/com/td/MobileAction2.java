@@ -2339,7 +2339,48 @@ public class MobileAction2 extends CommonLib {
 		    } catch (IOException e) {
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		    }   	
-    }   		
+    }  
+    
+    public boolean FuncIsDisplayed(MobileElement elementToFind) {
+
+		try {
+			if (elementToFind.isDisplayed()) {
+				return true;
+			}else{
+				return false;
+
+			}
+		} catch (Exception e) {
+
+			
+			
+			return false;
+		}
+	}
+
+	public boolean FuncIsDisplayed(MobileElement elementToFind, String value) {
+
+		try {
+			if (elementToFind.isDisplayed()) {
+				GetReporting().FuncReport("Pass", "The text '" + value + "' is Displayed");
+				return true;
+			}else{
+				GetReporting().FuncReport("Fail", "The text '" + value + "' is not appeared");
+				return false;
+
+			}
+		} catch (Exception e) {
+
+			
+			e.printStackTrace();
+
+			return false;
+		}
+	}
+	
+	
+
+
 		
 
 }

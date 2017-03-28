@@ -19,13 +19,13 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class InvestingAccountSummary extends _CommonPage {
 	private static InvestingAccountSummary InvestingAccountSummary;
 
-	@iOSFindBy(xpath = "//*[@label='Balances']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Balances']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/balancesTab' and @text='Balances']")
 	private MobileElement llbBalance;
 
 	String progressBar = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
 
-	String iOSProgressBar = "//*[@label='In progress' or @label='En cours']";
+	String iOSProgressBar = "//XCUIElementTypeActivityIndicator[@label='In progress' or @label='En cours']";
 
 	String strAccount = getTestdata("Account");
 	String strAcc[] = strAccount.split(":");
