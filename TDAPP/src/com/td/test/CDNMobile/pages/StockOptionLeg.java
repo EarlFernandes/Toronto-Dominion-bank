@@ -21,6 +21,7 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.text.NumberFormat;
 
 public class StockOptionLeg extends _CommonPage{
     private static StockOptionLeg StockOptionLeg;
@@ -475,6 +476,13 @@ public class StockOptionLeg extends _CommonPage{
 	
 	private MobileElement lblGoodTilValue_Receipt;
 	
+	
+	//Orders Tab objects
+	@iOSFindBy(xpath = "//*[contains(@text,'Multi-Leg')]") 
+	@AndroidFindBy(xpath = "(//*[contains(@text,'Multi-Leg') and @index = '1']) | (//*[contains(@text,'Multi-Leg') and @index = '1'])")
+	
+	private MobileElement lnk_OrdersMultiLeg;
+	
 	private void Decorator() {
 		PageFactory.initElements(
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(5, TimeUnit.SECONDS)),
@@ -833,64 +841,202 @@ public class StockOptionLeg extends _CommonPage{
 	
 	//Verifies the content of the Confirm Order screen for a Multi-leg Stock/Option order
 	
-	public void verifyConfirmOrder() 
+	public void verifyConfirmOrder_ENG() 
 	{
 		Decorator();
 		
-		String firstLegDetail = getTestdata("Action", "UserIDs");
-		String secondLegDetail = getTestdata("Action1", "UserIDs");
+		String firstLegDetail = getTestdata("Leg1Action", "UserIDs");
+		String firstLegQuantity = getTestdata("Quantity", "UserIDs");
+		String secondLegDetail = getTestdata("Leg2Action", "UserIDs");
+		String secondLegQuantity = getTestdata("Quantity", "UserIDs");
+		String symbol = getTestdata("Symbol", "UserIDs");	
+		String priceType = getTestdata("Price", "UserIDs");
+		String limitpriceAmt = getTestdata("LimitPrice", "UserIDs");
+		String goodtil = getTestdata("Good'til", "UserIDs");
+		String shareholderType = getTestdata("ShareHolder", "UserIDs");
+		
 		String accountNumber = mobileAction.getText(lblAccountNumber);
 		
-		if (mobileAction.isObjExists(lblFirstLeg) && (mobileAction.getText(lblFirstLegValue).matches(firstLegDetail))) {			
-			System.out.println("1st Leg order details match");
-		} else {
-			System.out.println("1st Leg order details DON'T match!!");
-		}	
+		NumberFormat numberFormatUS = NumberFormat.getNumberInstance(Locale.US);
+		NumberFormat numberFormatFR = NumberFormat.getNumberInstance(Locale.FRANCE);
+		Locale localeEng = new Locale("en", "US");
+		NumberFormat fmtEng = NumberFormat.getCurrencyInstance(localeEng);
 		
-		if (mobileAction.isObjExists(lblSecondLeg) && (mobileAction.getText(lblSecondLegValue).matches(secondLegDetail))) {			
-			System.out.println("2nd Leg order details match");
-		} else {
-			System.out.println("2nd Leg order details DON'T match!!");
-		}		
+		Locale localeFr = new Locale("en", "FRANCE");
+		NumberFormat fmtFr = NumberFormat.getCurrencyInstance(localeFr);
 		
-		if (mobileAction.isObjExists(lblPrice) && (mobileAction.getText(lblPriceValue).matches(secondLegDetail))) {			
-			System.out.println("Price details match");
-		} else {
-			System.out.println("Price details DON'T match!!");
-		}	
-		
-		if (mobileAction.isObjExists(lblGoodTil) && (mobileAction.getText(lblGoodTilValue).matches(secondLegDetail))) {			
-			System.out.println("Good til details match");
-		} else {
-			System.out.println("Good til details DON'T match!!");
-		}	
-		
-		if (mobileAction.isObjExists(lblEstimatedPrincipal) && (mobileAction.isObjExists(lblCommission)) && (mobileAction.isObjExists(lblEstimatedTotal))) {			
-			System.out.println("Labels match");
-		} else {
-			System.out.println("Labels DON'T match!!");
-		}	
-		
-		if (this.shareholderFlag)
-			if (mobileAction.isObjExists(lblShareholderType)) {
-				System.out.println("Shareholder Type exists on the Confirm page");
-			} else { System.out.println("Shareholder Type DOESN'T exist on the Confirm page"); }
-		else
-			if (mobileAction.isObjExists(lblShareholderType)) {
-				System.out.println("Shareholder Type exists on the Confirm page - FALSE POSITIVE");
-			} else { System.out.println("Shareholder Type DOESN'T exist on the Confirm page"); }
-		
-		if (accountNumber.matches(".*E$") | accountNumber.matches(".*F$") | accountNumber.matches(".*G$") | accountNumber.matches(".*H$") )
-			if (mobileAction.isObjExists(lblBuyingPower)) {
-				System.out.println("Buying Power exists on the Confirm page");
-			} else { System.out.println("Buying Power DOESN'T exist on the Confirm page"); }
+				
+		int leg1qty = Integer.parseInt(firstLegQuantity);	  	
+	    String leg1qty_ENG = numberFormatUS.format(leg1qty);
+	    //System.out.println ("The quantity in English format is " + qty_ENG);
+	    //String leg1qty_FRE = numberFormatFR.format(leg1qty);
+	    //System.out.println ("The quantity in French format is " + qty_FRE);
+	    
+	    int leg2qty = Integer.parseInt(secondLegQuantity);	  	
+	    String leg2qty_ENG = numberFormatUS.format(leg2qty);
+	    //System.out.println ("The quantity in English format is " + qty_ENG);
+	    //String leg2qty_FRE = numberFormatFR.format(leg2qty);
+	    //System.out.println ("The quantity in French format is " + qty_FRE);
+	    
+	    double price = Double.parseDouble(limitpriceAmt);
+	    String price_ENG = fmtEng.format(price);
+	    //String price_FRE = fmtFr.format(price);
+	    
 		try {
-			CL.GetReporting().FuncReport("Fail", "abc");
+			if (mobileAction.isObjExists(lblFirstLeg) && (mobileAction.getText(lblFirstLegValue).contains(firstLegDetail+" "+leg1qty_ENG + " " + symbol.toUpperCase()))) {			
+				CL.GetReporting().FuncReport("Pass","1st Leg order details match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","1st Leg order details DON'T match!!" );
+			}	
+			
+			if (mobileAction.isObjExists(lblSecondLeg) && (mobileAction.getText(lblSecondLegValue).contains(secondLegDetail+" "+leg2qty_ENG + " " + symbol.toUpperCase()))) {			
+				CL.GetReporting().FuncReport("Pass","2nd Leg order details match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","2nd Leg order details DON'T match!!" );
+			}	
+			
+			if (mobileAction.isObjExists(lblPrice) && (mobileAction.getText(lblPriceValue).matches(priceType + price_ENG))) {			
+				CL.GetReporting().FuncReport("Pass","Price details match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","Price details DON'T match!!" );
+			}	
+			
+			if (mobileAction.isObjExists(lblGoodTil) && (mobileAction.getText(lblGoodTilValue).matches(goodtil))) {			
+				CL.GetReporting().FuncReport("Pass","Good Til details match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","Good Til details DON'T match!!" );
+			}	
+			
+			if (mobileAction.isObjExists(lblEstimatedPrincipal) && (mobileAction.isObjExists(lblCommission)) && (mobileAction.isObjExists(lblEstimatedTotal))) {			
+				CL.GetReporting().FuncReport("Pass","Labels - Estimated Principal, Commission and Estimated Total match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","Labels - Estimated Principal, Commission and Estimated Total DON'T match!!" );
+			}	
+			
+			if (this.shareholderFlag)
+				if (mobileAction.isObjExists(lblShareholderType) && (mobileAction.getText(lblShareholderTypeValue).matches(shareholderType))) {
+					CL.GetReporting().FuncReport("Pass","Shareholder Type exists and matches the details on the Confirm page");
+				} else { CL.GetReporting().FuncReport("Fail","Shareholder Type DOESN'T exist or not matches the details on the Confirm page"); }
+			else
+				if (mobileAction.isObjExists(lblShareholderType)) {
+					CL.GetReporting().FuncReport("Fail","Shareholder Type exists on the Confirm page - FALSE POSITIVE");
+				} else { CL.GetReporting().FuncReport("Pass","Shareholder Type DOESN'T exist on the Confirm page - That's Good"); }
+			
+			if (accountNumber.matches(".*E$") | accountNumber.matches(".*F$") | accountNumber.matches(".*G$") | accountNumber.matches(".*H$") )
+				if (mobileAction.isObjExists(lblBuyingPower)) {
+					CL.GetReporting().FuncReport("Pass","Buying Power exists on the Confirm page");
+				} else { CL.GetReporting().FuncReport("Fail","Buying Power DOESN'T exist on the Confirm page"); }
+			else
+				if (mobileAction.isObjExists(lblBuyingPower)) {
+					CL.GetReporting().FuncReport("Fail","Buying Power exists on the Confirm page - FALSE POSITIVE");
+				} else { CL.GetReporting().FuncReport("Pass","Buying Power DOESN'T exist on the Confirm page - That's Good"); }
+			
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-
+		
+	}
+	
+	
+	
+	public void verifyConfirmOrder_FR() 
+	{
+		Decorator();
+		
+		String firstLegDetail = getTestdata("Leg1Action", "UserIDs");
+		String firstLegQuantity = getTestdata("Quantity", "UserIDs");
+		String secondLegDetail = getTestdata("Leg2Action", "UserIDs");
+		String secondLegQuantity = getTestdata("Quantity", "UserIDs");
+		String symbol = getTestdata("Symbol", "UserIDs");	
+		String priceType = getTestdata("Price", "UserIDs");
+		String limitpriceAmt = getTestdata("LimitPrice", "UserIDs");
+		String goodtil = getTestdata("Good'til", "UserIDs");
+		String shareholderType = getTestdata("ShareHolder", "UserIDs");
+		
+		String accountNumber = mobileAction.getText(lblAccountNumber);
+		
+		NumberFormat numberFormatUS = NumberFormat.getNumberInstance(Locale.US);
+		NumberFormat numberFormatFR = NumberFormat.getNumberInstance(Locale.FRANCE);
+		Locale localeEng = new Locale("en", "US");
+		NumberFormat fmtEng = NumberFormat.getCurrencyInstance(localeEng);
+		
+		Locale localeFr = new Locale("en", "FRANCE");
+		NumberFormat fmtFr = NumberFormat.getCurrencyInstance(localeFr);
+		
+				
+		int leg1qty = Integer.parseInt(firstLegQuantity);	  	
+	    String leg1qty_ENG = numberFormatUS.format(leg1qty);
+	    //System.out.println ("The quantity in English format is " + qty_ENG);
+	    String leg1qty_FRE = numberFormatFR.format(leg1qty);
+	    //System.out.println ("The quantity in French format is " + qty_FRE);
+	    
+	    int leg2qty = Integer.parseInt(secondLegQuantity);	  	
+	    String leg2qty_ENG = numberFormatUS.format(leg2qty);
+	    //System.out.println ("The quantity in English format is " + qty_ENG);
+	    String leg2qty_FRE = numberFormatFR.format(leg2qty);
+	    //System.out.println ("The quantity in French format is " + qty_FRE);
+	    
+	    double price = Double.parseDouble(limitpriceAmt);
+	    String price_ENG = fmtEng.format(price);
+	    String price_FRE = fmtFr.format(price);
+	    
+		try {
+			if (mobileAction.isObjExists(lblFirstLeg) && (mobileAction.getText(lblFirstLegValue).contains(firstLegDetail+" "+leg1qty_FRE + " " + symbol.toUpperCase()))) {			
+				CL.GetReporting().FuncReport("Pass","1st Leg order details match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","1st Leg order details DON'T match!!" );
+			}	
+			
+			if (mobileAction.isObjExists(lblSecondLeg) && (mobileAction.getText(lblSecondLegValue).contains(secondLegDetail+" "+leg2qty_FRE + " " + symbol.toUpperCase()))) {			
+				CL.GetReporting().FuncReport("Pass","2nd Leg order details match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","2nd Leg order details DON'T match!!" );
+			}	
+			
+			if (mobileAction.isObjExists(lblPrice) && (mobileAction.getText(lblPriceValue).matches(priceType + price_FRE))) {			
+				CL.GetReporting().FuncReport("Pass","Price details match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","Price details DON'T match!!" );
+			}	
+			
+			if (mobileAction.isObjExists(lblGoodTil) && (mobileAction.getText(lblGoodTilValue).matches(goodtil))) {			
+				CL.GetReporting().FuncReport("Pass","Good Til details match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","Good Til details DON'T match!!" );
+			}	
+			
+			if (mobileAction.isObjExists(lblEstimatedPrincipal) && (mobileAction.isObjExists(lblCommission)) && (mobileAction.isObjExists(lblEstimatedTotal))) {			
+				CL.GetReporting().FuncReport("Pass","Labels - Estimated Principal, Commission and Estimated Total match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","Labels - Estimated Principal, Commission and Estimated Total DON'T match!!" );
+			}	
+			
+			if (this.shareholderFlag)
+				if (mobileAction.isObjExists(lblShareholderType) && (mobileAction.getText(lblShareholderTypeValue).matches(shareholderType))) {
+					CL.GetReporting().FuncReport("Pass","Shareholder Type exists and matches the details on the Confirm page");
+				} else { CL.GetReporting().FuncReport("Fail","Shareholder Type DOESN'T exist or not matches the details on the Confirm page"); }
+			else
+				if (mobileAction.isObjExists(lblShareholderType)) {
+					CL.GetReporting().FuncReport("Fail","Shareholder Type exists on the Confirm page - FALSE POSITIVE");
+				} else { CL.GetReporting().FuncReport("Pass","Shareholder Type DOESN'T exist on the Confirm page - That's Good"); }
+			
+			if (accountNumber.matches(".*E$") | accountNumber.matches(".*F$") | accountNumber.matches(".*G$") | accountNumber.matches(".*H$") )
+				if (mobileAction.isObjExists(lblBuyingPower)) {
+					CL.GetReporting().FuncReport("Pass","Buying Power exists on the Confirm page");
+				} else { CL.GetReporting().FuncReport("Fail","Buying Power DOESN'T exist on the Confirm page"); }
+			else
+				if (mobileAction.isObjExists(lblBuyingPower)) {
+					CL.GetReporting().FuncReport("Fail","Buying Power exists on the Confirm page - FALSE POSITIVE");
+				} else { CL.GetReporting().FuncReport("Pass","Buying Power DOESN'T exist on the Confirm page - That's Good"); }
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
 	}
 	
 	//Taps on the button Send Order
