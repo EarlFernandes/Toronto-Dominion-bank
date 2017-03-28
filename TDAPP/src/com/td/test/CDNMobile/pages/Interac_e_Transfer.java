@@ -74,7 +74,7 @@ public class Interac_e_Transfer extends _CommonPage {
     private MobileElement acntsListSender;
 
     @iOSFindBy(xpath = "//*[@label='Recipient, Select recipient']")
-    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/recipient_title' and @text='Recipient']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/recipient_title']")
     private MobileElement recipient;
 
     @iOSFindBy(xpath = "//*[@label='Done']")
@@ -86,6 +86,10 @@ public class Interac_e_Transfer extends _CommonPage {
     @iOSFindBy(xpath = "//*[@label='Cancel']")
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel' and @text='Close']")
     private MobileElement cancel;
+
+	@iOSFindBy(xpath ="//*[@label='Cancel Interac e-Transfer']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel']")
+	private MobileElement cancelTransfer;
 
     @iOSFindBy(xpath = "//*[@label='CANCEL']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtSpecialAction' and @text='Cancel']")
@@ -292,7 +296,12 @@ try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				// Get to confirmation page with default fields
+				// Seems like selector for from account/recipient do not work here
+				// We just need to get to confirmation page, so select default fields
+				mobileAction.FuncClick(fromAccount, "From Account");
+				mobileAction.FuncElementSwipeWhileNotFound(acntsList, "//android.widget.TextView[@resource-id='com.td:id/txtAccountDesc' and @index='0']", 1, "down", true);
+				mobileAction.FuncClick(recipient, "Recipient");
+				mobileAction.FuncElementSwipeWhileNotFound(acntsList, "//android.widget.TextView[@resource-id='com.td:id/txt_recipient_name' and @index='0']", 1, "down", true);
 				String ValueofAmount = getTestdata("Amount");
 				mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
 				mobileAction.FuncClickBackButton();
@@ -328,7 +337,12 @@ try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				// Get to confirmation page with default fields
+				// Seems like selector for from account/recipient do not work here
+				// We just need to get to confirmation page, so select default fields
+				mobileAction.FuncClick(fromAccount, "From Account");
+				mobileAction.FuncElementSwipeWhileNotFound(acntsList, "//android.widget.TextView[@resource-id='com.td:id/txtAccountDesc' and @index='0']", 1, "down", true);
+				mobileAction.FuncClick(recipient, "Recipient");
+				mobileAction.FuncElementSwipeWhileNotFound(acntsList, "//android.widget.TextView[@resource-id='com.td:id/txt_recipient_name' and @index='0']", 1, "down", true);
 				String ValueofAmount = getTestdata("Amount");
 				mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
 				mobileAction.FuncClickBackButton();
@@ -518,7 +532,7 @@ try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer") + "']", "Interac e-transfer title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer").replaceAll("\\<.*?>","") + "']", "Interac e-transfer title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/sender_title' and @text='" + mobileAction.getAppString("eTransferSenderLabel") + "']", "Sender");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/from_account_title' and @text='" + mobileAction.getAppString("eTransferFromAccountLabel") + "']", "From Account");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/recipient_title' and @text='" + mobileAction.getAppString("eTransferRecipientLabel") + "']", "Recipient");
@@ -526,6 +540,41 @@ try {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/button_footer' and @text='" + mobileAction.getAppString("btn_continue") + "']", "Continue");
 			}
 		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+	
+	/**
+	 * This method will verify text within elements for cancel e transfer
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyTextCancelETransfer() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				// Get to cancel e-transfer screen, choose first interac e-transfer to cancel
+				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + getTestdata("RecipientName") + "']", ""), "Recipient to cancel");
+				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("eTransferViewCancelCancelButton").replaceAll("\\<.*?>","") + "']", "Cancel Interac e-transfer title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("TransfersReclaimDepositToHeaderMessage").replaceAll("\\<.*?>","") + "']", "Reclaim message");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("TransfersReclaimDepositToDepositTo") + "']", "Deposit To");
+				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@resource-id='com.td:id/deposit_account' and @text='" + mobileAction.getAppString("TransfersReclaimDepositToHint") + "']", "Deposit To hint");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/btn_continue' and @text='" + mobileAction.getAppString("TransfersReclaimDepositToContinueButton") + "']", "Continue");
+			}
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {

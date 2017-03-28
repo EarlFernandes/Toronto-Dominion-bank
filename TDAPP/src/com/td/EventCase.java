@@ -335,6 +335,7 @@ public class EventCase {
 		PayBill_Canada_Button,
 		PayBill_US_VerifyTextElements,
 		PayBill_Canada_VerifyTextElementsConfirmation,
+		PayBill_US_VerifyTextElementsConfirmation,
 		PayBill_Canada_VerifyTextElements,
 		PayBill_US_Button, 
 		PayBill_VerifyAddCanadianPayeeBtn,
@@ -344,7 +345,8 @@ public class EventCase {
 		PayCanadaBillP_Pay_Candadian_Bill,
 		PayCanadianBill_InvalidAmount,
 
-		PendingInterac_e_Transfer, 
+		PendingInterac_e_Transfer,
+		PendingInterac_e_Transfer_cancel_deposit_to_VerifyText,
 		PendingInterac_e_Transfer_cancel, 
 		PendingInterac_e_Transfer_canceltransfer, 
 		PendingInterac_e_Transfer_confirm, 
@@ -1068,6 +1070,10 @@ public class EventCase {
 			Bill_PayCanada.get().verifyTextPayCanadianBillConfirmation();
 			break;
 
+		case PayBill_US_VerifyTextElementsConfirmation:
+			Pay_US_Bill.get().verifyTextPayUSBillConfirmation();
+			break;
+
 		case ManageRecipient_ModifyRecipient:
 			ManageRecipients.get().modifyRecipient();
 			break;
@@ -1434,6 +1440,10 @@ public class EventCase {
 
 		case PendingInterac_e_Transfer_canceltransfer:
 			PendingInteracTransfer.get().verifyconfirmation();
+			break;
+
+		case PendingInterac_e_Transfer_cancel_deposit_to_VerifyText:
+			Interac_e_Transfer.get().verifyTextCancelETransfer();
 			break;
 
 		case Menu_Location:

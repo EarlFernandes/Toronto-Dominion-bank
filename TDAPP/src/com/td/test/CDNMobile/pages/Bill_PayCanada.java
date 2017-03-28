@@ -73,7 +73,7 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement select_to_account;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@name='-Amount']")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/edtAmt'and @index='1']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edtAmt' and @index='1']")
 	private MobileElement amount;
 	
 	@iOSFindBy(xpath ="//*[@label='Pay Bill']")
@@ -297,7 +297,7 @@ public class Bill_PayCanada extends _CommonPage {
 	}
 
 	/**
-	 * This method will verify text within elements for the canadian bills page
+	 * This method will verify text within elements for the canadian bills confirmation page
 	 * 
 	 * @return void
 	 * 
@@ -310,11 +310,12 @@ public class Bill_PayCanada extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				// We just need to get to confirmation page, so select first payee
-				String ToPostAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and @index='0']";
+				// Seems like selector for from account/payee do not work here
+				// We just need to get to confirmation page, so select default fields
+				mobileAction.FuncClick(from_account, "From Account");
+				mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, "//android.widget.TextView[@resource-id='com.td:id/txtAccountDesc' and @index='0']", 1, "down", true);
 				mobileAction.FuncClick(to_account_post, "Select Payee");
-				mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, ToPostAccountXpath, 1, "down", true);
-				mobileAction.waitForElementToDisappear(t_select_to_account);
+				mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, "//android.widget.TextView[@text='" + getTestdata("Payee") + "']", 1, "down", true);
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
 				mobileAction.FuncHideKeyboard();
