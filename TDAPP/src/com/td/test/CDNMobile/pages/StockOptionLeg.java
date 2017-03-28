@@ -51,6 +51,11 @@ public class StockOptionLeg extends _CommonPage{
 	
 	private MobileElement firstsymbolUS;
 	
+	@iOSFindBy(xpath = "//*[@content-desc = 'C A']/following-sibling::*[1]") 
+	@AndroidFindBy(xpath = "//*[@content-desc = 'C A']/following-sibling::*[1]")
+	
+	private MobileElement firstsymbolCA;
+	
 	@iOSFindBy(xpath = "//*[@text='1st Leg']/../following-sibling::*[4]/*[1]/*[1]/*[2]") 
 	@AndroidFindBy(xpath = "(//*[@text='1st Leg']/../following-sibling::*[4]/*[1]/*[1]/*[2]) | (//*[@text='1re Volet']/../following-sibling::*[4]/*[1]/*[1]/*[2])")
 	
@@ -64,12 +69,12 @@ public class StockOptionLeg extends _CommonPage{
 	@iOSFindBy(xpath = "//*[@text='Buy to Open']") 
 	@AndroidFindBy(xpath = "(//*[@text='Buy to Open'and @index='0']) | (//*[@text='Achat pour ouvrir'and @index='0']) ")
 	
-	private MobileElement actionbuytoopen;
+	private MobileElement actionBuytoOpen;
 	
 	@iOSFindBy(xpath = "//*[@text='Buy to Close']") 
 	@AndroidFindBy(xpath = "(//*[@text='Buy to Close'and @index='0']) | (//*[@text='Achat pour fermer'and @index='0']) ")
 	
-	private MobileElement actionBuyToclose;
+	private MobileElement actionBuyToClose;
 	
 	@iOSFindBy(xpath = "//*[@text='Sell to Close']") 
 	@AndroidFindBy(xpath = "(//*[@text='Sell to Close'and @index='0']) | (//*[@text='Vente pour fermer'and @index='0']) ")
@@ -488,9 +493,12 @@ public class StockOptionLeg extends _CommonPage{
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(5, TimeUnit.SECONDS)),
 				this);
 	}
-	public void tapSymbol()
+	
+	//Enters the first Stock symbol for the US stock
+	public void tapSymbolUS()
 	{
 		Decorator();
+		String symbol = getTestdata("Leg2Action", "UserIDs");
 		try
 		{
 			mobileAction.FuncClick(symboltext, "Symbol Text");
@@ -502,7 +510,7 @@ public class StockOptionLeg extends _CommonPage{
 		try
 		{
 			mobileAction.FuncClick(searchsymbol, "Symbol Search Bar");
-			mobileAction.FuncSendKeys(searchsymbol, "TD");
+			mobileAction.FuncSendKeys(searchsymbol, symbol);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -518,9 +526,45 @@ public class StockOptionLeg extends _CommonPage{
 		
 	}
 	
-	public void selectLeg1ActionBuy()
+	//Enters the first Stock symbol for the US stock
+	public void tapSymbolCA()
 	{
 		Decorator();
+		String symbol = getTestdata("Leg2Action", "UserIDs");
+		try
+		{
+			mobileAction.FuncClick(symboltext, "Symbol Text");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		try
+		{
+			mobileAction.FuncClick(searchsymbol, "Symbol Search Bar");
+			mobileAction.FuncSendKeys(searchsymbol, symbol);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		try
+		{
+			mobileAction.FuncClick(firstsymbolCA, "Symbol");			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	//Select the Action Type for 1st Leg of the order
+	public void selectLeg1Action()
+	{
+		Decorator();
+		String firstLegAction = getTestdata("Leg1Action", "UserIDs");
+		
 		try
 		{
 			mobileAction.FuncClick(leg1action, "Leg 1 Action");
@@ -531,20 +575,26 @@ public class StockOptionLeg extends _CommonPage{
 		
 		try
 		{
-			mobileAction.FuncClick(actionbuy, "Action - Buy");
+			if (firstLegAction.equalsIgnoreCase("Buy")  | firstLegAction.equalsIgnoreCase("Acheter"))
+				mobileAction.FuncClick(actionbuy, "Action - Buy");
+			if (firstLegAction.equalsIgnoreCase("Sell")  | firstLegAction.equalsIgnoreCase("Vendre"))
+				mobileAction.FuncClick(actionbuy, "Action - Sell");
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}		
 	}
 	
+	//Enter the Quantity for 1st Leg of the order
 	public void enterLeg1Quantity()
 	{
 		Decorator();
+		String firstLegAction = getTestdata("Leg2Quantity", "UserIDs");
+		
 		try
 		{
 			mobileAction.FuncClick(leg1quantity, "Leg 1 Quantity");
-			mobileAction.FuncSendKeys("1");
+			mobileAction.FuncSendKeys(firstLegAction);
 		}		
 		
 		catch(Exception e){
@@ -571,13 +621,15 @@ public class StockOptionLeg extends _CommonPage{
 	}
 	
 	
+	//Enter the Quantity for 2nd Leg of the order
 	public void enterLeg2Quantity()
 	{
 		Decorator();
+		String secondLegAction = getTestdata("Leg2Quantity", "UserIDs");
 		try
 		{
 			mobileAction.FuncClick(leg2quantity, "Leg 2 Quantity");
-			mobileAction.FuncSendKeys("1");
+			mobileAction.FuncSendKeys(secondLegAction);
 		}		
 		
 		catch(Exception e){
@@ -589,18 +641,7 @@ public class StockOptionLeg extends _CommonPage{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		/*try {
-			mobileAction.FuncHideKeyboard();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}*/
+		
 	}
 	
 	
@@ -638,9 +679,11 @@ public class StockOptionLeg extends _CommonPage{
 		}		
 	}
 	
-	public void selectLeg2ActionBuytoOpen()
+	//Selects Action Type for 2nd Leg of the order
+	public void selectLeg2Action()
 	{
 		Decorator();
+		String secondLegAction = getTestdata("Leg2Action", "UserIDs");
 		try
 		{
 			mobileAction.FuncClick(leg2action, "Leg 2 Action");
@@ -651,7 +694,16 @@ public class StockOptionLeg extends _CommonPage{
 		
 		try
 		{
-			mobileAction.FuncClick(actionbuytoopen, "Action - Buy to Open");
+			if (secondLegAction.equalsIgnoreCase("Buy to Open") | secondLegAction.equalsIgnoreCase("Achat pour ouvrir"))
+				mobileAction.FuncClick(actionBuytoOpen, "Action - Buy to Open");
+			else if (secondLegAction.equalsIgnoreCase("Sell to Close") | secondLegAction.equalsIgnoreCase("Vente pour fermer"))
+				mobileAction.FuncClick(actionSelltoClose, "Action - Buy to Open");
+			else if (secondLegAction.equalsIgnoreCase("Buy to Close") | secondLegAction.equalsIgnoreCase("Achat pour fermer"))
+				mobileAction.FuncClick(actionBuyToClose, "Action - Buy to Open");
+			else if (secondLegAction.equalsIgnoreCase("Sell to Open Covered") | secondLegAction.equalsIgnoreCase("Vente pour ouvrir – couvert"))
+				mobileAction.FuncClick(actionSelltoOpenCovered, "Action - Sell to Open Covered");
+			else if (secondLegAction.equalsIgnoreCase("Sell to Open Uncovered") | secondLegAction.equalsIgnoreCase("Vente pour ouvrir – non couvert"))
+				mobileAction.FuncClick(actionSelltoOpenUncovered, "Action - Sell to Open Uncovered");
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -722,10 +774,34 @@ public class StockOptionLeg extends _CommonPage{
 		}		
 	}
 	
-	//Selects Price Type Even from the list of Price types
+	
+	//Selects Price Type Market from the list of Price types
 	public void selectPriceEven()
+		{
+			Decorator();
+			try
+			{
+				mobileAction.FuncClick(price, "Price");
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+			
+			try
+			{
+				mobileAction.FuncClick(priceEven, "Price Type - Even");
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}		
+	 }
+	
+	//Selects Price Type Even from the list based on the value enter in the data sheet
+	public void selectPrice()
 	{
 		Decorator();
+		String priceType = getTestdata("Price", "UserIDs");
+		
 		try
 		{
 			mobileAction.FuncClick(price, "Price");
@@ -736,20 +812,30 @@ public class StockOptionLeg extends _CommonPage{
 		
 		try
 		{
-			mobileAction.FuncClick(priceMarket, "Price Type - Even");
+			if (priceType.equalsIgnoreCase("Market"))
+				mobileAction.FuncClick(priceMarket, "Price Type - Market");
+			else if (priceType.equalsIgnoreCase("Even"))
+				mobileAction.FuncClick(priceEven, "Price Type - Even");
+			else if (priceType.equalsIgnoreCase("Net Debit")  || priceType.equalsIgnoreCase("Débit net"))
+				mobileAction.FuncClick(priceNetDebit, "Price Type - Net Debit");
+			else if (priceType.equalsIgnoreCase("Net Credit")  || priceType.equalsIgnoreCase("Crédit net"))
+				mobileAction.FuncClick(priceNetDebit, "Price Type - Net Credit");
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}		
 	}
 	
+	//Enters the Limit Price for a Multi-leg Stock/Option order. This has no associated business rule
 	public void enterLimitPrice()
 	{
 		Decorator();
+		
+		String lmtPrice = getTestdata("LimitPrice", "UserIDs");
 		try
 		{
 			mobileAction.FuncClick(limitprice, "Limit Price for Stock Option Leg");
-			mobileAction.FuncSendKeys(limitprice, "10");
+			mobileAction.FuncSendKeys(limitprice, lmtPrice);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -766,7 +852,7 @@ public class StockOptionLeg extends _CommonPage{
 	public void enterShareholderType()
 	{
 		Decorator();
-		
+		String shareholderType = getTestdata("ShareHolder", "UserIDs");
 		if (mobileAction.isObjExists(shareholdertype)) {
 			
 			try
@@ -779,8 +865,12 @@ public class StockOptionLeg extends _CommonPage{
 			}	
 			try
 			{  
-				mobileAction.FuncClick(shareholderNeither, "Shareholder Type - Neither");
-				
+				if (shareholderType.equalsIgnoreCase("Neither"))
+					mobileAction.FuncClick(shareholderNeither, "Shareholder Type - Neither");
+				else if (shareholderType.equalsIgnoreCase("Insider"))
+					mobileAction.FuncClick(shareholderInsider, "Shareholder Type - Insider");
+				else if (shareholderType.equalsIgnoreCase("Significant"))
+					mobileAction.FuncClick(shareholderInsider, "Shareholder Type - Significant");				
 			}
 			catch(Exception e){
 				e.printStackTrace();
@@ -840,7 +930,7 @@ public class StockOptionLeg extends _CommonPage{
 	}
 	
 	//Verifies the content of the Confirm Order screen for a Multi-leg Stock/Option order
-	
+	//The quantity and price fields are validated for English format	
 	public void verifyConfirmOrder_ENG() 
 	{
 		Decorator();
@@ -912,6 +1002,7 @@ public class StockOptionLeg extends _CommonPage{
 			} else {
 				CL.GetReporting().FuncReport("Fail","Labels - Estimated Principal, Commission and Estimated Total DON'T match!!" );
 			}	
+			mobileAction.FuncSwipeOnce("up");
 			
 			if (this.shareholderFlag)
 				if (mobileAction.isObjExists(lblShareholderType) && (mobileAction.getText(lblShareholderTypeValue).matches(shareholderType))) {
@@ -940,7 +1031,8 @@ public class StockOptionLeg extends _CommonPage{
 	}
 	
 	
-	
+	//Verifies the content of the Confirm Order screen for a Multi-leg Stock/Option order
+	//The quantity and price fields are validated for French format	
 	public void verifyConfirmOrder_FR() 
 	{
 		Decorator();
@@ -967,19 +1059,19 @@ public class StockOptionLeg extends _CommonPage{
 		
 				
 		int leg1qty = Integer.parseInt(firstLegQuantity);	  	
-	    String leg1qty_ENG = numberFormatUS.format(leg1qty);
+	    //String leg1qty_ENG = numberFormatUS.format(leg1qty);
 	    //System.out.println ("The quantity in English format is " + qty_ENG);
 	    String leg1qty_FRE = numberFormatFR.format(leg1qty);
 	    //System.out.println ("The quantity in French format is " + qty_FRE);
 	    
 	    int leg2qty = Integer.parseInt(secondLegQuantity);	  	
-	    String leg2qty_ENG = numberFormatUS.format(leg2qty);
+	    //String leg2qty_ENG = numberFormatUS.format(leg2qty);
 	    //System.out.println ("The quantity in English format is " + qty_ENG);
 	    String leg2qty_FRE = numberFormatFR.format(leg2qty);
 	    //System.out.println ("The quantity in French format is " + qty_FRE);
 	    
 	    double price = Double.parseDouble(limitpriceAmt);
-	    String price_ENG = fmtEng.format(price);
+	    //String price_ENG = fmtEng.format(price);
 	    String price_FRE = fmtFr.format(price);
 	    
 		try {
@@ -1013,6 +1105,7 @@ public class StockOptionLeg extends _CommonPage{
 				CL.GetReporting().FuncReport("Fail","Labels - Estimated Principal, Commission and Estimated Total DON'T match!!" );
 			}	
 			
+			mobileAction.FuncSwipeOnce("up");
 			if (this.shareholderFlag)
 				if (mobileAction.isObjExists(lblShareholderType) && (mobileAction.getText(lblShareholderTypeValue).matches(shareholderType))) {
 					CL.GetReporting().FuncReport("Pass","Shareholder Type exists and matches the details on the Confirm page");
