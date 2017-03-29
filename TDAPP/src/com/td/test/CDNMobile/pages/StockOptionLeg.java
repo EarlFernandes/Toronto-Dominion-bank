@@ -200,7 +200,7 @@ public class StockOptionLeg extends _CommonPage{
 	private MobileElement dontAgree;
 	
 	
-	//Confirm Order labels
+	//Confirm Order page objects
 	
 	@iOSFindBy(xpath = "//*[contains(@text,'')") 
 	@AndroidFindBy(xpath = "//*[@resource-id = 'com.td:id/timestamp']")
@@ -416,10 +416,21 @@ public class StockOptionLeg extends _CommonPage{
 	
 	private MobileElement lblFirstLegConfirmation;
 	
+	
+	@iOSFindBy(xpath = "//*[@text='1st Leg Confirmation # : ']") 
+	@AndroidFindBy(xpath = "(//*[@text='1st Leg Confirmation # : ' and @index = '0']/following-sibling::*[1]) | (//*[@text='1re Volet Confirmation # : ' and @index = '0']/following-sibling::*[1])")	
+	
+	private MobileElement lblFirstLegConfirmationNumber;
+	
 	@iOSFindBy(xpath = "//*[@text='2nd Leg Confirmation # : ']") 
 	@AndroidFindBy(xpath = "(//*[@text='2nd Leg Confirmation # : ' and @index = '0']) | (//*[@text='2re Volet Confirmation # : ' and @index = '0'])")
 	
 	private MobileElement lblSecondLegConfirmation;
+	
+	@iOSFindBy(xpath = "//*[@text='2nd Leg Confirmation # : ']") 
+	@AndroidFindBy(xpath = "(//*[@text='2nd Leg Confirmation # : ' and @index = '0']/following-sibling::*[1]) | (//*[@text='2re Volet Confirmation # : ' and @index = '0']/following-sibling::*[1])")
+	
+	private MobileElement lblSecondLegConfirmationNumber;
 	
 	@iOSFindBy(xpath = "//*[@text='Order Placed']") 
 	@AndroidFindBy(xpath = "(//*[@text='Order Placed' and @index = '0']) | (//*[@text='Ordre passé le' and @index = '0']) ")
@@ -434,53 +445,62 @@ public class StockOptionLeg extends _CommonPage{
 	@iOSFindBy(xpath = "//*[@text='Order Placed']") 
 	@AndroidFindBy(xpath = "(//*[@text='Order Placed' and @index = '0']/../following-sibling::*[1]/*[1]) | (//*[@text='Order Placed' and @index = '0']/../following-sibling::*[1]/*[1])")
 	
-	private MobileElement lblOrderPlacedDate_Receipt;
+	private MobileElement lblOrderPlacedDate;
 	
 	@iOSFindBy(xpath = "//*[@text='Order Placed']") 
 	@AndroidFindBy(xpath = "(//*[@text='Order Placed' and @index = '0']/../following-sibling::*[1]/*[2]) | (//*[@text='Order Placed' and @index = '0']/../following-sibling::*[1]/*[2])")
 	
-	private MobileElement lblOrderPlacedTime_Receipt;
+	private MobileElement lblOrderPlacedTime;
 	
 	@iOSFindBy(xpath = "//*[@text='1st Leg']") 
 	@AndroidFindBy(xpath = "(//*[@text='1st Leg' and @index = '0']) | (//*[@text='1re Volet' and @index = '0'])")
 	
-	private MobileElement lblFirstLeg_Receipt;
+	private MobileElement lblReceipt_FirstLeg;
 	
 	@iOSFindBy(xpath = "//*[@text='1st Leg']") 
 	@AndroidFindBy(xpath = "(//*[@text='1st Leg' and @index = '0']../following-sibling::*[1]/*[1]) | (//*[@text='1re Volet' and @index = '0']../following-sibling::*[1]/*[1])")
 	
-	private MobileElement lblFirstLegValue_Receipt;
+	private MobileElement lblReceipt_FirstLegValue;
 	
 	@iOSFindBy(xpath = "//*[@text='2nd Leg']") 
 	@AndroidFindBy(xpath = "(//*[@text='2nd Leg' and @index = '0']) | (//*[@text='2e Volet' and @index = '0'])")
 	
-	private MobileElement lblSecondLeg_Receipt;
+	private MobileElement lblReceipt_SecondLeg;
 	
 	@iOSFindBy(xpath = "//*[@text='2nd Leg']") 
 	@AndroidFindBy(xpath = "(//*[@text='2nd Leg' and @index = '0']../following-sibling::*[1]/*[1]) | (//*[@text='2e Volet' and @index = '0']../following-sibling::*[1]/*[1])")
 	
-	private MobileElement lblSecondLegValue_Receipt;
+	private MobileElement lblReceipt_SecondLegValue;
 	
 	@iOSFindBy(xpath = "//*[@text='Price']") 
 	@AndroidFindBy(xpath = "(//*[@text='Price' and @index = '0']) | (//*[@text='Cours' and @index = '0'])")
 	
-	private MobileElement lblPrice_Receipt;
+	private MobileElement lblReceipt_Price;
 	
 	@iOSFindBy(xpath = "//*[@text='Price']") 
 	@AndroidFindBy(xpath = "(//*[@text='Price' and @index = '0']/following-sibling::*[1]) | (//*[@text='Cours' and @index = '0']/following-sibling::*[1])")
 	
-	private MobileElement lblPriceValue_Receipt;
+	private MobileElement lblReceipt_PriceValue;
 	
 	@iOSFindBy(xpath = "//*[contains(@text,'Good')]") 
 	@AndroidFindBy(xpath = "(//*[contains(@text,'Good') and @index = '0']) | (//*[contains(@text,'Échéance') and @index = '0'])")
 	
-	private MobileElement lblGoodTil_Receipt;
+	private MobileElement lblReceipt_GoodTil;
 	
 	@iOSFindBy(xpath = "//*[contains(@text,'Good')]") 
 	@AndroidFindBy(xpath = "(//*[contains(@text,'Good') and @index = '0']/following-sibling::*[1]) | (//*[contains(@text,'Échéance') and @index = '0']/following-sibling::*[1])")
 	
-	private MobileElement lblGoodTilValue_Receipt;
+	private MobileElement lblReceipt_GoodTilValue;
 	
+	@iOSFindBy(xpath = "//*[@text='Shareholder Type']") 
+	@AndroidFindBy(xpath = "(//*[@text='Shareholder Type' and @index = '0']) | (//*[@text='Type d’actionnaire' and @index = '0'])")
+	
+	private MobileElement lblReceipt_ShareholderType;
+	
+	@iOSFindBy(xpath = "//*[@text='Shareholder Type']") 
+	@AndroidFindBy(xpath = "(//*[@text='Shareholder Type' and @index = '0']/following-sibling::*[1]) | (//*[@text='Type d’actionnaire' and @index = '0']/following-sibling::*[1])")
+	
+	private MobileElement lblReceipt_ShareholderTypeValue;
 	
 	//Orders Tab objects
 	@iOSFindBy(xpath = "//*[contains(@text,'Multi-Leg')]") 
@@ -929,6 +949,33 @@ public class StockOptionLeg extends _CommonPage{
 		}		
 	}
 	
+	
+	//Taps on the button Send Order
+	public void tapSendOrder()
+	{
+		Decorator();
+		try
+		{
+			mobileAction.FuncClick(btnSendOrder, "Send Order button");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}		
+	}
+		
+	//Taps on the button Cancel Order
+	public void tapCancelOrder()
+	{
+		Decorator();
+		try
+		{
+			mobileAction.FuncClick(btnCancelOrder, "Cancel Order button");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}		
+	}
+	
 	//Verifies the content of the Confirm Order screen for a Multi-leg Stock/Option order
 	//The quantity and price fields are validated for English format	
 	public void verifyConfirmOrder_ENG() 
@@ -1106,6 +1153,7 @@ public class StockOptionLeg extends _CommonPage{
 			}	
 			
 			mobileAction.FuncSwipeOnce("up");
+			
 			if (this.shareholderFlag)
 				if (mobileAction.isObjExists(lblShareholderType) && (mobileAction.getText(lblShareholderTypeValue).matches(shareholderType))) {
 					CL.GetReporting().FuncReport("Pass","Shareholder Type exists and matches the details on the Confirm page");
@@ -1132,103 +1180,218 @@ public class StockOptionLeg extends _CommonPage{
 		
 	}
 	
-	//Taps on the button Send Order
-	public void tapSendOrder()
-	{
-		Decorator();
-		try
-		{
-			mobileAction.FuncClick(btnSendOrder, "Send Order button");
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}		
-	}
 	
-	//Taps on the button Cancel Order
-	public void tapCancelOrder()
-	{
-		Decorator();
-		try
-		{
-			mobileAction.FuncClick(btnCancelOrder, "Cancel Order button");
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}		
-	}
 	
-	public void verifyReceiptScreen() 
+	public void verifyReceiptScreen_ENG() 
 	{
 		Decorator();
 		
-		String firstLegDetail = getTestdata("Action", "UserIDs");
-		String secondLegDetail = getTestdata("Action1", "UserIDs");
-		String accountNumber = mobileAction.getText(lblAccountNumber);
+		NumberFormat numberFormatUS = NumberFormat.getNumberInstance(Locale.US);
+		Locale localeEng = new Locale("en", "US");
+		NumberFormat fmtEng = NumberFormat.getCurrencyInstance(localeEng);
 		
-		String tradeDate = mobileAction.getText(lblOrderPlacedDate_Receipt);
+		String accountNumber = mobileAction.getText(lblAccountNumber);	
+		
+		String account = getTestdata("Accounts", "UserIDs");
+		String firstLegDetail = getTestdata("Leg1Action", "UserIDs");
+		String firstLegQuantity = getTestdata("Quantity", "UserIDs");
+		String secondLegDetail = getTestdata("Leg2Action", "UserIDs");
+		String secondLegQuantity = getTestdata("Quantity", "UserIDs");
+		String symbol = getTestdata("Symbol", "UserIDs");	
+		String priceType = getTestdata("Price", "UserIDs");
+		String limitpriceAmt = getTestdata("LimitPrice", "UserIDs");
+		String goodtil = getTestdata("Good'til", "UserIDs");
+		String shareholderType = getTestdata("ShareHolder", "UserIDs");
+		
+		int leg1qty = Integer.parseInt(firstLegQuantity);	  	
+	    String leg1qty_ENG = numberFormatUS.format(leg1qty);
+	    
+	    int leg2qty = Integer.parseInt(secondLegQuantity);	  	
+	    String leg2qty_ENG = numberFormatUS.format(leg2qty);
+	    
+	    double price = Double.parseDouble(limitpriceAmt);
+	    String price_ENG = fmtEng.format(price);
+		
+		String tradeDate = mobileAction.getText(lblOrderPlacedDate);
+		String tradeTime = mobileAction.getText(lblOrderPlacedTime);
 	  	DateFormat dateFormatEng = new SimpleDateFormat("MMM dd, yyyy");
 	  	DateFormat dateFormatFrench = new SimpleDateFormat("MMM dd, yyyy",Locale.FRANCE);
-		try{
-			if ( mobileAction.isObjExists(lblOrderPlaced) && mobileAction.isObjExists(lblAccount)
-				&& 	mobileAction.isObjExists(lblFirstLeg_Receipt) && mobileAction.isObjExists(lblSecondLeg_Receipt)
-				&& 	mobileAction.isObjExists(lblPrice_Receipt) && mobileAction.isObjExists(lblGoodTil_Receipt)) {			
-				CL.GetReporting().FuncReport("Pass", "All labels are found" );
+		
+	  	try{
+			if ( mobileAction.isObjExists(lblThankYou) && mobileAction.isObjExists(lblOrderSentMsg)) {
+				CL.GetReporting().FuncReport("Pass","Order sent messages appear!" );
 			} else {
-				CL.GetReporting().FuncReport("Fail", "Some labels are missing" );
+				CL.GetReporting().FuncReport("Fail","Order sent messages DON'T appear!!" );
+			}	
+			
+			if ( accountNumber.equalsIgnoreCase(account)) {
+				CL.GetReporting().FuncReport("Pass","Account detail matches" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","Account detail DOESN'T match !!" );
+			}	
+			
+			if (mobileAction.isObjExists(lblFirstLegConfirmation) && (mobileAction.getText(lblFirstLegConfirmationNumber).matches("\\w{2}\\-\\d{6}"))) {
+				CL.GetReporting().FuncReport("Pass","1st Leg Confirmation details appear along with the Confirmation Number");
+			} else { 
+				CL.GetReporting().FuncReport("Fail","1st Leg Confirmation details DON'T match !!");
 			}
+			
+			if (mobileAction.isObjExists(lblSecondLegConfirmation) && (mobileAction.getText(lblSecondLegConfirmationNumber).matches("\\w{2}\\-\\d{6}"))) {
+				CL.GetReporting().FuncReport("Pass","2nd Leg Confirmation details appear along with the Confirmation Number");
+			} else { 
+				CL.GetReporting().FuncReport("Fail","2nd Leg Confirmation details DON'T match !!");
+			}
+			if (mobileAction.isObjExists(lblReceipt_FirstLeg) && (mobileAction.getText(lblReceipt_FirstLegValue).contains(firstLegDetail+" "+leg1qty_ENG + " " + symbol.toUpperCase()))) {			
+				CL.GetReporting().FuncReport("Pass","1st Leg order details match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","1st Leg order details DON'T match!!" );
+			}	
+			
+			if (mobileAction.isObjExists(lblReceipt_SecondLeg) && (mobileAction.getText(lblReceipt_SecondLegValue).contains(secondLegDetail+" "+leg2qty_ENG + " " + symbol.toUpperCase()))) {			
+				CL.GetReporting().FuncReport("Pass","2nd Leg order details match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","2nd Leg order details DON'T match!!" );
+			}	
+			
+			if (mobileAction.isObjExists(lblReceipt_Price) && (mobileAction.getText(lblReceipt_PriceValue).matches(priceType + price_ENG))) {			
+				CL.GetReporting().FuncReport("Pass","Price details match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","Price details DON'T match!!" );
+			}	
+			
+			if (mobileAction.isObjExists(lblReceipt_GoodTil) && (mobileAction.getText(lblReceipt_GoodTilValue).matches(goodtil))) {			
+				CL.GetReporting().FuncReport("Pass","Good Til details match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","Good Til details DON'T match!!" );
+			}	
+			
+			mobileAction.FuncSwipeOnce("up");
+			
+			if (this.shareholderFlag)
+				if (mobileAction.isObjExists(lblReceipt_ShareholderType) && (mobileAction.getText(lblReceipt_ShareholderTypeValue).matches(shareholderType))) {
+					CL.GetReporting().FuncReport("Pass","Shareholder Type exists and matches the details on the Receipt page");
+				} else { CL.GetReporting().FuncReport("Fail","Shareholder Type DOESN'T exist or not matches the details on the Receipt page"); }
+			else
+				if (mobileAction.isObjExists(lblReceipt_ShareholderType)) {
+					CL.GetReporting().FuncReport("Fail","Shareholder Type exists on the Receipt page - FALSE POSITIVE");
+				} else { CL.GetReporting().FuncReport("Pass","Shareholder Type DOESN'T exist on the Receipt page - That's Good"); }
+			
+			if (mobileAction.isObjExists(btnHome) && mobileAction.isObjExists(btnOrders) && mobileAction.isObjExists(btnTrade)) {
+				CL.GetReporting().FuncReport("Pass","Quick Icons appear on the Receipt screen!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","Quick Icons DON'T appear on the Receipt screen!!" );
+			}	
 		} catch(Exception e)
 		{			 
 			e.printStackTrace();
 		}
+
+	}
+	
+	
+	public void verifyReceiptScreen_FRE() 
+	{
+		Decorator();
 		
+		NumberFormat numberFormatUS = NumberFormat.getNumberInstance(Locale.FRANCE);
+		Locale localeFre = new Locale("en", "FRANCE");
+		NumberFormat fmtFre = NumberFormat.getCurrencyInstance(localeFre);
 		
+		String accountNumber = mobileAction.getText(lblAccountNumber);	
 		
+		String account = getTestdata("Accounts", "UserIDs");
+		String firstLegDetail = getTestdata("Leg1Action", "UserIDs");
+		String firstLegQuantity = getTestdata("Quantity", "UserIDs");
+		String secondLegDetail = getTestdata("Leg2Action", "UserIDs");
+		String secondLegQuantity = getTestdata("Quantity", "UserIDs");
+		String symbol = getTestdata("Symbol", "UserIDs");	
+		String priceType = getTestdata("Price", "UserIDs");
+		String limitpriceAmt = getTestdata("LimitPrice", "UserIDs");
+		String goodtil = getTestdata("Good'til", "UserIDs");
+		String shareholderType = getTestdata("ShareHolder", "UserIDs");
 		
+		int leg1qty = Integer.parseInt(firstLegQuantity);	  	
+	    String leg1qty_ENG = numberFormatUS.format(leg1qty);
+	    
+	    int leg2qty = Integer.parseInt(secondLegQuantity);	  	
+	    String leg2qty_ENG = numberFormatUS.format(leg2qty);
+	    
+	    double price = Double.parseDouble(limitpriceAmt);
+	    String price_FRE = fmtFre.format(price);
 		
-		if (mobileAction.isObjExists(lblSecondLeg) && (mobileAction.getText(lblSecondLegValue).matches(secondLegDetail))) {			
-			System.out.println("2nd Leg order details match");
-		} else {
-			System.out.println("2nd Leg order details DON'T match!!");
-		}		
+		String tradeDate = mobileAction.getText(lblOrderPlacedDate);
+		String tradeTime = mobileAction.getText(lblOrderPlacedTime);
+	  	DateFormat dateFormatEng = new SimpleDateFormat("MMM dd, yyyy");
+	  	DateFormat dateFormatFrench = new SimpleDateFormat("MMM dd, yyyy",Locale.FRANCE);
 		
-		if (mobileAction.isObjExists(lblPrice) && (mobileAction.getText(lblPriceValue).matches(secondLegDetail))) {			
-			System.out.println("Price details match");
-		} else {
-			System.out.println("Price details DON'T match!!");
-		}	
-		
-		if (mobileAction.isObjExists(lblGoodTil) && (mobileAction.getText(lblGoodTilValue).matches(secondLegDetail))) {			
-			System.out.println("Good til details match");
-		} else {
-			System.out.println("Good til details DON'T match!!");
-		}	
-		
-		if (mobileAction.isObjExists(lblEstimatedPrincipal) && (mobileAction.isObjExists(lblCommission)) && (mobileAction.isObjExists(lblEstimatedTotal))) {			
-			System.out.println("Labels match");
-		} else {
-			System.out.println("Labels DON'T match!!");
-		}	
-		
-		if (this.shareholderFlag)
-			if (mobileAction.isObjExists(lblShareholderType)) {
-				System.out.println("Shareholder Type exists on the Confirm page");
-			} else { System.out.println("Shareholder Type DOESN'T exist on the Confirm page"); }
-		else
-			if (mobileAction.isObjExists(lblShareholderType)) {
-				System.out.println("Shareholder Type exists on the Confirm page - FALSE POSITIVE");
-			} else { System.out.println("Shareholder Type DOESN'T exist on the Confirm page"); }
-		
-		if (accountNumber.matches(".*E$") | accountNumber.matches(".*F$") | accountNumber.matches(".*G$") | accountNumber.matches(".*H$") )
-			if (mobileAction.isObjExists(lblBuyingPower)) {
-				System.out.println("Buying Power exists on the Confirm page");
-			} else { System.out.println("Buying Power DOESN'T exist on the Confirm page"); }
-		try {
-			CL.GetReporting().FuncReport("Fail", "abc");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+	  	try{
+			if ( mobileAction.isObjExists(lblThankYou) && mobileAction.isObjExists(lblOrderSentMsg)) {
+				CL.GetReporting().FuncReport("Pass","Order sent messages appear!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","Order sent messages DON'T appear!!" );
+			}	
+			
+			if ( accountNumber.equalsIgnoreCase(account)) {
+				CL.GetReporting().FuncReport("Pass","Account detail matches" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","Account detail DOESN'T match !!" );
+			}	
+			
+			if (mobileAction.isObjExists(lblFirstLegConfirmation) && (mobileAction.getText(lblFirstLegConfirmationNumber).matches("\\w{2}\\-\\d{6}"))) {
+				CL.GetReporting().FuncReport("Pass","1st Leg Confirmation details appear along with the Confirmation Number");
+			} else { 
+				CL.GetReporting().FuncReport("Fail","1st Leg Confirmation details DON'T match !!");
+			}
+			
+			if (mobileAction.isObjExists(lblSecondLegConfirmation) && (mobileAction.getText(lblSecondLegConfirmationNumber).matches("\\w{2}\\-\\d{6}"))) {
+				CL.GetReporting().FuncReport("Pass","2nd Leg Confirmation details appear along with the Confirmation Number");
+			} else { 
+				CL.GetReporting().FuncReport("Fail","2nd Leg Confirmation details DON'T match !!");
+			}
+			if (mobileAction.isObjExists(lblReceipt_FirstLeg) && (mobileAction.getText(lblReceipt_FirstLegValue).contains(firstLegDetail+" "+leg1qty_ENG + " " + symbol.toUpperCase()))) {			
+				CL.GetReporting().FuncReport("Pass","1st Leg order details match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","1st Leg order details DON'T match!!" );
+			}	
+			
+			if (mobileAction.isObjExists(lblReceipt_SecondLeg) && (mobileAction.getText(lblReceipt_SecondLegValue).contains(secondLegDetail+" "+leg2qty_ENG + " " + symbol.toUpperCase()))) {			
+				CL.GetReporting().FuncReport("Pass","2nd Leg order details match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","2nd Leg order details DON'T match!!" );
+			}	
+			
+			if (mobileAction.isObjExists(lblReceipt_Price) && (mobileAction.getText(lblReceipt_PriceValue).matches(priceType + price_FRE))) {			
+				CL.GetReporting().FuncReport("Pass","Price details match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","Price details DON'T match!!" );
+			}	
+			
+			if (mobileAction.isObjExists(lblReceipt_GoodTil) && (mobileAction.getText(lblReceipt_GoodTilValue).matches(goodtil))) {			
+				CL.GetReporting().FuncReport("Pass","Good Til details match!!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","Good Til details DON'T match!!" );
+			}	
+			
+			mobileAction.FuncSwipeOnce("up");
+			
+			if (this.shareholderFlag)
+				if (mobileAction.isObjExists(lblReceipt_ShareholderType) && (mobileAction.getText(lblReceipt_ShareholderTypeValue).matches(shareholderType))) {
+					CL.GetReporting().FuncReport("Pass","Shareholder Type exists and matches the details on the Receipt page");
+				} else { CL.GetReporting().FuncReport("Fail","Shareholder Type DOESN'T exist or not matches the details on the Receipt page"); }
+			else
+				if (mobileAction.isObjExists(lblReceipt_ShareholderType)) {
+					CL.GetReporting().FuncReport("Fail","Shareholder Type exists on the Receipt page - FALSE POSITIVE");
+				} else { CL.GetReporting().FuncReport("Pass","Shareholder Type DOESN'T exist on the Receipt page - That's Good"); }
+			
+			if (mobileAction.isObjExists(btnHome) && mobileAction.isObjExists(btnOrders) && mobileAction.isObjExists(btnTrade)) {
+				CL.GetReporting().FuncReport("Pass","Quick Icons appear on the Receipt screen!" );
+			} else {
+				CL.GetReporting().FuncReport("Fail","Quick Icons DON'T appear on the Receipt screen!!" );
+			}	
+		} catch(Exception e)
+		{			 
 			e.printStackTrace();
-		} 
+		}
 
 	}
 	
