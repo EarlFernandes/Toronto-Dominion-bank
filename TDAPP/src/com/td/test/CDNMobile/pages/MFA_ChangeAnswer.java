@@ -22,9 +22,9 @@ public class MFA_ChangeAnswer extends _CommonPage {
 
 	String platformName=null;;
 	
-	@iOSFindBy(xpath="//*[@label='Update Security Questions']")
+	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@label='Update Security Questions']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Update Security Questions' and @resource-id='android:id/action_bar_title']")
-	private MobileElement security_Question_header;
+	private MobileElement security_Question_Header;
 	
 	@iOSFindBy(xpath="//XCUIElementTypeSecureTextField [@value='Enter your answer']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/mfa_answer' and @index='1']")
@@ -32,23 +32,22 @@ public class MFA_ChangeAnswer extends _CommonPage {
 
 	@iOSFindBy(xpath="//XCUIElementTypeSecureTextField[@value='Re-enter your answer']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/mfa_confirm_answer' and @index='3']")
-	private MobileElement confirm_security_Answer;
+	private MobileElement confirm_Security_Answer;
 
 	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@value='What is your favourite pizza place?']")
-	//@iOSFindBy(xpath="//*[@label='What is the name of your elementary school?']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mfa_question' and @index='0']")
 	private MobileElement security_Question;
 	
-	@iOSFindBy(xpath="//*[@label='Save Changes']")
+	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@label='Save Changes']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/btn_save' and @text='Save Changes']")
 	private MobileElement save_Changes;
 	
-	@iOSFindBy(xpath="//*[@label='Done']")
+	@iOSFindBy(xpath="//XCUIElementTypeButton[@label='Done']")
 	private MobileElement done;
 
-	@iOSFindBy(xpath="//*[contains(@label,'The security question was updated successfully')]")
+	@iOSFindBy(xpath="//XCUIElementTypeStaticText[contains(@label,'The security question was updated successfully')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/questionTextView' and @text='The security question was updated successfully']")
-	private MobileElement secret_answer_updated;
+	private MobileElement secret_Answer_Updated;
 
 	public synchronized static MFA_ChangeAnswer get() {
 		if (MFA_ChangeAnswer == null) {
@@ -84,7 +83,7 @@ public class MFA_ChangeAnswer extends _CommonPage {
 		String security_ans_updated = "The security question was updated successfully";
 		try {
 			
-			if(security_Question_header.isDisplayed()){
+			if(security_Question_Header.isDisplayed()){
 			mobileAction.FuncClick(security_Question, "Security_Question");
 			mobileAction.FuncClick(security_Answer, "security_Answer");
 			String secret_Answer_value = getTestdata("SecurityAnswer");
@@ -93,20 +92,20 @@ public class MFA_ChangeAnswer extends _CommonPage {
 			
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
 			
-				mobileAction.FuncClick(confirm_security_Answer, "Confirm_Security_Answer");
-				mobileAction.FuncSendKeys(confirm_security_Answer, secret_Answer_value);
+				mobileAction.FuncClick(confirm_Security_Answer, "Confirm_Security_Answer");
+				mobileAction.FuncSendKeys(confirm_Security_Answer, secret_Answer_value);
 				mobileAction.FuncClick(done, "Done");
 				mobileAction.FuncClick(save_Changes, "Save_Changes");
 				
 			}
 			else{
 				mobileAction.FuncHideKeyboard();
-				mobileAction.FuncClick(confirm_security_Answer, "Confirm_Security_Answer");
+				mobileAction.FuncClick(confirm_Security_Answer, "Confirm_Security_Answer");
 				String confirm_Sec_Answer_value = getTestdata("SecurityAnswer");
-				mobileAction.FuncSendKeys(confirm_security_Answer, confirm_Sec_Answer_value);
+				mobileAction.FuncSendKeys(confirm_Security_Answer, confirm_Sec_Answer_value);
 				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(save_Changes, "Save_Changes");
-				mobileAction.verifyElement(secret_answer_updated, security_ans_updated);
+				mobileAction.verifyElement(secret_Answer_Updated, security_ans_updated);
 				}
 			}
 			} catch (NoSuchElementException | InterruptedException | IOException e) {

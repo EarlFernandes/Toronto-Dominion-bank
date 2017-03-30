@@ -19,13 +19,13 @@ public class AddRecipient extends _CommonPage {
 
 	private static AddRecipient AddRecipient;
 
-	@iOSFindBy(xpath = "//*[@label='Add Recipient']")
-	private MobileElement addRecipient_Interac_header;
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Add Recipient']")
+	private MobileElement addRecipient_Interac_Header;
 
-	@iOSFindBy(xpath = "//*[contains(@value,'name')]")
-	private MobileElement recipient_name;
+	@iOSFindBy(xpath = "//XCUIElementTypeTextField[contains(@value,'name')]")
+	private MobileElement recipient_Name;
 
-	@iOSFindBy(xpath = "//*[contains(@value,'email address')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeTextField[contains(@value,'email address')]")
 	private MobileElement recipient_Email;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Create a security question']")
@@ -35,15 +35,15 @@ public class AddRecipient extends _CommonPage {
 	private MobileElement answer;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Re-enter your answer']")
-	private MobileElement confirm_answer;
+	private MobileElement confirm_Answer;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Review']")
-	private MobileElement review_button;
+	private MobileElement review_Button;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Error You must enter a valid answer to your security question.')]")
-	private MobileElement verify_msg;
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Error You must enter a valid answer to your security question.')]")
+	private MobileElement verify_Msg;
 
-	@iOSFindBy(xpath = "//*[@label='Done']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
 	private MobileElement done;
 
 	public synchronized static AddRecipient get() {
@@ -71,13 +71,13 @@ public class AddRecipient extends _CommonPage {
 
 		Decorator();
 		try {
-			addRecipient_Interac_header.isDisplayed();
+			addRecipient_Interac_Header.isDisplayed();
 			// String
-			// recipient_name_value=getTestdata("RecipientName" );
-			String recipient_name_value = getTestdata("RecipientName");
+			// recipient_Name_value=getTestdata("RecipientName" );
+			String recipient_Name_value = getTestdata("RecipientName");
 
-			mobileAction.FuncClick(recipient_name, "Recipient_Name");
-			mobileAction.FuncSendKeys(recipient_name, recipient_name_value);
+			mobileAction.FuncClick(recipient_Name, "recipient_Name");
+			mobileAction.FuncSendKeys(recipient_Name, recipient_Name_value);
 
 			// String
 			// recipient_Email_value=getTestdata("RecipientMail" );
@@ -101,13 +101,13 @@ public class AddRecipient extends _CommonPage {
 			mobileAction.FuncSendKeys(answer, answer_value);
 			mobileAction.FuncClick(done, "Done");
 
-			mobileAction.FuncClick(confirm_answer, "Confirm_Answer");
+			mobileAction.FuncClick(confirm_Answer, "Confirm_Answer");
 
-			mobileAction.FuncSendKeys(confirm_answer, answer_value);
+			mobileAction.FuncSendKeys(confirm_Answer, answer_value);
 			mobileAction.FuncClick(done, "Done");
 
-			mobileAction.FuncClick(review_button, "Review_button");
-			verify_msg.isDisplayed();
+			mobileAction.FuncClick(review_Button, "Review_button");
+			mobileAction.FuncIsDisplayed(verify_Msg);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

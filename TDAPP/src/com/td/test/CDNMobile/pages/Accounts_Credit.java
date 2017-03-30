@@ -19,15 +19,15 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class Accounts_Credit extends _CommonPage {
 	private static Accounts_Credit Accounts_Credit;
 
-	@iOSFindBy(xpath = "//*[@label='PAY BILL']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='PAY BILL']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/payBill' and @text='PAY BILL']")
 	private MobileElement payBill_Btn;
 
-	@iOSFindBy(xpath = "//*[@label='In Progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progresssBar;
 
-	@iOSFindBy(xpath = "//*[@label='Activity']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Activity']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/activityTab' and @text='Activity']")
 	private MobileElement activityTab;
 
@@ -35,11 +35,11 @@ public class Accounts_Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/description' and @index='0']")
 	private MobileElement lastStatement;
 
-	@iOSFindBy(xpath = "//*[@label='Summary']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Summary']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/summaryTab']")
 	private MobileElement summaryTab;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Current Balance,')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Current Balance,')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Current Balance']")
 	private MobileElement currentBalance;
 
@@ -47,7 +47,7 @@ public class Accounts_Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/currentCredit']")
 	private MobileElement currentAmount;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Available Credit')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Available Credit')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Available Credit']")
 	private MobileElement availableBalance;
 
@@ -55,7 +55,7 @@ public class Accounts_Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/availableCredit']")
 	private MobileElement availableAmount;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Credit Limit,')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Credit Limit,')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Credit Limit']")
 	private MobileElement creditLimit;
 
@@ -63,7 +63,7 @@ public class Accounts_Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/creditLimit']")
 	private MobileElement creditAmount;
 
-	@iOSFindBy(xpath = "//*[@label='Statements']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Statements']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/statementTab']")
 	private MobileElement statementTab;
 
@@ -79,11 +79,11 @@ public class Accounts_Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/three_statements_ago']")
 	private MobileElement threeStatementAgo;
 
-	@iOSFindBy(xpath = "//*[@label='TRANSFER']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='TRANSFER']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transferTo' and @text='TRANSFERS']")
-	private MobileElement Transfer_btn;
+	private MobileElement transfer_Btn;
 	
-	@iOSFindBy(xpath = "//*[@label='In Progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
@@ -283,7 +283,7 @@ public class Accounts_Credit extends _CommonPage {
 	public void clickTransfer() {
 		Decorator();
 		try {
-			mobileAction.FuncClick(Transfer_btn, "Transfer");
+			mobileAction.FuncClick(transfer_Btn, "Transfer");
 			mobileAction.waitForElementToVanish(progressBar);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {

@@ -21,48 +21,47 @@ public class Confirm_Payee extends _CommonPage{
 	
 	private static Confirm_Payee Confirm_Payee;
 	
-	@iOSFindBy(xpath="//*[@label='Confirm']")
+	@iOSFindBy(xpath="//XCUIElementTypeOther[@label='Confirm']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Confirm']")
-	private MobileElement confirm_header;
+	private MobileElement confirm_Header;
 
-	@iOSFindBy(xpath="//*[@label='Payee Name']")
+	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@label='Payee Name']")
 	private MobileElement payee_Name;
 	
-	@iOSFindBy(xpath="//*[@label='Access Card']")
-	private MobileElement access_card;
+	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@label='Access Card']")
+	private MobileElement access_Card;
 
-	@iOSFindBy(xpath="//*[@label='Add Payee']")
-	private MobileElement addPayee_button;
+	@iOSFindBy(xpath="//XCUIElementTypeButton[@label='Add Payee']")
+	private MobileElement addPayee_Btn;
 	
-	@iOSFindBy(xpath = "//*[@label='In progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 	
-	@iOSFindBy(xpath = "//*[@label='Pay This Payee']")
-	@AndroidFindBy(xpath = "")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Pay This Payee']")
 	private MobileElement payThisPayee;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'Thank You!')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Thank You!')]")
 	private MobileElement successMsg;
 	
-	@iOSFindBy(xpath = "//*[@label='Pay Bill']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Pay Bill']")
 	private MobileElement payBill_Header;
 	
-	@iOSFindBy(xpath = "//*[@label='Select Payee']")
-	private MobileElement select_payee;
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Select Payee']")
+	private MobileElement select_Payee;
 	
-	@iOSFindBy(xpath = "//*[@label='Pay Bill']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Pay Bill']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue'and @text='Pay Bill']")
-	private MobileElement pay_bill;
+	private MobileElement pay_Bill;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'Invalid transaction amount.')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Invalid transaction amount.')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
 	private MobileElement errorMsg;
 	
 	String accountNoXL=getTestdata("Payee");
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[3]")
-	private MobileElement payee_table;
+	private MobileElement payee_Table;
 	
 	public synchronized static Confirm_Payee get() {
 		if (Confirm_Payee == null) {
@@ -98,20 +97,19 @@ public class Confirm_Payee extends _CommonPage{
 	public void verifyConfirmPage(){
 		try {
 			Decorator();
-		mobileAction.verifyElementIsDisplayed(confirm_header, "Confirm");
+		mobileAction.verifyElementIsDisplayed(confirm_Header, "Confirm");
 		//mobileAction.verifyElementIsDisplayed(payee_Name, "Payee Name");
 		//mobileAction.verifyElementIsDisplayed(access_card, "Access Card");	
-		mobileAction.FuncClick(addPayee_button, "AddPayee");
-		Thread.sleep(3000);
+		mobileAction.FuncClick(addPayee_Btn, "AddPayee");
 		mobileAction.waitForElementToVanish(progressBar);
 		
 		//mobileAction.verifyElementIsDisplayed(successMsg, "Thank You!");
 		mobileAction.FuncClick(payThisPayee, "Pay This Payee");
 		mobileAction.waitForElementToVanish(progressBar);
-		boolean flag=payBill_Header.isDisplayed();
+		boolean flag=mobileAction.FuncIsDisplayed(payBill_Header);
 		if(flag)
 		{
-			String addedPayee=payee_table.getAttribute("label");
+			String addedPayee=payee_Table.getAttribute("label");
 			mobileAction.verifyTextEquality(addedPayee, accountNoXL);
 		}
 		
@@ -135,8 +133,8 @@ public class Confirm_Payee extends _CommonPage{
 		try {
 			Decorator();
 			
-			mobileAction.verifyElementIsDisplayed(confirm_header, "Confirm");
-			mobileAction.FuncClick(pay_bill, "Pay Bill");
+			mobileAction.verifyElementIsDisplayed(confirm_Header, "Confirm");
+			mobileAction.FuncClick(pay_Bill, "Pay Bill");
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.verifyElementIsDisplayed(errorMsg, "Error Message");
 				

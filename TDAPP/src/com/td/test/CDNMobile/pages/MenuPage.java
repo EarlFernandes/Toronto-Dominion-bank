@@ -20,71 +20,70 @@ public class MenuPage extends _CommonPage {
 
 	private static MenuPage MenuPage;
 
-	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Virements' or @label='Transfers']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Transfers']")
 	private MobileElement transfers;
 
-	@iOSFindBy(xpath = "//*[@label='Bills']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Bills']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Bills']")
 	private MobileElement bills;
 
-	@iOSFindBy(xpath = "//*[@label='Investing Accounts']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing Accounts']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investing Accounts']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Investing Accounts' or @text='Comptes Placements directs TD')]")
 	private MobileElement investing;
 
-	@iOSFindBy(xpath = "//*[@label='Comptes Placements directs TD']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Comptes Placements directs TD']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Comptes Placements directs TD']")
 	private MobileElement investingFRE;
-	
-	@iOSFindBy(xpath = "//*[@label='Mobile Deposit']")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Mobile Deposit']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Mobile Deposit']")
 	private MobileElement mobile_Deposit_button;
 
-	@iOSFindBy(xpath = "//*[@label='My Accounts' or @label='Mes comptes']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='My Accounts' or @text='Mes comptes')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Accounts']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='My Accounts']")
 	private MobileElement accounts_button;
 
-	@iOSFindBy(xpath = "//*[@label='Virements'] ")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Virements'] ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard'and @text='VIREMENTS']")
 	private MobileElement french_transfers;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
-	@iOSFindBy(xpath = "//*[@label='Contact Us']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Contact Us']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Contact Us']")
 	private MobileElement contactUs;
 
-	@iOSFindBy(xpath = "//*[@label='Home']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Home']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
 	private MobileElement home_button;
 
-	@iOSFindBy(xpath = "//*[@label='Trade']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
 	private MobileElement trade;
 
-	@iOSFindBy(xpath = "//*[@label='TD Mobile Payment']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD Mobile Payment']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='TD Mobile Payment']")
 	private MobileElement mobilePayment;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Apple Pay']")
 	private MobileElement applePay;
-	
-	@iOSFindBy(xpath = "//*[@label='Locations']")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Locations']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
 	private MobileElement locations;
 	
 	//Profile and preference
-	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label ='Profil et paramètres']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Profile and Settings' or @text='Profil et paramètres')]")
-	private MobileElement profile_and_settings;
+		@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label ='Profil et paramètres']")
+		@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Profile and Settings' or @text='Profil et paramètres')]")
+		private MobileElement profile_and_settings;
 
-	//@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label ='Profil et paramètres']")
-	@AndroidFindBy(xpath = "//android.support.v4.widget.DrawerLayout")
-	private MobileElement menuLayout;
-	//android.support.v4.widget.DrawerLayout
+		//@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label ='Profil et paramètres']")
+		@AndroidFindBy(xpath = "//android.support.v4.widget.DrawerLayout")
+		private MobileElement menuLayout;
+		//android.support.v4.widget.DrawerLayout
 
 
 	public synchronized static MenuPage get() {
@@ -215,10 +214,8 @@ public class MenuPage extends _CommonPage {
 		try {
 
 			boolean isLanguageFrench = getTestdata("Language").equals("FRE");
-
 			MobileElement investingElement = isLanguageFrench ? investingFRE : investing;
 			mobileAction.FuncClick(investingElement, "Investing");
-			mobileAction.waitForElementToVanish(progressBar);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -334,8 +331,7 @@ public class MenuPage extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
-	
+
 	/**
 	 * This method will click on the Apple Pay button in the menu page
 	 * 
@@ -358,6 +354,7 @@ public class MenuPage extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+
 	/**
 	 * This method will click on the Locations on menu page
 	 * 
@@ -385,38 +382,31 @@ public class MenuPage extends _CommonPage {
 	
 	//For profile and preference
 	
-	/**
-	 * This method will click on "Profile & Setting" on menu page
-	 * 
-	 * @return void
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 */
-	public void clickProfileAndSettings() {
-		Decorator();
-		try {
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
-				//mobileAction.FuncSwipeOnce("down");
-//				try {
-//					mobileAction.FuncElementSwipeWhileNotFound(menuLayout, profile_and_settings, 2, "down", false);
-//					System.out.println("Swipe");
-//					} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+		/**
+		 * This method will click on "Profile & Setting" on menu page
+		 * 
+		 * @return void
+		 * 
+		 * @throws InterruptedException
+		 *             In case an exception occurs while clicking over the element.
+		 * @throws IOException
+		 *             If there is problem while reporting.
+		 * @throws NoSuchElementException
+		 *             In case the element is not found over the screen.
+		 */
+		public void clickProfileAndSettings() {
+			Decorator();
+			try {
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+					mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
+				}
+				mobileAction.FuncClick(profile_and_settings, "Profile & Settings");
+			} catch (NoSuchElementException | InterruptedException | IOException e) {
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			}
-			mobileAction.FuncClick(profile_and_settings, "Profile & Settings");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
-	}
+
 
 	/**
 	 * This method will verify "Profile & Setting" is displayed on menu page
@@ -446,7 +436,9 @@ public class MenuPage extends _CommonPage {
 		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+
 		}
 	}
+
 
 }

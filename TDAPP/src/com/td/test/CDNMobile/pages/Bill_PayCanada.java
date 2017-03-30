@@ -23,21 +23,21 @@ public class Bill_PayCanada extends _CommonPage {
 
 	private static Bill_PayCanada Bill_PayCanada;
 
-	@iOSFindBy(xpath = "//*[@label='Transfers']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account, Select from account']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccount' and @text='Select From Account']")
 	private MobileElement from_account_post;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber']")
 	private MobileElement frm_acnt_post;
 
-	@iOSFindBy(xpath = "//*[@label='Payee, Select Payee']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Payee, Select Payee']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
 	private MobileElement to_account_post;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee']")
 	private MobileElement to_acnt_post;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'From Account, Select from account')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'From Account, Select from account')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccount']")
 	private MobileElement from_account;
 
@@ -57,7 +57,7 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/dialog_button' and @text='Cancel']")
 	private MobileElement clickCancle;
 
-	@iOSFindBy(xpath = "//*[@label='From Account, Select from account']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account, Select from account']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee' and @text='Select Payee']")
 	private MobileElement to_account;
 
@@ -76,7 +76,7 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/edtAmt'and @index='1']")
 	private MobileElement amount;
 	
-	@iOSFindBy(xpath ="//*[@label='Pay Bill']")
+	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='Pay Bill']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[ @text='Pay Bills']")
 	private MobileElement pay_bills;
 	
@@ -89,11 +89,11 @@ public class Bill_PayCanada extends _CommonPage {
 	// private MobileElement amount;
 	// String t_amount = "$0.00";
 
-	@iOSFindBy(xpath = "//*[@label='Continue']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue' and @text='Continue']")
 	private MobileElement continue_pay;
 
-	@iOSFindBy(xpath = "//*[@label='Pay Bill']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Pay Bill']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue'and @text='Pay Bill']")
 	private MobileElement pay_bill;
 
@@ -101,14 +101,14 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id = 'com.td:id/buttonPayFullAmt']")
 	private MobileElement currBal;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Confirmation #')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Confirmation #')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_val']")
 	private MobileElement confirmation_val;
 
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement menu;
 
-	@iOSFindBy(xpath = "//*[@label='Pay Bill']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay Bill']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Pay Bills']")
 	private MobileElement payBill_Header;
 
@@ -121,37 +121,37 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@text='' and @index='0']//android.widget.TextView[@resource-id='com.td:id/description']")
 	private MobileElement last_transaction;
 
-	@iOSFindBy(xpath = "//*[@label='Done']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
 	private MobileElement done;
 
-	@iOSFindBy(xpath = "//*[@label='Add Canadian Payee']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Add Canadian Payee']")
 	private MobileElement addCanada_Payee;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	private MobileElement progrees_bar;
 
-	@iOSFindBy(xpath = "//*[@label='Search for Canadian payees']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Search for Canadian payees']")
 	private MobileElement search_bar;
 
-	@iOSFindBy(xpath = "//*[@label='Add Canadian Payee']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Add Canadian Payee']")
 	private MobileElement addCanada_Payee_header;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
-	@iOSFindBy(xpath = "//*[@label='Amount']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/amountLabel' and @text='Amount']")
 	private MobileElement amountHeader;
 
-	@iOSFindBy(xpath = "//*[@label='Date']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Date']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/lblDate' and @text='Date']")
 	private MobileElement date;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Confirmation # :' and @resource-id='com.td:id/confirmation']")
 	private MobileElement confirmation_text;
 
-	@iOSFindBy(xpath = "//*[@label='Select Payee']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Select Payee']")
 	private MobileElement select_payee;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
@@ -167,7 +167,7 @@ public class Bill_PayCanada extends _CommonPage {
 	int m = 1;
 	String Conf = "Confirmation";
 
-	@iOSFindBy(xpath = "//*[@label='Thank you!']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Thank you!']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/thank_you']")
 	private MobileElement confirmationText;
 
@@ -191,31 +191,31 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard' and @index='1']/following::@index='0'[1]")
 	private MobileElement selectSecondAccessCard;
 
-	@iOSFindBy(xpath = "//*[@label='Cancel']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel' and @text='Cancel']")
 	private MobileElement cancelBtn;
 
-	@iOSFindBy(xpath = "//*[@label ='Bills']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label ='Bills']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Bills']")
 	private MobileElement bills_header;
 
-	@iOSFindBy(xpath = "//*[@label='Back']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
 	private MobileElement back_button;
 
-	@iOSFindBy(xpath = "//*[@label='Quick Access']")
-	@AndroidFindBy(xpath = "//*[@resource-id = 'android:id/action_bar_title']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Quick Access']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/easy_access' ]")
 	private MobileElement home;
 
-	@iOSFindBy(xpath = "//*[@label='Back']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
 	private MobileElement backButton;
 
-	@iOSFindBy(xpath = "//*[@label='PAY ANOTHER BILL']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='PAY ANOTHER BILL']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/paybill' and @text='PAY ANOTHER BILL']")
 	private MobileElement PayBillQuickAccess;
 
     
    
-	@iOSFindBy(xpath = "//*[@label='Add Canadian Payees Now']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Add Canadian Payees Now']")
 	@AndroidFindBy(xpath = "//android.widget.Button[ @content-desc='Add Canadian Payees Now']")
 	private MobileElement addCanadianPayee;
 
@@ -227,7 +227,7 @@ public class Bill_PayCanada extends _CommonPage {
 
 	String txtconfirmationText = "Thank you!";
 
-	String merchant_name = "//*[contains(@label,'";
+	String merchant_name = "//XCUIElementTypeStaticText[contains(@label,'";
 
 	String payee_table = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]";
 
@@ -707,13 +707,14 @@ public class Bill_PayCanada extends _CommonPage {
 
 				mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
 				mobileAction.FuncClick(amount, "Amount button clicked");
-				String Amount = getTestdataOtherSheet("Amount", "Payment");
-				mobileAction.FuncSendKeys(amount, Amount);
+				Thread.sleep(10000);
+				mobileAction.FuncSendKeys(amount,amount_value);
+				//mobileAction.FuncSendKeys(amount, Amount);
 				mobileAction.FuncClick(done, "Done");
-				String PaybillDate = currDate.getAttribute("Date");
-				boolean validateDate=!PaybillDate.isEmpty();
-				String dateValue=validateDate?"Same":"Not Same";
-				mobileAction.verifyTextEquality(dateValue, "Same");
+				//String PaybillDate = currDate.getAttribute("Date");
+				//boolean validateDate=!PaybillDate.isEmpty();
+				//String dateValue=validateDate?"Same":"Not Same";
+				//mobileAction.verifyTextEquality(dateValue, "Same");
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.FuncClick(pay_bill, "Pay Bill");

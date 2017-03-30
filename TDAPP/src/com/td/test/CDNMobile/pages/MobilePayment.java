@@ -20,119 +20,106 @@ public class MobilePayment extends _CommonPage {
 
 	private static MobilePayment mobile_payment;
 
-	@iOSFindBy(xpath = " //*[label='Mobile Payment']")
+	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Mobile Payment']")
-	private MobileElement mobilePayment_header;
+	private MobileElement mobilepayment_Header;
 
-	@iOSFindBy(xpath = " //*[label='Manage TD Mobile Payment']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Manage TD Mobile Payment']")
-	private MobileElement manage_cards_header;
+	private MobileElement manage_Cards_Header;
 
-	@iOSFindBy(xpath = " //*[label='Simplify the Way you Pay']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/feature_header1' and @text='Simplify the Way you Pay']")
-	private MobileElement feature_header1;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/feature_Header' and @text='Simplify the Way you Pay']")
+	private MobileElement feature_Header;
 
-	@iOSFindBy(xpath = " //*[label='Pay Safely and Securely']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/feature_header2' and @text='Pay Safely and Securely']")
-	private MobileElement feature_header2;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/feature_HeaderNew' and @text='Pay Safely and Securely']")
+	private MobileElement feature_HeaderNew;
 
-	@iOSFindBy(xpath = " //*[label='Continue']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/button_continue' and @text='Continue']")
-	private MobileElement continue_button;
+	private MobileElement continue_Button;
 
-	@iOSFindBy(xpath = " //*[label='Add a Card']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/button_add_card' and @text='Add a Card']")
-	private MobileElement add_card_button;
+	private MobileElement add_Card_Button;
 
-	@iOSFindBy(xpath = " //*[label='Add a Card']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Add a Card']")
-	private MobileElement add_card_header;
+	private MobileElement add_Card_Header;
 
-	@iOSFindBy(xpath = " //*[label='Add to TD Mobile Payment']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/add_cards_button' and @text='Add to TD Mobile Payment']")
-	private MobileElement add_to_mobilePayment_button;
+	private MobileElement add_To_MobilePayment_Button;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/setup_passcode']")
-	private MobileElement setup_passcode;
+	private MobileElement setup_Passcode;
 
-	@iOSFindBy(xpath = " //*[label='OFF']")
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/enable_passcode_switch']")
-	private MobileElement enable_passcode;
+	private MobileElement enable_Passcode;
 
-	@iOSFindBy(xpath = " //*[label='Manage Settings']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/manage_settings_text_view' and @text='Manage Settings']")
-	private MobileElement manage_settings_button;
+	private MobileElement manage_Settings_Button;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/nickname']")
-	private MobileElement card_no_element;
+	private MobileElement card_No_Element;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/card_num_or_nick']")
-	private MobileElement card_no_mobilepayment;
+	private MobileElement card_No_MobilePayment;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/action_my_settings']")
-	private MobileElement setting_button;
+	private MobileElement setting_Button;
 
-	@iOSFindBy(xpath = " //*[label='Add a Card']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/carousel_card_nickname' and @text='Add a Card']")
-	private MobileElement add_card_mobile_payment;
+	private MobileElement add_Card_Mobile_Payment;
 
-	@iOSFindBy(xpath = "//*[@label='In Progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	private MobileElement progresssBar;
 
-	@iOSFindBy(xpath = " //*[label='Set up Passcode']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Set up Passcode']")
-	private MobileElement setup_passcode_header;
+	private MobileElement setup_Passcode_Header;
 
-	@iOSFindBy(xpath = " //*[label='Skip this step']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/button_skip_forgot_passcode' and @text='Skip this step']")
-	private MobileElement skip_passcode_setup;
+	private MobileElement skip_Passcode_Setup;
 
-	@iOSFindBy(xpath = " //*[label='Save']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/button_save' and @text='Save']")
-	private MobileElement save_button;
+	private MobileElement save_Button;
 
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index='1']")
-	private MobileElement change_default_card;
+	private MobileElement change_Default_Card;
 
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/set_default_card_image_view_off']")
-	private MobileElement set_default_card;
+	private MobileElement set_Default_Card;
 
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/default_card_image_view']")
-	private MobileElement default_card_image_view;
+	private MobileElement default_Card_Image_View;
 
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/nickname_box']")
-	private MobileElement nickname_edit_text;
+	private MobileElement nickname_Edit_Text;
 
-	@iOSFindBy(xpath = "//*[@label='Back']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement backButton;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/pay_button']")
-	private MobileElement Pay_button;
+	private MobileElement pay_Button;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/single_mode_timer_value' and @text=':0']")
-	private MobileElement timer_time;
+	private MobileElement timer_Time;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/single_mode_timer_message' and @text='Seconds Remaining']")
-	private MobileElement timer_text;
+	private MobileElement timer_Text;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/button_cancel' and @text='Cancel']")
-	private MobileElement cancel_button;
+	private MobileElement cancel_Button;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/action_my_settings']")
-	private MobileElement settings_icon;
+	private MobileElement settings_Icon;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/button_restart_timer' and @text='Restart timer']")
-	private MobileElement restart_timer;
+	private MobileElement restart_Timer;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/card_type_text_view']")
-	private MobileElement card_name;
+	private MobileElement card_Name;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/card_number_text_view' and contains(@text,'**** **** ****')]")
-	private MobileElement card_number;
+	private MobileElement card_Number;
 
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/default_card_image_view' and @index = '1']")
-	private MobileElement default_card;
+	private MobileElement default_Card;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/button_continue' and @text='Continue']")
 	private MobileElement mobilePaymentContinue;
@@ -143,7 +130,7 @@ public class MobilePayment extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/add_cards_button' and @text='Add to TD Mobile Payment']")
 	private MobileElement addMobilePayment;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
@@ -153,18 +140,18 @@ public class MobilePayment extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ProgressBar[@resource-id='com.td:id/progressbar']")
 	private MobileElement progressBarCompatabilityCheck;
 
-	@iOSFindBy(xpath = "//*[@label='Security Question']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Security Question']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Security Question']")
 	private MobileElement securityQuestionHeader;
 
-	@iOSFindBy(xpath = "//*[@value='Enter your answer']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter your answer']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/mfa_answer']")
 	private MobileElement enterAnswer;
 
-	@iOSFindBy(xpath = "//*[@label='Done']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
 	private MobileElement done;
 
-	@iOSFindBy(xpath = "//*[@label='Login']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Login']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/mfa_login_btn' and @text='Login']")
 	private MobileElement securityLogin;
 
@@ -176,38 +163,37 @@ public class MobilePayment extends _CommonPage {
 			+ "')]";
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/manage_settings_text_view' and @text='Manage Settings']")
-	private MobileElement managesettingicon;
+	private MobileElement manageSettingIcon;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/card_type_text_view' and contains(@text,'AEROPLAN')]")
-	private MobileElement clickcard;
+	private MobileElement clickCard;
 
-	@iOSFindBy(id = "//*[@label='']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/action_my_settings' and @content-desc='Manage TD Mobile Payment']")
-	private MobileElement settingicon;
+	private MobileElement settingIcon;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/setup_passcode' and @text='Set Up Passcode']")
-	private MobileElement setuppasscode;
+	private MobileElement setupPasscode;
 
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/setup_passcode_input1']")
-	private MobileElement sendppasscode;
+	private MobileElement sendPasscode;
 
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/setup_passcode_input1']")
 	private MobileElement reenterppasscode;
 
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/cardImg']")
-	private MobileElement verifydefaultcard;
+	private MobileElement verifyDefaultCard;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/button_login' and @text='Login']")
 	private MobileElement login;
 
 	@AndroidFindBy(xpath = "//android.view.View[@resource-id='android:id/action_bar']")
-	private MobileElement landingpageheader;
+	private MobileElement landingPageHeader;
 	
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button' and @text='Continue']")
-	private MobileElement continuebtn;
+	private MobileElement continueBtn;
 
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/carousel_card_image' and @content-desc='Add a Card']")
-	private MobileElement addicon;
+	private MobileElement addIcon;
 
 
 	String passcode = getTestdata("Passcode");
@@ -240,11 +226,9 @@ public class MobilePayment extends _CommonPage {
 		try {
 			Decorator();
 
-			if (mobilePayment_header.isDisplayed()) {
-				mobileAction.FuncClick(continue_button, "Continue");
-				Thread.sleep(2000);
-				mobileAction.FuncClick(add_card_button, "Add a Card");
-				Thread.sleep(2000);
+			if (mobilepayment_Header.isDisplayed()) {
+				mobileAction.FuncClick(continue_Button, "Continue");
+				mobileAction.FuncClick(add_Card_Button, "Add a Card");
 				mobileAction.waitForElementToVanish(progresssBar);
 			}
 
@@ -258,12 +242,11 @@ public class MobilePayment extends _CommonPage {
 
 		try {
 			Decorator();
-			Thread.sleep(8000);
 
 			String add_to_mobilePayment_path = "//*[label='Add to TD Mobile Payment']";
 			mobileAction.waitForElementToVanish(progresssBar);
 			mobileAction.waitForElementToAppear(add_to_mobilePayment_path, "Add To Mobile Payment");
-			mobileAction.FuncClick(add_to_mobilePayment_button, "Add to TD Mobile Payment");
+			mobileAction.FuncClick(add_To_MobilePayment_Button, "Add to TD Mobile Payment");
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -275,16 +258,14 @@ public class MobilePayment extends _CommonPage {
 
 		try {
 			Decorator();
-			Thread.sleep(4000);
 
-			if (mobilePayment_header.isDisplayed()) {
-				mobileAction.FuncClick(setting_button, "Setting");
-				if (manage_cards_header.isDisplayed()) {
-					mobileAction.FuncClick(change_default_card, "Change Default Card");
+			if (mobilepayment_Header.isDisplayed()) {
+				mobileAction.FuncClick(setting_Button, "Setting");
+				if (manage_Cards_Header.isDisplayed()) {
+					mobileAction.FuncClick(change_Default_Card, "Change Default Card");
 					Decorator();
-					Thread.sleep(4000);
-					mobileAction.FuncClick(set_default_card, "Set As Default Card");
-					mobileAction.FuncClick(save_button, "Save");
+					mobileAction.FuncClick(set_Default_Card, "Set As Default Card");
+					mobileAction.FuncClick(save_Button, "Save");
 					mobileAction.FuncClick(backButton, "Back");
 
 				}
@@ -300,27 +281,23 @@ public class MobilePayment extends _CommonPage {
 	public void verifyNickName() {
 		try {
 			Decorator();
-			Thread.sleep(5000);
-			if (setup_passcode_header.isDisplayed()) {
+			if (setup_Passcode_Header.isDisplayed()) {
 				CharSequence passcode = getTestdata("Passcode");
 				mobileAction.FuncSendKeys(passcode);
-				Thread.sleep(2000);
 				mobileAction.FuncSendKeys(passcode);
 			}
-			Thread.sleep(2000);
-			mobileAction.FuncClick(manage_settings_button, "Setting");
+			mobileAction.FuncClick(manage_Settings_Button, "Setting");
 
-			mobileAction.FuncClick(default_card_image_view, "Default Card");
+			mobileAction.FuncClick(default_Card_Image_View, "Default Card");
 
-			mobileAction.FuncClick(nickname_edit_text, "Default Card");
-			mobileAction.FuncSendKeys(nickname_edit_text, "");
+			mobileAction.FuncClick(nickname_Edit_Text, "Default Card");
+			mobileAction.FuncSendKeys(nickname_Edit_Text, "");
 			mobileAction.FuncHideKeyboard();
 
-			mobileAction.FuncSendKeys(nickname_edit_text,
+			mobileAction.FuncSendKeys(nickname_Edit_Text,
 					"The nickname can be only upto 25 characters. It will erase the remaining");
-			mobileAction.FuncClick(save_button, "Save");
-			Thread.sleep(2000);
-			String nickname = nickname_edit_text.getText();
+			mobileAction.FuncClick(save_Button, "Save");
+			String nickname = nickname_Edit_Text.getText();
 			if (nickname.length() <= 20) {
 				CL.GetReporting().FuncReport("PASS", "The Nickname box accepts only 20 characters");
 			} else {
@@ -335,34 +312,26 @@ public class MobilePayment extends _CommonPage {
 	public void setupWalletPasscode() {
 		try {
 			Decorator();
-			Thread.sleep(8000);
 
-			String add_to_mobilePayment_path = "//*[label='Add to TD Mobile Payment']";
+			String add_to_mobilePayment_path = "//XCUIElementTypeStaticText[label='Add to TD Mobile Payment']";
 			mobileAction.waitForElementToVanish(progresssBar);
 			mobileAction.waitForElementToAppear(add_to_mobilePayment_path, "Add To Mobile Payment");
-			mobileAction.FuncClick(add_to_mobilePayment_button, "Add to TD Mobile Payment");
+			mobileAction.FuncClick(add_To_MobilePayment_Button, "Add to TD Mobile Payment");
 
-			Thread.sleep(2000);
 			Decorator();
 
-			Thread.sleep(2000);
-			if (setup_passcode_header.isDisplayed()) {
+			if (setup_Passcode_Header.isDisplayed()) {
 				CharSequence passcode = getTestdata("Passcode");
 				mobileAction.FuncSendKeys(passcode);
-				Thread.sleep(2000);
 				mobileAction.FuncSendKeys(passcode);
 			} else {
-				mobileAction.FuncClick(continue_button, "Continue");
-				mobileAction.FuncClick(setting_button, "Setting");
-				Thread.sleep(2000);
-				mobileAction.FuncClick(manage_settings_button, "Setting");
-				Thread.sleep(2000);
-				mobileAction.FuncClick(enable_passcode, "Enable passcode");
-				mobileAction.FuncClick(setup_passcode, "Setup Passcode");
-				Thread.sleep(4000);
+				mobileAction.FuncClick(continue_Button, "Continue");
+				mobileAction.FuncClick(setting_Button, "Setting");
+				mobileAction.FuncClick(manage_Settings_Button, "Setting");
+				mobileAction.FuncClick(enable_Passcode, "Enable passcode");
+				mobileAction.FuncClick(setup_Passcode, "Setup Passcode");
 				CharSequence passcode = getTestdata("Passcode");
 				mobileAction.FuncSendKeys(passcode);
-				Thread.sleep(2000);
 				mobileAction.FuncSendKeys(passcode);
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -375,16 +344,12 @@ public class MobilePayment extends _CommonPage {
 
 		try {
 			Decorator();
-			Thread.sleep(4000);
 
-			if (mobilePayment_header.isDisplayed()) {
+			if (mobilepayment_Header.isDisplayed()) {
 				CharSequence passcode = getTestdata("Passcode");
 				mobileAction.FuncSendKeys(passcode);
-				Thread.sleep(2000);
-				mobileAction.FuncClick(setting_button, "Setting");
-				Thread.sleep(2000);
-				mobileAction.FuncClick(add_card_button, "Add a Card");
-				Thread.sleep(2000);
+				mobileAction.FuncClick(setting_Button, "Setting");
+				mobileAction.FuncClick(add_Card_Button, "Add a Card");
 				mobileAction.waitForElementToVanish(progresssBar);
 
 			}
@@ -398,28 +363,28 @@ public class MobilePayment extends _CommonPage {
 	public void Pay_expire() throws IOException, NoSuchElementException, InterruptedException {
 		Decorator();
 		try {
-			mobileAction.FuncClick(Pay_button, "Pay Button");
+			mobileAction.FuncClick(pay_Button, "Pay Button");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
-		mobileAction.waitForElementToVanish(cancel_button);
-		mobileAction.verifyElementIsDisplayed(timer_text, msg);
-		mobileAction.verifyElementIsDisplayed(timer_time, time);
-		mobileAction.FuncClick(restart_timer, "Restart timer");
+		mobileAction.waitForElementToVanish(cancel_Button);
+		mobileAction.verifyElementIsDisplayed(timer_Text, msg);
+		mobileAction.verifyElementIsDisplayed(timer_Time, time);
+		mobileAction.FuncClick(restart_Timer, "Restart timer");
 	}
 
 	public void verify_card() throws IOException {
 		Decorator();
 		try {
-			mobileAction.FuncClick(settings_icon, "Settings icon");
+			mobileAction.FuncClick(settings_Icon, "Settings icon");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			mobileAction.verifyElementIsDisplayed(card_name, card_nm);
-			mobileAction.verifyElementIsDisplayed(card_number, card_no);
-			mobileAction.verifyElementIsDisplayed(default_card, def_card);
+			mobileAction.verifyElementIsDisplayed(card_Name, card_nm);
+			mobileAction.verifyElementIsDisplayed(card_Number, card_no);
+			mobileAction.verifyElementIsDisplayed(default_Card, def_card);
 		}
 
 	}
@@ -552,7 +517,7 @@ public class MobilePayment extends _CommonPage {
 	try {
 	Decorator();
 
-	mobileAction.FuncClick(addicon, "Click Add Icon");
+	mobileAction.FuncClick(addIcon, "Click Add Icon");
 
 	} catch (NoSuchElementException e) {
 	System.err.println("TestCase has failed.");
@@ -580,7 +545,7 @@ public class MobilePayment extends _CommonPage {
 
 		Decorator();
 		try {
-			mobileAction.FuncClick(clickcard, "Click  Card");
+			mobileAction.FuncClick(clickCard, "Click  Card");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -606,7 +571,7 @@ public class MobilePayment extends _CommonPage {
 
 		Decorator();
 		try {
-			mobileAction.FuncClick(managesettingicon, "Click Manage Settings");
+			mobileAction.FuncClick(manageSettingIcon, "Click Manage Settings");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -659,7 +624,6 @@ public class MobilePayment extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.FunctionSwipe("left", 2000, 30);
-			Thread.sleep(1000);
 			int[] screensize = mobileAction.FuncScreenSize();
 			int x = screensize[0];
 			int y = screensize[1];
@@ -672,7 +636,7 @@ public class MobilePayment extends _CommonPage {
 
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (InterruptedException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -696,7 +660,7 @@ public class MobilePayment extends _CommonPage {
 
 		Decorator();
 		try {
-			mobileAction.FuncClick(settingicon, "Click Settings icon");
+			mobileAction.FuncClick(settingIcon, "Click Settings icon");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -722,7 +686,7 @@ public class MobilePayment extends _CommonPage {
 
 		Decorator();
 		try {
-			mobileAction.verifyElementIsDisplayed(verifydefaultcard, "Verify Default Card");
+			mobileAction.verifyElementIsDisplayed(verifyDefaultCard, "Verify Default Card");
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -750,7 +714,7 @@ public class MobilePayment extends _CommonPage {
 		try {
 
 			// mobileAction.FuncClick(setuppasscode, "Click Setup Passcode");
-			mobileAction.FuncSendKeys(sendppasscode, passcode);
+			mobileAction.FuncSendKeys(sendPasscode, passcode);
 			mobileAction.FuncHideKeyboard();
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -781,13 +745,13 @@ public class MobilePayment extends _CommonPage {
 			String passcode = getTestdata("Passcode");
 			String passcodevalue[] = passcode.split(",");
 			for (int i = 0; i < passcodevalue.length; i++) {
-				mobileAction.FuncClick(sendppasscode, "Click Passcode");
-				mobileAction.FuncSendKeys(sendppasscode, passcodevalue[i]);
+				mobileAction.FuncClick(sendPasscode, "Click Passcode");
+				mobileAction.FuncSendKeys(sendPasscode, passcodevalue[i]);
 				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(login, "Click Login Button");
 				Login.get().login();
-				// mobileAction.FuncClick(sendppasscode, "Click Passcode");
-				mobileAction.FuncSendKeys(sendppasscode, newpasscode);
+				// mobileAction.FuncClick(sendPasscode, "Click Passcode");
+				mobileAction.FuncSendKeys(sendPasscode, newpasscode);
 				mobileAction.FuncSendKeys(reenterppasscode, newpasscode);
 				mobileAction.FuncHideKeyboard();
 			}

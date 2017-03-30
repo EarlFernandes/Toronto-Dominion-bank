@@ -16,39 +16,34 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class Legal extends _CommonPage{
 private static Legal Legal;
 	
-	@iOSFindBy(xpath ="//*[@label='']")
+	@iOSFindBy(xpath ="//XCUIElementTypeOther[@label='Legal']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Legal']")
-	private MobileElement legal_header;
+	private MobileElement legal_Header;
 	
-	@iOSFindBy(xpath ="//*[@label='']")
+	@iOSFindBy(xpath ="//XCUIElementTypeButton[@label='Back']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
-	private MobileElement back_button;
+	private MobileElement back_Button;
 	
 	
-	@iOSFindBy(xpath ="//*[@label='']")
+	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='Mobile Privacy, How we handle the information we collect when yo']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tvPrivacy' and @text='Mobile Privacy']")
-	private MobileElement mobile_privacy;
+	private MobileElement mobile_Privacy;
 	
-	@iOSFindBy(xpath ="//*[@label='']")
+	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='Privacy & Security, Bank & invest with confidence']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tvSecurity' and @text='Privacy & Security']")
-	private MobileElement privacy_security;
+	private MobileElement privacy_Security;
 	
-	@iOSFindBy(xpath ="//*[@label='']")
+	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='Legal, Terms & Conditions']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tvLegal' and @text='Legal']")
 	private MobileElement legal;
 	
-	@iOSFindBy(xpath ="//*[@label='']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Legal']")
-	private MobileElement legal_page_header;
-
-	
-	@iOSFindBy(xpath ="//*[@label='']")
+	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='Terms of Use, The terms of use you agree to by using EasyWeb or ']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Terms of Use']")
 	private MobileElement termsofuse;
 	
-	@iOSFindBy(xpath ="//*[@label='']")
+	@iOSFindBy(xpath ="//XCUIElementTypeOther[@label='Terms of Use']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Terms of Use']")
-	private MobileElement termsofuse_header;
+	private MobileElement termsofuse_Header;
 	
 	public synchronized static Legal get() {
 		if (Legal == null) {
@@ -79,19 +74,19 @@ private static Legal Legal;
 
 		try {
 			Decorator();
-			mobileAction.verifyElementIsDisplayed(legal_header, "Verifying Legal Header");
+			mobileAction.verifyElementIsDisplayed(legal_Header, "Verifying Legal Header");
 			
 			mobileAction.FuncClick(legal, "Click Legal");
-			mobileAction.verifyElementIsDisplayed(legal_page_header, "Verifying Legal Page Header");
-			mobileAction.FuncClick(back_button, "Back");
+			mobileAction.verifyElementIsDisplayed(legal_Header, "Verifying Legal Page Header");
+			mobileAction.FuncClick(back_Button, "Back");
 
 			mobileAction.FuncClick(termsofuse, "Click Terms Of Use");
-			mobileAction.verifyElementIsDisplayed(termsofuse_header, "Verifying Terms Of Use");
-			mobileAction.FuncClick(back_button, "Back");
+			mobileAction.verifyElementIsDisplayed(termsofuse_Header, "Verifying Terms Of Use");
+			mobileAction.FuncClick(back_Button, "Back");
 			
-			mobileAction.verifyElementIsDisplayed(mobile_privacy, "Click Mobile Privacy");
+			mobileAction.verifyElementIsDisplayed(mobile_Privacy, "Click Mobile Privacy");
 			
-			mobileAction.verifyElementIsDisplayed(privacy_security, "Click Privacy And Security");
+			mobileAction.verifyElementIsDisplayed(privacy_Security, "Click Privacy And Security");
 			
 			} catch (Exception e) {
 			System.err.println("TestCase has failed.");

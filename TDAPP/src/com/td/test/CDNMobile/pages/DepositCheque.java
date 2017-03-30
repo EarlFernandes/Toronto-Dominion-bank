@@ -18,9 +18,9 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class DepositCheque  extends _CommonPage{
 	private static DepositCheque DepositCheque;
 
-	@iOSFindBy(xpath = "//*[@label='Deposit Cheque']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Deposit Cheque']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Mobile Deposit']")
-	private MobileElement DepositCheque_Header;
+	private MobileElement depositCheque_Header;
 	
 	String t_DepositCheque_Header="Deposit Cheque";
 	
@@ -53,7 +53,7 @@ public class DepositCheque  extends _CommonPage{
 	
 		Decorator();
 		try {
-			mobileAction.verifyElementIsDisplayed(DepositCheque_Header,t_DepositCheque_Header );
+			mobileAction.verifyElementIsDisplayed(depositCheque_Header,t_DepositCheque_Header );
 			
 		}catch(NoSuchElementException | IOException e){
 			System.err.println("TestCase has failed.");

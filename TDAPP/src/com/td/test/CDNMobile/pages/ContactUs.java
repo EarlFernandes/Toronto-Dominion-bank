@@ -19,18 +19,23 @@ public class ContactUs extends _CommonPage {
 
 	private static ContactUs ContactUs;
 
-	@iOSFindBy(xpath = "//*[@label='Contact Us']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Contact Us']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Contact Us']")
 	private MobileElement contactUs;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'TD Direct Investing')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'TD Direct Investing')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tvTDWealthDINumberLabel' and @text='TD Direct Investing']")
 	private MobileElement tdDirectInvesting;
 	
-	@iOSFindBy(xpath = "//*[@label='Call']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='icon contact phone']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/ivTDWealthDINumberPhone']")
-	private MobileElement call_button;
+	private MobileElement call_Button;
 	
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue Call']")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/ivTDWealthDINumberPhone']")
+	private MobileElement Continue_call_Button;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='OK']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='OK']")
 	private MobileElement ok;
 
@@ -68,8 +73,9 @@ public class ContactUs extends _CommonPage {
 		try {
 		if(contactUs.isDisplayed()==true){
 			
-			mobileAction.verifyElementIsDisplayed(call_button, t_call);
-			mobileAction.FuncClick(call_button, "Call");
+			mobileAction.verifyElementIsDisplayed(call_Button, t_call);
+			mobileAction.FuncClick(call_Button, "Call");
+			mobileAction.FuncClick(Continue_call_Button, "continue call button");
 			mobileAction.FuncClick(ok, "Ok");
 		}
 		}catch (NoSuchElementException | IOException |InterruptedException e) {

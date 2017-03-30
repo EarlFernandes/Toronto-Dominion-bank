@@ -23,11 +23,11 @@ public class HomeScreen extends _CommonPage {
 
 	private static HomeScreen HomeScreen;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu' or @label='Menu en en-tête']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu' or @label='Menu en en-tÃªte']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
-	@iOSFindBy(xpath = "//*[@label='Bills']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Bills']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Bills']")
 	private MobileElement bills;
 
@@ -35,105 +35,100 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Accounts']")
 	private MobileElement my_accounts;
 
-	@iOSFindBy(xpath = "//*[@label='Transfers' or @label='Virments']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfers' or @label='Virments']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' or @text='Transfers' or @text='Virments']")
 	private MobileElement transfers;
 
-	@iOSFindBy(xpath = "//*[@label='Markets']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Markets']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Transfers']")
 	private MobileElement markets;
 
-	@iOSFindBy(xpath = "//*[@label='Transfers']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Transfers']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='TRANSFERS']")
 	private MobileElement transfer_button_dashboard;
 
-	@iOSFindBy(xpath = "//*[@label='Quick Access']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Quick Access']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access']")
 	private MobileElement quickAccess;
 
-	@iOSFindBy(xpath = "//*[@label='Investing Accounts']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access' and @text='Investing Accounts']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investing Accounts']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access' and (@text='Investing Accounts' or @text='Comptes Placements directs TD')]")
 	private MobileElement investing_button;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'TRADE')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'TRADE')]")
 	@AndroidFindBy(xpath = "//android.widget.TableRow[@text='TRADE']")
 	private MobileElement trade;
 
-	@iOSFindBy(xpath = "//*[@label='VIREMENTS'] ")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='VIREMENTS'] ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='VIREMENTS']")
 	private MobileElement french_transfers;
 
-	@iOSFindBy(xpath = "//*[@label='TD for Me']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD for Me']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/td_zones_dashboard' and @text='TD FOR ME']")
 	private MobileElement dashboard_Location;
 
-	@iOSFindBy(xpath = "//*[@label='TD For Me']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD For Me']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='TD for Me']")
 	private MobileElement TD_For_Me;
 
-	@iOSFindBy(xpath = "//*[@label='In progress'] ")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress'] ")
 	private MobileElement progressBarIos;
 
-	@iOSFindBy(xpath = "//*[@label='DEPOSIT']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='DEPOSIT']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mrdc_dashboard' and @text='DEPOSIT']")
 	private MobileElement deposit;
 
-	@iOSFindBy(id = " ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/your_location_text_view']")
 	private MobileElement nearByLoaction;
 
-	@iOSFindBy(id = " ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/viewing_text_view' and @text='Nearby']")
 	private MobileElement viewingDetail;
 
-	@iOSFindBy(id = " ")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/chevron_button_up']")
 	private MobileElement chevron_Button;
 
-	@iOSFindBy(id = " ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/zone_name'][1]")
 	private MobileElement zone_Name;
 
-	@iOSFindBy(id = " ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @enabled='true']")
 	private MobileElement zone_Header;
 
-	@iOSFindBy(xpath = "//*[@label='Investing']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investing']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Investing Accounts' @text='Comptes Placements directs TD')]")
 	private MobileElement InvestingHamburgeMenu;
 
-	@iOSFindBy(xpath = "//*[@label='Logout']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Logout']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 
 	String progressBar = "//android.widget.ProgressBar[@resource-id='android:id/progress' and @enabled='true']";
 
-	@iOSFindBy(xpath = "//*[@value='SEND MONEY']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@value='SEND MONEY']")
 	private MobileElement send_money_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Privacy, Security & Legal']")
 	private MobileElement privacy;
 
-	@iOSFindBy(xpath = "//*[@label='Back']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
 	private MobileElement back_button;
 
-	@iOSFindBy(xpath = "//*[@label='Locations']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Locations']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
 	private MobileElement location;
 
-	@iOSFindBy(xpath = "//*[@label='Find Locations']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Find Locations']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Find Locations']")
 	private MobileElement locationheader;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]//XCUIElementTypeCell[1]/XCUIElementTypeButton[7]")
 	private MobileElement Watchlists;
 
-	@iOSFindBy(xpath = "//*[@label='Trade']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='']")
 	private MobileElement clickmenu_trade;
 
-	@iOSFindBy(xpath = "//*[@label='PAY NOW']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='PAY NOW']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mpay_dashboard' and @text='PAY NOW']")
 	private MobileElement pay_now_button;
 

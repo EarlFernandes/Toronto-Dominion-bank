@@ -70,6 +70,7 @@ public class EventCase {
 		AccountsCredit_clickStatementTab,
 		AccountsCredit_VeifyStatementDetails,
 		Accounts_SelectAccount,
+		AccountsCredit_ClickTransfers,
 
 
 		AccountsCredit_ClickPayBill,
@@ -175,6 +176,17 @@ public class EventCase {
 		ChangeDefaultCard,
 		CardDetails_deleteicon,
 		ConfirmPayee_InvalidAmount,
+		
+		ConfirmOrderDoNotCancel,
+		ConfirmOrderImpInformation,
+		ConfirmOrderValidateBuy,
+		clickChangeorder_LimitToMarket,
+		clickChangeorder_TSM_to_TSL,
+		clickChangeorder_SM_to_SL,
+		ClickOrders,
+		confirmOrder_ClickBack,
+		ClickHoldingAndSymbol,
+		changeOrderLimitDayToDayEXT,
 
 		Dashboard_Authentication, 
 		Dashboard_UnAuthentication,
@@ -236,6 +248,8 @@ public class EventCase {
 		Investingacc_verifySummary, 
 		InvestingHeader, 
 		IOS_Account_Home_Button,
+		
+		Investing_ClickPlacedOrder,
 
 		Login, 
 		Login_and_Logout, 
@@ -311,6 +325,9 @@ public class EventCase {
 		OrderReciept_updatemsg, 
 		OrderReciept_verifyOrderScreen, 
 		Ordertype_Cancel,
+		
+		OrderRecieptValidateBuy,
+		OrderDetails_Changeorder,
 
 		Pay_US_bill_From_US_Account, 
 		Pay_US_bill_FromCanada_Account, 
@@ -425,6 +442,21 @@ public class EventCase {
 		Transfers_clickInterac_e_Transfer,
 		Transfers_clickPendingInterac_e_Transfer,
 		Transfers_ManageRecipients,
+		
+		TradeOrderType,
+		TradeSymbol,
+		TradeLimitAndTriggerDelta,
+		TradeLimitAndTriggerPrice,
+		TradeLimitDAYEXT,
+		TradeStopLimit,
+		TradeTrailingStopLimit,
+		TradeTrailingStopMarket,
+		TradeStopMarket,
+		TradeStopMarketSell,
+		TradeStopLimitSell,
+		TradeMarket,
+		TradeLimit,
+		
 
 		USMarAccLongToShort, 
 		USMarginShort_Buy_Market,
@@ -518,6 +550,10 @@ public class EventCase {
 		VerifyNickName,
 		 verifydefaultcard,
 		 verifyQuickAccessBillPaidUpdate,
+		 
+		 verifyEmptyWatchList,
+		 verifyShareHolder,
+		 verifyBuyToCover,
 
 		WatchLists_addSymbolToWatchLists, 
 		WatchLists_clickSearchBar, 
@@ -552,7 +588,7 @@ public class EventCase {
 			MainScreen.get().Splash_Conitnue();
 			break;
 
-		case USMarAccLongToShort:
+		/*case USMarAccLongToShort:
 			Trade.get().trade_USMarginAccountLongToShort();
 			break;
 
@@ -570,13 +606,13 @@ public class EventCase {
 
 		case VerifyActionFields:
 			Trade.get().verifyActionShortSellandBuyToCover();
-			break;
+			break;*/
 
 		case CDNCash_Sell_StopMarket:
 			ConfirmOrder.get().cdncash_sell_stopmarket();
 			break;
 
-		case TradeAccount:
+		/*case TradeAccount:
 			Trade.get().CDNAccount();
 			break;
 
@@ -606,13 +642,13 @@ public class EventCase {
 
 		case TradingPassword:
 			Trade.get().tradingPassword();
-			break;
+			break;*/
 
 		case TradePreviewOrder:
 			Trade.get().clickPreviewOrder();
 			break;
 
-		case TradeAgree:
+		/*case TradeAgree:
 			Trade.get().clickOnAgree();
 			break;
 
@@ -626,7 +662,7 @@ public class EventCase {
 
 		case TradeTriggerPrice:
 			Trade.get().triggerPrice();
-			break;
+			break;*/
 
 		case CDNMargin_Buy:
 			ConfirmOrder.get().verifycdnmargin_buy();
@@ -649,7 +685,7 @@ public class EventCase {
 			break;
 
 		case ConfirmOrderCancel:
-			ConfirmOrder.get().clickcancel();
+			//ConfirmOrder.get().clickcancel();
 			break;
 
 		case ConfirmOrderSendOrder:
@@ -748,7 +784,7 @@ public class EventCase {
 			break;
 
 		case TradeHeader:
-			Trade.get().verifyTrade();
+			//Trade.get().verifyTrade();
 			break;
 
 		case Mobile_Deposit:
@@ -803,7 +839,7 @@ public class EventCase {
 			break;
 
 		case Trade_Trigger:
-			Trade.get().tradeDetails_TriggerDelta();
+			//Trade.get().tradeDetails_TriggerDelta();
 			break;
 
 		case Add_Recipient_ErrorPage:
@@ -944,7 +980,7 @@ public class EventCase {
 			break;
 
 		case Trade_selectMutualSymbol:
-			Trade.get().selectMutualSymbol();
+			//Trade.get().selectMutualSymbol();
 			break;
 
 		case Logout:
@@ -968,7 +1004,7 @@ public class EventCase {
 			break;
 
 		case OrderDetails_clickChangeorder:
-			OrderDetails.get().clickChangeorder();
+			//OrderDetails.get().clickChangeorder();
 			break;
 
 		case OrderDetailsLimitPrice:
@@ -984,7 +1020,7 @@ public class EventCase {
 			break;
 
 		case TradeMarginAccount:
-			Trade.get().tradeDetails_marginAccount();
+			//Trade.get().tradeDetails_marginAccount();
 			break;
 
 		case PayBill_Canada_Button:
@@ -1062,7 +1098,7 @@ public class EventCase {
 		case SearchPage_searchBar:
 			SearchPage.get().searchBar();
 			break;
-
+/*
 		case Trade_clickStockETFs:
 			Trade.get().clickStockETFs();
 			break;
@@ -1077,7 +1113,7 @@ public class EventCase {
 
 		case Trade_verifyTrade:
 			Trade.get().verifyTrade();
-			break;
+			break;*/
 
 		case Trade_selectQuantity:
 			Trade.get().selectQuantity();
@@ -1092,7 +1128,7 @@ public class EventCase {
 			break;
 
 		case Trade_clickOptions:
-			Trade.get().clickOptions();
+			//Trade.get().clickOptions();
 			break;
 
 		case Investing_clickTrade:
@@ -1155,7 +1191,7 @@ public class EventCase {
 			HomeScreen.get().clickInvestingFromHamburger();
 			break;
 
-		case Trade_clickMutualFunds:
+	/*	case Trade_clickMutualFunds:
 			Trade.get().clickMutualFunds();
 			break;
 
@@ -1165,7 +1201,7 @@ public class EventCase {
 
 		case Trade_createMutualfund:
 			Trade.get().createMutualfund();
-			break;
+			break;*/
 
 		case OrderReciept_orderdetailMutualfund:
 			OrderReciept.get().orderdetailMutualfund();
@@ -1404,7 +1440,7 @@ public class EventCase {
 			break;
 
 		case OrderDetails_CancelOrder:
-			OrderDetails.get().cancelOrder();
+			//OrderDetails.get().cancelOrder();
 			break;
 
 		case ConfirmOrderReciept:
@@ -1452,18 +1488,18 @@ public class EventCase {
 			break;
 
 		case Trade_verifyRelaventMatchInResult:
-			Trade.get().verifyRelaventMatchInResult();
+			//Trade.get().verifyRelaventMatchInResult();
 			break;
 
 		case Trade_verifySymbol:
-			Trade.get().verifySymbol();
+			//Trade.get().verifySymbol();
 			break;
 
 		case clickMenuTrade:
 			MenuPage.get().clickMenuTrade();
 			break;
 
-		// added today
+		
 		case CDNMargin_Sell_TrailingStopMarket:
 			ConfirmOrder.get().cdnmargin_sell_trailingstopmarket();
 			break;
@@ -1476,7 +1512,7 @@ public class EventCase {
 			ConfirmOrder.get().cdncash_sell_trailingstoplimit();
 			break;
 
-		case clickChangeOrder:
+		/*case clickChangeOrder:
 			OrderDetails.get().clickChangeorder();
 			break;
 		case clickChangeorder_MarketToLimit:
@@ -1493,14 +1529,14 @@ public class EventCase {
 
 		case Trade_clickAction:
 			Trade.get().clickAction();
-			break;
+			break;*/
 
 		case HoldingDetails_click_BuyButton:
 			HoldingDetails.get().click_BuyButton();
 			break;
 
 		case Trade_placeStockOrder:
-			Trade.get().placeStockOrder();
+			//Trade.get().placeStockOrder();
 			break;
 
 		case HomeScreen_clickWatchLists:
@@ -1516,7 +1552,7 @@ public class EventCase {
 			break;
 
 		case Trade_clickQuantity:
-			Trade.get().clickQuantity();
+			//Trade.get().clickQuantity();
 			break;
 
 		case TradeIcon:
@@ -1524,11 +1560,11 @@ public class EventCase {
 			break;
 
 		case Ordertype_Cancel:
-			Trade.get().cancel_ordertype();
+			//Trade.get().cancel_ordertype();
 			break;
 
 		case Cancel:
-			Trade.get().cancelbutton();
+			//Trade.get().cancelbutton();
 			break;
 
 		case MenuTrade:
@@ -1539,7 +1575,7 @@ public class EventCase {
 			HomeScreen.get().menuTradeEasyWebCustomer();
 			break;
 
-		case Trade_selectMutualQuantity:
+		/*case Trade_selectMutualQuantity:
 			Trade.get().selectMutualQuantity();
 			break;
 
@@ -1553,13 +1589,13 @@ public class EventCase {
 
 		case Trade_selectDividendOption:
 			Trade.get().selectDividendOption();
-			break;
+			break;*/
 
 		case Trade_enterTradingPassword:
 			Trade.get().enterTradingPassword();
 			break;
 
-		case Trade_clickMutualPreviewOrder:
+		/*case Trade_clickMutualPreviewOrder:
 			Trade.get().clickMutualPreviewOrder();
 			break;
 
@@ -1602,7 +1638,7 @@ public class EventCase {
 		case Trade_verifySwitchMutualConfirmDetails:
 			Trade.get().verifySwitchMutualConfirmDetails();
 			break;
-
+*/
 		case PendingInteracTransfer_verify_CancelPendingTransfer:
 			PendingInteracTransfer.get().verify_CancelPendingTransfer();
 			break;
@@ -1615,7 +1651,7 @@ public class EventCase {
 			Between_My_accounts.get().permissible_transfer_on_mobile();
 			break;
 
-		case Trade_verifysearchbar:
+		/*case Trade_verifysearchbar:
 			Trade.get().verifysearchbar();
 			break;
 
@@ -1625,7 +1661,7 @@ public class EventCase {
 
 		case Trade_nosearch:
 			Trade.get().nosearch();
-			break;
+			break;*/
 
 		case Investingacc_verifySummary:
 			InvestingAccountSummary.get().verifySummaryScenario();
@@ -1640,7 +1676,7 @@ public class EventCase {
 			break;
 
 		case Trade_clickCross:
-			Trade.get().clickCross();
+			//Trade.get().clickCross();
 			break;
 
 		case OrderReciept_updatemsg:
@@ -2220,6 +2256,127 @@ public class EventCase {
 		    break;		    
 		    
 		//end of profile and preference
+
+	
+		case AccountsCredit_ClickTransfers:
+			Accounts_Credit.get().clickTransfer();
+			break;
+
+
+		case TradeOrderType:
+			Trade.get().selectOrderType();
+			break;
+
+		case TradeSymbol:
+			Trade.get().selectAndEnterSymbol();
+			break;
+	
+		case TradeLimitAndTriggerDelta:
+			Trade.get().enterLimitAndTriggerDelta();
+			break;
+
+		case TradeLimitAndTriggerPrice:
+			Trade.get().enterlimitAndTriggerPrice();
+			break;
+
+		case TradeLimitDAYEXT:
+			Trade.get().limitDAYEXT();
+			break;
+
+		case TradeStopLimit:
+			Trade.get().stopLimit();
+			break;
+		case TradeTrailingStopLimit:
+			Trade.get().trailingStopLimit();
+			break;
+
+		case TradeTrailingStopMarket:
+			Trade.get().trailingStopMarket();
+			break;
+
+		case TradeStopMarket:
+			Trade.get().stopMarket();
+			break;
+
+		case TradeStopMarketSell:
+			Trade.get().stopMarketSell();
+			break;
+
+		case TradeStopLimitSell:
+			Trade.get().stopMarketSell();
+			break;
+			
+		case TradeMarket:
+			Trade.get().market();
+			break;
+
+		case TradeLimit:
+			Trade.get().limit();
+			break;
+
+		case ConfirmOrderDoNotCancel:
+			ConfirmOrder.get().clickDoNotCancel();
+			break;
+
+		case ConfirmOrderImpInformation:
+			ConfirmOrder.get().checkImpInformation();
+			break;
+
+		case ConfirmOrderValidateBuy:
+			ConfirmOrder.get().validateConfirmOrderBuy();
+			break;
+
+		case OrderRecieptValidateBuy:
+			OrderReciept.get().validateConfirmOrderBuy();
+			break;
+
+		case clickChangeorder_LimitToMarket:
+			Trade.get().changeOrderLimitToMarket();
+			break;
+
+		case clickChangeorder_TSM_to_TSL:
+			Trade.get().changeOrderTSM_To_TSL();
+			break;
+
+		case clickChangeorder_SM_to_SL:
+			Trade.get().changeOrderSM_To_SL();
+			break;
+
+		case Investing_ClickPlacedOrder:
+			Investing.get().clickPlacedOrder();
+			break;
+
+		case OrderDetails_Changeorder:
+			OrderDetails.get().performChangeorder();
+			break;
+
+		case verifyEmptyWatchList:
+			Investing.get().verifyEmptyWatchLists();
+			break;
+
+		case ClickOrders:
+			OrderReciept.get().clickOrders();
+			break;
+
+		case verifyShareHolder:
+			Trade.get().verifyShareHolder();
+			break;
+
+		case confirmOrder_ClickBack:
+			ConfirmOrder.get().confirmOrderClickBack();
+			break;
+
+		case verifyBuyToCover:
+			Trade.get().verifyBuyToCover();
+			break;
+
+		case ClickHoldingAndSymbol:
+			Investing.get().clickHoldingAndSymbol();
+			break;
+
+		case changeOrderLimitDayToDayEXT:
+			Trade.get().changeOrderLimitDayToDayEXT();
+			break;
 
 		
 		}

@@ -24,7 +24,7 @@ public class Managee_Payee extends _CommonPage {
 	
 	
 	//@iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeLink/XCUIElementTypeStaticText")
-	@iOSFindBy(xpath="//*[@label='MY PAYEES']")
+	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@label='MY PAYEES']")
 	private MobileElement myPayees;
 	
 	@iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
@@ -33,22 +33,22 @@ public class Managee_Payee extends _CommonPage {
 	@iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText")
 	private MobileElement thirdAccessCard;
 	
-	@iOSFindBy(xpath="//*[@label='Add Canadian Payees Now']")
+	@iOSFindBy(xpath="//XCUIElementTypeButton[@label='Add Canadian Payees Now']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Canadian Payee']")
 	private MobileElement addCanadianPayee;
 	
-	@iOSFindBy(xpath="//*[@label='Manage Payees']")
+	@iOSFindBy(xpath="//XCUIElementTypeOther[@label='Manage Payees']")
 	private MobileElement managePayeeHeader;
 	
-	@iOSFindBy(xpath="//*[@label='Manage Payees']")
+	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@label='Manage Payees']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Manage Payees']")
 	private MobileElement managePayees;
 	
-	@iOSFindBy(xpath="//*[@label='Add Canadian Payee']")
+	@iOSFindBy(xpath="//XCUIElementTypeButton[@label='Add Canadian Payee']")
 	@AndroidFindBy(xpath = "//[@content-desc='Add Canadian Payee']")
 	private MobileElement addPayee;
 	
-	@iOSFindBy(xpath = "//*[@label='In Progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 

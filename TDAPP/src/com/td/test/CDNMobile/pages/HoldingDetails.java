@@ -18,31 +18,31 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class HoldingDetails extends _CommonPage {
     private static HoldingDetails HoldingDetails;
 
-    @iOSFindBy(xpath = "//*[@label='Buy']")
+    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Buy']")
     @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
     private MobileElement Buy;
 
-    @iOSFindBy(xpath = "//*[@label='Sell']")
+    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Sell']")
     @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
     private MobileElement Sell;
 
-    @iOSFindBy(xpath = "//*[@label='Trade']")
+    @iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
     private MobileElement trade_header;
 
-	@iOSFindBy(xpath = "//*[@label='Holding Details']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Holding Details']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Holding Details']")
 	private MobileElement HoldingDetails_header;
 
-    @iOSFindBy(xpath = "//*[contains(@label,'Good 'til, Day')]")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good 'til, Day')]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
     private MobileElement Good;
 
-    @iOSFindBy(xpath = "//*[@label='Agree']")
+    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Agree']")
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Agree']")
     private MobileElement AgreeButton;
 
-    @iOSFindBy(xpath = "//*[@label='In progress']")
+    @iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
     private MobileElement progressBar;
 

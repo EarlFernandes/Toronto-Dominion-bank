@@ -72,9 +72,8 @@ public class WatchLists extends _CommonPage {
 
 	int numberOfWatchlists = Integer.parseInt(getTestdata("WatchListNum"));
 
-	@iOSFindBy(xpath="//*[contains(@label,'CA']")
+	@iOSFindBy(xpath = "//*[contains(@label,'CA']")
 	private MobileElement symbolInWatchList;
-	
 
 	public synchronized static WatchLists get() {
 		if (WatchLists == null) {
@@ -87,7 +86,7 @@ public class WatchLists extends _CommonPage {
 		PageFactory.initElements(
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
 				this);
-		
+
 	}
 
 	/**
@@ -95,7 +94,8 @@ public class WatchLists extends _CommonPage {
 	 * 
 	 * The element is not displayed it will
 	 * 
-	 * @throws NoSuchElementException and IOException
+	 * @throws NoSuchElementException
+	 *             and IOException
 	 */
 
 	public void verifyWatchListHeader() {
@@ -161,7 +161,7 @@ public class WatchLists extends _CommonPage {
 		try {
 			mobileAction.FuncClick(CancelBtn, "Cancel Button");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
-		e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 
@@ -182,7 +182,7 @@ public class WatchLists extends _CommonPage {
 		try {
 			mobileAction.FuncClick(editBtn, "Cancel Button");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
-	e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 
@@ -233,21 +233,19 @@ public class WatchLists extends _CommonPage {
 
 	}
 
-public void verify_newOrderFlow_Watchlists(){
-		
-		
+	public void verify_newOrderFlow_Watchlists() {
+
 		try {
-			for(int i=0;i<numberOfWatchlists;i++){
-			mobileAction.verifyElement(symbolInWatchList, symbolXL);
-			mobileAction.FuncClick(symbolInWatchList, symbolXL);
-			
+			for (int i = 0; i < numberOfWatchlists; i++) {
+				mobileAction.verifyElement(symbolInWatchList, symbolXL);
+				mobileAction.FuncClick(symbolInWatchList, symbolXL);
+
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			e.printStackTrace();
 		}
-		
-	}
 
+	}
 
 	public void swipeToNextWatchList() {
 

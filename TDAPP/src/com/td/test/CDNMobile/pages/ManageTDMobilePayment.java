@@ -25,10 +25,10 @@ public class ManageTDMobilePayment extends _CommonPage {
 			+ "')]";
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/manage_settings_text_view' and @text='Manage Settings']")
-	private MobileElement managesettingicon;
+	private MobileElement manageSettingIcon;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/card_type_text_view' and contains(@text,'AEROPLAN')]")
-	private MobileElement clickcard;
+	private MobileElement clickCard;
 
 	public synchronized static ManageTDMobilePayment get() {
 		if (ManageTDMobilePayment == null) {
@@ -63,7 +63,7 @@ public class ManageTDMobilePayment extends _CommonPage {
 
 		Decorator();
 		try {
-			mobileAction.FuncClick(clickcard, "Click  Card");
+			mobileAction.FuncClick(clickCard, "Click  Card");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -89,7 +89,7 @@ public class ManageTDMobilePayment extends _CommonPage {
 
 		Decorator();
 		try {
-			mobileAction.FuncClick(managesettingicon, "Click Manage Settings");
+			mobileAction.FuncClick(manageSettingIcon, "Click Manage Settings");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

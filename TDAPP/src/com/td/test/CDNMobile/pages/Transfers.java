@@ -29,32 +29,32 @@ public class Transfers extends _CommonPage {
 		return Transfers;
 	}
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Pending Interac e-Transfer')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Pending Interac e-Transfer')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Pending Interac e-Transfer']")
-	private MobileElement pending_transfer;
+	private MobileElement pending_Transfer;
 
 
-	@iOSFindBy(xpath= "//*[@label='Transfers']")
+	@iOSFindBy(xpath= "//XCUIElementTypeOther[@label='Transfers']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Transfers']")
-	private MobileElement transfers_header;
+	private MobileElement transfers_Header;
 	
 
-	@iOSFindBy(xpath = "//*[@label='Interac e-Transfer']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Interac e-Transfer']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Interac e-Transfer']")
-	private MobileElement Interac_e_Transfer_button;
+	private MobileElement Interac_e_Transfer_Button;
 	
-	@iOSFindBy(xpath= "//*[@label='Between My Accounts']")
+	@iOSFindBy(xpath= "//XCUIElementTypeStaticText[@label='Between My Accounts']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textView1' and @text='Move money quickly and easily']")
-	private MobileElement btw_my_accnts;
+	private MobileElement btw_My_Accnts;
 	
-	@iOSFindBy(xpath="//*[@label='In progress']")
-	private MobileElement progrees_bar;
+	@iOSFindBy(xpath="//XCUIElementTypeActivityIndicator[@label='In progress']")
+	private MobileElement progrees_Bar;
 	
-	@iOSFindBy(xpath= "//*[contains(@label,'Manage Recipients Add, edit or delete Interac e-Transfer recipie')]")
+	@iOSFindBy(xpath= "//XCUIElementTypeStaticText[contains(@label,'Manage Recipients Add, edit or delete Interac e-Transfer recipie')]")
 	//@AndroidFindBy(xpath = " ")
 	private MobileElement manageRecipient;
 
-	@iOSFindBy(xpath="//*[@label='In progress']")
+	@iOSFindBy(xpath="//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 	String transfer_Header_Value = "Transfers";
@@ -72,8 +72,8 @@ public class Transfers extends _CommonPage {
 	public void clickBetweenMyAccountsTransfers() {
 		try {
 			Decorator();
-			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer");
-			mobileAction.FuncClick(btw_my_accnts, "Between my Accounts");
+			mobileAction.verifyElementIsDisplayed(transfers_Header, "Transfer");
+			mobileAction.FuncClick(btw_My_Accnts, "Between my Accounts");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -91,10 +91,10 @@ public class Transfers extends _CommonPage {
 	public void clickInterac_e_Transfer() {
 		Decorator();
 		try {
-			Thread.sleep(5000);
-			transfers_header.isDisplayed();
-			mobileAction.FuncClick(Interac_e_Transfer_button, "Interac e_Transfer");
-			mobileAction.waitForElementToVanish(progrees_bar);
+			//Thread.sleep(5000);
+			transfers_Header.isDisplayed();
+			mobileAction.FuncClick(Interac_e_Transfer_Button, "Interac e_Transfer");
+			mobileAction.waitForElementToVanish(progrees_Bar);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -131,8 +131,8 @@ public class Transfers extends _CommonPage {
 	public void clickPendingTransfers() {
 		try {
 			Decorator();
-			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer");
-			mobileAction.FuncClick(pending_transfer, "Pending Transfers");
+			mobileAction.verifyElementIsDisplayed(transfers_Header, "Transfer");
+			mobileAction.FuncClick(pending_Transfer, "Pending Transfers");
 			Thread.sleep(5000);
 			
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -161,7 +161,7 @@ public class Transfers extends _CommonPage {
 		Decorator();
 		try {
 			
-			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer");
+			mobileAction.verifyElementIsDisplayed(transfers_Header, "Transfer");
 			
 		} catch (NoSuchElementException   | IOException e) {
 			System.err.println("TestCase has failed.");

@@ -18,35 +18,35 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class Logout extends _CommonPage {
 	private static Logout Logout;
 	
-	@iOSFindBy(xpath ="//*[@label='Menu en en-tête']")
+	@iOSFindBy(xpath ="//XCUIElementTypeButton[@label='Menu en en-tête']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement french_Menu_button;
+	private MobileElement french_Menu_Button;
 	
-	@iOSFindBy(xpath ="//*[@label='Menu']")
+	@iOSFindBy(xpath ="//XCUIElementTypeButton[@label='Menu']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement Menu_button;
+	private MobileElement Menu_Button;
 	
-	@iOSFindBy(xpath ="//*[@label='Logout']")
+	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='Logout']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 	
-	@iOSFindBy(xpath ="//*[@label='Fermer la session']")
+	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='Fermer la session']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Fermer la session']")
 	private MobileElement logout_French;
 	
-	@iOSFindBy(xpath ="//*[@label='']")
+	@iOSFindBy(xpath ="//XCUIElementTypeOther[@label='']")
 	@AndroidFindBy(xpath = "android.widget.TextView//[@resource-id='android:id/action_bar_title' and @text='Logged Out']")
 	private MobileElement logoutHeader; 
 	
-	@iOSFindBy(xpath ="//*[@label='Retour']")
-	private MobileElement french_back_button; 
+	@iOSFindBy(xpath ="//XCUIElementTypeButton[@label='Retour']")
+	private MobileElement french_Back_Button; 
 	
 
 
 	
  
 	
-	@iOSFindBy(xpath ="//*[@label='Terminé']")
+	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='Terminé']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/success' and @text='Terminé']")
 	private MobileElement logoutHeaderFrench;
 	
@@ -83,10 +83,10 @@ public class Logout extends _CommonPage {
 			Decorator();
 			
 			if(platformName.equalsIgnoreCase("ios")){
-				mobileAction.FuncClick(french_back_button, "BACK");
-				mobileAction.FuncClick(french_Menu_button, "French_Menu");
+				mobileAction.FuncClick(french_Back_Button, "BACK");
+				mobileAction.FuncClick(french_Menu_Button, "French_Menu");
 			}else{	
-			mobileAction.FuncClick(french_Menu_button, "French_Menu");
+			mobileAction.FuncClick(french_Menu_Button, "French_Menu");
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
