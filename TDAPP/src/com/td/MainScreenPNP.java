@@ -62,7 +62,7 @@ public class MainScreenPNP extends _CommonPage {
 			"Description", "Payee", "Timeout", "SecondTimeout", "MerchantName", "Price", "Quantity",
 			"Security_Question", "RecipientName", "RecipientMail", "Trading_Pwd", "Symbol", "ShareHolder",
 			"SecurityPassword", "TriggerDelta", "CDNMarginAccount", "QuantityType", "Dividend", "SelectLimitPrice",
-			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName", "Passcode" ,"NewPasscode","EmailProfile"};
+			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName", "Passcode" ,"NewPasscode","EmailProfile","PhoneProfile"};
 
 
 	public void readSheet() {
@@ -103,7 +103,9 @@ public class MainScreenPNP extends _CommonPage {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
 				}
-				CL.mobileApp("http://49.21.140.17:4723/wd/hub");
+				CL.mobileApp("http://49.21.140.61:4723/wd/hub");
+				//CL.mobileApp("http://49.27.22.114:4723/wd/hub");
+				//CL.mobileApp("http://49.27.23.62:4723/wd/hub");
 				//CL.mobileApp("http://0.0.0.0:4725/wd/hub");
 				Decorator();
 			} catch (Exception e) {

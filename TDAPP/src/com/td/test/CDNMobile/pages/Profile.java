@@ -33,6 +33,10 @@ public class Profile extends _CommonPage {
 	String extPlaceHolder ="Enter extension | Entrer n° de poste";
 	int MAX_EMAIL_LENGTH =60;
 	int MAX_NAME_LENGTH = 40;
+	String ori_email="";
+	String ori_phone="";
+	boolean isPersonalUser =false;
+	boolean isBusinessUser = false;
 	
 	@iOSFindBy(xpath = "//*[@label='Profile' or @label='Profil']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Profile' or @text='Profil')]")
@@ -71,7 +75,7 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Business Phone' or @text='No de tél. (entreprise)']")
 	private MobileElement business_phone_label;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Business Phone' or @label='No de tél. (entreprise)']/../XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Business Phone' or @label='N° de tél. (entreprise)']/../XCUIElementTypeTextField[1]")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/business_phone']//android.widget.EditText[@resource-id='com.td:id/phone_number']")
 	private MobileElement business_phone_info;
 	
@@ -115,11 +119,11 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/address']/android.widget.TextView[@resource-id='com.td:id/description']")
 	private MobileElement address_detail;
 	
-	@iOSFindBy(xpath = "//*[@id='initial']")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/initial']")
 	private MobileElement name_initial;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/user']")
 	private MobileElement name_detail;
 	
@@ -135,9 +139,13 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement back_arrow;	
 	
-	@iOSFindBy(xpath = "//*[@label='Cancel']")
+	@iOSFindBy(xpath = "//*[@label='Cancel' or @label='Annuler']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
 	private MobileElement cancel_button;	
+
+	@iOSFindBy(xpath = "//*[@label='Yes, go back' or @label='Oui']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
+	private MobileElement goback_button;	
 	
 	@iOSFindBy(xpath = "//*[@id='banner_info']")
 	@AndroidFindBy(xpath = "//android.widget.ScrollView[@resource-id='com.td:id/scrollView']/android.widget.TextView")
@@ -146,7 +154,15 @@ public class Profile extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Done' or @label='OK']")
 	//@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/work_phone']//android.widget.EditText[@resource-id='com.td:id/phone_number']")
 	private MobileElement done;
-
+	
+	@iOSFindBy(xpath = "//*[@label='Clear text' or @label='Effacer le texte']")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/phone_number_icon']")
+	private MobileElement clearText_button;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/phone_number_icon']")
+	private MobileElement toast_message;
+	
 	public synchronized static Profile get() {
 		if (Profile == null) {
 			Profile = new Profile();
@@ -180,6 +196,20 @@ public class Profile extends _CommonPage {
 		try {
 
 			mobileAction.verifyHeaderIsDisplayed(profile_Header, profileStr);
+						
+			String initial_name = get_name_initial_info();
+			if(initial_name.length() == 1){
+				isBusinessUser = true;
+				isPersonalUser = false;
+				System.out.println("Business User");
+			}else if(initial_name.length() == 2){
+				isPersonalUser = true;
+				isBusinessUser = false;
+				System.out.println("Personal User");
+			}else{
+				System.err.println("TestCase has failed with unrecongnized initial name.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}	
 
 		} catch (NoSuchElementException | IOException e) {
 				System.err.println("TestCase has failed.");
@@ -244,6 +274,20 @@ public class Profile extends _CommonPage {
 		return "";
 	}
 	
+	
+	private String get_phone_info(){
+		
+		//String phone="";
+		try{
+			if(isPersonalUser){
+				return get_home_phone_info();
+			}else{
+				return get_business_info();
+			}
+		}catch(Exception e){
+			return get_business_info();
+		}
+	}
 	
 	public String get_name_detail_info() {
 		
@@ -703,12 +747,22 @@ public class Profile extends _CommonPage {
 	        System.err.println("TestCase has failed.");
 	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 	    } 
+		
+//		try{
+//			String errorMessage = mobileAction.getText(error_message);
+//			System.out.println("Found error message: " + errorMessage);
+//	        System.err.println("TestCase has failed with error message:" + errorMessage);
+//	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+//		}catch (Exception e){
+//			System.out.println("No error message found");
+//		}
 	}
 	
 	
 	public void EditPersonalEmailAddress(String email){
 		Decorator();
 		try{
+			
 			mobileAction.FuncClick(personal_email_info, "Email");
 			
 			mobileAction.FuncSendKeys(personal_email_info, email);
@@ -744,6 +798,21 @@ public class Profile extends _CommonPage {
 			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
 			//mobileAction.FuncSwipeOnce("down");
 		}
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		//If the update email is the same as the original one, update will fail, so need to change 
+		//the email when it is the same as ori one
+		ori_email = get_email_info();
+		if(ori_email.equalsIgnoreCase(email)){
+			String [] emailArray = email.split("@");
+			email = (new StringBuffer(emailArray[0]).reverse().toString()) + "@"+ emailArray[1] ;
+			System.out.println("Update the email to:" + email);
+		}
+		
 		try{
 			if(personal_email_info.isDisplayed()){
 				EditPersonalEmailAddress(email);
@@ -765,20 +834,7 @@ public class Profile extends _CommonPage {
 		}
 		System.out.println("Email :" + EmailAddress);
 		
-		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
-			//mobileAction.FuncSwipeOnce("down");
-		}
-		
-		try{
-			if(personal_email_info.isDisplayed()){
-				EditPersonalEmailAddress(EmailAddress);
-			}else {
-				EditBusinessEmailAddress(EmailAddress);
-			}
-		}catch (Exception e){
-			EditBusinessEmailAddress(EmailAddress);
-		}
+		EditEmailAddress(EmailAddress);
 		
 	}
 	
@@ -863,6 +919,8 @@ public class Profile extends _CommonPage {
 	}
 	
 	public void VerifyEmailAddedSuccesful(){
+		
+		VerifyToastmessageDisplayed();
 
 		try{
 			String errorMessage = mobileAction.getText(error_message);
@@ -1111,5 +1169,230 @@ public class Profile extends _CommonPage {
 	    }  
 	}
 	
+	public void ClickPhoneNumber(){
+		Decorator();
+		//save ori_phone here before clear it.
+
+		try{
+			if(isPersonalUser){
+				ori_phone = get_home_phone_info();
+				mobileAction.FuncClick(home_phone_info, "Home Phone");
+			}else{
+				ori_phone = get_business_info();
+				mobileAction.FuncClick(business_phone_info, "Business Phone");
+			}
+		}catch (Exception e){
+			try {
+				ori_phone = get_business_info();
+				mobileAction.FuncClick(business_phone_info, "Business Phone");
+			} catch (Exception e1) {
+		        System.err.println("TestCase has failed.");
+		        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+			} 
+		}
+	}
 	
+	public void VerifyClearTextIconDisplayed(){
+		Decorator();
+		try{
+			if(clearText_button.isDisplayed()){
+				mobileAction.Report_Pass_Verified("Clear Text Button");
+			}else{
+				mobileAction.Report_Fail_Not_Verified("Clear Text Button");
+			}
+		}catch (Exception e){
+	        System.err.println("TestCase has failed.");
+	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+		}
+	}
+	
+	public void VerifyPhoneNumberIsEmpty(){
+		Decorator();
+		String phoneNumber=get_phone_info();
+		
+		if(phoneNumber.isEmpty()){
+			mobileAction.Report_Pass_Verified("Empty Phone Number");
+		}else{
+			mobileAction.Report_Fail_Not_Verified("Empty Phone Number");
+		}
+	}
+	
+	public void ClickClearText(){
+		
+		Decorator();
+		try{
+			mobileAction.FuncClick(clearText_button, "Clear Text Button");
+		}catch (Exception e){
+	        System.err.println("TestCase has failed.");
+	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+		}
+	}
+	
+	public void VerifyPlaceHolderDisplayed(){
+		
+		Decorator();
+		String phoneNumber="";
+		try{
+			if(isPersonalUser){
+				 
+				phoneNumber = mobileAction.getValue(home_phone_info);
+			}else{
+				phoneNumber = mobileAction.getValue(business_phone_info);
+			}
+		}catch (Exception e){
+			try {
+				phoneNumber = mobileAction.getValue(business_phone_info);
+			} catch (Exception e1) {
+		        System.err.println("TestCase has failed.");
+		        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+		        return;
+			} 
+		}
+		
+		if(phonePlaceHolder.contains(phoneNumber)){
+			mobileAction.Report_Pass_Verified("Place holder:" +phoneNumber);
+		}else{
+			mobileAction.Report_Fail_Not_Verified("Place holder:" +phoneNumber);
+		}
+		
+	}
+	
+	public void EditPhoneNumber(){
+		
+		Decorator();
+		String phoneNumber = CL.getTestDataInstance().TCParameters.get("PhoneProfile");
+		System.out.println("Phone from data table:" + phoneNumber);
+		if(phoneNumber.length()==10){
+			//this is a valid number, need to check this number is the same as the original one
+			String last_4_digit = mobileAction.FuncGetValByRegx(ori_phone,extReg);
+			if(!last_4_digit.isEmpty() && phoneNumber.contains(last_4_digit)){
+				// possible the same phone
+				String reverse_4_digit = new StringBuffer(last_4_digit).reverse().toString();
+				phoneNumber = phoneNumber.replaceAll(last_4_digit, reverse_4_digit);
+				System.out.println("Phone changed since last 4 digit is the same as original one:" + phoneNumber);
+			}
+		}
+		
+		try{
+			if(isPersonalUser){				
+				mobileAction.FuncSendKeys(home_phone_info, phoneNumber);				
+			}else{
+		
+				mobileAction.FuncSendKeys(business_phone_info,phoneNumber);
+			}
+		}catch (Exception e){
+			try {
+				mobileAction.FuncSendKeys(business_phone_info,phoneNumber);
+			} catch (Exception e1) {
+		        System.err.println("TestCase has failed.");
+		        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+		        return;
+			} 
+		}
+		
+		try{
+	        if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+	        	mobileAction.FuncHideKeyboard();	       
+	        }else{
+	        	mobileAction.FuncClick(done, "Done");
+	        }
+		}catch (Exception e){
+			System.err.println("TestCase has failed.");
+	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+	        return;
+		}
+	}
+	
+	public void ClickAddressDetail(){
+		Decorator();
+		try{
+			if(address_detail.isDisplayed()){
+				mobileAction.FuncClick(address_detail, "Address");
+			}else{
+				System.err.println("TestCase has failed, no address found");
+		        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+		        return;
+			}
+		}catch (Exception e){
+			System.err.println("TestCase has failed");
+	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+	        return;
+		}		
+	}
+	
+	public void VerifyToastmessageDisplayed(){
+		Decorator();
+		String toastMessage="";
+		try{
+			if(toast_message.isDisplayed()){
+				toastMessage = mobileAction.getValue(toast_message);
+				System.out.println("toastMessage:" +toastMessage);
+			}else{
+				System.err.println("TestCase has failed, no toast message found");
+		        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+		        return;
+			}
+		}catch (Exception e){
+			
+			System.err.println("TestCase has failed");
+	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+	        return;
+		}
+		
+		if (!toastMessage.isEmpty()){
+			mobileAction.Report_Pass_Verified(toastMessage);
+		}else{
+			mobileAction.Report_Fail_Not_Verified("Toast message"); 
+		}
+	}
+	
+	public void GetEmailAndPhoneNumber(){
+		Decorator();
+		
+		ori_phone = get_phone_info();
+		ori_email= get_email_info();
+		
+		System.out.println("ori_phone:" + ori_phone);
+		System.out.println("ori_email:" + ori_email);
+		mobileAction.Report_Pass_Verified("ori_phone:" +ori_phone);
+		mobileAction.Report_Pass_Verified("ori_email:" +ori_email);
+		
+	}
+	
+	public void ClickPopupGoBackButton(){
+		Decorator();
+		try{
+			mobileAction.FuncClick(goback_button, "Yes, Go Back");
+		}catch (Exception e){
+	        System.err.println("TestCase has failed.");
+	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+	        return;	
+		}
+	}
+	
+	public void VerifyPhoneEmailNotChanged(){
+		Decorator();
+		String phone_after="";
+		String email_after="";
+		phone_after = get_phone_info();
+		
+		try{
+			email_after= get_email_info();
+		}catch (Exception e){
+	        System.err.println("TestCase has failed for getting email.");
+	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+	        return;			
+		}
+		
+		if(phone_after.equalsIgnoreCase(ori_phone)){
+			mobileAction.Report_Pass_Verified("phone:" +ori_phone + " not changed");
+		}else{
+			mobileAction.Report_Fail_Not_Verified("phone:" +phone_after + " changed");
+		}
+		if(email_after.equalsIgnoreCase(ori_email)){
+			mobileAction.Report_Pass_Verified("email:" +email_after + " not changed");
+		}else{
+			mobileAction.Report_Fail_Not_Verified("email:" +email_after + " changed");
+		}
+	}
 }

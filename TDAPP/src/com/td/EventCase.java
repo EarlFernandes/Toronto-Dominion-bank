@@ -472,9 +472,19 @@ public class EventCase {
 		VerifyPopUpWithCancelButton,
 		EditEmailAddressWithoutSave,
 		NavigationToHomePage,
-		SaveEmail,
+		ClickSave,
 		AddVaildEmail,
-		
+		ClickPhoneNumber,
+		VerifyClearTextIconDisplayed,
+		ClickClearText,
+		VerifyPhoneNumberIsEmpty,
+		VerifyPlaceHolderDisplayed,
+		EditPhoneNumber,
+		ClickAddressDetail,
+		VerifyToastmessageDisplayed,
+		GetEmailAndPhoneNumber,
+		ClickPopupGoBackButton,
+		VerifyPhoneEmailNotChanged,
 		//end of profile and preference
 		
 		verify_access_to_WB, 
@@ -2157,13 +2167,57 @@ public class EventCase {
 	    	Accounts.get().NavigationToHomePage();
 		    break;
 		    		    
-	    case SaveEmail:
+	    case ClickSave:
 	    	Profile.get().pressSaveButton();
 		    break;	
 		    
 	    case AddVaildEmail:
 	    	Profile.get().AddVaildEmail();
 		    break;
+		    
+	    case ClickPhoneNumber:
+	    	Profile.get().ClickPhoneNumber();
+		    break;
+
+	    case VerifyClearTextIconDisplayed:
+	    	Profile.get().VerifyClearTextIconDisplayed();
+		    break;
+
+	    case ClickClearText:
+	    	Profile.get().ClickClearText();
+		    break;
+
+	    case VerifyPhoneNumberIsEmpty:
+	    	Profile.get().VerifyPhoneNumberIsEmpty();
+		    break;		    
+		    
+	    case VerifyPlaceHolderDisplayed:
+	    	Profile.get().VerifyPlaceHolderDisplayed();
+		    break;
+
+	    case EditPhoneNumber:
+	    	Profile.get().EditPhoneNumber();
+		    break;
+		      
+	    case ClickAddressDetail:
+	    	Profile.get().ClickAddressDetail();
+		    break;		    
+		    
+	    case VerifyToastmessageDisplayed:
+	    	Profile.get().VerifyToastmessageDisplayed();
+		    break;		    
+		    
+	    case GetEmailAndPhoneNumber:
+	    	Profile.get().GetEmailAndPhoneNumber();
+		    break;		    
+		    
+	    case ClickPopupGoBackButton:
+	    	Profile.get().ClickPopupGoBackButton();
+		    break;		    
+		    
+	    case VerifyPhoneEmailNotChanged:
+	    	Profile.get().VerifyPhoneEmailNotChanged();
+		    break;		    
 		    
 		//end of profile and preference
 

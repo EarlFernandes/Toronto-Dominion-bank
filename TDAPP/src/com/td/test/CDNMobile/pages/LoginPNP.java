@@ -136,7 +136,7 @@ public class LoginPNP extends _CommonPage {
 	private MobileElement done;
 
 	@iOSFindBy(xpath = "//*[@label='Login']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mfa_login_btn_txt' and @text='Login']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/mfa_login_btn']")
 	private MobileElement securityLogin;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'System Error')]")
@@ -233,17 +233,17 @@ public class LoginPNP extends _CommonPage {
 			}
 			
 
-			Thread.sleep(20000);
+			Thread.sleep(25000);
 			try{
 				String accountHeader = "";
 				if (!CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-					accountHeader = "//*[@label='Accounts' or @label='Comptes']";
+					accountHeader = "//*[@label='Accounts' or @label='Comptes' or @label='Bills' or @label='Transfers']";
 				}else{
-					accountHeader = "//android.widget.TextView[@text='My Accounts' or @text ='Mes comptes']";
+					accountHeader = "//android.widget.TextView[@text='My Accounts' or @text ='Mes comptes' or @text='Bills' or @text='Transfers']";
 				}
 				MobileElement accountHeaderitem =(MobileElement) CL.GetDriver().findElement(By.xpath(accountHeader));
 				if(accountHeaderitem.isDisplayed()){
-					System.out.println("Accounts page found");
+					System.out.println("Accounts or Bills or Transfers page found");
 				}else{
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 						if(mobileAction.isObjExists(enterAnswer)){
@@ -251,6 +251,7 @@ public class LoginPNP extends _CommonPage {
 							System.out.println("Security Answer:" + securityAnswer);
 							mobileAction.FuncSendKeys(enterAnswer,securityAnswer);
 							mobileAction.FuncClick(enterAnswer, "enterAnswer");
+							mobileAction.FuncHideKeyboard();
 							mobileAction.FuncClick(securityLogin, "Login");
 						}				
 					}else{
@@ -266,6 +267,7 @@ public class LoginPNP extends _CommonPage {
 						System.out.println("Security Answer:" + securityAnswer);
 						mobileAction.FuncSendKeys(enterAnswer,securityAnswer);
 						mobileAction.FuncClick(enterAnswer, "enterAnswer");
+						mobileAction.FuncHideKeyboard();
 						mobileAction.FuncClick(securityLogin, "Login");
 					}				
 				}else{

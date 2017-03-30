@@ -97,8 +97,9 @@ public class MainScreen extends _CommonPage {
 
 		String udid = CL.getTestDataInstance().getDeviceUdid();
 
-		if (udid.equalsIgnoreCase("ce0716070dbb753003")) {
-
+		//if (udid.equalsIgnoreCase("ce0716070dbb753003")) {
+		if (udid.equalsIgnoreCase("5ad12dcc0df2f1b65956f22e91035b8a0d288cd3")) {
+		//if (udid.equalsIgnoreCase("e8c6731c0087c7fa113d4750b1409f42087ddc36")) {
 			try {
 				if (CL.getTestDataInstance().getAppFilePath() == null
 						|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
@@ -111,7 +112,10 @@ public class MainScreen extends _CommonPage {
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
 				}
 
-				CL.mobileApp("http://127.0.0.1:4723/wd/hub");
+				//CL.mobileApp("http://127.0.0.1:4723/wd/hub");
+				CL.mobileApp("http://49.21.140.61:4723/wd/hub");
+				//CL.mobileApp("http://49.27.23.62:4723/wd/hub");
+				
 				Decorator();
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");

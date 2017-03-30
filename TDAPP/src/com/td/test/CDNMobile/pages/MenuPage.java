@@ -188,6 +188,7 @@ public class MenuPage extends _CommonPage {
 
 		Decorator();
 		try {
+			Thread.sleep(5000);
 			mobileAction.FuncClick(accounts_button, "Accounts");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -434,15 +435,14 @@ public class MenuPage extends _CommonPage {
 		try {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
-				//mobileAction.FuncSwipeOnce("down");
-//				try {
-//					mobileAction.FuncElementSwipeWhileNotFound(menuLayout, profile_and_settings, 2, "down", false);
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+
 			}
-			mobileAction.verifyElement(profile_and_settings, "Profile & Settings");
+			//mobileAction.verifyElement(profile_and_settings, "Profile & Settings");
+			try {
+				mobileAction.verifyHeaderIsDisplayed(profile_and_settings, "Profile & Settings | Profil et paramètres");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

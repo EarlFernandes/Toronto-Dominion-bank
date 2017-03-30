@@ -45,8 +45,11 @@ public class WhatsNew extends _CommonPage {
 	public void VerifyWhatsNewPageHeader() {
 		Decorator();
 		try {
-
-			mobileAction.verifyHeaderIsDisplayed(whatsnew_title, Whatsnew);
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				mobileAction.verifyHeaderIsDisplayed(whatsnew_title, Whatsnew);
+			}else{
+				//do nothing. IOS not implement it yet.
+			}
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

@@ -600,7 +600,8 @@ public class Accounts extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-
+				
+				Thread.sleep(5000);
 				mobileAction.FuncClick(back_button, "<");
 				
 			} else {
