@@ -70,7 +70,7 @@ public class Pay_US_Bill extends _CommonPage {
 	private MobileElement payeeList;
 	
 	@iOSFindBy(xpath = "//*[@label='Pay Bill']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/button_footer' and @text='Pay Bill')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/button_footer']")
 	private MobileElement pay_bill_button;
 
 	int i = 1;
@@ -242,6 +242,66 @@ public class Pay_US_Bill extends _CommonPage {
 	}
 
 	/**
+	 * This method will verify text within elements for the US bills success page
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyTextPayUSBillSuccess() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				// Seems like selector for from account/payee do not work here
+				// We just need to get to confirmation page, so select default fields
+				mobileAction.FuncClick(from_account, "From Account");
+				mobileAction.FuncElementSwipeWhileNotFound(acntList, "//android.widget.TextView[@resource-id='com.td:id/name' and @index='0']", 1, "down", true);
+				mobileAction.FuncClick(select_payee_account, "Select Payee");
+				mobileAction.FuncElementSwipeWhileNotFound(payeeList, "//android.widget.TextView[@text='" + getTestdata("Payee") + "']", 1, "down", true);
+				mobileAction.FuncClick(amount, "Amount button clicked");
+				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
+				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClick(reasonForPayment, "reason for payment clicked");
+				mobileAction.FuncSendKeys(reasonForPayment, getTestdata("Reason"));
+				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClick(Continue, "Continue_pay");
+				mobileAction.FuncClick(pay_bill_button, "Pay bill");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("pay_us_bill_page_title") + "']", "Pay US Bill title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/thank_you_label' and @text='" + mobileAction.getAppString("receipt_thankyou") + "']", "Thank you!");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/label' and @text='" + mobileAction.getAppString("bill_paid_successfully") + "']", "Payment Submitted");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/note' and @text='" + mobileAction.getAppString("note") + "']", "Note");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[starts-with(@text, '" + mobileAction.getAppString("confirmation_no").replace(" %1$s", "") + "')]", "Confirmation #");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderFromAccount").replace(" ", "\n") + "']", "From Account");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderAmount") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("estimated_delivery_date") + "']", "Est delivery date");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersFXExchangeRate").replace(" ", "\n") + "']", "Exchange Rate");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/payee_label' and @text='" + mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");
+				final String xPathQuickActionBar = "//android.widget.HorizontalScrollView[@resource-id='com.td:id/quick_action_bar']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathQuickActionBar, false, 4, "up");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("service_fee") + "']", "Service Fee");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("total_amount") + "']", "Total Amount");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("reason_for_payment_label") + "']", "Reason for payment");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_HOME") + "']", "HOME");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("pay_another_bill") + "']", "PAY ANOTHER BILL");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("receipt_scheduledpayments") + "']", "SCHEDULED PAYMENTS");
+
+
+			}
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	/**
 	 * This method will verify text within elements for the US bills confirmation page
 	 * 
 	 * @return void
@@ -273,14 +333,15 @@ public class Pay_US_Bill extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/from_label' and @text='" + mobileAction.getAppString("payBillDropdownHeaderFromAccount").replace(" ", "\n") + "']", "From Account");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/payee_label' and @text='" + mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("estimated_delivery_date") + "']", "Est delivery date");
+				final String xPathReason = "//android.widget.TextView[@text='" + mobileAction.getAppString("reason_for_payment_label") + "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathReason, false, 4, "up");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersFXExchangeRate").replace(" ", "\n") + "']", "Exchange Rate");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmButtonPayBill") + "']", "Pay Bill");
-				// FIXME: Need to scroll down here
-//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("service_fee") + "']", "Service Fee");
-//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderAmount") + "']", "Amount");
-//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("total_amount") + "']", "Total Amount");
-//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("reason_for_payment_label") + "']", "Reason for payment");
-							}
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("service_fee") + "']", "Service Fee");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderAmount") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("total_amount") + "']", "Total Amount");
+				mobileAction.verifyElementUsingXPath(xPathReason, "Reason for payment");
+			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());

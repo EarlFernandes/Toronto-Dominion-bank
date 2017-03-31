@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
@@ -41,11 +42,11 @@ public class Managee_Payee extends _CommonPage {
 	private MobileElement managePayeeHeader;
 	
 	@iOSFindBy(xpath="//*[@label='Manage Payees']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Manage Payees']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement managePayees;
 	
 	@iOSFindBy(xpath="//*[@label='Add Canadian Payee']")
-	@AndroidFindBy(xpath = "//[@content-desc='Add Canadian Payee']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement addPayee;
 	
 	@iOSFindBy(xpath = "//*[@label='In Progress']")
@@ -68,6 +69,99 @@ public class Managee_Payee extends _CommonPage {
 
 	}
 	
+	/**
+	 * This method will verify text within elements for the manage payees page
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyMyPayeesTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("billsNavRowManagePayee") + "']", "Manage Payees title");
+				// Switching to webview
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				//System.out.println("source : "+ ((AppiumDriver) CL.GetDriver()).getPageSource());
+				// FIXME: Hint is not seen
+				//final WebElement searchForPayee = mobileAction.verifyWebElementUsingXPath("//label[@id='searchLabel']", "Search for payee");
+				final WebElement all = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[1]", "All");
+				final WebElement canada = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[2]", "Canada");
+				final WebElement us = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[3]", "US");
+				final WebElement myPayees = mobileAction.verifyWebElementUsingXPath("//a[@id='myPayees']", "My payees");
+				if (!mobileAction.verifyTextEquality(all.getText().trim(), mobileAction.getAppString("str_all")) ||
+						!mobileAction.verifyTextEquality(canada.getText().trim(), mobileAction.getAppString("ca")) || 
+						!mobileAction.verifyTextEquality(us.getText().trim(), mobileAction.getAppString("us")) ||
+						!mobileAction.verifyTextEquality(myPayees.getText().trim(), mobileAction.getAppString("str_my_payees"))) {
+					System.err.println("TestCase has failed.");
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				}
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			// Switch back to native to get proper screenshots
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	/**
+	 * This method will verify text within elements for the search payees page
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifySearchPayeesTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("add_payee_title") + "']", "Add Payee title");
+				// Switching to webview
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				//System.out.println("source : "+ ((AppiumDriver) CL.GetDriver()).getPageSource());
+				// FIXME: Hint is not seen
+				//final WebElement searchForPayee = mobileAction.verifyWebElementUsingXPath("//label[@id='searchLabel']", "Search for payee");
+				final WebElement payeeCountry = mobileAction.verifyWebElementUsingXPath("//div[@class='switch-title ng-binding']", "Payee Country");
+				final WebElement canada = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[1]", "Canada");
+				final WebElement us = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[2]", "US");
+				final WebElement note = mobileAction.verifyWebElementUsingXPath("//div[@class='placeholder ng-binding']", "My payees");
+				if (!mobileAction.verifyTextEquality(payeeCountry.getText().trim(), mobileAction.getAppString("payee_country")) ||
+						!mobileAction.verifyTextEquality(canada.getText().trim(), mobileAction.getAppString("ca")) || 
+						!mobileAction.verifyTextEquality(us.getText().trim(), mobileAction.getAppString("us")) ||
+						!mobileAction.verifyTextEquality(note.getText().trim(), mobileAction.getAppString("add_payee_search_instruction"))) {
+					System.err.println("TestCase has failed.");
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				}
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			// Switch back to native to get proper screenshots
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
 
 	/**
 	 * This method will verifyMultipleAccessCards in ManagePayee

@@ -1378,7 +1378,7 @@ public class MobileAction2 extends CommonLib {
      *         true if element is displayed or false
      * 
      */
-    public void verifyElementIsDisplayed(MobileElement mobileElement, String expectedText)throws IOException { //@Author - Sushil 03-Feb-2017 (Modified)
+    public void verifyElementIsDisplayed(WebElement mobileElement, String expectedText)throws IOException { //@Author - Sushil 03-Feb-2017 (Modified)
 	try {
 		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 		wait.until(ExpectedConditions.visibilityOf(mobileElement));
@@ -1541,7 +1541,7 @@ public class MobileAction2 extends CommonLib {
 	 * @return
 	 */
 
-	public boolean verifyTextContains(MobileElement mobileElement, String expectedText) {
+	public boolean verifyTextContains(WebElement mobileElement, String expectedText) {
 
 		String retrivedText = mobileElement.getText();
 
@@ -1692,6 +1692,30 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
+	 * This method will verify the Web Element present using XPATH.
+	 * 
+	 *
+	 * @param objElement
+	 *            The MobileElement on which the click action has to be
+	 *            performed.
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             In case the element is not found over the screen.
+	 */
+	public WebElement verifyWebElementUsingXPath(String objElement, String text) throws IOException {
+		try {
+
+			WebElement objMobileElement = (WebElement) ((AppiumDriver) GetDriver())
+					.findElement(By.xpath(objElement));
+			verifyElementIsDisplayed(objMobileElement, text);
+			return objMobileElement;
+		} catch (IOException e) {
+			GetReporting().FuncReport("Fail", "IOException Exception occurred");
+			return null;
+		}
+	}
+	
+	/**
 	 * This method will convert the String to mobileElement and do swipe
 	 * function
 	 * 
@@ -1832,7 +1856,7 @@ public class MobileAction2 extends CommonLib {
 					e2.printStackTrace();
 				}
 		}
-	    public void FuncSwipeWhileElementNotFoundByxpath(String xpathEle, boolean clickYorN, int swipes, String direction) throws Exception {//@Author - Sushil 01-Mar-2017
+	    public void FuncSwipeWhileElementNotFoundByxpath(String xpathEle, boolean clickYorN, int swipes, String direction)  {//@Author - Sushil 01-Mar-2017
 	    	  
 	    	Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 	    	int startx = size.width;
@@ -1885,7 +1909,12 @@ public class MobileAction2 extends CommonLib {
 	    			//GetDriver().findElement(By.xpath(xpathEle)).click();
 	    		FuncClick((MobileElement)GetDriver().findElement(By.xpath(xpathEle)), sEleName);
 	    	} catch (Exception e) {
-	    	    GetReporting().FuncReport("Fail", "Element not found");
+	    	    try {
+					GetReporting().FuncReport("Fail", "Element not found");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 	    	}
 
 	   }
@@ -2365,5 +2394,12 @@ public class MobileAction2 extends CommonLib {
 		    }   	
     }   		
 		
+    /**
+     * This will allow the user to switch between Appium Driver contextes such as NATIVE_APP or WEBVIEW
+     * @param targetContext
+     */
+    public void switchAppiumContext(final String targetContext) {
+    	((AppiumDriver) GetDriver()).context(targetContext);
+    }
 
 }

@@ -1,6 +1,10 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
@@ -24,7 +28,7 @@ public class Bills extends _CommonPage {
 	private MobileElement pay_cananda_bill;
 
 	@iOSFindBy(xpath = "//*[@label='Manage Payees Add, edit or delete a Canadian or U.S. Payee']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Payees']")
+	@AndroidFindBy(xpath = "//android.widget.TableRow[@resource-id='com.td:id/tableRow2']")
 	private MobileElement manage_payees;
 
 	@iOSFindBy(xpath = "//*[@label='Pay U.S. Bill Pay a U.S. bill']")
@@ -36,7 +40,7 @@ public class Bills extends _CommonPage {
 	private MobileElement bills_header;
 	
 	@iOSFindBy(xpath="//*[contains(@label,'Scheduled Payments View and cancel pending Canadian payments or')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Scheduled Payments']")
+	@AndroidFindBy(xpath = "//android.widget.TableRow[@resource-id='com.td:id/tableRow5']")
 	private MobileElement scheduledPayments;
 
 	@iOSFindBy(xpath="//*[@label='No Upcoming Bills to display in this account']")
@@ -207,7 +211,7 @@ public class Bills extends _CommonPage {
 			Decorator();
 			mobileAction.FuncClick(scheduledPayments,"Scheduled Payments");
 			mobileAction.waitForElementToVanish(progrees_bar);
-			mobileAction.verifyElementIsDisplayed(paymentMessage,"No Upcoming Bills to display in this account");
+			//mobileAction.verifyElementIsDisplayed(paymentMessage,"No Upcoming Bills to display in this account");
 		
 			
 			
@@ -302,7 +306,44 @@ public class Bills extends _CommonPage {
 
 
 	}
-	
+
+	/**
+	 * This method will verify text within elements for confirm cancel scheduled payment screen
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyTextElementConfirmCancelScheduledPayment() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				final MobileElement scheduledPayment = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mainText' and @text='" + getTestdata("Payee") + "']", "Scheduled payment");
+				scheduledPayment.click();	
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("str_Bill_Details") + "']", "Bill Details title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_Scheduled_Payment") + "']", "Scheduled Payment");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_pending") + "']", "Pending");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("order_receipt_confirmation") + "']", "Confirmation #");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderFromAccount").replaceAll(" ", "\n") + "']", "From Account");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderDate") + "']", "Date");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderAmount") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/cancelBtn' and @text='" + mobileAction.getAppString("cancel_scheduled_payment") + "']", "Cancel Payment");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
 	/**
 	 * This method will verify text within elements for the bills page
 	 * 
@@ -328,6 +369,38 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("usbp_schedule_payment_hint_message") + "']", "View/Cancel pending");				
 			}
 		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	/**
+	 * This method will verify text within elements in scheduled payments
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyScheduledPaymentsTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.FuncClick(scheduledPayments,"Scheduled Payments");
+				mobileAction.waitForElementToVanish(progrees_bar);
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("str_Scheduled_Bills") + "']", "Scheduled Payments title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/date' and @text='" + mobileAction.getAppString("date") + "']", "Date tab");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/payee' and @text='" + mobileAction.getAppString("payee") + "']", "Payee");
+				// FIXME: Need some logic to test date headers
+			}
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {
@@ -397,9 +470,11 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/reason_label' and @text='" + mobileAction.getAppString("reason_for_payment_label") + "']", "Reason for payment");
 				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@resource-id='com.td:id/reason_for_payment' and @text='" + mobileAction.getAppString("reason_for_payment_hint") + "']", "Reason for payment hint");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/button_footer' and @text='" + mobileAction.getAppString("str_continue") + "']", "Continue Button");
-				//FIXME: Need to scroll down here
+				final String xPathLearnMore = "//android.widget.TextView[@text='" + mobileAction.getAppString("learn_more") + "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathLearnMore, false, 4, "up");
+				mobileAction.verifyElementUsingXPath(xPathLearnMore, "Learn more");
+				// FIXME: There is a ?? between information. Please
 				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/reason_for_payment_layout' and @text='" + mobileAction.getAppString("reason_for_payment_rule") + "']", "Reason for payment rule");
-				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/reason_for_payment_rule' and @text='" + mobileAction.getAppString("learn_more") + "']", "Learn more");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {

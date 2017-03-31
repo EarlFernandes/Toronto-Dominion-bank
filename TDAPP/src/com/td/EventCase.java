@@ -86,7 +86,7 @@ public class EventCase {
 		Accounts_Verify_Page, 
 		Accounts_VerifyAccountsPage, 
 		Accounts_VerifyTFSA_Activity,
-	
+		AccountsCredit_VerifyTabTextElements,
 
 		Add_Recipient_ErrorPage,
 		AddCanadianPayee,
@@ -140,7 +140,9 @@ public class EventCase {
 		Bill_PayCanada_VerifyBackButton, 
 		Bill_PayCanada_VerifyQuickAccess, 
 		Bills_ScheduledPayments, 
+		Bills_ScheduledPayments_VerifyText,
 		Bills_VerifyTextElements,
+		Bills_VerifyTextConfirmCancelScheduledPayment,
 		BillsHeader,
 		BetweenMyAccounts_TFSAUSD_TFSACAD(),
 		Bill_PayCanada_Pay_Bill,
@@ -269,13 +271,19 @@ public class EventCase {
 		Logout_VerifyTextElements,
 		LogoutFrench,
 
-		ManagePayee_AddCanadianPayee, 
+		ManagePayee_AddCanadianPayee,
+		ManagePayee_VerifyTextSearchPayee,
+		ManagePayees_VerifyTextElements,
 		ManagePayee_MutlipleAccesscard, 
 		ManagePayee_VerifyAddCanadianPayeeBtn, 
 		ManagePayees_Button, 
+		ManageRecipient_ClickAddRecipient,
 		ManageRecipient_EditManageRecipient, 
 		ManageRecipient_ModifyRecipient, 
 		ManageRecipients_VerifyRegisterButton, 
+		ManageRecipients_VerifyTextElements,
+		ManageRecipient_VerifyTextAddRecipient,
+		ManageRecipient_VerifyTextRecipientInfo,
 		mask_user,
 
 		Menu_Accounts, 
@@ -310,6 +318,7 @@ public class EventCase {
 	    MFA_Change, 
 		Mobile_Deposit, 
 		MobileDeposit_VerifyTextElements,
+		MobileDeposit_VerifyTextElementsIneligible,
 		Multitasking_System,
 
 		OpenApp, 
@@ -334,6 +343,7 @@ public class EventCase {
 		Pay_US_bill_FromCanada_Account, 
 		PayBill_Canada_Button,
 		PayBill_US_VerifyTextElements,
+		PayBill_US_VerifyTextElementsSuccess,
 		PayBill_Canada_VerifyTextElementsConfirmation,
 		PayBill_US_VerifyTextElementsConfirmation,
 		PayBill_Canada_VerifyTextElements,
@@ -346,6 +356,7 @@ public class EventCase {
 		PayCanadianBill_InvalidAmount,
 
 		PendingInterac_e_Transfer,
+		PendingInterac_e_Transfer_VerifyText,
 		PendingInterac_e_Transfer_cancel_deposit_to_VerifyText,
 		PendingInterac_e_Transfer_cancel, 
 		PendingInterac_e_Transfer_canceltransfer, 
@@ -362,6 +373,7 @@ public class EventCase {
 		Preferences_Update_Question, 
 		QuickAccess, 
 		QuickAccess_VerifyActivateText,
+		QuickAccess_VerifyFTEText,
 		SearchPage_searchBar, 
 		Select_Account, 
 		SenderList_Cancel, 
@@ -750,6 +762,10 @@ public class EventCase {
 			MobileDeposit.get().verifyOptionsTextElements();
 			break;
 
+		case MobileDeposit_VerifyTextElementsIneligible:
+			MobileDeposit.get().verifyIneligibleTextElements();
+			break;
+
 		case Accounts_Header:
 			Accounts.get().verify_accounts_Header();
 			break;
@@ -974,7 +990,11 @@ public class EventCase {
 			break;
 
 		case QuickAccess_VerifyActivateText:
-			QuickAccess.get().verifyActivateQuickAccess();
+			QuickAccess.get().verifyActivateQuickAccessText();
+			break;
+
+		case QuickAccess_VerifyFTEText:
+			QuickAccess.get().verifyFTEQuickAccessText();
 			break;
 
 		case Between_My_Accounts_Permissible_Transfer:
@@ -1066,6 +1086,10 @@ public class EventCase {
 			Bills.get().verifyPayUSBillTextElements();
 			break;
 
+		case PayBill_US_VerifyTextElementsSuccess:
+			Pay_US_Bill.get().verifyTextPayUSBillSuccess();
+			break;
+
 		case PayBill_Canada_VerifyTextElementsConfirmation:
 			Bill_PayCanada.get().verifyTextPayCanadianBillConfirmation();
 			break;
@@ -1078,6 +1102,18 @@ public class EventCase {
 			ManageRecipients.get().modifyRecipient();
 			break;
 
+		case ManageRecipient_ClickAddRecipient:
+			ManageRecipients.get().clickAddRecipient();
+			break;
+
+		case ManageRecipient_VerifyTextAddRecipient:
+			ManageRecipients.get().verifyAddRecipientTextElements();
+			break;
+
+		case ManageRecipient_VerifyTextRecipientInfo:
+			ManageRecipients.get().verifyViewRecipientInfoTextElements();
+			break;
+
 		case CanadianPayee_ConfirmPage:
 			Confirm_Payee.get().verifyConfirmPage();
 			break;
@@ -1088,6 +1124,10 @@ public class EventCase {
 
 		case ManagePayees_Button:
 			Bills.get().click_ManagePayees();
+			break;
+		
+		case ManagePayees_VerifyTextElements:
+			Managee_Payee.get().verifyMyPayeesTextElements();
 			break;
 
 		case PayBillCanada_Add_Canadian_Payee:
@@ -1242,6 +1282,10 @@ public class EventCase {
 			ManageRecipients.get().verify_RegisterButton();
 			break;
 
+		case ManageRecipients_VerifyTextElements:
+			ManageRecipients.get().verifyMyRecipientsTextElements();
+			break;
+
 		case Transfers_ManageRecipients:
 			Transfers.get().clickManageRecipients();
 			break;
@@ -1366,6 +1410,10 @@ public class EventCase {
 			Managee_Payee.get().addPayee();
 			break;
 
+		case ManagePayee_VerifyTextSearchPayee:
+			Managee_Payee.get().verifySearchPayeesTextElements();
+			break;
+
 		case AddPayee_SearchPayee:
 			AddPayee.get().searchPayee();
 			break;
@@ -1376,6 +1424,14 @@ public class EventCase {
 
 		case Bills_ScheduledPayments:
 			Bills.get().scheduledPayments();
+			break;
+
+		case Bills_VerifyTextConfirmCancelScheduledPayment:
+			Bills.get().verifyTextElementConfirmCancelScheduledPayment();
+			break;
+
+		case Bills_ScheduledPayments_VerifyText:
+			Bills.get().verifyScheduledPaymentsTextElements();
 			break;
 
 		case Bills_VerifyTextElements:
@@ -1444,6 +1500,10 @@ public class EventCase {
 
 		case PendingInterac_e_Transfer_cancel_deposit_to_VerifyText:
 			Interac_e_Transfer.get().verifyTextCancelETransfer();
+			break;
+
+		case PendingInterac_e_Transfer_VerifyText:
+			Interac_e_Transfer.get().verifyTextPendingETransfers();
 			break;
 
 		case Menu_Location:
@@ -1948,7 +2008,11 @@ public class EventCase {
 		case AccountsCredit_clickSummaryTab:
 			Accounts_Credit.get().clickSummary();
 			break;
-			
+
+		case AccountsCredit_VerifyTabTextElements:
+			Accounts_Credit.get().verifyCCTabTextElements();
+			break;
+
 		case AccountsCredit_VerifySummaryDetails:
 			Accounts_Credit.get().verifySummaryDetails();
 			break;
