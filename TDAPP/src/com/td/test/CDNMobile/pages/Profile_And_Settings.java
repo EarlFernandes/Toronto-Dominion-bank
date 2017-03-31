@@ -85,42 +85,6 @@ public class Profile_And_Settings extends _CommonPage {
 
 	}
 
-	public void prefernces_What_New_btn() {
-		Decorator();
-		try {
-
-			mobileAction.FuncClick(whatsnew, "What_New_Button");
-		} catch (Exception e) {
-			System.out.println("What's new not found");
-		}
-	}
-
-	/**
-	 * This method will verify the preferences header and click on the update
-	 * security question button.
-	 * 
-	 * @return void
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 */
-	public void prefernces_Update_Security_Question() {
-
-		
-		Decorator();
-		try {
-			mobileAction.verifyElementIsDisplayed(profile_preferences_Header, preferences);
-			mobileAction.FuncClick(security_questions, "Secret_Question_button");
-
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-	}
 
 	
 	/**
@@ -150,60 +114,6 @@ public class Profile_And_Settings extends _CommonPage {
 		}
 	}
 	
-	public void view_indivisual_profile() {
-
-		
-		Decorator();
-		try {
-
-			mobileAction.FuncClick(view_profile_individual, "view individual profile");
-
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-	}
-	
-	public void view_business_profile() {
-
-		
-		Decorator();
-		try {
-
-			mobileAction.FuncClick(view_profile_business, "view business profile");
-
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-	}
-	
-	/**
-	 * This method will verify click business profile Details button
-	 * then go to personal profile details page
-	 * 
-	 * @return void
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 */
-	public void view_business_profile_details() {
-
-		
-		Decorator();
-		try {
-
-			mobileAction.FuncClick(business_profile_details, "business_profile_details_button");
-
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-	}
 	
 	
 	public void verifyProfileandSettingLandingPage() {
@@ -225,8 +135,9 @@ public class Profile_And_Settings extends _CommonPage {
 		
 		Decorator();
 		try {
-
-			mobileAction.FuncClick(security_questions, "Security Questions");
+			
+			String security = mobileAction.getValue(security_questions);
+			mobileAction.FuncClick(security_questions, security);
 			Thread.sleep(2000);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -240,7 +151,8 @@ public class Profile_And_Settings extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.FuncClick(notifications, "Notifications");
+			String notifi = mobileAction.getValue(notifications);
+			mobileAction.FuncClick(notifications, notifi);
 			Thread.sleep(2000);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -253,8 +165,8 @@ public class Profile_And_Settings extends _CommonPage {
 		
 		Decorator();
 		try {
-
-			mobileAction.FuncClick(quickaccesssetting, "Quick Access Settings");
+			String quickSetting = mobileAction.getValue(quickaccesssetting);
+			mobileAction.FuncClick(quickaccesssetting, quickSetting);
 			Thread.sleep(2000);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -268,7 +180,8 @@ public class Profile_And_Settings extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.FuncClick(tdformesettings, "TD for Me Settings");
+			String tdme = mobileAction.getValue(tdformesettings);
+			mobileAction.FuncClick(tdformesettings, tdme);
 			Thread.sleep(2000);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -281,8 +194,9 @@ public class Profile_And_Settings extends _CommonPage {
 		
 		Decorator();
 		try {
-
-			mobileAction.FuncClick(whatsnew, "What's New");
+			
+			String whatnew= mobileAction.getValue(whatsnew);
+			mobileAction.FuncClick(whatsnew, whatnew);
 			Thread.sleep(2000);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {

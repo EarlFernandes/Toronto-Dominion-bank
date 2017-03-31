@@ -132,7 +132,7 @@ public class Login extends _CommonPage {
 	private MobileElement done;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Login']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mfa_login_btn_txt' and @text='Login']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/mfa_login_btn' and @text='Login']")
 	private MobileElement securityLogin;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'System Error')]")
@@ -309,10 +309,10 @@ public class Login extends _CommonPage {
 
 		Decorator();
 		try {
-//			 verifyAccessCard();
-//			 mobileAction.FuncClick(username, "Username");
-//			 mobileAction.FuncSendKeys(username,
-//			 CL.getTestDataInstance().Userid);
+			 verifyAccessCard();
+			 mobileAction.FuncClick(username, "Username");
+			 mobileAction.FuncSendKeys(username,
+			 CL.getTestDataInstance().Userid);
 			mobileAction.FuncClick(password, "Password");
 			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 

@@ -24,8 +24,8 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/accntBalanceSum']")
 	private MobileElement txtBalance;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Accounts']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Accounts']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Accounts' or @label='Comptes']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Accounts' or @text='Mes comptes']")
 	private MobileElement txtMy_Account_Header;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='INVESTING']")

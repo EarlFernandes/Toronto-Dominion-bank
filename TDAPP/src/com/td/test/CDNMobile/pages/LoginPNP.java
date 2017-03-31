@@ -243,7 +243,7 @@ public class LoginPNP extends _CommonPage {
 				}
 				MobileElement accountHeaderitem =(MobileElement) CL.GetDriver().findElement(By.xpath(accountHeader));
 				if(accountHeaderitem.isDisplayed()){
-					System.out.println("Accounts or Bills or Transfers page found");
+					System.out.println(mobileAction.getValue(accountHeaderitem));
 				}else{
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 						if(mobileAction.isObjExists(enterAnswer)){

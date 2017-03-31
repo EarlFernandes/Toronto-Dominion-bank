@@ -40,8 +40,8 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Mobile Deposit']")
 	private MobileElement mobile_Deposit_button;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Accounts']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='My Accounts']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Accounts' or @label='Mes comptes']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='My Accounts' or @text='Mes comptes')]")
 	private MobileElement accounts_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Virements'] ")
@@ -76,14 +76,11 @@ public class MenuPage extends _CommonPage {
 	private MobileElement locations;
 	
 	//Profile and preference
-		@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label ='Profil et paramètres']")
-		@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Profile and Settings' or @text='Profil et paramètres')]")
-		private MobileElement profile_and_settings;
+	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label ='Profil et paramètres']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Profile & Settings' or @text='Profil et paramètres')]")
+	private MobileElement profile_and_settings;
 
-		//@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label ='Profil et paramètres']")
-		@AndroidFindBy(xpath = "//android.support.v4.widget.DrawerLayout")
-		private MobileElement menuLayout;
-		//android.support.v4.widget.DrawerLayout
+
 
 
 	public synchronized static MenuPage get() {
@@ -400,7 +397,8 @@ public class MenuPage extends _CommonPage {
 				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 					mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
 				}
-				mobileAction.FuncClick(profile_and_settings, "Profile & Settings");
+				String profileSettings = mobileAction.getValue(profile_and_settings);
+				mobileAction.FuncClick(profile_and_settings, profileSettings);
 			} catch (NoSuchElementException | InterruptedException | IOException e) {
 				System.err.println("TestCase has failed.");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;

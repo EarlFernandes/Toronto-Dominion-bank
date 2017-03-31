@@ -2046,14 +2046,6 @@ public class EventCase {
 	    case View_profile:
 		    Profile_And_Settings.get().view_profile();
 		    break;	 	    
-
-	    case View_individual_profile:
-		    Profile_And_Settings.get().view_indivisual_profile();
-		    break;	
-
-	    case View_business_profile:
-		    Profile_And_Settings.get().view_business_profile();
-		    break;	
 			
 	    case VerifyProfileHeader:
 		    Profile.get().verify_profile_header();

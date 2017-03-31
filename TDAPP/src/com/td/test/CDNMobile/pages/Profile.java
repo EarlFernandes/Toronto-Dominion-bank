@@ -144,7 +144,7 @@ public class Profile extends _CommonPage {
 	private MobileElement cancel_button;	
 
 	@iOSFindBy(xpath = "//*[@label='Yes, go back' or @label='Oui']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
 	private MobileElement goback_button;	
 	
 	@iOSFindBy(xpath = "//*[@id='banner_info']")
@@ -160,7 +160,7 @@ public class Profile extends _CommonPage {
 	private MobileElement clearText_button;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/phone_number_icon']")
+	@AndroidFindBy(xpath = "//*[@text='Address is Read-Only' or @text='Profile Updated' or @text='L’adresse ne peut être modifiée' or @text='Profil mis à jour']")
 	private MobileElement toast_message;
 	
 	public synchronized static Profile get() {
@@ -1323,10 +1323,16 @@ public class Profile extends _CommonPage {
 	public void VerifyToastmessageDisplayed(){
 		Decorator();
 		String toastMessage="";
+			
 		try{
+			
 			if(toast_message.isDisplayed()){
 				toastMessage = mobileAction.getValue(toast_message);
 				System.out.println("toastMessage:" +toastMessage);
+				if (!toastMessage.isEmpty()){
+					mobileAction.Report_Pass_Verified(toastMessage);
+				}
+				
 			}else{
 				System.err.println("TestCase has failed, no toast message found");
 		        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
@@ -1334,16 +1340,18 @@ public class Profile extends _CommonPage {
 			}
 		}catch (Exception e){
 			
-			System.err.println("TestCase has failed");
-	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
-	        return;
-		}
-		
-		if (!toastMessage.isEmpty()){
-			mobileAction.Report_Pass_Verified(toastMessage);
-		}else{
-			mobileAction.Report_Fail_Not_Verified("Toast message"); 
-		}
+			try{
+				String errorMessage = mobileAction.getValue(error_message);
+				System.err.println("TestCase has failed with error :" +errorMessage);
+				mobileAction.Report_Fail(errorMessage); 
+		        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+		        return;
+			}catch (Exception e1){
+				mobileAction.Report_Pass_Verified("No error message found, need manual verification");
+			}
+
+		}	
+
 	}
 	
 	public void GetEmailAndPhoneNumber(){
