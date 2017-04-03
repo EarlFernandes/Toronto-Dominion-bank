@@ -71,8 +71,8 @@ public class MainScreen extends _CommonPage {
 			"Description", "Payee", "Timeout", "SecondTimeout", "MerchantName", "Price", "Quantity",
 			"Security_Question", "RecipientName", "RecipientMail", "Trading_Pwd", "Symbol", "ShareHolder",
 			"SecurityPassword", "TriggerDelta", "CDNMarginAccount", "QuantityType", "Dividend", "SelectLimitPrice",
-			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName", "Passcode" ,"NewPasscode"};
-
+			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName",
+			"Passcode", "NewPasscode" };
 
 	public void readSheet() {
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
@@ -82,7 +82,7 @@ public class MainScreen extends _CommonPage {
 					CL.getTestDataInstance().sUserType);
 			if (!inputValue.equals("") || columnName.equals("Language")) {
 				CL.getTestDataInstance().TCParameters.put(columnName, inputValue);
-				
+
 			}
 		}
 
@@ -91,58 +91,78 @@ public class MainScreen extends _CommonPage {
 	public void Splash_Conitnue() throws IOException {
 
 		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
-		
-		
-		readSheet();
-
 		String udid = CL.getTestDataInstance().getDeviceUdid();
+		readSheet();
+		// CL.getTestDataInstance().TCParameters.put("DeviceOrientation",CL.LoadData("DeviceOrientation",
+		// CL.getTestDataInstance().getMasterTestData(), "Batch Run", "TCtoRun",
+		// CL.getTestDataInstance().TestCaseID));
 
-		//if (udid.equalsIgnoreCase("ce0716070dbb753003")) {
-		if (udid.equalsIgnoreCase("5ad12dcc0df2f1b65956f22e91035b8a0d288cd3")) {
-		//if (udid.equalsIgnoreCase("e8c6731c0087c7fa113d4750b1409f42087ddc36")) {
+		// String
+		// orientation=CL.getTestDataInstance().TCParameters.get("DeviceOrientation");
+
+		if (udid.equalsIgnoreCase("988673394d39433156")) {
+
 			try {
 				if (CL.getTestDataInstance().getAppFilePath() == null
 						|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
-					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_ANDROID"));
-					else
+					} else {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
+					}
 				}
-
-				//CL.mobileApp("http://127.0.0.1:4723/wd/hub");
-				CL.mobileApp("http://49.21.140.61:4723/wd/hub");
-				//CL.mobileApp("http://49.27.23.62:4723/wd/hub");
-				
-				Decorator();
+				CL.mobileApp("http://49.27.22.144:4736/wd/hub");
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 
 			}
+
 		} else {
 
 			try {
 				if (CL.getTestDataInstance().getAppFilePath() == null
 						|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
-					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_Android"));
-					else
+								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_ANDROID"));
+					} else {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
+					}
 				}
-				CL.mobileApp("http://0.0.0.0:4725/wd/hub");
-				// Decorator();
+
+				CL.mobileApp("http://49.27.22.144:4724/wd/hub");
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 
 			}
+
 		}
 	}
+
+	// Decorator();
+
+	/*
+	 * if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
+	 * "Android")) { //CL.getTestDataInstance().SetAppFilePath(
+	 * "C:/Users/baraps2/MIT_Builds/Android/banking-wealth-17.3.1-20170130.145242-90-debug.apk"
+	 * );
+	 * CL.getTestDataInstance().SetAppFilePath("/opt/app/Android_Gold_43.apk");
+	 * //path at simulator server
+	 * CL.mobileApp("http://49.27.22.144:4724/wd/hub");; // android }
+	 * CL.getTestDataInstance().SetAppFilePath("/opt/app/Android_Gold_43.apk");
+	 * CL.mobileApp("http://49.27.22.144:4724/wd/hub");
+	 * 
+	 * } catch (Exception e) {
+	 * System.err.println("Unable to load APP file Path Exiting");
+	 * CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	 * 
+	 * } }
+	 */
 
 	// Singleton object of self
 	private static MainScreen MainScreen;

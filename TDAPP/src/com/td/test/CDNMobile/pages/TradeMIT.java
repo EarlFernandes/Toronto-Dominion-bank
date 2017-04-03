@@ -27,9 +27,9 @@ public class TradeMIT extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
 	private MobileElement trade_header;
 	
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") //@Author - Sushil 02-Feb-2017
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Nï¿½gociation']") //@Author - Sushil 02-Feb-2017
 	//@iOSFindBy(xpath = "")
-	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation']")
+	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Nï¿½gociation']")
 	private MobileElement Investing_Trade;
 	
 	String xpathInvesting_Trade = "//*[@text='Trade']";
@@ -154,7 +154,7 @@ public class TradeMIT extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Mutual Funds']")
 	private MobileElement mutualfunds;
 	
-	@iOSFindBy(xpath = "//*[@label='In Progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	private MobileElement progresssBar;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'Action')]")

@@ -26,11 +26,11 @@ public class HoldingDetails extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
     private MobileElement Sell;
 
-    @iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
     private MobileElement trade_header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Holding Details']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Holding Details']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Holding Details']")
 	private MobileElement HoldingDetails_header;
 

@@ -19,7 +19,7 @@ public class Bills extends _CommonPage {
 
 	private static Bills Bills;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Pay Bill Pay a Canadian bill']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay Bill Pay a Canadian bill']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay a Canadian bill' and @index='1']")
 	private MobileElement pay_Cananda_Bill;
 
@@ -35,7 +35,7 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Bills']")
 	private MobileElement bills_Header;
 	
-	@iOSFindBy(xpath="//*[contains(@label,'Scheduled Payments View and cancel pending Canadian payments or')]")
+	@iOSFindBy(xpath="//XCUIElementTypeStaticText[contains(@label,'Scheduled Payments View and cancel pending Canadian payments or')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Scheduled Payments']")
 	private MobileElement scheduledPayments;
 
@@ -43,7 +43,7 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textView1' and @text='No Upcoming Bills to display in this account']")
 	private MobileElement paymentMessage;
 	
-	@iOSFindBy(xpath ="//XCUIElementTypeButton[@label='Pay Bill']")
+	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='Pay Bill']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[ @text='Pay Bills']")
 	private MobileElement pay_Bills;
 

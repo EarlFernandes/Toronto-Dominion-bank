@@ -47,8 +47,7 @@ public class ConfirmOrder extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_trigger_delta_title_field' and @text='Trigger Delta']")
 	private MobileElement triggerdelta;
-    
-	@iOSFindBy(xpath = " //XCUIElementTypeOther[@label='Investing']")
+
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Investing']")
 	private MobileElement investingheader;
 
@@ -85,11 +84,11 @@ public class ConfirmOrder extends _CommonPage {
 	private MobileElement Action_and_quantity;
 
 
-
+	@iOSFindBy(xpath = "//*[@label='']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
 	private MobileElement confirmDoNotCancel;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Important Information']")
+	@iOSFindBy(xpath = "//*[@label='Important Information']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/importantInfoLink' and @text='Important Information']")
 	private MobileElement impInformationMessage;
 	
@@ -587,7 +586,7 @@ public class ConfirmOrder extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel' and (@text='Cancel' or @text='Annuler')]")
 	private MobileElement cancelButton;
 
-	@iOSFindBy(xpath = "//*[@label='Cancel']")
+	@iOSFindBy(xpath = "//*[@label='']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and (@text='Cancel' or @text='Annuler')]")
 	private MobileElement confirmCancel;
 
@@ -690,6 +689,20 @@ public class ConfirmOrder extends _CommonPage {
 		}
 
 	}
+	
+	/**
+	 * This method will click on Do Not Cancel Button
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+
 
 	public void clickDoNotCancel() {
 		Decorator();
@@ -703,6 +716,20 @@ public class ConfirmOrder extends _CommonPage {
 		}
 
 	}
+	
+	/**
+	 * This method will Check for Important Imformation
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+
 
 	public void checkImpInformation() {
 		Decorator();
@@ -713,12 +740,24 @@ public class ConfirmOrder extends _CommonPage {
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (Exception e) {
-			
-			e.printStackTrace();
 		}
 
 	}
+	
+	/**
+	 * This method will validates for PriceType Tailing Stop Limit and Action is Buy
+	 * 		It validates by concatenating the Order Placed 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+
 
 	public void validateTrailingStopLimitBuy() {
 		DecimalFormat df = new DecimalFormat("#.00");
@@ -729,16 +768,28 @@ public class ConfirmOrder extends _CommonPage {
 					+ " @ Delta de déclenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
 					+ " $ Delta limite " + df.format(Double.parseDouble(limitDelta_value)).replace(".", ",")
 					+ " $ Échéance " + goodXL;
-			System.out.println(orderValue);
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 					+ " @ Trigger Delta $" + df.format(Double.parseDouble(triggerDelta_value)) + " Limit Delta $"
 					+ df.format(Double.parseDouble(limitDelta_value)) + " Good 'til " + goodXL;
 		}
-		System.out.println(confirmOrderValue + " \n" + orderValue);
 		validationReport(orderValue);
 
 	}
+	
+	/**
+	 * This method will validates for PriceType Tailing Stop Market and Action is Buy
+	 * 		It validates by concatenating the Order Placed 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void validateTrailingStopMarketBuy() {
 		DecimalFormat df = new DecimalFormat("#.00");
@@ -747,17 +798,28 @@ public class ConfirmOrder extends _CommonPage {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 					+ " @ Delta de déclenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
 					+ " $ Échéance " + goodXL;
-			System.out.println(orderValue);
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 					+ " @ Trigger Delta $" + df.format(Double.parseDouble(triggerDelta_value)) + " Good 'til " + goodXL;
 		}
-		System.out.println(confirmOrderValue + " \n" + orderValue);
 		validationReport(orderValue);
 
 	}
 
+	/**
+	 * This method will validates for PriceType Stop Limit and Action is Buy
+	 * 		It validates by concatenating the Order Placed 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void validateStopLimitBuy() {
 		DecimalFormat df = new DecimalFormat("#.00");
 
@@ -773,12 +835,25 @@ public class ConfirmOrder extends _CommonPage {
 					+ df.format(Double.parseDouble(triggerPriceValue)) + " Limit $"
 					+ df.format(Double.parseDouble(limitPriceValue)) + " Good 'til " + goodXL;
 		}
-		System.out.println(confirmOrderValue + " \n" + orderValue);
 		validationReport(orderValue);
 
 	}
 
 	// Acheter 1 TD Cours du marché stop @ Déclencheur 65,72 $ Échéance Jour
+	
+	/**
+	 * This method will validates for PriceType Stop Market 
+	 * 		It validates by concatenating the Order Placed 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void validateStopMarket() {
 		DecimalFormat df = new DecimalFormat("#.00");
 
@@ -794,11 +869,23 @@ public class ConfirmOrder extends _CommonPage {
 
 					+ " @ Trigger $" + df.format(Double.parseDouble(triggerPriceValue)) + " Good 'til " + goodXL;
 		}
-		System.out.println(confirmOrderValue + " \n" + orderValue);
 		validationReport(orderValue);
 
 	}
 
+	/**
+	 * This method will validates for PriceType Limit and Action is Buy
+	 * 		It validates by concatenating the Order Placed 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void validateLimitBuy() {
 		DecimalFormat df = new DecimalFormat("#.00");
 		String orderValue = "";
@@ -811,11 +898,23 @@ public class ConfirmOrder extends _CommonPage {
 					+ df.format(Double.parseDouble(limitPriceValue)) + " Good 'til " + goodXL;
 
 		}
-		System.out.println(confirmOrderValue + " \n" + orderValue);
 		validationReport(orderValue);
 
 	}
 
+	/**
+	 * This method will validates for PriceType  Market and Action is Buy
+	 * 		It validates by concatenating the Order Placed 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void validateMarketBuy() {
 
 		String orderValue = "";
@@ -828,11 +927,23 @@ public class ConfirmOrder extends _CommonPage {
 
 					+ " Good 'til " + goodXL;
 		}
-		System.out.println(confirmOrderValue + " \n" + orderValue);
 		validationReport(orderValue);
 
 	}
 
+	/**
+	 * This method will Click on the Back Button from the Confirm Order Page 
+	 * 		
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void confirmOrderClickBack() {
 		Decorator();
 		init();
@@ -846,24 +957,26 @@ public class ConfirmOrder extends _CommonPage {
 
 	}
 
+	/**
+	 * This method will validates ConfirmOrder Page where Action is Buy
+	 * 		It validates by concatenating the Order Placed 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void validateConfirmOrderBuy() {
 		Decorator();
 		init();
-		
-		if(platFormName.equalsIgnoreCase("ios")){
-			System.out.println("OrderElement");
-			confirmOrderValue = orderElement.getAttribute("label");
-		}else{
-			try {
-				mobileAction.FuncSwipeWhileElementNotFound(orderElement, false, 10, "up");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			confirmOrderValue = orderElement.getText();
-		}
-		System.out.println(confirmOrderValue);
+		mobileAction.FuncSwipeWhileElementNotFound(orderElement, false, 10, "up");
 
-		System.out.println(price_value);
+		confirmOrderValue = orderElement.getText();
+
 		switch (price_value) {
 		case "Market":
 		case "Cours du marché":
@@ -894,10 +1007,24 @@ public class ConfirmOrder extends _CommonPage {
 
 			validateTrailingStopLimitBuy();
 			break;
-			
+
 		}
 	}
 
+	
+	/**
+	 * This method will validates the orders and will report for pass or Fail
+	 * 		
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void validationReport(String orderValue) {
 		try {
 

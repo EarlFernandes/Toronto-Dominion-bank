@@ -840,9 +840,6 @@ public class Trade extends _CommonPage {
 		} catch (NoSuchElementException | IOException | InterruptedException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 
-		} catch (Exception e) {
-			
-			e.printStackTrace();
 		}
 	}
 
@@ -944,10 +941,10 @@ public class Trade extends _CommonPage {
 		enterLimitDeltaWithTrigger();
 	}
 
-	public void selectShareHolder() {
+	public void selectShareHolder() {//************************************JA
 		//
 		try {
-			if (!shareHolderXl.isEmpty()) {
+			/*if (!shareHolderXl.isEmpty()) {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 					mobileAction.FuncClick(share_holder, "ShareHolder");
@@ -965,7 +962,7 @@ public class Trade extends _CommonPage {
 
 					mobileAction.FuncClick(actionList, "Share Holder value");
 				}
-			}
+			}*/
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}

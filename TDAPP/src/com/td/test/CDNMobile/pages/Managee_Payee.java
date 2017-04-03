@@ -37,7 +37,7 @@ public class Managee_Payee extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Canadian Payee']")
 	private MobileElement addCanadianPayee;
 	
-	@iOSFindBy(xpath="//XCUIElementTypeOther[@label='Manage Payees']")
+	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@label='Manage Payees']")
 	private MobileElement managePayeeHeader;
 	
 	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@label='Manage Payees']")

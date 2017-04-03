@@ -39,7 +39,7 @@ public class _CommonPage {
 	public static final String commonpassword = "abcde123";
 	// success/fail status
 	public String overallSuccess = PASS;
-	public static final String XLSheetUserIDs = "UserIDs"; //@Author - Sushil 01-Mar-2017
+
 	@iOSFindBy(id = "com.td:id/list_slidermenu")
 	@AndroidFindBy(id = "com.td:id/list_slidermenu")
 	public class widgetListview {
@@ -82,10 +82,6 @@ public class _CommonPage {
 	public void readVerifyMessages(String key) {
 		CL.getTestDataInstance().VerificationStrings.get(key);
 	}
-	public String getTestdata(String aColumn, String aSheetName) {
-		return CL.LoadData(aColumn, CL.getTestDataInstance().getMasterTestData(), aSheetName, "UserType",
-				CL.getTestDataInstance().TestCaseID);
-	}
 
 	/**
 	 * <p>
@@ -103,30 +99,7 @@ public class _CommonPage {
 		return CL.LoadData(aColumn, CL.getTestDataInstance().getMasterTestData(), aSheetName, "UserType",
 				CL.getTestDataInstance().TestCaseID);
 	}
-	
 
-
-	public String[] getTestDataStringArray(String aColumn) {
-		String multiValue[] = null;
-		String currentCellValue = CL.getTestDataInstance().TCParameters.get(aColumn);
-
-		if (currentCellValue.contains(":")) {
-			multiValue = currentCellValue.split(":");
-
-		} else if (currentCellValue.contains(",")) {
-
-			multiValue = currentCellValue.split(",");
-
-		} else {
-			String value= currentCellValue;
-			multiValue=new String[1];
-			multiValue[0]=value;
-
-		}
-		return multiValue;
-	}
-	
-	
 	public String getTestdata(String aColumn, int index) {
 
 		String multiValue[] = null;
@@ -147,6 +120,24 @@ public class _CommonPage {
 		}
 	}
 
+	public String[] getTestDataStringArray(String aColumn) {
+		String multiValue[] = null;
+		String currentCellValue = CL.getTestDataInstance().TCParameters.get(aColumn);
 
+		if (currentCellValue.contains(":")) {
+			multiValue = currentCellValue.split(":");
+
+		} else if (currentCellValue.contains(",")) {
+
+			multiValue = currentCellValue.split(",");
+
+		} else {
+			String value= currentCellValue;
+			multiValue=new String[1];
+			multiValue[0]=value;
+
+		}
+		return multiValue;
+	}
 
 }

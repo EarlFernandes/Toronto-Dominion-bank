@@ -75,6 +75,20 @@ public class OrderDetails extends _CommonPage {
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
 				this);
 	}
+	
+	/**
+	 * This method will click on Change Order Button
+	 * 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void performChangeorder() throws Exception {
 		Decorator();
@@ -90,6 +104,21 @@ public class OrderDetails extends _CommonPage {
 
 		}
 	}
+	
+	/**
+	 * This method will click on the Cancel Order Button and verify the order is 
+	 * 			Cancelled Successfully
+	 * 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void performCancelOrder() throws Exception {
 		Decorator();

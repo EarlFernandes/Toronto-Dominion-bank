@@ -170,7 +170,7 @@ public class OrderReciept extends _CommonPage {
 	}
 
 	/**
-	 * This method will verify the orders details
+	 * This method will verify the orders details in the Orders Tab
 	 * 
 	 * @return void
 	 * 
@@ -192,6 +192,19 @@ public class OrderReciept extends _CommonPage {
 
 		}
 	}
+	
+	/**
+	 * This method will verify the orders details in the Orders Tab
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void orderDetails() {
 		try {
@@ -240,6 +253,19 @@ public class OrderReciept extends _CommonPage {
 		}
 
 	}
+	
+	/**
+	 * This method will verify the orders details for Mutual Fund
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void orderdetailMutualfund() {
 		try {
@@ -256,6 +282,19 @@ public class OrderReciept extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	/**
+	 * This method will verify the orders details in the Receipt Screen
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void confirmReceipt() throws IOException {
 
@@ -679,6 +718,19 @@ public class OrderReciept extends _CommonPage {
 
 		mobileAction.waitForElementToVanish(progressBar);
 	}
+	
+	/**
+	 * This method will verify the orders details in the Orders Tab
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public String setCurrentArrayValue(String[] arrayValue) {
 		String valueToReturn;
@@ -698,6 +750,20 @@ public class OrderReciept extends _CommonPage {
 		}
 		return valueToReturn;
 	}
+	
+	/**
+	 * This method will Validate the order details for price type 
+	 * 				Trailing stop limit and action Buy
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void validateTrailingStopLimitBuy() {
 		DecimalFormat df = new DecimalFormat("#.00");
@@ -718,6 +784,20 @@ public class OrderReciept extends _CommonPage {
 		validationReport(orderValue);
 
 	}
+	
+	/**
+	 * This method will Validate the order details for price type 
+	 * 				Trailing stop Market and action Buy
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void validateTrailingStopMarketBuy() {
 		DecimalFormat df = new DecimalFormat("#.00");
@@ -736,6 +816,20 @@ public class OrderReciept extends _CommonPage {
 		validationReport(orderValue);
 
 	}
+	
+	/**
+	 * This method will Validate the order details for price type 
+	 * 				 stop limit and action Buy
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void validateStopLimitBuy() {
 		DecimalFormat df = new DecimalFormat("#.00");
@@ -758,6 +852,20 @@ public class OrderReciept extends _CommonPage {
 	}
 
 	// Acheter 1 TD Cours du marché stop @ Déclencheur 65,72 $ Échéance Jour
+	
+	/**
+	 * This method will Validate the order details for price type 
+	 * 				Trailing stop Market 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void validateStopMarket() {
 		DecimalFormat df = new DecimalFormat("#.00");
 
@@ -777,6 +885,20 @@ public class OrderReciept extends _CommonPage {
 		validationReport(orderValue);
 
 	}
+	
+	/**
+	 * This method will Validate the order details for price type 
+	 * 				limit  and action Buy
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void validateLimitBuy() {
 		DecimalFormat df = new DecimalFormat("#.00");
@@ -795,6 +917,19 @@ public class OrderReciept extends _CommonPage {
 
 	}
 
+	/**
+	 * This method will Validate the order details for price type 
+	 * 				Market and action Buy
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void validateMarketBuy() {
 
 		String orderValue = "";
@@ -811,15 +946,24 @@ public class OrderReciept extends _CommonPage {
 		validationReport(orderValue);
 
 	}
+	/**
+	 * This method will Validate the order details for action Buy
+	 * 				 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void validateConfirmOrderBuy() {
 		Decorator();
 		init();
-		try {
-			mobileAction.FuncSwipeWhileElementNotFound(orderElement, false, 10, "up");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		mobileAction.FuncSwipeWhileElementNotFound(orderElement, false, 10, "up");
 
 		confirmOrderValue = orderElement.getText();
 		System.out.println(confirmOrderValue);
@@ -861,6 +1005,19 @@ public class OrderReciept extends _CommonPage {
 		receipt();
 	}
 
+	/**
+	 * This method will Validate the report as pass or fail
+	 * 				 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void validationReport(String orderValue) {
 		try {
 
@@ -884,6 +1041,19 @@ public class OrderReciept extends _CommonPage {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * This method will Validate the QuickLinks
+	 * 				 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void validateQuickLinks() {
 
@@ -900,6 +1070,20 @@ public class OrderReciept extends _CommonPage {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * This method will click on the orders tab
+	 * 				 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void clickOrders() {
 
@@ -913,6 +1097,19 @@ public class OrderReciept extends _CommonPage {
 		}
 	}
 
+	/**
+	 * This method will Validate the TimeStamp
+	 * 				 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void validateTimeStamp() {
 		String tradeDate;
 		try {

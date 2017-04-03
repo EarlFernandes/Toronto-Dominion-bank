@@ -97,7 +97,7 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement btnLogout;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Logged Out']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Logged Out']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Logged Out']")
 	private MobileElement logoutHeader;
 
@@ -130,16 +130,16 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement txtProgressBar;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Confirm']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Confirm']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Confirm']")
 	private MobileElement txtConfirmHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Transfers']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfers']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Transfers']")
 	private MobileElement txtTransfers_Header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Quick Access']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/easy_access' ]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Home']")
 	private MobileElement btnHome;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
@@ -153,7 +153,7 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/txt_Deposit'and contains(@text,'When making deposits to this account')]")
 	private MobileElement TDCT_TFSAMessage;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Receipt']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Receipt']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'android:id/action_bar_title'and @text='Receipt']")
 	private MobileElement receiptHeader;
 
@@ -163,7 +163,7 @@ public class Between_My_accounts extends _CommonPage {
 	private MobileElement finish_Transfer;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='-From Account']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/from_Account_bal']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/from_account_bal']")
 	private MobileElement fromAccountValue;
 	
 
@@ -184,7 +184,7 @@ public class Between_My_accounts extends _CommonPage {
 	private MobileElement ToAccountValue;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label,'Transfer successful']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/confirmation_Val']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/confirmation_val']")
 	private MobileElement cnfrDetail;
 
 
@@ -1120,9 +1120,9 @@ public class Between_My_accounts extends _CommonPage {
 				Login.get().logout();
 			} else {
 
-				String accountsList[] = from_Account.split(",");
+				String accountsList[] = from_Account.split(":");
+				mobileAction.FuncClick(from_acnt, "From Account");
 				for (int i = 0; i < accountsList.length; i++) {
-					mobileAction.FuncClick(from_acnt, "From Account");
 					String accountno = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
 							+ accountsList[i] + "']";
 
@@ -1135,6 +1135,7 @@ public class Between_My_accounts extends _CommonPage {
 					//mobileAction.FuncClick(fromAccountval, "From Account");
 				}
 				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClickBackButton();
 				Login.get().logout();
 
 			}

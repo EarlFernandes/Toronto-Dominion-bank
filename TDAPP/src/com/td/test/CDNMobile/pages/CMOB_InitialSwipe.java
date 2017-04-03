@@ -53,6 +53,7 @@ public class CMOB_InitialSwipe extends _CommonPage {
 			int x = screensize[0];
 			int y = screensize[1];
 			try {
+				mobileAction.FunctionSwipe("left", 2000, 30);
 				mobileAction.FuncClickCoordinates(x / 2, y - 10, 1);
 
 				// Thread.sleep(5000);

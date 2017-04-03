@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.test.CDNMobile.pages.CMOB_InitialSwipe;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.InteractsWithApps;
 import io.appium.java_client.MobileElement;
@@ -19,13 +21,14 @@ public class Env_Settings extends _CommonPage {
 
 	private static Env_Settings Env_Settings;
 
-	@iOSFindBy(xpath = "//*[@label='Menu']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
-	@iOSFindBy(xpath = "//*[@label='Banking Service Configuration']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText'and @text='Network Settings']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Banking Service Configuration']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Network Settings']")
 	private MobileElement network_settings;
+	
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/preference_summary_text'and @index='1']")
 	private MobileElement env_set;
@@ -35,9 +38,6 @@ public class Env_Settings extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/preference_title_text'and @text='Configuration']")
 	private MobileElement configuration;
-
-	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/select_dialog_listview']")
-	private MobileElement envList;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title'and @text='sys50_no_macm']")
 	private MobileElement envToSetup;
@@ -56,6 +56,9 @@ public class Env_Settings extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TDMobilePayments']")
 	private MobileElement TDMobilePaymentsButton;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Allow']")
+	private MobileElement allow;
 
 	String env_need_set = getTestdata("Env");
 
@@ -66,7 +69,8 @@ public class Env_Settings extends _CommonPage {
 	String env = "//XCUIElementTypeStaticText[@label='" + env_need_set + "']";
 	String cnfgrn = "//android.widget.TextView[@resource-id='com.td:id/title'and @text='" + env_need_set + "']";
 	String env_Set = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]";
-
+	String networkSet="//android.widget.TextView[@resource-id='com.td:id/navText'and @text='Network Settings']";
+	
 	int i = 1;
 	String Firstpart = "//XCUIElementTypeCell[";
 	String Secondpart = "]/XCUIElementTypeStaticText[1]";
@@ -102,19 +106,60 @@ public class Env_Settings extends _CommonPage {
 	 */
 	public void set_environment() throws Exception {
 		Decorator();
+		boolean  flag=true;
+		int count=0;
+		
 		try {
 
 			if (platformName.equalsIgnoreCase("ios")) {
+				if(mobileAction.verifyElementVisible(menu, "Menu")){
+					mobileAction.FuncClick(menu, "Menu");
+					mobileAction.FunCSwipeandScroll(network_settings, true);
+					Thread.sleep(2000);
+					//mobileAction.FunCSwipeandScroll(network_settings, true);
+					
+					MobileElement envt = (MobileElement) ((AppiumDriver) CL.GetDriver())
+							.findElement(By.xpath(env));
+					mobileAction.FunCSwipeandScroll(envt, true);
+					while(flag && count<10){
+						if(mobileAction.verifyElementVisible(envt, "Environment")){
+							mobileAction.FuncClick(envt, "Environment");
+							flag=false;
+						}else{
+							mobileAction.FunctionSwipe("Up", 200, 200);
+							count++;
+						}
+					}
+					
+					//mobileAction.FuncSelectElementInTable(env_Set, Firstpart, Secondpart, env_need_set);
+					
+				}else{
+					mobileAction.FuncClick(allow, "Allow");
+					CMOB_InitialSwipe.get().InitialSwipe();
+				}
+				
 
-				mobileAction.FunCSwipeandScroll(network_settings, true);
-				Thread.sleep(2000);
-
-				mobileAction.FunCSwipeandScroll(network_settings, true);
-				mobileAction.FuncSelectElementInTable(env_Set, Firstpart, Secondpart, env_need_set);
 			} else {
-
-				// mobileAction.FunCSwipeandScroll(network_settings, true);
-				mobileAction.FunCnewSwipe(network_settings, false, 1);
+				if(mobileAction.verifyElementVisible(menu, "Menu")){
+					
+				}else{
+					CMOB_InitialSwipe.get().InitialSwipe();
+				}
+				mobileAction.FuncClick(menu, "Menu");
+				
+				//mobileAction.FunCSwipeandScroll(network_settings, true);
+				//mobileAction.FuncElementSwipeWhileNotFound(envList, cnfgrn, 5, "down", true);
+				//mobileAction.FuncSwipeWhileElementNotFoundByxpath(networkSet, true, 7, "Up");
+				while(flag && count<5){
+					if(mobileAction.verifyElementVisible(network_settings, "Network Settings")){
+						mobileAction.FuncClick(network_settings, "Networksettings");
+						flag=false;
+					}else{
+						mobileAction.FunctionSwipe("Up", 200, 200);
+						count++;
+					}
+				}
+				//mobileAction.FunCnewSwipe(network_settings, true, 3);
 				String env_exist = mobileAction.getText(env_set);
 				if (env_exist.equalsIgnoreCase(env_need_set)) {
 
@@ -216,7 +261,8 @@ public class Env_Settings extends _CommonPage {
 				}
 			}
 
-			mobileAction.FunCSwipeandScroll(mobileAction.mobileElementUsingXPath(env), true);
+			mobileAction.FunCSwipeandScroll((MobileElement) ((AppiumDriver) CL.GetDriver())
+					.findElement(By.xpath(env)), true);
 			
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");

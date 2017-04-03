@@ -51,8 +51,14 @@ public class Transfers extends _CommonPage {
 	private MobileElement progrees_Bar;
 	
 	@iOSFindBy(xpath= "//XCUIElementTypeStaticText[contains(@label,'Manage Recipients Add, edit or delete Interac e-Transfer recipie')]")
-	//@AndroidFindBy(xpath = " ")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Recipients']")
 	private MobileElement manageRecipient;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='com.td' and @instance='2']")
+	private MobileElement TD;
+	
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='Always']")
+	private MobileElement alwaysBtn;
 
 	@iOSFindBy(xpath="//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
@@ -72,8 +78,11 @@ public class Transfers extends _CommonPage {
 	public void clickBetweenMyAccountsTransfers() {
 		try {
 			Decorator();
+			//mobileAction.FuncClick(TD, "TDAPP");
+			//mobileAction.FuncClick(alwaysBtn, "Always");
 			mobileAction.verifyElementIsDisplayed(transfers_Header, "Transfer");
 			mobileAction.FuncClick(btw_My_Accnts, "Between my Accounts");
+			mobileAction.waitForElementToVanish(progressBar);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

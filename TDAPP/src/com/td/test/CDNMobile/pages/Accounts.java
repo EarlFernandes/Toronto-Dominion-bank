@@ -24,12 +24,12 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/accntBalanceSum']")
 	private MobileElement txtBalance;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Accounts' or @label='Comptes']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Accounts' or @text='Mes comptes']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Accounts']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Accounts']")
 	private MobileElement txtMy_Account_Header;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='INVESTING']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and @text='INVESTING']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='INVESTING']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Investing']")
 	private MobileElement txtAccount_Investing_header;
 
 
@@ -86,6 +86,10 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id= 'com.td:id/summaryContent']")
 	private MobileElement 	acntsListnew;
 	
+	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
+	private MobileElement back_button;
+	
 
 @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/account_Desc']")
 	private MobileElement account;
@@ -119,12 +123,6 @@ public class Accounts extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
 	private MobileElement currencyCheck;
-	
-
-	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
-	private MobileElement back_button;
-
 
 	String from_Account = getTestdata("FromAccount");
 	String verify_Acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='" + from_Account
@@ -333,20 +331,11 @@ public class Accounts extends _CommonPage {
 
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-			mobileAction.FuncSelectElementInTable(accountsPage_Table, firstPart , accountsSecondPart, from_Account);
-			mobileAction.FuncClick(txtActivity, "Activity");
-			mobileAction.verifyElementIsDisplayed(txtActivity, "Activity");
-			//mobileAction.verifyElementIsDisplayed(from_Account, "Account Number Displayed");
-			mobileAction.verifyElementUsingXPath(from_Account, "Account Number is Displayed");
-			}
-			else{
 			//mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, Account_header);
 			mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 10, "down", true);
 			mobileAction.FuncClick(txtActivity, "Activity");
 			mobileAction.verifyElementIsDisplayed(txtActivity, "Activity");
 			mobileAction.verifyElementIsDisplayed(account, "Account Number Displayed");
-			}
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -398,7 +387,8 @@ public class Accounts extends _CommonPage {
 	public void verify_Investing_Header() throws Exception {
 		Decorator();
 		try {
-			mobileAction.FunCnewSwipe(txtAccount_Investing_header, false, 4);
+			//mobileAction.FunCnewSwipe(txtAccount_Investing_header, false, 4);
+			
 			mobileAction.verifyElementIsDisplayed(txtAccount_Investing_header, t_Investing);
 
 		} catch (NoSuchElementException | IOException e) {
@@ -576,7 +566,6 @@ public class Accounts extends _CommonPage {
 		}
 	}
 	
-
 	/**
 	 * This method will navigate to home page
 	 *
@@ -608,6 +597,7 @@ public class Accounts extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+
 
 
 }

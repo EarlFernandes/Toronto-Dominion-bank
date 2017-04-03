@@ -20,7 +20,7 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class ManageRecipients extends _CommonPage {
 
     private static ManageRecipients ManageRecipients;
-    @iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Manage Recipients']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Manage Recipients']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Manage Recipients']")
     private MobileElement manageRecipientHeader;
 
@@ -55,7 +55,7 @@ public class ManageRecipients extends _CommonPage {
     @AndroidFindBy(xpath = "//android.view.View[@content-desc='Confirm Answer']")
     private MobileElement reEnterAnswer;
     
-    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Success Recipient details have been saved.']")
+    @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Success Recipient')]")
     private MobileElement recipient_Changes;
 
     String recipientMail = getTestdata("RecipientMail");
@@ -132,7 +132,6 @@ public class ManageRecipients extends _CommonPage {
     		//String recipient_saved = "Success Recipient details have been saved.";
     		mobileAction.waitForElementToVanish(progressBar);
     	    mobileAction.verifyElementIsDisplayed(manageRecipientHeader, "Manage Recipients");
-    	    Thread.sleep(3000);
     	    String select_recipient ="//android.view.View[@content-desc='" + sender_SelectSender+ "']";
 		    MobileElement selectRecipient = (MobileElement) ((AppiumDriver) CL.GetDriver())
 					.findElement(By.xpath(select_recipient));

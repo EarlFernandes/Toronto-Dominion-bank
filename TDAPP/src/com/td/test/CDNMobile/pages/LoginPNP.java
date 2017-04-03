@@ -161,7 +161,7 @@ public class LoginPNP extends _CommonPage {
 	
 	String verifyLogin_ios = "//*[contains(@label,'Your Login Info Please')]";
 	String verifyLogin_android = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
-	String login_password = getTestdata("Password", "UserIDs");
+	String login_password = getTestdata("Password");
 	String[] passwordArray = login_password.split(",");
 	static int count = 0;
 	
@@ -173,9 +173,9 @@ public class LoginPNP extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Accounts']")
 	private MobileElement txtMy_Account_Header;
 	
-	String securityPassword = getTestdata("SecurityPassword", "UserIDs");
+	String securityPassword = getTestdata("SecurityPassword");
 
-	String passwords = getTestdata("Password", "Payment");
+	String passwords = getTestdata("Password");
 	String platFormName = CL.getTestDataInstance().getMobilePlatForm();
 	String progressBarFrench = "//android.widget.ProgressBar[@resource-id='android:id/progress']";
 	

@@ -22,13 +22,13 @@ public class Interac_e_Transfer extends _CommonPage {
     @iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Add Recipient']")
     private MobileElement addRecipient_Interac;
 
-    @iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Interac e-Transfer']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Interac e-Transfer']")
     private MobileElement interac_Header;
 
     @iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
     private MobileElement progrees_Bar;
 
-    @iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Interac e-Transfer']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Interac e-Transfer']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Interac e-Transfer']")
     private MobileElement interac_Etransfer_Header;
 

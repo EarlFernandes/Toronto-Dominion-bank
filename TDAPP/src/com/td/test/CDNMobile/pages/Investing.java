@@ -215,6 +215,19 @@ public class Investing extends _CommonPage {
 		}
 
 	}
+	
+	/**
+	 * This method will click on place order 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void clickPlacedorder() {
 
@@ -278,6 +291,19 @@ public class Investing extends _CommonPage {
 		}
 
 	}
+	
+	/**
+	 * This method will click on the order 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void clickOrder() {
 
@@ -293,6 +319,19 @@ public class Investing extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	/**
+	 * This method will click on the WatchList 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void clickWatchLists() {
 
@@ -303,6 +342,19 @@ public class Investing extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	/**
+	 * This method will click on the place order button
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void verifyAdvanceorderdetails() {
 
@@ -315,6 +367,18 @@ public class Investing extends _CommonPage {
 		}
 	}
 
+	/**
+	 * This method will verify the WebBroker in investing page
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void verifyAccessToWBfunctionality() {
 		try {
 			Decorator();
@@ -327,6 +391,19 @@ public class Investing extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	/**
+	 * This method will click on the Holdings Tab
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void clickHoldings() throws Exception {
 		try {
@@ -339,6 +416,19 @@ public class Investing extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	/**
+	 * This method will verify the DI Accounts
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void verifyDIAccounts() {
 		try {
@@ -363,6 +453,18 @@ public class Investing extends _CommonPage {
 		}
 	}
 
+	/**
+	 * This method will verify the PIA Accounts
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void verifyPIAAccounts() {
 		try {
 			Decorator();
@@ -380,6 +482,19 @@ public class Investing extends _CommonPage {
 		}
 
 	}
+	
+	/**
+	 * This method will verify the Combined Accounts
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void verifyCombinedAccounts() {
 		try {
@@ -411,6 +526,19 @@ public class Investing extends _CommonPage {
 		}
 
 	}
+	
+	/**
+	 * This method will verify no trading accounts
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void verifyNoTradingAccounts() throws InterruptedException {
 		try {
@@ -430,6 +558,19 @@ public class Investing extends _CommonPage {
 		}
 
 	}
+	
+	/**
+	 * This method will verify no eligible accounts for the trading
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void verifynoEligibleAccounts() throws InterruptedException {
 		try {
@@ -441,6 +582,18 @@ public class Investing extends _CommonPage {
 
 	}
 
+	/**
+	 * This method will verify the Investing screens in trading Page
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void verifyInvestingScreen() throws InterruptedException {
 		try {
 			Decorator();
@@ -457,6 +610,19 @@ public class Investing extends _CommonPage {
 		}
 
 	}
+	
+	/**
+	 * This method will verify the FPA Accounts
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void verifyFPAccounts() {
 		try {
@@ -482,7 +648,19 @@ public class Investing extends _CommonPage {
 
 	}
 
-	public void verifyPIAorFPaccount() {
+	/**
+	 * This method will verify the PIA or FPA Account
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyPIAOrFPAccount() {
 		try {
 			Decorator();
 			String diAccountXL = null;
@@ -507,6 +685,19 @@ public class Investing extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	/**
+	 * This method will verify the combined Accounts
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void verifyCombinedAccount() {
 		try {
@@ -521,6 +712,19 @@ public class Investing extends _CommonPage {
 		}
 	}
 
+	/**
+	 * This method will verify the Error Message
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	
 	public void verifyErrorMessage() {
 		try {
 			Decorator();
@@ -533,6 +737,19 @@ public class Investing extends _CommonPage {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * This method will verify the Error Message
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 	public void clickTradeIcon() {
 
@@ -542,6 +759,20 @@ public class Investing extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	/**
+	 * This method will click on the backbutton
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+
 
 	public void clickBackbtn() {
 
@@ -570,6 +801,20 @@ public class Investing extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/ordersTab' and @text='Orders']")
 	private MobileElement ordersButton;
+	
+	/**
+	 * This method will click on the Place order
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+
 
 	public void clickPlacedOrder() {
 		Decorator();
@@ -587,6 +832,20 @@ public class Investing extends _CommonPage {
 		}
 
 	}
+	
+	/**
+	 * This method will verify the EmptyWatchLists
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+
 
 	public void verifyEmptyWatchLists() {
 		try {
@@ -608,6 +867,18 @@ public class Investing extends _CommonPage {
 		}
 	}
 
+	/**
+	 * This method will Click on Holdings and Symbol
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 
 
 	public void clickHoldingAndSymbol(){
@@ -627,8 +898,6 @@ public class Investing extends _CommonPage {
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		try {
 			mobileAction.FuncClick(watchListsButton, "Click Trade Icon");

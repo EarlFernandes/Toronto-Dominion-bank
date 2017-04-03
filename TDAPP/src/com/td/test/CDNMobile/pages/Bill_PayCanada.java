@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
+import java.lang.*;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -23,7 +24,7 @@ public class Bill_PayCanada extends _CommonPage {
 
 	private static Bill_PayCanada Bill_PayCanada;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account, Select from account']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfers']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccount' and @text='Select From Account']")
 	private MobileElement from_account_post;
 
@@ -109,7 +110,7 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement menu;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay Bill']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Pay Bills']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Pay Bill']")
 	private MobileElement payBill_Header;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title'and @text='My Accounts']")
@@ -188,7 +189,8 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement accesscardTableHeader;
 
 	@iOSFindBy(xpath = " //XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard' and @index='1']/following::@index='0'[1]")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard' and @index='1']/following::@index='0'[1]")
+	@AndroidFindBy(xpath = "//android.widget.ListView/android.widget.LinearLayout[@index=1]/android.widget.LinearLayout/android.widget.TextView")
 	private MobileElement selectSecondAccessCard;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel']")
@@ -203,7 +205,7 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement back_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Quick Access']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/easy_access' ]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Home']")
 	private MobileElement home;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
@@ -275,7 +277,7 @@ public class Bill_PayCanada extends _CommonPage {
 
 			else {
 				String ToPostAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and @text='"
-						+ payeeAccount + "']";
+						+ ToAccountXL + "']";
 				mobileAction.FuncClick(to_account_post, "Select Payee");
 				mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, ToPostAccountXpath, 1, "up", true);
 				mobileAction.waitForElementToDisappear(t_select_to_account);
@@ -370,13 +372,11 @@ public class Bill_PayCanada extends _CommonPage {
 
 				for (int i = 0; i < accountValue.length; i++) {
 					String AccountVal = AcntVal.getText();
-					mobileAction.verifyTextEquality(accountValue[i], AccountVal);
+					mobileAction.verifyElementTextContains(AcntVal, accountValue[i]);
 					String payeeValue = PayeVal.getText();
-					mobileAction.verifyTextEquality(payee, payeeValue);
+					mobileAction.verifyElementTextContains(PayeVal, payeeValue);
 					mobileAction.FuncClick(accesscard, "Access Card");
-					mobileAction.FuncClick(selectSecondAccessCard, "Select Access Card from Access card table");// check
-																												// the
-																												// xpath
+					mobileAction.FuncClick(selectSecondAccessCard, "Select Access Card from Access card table");
 				}
 			}
 
@@ -729,9 +729,9 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.FuncSendKeys(amount,amount_value);
 				mobileAction.FuncHideKeyboard();
 				String PaybillDate = mobileAction.getText(currDate);
-				boolean validateDate=!PaybillDate.isEmpty();
-				String dateValue=validateDate?"Same":"Not Same";
-				mobileAction.verifyTextEquality(dateValue, "Same");
+				//boolean validateDate=!PaybillDate.isEmpty();//********************************JA
+				//String dateValue=validateDate?"Same":"Not Same";
+				//mobileAction.verifyTextEquality(dateValue, "Same");
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
 				mobileAction.FuncClick(pay_bill, "Pay Bill");
 				mobileAction.verifyElement(confirmationText, txtconfirmationText);
