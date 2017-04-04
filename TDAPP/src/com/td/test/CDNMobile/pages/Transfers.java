@@ -68,6 +68,7 @@ public class Transfers extends _CommonPage {
 	public void clickBetweenMyAccountsTransfers() {
 		try {
 			Decorator();
+			initElementBetweenMyAccounts();
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer");
 			mobileAction.FuncClick(btw_my_accnts, "Between my Accounts");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -86,6 +87,7 @@ public class Transfers extends _CommonPage {
 	 */
 	public void clickInterac_e_Transfer() {
 		Decorator();
+		initElementInteracETransfer();
 		try {
 			Thread.sleep(5000);
 			transfers_header.isDisplayed();
@@ -108,6 +110,7 @@ public class Transfers extends _CommonPage {
 	public void clickManageRecipients() {
 		try {
 			Decorator();
+			initElementManageRecipients();
 			mobileAction.FuncClick(manageRecipient, "Manage Recipients");
 			mobileAction.waitForElementToVanish(progressBar);
 			Thread.sleep(2000);
@@ -128,7 +131,7 @@ public class Transfers extends _CommonPage {
 	public void clickPendingTransfers() {
 		try {
 			Decorator();
-			
+			initElementPendingTransfer();
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer");
 			mobileAction.FuncClick(pending_transfer, "Pending Transfers");
 			Thread.sleep(5000);
@@ -140,17 +143,47 @@ public class Transfers extends _CommonPage {
 
 	}
 
-	private void Decorator() {
-		PageFactory.initElements(
-				new AppiumFieldDecorator((CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+	private void initElementPendingTransfer() {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
 				pending_transfer = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderPendingInteracETransfer") + "']", "Pending and Completed");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	private void initElementInteracETransfer() {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
 				Interac_e_Transfer_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer").replaceAll("\\<.*?>","") + "']", "Send Money");
-				btw_my_accnts = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderBetweenMyAccounts") + "']", "Transfer Between");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	private void initElementManageRecipients() {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
 				manageRecipient = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("imtNavRowManageRecipients") + "']", "Manage Recipients");
 			}
 		} catch (NoSuchElementException | IOException e) {
@@ -162,6 +195,30 @@ public class Transfers extends _CommonPage {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
+	}
+	
+	private void initElementBetweenMyAccounts() {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				btw_my_accnts = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderBetweenMyAccounts") + "']", "Transfer Between");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	private void Decorator() {
+		PageFactory.initElements(
+				new AppiumFieldDecorator((CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
+				this);
+
 	}
 	
 	/**

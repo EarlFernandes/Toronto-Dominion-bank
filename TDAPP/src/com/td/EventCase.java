@@ -186,6 +186,7 @@ public class EventCase {
 		ConfirmOrderSendOrder, 
 		ConfirmOrderSendOrder_French, 
 		ConfirmPayee, 
+		ContactUs_VerifyTextElements,
 		ChangeDefaultCard,
 		CardDetails_deleteicon,
 		ConfirmPayee_InvalidAmount,
@@ -283,6 +284,8 @@ public class EventCase {
 		ManagePayees_Button, 
 		ManageRecipient_ClickAddRecipient,
 		ManageRecipient_VerifyTextEditRecipientInfo,
+		ManageRecipient_VerifyTextAddRecipientConfirmation,
+		ManageRecipient_VerifyTextAddRecipientSuccess,
 		ManageRecipient_EditManageRecipient, 
 		ManageRecipient_ModifyRecipient, 
 		ManageRecipients_VerifyRegisterButton, 
@@ -870,6 +873,10 @@ public class EventCase {
 			MenuPage.get().clickContactUs();
 			break;
 
+		case ContactUs_VerifyTextElements:
+			ContactUs.get().verifyContactUsTextElements();
+			break;
+
 		case TDDirectInvestingContact:
 			ContactUs.get().verifyTDInvesting_Contact();
 			break;
@@ -1109,6 +1116,14 @@ public class EventCase {
 
 		case ManageRecipient_ClickAddRecipient:
 			ManageRecipients.get().clickAddRecipient();
+			break;
+
+		case ManageRecipient_VerifyTextAddRecipientConfirmation:
+			ManageRecipients.get().verifyAddRecipientConfirmationTextElements();
+			break;
+
+		case ManageRecipient_VerifyTextAddRecipientSuccess:
+			ManageRecipients.get().verifyAddRecipientSuccessTextElements();
 			break;
 
 		case ManageRecipient_VerifyTextAddRecipient:

@@ -52,7 +52,6 @@ public class MenuPage extends _CommonPage {
 	private MobileElement progressBar;
 
 	@iOSFindBy(xpath = "//*[@label='Contact Us']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Contact Us']")
 	private MobileElement contactUs;
 
 	@iOSFindBy(xpath = "//*[@label='Home']")
@@ -87,6 +86,23 @@ public class MenuPage extends _CommonPage {
 		return MenuPage;
 	}
 
+	private void initElementContactUs() {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				contactUs = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("contact_str") + "']", "Contact Us");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
 	private void Decorator() {
 		PageFactory.initElements(
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
@@ -243,6 +259,7 @@ public class MenuPage extends _CommonPage {
 	public void clickContactUs() {
 
 		Decorator();
+		initElementContactUs();
 		try {
 			mobileAction.FuncClick(contactUs, "contactUs");
 

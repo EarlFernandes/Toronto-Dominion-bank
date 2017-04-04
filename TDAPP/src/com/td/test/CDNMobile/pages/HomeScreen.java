@@ -909,17 +909,15 @@ public class HomeScreen extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("bills_str") + "']", "Bills");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("td_moneyfit_header") + "']", "TD My Spend");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("TDZonesNavRowHeader") + "']", "TD For Me");
-				// FIXME: There is a whitespace in between the text in zh?
+				// FIXME: Figure out why Investing Accounts is not in strings map for Android?
 				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("str_investing_cross_sell_message") + "']", "Open a direct investing account");
 				final String xPathFooter = "//android.widget.TextView[@resource-id='com.td:id/dashboard_terms']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("contact_str") + "']", "Contact Us");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("terms_of_use") + "']", "Terms of Use");
-				// FIXME: If location is disabled, then it will say find locations
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("dashboard_nearest_branch_lbl") + "']", "Nearest Branch");
-				// FIXME: Markets and quote are sometimes there and sometimes not
-				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("markets_str") + "']", "Markets");
-				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("str_Quote") + "']", "Quote");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("markets_str") + "']", "Markets");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("trade_str") + "']", "Trade");
 			}
 		} catch (IOException | NoSuchElementException e) {
 			try {

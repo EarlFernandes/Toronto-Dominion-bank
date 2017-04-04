@@ -77,5 +77,43 @@ public class ContactUs extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 		}
+
+	/**
+	 * This method will verify text within elements for the contact us screen
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyContactUsTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("contactTDHeader") + "']", "Contact Us title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("by_phone") + "']", "By phone");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("td_contact_str") + "']", "TD Canada Trust");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("td_contact_credit_card_str") + "']", "TD Credit Card");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("td_contact_small_business_str") + "']", "TD Small business");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("homeDashboardContactTDDirectInvestingTitle") + "']", "TD Direct Investing");
+				// Scroll down here
+				final String xPathFooter = "//android.widget.RelativeLayout[@resource-id='com.td:id/rlLinks']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 3, "up");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_TDWealth_FP").replaceAll("\\<.*?>","") + "']", "Wealth financial");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_TDWealth_PIA") + "']", "Wealth private");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("give_feedback") + "']", "Give feedback");				
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
 }
 

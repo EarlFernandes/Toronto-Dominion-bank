@@ -87,17 +87,62 @@ public class Bills extends _CommonPage {
 		return Bills;
 	}
 
-	private void Decorator() {
-		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+	private void initElementPayCanadaBill() {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
 				pay_cananda_bill = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowPayBill") + "']", "Pay bills");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}		
+	}
+	private void initElementPayUSBill() {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
 				pay_us_bills = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowPayUSBill").replaceAll("\\<.*?>","") + "']", "Pay US bills");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}		
+	}	
+	private void initElementManagePayees() {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
 				manage_payees = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowManagePayee") + "']", "Manage Payees");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}			
+	}
+	private void initElementScheduledPayments() {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
 				scheduledPayments = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowUpcomingBills") + "']", "Scheduled Payments");
 			}
 		} catch (NoSuchElementException | IOException e) {
@@ -108,14 +153,18 @@ public class Bills extends _CommonPage {
 			}
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-
+		}			
+	}
+	private void Decorator() {
+		PageFactory.initElements(
+				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
+				this);
 	}
 
 	public void clickPayCanadianBill() {
 		Decorator();
 		try {
-
+			initElementPayCanadaBill();
 			mobileAction.FuncClick(pay_cananda_bill, "Pay Canada Bill");
 			mobileAction.waitForElementToVanish(progrees_bar);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -141,6 +190,7 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 			Decorator();
+			initElementManagePayees();
 			mobileAction.FuncClick(manage_payees, "Manage Payees");
 			Thread.sleep(2000);
 			mobileAction.waitForElementToVanish(progrees_bar);
@@ -193,7 +243,7 @@ public class Bills extends _CommonPage {
 
 		try {
 			Decorator();
-
+			initElementPayUSBill();
 			String Bill_header = "Verifying Bill Page Header";
 
 			// mobileAction.verifyElementIsDisplayed(bills_header, Bill_header);
@@ -223,6 +273,7 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 			Decorator();
+			initElementScheduledPayments();
 			mobileAction.FuncClick(scheduledPayments,"Scheduled Payments");
 			mobileAction.waitForElementToVanish(progrees_bar);
 			//mobileAction.verifyElementIsDisplayed(paymentMessage,"No Upcoming Bills to display in this account");
@@ -251,6 +302,9 @@ public class Bills extends _CommonPage {
 
 		try {
 		Decorator();
+		initElementPayUSBill();
+		initElementManagePayees();
+		initElementScheduledPayments();
 		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
 		mobileAction.verifyElementIsDisplayed(bills_header, "Verifyipay_us_bills_headerng Bill Page Header");
 		mobileAction.FuncClick(pay_bills, "Pay Bills");
@@ -404,6 +458,7 @@ public class Bills extends _CommonPage {
 	public void verifyScheduledPaymentsTextElements() {
 		Decorator();
 		try {
+			initElementScheduledPayments();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
@@ -487,8 +542,9 @@ public class Bills extends _CommonPage {
 				final String xPathLearnMore = "//android.widget.TextView[@text='" + mobileAction.getAppString("learn_more") + "']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathLearnMore, false, 4, "up");
 				mobileAction.verifyElementUsingXPath(xPathLearnMore, "Learn more");
-				// FIXME: There is a ?? between information. Please
-				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/reason_for_payment_layout' and @text='" + mobileAction.getAppString("reason_for_payment_rule") + "']", "Reason for payment rule");
+				final MobileElement footerNote = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/reason_for_payment_rule']", "Reason for payment rule");
+				final String footerNoteString = footerNote.getText();
+				mobileAction.verifyTextEquality(footerNoteString.replace("??", " ").replaceAll("\n", ""), mobileAction.getAppString("reason_for_payment_rule").replaceAll("\"", "").replaceAll("\n", " "));
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {

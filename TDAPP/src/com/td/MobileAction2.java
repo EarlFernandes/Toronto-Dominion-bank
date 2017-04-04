@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
@@ -1563,7 +1564,13 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	public String getAppString(final String key) {
-		final String s = (String)((AppiumDriver) GetDriver()).getAppStringMap().get(key);
+		final String locale =  super.LoadData("Value", super.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
+		String s = null;
+		if(StringUtils.isEmpty(locale)) {
+			 s = (String)((AppiumDriver) GetDriver()).getAppStringMap().get(key);
+		} else {
+			s = (String)((AppiumDriver) GetDriver()).getAppStringMap(locale).get(key);
+		}
 		//System.out.println("String returned from key is: " + s);
 		return s;
 	}
