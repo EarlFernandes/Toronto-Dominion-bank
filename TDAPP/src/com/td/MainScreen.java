@@ -91,7 +91,7 @@ public class MainScreen extends _CommonPage {
 	public void Splash_Conitnue() throws IOException {
 
 		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
-		
+		CL.getTestDataInstance().DriversCapability.put("recreateChromeDriverSessions", "true");
 		
 		readSheet();
 

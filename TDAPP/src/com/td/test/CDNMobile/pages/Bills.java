@@ -24,15 +24,12 @@ public class Bills extends _CommonPage {
 	private static Bills Bills;
 
 	@iOSFindBy(xpath = "//*[@label='Pay Bill Pay a Canadian bill']")
-	@AndroidFindBy(xpath = "//android.widget.TableRow[@resource-id='com.td:id/tableRow1']")
 	private MobileElement pay_cananda_bill;
 
 	@iOSFindBy(xpath = "//*[@label='Manage Payees Add, edit or delete a Canadian or U.S. Payee']")
-	@AndroidFindBy(xpath = "//android.widget.TableRow[@resource-id='com.td:id/tableRow2']")
 	private MobileElement manage_payees;
 
 	@iOSFindBy(xpath = "//*[@label='Pay U.S. Bill Pay a U.S. bill']")
-	@AndroidFindBy(xpath = "//android.widget.TableRow[@resource-id='com.td:id/tableRow3']")
 	private MobileElement pay_us_bills;
 
 	@iOSFindBy(xpath = "//*[@label ='Bills']")
@@ -40,7 +37,6 @@ public class Bills extends _CommonPage {
 	private MobileElement bills_header;
 	
 	@iOSFindBy(xpath="//*[contains(@label,'Scheduled Payments View and cancel pending Canadian payments or')]")
-	@AndroidFindBy(xpath = "//android.widget.TableRow[@resource-id='com.td:id/tableRow5']")
 	private MobileElement scheduledPayments;
 
 	@iOSFindBy(xpath="//*[@label='No Upcoming Bills to display in this account']")
@@ -95,6 +91,24 @@ public class Bills extends _CommonPage {
 		PageFactory.initElements(
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
 				this);
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				pay_cananda_bill = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowPayBill") + "']", "Pay bills");
+				pay_us_bills = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowPayUSBill").replaceAll("\\<.*?>","") + "']", "Pay US bills");
+				manage_payees = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowManagePayee") + "']", "Manage Payees");
+				scheduledPayments = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowUpcomingBills") + "']", "Scheduled Payments");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
 
 	}
 

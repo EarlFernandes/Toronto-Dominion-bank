@@ -66,8 +66,10 @@ public class EventCase {
 	private enum functionNames {
 		
 		AccountsCredit_clickSummaryTab,
+		AccountsCredit_VerifyActivityText,
 		AccountsCredit_VerifySummaryDetails,
 		AccountsCredit_clickStatementTab,
+		AccountsCredit_VerifyCreditText,
 		AccountsCredit_VeifyStatementDetails,
 		AccountsCredit_VerifySummaryText,
 		Accounts_SelectAccount,
@@ -232,6 +234,7 @@ public class EventCase {
 		Interac_VerifyTextElements,
 		Interac_e_Transfer_verify_interacTransfer, 
 		Interac_e_Transfer_VerifyConfirmationText,
+		PendingInterac_e_Transfer_cancel_confirmation_VerifyText,
 		Interac_e_Transfer_VerifySuccessText,
 		Interac_Header, 
 		InteracTransfer_Cancel, 
@@ -273,11 +276,13 @@ public class EventCase {
 
 		ManagePayee_AddCanadianPayee,
 		ManagePayee_VerifyTextSearchPayee,
+		ManagePayees_VerifySpecificPayeeTextElements,
 		ManagePayees_VerifyTextElements,
 		ManagePayee_MutlipleAccesscard, 
 		ManagePayee_VerifyAddCanadianPayeeBtn, 
 		ManagePayees_Button, 
 		ManageRecipient_ClickAddRecipient,
+		ManageRecipient_VerifyTextEditRecipientInfo,
 		ManageRecipient_EditManageRecipient, 
 		ManageRecipient_ModifyRecipient, 
 		ManageRecipients_VerifyRegisterButton, 
@@ -1114,6 +1119,10 @@ public class EventCase {
 			ManageRecipients.get().verifyViewRecipientInfoTextElements();
 			break;
 
+		case ManageRecipient_VerifyTextEditRecipientInfo:
+			ManageRecipients.get().verifyEditRecipientInfoTextElements();
+			break;
+
 		case CanadianPayee_ConfirmPage:
 			Confirm_Payee.get().verifyConfirmPage();
 			break;
@@ -1128,6 +1137,10 @@ public class EventCase {
 		
 		case ManagePayees_VerifyTextElements:
 			Managee_Payee.get().verifyMyPayeesTextElements();
+			break;
+
+		case ManagePayees_VerifySpecificPayeeTextElements:
+			Managee_Payee.get().verifySpecificPayeeTextElements();
 			break;
 
 		case PayBillCanada_Add_Canadian_Payee:
@@ -1472,6 +1485,10 @@ public class EventCase {
 
 		case Transfers_clickPendingInterac_e_Transfer:
 			Transfers.get().clickPendingTransfers();
+			break;
+
+		case PendingInterac_e_Transfer_cancel_confirmation_VerifyText:
+			Interac_e_Transfer.get().verifyTextCancelETransferConfirmation();
 			break;
 
 		case Check_Remember_Me_Default:
@@ -1991,6 +2008,14 @@ public class EventCase {
 
 		case AccountsCredit_VerifySummaryText:
 			Accounts_Credit.get().verifySummaryTabTextElements();
+			break;
+
+		case AccountsCredit_VerifyActivityText:
+			Accounts_Credit.get().verifyActivityTabTextElements();
+			break;
+
+		case AccountsCredit_VerifyCreditText:
+			Accounts_Credit.get().verifyCreditTextElements();
 			break;
 
 		case AccountsCredit_verifyLastTranaction:

@@ -117,6 +117,56 @@ public class Managee_Payee extends _CommonPage {
 	}
 
 	/**
+	 * This method will verify text within elements for a specific payee page
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifySpecificPayeeTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				// Switching to webview
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				final WebElement firstPayee = mobileAction.verifyWebElementUsingXPath("//div[@ng-if='payee.AccountNO' and text()='" + getTestdata("Payee") + "']", "Payee");
+				firstPayee.click();
+				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("mng_payee_view_title") + "']", "View title");
+				// Switching to webview
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				final WebElement name = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[1]", "name");
+				final WebElement address = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[2]", "address");
+				final WebElement account = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[4]", "account");
+				final WebElement description = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[5]", "description");
+				if (!mobileAction.verifyTextEquality(name.getText().trim(), mobileAction.getAppString("str_payee_name")) ||
+						!mobileAction.verifyTextEquality(address.getText().trim(), mobileAction.getAppString("str_payee_address")) || 
+						!mobileAction.verifyTextEquality(account.getText().trim(), mobileAction.getAppString("str_payee_account")) ||
+						!mobileAction.verifyTextEquality(description.getText().trim(), mobileAction.getAppString("str_description"))) {
+					System.err.println("TestCase has failed.");
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				}
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			// Switch back to native to get proper screenshots
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	/**
 	 * This method will verify text within elements for the search payees page
 	 * 
 	 * @return void

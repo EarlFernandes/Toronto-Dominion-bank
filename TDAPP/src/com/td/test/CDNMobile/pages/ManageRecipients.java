@@ -31,7 +31,7 @@ public class ManageRecipients extends _CommonPage {
     private MobileElement registerBtn;
 
     @iOSFindBy(xpath = "//*[@label='In progress']")
-    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
     private MobileElement progressBar;
 
     @iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeLink[1]/XCUIElementTypeLink/XCUIElementTypeStaticText")
@@ -39,7 +39,7 @@ public class ManageRecipients extends _CommonPage {
 
 
     @iOSFindBy(xpath = "//*[@label='Edit']")
-    @AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Edit']")
+    @AndroidFindBy(xpath = "//android.widget.Button[@index='1']")
     private MobileElement editRecipient;
 
     @iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[6]/XCUIElementTypeTextField")
@@ -97,6 +97,18 @@ public class ManageRecipients extends _CommonPage {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
+	}
+
+	public void clickEditRecipient() {
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(editRecipient, "Edit Recipient");
+			mobileAction.waitForElementToVanish(progress_bar);
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}		
 	}
 
     /**
@@ -239,24 +251,24 @@ public class ManageRecipients extends _CommonPage {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				final WebElement firstRecipient = mobileAction.verifyWebElementUsingXPath("//div[@ng-model='searchExpression' and text()='" + getTestdata("RecipientName") + "']", "Recipient Name");
 				firstRecipient.click();
+				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("mng_payee_view_title") + "']", "View title");
-				// FIXME: We need to set recreateChromeDriverSessions in capabilities to TRUE, otherwise cached webview is used from before
 				// Switching to webview
-//				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-//				final WebElement name = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[1]", "Name");
-//				final WebElement email = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[2]", "email");
-//				final WebElement emailLang = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[3]", "email lang");
-//				final WebElement securityQ = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[4]", "security q");
-//				if (!mobileAction.verifyTextEquality(name.getText(), mobileAction.getAppString("str_rcp_name").replaceAll("\"", "")) || 
-//						!mobileAction.verifyTextEquality(email.getText(), mobileAction.getAppString("str_rcp_email1")) ||
-//						!mobileAction.verifyTextEquality(emailLang.getText(), mobileAction.getAppString("str_rcp_language")) ||
-//						!mobileAction.verifyTextEquality(securityQ.getText(), mobileAction.getAppString("str_security_question"))) {
-//					System.err.println("TestCase has failed.");
-//					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-//				}
-//				// Switch back to native to get proper screenshots
-//				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				final WebElement name = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[1]", "Name");
+				final WebElement email = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[2]", "email");
+				final WebElement emailLang = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[3]", "email lang");
+				final WebElement securityQ = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[4]", "security q");
+				if (!mobileAction.verifyTextEquality(name.getText(), mobileAction.getAppString("str_rcp_name").replaceAll("\"", "")) || 
+						!mobileAction.verifyTextEquality(email.getText(), mobileAction.getAppString("str_rcp_email1")) ||
+						!mobileAction.verifyTextEquality(emailLang.getText(), mobileAction.getAppString("str_rcp_language")) ||
+						!mobileAction.verifyTextEquality(securityQ.getText(), mobileAction.getAppString("str_security_question"))) {
+					System.err.println("TestCase has failed.");
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				}
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			// Switch back to native to get proper screenshots
@@ -271,6 +283,63 @@ public class ManageRecipients extends _CommonPage {
 		}
 	}
 
+	/**
+	 * This method will verify text within elements for the view a recipient's info page
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyEditRecipientInfoTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("manage_rcp_title") + "']", "Manage Recipients title");
+				// Switching to webview
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				final WebElement firstRecipient = mobileAction.verifyWebElementUsingXPath("//div[@ng-model='searchExpression' and text()='" + getTestdata("RecipientName") + "']", "Recipient Name");
+				firstRecipient.click();
+				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				clickEditRecipient();
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("mng_payee_modify_title") + "']", "View title");
+				// Switching to webview
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				final WebElement update = mobileAction.verifyWebElementUsingXPath("//div[@class='add-recipient']/div[@class='heading ng-binding']", "Update");
+				final WebElement name = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[1]", "Name");
+				final WebElement email = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[2]", "email");
+				final WebElement securityQ = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[3]", "security q");
+				final WebElement answer = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[4]", "answer");
+				final WebElement answerConfirm = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[5]", "answer confirm");
+				// FIXME: hints are not seen
+				if (!mobileAction.verifyTextEquality(answer.getText(), mobileAction.getAppString("str_security_answer")) ||
+						!mobileAction.verifyTextEquality(answerConfirm.getText(), mobileAction.getAppString("str_confirm_answer")) ||
+						!mobileAction.verifyTextEquality(update.getText(), mobileAction.getAppString("modify_phonecontacts_heading")) ||
+						!mobileAction.verifyTextEquality(name.getText(), mobileAction.getAppString("str_rcp_name").replaceAll("\"", "")) || 
+						!mobileAction.verifyTextEquality(email.getText(), mobileAction.getAppString("str_rcp_email1")) ||
+						!mobileAction.verifyTextEquality(securityQ.getText(), mobileAction.getAppString("str_security_question"))) {
+					System.err.println("TestCase has failed.");
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				}
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			// Switch back to native to get proper screenshots
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
 	/**
 	 * This method will verify text within elements for the add recipients page
 	 * 

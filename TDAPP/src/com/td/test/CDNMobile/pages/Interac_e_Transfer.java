@@ -586,6 +586,43 @@ try {
 	}
 
 	/**
+	 * This method will verify text within elements for confirmation screen cancel e transfer
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyTextCancelETransferConfirmation() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				// Get to cancel e-transfer screen, choose first interac e-transfer to cancel
+				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + getTestdata("RecipientName") + "']", ""), "Recipient to cancel");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("interacEtransferCancelHeader").replaceAll("\\<.*?>","") + "']", "Transfer Details title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("e_transfer_str").replaceAll("\\<.*?>","") + "']", "Interac e-Transfers title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("IMT_SNT") + "']", "Sent");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("receipt_confirmation") + "']", "Confirmation #");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferViewCancelPaymentDate") + "']", "Date Sent");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferViewCancelRecipient") + "']", "Recipient");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransfersReceiveAnswerAmount") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("etransfer_cancellation_fee_warning") + "']", "Please note");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/btn_cancel' and @text='" + mobileAction.getAppString("eTransferViewCancelCancelButton") + "']", "Cancel");
+			}
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	/**
 	 * This method will verify text within elements for pending interac e-transfer
 	 * 
 	 * @return void

@@ -30,7 +30,6 @@ public class Transfers extends _CommonPage {
 	}
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Pending Interac e-Transfer')]")
-	@AndroidFindBy(xpath = "//android.widget.TableRow[@resource-id='com.td:id/tableRow3']")
 	private MobileElement pending_transfer;
 
 
@@ -40,18 +39,15 @@ public class Transfers extends _CommonPage {
 	
 
 	@iOSFindBy(xpath = "//*[@label='Interac e-Transfer']")
-	@AndroidFindBy(xpath = "//android.widget.TableRow[@resource-id='com.td:id/tableRow2']")
 	private MobileElement Interac_e_Transfer_button;
 	
 	@iOSFindBy(xpath= "//*[@label='Between My Accounts']")
-	@AndroidFindBy(xpath = "//android.widget.TableRow[@resource-id='com.td:id/tableRow1']")
 	private MobileElement btw_my_accnts;
 	
 	@iOSFindBy(xpath="//*[@label='In progress']")
 	private MobileElement progrees_bar;
 	
 	@iOSFindBy(xpath= "//*[contains(@label,'Manage Recipients Add, edit or delete Interac e-Transfer recipie')]")
-	@AndroidFindBy(xpath = "//android.widget.TableRow[@resource-id='com.td:id/tableRow4']")
 	private MobileElement manageRecipient;
 
 	@iOSFindBy(xpath="//*[@label='In progress']")
@@ -132,6 +128,7 @@ public class Transfers extends _CommonPage {
 	public void clickPendingTransfers() {
 		try {
 			Decorator();
+			
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer");
 			mobileAction.FuncClick(pending_transfer, "Pending Transfers");
 			Thread.sleep(5000);
@@ -147,6 +144,24 @@ public class Transfers extends _CommonPage {
 		PageFactory.initElements(
 				new AppiumFieldDecorator((CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
 				this);
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				pending_transfer = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderPendingInteracETransfer") + "']", "Pending and Completed");
+				Interac_e_Transfer_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer").replaceAll("\\<.*?>","") + "']", "Send Money");
+				btw_my_accnts = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderBetweenMyAccounts") + "']", "Transfer Between");
+				manageRecipient = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("imtNavRowManageRecipients") + "']", "Manage Recipients");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
 	}
 	
 	/**
