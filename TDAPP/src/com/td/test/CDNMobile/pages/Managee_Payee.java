@@ -296,8 +296,7 @@ public class Managee_Payee extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(managePayees,"Manage Payees");
 			mobileAction.FuncClick(addPayee,"Add Canadian Payee");
 			mobileAction.waitForElementToVanish(progressBar);
-			
-		
+			Thread.sleep(10000);
 	
 	}catch (NoSuchElementException | InterruptedException | IOException e) {
 		System.err.println("TestCase has failed.");

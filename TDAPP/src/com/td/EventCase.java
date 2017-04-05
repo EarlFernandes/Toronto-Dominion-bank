@@ -92,6 +92,9 @@ public class EventCase {
 
 		Add_Recipient_ErrorPage,
 		AddCanadianPayee,
+		AddPayee_VerifyTextReview,
+		AddPayee_VerifyTextConfirmation,
+		AddPayee_VerifyTextSuccess,
 		AddPayee_SearchPayee, 
 		AddCard_MobilePayment, 
 		AddToTDMobilePayment,
@@ -1444,6 +1447,18 @@ public class EventCase {
 
 		case AddPayee_SearchPayee:
 			AddPayee.get().searchPayee();
+			break;
+
+		case AddPayee_VerifyTextReview:
+			AddPayee.get().verifyAddPayeeReviewTextElements();
+			break;
+
+		case AddPayee_VerifyTextConfirmation:
+			AddPayee.get().verifyAddPayeeConfirmationTextElements();
+			break;
+
+		case AddPayee_VerifyTextSuccess:
+			AddPayee.get().verifyAddPayeeSuccessTextElements();
 			break;
 
 		case BetweenMyAccounts_NegativeTestingTransferFunds:
