@@ -544,7 +544,7 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(xPathLearnMore, "Learn more");
 				final MobileElement footerNote = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/reason_for_payment_rule']", "Reason for payment rule");
 				final String footerNoteString = footerNote.getText();
-				mobileAction.verifyTextEquality(footerNoteString.replace("??", " ").replaceAll("\n", ""), mobileAction.getAppString("reason_for_payment_rule").replaceAll("\"", "").replaceAll("\n", " "));
+				mobileAction.verifyTextEquality(footerNoteString.replace("??", " ").replaceAll("\n", " "), mobileAction.getAppString("reason_for_payment_rule").replaceAll("\"", "").replaceAll("\n", " "));
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {

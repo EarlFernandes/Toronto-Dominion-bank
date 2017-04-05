@@ -198,8 +198,10 @@ public class MobileDeposit extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MRDC_DECLINED_SCREEN_MESSAGE_LINE_2").replaceAll("\"", "") + "']", "Have at least");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MRDC_DECLINED_SCREEN_MESSAGE_LINE_3").replaceAll("\"", "") + "']", "To make a deposit");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MRDC_DECLINED_SCREEN_MESSAGE_LINE_4").replaceAll("\"", "") + "']", "If you have questions");
+				final String xPathLocate = "//android.widget.Button[@text='" + mobileAction.getAppString("MRDC_Not_Eligibility_FIND_LOCATION") + "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathLocate, false, 2, "up");
 				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("MRDC_MOBILE_DEPOSIT_CHEQUE_SUCCESS_CALL_US") + "']", "Call Us");
-				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("MRDC_MOBILE_DEPOSIT_CHEQUE_SUCCESS_LOCATE_BRANCH") + "']", "Locate a branch");
+				mobileAction.verifyElementUsingXPath(xPathLocate, "Locate a branch");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {

@@ -441,11 +441,11 @@ public class ManageRecipients extends _CommonPage {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				final WebElement reviewDetails = mobileAction.verifyWebElementUsingXPath("//div[@class='message-holder ng-binding ng-scope']", "Add Recipient");
-				final WebElement nameConfirm = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[1]", "Name");
-				final WebElement emailConfirm = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[2]", "Email");
-				final WebElement langconfirm = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[3]", "email lang");
-				final WebElement securityQConfirm = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[4]", "security question");
-				final WebElement securityAnswerConfirm = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[5]", "security answer");
+				final WebElement nameConfirm = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[2]", "Name");
+				final WebElement emailConfirm = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[3]", "Email");
+				final WebElement langconfirm = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[4]", "email lang");
+				final WebElement securityQConfirm = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[5]", "security question");
+				final WebElement securityAnswerConfirm = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[6]", "security answer");
 
 				if (!mobileAction.verifyTextEquality(reviewDetails.getText(), mobileAction.getAppString("add_rcp_confirm_message")) ||
 						!mobileAction.verifyTextEquality(nameConfirm.getText(), mobileAction.getAppString("str_rcp_name")) || 

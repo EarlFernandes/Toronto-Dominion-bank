@@ -1566,6 +1566,7 @@ public class MobileAction2 extends CommonLib {
 	public String getAppString(final String key) {
 		final String locale =  super.LoadData("Value", super.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
 		String s = null;
+		// FIXME: This is slow, approximately 8-10 seconds, we need to cache the map.
 		if(StringUtils.isEmpty(locale)) {
 			 s = (String)((AppiumDriver) GetDriver()).getAppStringMap().get(key);
 		} else {
