@@ -383,7 +383,7 @@ public class Bills extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void verifyTextElementConfirmCancelScheduledPayment() {
+	public void verifyConfirmCancelScheduledPaymentTextElements() {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {

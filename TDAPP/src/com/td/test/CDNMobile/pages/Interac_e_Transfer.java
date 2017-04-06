@@ -290,8 +290,37 @@ try {
 
     }
 
-	public void verifyTextConfirmationPage() throws InterruptedException, IOException {
+	public void verifyInteracETransferConfirmationPageTextElements() {
 		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				fillInInteracETransferForm();
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferConfirmNotice").replaceAll("\\<.*?>","") + "']", "Notice");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransfersReceiveAnswerSender") + "']", "Sender");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferConfirmFrom") + "']", "From");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferConfirmRecipient") + "']", "Recipient");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferAmountLabel") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferMessageLabel") + "']", "Message");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/txt_etransfer_warning' and @text='" + mobileAction.getAppString("etransfer_warning_label") + "']", "Warning");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferMessageLabel") + "']", "Message");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/btn_cancel' and @text='" + mobileAction.getAppString("eTransferConfirmCancelButton") + "']", "Close button");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/btn_send_money' and @text='" + mobileAction.getAppString("eTransferConfirmSendMoneyButton") + "']", "Send button");
+			}
+
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+		    System.err.println("TestCase has failed.");
+		    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	private void fillInInteracETransferForm() {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
@@ -307,48 +336,26 @@ try {
 				mobileAction.FuncClickBackButton();
 				mobileAction.FuncClick(transfer_Continue, "Continue");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmPageHeader") + "']", "Confirm title");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferConfirmNotice").replaceAll("\\<.*?>","") + "']", "Notice");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransfersReceiveAnswerSender") + "']", "Sender");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferConfirmFrom") + "']", "From");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferConfirmRecipient") + "']", "Recipient");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferAmountLabel") + "']", "Amount");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferMessageLabel") + "']", "Message");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/txt_etransfer_warning' and @text='" + mobileAction.getAppString("etransfer_warning_label") + "']", "Warning");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferMessageLabel") + "']", "Message");
-				mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/btn_cancel' and @text='" + mobileAction.getAppString("eTransferConfirmCancelButton") + "']", "Close button");
-				mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/btn_send_money' and @text='" + mobileAction.getAppString("eTransferConfirmSendMoneyButton") + "']", "Send button");
-
 			}
-
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-		    System.err.println("TestCase has failed.");
-		    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
 
-	public void verifyTextSuccessPage() throws InterruptedException, IOException {
+	public void verifyInteracETransferSuccessTextElements() {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				// Seems like selector for from account/recipient do not work here
-				// We just need to get to confirmation page, so select default fields
-				mobileAction.FuncClick(fromAccount, "From Account");
-				mobileAction.FuncElementSwipeWhileNotFound(acntsList, "//android.widget.TextView[@resource-id='com.td:id/txtAccountDesc' and @index='0']", 1, "down", true);
-				mobileAction.FuncClick(recipient, "Recipient");
-				mobileAction.FuncElementSwipeWhileNotFound(acntsList, "//android.widget.TextView[@resource-id='com.td:id/txt_recipient_name' and @index='0']", 1, "down", true);
-				String ValueofAmount = getTestdata("Amount");
-				mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
-				mobileAction.FuncClickBackButton();
-				mobileAction.FuncClick(transfer_Continue, "Continue");
-				mobileAction.FuncClick(sendMoney, "Send Money");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("eTransferReceiveReceiptHeaderTitle") + "']", "Receipt title");
+				fillInInteracETransferForm();
+				sendInteracETransfer();
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/thank_you' and @text='" + mobileAction.getAppString("ThankYou") + "']", "Thank you!");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/message' and @text='" + mobileAction.getAppString("eTransferReceiptTransferSent").replaceAll("\\<.*?>","") + "']", "Interac e-transfer sent");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/confirmation' and @text='" + mobileAction.getAppString("receipt_confirmation") + "']", "Confirmation");
@@ -364,6 +371,25 @@ try {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/pending_transfers' and @text='" + mobileAction.getAppString("receipt_pending_transfers") + "']", "PENDING TRANSFERS button");
 			}
 
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+		    System.err.println("TestCase has failed.");
+		    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	private void sendInteracETransfer() {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.FuncClick(sendMoney, "Send Money");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("eTransferReceiveReceiptHeaderTitle") + "']", "Receipt title");
+			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
@@ -559,8 +585,30 @@ try {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void verifyTextCancelETransfer() {
+	public void verifyCancelETransferTextElements() {
 		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				cancelFirstInteracETransfer();
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("TransfersReclaimDepositToHeaderMessage").replaceAll("\\<.*?>","") + "']", "Reclaim message");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("TransfersReclaimDepositToDepositTo") + "']", "Deposit To");
+				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@resource-id='com.td:id/deposit_account' and @text='" + mobileAction.getAppString("TransfersReclaimDepositToHint") + "']", "Deposit To hint");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/btn_continue' and @text='" + mobileAction.getAppString("TransfersReclaimDepositToContinueButton") + "']", "Continue");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	private void cancelFirstInteracETransfer(){
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
@@ -569,10 +617,6 @@ try {
 				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + getTestdata("RecipientName") + "']", ""), "Recipient to cancel");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("eTransferViewCancelCancelButton").replaceAll("\\<.*?>","") + "']", "Cancel Interac e-transfer title");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("TransfersReclaimDepositToHeaderMessage").replaceAll("\\<.*?>","") + "']", "Reclaim message");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("TransfersReclaimDepositToDepositTo") + "']", "Deposit To");
-				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@resource-id='com.td:id/deposit_account' and @text='" + mobileAction.getAppString("TransfersReclaimDepositToHint") + "']", "Deposit To hint");
-				mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/btn_continue' and @text='" + mobileAction.getAppString("TransfersReclaimDepositToContinueButton") + "']", "Continue");
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {
@@ -593,7 +637,7 @@ try {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void verifyTextCancelETransferConfirmation() {
+	public void verifyCancelETransferConfirmationTextElements() {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -630,7 +674,7 @@ try {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void verifyTextPendingETransfers() {
+	public void verifyPendingETransfersTextElements() {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {

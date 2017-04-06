@@ -95,16 +95,8 @@ public class AddPayee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				// Switching to webview
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement searchForPayee = mobileAction.verifyWebElementUsingXPath("//input[@ng-model='searchText']", "Search for payee");
-				searchForPayee.sendKeys(getTestdata("Payee"));
-				mobileAction.waitForElementToVanish(progressBar);
-				final WebElement payee = mobileAction.verifyWebElementUsingXPath("//a[@id='result0']", "click payee");
-				payee.click();
-				mobileAction.waitForElementToVanish(progressBar);
-				mobileAction.switchAppiumContext("NATIVE_APP");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("add_cdn_payee_title") + "']", "Add Canadian Payee title");
+				searchForPayee();
+				clickOnFirstPayeeFound();
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				final WebElement payeeName= mobileAction.verifyWebElementUsingXPath("(//label[@class='drop-down-label ng-binding'])[1]", "Payee Name");
@@ -143,6 +135,26 @@ public class AddPayee extends _CommonPage {
 		}
 	}
 
+	private void clickOnFirstPayeeFound() {
+		try {
+			final WebElement payee = mobileAction.verifyWebElementUsingXPath("//a[@id='result0']", "click payee");
+			payee.click();
+			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("add_cdn_payee_title") + "']", "Add Canadian Payee title");
+		} catch (NoSuchElementException | IOException e) {
+			// Switch back to native to get proper screenshots
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
 	/**
 	 * This method will verify text within elements for the add payee confirmation screen
 	 * 
@@ -157,25 +169,9 @@ public class AddPayee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				// Switching to webview
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement searchForPayee = mobileAction.verifyWebElementUsingXPath("//input[@ng-model='searchText']", "Search for payee");
-				searchForPayee.sendKeys(getTestdata("Payee"));
-				mobileAction.waitForElementToVanish(progressBar);
-				final WebElement payee = mobileAction.verifyWebElementUsingXPath("//a[@id='result0']", "click payee");
-				payee.click();
-				mobileAction.waitForElementToVanish(progressBar);
-				mobileAction.switchAppiumContext("NATIVE_APP");
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				//System.out.println("source : "+ ((AppiumDriver) CL.GetDriver()).getPageSource());
-				final WebElement payeeAccount = mobileAction.verifyWebElementUsingXPath("//input[@id='accountNumber']", "Payee Account");
-				final WebElement continueButton = mobileAction.verifyWebElementUsingXPath("//button[@class='primary-button ng-binding disable']", "Continue button");
-				payeeAccount.sendKeys(getTestdata("FromAccount"));
-				continueButton.click();
-				mobileAction.waitForElementToVanish(progressBar);
-
-				mobileAction.switchAppiumContext("NATIVE_APP");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("review_details_title") + "']", "Confirm");
+				searchForPayee();
+				clickOnFirstPayeeFound();
+				addPayeeReview();
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				final WebElement confirmMsg= mobileAction.verifyWebElementUsingXPath("//div[@class='message-holder ng-binding ng-scope']", "Confirmation Msg");
@@ -208,6 +204,35 @@ public class AddPayee extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+
+	private void addPayeeReview() {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				System.out.println("source : "+ ((AppiumDriver) CL.GetDriver()).getPageSource());
+				final WebElement payeeAccount = mobileAction.verifyWebElementUsingXPath("//input[@id='accountNumber']", "Payee Account");
+				final WebElement continueButton = mobileAction.verifyWebElementUsingXPath("//button[@class='primary-button ng-binding disable']", "Continue button");
+				payeeAccount.sendKeys(getTestdata("FromAccount"));
+				continueButton.click();
+				mobileAction.waitForElementToVanish(progressBar);
+		
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("review_details_title") + "']", "Confirm");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			// Switch back to native to get proper screenshots
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
 	
 	/**
 	 * This method will verify text within elements for the add payee success screen
@@ -223,32 +248,10 @@ public class AddPayee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				// Switching to webview
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement searchForPayee = mobileAction.verifyWebElementUsingXPath("//input[@ng-model='searchText']", "Search for payee");
-				searchForPayee.sendKeys(getTestdata("Payee"));
-				mobileAction.waitForElementToVanish(progressBar);
-				final WebElement payee = mobileAction.verifyWebElementUsingXPath("//a[@id='result0']", "click payee");
-				payee.click();
-				mobileAction.waitForElementToVanish(progressBar);
-				mobileAction.switchAppiumContext("NATIVE_APP");
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				System.out.println("source : "+ ((AppiumDriver) CL.GetDriver()).getPageSource());
-				final WebElement payeeAccount = mobileAction.verifyWebElementUsingXPath("//input[@id='accountNumber']", "Payee Account");
-				final WebElement continueButton = mobileAction.verifyWebElementUsingXPath("//button[@class='primary-button ng-binding disable']", "Continue button");
-				payeeAccount.sendKeys(getTestdata("FromAccount"));
-				continueButton.click();
-				mobileAction.waitForElementToVanish(progressBar);
-
-				mobileAction.switchAppiumContext("NATIVE_APP");
-				// Switching to webview
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement addPayeeButton = mobileAction.verifyWebElementUsingXPath("//button[@class='primary-button green-button ng-binding']", "Continue button");
-				addPayeeButton.click();
-				mobileAction.waitForElementToVanish(progressBar);
-
-				mobileAction.switchAppiumContext("NATIVE_APP");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("add_payee_success_title") + "']", "Success title");
+				searchForPayee();
+				clickOnFirstPayeeFound();
+				addPayeeReview();
+				addPayeeConfirm();
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.waitForElementToVanish(progressBar);
@@ -288,6 +291,45 @@ public class AddPayee extends _CommonPage {
 			}
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	private void addPayeeConfirm() {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				// Switching to webview
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				final WebElement addPayeeButton = mobileAction.verifyWebElementUsingXPath("//button[@class='primary-button green-button ng-binding']", "Continue button");
+				addPayeeButton.click();
+				mobileAction.waitForElementToVanish(progressBar);
+		
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("add_payee_success_title") + "']", "Success title");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			// Switch back to native to get proper screenshots
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	private void searchForPayee() throws IOException {
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			// TODO: iOS elements
+		} else {
+			// Switching to webview
+			mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			final WebElement searchForPayee = mobileAction.verifyWebElementUsingXPath("//input[@ng-model='searchText']", "Search for payee");
+			searchForPayee.sendKeys(getTestdata("Payee"));
+			mobileAction.waitForElementToVanish(progressBar);
 		}
 	}
 }

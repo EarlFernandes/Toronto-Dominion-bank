@@ -247,13 +247,7 @@ public class ManageRecipients extends _CommonPage {
 				// TODO: iOS elements
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("manage_rcp_title") + "']", "Manage Recipients title");
-				// Switching to webview
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement firstRecipient = mobileAction.verifyWebElementUsingXPath("//div[@ng-model='searchExpression' and text()='" + getTestdata("RecipientName") + "']", "Recipient Name");
-				firstRecipient.click();
-				mobileAction.waitForElementToVanish(progressBar);
-				mobileAction.switchAppiumContext("NATIVE_APP");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("mng_payee_view_title") + "']", "View title");
+				clickSpecificRecipient();
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				final WebElement name = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[1]", "Name");
@@ -283,6 +277,32 @@ public class ManageRecipients extends _CommonPage {
 		}
 	}
 
+	private void clickSpecificRecipient() {
+		try {
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					// TODO: iOS elements
+				} else {
+					// Switching to webview
+					mobileAction.switchAppiumContext("WEBVIEW_com.td");
+					final WebElement firstRecipient = mobileAction.verifyWebElementUsingXPath("//div[@ng-model='searchExpression' and text()='" + getTestdata("RecipientName") + "']", "Recipient Name");
+					firstRecipient.click();
+					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.switchAppiumContext("NATIVE_APP");
+					mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("mng_payee_view_title") + "']", "View title");
+				}
+			} catch (NoSuchElementException | IOException e) {
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
+		}
+
 	/**
 	 * This method will verify text within elements for the view a recipient's info page
 	 * 
@@ -297,13 +317,7 @@ public class ManageRecipients extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("manage_rcp_title") + "']", "Manage Recipients title");
-				// Switching to webview
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement firstRecipient = mobileAction.verifyWebElementUsingXPath("//div[@ng-model='searchExpression' and text()='" + getTestdata("RecipientName") + "']", "Recipient Name");
-				firstRecipient.click();
-				mobileAction.waitForElementToVanish(progressBar);
-				mobileAction.switchAppiumContext("NATIVE_APP");
+				clickSpecificRecipient();
 				clickEditRecipient();
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("mng_payee_modify_title") + "']", "View title");
 				// Switching to webview

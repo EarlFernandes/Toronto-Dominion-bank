@@ -169,6 +169,7 @@ public class EventCase {
 		ClickCrossBorderBanking,
 		ClickTDForMe,
 		ClickTDMySpend,
+		ClickChequeDepositHistory,
 		ClickBack, 
 		clickChangeOrder, 
 		clickChangeorder_MarketToLimit, 
@@ -330,6 +331,9 @@ public class EventCase {
 		Mobile_Deposit, 
 		MobileDeposit_VerifyTextElements,
 		MobileDeposit_VerifyTextElementsIneligible,
+		MobileDeposit_VerifyTextDepositCheque,
+		MobileDeposit_VerifyTextDepositChequeHistory,
+		MobileDeposit_VerifyTextChequeDetails,
 		Multitasking_System,
 
 		OpenApp, 
@@ -773,6 +777,18 @@ public class EventCase {
 			MobileDeposit.get().verifyOptionsTextElements();
 			break;
 
+		case MobileDeposit_VerifyTextChequeDetails:
+			MobileDeposit.get().verifyChequeDetailsTextElements();
+			break;
+
+		case MobileDeposit_VerifyTextDepositChequeHistory:
+			MobileDeposit.get().verifyDepositChequeHistoryTextElements();
+			break;
+
+		case MobileDeposit_VerifyTextDepositCheque:
+			MobileDeposit.get().verifyDepositChequeTextElements();
+			break;
+
 		case MobileDeposit_VerifyTextElementsIneligible:
 			MobileDeposit.get().verifyIneligibleTextElements();
 			break;
@@ -811,6 +827,10 @@ public class EventCase {
 
 		case ClickDepositCheque:
 			MobileDeposit.get().depositCheque();
+			break;
+
+		case ClickChequeDepositHistory:
+			MobileDeposit.get().chequeDepositHistory();
 			break;
 
 		case DepositChequeHeader:
@@ -945,7 +965,7 @@ public class EventCase {
 			break;
 
 		case Between_My_accounts_VerifySuccessText:
-			Between_My_accounts.get().verifyTextSuccessPage();
+			Between_My_accounts.get().verifySuccessPageTextElements();
 			break;
 
 		case Transfers_Click_Between_My_Accounts:
@@ -1102,15 +1122,15 @@ public class EventCase {
 			break;
 
 		case PayBill_US_VerifyTextElementsSuccess:
-			Pay_US_Bill.get().verifyTextPayUSBillSuccess();
+			Pay_US_Bill.get().verifyPayUSBillSuccessTextElements();
 			break;
 
 		case PayBill_Canada_VerifyTextElementsConfirmation:
-			Bill_PayCanada.get().verifyTextPayCanadianBillConfirmation();
+			Bill_PayCanada.get().verifyPayCanadianBillConfirmationTextElements();
 			break;
 
 		case PayBill_US_VerifyTextElementsConfirmation:
-			Pay_US_Bill.get().verifyTextPayUSBillConfirmation();
+			Pay_US_Bill.get().verifyPayUSBillConfirmationTextElements();
 			break;
 
 		case ManageRecipient_ModifyRecipient:
@@ -1246,11 +1266,11 @@ public class EventCase {
 			break;
 
 		case Interac_e_Transfer_VerifyConfirmationText:
-			Interac_e_Transfer.get().verifyTextConfirmationPage();
+			Interac_e_Transfer.get().verifyInteracETransferConfirmationPageTextElements();
 			break;
 
 		case Interac_e_Transfer_VerifySuccessText:
-			Interac_e_Transfer.get().verifyTextSuccessPage();
+			Interac_e_Transfer.get().verifyInteracETransferSuccessTextElements();
 			break;
 
 		case Interac_AddRecipient:
@@ -1470,7 +1490,7 @@ public class EventCase {
 			break;
 
 		case Bills_VerifyTextConfirmCancelScheduledPayment:
-			Bills.get().verifyTextElementConfirmCancelScheduledPayment();
+			Bills.get().verifyConfirmCancelScheduledPaymentTextElements();
 			break;
 
 		case Bills_ScheduledPayments_VerifyText:
@@ -1518,7 +1538,7 @@ public class EventCase {
 			break;
 
 		case PendingInterac_e_Transfer_cancel_confirmation_VerifyText:
-			Interac_e_Transfer.get().verifyTextCancelETransferConfirmation();
+			Interac_e_Transfer.get().verifyCancelETransferConfirmationTextElements();
 			break;
 
 		case Check_Remember_Me_Default:
@@ -1546,11 +1566,11 @@ public class EventCase {
 			break;
 
 		case PendingInterac_e_Transfer_cancel_deposit_to_VerifyText:
-			Interac_e_Transfer.get().verifyTextCancelETransfer();
+			Interac_e_Transfer.get().verifyCancelETransferTextElements();
 			break;
 
 		case PendingInterac_e_Transfer_VerifyText:
-			Interac_e_Transfer.get().verifyTextPendingETransfers();
+			Interac_e_Transfer.get().verifyPendingETransfersTextElements();
 			break;
 
 		case Menu_Location:

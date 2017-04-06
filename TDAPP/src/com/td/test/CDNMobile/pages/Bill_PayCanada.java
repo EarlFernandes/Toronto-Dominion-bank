@@ -304,22 +304,13 @@ public class Bill_PayCanada extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void verifyTextPayCanadianBillConfirmation() {
+	public void verifyPayCanadianBillConfirmationTextElements() {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				// Seems like selector for from account/payee do not work here
-				// We just need to get to confirmation page, so select default fields
-				mobileAction.FuncClick(from_account, "From Account");
-				mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, "//android.widget.TextView[@resource-id='com.td:id/txtAccountDesc' and @index='0']", 2, "down", true);
-				mobileAction.FuncClick(to_account_post, "Select Payee");
-				mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, "//android.widget.TextView[@text='" + getTestdata("Payee") + "']", 1, "down", true);
-				mobileAction.FuncClick(amount, "Amount button clicked");
-				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
-				mobileAction.FuncHideKeyboard();
-				mobileAction.FuncClick(continue_pay, "Continue_pay");
+				payCanadianBillToConfirmation();
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("review_details_title") + "']", "Confirm title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferConfirmFrom") + "']", "From");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferConfirmTo") + "']", "To");
@@ -328,7 +319,7 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("str_cancel") + "']", "Cancel");
 				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("payBillConfirmButtonPayBill") + "']", "Pay Bill");
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException | IOException e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {
@@ -336,6 +327,34 @@ public class Bill_PayCanada extends _CommonPage {
 			}
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	private void payCanadianBillToConfirmation() {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				// Seems like selector for from account/payee do not work here
+				// We just need to get to confirmation page, so select default fields
+				// FIXME: We should read from test data excel sheet to get From Account value
+				mobileAction.FuncClick(from_account, "From Account");
+				mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, "//android.widget.TextView[@resource-id='com.td:id/txtAccountDesc' and @index='0']", 2, "down", true);
+				mobileAction.FuncClick(to_account_post, "Select Payee");
+				mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, "//android.widget.TextView[@text='" + getTestdata("Payee") + "']", 1, "down", true);
+				mobileAction.FuncClick(amount, "Amount button clicked");
+				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
+				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClick(continue_pay, "Continue_pay");
+			}
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
 

@@ -1664,7 +1664,7 @@ public class Between_My_accounts extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void verifyTextSuccessPage() throws InterruptedException, IOException {
+	public void verifySuccessPageTextElements() throws InterruptedException, IOException {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {

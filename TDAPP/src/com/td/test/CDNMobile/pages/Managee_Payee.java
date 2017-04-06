@@ -50,10 +50,9 @@ public class Managee_Payee extends _CommonPage {
 	private MobileElement addPayee;
 	
 	@iOSFindBy(xpath = "//*[@label='In Progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 
-	
 	
 	public synchronized static Managee_Payee get() {
 		if (Managee_Payee == null) {
@@ -130,13 +129,7 @@ public class Managee_Payee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				// Switching to webview
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement firstPayee = mobileAction.verifyWebElementUsingXPath("//div[@ng-if='payee.AccountNO' and text()='" + getTestdata("Payee") + "']", "Payee");
-				firstPayee.click();
-				mobileAction.waitForElementToVanish(progressBar);
-				mobileAction.switchAppiumContext("NATIVE_APP");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("mng_payee_view_title") + "']", "View title");
+				clickSpecificPayee();
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				final WebElement name = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[1]", "name");
@@ -152,6 +145,32 @@ public class Managee_Payee extends _CommonPage {
 				}
 				// Switch back to native to get proper screenshots
 				mobileAction.switchAppiumContext("NATIVE_APP");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			// Switch back to native to get proper screenshots
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	private void clickSpecificPayee() {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				// Switching to webview
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				final WebElement firstPayee = mobileAction.verifyWebElementUsingXPath("//div[@ng-if='payee.AccountNO' and text()='" + getTestdata("Payee") + "']", "Payee");
+				firstPayee.click();
+				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("mng_payee_view_title") + "']", "View title");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			// Switch back to native to get proper screenshots

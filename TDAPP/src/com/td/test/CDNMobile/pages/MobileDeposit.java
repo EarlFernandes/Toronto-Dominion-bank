@@ -23,8 +23,11 @@ public class MobileDeposit extends _CommonPage {
 	private MobileElement mobile_deposit_header;
 	
 	@iOSFindBy(xpath = "//*[@label='Deposit Cheque']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/MobileDeposit_DepositCheque_Header_TextView' and @text='Deposit Cheque']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/MobileDeposit_DepositCheque_Header_TextView']")
 	private MobileElement dpstCheque_btn;
+
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/MobileDeposit_DepositReceipts_Header_TextView']")
+	private MobileElement chequeHistoryButton;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'We')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/enrollment_headertitle1' and starts-with(@text,'We')]")
@@ -51,7 +54,10 @@ public class MobileDeposit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'To make a deposit')]")
 	private MobileElement validation_sixthLine;
 
-	
+	@iOSFindBy(xpath="//*[@label='In progress']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
+	private MobileElement progressBar;
+
 	String mobile_Header_value = "Mobile Deposit";
 
 	public synchronized static MobileDeposit get() {
@@ -123,7 +129,30 @@ public class MobileDeposit extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 }
-	
+
+	/**
+	 * This method will Click the Cheque Deposit History
+	 * 
+	 * @return void
+	 * @throws IOException 
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 *
+	 */
+	public void chequeDepositHistory()  {
+		Decorator();
+		try {
+			mobileAction.FuncClick(chequeHistoryButton, "Cheque History");
+			mobileAction.waitForElementToVanish(progressBar);
+		}
+		catch (NoSuchElementException  | IOException  |InterruptedException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+		
+	}
+
 	/**
 	 * This method will Click the DepositCheque
 	 * 
@@ -140,12 +169,79 @@ public class MobileDeposit extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(dpstCheque_btn, "DepositCheque");
+			mobileAction.waitForElementToVanish(progressBar);
 		}
 		catch (NoSuchElementException  | IOException  |InterruptedException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 		
+	}
+	/**
+	 * This method will verify text within elements for the deposit cheque history screen
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyDepositChequeHistoryTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("ActionBar_MobileDepositReceipt") + "']", "Deposit Cheque History");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDepositReceipt_Header_Description") + "']", "Warning msg");
+				// FIXME: Need to test date
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MRDC_MOBILE_DEPOSIT_RECEIPT_LIST_DISCLAIMER") + "']", "disclaimer");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	/**
+	 * This method will verify text within elements for the deposit cheque screen
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyDepositChequeTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("MobileDeposit_DepositCheque_Header") + "']", "Deposit Cheque");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MRDC_RECEIPTS_DETAILS_ACCOUNT_TO_ACCOUNT") + "']", "To Account");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDepositCheque_Account_Hint") + "']", "hint");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDepositCheque_Amount_Label") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("mobile_deposit_cheque_limit_header_1") + "']", "daily limit");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("mobile_deposit_cheque_limit_header_2") + "']", "30 day limit");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDepositCheque_Memo_Label") + "']", "Memo");
+				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@text='" + mobileAction.getAppString("MobileDepositCheque_Memo_Hint").replace("&amp;", "&") + "']", "Memo hint");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDepositCheque_Cheque_Front_Label") + "']", "Capture Cheque");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MRDC_MOBILE_DEPOSIT_CHEQUE_FRONT") + "']", "Front");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MRDC_MOBILE_DEPOSIT_CHEQUE_BACK") + "']", "Back");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("MobileDepositCheque_Continue_Button") + "']", "Continue");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
 	}
 	/**
 	 * This method will verify text within elements for the mobile deposit options page
@@ -202,6 +298,41 @@ public class MobileDeposit extends _CommonPage {
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathLocate, false, 2, "up");
 				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("MRDC_MOBILE_DEPOSIT_CHEQUE_SUCCESS_CALL_US") + "']", "Call Us");
 				mobileAction.verifyElementUsingXPath(xPathLocate, "Locate a branch");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	/**
+	 * This method will verify text within elements for the mobile deposit cheque history details page
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyChequeDetailsTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				MobileElement chequeToSelect = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mobile_deposit_receipt_account_name' and @index='0']", "Cheque to Select");
+				chequeToSelect.click();
+				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("ActionBar_MobileDepositReceipt") + "']", "Mobile Deposit History");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MRDC_RECEIPTS_DETAILS_ACCOUNT_TO_ACCOUNT") + "']", "To Account");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDepositCheque_Amount_Label") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDepositCheque_Memo_Label") + "']", "Memo");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MRDC_RECEIPTS_DETAILS_ACCOUNT_DATE").replace("&amp;", "&") + "']", "Date/Time Submitted");
+				// FIXME: Verify date
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MRDC_RECEIPTS_DETAILS_ACCOUNT_CHEQUE_IMAGE") + "']", "Cheque Front");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {

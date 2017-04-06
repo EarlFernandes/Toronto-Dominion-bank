@@ -45,6 +45,7 @@ public class Transfers extends _CommonPage {
 	private MobileElement btw_my_accnts;
 	
 	@iOSFindBy(xpath="//*[@label='In progress']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progrees_bar;
 	
 	@iOSFindBy(xpath= "//*[contains(@label,'Manage Recipients Add, edit or delete Interac e-Transfer recipie')]")
