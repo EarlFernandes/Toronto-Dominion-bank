@@ -93,6 +93,7 @@ public class EventCase {
 		Add_Recipient_ErrorPage,
 		AddCanadianPayee,
 		AddPayee_VerifyTextReview,
+		AddPayee_VerifyTextReviewUS,
 		AddPayee_VerifyTextConfirmation,
 		AddPayee_VerifyTextSuccess,
 		AddPayee_SearchPayee, 
@@ -148,6 +149,7 @@ public class EventCase {
 		Bills_ScheduledPayments_VerifyText,
 		Bills_VerifyTextElements,
 		Bills_VerifyTextConfirmCancelScheduledPayment,
+		Bills_VerifyTextNoCanadianPayeesAdded,
 		BillsHeader,
 		BetweenMyAccounts_TFSAUSD_TFSACAD(),
 		Bill_PayCanada_Pay_Bill,
@@ -174,6 +176,7 @@ public class EventCase {
 		clickChangeOrder, 
 		clickChangeorder_MarketToLimit, 
 		ClickContact, 
+		ClickAddRecipientFromContactsList,
 		ClickDepositCheque,
 		CardDetails_save,
 
@@ -280,6 +283,7 @@ public class EventCase {
 		LogoutFrench,
 
 		ManagePayee_AddCanadianPayee,
+		ManagePayee_AddUSPayee,
 		ManagePayee_VerifyTextSearchPayee,
 		ManagePayees_VerifySpecificPayeeTextElements,
 		ManagePayees_VerifyTextElements,
@@ -296,6 +300,7 @@ public class EventCase {
 		ManageRecipients_VerifyTextElements,
 		ManageRecipient_VerifyTextAddRecipient,
 		ManageRecipient_VerifyTextRecipientInfo,
+		ManageRecipient_VerifyTextContactsPopUp,
 		mask_user,
 
 		Menu_Accounts, 
@@ -896,6 +901,10 @@ public class EventCase {
 			MenuPage.get().clickContactUs();
 			break;
 
+		case ClickAddRecipientFromContactsList:
+			ManageRecipients.get().clickAddRecipientFromContactsList();
+			break;
+
 		case ContactUs_VerifyTextElements:
 			ContactUs.get().verifyContactUsTextElements();
 			break;
@@ -1461,6 +1470,10 @@ public class EventCase {
 			Managee_Payee.get().addPayee();
 			break;
 
+		case ManagePayee_AddUSPayee:
+			Managee_Payee.get().addUSPayee();
+			break;
+
 		case ManagePayee_VerifyTextSearchPayee:
 			Managee_Payee.get().verifySearchPayeesTextElements();
 			break;
@@ -1471,6 +1484,10 @@ public class EventCase {
 
 		case AddPayee_VerifyTextReview:
 			AddPayee.get().verifyAddPayeeReviewTextElements();
+			break;
+
+		case AddPayee_VerifyTextReviewUS:
+			AddPayee.get().verifyAddUSPayeeReviewTextElements();
 			break;
 
 		case AddPayee_VerifyTextConfirmation:
@@ -1491,6 +1508,10 @@ public class EventCase {
 
 		case Bills_VerifyTextConfirmCancelScheduledPayment:
 			Bills.get().verifyConfirmCancelScheduledPaymentTextElements();
+			break;
+
+		case Bills_VerifyTextNoCanadianPayeesAdded:
+			Bills.get().verifyNoPayeesPayBillTextElements();
 			break;
 
 		case Bills_ScheduledPayments_VerifyText:
@@ -1961,7 +1982,11 @@ public class EventCase {
 		case MobilePayment_Settingsicon:
 			MobilePayment.get().clicksettingsicon();
 			break;
-			
+
+		case ManageRecipient_VerifyTextContactsPopUp:
+			ManageRecipients.get().verifyAddRecipientFromContactsPopupTextElements();
+			break;
+
 		case MobilePayment_SetPasscode:
 			MobilePayment.get().click_enablepasscode();
 			break;

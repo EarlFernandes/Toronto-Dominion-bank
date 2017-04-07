@@ -8,6 +8,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
@@ -479,7 +480,43 @@ public class Bills extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-
+	/**
+	 * This method will verify text within elements when there are no payees when attempting to pay a bill
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyNoPayeesPayBillTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("billsNavRowPayBill") + "']", "Pay Bills title");
+				// Switching to webview
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				//System.out.println("source : "+ ((AppiumDriver) CL.GetDriver()).getPageSource());
+				final WebElement msg = mobileAction.verifyWebElementUsingXPath("//span[@class='text-message ng-binding ng-scope']", "You have not added msg");
+				final WebElement button = mobileAction.verifyWebElementUsingXPath("//button[@class='primary-button ng-binding ng-scope']", "Add canadian payee button");
+				if (!mobileAction.verifyTextEquality(msg.getText().trim(), mobileAction.getAppString("msg_no_payee_all")) ||
+						!mobileAction.verifyTextEquality(button.getText().trim().replace("\"", ""), mobileAction.getAppString("btn_add_canadian_payees_now"))) {
+					System.err.println("TestCase has failed.");
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				}
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
 	/**
 	 * This method will verify text within elements for the canadian bills page
 	 * 

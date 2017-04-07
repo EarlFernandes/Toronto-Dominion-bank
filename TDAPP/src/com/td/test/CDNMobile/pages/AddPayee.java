@@ -80,7 +80,76 @@ public class AddPayee extends _CommonPage {
 	}
 }
 	
+	/**
+	 * This method will verify text within elements for the add US payee review screen
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyAddUSPayeeReviewTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				searchForPayee();
+				clickOnFirstUSPayeeFound();
+				// Switching to webview
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				final WebElement note = mobileAction.verifyWebElementUsingXPath("//div[@class='message-holder ng-binding ng-scope']", "Note");
 
+				final WebElement payeeMailing = mobileAction.verifyWebElementUsingXPath("(//span[@class='ng-binding'])[1]", "Payee mailing");
+				final WebElement payeeName = mobileAction.verifyWebElementUsingXPath("(//label[@class='drop-down-label ng-binding'])[1]", "Payee name");
+				// FIXME: Check why hint is not seen
+				//final WebElement payeeAddressHint = mobileAction.verifyWebElementUsingXPath("//input[@name='addressLine1']", "Payee address hint");
+				final WebElement payeeAddress = mobileAction.verifyWebElementUsingXPath("//label[@id='addressLine1_label']", "Payee address");
+				final WebElement city = mobileAction.verifyWebElementUsingXPath("//label[@id='city_label']", "city");
+				//final WebElement cityHint = mobileAction.verifyWebElementUsingXPath("//input[@name='city']", "city hint");
+				final WebElement state = mobileAction.verifyWebElementUsingXPath("//label[@id='state_label']", "state");
+				//final WebElement stateHint = mobileAction.verifyWebElementUsingXPath("//input[@name='state']", "state hint");
+				final WebElement zip = mobileAction.verifyWebElementUsingXPath("//label[@id='zipcode_label']", "zip");
+				//final WebElement zipHint = mobileAction.verifyWebElementUsingXPath("//input[@name='zipcode']", "zip hint");
+				final WebElement account = mobileAction.verifyWebElementUsingXPath("//label[@id='accountNumber_label']", "account");
+				//final WebElement accountHint = mobileAction.verifyWebElementUsingXPath("//input[@name='accountNumber']", "account hint");
+				final WebElement desc = mobileAction.verifyWebElementUsingXPath("//label[@id='description_label']", "description");
+				//final WebElement descHint = mobileAction.verifyWebElementUsingXPath("//input[@name='description']", "description hint");
+				final WebElement payeeAccountInfo = mobileAction.verifyWebElementUsingXPath("(//span[@class='ng-binding'])[2]", "payee account info header");
+				final WebElement warning = mobileAction.verifyWebElementUsingXPath("//div[@class='placeholder ng-binding ng-scope']", "enter your account");
+
+				final WebElement continueButton = mobileAction.verifyWebElementUsingXPath("//button[@id='btn']", "Continue button");
+
+				if (!mobileAction.verifyTextEquality(payeeMailing.getText().trim(), mobileAction.getAppString("str_payee_mailing_address")) ||
+						!mobileAction.verifyTextEquality(payeeName.getText().trim(), mobileAction.getAppString("str_payee_name")) || 
+						!mobileAction.verifyTextEquality(payeeAddress.getText().trim(), mobileAction.getAppString("str_payee_address")) ||
+						!mobileAction.verifyTextEquality(city.getText().trim(), mobileAction.getAppString("str_city")) ||
+						!mobileAction.verifyTextEquality(state.getText().trim(), mobileAction.getAppString("str_state")) ||
+						!mobileAction.verifyTextEquality(zip.getText().trim(), mobileAction.getAppString("str_zip_code")) ||
+						!mobileAction.verifyTextEquality(account.getText().trim(), mobileAction.getAppString("str_payee_account")) ||
+						!mobileAction.verifyTextEquality(desc.getText().trim(), mobileAction.getAppString("str_Description_cml_case")) ||
+						!mobileAction.verifyTextEquality(payeeAccountInfo.getText().trim(), mobileAction.getAppString("str_payee_account_info")) ||
+						!mobileAction.verifyTextEquality(warning.getText().trim(), mobileAction.getAppString("str_us_accountnumber_hint")) ||
+						!mobileAction.verifyTextEquality(continueButton.getText().trim(), mobileAction.getAppString("str_continue"))){
+					System.err.println("TestCase has failed.");
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				}
+
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			// Switch back to native to get proper screenshots
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
 	/**
 	 * This method will verify text within elements for the add payee review screen
 	 * 
@@ -96,7 +165,7 @@ public class AddPayee extends _CommonPage {
 				// TODO: iOS elements
 			} else {
 				searchForPayee();
-				clickOnFirstPayeeFound();
+				clickOnFirstCanadianPayeeFound();
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				final WebElement payeeName= mobileAction.verifyWebElementUsingXPath("(//label[@class='drop-down-label ng-binding'])[1]", "Payee Name");
@@ -135,7 +204,27 @@ public class AddPayee extends _CommonPage {
 		}
 	}
 
-	private void clickOnFirstPayeeFound() {
+	private void clickOnFirstUSPayeeFound() {
+		try {
+			final WebElement payee = mobileAction.verifyWebElementUsingXPath("//a[@id='result0']", "click payee");
+			payee.click();
+			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("add_us_payee_title") + "']", "Add U.S. Payee title");
+		} catch (NoSuchElementException | IOException e) {
+			// Switch back to native to get proper screenshots
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+	private void clickOnFirstCanadianPayeeFound() {
 		try {
 			final WebElement payee = mobileAction.verifyWebElementUsingXPath("//a[@id='result0']", "click payee");
 			payee.click();
@@ -170,7 +259,7 @@ public class AddPayee extends _CommonPage {
 				// TODO: iOS elements
 			} else {
 				searchForPayee();
-				clickOnFirstPayeeFound();
+				clickOnFirstCanadianPayeeFound();
 				addPayeeReview();
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
@@ -211,10 +300,10 @@ public class AddPayee extends _CommonPage {
 				// TODO: iOS elements
 			} else {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				System.out.println("source : "+ ((AppiumDriver) CL.GetDriver()).getPageSource());
+				//System.out.println("source : "+ ((AppiumDriver) CL.GetDriver()).getPageSource());
 				final WebElement payeeAccount = mobileAction.verifyWebElementUsingXPath("//input[@id='accountNumber']", "Payee Account");
-				final WebElement continueButton = mobileAction.verifyWebElementUsingXPath("//button[@class='primary-button ng-binding disable']", "Continue button");
 				payeeAccount.sendKeys(getTestdata("FromAccount"));
+				final WebElement continueButton = mobileAction.verifyWebElementUsingXPath("//button[@class='primary-button ng-binding disable']", "Continue button");
 				continueButton.click();
 				mobileAction.waitForElementToVanish(progressBar);
 		
@@ -249,7 +338,7 @@ public class AddPayee extends _CommonPage {
 				// TODO: iOS elements
 			} else {
 				searchForPayee();
-				clickOnFirstPayeeFound();
+				clickOnFirstCanadianPayeeFound();
 				addPayeeReview();
 				addPayeeConfirm();
 				// Switching to webview

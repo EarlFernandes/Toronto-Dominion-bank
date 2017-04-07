@@ -57,7 +57,7 @@ public class ManageRecipients extends _CommonPage {
     @iOSFindBy(xpath = "//*[@label='Re-enter your answer']")
     @AndroidFindBy(xpath = "//android.view.View[@content-desc='Confirm Answer']")
     private MobileElement reEnterAnswer;
-    
+
     @AndroidFindBy(xpath = "//android.view.View[@content-desc='Success Recipient details have been saved.']")
     private MobileElement recipient_changes;
 
@@ -99,6 +99,26 @@ public class ManageRecipients extends _CommonPage {
 		}
 	}
 
+	public void clickAddRecipientFromContactsList() {
+		Decorator();
+		try {
+			WebElement contactsRecipients = null;
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				contactsRecipients = mobileAction.verifyWebElementUsingXPath("//div[@class='add-recipient']", "Recipients from Contacts button");
+				contactsRecipients.click();
+				mobileAction.switchAppiumContext("NATIVE_APP");
+			}
+
+		} catch (NoSuchElementException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
 	public void clickEditRecipient() {
 		Decorator();
 		try {
@@ -232,6 +252,38 @@ public class ManageRecipients extends _CommonPage {
 		}
 	}
 
+	/**
+	 * This method will verify text within elements for popup dialog for add recipient from contacts
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyAddRecipientFromContactsPopupTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("add_contact_alert_title") + "']", "dialog title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text=\"" + mobileAction.getAppString("add_contact_alert_message") + "\"]", "dialog msg");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("str_Yes") + "']", "yes");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("str_No") + "']", "no");
+
+			}
+		} catch (NoSuchElementException | IOException e) {
+			// Switch back to native to get proper screenshots
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}	
 	/**
 	 * This method will verify text within elements for the view a recipient's info page
 	 * 
@@ -433,25 +485,7 @@ public class ManageRecipients extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				// Enter details and get to confirmation screen
-				// Switching to webview
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement name = mobileAction.verifyWebElementUsingXPath("//input[@name='name']", "Name");
-				name.sendKeys(getTestdata("RecipientName"));
-				final WebElement email = mobileAction.verifyWebElementUsingXPath("//input[@name='email']", "Email");
-				email.sendKeys(getTestdata("RecipientMail"));
-				final WebElement securityQ = mobileAction.verifyWebElementUsingXPath("//input[@name='question']", "Security Questions");
-				securityQ.sendKeys(getTestdata("Security_Question"));
-				final WebElement answer = mobileAction.verifyWebElementUsingXPath("//input[@name='securityAnswer']", "Answer");
-				answer.sendKeys(getTestdata("SecurityAnswer"));
-				final WebElement answerConfirm = mobileAction.verifyWebElementUsingXPath("//input[@name='securityAnswer2']", "Enter Answer");
-				answerConfirm.sendKeys(getTestdata("SecurityAnswer"));
-				final WebElement review = mobileAction.verifyWebElementUsingXPath("//button[@aria-label=\"" + mobileAction.getAppString("btn_review_details") + "\"]", "Review");
-				review.click();
-				mobileAction.waitForElementToVanish(progress_bar);
-				// Switch to native
-				mobileAction.switchAppiumContext("NATIVE_APP");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("review_details_title") + "']", "Confirm title");
+				addAndReviewRecipient();
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				final WebElement reviewDetails = mobileAction.verifyWebElementUsingXPath("//div[@class='message-holder ng-binding ng-scope']", "Add Recipient");
@@ -500,24 +534,7 @@ public class ManageRecipients extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				// Enter details and get to confirmation screen
-				// Switching to webview
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement name = mobileAction.verifyWebElementUsingXPath("//input[@name='name']", "Name");
-				name.sendKeys(getTestdata("RecipientName"));
-				final WebElement email = mobileAction.verifyWebElementUsingXPath("//input[@name='email']", "Email");
-				email.sendKeys(getTestdata("RecipientMail"));
-				final WebElement securityQ = mobileAction.verifyWebElementUsingXPath("//input[@name='question']", "Security Questions");
-				securityQ.sendKeys(getTestdata("Security_Question"));
-				final WebElement answer = mobileAction.verifyWebElementUsingXPath("//input[@name='securityAnswer']", "Answer");
-				answer.sendKeys(getTestdata("SecurityAnswer"));
-				final WebElement answerConfirm = mobileAction.verifyWebElementUsingXPath("//input[@name='securityAnswer2']", "Enter Answer");
-				answerConfirm.sendKeys(getTestdata("SecurityAnswer"));
-				final WebElement review = mobileAction.verifyWebElementUsingXPath("//button[@aria-label=\"" + mobileAction.getAppString("btn_review_details") + "\"]", "Review");
-				review.click();
-				mobileAction.waitForElementToVanish(progress_bar);
-				// Switch to native
-				mobileAction.switchAppiumContext("NATIVE_APP");
+				addAndReviewRecipient();
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				final WebElement addRecipientButton = mobileAction.verifyWebElementUsingXPath("//button[@class='primary-button green-button ng-binding']", "Add Recipient button");
@@ -553,6 +570,44 @@ public class ManageRecipients extends _CommonPage {
 				}
 				// Switch back to native to get proper screenshots
 				mobileAction.switchAppiumContext("NATIVE_APP");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			// Switch back to native to get proper screenshots
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	private void addAndReviewRecipient() {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				// Enter details and get to confirmation screen
+				// Switching to webview
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				final WebElement name = mobileAction.verifyWebElementUsingXPath("//input[@name='name']", "Name");
+				name.sendKeys(getTestdata("RecipientName"));
+				final WebElement email = mobileAction.verifyWebElementUsingXPath("//input[@name='email']", "Email");
+				email.sendKeys(getTestdata("RecipientMail"));
+				final WebElement securityQ = mobileAction.verifyWebElementUsingXPath("//input[@name='question']", "Security Questions");
+				securityQ.sendKeys(getTestdata("Security_Question"));
+				final WebElement answer = mobileAction.verifyWebElementUsingXPath("//input[@name='securityAnswer']", "Answer");
+				answer.sendKeys(getTestdata("SecurityAnswer"));
+				final WebElement answerConfirm = mobileAction.verifyWebElementUsingXPath("//input[@name='securityAnswer2']", "Enter Answer");
+				answerConfirm.sendKeys(getTestdata("SecurityAnswer"));
+				final WebElement review = mobileAction.verifyWebElementUsingXPath("//button[@aria-label=\"" + mobileAction.getAppString("btn_review_details") + "\"]", "Review");
+				review.click();
+				mobileAction.waitForElementToVanish(progress_bar);
+				// Switch to native
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("review_details_title") + "']", "Confirm title");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			// Switch back to native to get proper screenshots

@@ -293,6 +293,51 @@ public class Managee_Payee extends _CommonPage {
 		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 		}
+
+	/**
+	 * This method will click on add US payee button
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+
+
+	public void addUSPayee(){
+		Decorator();
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.verifyElementIsDisplayed(managePayees,"Manage Payees");
+				// Switch to webview and click on U.S.
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				final WebElement usWebElement = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[3]", "US banner button");
+				usWebElement.click();
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.FuncClick(addPayee,"Add US Payee");
+				mobileAction.waitForElementToVanish(progressBar);
+				Thread.sleep(10000);
+			}
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			// Switch back to native to get proper screenshots
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
 	
 	/**
 	 * This method will click on add payee button
@@ -321,6 +366,7 @@ public class Managee_Payee extends _CommonPage {
 		System.err.println("TestCase has failed.");
 		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 	}
+	
 }
 
 	
