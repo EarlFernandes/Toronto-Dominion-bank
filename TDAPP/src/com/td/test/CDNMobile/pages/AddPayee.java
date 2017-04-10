@@ -79,7 +79,52 @@ public class AddPayee extends _CommonPage {
 		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 	}
 }
-	
+	/**
+	 * This method will verify text within elements for the add US payee select address screen
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyAddUSPayeeSelectAddressTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				searchForPayee();
+				clickOnFirstUSPayeeFound();
+				// Switching to webview
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				final WebElement searchHint = mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("search_address_hint") + "']", "Search address hint");
+
+				final WebElement msg = mobileAction.verifyWebElementUsingXPath("//div[@class='placeholder ng-binding']", "Select the payee address");
+				final WebElement msg2 = mobileAction.verifyWebElementUsingXPath("//span[@class='ng-binding ng-scope']", "To add an address");
+
+				final WebElement tapHere = mobileAction.verifyWebElementUsingXPath("//div[@class='custom_action ng-binding']", "Tap here");
+
+				if (!mobileAction.verifyTextEquality(msg.getText().trim(), mobileAction.getAppString("please_select_payee_address") + " " + mobileAction.getAppString("str_add_address")) ||
+						!mobileAction.verifyTextEquality(tapHere.getText().trim(), mobileAction.getAppString("tap_here_to_add_address"))){
+					System.err.println("TestCase has failed.");
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				}
+
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			// Switch back to native to get proper screenshots
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}	
 	/**
 	 * This method will verify text within elements for the add US payee review screen
 	 * 
@@ -102,19 +147,18 @@ public class AddPayee extends _CommonPage {
 
 				final WebElement payeeMailing = mobileAction.verifyWebElementUsingXPath("(//span[@class='ng-binding'])[1]", "Payee mailing");
 				final WebElement payeeName = mobileAction.verifyWebElementUsingXPath("(//label[@class='drop-down-label ng-binding'])[1]", "Payee name");
-				// FIXME: Check why hint is not seen
-				//final WebElement payeeAddressHint = mobileAction.verifyWebElementUsingXPath("//input[@name='addressLine1']", "Payee address hint");
+				mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("str_payee_address_1_hint") + "']", "Payee address hint");
 				final WebElement payeeAddress = mobileAction.verifyWebElementUsingXPath("//label[@id='addressLine1_label']", "Payee address");
 				final WebElement city = mobileAction.verifyWebElementUsingXPath("//label[@id='city_label']", "city");
-				//final WebElement cityHint = mobileAction.verifyWebElementUsingXPath("//input[@name='city']", "city hint");
+				mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("str_city_hint") + "']", "city hint");
 				final WebElement state = mobileAction.verifyWebElementUsingXPath("//label[@id='state_label']", "state");
-				//final WebElement stateHint = mobileAction.verifyWebElementUsingXPath("//input[@name='state']", "state hint");
+				mobileAction.verifyWebElementUsingXPath("//input[@placeholder='"+ mobileAction.getAppString("str_state_hint") + "']", "state hint");
 				final WebElement zip = mobileAction.verifyWebElementUsingXPath("//label[@id='zipcode_label']", "zip");
-				//final WebElement zipHint = mobileAction.verifyWebElementUsingXPath("//input[@name='zipcode']", "zip hint");
+				mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("str_zip_code_hint") + "']", "zip hint");
 				final WebElement account = mobileAction.verifyWebElementUsingXPath("//label[@id='accountNumber_label']", "account");
-				//final WebElement accountHint = mobileAction.verifyWebElementUsingXPath("//input[@name='accountNumber']", "account hint");
+				mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("str_enter_payee_account_number") + "']", "account hint");
 				final WebElement desc = mobileAction.verifyWebElementUsingXPath("//label[@id='description_label']", "description");
-				//final WebElement descHint = mobileAction.verifyWebElementUsingXPath("//input[@name='description']", "description hint");
+				mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("str_optional") + "']", "description hint");
 				final WebElement payeeAccountInfo = mobileAction.verifyWebElementUsingXPath("(//span[@class='ng-binding'])[2]", "payee account info header");
 				final WebElement warning = mobileAction.verifyWebElementUsingXPath("//div[@class='placeholder ng-binding ng-scope']", "enter your account");
 
@@ -170,19 +214,16 @@ public class AddPayee extends _CommonPage {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				final WebElement payeeName= mobileAction.verifyWebElementUsingXPath("(//label[@class='drop-down-label ng-binding'])[1]", "Payee Name");
 				final WebElement payeeAccount = mobileAction.verifyWebElementUsingXPath("//label[@id='accountNumber_label']", "Payee Account");
-				// FIXME: Check why hint is not seen
-				//final WebElement payeeAccountHint = mobileAction.verifyWebElementUsingXPath("//input[@id='accountNumber']", "Payee account hint");
+				mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("add_cdn_payee_dtl_hint") + "']", "Payee account hint");
 				final WebElement warningMsg = mobileAction.verifyWebElementUsingXPath("//div[@class='placeholder ng-binding']", "warning msg");
 				final WebElement description = mobileAction.verifyWebElementUsingXPath("//label[@id='description_label']", "Description");
-				//final WebElement descriptionHint = mobileAction.verifyWebElementUsingXPath("//input[@name='description']", "Description hint");
+				mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("str_optional") + "']", "Description hint");
 				final WebElement continueButton = mobileAction.verifyWebElementUsingXPath("//button[@class='primary-button ng-binding disable']", "Continue button");
 
 				if (!mobileAction.verifyTextEquality(payeeName.getText().trim(), mobileAction.getAppString("str_payee_name")) ||
 						!mobileAction.verifyTextEquality(payeeAccount.getText().trim(), mobileAction.getAppString("str_payee_account")) || 
-						//!mobileAction.verifyTextEquality(payeeAccountHint.getText().trim(), mobileAction.getAppString("add_cdn_payee_dtl_hint")) ||
 						!mobileAction.verifyTextEquality(warningMsg.getText().trim(), mobileAction.getAppString("add_cdn_payee_dtl_copy")) ||
 						!mobileAction.verifyTextEquality(description.getText().trim(), mobileAction.getAppString("str_Description_cml_case")) ||
-						//!mobileAction.verifyTextEquality(descriptionHint.getText().trim(), mobileAction.getAppString("str_optional")) ||
 						!mobileAction.verifyTextEquality(continueButton.getText().trim(), mobileAction.getAppString("str_continue"))){
 					System.err.println("TestCase has failed.");
 					CL.getGlobalVarriablesInstance().bStopNextFunction = false;

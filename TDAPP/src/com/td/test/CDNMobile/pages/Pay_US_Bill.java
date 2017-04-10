@@ -8,6 +8,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.MainScreen;
+import com.td.MobileAction2;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -60,6 +61,10 @@ public class Pay_US_Bill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[starts-with(@text,'Important Note')]")
 	private MobileElement verify_message;
 
+	// FIXME: Find the correct resource-id
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/estDate']")
+	private MobileElement estDate;
+	
 	@iOSFindBy(xpath = "//*[@label='Currency']")
 	private MobileElement currency_switchbox;
 
@@ -275,8 +280,7 @@ public class Pay_US_Bill extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_HOME") + "']", "HOME");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("pay_another_bill") + "']", "PAY ANOTHER BILL");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("receipt_scheduledpayments") + "']", "SCHEDULED PAYMENTS");
-
-
+				mobileAction.verifyDateFormat(estDate.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {
@@ -316,6 +320,7 @@ public class Pay_US_Bill extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderAmount") + "']", "Amount");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("total_amount") + "']", "Total Amount");
 				mobileAction.verifyElementUsingXPath(xPathReason, "Reason for payment");
+				mobileAction.verifyDateFormat(estDate.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {

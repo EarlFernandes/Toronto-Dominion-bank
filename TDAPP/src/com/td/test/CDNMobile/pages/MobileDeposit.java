@@ -1,11 +1,13 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.MobileAction2;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -32,7 +34,9 @@ public class MobileDeposit extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'We')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/enrollment_headertitle1' and starts-with(@text,'We')]")
 	private MobileElement validation_firstLine;
-	
+
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/MobileDepositReceipts_ViewDetails_Date_TextView']")
+	private MobileElement datePicker;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'not eligible to use TD Mobile Deposit at this time.')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/enrollment_headertitle_subtitle_1' and contains(@text,'not eligible to use TD Mobile Deposit at this time')]")
@@ -45,6 +49,9 @@ public class MobileDeposit extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Be a TD Canada Trust customer')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[starts-with(@text,'Be a TD Canada Trust customer')]")
 	private MobileElement validationfourthLine;
+
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/deposit_date']")
+	private List<MobileElement> dateHeaders;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Have at least one eligible Chequing or Savings account')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Have at least one eligible Chequing')]")
@@ -193,8 +200,10 @@ public class MobileDeposit extends _CommonPage {
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("ActionBar_MobileDepositReceipt") + "']", "Deposit Cheque History");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDepositReceipt_Header_Description") + "']", "Warning msg");
-				// FIXME: Need to test date
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MRDC_MOBILE_DEPOSIT_RECEIPT_LIST_DISCLAIMER") + "']", "disclaimer");
+				for(MobileElement m : dateHeaders) {
+					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_YYYY_MM_DD);
+				}
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {
@@ -331,8 +340,8 @@ public class MobileDeposit extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDepositCheque_Amount_Label") + "']", "Amount");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDepositCheque_Memo_Label") + "']", "Memo");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MRDC_RECEIPTS_DETAILS_ACCOUNT_DATE").replace("&amp;", "&") + "']", "Date/Time Submitted");
-				// FIXME: Verify date
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MRDC_RECEIPTS_DETAILS_ACCOUNT_CHEQUE_IMAGE") + "']", "Cheque Front");
+				mobileAction.verifyDateFormat(datePicker.getText(), MobileAction2.TYPE_YYYY_MM_DD_HOUR);
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {

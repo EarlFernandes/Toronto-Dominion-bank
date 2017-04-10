@@ -10,6 +10,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.MainScreen;
+import com.td.MobileAction2;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -43,6 +44,9 @@ public class Bill_PayCanada extends _CommonPage {
 
     @AndroidFindBy(xpath = "//android.widget.ListView[@index='1']")
 	private MobileElement accountListView;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_paydate']")
+	private MobileElement payDate;
 
 	String FromAccountXL = getTestdata("FromAccount");
 	String amount_value = getTestdata("Amount");
@@ -318,6 +322,7 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderAmount") + "']", "Amount");
 				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("str_cancel") + "']", "Cancel");
 				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("payBillConfirmButtonPayBill") + "']", "Pay Bill");
+				mobileAction.verifyDateFormat(payDate.getText(), MobileAction2.TYPE_YYYY_MM_DD);
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {
@@ -337,7 +342,7 @@ public class Bill_PayCanada extends _CommonPage {
 			} else {
 				// Seems like selector for from account/payee do not work here
 				// We just need to get to confirmation page, so select default fields
-				// FIXME: We should read from test data excel sheet to get From Account value
+				// TODO: We should read from test data excel sheet to get From Account value
 				mobileAction.FuncClick(from_account, "From Account");
 				mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, "//android.widget.TextView[@resource-id='com.td:id/txtAccountDesc' and @index='0']", 2, "down", true);
 				mobileAction.FuncClick(to_account_post, "Select Payee");

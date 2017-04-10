@@ -1,12 +1,14 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.MobileAction2;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -66,6 +68,9 @@ public class Accounts_Credit extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Statements']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/statementTab']")
 	private MobileElement statementTab;
+
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/date']")
+	private List<MobileElement> dateHeaders;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeNavigationBar/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/last_statement']")
@@ -314,6 +319,10 @@ public class Accounts_Credit extends _CommonPage {
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("last_statement") + "']", "Last Statement");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_2_STATEMENTS") + "']", "2 Statements ago");
+				// Verify select date headers at the bottom
+				for(MobileElement m : dateHeaders) {
+					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
+				}
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {

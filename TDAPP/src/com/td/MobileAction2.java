@@ -1576,6 +1576,111 @@ public class MobileAction2 extends CommonLib {
 		return s;
 	}
 
+	public static final int TYPE_YYYY_MM_DD = 1;
+	public static final int TYPE_YYYY_MM_DD_WEEKDATE = 2;
+	public static final int TYPE_MM_YYYY = 3;
+	public static final int TYPE_YYYY_MM_DD_TODAY = 4;
+	public static final int TYPE_YYYY_MM_DD_HOUR = 5;
+
+	public static final String PATTERN_ZH_YYYY_MM_DD = "\\d{4}年\\d{1,2}月\\d{1,2}日";
+	public static final String PATTERN_ZH_YYYY_MM_DD_WEEKDATE = "\\d{4}年\\d{1,2}月\\d{1,2}日 \\(星期[一|二|三|四|五|六|日|天]\\)";
+	public static final String PATTERN_ZH_MM_YYYY = "\\d{4}年\\d{1,2}月";
+	public static final String PATTERN_ZH_YYYY_MM_DD_TODAY = "\\d{4}年\\d{1,2}月\\d{1,2}日 \\(今天\\)";
+	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}年\\d{1,2}月\\d{1,2}日 \\d{2}:\\d{2} (上午|下午)[A-Za-z\\s]*";
+	
+	public void verifyDateFormat(final String dateStr, final int type) {
+		final String locale =  super.LoadData("Value", super.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
+
+		if (locale.startsWith("zh")) {
+			switch (type) {
+				case (TYPE_YYYY_MM_DD):
+					if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD)) {
+						try {
+							GetReporting().FuncReport("Pass", "Correct date format found");
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}						
+					} else {
+						try {
+							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}	
+					}
+					break;
+				case (TYPE_YYYY_MM_DD_WEEKDATE):
+					if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD_WEEKDATE)) {
+						try {
+							GetReporting().FuncReport("Pass", "Correct date format found");
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}						
+					} else {
+						try {
+							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}	
+					}
+					break;
+				case (TYPE_MM_YYYY):
+					if (dateStr.matches(PATTERN_ZH_MM_YYYY)) {
+						try {
+							GetReporting().FuncReport("Pass", "Correct date format found");
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}						
+					} else {
+						try {
+							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}	
+					}
+					break;
+				case (TYPE_YYYY_MM_DD_TODAY):
+					if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD_TODAY)) {
+						try {
+							GetReporting().FuncReport("Pass", "Correct date format found");
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}						
+					} else {
+						try {
+							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}	
+					}
+					break;
+				case (TYPE_YYYY_MM_DD_HOUR):
+					if (dateStr.matches(PATTERN_ZH_YY_MM_DD_HOUR)) {
+						try {
+							GetReporting().FuncReport("Pass", "Correct date format found");
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}						
+					} else {
+						try {
+							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}	
+					}
+					break;
+			}
+
+		} else if (locale.startsWith("EN")) {
+			// Don't need to test this for now
+		} else {
+			try {
+				GetReporting().FuncReport("Fail", "Unknown locale found to test against date string: " + locale);
+			} catch (IOException e) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}			
+		}
+	}
+
 	public boolean verifyTextEquality(String text1, String text2) {
 		if (text1.equalsIgnoreCase(text2)) {
 			try {
@@ -2265,9 +2370,9 @@ public class MobileAction2 extends CommonLib {
 	     *            element which has to be identified
 	     * 
 	     * @param expectedText
-	     *            The expected text in this format like: "CONTACT INFORMATION | COORDONN�ES"
+	     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNÉES"
 	     *            if language is English then "CONTACT INFORMATION "to be printed in report
-	     *            if language is French then "COORDONN�ES" to be printed in report
+	     *            if language is French then "COORDONNÉES" to be printed in report
 	     * 
 	     * @return nothing
 	     * 

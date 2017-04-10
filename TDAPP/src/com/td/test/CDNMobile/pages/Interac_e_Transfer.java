@@ -1,12 +1,14 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.MainScreen;
+import com.td.MobileAction2;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -87,6 +89,9 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel' and @text='Close']")
     private MobileElement cancel;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/entransfer_cancel_payment_date']")
+    private MobileElement payDate;
+
 	@iOSFindBy(xpath ="//*[@label='Cancel Interac e-Transfer']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel']")
 	private MobileElement cancelTransfer;
@@ -102,6 +107,9 @@ public class Interac_e_Transfer extends _CommonPage {
     @iOSFindBy(xpath = "//*[@label='']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccountAmountTransfer]")
     private MobileElement totalamount;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/date']")
+    private List<MobileElement> dateHeaders;
 
     @iOSFindBy(xpath = "//*[@label='']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_account']")
@@ -654,6 +662,7 @@ try {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransfersReceiveAnswerAmount") + "']", "Amount");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("etransfer_cancellation_fee_warning") + "']", "Please note");
 				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("eTransferViewCancelCancelButton").replaceAll("\\<.*?>","") + "']", "Cancel");
+				mobileAction.verifyDateFormat(payDate.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {
@@ -681,7 +690,9 @@ try {
 				// TODO: iOS elements
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderPendingInteracETransfer").replaceAll("\\<.*?>","") + "']", "Pending Interac e-transfer title");
-				// FIXME: Verify Date headers
+				for(MobileElement m : dateHeaders) {
+					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
+				}
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {

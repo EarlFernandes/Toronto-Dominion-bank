@@ -97,6 +97,7 @@ public class EventCase {
 		AddPayee_VerifyTextConfirmation,
 		AddPayee_VerifyTextSuccess,
 		AddPayee_SearchPayee, 
+		AddPayee_VerifyTextSelectUSAddress,
 		AddCard_MobilePayment, 
 		AddToTDMobilePayment,
 		ApplePay_AddCard,
@@ -296,6 +297,8 @@ public class EventCase {
 		ManageRecipient_VerifyTextAddRecipientSuccess,
 		ManageRecipient_EditManageRecipient, 
 		ManageRecipient_ModifyRecipient, 
+		ManageRecipient_ClickYesAddRecipientFromContacts,
+		ManageRecipient_VerifyTextAddRecipientFromContactsList,
 		ManageRecipients_VerifyRegisterButton, 
 		ManageRecipients_VerifyTextElements,
 		ManageRecipient_VerifyTextAddRecipient,
@@ -1154,12 +1157,20 @@ public class EventCase {
 			ManageRecipients.get().verifyAddRecipientConfirmationTextElements();
 			break;
 
+		case ManageRecipient_VerifyTextAddRecipientFromContactsList:
+			ManageRecipients.get().verifyAddRecipientFromContactsListTextElements();
+			break;
+
 		case ManageRecipient_VerifyTextAddRecipientSuccess:
 			ManageRecipients.get().verifyAddRecipientSuccessTextElements();
 			break;
 
 		case ManageRecipient_VerifyTextAddRecipient:
 			ManageRecipients.get().verifyAddRecipientTextElements();
+			break;
+
+		case ManageRecipient_ClickYesAddRecipientFromContacts:
+			ManageRecipients.get().addRecipientFromContactList();
 			break;
 
 		case ManageRecipient_VerifyTextRecipientInfo:
@@ -1488,6 +1499,10 @@ public class EventCase {
 
 		case AddPayee_VerifyTextReviewUS:
 			AddPayee.get().verifyAddUSPayeeReviewTextElements();
+			break;
+
+		case AddPayee_VerifyTextSelectUSAddress:
+			AddPayee.get().verifyAddUSPayeeSelectAddressTextElements();
 			break;
 
 		case AddPayee_VerifyTextConfirmation:

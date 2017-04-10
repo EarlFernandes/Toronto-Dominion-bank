@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -11,6 +12,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.MobileAction2;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -67,7 +69,10 @@ public class Bills extends _CommonPage {
 	@iOSFindBy(xpath="//*[@label='Menu']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
-	
+
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtDate']")
+	private MobileElement datePicker;
+
 	@iOSFindBy(xpath ="//*[@label='Logout']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
@@ -76,10 +81,15 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement back_button;  
 
-
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/upcomingbill_date_value']")
+	private MobileElement upcomingBillDate;  
+	
 	@iOSFindBy(xpath = "//*[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progrees_bar;
+
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/headerDate']")
+	private List<MobileElement> dateHeaders;
 
 	public synchronized static Bills get() {
 		if (Bills == null) {
@@ -391,7 +401,7 @@ public class Bills extends _CommonPage {
 				// TODO: iOS elements
 			} else {
 				final MobileElement scheduledPayment = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mainText' and @text='" + getTestdata("Payee") + "']", "Scheduled payment");
-				scheduledPayment.click();	
+				scheduledPayment.click();
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("str_Bill_Details") + "']", "Bill Details title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_Scheduled_Payment") + "']", "Scheduled Payment");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_pending") + "']", "Pending");
@@ -401,6 +411,7 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderDate") + "']", "Date");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderAmount") + "']", "Amount");
 				mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/cancelBtn' and @text='" + mobileAction.getAppString("cancel_scheduled_payment") + "']", "Cancel Payment");
+				mobileAction.verifyDateFormat(upcomingBillDate.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {
@@ -468,7 +479,9 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("str_Scheduled_Bills") + "']", "Scheduled Payments title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/date' and @text='" + mobileAction.getAppString("date") + "']", "Date tab");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/payee' and @text='" + mobileAction.getAppString("payee") + "']", "Payee");
-				// FIXME: Need some logic to test date headers
+				for(MobileElement m : dateHeaders) {
+					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_MM_YYYY);
+				}
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {
@@ -537,6 +550,7 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/amountLabel' and @text='" + mobileAction.getAppString("payBillDropdownHeaderAmount") + "']", "Amount");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/lblDate' and @text='" + mobileAction.getAppString("payBillConfirmFieldHeaderDate") + "']", "Date");
 				mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/btn_continue' and @text='" + mobileAction.getAppString("payBillButtonContinue") + "']", "Continue");
+				mobileAction.verifyDateFormat(datePicker.getText(), MobileAction2.TYPE_YYYY_MM_DD_TODAY);
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {
