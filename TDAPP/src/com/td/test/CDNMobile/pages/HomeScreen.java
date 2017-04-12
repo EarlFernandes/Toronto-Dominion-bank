@@ -35,6 +35,10 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Accounts']")
 	private MobileElement my_accounts;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='Open a Bank Account']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Open a Bank Account']")
+	private MobileElement newAccount;
+	
 	@iOSFindBy(xpath = "//*[@label='Transfers' or @label='Virments']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' or @text='Transfers' or @text='Virments']")
 	private MobileElement transfers;
@@ -305,6 +309,34 @@ public class HomeScreen extends _CommonPage {
 		}
 	}
 
+	/**
+	 * This method will click on the open new account button on home page
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void clickOpenNewAccount() {
+		try {
+			Decorator();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS xpath expression required
+			} else {
+				newAccount = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("str_banking_cross_sell_message") + "']", "Opne a bank account");
+			}
+			mobileAction.FuncClick(newAccount, "New Bank Account");
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
 	/**
 	 * This method will click on the Menu button on home page
 	 * 

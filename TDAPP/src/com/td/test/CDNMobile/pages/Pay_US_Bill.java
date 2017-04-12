@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.MainScreen;
@@ -61,8 +62,7 @@ public class Pay_US_Bill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[starts-with(@text,'Important Note')]")
 	private MobileElement verify_message;
 
-	// FIXME: Find the correct resource-id
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/estDate']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/estimated_delivery_date']")
 	private MobileElement estDate;
 	
 	@iOSFindBy(xpath = "//*[@label='Currency']")
@@ -245,7 +245,48 @@ public class Pay_US_Bill extends _CommonPage {
 		}
 
 	}
+	/**
+	 * This method will verify text within elements for the US bills page
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyPayUSBillWelcomeTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS elements
+			} else {
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("billsNavRowPayUSBill") + "']", "Pay Bills US title");
+				// Switching to webview
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				final WebElement header = mobileAction.verifyWebElementUsingXPath("//h2[@class='limited-accounts-heading ng-binding']", "Welcome to Us bill pay");
+				final WebElement msg1 = mobileAction.verifyWebElementUsingXPath("(//span[@class='limited-accounts-message ng-binding'])[1]", "With U.S. msg");
+				final WebElement msg2 = mobileAction.verifyWebElementUsingXPath("(//span[@class='limited-accounts-message ng-binding'])[2]", "Your payment is withdrawn msg");
+				final WebElement button = mobileAction.verifyWebElementUsingXPath("//button[@class='primary-button ng-binding']", "Get Started button");
+				if (!mobileAction.verifyTextEquality(header.getText().trim(), mobileAction.getAppString("pay_us_bill_welcome_title")) ||
+						!mobileAction.verifyTextEquality(msg1.getText().trim(), mobileAction.getAppString("USBillPayCustomerNotRegisteredDescription1")) || 
+						!mobileAction.verifyTextEquality(button.getText().trim(), mobileAction.getAppString("btn_get_started")) ||
+						!mobileAction.verifyTextEquality(msg2.getText().trim(), mobileAction.getAppString("USBillPayCustomerNotRegisteredDescription2"))) {
+					System.err.println("TestCase has failed.");
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				}
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
 
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
 	/**
 	 * This method will verify text within elements for the US bills success page
 	 * 

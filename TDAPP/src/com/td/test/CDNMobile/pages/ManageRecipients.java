@@ -627,18 +627,18 @@ public class ManageRecipients extends _CommonPage {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				final WebElement thankYou = mobileAction.verifyWebElementUsingXPath("//div[@class='accessibility-link']/div[@class='thank-you ng-binding']", "Thank you");
 				final WebElement successMsg = mobileAction.verifyWebElementUsingXPath("//div[@class='accessibility-link']/div[@class='copy ng-binding']", "Success msg");
-				final WebElement name2 = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[1]", "name");
-				final WebElement email2 = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[2]", "email");
-				final WebElement emailLang2 = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[3]", "email lang");
-				final WebElement securityQ2 = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[4]", "security q");
-				final WebElement securityAnswer2 = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[5]", "security answer");
+				final WebElement name2 = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[2]", "name");
+				final WebElement email2 = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[3]", "email");
+				final WebElement emailLang2 = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[4]", "email lang");
+				final WebElement securityQ2 = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[5]", "security q");
+				final WebElement securityAnswer2 = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[6]", "security answer");
 				final WebElement home = mobileAction.verifyWebElementUsingXPath("//button[@class='home ng-binding']", "home");
 				final WebElement addAnother = mobileAction.verifyWebElementUsingXPath("//button[@class='add-recipient ng-binding']", "add another");
 				final WebElement payRecipient = mobileAction.verifyWebElementUsingXPath("//button[@class='pay-recipient ng-binding']", "pay this account");
 				if (!mobileAction.verifyTextEquality(thankYou.getText(), mobileAction.getAppString("receipt_thankyou")) ||
 						!mobileAction.verifyTextEquality(successMsg.getText(), mobileAction.getAppString("add_recipient_success")) || 
-						!mobileAction.verifyTextEquality(name2.getText(), mobileAction.getAppString("str_rcp_name")) ||
-						!mobileAction.verifyTextEquality(email2.getText(), mobileAction.getAppString("str_rcp_email1")) ||
+						!mobileAction.verifyTextEquality(name2.getText(), mobileAction.getAppString("str_rcp_name").replace("\"", "")) ||
+						!mobileAction.verifyTextEquality(email2.getText(), mobileAction.getAppString("str_rcp_email1").replace("\"", "")) ||
 						!mobileAction.verifyTextEquality(emailLang2.getText(), mobileAction.getAppString("str_rcp_language")) ||
 						!mobileAction.verifyTextEquality(securityQ2.getText(), mobileAction.getAppString("str_security_question")) ||
 						!mobileAction.verifyTextEquality(securityAnswer2.getText(), mobileAction.getAppString("str_security_answer1")) ||

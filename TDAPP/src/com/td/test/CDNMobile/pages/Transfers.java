@@ -52,7 +52,7 @@ public class Transfers extends _CommonPage {
 	private MobileElement manageRecipient;
 
 	@iOSFindBy(xpath="//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 	String transfer_Header_Value = "Transfers";
 	String confirm_Header = "Confirm";
@@ -114,7 +114,7 @@ public class Transfers extends _CommonPage {
 			initElementManageRecipients();
 			mobileAction.FuncClick(manageRecipient, "Manage Recipients");
 			mobileAction.waitForElementToVanish(progressBar);
-			Thread.sleep(2000);
+			Thread.sleep(10000);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

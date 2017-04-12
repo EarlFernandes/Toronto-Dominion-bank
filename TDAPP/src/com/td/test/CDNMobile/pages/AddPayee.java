@@ -143,7 +143,7 @@ public class AddPayee extends _CommonPage {
 				clickOnFirstUSPayeeFound();
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement note = mobileAction.verifyWebElementUsingXPath("//div[@class='message-holder ng-binding ng-scope']", "Note");
+				mobileAction.verifyWebElementUsingXPath("//div[@class='message-holder ng-binding ng-scope']", "Note");
 
 				final WebElement payeeMailing = mobileAction.verifyWebElementUsingXPath("(//span[@class='ng-binding'])[1]", "Payee mailing");
 				final WebElement payeeName = mobileAction.verifyWebElementUsingXPath("(//label[@class='drop-down-label ng-binding'])[1]", "Payee name");
@@ -158,9 +158,10 @@ public class AddPayee extends _CommonPage {
 				final WebElement account = mobileAction.verifyWebElementUsingXPath("//label[@id='accountNumber_label']", "account");
 				mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("str_enter_payee_account_number") + "']", "account hint");
 				final WebElement desc = mobileAction.verifyWebElementUsingXPath("//label[@id='description_label']", "description");
+				// FIXME: This is not seen, why?
 				mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("str_optional") + "']", "description hint");
 				final WebElement payeeAccountInfo = mobileAction.verifyWebElementUsingXPath("(//span[@class='ng-binding'])[2]", "payee account info header");
-				final WebElement warning = mobileAction.verifyWebElementUsingXPath("//div[@class='placeholder ng-binding ng-scope']", "enter your account");
+				final WebElement enterAccNumber = mobileAction.verifyWebElementUsingXPath("//div[@class='placeholder ng-binding ng-scope']", "enter your account");
 
 				final WebElement continueButton = mobileAction.verifyWebElementUsingXPath("//button[@id='btn']", "Continue button");
 
@@ -173,7 +174,7 @@ public class AddPayee extends _CommonPage {
 						!mobileAction.verifyTextEquality(account.getText().trim(), mobileAction.getAppString("str_payee_account")) ||
 						!mobileAction.verifyTextEquality(desc.getText().trim(), mobileAction.getAppString("str_Description_cml_case")) ||
 						!mobileAction.verifyTextEquality(payeeAccountInfo.getText().trim(), mobileAction.getAppString("str_payee_account_info")) ||
-						!mobileAction.verifyTextEquality(warning.getText().trim(), mobileAction.getAppString("str_us_accountnumber_hint")) ||
+						!mobileAction.verifyTextEquality(enterAccNumber.getText().trim(), mobileAction.getAppString("str_us_accountnumber_hint")) ||
 						!mobileAction.verifyTextEquality(continueButton.getText().trim(), mobileAction.getAppString("str_continue"))){
 					System.err.println("TestCase has failed.");
 					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -344,6 +345,7 @@ public class AddPayee extends _CommonPage {
 				//System.out.println("source : "+ ((AppiumDriver) CL.GetDriver()).getPageSource());
 				final WebElement payeeAccount = mobileAction.verifyWebElementUsingXPath("//input[@id='accountNumber']", "Payee Account");
 				payeeAccount.sendKeys(getTestdata("FromAccount"));
+				// FIXME: This is not working
 				final WebElement continueButton = mobileAction.verifyWebElementUsingXPath("//button[@class='primary-button ng-binding disable']", "Continue button");
 				continueButton.click();
 				mobileAction.waitForElementToVanish(progressBar);

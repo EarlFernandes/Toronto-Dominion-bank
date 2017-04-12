@@ -73,6 +73,7 @@ public class EventCase {
 		AccountsCredit_VeifyStatementDetails,
 		AccountsCredit_VerifySummaryText,
 		Accounts_SelectAccount,
+		Accounts_VerifyTextOpenNewAccount,
 
 
 		AccountsCredit_ClickPayBill,
@@ -202,6 +203,7 @@ public class EventCase {
 		Dashboard_Authentication, 
 		Dashboard_UnAuthentication,
 		HomeScreen_VerifyTextElements,
+		HomeScreen_ClickOpenNewAccount,
 		LoginScreen_VerifyTextElements,
 		HomeScreenDashboardButtons_VerifyTextEelements,
 		Delete_usr, 
@@ -261,6 +263,7 @@ public class EventCase {
 		Investing_clickTrade_French, 
 		Investing_clickWatchLists, 
 		Investing_Header, 
+		Investing_VerifyTextOpenNewAccount,
 		Investing_verifyAdvanceorderdetails, 
 		Investingacc_verifySummary, 
 		InvestingHeader, 
@@ -366,6 +369,7 @@ public class EventCase {
 		Pay_US_bill_FromCanada_Account, 
 		PayBill_Canada_Button,
 		PayBill_US_VerifyTextElements,
+		PayBill_US_VerifyTextElementsNeverRegistered,
 		PayBill_US_VerifyTextElementsSuccess,
 		PayBill_Canada_VerifyTextElementsConfirmation,
 		PayBill_US_VerifyTextElementsConfirmation,
@@ -928,6 +932,10 @@ public class EventCase {
 			HomeScreen.get().clickBill();
 			break;
 
+		case HomeScreen_ClickOpenNewAccount:
+			HomeScreen.get().clickOpenNewAccount();
+			break;
+
 		case TransferHeader:
 			Transfers.get().verifyTransferHeader();
 			break;
@@ -1137,6 +1145,10 @@ public class EventCase {
 			Pay_US_Bill.get().verifyPayUSBillSuccessTextElements();
 			break;
 
+		case PayBill_US_VerifyTextElementsNeverRegistered:
+			Pay_US_Bill.get().verifyPayUSBillWelcomeTextElements();
+			break;
+
 		case PayBill_Canada_VerifyTextElementsConfirmation:
 			Bill_PayCanada.get().verifyPayCanadianBillConfirmationTextElements();
 			break;
@@ -1303,6 +1315,10 @@ public class EventCase {
 
 		case Investing_clickTrade:
 			Investing.get().clickTrade();
+			break;
+
+		case Investing_VerifyTextOpenNewAccount:
+			Investing.get().verifyOpenNewAccountTextElements();
 			break;
 
 		case Investing_clickPlacedorder:
@@ -1487,6 +1503,10 @@ public class EventCase {
 
 		case ManagePayee_VerifyTextSearchPayee:
 			Managee_Payee.get().verifySearchPayeesTextElements();
+			break;
+
+		case Accounts_VerifyTextOpenNewAccount:
+			Accounts.get().verifyOpenNewAccountTextElements();
 			break;
 
 		case AddPayee_SearchPayee:
