@@ -2202,7 +2202,12 @@ public void FuncVerifyNonBlankValue(MobileElement objMobileElement,String sDesc)
 	}
 }
 
-    
+public String getAppString(final String key) {
+	//System.out.println(((AppiumDriver) GetDriver()).getAppStringMap().toString());
+	final String s = (String)((AppiumDriver) GetDriver()).getAppStringMap().get(key);
+	//System.out.println("String returned from key is: " + s);
+	return s;
+}
 
 
 }

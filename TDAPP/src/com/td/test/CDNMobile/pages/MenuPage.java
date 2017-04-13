@@ -52,10 +52,9 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Contact Us']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Contact Us']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Contact Us' or @label='Contactez-nous']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Contact Us' or @text='Contactez-nous')]")
 	private MobileElement contactUs;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Home']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
 	private MobileElement home_button;
@@ -80,7 +79,10 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Profile & Settings' or @text='Profil et paramètres')]")
 	private MobileElement profile_and_settings;
 
-
+	//customer feedback
+	@iOSFindBy(xpath = "//*[@label='Give Feedback' or @label ='Fournir des commentaires']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Give Feedback' or @text='Fournir des commentaires')]")
+	private MobileElement give_feedback;
 
 
 	public synchronized static MenuPage get() {
@@ -438,6 +440,71 @@ public class MenuPage extends _CommonPage {
 
 		}
 	}
-
+	//Customer feedback
+	public void ClickFeedback(){
+		Decorator();
+		try{
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  1, "down");
+				String xpath = "//android.widget.TextView[@text='" + mobileAction.getAppString("give_feedback") + "']";
+				System.out.println("xpath:" +  xpath);
+				give_feedback = mobileAction.verifyElementUsingXPath(xpath, "Give Feedback");		
+			}else{
+//				String xpath = "//*[@label='" + mobileAction.getAppString("nav_drawer_items_feedback") + "']";
+//				System.out.println("xpath:" +  xpath);
+//				give_feedback = mobileAction.verifyElementUsingXPath(xpath, "Give Feedback");
+			}
+		}catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+		try{
+			String elementText= mobileAction.getValue(give_feedback);
+			System.out.println("elementText:" +  elementText);
+			mobileAction.FuncClick(give_feedback, elementText);
+		}catch (Exception e){
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}		
+	}
+	
+	public void ClickContactUs_CF(){
+		Decorator();
+		try{
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  1, "down");
+				String xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("contact_str") + "']";
+				System.out.println("xpath:" +  xpath);
+				contactUs = mobileAction.verifyElementUsingXPath(xpath, "Contact Us");		
+			}else{
+//				String xpath = "//*[@label='" + mobileAction.getAppString("nav_drawer_items_contact") + "']";
+//				System.out.println("xpath:" +  xpath);
+//				contactUs = mobileAction.verifyElementUsingXPath(xpath, "Contact Us");
+			}
+		}catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+		try{
+			String elementText= mobileAction.getValue(contactUs);
+			System.out.println("Element Text:" +  elementText);
+			mobileAction.FuncClick(contactUs, elementText);
+		}catch (Exception e){
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}				
+	}
 
 }

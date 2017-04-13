@@ -19,8 +19,8 @@ public class ContactUs extends _CommonPage {
 
 	private static ContactUs ContactUs;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Contact Us']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Contact Us']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Contact Us' or @label='Contactez-nous']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Contact Us' or @text='Contactez-nous')]")
 	private MobileElement contactUs;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'TD Direct Investing')]")
@@ -80,6 +80,16 @@ public class ContactUs extends _CommonPage {
 			e.printStackTrace();
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
+	}
+	
+	public void VerifyContactUsPageHeader(){
+		Decorator();
+		try{
+			mobileAction.verifyHeaderIsDisplayed(contactUs, "Contact Us | Contactez-nous");
+		}catch( Exception e){
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
+	}
 }
 

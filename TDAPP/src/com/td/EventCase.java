@@ -53,6 +53,7 @@ import com.td.test.CDNMobile.pages.SearchPageMIT;
 import com.td.test.CDNMobile.pages.Security_Questions;
 import com.td.test.CDNMobile.pages.StatementBalance;
 import com.td.test.CDNMobile.pages.TDForMe;
+import com.td.test.CDNMobile.pages.MoodSelectorScreen;
 import com.td.test.CDNMobile.pages.Trade;
 import com.td.test.CDNMobile.pages.TradeMIT;
 import com.td.test.CDNMobile.pages.TradeMultiLeg;
@@ -95,7 +96,7 @@ public class EventCase {
 
 		Env_set, Env_EnableMobilePayment,EditEmailAddressWithNonAformat,EditEmailAddressWithlonger60Char,EditEmailAddressWithNolonger60Char,EditEmailAddressWithoutSave,EditPhoneNumber,Env_ClearSavedCards,Env_DeleteDefaultCard,
 		
-		getProfileInformation,GetEmailAndPhoneNumber,
+		getProfileInformation,GetEmailAndPhoneNumber,ClickFeedback,	ClickContactUs_CF,VerifyMoodSelectorScreen,	VerifyEmotionsAnimateFromTopToBottom,ClickGreatLink,VerifyPostSurveyScreen,ClickCouldvebeenBetterLink,ClickItwasntWorkingLink,ClickBackFromMoodSelector, VerifyHomePageDashBoard, ClickContactUsFromHomePage, ClickSendFeedbackNow, ClickRateUsOnGooglePlay, VerifyGooglePlayRatePage, ClickBackFromPostSurvey, VerifyContactUsPageHeader,
 
 		FlyOut_HOME, Flyout_Location, HoldingDetails_click_BuyButton, HoldingDetails_verify_Account_CADCash, HoldingDetails_verify_Account_US_MarginShort,
 
@@ -139,7 +140,7 @@ public class EventCase {
 
 		verify_access_to_WB, Verify_account_activity_credit, Verify_Combined_Account, Verify_FP_Account, verify_login_5_times, Verify_PIA_Account, VerifyAccessCard, VerifyAccessCardDetails, VerifyActionFields, verifybill_landingpage, VerifyCombinedAccounts, verifyconfirm_order, VerifyDIAccounts, verifyErrorMessage, VerifyFPAccounts, VerifyIconDetails, VerifyInvestingScreen, VerifyNoEligibleAccounts, VerifyNoTradingAccounts, VerifyPIAAccounts, VerifyQuickIcons, VerifyReceipt, VerifySender, VerifySenderList, VerifyShareholderType, Verifytimestamp, VerifyTwoAccessCardDetails, VerifyUser, VerifyNickName, verifydefaultcard,View_profile,VerifyProfileHeader,VerifyContactInformationHeader,VerifyInitialNameforIndividual,VerifyInitialNameforBusinessUser,VerifyInitialNameInUpperCase,VerifyHomePhoneMasked,VerifyExtensionNotMasked,verifyProfileandSettingLandingPage,VerifyProfileNameLength,VerifyErrorMessage,VerifySecurityQuestionButton,VeirfySecuirtyQuestionPageheader,VerifyNotificationsButton,VeirfyNotificationsPageheader,VerifyQuickAccessSettings,VerifyQuickAccessSettingsHeader,VerifyTDForMeSettings,VerifyTDForMeSettingsHeader,VerifyWhatsNew,VerifyWhatsNewPageHeader,VerifyProfileAndSettingslink,VerifyEmailFormat,VerifyEmailIDLength,VerifyBlankEmailNotSuccesful,VerifyErrorMessageOrLength,VerifyEmailIDBlankorNot,VerifyEmailAddedSuccesful,VerifyPopUpWithCancelButton,VerifyClearTextIconDisplayed,VerifyPhoneNumberIsEmpty,
 		
-		VerifyPlaceHolderDisplayed,VerifyToastmessageDisplayed,VerifyPhoneEmailNotChanged,verifySymbolUS,verifySymbolSearchResults,verifyStockOptionContents,verifyOptionOptionContents,verifySelectOption,verifyStockMidNaturalPrice,verifyOptionMidNaturalPrice,verifyGoodTill,verifyGoodTillExpiryDate,verifySharehoderType,verifyStockOptionBackButton,verifyOptionOptionBackButton,verifyOptionOptionPreviewOrderButton,verifyQuickAccessBillPaidUpdate,
+		VerifyPlaceHolderDisplayed,VerifyToastmessageDisplayed,VerifyPhoneEmailNotChanged,verifySymbolUS,verifySymbolSearchResults,verifyStockOptionContents,verifyOptionOptionContents,verifySelectOption,verifyStockMidNaturalPrice,verifyOptionMidNaturalPrice,verifyGoodTill,verifyGoodTillExpiryDate,verifySharehoderType,verifyStockOptionBackButton,verifyOptionOptionBackButton,verifyOptionOptionPreviewOrderButton,verifyQuickAccessBillPaidUpdate,ClickBackFromAppOrGooglePage,
 		
 
 		WatchLists_addSymbolToWatchLists, WatchLists_clickSearchBar, WatchLists_Header, Watchlists_verify_newOrderFlow_Watchlists, WatchLists_verifyRecentSearches, WatchLists_verifySymbol, WatchLists_verifySymbolAdded,
@@ -1834,7 +1835,76 @@ public class EventCase {
 	    case VerifyPhoneEmailNotChanged:
 	    	Profile.get().VerifyPhoneEmailNotChanged();
 		    break;		    
+
+	    case  ClickFeedback:
+	    	MenuPage.get().ClickFeedback();
+		    break;			    
+		    		
+	    case  ClickContactUs_CF:
+	    	MenuPage.get().ClickContactUs_CF();
+		    break;	
+		    		    
+	    case  VerifyMoodSelectorScreen:
+	    	MoodSelectorScreen.get().VerifyMoodSelectorScreen();
+		    break;   
 		    
+	    case  VerifyEmotionsAnimateFromTopToBottom:
+	    	MoodSelectorScreen.get().VerifyEmotionsAnimateFromTopToBottom();
+		    break; 
+		    
+	    case  ClickGreatLink:
+	    	MoodSelectorScreen.get().ClickGreatLink();
+		    break; 
+		    
+	    case  VerifyPostSurveyScreen:
+	    	MoodSelectorScreen.get().VerifyPostSurveyScreen();
+		    break; 
+		    
+	    case  ClickCouldvebeenBetterLink:
+	    	MoodSelectorScreen.get().ClickCouldvebeenBetterLink();
+		    break; 		    
+		    
+	    case  ClickItwasntWorkingLink:
+	    	MoodSelectorScreen.get().ClickItwasntWorkingLink();
+		    break; 	
+		    
+		    
+	    case  ClickBackFromMoodSelector:
+	    	MoodSelectorScreen.get().ClickBackFromMoodSelector();
+		    break; 
+		    
+	    case  VerifyHomePageDashBoard:
+	    	HomeScreen.get().VerifyHomePageDashBoard();
+		    break;
+
+	    case  ClickContactUsFromHomePage:
+	    	HomeScreen.get().ClickContactUsFromHomePage();
+		    break;
+		        
+
+	    case  ClickSendFeedbackNow:
+	    	MoodSelectorScreen.get().ClickSendFeedbackNow();
+		    break; 
+
+	    case  ClickRateUsOnGooglePlay:
+	    	MoodSelectorScreen.get().ClickRateUsOnGooglePlayOrAppStore();
+		    break; 
+
+	    case  VerifyGooglePlayRatePage:
+	    	MoodSelectorScreen.get().VerifyGooglePlayRatePage();
+		    break; 
+
+	    case  ClickBackFromPostSurvey:
+	    	MoodSelectorScreen.get().ClickBackFromPostSurvey();
+		    break;		    
+		        
+	    case  VerifyContactUsPageHeader:
+	    	ContactUs.get().VerifyContactUsPageHeader();
+		    break;	
+		    		    
+	    case  ClickBackFromAppOrGooglePage:
+	    	MoodSelectorScreen.get().ClickBackFromAppOrGooglePage();
+		    break;			    
 		//end of profile and preference
 
 	    case Trade_clickCross:
