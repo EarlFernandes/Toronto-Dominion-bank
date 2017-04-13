@@ -140,6 +140,8 @@ public class Transfers extends _CommonPage {
 	public void clickPendingTransfers() {
 		try {
 			Decorator();
+			//mobileAction.FuncClick(TD, "TDAPP");
+			//mobileAction.FuncClick(alwaysBtn, "Always");
 			mobileAction.verifyElementIsDisplayed(transfers_Header, "Transfer");
 			mobileAction.FuncClick(pending_Transfer, "Pending Transfers");
 			Thread.sleep(5000);

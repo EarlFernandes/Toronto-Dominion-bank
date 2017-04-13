@@ -36,6 +36,7 @@ public class _CommonPage {
 
 	public static final String FAIL = "FAIL";
 	public static final String PASS = "PASS";
+	public static final String XLSheetUserIDs = "UserIDs";
 	public static final String commonpassword = "abcde123";
 	// success/fail status
 	public String overallSuccess = PASS;
@@ -138,6 +139,12 @@ public class _CommonPage {
 
 		}
 		return multiValue;
+	}
+
+	
+	public String getTestdata(String aColumn, String aSheetName) {
+		return CL.LoadData(aColumn, CL.getTestDataInstance().getMasterTestData(), aSheetName, "UserType",
+				CL.getTestDataInstance().TestCaseID);
 	}
 
 }

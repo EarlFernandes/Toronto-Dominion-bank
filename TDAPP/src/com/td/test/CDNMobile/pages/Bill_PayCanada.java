@@ -38,7 +38,7 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee']")
 	private MobileElement to_acnt_post;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'From Account, Select from account')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'From Account')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccount']")
 	private MobileElement from_account;
 
@@ -109,7 +109,7 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement menu;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay Bill']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Pay Bill']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Pay Bill']")
 	private MobileElement payBill_Header;
 
@@ -330,7 +330,6 @@ public class Bill_PayCanada extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(payBill_Header, "PayBillHeader");
-
 			mobileAction.verifyElementIsDisplayed(from_account, "From_Account");
 			mobileAction.verifyElementIsDisplayed(amountHeader, "amount");
 			mobileAction.verifyElementIsDisplayed(date, "Date");
@@ -479,7 +478,6 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.FuncClick(cancelBtn, "Cancel");
-				Bills.get().verifyBillHeader();
 
 			}
 

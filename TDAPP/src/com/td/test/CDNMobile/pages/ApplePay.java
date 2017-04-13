@@ -89,6 +89,10 @@ public class ApplePay extends _CommonPage {
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
 				this);
 	}
+	
+	public ApplePay(){
+		Decorator();
+	}
 
 	/**
 	 * This method will click on the add on card in apple pay page
@@ -105,7 +109,7 @@ public class ApplePay extends _CommonPage {
 	public void clickAddCard() {
 
 		infoPage();
-		Decorator();
+		//Decorator();
 		try {
 			mobileAction.FuncClick(addACard, "Add A Card");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -119,7 +123,7 @@ public class ApplePay extends _CommonPage {
 
 		mobileAction.waitForElementToVanish(progressBar);
 
-		Decorator();
+		//Decorator();
 		try {
 
 			if (continueButton.isDisplayed()) {
@@ -146,7 +150,7 @@ public class ApplePay extends _CommonPage {
 	public void selectCard() {
 
 		infoPage();
-		Decorator();
+	//	Decorator();
 		try {
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncClick(firstCard, "Select the card");
@@ -167,7 +171,7 @@ public class ApplePay extends _CommonPage {
 
 	public void changeDefaultCard() {
 
-		Decorator();
+		//Decorator();
 		try {
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncClick(firstCard, "Select the card");
@@ -186,7 +190,7 @@ public class ApplePay extends _CommonPage {
 	public void checkEligibleCard() {
 
 		infoPage();
-		Decorator();
+	//	Decorator();
 		try {
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.verifyElementIsDisplayed(noEligibleCardMessage, "No Eligible card");
@@ -201,7 +205,7 @@ public class ApplePay extends _CommonPage {
 	public void checkPersonalCard() {
 
 		infoPage();
-		Decorator();
+		//Decorator();
 		try {
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncClick(firstCard, "Select the card");
@@ -217,7 +221,7 @@ public class ApplePay extends _CommonPage {
 	public void checkBusinessCard() {
 
 		infoPage();
-		Decorator();
+	//	Decorator();
 		try {
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncClick(firstCard, "Select the card");
@@ -233,7 +237,7 @@ public class ApplePay extends _CommonPage {
 	public void checkDefaultCard() {
 
 		infoPage();
-		Decorator();
+	//	Decorator();
 		try {
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncClick(firstCard, "Select the card");
@@ -249,7 +253,7 @@ public class ApplePay extends _CommonPage {
 	public void addAllCards() {
 
 		infoPage();
-		Decorator();
+	//	Decorator();
 		try {
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncClick(addAllCardsButton, "Select the card");
@@ -264,7 +268,7 @@ public class ApplePay extends _CommonPage {
 	public void otherEligibleCards() {
 
 		infoPage();
-		Decorator();
+	//	Decorator();
 		try {
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.verifyElementIsDisplayed(tapCardHeader, "Select the card");

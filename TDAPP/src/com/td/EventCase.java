@@ -25,8 +25,11 @@ import com.td.test.CDNMobile.pages.Interac_e_Transfer;
 import com.td.test.CDNMobile.pages.Investing;
 import com.td.test.CDNMobile.pages.InvestingAccountSummary;
 import com.td.test.CDNMobile.pages.Login;
+import com.td.test.CDNMobile.pages.LoginMIT;
+import com.td.test.CDNMobile.pages.LoginPNP;
 import com.td.test.CDNMobile.pages.Logout;
 import com.td.test.CDNMobile.pages.MFA_ChangeAnswer;
+import com.td.test.CDNMobile.pages.MLEnterOrderNegative;
 import com.td.test.CDNMobile.pages.ManageRecipients;
 import com.td.test.CDNMobile.pages.ManageSettings;
 import com.td.test.CDNMobile.pages.Managee_Payee;
@@ -35,18 +38,28 @@ import com.td.test.CDNMobile.pages.MobileDeposit;
 import com.td.test.CDNMobile.pages.MobilePayment;
 import com.td.test.CDNMobile.pages.Multitasking_System;
 import com.td.test.CDNMobile.pages.MutualFunds;
+import com.td.test.CDNMobile.pages.Notifications;
 import com.td.test.CDNMobile.pages.OrderDetails;
 import com.td.test.CDNMobile.pages.OrderReciept;
 import com.td.test.CDNMobile.pages.Pay_US_Bill;
 import com.td.test.CDNMobile.pages.PendingInteracTransfer;
 import com.td.test.CDNMobile.pages.Preferences;
+import com.td.test.CDNMobile.pages.Profile;
+import com.td.test.CDNMobile.pages.Profile_And_Settings;
+import com.td.test.CDNMobile.pages.QuickAccess;
 import com.td.test.CDNMobile.pages.QuickAccessPage;
 import com.td.test.CDNMobile.pages.SearchPage;
+import com.td.test.CDNMobile.pages.SearchPageMIT;
+import com.td.test.CDNMobile.pages.Security_Questions;
 import com.td.test.CDNMobile.pages.StatementBalance;
+import com.td.test.CDNMobile.pages.TDForMe;
 import com.td.test.CDNMobile.pages.Trade;
+import com.td.test.CDNMobile.pages.TradeMIT;
+import com.td.test.CDNMobile.pages.TradeMultiLeg;
 import com.td.test.CDNMobile.pages.Transaction;
 import com.td.test.CDNMobile.pages.Transfers;
 import com.td.test.CDNMobile.pages.WatchLists;
+import com.td.test.CDNMobile.pages.WhatsNew;
 
 public class EventCase {
 
@@ -54,11 +67,11 @@ public class EventCase {
 
 		Account_Home_Button, Account_Prefer_Button, Accounts_EW_WB_Functionality, Accounts_Header, Accounts_sessionTimedOut,
 
-		Accounts_Verify_Page, Accounts_VerifyAccountsPage, Accounts_VerifyTFSA_Activity,
+		Accounts_Verify_Page, Accounts_VerifyAccountsPage, Accounts_VerifyTFSA_Activity,AddVaildEmail,
 
-		Add_Recipient_ErrorPage, AddCanadianPayee, AddPayee_SearchPayee, AddCard_MobilePayment, AddToTDMobilePayment, ApplePay_AddCard, ApplePay_SelectACard, ApplePay_CheckEligibleCard, ApplePay_ChangeDefaultCard, ApplePay_CheckPersonalCard, ApplePay_CheckBusinessCard,
+		Add_Recipient_ErrorPage, AddCanadianPayee, AddPayee_SearchPayee, AddCard_MobilePayment, AddToTDMobilePayment, ApplePay_AddCard, ApplePay_SelectACard, ApplePay_CheckEligibleCard, ApplePay_ChangeDefaultCard, ApplePay_CheckPersonalCard, ApplePay_CheckBusinessCard,ApplePay_CheckDefaultCard,ApplePay_AddAllCards,ApplePay_OtherEligibleCards,Accounts_Credit_clickTransfer,
 
-		Banking_Header,
+		Banking_Header,Bill_PayCanada_Pay_Bill,Between_My_Accounts_RTB_permissible_transfer,
 
 		Between_My_accounts, Between_My_accounts_CanadianToUS, Between_My_accounts_exchange_rate_expired, Between_My_accounts_Exchange_Rate_Expired, Between_My_Accounts_LIRA, Between_My_accounts_Mobile_Rate_Expiry, Between_My_Accounts_Permissible_Transfer, Between_My_accounts_transfer, Between_My_Accounts_Transfer_less, Between_My_accounts_transfer_verify_receipt, Between_My_accounts_VerifyFromAccounts,
 
@@ -72,15 +85,17 @@ public class EventCase {
 
 		Check_Remember_Me_Default, ClickBack, clickChangeOrder, clickChangeorder_MarketToLimit, ClickContact, ClickDepositCheque, CardDetails_save,
 
-		ClickMenu, ClickMenu_French, ClickMenuHome, clickMenuTrade, Confirm_order, Confirm_order_French, ClickPrivacy,
+		ClickMenu, ClickMenu_French, ClickMenuHome, clickMenuTrade, Confirm_order, Confirm_order_French, ClickPrivacy,ClickSave,ClickPhoneNumber,ClickClearText,ClickAddressDetail,ClickPopupGoBackButton,
 
-		ConfirmOrderCancel, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, ChangeDefaultCard, CardDetails_deleteicon, ConfirmPayee_InvalidAmount,
+		ConfirmOrderCancel, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, ChangeDefaultCard, CardDetails_deleteicon, ConfirmPayee_InvalidAmount,EditEmailAddressWithInvalidChar,clickInvestingTrade,clickFirstSymbol,
 
 		Dashboard_Authentication, Dashboard_UnAuthentication,
 
 		Delete_usr, Deposit_Header, DepositChequeHeader, END,
 
-		Env_set, Env_EnableMobilePayment,
+		Env_set, Env_EnableMobilePayment,EditEmailAddressWithNonAformat,EditEmailAddressWithlonger60Char,EditEmailAddressWithNolonger60Char,EditEmailAddressWithoutSave,EditPhoneNumber,Env_ClearSavedCards,Env_DeleteDefaultCard,
+		
+		getProfileInformation,GetEmailAndPhoneNumber,
 
 		FlyOut_HOME, Flyout_Location, HoldingDetails_click_BuyButton, HoldingDetails_verify_Account_CADCash, HoldingDetails_verify_Account_US_MarginShort,
 
@@ -92,15 +107,19 @@ public class EventCase {
 
 		Investing_clickMarkets, Investing_clickOrderTab, Investing_clickPlacedorder, Investing_clickTrade, Investing_clickTrade_French, Investing_clickWatchLists, Investing_Header, Investing_verifyAdvanceorderdetails, Investingacc_verifySummary, InvestingHeader, IOS_Account_Home_Button,
 
-		Login, Login_and_Logout, Login_clearPasswordField, Login_Error, Login_Ntimes, Login_PasswordFieldDelete, Login_usernameFieldDelete, Login_verifyPasswordField, Login_verifyUsernameField, login_without_tandc, LoginFrench, Loginverify, LoginWithRemember, Logout, LogoutFrench,
+		Login, Login_and_Logout, Login_clearPasswordField, Login_Error, Login_Ntimes, Login_PasswordFieldDelete, Login_usernameFieldDelete, Login_verifyPasswordField, Login_verifyUsernameField, login_without_tandc, LoginFrench, Loginverify, LoginWithRemember, Logout, LogoutFrench,LoginPNP,LoginMIT,
 
 		ManagePayee_AddCanadianPayee, ManagePayee_MutlipleAccesscard, ManagePayee_VerifyAddCanadianPayeeBtn, ManagePayees_Button, ManageRecipient_EditManageRecipient, ManageRecipient_ModifyRecipient, ManageRecipients_VerifyRegisterButton, mask_user,
 
-		Menu_Accounts, Menu_ClickTransfersFrench, Menu_Investing, Menu_Investing_French, Menu_Location, Menu_Mobile_deposit, MenuBills, MenuTrade, MenuTradeEasyWebCustomer, MenuTransfer, Menu_ClickMobilePayment, MobilePayment_SwipeMobilePayment, MobilePayment_AddACard, MobilePayment_ClickSettings, ManagePayment_ManageSettings, ManageSettings_Changepasscode, ManageTDMobilePayment_Selectcard, CardDetails_ToggleButton, MobilePayment_InitialSwipe, MobilePayment_SecurityQuestion, MW_verifycard, MW_expire, MobilePayment_Settingsicon, MobilePayment_SetPasscode, ManagePayment_clickcard, MenuApplePay, MenuPage_FindLocations,
+		Menu_Accounts, Menu_ClickTransfersFrench, Menu_Investing, Menu_Investing_French, Menu_Location, Menu_Mobile_deposit, MenuBills, MenuTrade, MenuTradeEasyWebCustomer, MenuTransfer, Menu_ClickMobilePayment, MobilePayment_SwipeMobilePayment, MobilePayment_AddACard, MobilePayment_ClickSettings, ManagePayment_ManageSettings, ManageSettings_Changepasscode, ManageTDMobilePayment_Selectcard, CardDetails_ToggleButton, MobilePayment_InitialSwipe, MobilePayment_SecurityQuestion, MW_verifycard, MW_expire, MobilePayment_Settingsicon, MobilePayment_SetPasscode, ManagePayment_clickcard, MenuApplePay, MenuPage_FindLocations,Menu_Profile_And_Settings,
 
 		MFA_Change, Mobile_Deposit, Multitasking_System,
 
-		OpenApp, OrderDetails_CancelOrder, OrderDetails_clickChangeorder, OrderDetailsLimitPrice, OrderDetailsPage_orderConfirmDetails, OrderDetailsPage_verifyStockChangeorderConfirmScreen, OrderDetailsTriggerPrice, OrderReciept_CancelOrderReceipt, OrderReciept_French, OrderReciept_orderdetailMutualfund, OrderReciept_orderDetails, OrderReciept_orders, OrderReciept_OrdersIcon, OrderReciept_ordertab, OrderReciept_updatemsg, OrderReciept_verifyOrderScreen, Ordertype_Cancel,
+		NavigationBackToProfileandSettingPage,NavigationToHomePage,navigateToSearchScreen,
+		
+		OpenApp, OrderDetails_CancelOrder, OrderDetails_clickChangeorder, OrderDetailsLimitPrice, OrderDetailsPage_orderConfirmDetails, OrderDetailsPage_verifyStockChangeorderConfirmScreen, OrderDetailsTriggerPrice, OrderReciept_CancelOrderReceipt, OrderReciept_French, OrderReciept_orderdetailMutualfund, OrderReciept_orderDetails, OrderReciept_orders, OrderReciept_OrdersIcon, OrderReciept_ordertab, OrderReciept_updatemsg, OrderReciept_verifyOrderScreen, Ordertype_Cancel,OpenAppPNP,
+		
+		OpenAppMIT,
 
 		Pay_US_bill_From_US_Account, Pay_US_bill_FromCanada_Account, PayBill_Canada_Button, PayBill_US_Button, PayBill_VerifyAddCanadianPayeeBtn, PayBillCanada_Add_Canadian_Payee, PayCanada_NegativeTestingBillPayment, PayCanadaBill_Post_Dated, PayCanadaBillP_Pay_Candadian_Bill, PayCanadianBill_InvalidAmount,
 
@@ -108,14 +127,20 @@ public class EventCase {
 
 		PermissibleTransfer, Preferences_Update_Question, QuickAccess, SearchPage_searchBar, Select_Account, SenderList_Cancel, Session_expired, SetupWalletPasscode,
 
+		selectTradeAccount_OrderType,searchAndSelectAccount,submitStockOptionOrder,selectDateSpecify_Android,
+		
 		TDDirectInvestingContact, Trade_changeAccountTypeLongtoShortFre_French, Trade_clickAction, Trade_clickCross, Trade_clickFundFactLink, Trade_clickMutualFunds, Trade_clickMutualPreviewOrder, Trade_clickOnAgree, Trade_clickOnPreviewOrderBtn, Trade_clickOptions, Trade_clickOrderType, Trade_clickOrderType_French, Trade_clickQuantity, Trade_clickStockETFs, Trade_clickSymbol, Trade_clickSymbol_French, Trade_confirmCancelOrder, Trade_ConfirmSendOrder, Trade_createMutualfund, Trade_Details, Trade_enterAmount, Trade_enterAndSearch, Trade_enterTradingPassword, Trade_includesComission, Trade_Limit, Trade_nosearch, Trade_placeStockOrder, Trade_selectAccount, Trade_selectAcknowledgement, Trade_selectDividendOption, Trade_selectMutualQuantity, Trade_selectMutualSymbol, Trade_selectQuantity, Trade_sendOrder, Trade_trade_account, Trade_Trigger, Trade_verifyMutualConfirmDetails, Trade_verifymutualconfirmsell, Trade_verifyRelaventMatchInResult, Trade_verifysearchbar, Trade_verifySendOrderDisplayed, Trade_verifySendOrderState, Trade_verifySuccessMessage, Trade_verifySwitchMutualConfirmDetails, Trade_verifySymbol, Trade_verifyTrade, Trade_verifyTradeActionShortAccountFre_French, TradeAccount, TradeAccount_French, TradeAction, TradeAction_French, TradeAgree, TradeAgree_French, TradeDate, TradeGoodTill, TradeGoodTill_French, TradeHeader, TradeIcon, TradeLimitPrice, TradeMarginAccount, TradePreviewOrder, TradePreviewOrder_French, TradePrice, TradePrice_French, TradeQuantity, TradeQuantity_French, TradeShareHolder, TradeTriggerDelta, TradeTriggerPrice, TradeTriggerPrice_French, TradingPassword, TradingPassword_French,
 
-		Trans_TFSA_To_Othr_Accounts, Transfer_InteracTransfer, TransferHeader, Transfers, Transfers_Click_Between_My_Accounts, Transfers_clickInterac_e_Transfer, Transfers_clickPendingInterac_e_Transfer, Transfers_ManageRecipients,
-		Trade_click_MutualFunds,
+		Trans_TFSA_To_Othr_Accounts, Transfer_InteracTransfer, TransferHeader, Transfers, Transfers_Click_Between_My_Accounts, Transfers_clickInterac_e_Transfer, Transfers_clickPendingInterac_e_Transfer, Transfers_ManageRecipients,tapInvesting,
+		
+		Trade_click_MutualFunds,verifyDefaultStrategies,tapTradeSearchBar,
 
 		USMarAccLongToShort, USMarginShort_Buy_Market,
 
-		verify_access_to_WB, Verify_account_activity_credit, Verify_Combined_Account, Verify_FP_Account, verify_login_5_times, Verify_PIA_Account, VerifyAccessCard, VerifyAccessCardDetails, VerifyActionFields, verifybill_landingpage, VerifyCombinedAccounts, verifyconfirm_order, VerifyDIAccounts, verifyErrorMessage, VerifyFPAccounts, VerifyIconDetails, VerifyInvestingScreen, VerifyNoEligibleAccounts, VerifyNoTradingAccounts, VerifyPIAAccounts, VerifyQuickIcons, VerifyReceipt, VerifySender, VerifySenderList, VerifyShareholderType, Verifytimestamp, VerifyTwoAccessCardDetails, VerifyUser, VerifyNickName, verifydefaultcard,
+		verify_access_to_WB, Verify_account_activity_credit, Verify_Combined_Account, Verify_FP_Account, verify_login_5_times, Verify_PIA_Account, VerifyAccessCard, VerifyAccessCardDetails, VerifyActionFields, verifybill_landingpage, VerifyCombinedAccounts, verifyconfirm_order, VerifyDIAccounts, verifyErrorMessage, VerifyFPAccounts, VerifyIconDetails, VerifyInvestingScreen, VerifyNoEligibleAccounts, VerifyNoTradingAccounts, VerifyPIAAccounts, VerifyQuickIcons, VerifyReceipt, VerifySender, VerifySenderList, VerifyShareholderType, Verifytimestamp, VerifyTwoAccessCardDetails, VerifyUser, VerifyNickName, verifydefaultcard,View_profile,VerifyProfileHeader,VerifyContactInformationHeader,VerifyInitialNameforIndividual,VerifyInitialNameforBusinessUser,VerifyInitialNameInUpperCase,VerifyHomePhoneMasked,VerifyExtensionNotMasked,verifyProfileandSettingLandingPage,VerifyProfileNameLength,VerifyErrorMessage,VerifySecurityQuestionButton,VeirfySecuirtyQuestionPageheader,VerifyNotificationsButton,VeirfyNotificationsPageheader,VerifyQuickAccessSettings,VerifyQuickAccessSettingsHeader,VerifyTDForMeSettings,VerifyTDForMeSettingsHeader,VerifyWhatsNew,VerifyWhatsNewPageHeader,VerifyProfileAndSettingslink,VerifyEmailFormat,VerifyEmailIDLength,VerifyBlankEmailNotSuccesful,VerifyErrorMessageOrLength,VerifyEmailIDBlankorNot,VerifyEmailAddedSuccesful,VerifyPopUpWithCancelButton,VerifyClearTextIconDisplayed,VerifyPhoneNumberIsEmpty,
+		
+		VerifyPlaceHolderDisplayed,VerifyToastmessageDisplayed,VerifyPhoneEmailNotChanged,verifySymbolUS,verifySymbolSearchResults,verifyStockOptionContents,verifyOptionOptionContents,verifySelectOption,verifyStockMidNaturalPrice,verifyOptionMidNaturalPrice,verifyGoodTill,verifyGoodTillExpiryDate,verifySharehoderType,verifyStockOptionBackButton,verifyOptionOptionBackButton,verifyOptionOptionPreviewOrderButton,verifyQuickAccessBillPaidUpdate,
+		
 
 		WatchLists_addSymbolToWatchLists, WatchLists_clickSearchBar, WatchLists_Header, Watchlists_verify_newOrderFlow_Watchlists, WatchLists_verifyRecentSearches, WatchLists_verifySymbol, WatchLists_verifySymbolAdded,
 
@@ -588,7 +613,7 @@ public class EventCase {
 			break;
 
 		case Trade_clickOnAgree:
-			// Trade.get().clickOnAgree();
+			 Trade.get().clickAgree();
 			break;
 
 		case Trade_verifyTrade:
@@ -1583,9 +1608,398 @@ public class EventCase {
 		case Trade_verifySendOrderDisplayed:
 			MutualFunds.get().verifySendOrderDisplayed();
 			break;
+			
+		case Trade_clickOrderType:
+			Trade.get().selectOrderType();
+			break;
+
+		case Trade_clickSymbol:
+			Trade.get().selectAndEnterSymbol();
+			break;
+		
+			//profile and preference
+
+		case OpenAppPNP:
+			MainScreenPNP.get().Splash_Conitnue();
+		    break;
+		    
+		case LoginPNP:
+		    LoginPNP.get().PNPLogin();
+		    break;
+		    
+		case Menu_Profile_And_Settings:
+		    MenuPage.get().clickProfileAndSettings();
+		    break;	    
+
+	    case View_profile:
+		    Profile_And_Settings.get().view_profile();
+		    break;	 	    
+			
+	    case VerifyProfileHeader:
+		    Profile.get().verify_profile_header();
+		    break;	
+
+	    case VerifyContactInformationHeader:
+		    Profile.get().verify_contact_information_header();
+		    break;	
+		    
+	    case getProfileInformation:
+		    Profile.get().get_profile_info();
+		    break;	
+
+	    case VerifyInitialNameforIndividual:
+		    Profile.get().VerifyInitialNameforIndividual();
+		    break;
+		    
+	    case VerifyInitialNameforBusinessUser:
+		    Profile.get().VerifyInitialNameforBusinessUser();
+		    break;
+		    
+	    case VerifyInitialNameInUpperCase:
+		    Profile.get().VerifyInitialNameInUpperCase();
+		    break;	
+		    	    
+	    case VerifyHomePhoneMasked:
+		    Profile.get().VerifyHomePhoneMasked();
+		    break;	
+
+	    case VerifyExtensionNotMasked:
+		    Profile.get().VerifyExtensionNotMasked();
+		    break;	
+		    
+	    case verifyProfileandSettingLandingPage:
+	    	Profile_And_Settings.get().verifyProfileandSettingLandingPage();
+		    break;	
+
+	    case VerifyProfileNameLength:
+	    	Profile.get().VerifyProfileNameLength();
+		    break;	
+		    
+	    case EditEmailAddressWithInvalidChar:
+	    	Profile.get().EditEmailAddressWithInvalidChar();
+		    break;	
+
+		    
+	    case VerifyErrorMessage:
+	    	Profile.get().VerifyErrorMessage();
+		    break;	
+		   	    
+	    case VerifySecurityQuestionButton:
+	    	Profile_And_Settings.get().VerifySecurityQuestionButton();
+		    break;	
+		
+	    case VeirfySecuirtyQuestionPageheader:
+	    	Security_Questions.get().VerifySecurityQuestionHeader();
+		    break;
+		    
+		    
+	    case VerifyNotificationsButton:
+	    	Profile_And_Settings.get().VerifyNotificationsButton();
+		    break;		    
+
+	    case VeirfyNotificationsPageheader:
+	    	Notifications.get().VerifyNotificationsPageHeader();
+		    break;
+		       
+	    case VerifyQuickAccessSettings:
+	    	Profile_And_Settings.get().VerifyQuickAccessSettings();
+		    break;		    
+
+	    case VerifyQuickAccessSettingsHeader:
+	    	QuickAccess.get().VerifyQuickAccessSettingsHeader();
+		    break;	
+
+	    case VerifyTDForMeSettings:
+	    	Profile_And_Settings.get().VerifyTDForMeSettings();
+		    break;		    
+
+	    case VerifyTDForMeSettingsHeader:
+	    	TDForMe.get().VerifyTDForMeSettingsHeader();
+		    break;
+
+	    case VerifyWhatsNew:
+	    	Profile_And_Settings.get().VerifyWhatsNew();
+		    break;		    
+
+	    case VerifyWhatsNewPageHeader:
+	    	WhatsNew.get().VerifyWhatsNewPageHeader();
+		    break;	
+		    
+	    case VerifyProfileAndSettingslink:
+	    	MenuPage.get().VerifyProfileAndSettingslink();
+		    break;	
+		            
+	    case VerifyEmailFormat:
+	    	Profile.get().VerifyEmailFormat();
+		    break;	
+
+	    case VerifyEmailIDLength:
+	    	Profile.get().VerifyEmailIDLength();
+		    break;
+
+	    case VerifyBlankEmailNotSuccesful:
+	    	Profile.get().VerifyBlankEmailNotSuccesful();
+		    break;	
+		    
+	    case NavigationBackToProfileandSettingPage:
+	    	Profile.get().NavigationBackToProfileandSettingPage();
+	    	//mobileAction.FuncClickBackButton();
+		    break;	
+		       
+	    case EditEmailAddressWithNonAformat:
+	    	Profile.get().EditEmailAddressWithNonAformat();
+		    break;	
+		    
+	    case EditEmailAddressWithlonger60Char:
+	    	Profile.get().EditEmailAddressWithlonger60Char();
+		    break;	    
+
+	    case EditEmailAddressWithNolonger60Char:
+	    	Profile.get().EditEmailAddressWithNolonger60Char();
+		    break;  
+		    
+		    
+	    case VerifyErrorMessageOrLength:
+	    	Profile.get().VerifyErrorMessageOrLength();
+		    break; 
+		    
+	    case VerifyEmailIDBlankorNot:
+	    	Profile.get().VerifyEmailIDBlankorNot();
+		    break;	
+
+	    case VerifyEmailAddedSuccesful:
+	    	Profile.get().VerifyEmailAddedSuccesful();
+		    break;	
+		    
+	    case VerifyPopUpWithCancelButton:
+	    	Profile.get().VerifyPopUpWithCancelButton();
+		    break;
+		    
+	    case EditEmailAddressWithoutSave:
+	    	Profile.get().EditEmailAddressWithoutSave();
+		    break;
+		    
+	    case NavigationToHomePage:
+	    	Accounts.get().NavigationToHomePage();
+		    break;
+		    		    
+	    case ClickSave:
+	    	Profile.get().pressSaveButton();
+		    break;	
+		    
+	    case AddVaildEmail:
+	    	Profile.get().AddVaildEmail();
+		    break;
+		    
+	    case ClickPhoneNumber:
+	    	Profile.get().ClickPhoneNumber();
+		    break;
+
+	    case VerifyClearTextIconDisplayed:
+	    	Profile.get().VerifyClearTextIconDisplayed();
+		    break;
+
+	    case ClickClearText:
+	    	Profile.get().ClickClearText();
+		    break;
+
+	    case VerifyPhoneNumberIsEmpty:
+	    	Profile.get().VerifyPhoneNumberIsEmpty();
+		    break;		    
+		    
+	    case VerifyPlaceHolderDisplayed:
+	    	Profile.get().VerifyPlaceHolderDisplayed();
+		    break;
+
+	    case EditPhoneNumber:
+	    	Profile.get().EditPhoneNumber();
+		    break;
+		      
+	    case ClickAddressDetail:
+	    	Profile.get().ClickAddressDetail();
+		    break;		    
+		    
+	    case VerifyToastmessageDisplayed:
+	    	Profile.get().VerifyToastmessageDisplayed();
+		    break;		    
+		    
+	    case GetEmailAndPhoneNumber:
+	    	Profile.get().GetEmailAndPhoneNumber();
+		    break;		    
+		    
+	    case ClickPopupGoBackButton:
+	    	Profile.get().ClickPopupGoBackButton();
+		    break;		    
+		    
+	    case VerifyPhoneEmailNotChanged:
+	    	Profile.get().VerifyPhoneEmailNotChanged();
+		    break;		    
+		    
+		//end of profile and preference
+
+	    case Trade_clickCross:
+			//Trade.get().clickCross();
+			break;
+
+
+		case Env_ClearSavedCards:
+			Env_Settings.get().clearSavedCards();
+			break;
 
 			
+		case OpenAppMIT:
+			MainScreenMIT.get().OpenApp();
+		break;
+	
+		case LoginMIT:
+			LoginMIT.get().MITLogin();
+		break;	
+		
+		case tapInvesting:
+			MainScreenMIT.get().tapInvesting();
+		break;
+		case clickInvestingTrade:
+			TradeMIT.get().clickInvestingTrade();
+		break;	
+
+		case verifyDefaultStrategies:
+			TradeMIT.get().verifyDefaultStrategies();
+		break;	
+		
+		case selectTradeAccount_OrderType:
+			TradeMIT.get().selectTradeAccount_OrderType();
+		break;	
+		
+		case navigateToSearchScreen:
+			TradeMIT.get().tapTradeSearchBar();
+			SearchPageMIT.get().verifySearchScreen();
+		break;				
+		
+		case verifySymbolUS:
+			SearchPageMIT.get().verifySymbolUS();
+		break;	
+		
+		case verifySymbolSearchResults:
+			SearchPageMIT.get().verifySymbolSearchResults();
+		break;
+		
+		case verifyStockOptionContents:
+			TradeMIT.get().tapTradeSearchBar();
+			TradeMultiLeg.get().verifyStockOptionContents();
+		break;	
+		
+		case verifyOptionOptionContents:
+			TradeMIT.get().tapTradeSearchBar();
+			TradeMultiLeg.get().verifyOptionOptionContents();
+		break;	
+		
+		case verifySelectOption:
+			TradeMIT.get().tapTradeSearchBar();
+			TradeMultiLeg.get().verifySelectOption();
+		break;	
+		
+		case verifyStockMidNaturalPrice:
+			TradeMIT.get().tapTradeSearchBar();
+			TradeMultiLeg.get().verifyStockMidNaturalPrice();
+		break;	
+		
+		case verifyOptionMidNaturalPrice:
+			TradeMIT.get().tapTradeSearchBar();
+			TradeMultiLeg.get().verifyOptionMidNaturalPrice();
+		break;	
+		
+		case tapTradeSearchBar:
+			TradeMIT.get().tapTradeSearchBar();
+		break;	
+		
+		case clickFirstSymbol:
+			SearchPageMIT.get().clickFirstSymbol();
+		break;	
+
+		case verifyGoodTill:
+			TradeMultiLeg.get().verifyGoodTill();
+		break;	
+		
+		case verifyGoodTillExpiryDate:
+			TradeMultiLeg.get().verifyGoodTillExpiryDate();
+		break;
+		case verifySharehoderType:
+			TradeMultiLeg.get().verifySharehoderType();
+		break;
+		
+		case verifyStockOptionBackButton:
+			TradeMultiLeg.get().verifyStockOptionBackButton();
+		break;
+		
+		case verifyOptionOptionBackButton:
+			TradeMultiLeg.get().verifyOptionOptionBackButton();
+		break;
+		
+		case verifyOptionOptionPreviewOrderButton:
+			TradeMultiLeg.get().verifyOptionOptionPreviewOrderButton();
+		break;
+		
+		case searchAndSelectAccount:
+			MLEnterOrderNegative.get().searchAndSelectAccount();
+		break;
+		case submitStockOptionOrder:
+			TradeMultiLeg.get().submitStockOptionOrder();
+		break;
+		
+		case selectDateSpecify_Android:
+			MLEnterOrderNegative.get().selectDateSpecify_Android();
+		break;
+		
+		case Env_DeleteDefaultCard:
+			Env_Settings.get().deleteDefaultCard();
+			break;
 			
+		case ApplePay_CheckDefaultCard:
+			ApplePay.get().checkDefaultCard();
+			break;
+			
+		case ApplePay_AddAllCards:
+			ApplePay.get().addAllCards();
+			break;
+			
+		case ApplePay_OtherEligibleCards:
+			ApplePay.get().otherEligibleCards();
+			break;
+	
+		case Bill_PayCanada_Pay_Bill:
+			Bill_PayCanada.get().pay_bill();
+			break;	
+			
+		case Accounts_Credit_clickTransfer:
+			Accounts_Credit.get().clickTransfer();
+			break;
+
+		case Between_My_Accounts_RTB_permissible_transfer:
+			Between_My_accounts.get().RTB_permissible_transfer();
+			break;
+			
+		case verifyQuickAccessBillPaidUpdate:
+			QuickAccessPage.get().verifyQuickAccessBillPaidUpdate();
+			break;	
+			
+		
+		case OrderDetails_CancelOrder:
+			//OrderDetails.get().cancelOrder();
+			break;
+
+		case OrderDetails_clickChangeorder:
+			//OrderDetails.get().clickChangeorder();
+			break;
+
+		case TradeHeader:
+			//Trade.get().verifyTrade();
+			break;
+
+		case Trade_Trigger:
+			//Trade.get().tradeDetails_TriggerDelta();
+			break;
+
+
 
 		}
 	}

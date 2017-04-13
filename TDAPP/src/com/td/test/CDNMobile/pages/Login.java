@@ -120,11 +120,11 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Logged Out']")
 	private MobileElement logoutHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Question']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Security Question']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Security Question']")
 	private MobileElement securityQuestionHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter your answer']")
+	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@value='Enter your answer']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/mfa_answer']")
 	private MobileElement enterAnswer;
 
@@ -245,6 +245,7 @@ public class Login extends _CommonPage {
 	}
 
 	public void verifySystemError() {
+		Decorator();
 		try {
 			if (errorText.isDisplayed()) {
 				CL.GetReporting().FuncReport("Fail", "System exception occured during login");
@@ -256,9 +257,9 @@ public class Login extends _CommonPage {
 	}
 
 	public void verifySecurityQuestion() {
+		Decorator();
 		try {
 			if (mobileAction.FuncIsDisplayed(securityQuestionHeader)) {
-				mobileAction.FuncClick(enterAnswer, "Enter your Answer");
 				mobileAction.FuncSendKeys(enterAnswer, "abcde");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					mobileAction.FuncClick(done, "Done");
@@ -272,12 +273,13 @@ public class Login extends _CommonPage {
 			}
 
 		} catch (Exception e) {
+			System.out.print("Exception from Method " + this.getClass().toString());
 
 		}
 	}
 
 	public void verifyTandC() {
-
+		Decorator();
 		try {
 			if (TermsAndCondition_header.isDisplayed() == true) {
 				String verify_terms = "Verifying TermsAndCondition Page Header";
@@ -309,11 +311,12 @@ public class Login extends _CommonPage {
 
 		Decorator();
 		try {
+			 Thread.sleep(2000);
 			 verifyAccessCard();
-			 mobileAction.FuncClick(username, "Username");
+			// mobileAction.FuncClick(username, "Username");
 			 mobileAction.FuncSendKeys(username,
 			 CL.getTestDataInstance().Userid);
-			mobileAction.FuncClick(password, "Password");
+			//mobileAction.FuncClick(password, "Password");
 			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -324,10 +327,11 @@ public class Login extends _CommonPage {
 			} else {
 				mobileAction.FuncClick(login, "Login");
 				Thread.sleep(5000);
+				
 			}
 			verifySystemError();
 			verifySecurityQuestion();
-			//verifyTandC();
+			verifyTandC();
 			
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {

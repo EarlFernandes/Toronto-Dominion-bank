@@ -52,6 +52,10 @@ public class AddRecipient extends _CommonPage {
 		}
 		return AddRecipient;
 	}
+	
+	public AddRecipient(){
+		Decorator();
+	}
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -69,7 +73,7 @@ public class AddRecipient extends _CommonPage {
 	 */
 	public void addRecipient_ErrorMessage() {
 
-		Decorator();
+		//Decorator();
 		try {
 			addRecipient_Interac_Header.isDisplayed();
 			// String

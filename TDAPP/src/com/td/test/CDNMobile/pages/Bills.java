@@ -19,7 +19,7 @@ public class Bills extends _CommonPage {
 
 	private static Bills Bills;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay Bill Pay a Canadian bill']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay a Canadian bill']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay a Canadian bill' and @index='1']")
 	private MobileElement pay_Cananda_Bill;
 
@@ -97,7 +97,6 @@ public class Bills extends _CommonPage {
 	public void clickPayCanadianBill() {
 		Decorator();
 		try {
-
 			mobileAction.FuncClick(pay_Cananda_Bill, "Pay Canada Bill");
 			mobileAction.waitForElementToVanish(progrees_Bar);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {

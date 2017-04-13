@@ -61,15 +61,20 @@ public class Env_Settings extends _CommonPage {
 	private MobileElement allow;
 
 	String env_need_set = getTestdata("Env");
-
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'SYS70')]")
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeSwitch[@label='Enable MIT Phase4' or @value='false']")
+	private MobileElement enableMITPhase4;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'SYS70']")
 	private MobileElement environment;
 	
 	
 	String env = "//XCUIElementTypeStaticText[@label='" + env_need_set + "']";
-	String cnfgrn = "//android.widget.TextView[@resource-id='com.td:id/title'and @text='" + env_need_set + "']";
+	
+	//@resource-id='com.td:id/title' and 
 	String env_Set = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]";
 	String networkSet="//android.widget.TextView[@resource-id='com.td:id/navText'and @text='Network Settings']";
+	String cnfgrn ="//android.widget.TextView[contains(@text,'" + env_need_set + "')]";
 	
 	int i = 1;
 	String Firstpart = "//XCUIElementTypeCell[";
@@ -84,6 +89,10 @@ public class Env_Settings extends _CommonPage {
 		return Env_Settings;
 	}
 
+	public Env_Settings(){
+		
+		Decorator();
+	}
 	private void Decorator() {
 		PageFactory.initElements(
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
@@ -105,8 +114,8 @@ public class Env_Settings extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void set_environment() throws Exception {
-		Decorator();
 		boolean  flag=true;
+		boolean boolEnv=true;
 		int count=0;
 		
 		try {
@@ -116,12 +125,12 @@ public class Env_Settings extends _CommonPage {
 					mobileAction.FuncClick(menu, "Menu");
 					mobileAction.FunCSwipeandScroll(network_settings, true);
 					Thread.sleep(2000);
+					//mobileAction.FuncClick(enableMITPhase4, "Enable MIT Phase4");
 					//mobileAction.FunCSwipeandScroll(network_settings, true);
-					
 					MobileElement envt = (MobileElement) ((AppiumDriver) CL.GetDriver())
 							.findElement(By.xpath(env));
 					mobileAction.FunCSwipeandScroll(envt, true);
-					while(flag && count<10){
+					/*while(flag && count<10){
 						if(mobileAction.verifyElementVisible(envt, "Environment")){
 							mobileAction.FuncClick(envt, "Environment");
 							flag=false;
@@ -130,7 +139,7 @@ public class Env_Settings extends _CommonPage {
 							count++;
 						}
 					}
-					
+					*/
 					//mobileAction.FuncSelectElementInTable(env_Set, Firstpart, Secondpart, env_need_set);
 					
 				}else{
@@ -146,7 +155,6 @@ public class Env_Settings extends _CommonPage {
 					CMOB_InitialSwipe.get().InitialSwipe();
 				}
 				mobileAction.FuncClick(menu, "Menu");
-				
 				//mobileAction.FunCSwipeandScroll(network_settings, true);
 				//mobileAction.FuncElementSwipeWhileNotFound(envList, cnfgrn, 5, "down", true);
 				//mobileAction.FuncSwipeWhileElementNotFoundByxpath(networkSet, true, 7, "Up");
@@ -155,7 +163,7 @@ public class Env_Settings extends _CommonPage {
 						mobileAction.FuncClick(network_settings, "Networksettings");
 						flag=false;
 					}else{
-						mobileAction.FunctionSwipe("Up", 200, 200);
+						mobileAction.FunctionSwipe("Up", 100, 100);
 						count++;
 					}
 				}
@@ -165,9 +173,25 @@ public class Env_Settings extends _CommonPage {
 
 				} else {
 					mobileAction.FuncClick(configuration, "Configuration");
+					mobileAction.FunctionSwipe("Up", 150, 150);
 					MobileElement config = (MobileElement) ((AppiumDriver) CL.GetDriver())
 							.findElement(By.xpath(cnfgrn));
-					mobileAction.FunCSwipeandScroll(config, true);
+					mobileAction.FuncClick(config, "Environment");
+					/*while(boolEnv && count<10){
+						//mobileAction.FunctionSwipe("Up", 200, 200);
+						MobileElement config = (MobileElement) ((AppiumDriver) CL.GetDriver())
+								.findElement(By.xpath(cnfgrn));
+						
+							
+							if(mobileAction.verifyElementVisible(config, "Environment")){
+								mobileAction.FuncClick(config, "Environment");
+								boolEnv=false;
+							}else{
+								mobileAction.FunctionSwipe("Up", 200, 200);
+								count++;
+							}
+					}*/
+					//mobileAction.FunCSwipeandScroll(config, true);
 					// mobileAction.FuncElementSwipeWhileNotFound(envList,
 					// cnfgrn, 5, "down", true);
 				}
@@ -194,7 +218,6 @@ public class Env_Settings extends _CommonPage {
 	 */
 
 	public void enableMobilePayment() throws Exception {
-		Decorator();
 		try {
 
 			mobileAction.FunCSwipeandScroll(network_settings, true);
@@ -220,7 +243,6 @@ public class Env_Settings extends _CommonPage {
 	}
 
 	public void clearSavedCards() throws Exception {
-		Decorator();
 		try {
 
 			mobileAction.FunCSwipeandScroll(network_settings, true);
@@ -242,7 +264,6 @@ public class Env_Settings extends _CommonPage {
 	}
 	
 	public void deleteDefaultCard() throws Exception {
-		Decorator();
 		try {
 
 			mobileAction.FunCSwipeandScroll(network_settings, true);

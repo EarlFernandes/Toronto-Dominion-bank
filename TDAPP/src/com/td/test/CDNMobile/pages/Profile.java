@@ -17,6 +17,8 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
 
+
+
 public class Profile extends _CommonPage {
 
 	private static Profile Profile;
@@ -263,6 +265,7 @@ public class Profile extends _CommonPage {
 		try {
 
 			String nameInitial = mobileAction.getText(name_initial);
+			
 			if(!nameInitial.isEmpty()){
 				System.out.println("nameInitial:" + nameInitial);
 				return nameInitial;

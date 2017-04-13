@@ -113,6 +113,7 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(transfers, "Transfers");
+		 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

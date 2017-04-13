@@ -40,6 +40,10 @@ public class AddPayee extends _CommonPage {
 		}
 		return AddPayee;
 	}
+	
+	public AddPayee(){
+		Decorator();
+	}
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -63,7 +67,7 @@ public class AddPayee extends _CommonPage {
 
 
 	public void searchPayee(){
-	Decorator();
+	//Decorator();
 	try{
 			
 			mobileAction.FuncClick(searchForCanadianPayee, "Search For Canadian Payee");

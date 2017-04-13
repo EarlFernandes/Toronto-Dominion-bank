@@ -95,6 +95,10 @@ public class Accounts_Credit extends _CommonPage {
 		}
 		return Accounts_Credit;
 	}
+	
+	public Accounts_Credit() {
+		Decorator();
+	}
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -114,7 +118,7 @@ public class Accounts_Credit extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void clickPayBill() {
-		Decorator();
+	//	Decorator();
 		try {
 			mobileAction.FuncClick(payBill_Btn, "Pay Bill");
 			mobileAction.waitForElementToVanish(progresssBar);
@@ -136,7 +140,7 @@ public class Accounts_Credit extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void verifyLatestTransactions() {
-		Decorator();
+	//	Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				String lastTransac = "//*[@label(contains," + getTestdata("confirmation_val") + "')]";
@@ -171,7 +175,7 @@ public class Accounts_Credit extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void clickLastTransac() throws InterruptedException {
-		Decorator();
+		//Decorator();
 		try {
 
 			mobileAction.FuncClick(lastStatement, "Last Statement");
@@ -194,7 +198,7 @@ public class Accounts_Credit extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void clickSummary() throws InterruptedException {
-		Decorator();
+		//Decorator();
 		try {
 
 			mobileAction.FuncClick(summaryTab, "Summary tab");
@@ -217,7 +221,7 @@ public class Accounts_Credit extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void verifySummaryDetails() throws InterruptedException {
-		Decorator();
+		//Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(currentBalance, "Current Balance");
 			mobileAction.verifyElementIsDisplayed(currentAmount, "Current Amount");
@@ -244,7 +248,7 @@ public class Accounts_Credit extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void clickStatement() throws InterruptedException {
-		Decorator();
+	//	Decorator();
 		try {
 
 			mobileAction.FuncClick(statementTab, "Statement tab");
@@ -267,7 +271,7 @@ public class Accounts_Credit extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void verifyStatementDetails() throws InterruptedException {
-		Decorator();
+	//	Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(latestStatement, "Last Statement");
 			mobileAction.verifyElementIsDisplayed(twoStatementAgo, "Two Statement Ago");
@@ -281,7 +285,7 @@ public class Accounts_Credit extends _CommonPage {
 	}
 	
 	public void clickTransfer() {
-		Decorator();
+	//	Decorator();
 		try {
 			mobileAction.FuncClick(transfer_Btn, "Transfer");
 			mobileAction.waitForElementToVanish(progressBar);

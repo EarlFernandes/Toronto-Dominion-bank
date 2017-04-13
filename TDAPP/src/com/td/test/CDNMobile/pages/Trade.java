@@ -342,9 +342,14 @@ public class Trade extends _CommonPage {
 
 				mobileAction.FuncClick(OrderType, "OrderType");
 				String orderValue = "//XCUIElementTypeStaticText[contains(@label,'" + orderValueXL + "')]";
+				System.out.println(orderValue);
 				MobileElement ordertypeval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(orderValue));
-				mobileAction.FunCSwipeandScroll(ordertypeval, true);
+				if(mobileAction.verifyElementVisible(ordertypeval, "Order Type")){
+					mobileAction.FuncClick(ordertypeval, "Order Type");
+				}else{
+					mobileAction.FunCSwipeandScroll(ordertypeval, true);
+				}
 			} else {
 				mobileAction.FuncClick(order_Type, "OrderType");
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(orderValue, true, 1, "up");

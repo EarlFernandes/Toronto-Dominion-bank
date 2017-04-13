@@ -102,11 +102,11 @@ public class Accounts extends _CommonPage {
 			+ "XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/current_Balance']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/current_balance']")
 	private MobileElement current_Balance;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/account_Desc']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/account_desc']")
 	private MobileElement account_Desc;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Summary')]")
@@ -149,6 +149,10 @@ public class Accounts extends _CommonPage {
 		}
 		return MyAccounts;
 	}
+	
+	public Accounts(){
+		Decorator();
+	}
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -163,7 +167,7 @@ public class Accounts extends _CommonPage {
 	 * @return String
 	 */
 	public String getAvailableBalance() {
-		Decorator();
+		//Decorator();
 		String bal = mobileAction.getText(txtBalance);
 		if (bal != null)
 			return bal;
@@ -184,7 +188,7 @@ public class Accounts extends _CommonPage {
 	 */
 	public void selectItemFromList() {
 
-		Decorator();
+		//Decorator();
 		try {
 
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, account_Header);
@@ -228,7 +232,7 @@ public class Accounts extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void verifyAccountPage() throws Exception {
-		Decorator();
+		//Decorator();
 		try {
 
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, "Accounts");
@@ -256,7 +260,7 @@ public class Accounts extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void account_Prefernces_button() {
-		Decorator();
+		//Decorator();
 		try {
 
 			mobileAction.FuncClick(txtPreferences, prefernces);
@@ -279,7 +283,7 @@ public class Accounts extends _CommonPage {
 	 */
 	public void account_Home_Btn_click() {
 
-		Decorator();
+		//Decorator();
 		try {
 
 			mobileAction.verifyElement(txtMy_Account_Header, account_Header);
@@ -304,7 +308,7 @@ public class Accounts extends _CommonPage {
 	 */
 	public void ios_account_Home_Btn_click() {
 
-		Decorator();
+		//Decorator();
 		try {
 			txtMy_Account_Header.isDisplayed();
 			mobileAction.FuncClick(ios_Back_Button, "Back_Button");
@@ -329,7 +333,7 @@ public class Accounts extends _CommonPage {
 	 */
 	public void verify_TFS_ACC_ISPresent() {
 
-		Decorator();
+	//	Decorator();
 		try {
 			//mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, Account_header);
 			mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 10, "down", true);
@@ -359,7 +363,7 @@ public class Accounts extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void verify_Banking_Header() {
-		Decorator();
+		//Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, account_Header);
 			mobileAction.verifyElementIsDisplayed(txtAccount_Banking_header, "BANKING");
@@ -385,7 +389,7 @@ public class Accounts extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void verify_Investing_Header() throws Exception {
-		Decorator();
+		//Decorator();
 		try {
 			//mobileAction.FunCnewSwipe(txtAccount_Investing_header, false, 4);
 			
@@ -410,7 +414,7 @@ public class Accounts extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void verify_accounts_Header() throws Exception {
-		Decorator();
+		//Decorator();
 		try {
 
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, account_Header);
@@ -435,7 +439,7 @@ public class Accounts extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void veify_EW_WB_Functionality() {
-		Decorator();
+		//Decorator();
 		try {
 			mobileAction.verifyElement(txtAccount_Investing_header, "BANKING");
 			Thread.sleep(1000);
@@ -463,7 +467,7 @@ public class Accounts extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void verifyAccountsPage() throws Exception {
-		Decorator();
+		//Decorator();
 		try {
 
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, "Accounts");
@@ -487,7 +491,7 @@ public class Accounts extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void sessionTimedOut() {
-		Decorator();
+	//	Decorator();
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -506,7 +510,7 @@ public class Accounts extends _CommonPage {
 
 	public void verifyCreditAccountActivity() throws Exception {
 
-		Decorator();
+		//Decorator();
 		try {
 
 			Thread.sleep(2000);
@@ -546,7 +550,7 @@ public class Accounts extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void selectAccount() throws Exception {
-		Decorator();
+		//Decorator();
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -580,7 +584,7 @@ public class Accounts extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void NavigationToHomePage(){
-		Decorator();
+		//Decorator();
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {

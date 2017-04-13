@@ -57,6 +57,10 @@ public class AddCanadian_Payee extends _CommonPage{
 		
 	}
 	
+	public AddCanadian_Payee(){
+		Decorator();
+	}
+	
 	/**s
 	 * This method will add canadian payee
 	 * 
@@ -72,7 +76,7 @@ public class AddCanadian_Payee extends _CommonPage{
 	 */
 	public void addCanadianPayee_page() throws Exception {
 		try {
-			Decorator();
+			//Decorator();
 		
 			//String payee_value=getTestdata("Payee");
 			String payee_value=getTestdata("Payee");

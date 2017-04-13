@@ -15,6 +15,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.openqa.selenium.support.PageFactory;
 
+import bsh.Capabilities;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -100,7 +101,7 @@ public class MainScreen extends _CommonPage {
 		// String
 		// orientation=CL.getTestDataInstance().TCParameters.get("DeviceOrientation");
 
-		if (udid.equalsIgnoreCase("988673394d39433156")) {
+		if (udid.equalsIgnoreCase("1021f602")) {
 
 			try {
 				if (CL.getTestDataInstance().getAppFilePath() == null
@@ -113,7 +114,7 @@ public class MainScreen extends _CommonPage {
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
 					}
 				}
-				CL.mobileApp("http://49.27.22.144:4736/wd/hub");
+				CL.mobileApp("http://49.27.22.144:4724/wd/hub");
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -133,8 +134,11 @@ public class MainScreen extends _CommonPage {
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
 					}
 				}
-
-				CL.mobileApp("http://49.27.22.144:4724/wd/hub");
+				CL.mobileApp("http://49.27.23.62:4734/wd/hub");//Iphone 7 Plus
+				//CL.mobileApp("http://49.27.23.62:4764/wd/hub");//Iphone 6s
+				//CL.mobileApp("http://49.27.23.62:4744/wd/hub");
+				//CL.mobileApp("http://49.27.22.144:4736/wd/hub");//Samsung UDID 988673394d39433156
+				
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;

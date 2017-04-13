@@ -160,7 +160,7 @@ public class LoginMIT extends _CommonPage {
 	
 	String verifyLogin_ios = "//*[contains(@label,'Your Login Info Please')]";
 	String verifyLogin_android = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
-	String login_password = getTestdata("Password");
+	String login_password = getTestdata("Password", "UserIDs");
 	String[] passwordArray = login_password.split(",");
 	static int count = 0;
 	
@@ -168,9 +168,10 @@ public class LoginMIT extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_launch_browser'and contains(@text,'do this later on my computer')]")
 	private MobileElement popup_ok_button;
 
-	String securityPassword = getTestdata("SecurityPassword");
+	String securityPassword = getTestdata("SecurityPassword", "UserIDs");
 
-	String passwords = getTestdata("Password");
+
+	String passwords = getTestdata("Password", "UserIDs");
 	String platFormName = CL.getTestDataInstance().getMobilePlatForm();
 	String progressBarFrench = "//android.widget.ProgressBar[@resource-id='android:id/progress']";
 	

@@ -24,6 +24,12 @@ import io.appium.java_client.MultiTouchAction;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
+
+
 public class MobileAction2 extends CommonLib {
 
 	public final int MaxTimeoutInSec = 25;
@@ -1914,7 +1920,287 @@ public void selectItemFromList(MobileElement defaultItem,String item) //throws E
 			e2.printStackTrace();
 		}
 }
+/**
+ * This method will swipe within an element
+ * 
+ * @param swipeWithinElement
+ *           The element identified by xpath 
+ *        maxSwipes: maximum times swipe
+ *        direction: swipe direction: down , up,  etc
+ * 
+ * @return  nothing
+ * 
+ */
+public void SwipeWithinElement(String swipeWithinElement, int maxSwipes,
+	    String direction) {
 
+	Point elementWithinLocation = ((AppiumDriver) GetDriver()).findElement(By.xpath(swipeWithinElement))
+		.getLocation();
+	Dimension elementWithinDimension = ((AppiumDriver) GetDriver()).findElement(By.xpath(swipeWithinElement))
+		.getSize();
+	int locationX = elementWithinLocation.getX();
+	int locationY = elementWithinLocation.getY();
+	int dimensionX = elementWithinDimension.width;
+	int dimensionY = elementWithinDimension.height;
+
+	int startx, starty, endx, endy;
+	if (direction.equalsIgnoreCase("up")) {
+	    startx = locationX + dimensionX / 2;
+	    endx = startx;
+	    starty = locationY + dimensionY - 5;
+	    endy = locationY + 10;
+	} else {
+	    startx = locationX + dimensionX / 2;
+	    endx = startx;
+	    starty = locationY + dimensionY - 10;
+	    endy = locationY + 10;
+	}
+
+	boolean elementFound = false;
+	for (int i = 1; i <= maxSwipes; i++) {
+
+		((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
+	    }
+	}
+
+public void waitForElementToVanished(MobileElement elementToVanish) {
+	try {
+	    boolean isElementDisplayed = false;
+	    int count=1;
+	    do {
+		Thread.sleep(1000);
+		isElementDisplayed = elementToVanish.isDisplayed();
+	    } while (!isElementDisplayed);
+
+	} catch (Exception e) {
+		System.out.println("Exception from Method " + this.getClass().toString());
+	}
+    }
+
+public void FuncSwipeOnce(String sDirection)
+{
+	try
+	{
+    	Dimension size = (GetDriver()).manage().window().getSize();
+    	int startx = size.width;
+    	int starty = size.height;
+    	int endy = size.height;
+    	int heightPer = (endy*30/100);
+
+	    if(sDirection.equalsIgnoreCase("up"))
+	    {
+		    ((MobileDriver) GetDriver()).swipe(startx / 2, heightPer, startx / 2, 60, 2000);
+	    		GetReporting().FuncReport("Pass", "Swipe Up once.");
+	    }
+		    else if(sDirection.equalsIgnoreCase("down"))
+		    {
+		    ((MobileDriver) GetDriver()).swipe(startx / 2, endy - heightPer, startx / 2,starty-20 , 2000);
+		    GetReporting().FuncReport("Pass", "Swipe Down once.");
+		    }
+		else
+			GetReporting().FuncReport("Fail", "Invalid direction given.");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+}
+public String FuncGetValByRegx(String sText,String sPattern) //@Author - Sushil 14-Mar-2017
+{
+	String sReturnVal = "";
+	try
+	{
+			//Pattern p = Pattern.compile("([0-9]+)([.|,])([0-9]+)");
+			Pattern p = Pattern.compile(sPattern);
+			
+		    Matcher m = p.matcher(sText);
+
+		    // if an occurrence if a pattern was found in a given string...
+		    if (m.find()) {
+		    	sReturnVal = m.group(0).trim();
+		    	GetReporting().FuncReport("Pass", "Regular expression return value: " + sReturnVal);
+				}
+		    else
+		    {
+		    	GetReporting().FuncReport("Fail", "Regular expression failed for Text:" + sText);
+		    }
+		    }
+	//}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return sReturnVal;
+}
+
+/**
+ * This method will report failure
+ * 
+ * @param Text
+ *            text which is not verified.
+ * 
+ * @return  void
+ * 
+ */
+public void Report_Fail_Not_Verified(String text){
+	try {
+		GetReporting().FuncReport("Fail",  "'" + text + "' is not verified");
+	    } catch (IOException e) {
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	    }   	
+}
+
+/**
+ * This method will report failure with error message
+ * 
+ * @param Text
+ *            text : error message
+ * 
+ * @return  void
+ * 
+ */
+public void Report_Fail(String text){
+	try {
+		GetReporting().FuncReport("Fail",  text);
+	    } catch (IOException e) {
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	    }   	
+}  
+
+/**
+ * This method will report pass
+ * 
+ * @param Text
+ *            text which is verified.
+ * 
+ * @return  void
+ * 
+ */
+
+public void Report_Pass_Verified(String text){
+	try {
+		GetReporting().FuncReport("Pass",  "'" +text + "' is verified");
+	    } catch (IOException e) {
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	    }
+}
+
+public boolean isObjExists(MobileElement element,int iTimeOut) //throws Exception @Author - Sushil 01-Mar-2017
+{
+	try
+	{
+		Thread.sleep(5000);
+		WebDriverWait wait = new WebDriverWait(GetDriver(), iTimeOut);
+		wait.until(ExpectedConditions.visibilityOf(element));
+		
+		if( element == null)
+			//throw new Exception("Object not found.");
+		GetReporting().FuncReport("Fail", "Object not found.");
+	}
+	catch(Exception e)
+	{
+		return false;
+	}
+	return true;
+}
+public void verifyItemInList(String sItem)//@Author-Sushil 27-Feb-2017
+{
+	String xpathExpression="";
+	try
+	{
+		if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			xpathExpression = "//*[@text='" + sItem +"']";
+		else
+			xpathExpression = "//*[@label='" + sItem +"']";
+		
+		verifyElement((MobileElement) (GetDriver()).findElement(By.xpath(xpathExpression)), sItem);
+	}
+	catch(Exception e)
+	{
+		try{
+			GetReporting().FuncReport("Fail",sItem + " not found.");
+		}
+		catch(Exception e1)
+		{
+		e.printStackTrace();
+		}
+	}
+}
+
+public void FuncIsElementEnabled(MobileElement objMobileElement,String sDesc)
+{
+	WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+	wait.until(ExpectedConditions.visibilityOf(objMobileElement));
+	
+	try
+	{
+/*				if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+		{*/
+		if(objMobileElement.isEnabled())
+			GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is enabled.");
+		else
+			GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+		//}
+		/*else
+		{
+			if(objMobileElement.isDisplayed())
+				GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is enabled.");
+			else
+				GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+			}*/
+	}
+	catch(Exception e)
+	{
+		try
+		{
+			GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+			e.printStackTrace();
+		}
+		catch(Exception e1)
+		{
+			e1.printStackTrace();
+		}
+	}
+}
+
+public void FuncVerifyNonBlankValue(MobileElement objMobileElement,String sDesc) //@Author - Sushil 06-Mar-2017
+{
+	String sText = "";
+	try
+	{
+		sText = objMobileElement.getText();
+		if(sText != null)
+		{
+			if(sText.length() > 0)
+				GetReporting().FuncReport("Pass", sDesc + "is not blank. " + sText);
+			else
+				GetReporting().FuncReport("Fail", sDesc + "is blank.");
+		}
+		else
+		{
+			sText = objMobileElement.getAttribute("label");
+			if(objMobileElement.getAttribute("label").length() > 0)
+				GetReporting().FuncReport("Pass", sDesc + "is not blank. " + sText);
+			else if(objMobileElement.getAttribute("value").length() > 0)
+				GetReporting().FuncReport("Pass", sDesc + "is blank.");
+			else
+				GetReporting().FuncReport("Fail", sDesc + "is blank.");
+		}
+	}
+	catch(Exception e)
+	{
+		try
+		{
+			GetReporting().FuncReport("Fail", "Non Blank value not verified.");
+			e.printStackTrace();
+		}
+		catch(Exception e1)
+		{
+			e1.printStackTrace();
+		}
+	}
+}
 
     
 
