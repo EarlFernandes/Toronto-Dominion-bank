@@ -2363,9 +2363,9 @@ public class MobileAction2 extends CommonLib {
 	     *            element which has to be identified
 	     * 
 	     * @param expectedText
-	     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNÉES"
+	     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNÃ‰ES"
 	     *            if language is English then "CONTACT INFORMATION "to be printed in report
-	     *            if language is French then "COORDONNÉES" to be printed in report
+	     *            if language is French then "COORDONNÃ‰ES" to be printed in report
 	     * 
 	     * @return nothing
 	     * 
