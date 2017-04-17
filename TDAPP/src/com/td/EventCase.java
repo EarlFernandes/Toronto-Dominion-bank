@@ -17,6 +17,7 @@ import com.td.test.CDNMobile.pages.CardDetails;
 import com.td.test.CDNMobile.pages.ConfirmOrder;
 import com.td.test.CDNMobile.pages.Confirm_Payee;
 import com.td.test.CDNMobile.pages.ContactUs;
+import com.td.test.CDNMobile.pages.CrossBorder;
 import com.td.test.CDNMobile.pages.DepositCheque;
 import com.td.test.CDNMobile.pages.FindLocations;
 import com.td.test.CDNMobile.pages.HoldingDetails;
@@ -157,6 +158,9 @@ public class EventCase {
 		Bill_PayCanada_Pay_Bill,
 		Between_My_Accounts_RTB_permissible_transfer,
 
+		CrossBorderBanking_ClickLogin,
+		CrossBorderBanking_VerifyTextLoginPopup,
+		CrossBorderBanking_VerifyTextWelcomePage,
 		CanadianPayee_ConfirmPage, 
 		Cancel,
 
@@ -1745,6 +1749,18 @@ public class EventCase {
 			Trade.get().verifySymbol();
 			break;
 
+		case ClickCrossBorderBanking:
+			MenuPage.get().clickMenuCrossBorder();
+			break;
+
+		case CrossBorderBanking_VerifyTextLoginPopup:
+			CrossBorder.get().verifyCrossBorderLoginPopupTextElements();
+			break;
+
+		case CrossBorderBanking_ClickLogin:
+			CrossBorder.get().clickLogin();
+			break;
+
 		case clickMenuTrade:
 			MenuPage.get().clickMenuTrade();
 			break;
@@ -2221,6 +2237,10 @@ public class EventCase {
 			TradeMultiLeg.get().verifyStockMidNaturalPrice();
 		break;	
 		
+		case CrossBorderBanking_VerifyTextWelcomePage:
+			CrossBorder.get().verifyCrossBorderWelcomeTextElements();
+			break;
+
 		case verifyOptionMidNaturalPrice:
 			TradeMIT.get().tapTradeSearchBar();
 			TradeMultiLeg.get().verifyOptionMidNaturalPrice();

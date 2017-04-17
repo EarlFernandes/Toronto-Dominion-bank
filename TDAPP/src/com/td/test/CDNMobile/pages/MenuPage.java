@@ -28,6 +28,9 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Bills']")
 	private MobileElement bills;
 
+	@iOSFindBy(xpath = "//*[@label='Cross-Border Banking']")
+	private MobileElement crossBorder;
+	
 	@iOSFindBy(xpath = "//*[@label='Investing Accounts']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing Accounts']")
 	private MobileElement investing;
@@ -75,7 +78,7 @@ public class MenuPage extends _CommonPage {
 	
 	//Profile and preference
 	@iOSFindBy(xpath = "//*[@label='Profile & Settings']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Profile and Settings' or @text='Profil et paramètres')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Profile and Settings' or @text='Profil et paramÃ¨tres')]")
 	private MobileElement profile_and_settings;
 
 
@@ -345,6 +348,23 @@ public class MenuPage extends _CommonPage {
 
 	}
 
+	public void clickMenuCrossBorder() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS xpath expression required
+			} else {
+				crossBorder = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_CrossBorder") + "']", "Cross Border");
+			}
+			mobileAction.FuncClick(crossBorder, "Cross Border");
+			Thread.sleep(7000);
+			} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
+	}
+	
 	/**
 	 * This method will click on the TD Mobile Payment in the menu page
 	 * 

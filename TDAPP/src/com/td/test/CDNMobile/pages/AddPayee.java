@@ -3,6 +3,7 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -345,11 +346,12 @@ public class AddPayee extends _CommonPage {
 				//System.out.println("source : "+ ((AppiumDriver) CL.GetDriver()).getPageSource());
 				final WebElement payeeAccount = mobileAction.verifyWebElementUsingXPath("//input[@id='accountNumber']", "Payee Account");
 				payeeAccount.sendKeys(getTestdata("FromAccount"));
-				// FIXME: This is not working
-				final WebElement continueButton = mobileAction.verifyWebElementUsingXPath("//button[@class='primary-button ng-binding disable']", "Continue button");
+				//FIXME: This does not work
+				final WebElement continueButton =(WebElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.id("btn"));
+				mobileAction.verifyElementIsDisplayed(continueButton, "Continue");
 				continueButton.click();
 				mobileAction.waitForElementToVanish(progressBar);
-		
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("review_details_title") + "']", "Confirm");
 			}
@@ -433,14 +435,16 @@ public class AddPayee extends _CommonPage {
 			} else {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement addPayeeButton = mobileAction.verifyWebElementUsingXPath("//button[@class='primary-button green-button ng-binding']", "Continue button");
+				final WebElement addPayeeButton = (WebElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.id("btn"));
+				mobileAction.verifyElementIsDisplayed(addPayeeButton, "Add Payee button");
 				addPayeeButton.click();
 				mobileAction.waitForElementToVanish(progressBar);
-		
+				Thread.sleep(25000);
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("add_payee_success_title") + "']", "Success title");
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			// Switch back to native to get proper screenshots
 			mobileAction.switchAppiumContext("NATIVE_APP");
 			try {

@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -89,15 +90,15 @@ public class MainScreen extends _CommonPage {
 	}
 
 	public void Splash_Conitnue() throws IOException {
-
 		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
 		CL.getTestDataInstance().DriversCapability.put("recreateChromeDriverSessions", "true");
-		
+
 		readSheet();
 
 		String udid = CL.getTestDataInstance().getDeviceUdid();
-
-		if (udid.equalsIgnoreCase("ce0716070dbb753003")) {
+		//Samsung phone - dda65bdf tablet - 9d0f2a81032ca237 - ipad air e054ae65ead3aba183484acc611497ef06a47741
+		// iphone 6 - 5ad12dcc0df2f1b65956f22e91035b8a0d288cd3
+		if (udid.equalsIgnoreCase("dda65bdf")) {
 
 			try {
 				if (CL.getTestDataInstance().getAppFilePath() == null
@@ -111,7 +112,9 @@ public class MainScreen extends _CommonPage {
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
 				}
 
-				CL.mobileApp("http://127.0.0.1:4723/wd/hub");
+				// Freddy's computer: http://49.16.220.107:4725/wd/hub
+				// MACbook pro: http://49.21.140.61:4723/wd/hub
+				CL.mobileApp("http://49.21.140.61:4723/wd/hub");
 				Decorator();
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
@@ -130,13 +133,24 @@ public class MainScreen extends _CommonPage {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
 				}
-				CL.mobileApp("http://0.0.0.0:4725/wd/hub");
-				// Decorator();
+				// Freddy's computer: http://49.16.220.107:4725/wd/hub
+				// MACbook pro: http://49.21.140.61:4723/wd/hub
+				CL.mobileApp("http://49.21.140.61:4723/wd/hub");
+				Decorator();
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 
 			}
+		}
+		
+		// Initialize App String map
+		final String locale =  CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
+		
+		if (StringUtils.isEmpty(locale)) {
+			appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
+		} else {
+			appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(locale);
 		}
 	}
 

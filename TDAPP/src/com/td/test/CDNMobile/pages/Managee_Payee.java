@@ -286,7 +286,7 @@ public class Managee_Payee extends _CommonPage {
 	public void verifyAddCanadianPayeeButton()  {
 		Decorator();
 		try {
-		mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees");
+		mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees Header");
 		mobileAction.verifyElementIsDisplayed(addCanadianPayee, "Add Canadian Payee");
 		} catch (NoSuchElementException | IOException   e) {
 		System.err.println("TestCase has failed.");
@@ -315,7 +315,7 @@ public class Managee_Payee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				mobileAction.verifyElementIsDisplayed(managePayees,"Manage Payees");
+				mobileAction.verifyElementIsDisplayed(managePayees,"Manage Payees Header");
 				// Switch to webview and click on U.S.
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				final WebElement usWebElement = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[3]", "US banner button");
@@ -357,7 +357,7 @@ public class Managee_Payee extends _CommonPage {
 	Decorator();
 	try{
 		
-			mobileAction.verifyElementIsDisplayed(managePayees,"Manage Payees");
+			mobileAction.verifyElementIsDisplayed(managePayees,"Manage Payees Header");
 			mobileAction.FuncClick(addPayee,"Add Canadian Payee");
 			mobileAction.waitForElementToVanish(progressBar);
 			Thread.sleep(10000);

@@ -2,6 +2,7 @@
 package com.td;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -24,6 +25,7 @@ public class _CommonPage {
 	protected com.td.test.framework.PerformAction PerformAction = new com.td.test.framework.PerformAction();
 	protected com.td.MobileAction2 mobileAction = new com.td.MobileAction2();
 
+	protected static Map appStringMap;
 	// public Reporting report;// = CL.GetReporting();
 	// calculated or discovered values
 	protected By foundElement = null;

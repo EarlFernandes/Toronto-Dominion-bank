@@ -39,7 +39,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Open a Bank Account']")
 	private MobileElement newAccount;
 	
-	@iOSFindBy(xpath = "//*[@label='Transfers' or @label='Virments']")
+	@iOSFindBy(accessibility = "TRANSFERS")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' or @text='Transfers' or @text='Virments']")
 	private MobileElement transfers;
 
@@ -933,7 +933,7 @@ public class HomeScreen extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				System.out.println(bills.getText());
 			} else {
 				final String accounts = mobileAction.getAppString("easy_access_accounts").toLowerCase().substring(0,1).toUpperCase() + mobileAction.getAppString("easy_access_accounts").toLowerCase().substring(1);
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + accounts + "']", "Accounts");
@@ -974,7 +974,7 @@ public class HomeScreen extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyTextEquality(transfers.getText(), mobileAction.getAppString("str_TRANSFER"));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/send_money_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_send_money") + "']", "Send Money Button");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='" + mobileAction.getAppString("str_TRANSFER") + "']", "Transfer Button");
