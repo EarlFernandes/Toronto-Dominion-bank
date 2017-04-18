@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.MobileAction2;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -27,9 +28,6 @@ public class InvestingAccountSummary extends _CommonPage {
 	String progressBar = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
 
 	String iOSProgressBar = "//*[@label='In progress' or @label='En cours']";
-
-	String strAccount = getTestdata("Account");
-	String strAcc[] = strAccount.split(":");
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/gainLoss']/following-sibling::android.widget.TextView")
 	private MobileElement unrealized;
@@ -197,6 +195,8 @@ public class InvestingAccountSummary extends _CommonPage {
 	 */
 	public void verifySummaryScenario() {
 		Decorator();
+		String strAccount = getTestdata("Account");
+		String strAcc[] = strAccount.split(":");
 		boolean flag = true;
 		try {
 
@@ -507,89 +507,89 @@ public class InvestingAccountSummary extends _CommonPage {
 							"Posted Transactions");
 			mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/date']",
 					"Transaction date");
-
-			while (flag && count < 3) {
-				try {
-					String lastStatementStr = "//android.widget.TextView[contains(@text,'"
-							+ mobileAction.getAppString("last_statement") + "')]";
-					MobileElement lastStatement = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(lastStatementStr));
-					if (lastStatement.isDisplayed()) {
-						mobileAction.verifyElementIsDisplayed(lastStatement, "Last Statement");
-						flag = false;
-					} else {
-						mobileAction.FunctionSwipe("up", 2000, 200);
-						count++;
-					}
-				} catch (Exception e) {
-					mobileAction.FunctionSwipe("up", 2000, 200);
-					count++;
-				}
-				
-				if(count==3){
-					mobileAction.stringToReport("Fail", "Last Statement is not displayed");
-				}
-			}
-
-			flag = true;
-			count = 0;
-
-			while (flag && count < 3) {
-				try {
-					String twoStatementAgoStr = "//android.widget.TextView[@text='"
-							+ mobileAction.getAppString("str_2_STATEMENTS") + "']";
-					MobileElement twoStatementAgo = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(twoStatementAgoStr));
-					if (twoStatementAgo.isDisplayed()) {
-						mobileAction.verifyElementIsDisplayed(twoStatementAgo, "2 Statements Ago");
-						flag = false;
-					} else {
-						mobileAction.FunctionSwipe("up", 2000, 200);
-						count++;
-					}
-				} catch (Exception e) {
-					mobileAction.FunctionSwipe("up", 2000, 200);
-					count++;
-				}
-
-				if(count==3){
-					mobileAction.stringToReport("Fail", "2 Statements Ago is not displayed");
-				}
-			}
-
-			flag = true;
-			count = 0;
-
-			while (flag && count < 3) {
-				try {
-					String threeStatementAgoStr = "//android.widget.TextView[@text='"
-							+ mobileAction.getAppString("str_3_STATEMENTS") + "']";
-					MobileElement threeStatementAgo = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(threeStatementAgoStr));
-					if (threeStatementAgo.isDisplayed()) {
-						mobileAction.verifyElementIsDisplayed(threeStatementAgo, "3 Statements Ago");
-						flag = false;
-					} else {
-						mobileAction.FunctionSwipe("up", 2000, 200);
-						count++;
-					}
-				} catch (Exception e) {
-					mobileAction.FunctionSwipe("up", 2000, 200);
-					count++;
-				}
-
-				if(count==3){
-					mobileAction.stringToReport("Fail", "3 Statements Ago is not displayed");
-				}
-			}
-
-			mobileAction.FunctionSwipe("up", 200, 200);
-
-			mobileAction
-					.verifyElementUsingXPath(
-							"//android.widget.TextView[@text='"
-									+ mobileAction.getAppString("str_no_more_activity_footer") + "']",
-							"All activities have been retrieved for your account.");
+//			// This is already tested in Accounts_credit.verifyActivityTabTextElements() CLOCAL-9
+//			while (flag && count < 3) {
+//				try {
+//					String lastStatementStr = "//android.widget.TextView[contains(@text,'"
+//							+ mobileAction.getAppString("last_statement") + "')]";
+//					MobileElement lastStatement = (MobileElement) ((AppiumDriver) CL.GetDriver())
+//							.findElement(By.xpath(lastStatementStr));
+//					if (lastStatement.isDisplayed()) {
+//						mobileAction.verifyElementIsDisplayed(lastStatement, "Last Statement");
+//						flag = false;
+//					} else {
+//						mobileAction.FunctionSwipe("up", 2000, 200);
+//						count++;
+//					}
+//				} catch (Exception e) {
+//					mobileAction.FunctionSwipe("up", 2000, 200);
+//					count++;
+//				}
+//				
+//				if(count==3){
+//					mobileAction.stringToReport("Fail", "Last Statement is not displayed");
+//				}
+//			}
+//
+//			flag = true;
+//			count = 0;
+//
+//			while (flag && count < 3) {
+//				try {
+//					String twoStatementAgoStr = "//android.widget.TextView[@text='"
+//							+ mobileAction.getAppString("str_2_STATEMENTS") + "']";
+//					MobileElement twoStatementAgo = (MobileElement) ((AppiumDriver) CL.GetDriver())
+//							.findElement(By.xpath(twoStatementAgoStr));
+//					if (twoStatementAgo.isDisplayed()) {
+//						mobileAction.verifyElementIsDisplayed(twoStatementAgo, "2 Statements Ago");
+//						flag = false;
+//					} else {
+//						mobileAction.FunctionSwipe("up", 2000, 200);
+//						count++;
+//					}
+//				} catch (Exception e) {
+//					mobileAction.FunctionSwipe("up", 2000, 200);
+//					count++;
+//				}
+//
+//				if(count==3){
+//					mobileAction.stringToReport("Fail", "2 Statements Ago is not displayed");
+//				}
+//			}
+//
+//			flag = true;
+//			count = 0;
+//
+//			while (flag && count < 3) {
+//				try {
+//					String threeStatementAgoStr = "//android.widget.TextView[@text='"
+//							+ mobileAction.getAppString("str_3_STATEMENTS") + "']";
+//					MobileElement threeStatementAgo = (MobileElement) ((AppiumDriver) CL.GetDriver())
+//							.findElement(By.xpath(threeStatementAgoStr));
+//					if (threeStatementAgo.isDisplayed()) {
+//						mobileAction.verifyElementIsDisplayed(threeStatementAgo, "3 Statements Ago");
+//						flag = false;
+//					} else {
+//						mobileAction.FunctionSwipe("up", 2000, 200);
+//						count++;
+//					}
+//				} catch (Exception e) {
+//					mobileAction.FunctionSwipe("up", 2000, 200);
+//					count++;
+//				}
+//
+//				if(count==3){
+//					mobileAction.stringToReport("Fail", "3 Statements Ago is not displayed");
+//				}
+//			}
+//
+//			mobileAction.FunctionSwipe("up", 200, 200);
+//
+//			mobileAction
+//					.verifyElementUsingXPath(
+//							"//android.widget.TextView[@text='"
+//									+ mobileAction.getAppString("str_no_more_activity_footer") + "']",
+//							"All activities have been retrieved for your account.");
 
 		}
 
@@ -666,8 +666,9 @@ public class InvestingAccountSummary extends _CommonPage {
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_card_no") + "']",
 						"Card #");
 
-				mobileAction.verifyElementIsDisplayed(transactionDate, "Transaction date");
-				mobileAction.verifyElementIsDisplayed(postedDate, "Posted date");
+				mobileAction.verifyDateFormat(transactionDate.getText(), MobileAction2.TYPE_YYYY_MM_DD);
+				mobileAction.verifyDateFormat(postedDate.getText(), MobileAction2.TYPE_YYYY_MM_DD);
+
 
 			}
 		}
@@ -732,8 +733,8 @@ public class InvestingAccountSummary extends _CommonPage {
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_card_no") + "']",
 						"Card #");
 
-				mobileAction.verifyElementIsDisplayed(transactionDate, "Transaction date");
-				mobileAction.verifyElementIsDisplayed(postedDate, "Posted date");
+				mobileAction.verifyDateFormat(transactionDate.getText(), MobileAction2.TYPE_YYYY_MM_DD);
+				mobileAction.verifyDateFormat(postedDate.getText(), MobileAction2.TYPE_YYYY_MM_DD);
 
 			}
 		}
@@ -781,7 +782,7 @@ public class InvestingAccountSummary extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_payment_due_date") + "']",
 						"Payment Due");
-				mobileAction.verifyElementIsDisplayed(paymentDueDate, "Payment Due Date");
+				mobileAction.verifyDateFormat(paymentDueDate.getText(), MobileAction2.TYPE_YYYY_MM_DD);
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_minimum_payment") + "']",
 						"Minimum Payment");
@@ -789,7 +790,7 @@ public class InvestingAccountSummary extends _CommonPage {
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_minimum_payment")
 								+ "']/following-sibling::android.widget.TextView[@resource-id='com.td:id/amount']",
 						"Minimum Payment Amount");
-				mobileAction.verifyElementIsDisplayed(dateOfStatement, "Date of Statement");
+				mobileAction.verifyDateFormat(dateOfStatement.getText(), MobileAction2.TYPE_YYYY_MM_DD_RANGE);
 				mobileAction.verifyElementIsDisplayed(payButton, "Pay Button");
 
 			}
@@ -846,10 +847,20 @@ public class InvestingAccountSummary extends _CommonPage {
 							"Transfer quick link");
 					mobileAction.verifyElementIsDisplayed(statementTab, "Statement Tab");
 					mobileAction.verifyElementIsDisplayed(CClastStatement, "Last Statement");
-					mobileAction.verifyElementIsDisplayed(statementBalance, "Statement Balance");
-					mobileAction.verifyElementIsDisplayed(minimumPayment, "Minimum Payment");
-					mobileAction.verifyElementIsDisplayed(paymentDue, "Payment Due");
 
+					mobileAction.verifyElementUsingXPath(
+							"//android.widget.TextView[@text='"
+									+ mobileAction.getAppString("str_Statement_Balance") + "']",
+							"Statement Balance");
+					mobileAction.verifyElementUsingXPath(
+							"//android.widget.TextView[@text='"
+									+ mobileAction.getAppString("str_Minimum_Payment") + "']",
+							"Minimum payment");
+					mobileAction.verifyElementUsingXPath(
+							"//android.widget.TextView[@text='"
+									+ mobileAction.getAppString("rtb_payment_due_date") + "']",
+							"Payment due");
+					//FIXME: Verify date headers here
 				} else {
 					mobileAction.stringToReport("Pass", "No statements to display");
 				}

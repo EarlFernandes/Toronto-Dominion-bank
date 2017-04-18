@@ -583,7 +583,7 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/from_account_name' and @text='" + mobileAction.getAppString("payBillFieldTextFromAccount") + "']", "From Account Name");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/payee_label' and @text='" + mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/payee_name' and @text='" + mobileAction.getAppString("payee_hint") + "']", "Payee name");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/amount_label' and @text='" + mobileAction.getAppString("str_Amount") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/amount_label' and @text='" + mobileAction.getAppString("amount") + "']", "Amount");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/currency_lbl' and @text='" + mobileAction.getAppString("usd") + "']", "USD label");
 				mobileAction.verifyElementUsingXPath("//android.widget.RadioButton[@resource-id='com.td:id/button_left' and @text='" + mobileAction.getAppString("usd") + "']", "USD");
 				mobileAction.verifyElementUsingXPath("//android.widget.RadioButton[@resource-id='com.td:id/button_right' and @text='" + mobileAction.getAppString("cad") + "']", "CAD");
