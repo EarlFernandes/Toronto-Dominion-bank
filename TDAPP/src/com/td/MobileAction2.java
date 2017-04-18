@@ -640,9 +640,6 @@ public class MobileAction2 extends CommonLib {
 	 */
 	public void FunCnewSwipe(MobileElement elementToFind, boolean clickYorN, int swipes) throws Exception {
 
-		Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
-		int startx = size.width;
-		int starty = size.height;
 		boolean flag = true;
 		int count = 0;
 		try {
@@ -650,24 +647,24 @@ public class MobileAction2 extends CommonLib {
 
 				try {
 					if (elementToFind.isDisplayed()) {
-
 						flag = false;
 					} else {
 
-						//((MobileDriver) GetDriver()).swipe(startx / 2, starty - starty / 4, startx / 2, starty / 4,	600);
-					    ((MobileDriver) GetDriver()).swipe(startx / 2, starty - starty / 4, startx / 2, starty / 16, 2000);
+						FunctionSwipe("up", 2000, 200);
 						count++;
 					}
 				} catch (Exception e) {
 					System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-
-					//((MobileDriver) GetDriver()).swipe(startx / 2, starty - starty / 4, startx / 2, starty / 4, 600);
-				    ((MobileDriver) GetDriver()).swipe(startx / 2, starty - starty / 4, startx / 2, starty / 16, 2000);
+					FunctionSwipe("up", 2000, 200);
 					count++;
 				}
 
 			}
 
+			if (clickYorN) {
+				elementToFind.click();
+			}
+			
 		} catch (IllegalArgumentException e) {
 			GetReporting().FuncReport("Fail", "IllegalArgumentException Exception occurred");
 			throw e;
@@ -679,12 +676,64 @@ public class MobileAction2 extends CommonLib {
 					"Exception <b>- " + e.toString() + "</b> occured while trying launch the application.");
 			throw e;
 		}
-		if (clickYorN) {
-			elementToFind.click();
+
+	}
+
+	
+	
+	
+	/**
+	 * This method will can be used in case FuncSwipeAndScroll is throwing any
+	 * exception.
+	 * 
+	 * @param elementToFind
+	 * @param clickYorN
+	 * @throws Exception
+	 */
+	public void FunCnewSwipeX(MobileElement elementToFind,String direction,int swipeTime,int offset, boolean clickYorN, int swipes) throws Exception {
+
+		boolean flag = true;
+		int count = 0;
+		try {
+			while (flag && count < swipes) {
+
+				try {
+					if (elementToFind.isDisplayed()) {
+						flag = false;
+					} else {
+
+						FunctionSwipe(direction, swipeTime, offset);
+						count++;
+					}
+				} catch (Exception e) {
+					System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+					FunctionSwipe(direction, swipeTime, offset);
+					count++;
+				}
+
+			}
+
+			if (clickYorN) {
+				elementToFind.click();
+			}
+			
+		} catch (IllegalArgumentException e) {
+			GetReporting().FuncReport("Fail", "IllegalArgumentException Exception occurred");
+			throw e;
+		} catch (NoSuchElementException n) {
+			GetReporting().FuncReport("Fail", "Element not displayed");
+			throw n;
+		} catch (Exception e) {
+			GetReporting().FuncReport("Fail",
+					"Exception <b>- " + e.toString() + "</b> occured while trying launch the application.");
+			throw e;
 		}
 
 	}
 
+	
+	
+	
 	/**
 	 * This method will pinch over the device depending on the value of the
 	 * boolean inside.
@@ -1575,11 +1624,11 @@ public class MobileAction2 extends CommonLib {
 	public static final int TYPE_YYYY_MM_DD_TODAY = 4;
 	public static final int TYPE_YYYY_MM_DD_HOUR = 5;
 
-	public static final String PATTERN_ZH_YYYY_MM_DD = "\\d{4}年\\d{1,2}月\\d{1,2}日";
-	public static final String PATTERN_ZH_YYYY_MM_DD_WEEKDATE = "\\d{4}年\\d{1,2}月\\d{1,2}日 \\(星期[一|二|三|四|五|六|日|天]\\)";
-	public static final String PATTERN_ZH_MM_YYYY = "\\d{4}年\\d{1,2}月";
-	public static final String PATTERN_ZH_YYYY_MM_DD_TODAY = "\\d{4}年\\d{1,2}月\\d{1,2}日 \\(今天\\)";
-	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}年\\d{1,2}月\\d{1,2}日 \\d{2}:\\d{2} (上午|下午)[A-Za-z\\s]*";
+	public static final String PATTERN_ZH_YYYY_MM_DD = "\\d{4}å¹´\\d{1,2}æœˆ\\d{1,2}æ—¥";
+	public static final String PATTERN_ZH_YYYY_MM_DD_WEEKDATE = "\\d{4}å¹´\\d{1,2}æœˆ\\d{1,2}æ—¥ \\(æ˜ŸæœŸ[ä¸€|äºŒ|ä¸‰|å››|äº”|å…­|æ—¥|å¤©]\\)";
+	public static final String PATTERN_ZH_MM_YYYY = "\\d{4}å¹´\\d{1,2}æœˆ";
+	public static final String PATTERN_ZH_YYYY_MM_DD_TODAY = "\\d{4}å¹´\\d{1,2}æœˆ\\d{1,2}æ—¥ \\(ä»Šå¤©\\)";
+	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}å¹´\\d{1,2}æœˆ\\d{1,2}æ—¥ \\d{2}:\\d{2} (ä¸Šå�ˆ|ä¸‹å�ˆ)[A-Za-z\\s]*";
 	
 	public void verifyDateFormat(final String dateStr, final int type) {
 		final String locale =  super.LoadData("Value", super.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
@@ -1862,10 +1911,10 @@ public class MobileAction2 extends CommonLib {
 
 		try {
 			if (elementToFind.isDisplayed()) {
-				GetReporting().FuncReport("Pass", "The text '" + elementToFind + "' is Displayed");
+				//GetReporting().FuncReport("Pass", "The text '" + elementToFind + "' is Displayed");
 				return true;
 			} else {
-				GetReporting().FuncReport("Fail", "The text '" + elementToFind + "' is not appeared");
+				//GetReporting().FuncReport("Fail", "The text '" + elementToFind + "' is not appeared");
 				return false;
 			}
 		} catch (Exception e) {
@@ -2363,9 +2412,9 @@ public class MobileAction2 extends CommonLib {
 	     *            element which has to be identified
 	     * 
 	     * @param expectedText
-	     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNÃ‰ES"
+	     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNÃƒâ€°ES"
 	     *            if language is English then "CONTACT INFORMATION "to be printed in report
-	     *            if language is French then "COORDONNÃ‰ES" to be printed in report
+	     *            if language is French then "COORDONNÃƒâ€°ES" to be printed in report
 	     * 
 	     * @return nothing
 	     * 
@@ -2507,5 +2556,64 @@ public class MobileAction2 extends CommonLib {
     public void switchAppiumContext(final String targetContext) {
     	((AppiumDriver) GetDriver()).context(targetContext);
     }
+    
+    
+    /**
+	 * @author Ashraf
+	 * This method will print the given string to report
+	 * 
+	 * @param element
+	 *            Element to be printed.
+	 * 
+	 * @param text
+	 *            Description of the element.
+	 * @throws IOException
+	 */
+	public void stringToReport(String status, String string) {
+		try {
+			GetReporting().FuncReport(status, string);
+
+		} catch (NullPointerException | IOException e) {
+			try {
+				GetReporting().FuncReport("Fail", string + " Returned null value");
+			} catch (IOException e1) {
+				System.out.println("Failed to Write in report for element: " + string);
+			}
+		}
+	}
+	
+	
+	/**
+     * @author Ashraf
+	 * This method will verify the element present on the screen.
+	 * 
+	 * @param element
+	 *            Element to be printed.
+	 * 
+	 * @param text
+	 *            Description of the element.
+	 * 
+	 * @throws IOException
+	 */
+	public boolean verifyElementPresent(MobileElement mobileElement) throws IOException {
+		
+		boolean flag=true;	
+		
+		try {
+			if (mobileElement.isDisplayed()) {
+				flag=true;
+			}
+			else{
+				flag=false;
+			}
+		} catch (Exception e) {
+			flag=false;
+		}
+
+		return flag;
+		
+	}
+    
+    
 
 }

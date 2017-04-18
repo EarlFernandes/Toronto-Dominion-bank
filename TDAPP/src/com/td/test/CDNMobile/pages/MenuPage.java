@@ -1,6 +1,7 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
@@ -82,6 +83,9 @@ public class MenuPage extends _CommonPage {
 	private MobileElement profile_and_settings;
 
 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText']")
+	private List <MobileElement> menuOpts;
+	
 	public synchronized static MenuPage get() {
 		if (MenuPage == null) {
 			MenuPage = new MenuPage();
@@ -528,5 +532,35 @@ public class MenuPage extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	
+	
+	/**
+	 * @author Ashraf
+	 * This method will click on the Investing Accounts button on menu page
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void clickInvestingAccounts() {
+
+		Decorator();
+		try {
+			
+			mobileAction.FuncClick(menuOpts.get(7), "Investing Accounts");
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
+	}
+	
 
 }

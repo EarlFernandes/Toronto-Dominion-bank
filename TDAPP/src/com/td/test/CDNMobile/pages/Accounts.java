@@ -124,10 +124,6 @@ public class Accounts extends _CommonPage {
 	@iOSFindBy(xpath = "//*[contains(@label,'Summary')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/summaryTab' and @text='Summary']")
 	private MobileElement summaryBtn;
-
-
- 
-
    
     @iOSFindBy(xpath = "//*[contains(@label,'Account #')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/accountNumber']")
@@ -562,6 +558,8 @@ public class Accounts extends _CommonPage {
 	 */
 	public void selectAccount() throws Exception {
 		Decorator();
+		boolean flag=true;
+		int count=0;
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -570,9 +568,29 @@ public class Accounts extends _CommonPage {
 						.findElement(By.xpath(account_value));
 				mobileAction.FunCSwipeandScroll(account, true);
 			} else {
+				/*MobileElement account = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(verify_Acnt));
+				mobileAction.FunCSwipeandScroll(account, true);*/
+				
+				//commented as it was throwing exception at Line 576. Instead using below login to scroll to the required account.
+				
+				while(flag&&count<5)
+				{
+					try{
 				MobileElement account = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(verify_Acnt));
-				mobileAction.FunCSwipeandScroll(account, true);
+				if(account.isDisplayed()){
+					mobileAction.FuncClick(account, "Account Number");
+					flag=false;
+				}else{
+					mobileAction.FunctionSwipe("up", 1000, 200);
+					count++;
+				}
+					}catch(Exception e){
+						mobileAction.FunctionSwipe("up", 1000, 200);
+						count++;
+					}
+					}
 			}
 
 		} catch (NoSuchElementException | IOException | InterruptedException e) {

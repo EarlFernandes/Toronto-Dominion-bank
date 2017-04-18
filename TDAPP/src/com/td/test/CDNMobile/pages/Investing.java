@@ -1,6 +1,7 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -124,6 +125,22 @@ public class Investing extends _CommonPage {
 	String InvestingAccountsXpath = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
 			+ InvestingAccountsXL + "']";
 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum']")
+	private List <MobileElement> accountDefinition;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/footer_text']")
+	private MobileElement mutualFundOfferedBy;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mf_link']")
+	private MobileElement tdInvestmentServices;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/disclaimer_link']")
+	private MobileElement tdDirectInvestment;
+	
+	String accountNum = getTestdata("FromAccount");
+	String accountNumXpath="//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"+accountNum+"')]";
+	
+	
 	public synchronized static Investing get() {
 		if (Investing == null) {
 			Investing = new Investing();
@@ -590,4 +607,153 @@ public class Investing extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	
+	/**
+	 * @author Ashraf This method will verify the details on investing page.
+	 * 
+	 * @return void
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+
+	public void verifyInvestingPageDetails() {
+
+		Decorator();
+
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS Elements
+			} else {
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
+								+ mobileAction.getAppString("str_Investing") + "']",
+						"Investing Header");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='"
+										+ mobileAction.getAppString("str_search_for_a_symbol") + "']",
+								"Enter name or symbol");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("trade_str") + "']", "Trade");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='"
+								+ mobileAction.getAppString("str_BuySellEquityOptionSecurities_hint") + "']",
+						"Buy and Sell securities and equities");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("watchlists_str") + "']",
+						"WatchLists");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='"
+								+ mobileAction.getAppString("str_CreateManageTrackWatchlist_hint") + "']",
+						"Create and Manage your watchlists");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("markets_str") + "']",
+						"Markets");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='"
+								+ mobileAction.getAppString("str_ViewCurrentMarketTrendCondition_hint") + "']",
+						"View current market trends");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and @text='"
+								+ mobileAction.getAppString("str_Accounts") + "']",
+						"Accounts");
+				
+				for(int i=0;i<accountDefinition.size();i++){
+					
+					mobileAction.verifyElementIsDisplayed(accountDefinition.get(i), "Account Definition "+(i+1));
+				}
+				for(int i=0;i<8;i++){
+				mobileAction.FunctionSwipe("up", 200, 200);
+				}
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@resource-id='com.td:id/textView1' and @text='"
+								+ mobileAction.getAppString("str_Total") + "']",
+						"Total");
+				
+				mobileAction.verifyElementIsDisplayed(mutualFundOfferedBy, "Mutual Funds offered by:");
+				mobileAction.verifyElementIsDisplayed(tdInvestmentServices, "TD Investment Services Inc.");
+				mobileAction.verifyElementIsDisplayed(tdDirectInvestment, "TD Direct Investing & TD Wealth");
+				
+			
+			}
+		}
+
+		catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
+	}
+	
+	
+	/**
+	 * @author Ashraf This method will click on first investing account on
+	 *         investing page.
+	 * 
+	 * @return void
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+
+	public void clickAccount() {
+
+		Decorator();
+		boolean flag=true;
+		int count=0;
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
+				//TODO:iOS
+			} else {
+				
+				while(flag&&count<5)
+				{
+					try{
+				MobileElement account = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(accountNumXpath));
+				if(account.isDisplayed()){
+					mobileAction.FuncClick(account, "Account Number");
+					flag=false;
+				}else{
+					mobileAction.FunctionSwipe("up", 1000, 200);
+					count++;
+				}
+					}catch(Exception e){
+						mobileAction.FunctionSwipe("up", 1000, 200);
+						count++;
+					}
+					}
+				
+			}
+
+		}
+
+		catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
+	}
+
+
+	
 }

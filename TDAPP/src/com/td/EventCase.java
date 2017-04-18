@@ -37,6 +37,7 @@ import com.td.test.CDNMobile.pages.MenuPage;
 import com.td.test.CDNMobile.pages.MobileDeposit;
 import com.td.test.CDNMobile.pages.MobilePayment;
 import com.td.test.CDNMobile.pages.Multitasking_System;
+import com.td.test.CDNMobile.pages.MutualFunds;
 import com.td.test.CDNMobile.pages.OrderDetails;
 import com.td.test.CDNMobile.pages.OrderReciept;
 import com.td.test.CDNMobile.pages.Pay_US_Bill;
@@ -193,6 +194,7 @@ public class EventCase {
 		Confirm_order, 
 		Confirm_order_French,
 		ClickPrivacy,
+		clickInvestingAccounts,
 
 		ConfirmOrderCancel, 
 		ConfirmOrderReciept, 
@@ -271,8 +273,22 @@ public class EventCase {
 		Investing_verifyAdvanceorderdetails, 
 		Investingacc_verifySummary, 
 		InvestingHeader, 
+		InvestingAccountSummary_verifyDetails,
+		InvestingAccountSummary_verifyCreditCardSummaryDetails,
+		InvestingAccountSummary_verifyCreditCardActivityDetails,
+		InvestingAccountSummary_verifyCreditCardPaymentDetails,
+		InvestingAccountSummary_verifyCreditCardPaymentPurchaseDetails,
+		InvestingAccountSummary_verifyCreditCardStatementDetails,
+		InvestingAccountSummary_verifyCreditCardStatementTabDetails,
+		InvestingAccountSummary_verifyHoldingsDetails,
+		InvestingAccountSummary_verifyListedHoldingsDetails,
+		InvestingAccountSummary_verifyInvestingOrderDetails,
+		InvestingAccountSummary_verifyOrdersDetails,
+		InvestingAccountSummary_verifyActivityTabDetails,
+		Investing_verifyPageDetails,
+		Investing_clickAccount,
 		IOS_Account_Home_Button,
-
+		
 		Login, 
 		Login_and_Logout, 
 		Login_clearPasswordField, 
@@ -342,6 +358,7 @@ public class EventCase {
 		MenuApplePay,
 		MenuPage_FindLocations,
 
+		MutualFunds_verifyMutualFundDetails,
 	    MFA_Change, 
 		Mobile_Deposit, 
 		MobileDeposit_VerifyTextElements,
@@ -690,6 +707,62 @@ public class EventCase {
 			ConfirmOrder.get().verifycdnmargin_buy();
 			break;
 
+		case clickInvestingAccounts:
+			MenuPage.get().clickInvestingAccounts();;
+			break;
+			
+		case InvestingAccountSummary_verifyDetails:
+			InvestingAccountSummary.get().verifyInvestingAccountDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyCreditCardSummaryDetails:
+			InvestingAccountSummary.get().verifyCrediCardSummaryDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyCreditCardActivityDetails:
+			InvestingAccountSummary.get().verifyCrediCardActivityDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyCreditCardPaymentDetails:
+			InvestingAccountSummary.get().verifyCrediCardPaymentDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyCreditCardPaymentPurchaseDetails:
+			InvestingAccountSummary.get().verifyCrediCardPaymentPurchaseDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyCreditCardStatementDetails:
+			InvestingAccountSummary.get().verifyCreditCardStatementDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyCreditCardStatementTabDetails:
+			InvestingAccountSummary.get().verifyCreditCardStatementTabDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyHoldingsDetails:
+			InvestingAccountSummary.get().verifyInvestingHoldingDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyListedHoldingsDetails:
+			InvestingAccountSummary.get().verifyListedHoldingDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyInvestingOrderDetails:
+			InvestingAccountSummary.get().verifyInvestingOrderDetails();
+			break;
+			
+		case MutualFunds_verifyMutualFundDetails:
+			MutualFunds.get().verifyMutualFundDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyOrdersDetails:
+			InvestingAccountSummary.get().verifyOrderDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyActivityTabDetails:
+			InvestingAccountSummary.get().verifyActivityTabDetails();
+			break;
+			
 		case VerifyReceipt:
 			OrderReciept.get().receipt();
 			break;
@@ -1036,6 +1109,14 @@ public class EventCase {
 			MenuPage.get().clickMenuInvesting();
 			break;
 
+		case Investing_verifyPageDetails:
+			Investing.get().verifyInvestingPageDetails();
+			break;
+			
+		case Investing_clickAccount:
+			Investing.get().clickAccount();
+			break;
+			
 		case Pay_US_bill_FromCanada_Account:
 			Pay_US_Bill.get().pay_US_bill_ErrorMsg();
 			break;
@@ -2202,6 +2283,7 @@ public class EventCase {
 		case verifyDefaultStrategies:
 			TradeMIT.get().verifyDefaultStrategies();
 		break;	
+		
 		
 		case selectTradeAccount_OrderType:
 			TradeMIT.get().selectTradeAccount_OrderType();
