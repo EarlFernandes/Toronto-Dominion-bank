@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.td.MainScreen;
 import com.td._CommonPage;
 
+import cucumber.deps.difflib.myers.MyersDiff;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -22,30 +23,42 @@ public class MenuPage extends _CommonPage {
 	private static MenuPage MenuPage;
 
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Virements' or @label='Transfers']")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_TRANSFERS']/XCUIElementTypeStaticText")
 	private MobileElement transfers;
 
-	@iOSFindBy(xpath = "//*[@label='Bills']")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_BILLS']/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Bills']")
 	private MobileElement bills;
 
-	@iOSFindBy(xpath = "//*[@label='Cross-Border Banking']")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_MOVEN']/XCUIElementTypeStaticText")
+	private MobileElement tdMySpend;
+	
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_CROSSBORDER']/XCUIElementTypeStaticText")
 	private MobileElement crossBorder;
 	
-	@iOSFindBy(xpath = "//*[@label='Investing Accounts']")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_INVESTING']/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing Accounts']")
 	private MobileElement investing;
 
 	@iOSFindBy(xpath = "//*[@label='Comptes Placements directs TD']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing']")
 	private MobileElement investingFRE;
+
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_QUESTIONS']/XCUIElementTypeStaticText")
+	private MobileElement faq;
 	
-	@iOSFindBy(xpath = "//*[@label='Mobile Deposit']")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_FEEDBACK']/XCUIElementTypeStaticText")
+	private MobileElement feedback;
+	
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_DEPOSIT']/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText']")
 	private MobileElement mobile_Deposit_button;
 
-	@iOSFindBy(xpath = "//*[@label='My Accounts']")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_ACCOUNTS']/XCUIElementTypeStaticText")
 	private MobileElement accounts_button;
+
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_TDFORME']/XCUIElementTypeStaticText")
+	private MobileElement tdForMe;
 
 	@iOSFindBy(xpath = "//*[@label='Virements'] ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard'and @text='VIREMENTS']")
@@ -55,13 +68,16 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
-	@iOSFindBy(xpath = "//*[@label='Contact Us']")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_CONTACT']/XCUIElementTypeStaticText")
 	private MobileElement contactUs;
 
-	@iOSFindBy(xpath = "//*[@label='Home']")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
 	private MobileElement home_button;
 
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_PRIVACY']/XCUIElementTypeStaticText")
+	private MobileElement privacy;
+	
 	@iOSFindBy(xpath = "//*[@label='Trade']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
 	private MobileElement trade;
@@ -73,7 +89,7 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Apple Pay']")
 	private MobileElement applePay;
 	
-	@iOSFindBy(xpath = "//*[@label='Locations']")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_LOCATIONS']/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
 	private MobileElement locations;
 	
@@ -505,7 +521,22 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyTextEquality(home_button.getText(), mobileAction.getAppString("flyoutNavigationHeader"));
+				mobileAction.verifyTextEquality(accounts_button.getText(), mobileAction.getAppString("str_My_Accounts"));
+				mobileAction.verifyTextEquality(transfers.getText(), mobileAction.getAppString("flyoutNavigationLinkTransfers"));
+				mobileAction.verifyTextEquality(bills.getText(), mobileAction.getAppString("flyoutNavigationLinkBills"));
+				mobileAction.verifyTextEquality(tdMySpend.getText(), mobileAction.getAppString("nav_drawer_items_moven"));
+				mobileAction.verifyTextEquality(mobile_Deposit_button.getText(), mobileAction.getAppString("flyoutNavigationLinkMobileDeposit"));
+				// FIXME: Ask may to add investing account identifier
+				//mobileAction.verifyTextEquality(investing.getText(), mobileAction.getAppString("investing_accounts_str"));
+				// FIXME: Need identifier for tdforme
+				//mobileAction.verifyTextEquality(tdForMe.getText(), mobileAction.getAppString("str_dashboard_navigation_row_zones"));
+				mobileAction.verifyTextEquality(crossBorder.getText(), mobileAction.getAppString("nav_drawer_items_crossborder"));
+				mobileAction.verifyTextEquality(locations.getText(), mobileAction.getAppString("flyoutNavigationLinkFindLocations"));
+				mobileAction.verifyTextEquality(feedback.getText(), mobileAction.getAppString("nav_drawer_items_feedback"));
+				mobileAction.verifyTextEquality(contactUs.getText(), mobileAction.getAppString("nav_drawer_items_contact"));
+				mobileAction.verifyTextEquality(faq.getText(), mobileAction.getAppString("nav_drawer_items_questions"));
+				mobileAction.verifyTextEquality(privacy.getText(), mobileAction.getAppString("nav_drawer_items_privacy"));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("logoutSuccessQuickTaskHome") + "']", "Home");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("contact_str") + "']", "Contact Us");
@@ -521,6 +552,7 @@ public class MenuPage extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("td_moneyfit_header") + "']", "TD MySpend");
 				// FIXME: Investing Accounts is two separate strings apparently
 				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("str_Investing") + " " + mobileAction.getAppString("str_Accounts") + "']", "Investing Accounts");
+				// FIXME: Need to scroll down in menu and check rest of elements
 			}
 		} catch (IOException | NoSuchElementException e) {
 			try {
