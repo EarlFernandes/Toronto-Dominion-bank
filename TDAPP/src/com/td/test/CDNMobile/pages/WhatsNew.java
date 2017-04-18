@@ -46,7 +46,7 @@ public class WhatsNew extends _CommonPage {
 		Decorator();
 		try {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				mobileAction.verifyHeaderIsDisplayed(whatsnew_title, Whatsnew);
+				mobileAction.verifyElementTextIsDisplayed(whatsnew_title, Whatsnew);
 			}else{
 				//do nothing. IOS not implement it yet.
 			}

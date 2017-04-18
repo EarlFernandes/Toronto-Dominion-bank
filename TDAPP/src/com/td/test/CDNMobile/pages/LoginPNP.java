@@ -233,7 +233,7 @@ public class LoginPNP extends _CommonPage {
 			}
 			
 
-			Thread.sleep(25000);
+			Thread.sleep(15000);
 			try{
 				String accountHeader = "";
 				if (!CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
@@ -257,7 +257,7 @@ public class LoginPNP extends _CommonPage {
 					}else{
 						verifySystemError();
 						verifySecurityQuestion();
-						verifyTandC();
+						//verifyTandC();
 					}				
 				}
 			}catch (Exception e){

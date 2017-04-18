@@ -65,6 +65,22 @@ public class MoodSelectorScreen extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/go_home_btn']")
 	private MobileElement go_back_home_btn;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[1]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button']")
+	private MobileElement quick_link_go_back_home_btn;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[2]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button']")
+	private MobileElement quick_link_view_my_accounts_btn;	
+
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/header']")
+	private MobileElement error_screen_header;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/description']")
+	private MobileElement error_screen_description;	
 	
 	//and (@text='Rate this app' or @text='Notez cette application')
 	public synchronized static MoodSelectorScreen get() {
@@ -110,7 +126,7 @@ public class MoodSelectorScreen extends _CommonPage {
 		try {
 			String title= mobileAction.getValue(feedback_title);
 			System.out.println("Mood Selector title:" +  title);
-			mobileAction.verifyHeaderIsDisplayed(feedback_title, "How was your TD app experience today? | Comment était votre expérience avec l’appli TD aujourd’hui?");
+			mobileAction.verifyElementTextIsDisplayed(feedback_title, "How was your TD app experience today? | Comment était votre expérience avec l’appli TD aujourd’hui?");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -209,7 +225,7 @@ public class MoodSelectorScreen extends _CommonPage {
 			
 			String expectedPostSurvey = CL.getTestDataInstance().TCParameters.get("PostSurveyText");
 			System.out.println("Expected survey text:" +  expectedPostSurvey);
-			mobileAction.verifyHeaderIsDisplayed(post_survey, expectedPostSurvey);
+			mobileAction.verifyElementTextIsDisplayed(post_survey, expectedPostSurvey);
 
 		} catch (Exception e) {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
@@ -219,7 +235,7 @@ public class MoodSelectorScreen extends _CommonPage {
 					
 					String expectedPostSurvey = CL.getTestDataInstance().TCParameters.get("PostSurveyText");
 					System.out.println("Expected survey text:" +  expectedPostSurvey);
-					mobileAction.verifyHeaderIsDisplayed(post_survey_great, expectedPostSurvey);
+					mobileAction.verifyElementTextIsDisplayed(post_survey_great, expectedPostSurvey);
 				}catch (Exception e1){
 					System.err.println("TestCase has failed.");
 					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -440,26 +456,7 @@ public class MoodSelectorScreen extends _CommonPage {
 	}
 
 	public void VerifyGooglePlayRatePage(){
-		Decorator();
-//		try{
-//			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-//				//for android, just keep google_play_rate_text as defined
-//			}else{
-//				String xpath = "//*[@label='" + mobileAction.getAppString("nav_drawer_items_feedback") + "']";
-//				System.out.println("xpath:" +  xpath);
-//				rate_us_on_google_Or_App_Store = mobileAction.verifyElementUsingXPath(xpath, "Rate Us On Google Play");
-//			}
-//		}catch (NoSuchElementException | IOException e) {
-//			try {
-//				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
-//			} catch (IOException ex) {
-//				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-//			}
-//			System.err.println("TestCase has failed.");
-//			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-//			return;
-//		}
-		
+		Decorator();		
 		
 		try {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
@@ -493,4 +490,88 @@ public class MoodSelectorScreen extends _CommonPage {
 			return;
 		}				
 	}
+	
+	public void Verify_quick_link_go_back_home(){
+		Decorator();
+		try{
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				String xpath = "//android.widget.Button[@text='" + mobileAction.getAppString("feedback_quick_link_go_home") + "']";
+				System.out.println("xpath:" +  xpath);
+				quick_link_go_back_home_btn = mobileAction.verifyElementUsingXPath(xpath, "Go BACK HOME");
+			}else{
+//				String xpath = "//*[@label='" + mobileAction.getAppString("btn_go_back_home") + "']";
+//				System.out.println("xpath:" +  xpath);
+//				quick_link_go_back_home_btn = mobileAction.verifyElementUsingXPath(xpath, "Go BACK HOME");
+			}
+		}catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+		
+		try{
+			mobileAction.verifyElementTextIsDisplayed(quick_link_go_back_home_btn, "GO BACK HOME | RETOUR À L'ACCUEIL");
+		}catch(Exception e){
+			System.err.println("TestCase has failed while clicking 'Go BACK HOME'");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+	public void Verify_quick_link_view_myaccounts(){
+		Decorator();
+		try{
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				String xpath = "//android.widget.Button[@text='" + mobileAction.getAppString("feedback_quick_link_my_accounts") + "']";
+				System.out.println("xpath:" +  xpath);
+				quick_link_view_my_accounts_btn = mobileAction.verifyElementUsingXPath(xpath, "VIEW MYACCOUNTS");
+			}else{
+//				String xpath = "//*[@label='" + mobileAction.getAppString("btn_go_back_home") + "']";
+//				System.out.println("xpath:" +  xpath);
+//				quick_link_view_my_accounts_btn = mobileAction.verifyElementUsingXPath(xpath, "VIEW MYACCOUNTS");
+			}
+		}catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+		
+		try{
+			mobileAction.verifyElementTextIsDisplayed(quick_link_view_my_accounts_btn, "VIEW MY ACCOUNTS | CONSULTER MES COMPTES");			
+		}catch(Exception e){
+			System.err.println("TestCase has failed while clicking 'VIEW MY ACCOUNT'");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+	public void Verify_error_screen(){
+		Decorator();
+		try{
+			String error_header ="Hmmm, something's not working right now. | Hum, quelque chose ne fonctionne pas pour l’instant.";
+			mobileAction.verifyElementTextIsDisplayed(error_screen_header, error_header);
+		}catch(Exception e){
+			System.err.println("TestCase has failed while verifying error header");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+		
+		try{
+			String error_header ="Please try again the next time you visit the TD app. | Veuillez essayer de nouveau la prochaine fois que vous utiliserez l’appli TD.";
+			mobileAction.verifyElementTextIsDisplayed(error_screen_description, error_header);
+		}catch(Exception e){
+			System.err.println("TestCase has failed while verifying error description");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+	}
+	
 }

@@ -43,7 +43,7 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/second_amount_val']")
 	private MobileElement amountSent;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='To Account, Select to account']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'To Account')]")
 	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtToAccount' and @text='Select To Account']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtToAccount']")
 	private MobileElement txtto_Acnt;

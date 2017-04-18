@@ -45,7 +45,7 @@ public class Notifications extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyHeaderIsDisplayed(notification_title, "Notifications | Avis");
+			mobileAction.verifyElementTextIsDisplayed(notification_title, "Notifications | Avis");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

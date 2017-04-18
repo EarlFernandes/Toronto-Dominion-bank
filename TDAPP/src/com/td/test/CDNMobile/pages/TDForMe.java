@@ -45,7 +45,7 @@ public class TDForMe extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyHeaderIsDisplayed(tdforme_title, "TD for Me Settings | Paramètres de TD et moi");
+			mobileAction.verifyElementTextIsDisplayed(tdforme_title, "TD for Me Settings | Paramètres de TD et moi");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

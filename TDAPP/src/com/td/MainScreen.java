@@ -15,7 +15,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.openqa.selenium.support.PageFactory;
 
-import bsh.Capabilities;
+//import bsh.Capabilities;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -101,7 +101,7 @@ public class MainScreen extends _CommonPage {
 		// String
 		// orientation=CL.getTestDataInstance().TCParameters.get("DeviceOrientation");
 
-		if (udid.equalsIgnoreCase("1021f602")) {
+		if (udid.equalsIgnoreCase("dda65bdf")) {
 
 			try {
 				if (CL.getTestDataInstance().getAppFilePath() == null
@@ -114,7 +114,8 @@ public class MainScreen extends _CommonPage {
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
 					}
 				}
-				CL.mobileApp("http://49.27.22.144:4724/wd/hub");
+				CL.mobileApp("http://0.0.0.0:4725/wd/hub");
+				//CL.mobileApp("http://49.27.22.144:4724/wd/hub");
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;

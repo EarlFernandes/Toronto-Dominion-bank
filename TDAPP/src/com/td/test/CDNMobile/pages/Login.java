@@ -147,7 +147,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_launch_browser'and contains(@text,'do this later on my computer')]")
 	private MobileElement thanks_button;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Clear text']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Clear text']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement clearText;
 

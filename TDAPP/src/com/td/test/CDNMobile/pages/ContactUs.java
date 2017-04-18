@@ -27,10 +27,11 @@ public class ContactUs extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tvTDWealthDINumberLabel' and @text='TD Direct Investing']")
 	private MobileElement tdDirectInvesting;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Call']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'TD Direct Investing')]/../XCUIElementTypeButton")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/ivTDWealthDINumberPhone']")
 	private MobileElement call_Button;
 	
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Call']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Call']")
 	private MobileElement callNow;
 	
@@ -74,7 +75,7 @@ public class ContactUs extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(call_Button, t_call);
 			mobileAction.FuncClick(call_Button, "Call Button");
 			mobileAction.FuncClick(callNow, "Call");
-			mobileAction.FuncClick(ok, "Ok");
+			//mobileAction.FuncClick(ok, "Ok");
 		}
 		}catch (NoSuchElementException | IOException |InterruptedException e) {
 			e.printStackTrace();
@@ -85,7 +86,7 @@ public class ContactUs extends _CommonPage {
 	public void VerifyContactUsPageHeader(){
 		Decorator();
 		try{
-			mobileAction.verifyHeaderIsDisplayed(contactUs, "Contact Us | Contactez-nous");
+			mobileAction.verifyElementTextIsDisplayed(contactUs, "Contact Us | Contactez-nous");
 		}catch( Exception e){
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

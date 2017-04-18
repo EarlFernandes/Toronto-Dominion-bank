@@ -45,7 +45,7 @@ public class Security_Questions extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyHeaderIsDisplayed(security_questions_title, "Security Questions | Questions de sécurité");
+			mobileAction.verifyElementTextIsDisplayed(security_questions_title, "Security Questions | Questions de sécurité");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

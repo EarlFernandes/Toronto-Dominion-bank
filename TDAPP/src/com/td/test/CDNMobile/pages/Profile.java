@@ -197,7 +197,7 @@ public class Profile extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyHeaderIsDisplayed(profile_Header, profileStr);
+			mobileAction.verifyElementTextIsDisplayed(profile_Header, profileStr);
 						
 			String initial_name = get_name_initial_info();
 			if(initial_name.length() == 1){
@@ -238,7 +238,7 @@ public class Profile extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyHeaderIsDisplayed(profile_contact_info_header, contactInfo);
+			mobileAction.verifyElementTextIsDisplayed(profile_contact_info_header, contactInfo);
 
 		} catch (NoSuchElementException | IOException e){ 
 				System.err.println("TestCase has failed.");
@@ -642,6 +642,10 @@ public class Profile extends _CommonPage {
 	public void VerifyHomePhoneMasked() {
 		Decorator();
 		String homenumber = get_home_phone_info();
+		if(homenumber.isEmpty()){
+			mobileAction.Report_Pass_Verified("Home phone is empty");
+			return;
+		}
     	boolean matched = false;
     	if (homenumber.matches(androidphoneReg)){
     		matched = true;
@@ -681,7 +685,7 @@ public class Profile extends _CommonPage {
 	public void VerifyExtensionNotMasked(){
 		String extension="";
 		try{
-			if(work_extension_info.isDisplayed()){
+			if(isPersonalUser){
 				extension =get_work_extension_info();
 				checkExtensionNotMasked(extension);
 			}

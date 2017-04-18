@@ -122,7 +122,7 @@ public class Profile_And_Settings extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyHeaderIsDisplayed(profile_preferences_Header, preferences);
+			mobileAction.verifyElementTextIsDisplayed(profile_preferences_Header, preferences);
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

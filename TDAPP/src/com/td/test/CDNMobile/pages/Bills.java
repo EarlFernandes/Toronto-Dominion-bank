@@ -98,7 +98,8 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(pay_Cananda_Bill, "Pay Canada Bill");
-			mobileAction.waitForElementToVanish(progrees_Bar);
+			//mobileAction.waitForElementToVanish(progrees_Bar);
+			Thread.sleep(5000);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

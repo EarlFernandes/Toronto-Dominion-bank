@@ -430,7 +430,7 @@ public class MenuPage extends _CommonPage {
 			}
 			//mobileAction.verifyElement(profile_and_settings, "Profile & Settings");
 			try {
-				mobileAction.verifyHeaderIsDisplayed(profile_and_settings, "Profile & Settings | Profil et paramètres");
+				mobileAction.verifyElementTextIsDisplayed(profile_and_settings, "Profile & Settings | Profil et paramètres");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

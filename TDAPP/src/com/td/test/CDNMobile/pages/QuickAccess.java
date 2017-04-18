@@ -45,9 +45,9 @@ public class QuickAccess  extends _CommonPage {
 		Decorator();
 		try {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				mobileAction.verifyHeaderIsDisplayed(quickaccess_title, "Quick Access Settings | Paramètres Accès rapide");
+				mobileAction.verifyElementTextIsDisplayed(quickaccess_title, "Quick Access Settings | Paramètres Accès rapide");
 			}else{
-				mobileAction.verifyHeaderIsDisplayed(quickaccess_title, "Quick Access | Accès rapide");
+				mobileAction.verifyElementTextIsDisplayed(quickaccess_title, "Quick Access | Accès rapide");
 			}
 
 		} catch (NoSuchElementException | IOException e) {

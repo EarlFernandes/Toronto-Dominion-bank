@@ -35,7 +35,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/contact_us_tile']/android.widget.TextView")
 	private MobileElement contact_us;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Bills']")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeStaticText[@label='Bills']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Bills']")
 	private MobileElement bills;
 
@@ -43,7 +43,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Accounts']")
 	private MobileElement my_accounts;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfers' or @label='Virments']")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeStaticText[@label='Transfers' or @label='Virments']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' or @text='Transfers' or @text='Virments']")
 	private MobileElement transfers;
 
@@ -931,7 +931,7 @@ public class HomeScreen extends _CommonPage {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				hometitle= mobileAction.getValue(home_bar);
 				System.out.println("hometitle:" +  hometitle);
-				mobileAction.verifyHeaderIsDisplayed(home_bar, "Home | Accueil");
+				mobileAction.verifyElementTextIsDisplayed(home_bar, "Home | Accueil");
 			}else{
 				hometitle = home_bar.getAttribute("name");
 				System.out.println("hometitle:" +  hometitle);

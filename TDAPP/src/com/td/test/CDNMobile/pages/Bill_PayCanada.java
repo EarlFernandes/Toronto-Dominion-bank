@@ -184,11 +184,11 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
 	private MobileElement PayeVal;
 
-	@iOSFindBy(xpath = " //XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeStaticText[1][@label='ACCESS CARD']")
+	@iOSFindBy(xpath = " //XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeStaticText[@label='ACCESS CARD']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title' and @text='Access Card']")
 	private MobileElement accesscardTableHeader;
 
-	@iOSFindBy(xpath = " //XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = " //XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
 	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard' and @index='1']/following::@index='0'[1]")
 	@AndroidFindBy(xpath = "//android.widget.ListView/android.widget.LinearLayout[@index=1]/android.widget.LinearLayout/android.widget.TextView")
 	private MobileElement selectSecondAccessCard;
@@ -211,7 +211,7 @@ public class Bill_PayCanada extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
 	private MobileElement backButton;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='PAY ANOTHER BILL']")
+	@iOSFindBy(xpath = "//XCUIElementTypeCell[@label='PAY ANOTHER BILL']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/paybill' and @text='PAY ANOTHER BILL']")
 	private MobileElement PayBillQuickAccess;
 

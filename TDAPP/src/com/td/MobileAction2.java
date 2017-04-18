@@ -1788,7 +1788,7 @@ public class MobileAction2 extends CommonLib {
      * 
      * 
      */
-    public void verifyHeaderIsDisplayed(MobileElement mobileElement, String expectedText) throws IOException {
+    public void verifyElementTextIsDisplayed(MobileElement mobileElement, String expectedText) throws IOException {
     	String[] expectedHeadertext = expectedText.split("\\|");
     	
 		try {
@@ -1840,10 +1840,12 @@ public String getValue(MobileElement objElement) {
 		if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 			return objElement.getText();
 		}else{
-			return objElement.getAttribute("value");
+			String value = objElement.getAttribute("label");
+			if(value == null || value.isEmpty()){
+				value = objElement.getAttribute("value");
+			}
+			return value;
 		}
-		
-
 	}
 
 public boolean isObjExists(MobileElement element) //throws Exception @Author - Sushil 01-Mar-2017

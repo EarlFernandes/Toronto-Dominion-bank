@@ -18,7 +18,7 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class DepositCheque  extends _CommonPage{
 	private static DepositCheque DepositCheque;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Deposit Cheque']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Deposit Cheque']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Mobile Deposit']")
 	private MobileElement depositCheque_Header;
 	
