@@ -270,7 +270,7 @@ public class Pay_US_Bill extends _CommonPage {
 				if (!mobileAction.verifyTextEquality(header.getText().trim(), mobileAction.getAppString("pay_us_bill_welcome_title")) ||
 						!mobileAction.verifyTextEquality(msg1.getText().trim(), mobileAction.getAppString("USBillPayCustomerNotRegisteredDescription1")) || 
 						!mobileAction.verifyTextEquality(button.getText().trim(), mobileAction.getAppString("btn_get_started")) ||
-						!mobileAction.verifyTextEquality(msg2.getText().trim(), mobileAction.getAppString("USBillPayCustomerNotRegisteredDescription2"))) {
+						!mobileAction.verifyTextEquality(msg2.getText().trim(), mobileAction.getAppString("USBillPayCustomerNotRegisteredDescription2") + "\n" + mobileAction.getAppString("learn_more_us_bill_pay"))) {
 					System.err.println("TestCase has failed.");
 					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				}

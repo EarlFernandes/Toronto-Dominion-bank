@@ -230,9 +230,7 @@ public class MenuPage extends _CommonPage {
 
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS xpath expression required
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				accounts_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("str_My_Accounts") + "']", "My Accounts");
 			}
 			mobileAction.FuncClick(accounts_button, "Accounts");
@@ -531,6 +529,7 @@ public class MenuPage extends _CommonPage {
 				//mobileAction.verifyTextEquality(investing.getText(), mobileAction.getAppString("investing_accounts_str"));
 				// FIXME: Need identifier for tdforme
 				//mobileAction.verifyTextEquality(tdForMe.getText(), mobileAction.getAppString("str_dashboard_navigation_row_zones"));
+				// FIXME: Need to scroll down here for phones
 				mobileAction.verifyTextEquality(crossBorder.getText(), mobileAction.getAppString("nav_drawer_items_crossborder"));
 				mobileAction.verifyTextEquality(locations.getText(), mobileAction.getAppString("flyoutNavigationLinkFindLocations"));
 				mobileAction.verifyTextEquality(feedback.getText(), mobileAction.getAppString("nav_drawer_items_feedback"));

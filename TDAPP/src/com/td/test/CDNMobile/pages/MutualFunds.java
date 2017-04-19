@@ -75,6 +75,7 @@ public class MutualFunds extends _CommonPage {
 								+ mobileAction.getAppString("str_Investing") + "']",
 						"Investing Header");
 				
+				// FIXME: Verify the text
 				mobileAction.verifyElementIsDisplayed(balancesTab, "Balances Tab");
 				mobileAction.verifyElementIsDisplayed(holdingsTab, "Holdings Tab");
 				
@@ -89,7 +90,7 @@ public class MutualFunds extends _CommonPage {
 						"Total Book Value");
 				text=timeStamp.getText();
 				mobileAction.verifyElementIsDisplayed(timeStamp, text);
-				
+				// FIXME: Verify the date header
 
 			}
 		}

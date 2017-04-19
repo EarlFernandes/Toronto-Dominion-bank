@@ -923,11 +923,9 @@ public class InvestingAccountSummary extends _CommonPage {
 								+ mobileAction.getAppString("str_QUOTE") + "']",
 						"Quote");
 				
-				mobileAction.verifyElementIsDisplayed(symbol, "SYMBOL");
-				mobileAction.verifyElementIsDisplayed(priceCHG, "PRICE/CHG");
-				mobileAction.verifyElementIsDisplayed(gainLossUnrealized, "GAIN/LOSS Unrealized");
-				
-
+				mobileAction.verifyTextEquality(symbol.getText(), mobileAction.getAppString("str_Symbol"));
+				mobileAction.verifyTextEquality(priceCHG.getText(), mobileAction.getAppString("str_PriceChange"));
+				mobileAction.verifyTextEquality(gainLossUnrealized.getText(), mobileAction.getAppString("str_GainLoss") + "\n" + mobileAction.getAppString("str_unrealized"));
 			}
 		}
 
@@ -1003,11 +1001,16 @@ public class InvestingAccountSummary extends _CommonPage {
 						"Holding Details");
 				
 				mobileAction.verifyElementIsDisplayed(buy, "Buy Button");
+				mobileAction.verifyTextEquality(buy.getText(), mobileAction.getAppString("str_BUY"));
 				mobileAction.verifyElementIsDisplayed(sell, "Sell Button");
+				mobileAction.verifyTextEquality(sell.getText(), mobileAction.getAppString("str_SELL"));
 				text=holdingTimeStamp.getText();
 				mobileAction.verifyElementIsDisplayed(holdingTimeStamp, text);
+				mobileAction.verifyDateFormat(holdingTimeStamp.getText(), MobileAction2.TYPE_YYYY_MM_DD_HOUR);
 				mobileAction.verifyElementIsDisplayed(holdingGainLoss, "GAIN/LOSS");
+				mobileAction.verifyTextEquality(holdingGainLoss.getText(), mobileAction.getAppString("str_GainLoss_lower"));
 				mobileAction.verifyElementIsDisplayed(holdingUnrealized, "Unrealized");
+				mobileAction.verifyTextEquality(holdingUnrealized.getText(), mobileAction.getAppString("str_unrealized"));
 				
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='"
@@ -1015,12 +1018,16 @@ public class InvestingAccountSummary extends _CommonPage {
 						"Quantity");
 				
 				mobileAction.verifyElementIsDisplayed(averageCost, "Average Cost");
+				mobileAction.verifyTextEquality(averageCost.getText(), mobileAction.getAppString("str_AverageCost"));
 				
 				mobileAction.FunctionSwipe("up", 200, 200);
 				
 				mobileAction.verifyElementIsDisplayed(bookValue, "Book Value");
+				mobileAction.verifyTextEquality(bookValue.getText(), mobileAction.getAppString("str_BookValue"));
 				mobileAction.verifyElementIsDisplayed(marketValue, "Market Value");
+				mobileAction.verifyTextEquality(marketValue.getText(), mobileAction.getAppString("str_MarketValue"));
 				mobileAction.verifyElementIsDisplayed(footerStatus, "Amount converted to the currency of the account.");
+				mobileAction.verifyTextEquality(footerStatus.getText().replace("1.", "").trim(), mobileAction.getAppString("str_Amt_Conv_To_Act_Curr_Footnote"));
 				
 			}
 		}
@@ -1086,6 +1093,7 @@ public class InvestingAccountSummary extends _CommonPage {
 				mobileAction.FuncClick(ordersTab, "Orders Tab");
 				text=ordersBeginningTime.getText();
 				mobileAction.verifyElementIsDisplayed(ordersBeginningTime, text);
+				mobileAction.verifyDateFormat(ordersBeginningTime.getText(), MobileAction2.TYPE_YYYY_MM_DD_HOUR);
 				
 				
 				
@@ -1254,6 +1262,7 @@ public class InvestingAccountSummary extends _CommonPage {
 								+ mobileAction.getAppString("str_OrderPlaced") + "']",
 						"Order Placed");
 				
+				//FIXME: Verify the text
 				mobileAction.verifyElementIsDisplayed(ordersFooter, "Footer Text");
 				mobileAction.verifyElementIsDisplayed(callBtn, "Call Button");
 				
@@ -1314,6 +1323,7 @@ public class InvestingAccountSummary extends _CommonPage {
 							+ mobileAction.getAppString("str_QUOTE") + "']",
 					"Quote");
 			
+			// FIXME: Verify the text
 			mobileAction.verifyElementIsDisplayed(activityTab, "Activity Tab");
 			mobileAction.FuncClick(activityTab, "Activity Tab");
 			mobileAction.verifyElementIsDisplayed(dateSettle, "DATE/SETTLE");

@@ -409,7 +409,7 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderFromAccount").replaceAll(" ", "\n") + "']", "From Account");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderDate") + "']", "Date");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderAmount") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_Amount") + "']", "Amount");
 				mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/cancelBtn' and @text='" + mobileAction.getAppString("cancel_scheduled_payment") + "']", "Cancel Payment");
 				mobileAction.verifyDateFormat(upcomingBillDate.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
 			}

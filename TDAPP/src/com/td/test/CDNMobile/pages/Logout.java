@@ -1,6 +1,7 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
@@ -26,7 +27,7 @@ public class Logout extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement Menu_button;
 	
-	@iOSFindBy(xpath ="//*[@label='Logout']")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_LOGOUT")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 	
@@ -34,16 +35,27 @@ public class Logout extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Fermer la session']")
 	private MobileElement logout_French;
 	
-	@iOSFindBy(xpath ="//*[@label='']")
+	@iOSFindBy(xpath ="//XCUIElementTypeNavigationBar/XCUIElementTypeOther")
 	@AndroidFindBy(xpath = "android.widget.TextView//[@resource-id='android:id/action_bar_title' and @text='Logged Out']")
 	private MobileElement logoutHeader; 
 	
 	@iOSFindBy(xpath ="//*[@label='Retour']")
 	private MobileElement french_back_button; 
 	
-
-
+	@iOSFindBy(accessibility = "LOGOUT_SUC")
+	private MobileElement successTitle; 
 	
+	@iOSFindBy(accessibility = "LOGOUT_SUC_MESSAGE")
+	private MobileElement successMsg; 
+
+	@iOSFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell[1]")
+	private MobileElement goBackHome;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell[2]")
+	private MobileElement contactUs;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell[3]")
+	private MobileElement locations;
  
 	
 	@iOSFindBy(xpath ="//*[@label='Terminé']")
@@ -163,11 +175,20 @@ public class Logout extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyTextEquality(logoutHeader.getText(), mobileAction.getAppString("logoutSuccessPageHeader"));
+				mobileAction.verifyTextEquality(successMsg.getText(), mobileAction.getAppString("logoutSuccessCopy"));
+				mobileAction.verifyTextEquality(successTitle.getText(), mobileAction.getAppString("success"));
+				// FIXME: Why is this not equal?
+				mobileAction.verifyTextEquality(goBackHome.getText(), mobileAction.getAppString("btn_go_back_home"));
+				mobileAction.verifyTextEquality(contactUs.getText(), mobileAction.getAppString("logoutSuccessQuickTaskContact"));
+				mobileAction.verifyTextEquality(locations.getText(), mobileAction.getAppString("logoutSuccessQuickTaskFindLocations"));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.RelativeLayout[@resource-id='com.td:id/receipt_info_layout']/android.widget.TextView[@text='" + mobileAction.getAppString("success") + "']", "Success");
 				mobileAction.verifyElementUsingXPath("//android.widget.RelativeLayout[@resource-id='com.td:id/receipt_info_layout']/android.widget.TextView[@text='" + mobileAction.getAppString("logoutSuccessCopy") + "']", "Success Message");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("logoutSuccessPageHeader") + "']", "Logged Out header");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("quick_links_go_back_home").toUpperCase() + "']", "Go back home");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("contact_str").toUpperCase() + "']", "Contact us");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("find_locations").toUpperCase() + "']", "Locations");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {

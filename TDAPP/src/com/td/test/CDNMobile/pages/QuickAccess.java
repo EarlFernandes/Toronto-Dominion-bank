@@ -19,7 +19,7 @@ public class QuickAccess  extends _CommonPage {
 
 	private static QuickAccess Quickaccess;
 
-	@iOSFindBy(xpath = "//*[@label='Quick Access']")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeOther")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement quickaccess_title;
 
@@ -27,6 +27,15 @@ public class QuickAccess  extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progrees_bar;
 
+	@iOSFindBy(accessibility = "QUICKBALANCE_ONBOARDING_VIEW_TITLE")
+	private MobileElement title;
+	
+	@iOSFindBy(accessibility = "QUICKBALANCE_ONBOARDING_VIEW_DES")
+	private MobileElement msg;
+	
+	@iOSFindBy(accessibility = "QUICKBALANCE_ONBOARDING_START_BUTTON")
+	private MobileElement getStartedButton;
+	
 	public synchronized static QuickAccess get() {
 		if (Quickaccess == null) {
 			Quickaccess = new QuickAccess();
@@ -65,7 +74,11 @@ public class QuickAccess  extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyTextEquality(quickaccess_title.getText(), mobileAction.getAppString("easy_access_tc_title"));
+				mobileAction.verifyTextEquality(title.getText(), mobileAction.getAppString("easy_access_enroll_text1"));
+				// FIXME: Msg string is not found?
+				//mobileAction.verifyTextEquality(msg.getText(), mobileAction.getAppString(""));
+				mobileAction.verifyTextEquality(getStartedButton.getText(), mobileAction.getAppString("btn_get_started"));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("easy_access_enroll_title") + "']", "Welcome to quick access title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("easy_access_enroll_text1") + "']", "Account balances on the go");
