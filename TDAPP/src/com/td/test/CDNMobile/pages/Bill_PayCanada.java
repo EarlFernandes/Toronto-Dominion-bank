@@ -197,7 +197,7 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel' and @text='Cancel']")
 	private MobileElement cancelBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label ='Bills']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label ='Bills']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Bills']")
 	private MobileElement bills_header;
 
@@ -716,7 +716,7 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.FuncClick(pay_bill, "Pay Bill");
-				mobileAction.waitForElementToVanish(progressBar);
+				//mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.verifyElementIsDisplayed(confirmationText, "Thank You!");
 				mobileAction.verifyElementIsDisplayed(confirmation_val, "Confirmation Value");
 

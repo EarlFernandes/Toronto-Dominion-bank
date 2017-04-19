@@ -35,7 +35,7 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Bills']")
 	private MobileElement bills_Header;
 	
-	@iOSFindBy(xpath="//XCUIElementTypeStaticText[contains(@label,'Scheduled Payments View and cancel pending Canadian payments or')]")
+	@iOSFindBy(xpath="//XCUIElementTypeStaticText[contains(@label,'Scheduled Payments')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Scheduled Payments']")
 	private MobileElement scheduledPayments;
 

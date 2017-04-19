@@ -1123,19 +1123,15 @@ public class Profile extends _CommonPage {
 		
 		Decorator();
 		String back_xpath ="";
-
-		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			back_xpath = "//android.widget.ImageView[@resource-id='android:id/up']";
-		}else{
-			back_xpath = "//*[@label='Back' or @label='Retour']";
-		}
 		try{
-			MobileElement back_arrow = (MobileElement)CL.GetDriver().findElement(By.xpath(back_xpath));
-			Thread.sleep(3000);
-			mobileAction.FuncClick(back_arrow, "<");
-			Thread.sleep(3000);
-			//mobileAction.FuncClickBackButton();
-			Thread.sleep(3000);
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				//back_xpath = "//android.widget.ImageView[@resource-id='android:id/up']";
+				mobileAction.FuncClickBackButton();
+			}else{
+				back_xpath = "//*[@label='Back' or @label='Retour']";
+				MobileElement back_arrow = (MobileElement)CL.GetDriver().findElement(By.xpath(back_xpath));	
+				mobileAction.FuncClick(back_arrow, "<");
+			}
 				
 		}catch (NoSuchElementException |  IOException e) {
 	        System.err.println("TestCase has failed.");

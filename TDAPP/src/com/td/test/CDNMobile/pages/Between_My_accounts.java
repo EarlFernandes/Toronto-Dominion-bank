@@ -97,7 +97,7 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement btnLogout;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Logged Out']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Logged Out']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Logged Out']")
 	private MobileElement logoutHeader;
 
@@ -130,11 +130,11 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement txtProgressBar;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Confirm']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Confirm']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Confirm']")
 	private MobileElement txtConfirmHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfers']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Transfers']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Transfers']")
 	private MobileElement txtTransfers_Header;
 
@@ -303,10 +303,21 @@ public class Between_My_accounts extends _CommonPage {
 
 				mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 				String from_AccountNo = getTestdata("FromAccount");
-				mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, from_AccountNo);
-				mobileAction.FuncClick(txtto_Acnt, "To Account");
+				System.out.println("From account:" + from_AccountNo);
+				//mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, from_AccountNo);
+				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
+				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(account_value));
+				mobileAction.FunCSwipeandScroll(fromAccountval, true);
+
+				mobileAction.FuncClick(txtto_Acnt, "To Account");				
 				String to_accountNo = getTestdata("ToAccount");
-				mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, to_accountNo);
+				System.out.println("To account:" + to_accountNo);
+				account_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
+				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(account_value));
+				mobileAction.FunCSwipeandScroll(toAccountval, true);
+				//mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, to_accountNo);
 			} else {
 				mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_from_acnt, 10, "down", true);
@@ -823,6 +834,7 @@ public class Between_My_accounts extends _CommonPage {
 
 				mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 				String from_AccountNo = getTestdata("FromAccount");
+				System.out.println("From_AccountNo:" + from_AccountNo);
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
 				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(account_value));
@@ -830,6 +842,7 @@ public class Between_My_accounts extends _CommonPage {
 
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
 				String to_accountNo = getTestdata("ToAccount");
+				System.out.println("To Account:" + to_accountNo);
 
 				String toAccount_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
 				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
@@ -1111,6 +1124,8 @@ public class Between_My_accounts extends _CommonPage {
 					MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 							.findElement(By.xpath(accountno));
 					mobileAction.FunCSwipeandScroll(fromAccountval, true);
+					fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+							.findElement(By.xpath(accountno));
 					mobileAction.verifyElementIsDisplayed(fromAccountval, "From Account Number");
 					mobileAction.verifyElementIsDisplayed(fromAccountName, "From Account Name");
 					mobileAction.verifyElementIsDisplayed(fromAccountBalance, "From Account Balance");

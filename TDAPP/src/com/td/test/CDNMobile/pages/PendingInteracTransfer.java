@@ -26,11 +26,11 @@ public class PendingInteracTransfer extends _CommonPage{
 	
 	private static PendingInteracTransfer PendingInteracTransfer;
 	
-	@iOSFindBy(xpath= "//XCUIElementTypeStaticText[@label='Pending Interac e-Transfer']")
+	@iOSFindBy(xpath= "//XCUIElementTypeOther[@label='Pending Interac e-Transfer']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Pending Interac e-Transfer']")
 	private MobileElement pending_Interace_Transfer_Header; 
 	
-	@iOSFindBy(xpath= "//XCUIElementTypeStaticText[@label='-sender']")
+	@iOSFindBy(xpath= "//XCUIElementTypeStaticText[@label='-sender' or @label='-Sender']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/layout_etransfer_sender_layout']")
 	private MobileElement sender;
 	
@@ -290,10 +290,11 @@ public class PendingInteracTransfer extends _CommonPage{
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
 				
 				WebDriverWait wait = new WebDriverWait((AppiumDriver) CL.GetDriver(),60);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@label='-sender']")));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@label='-sender' or @label='-Sender']")));
 				
 				mobileAction.FuncClick(selectSender, "sender");
-				String senderVal=getTestdata("sender");
+				String senderVal=getTestdata("Sender");
+				System.out.println("Sender:"+senderVal);
 				String selectSender=selectSenderVal.getAttribute("label");
 				mobileAction.verifyTextEquality(senderVal, selectSender);
 				
