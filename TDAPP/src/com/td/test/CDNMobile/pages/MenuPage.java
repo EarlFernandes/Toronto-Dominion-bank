@@ -8,6 +8,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.MainScreen;
+import com.td.StringLookup;
 import com.td._CommonPage;
 
 import cucumber.deps.difflib.myers.MyersDiff;
@@ -537,6 +538,7 @@ public class MenuPage extends _CommonPage {
 				mobileAction.verifyTextEquality(faq.getText(), mobileAction.getAppString("nav_drawer_items_questions"));
 				mobileAction.verifyTextEquality(privacy.getText(), mobileAction.getAppString("nav_drawer_items_privacy"));
 			} else {
+				final String locale = CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("logoutSuccessQuickTaskHome") + "']", "Home");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("contact_str") + "']", "Contact Us");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("ActionBar_MobileDeposit") + "']", "Mobile Deposit");
@@ -545,13 +547,14 @@ public class MenuPage extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("str_My_Accounts") + "']", "My Accounts");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("bills_str") + "']", "Bills");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("transfers_str") + "']", "Transfers");
-				// FIXME: Chinese string is incorrect here
-				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and contains(@text, '" + mobileAction.getAppString("mobile_wallet_widget_label") + "')]", "Mobile Pay");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and contains(@text, '" + StringLookup.lookupString(locale, StringLookup.MOBILE_PAYMENT) + "')]", "Mobile Pay");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("tts_td_zones") + "']", "TD for me");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("td_moneyfit_header") + "']", "TD MySpend");
-				// FIXME: Investing Accounts is two separate strings apparently
-				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("str_Investing") + " " + mobileAction.getAppString("str_Accounts") + "']", "Investing Accounts");
-				// FIXME: Need to scroll down in menu and check rest of elements
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + StringLookup.lookupString(locale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing Accounts");
+				mobileAction.SwipeWithinElement("//android.widget.ListView[@resource-id='com.td:id/list_slidermenu']", 3, "up");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("flyoutNavigationLinkFAQ") + "']", "FAQ");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + StringLookup.lookupString(locale, StringLookup.PRIVACY_SECURITY_LEGAL) + "']", "Privacy security and legal");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + StringLookup.lookupString(locale, StringLookup.SEND_FEEDBACK) + "']", "Send feedback");
 			}
 		} catch (IOException | NoSuchElementException e) {
 			try {

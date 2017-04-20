@@ -2414,7 +2414,12 @@ public class MobileAction2 extends CommonLib {
 	    	    endx = startx;
 	    	    starty = locationY + dimensionY - 5;
 	    	    endy = locationY + 10;
-	    	} else {
+	    	} else if (direction.equalsIgnoreCase("left")) {
+				startx = locationX + dimensionX - 100;
+				starty = locationY + dimensionY / 2;
+				endx = locationX + 10;
+				endy = starty;
+			} else {
 	    	    startx = locationX + dimensionX / 2;
 	    	    endx = startx;
 	    	    starty = locationY + dimensionY - 10;

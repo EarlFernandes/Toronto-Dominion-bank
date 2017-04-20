@@ -240,8 +240,7 @@ public class ManageRecipients extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("manage_rcp_title") + "']", "Manage Recipients title");
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				// FIXME: How to get text of partial hidden field here?
-				//final WebElement hint = mobileAction.verifyWebElementUsingXPath("//label[@id='searchLabel']", "Search for recipient");
+				mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("manage_rcp_search_hint") + "']", "Search for recipient");
 				final WebElement myRecipients = mobileAction.verifyWebElementUsingXPath("//a[@id='myRecipients']", "My Recipients");
 				if (!mobileAction.verifyTextEquality(myRecipients.getText(), mobileAction.getAppString("str_my_recipients"))) {
 					System.err.println("TestCase has failed.");
@@ -391,7 +390,8 @@ public class ManageRecipients extends _CommonPage {
 				final WebElement securityQ = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[3]", "security q");
 				final WebElement answer = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[4]", "answer");
 				final WebElement answerConfirm = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[5]", "answer confirm");
-				// FIXME: hints are not seen
+				mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_enter_the_answer").replaceAll("\"", "") + "\"]", "Enter answer sub");
+				mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_reenter_the_answer").replaceAll("\"", "") + "\"]", "re-enter your answer sub");
 				if (!mobileAction.verifyTextEquality(answer.getText(), mobileAction.getAppString("str_security_answer")) ||
 						!mobileAction.verifyTextEquality(answerConfirm.getText(), mobileAction.getAppString("str_confirm_answer")) ||
 						!mobileAction.verifyTextEquality(update.getText(), mobileAction.getAppString("modify_phonecontacts_heading")) ||
@@ -445,8 +445,6 @@ public class ManageRecipients extends _CommonPage {
 				mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_rcp_email_hint").replaceAll("\"", "") + "\"]", "Email sub");
 				final WebElement note = mobileAction.verifyWebElementUsingXPath("(//span[@class='ng-binding'])[1]", "Note");
 				final WebElement emailLang = mobileAction.verifyWebElementUsingXPath("(//label[@class=\"drop-down-label ng-binding\"])[2]", "Email lang");
-				// FIXME: Need to change to french and test that too
-//				final WebElement emailLangSub = mobileAction.verifyWebElementUsingXPath("//div[@class='add-recipient']/div[@class='heading ng-binding']", "Add Recipient");
 				final WebElement securityQ = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[3]", "Security Questions");
 				mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_enter_security_question").replaceAll("\"", "") + "\"]", "Create a security question");
 				final WebElement answer = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[4]", "Answer");
@@ -510,8 +508,6 @@ public class ManageRecipients extends _CommonPage {
 				mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_rcp_email_hint").replaceAll("\"", "") + "\"]", "Email sub");
 				final WebElement note = mobileAction.verifyWebElementUsingXPath("(//span[@class='ng-binding'])[1]", "Note");
 				final WebElement emailLang = mobileAction.verifyWebElementUsingXPath("(//label[@class=\"drop-down-label ng-binding\"])[2]", "Email lang");
-				// FIXME: Need to change to french and test that too
-//				final WebElement emailLangSub = mobileAction.verifyWebElementUsingXPath("//div[@class='add-recipient']/div[@class='heading ng-binding']", "Add Recipient");
 				final WebElement securityQ = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[3]", "Security Questions");
 				mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_enter_security_question").replaceAll("\"", "") + "\"]", "Create a security question");
 				final WebElement answer = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[4]", "Answer");

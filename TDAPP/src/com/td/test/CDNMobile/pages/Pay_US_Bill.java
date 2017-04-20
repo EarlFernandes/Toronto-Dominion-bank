@@ -261,7 +261,6 @@ public class Pay_US_Bill extends _CommonPage {
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("billsNavRowPayUSBill") + "']", "Pay Bills US title");
 				// Switching to webview
-				// FIXME: This fails for some versions of Android, why?
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				final WebElement header = mobileAction.verifyWebElementUsingXPath("//h2[@class='limited-accounts-heading ng-binding']", "Welcome to Us bill pay");
 				final WebElement msg1 = mobileAction.verifyWebElementUsingXPath("(//span[@class='limited-accounts-message ng-binding'])[1]", "With U.S. msg");

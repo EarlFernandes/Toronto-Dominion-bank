@@ -86,8 +86,7 @@ public class Managee_Payee extends _CommonPage {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				//System.out.println("source : "+ ((AppiumDriver) CL.GetDriver()).getPageSource());
-				// FIXME: Hint is not seen
-				//final WebElement searchForPayee = mobileAction.verifyWebElementUsingXPath("//label[@id='searchLabel']", "Search for payee");
+				mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("manage_payees_search_hint") + "']", "Search for payee");
 				final WebElement all = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[1]", "All");
 				final WebElement canada = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[2]", "Canada");
 				final WebElement us = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[3]", "US");
@@ -203,8 +202,7 @@ public class Managee_Payee extends _CommonPage {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				//System.out.println("source : "+ ((AppiumDriver) CL.GetDriver()).getPageSource());
-				// FIXME: Hint is not seen
-				//final WebElement searchForPayee = mobileAction.verifyWebElementUsingXPath("//label[@id='searchLabel']", "Search for payee");
+				mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("add_cdn_payee_hint") + "']", "Search for Canadian payee");
 				final WebElement payeeCountry = mobileAction.verifyWebElementUsingXPath("//div[@class='switch-title ng-binding']", "Payee Country");
 				final WebElement canada = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[1]", "Canada");
 				final WebElement us = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[2]", "US");
