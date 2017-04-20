@@ -95,9 +95,6 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id= 'com.td:id/summaryContent']")
 	private MobileElement 	acntsListnew;
 	
-	  String from_account1 = getTestdata("FromAccount");
-      String verify_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-			+ from_account1 + "']";
 
 @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/account_desc']")
 	private MobileElement account;
@@ -136,11 +133,7 @@ public class Accounts extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
 	private MobileElement currencyCheck;
 
-	String from_account = getTestdata("FromAccount");
-	String verify_Acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='" + from_account
-			+ "']";
-
-	String account_value = "//*[contains(@label,'" + from_account + "')]";
+	
 
 	int i = 1;
 
@@ -197,13 +190,18 @@ public class Accounts extends _CommonPage {
 	public void selectItemFromList() {
 
 		Decorator();
+		
+		 String from_account1 = getTestdata("FromAccount");
+	      String verify_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
+				+ from_account1 + "']";
+		
 		try {
 
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, Account_header);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				mobileAction.FuncSelectElementInTable(accountsPage_Table, Firstpart, accountsSecondPart, from_account);
+				mobileAction.FuncSelectElementInTable(accountsPage_Table, Firstpart, accountsSecondPart, from_account1);
 			} else {
 				mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_from_acnt, 10, "down", true);
 
@@ -342,6 +340,11 @@ public class Accounts extends _CommonPage {
 	public void verify_TFS_ACC_ISPresent() {
 
 		Decorator();
+		
+		 String from_account1 = getTestdata("FromAccount");
+	      String verify_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
+				+ from_account1 + "']";
+		
 		try {
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, Account_header);
 			mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_from_acnt, 10, "down", true);
@@ -560,6 +563,13 @@ public class Accounts extends _CommonPage {
 		Decorator();
 		boolean flag=true;
 		int count=0;
+		
+		String from_account = getTestdata("FromAccount");
+		String verify_Acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='" + from_account
+				+ "']";
+
+		String account_value = "//*[contains(@label,'" + from_account + "')]";
+		
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {

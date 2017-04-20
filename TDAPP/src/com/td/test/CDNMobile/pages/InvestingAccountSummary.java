@@ -284,8 +284,7 @@ public class InvestingAccountSummary extends _CommonPage {
 	}
 	
 	
-	
-	
+
 	/**
 	 * @author Ashraf This method will verify the details on Investing Account
 	 *         page.
@@ -371,8 +370,7 @@ public class InvestingAccountSummary extends _CommonPage {
 		}
 
 	}
-	
-	
+
 	/**
 	 * @author Ashraf This method will verify the summary details on credit card
 	 *         account page.
@@ -460,7 +458,6 @@ public class InvestingAccountSummary extends _CommonPage {
 
 	}
 
-	
 	/**
 	 * @author Ashraf This method will verify the Activity details on credit
 	 *         card account page.
@@ -507,89 +504,89 @@ public class InvestingAccountSummary extends _CommonPage {
 							"Posted Transactions");
 			mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/date']",
 					"Transaction date");
-//			// This is already tested in Accounts_credit.verifyActivityTabTextElements() CLOCAL-9
-//			while (flag && count < 3) {
-//				try {
-//					String lastStatementStr = "//android.widget.TextView[contains(@text,'"
-//							+ mobileAction.getAppString("last_statement") + "')]";
-//					MobileElement lastStatement = (MobileElement) ((AppiumDriver) CL.GetDriver())
-//							.findElement(By.xpath(lastStatementStr));
-//					if (lastStatement.isDisplayed()) {
-//						mobileAction.verifyElementIsDisplayed(lastStatement, "Last Statement");
-//						flag = false;
-//					} else {
-//						mobileAction.FunctionSwipe("up", 2000, 200);
-//						count++;
-//					}
-//				} catch (Exception e) {
-//					mobileAction.FunctionSwipe("up", 2000, 200);
-//					count++;
-//				}
-//				
-//				if(count==3){
-//					mobileAction.stringToReport("Fail", "Last Statement is not displayed");
-//				}
-//			}
-//
-//			flag = true;
-//			count = 0;
-//
-//			while (flag && count < 3) {
-//				try {
-//					String twoStatementAgoStr = "//android.widget.TextView[@text='"
-//							+ mobileAction.getAppString("str_2_STATEMENTS") + "']";
-//					MobileElement twoStatementAgo = (MobileElement) ((AppiumDriver) CL.GetDriver())
-//							.findElement(By.xpath(twoStatementAgoStr));
-//					if (twoStatementAgo.isDisplayed()) {
-//						mobileAction.verifyElementIsDisplayed(twoStatementAgo, "2 Statements Ago");
-//						flag = false;
-//					} else {
-//						mobileAction.FunctionSwipe("up", 2000, 200);
-//						count++;
-//					}
-//				} catch (Exception e) {
-//					mobileAction.FunctionSwipe("up", 2000, 200);
-//					count++;
-//				}
-//
-//				if(count==3){
-//					mobileAction.stringToReport("Fail", "2 Statements Ago is not displayed");
-//				}
-//			}
-//
-//			flag = true;
-//			count = 0;
-//
-//			while (flag && count < 3) {
-//				try {
-//					String threeStatementAgoStr = "//android.widget.TextView[@text='"
-//							+ mobileAction.getAppString("str_3_STATEMENTS") + "']";
-//					MobileElement threeStatementAgo = (MobileElement) ((AppiumDriver) CL.GetDriver())
-//							.findElement(By.xpath(threeStatementAgoStr));
-//					if (threeStatementAgo.isDisplayed()) {
-//						mobileAction.verifyElementIsDisplayed(threeStatementAgo, "3 Statements Ago");
-//						flag = false;
-//					} else {
-//						mobileAction.FunctionSwipe("up", 2000, 200);
-//						count++;
-//					}
-//				} catch (Exception e) {
-//					mobileAction.FunctionSwipe("up", 2000, 200);
-//					count++;
-//				}
-//
-//				if(count==3){
-//					mobileAction.stringToReport("Fail", "3 Statements Ago is not displayed");
-//				}
-//			}
-//
-//			mobileAction.FunctionSwipe("up", 200, 200);
-//
-//			mobileAction
-//					.verifyElementUsingXPath(
-//							"//android.widget.TextView[@text='"
-//									+ mobileAction.getAppString("str_no_more_activity_footer") + "']",
-//							"All activities have been retrieved for your account.");
+
+			while (flag && count < 3) {
+				try {
+					String lastStatementStr = "//android.widget.TextView[contains(@text,'"
+							+ mobileAction.getAppString("last_statement") + "')]";
+					MobileElement lastStatement = (MobileElement) ((AppiumDriver) CL.GetDriver())
+							.findElement(By.xpath(lastStatementStr));
+					if (lastStatement.isDisplayed()) {
+						mobileAction.verifyElementIsDisplayed(lastStatement, "Last Statement");
+						flag = false;
+					} else {
+						mobileAction.FunctionSwipe("up", 2000, 200);
+						count++;
+					}
+				} catch (Exception e) {
+					mobileAction.FunctionSwipe("up", 2000, 200);
+					count++;
+				}
+				
+				if(count==3){
+					mobileAction.stringToReport("Fail", "Last Statement is not displayed");
+				}
+			}
+
+			flag = true;
+			count = 0;
+
+			while (flag && count < 3) {
+				try {
+					String twoStatementAgoStr = "//android.widget.TextView[@text='"
+							+ mobileAction.getAppString("str_2_STATEMENTS") + "']";
+					MobileElement twoStatementAgo = (MobileElement) ((AppiumDriver) CL.GetDriver())
+							.findElement(By.xpath(twoStatementAgoStr));
+					if (twoStatementAgo.isDisplayed()) {
+						mobileAction.verifyElementIsDisplayed(twoStatementAgo, "2 Statements Ago");
+						flag = false;
+					} else {
+						mobileAction.FunctionSwipe("up", 2000, 200);
+						count++;
+					}
+				} catch (Exception e) {
+					mobileAction.FunctionSwipe("up", 2000, 200);
+					count++;
+				}
+
+				if(count==3){
+					mobileAction.stringToReport("Fail", "2 Statements Ago is not displayed");
+				}
+			}
+
+			flag = true;
+			count = 0;
+
+			while (flag && count < 3) {
+				try {
+					String threeStatementAgoStr = "//android.widget.TextView[@text='"
+							+ mobileAction.getAppString("str_3_STATEMENTS") + "']";
+					MobileElement threeStatementAgo = (MobileElement) ((AppiumDriver) CL.GetDriver())
+							.findElement(By.xpath(threeStatementAgoStr));
+					if (threeStatementAgo.isDisplayed()) {
+						mobileAction.verifyElementIsDisplayed(threeStatementAgo, "3 Statements Ago");
+						flag = false;
+					} else {
+						mobileAction.FunctionSwipe("up", 2000, 200);
+						count++;
+					}
+				} catch (Exception e) {
+					mobileAction.FunctionSwipe("up", 2000, 200);
+					count++;
+				}
+
+				if(count==3){
+					mobileAction.stringToReport("Fail", "3 Statements Ago is not displayed");
+				}
+			}
+
+			mobileAction.FunctionSwipe("up", 200, 200);
+
+			mobileAction
+					.verifyElementUsingXPath(
+							"//android.widget.TextView[@text='"
+									+ mobileAction.getAppString("str_no_more_activity_footer") + "']",
+							"All activities have been retrieved for your account.");
 
 		}
 
@@ -603,9 +600,7 @@ public class InvestingAccountSummary extends _CommonPage {
 		}
 
 	}
-	
-	
-	
+
 	/**
 	 * @author Ashraf This method will verify the payment details on credit card
 	 *         account page.
@@ -666,9 +661,8 @@ public class InvestingAccountSummary extends _CommonPage {
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_card_no") + "']",
 						"Card #");
 
-				mobileAction.verifyDateFormat(transactionDate.getText(), MobileAction2.TYPE_YYYY_MM_DD);
-				mobileAction.verifyDateFormat(postedDate.getText(), MobileAction2.TYPE_YYYY_MM_DD);
-
+				mobileAction.verifyElementIsDisplayed(transactionDate, "Transaction date");
+				mobileAction.verifyElementIsDisplayed(postedDate, "Posted date");
 
 			}
 		}
@@ -733,8 +727,8 @@ public class InvestingAccountSummary extends _CommonPage {
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_card_no") + "']",
 						"Card #");
 
-				mobileAction.verifyDateFormat(transactionDate.getText(), MobileAction2.TYPE_YYYY_MM_DD);
-				mobileAction.verifyDateFormat(postedDate.getText(), MobileAction2.TYPE_YYYY_MM_DD);
+				mobileAction.verifyElementIsDisplayed(transactionDate, "Transaction date");
+				mobileAction.verifyElementIsDisplayed(postedDate, "Posted date");
 
 			}
 		}
@@ -782,7 +776,7 @@ public class InvestingAccountSummary extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_payment_due_date") + "']",
 						"Payment Due");
-				mobileAction.verifyDateFormat(paymentDueDate.getText(), MobileAction2.TYPE_YYYY_MM_DD);
+				mobileAction.verifyElementIsDisplayed(paymentDueDate, "Payment Due Date");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_minimum_payment") + "']",
 						"Minimum Payment");
@@ -790,7 +784,7 @@ public class InvestingAccountSummary extends _CommonPage {
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_minimum_payment")
 								+ "']/following-sibling::android.widget.TextView[@resource-id='com.td:id/amount']",
 						"Minimum Payment Amount");
-				mobileAction.verifyDateFormat(dateOfStatement.getText(), MobileAction2.TYPE_YYYY_MM_DD_RANGE);
+				mobileAction.verifyElementIsDisplayed(dateOfStatement, "Date of Statement");
 				mobileAction.verifyElementIsDisplayed(payButton, "Pay Button");
 
 			}
@@ -847,20 +841,10 @@ public class InvestingAccountSummary extends _CommonPage {
 							"Transfer quick link");
 					mobileAction.verifyElementIsDisplayed(statementTab, "Statement Tab");
 					mobileAction.verifyElementIsDisplayed(CClastStatement, "Last Statement");
+					mobileAction.verifyElementIsDisplayed(statementBalance, "Statement Balance");
+					mobileAction.verifyElementIsDisplayed(minimumPayment, "Minimum Payment");
+					mobileAction.verifyElementIsDisplayed(paymentDue, "Payment Due");
 
-					mobileAction.verifyElementUsingXPath(
-							"//android.widget.TextView[@text='"
-									+ mobileAction.getAppString("str_Statement_Balance") + "']",
-							"Statement Balance");
-					mobileAction.verifyElementUsingXPath(
-							"//android.widget.TextView[@text='"
-									+ mobileAction.getAppString("str_Minimum_Payment") + "']",
-							"Minimum payment");
-					mobileAction.verifyElementUsingXPath(
-							"//android.widget.TextView[@text='"
-									+ mobileAction.getAppString("rtb_payment_due_date") + "']",
-							"Payment due");
-					//FIXME: Verify date headers here
 				} else {
 					mobileAction.stringToReport("Pass", "No statements to display");
 				}
@@ -923,9 +907,11 @@ public class InvestingAccountSummary extends _CommonPage {
 								+ mobileAction.getAppString("str_QUOTE") + "']",
 						"Quote");
 				
-				mobileAction.verifyTextEquality(symbol.getText(), mobileAction.getAppString("str_Symbol"));
-				mobileAction.verifyTextEquality(priceCHG.getText(), mobileAction.getAppString("str_PriceChange"));
-				mobileAction.verifyTextEquality(gainLossUnrealized.getText(), mobileAction.getAppString("str_GainLoss") + "\n" + mobileAction.getAppString("str_unrealized"));
+				mobileAction.verifyElementIsDisplayed(symbol, "SYMBOL");
+				mobileAction.verifyElementIsDisplayed(priceCHG, "PRICE/CHG");
+				mobileAction.verifyElementIsDisplayed(gainLossUnrealized, "GAIN/LOSS Unrealized");
+				
+
 			}
 		}
 
@@ -1001,16 +987,11 @@ public class InvestingAccountSummary extends _CommonPage {
 						"Holding Details");
 				
 				mobileAction.verifyElementIsDisplayed(buy, "Buy Button");
-				mobileAction.verifyTextEquality(buy.getText(), mobileAction.getAppString("str_BUY"));
 				mobileAction.verifyElementIsDisplayed(sell, "Sell Button");
-				mobileAction.verifyTextEquality(sell.getText(), mobileAction.getAppString("str_SELL"));
 				text=holdingTimeStamp.getText();
 				mobileAction.verifyElementIsDisplayed(holdingTimeStamp, text);
-				mobileAction.verifyDateFormat(holdingTimeStamp.getText(), MobileAction2.TYPE_YYYY_MM_DD_HOUR);
 				mobileAction.verifyElementIsDisplayed(holdingGainLoss, "GAIN/LOSS");
-				mobileAction.verifyTextEquality(holdingGainLoss.getText(), mobileAction.getAppString("str_GainLoss_lower"));
 				mobileAction.verifyElementIsDisplayed(holdingUnrealized, "Unrealized");
-				mobileAction.verifyTextEquality(holdingUnrealized.getText(), mobileAction.getAppString("str_unrealized"));
 				
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='"
@@ -1018,16 +999,12 @@ public class InvestingAccountSummary extends _CommonPage {
 						"Quantity");
 				
 				mobileAction.verifyElementIsDisplayed(averageCost, "Average Cost");
-				mobileAction.verifyTextEquality(averageCost.getText(), mobileAction.getAppString("str_AverageCost"));
 				
 				mobileAction.FunctionSwipe("up", 200, 200);
 				
 				mobileAction.verifyElementIsDisplayed(bookValue, "Book Value");
-				mobileAction.verifyTextEquality(bookValue.getText(), mobileAction.getAppString("str_BookValue"));
 				mobileAction.verifyElementIsDisplayed(marketValue, "Market Value");
-				mobileAction.verifyTextEquality(marketValue.getText(), mobileAction.getAppString("str_MarketValue"));
 				mobileAction.verifyElementIsDisplayed(footerStatus, "Amount converted to the currency of the account.");
-				mobileAction.verifyTextEquality(footerStatus.getText().replace("1.", "").trim(), mobileAction.getAppString("str_Amt_Conv_To_Act_Curr_Footnote"));
 				
 			}
 		}
@@ -1093,7 +1070,6 @@ public class InvestingAccountSummary extends _CommonPage {
 				mobileAction.FuncClick(ordersTab, "Orders Tab");
 				text=ordersBeginningTime.getText();
 				mobileAction.verifyElementIsDisplayed(ordersBeginningTime, text);
-				mobileAction.verifyDateFormat(ordersBeginningTime.getText(), MobileAction2.TYPE_YYYY_MM_DD_HOUR);
 				
 				
 				
@@ -1262,7 +1238,6 @@ public class InvestingAccountSummary extends _CommonPage {
 								+ mobileAction.getAppString("str_OrderPlaced") + "']",
 						"Order Placed");
 				
-				//FIXME: Verify the text
 				mobileAction.verifyElementIsDisplayed(ordersFooter, "Footer Text");
 				mobileAction.verifyElementIsDisplayed(callBtn, "Call Button");
 				
@@ -1323,7 +1298,6 @@ public class InvestingAccountSummary extends _CommonPage {
 							+ mobileAction.getAppString("str_QUOTE") + "']",
 					"Quote");
 			
-			// FIXME: Verify the text
 			mobileAction.verifyElementIsDisplayed(activityTab, "Activity Tab");
 			mobileAction.FuncClick(activityTab, "Activity Tab");
 			mobileAction.verifyElementIsDisplayed(dateSettle, "DATE/SETTLE");
