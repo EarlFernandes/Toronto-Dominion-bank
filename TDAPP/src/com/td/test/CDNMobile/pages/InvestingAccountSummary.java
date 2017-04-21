@@ -165,6 +165,9 @@ public class InvestingAccountSummary extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/status']")
 	private MobileElement activityTimeStamp;
 	
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@resource-id,'statements_ago')]")
+	private List <MobileElement> statementsAgo;
+	
 	String platformName = CL.getTestDataInstance().getMobilePlatForm();
 
 	public synchronized static InvestingAccountSummary get() {
@@ -341,7 +344,7 @@ public class InvestingAccountSummary extends _CommonPage {
 						"//android.widget.TextView[@resource-id='com.td:id/ordersTab' and @text='"
 								+ mobileAction.getAppString("globalStaticContentQuickLinksOrders") + "']",
 						"Orders Tab");
-				// mobileAction.FuncClick(activityTab, "Activity Tab");
+				
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_Cash") + "']", "Cash");
 				mobileAction.verifyElementUsingXPath(
@@ -354,9 +357,20 @@ public class InvestingAccountSummary extends _CommonPage {
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/gainLossDesc' or @index='6']", "Gain/Loss");
-				mobileAction.verifyElementIsDisplayed(unrealized, "Unrealized");
+				/*mobileAction.verifyElementIsDisplayed(unrealized, "Unrealized");
 				mobileAction.verifyElementIsDisplayed(totalValue, "Total Value");
-				mobileAction.verifyElementIsDisplayed(timeStamp, "Time Stamp");
+				mobileAction.verifyElementIsDisplayed(timeStamp, "Time Stamp");*/
+				
+				mobileAction.verifyTextEquality(unrealized.getText(), mobileAction.getAppString("str_unrealized"));
+				mobileAction.verifyTextEquality(totalValue.getText(), mobileAction.getAppString("str_TotalValue"));
+			
+				if(timeStamp.getText().contains(mobileAction.getAppString("str_Insufficient_Information"))){
+					if(timeStamp.getText().contains(mobileAction.getAppString("str_Cash_Balance_Footnote"))){
+						if(timeStamp.getText().contains(mobileAction.getAppString("common_str_Time_Stamp_substition"))){
+							mobileAction.stringToReport("Pass", "Footer text is verified");
+						}
+					}
+				}
 
 			}
 		}
@@ -476,9 +490,6 @@ public class InvestingAccountSummary extends _CommonPage {
 
 	public void verifyCrediCardActivityDetails() {
 
-		boolean flag = true;
-		int count = 0;
-
 		Decorator();
 
 		try {
@@ -507,89 +518,7 @@ public class InvestingAccountSummary extends _CommonPage {
 							"Posted Transactions");
 			mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/date']",
 					"Transaction date");
-//			// This is already tested in Accounts_credit.verifyActivityTabTextElements() CLOCAL-9
-//			while (flag && count < 3) {
-//				try {
-//					String lastStatementStr = "//android.widget.TextView[contains(@text,'"
-//							+ mobileAction.getAppString("last_statement") + "')]";
-//					MobileElement lastStatement = (MobileElement) ((AppiumDriver) CL.GetDriver())
-//							.findElement(By.xpath(lastStatementStr));
-//					if (lastStatement.isDisplayed()) {
-//						mobileAction.verifyElementIsDisplayed(lastStatement, "Last Statement");
-//						flag = false;
-//					} else {
-//						mobileAction.FunctionSwipe("up", 2000, 200);
-//						count++;
-//					}
-//				} catch (Exception e) {
-//					mobileAction.FunctionSwipe("up", 2000, 200);
-//					count++;
-//				}
-//				
-//				if(count==3){
-//					mobileAction.stringToReport("Fail", "Last Statement is not displayed");
-//				}
-//			}
-//
-//			flag = true;
-//			count = 0;
-//
-//			while (flag && count < 3) {
-//				try {
-//					String twoStatementAgoStr = "//android.widget.TextView[@text='"
-//							+ mobileAction.getAppString("str_2_STATEMENTS") + "']";
-//					MobileElement twoStatementAgo = (MobileElement) ((AppiumDriver) CL.GetDriver())
-//							.findElement(By.xpath(twoStatementAgoStr));
-//					if (twoStatementAgo.isDisplayed()) {
-//						mobileAction.verifyElementIsDisplayed(twoStatementAgo, "2 Statements Ago");
-//						flag = false;
-//					} else {
-//						mobileAction.FunctionSwipe("up", 2000, 200);
-//						count++;
-//					}
-//				} catch (Exception e) {
-//					mobileAction.FunctionSwipe("up", 2000, 200);
-//					count++;
-//				}
-//
-//				if(count==3){
-//					mobileAction.stringToReport("Fail", "2 Statements Ago is not displayed");
-//				}
-//			}
-//
-//			flag = true;
-//			count = 0;
-//
-//			while (flag && count < 3) {
-//				try {
-//					String threeStatementAgoStr = "//android.widget.TextView[@text='"
-//							+ mobileAction.getAppString("str_3_STATEMENTS") + "']";
-//					MobileElement threeStatementAgo = (MobileElement) ((AppiumDriver) CL.GetDriver())
-//							.findElement(By.xpath(threeStatementAgoStr));
-//					if (threeStatementAgo.isDisplayed()) {
-//						mobileAction.verifyElementIsDisplayed(threeStatementAgo, "3 Statements Ago");
-//						flag = false;
-//					} else {
-//						mobileAction.FunctionSwipe("up", 2000, 200);
-//						count++;
-//					}
-//				} catch (Exception e) {
-//					mobileAction.FunctionSwipe("up", 2000, 200);
-//					count++;
-//				}
-//
-//				if(count==3){
-//					mobileAction.stringToReport("Fail", "3 Statements Ago is not displayed");
-//				}
-//			}
-//
-//			mobileAction.FunctionSwipe("up", 200, 200);
-//
-//			mobileAction
-//					.verifyElementUsingXPath(
-//							"//android.widget.TextView[@text='"
-//									+ mobileAction.getAppString("str_no_more_activity_footer") + "']",
-//							"All activities have been retrieved for your account.");
+
 
 		}
 
@@ -791,8 +720,7 @@ public class InvestingAccountSummary extends _CommonPage {
 								+ "']/following-sibling::android.widget.TextView[@resource-id='com.td:id/amount']",
 						"Minimum Payment Amount");
 				mobileAction.verifyDateFormat(dateOfStatement.getText(), MobileAction2.TYPE_YYYY_MM_DD_RANGE);
-				mobileAction.verifyElementIsDisplayed(payButton, "Pay Button");
-
+				mobileAction.verifyElementIsDisplayed(payButton, "Pay Button");	
 			}
 		}
 
@@ -847,7 +775,10 @@ public class InvestingAccountSummary extends _CommonPage {
 							"Transfer quick link");
 					mobileAction.verifyElementIsDisplayed(statementTab, "Statement Tab");
 					mobileAction.verifyElementIsDisplayed(CClastStatement, "Last Statement");
+					
+					mobileAction.verifyDateFormat(CClastStatement.getText(), MobileAction2.TYPE_YYYY_MM_DD_RANGE);
 
+					
 					mobileAction.verifyElementUsingXPath(
 							"//android.widget.TextView[@text='"
 									+ mobileAction.getAppString("str_Statement_Balance") + "']",
@@ -860,7 +791,14 @@ public class InvestingAccountSummary extends _CommonPage {
 							"//android.widget.TextView[@text='"
 									+ mobileAction.getAppString("rtb_payment_due_date") + "']",
 							"Payment due");
-					//FIXME: Verify date headers here
+					
+					mobileAction.FunctionSwipe("up", 200, 200);
+					
+					for(int i=0;i<statementsAgo.size();i++){
+						mobileAction.verifyDateFormat(statementsAgo.get(i).getText(), MobileAction2.TYPE_YYYY_MM_DD_RANGE);
+					}
+					
+					//FIXME: Verify date headers here	//FIXED
 				} else {
 					mobileAction.stringToReport("Pass", "No statements to display");
 				}
@@ -1208,9 +1146,13 @@ public class InvestingAccountSummary extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(ordersTab, "Orders Tab");
 			mobileAction.FuncClick(ordersTab, "Orders Tab");
 			
-			if(mobileAction.verifyElementPresent(order)){
-				text=order.getText();
-				mobileAction.FuncClick(order, text);
+			String symbol=getTestdata("Symbol");
+			String orderName="//android.widget.TextView[@resource-id='com.td:id/symbol' and @text='"+symbol+"']";
+			
+			mobileAction.swipeAndSelect(orderName, symbol, 3);
+			
+			if(!mobileAction.swipeAndSelect(orderName, symbol, 3)){
+				
 				
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
@@ -1221,12 +1163,7 @@ public class InvestingAccountSummary extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(orderTimeStamp, text);
 				mobileAction.verifyElementIsDisplayed(orderAccount, "Account Label");
 				
-				/*mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
-								+ mobileAction.getAppString("mutual_funds_action_amount") + "']",
-						"Action & Amount");		*/	//no key available
-				
-				mobileAction.verifyElementIsDisplayed(ordersLabels.get(0), "Action & Amount");
+				mobileAction.verifyElementIsDisplayed(ordersLabels.get(0), "Action & Amount");	//no key available
 				
 				
 				mobileAction.verifyElementUsingXPath(
@@ -1240,7 +1177,6 @@ public class InvestingAccountSummary extends _CommonPage {
 						"Quantity Filled");
 				
 				mobileAction.FunctionSwipe("up", 200, 200);
-				
 				
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
@@ -1262,9 +1198,14 @@ public class InvestingAccountSummary extends _CommonPage {
 								+ mobileAction.getAppString("str_OrderPlaced") + "']",
 						"Order Placed");
 				
-				//FIXME: Verify the text
-				mobileAction.verifyElementIsDisplayed(ordersFooter, "Footer Text");
-				mobileAction.verifyElementIsDisplayed(callBtn, "Call Button");
+				//FIXME: Verify the text //FIXED
+				
+				//mobileAction.verifyElementIsDisplayed(ordersFooter, "Footer Text");
+				//mobileAction.verifyElementIsDisplayed(callBtn, "Call Button");
+				
+				mobileAction.verifyTextEquality(ordersFooter.getText(), mobileAction.getAppString("mutual_funds_order_detail_footer"));
+				mobileAction.verifyTextEquality(callBtn.getText(), mobileAction.getAppString("str_CALL"));
+				
 				
 			}else{
 				mobileAction.stringToReport("Fail", "No Orders are Present");
@@ -1323,12 +1264,21 @@ public class InvestingAccountSummary extends _CommonPage {
 							+ mobileAction.getAppString("str_QUOTE") + "']",
 					"Quote");
 			
-			// FIXME: Verify the text
+			// FIXME: Verify the text	//FIXED
+			
+			
+			
 			mobileAction.verifyElementIsDisplayed(activityTab, "Activity Tab");
+			mobileAction.verifyTextEquality(activityTab.getText(), mobileAction.getAppString("str_Activity"));
 			mobileAction.FuncClick(activityTab, "Activity Tab");
 			mobileAction.verifyElementIsDisplayed(dateSettle, "DATE/SETTLE");
+			mobileAction.verifyTextEquality(dateSettle.getText(), mobileAction.getAppString("date_settle_str"));
 			mobileAction.verifyElementIsDisplayed(details, "DETAILS");
+			mobileAction.verifyTextEquality(details.getText(), mobileAction.getAppString("details"));
 			mobileAction.verifyElementIsDisplayed(activityAmount, "AMOUNT");
+			mobileAction.verifyTextEquality(activityAmount.getText(), mobileAction.getAppString("str_AMOUNT"));
+			
+			
 			
 			
 			while(flag&&count<6){
