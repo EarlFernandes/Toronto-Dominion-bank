@@ -36,6 +36,10 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
 	private MobileElement errorMsg;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
+	private MobileElement generalerrorMsg;
+	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'From Account')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccount' and @text='Select From Account']")
 	private MobileElement txtFrom_Acnt;
@@ -122,7 +126,7 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement backBtn; 
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel' or @label='CANCEL']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/myaccounts_entry_btn_cancel' and @text='Cancel']")
 	private MobileElement cancelBtn;
 
@@ -153,7 +157,7 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/txt_Deposit'and contains(@text,'When making deposits to this account')]")
 	private MobileElement TDCT_TFSAMessage;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Receipt']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Receipt']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'android:id/action_bar_title'and @text='Receipt']")
 	private MobileElement receiptHeader;
 
@@ -183,12 +187,12 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/to_account_bal']")
 	private MobileElement ToAccountValue;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label,'Transfer successful']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfer successful']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/confirmation_val']")
 	private MobileElement cnfrDetail;
 
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@name='-Amount']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='-Amount']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/amount_val']")
 	private MobileElement amountValue;
 
@@ -202,7 +206,7 @@ public class Between_My_accounts extends _CommonPage {
 	private MobileElement 	acntsListNew;
 
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@name='MAKE ANOTHER TRANSFER']")
+	@iOSFindBy(xpath = "//XCUIElementTypeCell[@name='MAKE ANOTHER TRANSFER']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/transfers_make_another' and @text='MAKE ANOTHER TRANSFER']")
 	private MobileElement makeAnthTran_Button;
 
@@ -984,6 +988,7 @@ public class Between_My_accounts extends _CommonPage {
 	public void transfer_NotSupported() throws Exception {
 		Decorator();
 		String toAcc = getTestdata("ToAccount");
+		System.out.println("To account:" + toAcc);
 		String toAccount = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='" + toAcc
 				+ "']";
 		boolean flag = false;
@@ -992,7 +997,7 @@ public class Between_My_accounts extends _CommonPage {
 				String accounts = getTestdata("FromAccount");
 				String accountsList[] = accounts.split(":");
 				for (int i = 0; i < accountsList.length && flag == false; i++) {
-
+					System.out.println("accountsList[" + i +"]:" + accountsList[i]);
 					mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 					String accountno = "//XCUIElementTypeStaticText[contains(@label,'" + accountsList[i] + "')]";
 
@@ -1005,7 +1010,8 @@ public class Between_My_accounts extends _CommonPage {
 						MobileElement toAccountValue = (MobileElement) ((AppiumDriver) CL.GetDriver())
 								.findElement(By.xpath(toAccountNo));
 
-						mobileAction.FunCnewSwipe(toAccountValue, false, 6);
+						//mobileAction.FunCnewSwipe(toAccountValue, false, 6);
+						mobileAction.FunCSwipeandScroll(toAccountValue, true);
 						flag = true;
 
 					} catch (Exception e) {
@@ -1169,7 +1175,9 @@ public class Between_My_accounts extends _CommonPage {
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
+					mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 					String from_AccountNo = getTestdata("FromAccount");
+					System.out.println("From Account:" + from_AccountNo);
 					String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
 					MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 							.findElement(By.xpath(account_value));
@@ -1177,6 +1185,7 @@ public class Between_My_accounts extends _CommonPage {
 
 					mobileAction.FuncClick(txtto_Acnt, "To Account");
 					String to_accountNo = getTestdata("ToAccount");
+					System.out.println("To Account:" + to_accountNo);
 					String toAccount_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
 					MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 							.findElement(By.xpath(toAccount_value));
@@ -1188,6 +1197,7 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
 
 					mobileAction.FuncClick(btnFinish_Transfer, "Finish Transfer");
+					Thread.sleep(5000);
 
 					mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
 					mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
@@ -1218,8 +1228,16 @@ public class Between_My_accounts extends _CommonPage {
 			}
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			String errorMsg="";
+			try{
+				errorMsg=mobileAction.getValue(generalerrorMsg);
+				System.err.println("TestCase has failed with error:" + errorMsg);
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				mobileAction.Report_Fail(errorMsg);
+			}catch(Exception e1){
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
 		}
 	}
 

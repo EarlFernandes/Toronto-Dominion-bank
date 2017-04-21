@@ -32,7 +32,7 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Interac e-Transfer']")
     private MobileElement interac_Etransfer_Header;
 
-    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Sender, Select sender']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Sender']")
    // @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_sender' and @text='Select Sender']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Sender']")
     private MobileElement selectSender;
@@ -73,10 +73,14 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/listView']")
     private MobileElement acntsListSender;
 
-    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient, Select recipient']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/recipient_title' and @text='Recipient']")
     private MobileElement recipient;
 
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_recipient_name']")
+    private MobileElement first_recipient;    
+    
     @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
     private MobileElement done;
 
@@ -120,7 +124,7 @@ public class Interac_e_Transfer extends _CommonPage {
     private MobileElement Message;
 
     int i = 1;
-    String senderTable = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]";
+    String senderTable = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]";
 
     String firstPart = "//XCUIElementTypeCell[";
     String secondPart = "]/XCUIElementTypeStaticText[1]";
@@ -302,8 +306,14 @@ try {
 
     	    if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
     		mobileAction.FuncClick(selectSender, "Sender");
+    		sender_SelectSender = getTestdata("FromAccount");
+    		System.out.println("Select Sender:" + sender_SelectSender);
     		mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart, sender_SelectSender);
     		mobileAction.FuncClick(recipient, "Recipient");
+//    		String first_reci= mobileAction.getValue(first_recipient);
+//    		System.out.println("First recipient:" +first_reci );
+    		mobileAction.FuncClick(first_recipient, "Select one Recipent");
+    		//
     		mobileAction.FuncClick(etransfer_Amount, "Amount");
     		mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
     		mobileAction.FuncClick(done, "Done");
@@ -365,24 +375,27 @@ try {
      * @throws NoSuchElementException
      *             In case the element is not found over the screen
      * @return void
+     * @throws IOException 
+     * @throws InterruptedException 
      * 
      */
     public void verifyamountfield() {
 	Decorator();
 	try {
 	    if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-		String val = etransfer_Amount.getAttribute("value");
-		String excelVal = getTestdata("Amount");
-
-		mobileAction.verifyTextEquality(val, excelVal);
+//	    	String excelVal = getTestdata("Amount");
+	    	//default amount is '0.00'
+    		String val = mobileAction.getValue(etransfer_Amount);
+    		System.out.println("Amount value:" + val);
+  		
+    		mobileAction.verifyTextEquality(val, "$0.00");
 
 	    } else {
-		String val = etransfer_Amount.getText();
-		String excelVal = getTestdata("Amount");
-
-		mobileAction.verifyTextEquality(val, excelVal);
+//	    	String excelVal = getTestdata("Amount");
+	    	String val = etransfer_Amount.getText();
+	    	mobileAction.verifyTextEquality(val, "$0.00");
 	    }
-	} catch (NoSuchElementException e) {
+	} catch (Exception e) {
 	    System.err.println("TestCase has failed.");
 	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 	}

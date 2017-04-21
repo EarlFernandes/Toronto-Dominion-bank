@@ -50,7 +50,7 @@ public class Transfers extends _CommonPage {
 	@iOSFindBy(xpath="//XCUIElementTypeActivityIndicator[@label='In progress']")
 	private MobileElement progrees_Bar;
 	
-	@iOSFindBy(xpath= "//XCUIElementTypeStaticText[contains(@label,'Manage Recipients Add, edit or delete Interac e-Transfer recipie')]")
+	@iOSFindBy(xpath= "//XCUIElementTypeStaticText[contains(@label,'Manage Recipients')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Recipients']")
 	private MobileElement manageRecipient;
 	
@@ -103,7 +103,7 @@ public class Transfers extends _CommonPage {
 			//Thread.sleep(5000);
 			transfers_Header.isDisplayed();
 			mobileAction.FuncClick(Interac_e_Transfer_Button, "Interac e_Transfer");
-			mobileAction.waitForElementToVanish(progrees_Bar);
+			//mobileAction.waitForElementToVanish(progrees_Bar);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -27,7 +27,7 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Payees']")
 	private MobileElement manage_Payees;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay U.S. Bill Pay a U.S. bill']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay U.S. Bill']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[ @text='Pay U.S. Bills' and @index='0']")
 	private MobileElement pay_US_Bills;
 
@@ -55,7 +55,7 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Manage Payees']")
 	private MobileElement manage_Payees_Header;
 
-	@iOSFindBy(xpath ="//XCUIElementTypeOther[@label='Pay U.S. Bill']")
+	@iOSFindBy(xpath ="//XCUIElementTypeOther[@label='Pay U.S. Bill' or @label='Pay U.S. bill']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay U.S. Bills']")
 	private MobileElement pay_US_Bills_Header;
 	
@@ -243,8 +243,8 @@ public class Bills extends _CommonPage {
 		mobileAction.FuncClick(back_Button, "Back");
 		mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
 		mobileAction.verifyElementIsDisplayed(scheduled_Payments_Header, "Scheduled Payments Functionality Page Displayed");
-		mobileAction.FuncClick(back_Button, "Back");
-		mobileAction.FuncClick(back_Button, "Back");
+//		mobileAction.FuncClick(back_Button, "Back");
+//		mobileAction.FuncClick(back_Button, "Back");
 		}else{
 		Thread.sleep(10000);
 		mobileAction.verifyElementIsDisplayed(bills_Header, "Verifying Bill Page Header");

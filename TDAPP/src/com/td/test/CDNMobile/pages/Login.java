@@ -155,9 +155,14 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id= 'com.td:id/remember_switch' and @text='YES']")
 	private MobileElement rememberMe_button_on;
 
-	String verifyLogin_ios = "//XCUIElementTypeStaticText[contains(@label,'Your Login Info Please')]";
+	//String verifyLogin_ios = "//XCUIElementTypeStaticText[contains(@label,'Your Login Info Please')]";
+	String verifyLogin_ios = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[1]";
 	String verifyLogin_android = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
 	String login_password = getTestdata("Password");
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
+	private MobileElement login_error;	
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Investing')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing Accounts']")
@@ -771,6 +776,7 @@ public class Login extends _CommonPage {
 	public void verifylogin5times() throws SystemException {
 
 		Decorator();
+		int size= passwordArray.length;
 		try {
 
 			if (select_accesscard.isDisplayed() == true) {
@@ -788,7 +794,8 @@ public class Login extends _CommonPage {
 					mobileAction.waitForElementToVanish(progressBar);
 				} else {
 					mobileAction.FuncClick(login, "Login");
-					mobileAction.waitForElementToVanish(progressBar);
+					Thread.sleep(3000);
+					//mobileAction.waitForElementToVanish(progressBar);
 				}
 			} else {
 
@@ -808,53 +815,61 @@ public class Login extends _CommonPage {
 				}
 			}
 
-			if (mobileAction.verifyLoginErrorOccured(verifyLogin_ios)) {
-				mobileAction.FuncClick(popup_ok_button, "OK Button");
-
-				if (count <= 4) {
-
-					count++;
-					verifylogin5times();
-				}
-			}
-
-			try {
-				if (errorText.isDisplayed() == true) {
-
-				}
-			} catch (Exception e) {
-				System.err.println("TestCase has failed.");
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			}
-			try {
-				if (securityQuestionHeader.isDisplayed() == true) {
-					mobileAction.FuncClick(enterAnswer, "Enter your Answer");
-					mobileAction.FuncSendKeys(enterAnswer, "abcd");
-					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-						mobileAction.FuncClick(done, "Done");
-					} else {
-						mobileAction.FuncHideKeyboard();
+			//if (mobileAction.verifyLoginErrorOccured(verifyLogin_ios)){
+			try{
+				if(login_error.isDisplayed()){
+					String loginerrorMessage = mobileAction.getValue(login_error);
+					if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
+						if(loginerrorMessage.contains("Your Login Info Please")){
+							mobileAction.FuncClick(popup_ok_button, "OK Button");
+			
+							if (count < size-1) {
+			
+								count++;
+								verifylogin5times();
+							}
+						}else{
+							//login ID is locked
+							
+							System.err.println("TestCase has failed with unexpected error message:" + loginerrorMessage);
+							CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+							mobileAction.Report_Fail(loginerrorMessage);
+							return;
+						}						
+					}else{
+						if(loginerrorMessage.contains("Please try again")){
+			
+							if (count < size-1) {
+			
+								count++;
+								verifylogin5times();
+							}
+						}else{
+								
+							System.err.println("TestCase has failed with unexpected error message:" + loginerrorMessage);
+							CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+							mobileAction.Report_Fail(loginerrorMessage);
+							return;
+						}
 					}
-					mobileAction.FuncClick(securityLogin, "Login");
-					mobileAction.waitForElementToVanish(progressBar);
-				}
+					
 
-			} catch (Exception e) {
-				System.err.println("TestCase has failed.");
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					
+				}
+				
+			}catch (Exception e){
+				System.out.println("No login error.");
 			}
 
-			try {
-				if (TermsAndCondition_header.isDisplayed()) {
-					String verify_terms = "Verifying TermsAndCondition Page Header";
-					mobileAction.verifyElementIsDisplayed(TermsAndCondition_header, verify_terms);
-					String button_clicked = "Thanks Button is clicked";
-					mobileAction.FuncClick(thanks_button, button_clicked);
-				}
-			} catch (NoSuchElementException | InterruptedException e) {
-				System.err.println("TestCase has failed.");
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			}
+//			try {
+//				if (errorText.isDisplayed() == true) {
+//
+//				}
+//			} catch (Exception e) {
+//				System.err.println("TestCase has failed.");
+//				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+//			}
+
 
 		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
@@ -865,6 +880,36 @@ public class Login extends _CommonPage {
 		} catch (IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+		
+		try {
+			if (securityQuestionHeader.isDisplayed() == true) {
+				mobileAction.FuncClick(enterAnswer, "Enter your Answer");
+				mobileAction.FuncSendKeys(enterAnswer, "abcd");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					mobileAction.FuncClick(done, "Done");
+				} else {
+					mobileAction.FuncHideKeyboard();
+				}
+				mobileAction.FuncClick(securityLogin, "Login");
+				//mobileAction.waitForElementToVanish(progressBar);
+			}
+
+		} catch (Exception e) {
+			System.out.println("NO Secuirity Question found.");
+		}
+
+		try {
+			if (TermsAndCondition_header.isDisplayed()) {
+				String verify_terms = "Verifying TermsAndCondition Page Header";
+				mobileAction.verifyElementIsDisplayed(TermsAndCondition_header, verify_terms);
+				String button_clicked = "Thanks Button is clicked";
+				mobileAction.FuncClick(thanks_button, button_clicked);
+			}
+		} catch (Exception e) {
+//			System.err.println("TestCase has failed.");
+//			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NO T&C found.");
 		}
 
 	}

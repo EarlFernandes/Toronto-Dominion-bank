@@ -122,7 +122,7 @@ public class MobileAction2 extends CommonLib {
 			
 			}
 		}catch (NoSuchElementException n) {
-			GetReporting().FuncReport("Fail", "Element not displayed" + text);
+			GetReporting().FuncReport("Fail", "Element not displayed: " + text);
 			throw n;
 		} catch (Exception e) {
 			GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
@@ -1502,16 +1502,17 @@ public class MobileAction2 extends CommonLib {
 			int count = 1;
 			boolean isElementDisplayed = elementToVanish.isDisplayed();
 			while (count <= 10) {
+				isElementDisplayed = elementToVanish.isDisplayed();
 				if (isElementDisplayed) {
 					try {
 						Thread.sleep(1000);
 						count++;
 
-						if (!elementToVanish.isDisplayed())
-							break;
 					} catch (NoSuchElementException e) {
 						break;
 					}
+				}else{
+					break;
 				}
 			}
 		} catch (Exception e) {
