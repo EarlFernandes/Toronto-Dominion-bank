@@ -135,6 +135,14 @@ public class HomeScreen extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='PAY NOW']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mpay_dashboard' and @text='PAY NOW']")
 	private MobileElement pay_now_button;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title'and @index='0']")
+	private MobileElement home_bar;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Contact Us' or @label='Contactez-nous']")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/contact_us_tile']/android.widget.TextView")
+	private MobileElement contact_us;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='TD Mobile Payment']")
 	private MobileElement tdMobilePayment;
@@ -894,6 +902,96 @@ public class HomeScreen extends _CommonPage {
 		}
 
 	}
+	/**
+	 * This method will verify the Home title on the dashboard page 
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */	
+	public void VerifyHomePageDashBoard(){
+		Decorator();
+		
+//		try{
+//			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+//				//for android, keep the home_bar as defined  
+//			}else{
+//				String xpath = "//*[@label='" + mobileAction.getAppString("home") + "']";
+//				System.out.println("xpath:" +  xpath);
+//				home_bar = mobileAction.verifyElementUsingXPath(xpath, "Home");
+//			}
+//		}catch (NoSuchElementException | IOException e) {
+//			try {
+//				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+//			} catch (IOException ex) {
+//				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+//			}
+//			System.err.println("TestCase has failed.");
+//			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+//			return;
+//		}
+		
+		try{
+			String hometitle="";
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				hometitle= mobileAction.getValue(home_bar);
+				System.out.println("hometitle:" +  hometitle);
+				mobileAction.verifyElementTextIsDisplayed(home_bar, "Home | Accueil");
+			}else{
+				hometitle = home_bar.getAttribute("name");
+				System.out.println("hometitle:" +  hometitle);
+				String ExpectedString ="HomeView | HomeView";
+				if(ExpectedString.contains(hometitle)){
+					mobileAction.Report_Pass_Verified(hometitle);
+				}else{
+					mobileAction.Report_Fail_Not_Verified(hometitle);
+				}
+			}
+			
+		}catch (Exception e){
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+		
+	}
+	
+	public void ClickContactUsFromHomePage(){
+		Decorator();
+		//MobileElement contactUs = null;
+		String homeTable ="";
+		try{
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 
+				mobileAction.SwipeWithinElement("//android.widget.ScrollView",  1, "down");
+			}else{
+				//XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable
+				//homeTable = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther";
+				mobileAction.FuncSwipeOnce("up");
+			}
+		}catch ( Exception e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+		try{
+			String elementText= mobileAction.getValue(contact_us);
+			System.out.println("Element Text:" +  elementText);
+			mobileAction.FuncClick(contact_us, elementText);
+		}catch (Exception e){
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}	
+		
+	}
 
 }
