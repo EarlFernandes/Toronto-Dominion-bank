@@ -26,27 +26,57 @@ public class Bills extends _CommonPage {
 
 	private static Bills Bills;
 
-	@iOSFindBy(xpath = "//*[@label='Pay Bill Pay a Canadian bill']")
+	@iOSFindBy(accessibility = "BILLVIEW_PAYBILL")
 	private MobileElement pay_cananda_bill;
 
-	@iOSFindBy(xpath = "//*[@label='Manage Payees Add, edit or delete a Canadian or U.S. Payee']")
-	private MobileElement manage_payees;
+	@iOSFindBy(accessibility = "BILLVIEW_PAYBILL_DES")
+	private MobileElement pay_cananda_bill_desc;
 
-	@iOSFindBy(xpath = "//*[@label='Pay U.S. Bill Pay a U.S. bill']")
+	@iOSFindBy(accessibility = "BILLVIEW_PAYEE")
+	private MobileElement manage_payees;
+	
+	@iOSFindBy(accessibility = "BILLVIEW_PAYEE_DES")
+	private MobileElement manage_payees_desc;
+	
+	@iOSFindBy(accessibility = "BILLVIEW_PAYUSBILL")
 	private MobileElement pay_us_bills;
 
-	@iOSFindBy(xpath = "//*[@label ='Bills']")
+	@iOSFindBy(accessibility = "BILLVIEW_PAYUSBILL_DES")
+	private MobileElement pay_us_bills_desc;
+	
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Bills']")
 	private MobileElement bills_header;
 	
-	@iOSFindBy(xpath="//*[contains(@label,'Scheduled Payments View and cancel pending Canadian payments or')]")
+	@iOSFindBy(accessibility = "BILLVIEW_SCHEDULE")
 	private MobileElement scheduledPayments;
 
+	@iOSFindBy(accessibility = "BILLVIEW_SCHEDULE_DES")
+	private MobileElement scheduledPaymentsDes;
+
+	@iOSFindBy(accessibility = "PAYBILL_VIEW_FROM")
+	private MobileElement fromAccountPayBillCad;
+	
+	@iOSFindBy(accessibility = "PAYBILL_VIEW_PAYEE")
+	private MobileElement payeePayBillCad;
+
+	// FIXME: Ask May to add this one
+	@iOSFindBy(accessibility = "FILL_IN")
+	private MobileElement amountPayBillCad;
+	
+	@iOSFindBy(accessibility = "PAYBILL_VIEW_CONTINUE")
+	private MobileElement continuePayBillCad;
+	
+	// FIXME: Ask May to add this one
+	@iOSFindBy(accessibility = "FILL_IN_2")
+	private MobileElement datePayBillCad;
+	
+	
 	@iOSFindBy(xpath="//*[@label='No Upcoming Bills to display in this account']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textView1' and @text='No Upcoming Bills to display in this account']")
 	private MobileElement paymentMessage;
 	
-	@iOSFindBy(xpath ="//*[@label='Pay Bill']")
+	@iOSFindBy(accessibility = "BILLVIEW_PAYBILL")
 	@AndroidFindBy(xpath = "//android.widget.TextView[ @text='Pay Bills']")
 	private MobileElement pay_bills;
 
@@ -70,6 +100,7 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
+	@iOSFindBy(accessibility = "-Date")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtDate']")
 	private MobileElement datePicker;
 
@@ -84,6 +115,7 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/upcomingbill_date_value']")
 	private MobileElement upcomingBillDate;  
 	
+	// FIXME: What is the progress spinner id?
 	@iOSFindBy(xpath = "//*[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progrees_bar;
@@ -100,9 +132,7 @@ public class Bills extends _CommonPage {
 
 	private void initElementPayCanadaBill() {
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				pay_cananda_bill = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowPayBill") + "']", "Pay bills");
 			}
 		} catch (NoSuchElementException | IOException e) {
@@ -117,9 +147,7 @@ public class Bills extends _CommonPage {
 	}
 	private void initElementPayUSBill() {
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				pay_us_bills = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowPayUSBill").replaceAll("\\<.*?>","") + "']", "Pay US bills");
 			}
 		} catch (NoSuchElementException | IOException e) {
@@ -134,9 +162,7 @@ public class Bills extends _CommonPage {
 	}	
 	private void initElementManagePayees() {
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				manage_payees = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowManagePayee") + "']", "Manage Payees");
 			}
 		} catch (NoSuchElementException | IOException e) {
@@ -151,9 +177,7 @@ public class Bills extends _CommonPage {
 	}
 	private void initElementScheduledPayments() {
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				scheduledPayments = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowUpcomingBills") + "']", "Scheduled Payments");
 			}
 		} catch (NoSuchElementException | IOException e) {
@@ -436,7 +460,15 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyTextEquality(bills_header.getText(), mobileAction.getAppString("billsPageHeader"));
+				mobileAction.verifyTextEquality(pay_bills.getText(), mobileAction.getAppString("billsNavRowPayBill"));
+				mobileAction.verifyTextEquality(pay_cananda_bill_desc.getText(), mobileAction.getAppString("billsHintTextPayBill"));
+				mobileAction.verifyTextEquality(pay_us_bills.getText(), mobileAction.getAppString("usbpNavRowTitle"));
+				mobileAction.verifyTextEquality(pay_us_bills_desc.getText(), mobileAction.getAppString("usbpNavRowHint"));
+				mobileAction.verifyTextEquality(manage_payees.getText(), mobileAction.getAppString("manage_payees_title"));
+				mobileAction.verifyTextEquality(manage_payees_desc.getText(), mobileAction.getAppString("billsHintTextManagePayee"));
+				mobileAction.verifyTextEquality(scheduledPayments.getText(), mobileAction.getAppString("str_Scheduled_Bills"));
+				mobileAction.verifyTextEquality(scheduledPaymentsDes.getText(), mobileAction.getAppString("schedulePaymentRowHint"));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("bills_str") + "']", "Bills title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowPayBill") + "']", "Pay bills");
@@ -542,7 +574,14 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyTextEquality(bills_header.getText(), mobileAction.getAppString("pay_bill"));
+				mobileAction.verifyTextEquality(payeePayBillCad.getText(), mobileAction.getAppString("payee"));
+				// FIXME: once may adds this one, uncomment
+				//mobileAction.verifyTextEquality(amountPayBillCad.getText(), mobileAction.getAppString("payBillConfirmFieldHeaderAmount"));
+				//mobileAction.verifyTextEquality(datePayBillCad.getText(), mobileAction.getAppString("payBillConfirmFieldHeaderDate"));
+				mobileAction.verifyTextEquality(fromAccountPayBillCad.getText(), mobileAction.getAppString("payBillConfirmFieldHeaderFromAccount"));
+				mobileAction.verifyTextEquality(continuePayBillCad.getText(), mobileAction.getAppString("Continue"));
+				mobileAction.verifyDateFormat(datePicker.getText(), MobileAction2.TYPE_YYYY_MM_DD_TODAY);
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("payBillPageHeader") + "']", "Pay Bills title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/lblAmount' and @text='" + mobileAction.getAppString("payBillConfirmFieldHeaderFromAccount") + "']", "From Account");

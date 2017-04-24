@@ -29,28 +29,44 @@ public class Transfers extends _CommonPage {
 		return Transfers;
 	}
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Pending Interac e-Transfer')]")
+	@iOSFindBy(accessibility = "TRANSFERVIEW_PENDING")
 	private MobileElement pending_transfer;
 
+	// FIXME: Ask may to add this (footer)
+	@iOSFindBy(accessibility = "FIXME_ID")
+	private MobileElement footer;
 
-	@iOSFindBy(xpath= "//*[@label='Transfers']")
+	
+	@iOSFindBy(accessibility = "TRANSFERVIEW_PENDING_DES")
+	private MobileElement pending_transfer_desc;
+
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement transfers_header;
 	
 
-	@iOSFindBy(xpath = "//*[@label='Interac e-Transfer']")
+	@iOSFindBy(accessibility = "TRANSFERVIEW_ETRANSFER")
 	private MobileElement Interac_e_Transfer_button;
+
+	@iOSFindBy(accessibility = "TRANSFERVIEW_ETRANSFER_DES")
+	private MobileElement Interac_e_Transfer_button_desc;
 	
-	@iOSFindBy(xpath= "//*[@label='Between My Accounts']")
+	@iOSFindBy(accessibility = "TRANSFERVIEW_BETWEENACCOUNTS")
 	private MobileElement btw_my_accnts;
+	
+	@iOSFindBy(accessibility = "TRANSFERVIEW_BETWEENACCOUNTS_DES")
+	private MobileElement btw_my_accnts_desc;
 	
 	@iOSFindBy(xpath="//*[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progrees_bar;
 	
-	@iOSFindBy(xpath= "//*[contains(@label,'Manage Recipients Add, edit or delete Interac e-Transfer recipie')]")
+	@iOSFindBy(accessibility = "TRANSFERVIEW_RECIPIENTS")
 	private MobileElement manageRecipient;
 
+	@iOSFindBy(accessibility = "TRANSFERVIEW_RECIPIENTS_DES")
+	private MobileElement manageRecipientDesc;
+	
 	@iOSFindBy(xpath="//*[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
@@ -255,7 +271,17 @@ public class Transfers extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyTextEquality(transfers_header.getText(), mobileAction.getAppString("transfers_str"));
+				mobileAction.verifyTextEquality(btw_my_accnts.getText(), mobileAction.getAppString("transfersTransfersNavRowHeaderBetweenMyAccounts"));
+				mobileAction.verifyTextEquality(btw_my_accnts_desc.getText(), mobileAction.getAppString("transfersTransfersHintTextBetweenMyAccounts"));
+				mobileAction.verifyTextEquality(Interac_e_Transfer_button.getText(), mobileAction.getAppString("e_transfer_str").replaceAll("\\<.*?>",""));
+				mobileAction.verifyTextEquality(Interac_e_Transfer_button_desc.getText(), mobileAction.getAppString("transfersTransfersHintTextInteracETransfer").replaceAll("\\<.*?>",""));
+				mobileAction.verifyTextEquality(pending_transfer.getText(), mobileAction.getAppString("str_pending_interact_etransfer").replaceAll("\\<.*?>",""));
+				mobileAction.verifyTextEquality(pending_transfer_desc.getText(), mobileAction.getAppString("transfersTransfersHintTextPendingInteracETransfer").replaceAll("\\<.*?>",""));
+				mobileAction.verifyTextEquality(manageRecipient.getText(), mobileAction.getAppString("imtNavRowManageRecipients"));
+				mobileAction.verifyTextEquality(manageRecipientDesc.getText(), mobileAction.getAppString("imtHintTextManageRecipients").replaceAll("\\<.*?>",""));
+				// FIXME: Uncomment when may adds the id
+				//mobileAction.verifyTextEquality(footer.getText(), mobileAction.getAppString("transfer_faq_question"));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("transfers_str") + "']", "Transfers title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderBetweenMyAccounts") + "']", "Between My accounts");

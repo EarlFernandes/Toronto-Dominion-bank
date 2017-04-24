@@ -55,7 +55,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id= 'android:id/button2' and @index='0']")
 	private MobileElement install;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator")
+	// FIXME: Need accessibility id here for ios
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
@@ -66,7 +66,8 @@ public class Login extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeButton[1]")
 	private MobileElement select_accesscard;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]")
+	// FIXME: accessibility id needed here!
+	@iOSFindBy(accessibility = "添加用户名或易通卡")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard']")
 	private MobileElement addUser;
 
@@ -134,20 +135,17 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Cannot add additional Access Cards.')]")
 	private MobileElement lblWarning;
 
-	// FIXME: What is the identifier for this?
-	@iOSFindBy(xpath = "//*[@label='Security Question']")
+	// FIXME: Need accessibility id here
+	@iOSFindBy(xpath = "//*[@label='安全问题']")
 	private MobileElement securityQuestionHeader;
 
-	// FIXME: What is the identifier for this?
-	@iOSFindBy(xpath = "//*[@value='Enter your answer']")
+	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/mfa_answer']")
 	private MobileElement enterAnswer;
 
-	// FIXME: What is the identifier for this?
-	@iOSFindBy(xpath = "//*[@label='Done']")
+	@iOSFindBy(xpath = "//XCUIElementTypeToolbar/XCUIElementTypeButton")
 	private MobileElement done;
 
-	@iOSFindBy(xpath = "//*[@label='Login']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/mfa_login_btn']")
 	private MobileElement securityLogin;
 
@@ -243,7 +241,7 @@ public class Login extends _CommonPage {
 					flag = false;
 				}
 			} catch (Exception e) {
-				System.out.print("Exception from Method " + this.getClass().toString());
+				System.out.print("Exception from Method " + this.getClass().toString() + e.getMessage());
 			}
 		return flag;
 	}
@@ -283,6 +281,8 @@ public class Login extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				securityQuestionHeader = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("securityQuestionPageHeader") + "']", "Security Page Header!");
+			} else {
+				securityLogin = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("secureLoginButton") + "']", "Login");
 			}
 			if (securityQuestionHeader.isDisplayed()) {
 				mobileAction.FuncClick(enterAnswer, "Enter your Answer");
@@ -350,7 +350,8 @@ public class Login extends _CommonPage {
 				
 			} else {
 				mobileAction.FuncClick(login, "Login");
-				mobileAction.waitForElementToVanish(progressBar);
+				// FIXME: Once proper id is here, uncomment
+				//mobileAction.waitForElementToVanish(progressBar);
 				//Thread.sleep(5000);
 			}
 			verifySystemError();

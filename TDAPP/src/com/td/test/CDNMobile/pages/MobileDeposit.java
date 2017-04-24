@@ -20,17 +20,24 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class MobileDeposit extends _CommonPage {
 	private static MobileDeposit MobileDeposit;
 
-	@iOSFindBy(xpath = "//*[@label='Mobile Deposit']")
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Mobile Deposit']")
 	private MobileElement mobile_deposit_header;
 	
-	@iOSFindBy(xpath = "//*[@label='Deposit Cheque']")
+	@iOSFindBy(accessibility = "DEPOSITVIEW_DEPOSIT")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/MobileDeposit_DepositCheque_Header_TextView']")
 	private MobileElement dpstCheque_btn;
 
+	@iOSFindBy(accessibility = "DEPOSITVIEW_DEPOSIT_DES")
+	private MobileElement dpstCheque_btn_desc;
+	
+	@iOSFindBy(accessibility = "DEPOSITVIEW_HISTORY")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/MobileDeposit_DepositReceipts_Header_TextView']")
 	private MobileElement chequeHistoryButton;
 
+	@iOSFindBy(accessibility = "DEPOSITVIEW_HISTORY_DES")
+	private MobileElement chequeHistoryButtonDesc;
+	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'We')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/enrollment_headertitle1' and starts-with(@text,'We')]")
 	private MobileElement validation_firstLine;
@@ -61,6 +68,7 @@ public class MobileDeposit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'To make a deposit')]")
 	private MobileElement validation_sixthLine;
 
+	// FIXME: What is the progressbar id?
 	@iOSFindBy(xpath="//*[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
@@ -264,7 +272,11 @@ public class MobileDeposit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyTextEquality(mobile_deposit_header.getText(), mobileAction.getAppString("mobiledeposit_depositreciept_header"));
+				mobileAction.verifyTextEquality(dpstCheque_btn.getText(), mobileAction.getAppString("mobiledeposit_successfeature_str_depositacheque"));
+				mobileAction.verifyTextEquality(dpstCheque_btn_desc.getText(), mobileAction.getAppString("mobiledeposit_successfeature_str_depositacheque_detailText"));
+				mobileAction.verifyTextEquality(chequeHistoryButton.getText(), mobileAction.getAppString("mobiledeposit_introfeature_str_mobileDepositHistory"));
+				mobileAction.verifyTextEquality(chequeHistoryButtonDesc.getText(), mobileAction.getAppString("mobiledeposit_successfeature_str_depositreceipts_detailText"));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("ActionBar_MobileDeposit") + "']", "Mobile Deposit");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDeposit_DepositCheque_Header") + "']", "Deposit Cheque");

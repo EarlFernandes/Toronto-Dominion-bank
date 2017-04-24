@@ -123,7 +123,8 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Privacy, Security & Legal']")
 	private MobileElement privacy;
 
-	@iOSFindBy(xpath = "//*[@label='Back']")
+	// FIXME: Replace with proper accessiblity id when May adds it
+	@iOSFindBy(xpath = "//*[@label='背面']")
 	private MobileElement back_button;
 
 	@iOSFindBy(xpath = "//*[@label='Locations']")
@@ -356,7 +357,13 @@ public class HomeScreen extends _CommonPage {
 	public void clickMenu() {
 		try {
 			Decorator();
-			mobileAction.FuncClick(menu, "Menu");
+			
+			if(mobileAction.FuncISDisplayed(back_button)) {
+				mobileAction.FuncClick(back_button, "Back button");
+				mobileAction.FuncClick(menu, "Menu");
+			} else {
+				mobileAction.FuncClick(menu, "Menu");
+			}
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");

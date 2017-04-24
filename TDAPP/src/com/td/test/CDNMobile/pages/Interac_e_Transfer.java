@@ -24,28 +24,37 @@ public class Interac_e_Transfer extends _CommonPage {
     @iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Add Recipient']")
     private MobileElement addRecipient_Interac;
 
-    @iOSFindBy(xpath = "//*[@label='Interac e-Transfer']")
+    @iOSFindBy(accessibility = "TDVIEW_TITLE")
     private MobileElement interac_Header;
 
+    // FIXME: Ask may to add this
+    @iOSFindBy(accessibility = "FIXME")
+    private MobileElement optional;
+ 
+    // FIXME: What is the progress bar id?
     @iOSFindBy(xpath = "//*[@label='In progress']")
     private MobileElement progrees_bar;
 
-    @iOSFindBy(xpath = "//*[@label='Interac e-Transfer']")
+    @iOSFindBy(accessibility = "TDVIEW_TITLE")
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Interac e-Transfer']")
     private MobileElement Interac_Etransfer_Header;
 
-    @iOSFindBy(xpath = "//*[@label='Sender, Select sender']")
+    @iOSFindBy(accessibility = "INTERACSEND_VIEW_SENDER")
    // @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_sender' and @text='Select Sender']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/sender_title']")
     private MobileElement selectSender;
 
     // @iOSFindBy(xpath =
     // "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]//XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[4]/XCUIElementTypeTextField")
-    @iOSFindBy(xpath = "//*[@name='-Amount']")
+    @iOSFindBy(accessibility = "-Amount")
     @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_amount']")
     private MobileElement etransfer_Amount;
 
-    @iOSFindBy(xpath = "//*[@label='Continue']")
+    @iOSFindBy(accessibility = "INTERACSEND_VIEW_AMOUNT")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Interac e-Transfer']")
+    private MobileElement amountLbl;
+    
+    @iOSFindBy(accessibility = "INTERACSEND_VIEW_CONTINUE")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/button_footer']")
     private MobileElement transfer_Continue;
 
@@ -61,7 +70,7 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_val']")
     private MobileElement confirmation_val;
 
-    @iOSFindBy(xpath = "//*[@label='From account, Select from account']")
+    @iOSFindBy(accessibility = "INTERACSEND_VIEW_FROM")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_account_title']")
     private MobileElement fromAccount;
 
@@ -69,13 +78,14 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccountAmountTransfer']")
     private MobileElement fromAccountVal;
 
+    @iOSFindBy(xpath = "//../XCUIElementTypeTable[2]")
     @AndroidFindBy(xpath = "//android.widget.ListView[@index='1']")
     private MobileElement acntsList;
 
     @AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/listView']")
     private MobileElement acntsListSender;
 
-    @iOSFindBy(xpath = "//*[@label='Recipient, Select recipient']")
+    @iOSFindBy(accessibility = "INTERACSEND_VIEW_RECIPIENT")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/recipient_title']")
     private MobileElement recipient;
 
@@ -131,7 +141,7 @@ public class Interac_e_Transfer extends _CommonPage {
     @iOSFindBy(xpath = "//*[@label='From account, Select from account']")
     private MobileElement fromAccountData;
 
-    @iOSFindBy(xpath = "//*[@label='Message, Optional']")
+    @iOSFindBy(accessibility = "INTERACSEND_VIEW_MESSAGE")
     private MobileElement Message;
 
     int i = 1;
@@ -302,7 +312,7 @@ try {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				fillInInteracETransferForm();
 			} else {
 				fillInInteracETransferForm();
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferConfirmNotice").replaceAll("\\<.*?>","") + "']", "Notice");
@@ -331,7 +341,15 @@ try {
 	private void fillInInteracETransferForm() {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+//				mobileAction.FuncClick(fromAccount, "From Account");
+//				mobileAction.FuncElementSwipeWhileNotFound(acntsList, "//../XCUIElementTypeTable[2]/XCUIElementTypeCell[2]", 1, "down", true);
+				mobileAction.FuncClick(recipient, "Recipient");
+				mobileAction.FuncElementSwipeWhileNotFound(acntsList, "//../XCUIElementTypeTable[2]/XCUIElementTypeCell[2]", 1, "down", true);
+				String ValueofAmount = getTestdata("Amount");
+				mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
+				mobileAction.FuncClickBackButton();
+				mobileAction.FuncClick(transfer_Continue, "Continue");
+				mobileAction.verifyTextEquality(interac_Header.getText(), mobileAction.getAppString("transfersBetweenMyAccountsConfirmPageHeader"));
 			} else {
 				// Seems like selector for from account/recipient do not work here
 				// We just need to get to confirmation page, so select default fields
@@ -564,13 +582,25 @@ try {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyTextEquality(Interac_Etransfer_Header.getText(), mobileAction.getAppString("eTransferHeaderLabel"));
+				mobileAction.verifyTextEquality(selectSender.getText(), mobileAction.getAppString("str_sender"));
+				mobileAction.verifyTextEquality(fromAccount.getText(), mobileAction.getAppString("str_transfers_from_account"));
+				mobileAction.verifyTextEquality(recipient.getText(), mobileAction.getAppString("eTransferConfirmRecipient"));
+				mobileAction.verifyTextEquality(amountLbl.getText(), mobileAction.getAppString("eTransferAmountLabel"));
+				mobileAction.verifyTextEquality(Message.getText(), mobileAction.getAppString("eTransferReceiptMessage"));
+				// FIXME: Once May adds it, uncomment
+				//mobileAction.verifyTextEquality(optional.getText(), mobileAction.getAppString("str_optional"));
+				mobileAction.verifyTextEquality(transfer_Continue.getText(), mobileAction.getAppString("Continue"));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer").replaceAll("\\<.*?>","") + "']", "Interac e-transfer title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/sender_title' and @text='" + mobileAction.getAppString("eTransferSenderLabel") + "']", "Sender");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/from_account_title' and @text='" + mobileAction.getAppString("eTransferFromAccountLabel") + "']", "From Account");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/recipient_title' and @text='" + mobileAction.getAppString("eTransferRecipientLabel") + "']", "Recipient");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/amount_label' and @text='" + mobileAction.getAppString("eTransferAmountLabel") + "']", "Amount");
+				final String xPathFooter = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_message']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 3, "up");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferMessageLabel") + "']", "Message");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_optional") + "']", "Optional");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/button_footer' and @text='" + mobileAction.getAppString("btn_continue") + "']", "Continue");
 			}
 		} catch (NoSuchElementException | IOException e) {

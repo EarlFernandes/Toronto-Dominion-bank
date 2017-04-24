@@ -25,9 +25,15 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='' and @text='']")
 	private MobileElement tradeicon;
 
-	@iOSFindBy(xpath = " //*[@label='Investing']")
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Investing']")
 	private MobileElement investing_header;
+
+	@iOSFindBy(accessibility = "CROSSSELL_VIEWTITLE")
+	private MobileElement investing_body_title;
+
+	@iOSFindBy(accessibility = "CROSSSELL_MESSAGE")
+	private MobileElement investing_body_msg;
 	
     @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade' or @label='Négociation']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trade' and @index='0']")
@@ -55,10 +61,13 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/summaryContent' and @index='0']")
 	private MobileElement investingListView;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Go to WebBroker')]")
+	@iOSFindBy(accessibility = "CROSSSELL_GOTO")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_launch_browser'and contains(@text,'do this later on my computer')]")
 	private MobileElement go_to_webbroker_button;
 
+	@iOSFindBy(accessibility = "CROSSSELL_CALL")
+	private MobileElement call_button;
+	
 	@iOSFindBy(xpath = "//*[@label='Holdings']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trade' and @index='0']")
 	private MobileElement Holdings;
@@ -586,10 +595,13 @@ public class Investing extends _CommonPage {
 	 */
 	public void verifyOpenNewAccountTextElements() {
 		Decorator();
-		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyTextEquality(investing_header.getText(), mobileAction.getAppString("Investing"));
+				mobileAction.verifyTextEquality(investing_body_title.getText(), mobileAction.getAppString("investing_open_account"));
+				mobileAction.verifyTextEquality(investing_body_msg.getText(), mobileAction.getAppString("str_investing_cross_sell_message_detail"));
+				mobileAction.verifyTextEquality(go_to_webbroker_button.getText(), mobileAction.getAppString("str_go_to_webbroker"));
+				mobileAction.verifyTextEquality(call_button.getText().split(" ")[0], mobileAction.getAppString("call_phone").replace(" %1$s", ""));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("str_Investing") + "']", "Investing title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_investing_cross_sell_message") + "']", "Open a direct investing account");
