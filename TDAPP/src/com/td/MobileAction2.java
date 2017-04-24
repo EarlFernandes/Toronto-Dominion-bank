@@ -28,9 +28,6 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 
 public class MobileAction2 extends CommonLib {
-	
-	protected com.td.test.framework.CommonLib CL = new com.td.test.framework.CommonLib();
-	
 	public final int MaxTimeoutInSec = 25;
 	public void findElementByXpathAndClick(String xpath) throws IOException {
 		try {
@@ -643,6 +640,9 @@ public class MobileAction2 extends CommonLib {
 	 */
 	public void FunCnewSwipe(MobileElement elementToFind, boolean clickYorN, int swipes) throws Exception {
 
+		Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
+		int startx = size.width;
+		int starty = size.height;
 		boolean flag = true;
 		int count = 0;
 		try {
@@ -653,12 +653,15 @@ public class MobileAction2 extends CommonLib {
 						flag = false;
 					} else {
 
-						FunctionSwipe("up", 2000, 200);
+						//((MobileDriver) GetDriver()).swipe(startx / 2, starty - starty / 4, startx / 2, starty / 4,	600);
+					    ((MobileDriver) GetDriver()).swipe(startx / 2, starty - starty / 4, startx / 2, starty / 16, 2000);
 						count++;
 					}
 				} catch (Exception e) {
 					System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-					FunctionSwipe("up", 2000, 200);
+
+					//((MobileDriver) GetDriver()).swipe(startx / 2, starty - starty / 4, startx / 2, starty / 4, 600);
+				    ((MobileDriver) GetDriver()).swipe(startx / 2, starty - starty / 4, startx / 2, starty / 16, 2000);
 					count++;
 				}
 
@@ -734,8 +737,6 @@ public class MobileAction2 extends CommonLib {
 
 	}
 
-	
-	
 	
 	
 	
@@ -1180,7 +1181,7 @@ public class MobileAction2 extends CommonLib {
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 */
-	public void FunctionSwipe(String Direction, int swipeTime, int Offset){
+	public void FunctionSwipe(String Direction, int swipeTime, int Offset) throws IOException {
 		try {
 
 			Dimension size;
@@ -1208,12 +1209,8 @@ public class MobileAction2 extends CommonLib {
 			GetReporting().FuncReport("Pass", "Swipe <b> " + Direction + " </b> Successful");
 
 		} catch (Exception e) {
-			try {
-				GetReporting().FuncReport("Fail", "<b>- " + "</b> not present in current page");
-			} catch (IOException e1) {
-			stringToReport("Fail", "Failed to write in report-->class:MobileAction2 Method:FunctionSwipe");
-			}
-			
+			GetReporting().FuncReport("Fail", "<b>- " + "</b> not present in current page");
+			throw e;
 		}
 
 	}
@@ -1449,7 +1446,7 @@ public class MobileAction2 extends CommonLib {
 	catch(Exception e)
 	{
 		 GetReporting().FuncReport("Fail", "The element <b>- " + expectedText + "</b> is not displayed");
-		
+		e.printStackTrace();
 	}
    
 /*	} catch (IllegalArgumentException e) {
@@ -1748,7 +1745,6 @@ public class MobileAction2 extends CommonLib {
 			}			
 		}
 	}
-
 
 	public boolean verifyTextEquality(String text1, String text2) {
 		if (text1.equalsIgnoreCase(text2)) {
@@ -2418,7 +2414,12 @@ public class MobileAction2 extends CommonLib {
 	    	    endx = startx;
 	    	    starty = locationY + dimensionY - 5;
 	    	    endy = locationY + 10;
-	    	} else {
+	    	} else if (direction.equalsIgnoreCase("left")) {
+				startx = locationX + dimensionX - 100;
+				starty = locationY + dimensionY / 2;
+				endx = locationX + 10;
+				endy = starty;
+			} else {
 	    	    startx = locationX + dimensionX / 2;
 	    	    endx = startx;
 	    	    starty = locationY + dimensionY - 10;
@@ -2439,9 +2440,9 @@ public class MobileAction2 extends CommonLib {
 	     *            element which has to be identified
 	     * 
 	     * @param expectedText
-	     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNÉES"
+	     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNÃƒâ€°ES"
 	     *            if language is English then "CONTACT INFORMATION "to be printed in report
-	     *            if language is French then "COORDONNÉES" to be printed in report
+	     *            if language is French then "COORDONNÃƒâ€°ES" to be printed in report
 	     * 
 	     * @return nothing
 	     * 
@@ -2583,9 +2584,34 @@ public class MobileAction2 extends CommonLib {
     public void switchAppiumContext(final String targetContext) {
     	((AppiumDriver) GetDriver()).context(targetContext);
     }
-
+    
     
     /**
+	 * @author Ashraf
+	 * This method will print the given string to report
+	 * 
+	 * @param element
+	 *            Element to be printed.
+	 * 
+	 * @param text
+	 *            Description of the element.
+	 * @throws IOException
+	 */
+	public void stringToReport(String status, String string) {
+		try {
+			GetReporting().FuncReport(status, string);
+
+		} catch (NullPointerException | IOException e) {
+			try {
+				GetReporting().FuncReport("Fail", string + " Returned null value");
+			} catch (IOException e1) {
+				System.out.println("Failed to Write in report for element: " + string);
+			}
+		}
+	}
+	
+	
+	/**
      * @author Ashraf
 	 * This method will verify the element present on the screen.
 	 * 
@@ -2616,71 +2642,6 @@ public class MobileAction2 extends CommonLib {
 		
 	}
     
-   
-	/**
-	 * @author Ashraf
-	 * This method will print the given string to report
-	 * 
-	 * @param element
-	 *            Element to be printed.
-	 * 
-	 * @param text
-	 *            Description of the element.
-	 * @throws IOException
-	 */
-	public void stringToReport(String status, String string) {
-		try {
-			GetReporting().FuncReport(status, string);
+    
 
-		} catch (NullPointerException | IOException e) {
-			try {
-				GetReporting().FuncReport("Fail", string + " Returned null value");
-			} catch (IOException e1) {
-				System.out.println("Failed to Write in report for element: " + string);
-			}
-		}
-	}
-	
-	
-	/**
-	 * @author Ashraf 
-	 * This method will convert the string xpath to MobileElement. Then Swipe and click on it once found.
-	 * 
-	 * @param elementXpath = String xpath of element
-	 * @param elementName = Name of element to be printed in report
-	 * @param swipeCount = number of swipe to search for element.
-	 */
-	public boolean swipeAndSelect(String elementXpath, String elementName,int swipeCount) {
-		
-		boolean flag=true;
-		int count=0;
-		
-		while(flag&&count<swipeCount)
-		{
-			try{
-		MobileElement element = (MobileElement) ((AppiumDriver) CL.GetDriver())
-				.findElement(By.xpath(elementXpath));
-		if(element.isDisplayed()){
-			FuncClick(element, "Account Number");
-			flag=false;
-		}else{
-			FunctionSwipe("up", 1000, 200);
-			count++;
-		}
-			}catch(Exception e){
-				FunctionSwipe("up", 1000, 200);
-				count++;
-			}
-			
-			if(count==swipeCount){
-				stringToReport("Fail", elementName+" Not found after swiping "+swipeCount+" times.");
-			}
-			
-			
-			}
-		
-		return flag;
-	}
-	
-	
 }
