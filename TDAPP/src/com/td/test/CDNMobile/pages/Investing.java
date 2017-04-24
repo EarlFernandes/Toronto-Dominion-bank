@@ -29,7 +29,7 @@ public class Investing extends _CommonPage {
 	private MobileElement investing_header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[(@text='Trade' or @text='NÃ¯Â¿Â½gociation') and @index='0']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@text='Trade' or @text='Négociation') and @index='0']")
 	private MobileElement trade;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Markets']")
@@ -66,7 +66,11 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_launch_browser'and @text='Go to WebBroker']")
 	private MobileElement webBroker;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
+/*	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
+	private MobileElement backButton;*/
+	
+	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']") //@Author - Sushil 07-Mar-2017
+	@AndroidFindBy(id="android:id/action_bar_title")
 	private MobileElement backButton;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Accounts']")
@@ -113,6 +117,23 @@ public class Investing extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Your Watchlist is empty')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/first_line' and @text='Your Watchlist is empty.']")
 	private MobileElement watchListsEmpty;
+	
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") //@Author - Sushil 20-Apr-2017
+	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation']")
+	private MobileElement Investing_Trade;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Investing') or contains(@label,'Placements directs')]") //@Author - Sushil 20-Apr-2017
+	@AndroidFindBy(xpath = "//*[(contains(@text,'Investing') or contains(@text,'Placements directs')) and @resource-id='android:id/action_bar_title']")
+	private MobileElement hdrInvesting;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Home') or contains(@label,'Accueil')]") //@Author - Sushil 20-Apr-2017
+	@AndroidFindBy(xpath = "//*[(contains(@text,'Home') or contains(@text,'Accueil')) and @resource-id='android:id/action_bar_title']")
+	private MobileElement hdrHome;
+	
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") //@Author - Sushil 20-Apr-2017
+	@AndroidFindBy(id = "com.td:id/trade_dashboard")
+	private MobileElement trade_dashboard;
+	
 
 	String Investing_Table = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
 	String order_value = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/ XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]";
@@ -660,26 +681,31 @@ public class Investing extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void verifyPIAOrFPAccount() {
+	public void verifyPIAOrFPAccount() {//@Author - Sushil 20-Apr-2017 modified
 		try {
 			Decorator();
 			String diAccountXL = null;
 			String diAccountXL2 = null;
-			mobileAction.waitForElementToVanish(progressBar);
+			//mobileAction.waitForElementToVanish(progressBar);
 			String fromAccount = getTestdata("FromAccount");
 			String fromAccountArr[] = fromAccount.split(",");
 
+			if(mobileAction.isObjExists(Investing_Trade)) //@Author - Sushil 20-Apr-2017
+				CL.GetReporting().FuncReport("Fail", "Trade option should not be displayed on the Investing landing page for connectID with only PIA/FP accounts");
+			else
+				CL.GetReporting().FuncReport("Pass", "Trade option is not displayed on the Investing landing page for connectID with only PIA/FP accounts");
+			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				diAccountXL = "//*[contains(@label,'" + fromAccountArr[0] + "')]";
 				diAccountXL2 = "//*[contains(@label,'" + fromAccountArr[1] + "')]";
 			} else {
-				diAccountXL = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-						+ fromAccountArr[0] + "']";
-				diAccountXL2 = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-						+ fromAccountArr[1] + "']";
+				diAccountXL = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
+						+ fromAccountArr[0] + "')]";
+				diAccountXL2 = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
+						+ fromAccountArr[1] + "')]";
 			}
-			mobileAction.verifyElementUsingXPath(diAccountXL, "The first FP Account");
-			mobileAction.verifyElementUsingXPath(diAccountXL2, "The Second FP Account");
+			mobileAction.verifyElementUsingXPath(diAccountXL, "The first PIA/FP Account");
+			mobileAction.verifyElementUsingXPath(diAccountXL2, "The Second PIA/FP Account");
 
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -703,7 +729,10 @@ public class Investing extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.verifyElementIsDisplayed(hdrInvesting, "hdrInvesting");
 			mobileAction.FuncClick(backButton, "Back");
+			mobileAction.verifyElementIsDisplayed(hdrHome, "hdrHome");
+			mobileAction.verifyElementIsDisplayed(trade_dashboard, "trade_dashboard");
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		} catch (InterruptedException e) {
@@ -891,7 +920,12 @@ public class Investing extends _CommonPage {
 			String symbolXpath = "//android.widget.TextView[@resource-id='com.td:id/symbol' and @text='"+ symbolValue + "')]";
 			
 			
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(symbolXpath, true, 15, "up");
+			try {
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(symbolXpath, true, 15, "up");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			mobileAction.waitForElementToVanish(progressBar);
 
