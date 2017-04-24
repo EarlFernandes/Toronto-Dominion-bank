@@ -358,7 +358,7 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Decorator();
 			
-			if(mobileAction.FuncISDisplayed(back_button)) {
+			if (back_button.isDisplayed()) {
 				mobileAction.FuncClick(back_button, "Back button");
 				mobileAction.FuncClick(menu, "Menu");
 			} else {
