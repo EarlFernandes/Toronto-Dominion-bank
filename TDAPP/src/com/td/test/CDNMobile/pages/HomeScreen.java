@@ -26,16 +26,8 @@ public class HomeScreen extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu' or @label='Menu en en-tête']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
-	
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title'and @index='0']")
-	private MobileElement home_bar;
-	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Contact Us' or @label='Contactez-nous']")
-	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/contact_us_tile']/android.widget.TextView")
-	private MobileElement contact_us;
-	
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeStaticText[@label='Bills']")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Bills']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Bills']")
 	private MobileElement bills;
 
@@ -43,7 +35,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Accounts']")
 	private MobileElement my_accounts;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeStaticText[@label='Transfers' or @label='Virments']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfers' or @label='Virments']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' or @text='Transfers' or @text='Virments']")
 	private MobileElement transfers;
 
@@ -59,9 +51,13 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access']")
 	private MobileElement quickAccess;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investing Accounts']")
+/*	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investing Accounts']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access' and (@text='Investing Accounts' or @text='Comptes Placements directs TD')]")
-	private MobileElement investing_button;
+	private MobileElement investing_button;*/
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Investing') or contains(@label,'Comptes Placements')]") //@Author - Sushil 19-Apr-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[(@text='Investing Accounts' or contains(@text,'Comptes Placements')) and @resource-id='com.td:id/navText']")
+	MobileElement  investing_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'TRADE')]")
 	@AndroidFindBy(xpath = "//android.widget.TableRow[@text='TRADE']")
@@ -101,8 +97,8 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @enabled='true']")
 	private MobileElement zone_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investing']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Investing Accounts' @text='Comptes Placements directs TD')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investing']")//@Author - Sushil 21-Apr-2017 modified
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Investing Accounts' or @text='Comptes Placements directs TD')]")
 	private MobileElement InvestingHamburgeMenu;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Logout']")
@@ -307,7 +303,7 @@ public class HomeScreen extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-
+	String accountno = "//*[contains(@label,'" + "AS12345" + "')]";
 	/**
 	 * This method will click on the Menu button on home page
 	 * 
@@ -323,6 +319,13 @@ public class HomeScreen extends _CommonPage {
 	public void clickMenu() {
 		try {
 			Decorator();
+/*			try {
+				Thread.sleep(5000);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountno, true, 60, "Up");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
 			mobileAction.FuncClick(menu, "Menu");
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -892,95 +895,5 @@ public class HomeScreen extends _CommonPage {
 
 	}
 
-	/**
-	 * This method will verify the Home title on the dashboard page 
-	 * 
-	 * @return void
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 */
-	public void VerifyHomePageDashBoard(){
-		Decorator();
-		
-//		try{
-//			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-//				//for android, keep the home_bar as defined  
-//			}else{
-//				String xpath = "//*[@label='" + mobileAction.getAppString("home") + "']";
-//				System.out.println("xpath:" +  xpath);
-//				home_bar = mobileAction.verifyElementUsingXPath(xpath, "Home");
-//			}
-//		}catch (NoSuchElementException | IOException e) {
-//			try {
-//				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
-//			} catch (IOException ex) {
-//				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-//			}
-//			System.err.println("TestCase has failed.");
-//			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-//			return;
-//		}
-		
-		try{
-			String hometitle="";
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				hometitle= mobileAction.getValue(home_bar);
-				System.out.println("hometitle:" +  hometitle);
-				mobileAction.verifyElementTextIsDisplayed(home_bar, "Home | Accueil");
-			}else{
-				hometitle = home_bar.getAttribute("name");
-				System.out.println("hometitle:" +  hometitle);
-				String ExpectedString ="HomeView | HomeView";
-				if(ExpectedString.contains(hometitle)){
-					mobileAction.Report_Pass_Verified(hometitle);
-				}else{
-					mobileAction.Report_Fail_Not_Verified(hometitle);
-				}
-			}
-			
-		}catch (Exception e){
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-		
-	}
-	
-	public void ClickContactUsFromHomePage(){
-		Decorator();
-		//MobileElement contactUs = null;
-		String homeTable ="";
-		try{
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 
-				mobileAction.SwipeWithinElement("//android.widget.ScrollView",  1, "down");
-			}else{
-				//XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable
-				//homeTable = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther";
-				mobileAction.FuncSwipeOnce("up");
-			}
-		}catch ( Exception e) {
-			try {
-				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-			}
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			return;
-		}
-		try{
-			String elementText= mobileAction.getValue(contact_us);
-			System.out.println("Element Text:" +  elementText);
-			mobileAction.FuncClick(contact_us, elementText);
-		}catch (Exception e){
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}	
-		
-	}
 }
