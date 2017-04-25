@@ -29,7 +29,13 @@ import com.td.test.CDNMobile.pages.LoginMIT;
 import com.td.test.CDNMobile.pages.LoginPNP;
 import com.td.test.CDNMobile.pages.Logout;
 import com.td.test.CDNMobile.pages.MFA_ChangeAnswer;
+import com.td.test.CDNMobile.pages.MLCancelOrderReceipt;
+import com.td.test.CDNMobile.pages.MLChangeOrder;
+import com.td.test.CDNMobile.pages.MLConfirmOrder;
+import com.td.test.CDNMobile.pages.MLConfirmOrderReceipt;
 import com.td.test.CDNMobile.pages.MLEnterOrderNegative;
+import com.td.test.CDNMobile.pages.MLOptionChainTable;
+import com.td.test.CDNMobile.pages.MLOrderDetails;
 import com.td.test.CDNMobile.pages.ManageRecipients;
 import com.td.test.CDNMobile.pages.ManageSettings;
 import com.td.test.CDNMobile.pages.Managee_Payee;
@@ -88,7 +94,7 @@ public class EventCase {
 
 		ClickMenu, ClickMenu_French, ClickMenuHome, clickMenuTrade, Confirm_order, Confirm_order_French, ClickPrivacy,ClickSave,ClickPhoneNumber,ClickClearText,ClickAddressDetail,ClickPopupGoBackButton,
 
-		ConfirmOrderCancel, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, ChangeDefaultCard, CardDetails_deleteicon, ConfirmPayee_InvalidAmount,EditEmailAddressWithInvalidChar,clickInvestingTrade,clickFirstSymbol,
+		ConfirmOrderCancel, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, ChangeDefaultCard, CardDetails_deleteicon, ConfirmPayee_InvalidAmount,EditEmailAddressWithInvalidChar,
 
 		Dashboard_Authentication, Dashboard_UnAuthentication,
 
@@ -108,7 +114,7 @@ public class EventCase {
 
 		Investing_clickMarkets, Investing_clickOrderTab, Investing_clickPlacedorder, Investing_clickTrade, Investing_clickTrade_French, Investing_clickWatchLists, Investing_Header, Investing_verifyAdvanceorderdetails, Investingacc_verifySummary, InvestingHeader, IOS_Account_Home_Button,
 
-		Login, Login_and_Logout, Login_clearPasswordField, Login_Error, Login_Ntimes, Login_PasswordFieldDelete, Login_usernameFieldDelete, Login_verifyPasswordField, Login_verifyUsernameField, login_without_tandc, LoginFrench, Loginverify, LoginWithRemember, Logout, LogoutFrench,LoginPNP,LoginMIT,
+		Login, Login_and_Logout, Login_clearPasswordField, Login_Error, Login_Ntimes, Login_PasswordFieldDelete, Login_usernameFieldDelete, Login_verifyPasswordField, Login_verifyUsernameField, login_without_tandc, LoginFrench, Loginverify, LoginWithRemember, Logout, LogoutFrench,LoginPNP,
 
 		ManagePayee_AddCanadianPayee, ManagePayee_MutlipleAccesscard, ManagePayee_VerifyAddCanadianPayeeBtn, ManagePayees_Button, ManageRecipient_EditManageRecipient, ManageRecipient_ModifyRecipient, ManageRecipients_VerifyRegisterButton, mask_user,
 
@@ -116,31 +122,27 @@ public class EventCase {
 
 		MFA_Change, Mobile_Deposit, Multitasking_System,
 
-		NavigationBackToProfileandSettingPage,NavigationToHomePage,navigateToSearchScreen,
+		NavigationBackToProfileandSettingPage,NavigationToHomePage,
 		
 		OpenApp, OrderDetails_CancelOrder, OrderDetails_clickChangeorder, OrderDetailsLimitPrice, OrderDetailsPage_orderConfirmDetails, OrderDetailsPage_verifyStockChangeorderConfirmScreen, OrderDetailsTriggerPrice, OrderReciept_CancelOrderReceipt, OrderReciept_French, OrderReciept_orderdetailMutualfund, OrderReciept_orderDetails, OrderReciept_orders, OrderReciept_OrdersIcon, OrderReciept_ordertab, OrderReciept_updatemsg, OrderReciept_verifyOrderScreen, Ordertype_Cancel,OpenAppPNP,
 		
-		OpenAppMIT,
-
 		Pay_US_bill_From_US_Account, Pay_US_bill_FromCanada_Account, PayBill_Canada_Button, PayBill_US_Button, PayBill_VerifyAddCanadianPayeeBtn, PayBillCanada_Add_Canadian_Payee, PayCanada_NegativeTestingBillPayment, PayCanadaBill_Post_Dated, PayCanadaBillP_Pay_Candadian_Bill, PayCanadianBill_InvalidAmount,
 
 		PendingInterac_e_Transfer, PendingInterac_e_Transfer_cancel, PendingInterac_e_Transfer_canceltransfer, PendingInterac_e_Transfer_confirm, PendingInterac_e_Transfer_confirmscreen, PendingInterac_e_Transfer_verifyconfirmation, PendingInterac_e_Transfer_verifylist, PendingInterac_e_Transfer_verifystatus, PendingInteracTransfer_verify_CancelPendingTransfer, passcode_Ntimes, Addicon,
 
 		PermissibleTransfer, Preferences_Update_Question, QuickAccess, SearchPage_searchBar, Select_Account, SenderList_Cancel, Session_expired, SetupWalletPasscode,
 
-		selectTradeAccount_OrderType,searchAndSelectAccount,submitStockOptionOrder,selectDateSpecify_Android,
-		
 		TDDirectInvestingContact, Trade_changeAccountTypeLongtoShortFre_French, Trade_clickAction, Trade_clickCross, Trade_clickFundFactLink, Trade_clickMutualFunds, Trade_clickMutualPreviewOrder, Trade_clickOnAgree, Trade_clickOnPreviewOrderBtn, Trade_clickOptions, Trade_clickOrderType, Trade_clickOrderType_French, Trade_clickQuantity, Trade_clickStockETFs, Trade_clickSymbol, Trade_clickSymbol_French, Trade_confirmCancelOrder, Trade_ConfirmSendOrder, Trade_createMutualfund, Trade_Details, Trade_enterAmount, Trade_enterAndSearch, Trade_enterTradingPassword, Trade_includesComission, Trade_Limit, Trade_nosearch, Trade_placeStockOrder, Trade_selectAccount, Trade_selectAcknowledgement, Trade_selectDividendOption, Trade_selectMutualQuantity, Trade_selectMutualSymbol, Trade_selectQuantity, Trade_sendOrder, Trade_trade_account, Trade_Trigger, Trade_verifyMutualConfirmDetails, Trade_verifymutualconfirmsell, Trade_verifyRelaventMatchInResult, Trade_verifysearchbar, Trade_verifySendOrderDisplayed, Trade_verifySendOrderState, Trade_verifySuccessMessage, Trade_verifySwitchMutualConfirmDetails, Trade_verifySymbol, Trade_verifyTrade, Trade_verifyTradeActionShortAccountFre_French, TradeAccount, TradeAccount_French, TradeAction, TradeAction_French, TradeAgree, TradeAgree_French, TradeDate, TradeGoodTill, TradeGoodTill_French, TradeHeader, TradeIcon, TradeLimitPrice, TradeMarginAccount, TradePreviewOrder, TradePreviewOrder_French, TradePrice, TradePrice_French, TradeQuantity, TradeQuantity_French, TradeShareHolder, TradeTriggerDelta, TradeTriggerPrice, TradeTriggerPrice_French, TradingPassword, TradingPassword_French,
 
-		Trans_TFSA_To_Othr_Accounts, Transfer_InteracTransfer, TransferHeader, Transfers, Transfers_Click_Between_My_Accounts, Transfers_clickInterac_e_Transfer, Transfers_clickPendingInterac_e_Transfer, Transfers_ManageRecipients,tapInvesting,
+		Trans_TFSA_To_Othr_Accounts, Transfer_InteracTransfer, TransferHeader, Transfers, Transfers_Click_Between_My_Accounts, Transfers_clickInterac_e_Transfer, Transfers_clickPendingInterac_e_Transfer, Transfers_ManageRecipients,
 		
-		Trade_click_MutualFunds,verifyDefaultStrategies,tapTradeSearchBar,
+		Trade_click_MutualFunds,
 
 		USMarAccLongToShort, USMarginShort_Buy_Market,
 
 		verify_access_to_WB, Verify_account_activity_credit, Verify_Combined_Account, Verify_FP_Account, verify_login_5_times, Verify_PIA_Account, VerifyAccessCard, VerifyAccessCardDetails, VerifyActionFields, verifybill_landingpage, VerifyCombinedAccounts, verifyconfirm_order, VerifyDIAccounts, verifyErrorMessage, VerifyFPAccounts, VerifyIconDetails, VerifyInvestingScreen, VerifyNoEligibleAccounts, VerifyNoTradingAccounts, VerifyPIAAccounts, VerifyQuickIcons, VerifyReceipt, VerifySender, VerifySenderList, VerifyShareholderType, Verifytimestamp, VerifyTwoAccessCardDetails, VerifyUser, VerifyNickName, verifydefaultcard,View_profile,VerifyProfileHeader,VerifyContactInformationHeader,VerifyInitialNameforIndividual,VerifyInitialNameforBusinessUser,VerifyInitialNameInUpperCase,VerifyHomePhoneMasked,VerifyExtensionNotMasked,verifyProfileandSettingLandingPage,VerifyProfileNameLength,VerifyErrorMessage,VerifySecurityQuestionButton,VeirfySecuirtyQuestionPageheader,VerifyNotificationsButton,VeirfyNotificationsPageheader,VerifyQuickAccessSettings,VerifyQuickAccessSettingsHeader,VerifyTDForMeSettings,VerifyTDForMeSettingsHeader,VerifyWhatsNew,VerifyWhatsNewPageHeader,VerifyProfileAndSettingslink,VerifyEmailFormat,VerifyEmailIDLength,VerifyBlankEmailNotSuccesful,VerifyErrorMessageOrLength,VerifyEmailIDBlankorNot,VerifyEmailAddedSuccesful,VerifyPopUpWithCancelButton,VerifyClearTextIconDisplayed,VerifyPhoneNumberIsEmpty,
 		
-		VerifyPlaceHolderDisplayed,VerifyToastmessageDisplayed,VerifyPhoneEmailNotChanged,verifySymbolUS,verifySymbolSearchResults,verifyStockOptionContents,verifyOptionOptionContents,verifySelectOption,verifyStockMidNaturalPrice,verifyOptionMidNaturalPrice,verifyGoodTill,verifyGoodTillExpiryDate,verifySharehoderType,verifyStockOptionBackButton,verifyOptionOptionBackButton,verifyOptionOptionPreviewOrderButton,verifyQuickAccessBillPaidUpdate,ClickBackFromAppOrGooglePage,Verify_quick_link_go_back_home, Verify_quick_link_view_myaccounts, Verify_error_screen,
+		VerifyPlaceHolderDisplayed,VerifyToastmessageDisplayed,VerifyPhoneEmailNotChanged,verifyQuickAccessBillPaidUpdate,ClickBackFromAppOrGooglePage,Verify_quick_link_go_back_home, Verify_quick_link_view_myaccounts, Verify_error_screen,
 		
 
 		WatchLists_addSymbolToWatchLists, WatchLists_clickSearchBar, WatchLists_Header, Watchlists_verify_newOrderFlow_Watchlists, WatchLists_verifyRecentSearches, WatchLists_verifySymbol, WatchLists_verifySymbolAdded,
@@ -150,7 +152,24 @@ public class EventCase {
 		Accounts_SelectAccount, AccountsCredit_ClickPayBill, AccountsCredit_verifyLastTranaction, AccountsCredit_clickLastTranaction, Transaction_VerifyTransac, AccountsCredit_clickSummaryTab, AccountsCredit_VerifySummaryDetails, AccountsCredit_clickStatementTab, AccountsCredit_VeifyStatementDetails, StatementBalance_VerifyBalanceDetails, Bill_PayCanada_verifyCurrentBalance, Bill_PayCanada_PayBill, AccountsCredit_ClickTransfers
 
 		// trade,
-		, clickChangeorder_TSM_to_TSL, TradeTrailingStopMarket, TradeStopMarket, TradeStopMarketSell, TradeLimitDAYEXT, ClickWatchList, TradeStopLimit, OrderRecieptValidateBuy, Investing_ClickPlacedOrder, OrderDetails_Changeorder, TradeMarket, clickChangeorder_LimitToMarket, TradeLimit, TradeLimitAndTriggerDelta, TradeOrderType, TradeSymbol, TradeTrailingStopLimit, ConfirmOrderValidateBuy, verifyEmptyWatchList, ClickOrders, clickChangeorder_SM_to_SL, verifyShareHolder, confirmOrder_ClickBack, verifyBuyToCover, TradeStopLimitSell, ConfirmOrderDoNotCancel, ConfirmOrderImpInformation, ClickHoldingAndSymbol, changeOrderLimitDayToDayEXT
+		, clickChangeorder_TSM_to_TSL, TradeTrailingStopMarket, TradeStopMarket, TradeStopMarketSell, TradeLimitDAYEXT, ClickWatchList, TradeStopLimit, OrderRecieptValidateBuy, Investing_ClickPlacedOrder, OrderDetails_Changeorder, TradeMarket, clickChangeorder_LimitToMarket, TradeLimit, TradeLimitAndTriggerDelta, TradeOrderType, TradeSymbol, TradeTrailingStopLimit, ConfirmOrderValidateBuy, verifyEmptyWatchList, ClickOrders, clickChangeorder_SM_to_SL, verifyShareHolder, confirmOrder_ClickBack, verifyBuyToCover, TradeStopLimitSell, ConfirmOrderDoNotCancel, ConfirmOrderImpInformation, ClickHoldingAndSymbol, changeOrderLimitDayToDayEXT,
+		
+		//MIT Multi-Leg
+		OpenAppMIT,LoginMIT,
+		tapInvesting,verifyDefaultStrategies,navigateToSearchScreen,selectTradeAccount_OrderType,verifySymbolUS,
+		verifySymbolSearchResults,clickInvestingTrade,tapTradeSearchBar,clickFirstSymbol,
+		verifyStockOptionContents,verifyOptionOptionContents,verifySelectOption,verifyStockMidNaturalPrice,verifyOptionMidNaturalPrice,
+		verifyGoodTill,verifyGoodTillExpiryDate,verifySharehoderType,verifyStockOptionBackButton,verifyOptionOptionBackButton,
+		verifyOptionOptionPreviewOrderButton,searchAndSelectAccount,submitStockOptionOrder,selectDateSpecify_Android,
+		searchAndSelectAccountRapcode,verifyStockOptionFieldsReset,verifyOptionOptionFieldsReset,
+		verifyOptionOptionFieldResetOrderTypeChanged,verifyStockOptionFieldResetOrderTypeChanged,verifyStockOptionConfirmOrder,
+		verifyOptionOptionConfirmOrder,submitOptionOptionOrder,verifyStockOptionCancelOrderReceipt,verifyOptionOptionCancelOrderReceipt,
+		verifyTradeOrderFormContent,verifyEntryOrderFormContent,verifyWarningMsgExchangeAgrNotSigned,
+		verifyStockOptionConfirmOrderReceipt,verifyOptionOptionConfirmOrderReceipt,clickPostorderMyAccount,
+		clickPostorderTrade,clickQuickLinkHome,clickQuickLinkTrade,clickQuickLinkOrder,verifyOptionOptionChainTableSubmit,
+		verifyStockOptionChainTableSubmit,verifyStockOptionChainTableCancel,verifyOptionOptionChainTableCancel,
+		verifyInvalidTradingPassword,verifyStockOptionChangeOrder,verifyOptionOptionChangeOrder,verifyStockOptionOrderDetails,verifyOptionOptionOrderDetails,
+		Test,
 	}
 
 	public void FuncCOREEventCase(String sFunctionname)
@@ -1929,7 +1948,7 @@ public class EventCase {
 			Env_Settings.get().clearSavedCards();
 			break;
 
-			
+		//MIT Multi-Leg switch cases START
 		case OpenAppMIT:
 			MainScreenMIT.get().OpenApp();
 		break;
@@ -1952,7 +1971,6 @@ public class EventCase {
 		case selectTradeAccount_OrderType:
 			TradeMIT.get().selectTradeAccount_OrderType();
 		break;	
-		
 		case navigateToSearchScreen:
 			TradeMIT.get().tapTradeSearchBar();
 			SearchPageMIT.get().verifySearchScreen();
@@ -1961,7 +1979,6 @@ public class EventCase {
 		case verifySymbolUS:
 			SearchPageMIT.get().verifySymbolUS();
 		break;	
-		
 		case verifySymbolSearchResults:
 			SearchPageMIT.get().verifySymbolSearchResults();
 		break;
@@ -1970,7 +1987,6 @@ public class EventCase {
 			TradeMIT.get().tapTradeSearchBar();
 			TradeMultiLeg.get().verifyStockOptionContents();
 		break;	
-		
 		case verifyOptionOptionContents:
 			TradeMIT.get().tapTradeSearchBar();
 			TradeMultiLeg.get().verifyOptionOptionContents();
@@ -2021,17 +2037,129 @@ public class EventCase {
 		case verifyOptionOptionPreviewOrderButton:
 			TradeMultiLeg.get().verifyOptionOptionPreviewOrderButton();
 		break;
-		
-		case searchAndSelectAccount:
-			MLEnterOrderNegative.get().searchAndSelectAccount();
+		case searchAndSelectAccountRapcode:
+			MLEnterOrderNegative.get().searchAndSelectAccountRapcode();
 		break;
 		case submitStockOptionOrder:
 			TradeMultiLeg.get().submitStockOptionOrder();
 		break;
 		
-		case selectDateSpecify_Android:
-			MLEnterOrderNegative.get().selectDateSpecify_Android();
+		case submitOptionOptionOrder:
+			TradeMultiLeg.get().submitOptionOptionOrder();
 		break;
+		
+		case verifyStockOptionFieldsReset:
+			TradeMultiLeg.get().verifyStockOptionFieldsReset();
+		break;
+		
+		case verifyOptionOptionFieldsReset:
+			TradeMultiLeg.get().verifyOptionOptionFieldsReset();
+		break;
+		
+		case verifyOptionOptionFieldResetOrderTypeChanged:
+			TradeMultiLeg.get().verifyOptionOptionFieldResetOrderTypeChanged();
+		break;
+		
+		case verifyStockOptionFieldResetOrderTypeChanged:
+			TradeMultiLeg.get().verifyStockOptionFieldResetOrderTypeChanged();
+		break;
+		
+		case verifyStockOptionConfirmOrder:
+			MLConfirmOrder.get().verifyStockOptionConfirmOrder();
+		break;
+		
+		case verifyOptionOptionConfirmOrder:
+			MLConfirmOrder.get().verifyOptionOptionConfirmOrder();
+		break;
+		
+		case verifyStockOptionCancelOrderReceipt:
+			MLCancelOrderReceipt.get().verifyStockOptionCancelOrderReceipt();
+		break;
+		
+		case verifyOptionOptionCancelOrderReceipt:
+			MLCancelOrderReceipt.get().verifyOptionOptionCancelOrderReceipt();
+		break;	
+		
+		case verifyTradeOrderFormContent:
+			TradeMultiLeg.get().verifyTradeOrderFormContent();
+		break;
+		
+		case verifyEntryOrderFormContent:
+			TradeMultiLeg.get().verifyEntryOrderFormContent();
+		break;
+		
+		case verifyWarningMsgExchangeAgrNotSigned:
+			TradeMultiLeg.get().verifyWarningMsgExchangeAgrNotSigned();
+		break;
+		
+		case verifyStockOptionConfirmOrderReceipt:
+			MLConfirmOrderReceipt.get().verifyStockOptionConfirmOrderReceipt();
+		break;
+		
+		case verifyOptionOptionConfirmOrderReceipt:
+			MLConfirmOrderReceipt.get().verifyOptionOptionConfirmOrderReceipt();
+		break;
+		
+		case clickPostorderMyAccount:
+			MLConfirmOrderReceipt.get().clickPostorderMyAccount();
+		break;
+	
+		case clickPostorderTrade:
+			MLConfirmOrderReceipt.get().clickPostorderTrade();
+		break;
+		
+		case clickQuickLinkHome:
+			MLConfirmOrderReceipt.get().clickQuickLinkHome();
+		break;
+		
+		case clickQuickLinkTrade:
+			MLConfirmOrderReceipt.get().clickQuickLinkTrade();
+		break;
+		
+		case clickQuickLinkOrder:
+			MLConfirmOrderReceipt.get().clickQuickLinkOrder();
+		break;
+		
+		case verifyOptionOptionChainTableSubmit:
+			MLOptionChainTable.get().verifyOptionOptionChainTableSubmit();
+		break;
+		
+		case verifyStockOptionChainTableSubmit:
+			MLOptionChainTable.get().verifyStockOptionChainTableSubmit();
+		break;
+		
+		case verifyOptionOptionChainTableCancel:
+			MLOptionChainTable.get().verifyOptionOptionChainTableCancel();
+		break;
+		
+		case verifyStockOptionChainTableCancel:
+			MLOptionChainTable.get().verifyStockOptionChainTableCancel();
+		break;
+		
+		case verifyInvalidTradingPassword:
+			MLEnterOrderNegative.get().verifyInvalidTradingPassword();
+		break;
+		
+		case verifyStockOptionChangeOrder:
+			MLChangeOrder.get().verifyStockOptionChangeOrder();
+		break;
+		
+		case verifyOptionOptionChangeOrder:
+			MLChangeOrder.get().verifyOptionOptionChangeOrder();
+		break;
+		
+		case verifyStockOptionOrderDetails:
+			MLOrderDetails.get().verifyStockOptionOrderDetails();
+		break;
+		
+		case verifyOptionOptionOrderDetails:
+			MLOrderDetails.get().verifyOptionOptionOrderDetails();
+		break;
+		
+		case Test:
+			MLConfirmOrder.get().Test();
+		break;
+		//MIT Multi-Leg Switch Cases END
 		
 		case Env_DeleteDefaultCard:
 			Env_Settings.get().deleteDefaultCard();
@@ -2081,8 +2209,6 @@ public class EventCase {
 		case Trade_Trigger:
 			//Trade.get().tradeDetails_TriggerDelta();
 			break;
-
-
 
 		}
 	}

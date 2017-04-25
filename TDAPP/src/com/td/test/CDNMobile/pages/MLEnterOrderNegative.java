@@ -1,16 +1,14 @@
 package com.td.test.CDNMobile.pages;
 
-import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.td.MainScreenMIT;
 import com.td._CommonPage;
@@ -36,50 +34,115 @@ public class MLEnterOrderNegative extends _CommonPage{
 		{
 		PageFactory.initElements(new AppiumFieldDecorator(((AppiumDriver)CL.GetDriver()),new TimeOutDuration(15,TimeUnit.SECONDS)),this);	
 	}
-	
-	@iOSFindBy(xpath = "//*[@label='Important Information' or @label='Renseignements importants']")//@Author - Sushil 02-Mar-2017
-	@AndroidFindBy(xpath="//android.widget.Button[@NAF='true' and @index=2]")
-	private MobileElement monthNextButton;
 
-	public void searchAndSelectAccount()
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'is not eligible for') or contains(@label,'pas admissible à ce')]")//@Author - Sushil 03-Mar-2017
+	@AndroidFindBy(id="android:id/message")
+	private MobileElement messageNegative;
+
+	@iOSFindBy(xpath = "//*[contains(@label,'Order') or contains(@label,'Type')]")
+	@AndroidFindBy(xpath = "//*[contains(@text,'Order') or contains(@text,'Actions et FNB')]")
+	private MobileElement orderTypeSelected;
+	
+
+	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]")//@Author - Sushil 06-Feb-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @index='0']")
+	private MobileElement defaultTradeAccount;
+
+	@iOSFindBy(xpath = "(//XCUIElementTypeOther[contains(@label,'CALLS Ask') or contains(@label,'ACHAT Vendeur')])[1]") //@Author - Sushil 17-Feb-2017
+	@AndroidFindBy(xpath="//*[@resource-id='com.td:id/textview_info' and @index=1]")
+	private MobileElement firstAskCALLS;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeImage[contains(@name,'error')]/../*[1]") //@Author - Sushil 29-Mar-2017
+	@AndroidFindBy(id="com.td:id/error_text")
+	private MobileElement ErrTradingPwd;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'Aperçu de')]")//@Author - Sushil 03-Mar-2017
+	@AndroidFindBy(id="com.td:id/orderEntryPreviewButton")
+	private MobileElement previewOrderButton;
+
+	public void searchAndSelectAccountRapcode()
 	{
-		String sRapcode = "P";
+		Decorator();
+		String[] aRapcode = getTestdata("Rapcode", XLSheetUserIDs).split(";");
 		String xpathAccount = "";
 		boolean flag = false;
 		String sAccount="";
 		int sCount = 0;
 		int sSwipeCount = 0;
 		int sSwipes = 60;
-		try
-		{
-			
-		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-		xpathAccount = "//*[@resource-id='com.td:id/txtAccountNumber']";
-		else
-		xpathAccount = "//XCUIElementTypeStaticText[@label='ACCOUNT']/../following-sibling::XCUIElementTypeCell/XCUIElementTypeStaticText";
+		String temp = "";
+		String sExpectedAccount = "";
 		
-		while(!flag && sSwipeCount < sSwipes )
+		for(int iCnt=0;iCnt < aRapcode.length;iCnt++)
 		{
-			for(int i=0;i< CL.GetDriver().findElements(By.xpath(xpathAccount)).size();i++)
+
+		try
 			{
-				sAccount = CL.GetDriver().findElements(By.xpath(xpathAccount)).get(i).getText();
-				if(getMatchedAccount(sAccount,sRapcode).length() > 0)
+			
+			String sRapcode = aRapcode[iCnt];
+			
+			mobileAction.waitForElement(defaultTradeAccount);
+			mobileAction.selectItemFromList(orderTypeSelected,getTestdata("OrderType","UserIDs"));
+			mobileAction.FuncClick(defaultTradeAccount, "defaultTradeAccount");
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			{
+			xpathAccount = "//*[@resource-id='com.td:id/txtAccountNumber']";
+			while(!flag && sSwipeCount < sSwipes )
+			{
+		for(int i=0;i< CL.GetDriver().findElements(By.xpath(xpathAccount)).size();i++)
+		{
+			sAccount = CL.GetDriver().findElements(By.xpath(xpathAccount)).get(i).getText();
+			
+			if(getMatchedAccount(sAccount,sRapcode).length() > 0)
+			{
+				flag = true;
+				CL.GetDriver().findElements(By.xpath(xpathAccount)).get(i).click();
+				sExpectedAccount = sAccount;
+				break;
+			}
+			sCount = i;
+
+		}
+				if(sCount+1 >= CL.GetDriver().findElements(By.xpath(xpathAccount)).size())
 				{
+					mobileAction.FuncSwipeOnce("up");
+					sSwipeCount++;
+				}
+			}
+			}
+		else
+		{
+		for(int iAcc=1;iAcc < 100;iAcc++)
+		{
+			try
+			{
+		
+						
+		xpathAccount = "//*[@label='ACCOUNT' or @label='COMPTE']/../../XCUIElementTypeCell[" + iAcc + "]/*[1]";
+		temp = getMatchedAccount(CL.GetDriver().findElement(By.xpath(xpathAccount)).getAttribute("label"),sRapcode);
+				if(temp.length() > 0)
+				{
+					String sFullAccount = CL.GetDriver().findElement(By.xpath(xpathAccount)).getAttribute("label");
+					String sAccNumber = sFullAccount.substring(sFullAccount.length()-7, sFullAccount.length());
+					String xpathAccNumber = "//*[contains(@label,'" + sAccNumber + "')]";
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccNumber, true, 100, "up");
 					flag = true;
-					CL.GetDriver().findElements(By.xpath(xpathAccount)).get(i).click();
+					sExpectedAccount = sAccNumber;
 					break;
 				}
-				sCount = i;
-
 			}
-			if(sCount+1 >= CL.GetDriver().findElements(By.xpath(xpathAccount)).size())
+						catch(Exception e)
 			{
-				mobileAction.FuncSwipeOnce("up");
-				sSwipeCount++;
+				e.printStackTrace();
 			}
 		}
-		if(flag)
-			CL.GetReporting().FuncReport("Pass", sAccount + " with rapcode <b>" + sRapcode + "</b> selected." );
+		}
+		
+		if(flag){
+			CL.GetReporting().FuncReport("Pass", sExpectedAccount + " with rapcode <b>" + sRapcode + "</b> selected." );
+			mobileAction.verifyElement(messageNegative, getTestdata("WarningMessage",XLSheetUserIDs));
+		}
 		else
 			CL.GetReporting().FuncReport("Fail", "No account with rapcode <b>" + sRapcode + "</b> found." );
 		}
@@ -87,7 +150,7 @@ public class MLEnterOrderNegative extends _CommonPage{
 		{
 			try
 			{
-				CL.GetReporting().FuncReport("Fail", "Exception.No account with rapcode <b>" + sRapcode + "</b> found." );
+				CL.GetReporting().FuncReport("Fail", "Exception.No account with rapcode <b>" + aRapcode[iCnt] + "</b> found." );
 				e.printStackTrace();
 			}
 			catch(Exception e1)
@@ -95,6 +158,7 @@ public class MLEnterOrderNegative extends _CommonPage{
 				
 			}
 
+		   }
 		}
 	}
 	public String getMatchedAccount(String sAccountNum,String sRapCode)
@@ -124,102 +188,32 @@ public class MLEnterOrderNegative extends _CommonPage{
 		}
 		return sReturnPrice;
 	}
-	
-	public void selectDateSpecify_Android()
+
+	public void verifyInvalidTradingPassword()
 	{
 		Decorator();
 		try
 		{
-			Calendar now = Calendar.getInstance();
-
-			//System.out.println(now.getTime());
-			String format2 = new SimpleDateFormat("EE;d;MMM;yyyy", Locale.ENGLISH).format(now.getTime());
-			String sCurrentDay = format2.split(";")[0];
-			String sCurrentDate = format2.split(";")[1];
-			String sCurrentMonth = format2.split(";")[2];
-			System.out.println(sCurrentDay);
-			//System.out.println(now.getActualMaximum(Calendar.MONTH));
+			TradeMultiLeg.get().fillStockOptionOrder(firstAskCALLS, "firstAskCALLS");
 			
-			String sExpiryDate = "17";
-			int iSelectDate = 1;
-			String xpathDate = "";
-
-			if((now.getActualMaximum(Calendar.DAY_OF_MONTH) == Integer.parseInt(sCurrentDate)))
-			{
-					mobileAction.FuncClick(monthNextButton, "monthNextButton");
-					iSelectDate = 3;
-					xpathDate = "//android.view.View[@content-desc='"+ iSelectDate + "']";
-					mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(xpathDate)),Integer.toString(iSelectDate));
-			}
-			else if((Integer.parseInt(sCurrentDate) < Integer.parseInt(sExpiryDate)) && !sCurrentDay.equalsIgnoreCase("FRI"))
-			{
-				iSelectDate = Integer.parseInt(sCurrentDate) + 1;
-				xpathDate = "//android.view.View[@content-desc='"+ iSelectDate + "']";
-				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(xpathDate)),Integer.toString(iSelectDate));
-			}
-			else if((Integer.parseInt(sCurrentDate) < Integer.parseInt(sExpiryDate)) && sCurrentDay.equalsIgnoreCase("FRI"))
-			{
-				iSelectDate = Integer.parseInt(sCurrentDate) + 3;
-				xpathDate = "//android.view.View[@content-desc='"+ iSelectDate + "']";
-				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(xpathDate)),Integer.toString(iSelectDate));
-			}
-			else if(sCurrentDate.equalsIgnoreCase(sExpiryDate))
-			{
-				xpathDate = "//android.view.View[@content-desc='"+ sCurrentDate + "']";
-				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(xpathDate)),sCurrentDate);
-			}
+			mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
+			
+			mobileAction.verifyElement(ErrTradingPwd, getTestdata("WarningMessage",XLSheetUserIDs));
+			
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 	}
-
-/*public static void main(String args[])
-	{
+/*public static void main(String args[]){
 	//MainScreenMIT.get().OpenApp();
-	//Test();
+	Test();*/
 	
-	Calendar now = Calendar.getInstance();
-
-	//System.out.println(now.getTime());
-	String format2 = new SimpleDateFormat("EE;d;MMM;yyyy", Locale.ENGLISH).format(now.getTime());
-	String sCurrentDay = format2.split(";")[0];
-	String sCurrentDate = format2.split(";")[1];
-	String sCurrentMonth = format2.split(";")[2];
-	System.out.println(sCurrentDay);
-	//System.out.println(now.getActualMaximum(Calendar.MONTH));
-	
-	String sExpiryDate = "17";
-	int iSelectDate = 1;
-	String xpathDate = "";
-
-	if((now.getActualMaximum(Calendar.DAY_OF_MONTH) == Integer.parseInt(sCurrentDate)))
-	{
-			mobileAction.FuncClick(monthNextButton, "monthNextButton");
-			iSelectDate = 3;
-			xpathDate = "//android.view.View[@content-desc='"+ iSelectDate + "']";
-			CL.GetDriver().findElement(By.xpath(xpathDate));
-	}
-	else if((Integer.parseInt(sCurrentDate) < Integer.parseInt(sExpiryDate)) && !sCurrentDay.equalsIgnoreCase("FRI"))
-	{
-		iSelectDate = Integer.parseInt(sCurrentDate) + 1;
-		xpathDate = "//android.view.View[@content-desc='"+ iSelectDate + "']";
-		CL.GetDriver().findElement(By.xpath(xpathDate));
-	}
-	else if((Integer.parseInt(sCurrentDate) < Integer.parseInt(sExpiryDate)) && sCurrentDay.equalsIgnoreCase("FRI"))
-	{
-		iSelectDate = Integer.parseInt(sCurrentDate) + 3;
-		xpathDate = "//android.view.View[@content-desc='"+ iSelectDate + "']";
-		CL.GetDriver().findElement(By.xpath(xpathDate));
-	}
-	else if(sCurrentDate.equalsIgnoreCase(sExpiryDate))
-	{
-		xpathDate = "//android.view.View[@content-desc='"+ sCurrentDate + "']";
-		CL.GetDriver().findElement(By.xpath(xpathDate));
-	}
-
-	}*/
-
-
+//}
 }
+
+
+
+
+

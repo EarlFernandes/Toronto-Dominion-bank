@@ -40,7 +40,7 @@ public class LoginMIT extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id= 'android:id/button2' and @index='0']")
 	private MobileElement install;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+	@iOSFindBy(xpath = "//*[@label='In progress']")
 	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
@@ -158,6 +158,10 @@ public class LoginMIT extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id= 'com.td:id/remember_switch' and @text='YES']")
 	private MobileElement rememberMe_button_on;
 	
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") //@Author - Sushil 02-Feb-2017
+	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation']")
+	private MobileElement Investing_Trade;
+	
 	String verifyLogin_ios = "//*[contains(@label,'Your Login Info Please')]";
 	String verifyLogin_android = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
 	String login_password = getTestdata("Password", "UserIDs");
@@ -170,8 +174,7 @@ public class LoginMIT extends _CommonPage {
 
 	String securityPassword = getTestdata("SecurityPassword", "UserIDs");
 
-
-	String passwords = getTestdata("Password", "UserIDs");
+	String passwords = getTestdata("Password", "Payment");
 	String platFormName = CL.getTestDataInstance().getMobilePlatForm();
 	String progressBarFrench = "//android.widget.ProgressBar[@resource-id='android:id/progress']";
 	
@@ -232,11 +235,15 @@ public class LoginMIT extends _CommonPage {
 				}
 			}
 			//mobileAction.waitForElement(enterAnswer);
+			if(!mobileAction.isObjExists(Investing_Trade))
+			{
 			if(mobileAction.isObjExists(enterAnswer))
 			{
-				mobileAction.FuncSendKeys(enterAnswer,getTestdata("SecurityPassword",XLSheetUserIDs));
-				mobileAction.FuncClick(enterAnswer, "enterAnswer");
+/*				mobileAction.FuncSendKeys(enterAnswer,getTestdata("SecurityPassword",XLSheetUserIDs));
+				mobileAction.FuncClick(enterAnswer, "enterAnswer");*/
+				TradeMultiLeg.get().FuncEnterText(enterAnswer, getTestdata("SecurityPassword",XLSheetUserIDs));
 				mobileAction.FuncClick(securityLogin, "Login");
+			}
 			}
 		}
 		catch(Exception e)

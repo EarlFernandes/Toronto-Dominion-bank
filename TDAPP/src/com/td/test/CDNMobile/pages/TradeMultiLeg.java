@@ -8,6 +8,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
@@ -63,7 +65,6 @@ public class TradeMultiLeg extends _CommonPage{
 	private MobileElement leg2Quantity;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell/*") //@Author - Sushil 17-Feb-2017
-	///@AndroidFindBy(xpath = "(//*[contains(@resource-id,'com.td:id/ticker')])[4]")
 	@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/ticker_layout']/android.widget.TextView")
 	private MobileElement leg2Option;
 	
@@ -131,8 +132,8 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(id="android:id/action_bar_title")
 	private MobileElement titleTrade;
 	
-	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']") //@Author - Sushil 08-Feb-2017
-	@AndroidFindBy(id="android:id/action_bar_title")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Confirm Order' or contains(@label,'Confirmer l')]") //@Author - Sushil 08-Feb-2017
+	@AndroidFindBy(xpath = "//*[(@text='Confirm Order' or contains(@text,'Confirmer l')) and @resource-id='android:id/action_bar_title']")
 	private MobileElement titleConfirmOrder;
 	
 	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']") //@Author - Sushil 07-Mar-2017
@@ -186,7 +187,7 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/btnDone")
 	private MobileElement btnDone;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de négociation']/XCUIElementTypeSecureTextField[1]")//@Author - Sushil 03-Mar-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de négociation']/../XCUIElementTypeSecureTextField[1]")//@Author - Sushil 03-Mar-2017
 	@AndroidFindBy(id="com.td:id/editTextPassword")
 	private MobileElement editTextPassword;
 	
@@ -218,8 +219,8 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/txt_price")
 	private MobileElement Quote_price;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'Limit Price') or contains(@label,'Cours limité')]/../*[2]") //@Author - Sushil 08-Feb-2017
-	@AndroidFindBy(xpath = "//*[contains(@text,'Limit Price') or contains(@text,'Cours limité')]/../*[@resource-id='com.td:id/amountEditText']")
+	@iOSFindBy(xpath = "//*[contains(@label,'Limit Price') or contains(@label,'Cours limit')]/../*[2]") //@Author - Sushil 08-Feb-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'Limit Price') or contains(@text,'Cours limit')]/../*[@resource-id='com.td:id/amountEditText']")
 	private MobileElement LimitPrice;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'Date')]/../*[2]") //@Author - Sushil 13-Mar-2017
@@ -230,9 +231,112 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(xpath="//android.widget.Button[@NAF='true' and @index=2]")
 	private MobileElement monthNextButton;
 	
+	@iOSFindBy(xpath = "//*[contains(@label,'Expires in') or contains(@label,'Expire dans')]")//@Author - Sushil 17-Mar-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Expires in') or contains(@text,'Expire dans')]")
+	private MobileElement selectedExpiryListItem;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Expires in 183 days') or contains(@label,'Expire dans 183 jours')]")//@Author - Sushil 17-Mar-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Expires in 183 days') or contains(@text,'Expire dans 183 jours')]")
+	private MobileElement expiryItem183Days;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Expires in 36 days') or contains(@label,'Expire dans 36 jours')]")//@Author - Sushil 17-Mar-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Expires in 36 days') or contains(@text,'Expire dans 36 jours')]")
+	private MobileElement expiryItem36Days;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'name or symbol') or contains(@label,'nom ou symbole')]") //@Author - Sushil 07-Feb-2017
+	@AndroidFindBy(id="com.td:id/txtSearchTitle")
+	private MobileElement search_txtSearchTitle;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Type')]/../*[2]")//@Author - Sushil 20-Mar-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Type')]/../*[@resource-id='com.td:id/selectedText']")
+	private MobileElement selectedOrderType;	
+	
+	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]/../*[3]")//@Author - Sushil 28-Mar-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[[@resource-id='com.td:id/selectedValue' and @index=1]")
+	private MobileElement selectedAccountValue;
+	
+	@iOSFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]")//@Author - Sushil 28-Feb-2017
+	@AndroidFindBy(id="com.td:id/txtSearchTitle")
+	private MobileElement searchBar;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='Négociation']") //@Author - Sushil 29-Mar-2017
+	@AndroidFindBy(xpath = "//*[(@text='Trade' or @text='Négociation') and @resource-id='android:id/action_bar_title']")
+	private MobileElement hdrTrade;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]") //@Author - Sushil 21-Mar-2017
+	@AndroidFindBy(id="com.td:id/timestamp")
+	private MobileElement timestamp;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Account') or contains(@label,'Compte')]/../*[2]") //@Author - Sushil 21-Mar-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[1]")
+	private MobileElement account_type;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Account') or contains(@label,'Compte')]/../*[3]") //@Author - Sushil 21-Mar-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[2]")
+	private MobileElement account_number;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Account') or contains(@label,'Compte')]/../*[4]") //@Author - Sushil 21-Mar-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[3]")
+	private MobileElement lblCash;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Account') or contains(@label,'Compte')]/../*[5]") //@Author - Sushil 21-Mar-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[4]")
+	private MobileElement cashAmount;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Account') or contains(@label,'Compte')]/../*[6]") //@Author - Sushil 21-Mar-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[5]")
+	private MobileElement lblbuyingPower;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Account') or contains(@label,'Compte')]/../*[7]") //@Author - Sushil 21-Mar-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[6]")
+	private MobileElement buyingPowerAmount;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Stocks') or contains(@label,'Actions et FNB')] ")
+	@AndroidFindBy(xpath = "//*[contains(@text,'Stocks') or contains(@text,'Actions et FNB')]")
+	private MobileElement stocks_ETFs;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'1st Leg') or contains(@label,'1re Volet')]") //@Author - Sushil 21-Mar-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'1st Leg') or contains(@text,'1re Volet')]")
+	private MobileElement lbl1stLeg;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]") //@Author - Sushil 21-Mar-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]")
+	private MobileElement lbl2ndLeg;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Mid Price') or contains(@label,'Prix Milieu')]/../XCUIElementTypeStaticText[2]") //@Author - Sushil 08-Feb-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'Mid Price') or contains(@text,'Prix Milieu')]")
+	private MobileElement lblmidPrice;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Natural Price') or contains(@label,'Prix naturel')]/../XCUIElementTypeStaticText[4]") //@Author - Sushil 08-Feb-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'Natural Price') or contains(@text,'Prix naturel')]")
+	private MobileElement lblnaturalPrice;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Price' or @label='Cours']")
+	@AndroidFindBy(xpath="//android.widget.TextView[@text='Price' or @text='Cours']")
+	private MobileElement lblprice;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Limit Price') or contains(@label,'Cours limit')]") //@Author - Sushil 08-Feb-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'Limit Price') or contains(@text,'Cours limit')]")
+	private MobileElement lblLimitPrice;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Échéance')]") //@Author - Sushil 08-Feb-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Échéance')]")
+	private MobileElement lblgoodTill;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Shareholder Type') or contains(@label,'actionnaire')]") //@Author - Sushil 03-Mar-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Shareholder Type') or contains(@text,'actionnaire')]")
+	private MobileElement lblshareholderType;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeImage[contains(@name,'error')]/../*[1]") //@Author - Sushil 29-Mar-2017
+	@AndroidFindBy(id="com.td:id/error_text")
+	private MobileElement error_text;
+	
 	String xpathSymbolFlag = "//android.widget.ImageView[@resource-id='com.td:id/market_symbol' and @content-desc='U S']";
 	String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'US')]";
 	String sSymbolVal = "";
+	
+	String xpathExpiryItem = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue']";
+	String xpathExpiryItem_iOS = "//*[contains(@label,'Expires in') or contains(@label,'Expire dans')]";
 	
 
 	public void verifyStockOptionContents()
@@ -245,12 +349,12 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.FunCnewSwipe(stockSymbol,false,5);
 			mobileAction.verifyElement(stockSymbol, getTestdata("Symbol", XLSheetUserIDs));
 			mobileAction.verifyElement(leg1Action, getTestdata("TextDefaultListItem", XLSheetUserIDs));
-			mobileAction.verifyElement(leg1Quantity, defaultQtyVal);
+			mobileAction.FuncVerifyBlankValue(leg1Quantity, "leg1Quantity");
 
 			mobileAction.FunCnewSwipe(leg2Option,false,5);	
 			mobileAction.verifyElement(leg2Option, getTestdata("OptionDefault", XLSheetUserIDs));
 			mobileAction.verifyElement(leg2Action, getTestdata("TextDefaultListItem", XLSheetUserIDs));
-			mobileAction.verifyElement(leg2Quantity, defaultQtyVal);
+			mobileAction.FuncVerifyBlankValue(leg2Quantity, "leg2Quantity");
 			
 			
 			
@@ -624,7 +728,8 @@ public class TradeMultiLeg extends _CommonPage{
 		{
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 			{
-				mobileAction.FuncHideKeyboard();
+//				mobileAction.FuncHideKeyboard();
+				((AppiumDriver) CL.GetDriver()).hideKeyboard();
 			if(mobileAction.isObjExists(cancelButton,2))
 				mobileAction.FuncClick(cancelButton, "cancelButton");
 			}
@@ -641,10 +746,16 @@ public class TradeMultiLeg extends _CommonPage{
 		try
 		{
 			mobileAction.FuncSendKeys(objEle,sQty);
+/*			mobileAction.FuncClick(objEle, "Quantity");
+			((RemoteWebDriver) CL.GetDriver()).getKeyboard().sendKeys(sQty);
+			//((RemoteWebDriver) CL.GetDriver()).getKeyboard().pressKey(sQty);
+			Thread.sleep(2000);*/
 			handleKeyboard();
-			if(objEle.getText()==null || objEle.getText()=="")
+
+			if(objEle.getText()==null || objEle.getText().length()<1)
 			{
 				mobileAction.FuncSendKeys(objEle,sQty);	
+				handleKeyboard();
 			}
 		}
 		catch(Exception e)
@@ -665,9 +776,11 @@ public class TradeMultiLeg extends _CommonPage{
 		{
 			mobileAction.FuncSendKeys(objEle,sText);
 			handleKeyboard();
-			if(objEle.getText()==null || objEle.getText()=="")
+			//if(objEle.getText()==null || objEle.getText().length()<1)
+			if(objEle.getText().length()<1)
 			{
 				mobileAction.FuncSendKeys(objEle,sText);	
+				handleKeyboard();
 			}
 		}
 		catch(Exception e)
@@ -806,12 +919,78 @@ public class TradeMultiLeg extends _CommonPage{
 			enterQuantity(leg1Quantity,getTestdata("Leg1Qunatity",XLSheetUserIDs));
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option,false,7,"up");
 			mobileAction.FuncSwipeOnce("up");
+			
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			{
 			mobileAction.FuncClick(leg2Option, "Select Option Leg2");
 			if(mobileAction.isObjExists(leg2Option,2))
 				mobileAction.FuncClick(leg2Option, "Select Option Leg2");
+			}
+			else
+				mobileAction.FuncClick(leg2Option, "Select Option Leg2");
+			
+			if(getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Cancel") || getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Annuler"))
+			{
+				mobileAction.FuncClick(selectedExpiryListItem, "selectedExpiryListItem");
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				{
+					try{
+					CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(4).click();
+					CL.GetReporting().FuncReport("Pass", "Expiry list last item selected.");
+					}
+					catch(Exception e)
+					{
+						CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
+					}
+				}
+				else
+				{
+					try{
+					CL.GetDriver().findElements(By.xpath(xpathExpiryItem_iOS)).get(4).click();
+					CL.GetReporting().FuncReport("Pass", "Expiry list last item selected.");
+					}
+					catch(Exception e)
+					{
+						CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
+					}
+				}
+				//mobileAction.FuncClick(expiryItem183Days, "expiryItem183Days");
+			}
+			else
+			{
+				mobileAction.FuncClick(selectedExpiryListItem, "selectedExpiryListItem");
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				{
+					try{
+					CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(1).click();
+					CL.GetReporting().FuncReport("Pass", "Expiry list 2nd item selected.");
+					}
+					catch(Exception e)
+					{
+						CL.GetReporting().FuncReport("Fail", "Expiry list 2nd item not selected.");
+					}
+				}
+				else
+				{
+					try{
+					CL.GetDriver().findElements(By.xpath(xpathExpiryItem_iOS)).get(1).click();
+					CL.GetReporting().FuncReport("Pass", "Expiry list 2nd item selected.");
+					}
+					catch(Exception e)
+					{
+						CL.GetReporting().FuncReport("Fail", "Expiry list 2nd item not selected.");
+					}
+				}
+				//mobileAction.FuncClick(expiryItem36Days, "expiryItem36Days");
+			}
+			
 			mobileAction.FunCnewSwipe(objSelectOption,false,5);
 			mobileAction.FuncClick(objSelectOption, sOptionDesc);
 			mobileAction.FuncClick(Continue, "Continue");
+			
+			if(!getTestdata("Leg2Action2",XLSheetUserIDs).equalsIgnoreCase(""))
+				mobileAction.selectItemFromList(leg2Action, getTestdata("Leg2Action2",XLSheetUserIDs));
+					
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Quantity,false,5,"up");
 			mobileAction.FuncSwipeOnce("up");
 			enterQuantity(leg2Quantity,getTestdata("Leg2Qunatity",XLSheetUserIDs));
@@ -821,12 +1000,16 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.selectItemFromList(price,tempPrice);
 			if(tempPrice.equalsIgnoreCase("Net Debit") || tempPrice.equalsIgnoreCase("Net Credit") || tempPrice.equalsIgnoreCase("Débit net") || tempPrice.equalsIgnoreCase("Crédit net"))
 			{
-				FuncEnterText(LimitPrice, "10");
+				FuncEnterText(LimitPrice, getTestdata("SelectLimitPrice",XLSheetUserIDs));
 			}
 			
-			if(mobileAction.isObjExists(shareholderType, 2) && getTestdata("ShareHolder",XLSheetUserIDs)!="")
+			String sShareHolder = getTestdata("ShareHolder",XLSheetUserIDs).trim();
+			if(mobileAction.isObjExists(shareholderType, 2) && sShareHolder!="")
 			{
-				mobileAction.selectItemFromList(shareholderType, getTestdata("ShareHolder",XLSheetUserIDs));
+				if(!sShareHolder.contains("autre"))
+					mobileAction.selectItemFromList(shareholderType, sShareHolder);
+				else
+					selectShareholderNeitherFR();
 				mobileAction.FuncSwipeOnce("up");
 			}
 			
@@ -859,38 +1042,168 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Option, false, 5, "up");
 			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncClick(leg1Option, "Select Option Leg1");
+			
+			if(getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Cancel") || getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Annuler"))
+			{
+				mobileAction.FuncClick(selectedExpiryListItem, "selectedExpiryListItem");
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				{
+					try{
+					CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(4).click();
+					CL.GetReporting().FuncReport("Pass", "Expiry list last item selected.");
+					}
+					catch(Exception e)
+					{
+						CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
+					}
+				}
+				else
+				{
+					try{
+					CL.GetDriver().findElements(By.xpath(xpathExpiryItem_iOS)).get(4).click();
+					CL.GetReporting().FuncReport("Pass", "Expiry list last item selected.");
+					}
+					catch(Exception e)
+					{
+						CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
+					}
+				}
+				//mobileAction.FuncClick(expiryItem183Days, "expiryItem183Days");
+			}
+			else
+			{
+				mobileAction.FuncClick(selectedExpiryListItem, "selectedExpiryListItem");
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				{
+					try{
+					CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(1).click();
+					CL.GetReporting().FuncReport("Pass", "Expiry list 2nd item selected.");
+					}
+					catch(Exception e)
+					{
+						CL.GetReporting().FuncReport("Fail", "Expiry list 2nd item not selected.");
+					}
+				}
+				else
+				{
+					try{
+					CL.GetDriver().findElements(By.xpath(xpathExpiryItem_iOS)).get(1).click();
+					CL.GetReporting().FuncReport("Pass", "Expiry list 2nd item selected.");
+					}
+					catch(Exception e)
+					{
+						CL.GetReporting().FuncReport("Fail", "Expiry list 2nd item not selected.");
+					}
+				}
+				//mobileAction.FuncClick(expiryItem36Days, "expiryItem36Days");
+			}
+			
 			mobileAction.FuncSwipeWhileElementNotFound(objLeg1SelectOption, false, 5, "up");
 			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncClick(objLeg1SelectOption, sLeg1OptionDesc);
 			mobileAction.FuncClick(Continue, "Continue");
+			
+			if(!getTestdata("Leg1Action2",XLSheetUserIDs).equalsIgnoreCase(""))
+				mobileAction.selectItemFromList(leg1Action, getTestdata("Leg1Action2",XLSheetUserIDs));
+			
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Quantity, false, 5, "up");
 			//mobileAction.FuncSwipeOnce("up");
-			enterQuantity(leg1Quantity,"1");
+			enterQuantity(leg1Quantity,getTestdata("Leg1Qunatity",XLSheetUserIDs));
 			
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, false, 5, "up");
 			mobileAction.FuncSwipeOnce("up");
+			
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			{
 			mobileAction.FuncClick(leg2Option, "Select Option Leg2");
-			if(mobileAction.isObjExists(leg2Option))
+			if(mobileAction.isObjExists(leg2Option,2))
 				mobileAction.FuncClick(leg2Option, "Select Option Leg2");
+			}
+			else
+				mobileAction.FuncClick(leg2Option, "Select Option Leg2");
+			
+			if(getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Cancel") || getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Annuler"))
+			{
+				mobileAction.FuncClick(selectedExpiryListItem, "selectedExpiryListItem");
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				{
+					try{
+					CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(4).click();
+					CL.GetReporting().FuncReport("Pass", "Expiry list last item selected.");
+					}
+					catch(Exception e)
+					{
+						CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
+					}
+				}
+				else
+				{
+					try{
+					CL.GetDriver().findElements(By.xpath(xpathExpiryItem_iOS)).get(4).click();
+					CL.GetReporting().FuncReport("Pass", "Expiry list last item selected.");
+					}
+					catch(Exception e)
+					{
+						CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
+					}
+				}
+				//mobileAction.FuncClick(expiryItem183Days, "expiryItem183Days");
+			}
+			else
+			{
+				mobileAction.FuncClick(selectedExpiryListItem, "selectedExpiryListItem");
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				{
+					try{
+					CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(1).click();
+					CL.GetReporting().FuncReport("Pass", "Expiry list 2nd item selected.");
+					}
+					catch(Exception e)
+					{
+						CL.GetReporting().FuncReport("Fail", "Expiry list 2nd item not selected.");
+					}
+				}
+				else
+				{
+					try{
+					CL.GetDriver().findElements(By.xpath(xpathExpiryItem_iOS)).get(1).click();
+					CL.GetReporting().FuncReport("Pass", "Expiry list 2nd item selected.");
+					}
+					catch(Exception e)
+					{
+						CL.GetReporting().FuncReport("Fail", "Expiry list 2nd item not selected.");
+					}
+				}
+				//mobileAction.FuncClick(expiryItem36Days, "expiryItem36Days");
+			}
+			
 			mobileAction.FuncSwipeWhileElementNotFound(objLeg2SelectOption, false, 5, "up");
 			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncClick(objLeg2SelectOption, sLeg2OptionDesc);
 			mobileAction.FuncClick(Continue, "Continue");
+			
+			if(!getTestdata("Leg2Action2",XLSheetUserIDs).equalsIgnoreCase(""))
+				mobileAction.selectItemFromList(leg2Action, getTestdata("Leg2Action2",XLSheetUserIDs));
+			
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Quantity, false, 5, "up");	
 			//mobileAction.FuncSwipeOnce("up");
-			enterQuantity(leg2Quantity,"1");
+			enterQuantity(leg2Quantity,getTestdata("Leg2Qunatity",XLSheetUserIDs));
 			mobileAction.FuncSwipeWhileElementNotFound(commissionLink,false,5,"up");
 			
 			String tempPrice = getTestdata("Price",XLSheetUserIDs);
 			mobileAction.selectItemFromList(price,tempPrice);
 			if(tempPrice.equalsIgnoreCase("Net Debit") || tempPrice.equalsIgnoreCase("Net Credit") || tempPrice.equalsIgnoreCase("Débit net") || tempPrice.equalsIgnoreCase("Crédit net"))
 			{
-				FuncEnterText(LimitPrice, "10");
+				FuncEnterText(LimitPrice, getTestdata("SelectLimitPrice",XLSheetUserIDs));
 			}
 			
-			if(mobileAction.isObjExists(shareholderType, 2) && getTestdata("ShareHolder",XLSheetUserIDs)!="")
+			String sShareHolder = getTestdata("ShareHolder",XLSheetUserIDs).trim();
+			if(mobileAction.isObjExists(shareholderType, 2) && sShareHolder!="")
 			{
-				mobileAction.selectItemFromList(shareholderType, getTestdata("ShareHolder",XLSheetUserIDs));
+				if(!sShareHolder.contains("autre"))
+					mobileAction.selectItemFromList(shareholderType, sShareHolder);
+				else
+					selectShareholderNeitherFR();
 				mobileAction.FuncSwipeOnce("up");
 			}
 			
@@ -917,9 +1230,19 @@ public class TradeMultiLeg extends _CommonPage{
 	public void verifyStockOptionBackButton()
 	{
 		Decorator();
+		String sMidPrice ="";
+		String sNaturalPrice ="";
 		try
 		{
 			fillStockOptionOrder(firstBidCALLS, "firstBidCALLS");
+			
+			sMidPrice = getPrice(mobileAction.FuncGetText(midPrice));
+			sNaturalPrice = getPrice(mobileAction.FuncGetText(naturalPrice));
+			mobileAction.FuncClick(refreshButton, "refreshButton");
+			Thread.sleep(7000);
+			verifyPriceVarience(mobileAction.FuncGetText(midPrice),sMidPrice,"midPrice");
+			verifyPriceVarience(mobileAction.FuncGetText(naturalPrice),sNaturalPrice,"naturalPrice");
+		
 			mobileAction.FuncIsElementEnabled(previewOrderButton, "previewOrderButton");
 			mobileAction.FuncClick(backButton, "backButton");
 			mobileAction.verifyElement(messageBackButton,getTestdata("WarningMessage",XLSheetUserIDs));
@@ -938,9 +1261,19 @@ public class TradeMultiLeg extends _CommonPage{
 	public void verifyOptionOptionBackButton()
 	{
 		Decorator();
+		String sMidPrice ="";
+		String sNaturalPrice ="";
 		try
 		{
 			fillOptionOptionOrder(firstBidCALLS, "firstBidCALLS", firstBidPUTS, "firstBidPUTS");
+			
+			sMidPrice = getPrice(mobileAction.FuncGetText(midPrice));
+			sNaturalPrice = getPrice(mobileAction.FuncGetText(naturalPrice));
+			mobileAction.FuncClick(refreshButton, "refreshButton");
+			Thread.sleep(7000);
+			verifyPriceVarience(mobileAction.FuncGetText(midPrice),sMidPrice,"midPrice");
+			verifyPriceVarience(mobileAction.FuncGetText(naturalPrice),sNaturalPrice,"naturalPrice");
+			
 			mobileAction.FuncIsElementEnabled(previewOrderButton, "previewOrderButton");
 			mobileAction.FuncClick(backButton, "backButton");
 			mobileAction.verifyElement(messageBackButton,getTestdata("WarningMessage",XLSheetUserIDs));
@@ -996,7 +1329,8 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.FuncIsElementEnabled(previewOrderButton, "previewOrderButton");
 			mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
 			mobileAction.FuncClick(agreeButton, "agreeButton");
-			mobileAction.verifyElement(titleConfirmOrder, getTestdata("urlTitle",XLSheetUserIDs));
+			//mobileAction.verifyElement(titleConfirmOrder, getTestdata("urlTitle",XLSheetUserIDs));
+			mobileAction.verifyElementIsDisplayed(titleConfirmOrder, "titleConfirmOrder");
 		}
 		catch(Exception e)
 		{
@@ -1022,7 +1356,8 @@ public class TradeMultiLeg extends _CommonPage{
 							
 			mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
 			mobileAction.FuncClick(agreeButton, "agreeButton");
-			mobileAction.verifyElement(titleConfirmOrder, getTestdata("urlTitle",XLSheetUserIDs));
+			//mobileAction.verifyElement(titleConfirmOrder, getTestdata("urlTitle",XLSheetUserIDs));
+			mobileAction.verifyElementIsDisplayed(titleConfirmOrder, "titleConfirmOrder");
 		}
 		catch(Exception e)
 		{
@@ -1089,7 +1424,7 @@ public class TradeMultiLeg extends _CommonPage{
 							
 			mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
 			mobileAction.FuncClick(agreeButton, "agreeButton");
-			mobileAction.verifyElement(titleConfirmOrder, getTestdata("urlTitle",XLSheetUserIDs));
+			mobileAction.verifyElementIsDisplayed(titleConfirmOrder, "titleConfirmOrder");
 		}
 		catch(Exception e)
 		{
@@ -1098,8 +1433,71 @@ public class TradeMultiLeg extends _CommonPage{
 	}
 	public void verifyStockOptionFieldsReset()
 	{
+		Decorator();
 		try
 		{
+			fillStockOptionOrder(firstBidCALLS, "firstBidCALLS");
+			
+			mobileAction.FuncSwipeWhileElementNotFound(defaultTradeAccount, false, 7, "down");
+			
+			mobileAction.FuncClick(search_txtSearchTitle, "search_txtSearchTitle");
+	
+			String xpathFlag="";
+			int temp =0;
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			{
+				xpathFlag = xpathSymbolFlag;
+			}
+			else
+			{
+				xpathFlag = xpathSymbolFlag_ios;
+				temp =1;
+			}
+			mobileAction.FuncClick(search_symbol, "search_symbol");
+			SearchPageMIT.get().enterSymbol(search_symbol, "AAPL");
+			try
+			{
+			mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),"First Symbol");
+			}
+			catch(Exception e)
+			{
+				CL.GetReporting().FuncReport("Fail", "First Symbol not selected.");
+			}
+			//
+			mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 7, "up");
+			mobileAction.verifyElement(leg1Action, getTestdata("TextDefaultListItem",XLSheetUserIDs));
+			mobileAction.FuncSwipeOnce("up");
+			mobileAction.FuncVerifyBlankValue(leg1Quantity, "leg1Quantity");
+			mobileAction.FuncSwipeWhileElementNotFound(leg2Option,false,7,"up");
+			mobileAction.FuncSwipeOnce("up");
+			
+			mobileAction.verifyElement(leg2Action, getTestdata("TextDefaultListItem",XLSheetUserIDs));
+			mobileAction.FuncSwipeWhileElementNotFound(leg2Quantity,false,5,"up");
+			mobileAction.FuncSwipeOnce("up");
+			mobileAction.FuncVerifyBlankValue(leg2Quantity, "leg2Quantity");
+			
+			mobileAction.FuncSwipeWhileElementNotFound(commissionLink,false,5,"up");
+			mobileAction.FuncSwipeOnce("up");
+			
+			if(mobileAction.isObjExists(midPrice, 2))
+				CL.GetReporting().FuncReport("Fail", "Mid & Natural price should not be displayed");
+			else
+				CL.GetReporting().FuncReport("Pass", "Mid & Natural price removed.");
+				
+			mobileAction.verifyElement(price, getTestdata("TextDefaultListItem",XLSheetUserIDs));
+			
+			if(mobileAction.isObjExists(shareholderType, 2))
+			{
+				mobileAction.verifyElement(shareholderType, getTestdata("TextDefaultListItem",XLSheetUserIDs));
+			}
+			
+			mobileAction.verifyElement(goodTill, getTestdata("Good'til",XLSheetUserIDs));
+			
+			if(mobileAction.isObjExists(editTextPassword, 2))
+			{
+				mobileAction.FuncVerifyNonBlankValue(editTextPassword, "editTextPassword");
+			}
+			
 			
 		}
 		catch(Exception e)
@@ -1108,6 +1506,308 @@ public class TradeMultiLeg extends _CommonPage{
 		}
 	}
 	
+	public void verifyOptionOptionFieldsReset()
+	{
+		Decorator();
+		try
+		{
+			fillOptionOptionOrder(firstAskCALLS, "firstAskCALLS", firstAskPUTS, "firstAskPUTS");
+			
+			mobileAction.FuncSwipeWhileElementNotFound(defaultTradeAccount, false, 7, "down");
+			
+			mobileAction.FuncClick(search_txtSearchTitle, "search_txtSearchTitle");
+	
+			String xpathFlag="";
+			int temp =0;
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			{
+				xpathFlag = xpathSymbolFlag;
+			}
+			else
+			{
+				xpathFlag = xpathSymbolFlag_ios;
+				temp =1;
+			}
+			mobileAction.FuncClick(search_symbol, "search_symbol");
+			SearchPageMIT.get().enterSymbol(search_symbol, "AAPL");
+			mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),"First Symbol");
+			
+			//
+			mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 7, "up");
+			mobileAction.verifyElement(leg1Action, getTestdata("TextDefaultListItem",XLSheetUserIDs));
+			mobileAction.FuncSwipeOnce("up");
+			mobileAction.FuncVerifyBlankValue(leg1Quantity, "leg1Quantity");
+			mobileAction.FuncSwipeWhileElementNotFound(leg2Option,false,7,"up");
+			mobileAction.FuncSwipeOnce("up");
+			
+			mobileAction.verifyElement(leg2Action, getTestdata("TextDefaultListItem",XLSheetUserIDs));
+			mobileAction.FuncSwipeWhileElementNotFound(leg2Quantity,false,5,"up");
+			mobileAction.FuncSwipeOnce("up");
+			mobileAction.FuncVerifyBlankValue(leg2Quantity, "leg2Quantity");
+			
+			mobileAction.FuncSwipeWhileElementNotFound(commissionLink,false,5,"up");
+			mobileAction.FuncSwipeOnce("up");
+			
+			if(mobileAction.isObjExists(midPrice, 2))
+				CL.GetReporting().FuncReport("Fail", "Mid & Natural price should not be displayed");
+			else
+				CL.GetReporting().FuncReport("Pass", "Mid & Natural price removed.");
+				
+			mobileAction.verifyElement(price, getTestdata("TextDefaultListItem",XLSheetUserIDs));
+			
+			if(mobileAction.isObjExists(shareholderType, 2))
+			{
+				mobileAction.verifyElement(shareholderType, getTestdata("TextDefaultListItem",XLSheetUserIDs));
+			}
+			
+			mobileAction.verifyElement(goodTill, getTestdata("Good'til",XLSheetUserIDs));
+			
+			if(mobileAction.isObjExists(editTextPassword, 2))
+			{
+				mobileAction.FuncVerifyNonBlankValue(editTextPassword, "editTextPassword");
+			}
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public void verifyOptionOptionFieldResetOrderTypeChanged()
+	{
+		Decorator();
+		try
+		{
+			String[] aOrderTypeList = getTestdata("OrderTypeList",XLSheetUserIDs).split(";");
+			
+			mobileAction.selectItemFromList(selectedOrderType, aOrderTypeList[0]);
+			
+			mobileAction.verifyElement(selectedAccountValue, getTestdata("Accounts",XLSheetUserIDs));
+			
+			mobileAction.verifyElementIsDisplayed(searchBar, "searchBar");
+			
+			mobileAction.FuncClick(searchBar, "searchBar");
+			
+			String xpathFlag="";
+			int temp =0;
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			{
+				xpathFlag = xpathSymbolFlag;
+			}
+			else
+			{
+				xpathFlag = xpathSymbolFlag_ios;
+				temp =1;
+			}
+
+			mobileAction.FuncClick(search_symbol, "search_symbol");
+			SearchPageMIT.get().enterSymbol(search_symbol, "G ");
+			Thread.sleep(5000);
+			try{
+			mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),"First Symbol");
+			}
+			catch(Exception e)
+			{
+				CL.GetReporting().FuncReport("Fail", "First searched symbol not clicked.");
+			}
+			
+			mobileAction.selectItemFromList(selectedOrderType, aOrderTypeList[1]);
+			
+			mobileAction.verifyElement(selectedAccountValue, getTestdata("Accounts",XLSheetUserIDs));
+			
+			mobileAction.verifyElementIsDisplayed(searchBar, "searchBar");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public void verifyStockOptionFieldResetOrderTypeChanged()
+	{
+		Decorator();
+		try
+		{
+			String[] aOrderTypeList = getTestdata("OrderTypeList",XLSheetUserIDs).split(";");
+			
+			mobileAction.selectItemFromList(selectedOrderType, aOrderTypeList[0]);
+			
+			mobileAction.verifyElement(selectedAccountValue, getTestdata("Accounts",XLSheetUserIDs));
+			
+			mobileAction.verifyElementIsDisplayed(searchBar, "searchBar");
+			
+			mobileAction.FuncClick(searchBar, "searchBar");
+			
+			String xpathFlag="";
+			int temp =0;
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			{
+				xpathFlag = xpathSymbolFlag;
+			}
+			else
+			{
+				xpathFlag = xpathSymbolFlag_ios;
+				temp =1;
+			}
+
+			mobileAction.FuncClick(search_symbol, "search_symbol");
+			SearchPageMIT.get().enterSymbol(search_symbol, "G ");
+			Thread.sleep(5000);
+			try{
+			mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),"First Symbol");
+			}
+			catch(Exception e)
+			{
+				CL.GetReporting().FuncReport("Fail", "First searched symbol not clicked.");
+			}
+			
+			mobileAction.selectItemFromList(selectedOrderType, aOrderTypeList[1]);
+			
+			mobileAction.verifyElement(selectedAccountValue, getTestdata("Accounts",XLSheetUserIDs));
+			
+			mobileAction.verifyElementIsDisplayed(searchBar, "searchBar");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public void verifyTradeOrderFormContent()
+	{
+		Decorator();
+		try
+		{
+			Calendar now = Calendar.getInstance();
+			String format2 = new SimpleDateFormat("EE;d;MMM;yyyy", Locale.ENGLISH).format(now.getTime());
+			String sCurrentDate = format2.split(";")[1];
+			
+			mobileAction.verifyElementIsDisplayed(hdrTrade, "hdrTrade");
+			mobileAction.verifyElementTextContains(timestamp,sCurrentDate);
+			mobileAction.FuncVerifyNonBlankValue(account_type, "account_type");
+			mobileAction.FuncVerifyNonBlankValue(account_number, "account_number");
+			mobileAction.verifyElementIsDisplayed(lblCash, "lblCash");
+			mobileAction.FuncVerifyNonBlankValue(cashAmount, "cashAmount");
+			if(mobileAction.isObjExists(lblbuyingPower))
+			{
+				mobileAction.verifyElementIsDisplayed(lblbuyingPower, "lblbuyingPower");
+				mobileAction.FuncVerifyNonBlankValue(buyingPowerAmount, "buyingPowerAmount");
+			}
+			
+			mobileAction.verifyElementIsDisplayed(stocks_ETFs,"stocks_ETFs");
+			mobileAction.verifyElementIsDisplayed(searchBar, "searchBar");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public void verifyEntryOrderFormContent()
+	{
+		Decorator();
+		try
+		{
+			fillOptionOptionOrder(firstAskCALLS, "firstAskCALLS", firstAskPUTS, "firstAskPUTS");
+			
+			mobileAction.FuncSwipeWhileElementNotFound(search_txtSearchTitle, false, 7, "down");
+			
+			mobileAction.FuncVerifyNonBlankValue(search_txtSearchTitle, "Search for different symbol");
+			
+			mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 7, "up");
+			
+			mobileAction.verifyElementIsDisplayed(lbl1stLeg, "lbl1stLeg");
+			
+			mobileAction.FuncSwipeWhileElementNotFound(leg2Action, false, 7, "up");
+			
+			mobileAction.verifyElementIsDisplayed(lbl2ndLeg, "lbl2ndLeg");
+			
+			mobileAction.FuncSwipeWhileElementNotFound(price, false, 7, "up");
+			
+			mobileAction.verifyElementIsDisplayed(lblmidPrice, "lblmidPrice");
+			mobileAction.verifyElementIsDisplayed(lblnaturalPrice, "lblnaturalPrice");
+			
+			mobileAction.FuncSwipeWhileElementNotFound(labelTradingPassword, false, 7, "up");
+			
+			mobileAction.verifyElementIsDisplayed(lblprice, "lblprice");
+			if(mobileAction.isObjExists(lblLimitPrice))
+				mobileAction.verifyElementIsDisplayed(lblLimitPrice, "lblLimitPrice");
+			if(mobileAction.isObjExists(lblshareholderType))
+				mobileAction.verifyElementIsDisplayed(lblshareholderType, "lblshareholderType");
+			
+			mobileAction.verifyElementIsDisplayed(labelTradingPassword, "labelTradingPassword");
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	public void verifyWarningMsgExchangeAgrNotSigned()
+	{
+		Decorator();
+		try
+		{
+			mobileAction.verifyElement(error_text, getTestdata("WarningMessage",XLSheetUserIDs));
+			
+			mobileAction.FuncSwipeWhileElementNotFound(leg1Option, true, 7, "up");
+			
+			mobileAction.FuncSwipeWhileElementNotFound(firstBidCALLS, false, 7, "up");
+			mobileAction.FuncSwipeOnce("up");
+			mobileAction.FuncVerifyNonBlankValue(selectedExpiryListItem, "default expiry date");
+			mobileAction.verifyElementTextContains(firstBidCALLS, "-");
+			mobileAction.verifyElementTextContains(firstAskPUTS, "-");
+			mobileAction.FuncClick(firstBidCALLS, "firstBidCALLS");
+			//System.out.println("hi");
+			mobileAction.FuncClick(Continue, "Continue");
+			
+			mobileAction.FuncSwipeWhileElementNotFound(defaultTradeAccount, false, 7, "down");
+			
+			mobileAction.selectItemFromList(selectedOrderType, getTestdata("OrderTypeList",XLSheetUserIDs));
+			
+			mobileAction.FuncClick(search_txtSearchTitle, "search_txtSearchTitle");
+			
+			String xpathFlag="";
+			int temp =0;
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			{
+				xpathFlag = xpathSymbolFlag;
+			}
+			else
+			{
+				xpathFlag = xpathSymbolFlag_ios;
+			}
+			mobileAction.FuncClick(search_symbol, "search_symbol");
+			SearchPageMIT.get().enterSymbol(search_symbol, "AAPL");
+			try
+			{
+			mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),"First Symbol");
+			}
+			catch(Exception e)
+			{
+				CL.GetReporting().FuncReport("Fail", "First Symbol not selected.");
+			}
+			
+			mobileAction.verifyElement(error_text, getTestdata("WarningMessage",XLSheetUserIDs));
+			
+			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, true, 7, "up");
+			
+			mobileAction.FuncSwipeWhileElementNotFound(firstBidPUTS, false, 7, "up");
+			mobileAction.FuncSwipeOnce("up");
+			mobileAction.verifyElementTextContains(firstBidPUTS, "-");
+			mobileAction.verifyElementTextContains(firstAskCALLS, "-");
+			mobileAction.FuncClick(firstBidCALLS, "firstBidCALLS");
+			
+			mobileAction.FuncClick(Continue, "Continue");
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 	public void selectDateSpecify_Android(MobileElement objOption)
 	{
 		Decorator();
@@ -1160,5 +1860,34 @@ public class TradeMultiLeg extends _CommonPage{
 		{
 			e.printStackTrace();
 		}
+	}
+	public void selectShareholderNeitherFR()
+	{
+		boolean Err = false; 
+		String xpathExpression="";
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				xpathExpression = "//*[contains(@text,'autre')]";
+			else
+				xpathExpression = "//*[contains(@label,'autre')]";
+			try{
+				mobileAction.waitForElement(shareholderType);
+				mobileAction.FuncClick(shareholderType, "shareholderType");
+			if(CL.GetDriver().findElement(By.xpath(xpathExpression)).isDisplayed())
+				CL.GetDriver().findElement(By.xpath(xpathExpression)).click();
+				}
+			catch(Exception e1)
+			{
+				Err = true;
+			}
+			try{
+			if(!Err)
+				CL.GetReporting().FuncReport("Pass", String.format("<b> %s </b> list item selected", "Ni l’un, ni l’autre"));
+			else
+				CL.GetReporting().FuncReport("Fail", String.format("<b> %s </b> list item not selected", "Ni l’un, ni l’autre"));
+			}catch(Exception e2)
+			{
+				e2.printStackTrace();
+			}
+
 	}
 }
