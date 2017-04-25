@@ -735,7 +735,6 @@ public class ConfirmOrder extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncSwipeWhileElementNotFound(impInformationMessage, false, 10, "up");
-
 			mobileAction.verifyElementIsDisplayed(impInformationMessage, "Important Message Link");
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
