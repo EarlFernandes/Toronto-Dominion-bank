@@ -798,7 +798,6 @@ public class InvestingAccountSummary extends _CommonPage {
 						mobileAction.verifyDateFormat(statementsAgo.get(i).getText(), MobileAction2.TYPE_YYYY_MM_DD_RANGE);
 					}
 					
-					//FIXME: Verify date headers here	//FIXED
 				} else {
 					mobileAction.stringToReport("Pass", "No statements to display");
 				}
@@ -1197,9 +1196,6 @@ public class InvestingAccountSummary extends _CommonPage {
 						"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
 								+ mobileAction.getAppString("str_OrderPlaced") + "']",
 						"Order Placed");
-				
-				//FIXME: Verify the text //FIXED
-				
 				//mobileAction.verifyElementIsDisplayed(ordersFooter, "Footer Text");
 				//mobileAction.verifyElementIsDisplayed(callBtn, "Call Button");
 				
@@ -1263,10 +1259,6 @@ public class InvestingAccountSummary extends _CommonPage {
 					"//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='"
 							+ mobileAction.getAppString("str_QUOTE") + "']",
 					"Quote");
-			
-			// FIXME: Verify the text	//FIXED
-			
-			
 			
 			mobileAction.verifyElementIsDisplayed(activityTab, "Activity Tab");
 			mobileAction.verifyTextEquality(activityTab.getText(), mobileAction.getAppString("str_Activity"));

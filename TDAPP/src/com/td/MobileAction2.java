@@ -1636,12 +1636,12 @@ public class MobileAction2 extends CommonLib {
 	public static final int TYPE_YYYY_MM_DD_HOUR = 5;
 	public static final int TYPE_YYYY_MM_DD_RANGE = 6;
 	
-	public static final String PATTERN_ZH_YYYY_MM_DD = "\\d{4}å¹´\\d{1,2}æœˆ\\d{1,2}æ—¥|å¾…å¤„ç�†";
-	public static final String PATTERN_ZH_YYYY_MM_DD_WEEKDATE = "\\d{4}å¹´\\s?\\d{1,2}æœˆ\\s?\\d{1,2}æ—¥ \\(æ˜ŸæœŸ[ä¸€|äºŒ|ä¸‰|å››|äº”|å…­|æ—¥|å¤©]\\)";
-	public static final String PATTERN_ZH_MM_YYYY = "\\d{4}å¹´\\d{1,2}æœˆ";
-	public static final String PATTERN_ZH_YYYY_MM_DD_TODAY = "\\d{4}å¹´\\d{1,2}æœˆ\\d{1,2}æ—¥ \\(ä»Šå¤©\\)";
-	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}å¹´\\d{1,2}æœˆ\\d{1,2}æ—¥ \\d{2}:\\d{2} (ä¸Šå�ˆ|ä¸‹å�ˆ)[A-Za-z\\s]*";
-	public static final String PATTERN_ZH_YYYY_MM_DD_RANGE = "\\d{4}å¹´\\d{1,2}æœˆ\\d{1,2}æ—¥ - (\\d{4}å¹´)*\\d{1,2}æœˆ\\d{1,2}æ—¥";
+	public static final String PATTERN_ZH_YYYY_MM_DD = "\\d{4}年\\d{1,2}月\\d{1,2}日|待处理";
+	public static final String PATTERN_ZH_YYYY_MM_DD_WEEKDATE = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\(星期[一|二|三|四|五|六|日|天]\\)";
+	public static final String PATTERN_ZH_MM_YYYY = "\\d{4}年\\s?\\d{1,2}月";
+	public static final String PATTERN_ZH_YYYY_MM_DD_TODAY = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\(今天\\)";
+	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}年\\d{1,2}月\\d{1,2}日 \\d{2}:\\d{2} (上午|下午)[A-Za-z\\s]*";
+	public static final String PATTERN_ZH_YYYY_MM_DD_RANGE = "\\d{4}年\\d{1,2}月\\d{1,2}日 - (\\d{4}年)*\\d{1,2}月\\d{1,2}日";
 	
 	public void verifyDateFormat(final String dateStr, final int type) {
 		final String locale =  super.LoadData("Value", super.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");

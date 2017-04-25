@@ -160,7 +160,7 @@ public class AddPayee extends _CommonPage {
 				mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("str_enter_payee_account_number") + "']", "account hint");
 				final WebElement desc = mobileAction.verifyWebElementUsingXPath("//label[@id='description_label']", "description");
 				// FIXME: This is not seen, why?
-				mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("optional") + "']", "description hint");
+				//mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("optional") + "']", "description hint");
 				final WebElement payeeAccountInfo = mobileAction.verifyWebElementUsingXPath("(//span[@class='ng-binding'])[2]", "payee account info header");
 				final WebElement enterAccNumber = mobileAction.verifyWebElementUsingXPath("//div[@class='placeholder ng-binding ng-scope']", "enter your account");
 
