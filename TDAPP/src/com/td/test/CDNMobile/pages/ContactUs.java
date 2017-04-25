@@ -34,6 +34,32 @@ public class ContactUs extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='OK']")
 	private MobileElement ok;
 
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
+	private MobileElement contactUsHeader;
+	
+	@iOSFindBy(accessibility = "CONTACTUS_HEADER")
+	private MobileElement byPhone;
+	
+	@iOSFindBy(accessibility = "CONTACTUS_CELL_0_PHONE_TITLE")
+	private MobileElement tdCT;
+	
+	@iOSFindBy(accessibility = "CONTACTUS_CELL_1_PHONE_TITLE")
+	private MobileElement tdCC;
+	
+	@iOSFindBy(accessibility = "CONTACTUS_CELL_2_PHONE_TITLE")
+	private MobileElement tdSmallBusiness;
+	
+	@iOSFindBy(accessibility = "CONTACTUS_CELL_3_PHONE_TITLE")
+	private MobileElement tdDirectInvs;
+	
+	@iOSFindBy(accessibility = "CONTACTUS_CELL_4_PHONE_TITLE")
+	private MobileElement tdWealthFinancial;
+	
+	@iOSFindBy(accessibility = "CONTACTUS_CELL_5_PHONE_TITLE")
+	private MobileElement tdWealthPrivate;
+	
+	@iOSFindBy(accessibility = "CONTACTUS_CELL_0_MAIL_TITLE")
+	private MobileElement giveFeedback;
 	
 	String t_call="Call";
 
@@ -90,7 +116,15 @@ public class ContactUs extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyTextEquality(contactUsHeader.getText(), mobileAction.getAppString("contactTDHeader"));
+				mobileAction.verifyTextEquality(byPhone.getText(), mobileAction.getAppString("contact_us_Header_Title"));
+				mobileAction.verifyTextEquality(tdCT.getText(), mobileAction.getAppString("td_contact_str"));
+				mobileAction.verifyTextEquality(tdCC.getText(), mobileAction.getAppString("contact_us_TD_Credit_Cards"));
+				mobileAction.verifyTextEquality(tdSmallBusiness.getText(), mobileAction.getAppString("contact_us_TD_Small_Business_Banking"));
+				mobileAction.verifyTextEquality(tdDirectInvs.getText(), mobileAction.getAppString("direct_investment_str"));
+				mobileAction.verifyTextEquality(tdWealthFinancial.getText(), mobileAction.getAppString("contact_us_TD_Wealth_Financial_Planning"));
+				mobileAction.verifyTextEquality(tdWealthPrivate.getText(), mobileAction.getAppString("contact_us_TD_Wealth_Private_Investment_Advice"));
+				mobileAction.verifyTextEquality(giveFeedback.getText(), mobileAction.getAppString("give_feedback"));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("contactTDHeader") + "']", "Contact Us title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("by_phone") + "']", "By phone");
@@ -103,6 +137,7 @@ public class ContactUs extends _CommonPage {
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 3, "up");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_TDWealth_FP").replaceAll("\\<.*?>","") + "']", "Wealth financial");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_TDWealth_PIA") + "']", "Wealth private");
+				// FIXME: What is the correct string here?
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("give_feedback") + "']", "Give feedback");				
 			}
 		} catch (NoSuchElementException | IOException e) {

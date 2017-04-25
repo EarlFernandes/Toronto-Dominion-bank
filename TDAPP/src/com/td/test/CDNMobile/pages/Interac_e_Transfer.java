@@ -27,6 +27,9 @@ public class Interac_e_Transfer extends _CommonPage {
     @iOSFindBy(accessibility = "TDVIEW_TITLE")
     private MobileElement interac_Header;
 
+    @iOSFindBy(accessibility = "-Title")
+    private List<MobileElement> pendingETransfers;
+
     // FIXME: Ask may to add this
     @iOSFindBy(accessibility = "FIXME")
     private MobileElement optional;
@@ -102,6 +105,7 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/entransfer_cancel_payment_date']")
     private MobileElement payDate;
 
+    // FIXME: What is the correct accessibility id?
 	@iOSFindBy(xpath ="//*[@label='Cancel Interac e-Transfer']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel']")
 	private MobileElement cancelTransfer;
@@ -120,7 +124,7 @@ public class Interac_e_Transfer extends _CommonPage {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/date']")
     private List<MobileElement> dateHeaders;
-
+    
     @iOSFindBy(xpath = "//*[@label='']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_account']")
     private MobileElement accountname;
@@ -627,7 +631,13 @@ try {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				cancelFirstInteracETransfer();
+				MobileElement desc = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='INTERAC_RECLAIM_DES']", "Reclaim description");
+				MobileElement depositTo = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='INTERAC_RECLAIM_DEPOSIT']", "Deposit To");
+				MobileElement continueBtn = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@name='INTERAC_RECLAIM_CONTINUE']", "Continue");
+				mobileAction.verifyTextEquality(desc.getText(), mobileAction.getAppString("TransfersReclaimDepositToHeaderMessage"));
+				mobileAction.verifyTextEquality(depositTo.getText(), mobileAction.getAppString("TransfersReclaimDepositToDepositTo"));
+				mobileAction.verifyTextEquality(continueBtn.getText(), mobileAction.getAppString("Continue"));
 			} else {
 				cancelFirstInteracETransfer();
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("TransfersReclaimDepositToHeaderMessage").replaceAll("\\<.*?>","") + "']", "Reclaim message");
@@ -649,7 +659,10 @@ try {
 	private void cancelFirstInteracETransfer(){
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				// Get to cancel e-transfer screen, choose first interac e-transfer to cancel
+				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@text='" + getTestdata("RecipientName") + "']", ""), "Recipient to cancel");
+				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@text='" + mobileAction.getAppString("eTransferViewCancelCancelButton").replaceAll("\\<.*?>","") + "']", "Cancel interac e-transfer title");
 			} else {
 				// Get to cancel e-transfer screen, choose first interac e-transfer to cancel
 				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + getTestdata("RecipientName") + "']", ""), "Recipient to cancel");
@@ -717,7 +730,10 @@ try {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyTextEquality(interac_Header.getText(), mobileAction.getAppString("str_pending_interact_etransfer").replaceAll("\\<.*?>",""));
+				for(MobileElement m : dateHeaders) {
+					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
+				}
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderPendingInteracETransfer").replaceAll("\\<.*?>","") + "']", "Pending Interac e-transfer title");
 				for(MobileElement m : dateHeaders) {

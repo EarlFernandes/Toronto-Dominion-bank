@@ -40,7 +40,6 @@ public class MenuPage extends _CommonPage {
 	// FIXME: Ask May to add this
 	@iOSFindBy(xpath = "//*[@label='投资账户']")
 	//@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_INVESTING']/XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing Accounts']")
 	private MobileElement investing;
 
 	@iOSFindBy(xpath = "//*[@label='Comptes Placements directs TD']")
@@ -265,6 +264,11 @@ public class MenuPage extends _CommonPage {
 			boolean isLanguageFrench = getTestdata("Language").equals("FRE");
 
 			MobileElement investingElement = isLanguageFrench ? investingFRE : investing;
+			final String locale = CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				investing = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + StringLookup.lookupString(locale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing menu element");
+			}
+			
 			mobileAction.FuncClick(investingElement, "Investing");
 			mobileAction.waitForElementToVanish(progressBar);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
