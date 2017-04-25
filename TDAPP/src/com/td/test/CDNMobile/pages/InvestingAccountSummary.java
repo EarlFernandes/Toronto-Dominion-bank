@@ -80,6 +80,9 @@ public class InvestingAccountSummary extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/last_statement_balance_header']")
 	private MobileElement statementBalance;
 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/last_statement_balance_title']")
+	private MobileElement statementBalanceDateRange;
+	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/minimum_payment_header']")
 	private MobileElement minimumPayment;
 
@@ -638,12 +641,23 @@ public class InvestingAccountSummary extends _CommonPage {
 
 				mobileAction.FuncClick(activityTab, "Activity Tab");
 
-				mobileAction.FunctionSwipe("up", 5000, 200);
+				String pendingTransactionStr = "//android.widget.TextView[@text='"
+						+ mobileAction.getAppString("rtb_authorized_transactions_header")
+						+ "']/../following-sibling::android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView";
+				MobileElement pendingTransaction = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(pendingTransactionStr));
 
-				String otherTransactionStr = "//android.widget.TextView[@resource-id='com.td:id/date']/../../following-sibling::android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView";
-				MobileElement otherTransaction = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(otherTransactionStr));
-				mobileAction.FuncClick(otherTransaction, "Transaction");
+				if (mobileAction.verifyElementPresent(pendingTransaction)) {
+					mobileAction.FuncClick(pendingTransaction, "Pending Transaction");
+				} else {
+					mobileAction.FunctionSwipe("up", 5000, 200);
+
+					String otherTransactionStr = "//android.widget.TextView[@resource-id='com.td:id/date']/../../following-sibling::android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView";
+					MobileElement otherTransaction = (MobileElement) ((AppiumDriver) CL.GetDriver())
+							.findElement(By.xpath(otherTransactionStr));
+					mobileAction.FuncClick(otherTransaction, "Transaction");
+
+				}
 
 				mobileAction
 						.verifyElementUsingXPath(
@@ -664,6 +678,7 @@ public class InvestingAccountSummary extends _CommonPage {
 
 				mobileAction.verifyDateFormat(transactionDate.getText(), MobileAction2.TYPE_YYYY_MM_DD);
 				mobileAction.verifyDateFormat(postedDate.getText(), MobileAction2.TYPE_YYYY_MM_DD);
+
 
 			}
 		}
@@ -719,8 +734,9 @@ public class InvestingAccountSummary extends _CommonPage {
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_minimum_payment")
 								+ "']/following-sibling::android.widget.TextView[@resource-id='com.td:id/amount']",
 						"Minimum Payment Amount");
-				mobileAction.verifyDateFormat(dateOfStatement.getText(), MobileAction2.TYPE_YYYY_MM_DD_RANGE);
-				mobileAction.verifyElementIsDisplayed(payButton, "Pay Button");	
+				mobileAction.verifyDateFormat(dateOfStatement.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
+				mobileAction.verifyDateFormat(statementBalanceDateRange.getText(), MobileAction2.TYPE_YYYY_MM_DD_RANGE);
+				//mobileAction.verifyElementIsDisplayed(payButton, "Pay Button");	
 			}
 		}
 
@@ -759,48 +775,42 @@ public class InvestingAccountSummary extends _CommonPage {
 
 				mobileAction.FuncClick(statementTab, "Statement Tab");
 
-				if (mobileAction.verifyElementPresent(CClastStatement)) {
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
+								+ mobileAction.getAppString("str_Credit") + "']",
+						"Credit Header");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='"
+								+ mobileAction.getAppString("str_PAY") + "']",
+						"Pay bills quick link");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='"
+								+ mobileAction.getAppString("str_TRANSFER") + "']",
+						"Transfer quick link");
+				//mobileAction.verifyElementIsDisplayed(statementTab, "Statement Tab");
+				//mobileAction.verifyElementIsDisplayed(CClastStatement, "Last Statement");
+				
+				mobileAction.verifyDateFormat(CClastStatement.getText(), MobileAction2.TYPE_YYYY_MM_DD_RANGE);
 
-					mobileAction.verifyElementUsingXPath(
-							"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
-									+ mobileAction.getAppString("str_Credit") + "']",
-							"Credit Header");
-					mobileAction.verifyElementUsingXPath(
-							"//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='"
-									+ mobileAction.getAppString("str_PAY") + "']",
-							"Pay bills quick link");
-					mobileAction.verifyElementUsingXPath(
-							"//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='"
-									+ mobileAction.getAppString("str_TRANSFER") + "']",
-							"Transfer quick link");
-					mobileAction.verifyElementIsDisplayed(statementTab, "Statement Tab");
-					mobileAction.verifyElementIsDisplayed(CClastStatement, "Last Statement");
-					
-					mobileAction.verifyDateFormat(CClastStatement.getText(), MobileAction2.TYPE_YYYY_MM_DD_RANGE);
-
-					
-					mobileAction.verifyElementUsingXPath(
-							"//android.widget.TextView[@text='"
-									+ mobileAction.getAppString("str_Statement_Balance") + "']",
-							"Statement Balance");
-					mobileAction.verifyElementUsingXPath(
-							"//android.widget.TextView[@text='"
-									+ mobileAction.getAppString("str_Minimum_Payment") + "']",
-							"Minimum payment");
-					mobileAction.verifyElementUsingXPath(
-							"//android.widget.TextView[@text='"
-									+ mobileAction.getAppString("rtb_payment_due_date") + "']",
-							"Payment due");
-					
-					mobileAction.FunctionSwipe("up", 200, 200);
-					
-					for(int i=0;i<statementsAgo.size();i++){
-						mobileAction.verifyDateFormat(statementsAgo.get(i).getText(), MobileAction2.TYPE_YYYY_MM_DD_RANGE);
-					}
-					
-				} else {
-					mobileAction.stringToReport("Pass", "No statements to display");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='"
+								+ mobileAction.getAppString("str_Statement_Balance") + "']",
+						"Statement Balance");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='"
+								+ mobileAction.getAppString("str_Minimum_Payment") + "']",
+						"Minimum payment");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='"
+								+ mobileAction.getAppString("rtb_payment_due_date") + "']",
+						"Payment due");
+				
+				mobileAction.FunctionSwipe("up", 200, 200);
+				
+				for(int i=0;i<statementsAgo.size();i++){
+					mobileAction.verifyDateFormat(statementsAgo.get(i).getText(), MobileAction2.TYPE_YYYY_MM_DD_RANGE);
 				}
+
 			}
 		}
 

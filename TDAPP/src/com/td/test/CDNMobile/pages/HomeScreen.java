@@ -358,7 +358,7 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Decorator();
 			
-			if (back_button.isDisplayed()) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(back_button, "Back button");
 				mobileAction.FuncClick(menu, "Menu");
 			} else {
@@ -366,8 +366,12 @@ public class HomeScreen extends _CommonPage {
 			}
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.FuncClick(menu, "Menu");
+			} catch (NoSuchElementException | InterruptedException | IOException e2) {
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
 		}
 
 	}

@@ -312,13 +312,16 @@ public class Accounts_Credit extends _CommonPage {
 				// TODO: iOS elements
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/activityTab' and @text='" + mobileAction.getAppString("str_Activity") + "']", "activity Tab");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_authorized_transactions_header") + "']", "Pending Transactions");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_posted_transactions") + "']", "Posted Transactions");
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_authorized_transactions_header") + "']", "Pending Transactions");
+				final String postedTransactions = "//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_posted_transactions") + "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(postedTransactions, false, 2, "up");
+				final String lastStatement  ="//android.widget.TextView[@text='" + mobileAction.getAppString("last_statement") + "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(lastStatement, false, 2, "up");
+				final String twoStatementsAgo = "//android.widget.TextView[@text='" + mobileAction.getAppString("str_2_STATEMENTS") + "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(twoStatementsAgo, false, 2, "up");
 				// Scroll down here
 				final String xPathFooter = "//android.widget.TextView[@text='" + mobileAction.getAppString("str_no_more_activity_footer") + "']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("last_statement") + "']", "Last Statement");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_2_STATEMENTS") + "']", "2 Statements ago");
 				// Verify select date headers at the bottom
 				for(MobileElement m : dateHeaders) {
 					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
