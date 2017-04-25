@@ -627,6 +627,8 @@ public class Between_My_accounts extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(btnFinish_Transfer, "Finish");
+			//mobileAction.waitForElementToDisappear(progressBar);
+			mobileAction.waitForElementToVanish(txtProgressBar);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 
 		}

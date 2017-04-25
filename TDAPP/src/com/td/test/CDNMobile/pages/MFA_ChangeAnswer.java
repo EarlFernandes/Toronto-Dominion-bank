@@ -22,8 +22,8 @@ public class MFA_ChangeAnswer extends _CommonPage {
 
 	String platformName=null;;
 	
-	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@label='Update Security Questions']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Update Security Questions' and @resource-id='android:id/action_bar_title']")
+	@iOSFindBy(xpath="//*[@label='Update Security Question']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement security_Question_Header;
 	
 	@iOSFindBy(xpath="//XCUIElementTypeSecureTextField [@value='Enter your answer']")
@@ -38,7 +38,7 @@ public class MFA_ChangeAnswer extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mfa_question' and @index='0']")
 	private MobileElement security_Question;
 	
-	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@label='Save Changes']")
+	@iOSFindBy(xpath="//XCUIElementTypeButton[@label='Save Changes']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/btn_save' and @text='Save Changes']")
 	private MobileElement save_Changes;
 	
@@ -79,35 +79,37 @@ public class MFA_ChangeAnswer extends _CommonPage {
 
 	public void mfa_update() {
 		Decorator();
-		String security_header = "Update Security Questions";
+		String security_header = "Update Security Question";
 		String security_ans_updated = "The security question was updated successfully";
 		try {
 			
 			if(security_Question_Header.isDisplayed()){
-			mobileAction.FuncClick(security_Question, "Security_Question");
-			mobileAction.FuncClick(security_Answer, "security_Answer");
-			String secret_Answer_value = getTestdata("SecurityAnswer");
-			mobileAction.FuncSendKeys(security_Answer, secret_Answer_value);
-			
-			
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-			
-				mobileAction.FuncClick(confirm_Security_Answer, "Confirm_Security_Answer");
-				mobileAction.FuncSendKeys(confirm_Security_Answer, secret_Answer_value);
-				mobileAction.FuncClick(done, "Done");
-				mobileAction.FuncClick(save_Changes, "Save_Changes");
+				//mobileAction.FuncClick(security_Question, "Security_Question");
+				mobileAction.FuncClick(security_Answer, "security_Answer");
+				String secret_Answer_value = getTestdata("SecurityAnswer");
+				mobileAction.FuncSendKeys(security_Answer, secret_Answer_value);
 				
-			}
-			else{
-				mobileAction.FuncHideKeyboard();
-				mobileAction.FuncClick(confirm_Security_Answer, "Confirm_Security_Answer");
-				String confirm_Sec_Answer_value = getTestdata("SecurityAnswer");
-				mobileAction.FuncSendKeys(confirm_Security_Answer, confirm_Sec_Answer_value);
-				mobileAction.FuncHideKeyboard();
-				mobileAction.FuncClick(save_Changes, "Save_Changes");
-				mobileAction.verifyElement(secret_Answer_Updated, security_ans_updated);
+				
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				
+					mobileAction.FuncClick(confirm_Security_Answer, "Confirm_Security_Answer");
+					mobileAction.FuncSendKeys(confirm_Security_Answer, secret_Answer_value);
+					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClick(save_Changes, "Save_Changes");
+					
 				}
-			}
+				else{
+					mobileAction.FuncHideKeyboard();
+					mobileAction.FuncClick(confirm_Security_Answer, "Confirm_Security_Answer");
+					String confirm_Sec_Answer_value = getTestdata("SecurityAnswer");
+					mobileAction.FuncSendKeys(confirm_Security_Answer, confirm_Sec_Answer_value);
+					mobileAction.FuncHideKeyboard();
+					mobileAction.FuncClick(save_Changes, "Save_Changes");
+					mobileAction.verifyElement(secret_Answer_Updated, security_ans_updated);
+					}
+				}else{
+					System.out.println(security_header + " is not displayed");
+				}
 			} catch (NoSuchElementException | InterruptedException | IOException e) {
 				e.printStackTrace();
 			

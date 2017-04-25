@@ -54,7 +54,7 @@ public class PendingInteracTransfer extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel' and @text='Cancel Interac e-Transfer']")
 	private MobileElement cancelTransfer;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'-Balance')]")// Need to change account
+	@iOSFindBy(xpath = "//XCUIElementTypeCell[contains(@label,'Deposit To')]")// Need to change account
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/deposit_account']")
 	private MobileElement depositToAccount;
 	
@@ -113,7 +113,7 @@ public class PendingInteracTransfer extends _CommonPage{
 	private MobileElement cancelSuccessMsg;
 	
 	
-	@iOSFindBy(id = " ")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Confirmation #')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_Val']")
 	private MobileElement cancelCnfrmnVal;
 	
@@ -177,7 +177,7 @@ public class PendingInteracTransfer extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='My Accounts']")
 	private MobileElement my_Accounts;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'-Balance')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccountAmountTransfer']")
 	private MobileElement balanceNew;
 
@@ -752,33 +752,40 @@ public class PendingInteracTransfer extends _CommonPage{
 					
 					if(platformName.equalsIgnoreCase("ios")){
 						mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
-						mobileAction.FuncClick(selectSender, "sender");
-						mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+//						mobileAction.FuncClick(selectSender, "sender");
+//						mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
 						mobileAction.FuncClick(selectTransaction, "Select Transaction");
 						mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 						mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
+						//get deposit to account
+						String deposit_account_Info = mobileAction.getValue(depositToAccount);
+						String deposit_to_account = mobileAction.FuncGetValByRegx(deposit_account_Info, "\\d+");
 						String balance = Balance.getAttribute("value");
+						System.out.println("Old Balance:" + balance);
 						mobileAction.FuncClick(depositToContinue,"Continue");
 						mobileAction.FuncClick(cnfrmCancellation, "Confirm");
 						mobileAction.verifyElementIsDisplayed(cancelSuccessMsg, "Interac e-Transfer reclaimed and deposited successfully");
 						String conf_val = mobileAction.getText(cancelCnfrmnVal);
 						mobileAction.FuncClick(menu, "Menu");
 						mobileAction.FuncClick(my_Accounts, "My Accounts");
-						mobileAction.FuncSelectElementInTable(accountsPage_Table,firstPart,accountssecondPart,from_account);
+						System.out.println("From account:" + from_account);
+						mobileAction.FuncSelectElementInTable(accountsPage_Table,firstPart,accountssecondPart,deposit_to_account);
 						String balancenew = balanceNew.getAttribute("value");
+						System.out.println("New Balance:" + balancenew);
 						
 						if(balance.equalsIgnoreCase(balancenew)){
 							System.err.println("TestCase has failed.");
 						}
 						else{
-							mobileAction.FuncClick(home, "home button");
+							//no home button can be found at this page
+							//mobileAction.FuncClick(home, "home button");
 						}
 						
 						
 					}else{
 					
 						mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
-						mobileAction.FuncClick(selectSender, "sender");
+//						mobileAction.FuncClick(selectSender, "sender");
 						mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
 						mobileAction.FuncClick(selectTransaction, "Select Transaction");
 						mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
@@ -796,7 +803,8 @@ public class PendingInteracTransfer extends _CommonPage{
 							System.err.println("TestCase has failed.");
 						}
 						else{
-							mobileAction.FuncClick(home, "home button");
+							//no home button can be found at this page
+							//mobileAction.FuncClick(home, "home button");
 						}
 					}
 				} catch (NoSuchElementException | InterruptedException | IOException e) {

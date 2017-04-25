@@ -186,7 +186,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard' and contains(@text,'*')]")
 	private List<MobileElement> user;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='actionsheet delete account']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='actionsheet delete account']")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/layout_cross']")
 	private MobileElement cross;
 
@@ -1205,25 +1205,35 @@ public class Login extends _CommonPage {
 				}
 			}
 			Thread.sleep(2000);
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				if (mobileAction.verifyLoginErrorOccured(verifyLogin_ios)) {
-					CL.GetReporting().FuncReport("Pass",
-							"Your login information does not match what we have on file message is shown");
+			if(login_error.isDisplayed()){
+				String errorMsg= mobileAction.getValue(login_error);
+				System.out.println("Got error Msg:"+ errorMsg);
+				CL.GetReporting().FuncReport("Pass",errorMsg);
 
-				} else {
-					CL.GetReporting().FuncReport("Fail", "Your login information does not match info is not shown");
-
-				}
 			} else {
-				if (mobileAction.verifyLoginErrorOccured(verifyLogin_android)) {
-					CL.GetReporting().FuncReport("Pass",
-							"Your login information does not match what we have on file message is shown");
+				CL.GetReporting().FuncReport("Fail", "Your login information does not match info is not shown");
 
-				} else {
-					CL.GetReporting().FuncReport("Fail", "Your login information does not match info is not shown");
-
-				}
 			}
+//			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+//				//if (mobileAction.verifyLoginErrorOccured(verifyLogin_ios)) {
+//				if(login_error.isDisplayed()){
+//					String errorMsg= mobileAction.getValue(login_error);
+//					CL.GetReporting().FuncReport("Pass",errorMsg);
+//
+//				} else {
+//					CL.GetReporting().FuncReport("Fail", "Your login information does not match info is not shown");
+//
+//				}
+//			} else {
+//				if (mobileAction.verifyLoginErrorOccured(verifyLogin_android)) {
+//					CL.GetReporting().FuncReport("Pass",
+//							"Your login information does not match what we have on file message is shown");
+//
+//				} else {
+//					CL.GetReporting().FuncReport("Fail", "Your login information does not match info is not shown");
+//
+//				}
+//			}
 		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

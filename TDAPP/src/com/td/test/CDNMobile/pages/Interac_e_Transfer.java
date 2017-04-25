@@ -3,6 +3,7 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
@@ -59,7 +60,7 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_val']")
     private MobileElement confirmation_Val;
 
-    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From account, Select from account']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From account']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_account_title']")
     private MobileElement fromAccount;
 
@@ -151,12 +152,41 @@ public class Interac_e_Transfer extends _CommonPage {
 	Decorator();
 	try {
 	    if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			    
+	    String sendermail= getTestdata("Sender");
+	    System.out.println("Sender:" +sendermail );
+	    String senderXpath = "//XCUIElementTypeStaticText[contains(@label,'" + sendermail + "')]";
+		MobileElement senderval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+				.findElement(By.xpath(senderXpath));
+		if(!senderval.isDisplayed()){
+			mobileAction.FuncClick(selectSender, "Sender");
+			mobileAction.FunCSwipeandScroll(senderval, true);
+		}
 		
-	    	//mobileAction.FuncClick(selectSender, "Sender");
+		String fromacc = getTestdata("FromAccount");
+		System.out.println("From account:" +fromacc);
+		
+		String fromAccXpath = "//XCUIElementTypeStaticText[contains(@label,'" + fromacc + "')]";
+		MobileElement fromAccval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+				.findElement(By.xpath(fromAccXpath));
+		if(!fromAccval.isDisplayed()){
+			mobileAction.FuncClick(fromAccount, "From Account");
+			mobileAction.FunCSwipeandScroll(fromAccval, true);
+		}
+		
+		String recipientmail = getTestdata("RecipientMail");
+		System.out.println("Recipient:"+recipientmail);
+		mobileAction.FuncClick(recipient, "Recipient");
+		String recipientXpath = "//XCUIElementTypeStaticText[contains(@label,'" + recipientmail + "')]";
+		MobileElement recipientval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+				.findElement(By.xpath(recipientXpath));
+		mobileAction.FunCSwipeandScroll(recipientval, true);		
 		//mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart, sender_SelectSender);
+	    
 	    	//mobileAction.FuncClick(recipient, "Recipient");
 	    	
 		mobileAction.FuncClick(etransfer_Amount, "Amount");
+		System.out.println("Amount:" + ValueofAmount);
 		//String fromAccountMoney = fromAccountData.getAttribute("value");
 		mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
 		mobileAction.FuncClick(done, "Done");
