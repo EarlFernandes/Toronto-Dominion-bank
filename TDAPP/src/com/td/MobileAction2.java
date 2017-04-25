@@ -28,6 +28,9 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 
 public class MobileAction2 extends CommonLib {
+	
+	protected com.td.test.framework.CommonLib CL = new com.td.test.framework.CommonLib();
+	
 	public final int MaxTimeoutInSec = 25;
 	public void findElementByXpathAndClick(String xpath) throws IOException {
 		try {
@@ -740,6 +743,8 @@ public class MobileAction2 extends CommonLib {
 	
 	
 	
+	
+	
 	/**
 	 * This method will pinch over the device depending on the value of the
 	 * boolean inside.
@@ -1446,7 +1451,7 @@ public class MobileAction2 extends CommonLib {
 	catch(Exception e)
 	{
 		 GetReporting().FuncReport("Fail", "The element <b>- " + expectedText + "</b> is not displayed");
-		e.printStackTrace();
+		
 	}
    
 /*	} catch (IllegalArgumentException e) {
@@ -1631,12 +1636,12 @@ public class MobileAction2 extends CommonLib {
 	public static final int TYPE_YYYY_MM_DD_HOUR = 5;
 	public static final int TYPE_YYYY_MM_DD_RANGE = 6;
 	
-	public static final String PATTERN_ZH_YYYY_MM_DD = "\\d{4}年\\d{1,2}月\\d{1,2}日|待处理";
-	public static final String PATTERN_ZH_YYYY_MM_DD_WEEKDATE = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\(星期[一|二|三|四|五|六|日|天]\\)";
-	public static final String PATTERN_ZH_MM_YYYY = "\\d{4}年\\d{1,2}月";
-	public static final String PATTERN_ZH_YYYY_MM_DD_TODAY = "\\d{4}年\\d{1,2}月\\d{1,2}日 \\(今天\\)";
-	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}年\\d{1,2}月\\d{1,2}日 \\d{2}:\\d{2} (上午|下午)[A-Za-z\\s]*";
-	public static final String PATTERN_ZH_YYYY_MM_DD_RANGE = "\\d{4}年\\d{1,2}月\\d{1,2}日 - (\\d{4}年)*\\d{1,2}月\\d{1,2}日";
+	public static final String PATTERN_ZH_YYYY_MM_DD = "\\d{4}å¹´\\d{1,2}æœˆ\\d{1,2}æ—¥|å¾…å¤„ç�†";
+	public static final String PATTERN_ZH_YYYY_MM_DD_WEEKDATE = "\\d{4}å¹´\\s?\\d{1,2}æœˆ\\s?\\d{1,2}æ—¥ \\(æ˜ŸæœŸ[ä¸€|äºŒ|ä¸‰|å››|äº”|å…­|æ—¥|å¤©]\\)";
+	public static final String PATTERN_ZH_MM_YYYY = "\\d{4}å¹´\\d{1,2}æœˆ";
+	public static final String PATTERN_ZH_YYYY_MM_DD_TODAY = "\\d{4}å¹´\\d{1,2}æœˆ\\d{1,2}æ—¥ \\(ä»Šå¤©\\)";
+	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}å¹´\\d{1,2}æœˆ\\d{1,2}æ—¥ \\d{2}:\\d{2} (ä¸Šå�ˆ|ä¸‹å�ˆ)[A-Za-z\\s]*";
+	public static final String PATTERN_ZH_YYYY_MM_DD_RANGE = "\\d{4}å¹´\\d{1,2}æœˆ\\d{1,2}æ—¥ - (\\d{4}å¹´)*\\d{1,2}æœˆ\\d{1,2}æ—¥";
 	
 	public void verifyDateFormat(final String dateStr, final int type) {
 		final String locale =  super.LoadData("Value", super.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
@@ -1746,6 +1751,8 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
+	
+	
 	public boolean verifyTextEquality(String text1, String text2) {
 		if (text1.equalsIgnoreCase(text2)) {
 			try {
@@ -2440,9 +2447,9 @@ public class MobileAction2 extends CommonLib {
 	     *            element which has to be identified
 	     * 
 	     * @param expectedText
-	     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNÃƒâ€°ES"
+	     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNÃƒÆ’Ã¢â‚¬Â°ES"
 	     *            if language is English then "CONTACT INFORMATION "to be printed in report
-	     *            if language is French then "COORDONNÃƒâ€°ES" to be printed in report
+	     *            if language is French then "COORDONNÃƒÆ’Ã¢â‚¬Â°ES" to be printed in report
 	     * 
 	     * @return nothing
 	     * 
@@ -2643,5 +2650,52 @@ public class MobileAction2 extends CommonLib {
 	}
     
     
+	
+	/**
+	 * @author Ashraf 
+	 * This method will convert the string xpath to MobileElement. Then Swipe and click on it once found.
+	 * 
+	 * @param elementXpath = String xpath of element
+	 * @param elementName = Name of element to be printed in report
+	 * @param swipeCount = number of swipe to search for element.
+	 */
+	public boolean swipeAndSelect(String elementXpath, String elementName,int swipeCount) {
+		
+		boolean flag=true;
+		int count=0;
+		
+		while(flag&&count<swipeCount)
+		{
+			try{
+		MobileElement element = (MobileElement) ((AppiumDriver) CL.GetDriver())
+				.findElement(By.xpath(elementXpath));
+		if(element.isDisplayed()){
+			FuncClick(element, "Account Number");
+			flag=false;
+		}else{
+			FunctionSwipe("up", 1000, 200);
+			count++;
+		}
+			}catch(Exception e){
+				try {
+					FunctionSwipe("up", 1000, 200);
+				} catch (IOException e1) {
+					System.err.println("Failed to swipe");
+				}
+				count++;
+			}
+			
+			if(count==swipeCount){
+				stringToReport("Fail", elementName+" Not found after swiping "+swipeCount+" times.");
+			}
+			
+			
+			}
+		
+		return flag;
+	}
+	
+	
+	
 
 }
