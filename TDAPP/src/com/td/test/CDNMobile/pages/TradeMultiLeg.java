@@ -730,8 +730,8 @@ public class TradeMultiLeg extends _CommonPage{
 			{
 //				mobileAction.FuncHideKeyboard();
 				((AppiumDriver) CL.GetDriver()).hideKeyboard();
-			if(mobileAction.isObjExists(cancelButton,2))
-				mobileAction.FuncClick(cancelButton, "cancelButton");
+//			if(mobileAction.isObjExists(cancelButton,2))
+//				mobileAction.FuncClick(cancelButton, "cancelButton");
 			}
 			else if(mobileAction.isObjExists(iOSKybdOKButton))
 				mobileAction.FuncClick(iOSKybdOKButton, "iOSKybdOKButton");
@@ -747,9 +747,9 @@ public class TradeMultiLeg extends _CommonPage{
 		{
 			mobileAction.FuncSendKeys(objEle,sQty);
 /*			mobileAction.FuncClick(objEle, "Quantity");
-			((RemoteWebDriver) CL.GetDriver()).getKeyboard().sendKeys(sQty);
+			((RemoteWebDriver) CL.GetDriver()).getKeyboard().sendKeys(sQty);*/
 			//((RemoteWebDriver) CL.GetDriver()).getKeyboard().pressKey(sQty);
-			Thread.sleep(2000);*/
+			//Thread.sleep(2000);
 			handleKeyboard();
 
 			if(objEle.getText()==null || objEle.getText().length()<1)
@@ -776,8 +776,8 @@ public class TradeMultiLeg extends _CommonPage{
 		{
 			mobileAction.FuncSendKeys(objEle,sText);
 			handleKeyboard();
-			//if(objEle.getText()==null || objEle.getText().length()<1)
-			if(objEle.getText().length()<1)
+			if(objEle.getText()==null) //|| objEle.getText().length()<1)
+			//if(objEle.getText().length()<1)
 			{
 				mobileAction.FuncSendKeys(objEle,sText);	
 				handleKeyboard();
