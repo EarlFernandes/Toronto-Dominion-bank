@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
@@ -345,10 +346,17 @@ try {
 	private void fillInInteracETransferForm() {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-//				mobileAction.FuncClick(fromAccount, "From Account");
-//				mobileAction.FuncElementSwipeWhileNotFound(acntsList, "//../XCUIElementTypeTable[2]/XCUIElementTypeCell[2]", 1, "down", true);
-				mobileAction.FuncClick(recipient, "Recipient");
-				mobileAction.FuncElementSwipeWhileNotFound(acntsList, "//../XCUIElementTypeTable[2]/XCUIElementTypeCell[2]", 1, "down", true);
+				mobileAction.FuncClick(fromAccount, "From Account");
+				String from_accountNo = getTestdata("FromAccount");
+				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+                        .findElement(By.xpath(from_accountNo));
+				mobileAction.FunCSwipeandScroll(fromAccountval, true);
+				mobileAction.FuncClick(recipient, "recipient");
+				String to_accountNo = getTestdata("RecipientName");
+				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+                        .findElement(By.xpath(to_accountNo));
+				mobileAction.FunCSwipeandScroll(toAccountval, true);
+				
 				String ValueofAmount = getTestdata("Amount");
 				mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
 				mobileAction.FuncClickBackButton();
@@ -367,7 +375,7 @@ try {
 				mobileAction.FuncClick(transfer_Continue, "Continue");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmPageHeader") + "']", "Confirm title");
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (Exception e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {

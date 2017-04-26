@@ -680,30 +680,30 @@ public class Investing extends _CommonPage {
 					
 					mobileAction.verifyElementIsDisplayed(accountDefinition.get(i), "Account Definition "+(i+1));
 				}
-				for(int i=0;i<8;i++){
-				mobileAction.FunctionSwipe("up", 200, 200);
+				for(int i=0;i<20;i++){
+					mobileAction.FunctionSwipe("up", 50, 200);
 				}
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/textView1' and @text='"
 								+ mobileAction.getAppString("str_Total") + "']",
 						"Total");
 				
-				mobileAction.verifyElementIsDisplayed(mutualFundOfferedBy, "Mutual Funds offered by:");
-				mobileAction.verifyElementIsDisplayed(tdInvestmentServices, "TD Investment Services Inc.");
-				mobileAction.verifyElementIsDisplayed(tdDirectInvestment, "TD Direct Investing & TD Wealth");
-				
-			
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='"
+								+ mobileAction.getAppString("str_td_mutual_funds_offered") + "']",
+						"Mutual Funds offered by:");
 			}
 		}
 
-		catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
+		 catch (NoSuchElementException | IOException e) {
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
 
 	}
 	
@@ -745,9 +745,12 @@ public class Investing extends _CommonPage {
 					mobileAction.FunctionSwipe("up", 1000, 200);
 					count++;
 				}
-					}catch(Exception e){
+					}catch(NoSuchElementException | InterruptedException e){
 						mobileAction.FunctionSwipe("up", 1000, 200);
 						count++;
+						if(count == 5) {
+							throw e;
+						}
 					}
 					}
 				
@@ -755,14 +758,15 @@ public class Investing extends _CommonPage {
 
 		}
 
-		catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
+		 catch (NoSuchElementException | InterruptedException | IOException e) {
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
 
 	}
 

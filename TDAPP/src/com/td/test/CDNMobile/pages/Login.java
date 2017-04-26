@@ -56,7 +56,7 @@ public class Login extends _CommonPage {
 	private MobileElement install;
 
 	// FIXME: Need accessibility id here for ios
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 
 	@iOSFindBy(xpath = "//*[@label='Progression interrompue']")
@@ -357,7 +357,7 @@ public class Login extends _CommonPage {
 			verifySystemError();
 			verifySecurityQuestion();
 			verifyTandC();
-			Thread.sleep(10000);
+			Thread.sleep(5000);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");

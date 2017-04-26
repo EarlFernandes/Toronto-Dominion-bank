@@ -182,9 +182,7 @@ public class MenuPage extends _CommonPage {
 
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS xpath expression required  //FIXED::not required
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				home_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("logoutSuccessQuickTaskHome") + "']", "Home");
 			}
 			mobileAction.FuncClick(home_button, "Home");
@@ -268,10 +266,10 @@ public class MenuPage extends _CommonPage {
 			MobileElement investingElement = isLanguageFrench ? investingFRE : investing;
 			final String locale = CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				investing = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + StringLookup.lookupString(locale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing menu element");
+				investing = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + StringLookup.lookupString(locale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing menu element");
 			}
 			
-			mobileAction.FuncClick(investingElement, "Investing");
+			mobileAction.FuncClick(investing, "Investing");
 			mobileAction.waitForElementToVanish(progressBar);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");

@@ -124,7 +124,7 @@ public class HomeScreen extends _CommonPage {
 	private MobileElement privacy;
 
 	// FIXME: Replace with proper accessiblity id when May adds it
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton")
+	@iOSFindBy(xpath = "//*[@label='背面']")
 	private MobileElement back_button;
 
 	@iOSFindBy(xpath = "//*[@label='Locations']")
@@ -360,8 +360,8 @@ public class HomeScreen extends _CommonPage {
 			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				
-				if(mobileAction.verifyElementPresent(back_button)){
-				mobileAction.FuncClick(back_button, "Back button");
+				if (mobileAction.verifyElementPresent(back_button)){
+					mobileAction.FuncClick(back_button, "Back button");
 				}
 				mobileAction.FuncClick(menu, "Menu");
 			} else {
@@ -369,12 +369,8 @@ public class HomeScreen extends _CommonPage {
 			}
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			try {
-				mobileAction.FuncClick(menu, "Menu");
-			} catch (NoSuchElementException | InterruptedException | IOException e2) {
-				System.err.println("TestCase has failed.");
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
 	}

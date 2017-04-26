@@ -284,8 +284,14 @@ public class InvestingAccountSummary extends _CommonPage {
 					}
 				}
 			}
-		} catch (Exception e1) {
-
+		} 	catch (NoSuchElementException | InterruptedException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
 	
@@ -360,30 +366,29 @@ public class InvestingAccountSummary extends _CommonPage {
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/gainLossDesc' or @index='6']", "Gain/Loss");
-				/*mobileAction.verifyElementIsDisplayed(unrealized, "Unrealized");
-				mobileAction.verifyElementIsDisplayed(totalValue, "Total Value");
-				mobileAction.verifyElementIsDisplayed(timeStamp, "Time Stamp");*/
-				
-				mobileAction.verifyTextEquality(unrealized.getText(), mobileAction.getAppString("str_unrealized"));
-				mobileAction.verifyTextEquality(totalValue.getText(), mobileAction.getAppString("str_TotalValue"));
 			
-				if(timeStamp.getText().contains(mobileAction.getAppString("str_Insufficient_Information"))){
-					if(timeStamp.getText().contains(mobileAction.getAppString("str_Cash_Balance_Footnote"))){
-						if(timeStamp.getText().contains(mobileAction.getAppString("common_str_Time_Stamp_substition"))){
-							mobileAction.stringToReport("Pass", "Footer text is verified");
-						}
-					}
-				}
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_unrealized") + "']", "Unrealized");
+
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_TotalValue") + "']", "Total Val");
+
+				
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[contains(@text, '" + mobileAction.getAppString("str_Cash_Balance_Footnote") + "')]", "Cash balance footnote");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[contains(@text, '" + mobileAction.getAppString("common_str_Time_Stamp_substition").replace(" %1$s", "") + "')]", "time stamp substituion");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[contains(@text, '" + mobileAction.getAppString("str_Insufficient_Information") + "')]", "Insufficient");
 
 			}
-		}
-
-		catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-		} catch (Exception e) {
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
@@ -466,14 +471,15 @@ public class InvestingAccountSummary extends _CommonPage {
 			}
 		}
 
-		catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
+		 catch (NoSuchElementException | InterruptedException | IOException e) {
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
 
 	}
 
@@ -525,14 +531,15 @@ public class InvestingAccountSummary extends _CommonPage {
 
 		}
 
-		catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
+		 catch (NoSuchElementException | InterruptedException | IOException e) {
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
 
 	}
 	
@@ -604,15 +611,15 @@ public class InvestingAccountSummary extends _CommonPage {
 
 			}
 		}
-
-		catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
+		 catch (NoSuchElementException | InterruptedException | IOException e) {
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
 
 	}
 
@@ -682,15 +689,15 @@ public class InvestingAccountSummary extends _CommonPage {
 
 			}
 		}
-
-		catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
+		 catch (NoSuchElementException | InterruptedException | IOException e) {
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
 
 	}
 
@@ -740,14 +747,15 @@ public class InvestingAccountSummary extends _CommonPage {
 			}
 		}
 
-		catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
+		 catch (NoSuchElementException | InterruptedException | IOException e) {
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
 
 	}
 
@@ -813,16 +821,15 @@ public class InvestingAccountSummary extends _CommonPage {
 
 			}
 		}
-
-		catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-
+		 catch (NoSuchElementException | InterruptedException | IOException e) {
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
 	}
 	
 	
@@ -874,14 +881,13 @@ public class InvestingAccountSummary extends _CommonPage {
 				mobileAction.verifyTextEquality(priceCHG.getText(), mobileAction.getAppString("str_PriceChange"));
 				mobileAction.verifyTextEquality(gainLossUnrealized.getText(), mobileAction.getAppString("str_GainLoss") + "\n" + mobileAction.getAppString("str_unrealized"));
 			}
-		}
-
-		catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-		} catch (Exception e) {
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
@@ -977,14 +983,13 @@ public class InvestingAccountSummary extends _CommonPage {
 				mobileAction.verifyTextEquality(footerStatus.getText().replace("1.", "").trim(), mobileAction.getAppString("str_Amt_Conv_To_Act_Curr_Footnote"));
 				
 			}
-		}
-
-		catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-		} catch (Exception e) {
+		}catch (NoSuchElementException | InterruptedException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
@@ -1112,14 +1117,13 @@ public class InvestingAccountSummary extends _CommonPage {
 			
 				
 			}
-		}
-
-		catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-		} catch (Exception e) {
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
@@ -1217,14 +1221,13 @@ public class InvestingAccountSummary extends _CommonPage {
 				mobileAction.stringToReport("Fail", "No Orders are Present");
 			}
 			
-		}
-
-		catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-		} catch (Exception e) {
+		}catch (NoSuchElementException | InterruptedException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
@@ -1309,14 +1312,15 @@ public class InvestingAccountSummary extends _CommonPage {
 			
 		}
 
-		catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
+		 catch (NoSuchElementException | InterruptedException | IOException e) {
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
 
 	}
 	

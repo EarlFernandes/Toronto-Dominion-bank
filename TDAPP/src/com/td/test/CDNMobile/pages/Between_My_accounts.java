@@ -248,10 +248,10 @@ public class Between_My_accounts extends _CommonPage {
 
 	String Finalpart = Firstpart + i + Secondpart;
 
-	String select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
+	String select_from_acnt = "//android.widget.TextView[@text='"
 			+ from_account + "']";
 
-	String select_to_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
+	String select_to_acnt = "//android.widget.TextView[@text='"
 			+ to_account + "']";
 
 	String verify_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
@@ -303,10 +303,14 @@ public class Between_My_accounts extends _CommonPage {
 
 				mobileAction.FuncClick(txtFrom_acnt, "From Account");
 				String from_accountNo = getTestdata("FromAccount");
-				mobileAction.FuncSelectElementInTable(from_accounts_table, Firstpart, Secondpart, from_accountNo);
+				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+                        .findElement(By.xpath(from_accountNo));
+				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 				mobileAction.FuncClick(txtTo_acnt, "To Account");
 				String to_accountNo = getTestdata("ToAccount");
-				mobileAction.FuncSelectElementInTable(from_accounts_table, Firstpart, Secondpart, to_accountNo);
+				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+                        .findElement(By.xpath(to_accountNo));
+				mobileAction.FunCSwipeandScroll(toAccountval, true);
 			} else {
 				mobileAction.FuncClick(txtFrom_acnt, "From Account");
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_from_acnt, 10, "down", true);
@@ -1597,7 +1601,19 @@ public class Between_My_accounts extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				final MobileElement fromAccount = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='BETWEENMYACCOUNTS_FROM']", "from account");
+				// FIXME: Uncomment when may adds
+				//final MobileElement fromAccountHint =  mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='BETWEENMYACCOUNTS_FROMHINT']", "from account hint");
+				final MobileElement toAccount =  mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='BETWEENMYACCOUNTS_TO']", "to account");
+				//final MobileElement toAccountHint =  mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='BETWEENMYACCOUNTS_TOHINT']", "to account hint");
+				final MobileElement amount =  mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='BETWEENMYACCOUNTS_AMOUNT']", "amount");
+				final MobileElement continueBtn =  mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='BETWEENMYACCOUNTS_CONTINUE']", "continue");
+				mobileAction.verifyTextEquality(fromAccount.getText(), mobileAction.getAppString("transfersBetweenMyAccountsConfirmFromAccount"));
+				//mobileAction.verifyTextEquality(fromAccountHint.getText(), mobileAction.getAppString("from_account_hint"));
+				mobileAction.verifyTextEquality(toAccount.getText(), mobileAction.getAppString("transfersBetweenMyAccountsConfirmToAccount"));
+				//mobileAction.verifyTextEquality(toAccountHint.getText(), mobileAction.getAppString("str_transfers_select_to_account"));
+				mobileAction.verifyTextEquality(amount.getText(), mobileAction.getAppString("transfersBetweenMyAccountsFieldTitleAmount"));
+				mobileAction.verifyTextEquality(continueBtn.getText(), mobileAction.getAppString("transfersBetweenMyAccountsButtonContinue"));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderBetweenMyAccounts") + "']", "Between My accounts title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/fromLabel' and @text='" + mobileAction.getAppString("from") + "']", "From");

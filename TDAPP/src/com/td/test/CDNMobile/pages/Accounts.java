@@ -577,8 +577,8 @@ public class Accounts extends _CommonPage {
 		int count=0;
 		
 		String from_account = getTestdata("FromAccount");
-		String verify_Acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='" + from_account
-				+ "']";
+		String verify_Acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text, '" + from_account
+				+ "')]";
 
 		String account_value = "//*[contains(@label,'" + from_account + "')]";
 		
@@ -661,7 +661,6 @@ public class Accounts extends _CommonPage {
 	 */
 	public void verifyOpenNewAccountTextElements() {
 		Decorator();
-		//Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.verifyTextEquality(investingHeader.getText(), mobileAction.getAppString("str_Investing"));
