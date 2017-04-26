@@ -132,6 +132,18 @@ public class Accounts extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
 	private MobileElement currencyCheck;
+	
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
+	private MobileElement investingHeader;
+	
+	@iOSFindBy(accessibility = "CROSSSELL_VIEWTITLE")
+	private MobileElement openADirectInvestingAccount;
+	
+	@iOSFindBy(accessibility = "CROSSSELL_GOTO")
+	private MobileElement goToWebBroker;
+	
+	@iOSFindBy(accessibility = "CROSSSELL_CALL")
+	private MobileElement callNumber;
 
 	
 
@@ -649,10 +661,13 @@ public class Accounts extends _CommonPage {
 	 */
 	public void verifyOpenNewAccountTextElements() {
 		Decorator();
-		Decorator();
+		//Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyTextEquality(investingHeader.getText(), mobileAction.getAppString("str_Investing"));
+				mobileAction.verifyTextEquality(openADirectInvestingAccount.getText(), mobileAction.getAppString("investing_open_account"));
+				mobileAction.verifyTextEquality(goToWebBroker.getText(), mobileAction.getAppString("str_go_to_webbroker"));
+				mobileAction.verifyTextContains(callNumber, mobileAction.getAppString("str_webbroker_phone_cross_sell"));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("str_Banking") + "']", "Banking title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_banking_cross_sell_message") + "']", "Open a bank account");
