@@ -19,9 +19,9 @@ public class Preferences extends _CommonPage {
 
 	private static Preferences Preferences;
 
-	String preferences = "Preferences";
+	String preferences = "Profile & Settings";
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Preferences']")
+	@iOSFindBy(xpath = "//*[@label='Profile & Settings']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Preferences']")
 	private MobileElement preferences_Header;
 
@@ -29,9 +29,13 @@ public class Preferences extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='What's New']")
 	private MobileElement what_New_Btn;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Keep your info safe']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Update Security Questions']")
+	@iOSFindBy(xpath = "//*[@label='Security Questions']")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_security']/android.widget.TextView")
 	private MobileElement secret_Question_Button;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_security']/android.widget.TextView")
+	private MobileElement first_secret_Question;
 
 	public synchronized static Preferences get() {
 		if (Preferences == null) {
@@ -77,6 +81,8 @@ public class Preferences extends _CommonPage {
 		try {
 			mobileAction.verifyElementIsDisplayed(preferences_Header, preferences);
 			mobileAction.FuncClick(secret_Question_Button, "Secret_Question_button");
+			mobileAction.FuncClick(first_secret_Question, "First Secret Question");
+			
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");

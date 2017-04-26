@@ -136,7 +136,8 @@ public class Confirm_Payee extends _CommonPage{
 			mobileAction.verifyElementIsDisplayed(confirm_Header, "Confirm");
 			mobileAction.FuncClick(pay_Bill, "Pay Bill");
 			mobileAction.waitForElementToVanish(progressBar);
-			mobileAction.verifyElementIsDisplayed(errorMsg, "Error Message");
+			String err = mobileAction.getValue(errorMsg);
+			mobileAction.verifyElementIsDisplayed(errorMsg, err);
 				
 			
 		} catch (NoSuchElementException | InterruptedException | IOException e) {

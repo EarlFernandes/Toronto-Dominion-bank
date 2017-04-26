@@ -82,6 +82,10 @@ public class MoodSelectorScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/description']")
 	private MobileElement error_screen_description;	
 	
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/checkbox_form_container']")
+	private MobileElement check_box_container;	
+	
 	//and (@text='Rate this app' or @text='Notez cette application')
 	public synchronized static MoodSelectorScreen get() {
 		if (MoodSelector == null) {
@@ -410,6 +414,19 @@ public class MoodSelectorScreen extends _CommonPage {
 //		}
 	
 		try {
+			List<MobileElement> checkboxList =null;
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				checkboxList = check_box_container.findElements(By.xpath("//android.widget.CheckBox"));
+				for ( int i=0; i< checkboxList.size(); i++){
+					mobileAction.FuncClick(checkboxList.get(i), "Check box " +(i+1));
+				}
+			}else{
+				for ( int i=1; i <=3; i++){
+					MobileElement checkbox= check_box_container.findElement(By.xpath("//XCUIElementTypeCell[" +i +"]/XCUIElementTypeStaticText"));
+					mobileAction.FuncClick(checkbox, "Check box " +(i+1));
+				}
+				
+			}
 			String elementText= mobileAction.getValue(send_feedback_now);
 			System.out.println("ElementText:" +  elementText);
 			mobileAction.FuncClick(send_feedback_now, elementText);
