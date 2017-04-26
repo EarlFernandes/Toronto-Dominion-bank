@@ -124,7 +124,7 @@ public class HomeScreen extends _CommonPage {
 	private MobileElement privacy;
 
 	// FIXME: Replace with proper accessiblity id when May adds it
-	@iOSFindBy(xpath = "//*[@label='背面']")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton")
 	private MobileElement back_button;
 
 	@iOSFindBy(xpath = "//*[@label='Locations']")
@@ -330,7 +330,7 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Decorator();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS xpath expression required
+				newAccount = mobileAction.verifyElementUsingXPath("//*[@name='" + mobileAction.getAppString("investing_open_account") + "']", "Opne a bank account");
 			} else {
 				newAccount = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("str_banking_cross_sell_message") + "']", "Opne a bank account");
 			}
@@ -359,7 +359,10 @@ public class HomeScreen extends _CommonPage {
 			Decorator();
 			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				
+				if(mobileAction.verifyElementPresent(back_button)){
 				mobileAction.FuncClick(back_button, "Back button");
+				}
 				mobileAction.FuncClick(menu, "Menu");
 			} else {
 				mobileAction.FuncClick(menu, "Menu");

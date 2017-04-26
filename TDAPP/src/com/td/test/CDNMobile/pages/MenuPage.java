@@ -11,7 +11,6 @@ import com.td.MainScreen;
 import com.td.StringLookup;
 import com.td._CommonPage;
 
-import cucumber.deps.difflib.myers.MyersDiff;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -105,6 +104,9 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText']")
 	private List <MobileElement> menuOpts;
 	
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_ACCOUNTS")
+	private MobileElement menuAccounts;
+	
 	public synchronized static MenuPage get() {
 		if (MenuPage == null) {
 			MenuPage = new MenuPage();
@@ -181,7 +183,7 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS xpath expression required
+				// TODO: iOS xpath expression required  //FIXED::not required
 			} else {
 				home_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("logoutSuccessQuickTaskHome") + "']", "Home");
 			}
