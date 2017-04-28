@@ -308,7 +308,9 @@ public class LoginPNP extends _CommonPage {
 					mobileAction.FuncHideKeyboard();
 				}
 				mobileAction.FuncClick(securityLogin, "Login");
+				Thread.sleep(20000);
 				mobileAction.waitForElementToVanish(progressBar);
+				
 			} else {
 
 			}

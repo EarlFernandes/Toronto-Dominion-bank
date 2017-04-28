@@ -722,7 +722,7 @@ public class MobileAction2 extends CommonLib {
 						count++;
 					}
 				} catch (Exception e) {
-					System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+					System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 
 					((MobileDriver) GetDriver()).swipe(startx / 2, starty - starty / 4, startx / 2, starty / 4, 600);
 					count++;
@@ -1687,7 +1687,7 @@ public class MobileAction2 extends CommonLib {
 		try {
 			int count = 1;
 			boolean isElementDisplayed = elementToVanish.isDisplayed();
-			while (count <= 10) {
+			while (count <= 30) {
 				isElementDisplayed = elementToVanish.isDisplayed();
 				if (isElementDisplayed) {
 					try {

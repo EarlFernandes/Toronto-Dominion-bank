@@ -530,10 +530,12 @@ public class Between_My_accounts extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				String accountNo = getTestdata("FromAccount");
+				System.out.println("From Account:"+ accountNo);
 				mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, accountNo);
 
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
 				String to_accountNo = getTestdata("ToAccount");
+				System.out.println("ToAccount:"+ to_accountNo);
 				mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, to_accountNo);
 				mobileAction.FuncClick(usd_Button, "USD");
 				mobileAction.FuncClick(txtAmount, "Amount");
@@ -542,12 +544,13 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(done, "Done");
 				mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 				mobileAction.waitForElementToVanish(txtProgressBar);
-				mobileAction.FuncWaitForElement(ok_Button, 120, "Ok");
-				mobileAction.FuncClick(ok_Button, "OK");
+//				mobileAction.FuncWaitForElement(ok_Button, 120, "Ok");
+//				mobileAction.FuncClick(ok_Button, "OK");
 				mobileAction.FuncClick(btnFinish_Transfer, "Finish");
 				mobileAction.waitForElementToVanish(txtProgressBar);
 
 				String conf_val = mobileAction.getText(confirmation_Val);
+				System.out.println("Confirm info:" + conf_val);
 				String[] confmVal = conf_val.split(":");
 				mobileAction.FuncClick(btnMenu, "Menu");
 				mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
@@ -555,6 +558,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncSelectElementInTable(accountsPage_Table, Firstpart, Secondpart, accountNo);
 				mobileAction.verifyElementTextContains(activityConfText, confmVal[1].trim());
 				String amt_sent = lastTransacAmt.getAttribute("label");
+				System.out.println("amt_sent:" + amt_sent);
 				if (mobileAction.verifySymbol(amt_sent, "-")) {
 					String amount[] = amt_sent.split("-");
 					mobileAction.verifyTextEquality(amount[1], ValueofAmount);

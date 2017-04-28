@@ -416,7 +416,8 @@ public class MoodSelectorScreen extends _CommonPage {
 		try {
 			List<MobileElement> checkboxList =null;
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				checkboxList = check_box_container.findElements(By.xpath("//android.widget.CheckBox"));
+				//checkboxList = check_box_container.findElements(By.xpath("//android.widget.CheckBox"));
+				checkboxList =((AppiumDriver) (CL.GetDriver())).findElements(By.xpath("//android.widget.LinearLayout[@resource-id='com.td:id/checkbox_form_container']//android.widget.CheckBox"));
 				for ( int i=0; i< checkboxList.size(); i++){
 					mobileAction.FuncClick(checkboxList.get(i), "Check box " +(i+1));
 				}

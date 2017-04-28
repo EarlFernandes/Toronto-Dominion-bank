@@ -28,8 +28,8 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Accounts' or @text='Mes comptes']")
 	private MobileElement txtMy_Account_Header;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Investing']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Investing']")
+	@iOSFindBy(xpath = "//*[@label='INVESTING' or @label='Investing']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Investing' or @text='INVESTING']")
 	private MobileElement txtAccount_Investing_header;
 
 
@@ -241,9 +241,11 @@ public class Accounts extends _CommonPage {
 		try {
 
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, "Accounts");
-			mobileAction.FunCnewSwipe(txtCredit, false, 2);
+			mobileAction.FunCnewSwipe(txtCredit, false, 5);
 			Thread.sleep(5000);
 			String multiCurencyCheck = currencyCheck.getText();
+			System.out.println("multiCurencyCheck:" + multiCurencyCheck);
+			System.out.println("us_Account_Value:" + us_Account_Value);
 			if (us_Account_Value.contains(multiCurencyCheck)) {
 				CL.GetReporting().FuncReport("Pass", "The test is verified");
 			}
@@ -398,6 +400,7 @@ public class Accounts extends _CommonPage {
 		try {
 			//mobileAction.FunCnewSwipe(txtAccount_Investing_header, false, 4);
 			
+			//mobileAction.FunCSwipeandScroll(txtAccount_Investing_header, false);
 			mobileAction.verifyElementIsDisplayed(txtAccount_Investing_header, t_Investing);
 
 		} catch (NoSuchElementException | IOException e) {
