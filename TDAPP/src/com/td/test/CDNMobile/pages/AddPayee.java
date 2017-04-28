@@ -226,7 +226,7 @@ public class AddPayee extends _CommonPage {
 						!mobileAction.verifyTextEquality(payeeAccount.getText().trim(), mobileAction.getAppString("str_payee_account")) || 
 						!mobileAction.verifyTextEquality(warningMsg.getText().trim(), mobileAction.getAppString("add_cdn_payee_dtl_copy")) ||
 						!mobileAction.verifyTextEquality(description.getText().trim(), mobileAction.getAppString("str_Description_cml_case")) ||
-						!mobileAction.verifyTextEquality(continueButton.getText().trim(), mobileAction.getAppString("str_continue"))){
+						!mobileAction.verifyTextEquality(continueButton.getText().trim(), mobileAction.getAppString("btn_continue"))){
 					System.err.println("TestCase has failed.");
 					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				}

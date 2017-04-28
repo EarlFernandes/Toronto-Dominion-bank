@@ -394,7 +394,7 @@ try {
 			} else {
 				fillInInteracETransferForm();
 				sendInteracETransfer();
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/thank_you' and @text='" + mobileAction.getAppString("ThankYou") + "']", "Thank you!");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/thank_you' and @text='" + mobileAction.getAppString("receipt_thankyou") + "']", "Thank you!");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/message' and @text='" + mobileAction.getAppString("eTransferReceiptTransferSent").replaceAll("\\<.*?>","") + "']", "Interac e-transfer sent");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/confirmation' and @text='" + mobileAction.getAppString("receipt_confirmation") + "']", "Confirmation");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/sender' and @text='" + mobileAction.getAppString("eTransfersReceiveAnswerSender") + "']", "Sender");
@@ -612,7 +612,7 @@ try {
 				final String xPathFooter = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_message']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 3, "up");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferMessageLabel") + "']", "Message");
-				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@text='" + mobileAction.getAppString("str_optional") + "']", "Optional");
+				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@text='" + mobileAction.getAppString("optional") + "']", "Optional");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/button_footer' and @text='" + mobileAction.getAppString("btn_continue") + "']", "Continue");
 			}
 		} catch (NoSuchElementException | IOException e) {
@@ -675,7 +675,7 @@ try {
 				// Get to cancel e-transfer screen, choose first interac e-transfer to cancel
 				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + getTestdata("RecipientName") + "']", ""), "Recipient to cancel");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("eTransferViewCancelCancelButton").replaceAll("\\<.*?>","") + "']", "Cancel Interac e-transfer title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("eTransferViewCancelCancelButton").replaceAll("\\<.*?>","").replace("&lt;i>", "").replace("&lt;/i>", "") + "']", "Cancel Interac e-transfer title");
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {

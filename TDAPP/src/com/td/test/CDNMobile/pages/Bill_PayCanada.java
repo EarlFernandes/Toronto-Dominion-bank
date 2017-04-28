@@ -31,14 +31,14 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber']")
 	private MobileElement frm_acnt_post;
 
-	@iOSFindBy(xpath = "//*[@label='Payee, Select Payee']")
+	@iOSFindBy(accessibility = "PAYBILL_VIEW_PAYEE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
 	private MobileElement to_account_post;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee']")
 	private MobileElement to_acnt_post;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'From Account, Select from account')]")
+	@iOSFindBy(accessibility = "PAYBILL_VIEW_FROM")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccount']")
 	private MobileElement from_account;
 
@@ -93,7 +93,7 @@ public class Bill_PayCanada extends _CommonPage {
 	// private MobileElement amount;
 	// String t_amount = "$0.00";
 
-	@iOSFindBy(xpath = "//*[@label='Continue']")
+	@iOSFindBy(accessibility = "PAYBILL_VIEW_CONTINUE")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue']")
 	private MobileElement continue_pay;
 
@@ -312,7 +312,27 @@ public class Bill_PayCanada extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				payCanadianBillToConfirmation();
+				final MobileElement header  = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='TDVIEW_TITLE']", "confirm header");
+				// FIXME: Add this when may adds it
+				//final MobileElement warningMsg = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='DONTKNOW']", "warning note");
+				final MobileElement fromAccount = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='PAYBILL_CONFIRMVIEW_FROM']", "from account");
+				final MobileElement payeeTo =  mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='PAYBILL_CONFIRMVIEW_TO']", "to payee");
+				final MobileElement amount =  mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='PAYBILL_CONFIRMVIEW_AMOUNT']", "amount");
+				final MobileElement date = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='PAYBILL_CONFIRMVIEW_DATE']", "date");
+				final MobileElement dateVal = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='-Date']", "date val");
+				final MobileElement cancelBtn = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='PAYBILL_CONFIRMVIEW_CANCEL']", "cancel");
+				final MobileElement payButton = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='PAYBILL_CONFIRMVIEW_CONTINUE']", "pay bill");
+
+				mobileAction.verifyTextEquality(header.getText(), mobileAction.getAppString("confirm_title"));
+				//mobileAction.verifyTextEquality(warningMsg.getText(), mobileAction.getAppString("payBillConfirmCopyTop"));
+				mobileAction.verifyTextEquality(fromAccount.getText(), mobileAction.getAppString("payBillReceiptFieldHeaderFromAccount"));
+				mobileAction.verifyTextEquality(payeeTo.getText(), mobileAction.getAppString("payBillDropdownHeaderPayee"));
+				mobileAction.verifyTextEquality(amount.getText(), mobileAction.getAppString("payBillReceiptFieldHeaderAmount"));
+				mobileAction.verifyTextEquality(date.getText(), mobileAction.getAppString("payBillReceiptFieldHeaderDate"));
+				mobileAction.verifyTextEquality(cancelBtn.getText(), mobileAction.getAppString("btn_cancel"));
+				mobileAction.verifyTextEquality(payButton.getText(), mobileAction.getAppString("payBillConfirmButtonPayBill"));				
+				mobileAction.verifyDateFormat(dateVal.getText(), MobileAction2.TYPE_YYYY_MM_DD);
 			} else {
 				payCanadianBillToConfirmation();
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("review_details_title") + "']", "Confirm title");
@@ -338,7 +358,19 @@ public class Bill_PayCanada extends _CommonPage {
 	private void payCanadianBillToConfirmation() {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.FuncClick(from_account, "From Account");
+				String from_accountNo = "//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("FromAccount") + "')]";
+				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+                        .findElement(By.xpath(from_accountNo));
+				mobileAction.FunCSwipeandScroll(fromAccountval, true);
+				mobileAction.FuncClick(to_account_post, "To Payee");
+				String to_accountNo = "//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("Payee") + "')]";
+				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+                        .findElement(By.xpath(to_accountNo));
+				mobileAction.FunCSwipeandScroll(toAccountval, true);
+				mobileAction.FuncClick(amount, "Amount button clicked");
+				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
+				mobileAction.FuncClick(continue_pay, "Continue_pay");
 			} else {
 				// Seems like selector for from account/payee do not work here
 				// We just need to get to confirmation page, so select default fields
@@ -352,7 +384,7 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (Exception e) {
 				try {
 					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
 				} catch (IOException ex) {

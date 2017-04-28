@@ -302,12 +302,12 @@ public class Between_My_accounts extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.FuncClick(txtFrom_acnt, "From Account");
-				String from_accountNo = getTestdata("FromAccount");
+				String from_accountNo = "//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("FromAccount") + "')]";
 				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
                         .findElement(By.xpath(from_accountNo));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 				mobileAction.FuncClick(txtTo_acnt, "To Account");
-				String to_accountNo = getTestdata("ToAccount");
+				String to_accountNo = "//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("ToAccount") + "')]";
 				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
                         .findElement(By.xpath(to_accountNo));
 				mobileAction.FunCSwipeandScroll(toAccountval, true);
@@ -1613,7 +1613,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.verifyTextEquality(toAccount.getText(), mobileAction.getAppString("transfersBetweenMyAccountsConfirmToAccount"));
 				//mobileAction.verifyTextEquality(toAccountHint.getText(), mobileAction.getAppString("str_transfers_select_to_account"));
 				mobileAction.verifyTextEquality(amount.getText(), mobileAction.getAppString("transfersBetweenMyAccountsFieldTitleAmount"));
-				mobileAction.verifyTextEquality(continueBtn.getText(), mobileAction.getAppString("transfersBetweenMyAccountsButtonContinue"));
+				mobileAction.verifyTextEquality(continueBtn.getText(), mobileAction.getAppString("btn_continue"));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderBetweenMyAccounts") + "']", "Between My accounts title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/fromLabel' and @text='" + mobileAction.getAppString("from") + "']", "From");

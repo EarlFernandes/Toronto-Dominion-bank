@@ -80,7 +80,7 @@ public class InvestingAccountSummary extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/last_statement_balance_header']")
 	private MobileElement statementBalance;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/last_statement_balance_title']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/last_statement_balance_title' or @resource-id='com.td:id/statement_balance_title']")
 	private MobileElement statementBalanceDateRange;
 	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/minimum_payment_header']")
@@ -802,7 +802,7 @@ public class InvestingAccountSummary extends _CommonPage {
 
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='"
-								+ mobileAction.getAppString("str_Statement_Balance") + "']",
+								+ mobileAction.getAppString("rtb_last_statement_balance") + "']",
 						"Statement Balance");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='"

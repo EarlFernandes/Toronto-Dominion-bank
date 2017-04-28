@@ -119,7 +119,7 @@ public class MenuPage extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
-				contactUs = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("contact_str") + "']", "Contact Us");
+				contactUs = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("contact_str") + "']", "Contact Us");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {

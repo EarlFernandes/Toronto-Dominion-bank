@@ -63,14 +63,12 @@ public class MobileDeposit extends _CommonPage {
 	private MobileElement mobile_deposit_header;
 	
 	@iOSFindBy(accessibility = "DEPOSITVIEW_DEPOSIT")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/MobileDeposit_DepositCheque_Header_TextView']")
 	private MobileElement dpstCheque_btn;
-
+	
 	@iOSFindBy(accessibility = "DEPOSITVIEW_DEPOSIT_DES")
 	private MobileElement dpstCheque_btn_desc;
 	
 	@iOSFindBy(accessibility = "DEPOSITVIEW_HISTORY")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/MobileDeposit_DepositReceipts_Header_TextView']")
 	private MobileElement chequeHistoryButton;
 
 	@iOSFindBy(accessibility = "DEPOSITVIEW_HISTORY_DES")
@@ -128,6 +126,38 @@ public class MobileDeposit extends _CommonPage {
 
 	}
 
+
+	private void initElementDepositChequeButton() {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				dpstCheque_btn = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDeposit_DepositCheque_Header") + "']", "Deposit Cheque");
+			} 
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+	private void initElementHistoryChequeButton() {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				chequeHistoryButton = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("ActionBar_MobileDepositReceipt") + "']", "Mobile Deposit History");			} 
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
 	/**
 	 * This method is used for Verify eligibility declined error message is
 	 * displayed when customers Access Card type is not 000, 001, 032. 033 or
@@ -196,6 +226,7 @@ public class MobileDeposit extends _CommonPage {
 	public void chequeDepositHistory()  {
 		Decorator();
 		try {
+			initElementHistoryChequeButton();
 			mobileAction.FuncClick(chequeHistoryButton, "Cheque History");
 			mobileAction.waitForElementToVanish(progressBar);
 		}
@@ -221,6 +252,7 @@ public class MobileDeposit extends _CommonPage {
 	
 		Decorator();
 		try {
+			initElementDepositChequeButton();
 			mobileAction.FuncClick(dpstCheque_btn, "DepositCheque");
 			mobileAction.waitForElementToVanish(progressBar);
 		}

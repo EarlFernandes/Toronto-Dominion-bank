@@ -63,10 +63,11 @@ public class ManageRecipients extends _CommonPage {
     @AndroidFindBy(xpath = "//android.view.View[@content-desc='Success Recipient details have been saved.']")
     private MobileElement recipient_changes;
 
+    @iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[2]")
     @AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
     private MobileElement addRecipient;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progress_bar;
 
@@ -496,44 +497,50 @@ public class ManageRecipients extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("add_rcp_title") + "']", "Add Recipients title");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("add_rcp_title") + "']", "Add Recipients title");
-				// Switching to webview
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement addRecipientFromContact = mobileAction.verifyWebElementUsingXPath("//div[@class='add-recipient']/div[@class='heading ng-binding']", "Add Recipient");
-				final WebElement name = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[1]", "Name");
-				mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_rcp_name_copy").replaceAll("\"", "") + "\"]", "Name sub");
-				final WebElement email = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[2]", "Email");
-				mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_rcp_email_hint").replaceAll("\"", "") + "\"]", "Email sub");
-				final WebElement note = mobileAction.verifyWebElementUsingXPath("(//span[@class='ng-binding'])[1]", "Note");
-				final WebElement emailLang = mobileAction.verifyWebElementUsingXPath("(//label[@class=\"drop-down-label ng-binding\"])[2]", "Email lang");
-				final WebElement securityQ = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[3]", "Security Questions");
-				mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_enter_security_question").replaceAll("\"", "") + "\"]", "Create a security question");
-				final WebElement answer = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[4]", "Answer");
-				mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_enter_the_answer").replaceAll("\"", "") + "\"]", "Enter the answer");
-				final WebElement answerConfirm = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[5]", "Enter Answer");
-				mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_reenter_the_answer").replaceAll("\"", "") + "\"]", "ReEnter the answer");
-				final WebElement toCollectNote = mobileAction.verifyWebElementUsingXPath("(//text[@class='ng-binding'])[1]", "To collect note");
-				mobileAction.verifyWebElementUsingXPath("//a[@aria-label=\"" + mobileAction.getAppString("rcp_how_to_link").replaceAll("\"", "") + "\"]", "Create an effective message");
-				final WebElement review = mobileAction.verifyWebElementUsingXPath("//button[@aria-label=\"" + mobileAction.getAppString("btn_review_details") + "\"]", "Review");
-
-				if (!mobileAction.verifyTextEquality(addRecipientFromContact.getText(), mobileAction.getAppString("phonecontacts_heading")) ||
-						!mobileAction.verifyTextEquality(name.getText(), mobileAction.getAppString("str_rcp_name1")) || 
-						!mobileAction.verifyTextEquality(email.getText(), mobileAction.getAppString("str_rcp_email")) ||
-						!mobileAction.verifyTextEquality(note.getText(), mobileAction.getAppString("str_rcp_email_copy")) ||
-						!mobileAction.verifyTextEquality(emailLang.getText(), mobileAction.getAppString("str_rcp_language")) ||
-						!mobileAction.verifyTextEquality(securityQ.getText(), mobileAction.getAppString("str_security_question")) ||
-						!mobileAction.verifyTextEquality(answer.getText(), mobileAction.getAppString("str_security_answer")) ||
-						!mobileAction.verifyTextEquality(answerConfirm.getText(), mobileAction.getAppString("str_confirm_answer")) ||
-						!mobileAction.verifyTextEquality(toCollectNote.getText().replaceAll("\\<.*?>",""), mobileAction.getAppString("rcp_answer_copy").replaceAll("&lt;em>", "").replaceAll("&lt;/em>", "").replaceAll("&lt;i>", "").replaceAll("&lt;/i>", "")) || 
-						!mobileAction.verifyTextEquality(review.getText(), mobileAction.getAppString("btn_review_details"))) {
-					System.err.println("TestCase has failed.");
-					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				}
-				// Switch back to native to get proper screenshots
-				mobileAction.switchAppiumContext("NATIVE_APP");
 			}
+			
+			Set<String> contextNames = CL.GetAppiumDriver().getContextHandles();
+			for (String contextName : contextNames) {
+				System.out.println("DAVID>>>>" + contextNames); //prints out something like [NATIVE_APP, WEBVIEW_<APP_PKG_NAME>]
+			}
+			
+			// Switching to webview
+			mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			final WebElement addRecipientFromContact = mobileAction.verifyWebElementUsingXPath("//div[@class='add-recipient']/div[@class='heading ng-binding']", "Add Recipient");
+			final WebElement name = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[1]", "Name");
+			mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_rcp_name_copy").replaceAll("\"", "") + "\"]", "Name sub");
+			final WebElement email = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[2]", "Email");
+			mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_rcp_email_hint").replaceAll("\"", "") + "\"]", "Email sub");
+			final WebElement note = mobileAction.verifyWebElementUsingXPath("(//span[@class='ng-binding'])[1]", "Note");
+			final WebElement emailLang = mobileAction.verifyWebElementUsingXPath("(//label[@class=\"drop-down-label ng-binding\"])[2]", "Email lang");
+			final WebElement securityQ = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[3]", "Security Questions");
+			mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_enter_security_question").replaceAll("\"", "") + "\"]", "Create a security question");
+			final WebElement answer = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[4]", "Answer");
+			mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_enter_the_answer").replaceAll("\"", "") + "\"]", "Enter the answer");
+			final WebElement answerConfirm = mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[5]", "Enter Answer");
+			mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_reenter_the_answer").replaceAll("\"", "") + "\"]", "ReEnter the answer");
+			final WebElement toCollectNote = mobileAction.verifyWebElementUsingXPath("(//text[@class='ng-binding'])[1]", "To collect note");
+			mobileAction.verifyWebElementUsingXPath("//a[@aria-label=\"" + mobileAction.getAppString("rcp_how_to_link").replaceAll("\"", "") + "\"]", "Create an effective message");
+			final WebElement review = mobileAction.verifyWebElementUsingXPath("//button[@aria-label=\"" + mobileAction.getAppString("btn_review_details") + "\"]", "Review");
+
+			if (!mobileAction.verifyTextEquality(addRecipientFromContact.getText(), mobileAction.getAppString("phonecontacts_heading")) ||
+					!mobileAction.verifyTextEquality(name.getText(), mobileAction.getAppString("str_rcp_name1")) || 
+					!mobileAction.verifyTextEquality(email.getText(), mobileAction.getAppString("str_rcp_email")) ||
+					!mobileAction.verifyTextEquality(note.getText(), mobileAction.getAppString("str_rcp_email_copy")) ||
+					!mobileAction.verifyTextEquality(emailLang.getText(), mobileAction.getAppString("str_rcp_language")) ||
+					!mobileAction.verifyTextEquality(securityQ.getText(), mobileAction.getAppString("str_security_question")) ||
+					!mobileAction.verifyTextEquality(answer.getText(), mobileAction.getAppString("str_security_answer")) ||
+					!mobileAction.verifyTextEquality(answerConfirm.getText(), mobileAction.getAppString("str_confirm_answer")) ||
+					!mobileAction.verifyTextEquality(toCollectNote.getText().replaceAll("\\<.*?>",""), mobileAction.getAppString("rcp_answer_copy").replaceAll("&lt;em>", "").replaceAll("&lt;/em>", "").replaceAll("&lt;i>", "").replaceAll("&lt;/i>", "")) || 
+					!mobileAction.verifyTextEquality(review.getText(), mobileAction.getAppString("btn_review_details"))) {
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
+			// Switch back to native to get proper screenshots
+			mobileAction.switchAppiumContext("NATIVE_APP");
 		} catch (NoSuchElementException | IOException e) {
 			// Switch back to native to get proper screenshots
 			mobileAction.switchAppiumContext("NATIVE_APP");
