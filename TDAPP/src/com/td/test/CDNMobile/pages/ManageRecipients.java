@@ -43,7 +43,7 @@ public class ManageRecipients extends _CommonPage {
     @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Email')]/following-sibling::android.view.View/android.widget.EditText")
     private MobileElement recipientMailAddr;
 
-    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[2]//XCUIElementTypeButton[@label='Done']")
     @AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Done']")
     private MobileElement done;
 

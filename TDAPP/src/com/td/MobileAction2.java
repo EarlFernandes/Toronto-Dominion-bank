@@ -1702,7 +1702,7 @@ public class MobileAction2 extends CommonLib {
 				}
 			}
 		} catch (Exception e) {
-			System.out.print("Exception from Method " + this.getClass().toString());
+			System.out.println("Exception from Method " + this.getClass().toString());
 		}
 	}
 
@@ -1746,7 +1746,7 @@ public class MobileAction2 extends CommonLib {
 			FunCSwipeandScroll(elementVal, clickable);
 
 		} catch (Exception e) {
-			System.out.print("Exception from Method " + this.getClass().toString());
+			System.out.println("Exception from Method " + this.getClass().toString());
 		}
 	}
 

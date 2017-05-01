@@ -240,13 +240,13 @@ public class Login extends _CommonPage {
 					mobileAction.FuncClick(addUser, "AddUser");
 					flag = true;
 				} catch (NoSuchElementException | InterruptedException | IOException e) {
-					System.out.print("Exception from Method " + this.getClass().toString());
+					System.out.println("Exception for no select_accesscard for FRE ");
 				}
 			} else {
 				flag = false;
 			}
 		} catch (Exception e) {
-			System.out.println("Exception from Method select_accesscard");
+			System.out.println("Exception for no select_accesscard found for FRE");
 		}
 		return flag;
 	}
@@ -258,7 +258,7 @@ public class Login extends _CommonPage {
 				CL.GetReporting().FuncReport("Fail", "System exception occured during login");
 			}
 		} catch (Exception e) {
-			System.out.print("Exception from Method " + this.getClass().toString());
+			System.out.println("Exception for no System Error ");
 		}
 
 	}
@@ -297,7 +297,7 @@ public class Login extends _CommonPage {
 
 			}
 		} catch (Exception e) {
-			System.out.print("Exception from Method " + this.getClass().toString());
+			System.out.println("Exception for no T&C found ");
 		}
 	}
 

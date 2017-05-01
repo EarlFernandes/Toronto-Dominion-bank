@@ -1080,6 +1080,7 @@ public class Between_My_accounts extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.verifyElementIsDisplayed(btw_My_Accounts_Header, "betweenMyAccountsHeader");
 				mobileAction.FuncClick(txtFrom_Acnt, "from_Account");
+				System.out.println("From account:" + from_Account);
 				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(iosFromAccount));
 
@@ -1108,8 +1109,10 @@ public class Between_My_accounts extends _CommonPage {
 			perFormTransfer();
 			mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 			int timeout = Integer.valueOf(getTestdata("Timeout"));
+			System.out.println("Wait for " + timeout +"s until rate exchange expires");
 			mobileAction.FuncWaitForElement(ok_Button, timeout, "Ok");
 			mobileAction.FuncClick(ok_Button, "OK");
+			System.out.println("Wait for " + timeout +"s again until rate exchange expires");
 			mobileAction.FuncWaitForElement(ok_Button, timeout, "Ok");
 			mobileAction.FuncClick(ok_Button, "OK");
 			mobileAction.FuncClick(btnFinish_Transfer, "Finish");

@@ -90,8 +90,8 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement back_button;
 	
-
-@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/account_Desc']")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/account_Desc']")
 	private MobileElement account;
 
 
@@ -342,8 +342,20 @@ public class Accounts extends _CommonPage {
 
 		Decorator();
 		try {
-			//mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, Account_header);
-			mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 10, "down", true);
+			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, "Accounts");
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+
+				System.out.println("Verify account:" + from_Account);
+				//mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, from_AccountNo);
+				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
+				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(account_value));
+				mobileAction.FunCSwipeandScroll(fromAccountval, true);
+			}else{
+				mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 10, "down", true);
+			}
+						
 			mobileAction.FuncClick(txtActivity, "Activity");
 			mobileAction.verifyElementIsDisplayed(txtActivity, "Activity");
 			mobileAction.verifyElementIsDisplayed(account, "Account Number Displayed");
