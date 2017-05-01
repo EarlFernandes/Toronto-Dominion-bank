@@ -30,7 +30,7 @@ public class QuickAccess  extends _CommonPage {
 	@iOSFindBy(accessibility = "QUICKBALANCE_ONBOARDING_VIEW_TITLE")
 	private MobileElement title;
 	
-	@iOSFindBy(accessibility = "QUICKBALANCE_ONBOARDING_VIEW_DES")
+	@iOSFindBy(accessibility = "QUICKBALANCE_ONBOARDING_DES")
 	private MobileElement msg;
 	
 	@iOSFindBy(accessibility = "QUICKBALANCE_ONBOARDING_START_BUTTON")
@@ -75,9 +75,9 @@ public class QuickAccess  extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.verifyTextEquality(quickaccess_title.getText(), mobileAction.getAppString("easy_access_tc_title"));
-				mobileAction.verifyTextEquality(title.getText(), mobileAction.getAppString("easy_access_enroll_text1"));
-				// FIXME: Msg string is not found?
-				//mobileAction.verifyTextEquality(msg.getText(), mobileAction.getAppString(""));
+				mobileAction.verifyTextEquality(title.getText().trim(), mobileAction.getAppString("easy_access_enroll_text1").trim());
+				// FIXME: What is the correct string message here?
+				//mobileAction.verifyTextEquality(msg.getText(), mobileAction.getAppString("watch_toggle_footer"));
 				mobileAction.verifyTextEquality(getStartedButton.getText(), mobileAction.getAppString("btn_get_started"));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("easy_access_enroll_title") + "']", "Welcome to quick access title");

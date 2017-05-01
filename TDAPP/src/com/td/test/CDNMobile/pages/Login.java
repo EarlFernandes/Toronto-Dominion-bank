@@ -8,6 +8,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.MainScreen;
+import com.td.StringLookup;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -55,7 +56,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id= 'android:id/button2' and @index='0']")
 	private MobileElement install;
 
-	// FIXME: Need accessibility id here for ios
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 
@@ -135,8 +136,6 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Cannot add additional Access Cards.')]")
 	private MobileElement lblWarning;
 
-	// FIXME: Need accessibility id here
-	@iOSFindBy(xpath = "//*[@label='安全问题']")
 	private MobileElement securityQuestionHeader;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField")
@@ -282,6 +281,7 @@ public class Login extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				securityQuestionHeader = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("securityQuestionPageHeader") + "']", "Security Page Header!");
 			} else {
+				securityQuestionHeader = mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("securityQuestionPageHeader") + "']", "Security Page Header");
 				securityLogin = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("secureLoginButton") + "']", "Login");
 			}
 			if (securityQuestionHeader.isDisplayed()) {
@@ -857,7 +857,7 @@ public class Login extends _CommonPage {
 			}
 			try {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					// TODO: iOS element
+					securityQuestionHeader = mobileAction.verifyElementUsingXPath("XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("securityQuestionPageHeader") + "']", "Security Page Header");
 				} else {
 					securityQuestionHeader = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("securityQuestionPageHeader") + "']", "Security Page Header!");
 				}
@@ -1004,7 +1004,7 @@ public class Login extends _CommonPage {
 
 			try {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					// TODO: iOS element
+					securityQuestionHeader = mobileAction.verifyElementUsingXPath("XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("securityQuestionPageHeader") + "']", "Security Page Header");
 				} else {
 					securityQuestionHeader = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("securityQuestionPageHeader") + "']", "Security Page Header!");
 				}
@@ -1212,12 +1212,12 @@ public class Login extends _CommonPage {
 		try {
 			verifyAccessCard();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				final String locale = CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
 				mobileAction.verifyTextEquality(username.getText(), mobileAction.getAppString("str_UsernameAndAccesscard"));
 				mobileAction.verifyTextEquality(password.getText(), mobileAction.getAppString("password_str"));
 				mobileAction.verifyTextEquality(rememberMe.getText(), mobileAction.getAppString("remember_str"));
 				mobileAction.verifyTextEquality(login.getText(), mobileAction.getAppString("secureLoginButton"));
-				// FIXME: Cannot find forgot password string?
-				//mobileAction.verifyTextEquality(forgotPassword.getText(), mobileAction.getAppString(""));
+				mobileAction.verifyTextEquality(forgotPassword.getText(), StringLookup.lookupString(locale, StringLookup.FORGOT_PASSWORD));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @text='" + mobileAction.getAppString("username_str") + "']", "Username");
 				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @content-desc='" + mobileAction.getAppString("password_str") + "']", "Password");

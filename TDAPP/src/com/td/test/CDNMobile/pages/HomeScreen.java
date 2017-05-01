@@ -24,7 +24,7 @@ public class HomeScreen extends _CommonPage {
 
 	private static HomeScreen HomeScreen;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[1]")
+	@iOSFindBy(accessibility ="NAVIGATION_ITEM_MENU")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
@@ -52,7 +52,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='TRANSFERS']")
 	private MobileElement transfer_button_dashboard;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[2]")
+	@iOSFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access']")
 	private MobileElement quickAccess;
 
@@ -67,7 +67,7 @@ public class HomeScreen extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='VIREMENTS'] ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='VIREMENTS']")
 	private MobileElement french_transfers;
-
+	
 	@iOSFindBy(xpath = "//*[@label='TD for Me']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/td_zones_dashboard' and @text='TD FOR ME']")
 	private MobileElement dashboard_Location;
@@ -123,7 +123,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Privacy, Security & Legal']")
 	private MobileElement privacy;
 
-	// FIXME: Replace with proper accessiblity id when May adds it
+	// FIXME: Ask may to add this
 	@iOSFindBy(xpath = "//*[@label='背面']")
 	private MobileElement back_button;
 
@@ -990,8 +990,9 @@ public class HomeScreen extends _CommonPage {
 				mobileAction.verifyTextEquality(send_money_button.getText(), mobileAction.getAppString("str_dashboard_quick_link_send_money"));
 				mobileAction.verifyTextEquality(transfer_button_dashboard.getText(), mobileAction.getAppString("homeDashboardBankingRowTransfersTitle"));
 				mobileAction.verifyTextEquality(deposit.getText(), mobileAction.getAppString("str_DEPOSIT"));
-				// FIXME: Need to swipe the dashboard to get these elemenets in view
+				mobileAction.SwipeWithinElement("//XCUIElementTypeCell[1]", 2, "left");
 				// FIXME: Watchlists is not an accessibility identifier, Ask May
+				// FIXME: Quote is not an accessibility id, ask may
 				//mobileAction.verifyTextEquality(quote.getText(), mobileAction.getAppString("str_QUOTE"));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/send_money_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_send_money") + "']", "Send Money Button");

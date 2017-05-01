@@ -114,9 +114,8 @@ public class Bills extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/upcomingbill_date_value']")
 	private MobileElement upcomingBillDate;  
-	
-	// FIXME: What is the progress spinner id?
-	@iOSFindBy(xpath = "//*[@label='In progress']")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progrees_bar;
 
@@ -422,7 +421,21 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				final MobileElement scheduledPayment = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + getTestdata("Payee") + "']", "Scheduled payment");
+				scheduledPayment.click();
+				final MobileElement header = mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE']", "Bill Details title");
+				mobileAction.verifyTextEquality(header.getText(), mobileAction.getAppString(""));
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='RECEIPTHEADER_TITLE' and @value='" + mobileAction.getAppString("str_Scheduled_Bill") + "']", "Scheduled Payment");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='RECEIPTHEADER_MESSAGE' and @value='" + mobileAction.getAppString("str_Active") + "']", "Active");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='RECEIPTHEADER_CONFIRM' and contains(@value, '" + mobileAction.getAppString("receipt_confirmation") + "')]", "Confirmation #");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("payBillConfirmFieldHeaderFromAccount").replaceAll(" ", "\n") + "']", "From Account");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("payBillConfirmFieldHeaderDate") + "']", "Date");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_Amount") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("upcomingBillDetailsButtonCancelBillPayment") + "']", "Cancel Payment");
+				// FIXME: How to check date object here?
+				//mobileAction.verifyDateFormat(upcomingBillDate.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
+
 			} else {
 				final MobileElement scheduledPayment = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mainText' and @text='" + getTestdata("Payee") + "']", "Scheduled payment");
 				scheduledPayment.click();
@@ -504,7 +517,16 @@ public class Bills extends _CommonPage {
 		try {
 			initElementScheduledPayments();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.FuncClick(scheduledPayments,"Scheduled Payments");
+				mobileAction.waitForElementToVanish(progrees_bar);
+				MobileElement header = mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE']", "header");
+				mobileAction.verifyTextEquality(header.getText(), mobileAction.getAppString("billsNavRowUpcomingBills"));
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("upcomingBillDetailsFieldHeaderDate") + "']", "Date tab");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("upcomingBillDetailsFieldHeaderPayee") + "']", "Payee");
+				// FIXME: Add in once date headers are labelled by id
+				//				for(MobileElement m : dateHeaders) {
+//					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_MM_YYYY);
+//				}
 			} else {
 				mobileAction.FuncClick(scheduledPayments,"Scheduled Payments");
 				mobileAction.waitForElementToVanish(progrees_bar);

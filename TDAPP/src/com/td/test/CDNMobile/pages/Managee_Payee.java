@@ -49,7 +49,7 @@ public class Managee_Payee extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement addPayee;
 	
-	@iOSFindBy(xpath = "//*[@label='In Progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 
@@ -125,10 +125,14 @@ public class Managee_Payee extends _CommonPage {
 	public void verifySpecificPayeeTextElements() {
 		Decorator();
 		try {
+			clickSpecificPayee();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				MobileElement header = mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE']", "header");
+				mobileAction.verifyTextEquality(header.getText(), mobileAction.getAppString("mng_payee_view_title"));
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_payee_name") + "']", "payee name");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_payee_account") + "']", "payee accont");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_description") + "']", "description");
 			} else {
-				clickSpecificPayee();
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				final WebElement name = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[1]", "name");
@@ -161,7 +165,9 @@ public class Managee_Payee extends _CommonPage {
 	private void clickSpecificPayee() {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				MobileElement firstPayee = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + getTestdata("Payee") + "']", "First payee");
+				firstPayee.click();
+				mobileAction.waitForElementToVanish(progressBar);
 			} else {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");

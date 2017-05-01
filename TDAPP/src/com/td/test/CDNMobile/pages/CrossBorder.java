@@ -1,9 +1,11 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -20,6 +22,12 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class CrossBorder extends _CommonPage {
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText")
+	private List<MobileElement> staticTextsWelcomePage;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeLink")
+	private List<MobileElement> links;
+	
 	private static CrossBorder CrossBorder;
 
 	public synchronized static CrossBorder get() {
@@ -95,13 +103,45 @@ public class CrossBorder extends _CommonPage {
 	public void verifyCrossBorderWelcomeTextElements() {
 		Decorator();
 		final String locale = CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
+//		Set<String> contextNames = CL.GetAppiumDriver().getContextHandles();
+//		for (String contextName : contextNames) {
+//			System.out.println("DAVID>>>>" + contextNames); //prints out something like [NATIVE_APP, WEBVIEW_<APP_PKG_NAME>]
+//		}
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				String expectedText = "";
+				switch(locale) {
+					case "EN":
+						expectedText = POPUP_EXPECTED_TEXT_EN;
+						break;
+					case "zh-Hans":
+						expectedText = POPUP_EXPECTED_TEXT_ZH_SIMP;
+						break;
+					case "zh-Hant":
+						expectedText = POPUP_EXPECTED_TEXT_ZH_TRAD;
+						break;
+				}
+				for(MobileElement e : staticTextsWelcomePage) {
+					System.out.println("DAVID" + e.getText());
+					if(e != null && e.getText() != null) {
+						if(!expectedText.contains(e.getText())) {
+							throw new NoSuchElementException("Expected text: " + expectedText + " did not contain: " + e.getText());
+						}
+					}
+				}
+				
+				for(MobileElement f : links) {
+					System.out.println("DAVID" + f.getText());
+					if(!StringUtils.isEmpty(f.getText())) {
+						if(!expectedText.contains(f.getText())) {
+							throw new NoSuchElementException("Expected text: " + expectedText + " did not contain: " + f.getText());
+						}
+					}
+				}
 			} else {
 				// Switching to webview
-				// FIXME: This fails for some versions of Android, why?
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+//				System.out.println("DAVID >>>>" + CL.GetAppiumDriver().getPageSource());
 				final String text = ((AppiumDriver) CL.GetDriver())
 						.findElement(By.cssSelector("body")).getText();
 				//System.out.println(text);
@@ -121,10 +161,9 @@ public class CrossBorder extends _CommonPage {
 				if(!text.trim().equals(expectedText)) {
 					throw new NoSuchElementException("Text were not equal, expected: " + expectedText + " was: " + text);
 				}
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
 			}
-
-			// Switch back to native to get proper screenshots
-			mobileAction.switchAppiumContext("NATIVE_APP");
 		} catch (NoSuchElementException e) {
 			// Switch back to native to get proper screenshots
 			mobileAction.switchAppiumContext("NATIVE_APP");
@@ -147,7 +186,6 @@ public class CrossBorder extends _CommonPage {
 				// TODO: iOS elements
 			} else {
 				// Switching to webview
-				// FIXME: This fails for some versions of Android, why?
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				//System.out.println("source : "+ ((AppiumDriver) CL.GetDriver()).getPageSource());
 				final String text = ((AppiumDriver) CL.GetDriver())

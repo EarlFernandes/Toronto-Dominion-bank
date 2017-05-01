@@ -36,9 +36,8 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_CROSSBORDER']/XCUIElementTypeStaticText")
 	private MobileElement crossBorder;
 	
-	// FIXME: Ask May to add this
-	@iOSFindBy(xpath = "//*[@label='投资账户']")
-	//@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_INVESTING']/XCUIElementTypeStaticText")
+
+	@iOSFindBy(accessibility = "SIDE_BAR_ITEM_6")
 	private MobileElement investing;
 
 	@iOSFindBy(xpath = "//*[@label='Comptes Placements directs TD']")
@@ -58,8 +57,7 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_ACCOUNTS']/XCUIElementTypeStaticText")
 	private MobileElement accounts_button;
 
-	// FIXME: Ask May to add this
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_TDFORME']/XCUIElementTypeStaticText")
+	@iOSFindBy(accessibility = "SIDE_BAR_ITEM_7")
 	private MobileElement tdForMe;
 
 	@iOSFindBy(xpath = "//*[@label='Virements'] ")
@@ -373,9 +371,7 @@ public class MenuPage extends _CommonPage {
 	public void clickMenuCrossBorder() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS xpath expression required
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				crossBorder = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_CrossBorder") + "']", "Cross Border");
 			}
 			mobileAction.FuncClick(crossBorder, "Cross Border");
@@ -529,11 +525,9 @@ public class MenuPage extends _CommonPage {
 				mobileAction.verifyTextEquality(bills.getText(), mobileAction.getAppString("flyoutNavigationLinkBills"));
 				mobileAction.verifyTextEquality(tdMySpend.getText(), mobileAction.getAppString("nav_drawer_items_moven"));
 				mobileAction.verifyTextEquality(mobile_Deposit_button.getText(), mobileAction.getAppString("flyoutNavigationLinkMobileDeposit"));
-				// FIXME: Ask may to add investing account identifier
-				//mobileAction.verifyTextEquality(investing.getText(), mobileAction.getAppString("investing_accounts_str"));
-				// FIXME: Need identifier for tdforme
-				//mobileAction.verifyTextEquality(tdForMe.getText(), mobileAction.getAppString("str_dashboard_navigation_row_zones"));
-				// FIXME: Need to scroll down here for phones
+				mobileAction.verifyTextEquality(investing.getText(), mobileAction.getAppString("investing_accounts_str"));
+				mobileAction.SwipeWithinElement("//XCUIElementTypeTable", 3, "up");
+				mobileAction.verifyTextEquality(tdForMe.getText(), mobileAction.getAppString("str_dashboard_navigation_row_zones"));
 				mobileAction.verifyTextEquality(crossBorder.getText(), mobileAction.getAppString("nav_drawer_items_crossborder"));
 				mobileAction.verifyTextEquality(locations.getText(), mobileAction.getAppString("flyoutNavigationLinkFindLocations"));
 				mobileAction.verifyTextEquality(feedback.getText(), mobileAction.getAppString("nav_drawer_items_feedback"));
