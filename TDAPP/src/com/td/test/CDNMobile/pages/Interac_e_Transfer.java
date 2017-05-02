@@ -133,6 +133,22 @@ public class Interac_e_Transfer extends _CommonPage {
 
     String ValueofAmount = getTestdata("Amount");
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and contains(@text,'Interac e-Transfer') and contains(@text,'Registration')]")
+    private MobileElement registrationPageHeader;
+    
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button' or @text='Continue']")
+    private MobileElement continueButton;
+    
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/errorButton1' or @text='Open an Account']")
+    private MobileElement openAnAccount;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/errorMessage']")
+    private MobileElement errorText;
+    
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/errorButton2' or @text='Find a Branch']")
+    private MobileElement findABranch;
+    
+    
     public synchronized static Interac_e_Transfer get() {
 	if (Interac_e_Transfer == null) {
 	    Interac_e_Transfer = new Interac_e_Transfer();
@@ -474,4 +490,86 @@ try {
 	}
     }
 
+    
+    /**
+     * @author Ashraf
+     * This method will verify The Registration Page and click on continue button.
+     * 
+     * @throws NoSuchElementException
+     *             In case the element is not found over the screen
+     * @throws IOException
+     *             If there is problem while reporting
+     * @return void
+     * 
+     */
+    public void clickContinueButton() {
+	Decorator();
+	try {
+
+	  mobileAction.verifyElementIsDisplayed(registrationPageHeader, "Interac e-Transfer® - Registration");
+	  mobileAction.FuncClick(continueButton, "Continue");
+
+	} catch (NoSuchElementException | IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	}
+    }
+    
+    
+    /**
+     * @author Ashraf
+     * This method will verify The Registration Page and click on continue button.
+     * 
+     * @throws NoSuchElementException
+     *             In case the element is not found over the screen
+     * @throws IOException
+     *             If there is problem while reporting
+     * @return void
+     * 
+     */
+    public void clickOpenAnAccount() {
+	Decorator();
+	try {
+
+	  mobileAction.FuncClick(openAnAccount, "Open An Account");
+
+	} catch (NoSuchElementException | IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	}
+    }
+    
+    
+    /**
+     * @author Ashraf
+     * This method will verify The error message on registration Page.
+     * 
+     * @throws NoSuchElementException
+     *             In case the element is not found over the screen
+     * @throws IOException
+     *             If there is problem while reporting
+     * @return void
+     * 
+     */
+    public void verifyErrorMessage() {
+	Decorator();
+	try {
+
+	 mobileAction.verifyElementIsDisplayed(errorText, "Error Message");
+	 mobileAction.verifyElementIsDisplayed(openAnAccount, "Open An Account");
+	 mobileAction.verifyElementIsDisplayed(findABranch, "Find A Branch");
+
+	} catch (NoSuchElementException | IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	}
+    }
+    
+    
 }

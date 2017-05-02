@@ -19,9 +19,9 @@ public class Profile_And_Settings extends _CommonPage {
 
 	private static Profile_And_Settings ProfileAndSettings;
 
-	String preferences = "Profile & Settings | Profil et paramètres";
+	String preferences = "Profile & Settings | Profil et paramï¿½tres";
 	
-	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres']")
+	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramï¿½tres']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement profile_preferences_Header;
 	
@@ -41,7 +41,7 @@ public class Profile_And_Settings extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@text='Click here to go to Business Profile Details :)']")
 	private MobileElement business_profile_details;
 	
-	@iOSFindBy(xpath = "//*[@label='Security Questions' or @label ='Questions de sécurité']")
+	@iOSFindBy(xpath = "//*[@label='Security Questions' or @label ='Questions de sï¿½curitï¿½']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_security']/android.widget.TextView")
 	private MobileElement security_questions;
 
@@ -54,18 +54,21 @@ public class Profile_And_Settings extends _CommonPage {
 	private MobileElement notifications;
 	
 	
-	@iOSFindBy(xpath = "//*[@label='Quick Access Settings' or @label='Paramètres du Accès rapide']")
+	@iOSFindBy(xpath = "//*[@label='Quick Access Settings' or @label='Paramï¿½tres du Accï¿½s rapide']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_quick_access']/android.widget.TextView")
 	private MobileElement quickaccesssetting;
 	
-	@iOSFindBy(xpath = "//*[@label='TD for Me Settings' or @label='Paramètres de TD et moi']")
+	@iOSFindBy(xpath = "//*[@label='TD for Me Settings' or @label='Paramï¿½tres de TD et moi']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_tdforme']/android.widget.TextView")
 	private MobileElement tdformesettings;
 	
-	@iOSFindBy(xpath = "//*[@label=\"What's New\" or @label='Nouveautés']")
+	@iOSFindBy(xpath = "//*[@label=\"What's New\" or @label='Nouveautï¿½s']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_whatsnew']/android.widget.TextView")
 	private MobileElement whatsnew;	
 		
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Payments & Transfers']")
+	private MobileElement paymentsAndTransfers;
+	
 	
 	public synchronized static Profile_And_Settings get() {
 		if (ProfileAndSettings == null) {
@@ -204,5 +207,35 @@ public class Profile_And_Settings extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	
+	/**
+	 * @author Ashraf
+	 * This method will verify Profile and Settings page header and click on 'Payments & Transfers' link.
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void clickPaymentsAndTransfers() {
+
+		
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(paymentsAndTransfers, "Payments & Transfers");
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	
 	
 }
