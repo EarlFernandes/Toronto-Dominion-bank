@@ -75,8 +75,8 @@ public class MenuPage extends _CommonPage {
 	private MobileElement locations;
 	
 	//Profile and preference
-	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label ='Profil et param�tres']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (contains(@text,'Settings') or @text='Profil et param�tres')]")
+	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label ='Profil et paramètres']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (contains(@text,'Settings') or @text='Profil et paramètres')]")
 	private MobileElement profile_and_settings;
 
 	//customer feedback
@@ -430,7 +430,7 @@ public class MenuPage extends _CommonPage {
 			}
 			//mobileAction.verifyElement(profile_and_settings, "Profile & Settings");
 			try {
-				mobileAction.verifyElementTextIsDisplayed(profile_and_settings, "Profile & Settings | Profil et param�tres");
+				mobileAction.verifyElementTextIsDisplayed(profile_and_settings, "Profile & Settings | Profil et paramètres");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
