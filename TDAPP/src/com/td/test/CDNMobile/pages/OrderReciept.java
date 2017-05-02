@@ -94,21 +94,13 @@ public class OrderReciept extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='Limit Price']")
 	private MobileElement limitprice;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='ReÃ¢Ë†Å¡ÃƒÅ¸u']")
+/*	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='ReÃ¢Ë†Å¡ÃƒÅ¸u']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Receipt']")
+	private MobileElement receipt_header;*/
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Receipt') or contains(@label,'Reçu')]") //@Author - Sushil 18-Apr-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'Receipt') or contains(@text,'Reçu')]")
 	private MobileElement receipt_header;
-
-	// @iOSFindBy(xpath = "//*[@label='Ordre transmis avec succÃ¢Ë†Å¡Ã‚Â®s.']")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.TextView[@resource-id='com.td:id/message' and
-	// @text='Order sent successfully']")
-	// private MobileElement success_message;
-	//
-	// @iOSFindBy(xpath = "//*[contains(@label,'Confirmation #') or
-	// contains(@label,'de confirmation')]")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.TextView[@resource-id='com.td:id/confirmation_val']")
-	// private MobileElement confirmation_val;
 
 	@AndroidFindBy(xpath = "android.widget.TextView[@text='GO BACK HOME']")
 	private MobileElement gohomeicon;
@@ -601,7 +593,8 @@ public class OrderReciept extends _CommonPage {
 
 	// new code
 
-	@iOSFindBy(xpath = "//*[@label='En cours']")
+//	@iOSFindBy(xpath = "//*[@label='En cours']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Order']/../XCUIElementTypeStaticText[2]")//@Author - Shahbaaz 17-Apr-2017
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_value_main' and contains(@text,' @ ')]")
 	private MobileElement orderElement;
 
@@ -613,26 +606,37 @@ public class OrderReciept extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='En cours']")
 	private MobileElement progressBarFRE;
 
-	@iOSFindBy(xpath = "//*[@label='En cours']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_home' and @text='HOME']")
+//	@iOSFindBy(xpath = "//*[@label='En cours']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Home' or @label='Accueil']") //@Author - Shahbaaz 17-Apr-2017
+//	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_home' and @text='HOME']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_home']")//@Author - Sushil 18-Apr-2017
 	private MobileElement homeButton;
 
-	@iOSFindBy(xpath = "//*[@label='En cours']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_order' and @text='ORDERS']")
+//	@iOSFindBy(xpath = "//*[@label='En cours']")
+	@iOSFindBy(xpath = "//*[@label='Orders' or @label='Ordres']") //@Author - Shahbaaz 17-Apr-2017
+//	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_order' and @text='ORDERS']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_order']")//@Author - Sushil 18-Apr-2017
 	private MobileElement OrderButton;
 
-	@iOSFindBy(xpath = "//*[@label='En cours']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_trade' and @text='TRADE']")
+//	@iOSFindBy(xpath = "//*[@label='En cours']")
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']")//@Author - Shahbaaz 17-Apr-2017
+//	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_trade' and @text='TRADE']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_trade']")//@Author - Sushil 18-Apr-2017
 	private MobileElement tradeButton;
 
+	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]")//@Author - Shahbaaz 17-Apr-2017
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_value_main' and contains(@text,',')]")
 	private MobileElement timeStampDate;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_subvalue']")
 	private MobileElement timeStampZone;
 
-	@iOSFindBy(xpath = "//*[@label='Ordre transmis avec succÃ¢Ë†Å¡Ã‚Â®s.']")
+/*	@iOSFindBy(xpath = "//*[@label='Ordre transmis avec succÃ¢Ë†Å¡Ã‚Â®s.']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/message' and @text='Order sent successfully']")
+	private MobileElement success_message;*/
+	
+	@iOSFindBy(xpath = "//*[@label='Order sent successfully' or contains(@label,'Ordre transmis avec')]") //@Author - Sushil 18-Apr-2017
+	@AndroidFindBy(xpath = "//*[@text='Order sent successfully' or contains(@text,'Ordre transmis avec')]")
 	private MobileElement success_message;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Confirmation #') or contains(@label,'de confirmation')]")
@@ -765,15 +769,15 @@ public class OrderReciept extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 
-	public void validateTrailingStopLimitBuy() {
+	public void validateTrailingStopLimitBuy() {//@Author - Sushil 19-Apr-2017 Modified
 		DecimalFormat df = new DecimalFormat("#.00");
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 
-					+ " @ Delta de dÃ©clenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
+					+ " @ Delta de déclenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
 					+ " $ Delta limite " + df.format(Double.parseDouble(limitDelta_value)).replace(".", ",")
-					+ " $ Ã‰chÃ©ance " + goodXL;
+					+ " $ Échéance " + goodXL;
 			System.out.println(orderValue);
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
@@ -799,13 +803,13 @@ public class OrderReciept extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 
-	public void validateTrailingStopMarketBuy() {
+	public void validateTrailingStopMarketBuy() {//@Author - Sushil 19-Apr-2017 Modified
 		DecimalFormat df = new DecimalFormat("#.00");
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
-					+ " @ Delta de dÃ©clenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
-					+ " $ Ã‰chÃ©ance " + goodXL;
+					+ " @ Delta de déclenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
+					+ " $ Échéance " + goodXL;
 			System.out.println(orderValue);
 
 		} else {
@@ -831,14 +835,14 @@ public class OrderReciept extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 
-	public void validateStopLimitBuy() {
+	public void validateStopLimitBuy() {//@Author - Sushil 19-Apr-2017 Modified
 		DecimalFormat df = new DecimalFormat("#.00");
 
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
-					+ " @ DÃ©clencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
-					+ " $ limite " + df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Ã‰chÃ©ance "
+					+ " @ Déclencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
+					+ " $ limite " + df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance "
 					+ goodXL;
 
 		} else {
@@ -866,15 +870,15 @@ public class OrderReciept extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void validateStopMarket() {
+	public void validateStopMarket() {//@Author - Sushil 19-Apr-2017 Modified
 		DecimalFormat df = new DecimalFormat("#.00");
 
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 
-					+ " @ DÃ©clencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
-					+ " $ Ã‰chÃ©ance " + goodXL;
+					+ " @ Déclencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
+					+ " $ Échéance " + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
@@ -905,7 +909,7 @@ public class OrderReciept extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value + " @ "
-					+ df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Ã‰chÃ©ance " + goodXL;
+					+ df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance " + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value + " @ $"
@@ -936,7 +940,7 @@ public class OrderReciept extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " @ " + price_value
 
-					+ " Ã‰chÃ©ance " + goodXL;
+					+ " Échéance " + goodXL;
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " @ " + price_value
 
@@ -963,7 +967,12 @@ public class OrderReciept extends _CommonPage {
 	public void validateConfirmOrderBuy() {
 		Decorator();
 		init();
-		mobileAction.FuncSwipeWhileElementNotFound(orderElement, false, 10, "up");
+		try {
+			mobileAction.FuncSwipeWhileElementNotFound(orderElement, false, 10, "up");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		confirmOrderValue = orderElement.getText();
 		System.out.println(confirmOrderValue);
@@ -971,26 +980,26 @@ public class OrderReciept extends _CommonPage {
 		System.out.println(price_value);
 		switch (price_value) {
 		case "Market":
-		case "Cours du marchÃ©":
+		case "Cours du marché":
 			validateMarketBuy();
 			break;
 		case "Limit":
-		case "Cours limitÃ©":
+		case "Cours limité":
 
 			validateLimitBuy();
 			break;
 		case "Stop Market":
-		case "Cours du marchÃ© stop":
+		case "Cours du marché stop":
 
 			validateStopMarket();
 			break;
 		case "Stop Limit":
-		case "Cours limitÃ© stop":
+		case "Cours limité stop":
 
 			validateStopLimitBuy();
 			break;
 		case "Trailing Stop Market":
-		case "Stop suiveur marchÃ©":
+		case "Stop suiveur marché":
 
 			validateTrailingStopMarketBuy();
 			break;
