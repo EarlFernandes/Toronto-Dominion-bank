@@ -36,6 +36,7 @@ import com.td.test.CDNMobile.pages.MLConfirmOrderReceipt;
 import com.td.test.CDNMobile.pages.MLEnterOrderNegative;
 import com.td.test.CDNMobile.pages.MLOptionChainTable;
 import com.td.test.CDNMobile.pages.MLOrderDetails;
+import com.td.test.CDNMobile.pages.ManageContacts;
 import com.td.test.CDNMobile.pages.ManageRecipients;
 import com.td.test.CDNMobile.pages.ManageSettings;
 import com.td.test.CDNMobile.pages.Managee_Payee;
@@ -170,6 +171,14 @@ public class EventCase {
 		verifyStockOptionChainTableSubmit,verifyStockOptionChainTableCancel,verifyOptionOptionChainTableCancel,
 		verifyInvalidTradingPassword,verifyStockOptionChangeOrder,verifyOptionOptionChangeOrder,verifyStockOptionOrderDetails,verifyOptionOptionOrderDetails,
 		Test,
+		
+		//P2P
+		
+		Transfers_clickManageContactsLink,
+		ManageContacts_verifyPageHEader,
+		Interac_e_Transfer_clickContinueButton,
+		Profile_And_Settings_clickPaymentsAndTransfers,
+		Interac_e_Transfer_verifyErrorText,
 	}
 
 	public void FuncCOREEventCase(String sFunctionname)
@@ -388,6 +397,18 @@ public class EventCase {
 
 		case MenuTransfer:
 			MenuPage.get().clickMenuTransfer();
+			break;
+			
+		case ManageContacts_verifyPageHEader:
+			ManageContacts.get().verifyPageHeader();
+			break;
+			
+		case Interac_e_Transfer_clickContinueButton:
+			Interac_e_Transfer.get().clickContinueButton();
+			break;
+			
+		case Interac_e_Transfer_verifyErrorText:
+			Interac_e_Transfer.get().verifyErrorMessage();
 			break;
 
 		case HomeScreen_ClickBills:
@@ -646,6 +667,10 @@ public class EventCase {
 
 		case Transfers_clickInterac_e_Transfer:
 			Transfers.get().clickInterac_e_Transfer();
+			break;
+			
+		case Transfers_clickManageContactsLink:
+			Transfers.get().clickManageContactsLink();
 			break;
 
 		case Interac_AddRecipient:
@@ -1651,6 +1676,10 @@ public class EventCase {
 		    MenuPage.get().clickProfileAndSettings();
 		    break;	    
 
+		case Profile_And_Settings_clickPaymentsAndTransfers:
+		    Profile_And_Settings.get().clickPaymentsAndTransfers();
+		    break;
+		    
 	    case View_profile:
 		    Profile_And_Settings.get().view_profile();
 		    break;	 	    
