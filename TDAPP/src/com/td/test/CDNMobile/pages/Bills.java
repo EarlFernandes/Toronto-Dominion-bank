@@ -23,7 +23,7 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay a Canadian bill' and @index='1']")
 	private MobileElement pay_Cananda_Bill;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Manage Payees Add, edit or delete a Canadian or U.S. Payee']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Manage Payees']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Payees']")
 	private MobileElement manage_Payees;
 

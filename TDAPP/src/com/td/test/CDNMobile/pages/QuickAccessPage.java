@@ -18,7 +18,7 @@ public class QuickAccessPage extends _CommonPage {
 
 	private static QuickAccessPage QuickAccessPage;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Quick Access']")
+	@iOSFindBy(xpath = "//*[@label='Quick Access']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[ends-with(@text,'Quick Access']")
 	private MobileElement Access_Header;
 

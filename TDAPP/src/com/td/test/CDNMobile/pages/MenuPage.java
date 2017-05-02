@@ -75,8 +75,8 @@ public class MenuPage extends _CommonPage {
 	private MobileElement locations;
 	
 	//Profile and preference
-	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label ='Profil et paramètres']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Profile & Settings' or @text='Profil et paramètres')]")
+	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label ='Profil et paramï¿½tres']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (contains(@text,'Settings') or @text='Profil et paramï¿½tres')]")
 	private MobileElement profile_and_settings;
 
 	//customer feedback
@@ -84,7 +84,7 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Give Feedback' or @text='Fournir des commentaires')]")
 	private MobileElement give_feedback;
 
-
+	
 	public synchronized static MenuPage get() {
 		if (MenuPage == null) {
 			MenuPage = new MenuPage();
@@ -430,7 +430,7 @@ public class MenuPage extends _CommonPage {
 			}
 			//mobileAction.verifyElement(profile_and_settings, "Profile & Settings");
 			try {
-				mobileAction.verifyElementTextIsDisplayed(profile_and_settings, "Profile & Settings | Profil et paramètres");
+				mobileAction.verifyElementTextIsDisplayed(profile_and_settings, "Profile & Settings | Profil et paramï¿½tres");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

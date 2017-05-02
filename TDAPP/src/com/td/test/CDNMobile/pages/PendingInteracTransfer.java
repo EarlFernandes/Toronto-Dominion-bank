@@ -536,9 +536,9 @@ public class PendingInteracTransfer extends _CommonPage{
 						
 							mobileAction.FuncClick(cnfrmCancellation, "Confirm");
 							mobileAction.verifyElementIsDisplayed(receiptHeader, "Receipt Page Opens");
-//							mobileAction.FuncClick(menu, "Menu");
-//							mobileAction.FuncClick(home,"Home Button Clicked");
-							mobileAction.FuncClick(gobackhomeButton,"Go Back Home Button Clicked");
+							mobileAction.FuncClick(menu, "Menu");
+							mobileAction.FuncClick(home,"Home Button Clicked");
+							//mobileAction.FuncClick(gobackhomeButton,"Go Back Home Button Clicked");
 							mobileAction.verifyElementIsDisplayed(dashboard,"Dashboard Page Opened");
 							
 						}else{

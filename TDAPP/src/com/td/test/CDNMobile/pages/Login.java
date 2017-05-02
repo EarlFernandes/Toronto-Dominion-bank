@@ -118,7 +118,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar[@label='Logged Out']")
+	@iOSFindBy(xpath = "//*[@label='Logged Out']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Logged Out']")
 	private MobileElement logoutHeader;
 
@@ -220,13 +220,13 @@ public class Login extends _CommonPage {
 					mobileAction.FuncClick(addUser, "AddUser");
 					flag = true;
 				} catch (NoSuchElementException | InterruptedException | IOException e) {
-					System.out.print("Exception from Method " + this.getClass().toString());
+					System.out.println("Exception for select_accesscard or addUser ");
 				}
 			} else {
 				flag = false;
 			}
 		} catch (Exception e) {
-			System.out.print("Exception from Method " + this.getClass().toString());
+			System.out.println("Exception select_accesscard") ;
 		}
 		return flag;
 	}
@@ -240,13 +240,13 @@ public class Login extends _CommonPage {
 					mobileAction.FuncClick(addUser, "AddUser");
 					flag = true;
 				} catch (NoSuchElementException | InterruptedException | IOException e) {
-					System.out.print("Exception from Method " + this.getClass().toString());
+					System.out.println("Exception for no select_accesscard for FRE ");
 				}
 			} else {
 				flag = false;
 			}
 		} catch (Exception e) {
-			System.out.print("Exception from Method " + this.getClass().toString());
+			System.out.println("Exception for no select_accesscard found for FRE");
 		}
 		return flag;
 	}
@@ -258,7 +258,7 @@ public class Login extends _CommonPage {
 				CL.GetReporting().FuncReport("Fail", "System exception occured during login");
 			}
 		} catch (Exception e) {
-			System.out.print("Exception from Method " + this.getClass().toString());
+			System.out.println("Exception for no System Error ");
 		}
 
 	}
@@ -280,7 +280,7 @@ public class Login extends _CommonPage {
 			}
 
 		} catch (Exception e) {
-			System.out.print("Exception from Method " + this.getClass().toString());
+			System.out.println("Exception no Security Question found" );
 
 		}
 	}
@@ -297,7 +297,7 @@ public class Login extends _CommonPage {
 
 			}
 		} catch (Exception e) {
-			System.out.print("Exception from Method " + this.getClass().toString());
+			System.out.println("Exception for no T&C found ");
 		}
 	}
 
@@ -528,12 +528,13 @@ public class Login extends _CommonPage {
 				String userid[] = connectIDs.split(",");
 
 				for (int i = 0; i < userid.length; i++) {
-					boolean flag = select_accesscard.isDisplayed();
-					if (flag) {
-
-						mobileAction.FuncClick(select_accesscard, "Select Accesscard");
-						mobileAction.FuncClick(addUser, "AddUser");
-					}
+//					boolean flag = select_accesscard.isDisplayed();
+//					if (flag) {
+//
+//						mobileAction.FuncClick(select_accesscard, "Select Accesscard");
+//						mobileAction.FuncClick(addUser, "AddUser");
+//					}
+					verifyAccessCard();
 					mobileAction.FuncClick(username, "Username");
 					mobileAction.FuncSendKeys(username, userid[i]);
 					mobileAction.FuncClick(password, "Password");
@@ -543,6 +544,7 @@ public class Login extends _CommonPage {
 					mobileAction.FuncClick(login, "Login");
 					Thread.sleep(3000);
 					mobileAction.waitForElementToVanish(progressBar);
+					verifySecurityQuestion();
 					clickLogoutLnk();
 				}
 

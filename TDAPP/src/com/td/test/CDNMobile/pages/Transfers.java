@@ -40,7 +40,7 @@ public class Transfers extends _CommonPage {
 	
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Interac e-Transfer']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Interac e-Transfer']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Interac e-Transfer')]")	//changed by Ashraf
 	private MobileElement Interac_e_Transfer_Button;
 	
 	@iOSFindBy(xpath= "//XCUIElementTypeStaticText[@label='Between My Accounts']")
@@ -67,6 +67,12 @@ public class Transfers extends _CommonPage {
 	String confirm_Header = "Confirm";
 
 	String confirm_transfer_value = "Thank you!";
+	
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Contacts']")
+	private MobileElement manageContacts;
+	
+	
 
 	/**
 	 * This method will click on Between my accounts button
@@ -101,7 +107,8 @@ public class Transfers extends _CommonPage {
 		Decorator();
 		try {
 			//Thread.sleep(5000);
-			transfers_Header.isDisplayed();
+			//transfers_Header.isDisplayed();
+			mobileAction.verifyElementIsDisplayed(transfers_Header, "Transfer Header");	//added by Ashraf
 			mobileAction.FuncClick(Interac_e_Transfer_Button, "Interac e_Transfer");
 			//mobileAction.waitForElementToVanish(progrees_Bar);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -181,5 +188,31 @@ public class Transfers extends _CommonPage {
 	}
 
 	
+	
+	/**
+	 * @author Ashraf
+	 * This method will click on Manage Contacts Link.
+	 * 
+	 * 
+	 * @return  NoSuchElementException
+	 * @return  IOException
+	 */
+	public void clickManageContactsLink() {
+
+	
+		Decorator();
+		try {
+			
+			mobileAction.verifyElementIsDisplayed(transfers_Header, "Transfer Header");
+			mobileAction.FuncClick(manageContacts, "Manage Contacts Link");
+			
+		} catch (NoSuchElementException   | IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
 
 }
