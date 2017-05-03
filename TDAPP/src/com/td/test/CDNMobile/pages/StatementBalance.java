@@ -22,6 +22,22 @@ public class StatementBalance extends _CommonPage{
 	@AndroidFindBy(xpath="//android.widget.Button[@resource-id='com.td:id/btn_pay']")
 	 private MobileElement payBtn;
 	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Cash Back Dollars Earned]")
+	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/points_earned_title']")
+	private MobileElement txtearned;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Cash Back Dollars Redeemed']")
+	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/rewards_redeemed_title']")
+	 private MobileElement txtRedeemed;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Statement Balance']") 
+	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Statement Balance']")
+	 private MobileElement stmtBalHeader;
+	
+	@iOSFindBy(xpath = "//*[@label='PAY WITH REWARDS']") 
+	@AndroidFindBy(xpath="//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='PAY WITH REWARDS']")
+	 private MobileElement payWithRewardsBtn;
+	
 	public synchronized static StatementBalance get() {
 		if (StatementBalance == null) {
 			StatementBalance = new StatementBalance();
@@ -60,4 +76,111 @@ public class StatementBalance extends _CommonPage{
 		    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	    } 
+	    
+	    /**
+	     * This method will verify  the Earned and Redeemed is not displayed in statement Balance Page
+	     * 
+	     * @return void
+	     * @throws InterruptedException 
+	     * 
+	     * @throws IOException
+	     *             If there is problem while reporting.
+	     * @throws NoSuchElementException
+	     *             In case the element is not found over the screen.
+	     */
+	    
+	    public void verifyNoDollarsEarnedAndRedeemed(){
+		Decorator();
+		try {
+			if ((txtearned.isDisplayed()) && (txtRedeemed.isDisplayed())) {
+			
+			}
+		} catch (NoSuchElementException  e) {
+			try {
+				CL.GetReporting().FuncReport("PASS", "The '" + "Cash Back Earned and Cash Back Redeemed" + "' are not dispalyed");
+			} catch (IOException e1) {
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		
+				}
+			}
+	    }
+	    
+	    /**
+	     * This method will verify  the Earned and Redeemed in statement Balance Page
+	     * 
+	     * @return void
+	     * @throws InterruptedException 
+	     * 
+	     * @throws IOException
+	     *             If there is problem while reporting.
+	     * @throws NoSuchElementException
+	     *             In case the element is not found over the screen.
+	     */
+	    
+	    
+	    public void verifyDollarsEarnedAndRedeemed(){
+	    	Decorator();
+	    	
+	    	try{
+	    	
+	    		mobileAction.verifyElementIsDisplayed(txtearned, "The earned text is displayed");
+	    		mobileAction.verifyElementIsDisplayed(txtRedeemed, "The Redeemed text is displayed");
+	    		
+	    	}
+	    	catch(NoSuchElementException | IOException e){
+	    	    System.err.println("TestCase has failed.");
+			    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	    }
+	   }
+	    
+	    /**
+	     * This method will verify  the header in statement Balance Page
+	     * 
+	     * @return void
+	     * @throws InterruptedException 
+	     * 
+	     * @throws IOException
+	     *             If there is problem while reporting.
+	     * @throws NoSuchElementException
+	     *             In case the element is not found over the screen.
+	     */
+	    
+	    public void verifyStatementBalanceHeader(){
+	    	Decorator();
+	    	try{
+	    		mobileAction.verifyElementIsDisplayed(stmtBalHeader, "Statment Balance Header");
+	    		
+	    	}catch(NoSuchElementException | IOException  e){
+	    	e.printStackTrace();
+	    }
+	    }
+	    
+	    /**
+	     * This method will verify  the Pay with rewards and click the same  in statement Balance Page
+	     * 
+	     * @return void
+	     * @throws InterruptedException 
+	     * 
+	     * @throws IOException
+	     *             If there is problem while reporting.
+	     * @throws NoSuchElementException
+	     *             In case the element is not found over the screen.
+	     */
+	    public void verifyAndClickPayWithRewardsButton()  {
+	    	
+	    	Decorator();
+	    	try{
+	    	
+	    		mobileAction.FuncClick(payWithRewardsBtn, "Pay With Rewards button");
+	    			
+	    				
+	    	}catch(NoSuchElementException | IOException |InterruptedException e){
+	     	    System.err.println("TestCase has failed.");
+			    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	    }
+	    
+	    	
+	    }
 }
+

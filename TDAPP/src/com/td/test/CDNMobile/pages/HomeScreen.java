@@ -150,6 +150,10 @@ public class HomeScreen extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[@label='Apple Pay']")
 	private MobileElement applePayBtn;
 	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='Accounts']")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Accounts']")
+	private MobileElement accounts;
+	
 	int i = 1;
 	String Firstpart = "//XCUIElementTypeCell[";
 	String Secondpart = "]/XCUIElementTypeButton[1]";
@@ -992,6 +996,31 @@ public class HomeScreen extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}	
 		
+	}
+	
+	/**
+	 * This method will click on the Menu button on home page
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	
+	public void clickAccountsTab() {
+		try {
+			Decorator();
+
+			mobileAction.FuncClick(accounts, "Accounts");
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
 	}
 
 }

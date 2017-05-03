@@ -17,6 +17,7 @@ import com.td.test.CDNMobile.pages.CardDetails;
 import com.td.test.CDNMobile.pages.ConfirmOrder;
 import com.td.test.CDNMobile.pages.Confirm_Payee;
 import com.td.test.CDNMobile.pages.ContactUs;
+import com.td.test.CDNMobile.pages.Credit;
 import com.td.test.CDNMobile.pages.DepositCheque;
 import com.td.test.CDNMobile.pages.FindLocations;
 import com.td.test.CDNMobile.pages.HoldingDetails;
@@ -48,6 +49,7 @@ import com.td.test.CDNMobile.pages.MutualFunds;
 import com.td.test.CDNMobile.pages.Notifications;
 import com.td.test.CDNMobile.pages.OrderDetails;
 import com.td.test.CDNMobile.pages.OrderReciept;
+import com.td.test.CDNMobile.pages.PayWithRewards;
 import com.td.test.CDNMobile.pages.Pay_US_Bill;
 import com.td.test.CDNMobile.pages.PendingInteracTransfer;
 import com.td.test.CDNMobile.pages.Preferences;
@@ -55,6 +57,10 @@ import com.td.test.CDNMobile.pages.Profile;
 import com.td.test.CDNMobile.pages.Profile_And_Settings;
 import com.td.test.CDNMobile.pages.QuickAccess;
 import com.td.test.CDNMobile.pages.QuickAccessPage;
+import com.td.test.CDNMobile.pages.QuickAccessSettings;
+import com.td.test.CDNMobile.pages.Receipt;
+import com.td.test.CDNMobile.pages.Review;
+import com.td.test.CDNMobile.pages.Rewards;
 import com.td.test.CDNMobile.pages.SearchPage;
 import com.td.test.CDNMobile.pages.SearchPageMIT;
 import com.td.test.CDNMobile.pages.Security_Questions;
@@ -101,7 +107,7 @@ public class EventCase {
 
 		Delete_usr, Deposit_Header, DepositChequeHeader, END,
 
-		Env_set, Env_EnableMobilePayment,EditEmailAddressWithNonAformat,EditEmailAddressWithlonger60Char,EditEmailAddressWithNolonger60Char,EditEmailAddressWithoutSave,EditPhoneNumber,Env_ClearSavedCards,Env_DeleteDefaultCard,
+		Env_set, Env_EnableMobilePayment,EditEmailAddressWithNonAformat,EditEmailAddressWithlonger60Char,EditEmailAddressWithNolonger60Char,EditEmailAddressWithoutSave,EditPhoneNumber,Env_DeleteDefaultCard,
 		
 		getProfileInformation,GetEmailAndPhoneNumber,ClickFeedback,	ClickContactUs_CF,VerifyMoodSelectorScreen,	VerifyEmotionsAnimateFromTopToBottom,ClickGreatLink,VerifyPostSurveyScreen,ClickCouldvebeenBetterLink,ClickItwasntWorkingLink,ClickBackFromMoodSelector, VerifyHomePageDashBoard, ClickContactUsFromHomePage, ClickSendFeedbackNow, ClickRateUsOnGooglePlay, VerifyGooglePlayRatePage, ClickBackFromPostSurvey, VerifyContactUsPageHeader,
 
@@ -182,6 +188,57 @@ public class EventCase {
 		Interac_e_Transfer_registerUser,
 		Interac_e_Transfer_verifyDetails,
 		Interac_e_Transfer_verifyRegSuccessMessage,
+		
+		//Tetris Loyalty
+		CreditHeader,
+		ClickAccount,
+		VerifyPayWithRewards,
+		ClickStatementTab,
+		Env_ClearSavedCards,
+		ClickReward,
+		RewardHeader,
+		ClickPayWithRewards,
+		PayWithRewardsHeader,
+		ClickStatement,
+		VerifyStatementBalanceHeader,
+		VerifyAndClickPayWithRewardsBtn,
+		ValidateAmount,
+		VerifyMinAndMaxPaymentBtn,
+		PayWithRewardsNotVisible,
+		ValidateMinPayment,
+		VerifyReviewHeader,
+		ClickPayNowButton,
+		ClickCancelButton,
+		VerifyReceiptHeader,
+		VerifyAmountRedeem,
+		ClickSummaryTab,
+		ClickVisitRewards,
+		VerifyURL,
+		VerifyRedemptionText,
+		VerifyNoRewards,
+		VerifyRewardsText,
+		VerifyCashbackText,
+		VerifyRewardsBtn,
+		VerifyTextcashBack,
+		VerifyEarnedAndRedeemed,
+		VerifyNoRewardsInQuickAccess,
+		ClickQuickAccessSettings,
+		DisableCardInQuickAccess,
+		VerifyNoCardInQuickAccess,
+		VerifyDollarRewardBalance,
+		VerifyNoEarnedAndRedeemed,
+		VerifyDollarDecimalValue,
+		VerifyAmountAndContinueIsDisabled,
+		VerifyPayWithRewardsText,
+		VerifyRewardPointstxt,
+		VerifyRewardPayee,
+		VerifyRedemptionDetails,
+		VerifyCashBack
+		
+		
+		
+		
+		
 	}
 
 	public void FuncCOREEventCase(String sFunctionname)
@@ -1020,6 +1077,8 @@ public class EventCase {
 		case VerifyCombinedAccounts:
 			Investing.get().verifyCombinedAccounts();
 			break;
+			
+		
 
 		case VerifyNoTradingAccounts:
 			Investing.get().verifyNoTradingAccounts();
@@ -1032,7 +1091,7 @@ public class EventCase {
 		case VerifyInvestingScreen:
 			Investing.get().verifyInvestingScreen();
 			break;
-
+			
 		case VerifyFPAccounts:
 			Investing.get().verifyFPAccounts();
 			break;
@@ -1317,7 +1376,7 @@ public class EventCase {
 		case Env_EnableMobilePayment:
 			Env_Settings.get().enableMobilePayment();
 			break;
-
+			
 		case ApplePay_AddCard:
 			ApplePay.get().clickAddCard();
 			break;
@@ -1332,10 +1391,15 @@ public class EventCase {
 		case ApplePay_ChangeDefaultCard:
 			ApplePay.get().changeDefaultCard();
 			break;
-
+		
 		case ApplePay_CheckPersonalCard:
 			ApplePay.get().checkPersonalCard();
 			break;
+
+		case Env_ClearSavedCards:
+			Env_Settings.get().clearSavedCards();
+			break;
+				
 
 		case ApplePay_CheckBusinessCard:
 			ApplePay.get().checkBusinessCard();
@@ -1987,11 +2051,6 @@ public class EventCase {
 			//Trade.get().clickCross();
 			break;
 
-
-		case Env_ClearSavedCards:
-			Env_Settings.get().clearSavedCards();
-			break;
-
 		//MIT Multi-Leg switch cases START
 		case OpenAppMIT:
 			MainScreenMIT.get().OpenApp();
@@ -2253,8 +2312,185 @@ public class EventCase {
 		case Trade_Trigger:
 			//Trade.get().tradeDetails_TriggerDelta();
 			break;
+			
+	//Tetris start
+			
+		case VerifyPayWithRewards:
+			Bill_PayCanada.get().verifyPayWithRewards();
+			break;
+			
+		case ClickAccount:
+			Accounts.get().selectAccountInAccountSheet();
+			break;
+			
+		case CreditHeader:
+			Credit.get().credit_Header();
+			break;
+			
+			
+		case ClickStatementTab:
+			Credit.get().clickStatmentTab();
+			break;
+			
+		case ClickReward:
+			Credit.get().clickReward();
+			break;
+			
+		case RewardHeader:
+			Rewards.get().reward_Header();
+			break;
+			
+		case ClickPayWithRewards:
+			Rewards.get().clickPayWithRewardsIFVisible();
+			break;
+			
+		case PayWithRewardsHeader:
+			PayWithRewards.get().verifyPayWithRewardsHeader();
+		break;
+		
+		case ClickStatement:
+			Credit.get().clickStatment();
+			break;
 
-		}
+		case VerifyStatementBalanceHeader:
+			StatementBalance.get().verifyStatementBalanceHeader();
+			break;
+			
+		case VerifyAndClickPayWithRewardsBtn:
+			StatementBalance.get().verifyAndClickPayWithRewardsButton();
+			break;
+			
+		case ValidateAmount:
+			PayWithRewards.get().validateAndEnterAmount();
+			break;
+			
+		case VerifyMinAndMaxPaymentBtn:
+			PayWithRewards.get().validateMinAndMaxButton();
+			break;
+			
+		case PayWithRewardsNotVisible:
+			Rewards.get().payWithRewardsBtnNotVisible();
+			break;
+			
+		case ValidateMinPayment:
+			PayWithRewards.get().validateMinimumPayment();
+			break;
+			
+		case VerifyReviewHeader:
+			Review.get().verifyReviewHeader();
+			break;
+			
+		case ClickPayNowButton:
+			Review.get().payNowButton();
+			break;
+			
+		case ClickCancelButton:
+			Review.get().cancelButton();
+			break;
+			
+		case VerifyReceiptHeader:
+			Receipt.get().verifyReceiptHeader();
+			break;
+		
+		case VerifyAmountRedeem:
+			Receipt.get().verifyAmountRedeemed();
+			break;
+			
+		case ClickSummaryTab:
+			Credit.get().clickSummaryTab();
+			break;
+			
+		case ClickVisitRewards:
+			Rewards.get().clickVisitRewardsIFVisible();
+			break;
+			
+		case VerifyURL:
+			Rewards.get().verifyURLName();
+			break;
+			
+		case  VerifyRedemptionText:
+			Rewards.get().verifyRedemptiontxt();
+			break;
+			
+		case VerifyNoRewards:
+			Credit.get().rewardsNotVisible();
+			break;
+			
+		case VerifyRewardsText:
+			Rewards.get().verifyRewardstxt();
+			break;
+			
+		case VerifyCashbackText:
+			Credit.get().verifyCashbackTxt();
+			break;
+			
+		case VerifyRewardsBtn:
+			Credit.get().rewardVisible();
+			break;
+			
+		case VerifyTextcashBack:
+			Credit.get().verifyCashBack();
+			break;
+			
+		case VerifyEarnedAndRedeemed:
+			StatementBalance.get().verifyDollarsEarnedAndRedeemed();
+			break;
+			
+		case VerifyNoRewardsInQuickAccess:
+			QuickAccessPage.get().verifyNoRewards();
+			break;
+			
+		case ClickQuickAccessSettings:
+			QuickAccessPage.get().clickQuickAccessSettings();
+			break;
+			
+		case DisableCardInQuickAccess:
+			QuickAccessSettings.get().disableToggleCard();
+			break;
+			
+		case VerifyNoCardInQuickAccess:
+			QuickAccessSettings.get().verifyCardNotDisplayed();
+			break;
+			
+		case VerifyDollarRewardBalance:
+			Credit.get().verifyDollarRewardBalance();
+			break;
+			
+		case VerifyNoEarnedAndRedeemed:
+			StatementBalance.get().verifyNoDollarsEarnedAndRedeemed();
+			break;
+			
+		case  VerifyDollarDecimalValue:
+			Credit.get().verifyDollarDecimalValue();
+			break;
+			
+		case VerifyAmountAndContinueIsDisabled:
+			PayWithRewards.get().verifyAmountAndContinueIsDisabled();
+			break;
+			
+		case VerifyPayWithRewardsText:
+			Rewards.get().verifyPayWithRewardsText();
+			break;
+			
+		case VerifyRewardPointstxt:
+			QuickAccessPage.get().verifyRewardPointstxt();
+			break;
+			
+		case VerifyRewardPayee:
+			PayWithRewards.get().verifyRewardPayee();
+			break;
+			
+		case VerifyRedemptionDetails:
+			Receipt.get().verifyRedemptionDetails();
+			break;
+			
+		case VerifyCashBack:
+			QuickAccessPage.get().verifyCashBack();
+			break;
+			
+			//Tetris End
+
+		} 	
 	}
 
 	public void generateReport() {
