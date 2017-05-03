@@ -622,6 +622,52 @@ public class Accounts extends _CommonPage {
 		}
 	}
 
+	/***
+	This method will click the account from the Accounts page
+	 *
+	 * 
+	 * 
+	 * @return void
+	 * @throws Exception
+	 * 
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 */
+	
+	public void selectAccountInAccountSheet(){
+		
+		Decorator();
+		try{
+			boolean flag=true;
+			int count=0;
+		String accountXL = "//*[contains(@text,'" + CL.getTestDataInstance().getPrimaryAccount() + "') or contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "')  ]";
 
+		/*MobileElement accountValue=(MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(accountXL));
+		while(flag && count<26){
+			
+			if(mobileAction.verifyElementVisible(accountValue, "Account Value")){
+			mobileAction.FuncClick(accountValue, "Account");
+			flag=false;
+			}else{
+			mobileAction.FunctionSwipe("Up", 200, 200);
+			count++;
+			}}*/
+		
+		
+		mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountXL, true,10, "up");
+		mobileAction.waitForElementToVanished(progresssBar);
+		
+
+		}catch(Exception e){
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
 
 }
+
+
+

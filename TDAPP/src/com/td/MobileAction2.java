@@ -23,6 +23,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.MultiTouchAction;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -2647,7 +2648,77 @@ public MobileElement mobileElementUsingXPath(String objElement) throws IOExcepti
 
 }
 
+public String verifyElementUsingBy(By value) { 
+	  
+	String elementText="";
+	//boolean verifyFlag = true;
+	  try{
+	
+	WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+	wait.until(ExpectedConditions.elementToBeClickable(value));
+	
+	if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+		 elementText= ((AndroidDriver) GetDriver()).findElement(value).getAttribute("text");
+	}
+ else
+ {
+	 elementText= ((IOSDriver) GetDriver()).findElement(value).getAttribute("label");
+        
+ }
 
+}catch(NoSuchElementException e){
+	
+	}
+	  return elementText;
+
+
+	
+	
+	
+}
+public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
+
+			try {
+			if (elementToFind.isDisplayed()) {
+			GetReporting().FuncReport("Pass", "The text '" + text + "' is Displayed");
+			return true;
+			} else 
+			
+			return false;
+			
+			} catch (Exception e) {
+		
+		
+			return false;
+			}
+
+}
+
+		/**
+		* This method will click on the element according to coordinates.
+		*
+		* 
+		* @param widthCord
+		*            Width of the element
+		* @param HeightCord
+		*            Height of the element
+		* @param TapCount
+		*            Number of times to tap
+		* 
+		* @throws IOException
+		*/
+	public void clickCoOrdinatesPercentage(float widthCord, float HeightCord, int TapCount) {
+
+		Dimension size;
+		size = ((AppiumDriver) GetDriver()).manage().window().getSize();
+		int startx = (int) (size.width * widthCord);
+		int starty = (int) (size.height * HeightCord);
+		
+		TouchAction action = new TouchAction(((MobileDriver) GetDriver()));
+		for (int i = 0; i < TapCount; i++) {
+		action.tap(startx, starty).perform();
+		}
+}
 }
 
 

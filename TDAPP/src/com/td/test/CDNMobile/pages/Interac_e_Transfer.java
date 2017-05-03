@@ -136,8 +136,9 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and contains(@text,'Interac e-Transfer') and contains(@text,'Registration')]")
     private MobileElement registrationPageHeader;
     
-    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button' or @text='Continue']")
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button' or @resource-id='com.td:id/btn_footer' or @text='Continue']")
     private MobileElement continueButton;
+    
     
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/errorButton1' or @text='Open an Account']")
     private MobileElement openAnAccount;
@@ -148,6 +149,33 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/errorButton2' or @text='Find a Branch']")
     private MobileElement findABranch;
     
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_name']")
+    private MobileElement name;
+    
+    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_interac_registration_email']")
+    private MobileElement emailId;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='My Name']")
+    private MobileElement myName;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='My Name']/following-sibling::android.widget.TextView")
+    private MobileElement reviewName;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Email Address for Interac e-Transfer']")
+    private MobileElement emailAddress;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Email Address for Interac e-Transfer']/following-sibling::android.widget.TextView")
+    private MobileElement reviewEmailId;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Thank You']")
+    private MobileElement thankYou;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'now registered for Interac e-Transfer')]")
+    private MobileElement successMag;
+    
+    @iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	private MobileElement progressBar;
     
     public synchronized static Interac_e_Transfer get() {
 	if (Interac_e_Transfer == null) {
@@ -565,6 +593,102 @@ try {
 	 mobileAction.verifyElementIsDisplayed(openAnAccount, "Open An Account");
 	 mobileAction.verifyElementIsDisplayed(findABranch, "Find A Branch");
 
+	} catch (NoSuchElementException | IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	}
+    }
+    
+    
+    /**
+     * @author Ashraf
+     * This method will enter the email address for registration and click on continue.
+     * 
+     * @throws NoSuchElementException
+     *             In case the element is not found over the screen
+     * @throws IOException
+     *             If there is problem while reporting
+     * @return void
+     * 
+     */
+    public void registerUser() {
+	Decorator();
+	try {
+
+		String email=getTestdata("Email");
+		String nameText=getTestdata("Name");
+		
+	mobileAction.verifyTextEquality(name.getText(), nameText);
+	mobileAction.FuncClick(emailId, "Email");
+	mobileAction.FuncSendKeys(emailId,email);
+	mobileAction.FuncHideKeyboard();
+	mobileAction.FunctionSwipe("up", 200, 200);
+	mobileAction.FuncClick(continueButton, "Continue Button");
+	mobileAction.waitForElementToVanish(progressBar);
+
+	} catch (NoSuchElementException | IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	}
+    }
+    
+    
+    /**
+     * @author Ashraf
+     * This method will verify the registration details for review and click on continue button.
+     * 
+     * @throws NoSuchElementException
+     *             In case the element is not found over the screen
+     * @throws IOException
+     *             If there is problem while reporting
+     * @return void
+     * 
+     */
+    public void verifyDetails() {
+	Decorator();
+	try {
+		String nameText=getTestdata("Name");
+		String email=getTestdata("Email");
+		
+		mobileAction.verifyElementIsDisplayed(myName, "My Name");
+		mobileAction.verifyTextEquality(reviewName.getText(), nameText);
+		mobileAction.verifyElementIsDisplayed(emailAddress, "My Name");
+		mobileAction.verifyTextEquality(reviewEmailId.getText(), email);
+		
+		mobileAction.FuncClick(continueButton, "Continue Button");
+		mobileAction.waitForElementToVanish(progressBar);
+	} catch (NoSuchElementException | IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	}
+    }
+    
+    
+    /**
+     * @author Ashraf
+     * This method will verify the success message after registration.
+     * 
+     * @throws NoSuchElementException
+     *             In case the element is not found over the screen
+     * @throws IOException
+     *             If there is problem while reporting
+     * @return void
+     * 
+     */
+    public void verifyRegSuccessMsg() {
+	Decorator();
+	try {
+
+		mobileAction.verifyElementIsDisplayed(thankYou, "Thank You");
+		mobileAction.verifyElementIsDisplayed(successMag, "You're now registered for Interac e-Transfer");
+		
+		
 	} catch (NoSuchElementException | IOException e) {
 		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
