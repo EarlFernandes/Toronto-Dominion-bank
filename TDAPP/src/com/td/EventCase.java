@@ -179,6 +179,9 @@ public class EventCase {
 		Interac_e_Transfer_clickContinueButton,
 		Profile_And_Settings_clickPaymentsAndTransfers,
 		Interac_e_Transfer_verifyErrorText,
+		Interac_e_Transfer_registerUser,
+		Interac_e_Transfer_verifyDetails,
+		Interac_e_Transfer_verifyRegSuccessMessage,
 	}
 
 	public void FuncCOREEventCase(String sFunctionname)
@@ -411,6 +414,18 @@ public class EventCase {
 			Interac_e_Transfer.get().verifyErrorMessage();
 			break;
 
+		case Interac_e_Transfer_registerUser:
+			Interac_e_Transfer.get().registerUser();
+			break;
+			
+		case Interac_e_Transfer_verifyDetails:
+			Interac_e_Transfer.get().verifyDetails();
+			break;
+			
+		case Interac_e_Transfer_verifyRegSuccessMessage:
+			Interac_e_Transfer.get().verifyRegSuccessMsg();
+			break;
+			
 		case HomeScreen_ClickBills:
 			HomeScreen.get().clickBill();
 			break;
