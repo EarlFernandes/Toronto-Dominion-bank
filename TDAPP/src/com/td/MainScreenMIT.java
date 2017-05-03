@@ -101,7 +101,7 @@ public class MainScreenMIT extends _CommonPage {
 	    if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 	    {
 	    //CL.getTestDataInstance().SetAppFilePath("C:/Users/baraps2/MIT_Builds/Android/banking-wealth-17.3.1-20170130.145242-90-debug.apk");
-	    CL.getTestDataInstance().SetAppFilePath("C:/Automation/MIT_Builds/Android/banking-wealth-17.3.1-20170425.142638-676-debug.apk"); //path at simulator server
+	    CL.getTestDataInstance().SetAppFilePath("C:/Automation/MIT_Builds/Android/banking-wealth-17.3.1-20170502.220836-754-debug.apk"); //path at simulator server
 	      CL.mobileApp("http://0.0.0.0:4727/wd/hub"); // android
 	    }
 	// iOS

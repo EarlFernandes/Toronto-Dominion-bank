@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
@@ -158,6 +159,7 @@ public class SearchPageMIT extends _CommonPage {
 		//List<MobileElement> elementToFind = null;
 		Decorator();
 		int i,temp;
+		String sSymbolName="";
 		try
 		{
 			mobileAction.FuncClick(search_symbol, "search_symbol");
@@ -174,7 +176,7 @@ public class SearchPageMIT extends _CommonPage {
 			else
 			{
 				xpathFlag = xpathSymbolFlag_ios;
-				temp =2;
+				temp =0;
 				property = "name";
 			}
 			//US_Symbol.click();
@@ -183,8 +185,13 @@ public class SearchPageMIT extends _CommonPage {
 			
 			 for(i=temp;i< listItem.size();i++)
 			 {
-				 if(listItem.get(i).getAttribute(property).contains("U S") || listItem.get(i).getAttribute(property).contains("US"))
-				 //if(listItem.get(i).isDisplayed())
+				 if(listItem.get(i).getAttribute("name").contains("U S"))
+				 //listItem.get(i).findElementByXPath(using)
+				 {
+					 sSymbolName = CL.GetDriver().findElements(By.xpath("//*[@resource-id='com.td:id/market_name']")).get(i).getText();
+					 CL.GetReporting().FuncReport("Pass","US option found in search list. Item :" + sSymbolName);
+				 }
+				 else if(listItem.get(i).getAttribute("name").contains("US"))
 				 {
 					 CL.GetReporting().FuncReport("Pass","US option found in search list. Item :" + listItem.get(i).getAttribute("name"));
 				 }
@@ -192,7 +199,15 @@ public class SearchPageMIT extends _CommonPage {
 					 CL.GetReporting().FuncReport("Fail","Incorrect option found in search list."); 
 			 }
 			 
+			 try
+			 {
 			 CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
+			 CL.GetReporting().FuncReport("Pass", listItem.get(temp).getAttribute(property) + " from symbol search list selected."); 
+			 }
+			 catch(Exception e)
+			 {
+				CL.GetReporting().FuncReport("Fail", "First Symbol from symbol search list is not selected."); 
+			 }
 		}
 		catch(Exception e)
 		{
@@ -243,18 +258,61 @@ public class SearchPageMIT extends _CommonPage {
 		{
 			String xpathFlag="";
 			int temp =0;
+			String sSymbol = getTestdata("Symbol", XLSheetUserIDs).trim();
+			boolean bFound=false;
+			String sProperty = "";
+			String sSymbolName = "";
+			boolean bSymbolText=false;
+
+			mobileAction.FuncClick(search_symbol, "search_symbol");
+			enterSymbol(search_symbol, sSymbol);
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 			{
 				xpathFlag = xpathSymbolFlag;
+				sProperty = "text";
+				//sSymbolName = CL.GetDriver().findElements(By.xpath("//*[@resource-id='com.td:id/market_name']")).get(i).getText();
+				try
+				{
+					CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
+					CL.GetReporting().FuncReport("Pass", "Symbol <b> "+ sSymbol + "</b> Clicked.");
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					CL.GetReporting().FuncReport("Fail", "Symbol <b> "+ sSymbol + "</b> not Clicked.");
+				}
 			}
 			else
 			{
 				xpathFlag = xpathSymbolFlag_ios;
-				temp =1;
+				//temp =0;
+				sProperty = "label";
+			do{
+			try{
+/*				try{
+				bSymbolText = CL.GetDriver().findElements(By.xpath("//*[@resource-id='com.td:id/market_name']")).get(temp).getText().contains(sSymbol);
+				}
+				catch(ex)*/
+				if(CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).isDisplayed() && CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).getAttribute(sProperty).contains(sSymbol))
+				{
+					bFound = true;
+					CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
+					CL.GetReporting().FuncReport("Pass", "Symbol <b> "+ sSymbol + "</b> Clicked.");
+				}
+				else
+					temp++;
 			}
-			mobileAction.FuncClick(search_symbol, "search_symbol");
-			enterSymbol(search_symbol, getTestdata("Symbol", XLSheetUserIDs));
-			mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),"First Symbol");
+			catch(Exception e)
+			{
+/*				if(CL.GetDriver().findElements(By.xpath(xpathFlag)).get(1).isDisplayed())
+				{
+					CL.GetDriver().findElements(By.xpath(xpathFlag)).get(1).click();
+					CL.GetReporting().FuncReport("Pass", "Symbol <b> "+ sSymbol + "</b> Clicked.");
+				}*/
+				temp++;
+			}
+			}while(!bFound && temp < CL.GetDriver().findElements(By.xpath(xpathFlag)).size());
+			}
 			
 		}
 		catch(Exception e)
@@ -268,6 +326,8 @@ public class SearchPageMIT extends _CommonPage {
 		try
 		{
 			mobileAction.FuncSendKeys(mEle, symbol + " ");
+			((RemoteWebDriver) CL.GetDriver()).getKeyboard().pressKey(Keys.BACK_SPACE);
+			
 			//mobileAction.FuncSendKeys(mEle,"\u0008");
 			//mEle.sendKeys(Keys.DELETE);
 		
