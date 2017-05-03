@@ -644,6 +644,8 @@ public class MutualFunds extends _CommonPage {
 			// mobileAction.waitForElementToVanish(progressBar);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				if(!actionToPerform.equals("Switch") || !actionToPerform.equals("Substituer"))
+				{
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
 				mobileAction.FuncSendKeys(symbolEditText1, searchKeyword1);
 				mobileAction.waitForElementToVanish(progressBar);
@@ -657,6 +659,23 @@ public class MutualFunds extends _CommonPage {
 					e.printStackTrace();
 					System.out.println(e.getMessage());
 				}
+				}
+				else
+				{
+				mobileAction.FuncClick(symbol, "Enter name or symbol");
+				mobileAction.FuncSendKeys(symbolEditText1, searchKeyword1);
+				mobileAction.waitForElementToVanish(progressBar);
+				Thread.sleep(2000);
+				try {
+					String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'CA')]";
+					mobileAction.FuncClick(
+							(MobileElement) CL.GetDriver().findElements(By.xpath(xpathSymbolFlag_ios)).get(0),
+							"First Symbol");
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println(e.getMessage());
+				}
+				
 				//symbol2
 				mobileAction.FuncClick(symbol1, "Enter name or symbol");
 				mobileAction.FuncSendKeys(symbolEditText2, searchKeyword2);
@@ -671,9 +690,11 @@ public class MutualFunds extends _CommonPage {
 					e.printStackTrace();
 					System.out.println(e.getMessage());
 				}
+				}
 
 			} else {
-
+				if(!actionToPerform.equals("Switch") || !actionToPerform.equals("Substituer"))
+				{
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
 				//mobileAction.FuncClick(symbolEditText, "Enter name or symbol");
 				mobileAction.FuncSendKeys(symbolEditText1, searchKeyword1);
@@ -685,6 +706,21 @@ public class MutualFunds extends _CommonPage {
 				mobileAction.FuncClick(selectSymbolValue1, "Symbol");
 
 				mobileAction.waitForElementToVanish(progressBar);
+				}
+				else
+				{
+				mobileAction.FuncClick(symbol, "Enter name or symbol");
+				//mobileAction.FuncClick(symbolEditText, "Enter name or symbol");
+				mobileAction.FuncSendKeys(symbolEditText1, searchKeyword1);
+				mobileAction.waitForElementToVanish(progressBar);
+				
+				MobileElement selectSymbolValue1 = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(selectSymbolVal1));
+				
+				mobileAction.FuncClick(selectSymbolValue1, "Symbol");
+
+				mobileAction.waitForElementToVanish(progressBar);
+				
 				//Symbol2
 				mobileAction.FuncClick(symbol2, "Enter name or symbol");
 				//mobileAction.FuncClick(symbolEditText, "Enter name or symbol");
@@ -695,7 +731,7 @@ public class MutualFunds extends _CommonPage {
 						.findElement(By.xpath(selectSymbolVal2));
 				
 				mobileAction.FuncClick(selectSymbolValue, "Symbol");
-
+				}
 			}
 		} catch (NoSuchElementException | IOException | InterruptedException e) {
 

@@ -76,7 +76,7 @@ public class Trade extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/caption' and (contains(@text,'ordre') or @text='Order Type')]")
 	private MobileElement order_Type;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='Nï¿½gociation']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='Négociation']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Trade' or @text='Négociation')]")
 	private MobileElement trade_header;
 

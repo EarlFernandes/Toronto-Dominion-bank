@@ -356,8 +356,6 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.verifyElement(leg2Action, getTestdata("TextDefaultListItem", XLSheetUserIDs));
 			mobileAction.FuncVerifyBlankValue(leg2Quantity, "leg2Quantity");
 			
-			
-			
 			String[] sUrlTitle= getTestdata("urlTitle", XLSheetUserIDs).split(";");
 			
 			mobileAction.FuncSwipeWhileElementNotFound(commissionLink, false, 7, "up");
