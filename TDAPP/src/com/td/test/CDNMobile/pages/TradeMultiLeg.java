@@ -128,6 +128,10 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/positiveButton")
 	private MobileElement agreeButton;
 	
+	@iOSFindBy(xpath = "//*[@label='Agree' or @label='Accepte']") //@Author - Sushil 08-Feb-2017
+	@AndroidFindBy(id="android:id/button1")
+	private MobileElement acceptButton;
+	
 	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']") //@Author - Sushil 08-Feb-2017
 	@AndroidFindBy(id="android:id/action_bar_title")
 	private MobileElement titleTrade;
@@ -392,7 +396,9 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.verifyElement(leg1Action, getTestdata("TextDefaultListItem", XLSheetUserIDs));
 			mobileAction.verifyElement(leg1Quantity, defaultQtyVal);
 
-			mobileAction.FunCnewSwipe(leg2Option,false,5);	
+			///mobileAction.FunCnewSwipe(leg2Option,false,5);
+			mobileAction.FuncSwipeWhileElementNotFound(leg2Quantity, false, 7, "up");
+			//mobileAction.FunCnewSwipe(leg2Quantity,false,5);	
 			mobileAction.verifyElement(leg2Option, getTestdata("OptionDefault", XLSheetUserIDs));
 			mobileAction.verifyElement(leg2Action, getTestdata("TextDefaultListItem", XLSheetUserIDs));
 			mobileAction.verifyElement(leg2Quantity, defaultQtyVal);
@@ -547,8 +553,8 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.FuncClick(leg2Option, "Select Option Leg2");
 			if(mobileAction.isObjExists(leg2Option))
 				mobileAction.FuncClick(leg2Option, "Select Option Leg2");
-			///mobileAction.FunCnewSwipe(firstBidCALLS,false,5);
-			mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FunCnewSwipe(firstBidCALLS,false,5);
+			///mobileAction.FunctionSwipe("up", 200, 100);
 			mobileAction.FuncClick(firstBidCALLS, "firstBidCALLS");
 			mobileAction.FuncClick(Continue, "Continue");
 			mobileAction.FunCnewSwipe(leg2Quantity,false,5);
@@ -560,7 +566,7 @@ public class TradeMultiLeg extends _CommonPage{
 			verifyMidNaturalVarience();
 //
 			mobileAction.FuncClick(titleTrade, "titleTrade");
-			mobileAction.FuncClick(agreeButton, "agreeButton");
+			mobileAction.FuncClick(acceptButton, "agreeButton");
 			TradeMIT.get().clickInvestingTrade();
 			TradeMIT.get().selectTradeAccount_OrderType();
 			TradeMIT.get().tapTradeSearchBar();
@@ -572,14 +578,14 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.FuncClick(leg2Option, "Select Option Leg2");
 			if(mobileAction.isObjExists(leg2Option))
 				mobileAction.FuncClick(leg2Option, "Select Option Leg2");
-			///mobileAction.FunCnewSwipe(firstAskCALLS,false,5);
-			mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FunCnewSwipe(firstAskCALLS,false,5);
+			///mobileAction.FunctionSwipe("up", 200, 100);
 			mobileAction.FuncClick(firstAskCALLS, "firstBidCALLS");
 			mobileAction.FuncClick(Continue, "Continue");
 			mobileAction.FunCnewSwipe(leg2Quantity,false,5);
 			enterQuantity(leg2Quantity,"1");
-			///mobileAction.FunCnewSwipe(midPrice,false,5);
-			mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FunCnewSwipe(midPrice,false,5);
+			///mobileAction.FunctionSwipe("up", 200, 100);
 			mobileAction.verifyElementTextContains(midPrice, getTestdata("TextDebit", XLSheetUserIDs));
 			mobileAction.verifyElementTextContains(naturalPrice, getTestdata("TextDebit", XLSheetUserIDs));
 		}
