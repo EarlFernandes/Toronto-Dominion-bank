@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
@@ -104,8 +105,6 @@ public class MobileDeposit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'To make a deposit')]")
 	private MobileElement validation_sixthLine;
 
-	// FIXME: What is the progressbar id?
-	@iOSFindBy(xpath="//*[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 
@@ -228,7 +227,6 @@ public class MobileDeposit extends _CommonPage {
 		try {
 			initElementHistoryChequeButton();
 			mobileAction.FuncClick(chequeHistoryButton, "Cheque History");
-			mobileAction.waitForElementToVanish(progressBar);
 		}
 		catch (NoSuchElementException  | IOException  |InterruptedException e) {
 			System.err.println("TestCase has failed.");
@@ -254,7 +252,6 @@ public class MobileDeposit extends _CommonPage {
 		try {
 			initElementDepositChequeButton();
 			mobileAction.FuncClick(dpstCheque_btn, "DepositCheque");
-			mobileAction.waitForElementToVanish(progressBar);
 		}
 		catch (NoSuchElementException  | IOException  |InterruptedException e) {
 			System.err.println("TestCase has failed.");
@@ -274,7 +271,14 @@ public class MobileDeposit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				dateHeaders = ((AppiumDriver) CL.GetDriver())
+						.findElements(By.xpath("//XCUIElementTypeStaticText[contains(@name, 'DEPOSIT_RECEIPT_VIEW_DATE')]"));
+				for(MobileElement m : dateHeaders) {
+					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_YYYY_MM_DD);
+				}
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("mobiledeposit_successfeature_str_depositreceipts") + "']", "Deposit Cheque History");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='DEPOSIT_RECEIPT_VIEW_HEADER' and @label='" + mobileAction.getAppString("mobiledeposit_receipt_message") + "']", "Warning msg");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='DEPOSIT_RECEIPT_VIEW_FOOTER' and @label='" + mobileAction.getAppString("mobiledeposit_loc_not_available_temporary_disclaimer") + "']", "disclaimer");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("ActionBar_MobileDepositReceipt") + "']", "Deposit Cheque History");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDepositReceipt_Header_Description") + "']", "Warning msg");
@@ -424,7 +428,15 @@ public class MobileDeposit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				MobileElement chequeToSelect = mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[1]", "Cheque to Select");
+				chequeToSelect.click();
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("mobiledeposit_introfeature_str_mobileDepositHistory") + "']", "Mobile Deposit History");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='DEPOSIT_RECEIPTS_DETAIL_ACCOUNT' and @label='" + mobileAction.getAppString("mobiledeposit_depositcheque_str_history_toaccount") + "']", "To Account");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='DEPOSIT_RECEIPTS_DETAIL_AMOUNT' and @label='" + mobileAction.getAppString("mobiledeposit_depositcheque_str_history_amount") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='DEPOSIT_RECEIPTS_DETAIL_DATE' and @label='" + mobileAction.getAppString("mobiledeposit_depositcheque_str_history_DateTime") + "']", "Date and time");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='DEPOSIT_RECEIPTS_DETAIL_DATE' and @label='" + mobileAction.getAppString("mobiledeposit_depositcheque_str_history_DateTime") + "']", "Date and time");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='DEPOSIT_RECEIPTS_DETAIL_CHEQUE' and @label='" + mobileAction.getAppString("mobiledeposit_depositcheque_str_chequefront") + "']", "Cheque Front");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("mobiledeposit_depositreciept_viewAccountHistory") + "']", "View acocunt history button");
 			} else {
 				MobileElement chequeToSelect = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mobile_deposit_receipt_account_name' and @index='0']", "Cheque to Select");
 				chequeToSelect.click();

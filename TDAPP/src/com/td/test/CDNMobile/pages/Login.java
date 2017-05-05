@@ -68,7 +68,7 @@ public class Login extends _CommonPage {
 	private MobileElement select_accesscard;
 
 	// FIXME: accessibility id needed here!
-	@iOSFindBy(accessibility = "添加用户名或易通卡")
+	@iOSFindBy(xpath = "//*[@label='添加用户名或易通卡' or @label='Add Username or Access Card' or @label='新增用戶名稱或易通卡']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard']")
 	private MobileElement addUser;
 

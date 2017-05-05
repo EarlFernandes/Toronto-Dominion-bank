@@ -22,7 +22,7 @@ public class AddPayee extends _CommonPage {
 	
 	private static AddPayee AddPayee;
 	
-	@iOSFindBy(xpath = "//*[@label='In Progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 	
@@ -208,7 +208,8 @@ public class AddPayee extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				searchForPayee();
+				clickOnFirstCanadianPayeeFound();
 			} else {
 				searchForPayee();
 				clickOnFirstCanadianPayeeFound();
@@ -459,7 +460,19 @@ public class AddPayee extends _CommonPage {
 
 	private void searchForPayee() throws IOException {
 		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-			// TODO: iOS elements
+			try {
+				final MobileElement searchForPayee = mobileAction.verifyElementUsingXPath("//XCUIElementTypeTextField[@name='" + mobileAction.getAppString("add_cdn_payee_hint") + "']", "Search for payee");
+				mobileAction.FuncSendKeys(searchForPayee, getTestdata("Payee"));
+				mobileAction.FuncHideKeyboard();
+			} catch (NoSuchElementException | InterruptedException | IOException e) {
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
 		} else {
 			// Switching to webview
 			mobileAction.switchAppiumContext("WEBVIEW_com.td");

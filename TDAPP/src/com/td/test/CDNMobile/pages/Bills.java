@@ -226,9 +226,7 @@ public class Bills extends _CommonPage {
 			Decorator();
 			initElementManagePayees();
 			mobileAction.FuncClick(manage_payees, "Manage Payees");
-			mobileAction.waitForElementToVanish(progrees_bar);
 			Thread.sleep(10000);
-
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
