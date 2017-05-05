@@ -221,7 +221,7 @@ public class SearchPageMIT extends _CommonPage {
 		Decorator();
 		try
 		{
-			String xpathFlag="";
+/*			String xpathFlag="";
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 				xpathFlag = xpathSymbolFlag;
 			else
@@ -233,7 +233,8 @@ public class SearchPageMIT extends _CommonPage {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 			mobileAction.FuncHideKeyboard();
 			mobileAction.verifyElement(txt_results,getTestdata("RESULTS", XLSheetUserIDs));
-			CL.GetDriver().findElements(By.xpath(xpathFlag)).get(0).click();
+			CL.GetDriver().findElements(By.xpath(xpathFlag)).get(0).click();*/
+			clickFirstSymbol("TD");
 			mobileAction.verifyElementIsDisplayed(Quote_Symbol, "Quote_Symbol");
 			mobileAction.verifyElementIsDisplayed(Quote_description, "Quote_description");
 			mobileAction.verifyElementTextContains(Quote_txt_price, "$");
@@ -331,6 +332,69 @@ public class SearchPageMIT extends _CommonPage {
 			//mobileAction.FuncSendKeys(mEle,"\u0008");
 			//mEle.sendKeys(Keys.DELETE);
 		
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public void clickFirstSymbol(String sSymbolName)//@Author - Sushil 05-May-2017
+	{
+		Decorator();
+		try
+		{
+			String xpathFlag="";
+			int temp =0;
+			//String sSymbol = getTestdata("Symbol", XLSheetUserIDs).trim();
+			boolean bFound=false;
+			String sProperty = "";
+			//String sSymbolName = "";
+			boolean bSymbolText=false;
+
+			mobileAction.FuncClick(search_symbol, "search_symbol");
+			enterSymbol(search_symbol, sSymbolName);
+			mobileAction.verifyElement(txt_results,getTestdata("RESULTS", XLSheetUserIDs));
+			TradeMultiLeg.get().handleKeyboard();
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			{
+				xpathFlag = xpathSymbolFlag;
+				sProperty = "text";
+				//sSymbolName = CL.GetDriver().findElements(By.xpath("//*[@resource-id='com.td:id/market_name']")).get(i).getText();
+				try
+				{
+					CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
+					CL.GetReporting().FuncReport("Pass", "Symbol <b> "+ sSymbolName + "</b> Clicked.");
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					CL.GetReporting().FuncReport("Fail", "Symbol <b> "+ sSymbolName + "</b> not Clicked.");
+				}
+			}
+			else
+			{
+				xpathFlag = xpathSymbolFlag_ios;
+				//temp =0;
+				sProperty = "label";
+			do{
+			try{
+				if(CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).isDisplayed() && CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).getAttribute(sProperty).contains(sSymbolName))
+				{
+					bFound = true;
+					CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
+					CL.GetReporting().FuncReport("Pass", "Symbol <b> "+ sSymbolName + "</b> Clicked.");
+				}
+				else
+					temp++;
+			}
+			catch(Exception e)
+			{
+				temp++;
+			}
+			}while(!bFound && temp < CL.GetDriver().findElements(By.xpath(xpathFlag)).size());
+			}
+			
 		}
 		catch(Exception e)
 		{

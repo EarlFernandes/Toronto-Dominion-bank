@@ -432,21 +432,23 @@ public class TradeMultiLeg extends _CommonPage{
 			///mobileAction.FunCnewSwipe(firstStrikePUTS,false,5);
 			mobileAction.FunctionSwipe("up", 200, 100);
 			mobileAction.FuncClick(firstBidPUTS, "firstBidPUTS");
-			mobileAction.verifyElement(leg2Action, getTestdata("Leg2Action2", XLSheetUserIDs));
+
 			sExpFormat = getOptionFormat(expiryDate,"PUTS");
 			mobileAction.FuncClick(Continue, "Continue");
 			mobileAction.verifyElement(leg2Option,sExpFormat);
+			mobileAction.verifyElement(leg2Action, getTestdata("Leg2Action2", XLSheetUserIDs));
 			
 			////
 			mobileAction.FunCnewSwipe(leg1Option,false,5);
 			mobileAction.FuncClick(leg1Option, "Select Option Leg1");
 			///mobileAction.FunCnewSwipe(firstStrikeCALLS,false,5);
 			mobileAction.FunctionSwipe("up", 200, 100);
-			mobileAction.FuncClick(firstAskCALLS, "firstBidCALLS");
-			mobileAction.verifyElement(leg1Action, getTestdata("Leg1Action2", XLSheetUserIDs));
+			mobileAction.FuncClick(firstAskCALLS, "firstAskCALLS");
+
 			sExpFormat = getOptionFormat(expiryDate,"CALLS");
 			mobileAction.FuncClick(Continue, "Continue");
 			mobileAction.verifyElement(leg1Option,sExpFormat);
+			mobileAction.verifyElement(leg1Action, getTestdata("Leg1Action2", XLSheetUserIDs));
 			//
 			mobileAction.FuncClick(leg2Option, "Select Option Leg2");
 			///mobileAction.FunCnewSwipe(firstStrikePUTS,false,5);
@@ -603,6 +605,7 @@ public class TradeMultiLeg extends _CommonPage{
 			sMidPrice = getPrice(mobileAction.FuncGetText(midPrice));
 			sNaturalPrice = getPrice(mobileAction.FuncGetText(naturalPrice));
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 5, "down");
+			///mobileAction.FunctionSwipe("down", 200, 200);
 			mobileAction.selectItemFromList(leg1Action, getTestdata("Leg1Action2", XLSheetUserIDs));
 			mobileAction.FuncSwipeWhileElementNotFound(naturalPrice, false, 5, "up");
 			verifyPriceVarience(mobileAction.FuncGetText(midPrice),sMidPrice,"midPrice");
