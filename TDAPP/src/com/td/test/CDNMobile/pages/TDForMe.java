@@ -19,7 +19,7 @@ public class TDForMe extends _CommonPage {
 
 	private static TDForMe Tdforme;
 
-	@iOSFindBy(xpath = "//*[@label='TD for Me Settings' or @label='Paramètres TD et moi']")
+	@iOSFindBy(xpath = "//*[@label='TD for Me Settings' or @label='ParamÃ¨tres TD et moi']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement tdforme_title;
 
@@ -45,7 +45,7 @@ public class TDForMe extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(tdforme_title, "TD for Me Settings | Paramètres TD et moi");
+			mobileAction.verifyElementTextIsDisplayed(tdforme_title, "TD for Me Settings | ParamÃ¨tres TD et moi");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
