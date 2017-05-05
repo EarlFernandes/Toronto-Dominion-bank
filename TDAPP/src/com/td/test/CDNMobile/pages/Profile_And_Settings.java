@@ -58,7 +58,7 @@ public class Profile_And_Settings extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_quick_access']/android.widget.TextView")
 	private MobileElement quickaccesssetting;
 	
-	@iOSFindBy(xpath = "//*[@label='TD for Me Settings' or @label='Paramètres de TD et moi']")
+	@iOSFindBy(xpath = "//*[@label='TD for Me Settings' or @label='Paramètres TD et moi']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_tdforme']/android.widget.TextView")
 	private MobileElement tdformesettings;
 	
