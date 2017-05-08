@@ -1453,7 +1453,7 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			mobileAction.FuncClick(search_txtSearchTitle, "search_txtSearchTitle");
 	
-			String xpathFlag="";
+/*			String xpathFlag="";
 			int temp =0;
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 			{
@@ -1473,7 +1473,8 @@ public class TradeMultiLeg extends _CommonPage{
 			catch(Exception e)
 			{
 				CL.GetReporting().FuncReport("Fail", "First Symbol not selected.");
-			}
+			}*/
+			SearchPageMIT.get().clickFirstSymbol("AAPL");
 			//
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 7, "up");
 			mobileAction.verifyElement(leg1Action, getTestdata("TextDefaultListItem",XLSheetUserIDs));
@@ -1528,7 +1529,7 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			mobileAction.FuncClick(search_txtSearchTitle, "search_txtSearchTitle");
 	
-			String xpathFlag="";
+/*			String xpathFlag="";
 			int temp =0;
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 			{
@@ -1541,8 +1542,8 @@ public class TradeMultiLeg extends _CommonPage{
 			}
 			mobileAction.FuncClick(search_symbol, "search_symbol");
 			SearchPageMIT.get().enterSymbol(search_symbol, "AAPL");
-			mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),"First Symbol");
-			
+			mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),"First Symbol");*/
+			SearchPageMIT.get().clickFirstSymbol("AAPL");
 			//
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 7, "up");
 			mobileAction.verifyElement(leg1Action, getTestdata("TextDefaultListItem",XLSheetUserIDs));
@@ -1600,7 +1601,7 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			mobileAction.FuncClick(searchBar, "searchBar");
 			
-			String xpathFlag="";
+/*			String xpathFlag="";
 			int temp =0;
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 			{
@@ -1621,7 +1622,9 @@ public class TradeMultiLeg extends _CommonPage{
 			catch(Exception e)
 			{
 				CL.GetReporting().FuncReport("Fail", "First searched symbol not clicked.");
-			}
+			}*/
+			
+			SearchPageMIT.get().clickFirstSymbol("G");
 			
 			mobileAction.selectItemFromList(selectedOrderType, aOrderTypeList[1]);
 			
@@ -1650,7 +1653,7 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			mobileAction.FuncClick(searchBar, "searchBar");
 			
-			String xpathFlag="";
+/*			String xpathFlag="";
 			int temp =0;
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 			{
@@ -1671,7 +1674,9 @@ public class TradeMultiLeg extends _CommonPage{
 			catch(Exception e)
 			{
 				CL.GetReporting().FuncReport("Fail", "First searched symbol not clicked.");
-			}
+			}*/
+			
+			SearchPageMIT.get().clickFirstSymbol("G");
 			
 			mobileAction.selectItemFromList(selectedOrderType, aOrderTypeList[1]);
 			

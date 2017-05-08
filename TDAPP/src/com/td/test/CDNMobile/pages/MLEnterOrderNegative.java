@@ -42,7 +42,7 @@ public class MLEnterOrderNegative extends _CommonPage{
 	private MobileElement messageNegative;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Order') or contains(@label,'Type')]")
-	@AndroidFindBy(xpath = "//*[contains(@text,'Order') or contains(@text,'Actions et FNB')]")
+	@AndroidFindBy(xpath = "//*[contains(@text,'Order') or contains(@text,'Type')]")
 	private MobileElement orderTypeSelected;
 	
 
