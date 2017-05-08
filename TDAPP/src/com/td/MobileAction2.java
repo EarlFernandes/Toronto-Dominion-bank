@@ -599,14 +599,8 @@ public class MobileAction2 extends CommonLib {
 	 */
 	public void FuncHideKeyboard() throws IOException {
 		try {
-			((AppiumDriver) GetDriver()).navigate().back();
-			GetReporting().FuncReport("Pass", "Keyboard has been closed.");
-		} catch (WebDriverException e) {
-			GetReporting().FuncReport("Fail", "WebDriverException occured while while closing keyboard.");
-			throw e;
+			((AppiumDriver) GetDriver()).hideKeyboard();
 		} catch (Exception e) {
-			GetReporting().FuncReport("Fail", "Exception '" + e.toString() + "' occurred while closing keyboard.");
-			throw e;
 		}
 	}
 
@@ -1640,7 +1634,7 @@ public class MobileAction2 extends CommonLib {
 	public static final String PATTERN_ZH_YYYY_MM_DD_WEEKDATE = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\((星期|週)[一|二|三|四|五|六|日|天]\\)";
 	public static final String PATTERN_ZH_MM_YYYY = "\\d{4}年\\s?\\d{1,2}月";
 	public static final String PATTERN_ZH_YYYY_MM_DD_TODAY = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\((今天|今日)\\)";
-	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日 (在 )?\\d{2}:\\d{2} (AM|PM)[A-Za-z\\s]*";
+	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日 (,|在 |，)?\\d{2}:\\d{2} (AM|PM)[A-Za-z\\s]*";
 	public static final String PATTERN_ZH_YYYY_MM_DD_RANGE = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日 – (\\d{4}年)*\\d{1,2}月\\d{1,2}日";
 	
 	public void verifyDateFormat(final String dateStr, final int type) {

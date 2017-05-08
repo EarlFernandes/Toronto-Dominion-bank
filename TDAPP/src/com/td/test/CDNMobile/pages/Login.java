@@ -6,6 +6,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.td.MainScreen;
 import com.td.StringLookup;
@@ -228,10 +230,16 @@ public class Login extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				select_accesscard = mobileAction.verifyElementUsingXPath("//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @content-desc='" +  mobileAction.getAppString("username_str") + "']", "Username");
 			}
-			if(mobileAction.FuncISDisplayed(select_accesscard)){
+
+			if(select_accesscard != null && mobileAction.FuncISDisplayed(select_accesscard)){
 					try {
 						mobileAction.FuncClick(select_accesscard, "Select Accesscard");
-						mobileAction.FuncClick(addUser, "AddUser");
+						//mobileAction.FuncClick(addUser, "AddUser");
+
+						WebDriverWait wait = new WebDriverWait(CL.GetDriver(), 5L);
+						wait.until(ExpectedConditions.visibilityOf(addUser));
+						addUser.click();
+
 						flag = true;
 					} catch (NoSuchElementException | InterruptedException | IOException e) {
 						System.out.print("Exception from Method " + this.getClass().toString());
@@ -356,7 +364,7 @@ public class Login extends _CommonPage {
 			}
 			verifySystemError();
 			verifySecurityQuestion();
-			verifyTandC();
+			//verifyTandC();
 			Thread.sleep(5000);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -1222,7 +1230,7 @@ public class Login extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @text='" + mobileAction.getAppString("username_str") + "']", "Username");
 				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @content-desc='" + mobileAction.getAppString("password_str") + "']", "Password");
 				mobileAction.FuncHideKeyboard();
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id= 'com.td:id/remember_text' and @text='" + mobileAction.getAppString("remember_str") + "']", "Remember Me");
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id= 'com.td:id/remember_text' and @text='" + mobileAction.getAppString("remember_str") + "']", "Remember Me");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/loginBtnText' and @text='" + mobileAction.getAppString("login_str") + "']", "Login");
 				if(!Boolean.parseBoolean(rememberMe.getAttribute("checked"))) {
 					mobileAction.FuncClick(rememberMe, "Remember Me Switch");

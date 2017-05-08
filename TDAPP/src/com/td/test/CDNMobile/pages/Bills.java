@@ -100,7 +100,6 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
-	@iOSFindBy(accessibility = "-Date")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtDate']")
 	private MobileElement datePicker;
 
@@ -115,7 +114,6 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/upcomingbill_date_value']")
 	private MobileElement upcomingBillDate;  
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progrees_bar;
 
@@ -177,7 +175,7 @@ public class Bills extends _CommonPage {
 	private void initElementScheduledPayments() {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				scheduledPayments = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowUpcomingBills") + "']", "Scheduled Payments");
+				scheduledPayments = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text = '" + mobileAction.getAppString("str_Scheduled_Bills") + "' or " + "@text='" + mobileAction.getAppString("billsNavRowUpcomingBills") + "']", "Scheduled Payments");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {
@@ -488,7 +486,7 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsHintTextPayUSBill") + "']", "Pay a U.S. Bill");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowManagePayee") + "']", "Manage Payees");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsHintTextManagePayee") + "']", "Add, edit or delete");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowUpcomingBills") + "']", "Scheduled Payments");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowUpcomingBills") + "' or @text='" + mobileAction.getAppString("str_Scheduled_Bills") + "']", "Scheduled Payments");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("usbp_schedule_payment_hint_message") + "']", "View/Cancel pending");				
 			}
 		} catch (NoSuchElementException | IOException e) {
@@ -557,7 +555,9 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("billsNavRowPayBill") + "']", "Pay bills title");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("msg_no_payee_all") + "']", "You have not added msg");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("btn_add_canadian_payees_now") + "']", "Add canadian payee button");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("billsNavRowPayBill") + "']", "Pay Bills title");
 				// Switching to webview
@@ -594,6 +594,7 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				datePicker = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='-" + mobileAction.getAppString("payBillConfirmFieldHeaderDate") + "']", "Date object");
 				mobileAction.verifyTextEquality(bills_header.getText(), mobileAction.getAppString("pay_bill"));
 				mobileAction.verifyTextEquality(payeePayBillCad.getText(), mobileAction.getAppString("payee"));
 				// FIXME: once may adds this one, uncomment

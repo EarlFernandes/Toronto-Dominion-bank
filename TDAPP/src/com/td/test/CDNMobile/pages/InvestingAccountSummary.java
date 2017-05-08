@@ -729,7 +729,6 @@ public class InvestingAccountSummary extends _CommonPage {
 								+ mobileAction.getAppString("str_Statement_Balance") + "']",
 						"Statement Balance Header");
 				mobileAction.verifyElementIsDisplayed(currentBalance, "Current Balance");
-				mobileAction.verifyElementIsDisplayed(statementPeriod, "Statement Period");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_payment_due_date") + "']",
 						"Payment Due");

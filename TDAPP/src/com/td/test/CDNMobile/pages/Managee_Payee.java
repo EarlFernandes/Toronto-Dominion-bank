@@ -47,7 +47,7 @@ public class Managee_Payee extends _CommonPage {
 	private MobileElement managePayees;
 	
 	// FIXME: Need accessibility id here
-	@iOSFindBy(xpath="//*[@label='Add Canadian Payee' or @label='添加加拿大收款人']")
+	@iOSFindBy(xpath="//*[@label='Add Canadian Payee' or @label='添加加拿大收款人' or @label='Add U.S. Payee']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement addPayee;
 	
@@ -325,10 +325,14 @@ public class Managee_Payee extends _CommonPage {
 
 	public void addUSPayee(){
 		Decorator();
-		Decorator();
+		//Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyElementIsDisplayed(managePayees,"Manage Payees Header");
+				final MobileElement usElement = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("country_us") + "']", "US banner button");
+				usElement.click();
+				mobileAction.FuncClick(addPayee,"Add US Payee");
+				Thread.sleep(10000);
 			} else {
 				mobileAction.verifyElementIsDisplayed(managePayees,"Manage Payees Header");
 				// Switch to webview and click on U.S.

@@ -346,19 +346,19 @@ try {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(fromAccount, "From Account");
-				String from_accountNo = getTestdata("FromAccount");
+				String from_accountNo = "//XCUIElementTypeStaticText[@value='" + getTestdata("FromAccount") + "']";
 				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
                         .findElement(By.xpath(from_accountNo));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 				mobileAction.FuncClick(recipient, "recipient");
-				String to_accountNo = getTestdata("RecipientName");
+				String to_accountNo = "//XCUIElementTypeStaticText[@value='" + getTestdata("RecipientName") + "']";
 				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
                         .findElement(By.xpath(to_accountNo));
 				mobileAction.FunCSwipeandScroll(toAccountval, true);
 				
 				String ValueofAmount = getTestdata("Amount");
 				mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
-				mobileAction.FuncClickBackButton();
+				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(transfer_Continue, "Continue");
 				mobileAction.verifyTextEquality(interac_Header.getText(), mobileAction.getAppString("transfersBetweenMyAccountsConfirmPageHeader"));
 			} else {
@@ -370,7 +370,7 @@ try {
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, "//android.widget.TextView[@resource-id='com.td:id/txt_recipient_name' and @index='0']", 1, "down", true);
 				String ValueofAmount = getTestdata("Amount");
 				mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
-				mobileAction.FuncClickBackButton();
+				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(transfer_Continue, "Continue");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmPageHeader") + "']", "Confirm title");
 			}
@@ -593,8 +593,7 @@ try {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// FIXME: This is returned as italics on ios
-				//mobileAction.verifyTextEquality(Interac_Etransfer_Header.getText(), mobileAction.getAppString("eTransferHeaderLabel"));
+				mobileAction.verifyTextEquality(Interac_Etransfer_Header.getText(), mobileAction.getAppString("eTransferHeaderLabel").replaceAll("\\<.*?>",""));
 				mobileAction.verifyTextEquality(selectSender.getText(), mobileAction.getAppString("str_sender"));
 				mobileAction.verifyTextEquality(fromAccount.getText(), mobileAction.getAppString("str_transfers_from_account"));
 				mobileAction.verifyTextEquality(recipient.getText(), mobileAction.getAppString("eTransferConfirmRecipient"));
@@ -613,7 +612,7 @@ try {
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 3, "up");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferMessageLabel") + "']", "Message");
 				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@text='" + mobileAction.getAppString("optional") + "']", "Optional");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/button_footer' and @text='" + mobileAction.getAppString("btn_continue") + "']", "Continue");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/button_footer' and (@text='" + mobileAction.getAppString("btn_continue") + "' or @text='" + mobileAction.getAppString("str_continue") + "')]", "Continue");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {
@@ -675,7 +674,7 @@ try {
 				// Get to cancel e-transfer screen, choose first interac e-transfer to cancel
 				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + getTestdata("RecipientName") + "']", ""), "Recipient to cancel");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("eTransferViewCancelCancelButton").replaceAll("\\<.*?>","").replace("&lt;i>", "").replace("&lt;/i>", "") + "']", "Cancel Interac e-transfer title");
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("eTransferViewCancelCancelButton").replaceAll("\\<.*?>","").replace("&lt;i>", "").replace("&lt;/i>", "") + "']", "Cancel Interac e-transfer title");
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {

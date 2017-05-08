@@ -44,8 +44,8 @@ public class StringLookup {
         mapZHHANS = Collections.unmodifiableMap(cMap);
         dMap.put(INVESTING_ACCOUNTS, "投資賬戶");
         dMap.put(MOBILE_PAYMENT, "道明移動支付");
-        dMap.put(PRIVACY_SECURITY_LEGAL, "隱私、安全與法律聲明");
-        dMap.put(SEND_FEEDBACK, "發送意見回饋");
+        dMap.put(PRIVACY_SECURITY_LEGAL, "私隱、安全和法律聲明");
+        dMap.put(SEND_FEEDBACK, "發送意見");
         dMap.put(FORGOT_PASSWORD, "忘記密碼?");
         mapZHHANT = Collections.unmodifiableMap(dMap);
     }

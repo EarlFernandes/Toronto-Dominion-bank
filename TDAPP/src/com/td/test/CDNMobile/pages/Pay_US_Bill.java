@@ -307,7 +307,7 @@ public class Pay_US_Bill extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/thank_you_label' and @text='" + mobileAction.getAppString("receipt_thankyou") + "']", "Thank you!");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/label' and @text='" + mobileAction.getAppString("bill_paid_successfully") + "']", "Payment Submitted");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/note' and @text='" + mobileAction.getAppString("note") + "']", "Note");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[starts-with(@text, '" + mobileAction.getAppString("confirmation_no").replace(" %1$s", "") + "')]", "Confirmation #");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[starts-with(@text, '" + mobileAction.getAppString("confirmation_no").replace("%1$s", "") + "')]", "Confirmation #");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderFromAccount").replace(" ", "\n") + "']", "From Account");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("payBillConfirmFieldHeaderAmount") + "']", "Amount");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("estimated_delivery_date") + "']", "Est delivery date");

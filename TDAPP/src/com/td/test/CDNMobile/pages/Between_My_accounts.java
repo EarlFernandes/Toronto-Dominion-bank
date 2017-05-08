@@ -248,10 +248,10 @@ public class Between_My_accounts extends _CommonPage {
 
 	String Finalpart = Firstpart + i + Secondpart;
 
-	String select_from_acnt = "//android.widget.TextView[@text='"
+	String select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
 			+ from_account + "']";
 
-	String select_to_acnt = "//android.widget.TextView[@text='"
+	String select_to_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
 			+ to_account + "']";
 
 	String verify_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
@@ -1621,7 +1621,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/toLabel' and @text='" + mobileAction.getAppString("to") + "']", "To");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/edtToAccount' and @text='" + mobileAction.getAppString("to_account_hint") + "']", "Select To Account");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/amount_label' and @text='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmAmount") + "']", "Amount");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/button_footer' and @text='" + mobileAction.getAppString("btn_continue") + "']", "Continue");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/button_footer' and (@text='" + mobileAction.getAppString("btn_continue") + "' or @text='" + mobileAction.getAppString("str_continue") + "')]", "Continue");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {

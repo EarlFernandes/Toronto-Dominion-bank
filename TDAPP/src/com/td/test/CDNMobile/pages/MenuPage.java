@@ -36,8 +36,7 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_CROSSBORDER']/XCUIElementTypeStaticText")
 	private MobileElement crossBorder;
 	
-
-	@iOSFindBy(accessibility = "SIDE_BAR_ITEM_6")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_INVESTING']/XCUIElementTypeStaticText")
 	private MobileElement investing;
 
 	@iOSFindBy(xpath = "//*[@label='Comptes Placements directs TD']")
@@ -57,7 +56,7 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_ACCOUNTS']/XCUIElementTypeStaticText")
 	private MobileElement accounts_button;
 
-	@iOSFindBy(accessibility = "SIDE_BAR_ITEM_7")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_TDFORME']/XCUIElementTypeStaticText")
 	private MobileElement tdForMe;
 
 	@iOSFindBy(xpath = "//*[@label='Virements'] ")
@@ -544,7 +543,7 @@ public class MenuPage extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("str_My_Accounts") + "']", "My Accounts");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("bills_str") + "']", "Bills");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("transfers_str") + "']", "Transfers");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and contains(@text, '" + StringLookup.lookupString(locale, StringLookup.MOBILE_PAYMENT) + "')]", "Mobile Pay");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and (contains(@text, '" + StringLookup.lookupString(locale, StringLookup.MOBILE_PAYMENT) + "') or @text='" + mobileAction.getAppString("mobile_wallet_widget_label") + "')]", "Mobile Pay");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("tts_td_zones") + "']", "TD for me");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("td_moneyfit_header") + "']", "TD MySpend");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + StringLookup.lookupString(locale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing Accounts");

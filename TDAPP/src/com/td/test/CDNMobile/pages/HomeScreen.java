@@ -57,7 +57,7 @@ public class HomeScreen extends _CommonPage {
 	// FIXME: Ask may to add this back!
 	@iOSFindBy(xpath = "//*[@label='特快结余查询' or @label='Quick Access' or @label='特快結餘查詢']")
 	//@iOSFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access']|//android.widget.TextView[@resource-id='com.td:id/easy_access']")
 	private MobileElement quickAccess;
 
 	@iOSFindBy(xpath = "//*[@label='Investing Accounts']")
@@ -964,7 +964,7 @@ public class HomeScreen extends _CommonPage {
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("contact_str") + "']", "Contact Us");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("terms_of_use") + "']", "Terms of Use");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("dashboard_nearest_branch_lbl") + "']", "Nearest Branch");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("dashboard_nearest_branch_lbl") + "' or @text='" + mobileAction.getAppString("dashboard_find_locations") + "']", "Nearest Branch");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("markets_str") + "']", "Markets");
 				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("trade_str") + "']", "Trade");
 			}
