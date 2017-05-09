@@ -36,27 +36,32 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
 	private MobileElement errorMsg;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'From Account')]")
+	@iOSFindBy(accessibility = "BETWEENMYACCOUNTS_FROM0")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccount']")
 	private MobileElement txtFrom_acnt;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/second_amount_val']")
 	private MobileElement amountSent;
 
-	@iOSFindBy(xpath = "//*[@label='To Account, Select to account']")
+	// FIXME: Figure this out
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'To Account') or contains(@label, '转入账户')]")
+	private MobileElement txtTo_acnt_2;
+	
+	@iOSFindBy(accessibility = "BETWEENMYACCOUNTS_TO1")
 	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtToAccount' and @text='Select To Account']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtToAccount']")
 	private MobileElement txtTo_acnt;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='-Amount']")
+	@iOSFindBy(accessibility = "BETWEENMYACCOUNTS_AMOUNT")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/edtAmount']")
 	private MobileElement txtAmount;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue']")
+	// FIXME: Ask MAy to add this
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue' or @label='继续' or @label='繼續']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/button_footer']")
 	private MobileElement btnContinue_transfer;
 
-	@iOSFindBy(xpath = "//*[@label='Finish Transfer']")
+	@iOSFindBy(accessibility ="BETWEEN_ACCOUNTS__CONFIRM_FINISH_BUTTON")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id= 'com.td:id/myaccounts_entry_btn_confirm']")
 	private MobileElement btnFinish_transfer;
 
@@ -115,7 +120,8 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[starts-with(@text,'Withdrawals may impact your annual TFSA contribution limit.')]")
 	private MobileElement verify_Message;
 
-	@iOSFindBy(xpath = "//*[@label='Done']")
+	// FIXME: Add id for this
+	@iOSFindBy(xpath = "//*[@label='Done' or @label='完成']")
 	private MobileElement done;
 
 	@iOSFindBy(xpath ="//*[@label='Back']")
@@ -306,7 +312,8 @@ public class Between_My_accounts extends _CommonPage {
 				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
                         .findElement(By.xpath(from_accountNo));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
-				mobileAction.FuncClick(txtTo_acnt, "To Account");
+				//txtTo_acnt = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='-" + mobileAction.getAppString("watchlist_header_accessibility") + "-']", "To Account");
+				mobileAction.FuncClick(txtTo_acnt_2, "To Account");
 				String to_accountNo = "//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("ToAccount") + "')]";
 				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
                         .findElement(By.xpath(to_accountNo));
@@ -325,6 +332,7 @@ public class Between_My_accounts extends _CommonPage {
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}
+			
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 
 		}
@@ -1646,7 +1654,16 @@ public class Between_My_accounts extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("review_details_title") + "']", "Confirm title");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmNotice") + "']", "Please review message");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_From") + "']", "From");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_To") + "']", "To");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmAmount") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfersFXExchangeRate") + "']", "Exchange Rate");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value, '" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmFXTransferFeeValidStart") + "')]", "Exchange Rate is valid for message");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value, '" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmFXTransferFeeValidEnd") + "')]", "Minutes message");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("btn_cancel") + "']", "Cancel");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmButtonFinishTransfer") + "']", "Finish Transfer");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("ActionBar_Deposit_Confirm") + "']", "Confirm title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmNotice") + "']", "Please review message");
@@ -1684,7 +1701,17 @@ public class Between_My_accounts extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("actionBarHeadingReceipt") + "']", "Receipt title");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("thank_you") + "']", "Thank you!");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("receipt_transfer_msg") + "']", "transfer successful");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value, '" + mobileAction.getAppString("receipt_confirmation") + "')]", "confirmation number");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("receipt_from") + "']", "Receipt from");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmToAccount") + "']", "Receipt To");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value, '" + mobileAction.getAppString("receipt_amount") + "')]", "amount");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value, '" + mobileAction.getAppString("transfersFXExchangeRate") + "')]", "exchange rate");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("receipt_home") + "']", "Cancel");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("receipt_another_transfer") + "']", "Make another transfer");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("receipt_transfers") + "']", "Finish Transfer");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("actionBarHeadingReceipt") + "']", "Receipt title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/thank_you' and @text='" + mobileAction.getAppString("ThankYou") + "']", "Thank you!");

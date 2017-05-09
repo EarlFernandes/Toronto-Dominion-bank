@@ -49,7 +49,6 @@ public class Interac_e_Transfer extends _CommonPage {
 
     // @iOSFindBy(xpath =
     // "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]//XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[4]/XCUIElementTypeTextField")
-    @iOSFindBy(accessibility = "-Amount")
     @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_amount']")
     private MobileElement etransfer_Amount;
 
@@ -92,7 +91,8 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/recipient_title']")
     private MobileElement recipient;
 
-    @iOSFindBy(xpath = "//*[@label='Done']")
+	// FIXME: Add id for this
+	@iOSFindBy(xpath = "//*[@label='Done' or @label='完成']")
     private MobileElement done;
 
     @iOSFindBy(xpath = "//*[@label='PENDING E-TRANSFERS']")
@@ -317,6 +317,16 @@ try {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				fillInInteracETransferForm();
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("eTransferConfirmNotice").replaceAll("\\<.*?>","") + "']", "Notice");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("eTransfersReceiveAnswerSender") + "']", "Sender");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("from") + "']", "From");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("eTransferConfirmRecipient") + "']", "Recipient");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("eTransferAmountLabel") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("eTransferMessageLabel") + "']", "Message");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("etransfer_warning_label") + "']", "Warning");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("eTransferConfirmCancelButton") + "']", "Close button");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("eTransferConfirmSendMoneyButton") + "']", "Send button");
+
 			} else {
 				fillInInteracETransferForm();
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferConfirmNotice").replaceAll("\\<.*?>","") + "']", "Notice");
@@ -345,6 +355,7 @@ try {
 	private void fillInInteracETransferForm() {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				etransfer_Amount = mobileAction.verifyElementUsingXPath("//XCUIElementTypeTextField[@name='-" + mobileAction.getAppString("transfersBetweenMyAccountsReceiptAmount") + "']", "amount field");
 				mobileAction.FuncClick(fromAccount, "From Account");
 				String from_accountNo = "//XCUIElementTypeStaticText[@value='" + getTestdata("FromAccount") + "']";
 				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
@@ -358,7 +369,11 @@ try {
 				
 				String ValueofAmount = getTestdata("Amount");
 				mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
-				mobileAction.FuncHideKeyboard();
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					mobileAction.FuncClick(done, "Done");
+				} else {
+					mobileAction.FuncHideKeyboard();
+				}
 				mobileAction.FuncClick(transfer_Continue, "Continue");
 				mobileAction.verifyTextEquality(interac_Header.getText(), mobileAction.getAppString("transfersBetweenMyAccountsConfirmPageHeader"));
 			} else {

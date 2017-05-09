@@ -37,6 +37,7 @@ public class Accounts_Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/description' and @index='0']")
 	private MobileElement lastStatement;
 
+	// FIXME: Ask may to add this
 	@iOSFindBy(xpath = "//*[@label='Summary']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/summaryTab']")
 	private MobileElement summaryTab;
@@ -201,7 +202,10 @@ public class Accounts_Credit extends _CommonPage {
 	public void clickSummary() throws InterruptedException {
 		Decorator();
 		try {
-
+			// FIXME: Temporary, once may adds id, delete
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				summaryTab = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@name='" + mobileAction.getAppString("str_summary") + "']", "Summary Tab");
+			}
 			mobileAction.FuncClick(summaryTab, "Summary tab");
 			Thread.sleep(3000);
 		} catch (NoSuchElementException | IOException e) {
@@ -309,7 +313,18 @@ public class Accounts_Credit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Activity") + "']", "activity Tab");
+//				final String postedTransactions = "//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_posted_transactions") + "']";
+//				mobileAction.FuncSwipeWhileElementNotFoundByxpath(postedTransactions, false, 2, "up");
+//				final String lastStatement  ="//android.widget.TextView[@text='" + mobileAction.getAppString("last_statement") + "' or @text='" + mobileAction.getAppString("str_2_STATEMENTS") + "']";
+//				mobileAction.FuncSwipeWhileElementNotFoundByxpath(lastStatement, false, 2, "up");
+//				// Scroll down here
+				final String xPathFooter = "//XCUIElementTypeStaticText[@name='RVB_DETAIL_FOOTER_DES']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 6, "up");
+				// Verify select date headers at the bottom
+				for(MobileElement m : dateHeaders) {
+					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
+				}
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/activityTab' and @text='" + mobileAction.getAppString("str_Activity") + "']", "activity Tab");
 				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_authorized_transactions_header") + "']", "Pending Transactions");
@@ -380,7 +395,10 @@ public class Accounts_Credit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_summary") + "']", "Summary Tab");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_Account_number") + "']", "Account #");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_Available_Balance") + "']", "Available Balance");
+
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/summaryTab' and @text='" + mobileAction.getAppString("str_summary") + "']", "Summary Tab");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_Account_number") + "']", "Account #");
@@ -409,7 +427,11 @@ public class Accounts_Credit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_summary") + "']", "Summary Tab");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Activity") + "']", "Activity Tab");
+				// FIXME: Where is the string for this?
+				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("rtb_statements") + "']", "Statements Tab");
+
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/summaryTab' and @text='" + mobileAction.getAppString("str_summary") + "']", "Activity Tab");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_Activity") + "']", "Summary Tab");

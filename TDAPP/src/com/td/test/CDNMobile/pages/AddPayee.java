@@ -360,16 +360,20 @@ public class AddPayee extends _CommonPage {
 				//System.out.println("source : "+ ((AppiumDriver) CL.GetDriver()).getPageSource());
 				final WebElement payeeAccount = mobileAction.verifyWebElementUsingXPath("//input[@id='accountNumber']", "Payee Account");
 				payeeAccount.sendKeys(getTestdata("FromAccount"));
-				//FIXME: This does not work
+				Thread.sleep(4000);
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				final WebElement continueButton =(WebElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.id("btn"));
 				mobileAction.verifyElementIsDisplayed(continueButton, "Continue");
+				continueButton.click();
+				continueButton.click();
 				continueButton.click();
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("review_details_title") + "']", "Confirm");
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			// Switch back to native to get proper screenshots
 			mobileAction.switchAppiumContext("NATIVE_APP");
 			try {
