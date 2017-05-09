@@ -520,6 +520,12 @@ public class TradeMultiLeg extends _CommonPage{
 			}
 			else*/
 			//{
+			if(sPrice.equalsIgnoreCase("Even") || sPrice.equalsIgnoreCase("Pair"))
+			{
+				sReturnPrice = sPrice;
+			}
+			else
+			{
 				Pattern p = Pattern.compile("([0-9]+)([.|,])([0-9]+)");
 			    Matcher m = p.matcher(sPrice);
 
@@ -533,6 +539,7 @@ public class TradeMultiLeg extends _CommonPage{
 						sReturnPrice = m.group(0).trim();
 					}
 			    }
+			}
 		//}
 		catch(Exception e)
 		{
@@ -614,6 +621,8 @@ public class TradeMultiLeg extends _CommonPage{
 			sNaturalPrice = getPrice(mobileAction.FuncGetText(naturalPrice));
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Quantity, false, 5, "down");
 			enterQuantity(leg1Quantity,"2");
+			mobileAction.FuncClick(titleTrade, "titleTrade");
+			mobileAction.FuncClick(cancelButton, "cancelButton");
 			mobileAction.FuncSwipeWhileElementNotFound(naturalPrice, false, 5, "up");
 			verifyPriceVarience(mobileAction.FuncGetText(midPrice),sMidPrice,"midPrice");
 			verifyPriceVarience(mobileAction.FuncGetText(naturalPrice),sNaturalPrice,"naturalPrice");
@@ -629,6 +638,8 @@ public class TradeMultiLeg extends _CommonPage{
 			sNaturalPrice = getPrice(mobileAction.FuncGetText(naturalPrice));
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Quantity, false, 5, "down");
 			enterQuantity(leg2Quantity,"2");
+			mobileAction.FuncClick(titleTrade, "titleTrade");
+			mobileAction.FuncClick(cancelButton, "cancelButton");
 			mobileAction.FuncSwipeWhileElementNotFound(midPrice, false, 5, "up");
 			verifyPriceVarience(mobileAction.FuncGetText(midPrice),sMidPrice,"midPrice");
 			verifyPriceVarience(mobileAction.FuncGetText(naturalPrice),sNaturalPrice,"naturalPrice");
