@@ -2719,6 +2719,58 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 		action.tap(startx, starty).perform();
 		}
 }
+	public void FuncSwipeUpTillScreenBottom(MobileElement mEle) //@Author - Sushil 10-May-2017
+	{
+		try
+		{
+			FunctionSwipe("up", 200, 100);
+			if(!mEle.isDisplayed())
+			{
+				FunctionSwipe("up", 200, 100);
+			}
+		}
+		catch(Exception e)
+		{
+			try {
+				FunctionSwipe("up", 200, 100);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				try {
+					GetReporting().FuncReport("Fail", "Exception : FuncSwipeUpTillScreenBottom Failed.");
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+			}
+		}
+	}
+	public void FuncSwipeDownTillScreenTop(MobileElement mEle) //@Author - Sushil 10-May-2017
+	{
+		try
+		{
+			FunctionSwipe("down", 200, 200);
+			if(!mEle.isDisplayed())
+			{
+				FunctionSwipe("down", 200, 200);
+			}
+		}
+		catch(Exception e)
+		{
+			try {
+				FunctionSwipe("down", 200, 200);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				try {
+					GetReporting().FuncReport("Fail", "Exception : FuncSwipeDownTillScreenTop Failed.");
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+			}
+		}
+	}
 }
 
 
