@@ -1609,19 +1609,12 @@ public class Between_My_accounts extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				final MobileElement fromAccount = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='BETWEENMYACCOUNTS_FROM']", "from account");
-				// FIXME: Uncomment when may adds
-				//final MobileElement fromAccountHint =  mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='BETWEENMYACCOUNTS_FROMHINT']", "from account hint");
-				final MobileElement toAccount =  mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='BETWEENMYACCOUNTS_TO']", "to account");
-				//final MobileElement toAccountHint =  mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='BETWEENMYACCOUNTS_TOHINT']", "to account hint");
-				final MobileElement amount =  mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='BETWEENMYACCOUNTS_AMOUNT']", "amount");
-				final MobileElement continueBtn =  mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='BETWEENMYACCOUNTS_CONTINUE']", "continue");
-				mobileAction.verifyTextEquality(fromAccount.getText(), mobileAction.getAppString("transfersBetweenMyAccountsConfirmFromAccount"));
-				//mobileAction.verifyTextEquality(fromAccountHint.getText(), mobileAction.getAppString("from_account_hint"));
-				mobileAction.verifyTextEquality(toAccount.getText(), mobileAction.getAppString("transfersBetweenMyAccountsConfirmToAccount"));
-				//mobileAction.verifyTextEquality(toAccountHint.getText(), mobileAction.getAppString("str_transfers_select_to_account"));
-				mobileAction.verifyTextEquality(amount.getText(), mobileAction.getAppString("transfersBetweenMyAccountsFieldTitleAmount"));
-				mobileAction.verifyTextEquality(continueBtn.getText(), mobileAction.getAppString("btn_continue"));
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmFromAccount") + "']", "from account");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("from_account_hint") + "']", "from account hint");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmToAccount") + "']", "to account");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_transfers_select_to_account") + "']", "to account hint");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfersBetweenMyAccountsFieldTitleAmount") + "']", "amount");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("btn_continue") + "']", "continue");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderBetweenMyAccounts") + "']", "Between My accounts title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/fromLabel' and @text='" + mobileAction.getAppString("from") + "']", "From");

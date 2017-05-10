@@ -92,58 +92,84 @@ public class MainScreen extends _CommonPage {
 	public void Splash_Conitnue() throws IOException {
 		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
 		CL.getTestDataInstance().DriversCapability.put("recreateChromeDriverSessions", "true");
+		CL.getTestDataInstance().DriversCapability.put("appActivity", "com.td.mobile.controllers.MainController");
+		CL.getTestDataInstance().DriversCapability.put("nativeWebScreenshot", "true");
 
 		readSheet();
 
 		String udid = CL.getTestDataInstance().getDeviceUdid();
-		//Samsung phone - dda65bdf tablet - 9d0f2a81032ca237 - ipad air e054ae65ead3aba183484acc611497ef06a47741
-		// iphone 6 - 5ad12dcc0df2f1b65956f22e91035b8a0d288cd3
-		if (udid.equalsIgnoreCase("dda65bdf")) {
+		String AppiumPath="";
+        if (CL.getTestDataInstance().targetEnvironment.length()>5) { // jenkins 
+           System.out.println("DEBUG : Jenkins parameters detected ");
+               CL.getTestDataInstance().SetAppFilePath(CL.getTestDataInstance().targetEnvironment); // application package with path via jenkins
+           AppiumPath=CL.getTestDataInstance().getAppiumPath(); //Jenkins parameters
+           System.out.println("DEBUG : Loading Application file package information from Setup file " + CL.getTestDataInstance().getSetupFile() );
+           if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+                  CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
+                               CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_Android"));
+           else
+                  CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
+                               CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
+           CL.getTestDataInstance().setAppiumPath(AppiumPath);
+           CL.mobileApp();
 
-			try {
-				if (CL.getTestDataInstance().getAppFilePath() == null
-						|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
-					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
+        } else {
 
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_ANDROID"));
-					else
-						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
+
+          
+	
+			//Samsung phone - dda65bdf tablet - 9d0f2a81032ca237 - ipad air e054ae65ead3aba183484acc611497ef06a47741
+			// iphone 6 - 5ad12dcc0df2f1b65956f22e91035b8a0d288cd3
+			if (udid.equalsIgnoreCase("5ad12dcc0df2f1b65956f22e91035b8a0d288cd3")) {
+	
+				try {
+					if (CL.getTestDataInstance().getAppFilePath() == null
+							|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
+						if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+							CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
+	
+									CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_ANDROID"));
+						else
+							CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
+									CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
+					}
+	
+					// Freddy's computer: http://49.16.220.107:4725/wd/hub
+					// MACbook pro: http://49.21.140.61:4723/wd/hub
+					// Appium MAC MINI 1: http://49.21.141.201:4723/wd/hub
+					// Appium MAC MINI 2: http://49.21.141.104:4723/wd/hub
+					CL.mobileApp("http://49.21.140.61:4728/wd/hub");
+					Decorator();
+				} catch (Exception e) {
+					System.err.println("Unable to load APP file Path Exiting");
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	
 				}
-
-				// Freddy's computer: http://49.16.220.107:4725/wd/hub
-				// MACbook pro: http://49.21.140.61:4723/wd/hub
-				CL.mobileApp("http://49.21.140.61:4723/wd/hub");
-				Decorator();
-			} catch (Exception e) {
-				System.err.println("Unable to load APP file Path Exiting");
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-			}
-		} else {
-
-			try {
-				if (CL.getTestDataInstance().getAppFilePath() == null
-						|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
-					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_Android"));
-					else
-						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
+			} else {
+	
+				try {
+					if (CL.getTestDataInstance().getAppFilePath() == null
+							|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
+						if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+							CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
+									CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_Android"));
+						else
+							CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
+									CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
+					}
+					// Freddy's computer: http://49.16.220.107:4725/wd/hub
+					// MACbook pro: http://49.21.140.61:4723/wd/hub
+					// Appium MAC MINI 1: http://49.21.141.201:4723/wd/hub
+					// Appium MAC MINI 2: http://49.21.141.104:4723/wd/hub
+					CL.mobileApp("http://49.21.140.61:4728/wd/hub");
+					Decorator();
+				} catch (Exception e) {
+					System.err.println("Unable to load APP file Path Exiting");
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	
 				}
-				// Freddy's computer: http://49.16.220.107:4725/wd/hub
-				// MACbook pro: http://49.21.140.61:4723/wd/hub
-				CL.mobileApp("http://49.21.140.61:4723/wd/hub");
-				Decorator();
-			} catch (Exception e) {
-				System.err.println("Unable to load APP file Path Exiting");
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
 			}
-		}
-		
+        }
 		// Initialize App String map
 		final String locale =  CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
 		

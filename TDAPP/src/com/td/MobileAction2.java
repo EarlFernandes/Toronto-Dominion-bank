@@ -115,6 +115,9 @@ public class MobileAction2 extends CommonLib {
 		} catch (NoSuchElementException n) {
 			GetReporting().FuncReport("Fail", "Element not displayed " + text);
 			throw n;
+		} catch (TimeoutException e) {
+			GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
+			throw new NoSuchElementException("No such element found");
 		} catch (Exception e) {
 			GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
 			throw e;

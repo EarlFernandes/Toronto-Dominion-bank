@@ -363,7 +363,13 @@ public class Accounts_Credit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @text='" + mobileAction.getAppString("credit_str") + "']", "Credit title");
+				// FIXME: Get proper app strings here
+//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='" + mobileAction.getAppString("str_PayBillsMakePayment") + " or @text='" + mobileAction.getAppString("str_PAY_BILL") + "']", "Pay button");
+//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='" + mobileAction.getAppString("str_TRANSFER") + "']", "transfer button");
+//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Activity") + "']", "activity tab");
+//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_summary") + "']", "summary tab");
+//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("rtb_statements") + "']", "statements tab");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("str_Credit") + "']", "Credit title");
 				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("rtb_pay_now") + "']", "Pay button");

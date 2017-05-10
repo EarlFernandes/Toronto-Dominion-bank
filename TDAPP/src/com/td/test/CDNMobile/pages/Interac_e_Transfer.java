@@ -105,8 +105,7 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/entransfer_cancel_payment_date']")
     private MobileElement payDate;
 
-    // FIXME: What is the correct accessibility id?
-	@iOSFindBy(xpath ="//*[@label='Cancel Interac e-Transfer']")
+	@iOSFindBy(accessibility = "ENHANCED_RECEIPT_BUTTON")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel']")
 	private MobileElement cancelTransfer;
 
@@ -657,7 +656,7 @@ try {
 				MobileElement desc = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='INTERAC_RECLAIM_DES']", "Reclaim description");
 				MobileElement depositTo = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='INTERAC_RECLAIM_DEPOSIT']", "Deposit To");
 				MobileElement continueBtn = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@name='INTERAC_RECLAIM_CONTINUE']", "Continue");
-				mobileAction.verifyTextEquality(desc.getText(), mobileAction.getAppString("TransfersReclaimDepositToHeaderMessage"));
+				mobileAction.verifyTextEquality(desc.getText(), mobileAction.getAppString("TransfersReclaimDepositToHeaderMessage").replaceAll("\\<.*?>",""));
 				mobileAction.verifyTextEquality(depositTo.getText(), mobileAction.getAppString("TransfersReclaimDepositToDepositTo"));
 				mobileAction.verifyTextEquality(continueBtn.getText(), mobileAction.getAppString("Continue"));
 			} else {
@@ -682,9 +681,9 @@ try {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// Get to cancel e-transfer screen, choose first interac e-transfer to cancel
-				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@text='" + getTestdata("RecipientName") + "']", ""), "Recipient to cancel");
+				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + getTestdata("RecipientName") + "']", ""), "Recipient to cancel");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@text='" + mobileAction.getAppString("eTransferViewCancelCancelButton").replaceAll("\\<.*?>","") + "']", "Cancel interac e-transfer title");
+				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@label='" + mobileAction.getAppString("eTransferViewCancelCancelButton") + "']", "Cancel interac e-transfer title");
 			} else {
 				// Get to cancel e-transfer screen, choose first interac e-transfer to cancel
 				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + getTestdata("RecipientName") + "']", ""), "Recipient to cancel");

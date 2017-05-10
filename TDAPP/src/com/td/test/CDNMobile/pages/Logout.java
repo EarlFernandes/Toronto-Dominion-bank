@@ -178,7 +178,6 @@ public class Logout extends _CommonPage {
 				mobileAction.verifyTextEquality(logoutHeader.getText(), mobileAction.getAppString("logoutSuccessPageHeader"));
 				mobileAction.verifyTextEquality(successMsg.getText(), mobileAction.getAppString("logoutSuccessCopy"));
 				mobileAction.verifyTextEquality(successTitle.getText(), mobileAction.getAppString("success"));
-				// FIXME: Why is this not equal?
 				mobileAction.verifyTextEquality(goBackHome.getText(), mobileAction.getAppString("btn_go_back_home"));
 				mobileAction.verifyTextEquality(contactUs.getText(), mobileAction.getAppString("logoutSuccessQuickTaskContact"));
 				mobileAction.verifyTextEquality(locations.getText(), mobileAction.getAppString("logoutSuccessQuickTaskFindLocations"));

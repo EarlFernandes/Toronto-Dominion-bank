@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
@@ -26,8 +27,8 @@ public class MobileDeposit extends _CommonPage {
 	private MobileElement toAccount;
 
 	// FIXME: Ask may to add this to hint
-	@iOSFindBy(accessibility = "UNKNOWN")
-	private MobileElement amountHint;
+	@iOSFindBy(accessibility = "DEPOSIT_CHECK_SELECT_ACCOUNT")
+	private MobileElement toAccountHint;
 	
 	@iOSFindBy(accessibility = "DEPOSIT_CHECK_VIEW_AMOUNT")
 	private MobileElement amount;
@@ -41,20 +42,19 @@ public class MobileDeposit extends _CommonPage {
 	@iOSFindBy(accessibility = "DEPOSIT_CHECK_VIEW_MEMO")
 	private MobileElement memo;
 
-	// FIXME: Ask may to add this
-	@iOSFindBy(accessibility = "UNKNOWN")
+	@iOSFindBy(accessibility = "DEPOSIT_CHECK_OPTIONAL")
 	private MobileElement memoHint;
 	
-	@iOSFindBy(accessibility = "DEPOSIT_CHECK_VIEW_VIEW_CAPTURE")
+	@iOSFindBy(accessibility = "DEPOSIT_CHECK_VIEW_CAPTURE")
 	private MobileElement captureCheckTitle;
 	
-	@iOSFindBy(accessibility = "DEPOSIT_CHECK_VIEW_VIEW_FRONT")
+	@iOSFindBy(accessibility = "DEPOSIT_CHECK_VIEW_FRONT")
 	private MobileElement frontChequeText;
 	
-	@iOSFindBy(accessibility = "DEPOSIT_CHECK_VIEW_VIEW_BACK")
+	@iOSFindBy(accessibility = "DEPOSIT_CHECK_VIEW_BACK")
 	private MobileElement backChequeText;
 	
-	@iOSFindBy(accessibility = "DEPOSIT_CHECK_VIEW_VIEW_CONTINUE")
+	@iOSFindBy(accessibility = "DEPOSIT_CHECK_VIEW_CONTINUE")
 	private MobileElement continueButtonChequeForm;
 
 	// End deposit cheque form
@@ -309,21 +309,23 @@ public class MobileDeposit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				final MobileElement header = mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE']", "Header");
-				mobileAction.verifyTextEquality(amount.getText(), mobileAction.getAppString("mobiledeposit_depositcheque_str_history_toaccount"));
-				// FIXME: Uncomment when added
-				//mobileAction.verifyTextEquality(amountHint.getText(), mobileAction.getAppString("mobiledeposit_depositcheque_str_selectAccount"));
-				mobileAction.verifyTextEquality(dailyLimitMsg.getText(), mobileAction.getAppString("mobiledeposit_depositcheque_str_DailyLimit"));
-				mobileAction.verifyTextEquality(thirtyDayLimitMsg.getText(), mobileAction.getAppString("mobiledeposit_depositcheque_str_30DayLimit"));
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("") + "']", "Header");
+				mobileAction.verifyTextEquality(amount.getText(), mobileAction.getAppString("mobiledeposit_depositcheque_str_amount"));
+				mobileAction.verifyTextEquality(toAccount.getText(), mobileAction.getAppString("mobiledeposit_depositcheque_str_history_toaccount"));
+				mobileAction.verifyTextEquality(toAccountHint.getText(), mobileAction.getAppString("mobiledeposit_depositcheque_str_selectAccount"));
 				mobileAction.verifyTextEquality(memo.getText(), mobileAction.getAppString("mobiledeposit_depositcheque_str_history_memo"));
-				// FIXME: Uncomment when added
-				//mobileAction.verifyTextEquality(memoHint.getText(), mobileAction.getAppString("mobiledeposit_depositcheque_str_memo_hint"));
+				mobileAction.verifyTextEquality(memoHint.getText(), mobileAction.getAppString("mobiledeposit_depositcheque_str_memo_hint"));
 				mobileAction.verifyTextEquality(captureCheckTitle.getText(), mobileAction.getAppString("mobiledeposit_depositcheque_str_captureCheque"));
 				mobileAction.verifyTextEquality(frontChequeText.getText(), mobileAction.getAppString("mobiledeposit_depositcheque_str_front"));
 				mobileAction.verifyTextEquality(backChequeText.getText(), mobileAction.getAppString("mobiledeposit_depositcheque_str_back"));
 				mobileAction.verifyTextEquality(continueButtonChequeForm.getText(), mobileAction.getAppString("mobiledeposit_depositcheque_str_continue"));
+				
+				if(!dailyLimitMsg.getText().contains(mobileAction.getAppString("mobiledeposit_depositcheque_str_DailyLimit")) ||
+					!thirtyDayLimitMsg.getText().contains(mobileAction.getAppString("mobiledeposit_depositcheque_str_30DayLimit"))) {
+					throw new NoSuchElementException("Text not found");
+				}
 			} else {
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("MobileDeposit_DepositCheque_Header") + "']", "Deposit Cheque");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("mobiledeposit_successfeature_str_depositacheque") + "']", "Deposit Cheque");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MRDC_RECEIPTS_DETAILS_ACCOUNT_TO_ACCOUNT") + "']", "To Account");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDepositCheque_Account_Hint") + "']", "hint");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDepositCheque_Amount_Label") + "']", "Amount");
@@ -392,7 +394,18 @@ public class MobileDeposit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("mobiledeposit_depositreciept_header") + "']", "Mobile Deposit");
+				// FIXME: Get correct app string
+				//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value=\"" + mobileAction.getAppString("MRDC_DEPOSITCHEQUE_NOT_ELIGIBLE_TITLE").replaceAll("\"", "") + "\"]", "We're sorry");
+//				final MobileElement textBody = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='MRDCNOTELIGIBLE_LABLE2']", "Text Body Ineligible");
+//				final String appString = mobileAction.getAppString("MRDC_DEPOSITCHEQUE_NOT_ELIGIBLE");
+//				if (!appString.contains(textBody.getText())) {
+//					throw new NoSuchElementException("Ineligible text body not found");
+//				}
+				final String xPathLocate = "//XCUIElementTypeButton[@label='" + mobileAction.getAppString("MRDC_DEPOSITCHEQUE_INVALID_ACCOUNT_HYPERLINK2") + "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathLocate, false, 2, "up");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("MRDC_DEPOSITCHEQUE_INVALID_ACCOUNT_HYPERLINK1") + "']", "Call Us");
+				mobileAction.verifyElementUsingXPath(xPathLocate, "Locate a branch");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("ActionBar_MobileDeposit") + "']", "Mobile Deposit");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text=\"" + mobileAction.getAppString("MRDC_DECLINED_HEADER").replaceAll("\"", "") + "\"]", "We're sorry");
@@ -406,7 +419,7 @@ public class MobileDeposit extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("MRDC_MOBILE_DEPOSIT_CHEQUE_SUCCESS_CALL_US") + "']", "Call Us");
 				mobileAction.verifyElementUsingXPath(xPathLocate, "Locate a branch");
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {

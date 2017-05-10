@@ -40,13 +40,13 @@ public class StringLookup {
         cMap.put(MOBILE_PAYMENT, "道明移动支付");
         cMap.put(PRIVACY_SECURITY_LEGAL, "隐私、安全与法律声明");
         cMap.put(SEND_FEEDBACK, "发送意见回馈");
-        cMap.put(FORGOT_PASSWORD, "忘记密码?");
+        cMap.put(FORGOT_PASSWORD, "忘记密码？");
         mapZHHANS = Collections.unmodifiableMap(cMap);
         dMap.put(INVESTING_ACCOUNTS, "投資賬戶");
         dMap.put(MOBILE_PAYMENT, "道明移動支付");
         dMap.put(PRIVACY_SECURITY_LEGAL, "私隱、安全和法律聲明");
         dMap.put(SEND_FEEDBACK, "發送意見");
-        dMap.put(FORGOT_PASSWORD, "忘記密碼?");
+        dMap.put(FORGOT_PASSWORD, "忘記密碼？");
         mapZHHANT = Collections.unmodifiableMap(dMap);
     }
     

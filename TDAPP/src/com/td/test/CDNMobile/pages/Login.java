@@ -1225,7 +1225,7 @@ public class Login extends _CommonPage {
 				mobileAction.verifyTextEquality(password.getText(), mobileAction.getAppString("password_str"));
 				mobileAction.verifyTextEquality(rememberMe.getText(), mobileAction.getAppString("remember_str"));
 				mobileAction.verifyTextEquality(login.getText(), mobileAction.getAppString("secureLoginButton"));
-				mobileAction.verifyTextEquality(forgotPassword.getText(), StringLookup.lookupString(locale, StringLookup.FORGOT_PASSWORD));
+				mobileAction.verifyTextEquality(forgotPassword.getText().trim(), StringLookup.lookupString(locale, StringLookup.FORGOT_PASSWORD));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @text='" + mobileAction.getAppString("username_str") + "']", "Username");
 				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @content-desc='" + mobileAction.getAppString("password_str") + "']", "Password");

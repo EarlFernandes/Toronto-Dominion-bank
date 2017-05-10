@@ -57,7 +57,6 @@ public class Transfers extends _CommonPage {
 	@iOSFindBy(accessibility = "TRANSFERVIEW_BETWEENACCOUNTS_DES")
 	private MobileElement btw_my_accnts_desc;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progrees_bar;
 	

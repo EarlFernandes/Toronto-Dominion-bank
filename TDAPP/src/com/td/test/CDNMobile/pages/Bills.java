@@ -602,7 +602,7 @@ public class Bills extends _CommonPage {
 				//mobileAction.verifyTextEquality(datePayBillCad.getText(), mobileAction.getAppString("payBillConfirmFieldHeaderDate"));
 				mobileAction.verifyTextEquality(fromAccountPayBillCad.getText(), mobileAction.getAppString("payBillConfirmFieldHeaderFromAccount"));
 				mobileAction.verifyTextEquality(continuePayBillCad.getText(), mobileAction.getAppString("Continue"));
-				mobileAction.verifyDateFormat(datePicker.getText(), MobileAction2.TYPE_YYYY_MM_DD_TODAY);
+				mobileAction.verifyDateFormat(datePicker.getText(), MobileAction2.TYPE_YYYY_MM_DD);
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("payBillPageHeader") + "']", "Pay Bills title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/lblAmount' and @text='" + mobileAction.getAppString("payBillConfirmFieldHeaderFromAccount") + "']", "From Account");
@@ -635,7 +635,22 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("pay_us_bill_page_title") + "']", "Pay Bill US title");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("disclaimer") + "']", "Disclaimer");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("payBillDropdownHeaderFromAccount").replace(" ", "\n") + "']", "From Account");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("amount") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("usbpCurrencyField") + "']", "currency");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("reason_for_payment_label") + "']", "Reason for payment");
+				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("reason_for_payment_hint") + "']", "Reason for payment hint");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("Continue") + "']", "Continue Button");
+				final String xPathLearnMore = "//XCUIElementTypeStaticText[@name='PAYUSBILL_VIEW_FOOTER']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathLearnMore, false, 4, "up");
+				final MobileElement elementLearnMore = mobileAction.verifyElementUsingXPath(xPathLearnMore, "footer");
+				final String strLearnMore = mobileAction.getAppString("reason_for_payment_rule");
+				if (!elementLearnMore.getText().contains(strLearnMore)) {
+					throw new NoSuchElementException("footer text body not found");
+				}
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("pay_us_bill_page_title") + "']", "Pay Bill US title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/disclaimer' and @text='" + mobileAction.getAppString("disclaimer") + "']", "Disclaimer");
@@ -657,7 +672,7 @@ public class Bills extends _CommonPage {
 				final String footerNoteString = footerNote.getText();
 				mobileAction.verifyTextEquality(footerNoteString.replace("??", " ").replaceAll("\n", " "), mobileAction.getAppString("reason_for_payment_rule").replaceAll("\"", "").replaceAll("\n", " "));
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {
