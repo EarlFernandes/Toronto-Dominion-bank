@@ -60,17 +60,23 @@ public class Transaction extends _CommonPage{
 	     * @throws NoSuchElementException
 	     *             In case the element is not found over the screen.
 	     */
-	    public void verifyTransac() throws InterruptedException {
+	    public void verifyTransac() {
 		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(transacHeader, "Transaction Header");
 			mobileAction.verifyElementIsDisplayed(transacDate, "Transaction date");
 			mobileAction.verifyElementIsDisplayed(postedDate, "Posted Date");
 			mobileAction.verifyElementIsDisplayed(card, "Card");
-			
-		} catch (NoSuchElementException | IOException e) {
-		    System.err.println("TestCase has failed.");
-		    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	    } 
 	    

@@ -237,8 +237,13 @@ public class PendingInteracTransfer extends _CommonPage{
 	/**
 	 * This method will click on Pending Interac_e transfer in Transfer Screen
 	 * 
+	 * @throws IOException
+	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 * @return void
 	 * 
 	 */
@@ -249,14 +254,22 @@ public class PendingInteracTransfer extends _CommonPage{
 		try {
 			mobileAction.verifyElementIsDisplayed(pending_Interace_Transfer_Header, "Pending Interac Transfer Landing Page verified");
 			
-			} catch (NoSuchElementException|IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
+			} catch (NoSuchElementException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (IOException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 	}
 	/**
 	 * This method will verify the sender profile Pending e Transfers list is not displayed until the sender is selected
 	 * 
+	 * @throws IOException
+	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
 	 * @throws IOException
@@ -269,26 +282,37 @@ public class PendingInteracTransfer extends _CommonPage{
 		try {
 			String Sender = "Verifying sender";
 			mobileAction.verifyElementIsDisplayed(sender, Sender);
-	
-			} catch (NoSuchElementException |IOException e) {
-			System.err.println("TestCase has failed.");
+
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	/**
 	 * This method will verify sender dropdown list of senders profiles on Pending Interac_e transfer Page
 	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
 	 * @throws IOException
 	 *             If there is problem while reporting
 	 * @return void
-	 * @throws Exception 
+	 *  * @throws Exception
+	 *             If there is problem while finding that element.
 	 * 
 	 */
-	
-	public void verifylistofsender() throws Exception {
-        Decorator();
+
+	public void verifylistofsender() {
+		Decorator();
 		try {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
 				
@@ -321,6 +345,16 @@ public class PendingInteracTransfer extends _CommonPage{
 	 * 
 	 * @return void
 	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
+	 * 
 	 */
 	public void cancelPendingTransfer() {
 		Decorator();
@@ -349,18 +383,33 @@ public class PendingInteracTransfer extends _CommonPage{
 				mobileAction.verifyElementIsDisplayed(cancelSuccessMsg, "Interac e-Transfer reclaimed and deposited successfully");
 				String conf_val = mobileAction.getText(cancelCnfrmnVal);
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
 		/**
 		 * This method will cancel the pending interac e transfer and deposit the the amount to the account and verify the popup
 		 * 
+		 * @throws InterruptedException In case an exception occurs while
+		 *         clicking over the element.
+		 * @throws IOException
+		 *             If there is problem while reporting.
+		 * @throws NoSuchElementException
+		 *             In case the element is not found over the screen.
+		 * 
+		 * @throws Exception
+		 *             If there is problem while finding that element.
 		 * 
 		 * @return void
 		 * 
@@ -394,12 +443,18 @@ public class PendingInteracTransfer extends _CommonPage{
 					
 					
 				}
-			} catch (NoSuchElementException | InterruptedException | IOException e) {
-				System.err.println("TestCase has failed.");
+			}  catch (NoSuchElementException e) {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (InterruptedException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (IOException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			} catch (Exception e) {
-				System.err.println("TestCase has failed.");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 		}
 		
@@ -505,12 +560,18 @@ public class PendingInteracTransfer extends _CommonPage{
 					CL.GetReporting().FuncReport("Pass", "Confirmation displays and selectable");
 					
 					}
-			} catch (NoSuchElementException | InterruptedException | IOException e) {
-				System.err.println("TestCase has failed.");
+			}catch (NoSuchElementException e) {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (InterruptedException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (IOException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			} catch (Exception e) {
-				System.err.println("TestCase has failed.");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 		}
 		
@@ -556,12 +617,18 @@ public class PendingInteracTransfer extends _CommonPage{
 							mobileAction.verifyElementIsDisplayed(dashboard,"Dashboard Page Opened");
 							
 						}
-					} catch (NoSuchElementException | InterruptedException | IOException e) {
-						System.err.println("TestCase has failed.");
+					}catch (NoSuchElementException e) {
 						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+					} catch (InterruptedException e) {
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+					} catch (IOException e) {
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					} catch (Exception e) {
-						System.err.println("TestCase has failed.");
 						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				
 	}
@@ -603,12 +670,18 @@ public class PendingInteracTransfer extends _CommonPage{
 							mobileAction.verifyElementIsDisplayed(transferHeader, "Transfer Landing Page is displayed");
 							
 						}
-					} catch (NoSuchElementException | InterruptedException | IOException e) {
-						System.err.println("TestCase has failed.");
+					} catch (NoSuchElementException e) {
 						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+					} catch (InterruptedException e) {
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+					} catch (IOException e) {
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					} catch (Exception e) {
-						System.err.println("TestCase has failed.");
 						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				}
 				/**
@@ -646,14 +719,19 @@ public class PendingInteracTransfer extends _CommonPage{
 							mobileAction.verifyElementIsDisplayed(cancelSuccessMsg,"Interac e-Transfer reclaimed and deposited successfully");
 							
 						}
-					} catch (NoSuchElementException | InterruptedException | IOException e) {
-						System.err.println("TestCase has failed.");
+					} catch (NoSuchElementException e) {
 						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+					} catch (InterruptedException e) {
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+					} catch (IOException e) {
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					} catch (Exception e) {
-						System.err.println("TestCase has failed.");
 						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 					}
-				
 	}
 				/**
 			 	 * This method will verify the pending interac e transfer list is displaying on Pending Interac Receipt page
@@ -727,12 +805,18 @@ public class PendingInteracTransfer extends _CommonPage{
 						mobileAction.verifyElementIsDisplayed(verifyAmount, "Verifying Amount");
 						
 						}
-				} catch (NoSuchElementException | InterruptedException | IOException e) {
-					System.err.println("TestCase has failed.");
+				}catch (NoSuchElementException e) {
 					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+				} catch (InterruptedException e) {
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+				} catch (IOException e) {
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 				} catch (Exception e) {
-					System.err.println("TestCase has failed.");
 					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 				}
 			}
 			
@@ -807,12 +891,18 @@ public class PendingInteracTransfer extends _CommonPage{
 							//mobileAction.FuncClick(home, "home button");
 						}
 					}
-				} catch (NoSuchElementException | InterruptedException | IOException e) {
-					System.err.println("TestCase has failed.");
+				} catch (NoSuchElementException e) {
 					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+				} catch (InterruptedException e) {
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+				} catch (IOException e) {
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 				} catch (Exception e) {
-					System.err.println("TestCase has failed.");
 					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 				}
 			}
 }

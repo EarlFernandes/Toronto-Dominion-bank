@@ -64,9 +64,18 @@ public class ManageTDMobilePayment extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(clickCard, "Click  Card");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -90,9 +99,18 @@ public class ManageTDMobilePayment extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(manageSettingIcon, "Click Manage Settings");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -118,9 +136,18 @@ public class ManageTDMobilePayment extends _CommonPage {
 		try {
 			MobileElement cardVal = (MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(selectcard));
 			mobileAction.FuncClick(cardVal, "Click the card");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 }

@@ -43,7 +43,7 @@ public class MobileDeposit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[starts-with(@text,'Be a TD Canada Trust customer')]")
 	private MobileElement validationFourthLine;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Have at least one eligible Chequing, Savings, or Line of Credit account')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Have at least one eligible Chequing')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Have at least one eligible Chequing')]")
 	private MobileElement validation_FifthLine;
 
@@ -77,11 +77,15 @@ public class MobileDeposit extends _CommonPage {
 	 * @return void
 	 * @throws IOException 
 	 * 
+	 * @throws IOException
+	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 *
 	 */
-	public void mobile_Dpst_Validation_Page() throws IOException {
+	public void mobile_Dpst_Validation_Page() {
 
 	
 		Decorator();
@@ -96,8 +100,14 @@ public class MobileDeposit extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(validation_SixthLine, ConstantClass.t_sixthLine_Value);
 
 		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
@@ -109,18 +119,25 @@ public class MobileDeposit extends _CommonPage {
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 *
 	 */
-	public void verifyDepositHeader() throws IOException {
+	public void verifyDepositHeader() {
 
 	
 		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(mobile_Deposit_Header, mobile_Header_value);
-		}
-		catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 }
 	
@@ -130,8 +147,14 @@ public class MobileDeposit extends _CommonPage {
 	 * @return void
 	 * @throws IOException 
 	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 *
 	 */
 	public void depositCheque()  {
@@ -140,10 +163,18 @@ public class MobileDeposit extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(dpstCheque_Btn, "DepositCheque");
-		}
-		catch (NoSuchElementException  | IOException  |InterruptedException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 }
 }

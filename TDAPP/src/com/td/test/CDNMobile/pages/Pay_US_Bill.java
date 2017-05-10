@@ -112,8 +112,11 @@ public class Pay_US_Bill extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void pay_US_bill_ErrorMsg() throws Exception {
+	public void pay_US_bill_ErrorMsg()  {
 
 		try {
 			Decorator();
@@ -186,9 +189,18 @@ public class Pay_US_Bill extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(verify_Message, verification_message);
 			}
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -204,16 +216,17 @@ public class Pay_US_Bill extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void verifyCurrencyDropDown() throws Exception {
+	public void verifyCurrencyDropDown() {
 		try {
 			String t_currencyswitchbox="The currency switchbox is displayed";
 			Decorator();
 			if (platformName.equalsIgnoreCase("ios")) {
-				boolean flag = us_Bill_Header.isDisplayed();
-
-				if (flag){
+				if (mobileAction.verifyElementIsPresent(us_Bill_Header))
 					mobileAction.FuncClick(from_Account, "from_Account");
 					String us_accountno = getTestdata("USAccount");
 					System.out.println("us_accountno" + us_accountno);
@@ -236,7 +249,7 @@ public class Pay_US_Bill extends _CommonPage {
 					
 	
 					}
-				}
+				
 			} else {
 				mobileAction.FuncClick(from_Account, "Select From Account");
 				mobileAction.FuncElementSwipeWhileNotFound(acntList, select_from_Account, 0, "down", true);
@@ -252,10 +265,20 @@ public class Pay_US_Bill extends _CommonPage {
 
 			}
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+
 
 	}
 }

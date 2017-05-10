@@ -76,6 +76,8 @@ public class Logout extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.            
 	 */
 	public void french_clickMenuButton() {
 		
@@ -88,9 +90,18 @@ public class Logout extends _CommonPage {
 			}else{	
 			mobileAction.FuncClick(french_Menu_Button, "French_Menu");
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -107,6 +118,8 @@ public class Logout extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void clickLogoutFrench() {
 		
@@ -116,9 +129,18 @@ public class Logout extends _CommonPage {
 		try {
 			mobileAction.FuncClick(logout_French, "Logout French");
 			mobileAction.verifyElementIsDisplayed(logoutHeaderFrench, Logged_Out_French);
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 		/**
@@ -132,6 +154,8 @@ public class Logout extends _CommonPage {
 		 *             If there is problem while reporting.
 		 * @throws NoSuchElementException
 		 *             In case the element is not found over the screen.
+		 * @throws Exception
+		 *             If there is problem while finding that element.
 		 */
 		public void logout() {
 
@@ -140,14 +164,15 @@ public class Logout extends _CommonPage {
 				
 				String Log_Out = "Logged Out";
 				mobileAction.FuncClick(logout, "Logout");
-				
-				
-					
-}
-			
-			 catch (NoSuchElementException | InterruptedException | IOException e) {
-				System.err.println("TestCase has failed.");
+			}catch (NoSuchElementException e) {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (InterruptedException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 		}
 

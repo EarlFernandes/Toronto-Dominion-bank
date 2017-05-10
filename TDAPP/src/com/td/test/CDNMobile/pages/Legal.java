@@ -1,7 +1,9 @@
 package com.td.test.CDNMobile.pages;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
@@ -69,6 +71,8 @@ private static Legal Legal;
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void verifylegalpage() {
 
@@ -87,10 +91,19 @@ private static Legal Legal;
 			mobileAction.verifyElementIsDisplayed(mobile_Privacy, "Click Mobile Privacy");
 			
 			mobileAction.verifyElementIsDisplayed(privacy_Security, "Click Privacy And Security");
-			
-			} catch (Exception e) {
-			System.err.println("TestCase has failed.");
+
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 }

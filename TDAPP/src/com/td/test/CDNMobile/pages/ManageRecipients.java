@@ -82,18 +82,31 @@ public class ManageRecipients extends _CommonPage {
      * 
      * 
      * @return void
-     * @throws IOException
-     * 
+     * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
+	 * 
      */
-    public void verify_RegisterButton() throws IOException {
+    public void verify_RegisterButton(){
 	try {
 	    Decorator();
 	    mobileAction.verifyElementIsDisplayed(manageRecipientHeader, "Manage Recipients");
 	    mobileAction.waitForElementToVanish(progressBar);
 	    mobileAction.verifyElementIsDisplayed(registerBtn, "Register");
-	} catch (NoSuchElementException e) {
-	    System.err.println("TestCase has failed.");
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	}  catch (NoSuchElementException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (Exception e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
     }
 
@@ -152,9 +165,15 @@ public class ManageRecipients extends _CommonPage {
     	    //mobileAction.verifyElementIsDisplayed(recipient_Changes,"Success Recipient details have been saved");
     		 }
 
-	} catch (NoSuchElementException e) {
-	    System.err.println("TestCase has failed.");
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	}  catch (NoSuchElementException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (Exception e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
 
     }

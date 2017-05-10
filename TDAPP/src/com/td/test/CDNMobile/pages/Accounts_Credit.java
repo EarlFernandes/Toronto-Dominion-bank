@@ -96,9 +96,7 @@ public class Accounts_Credit extends _CommonPage {
 		return Accounts_Credit;
 	}
 	
-	public Accounts_Credit() {
-		Decorator();
-	}
+
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -112,20 +110,33 @@ public class Accounts_Credit extends _CommonPage {
 	 * 
 	 * @return void
 	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void clickPayBill() {
-	//	Decorator();
+	Decorator();
 		try {
 			mobileAction.FuncClick(payBill_Btn, "Pay Bill");
 			mobileAction.waitForElementToVanish(progresssBar);
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -138,9 +149,11 @@ public class Accounts_Credit extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void verifyLatestTransactions() {
-	//	Decorator();
+		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				String lastTransac = "//*[@label(contains," + getTestdata("confirmation_val") + "')]";
@@ -157,9 +170,15 @@ public class Accounts_Credit extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(lastTransaction, "Last Transactions");
 			}
 
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -168,21 +187,32 @@ public class Accounts_Credit extends _CommonPage {
 	 * 
 	 * @return void
 	 * @throws InterruptedException
-	 * 
+	 *             In case an exception occurs while clicking over the element.
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void clickLastTransac() throws InterruptedException {
-		//Decorator();
+	public void clickLastTransac()  {
+		 Decorator();
 		try {
 
 			mobileAction.FuncClick(lastStatement, "Last Statement");
 			Thread.sleep(3000);
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -191,21 +221,32 @@ public class Accounts_Credit extends _CommonPage {
 	 * 
 	 * @return void
 	 * @throws InterruptedException
-	 * 
+	 *             In case an exception occurs while clicking over the element.
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void clickSummary() throws InterruptedException {
-		//Decorator();
+	public void clickSummary()  {
+		 Decorator();
 		try {
 
 			mobileAction.FuncClick(summaryTab, "Summary tab");
 			Thread.sleep(3000);
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -219,9 +260,11 @@ public class Accounts_Credit extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void verifySummaryDetails() throws InterruptedException {
-		//Decorator();
+	public void verifySummaryDetails() {
+		 Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(currentBalance, "Current Balance");
 			mobileAction.verifyElementIsDisplayed(currentAmount, "Current Amount");
@@ -230,9 +273,15 @@ public class Accounts_Credit extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(creditLimit, "Credit Limit");
 			mobileAction.verifyElementIsDisplayed(creditAmount, "credit amount");
 
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -241,21 +290,32 @@ public class Accounts_Credit extends _CommonPage {
 	 * 
 	 * @return void
 	 * @throws InterruptedException
-	 * 
+	 *             In case an exception occurs while clicking over the element.
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void clickStatement() throws InterruptedException {
-	//	Decorator();
+	public void clickStatement()  {
+		 Decorator();
 		try {
 
 			mobileAction.FuncClick(statementTab, "Statement tab");
 			Thread.sleep(3000);
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -264,35 +324,55 @@ public class Accounts_Credit extends _CommonPage {
 	 * 
 	 * @return void
 	 * @throws InterruptedException
-	 * 
+	 *             In case an exception occurs while clicking over the element.
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void verifyStatementDetails() throws InterruptedException {
-	//	Decorator();
+	public void verifyStatementDetails()  {
+		 Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(latestStatement, "Last Statement");
 			mobileAction.verifyElementIsDisplayed(twoStatementAgo, "Two Statement Ago");
 			mobileAction.verifyElementIsDisplayed(threeStatementAgo, "Three Statements Ago");
 			mobileAction.FuncClick(latestStatement, "Last Statement");
 
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
 	public void clickTransfer() {
-	//	Decorator();
+		Decorator();
 		try {
 			mobileAction.FuncClick(transfer_Btn, "Transfer");
 			mobileAction.waitForElementToVanish(progressBar);
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

@@ -53,9 +53,7 @@ public class AddRecipient extends _CommonPage {
 		return AddRecipient;
 	}
 	
-	public AddRecipient(){
-		Decorator();
-	}
+	
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -67,15 +65,23 @@ public class AddRecipient extends _CommonPage {
 	/**
 	 * This method will click on AddRecipient in Interac e-transfers Screen
 	 * 
-	 * 
 	 * @return void
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 * 
 	 */
 	public void addRecipient_ErrorMessage() {
 
-		//Decorator();
+		Decorator();
 		try {
-			addRecipient_Interac_Header.isDisplayed();
+			mobileAction.verifyElementIsDisplayed(addRecipient_Interac_Header, "Add Recipient");
 			// String
 			// recipient_Name_value=getTestdata("RecipientName" );
 			String recipient_Name_value = getTestdata("RecipientName");
@@ -111,10 +117,19 @@ public class AddRecipient extends _CommonPage {
 			mobileAction.FuncClick(done, "Done");
 
 			mobileAction.FuncClick(review_Button, "Review_button");
-			mobileAction.FuncIsDisplayed(verify_Msg);
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+			mobileAction.verifyElementIsDisplayed(verify_Msg,"Error Message");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

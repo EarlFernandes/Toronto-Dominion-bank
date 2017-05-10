@@ -300,7 +300,13 @@ public class Between_My_accounts extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[4]")
 	private MobileElement accountVal;
 	
-	public void perFormTransfer() throws Exception {
+	private void Decorator() {
+		PageFactory.initElements(new AppiumFieldDecorator((CL.GetDriver()), new TimeOutDuration(10, TimeUnit.SECONDS)),
+				this);
+
+	}
+	
+	public void perFormTransfer() {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -336,8 +342,18 @@ public class Between_My_accounts extends _CommonPage {
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -354,9 +370,12 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void anyAccount_TDCTTFSA_Message() throws Exception {
+	public void anyAccount_TDCTTFSA_Message()  {
 
 		Decorator();
 		try {
@@ -389,10 +408,18 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(TDCT_TFSAMessage,
 						"When making deposits to this account, please ensure that you are");
 			}
-		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -408,9 +435,12 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void CADTFSA_TDCTTFSA() throws Exception {
+	public void CADTFSA_TDCTTFSA()  {
 
 		Decorator();
 		try {
@@ -438,11 +468,19 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_to_Acnt, 3, "down", true);
 				mobileAction.FuncClick(btnCancel, "Cancel");
-}
-		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
+			}
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -458,8 +496,11 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void canadianCash_To_USCash() throws Exception {
+	public void canadianCash_To_USCash() {
 
 		Decorator();
 		try {
@@ -474,12 +515,22 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.FuncClick(btnMenu, "Menu");
 			mobileAction.FuncClick(btnLogout, "Logout");
 			mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
-	public void CanadianToUS() throws Exception {
+	public void CanadianToUS() {
 		Decorator();
 		try {
 			perFormTransfer();
@@ -499,9 +550,18 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.FuncClick(btnLogout, "Logout");
 			mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -510,19 +570,23 @@ public class Between_My_accounts extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(btncontinue_Transfer, "Continue");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
 
-	private void Decorator() {
-		PageFactory.initElements(new AppiumFieldDecorator((CL.GetDriver()), new TimeOutDuration(10, TimeUnit.SECONDS)),
-				this);
-
-	}
-
-	public void exchange_rate_expired() throws Exception {
+	public void exchange_rate_expired() {
 		Decorator();
 		try {
 
@@ -610,7 +674,6 @@ public class Between_My_accounts extends _CommonPage {
 						mobileAction.verifyTextEquality(org_amt[0], ValueofAmount);
 				}
 				mobileAction.FuncClickBackButton();
-				;
 				mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList, verify_to_Acnt, 1, "down", true);
 				String amt_recvd = mobileAction.getText(amt_Trnsfrd.get(0));
 				String amt_sent_after_exchange = mobileAction.getText(amountSent);
@@ -621,9 +684,18 @@ public class Between_My_accounts extends _CommonPage {
 
 				mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -633,8 +705,18 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.FuncClick(btnFinish_Transfer, "Finish");
 			//mobileAction.waitForElementToDisappear(progressBar);
 			mobileAction.waitForElementToVanish(txtProgressBar);
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -643,7 +725,6 @@ public class Between_My_accounts extends _CommonPage {
 	 * less than $1 CAD or USD
 	 * 
 	 * @return void
-	 * @throws Exception
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -651,8 +732,11 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void lira_US_to_UU() throws Exception {
+	public void lira_US_to_UU()  {
 
 		Decorator();
 		try {
@@ -683,9 +767,18 @@ public class Between_My_accounts extends _CommonPage {
 				String error_actual = mobileAction.getText(errorMsg);
 				mobileAction.verifyTextEquality(error_actual, error_txt);
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -695,7 +788,6 @@ public class Between_My_accounts extends _CommonPage {
 	 * when amount greater than $35,000 USD
 	 * 
 	 * @return void
-	 * @throws Exception
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -703,8 +795,11 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void mobile_expiry_rate() throws Exception {
+	public void mobile_expiry_rate() {
 
 		Decorator();
 		try {
@@ -742,11 +837,30 @@ public class Between_My_accounts extends _CommonPage {
 			String conf_val = mobileAction.getText(confirmation_Val);
 			mobileAction.FuncClick(btnMenu, "Menu");
 			mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
-			mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList, verify_from_acnt, 3, "down", true);
-			mobileAction.verifyTextContains(last_Transaction_List.get(0), conf_val);
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
+				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(account_value));
+				mobileAction.FunCSwipeandScroll(fromAccountval, true);
+				Thread.sleep(3000);
+
+			}else{
+				mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList, verify_from_acnt, 3, "down", true);
+				mobileAction.verifyTextContains(last_Transaction_List.get(0), conf_val);
+			}
+
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -761,8 +875,11 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void negativerTestingTransferFunds() throws Exception {
+	public void negativerTestingTransferFunds() {
 
 		Decorator();
 		try {
@@ -815,10 +932,18 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(btnHome, "Home Page");
 			}
 
-		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -834,9 +959,12 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void TDCTTFSA_CADTFSA() throws Exception {
+	public void TDCTTFSA_CADTFSA()  {
 
 		Decorator();
 		try {
@@ -869,10 +997,18 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(btnCancel, "Cancel");
 
 			}
-		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -881,7 +1017,6 @@ public class Between_My_accounts extends _CommonPage {
 	 * it is successful.
 	 * 
 	 * @return void
-	 * @throws Exception
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -889,8 +1024,11 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void transfer_between_my_accounts() throws Exception {
+	public void transfer_between_my_accounts(){
 
 		Decorator();
 		try {
@@ -929,14 +1067,23 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncElementSwipeWhileNotFound(acntsListNew,  account_verify_from_acnt, 10, "down", true);
 				mobileAction.verifyElementIsDisplayed(balance, "Account Balance");
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
 
-	public void transfer_between_my_accounts_verify_receipt() throws Exception {
+	public void transfer_between_my_accounts_verify_receipt() {
 
 		Decorator();
 		try {
@@ -968,9 +1115,18 @@ public class Between_My_accounts extends _CommonPage {
 				
 				mobileAction.verifyTextContains(last_Transaction_List.get(0), conf_val);
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -981,7 +1137,6 @@ public class Between_My_accounts extends _CommonPage {
 	 * message
 	 * 
 	 * @return void
-	 * @throws Exception
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -989,6 +1144,9 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void transfer_NotSupported() throws Exception {
@@ -1046,16 +1204,17 @@ public class Between_My_accounts extends _CommonPage {
 			}
 
 		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			e.printStackTrace();
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			e.printStackTrace();
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1065,7 +1224,6 @@ public class Between_My_accounts extends _CommonPage {
 	 * message
 	 * 
 	 * @return void
-	 * @throws Exception
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -1073,8 +1231,11 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void transferBtw_tfsa_other_Acct() throws Exception {
+	public void transferBtw_tfsa_other_Acct()  {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -1096,14 +1257,23 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_to_Acnt, 10, "down", true);
 				mobileAction.verifyElementIsDisplayed(verify_Message, validate_message);
 			}
-			
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			e.printStackTrace();
+
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
-	public void transferLessAmount() throws Exception {
+	public void transferLessAmount() {
 		Decorator();
 		try {
 			perFormTransfer();
@@ -1120,13 +1290,22 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.FuncClick(btnMenu, "Menu");
 			mobileAction.FuncClick(btnLogout, "Logout");
 			mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
-	public void verifyFromAccounts() throws Exception {
+	public void verifyFromAccounts() {
 		Decorator();
 		boolean flag = false;
 		try {
@@ -1171,15 +1350,24 @@ public class Between_My_accounts extends _CommonPage {
 			}
 
 		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
-	public void permissible_transfer() throws Exception {
+	public void permissible_transfer(){
 		Decorator();
 		try {
-			if (btw_My_Accounts_Header.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(btw_My_Accounts_Header)) {
 				//\mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -1236,17 +1424,18 @@ public class Between_My_accounts extends _CommonPage {
 					}
 			}
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			String errorMsg="";
-			try{
-				errorMsg=mobileAction.getValue(generalerrorMsg);
-				System.err.println("TestCase has failed with error:" + errorMsg);
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				mobileAction.Report_Fail(errorMsg);
-			}catch(Exception e1){
-				System.err.println("TestCase has failed.");
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			}
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1261,9 +1450,12 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void mobileRateExpiryOnSmartphones() throws Exception {
+	public void mobileRateExpiryOnSmartphones()  {
 
 		Decorator();
 		try {
@@ -1300,10 +1492,18 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncWaitForElement(ok_Button, 60, "Ok");
 				mobileAction.FuncClick(ok_Button, "OK");
 			}
-		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1312,7 +1512,6 @@ public class Between_My_accounts extends _CommonPage {
 	 * to C16.
 	 * 
 	 * @return void
-	 * @throws Exception
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -1320,12 +1519,15 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void permissible_transfer_on_mobile() throws Exception {
+	public void permissible_transfer_on_mobile()  {
 		Decorator();
 		try {
-			if (btw_My_Accounts_Header.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(btw_My_Accounts_Header)) {
 				
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					mobileAction.FuncClick(from_acnt, "From Account");
@@ -1377,7 +1579,18 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
 				}
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	/**
@@ -1391,10 +1604,14 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public double transferTDCTCad_USDVisa() throws Exception {
-		double fromAccountval=0.00;
+	public double transferTDCTCad_USDVisa() {
+		Decorator();
+		double fromAccountval = 0.00;
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) 
 			{
@@ -1413,12 +1630,20 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
 				mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList, verify_from_acnt, 3, "down", true);
 				mobileAction.verifyElementIsDisplayed(verifyAmount, "Verify Amount");
-				}
-			
-		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
 
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 		return fromAccountval;
 	}
@@ -1426,7 +1651,6 @@ public class Between_My_accounts extends _CommonPage {
 	 * This method will perform the transfer and get the amount of the from account
 	 * 
 	 * @return void
-	 * @throws Exception
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -1434,12 +1658,15 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void transfer_TFSAUSD_TFSACAD() throws Exception {
+	public void transfer_TFSAUSD_TFSACAD()  {
 		Decorator();
 		try {
-			if (btw_My_Accounts_Header.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(btw_My_Accounts_Header)) {
 				
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					String from_AccountNo = getTestdata("FromAccount");
@@ -1484,13 +1711,25 @@ public class Between_My_accounts extends _CommonPage {
 					
 				}
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	public void verify_permissible_transfer() throws Exception {
+
+	public void verify_permissible_transfer()  {
 		Decorator();
 		try {
-			if (btw_My_Accounts_Header.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(btw_My_Accounts_Header)) {
 				//\mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -1547,16 +1786,25 @@ public class Between_My_accounts extends _CommonPage {
 					}
 			}
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
-	public void RTB_permissible_transfer() throws Exception {
+
+	public void RTB_permissible_transfer() {
 		Decorator();
 		try {
-		if (btw_My_Accounts_Header.isDisplayed() == true) {
+		if (mobileAction.verifyElementIsPresent(btw_My_Accounts_Header)) {
 		//\mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 
 		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -1601,9 +1849,18 @@ public class Between_My_accounts extends _CommonPage {
 		}
 		}
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-		System.err.println("TestCase has failed.");
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 		}
 

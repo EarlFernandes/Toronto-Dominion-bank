@@ -159,7 +159,7 @@ public class Login extends _CommonPage {
 
 	//String verifyLogin_ios = "//XCUIElementTypeStaticText[contains(@label,'Your Login Info Please')]";
 	String verifyLogin_ios = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[1]";
-	String verifyLogin_android = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
+	String verifyLogin_android = "//*[contains(@text,'Your Login Info Please')]";
 	String login_password = getTestdata("Password");
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
@@ -219,8 +219,18 @@ public class Login extends _CommonPage {
 					mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 					mobileAction.FuncClick(addUser, "AddUser");
 					flag = true;
-				} catch (NoSuchElementException | InterruptedException | IOException e) {
-					System.out.println("Exception for select_accesscard or addUser ");
+				}catch (NoSuchElementException e) {
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+				} catch (InterruptedException e) {
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+				} catch (IOException e) {
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				} catch (Exception e) {
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 				}
 			} else {
 				flag = false;
@@ -239,8 +249,18 @@ public class Login extends _CommonPage {
 					mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 					mobileAction.FuncClick(addUser, "AddUser");
 					flag = true;
-				} catch (NoSuchElementException | InterruptedException | IOException e) {
-					System.out.println("Exception for no select_accesscard for FRE ");
+				} catch (NoSuchElementException e) {
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+				} catch (InterruptedException e) {
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+				} catch (IOException e) {
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				} catch (Exception e) {
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 				}
 			} else {
 				flag = false;
@@ -254,7 +274,7 @@ public class Login extends _CommonPage {
 	public void verifySystemError() {
 		Decorator();
 		try {
-			if (errorText.isDisplayed()) {
+			if (mobileAction.verifyElementIsPresent(errorText)) {
 				CL.GetReporting().FuncReport("Fail", "System exception occured during login");
 			}
 		} catch (Exception e) {
@@ -267,7 +287,7 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 			if (mobileAction.FuncIsDisplayed(securityQuestionHeader)) {
-				mobileAction.FuncSendKeys(enterAnswer, "abcde");
+				mobileAction.FuncSendKeys(enterAnswer, getTestdata("SecurityPassword"));
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					mobileAction.FuncClick(done, "Done");
 				} else {
@@ -288,7 +308,7 @@ public class Login extends _CommonPage {
 	public void verifyTandC() {
 		Decorator();
 		try {
-			if (TermsAndCondition_header.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(TermsAndCondition_header)) {
 				String verify_terms = "Verifying TermsAndCondition Page Header";
 				mobileAction.verifyElementIsDisplayed(TermsAndCondition_header, verify_terms);
 				String button_clicked = "Thanks Button is clicked";
@@ -499,15 +519,21 @@ public class Login extends _CommonPage {
 		}
 	}
 
-	public void loginVerify() throws IOException {
+	public void loginVerify() {
 		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(username, "no user name");
 
 		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
+            CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+            System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+     }catch (IOException e) {
+            CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+            System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+     } catch (Exception e) {
+            CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+            System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+     }
 
 	}
 
@@ -603,7 +629,7 @@ public class Login extends _CommonPage {
 
 		Decorator();
 		try {
-			if (select_accesscard.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");
@@ -641,7 +667,7 @@ public class Login extends _CommonPage {
 
 		Decorator();
 		try {
-			if (select_accesscard.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");
@@ -691,7 +717,7 @@ public class Login extends _CommonPage {
 		try {
 			Decorator();
 
-			if (select_accesscard.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");
@@ -742,7 +768,7 @@ public class Login extends _CommonPage {
 
 		Decorator();
 		if (platFormName.equalsIgnoreCase("ios")) {
-			if (select_accesscard.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 
 				try {
 					mobileAction.FuncClick(select_accesscard, "Select Accesscard");
@@ -777,13 +803,13 @@ public class Login extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void verifylogin5times() throws SystemException {
+	public void verifylogin5times(){
 
 		Decorator();
 		int size= passwordArray.length;
 		try {
 
-			if (select_accesscard.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");
@@ -923,7 +949,7 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 
-			if (select_accesscard.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");
@@ -959,7 +985,7 @@ public class Login extends _CommonPage {
 				}
 			}
 			try {
-				if (errorText.isDisplayed() == true) {
+				if (mobileAction.verifyElementIsPresent(errorText)) {
 
 				}
 			} catch (Exception e) {
@@ -995,12 +1021,12 @@ public class Login extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void loginWithoutTandC() throws SystemException {
+	public void loginWithoutTandC() {
 
 		Decorator();
 		try {
 
-			if (select_accesscard.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");
@@ -1038,7 +1064,7 @@ public class Login extends _CommonPage {
 			Thread.sleep(2000);
 
 			try {
-				if (errorText.isDisplayed() == true) {
+				if (mobileAction.verifyElementIsPresent(errorText)) {
 
 				}
 			} catch (Exception e) {
@@ -1047,7 +1073,7 @@ public class Login extends _CommonPage {
 			}
 
 			try {
-				if (securityQuestionHeader.isDisplayed() == true) {
+				if (mobileAction.verifyElementIsPresent(securityQuestionHeader)) {
 					mobileAction.FuncClick(enterAnswer, "Enter your Answer");
 					mobileAction.FuncSendKeys(enterAnswer, "abcd");
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -1065,7 +1091,7 @@ public class Login extends _CommonPage {
 			}
 
 			try {
-				if (TermsAndCondition_header.isDisplayed()) {
+				if (mobileAction.verifyElementIsPresent(TermsAndCondition_header)) {
 					String verify_terms = "Verifying TermsAndCondition Page Header";
 					mobileAction.verifyElementIsDisplayed(TermsAndCondition_header, verify_terms);
 					Thread.sleep(4000);
@@ -1135,13 +1161,14 @@ public class Login extends _CommonPage {
 
 	// This method will count the number of users present in the access card
 
-	public void verify_user() throws IOException {
+	public void verify_user() 
+{
 		Decorator();
 		try {
 			mobileAction.FuncClick(select_accesscard, "Access Card");
 			int count = user.size();
 			for (int i = 0; i < count; i++) {
-				if (user.get(i).isDisplayed()) {
+				if (mobileAction.verifyElementIsPresent(user.get(i))) {
 					if (platFormName.equalsIgnoreCase("Android")) {
 						mobileAction.verifyElementTextContains(user.get(i), "*");
 					} else if (platFormName.equalsIgnoreCase("iOS")) {
@@ -1163,7 +1190,7 @@ public class Login extends _CommonPage {
 		}
 	}
 
-	public void login_errorMsg() throws SystemException {
+	public void login_errorMsg(){
 
 		String verifyLogin_ios = "//*[contains(@label,'Your Login Info Please')]";
 		String verifyLogin_android = "//android.widget.ImageView[@resource-id= 'com.td:id/imageView1']";
@@ -1171,7 +1198,7 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 
-			if (select_accesscard.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");

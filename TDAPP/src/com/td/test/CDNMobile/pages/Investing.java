@@ -65,6 +65,10 @@ public class Investing extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Go to WebBroker']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_launch_browser'and @text='Go to WebBroker']")
 	private MobileElement webBroker;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Open an account today for fast and convenient access to cash')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Open an account today for fast and convenient access to cash')]")
+	private MobileElement errorMsg;
 
 /*	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
 	private MobileElement backButton;*/
@@ -90,11 +94,11 @@ public class Investing extends _CommonPage {
 	private MobileElement trade_header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Watchlists']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Watchlists']")
 	private MobileElement watchlists_Header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Markets']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Markets']")
 	private MobileElement markets_Header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Accounts']")
@@ -174,6 +178,9 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void clickTrade() {
 
@@ -183,9 +190,18 @@ public class Investing extends _CommonPage {
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncClick(trade, "Trade");
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -200,16 +216,29 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void clickMarkets() {
 
 		try {
 			Decorator();
 			Thread.sleep(2000);
+			mobileAction.FunCnewSwipe(markets, false, 2);
 			mobileAction.FuncClick(markets, "Markets");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -224,15 +253,24 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void verifyInvestingHeader() throws IOException {
+	public void verifyInvestingHeader()  {
 		Decorator();
 		try {
 			String verify_investing = "Verifying Investing Page Header";
 			mobileAction.verifyElementIsDisplayed(investing_header, verify_investing);
 		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -248,6 +286,9 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void clickPlacedorder() {
@@ -265,9 +306,18 @@ public class Investing extends _CommonPage {
 			} else {
 				mobileAction.FuncClick(placedorder, "Placed order");
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -281,6 +331,9 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void clickInvestingAccounts() {
@@ -304,11 +357,13 @@ public class Investing extends _CommonPage {
 
 		catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -324,10 +379,13 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void clickOrder() {
-
+		Decorator();
 		try {
 
 			mobileAction.FuncClick(order, "order");
@@ -336,8 +394,18 @@ public class Investing extends _CommonPage {
 			mobileAction.FuncClick(OrderVal, "ordervalue");
 			mobileAction.waitForElementToVanish(progressBar);
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
@@ -352,15 +420,28 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void clickWatchLists() {
-
+		Decorator();
 		try {
 			mobileAction.FuncClick(watchLists, "watchLists");
 			mobileAction.waitForElementToVanish(progressBar);
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
@@ -375,6 +456,9 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void verifyAdvanceorderdetails() {
@@ -382,9 +466,18 @@ public class Investing extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.FuncClick(placedorder, "Placed order");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -399,6 +492,9 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void verifyAccessToWBfunctionality() {
 		try {
@@ -407,9 +503,18 @@ public class Investing extends _CommonPage {
 			String webbroker_button = "Go to Web Broker";
 			mobileAction.verifyElementIsDisplayed(go_to_webbroker_button, webbroker_button);
 			CL.GetReporting().FuncReport("Pass", "NO access to WB functionalities");
-		} catch (NoSuchElementException | IOException | InterruptedException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
@@ -424,17 +529,30 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void clickHoldings() throws Exception {
+	public void clickHoldings()  {
 		try {
 			Decorator();
 			mobileAction.FuncClick(Holdings, "Holdings");
 			mobileAction.waitForElementToVanish(progressBar);
 			//mobileAction.FunCSwipeandScroll(AAVSymbol, true);
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
@@ -449,6 +567,9 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void verifyDIAccounts() {
@@ -469,8 +590,15 @@ public class Investing extends _CommonPage {
 			mobileAction.verifyElementUsingXPath(diAccountXL, "The first DI Account");
 			mobileAction.verifyElementUsingXPath(diAccountXL2, "The Second DI Account");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -485,6 +613,9 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void verifyPIAAccounts() {
 		try {
@@ -498,8 +629,15 @@ public class Investing extends _CommonPage {
 			}
 			mobileAction.verifyElementUsingXPath(diAccountXL, "The PIA Account");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -515,6 +653,9 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void verifyCombinedAccounts() {
@@ -542,8 +683,15 @@ public class Investing extends _CommonPage {
 			mobileAction.changeToMobileElementAndSwipe(diAccountXL3, false);
 			mobileAction.verifyElementUsingXPath(diAccountXL2, "The FP Account");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -559,12 +707,17 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void verifyNoTradingAccounts() throws InterruptedException {
+	public void verifyNoTradingAccounts() 
+	{
 		try {
 			Decorator();
 			mobileAction.verifyElementIsDisplayed(webBroker, "Go to WebBroker");
+			mobileAction.verifyElementIsDisplayed(errorMsg, "Message");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(backButton, "BackButton");
 			} else {
@@ -574,8 +727,18 @@ public class Investing extends _CommonPage {
 			mobileAction.FuncClick(my_accounts, "My Accounts");
 			mobileAction.verifyElementIsDisplayed(accounts_Header, "Accounts");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -591,14 +754,34 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void verifynoEligibleAccounts() throws InterruptedException {
+	public void verifynoEligibleAccounts()  {
 		try {
 			Decorator();
 			mobileAction.verifyElementIsDisplayed(webBroker, "Go to WebBroker");
-		} catch (NoSuchElementException | IOException e) {
+			mobileAction.verifyElementIsDisplayed(errorMsg, "Error Message");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.FuncClick(backButton, "BackButton");
+			} else {
+				mobileAction.FuncHideKeyboard();
+			}
+			mobileAction.FuncClick(menu, "Menu");
+			mobileAction.FuncClick(my_accounts, "My Accounts");
+			mobileAction.verifyElementIsDisplayed(accounts_Header, "Accounts");
+			
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -614,20 +797,42 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void verifyInvestingScreen() throws InterruptedException {
+	public void verifyInvestingScreen() {
 		try {
 			Decorator();
 			mobileAction.FuncClick(trade, "Trade");
 			mobileAction.verifyElementIsDisplayed(trade_header, "Trade");
-			mobileAction.FuncClick(backButton, "BackButton");
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				mobileAction.FuncClick(backButton, "BackButton");
+			}else{
+				mobileAction.FuncHideKeyboard();
+			}
 			mobileAction.FuncClick(watchLists, "WatchLists");
 			mobileAction.verifyElementIsDisplayed(watchlists_Header, "WatchList");
-			mobileAction.FuncClick(backButton, "BackButton");
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				mobileAction.FuncClick(backButton, "BackButton");
+			}else{
+				mobileAction.FuncHideKeyboard();
+			}
 			mobileAction.FuncClick(markets, "Markets");
+			mobileAction.verifyElementIsDisplayed(markets_Header, "Markets");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -643,6 +848,9 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void verifyFPAccounts() {
@@ -663,8 +871,15 @@ public class Investing extends _CommonPage {
 			mobileAction.verifyElementUsingXPath(diAccountXL, "The first FP Account");
 			mobileAction.verifyElementUsingXPath(diAccountXL2, "The Second FP Account");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -680,6 +895,9 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void verifyPIAOrFPAccount() {//@Author - Sushil 20-Apr-2017 modified
 		try {
@@ -690,11 +908,6 @@ public class Investing extends _CommonPage {
 			String fromAccount = getTestdata("FromAccount");
 			String fromAccountArr[] = fromAccount.split(",");
 
-			if(mobileAction.isObjExists(Investing_Trade)) //@Author - Sushil 20-Apr-2017
-				CL.GetReporting().FuncReport("Fail", "Trade option should not be displayed on the Investing landing page for connectID with only PIA/FP accounts");
-			else
-				CL.GetReporting().FuncReport("Pass", "Trade option is not displayed on the Investing landing page for connectID with only PIA/FP accounts");
-			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				diAccountXL = "//*[contains(@label,'" + fromAccountArr[0] + "')]";
 				diAccountXL2 = "//*[contains(@label,'" + fromAccountArr[1] + "')]";
@@ -706,9 +919,23 @@ public class Investing extends _CommonPage {
 			}
 			mobileAction.verifyElementUsingXPath(diAccountXL, "The first PIA/FP Account");
 			mobileAction.verifyElementUsingXPath(diAccountXL2, "The Second PIA/FP Account");
+			MobileElement accountVal = (MobileElement) ((AppiumDriver) CL.GetDriver())
+					.findElement(By.xpath(diAccountXL2));
+			mobileAction.FuncClick(accountVal, "PIA/FP");
+			if(mobileAction.isObjExists(Investing_Trade)) //@Author - Sushil 20-Apr-2017
+				CL.GetReporting().FuncReport("Fail", "Trade option should not be displayed on the Investing landing page for connectID with only PIA/FP accounts");
+			else
+				CL.GetReporting().FuncReport("Pass", "Trade option is not displayed on the Investing landing page for connectID with only PIA/FP accounts");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
@@ -723,6 +950,9 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void verifyCombinedAccount() {
@@ -733,11 +963,18 @@ public class Investing extends _CommonPage {
 			mobileAction.FuncClick(backButton, "Back");
 			mobileAction.verifyElementIsDisplayed(hdrHome, "hdrHome");
 			mobileAction.verifyElementIsDisplayed(trade_dashboard, "trade_dashboard");
-		} catch (NoSuchElementException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -752,6 +989,9 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	
 	public void verifyErrorMessage() {
@@ -759,11 +999,18 @@ public class Investing extends _CommonPage {
 			Decorator();
 			mobileAction.verifyElementTextContains(ErrorMessage, "error message");
 			mobileAction.FuncClick(backButton, "Back");
-		} catch (NoSuchElementException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
@@ -778,14 +1025,27 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void clickTradeIcon() {
-
+		Decorator();
 		try {
 			mobileAction.FuncClick(tradeicon, "Click Trade Icon");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
@@ -800,6 +1060,9 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 
@@ -816,9 +1079,18 @@ public class Investing extends _CommonPage {
 				mobileAction.FuncClickBackButton();
 			}
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -842,6 +1114,9 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 
@@ -855,9 +1130,18 @@ public class Investing extends _CommonPage {
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncClick(firstPlacedOrderElement, "Order Clicked");
 			mobileAction.waitForElementToVanish(progressBar);
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -873,6 +1157,9 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 
@@ -882,17 +1169,35 @@ public class Investing extends _CommonPage {
 			Thread.sleep(5000);
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncClick(watchListsButton, "Watch List");
-			Decorator();
 			mobileAction.verifyElementIsDisplayed(watchListsEmpty, "Watch List Empty");
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 		try {
 			mobileAction.FuncClick(watchListsButton, "Click Trade Icon");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -907,6 +1212,9 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 
@@ -929,14 +1237,33 @@ public class Investing extends _CommonPage {
 
 			mobileAction.waitForElementToVanish(progressBar);
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 		try {
 			mobileAction.FuncClick(watchListsButton, "Click Trade Icon");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 }
