@@ -55,11 +55,11 @@ public class SearchPageMIT extends _CommonPage {
 	@AndroidFindBy(id="com.td:id/txtSearchTitle")
 	private MobileElement search_txtSearchTitle;
 	
-	@iOSFindBy(xpath = "//*[@label='RESULTS' or @label='RÉSULTATS']") //@Author - Sushil 08-Feb-2017
+	@iOSFindBy(xpath = "//*[@label='RESULTS' or @label='RSULTATS']") //@Author - Sushil 08-Feb-2017
 	@AndroidFindBy(id="com.td:id/txt_results")
 	private MobileElement txt_results;
 	
-	@iOSFindBy(xpath = "//*[@label='RECENT SEARCHES' or @label='RECHERCHES RÉCENTES']") //@Author - Sushil 08-Feb-2017
+	@iOSFindBy(xpath = "//*[@label='RECENT SEARCHES' or @label='RECHERCHES RCENTES']") //@Author - Sushil 08-Feb-2017
 	@AndroidFindBy(id="com.td:id/classificationTexView")
 	private MobileElement recentSearches;
 	

@@ -21,11 +21,11 @@ public class Profile extends _CommonPage {
 	private static Profile Profile;
 
 	String profileStr = "Profile | Profil";
-	String contactInfo = "CONTACT INFORMATION | COORDONNÉES";
+	String contactInfo = "CONTACT INFORMATION | COORDONNES";
 	String profileScrollView = "//android.widget.ScrollView[@resource-id='com.td:id/scrollView']";
 	String emailReg ="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
 	String androidphoneReg ="\\(\\*{3}\\)\\*{3}-\\d{4}";
-	String iosphoneReg = "\\(\\•{3}\\) \\•{3} - \\d{4}";
+	String iosphoneReg = "\\(\\{3}\\) \\{3} - \\d{4}";
 	String extReg = "\\d+";
 	String emailPlaceHolder = "example@address.com";
 	String phonePlaceHolder ="Enter number";
@@ -38,11 +38,11 @@ public class Profile extends _CommonPage {
 	private MobileElement profile_Header;
 
 	@iOSFindBy(xpath = "//*[@label='CONTACT INFORMATION']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title_text' and (@text='CONTACT INFORMATION' or @text='COORDONNÉES')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title_text' and (@text='CONTACT INFORMATION' or @text='COORDONNES')]")
 	private MobileElement profile_contact_info_header;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Home Phone']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Home Phone' or @text='No de tél. (domicile)')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Home Phone' or @text='No de tl. (domicile)')]")
 	private MobileElement home_phone_label;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Home Phone']/../XCUIElementTypeTextField")
@@ -50,7 +50,7 @@ public class Profile extends _CommonPage {
 	private MobileElement home_phone_info;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Work Phone']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Work Phone' or @text='No de tél. (travail)')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Work Phone' or @text='No de tl. (travail)')]")
 	private MobileElement work_phone_label;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Work Phone']/../XCUIElementTypeTextField")
@@ -58,7 +58,7 @@ public class Profile extends _CommonPage {
 	private MobileElement work_phone_info;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Mobile Phone']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Mobile Phone' or @text='No de tél. (cell.)')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Mobile Phone' or @text='No de tl. (cell.)')]")
 	private MobileElement mobile_phone_label;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Mobile Phone']/../XCUIElementTypeTextField")
@@ -67,7 +67,7 @@ public class Profile extends _CommonPage {
 	
 	
 	@iOSFindBy(xpath = "//*[@label='Business Phone']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Business Phone' or @text='No de tél. (entreprise)']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Business Phone' or @text='No de tl. (entreprise)']")
 	private MobileElement business_phone_label;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Business Phone']/../XCUIElementTypeTextField")
@@ -75,7 +75,7 @@ public class Profile extends _CommonPage {
 	private MobileElement business_phone_info;
 	
 	@iOSFindBy(xpath = "//*[@label='Fax']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Fax' or @text='Télécopieur')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Fax' or @text='Tlcopieur')]")
 	private MobileElement fax_label;
 	
 	@iOSFindBy(xpath = "//*[@label='Fax']")
@@ -575,7 +575,7 @@ public class Profile extends _CommonPage {
 		Decorator();
 		extension = extension.replace(extPlaceHolder, "");
 		
-		if(extension.contains("*") || extension.contains("•")){
+		if(extension.contains("*") || extension.contains("")){
 			mobileAction.Report_Fail_Not_Verified(extension);
 			System.err.println("TestCase has failed for masked extension "+extension);
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
