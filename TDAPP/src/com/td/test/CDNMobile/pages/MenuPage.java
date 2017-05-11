@@ -468,6 +468,7 @@ public class MenuPage extends _CommonPage {
 			String elementText= mobileAction.getValue(give_feedback);
 			System.out.println("elementText:" +  elementText);
 			mobileAction.FuncClick(give_feedback, elementText);
+			mobileAction.waitForElementToVanish(progressBar);
 		}catch (Exception e){
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -501,6 +502,7 @@ public class MenuPage extends _CommonPage {
 			String elementText= mobileAction.getValue(contactUs);
 			System.out.println("Element Text:" +  elementText);
 			mobileAction.FuncClick(contactUs, elementText);
+			mobileAction.waitForElementToVanish(progressBar);
 		}catch (Exception e){
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
