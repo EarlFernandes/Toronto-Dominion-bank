@@ -2771,6 +2771,30 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 			}
 		}
 	}
+	
+	public void verifyItemInListContains(String sItem)//@Author-Sushil 11-May-2017
+	{
+		String xpathExpression="";
+		try
+		{
+			if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				xpathExpression = "//*[contains(@text,'" + sItem +"')]";
+			else
+				xpathExpression = "//*[contains(@label,'" + sItem +"')]";
+			
+			verifyElementTextContains((MobileElement) (GetDriver()).findElement(By.xpath(xpathExpression)), sItem);
+		}
+		catch(Exception e)
+		{
+			try{
+				GetReporting().FuncReport("Fail",sItem + " not found.");
+			}
+			catch(Exception e1)
+			{
+			e.printStackTrace();
+			}
+		}
+	}
 }
 
 
