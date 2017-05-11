@@ -43,7 +43,7 @@ public class TDForMe extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/nav_row_title']")
 	private MobileElement tdforme_Customize_Notifications;
 	
-	@iOSFindBy(xpath = "//*[@label='TD for Me Notifications' or @label='TD et moi']")
+	@iOSFindBy(xpath = "//*[@label='TD for Me Notifications' or @label='Avis TD et moi']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement tdforme_Notification_title;
 	
