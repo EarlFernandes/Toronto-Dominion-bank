@@ -544,8 +544,8 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Decorator();
 			WebDriverWait wait = new WebDriverWait(CL.GetDriver(), 100);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("//*[contains(@label,'The right mortgage can save you money')]")));
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(
+//					By.xpath("//*[contains(@label,'The right mortgage can save you money')]")));
 			mobileAction.FuncClick(send_money_button, "sendMoney");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");

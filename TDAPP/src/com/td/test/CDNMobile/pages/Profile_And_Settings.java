@@ -19,7 +19,7 @@ public class Profile_And_Settings extends _CommonPage {
 
 	private static Profile_And_Settings ProfileAndSettings;
 
-	String preferences = "Profile & Settings | Profil et paramètres";
+	String preferences = "Profile & Settings | Profil et paramtres";
 	
 	@iOSFindBy(xpath = "//*[@label='Profile & Settings']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Profile & Settings']")

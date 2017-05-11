@@ -1,8 +1,6 @@
 package com.td.test.CDNMobile.pages;
 
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
