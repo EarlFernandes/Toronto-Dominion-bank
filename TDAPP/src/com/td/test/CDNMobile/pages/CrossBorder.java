@@ -123,20 +123,20 @@ public class CrossBorder extends _CommonPage {
 						break;
 				}
 				for(MobileElement e : staticTextsWelcomePage) {
-					System.out.println("DAVID" + e.getText());
 					if(e != null && e.getText() != null) {
 						if(!expectedText.contains(e.getText())) {
 							throw new NoSuchElementException("Expected text: " + expectedText + " did not contain: " + e.getText());
 						}
+						break;
 					}
 				}
 				
 				for(MobileElement f : links) {
-					System.out.println("DAVID" + f.getText());
 					if(!StringUtils.isEmpty(f.getText())) {
 						if(!expectedText.contains(f.getText())) {
 							throw new NoSuchElementException("Expected text: " + expectedText + " did not contain: " + f.getText());
 						}
+						break;
 					}
 				}
 			} else {
@@ -184,7 +184,35 @@ public class CrossBorder extends _CommonPage {
 		final String locale = CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				String expectedText = "";
+				switch(locale) {
+					case "EN":
+						expectedText = POPUP_EXPECTED_TEXT_EN;
+						break;
+					case "zh-Hans":
+						expectedText = POPUP_EXPECTED_TEXT_ZH_SIMP;
+						break;
+					case "zh-Hant":
+						expectedText = POPUP_EXPECTED_TEXT_ZH_TRAD;
+						break;
+				}
+				for(MobileElement e : staticTextsWelcomePage) {
+					if(e != null && e.getText() != null) {
+						if(!expectedText.contains(e.getText())) {
+							throw new NoSuchElementException("Expected text: " + expectedText + " did not contain: " + e.getText());
+						}
+						break;
+					}
+				}
+				
+				for(MobileElement f : links) {
+					if(!StringUtils.isEmpty(f.getText())) {
+						if(!expectedText.contains(f.getText())) {
+							throw new NoSuchElementException("Expected text: " + expectedText + " did not contain: " + f.getText());
+						}
+						break;
+					}
+				}
 			} else {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");

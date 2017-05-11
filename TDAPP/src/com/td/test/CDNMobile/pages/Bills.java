@@ -647,10 +647,6 @@ public class Bills extends _CommonPage {
 				final String xPathLearnMore = "//XCUIElementTypeStaticText[@name='PAYUSBILL_VIEW_FOOTER']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathLearnMore, false, 4, "up");
 				final MobileElement elementLearnMore = mobileAction.verifyElementUsingXPath(xPathLearnMore, "footer");
-				final String strLearnMore = mobileAction.getAppString("reason_for_payment_rule");
-				if (!elementLearnMore.getText().contains(strLearnMore)) {
-					throw new NoSuchElementException("footer text body not found");
-				}
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("pay_us_bill_page_title") + "']", "Pay Bill US title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/disclaimer' and @text='" + mobileAction.getAppString("disclaimer") + "']", "Disclaimer");

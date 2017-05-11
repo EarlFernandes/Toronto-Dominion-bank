@@ -23,7 +23,7 @@ public class Pay_US_Bill extends _CommonPage {
 
 	private static Pay_US_Bill Pay_US_Bill;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Select from account')]")
+	@iOSFindBy(accessibility = "PAYUSBILL_VIEW_FROM")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_account_name']")
 	private MobileElement from_account;
 
@@ -37,14 +37,15 @@ public class Pay_US_Bill extends _CommonPage {
 	@iOSFindBy(xpath = "//*[contains(@label,'Select U.S. payee')]")
 	private MobileElement select_account;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@name='-Amount']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='PAYUSBILL_VIEW_AMOUNT']/following-sibling::XCUIElementTypeTextField[1]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amount']")
 	private MobileElement amount;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue']")
+	@iOSFindBy(accessibility ="PAYUSBILL_VIEW_CONTINUE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/button_footer']")
 	private MobileElement Continue;
 
+	@iOSFindBy(accessibility = "PAYUSBILL_VIEW_PAYEE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/payee_name']")
 	private MobileElement select_payee_account;
 
@@ -55,13 +56,15 @@ public class Pay_US_Bill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/reason_for_payment']")
 	private MobileElement reasonForPayment;
 
-	@iOSFindBy(xpath = "//*[@label='Done']")
+	// FIXME: Add id for this
+	@iOSFindBy(xpath = "//*[@label='Done' or @label='完成']")
 	private MobileElement done;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Important Note: As this involves a large amount in foreign exchange, please ensure the Amount is correct.']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[starts-with(@text,'Important Note')]")
 	private MobileElement verify_message;
 
+	// FIXME: What is the id for this?
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/estimated_delivery_date']")
 	private MobileElement estDate;
 	
@@ -74,7 +77,8 @@ public class Pay_US_Bill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/listView']")
 	private MobileElement payeeList;
 	
-	@iOSFindBy(xpath = "//*[@label='Pay Bill']")
+	// FIXME: Find the correct accessibility id here
+	@iOSFindBy(accessibility = "PAYBILLUS_PAY_BILL")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/button_footer']")
 	private MobileElement pay_bill_button;
 
@@ -299,7 +303,26 @@ public class Pay_US_Bill extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				payUSBillToConfirmation();
+				mobileAction.FuncClick(pay_bill_button, "Pay bill");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @text='" + mobileAction.getAppString("pay_us_bill_page_title") + "']", "Pay US Bill title");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("receipt_thankyou") + "']", "Thank you!");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("bill_paid_successfully") + "']", "Payment Submitted");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("note") + "']", "Note");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[starts-with(@value, '" + mobileAction.getAppString("confirmation_no").replace("%1$s", "") + "')]", "Confirmation #");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("payBillConfirmFieldHeaderFromAccount").replace(" ", "\n") + "']", "From Account");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("payBillConfirmFieldHeaderAmount") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("estimated_delivery_date") + "']", "Est delivery date");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfersFXExchangeRate").replace(" ", "\n") + "']", "Exchange Rate");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");
+				final String xPathQuickActionBar = "//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_HOME") + "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathQuickActionBar, false, 4, "up");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("service_fee") + "']", "Service Fee");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("total_amount") + "']", "Total Amount");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("reason_for_payment_label") + "']", "Reason for payment");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("pay_another_bill") + "']", "PAY ANOTHER BILL");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("receipt_scheduledpayments") + "']", "SCHEDULED PAYMENTS");
+				mobileAction.verifyDateFormat(estDate.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
 			} else {
 				payUSBillToConfirmation();
 				mobileAction.FuncClick(pay_bill_button, "Pay bill");
@@ -346,7 +369,20 @@ public class Pay_US_Bill extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				payUSBillToConfirmation();
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("usbp_legal_notes").replace("#LINK#", mobileAction.getAppString("usbp_legal_notes_link")) + "']", "Terms and conditions");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("payBillDropdownHeaderFromAccount").replace(" ", "\n") + "']", "From Account");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("estimated_delivery_date") + "']", "Est delivery date");
+				final String xPathReason = "//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("reason_for_payment_label") + "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathReason, false, 4, "up");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfersFXExchangeRate").replace(" ", "\n") + "']", "Exchange Rate");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("payBillConfirmButtonPayBill") + "']", "Pay Bill");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("service_fee") + "']", "Service Fee");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("payBillConfirmFieldHeaderAmount") + "']", "Amount");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("total_amount") + "']", "Total Amount");
+				mobileAction.verifyElementUsingXPath(xPathReason, "Reason for payment");
+				mobileAction.verifyDateFormat(estDate.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
 			} else {
 				payUSBillToConfirmation();
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/terms_conditions' and @text='" + mobileAction.getAppString("usbp_legal_notes").replace("#LINK#", mobileAction.getAppString("usbp_legal_notes_link")) + "']", "Terms and conditions");
@@ -377,7 +413,20 @@ public class Pay_US_Bill extends _CommonPage {
 	private void payUSBillToConfirmation() {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.FuncClick(from_account, "From Account");
+				String from_accountNo = "//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("FromAccount") + "')]";
+				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+                        .findElement(By.xpath(from_accountNo));
+				mobileAction.FunCSwipeandScroll(fromAccountval, true);
+				mobileAction.FuncClick(select_payee_account, "Select Payee");
+				String to_accountNo = "//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("Payee") + "')]";
+				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+                        .findElement(By.xpath(to_accountNo));
+				mobileAction.FunCSwipeandScroll(toAccountval, true);
+				mobileAction.FuncClick(amount, "Amount button clicked");
+				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
+				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClick(Continue, "Continue_pay");
 			} else {
 				// Seems like selector for from account/payee do not work here
 				// We just need to get to confirmation page, so select default fields
@@ -394,7 +443,7 @@ public class Pay_US_Bill extends _CommonPage {
 				mobileAction.FuncClick(Continue, "Continue_pay");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("pay_us_bill_page_title") + "']", "Pay US Bill title");
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (Exception e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {
