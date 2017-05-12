@@ -43,7 +43,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "IllegalArgumentException");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			throw e;
@@ -51,7 +50,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Element not displayed");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			throw n;
@@ -59,7 +57,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "The element not present in current page");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			throw e;
@@ -2739,6 +2736,81 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 			status = switchElement.getAttribute("value");
 		}
 		return status;
+	}
+	
+	public void FuncSwipeUpTillScreenBottom(MobileElement mEle) //@Author - Sushil 10-May-2017
+	{
+		try
+		{
+			FunctionSwipe("up", 200, 100);
+			if(!mEle.isDisplayed())
+			{
+				FunctionSwipe("up", 200, 100);
+			}
+		}
+		catch(Exception e)
+		{
+			try {
+				FunctionSwipe("up", 200, 100);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+				try {
+					GetReporting().FuncReport("Fail", "Exception : FuncSwipeUpTillScreenBottom Failed.");
+				} catch (IOException e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
+	}
+	public void FuncSwipeDownTillScreenTop(MobileElement mEle) //@Author - Sushil 10-May-2017
+	{
+		try
+		{
+			FunctionSwipe("down", 200, 200);
+			if(!mEle.isDisplayed())
+			{
+				FunctionSwipe("down", 200, 200);
+			}
+		}
+		catch(Exception e)
+		{
+			try {
+				FunctionSwipe("down", 200, 200);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				try {
+					GetReporting().FuncReport("Fail", "Exception : FuncSwipeDownTillScreenTop Failed.");
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public void verifyItemInListContains(String sItem)//@Author-Sushil 11-May-2017
+	{
+		String xpathExpression="";
+		try
+		{
+			if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				xpathExpression = "//*[contains(@text,'" + sItem +"')]";
+			else
+				xpathExpression = "//*[contains(@label,'" + sItem +"')]";
+			
+			verifyElementTextContains((MobileElement) (GetDriver()).findElement(By.xpath(xpathExpression)), sItem);
+		}
+		catch(Exception e)
+		{
+			try{
+				GetReporting().FuncReport("Fail",sItem + " not found.");
+			}
+			catch(Exception e1)
+			{
+			e.printStackTrace();
+			}
+		}
 	}
 }
 
