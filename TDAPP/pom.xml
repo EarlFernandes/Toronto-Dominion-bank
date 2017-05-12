@@ -87,7 +87,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
  </descriptorRefs>
 <archive>
 <manifest>
- <mainClass>com.td.test.tdapp.main</mainClass>
+ <mainClass>com.td</mainClass>
  </manifest>
  </archive>
  </configuration>
