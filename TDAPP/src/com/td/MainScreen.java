@@ -99,10 +99,8 @@ public class MainScreen extends _CommonPage {
 
 		String udid = CL.getTestDataInstance().getDeviceUdid();
 
-		String appiumPath="";
-
+		String appiumPath = CL.getTestDataInstance().getAppiumPath(); //Jenkins parameters
         if (!StringUtils.isEmpty(appiumPath)) { // only jenkins sets this 
-           appiumPath = CL.getTestDataInstance().getAppiumPath(); //Jenkins parameters
 		   if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 			          CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 			                       CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_Android"));
