@@ -43,6 +43,11 @@ public class Profile extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Profile' or @label='Profil']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Profile' or @text='Profil')]")
 	private MobileElement profile_Header;
+	
+	@iOSFindBy(xpath = "//*[@label='In progress']")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
+	private MobileElement progressBar;
 
 	@iOSFindBy(xpath = "//*[@label='CONTACT INFORMATION' or @label='COORDONNÉES']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title_text' and (@text='CONTACT INFORMATION' or @text='COORDONNÉES')]")
@@ -757,7 +762,8 @@ public class Profile extends _CommonPage {
 	
 	public void pressSaveButton(){
 		try{
-	        mobileAction.FuncClick(save_button, "Save");			
+	        mobileAction.FuncClick(save_button, "Save");
+	        mobileAction.waitForElementToVanish(progressBar);
 		}catch (NoSuchElementException | InterruptedException | IOException e) {
 	        System.err.println("TestCase has failed.");
 	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1341,14 +1347,11 @@ public class Profile extends _CommonPage {
 		String toastMessage="";
 			
 		try{
-			
-			if(toast_message.isDisplayed()){
-				toastMessage = mobileAction.getValue(toast_message);
-				System.out.println("toastMessage:" +toastMessage);
-				if (!toastMessage.isEmpty()){
-					mobileAction.Report_Pass_Verified(toastMessage);
-				}
-				
+						
+			toastMessage = mobileAction.getValue(toast_message);
+			System.out.println("toastMessage:" +toastMessage);
+			if (!toastMessage.isEmpty()){
+				mobileAction.Report_Pass_Verified(toastMessage);				
 			}else{
 				System.err.println("TestCase has failed, no toast message found");
 		        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	

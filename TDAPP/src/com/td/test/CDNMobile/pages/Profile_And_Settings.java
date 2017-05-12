@@ -54,7 +54,7 @@ public class Profile_And_Settings extends _CommonPage {
 	private MobileElement notifications;
 	
 	
-	@iOSFindBy(xpath = "//*[@label='Quick Access Settings' or @label='Paramètres du Accès rapide']")
+	@iOSFindBy(xpath = "//*[@label='Quick Access Settings' or @label='Paramètres Accès rapide']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_quick_access']/android.widget.TextView")
 	private MobileElement quickaccesssetting;
 	
