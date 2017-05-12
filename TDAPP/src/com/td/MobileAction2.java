@@ -2038,15 +2038,15 @@ public class MobileAction2 extends CommonLib {
 	}
 	
 	 /**
-     * This method will verify the header text is displayed on the screen.
+     * This method will verify the expected text is displayed on the screen.
      * 
      * @param The
      *            element which has to be identified
      * 
      * @param expectedText
-     *            The expected text in this format like: "CONTACT INFORMATION | COORDONN�ES"
+     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNÉES"
      *            if language is English then "CONTACT INFORMATION "to be printed in report
-     *            if language is French then "COORDONN�ES" to be printed in report
+     *            if language is French then "COORDONNÉES" to be printed in report
      * 
      * @return nothing
      * 
