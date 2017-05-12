@@ -2047,9 +2047,9 @@ public class MobileAction2 extends CommonLib {
      *            element which has to be identified
      * 
      * @param expectedText
-     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNÉES"
+     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNï¿½ES"
      *            if language is English then "CONTACT INFORMATION "to be printed in report
-     *            if language is French then "COORDONNÉES" to be printed in report
+     *            if language is French then "COORDONNï¿½ES" to be printed in report
      * 
      * @return nothing
      * 
@@ -2718,7 +2718,28 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 		for (int i = 0; i < TapCount; i++) {
 		action.tap(startx, starty).perform();
 		}
-}
+	}
+	
+	/**
+	* This method will get  current switch element status  //fengfr6 
+	*
+	* 
+	* @param MobileElement
+	*            switch mobile element
+	*    for android device, attribute "checked" is the switch status, true or false
+	*    for iOS device, attribute "value" is the switch status, true or false        
+	* 
+	* @throws IOException
+	*/
+	public String getSwitchStatus(MobileElement switchElement){
+		String status="";
+		if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			status = switchElement.getAttribute("checked");
+		}else{
+			status = switchElement.getAttribute("value");
+		}
+		return status;
+	}
 }
 
 

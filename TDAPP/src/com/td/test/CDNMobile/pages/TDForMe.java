@@ -27,19 +27,19 @@ public class TDForMe extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progress_bar;
 	
-	@iOSFindBy(xpath = "//*[@label='TD for Me Settings' or @label='Paramètres TD et moi']")
+	@iOSFindBy(xpath = "//*[@label='Enable TD for Me' or @label='Activer TD et moi']/../XCUIElementTypeSwitch")
 	@AndroidFindBy(xpath = "//android.widget.Switch[@content-desc='TD for Me' or @content-desc='TD et moi']")
 	private MobileElement tdforme_enable_switch;
 
-	@iOSFindBy(xpath = "//*[@label='TD for Me Settings' or @label='Paramètres TD et moi']")
+	@iOSFindBy(xpath = "//*[@label='Display French TD for Me' or @label='Afficher TD et moi en Anglais']")
 	@AndroidFindBy(xpath = "//android.widget.Switch[@content-desc='English-only TD for Me content' or @content-desc='%1$s seulement pour TD et moi']")
 	private MobileElement tdforme_displayfrench_switch;
 
-	@iOSFindBy(xpath = "//*[@label='TD for Me Settings' or @label='Paramètres TD et moi']")
-	@AndroidFindBy(xpath = "//android.widget.Switch[@content-desc='battery saver' or @content-desc='Préservation de la pile']")
+	@iOSFindBy(xpath = "//*[@name='PRESERVE BATTERY' or @name='PRÉSERVATION DE LA PILE']")
+	@AndroidFindBy(xpath = "//android.widget.Switch[@content-desc='battery saver' or @content-desc='préservation de la pile']")
 	private MobileElement tdforme_batterysave_switch;
 		
-	@iOSFindBy(xpath = "//*[@label='TD for Me Settings' or @label='Paramètres TD et moi']")
+	@iOSFindBy(xpath = "//*[@label='Customize Notifications' or @label='Personnaliser les avis']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/nav_row_title']")
 	private MobileElement tdforme_Customize_Notifications;
 	
@@ -60,6 +60,16 @@ public class TDForMe extends _CommonPage {
 				this);
 
 	}
+	
+	private void reDecoratorWhenswitchIsToggledtoEnable(){
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			
+			System.out.println("Swipe down");
+			mobileAction.SwipeWithinElement("//android.widget.ScrollView[@index='0']", 1, "down");
+		}
+		Decorator();		
+	}
+	
 
 	public void VerifyTDForMeSettingsHeader() {
 		Decorator();
@@ -78,23 +88,12 @@ public class TDForMe extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(tdforme_enable_switch, "TD for Me Enable-Disable Switch");
 			//Check the switch status
-			String switchCheckStatus = tdforme_enable_switch.getAttribute("checked");
-			System.out.println("Checked :" + switchCheckStatus);
-			
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				mobileAction.SwipeWithinElement("//android.widget.ScrollView", 1, "down");
-				String xpath = "//android.widget.Switch[@content-desc='" + mobileAction.getAppString("tdForMe_second_lang_alt") + "']";
-				System.out.println("xpath:" +  xpath);
-				tdforme_displayfrench_switch = mobileAction.verifyElementUsingXPath(xpath, "TD for me display French Switch");	
-
-				String xpath1 = "//android.widget.Switch[@content-desc='" + mobileAction.getAppString("tdForMe_battery_save_alt_text") + "']";
-				System.out.println("xpath:" +  xpath1);
-				tdforme_batterysave_switch = mobileAction.verifyElementUsingXPath(xpath, "TD for me battary saver Switch");
-				
-				
-			}
-			
+			String switchCheckStatus = mobileAction.getSwitchStatus(tdforme_enable_switch); 
+			System.out.println("Status :" + switchCheckStatus);
+		
 			if(switchCheckStatus.equalsIgnoreCase("true")){
+				
+				reDecoratorWhenswitchIsToggledtoEnable();
 				
 				mobileAction.verifyElementIsDisplayed(tdforme_displayfrench_switch, "TD for Me display french Switch");
 				mobileAction.verifyElementIsDisplayed(tdforme_batterysave_switch, "TD for Me battary saver Switch");
@@ -104,7 +103,7 @@ public class TDForMe extends _CommonPage {
 				mobileAction.FuncClick(tdforme_enable_switch, "TD for Me Enable-Disable Switch");
 				mobileAction.waitForElementToVanish(progress_bar);
 				
-				switchCheckStatus = tdforme_enable_switch.getAttribute("checked");
+				switchCheckStatus = mobileAction.getSwitchStatus(tdforme_enable_switch); 
 				if(!switchCheckStatus.equalsIgnoreCase("false")){
 					mobileAction.Report_Fail_Not_Verified("Toggle switch to disable");
 					System.err.println("TestCase has failed to toggle the TD for me switch");
@@ -139,7 +138,7 @@ public class TDForMe extends _CommonPage {
 				}
 				
 				if(mobileAction.isObjExists(tdforme_batterysave_switch)){
-					mobileAction.Report_Fail_Not_Verified("Collapses french display switch ");
+					mobileAction.Report_Fail_Not_Verified("Collapses battery saver switch ");
 					return;
 				}else{
 					System.out.println("battary saver switch not diaplayed");
@@ -160,21 +159,11 @@ public class TDForMe extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(tdforme_enable_switch, "TD for Me Enable-Disable Switch");
 			//Check the switch status
-			String switchCheckStatus = tdforme_enable_switch.getAttribute("checked");
-			System.out.println("Checked :" + switchCheckStatus);
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				mobileAction.SwipeWithinElement("//android.widget.ScrollView", 1, "down");
-				String xpath = "//android.widget.Switch[@content-desc='" + mobileAction.getAppString("tdForMe_second_lang_alt") + "']";
-				System.out.println("xpath:" +  xpath);
-				tdforme_displayfrench_switch = mobileAction.verifyElementUsingXPath(xpath, "TD for me display French Switch");	
+			String switchCheckStatus = mobileAction.getSwitchStatus(tdforme_enable_switch);
+			System.out.println("Status :" + switchCheckStatus);
 
-				String xpath1 = "//android.widget.Switch[@content-desc='" + mobileAction.getAppString("tdForMe_battery_save_alt_text") + "']";
-				System.out.println("xpath:" +  xpath1);
-				tdforme_batterysave_switch = mobileAction.verifyElementUsingXPath(xpath, "TD for me battary saver Switch");
-				
-				
-			}
 			if(switchCheckStatus.equalsIgnoreCase("true")){
+				reDecoratorWhenswitchIsToggledtoEnable();
 
 				mobileAction.verifyElementIsDisplayed(tdforme_displayfrench_switch, "TD for Me display french Switch");
 				mobileAction.verifyElementIsDisplayed(tdforme_batterysave_switch, "TD for Me battary saver Switch");
@@ -186,7 +175,7 @@ public class TDForMe extends _CommonPage {
 				mobileAction.FuncClick(tdforme_enable_switch, "TD for Me Enable-Disable Switch");
 				mobileAction.waitForElementToVanish(progress_bar);
 				
-				switchCheckStatus = tdforme_enable_switch.getAttribute("checked");
+				switchCheckStatus = mobileAction.getSwitchStatus(tdforme_enable_switch);
 				System.out.println("Switch Status:"+ switchCheckStatus);
 				if(!switchCheckStatus.equalsIgnoreCase("true")){
 					mobileAction.Report_Fail_Not_Verified("Toggle switch to enable");
@@ -194,6 +183,8 @@ public class TDForMe extends _CommonPage {
 					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 					return;
 				}
+				
+				reDecoratorWhenswitchIsToggledtoEnable();
 
 				//verify page expands for displaying  french Switch and battary saver Switch
 				if(!mobileAction.isObjExists(tdforme_displayfrench_switch)){
@@ -226,7 +217,7 @@ public class TDForMe extends _CommonPage {
 			mobileAction.waitForElementToVanish(progress_bar);
 			
 		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
+			System.err.println("TestCase has failed to ClickCustomizeNotificationlink.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
@@ -234,7 +225,7 @@ public class TDForMe extends _CommonPage {
 	public void VerifyTDForMeNotificationPageHeader() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(tdforme_Notification_title, "TD for Me Notifications | Paramètres TD et moi");
+			mobileAction.verifyElementTextIsDisplayed(tdforme_Notification_title, "TD for Me Notifications | Avis TD et moi");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

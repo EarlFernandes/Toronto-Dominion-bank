@@ -27,7 +27,7 @@ public class QuickAccess  extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progress_bar;
 
-	@iOSFindBy(xpath = "//*[@label='Quick Access' or @label='Accès rapide']")
+	@iOSFindBy(xpath = "//*[@label='Quick Access' or @label='Accès rapide']/../XCUIElementTypeSwitch")
 	@AndroidFindBy(xpath = "//android.widget.Switch[@content-desc='Quick Access' or @content-desc='Accès rapide']")
 	private MobileElement quickaccess_switch;	
 	
@@ -48,6 +48,8 @@ public class QuickAccess  extends _CommonPage {
 				this);
 
 	}
+	
+
 
 	public void VerifyQuickAccessSettingsHeader() {
 		Decorator();
@@ -68,7 +70,7 @@ public class QuickAccess  extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(quickaccess_switch, "Quick Access");
-			String switchCheckStatus = quickaccess_switch.getAttribute("checked");
+			String switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch); 
 			System.out.println("Checked Status :" + switchCheckStatus);
 			if(switchCheckStatus.equalsIgnoreCase("true")){
 				//Enabled
@@ -77,7 +79,7 @@ public class QuickAccess  extends _CommonPage {
 				mobileAction.FuncClick(quickaccess_switch, "Quick Access Switch Toggle");
 				System.out.println("Toggle Switch");
 				mobileAction.waitForElementToVanish(progress_bar);
-				switchCheckStatus = quickaccess_switch.getAttribute("checked");
+				switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
 				System.out.println("Checked status now :" + switchCheckStatus);
 				
 				if(mobileAction.isObjExists(indiviual_accounts)){
@@ -96,7 +98,7 @@ public class QuickAccess  extends _CommonPage {
 					mobileAction.FuncClick(quickaccess_switch, "Quick Access Switch Toggle");
 					System.out.println("Toggle Switch");
 					mobileAction.waitForElementToVanish(progress_bar);
-					switchCheckStatus = quickaccess_switch.getAttribute("checked");
+					switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
 					System.out.println("Checked now :" + switchCheckStatus);
 					mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, "ACCOUNTS | COMPTES ");
 				}

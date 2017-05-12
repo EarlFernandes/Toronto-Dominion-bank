@@ -35,7 +35,7 @@ public class Notifications extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement TDforme_notification_Header;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeSwitch[contains(@name,'Enable Notifications') or contains(@name,'Activer les notifications')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Enable Notifications' or @label='Activer les notifications']/../XCUIElementTypeSwitch")
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/nav_row_switch']")
 	private MobileElement enable_notification_switch;
 
@@ -52,6 +52,7 @@ public class Notifications extends _CommonPage {
 				this);
 
 	}
+	
 
 	public void VerifyNotificationsPageHeader() {
 		Decorator();
@@ -83,7 +84,7 @@ public class Notifications extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(TDforme_notification_Header, "TD for Me Notification | Avis TD et moi |TD for Me | TD et moi");
+			mobileAction.verifyElementTextIsDisplayed(TDforme_notification_Header, "TD for Me Notifications | Avis TD et moi |TD for Me | TD et moi");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed to VerififyTdforMeNotificationsHeader.");
@@ -97,57 +98,32 @@ public class Notifications extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(enable_notification_switch, "Notifications Enable-Disable Switch");
 			//Check the switch status
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				String switchCheckStatus = enable_notification_switch.getAttribute("checked");
-				System.out.println("isEnabled status :" + switchCheckStatus);
+			
+			String switchCheckStatus = mobileAction.getSwitchStatus(enable_notification_switch); 
+			System.out.println("isEnabled status :" + switchCheckStatus);
 
-				if(switchCheckStatus.equalsIgnoreCase("false")){
-					// Enable it
-					System.out.println("Toggle to enable it");
-					mobileAction.FuncClick(enable_notification_switch, "Toggle Switch");
-					switchCheckStatus = enable_notification_switch.getAttribute("checked");
-					if(switchCheckStatus.equalsIgnoreCase("true")){
-						mobileAction.Report_Pass_Verified("Toggle to enable the switch");
-					}else{
-						mobileAction.Report_Fail("Failed to toggle the switch");
-					}
-				}else{//Enabled
-					//Toggle the switch to disable it
-					System.out.println("Toggle to disable it");
-					mobileAction.FuncClick(enable_notification_switch, "Toggle Switch");
-					switchCheckStatus = enable_notification_switch.getAttribute("checked");
-					if(switchCheckStatus.equalsIgnoreCase("false")){
-						mobileAction.Report_Pass_Verified("Toggle to disable the switch");
-					}else{
-						mobileAction.Report_Fail("Failed to toggle the switch");
-					}
+			if(switchCheckStatus.equalsIgnoreCase("false")){
+				// Enable it
+				System.out.println("Toggle to enable it");
+				mobileAction.FuncClick(enable_notification_switch, "Toggle Switch");
+				switchCheckStatus = mobileAction.getSwitchStatus(enable_notification_switch);
+				if(switchCheckStatus.equalsIgnoreCase("true")){
+					mobileAction.Report_Pass_Verified("Toggle to enable the switch");
+				}else{
+					mobileAction.Report_Fail("Failed to toggle the switch");
 				}
-			}else{
-				String switchCheckStatus = enable_notification_switch.getAttribute("isEnabled");
-				System.out.println("isEnabled status :" + switchCheckStatus);
-
-				if(switchCheckStatus.equalsIgnoreCase("No")){
-					// Enable it
-					System.out.println("Toggle to enable it");
-					mobileAction.FuncClick(enable_notification_switch, "Toggle Switch");
-					switchCheckStatus = enable_notification_switch.getAttribute("isEnabled");
-					if(switchCheckStatus.equalsIgnoreCase("Yes")){
-						mobileAction.Report_Pass_Verified("Toggle to enable the switch");
-					}else{
-						mobileAction.Report_Fail("Failed to toggle the switch");
-					}
-				}else{//Enabled
-					//Toggle the switch to disable it
-					System.out.println("Toggle to disable");
-					mobileAction.FuncClick(enable_notification_switch, "Toggle Switch");
-					switchCheckStatus = enable_notification_switch.getAttribute("isEnabled");
-					if(switchCheckStatus.equalsIgnoreCase("No")){
-						mobileAction.Report_Pass_Verified("Toggle to disable the switch");
-					}else{
-						mobileAction.Report_Fail("Failed to toggle the switch");
-					}
+			}else{//Enabled
+				//Toggle the switch to disable it
+				System.out.println("Toggle to disable it");
+				mobileAction.FuncClick(enable_notification_switch, "Toggle Switch");
+				switchCheckStatus = mobileAction.getSwitchStatus(enable_notification_switch);
+				if(switchCheckStatus.equalsIgnoreCase("false")){
+					mobileAction.Report_Pass_Verified("Toggle to disable the switch");
+				}else{
+					mobileAction.Report_Fail("Failed to toggle the switch");
 				}
 			}
+
 
 		} catch (Exception e) {
 			System.err.println("TestCase has failed to VerifyEnableNotificationsSwitchFunction.");
