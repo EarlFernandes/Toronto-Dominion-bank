@@ -25,7 +25,8 @@ public class Investing extends _CommonPage {
 	private MobileElement tradeicon;
 
 	@iOSFindBy(xpath = " //XCUIElementTypeOther[@label='Investing']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing Accounts']")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing Accounts']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Investing']")//@Author - Shahbaaz 17-Apr-2017
 	private MobileElement investing_header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade']")

@@ -56,12 +56,14 @@ public class TradeMultiLeg extends _CommonPage{
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell[3]/*[2]") //@Author - Sushil 17-Feb-2017
 	//@AndroidFindBy(xpath = "//*[contains(@resource-id,'com.td:id/amountEditText')]")
-	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*[@resource-id='com.td:id/amountEditText']")
+//	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*[@resource-id='com.td:id/amountEditText']")
+	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[@resource-id='com.td:id/amountEditText']")//@Author - Sushil 10-May-2017
 	private MobileElement leg1Quantity;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell[3]/*[2]") //@Author - Sushil 17-Feb-2017
 	//@AndroidFindBy(xpath = "(//*[contains(@resource-id,'com.td:id/amountEditText')])[2]")
-	@AndroidFindBy(xpath = 	"//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*[@resource-id='com.td:id/amountEditText']")
+//	@AndroidFindBy(xpath = 	"//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*[@resource-id='com.td:id/amountEditText']")
+	@AndroidFindBy(xpath = 	"//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[@resource-id='com.td:id/amountEditText']")//@Author - Sushil 10-May-2017
 	private MobileElement leg2Quantity;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell/*") //@Author - Sushil 17-Feb-2017
@@ -127,6 +129,10 @@ public class TradeMultiLeg extends _CommonPage{
 	@iOSFindBy(xpath = "//*[@label='Agree' or @label='Accepte']") //@Author - Sushil 08-Feb-2017
 	@AndroidFindBy(id="com.td:id/positiveButton")
 	private MobileElement agreeButton;
+	
+	@iOSFindBy(xpath = "//*[@label='Agree' or @label='Accepte']") //@Author - Sushil 08-Feb-2017
+	@AndroidFindBy(id="android:id/button1")
+	private MobileElement acceptButton;
 	
 	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']") //@Author - Sushil 08-Feb-2017
 	@AndroidFindBy(id="android:id/action_bar_title")
@@ -252,7 +258,7 @@ public class TradeMultiLeg extends _CommonPage{
 	private MobileElement selectedOrderType;	
 	
 	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]/../*[3]")//@Author - Sushil 28-Mar-2017
-	@AndroidFindBy(xpath="//android.widget.TextView[[@resource-id='com.td:id/selectedValue' and @index=1]")
+	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/selectedValue' and @index=1]")
 	private MobileElement selectedAccountValue;
 	
 	@iOSFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]")//@Author - Sushil 28-Feb-2017
@@ -351,14 +357,16 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.verifyElement(leg1Action, getTestdata("TextDefaultListItem", XLSheetUserIDs));
 			mobileAction.FuncVerifyBlankValue(leg1Quantity, "leg1Quantity");
 
-			mobileAction.FunCnewSwipe(leg2Option,false,5);	
+			///mobileAction.FunCnewSwipe(leg2Quantity,false,5);	
+			mobileAction.FuncSwipeWhileElementNotFound(leg2Quantity, false, 7, "up");
 			mobileAction.verifyElement(leg2Option, getTestdata("OptionDefault", XLSheetUserIDs));
 			mobileAction.verifyElement(leg2Action, getTestdata("TextDefaultListItem", XLSheetUserIDs));
 			mobileAction.FuncVerifyBlankValue(leg2Quantity, "leg2Quantity");
 			
 			String[] sUrlTitle= getTestdata("urlTitle", XLSheetUserIDs).split(";");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(commissionLink, false, 7, "up");
+			///mobileAction.FuncSwipeWhileElementNotFound(commissionLink, false, 7, "up");
+			mobileAction.FunctionSwipe("up", 200, 100);
 			
 			mobileAction.verifyElement(tradingPwdDisableMsg, getTestdata("TradingPassword", XLSheetUserIDs));
 			
@@ -366,7 +374,7 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.verifyElement(urlTitle, sUrlTitle[0]);
 			mobileAction.FuncClick(btnDone, "btnDone");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(commissionLink, false, 7, "up");
+			///mobileAction.FuncSwipeWhileElementNotFound(commissionLink, false, 7, "up");
 			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncClick(commissionLink, "commissionLink");
 			mobileAction.verifyElement(urlTitle, sUrlTitle[1]);
@@ -390,7 +398,9 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.verifyElement(leg1Action, getTestdata("TextDefaultListItem", XLSheetUserIDs));
 			mobileAction.verifyElement(leg1Quantity, defaultQtyVal);
 
-			mobileAction.FunCnewSwipe(leg2Option,false,5);	
+			///mobileAction.FunCnewSwipe(leg2Option,false,5);
+			mobileAction.FuncSwipeWhileElementNotFound(leg2Quantity, false, 7, "up");
+			//mobileAction.FunCnewSwipe(leg2Quantity,false,5);	
 			mobileAction.verifyElement(leg2Option, getTestdata("OptionDefault", XLSheetUserIDs));
 			mobileAction.verifyElement(leg2Action, getTestdata("TextDefaultListItem", XLSheetUserIDs));
 			mobileAction.verifyElement(leg2Quantity, defaultQtyVal);
@@ -411,7 +421,8 @@ public class TradeMultiLeg extends _CommonPage{
 			sSymbolVal = mobileAction.FuncGetText(Quote_Symbol);
 			mobileAction.FunCnewSwipe(leg1Option,false,5);
 			mobileAction.FuncClick(leg1Option, "Select Option Leg1");
-			mobileAction.FunCnewSwipe(firstStrikeCALLS,false,5);
+			///mobileAction.FunCnewSwipe(firstStrikeCALLS,false,5);
+			mobileAction.FunctionSwipe("up", 200, 100);
 			mobileAction.FuncClick(firstBidCALLS, "firstBidCALLS");
 			sExpFormat = getOptionFormat(expiryDate,"CALLS");
 			mobileAction.FuncClick(Continue, "Continue");
@@ -420,25 +431,30 @@ public class TradeMultiLeg extends _CommonPage{
 			//
 			mobileAction.FunCnewSwipe(leg2Option,false,5);
 			mobileAction.FuncClick(leg2Option, "Select Option Leg2");
-			mobileAction.FunCnewSwipe(firstStrikePUTS,false,5);
+			///mobileAction.FunCnewSwipe(firstStrikePUTS,false,5);
+			mobileAction.FunctionSwipe("up", 200, 100);
 			mobileAction.FuncClick(firstBidPUTS, "firstBidPUTS");
-			mobileAction.verifyElement(leg2Action, getTestdata("Leg2Action2", XLSheetUserIDs));
+
 			sExpFormat = getOptionFormat(expiryDate,"PUTS");
 			mobileAction.FuncClick(Continue, "Continue");
 			mobileAction.verifyElement(leg2Option,sExpFormat);
+			mobileAction.verifyElement(leg2Action, getTestdata("Leg2Action2", XLSheetUserIDs));
 			
 			////
 			mobileAction.FunCnewSwipe(leg1Option,false,5);
 			mobileAction.FuncClick(leg1Option, "Select Option Leg1");
-			mobileAction.FunCnewSwipe(firstStrikeCALLS,false,5);
-			mobileAction.FuncClick(firstAskCALLS, "firstBidCALLS");
-			mobileAction.verifyElement(leg1Action, getTestdata("Leg1Action2", XLSheetUserIDs));
+			///mobileAction.FunCnewSwipe(firstStrikeCALLS,false,5);
+			mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncClick(firstAskCALLS, "firstAskCALLS");
+
 			sExpFormat = getOptionFormat(expiryDate,"CALLS");
 			mobileAction.FuncClick(Continue, "Continue");
 			mobileAction.verifyElement(leg1Option,sExpFormat);
+			mobileAction.verifyElement(leg1Action, getTestdata("Leg1Action2", XLSheetUserIDs));
 			//
 			mobileAction.FuncClick(leg2Option, "Select Option Leg2");
-			mobileAction.FunCnewSwipe(firstStrikePUTS,false,5);
+			///mobileAction.FunCnewSwipe(firstStrikePUTS,false,5);
+			mobileAction.FunctionSwipe("up", 200, 100);
 			mobileAction.FuncClick(firstAskPUTS, "firstBidPUTS");
 			sExpFormat = getOptionFormat(expiryDate,"PUTS");
 			mobileAction.FuncClick(Continue, "Continue");
@@ -506,6 +522,12 @@ public class TradeMultiLeg extends _CommonPage{
 			}
 			else*/
 			//{
+			if(sPrice.equalsIgnoreCase("Even") || sPrice.equalsIgnoreCase("Pair"))
+			{
+				sReturnPrice = sPrice;
+			}
+			else
+			{
 				Pattern p = Pattern.compile("([0-9]+)([.|,])([0-9]+)");
 			    Matcher m = p.matcher(sPrice);
 
@@ -519,6 +541,7 @@ public class TradeMultiLeg extends _CommonPage{
 						sReturnPrice = m.group(0).trim();
 					}
 			    }
+			}
 		//}
 		catch(Exception e)
 		{
@@ -542,17 +565,21 @@ public class TradeMultiLeg extends _CommonPage{
 			if(mobileAction.isObjExists(leg2Option))
 				mobileAction.FuncClick(leg2Option, "Select Option Leg2");
 			mobileAction.FunCnewSwipe(firstBidCALLS,false,5);
+			///mobileAction.FunctionSwipe("up", 200, 100);
 			mobileAction.FuncClick(firstBidCALLS, "firstBidCALLS");
 			mobileAction.FuncClick(Continue, "Continue");
 			mobileAction.FunCnewSwipe(leg2Quantity,false,5);
 			enterQuantity(leg2Quantity,"1");
-			mobileAction.FunCnewSwipe(midPrice,false,5);
+			///mobileAction.FunCnewSwipe(midPrice,false,5);
+			//mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(naturalPrice);
+			
 			mobileAction.verifyElementTextContains(midPrice, getTestdata("TextCredit", XLSheetUserIDs));
 			mobileAction.verifyElementTextContains(naturalPrice, getTestdata("TextCredit", XLSheetUserIDs));
 			verifyMidNaturalVarience();
 //
 			mobileAction.FuncClick(titleTrade, "titleTrade");
-			mobileAction.FuncClick(agreeButton, "agreeButton");
+			mobileAction.FuncClick(acceptButton, "agreeButton");
 			TradeMIT.get().clickInvestingTrade();
 			TradeMIT.get().selectTradeAccount_OrderType();
 			TradeMIT.get().tapTradeSearchBar();
@@ -565,11 +592,13 @@ public class TradeMultiLeg extends _CommonPage{
 			if(mobileAction.isObjExists(leg2Option))
 				mobileAction.FuncClick(leg2Option, "Select Option Leg2");
 			mobileAction.FunCnewSwipe(firstAskCALLS,false,5);
+			///mobileAction.FunctionSwipe("up", 200, 100);
 			mobileAction.FuncClick(firstAskCALLS, "firstBidCALLS");
 			mobileAction.FuncClick(Continue, "Continue");
 			mobileAction.FunCnewSwipe(leg2Quantity,false,5);
 			enterQuantity(leg2Quantity,"1");
 			mobileAction.FunCnewSwipe(midPrice,false,5);
+			///mobileAction.FunctionSwipe("up", 200, 100);
 			mobileAction.verifyElementTextContains(midPrice, getTestdata("TextDebit", XLSheetUserIDs));
 			mobileAction.verifyElementTextContains(naturalPrice, getTestdata("TextDebit", XLSheetUserIDs));
 		}
@@ -587,6 +616,7 @@ public class TradeMultiLeg extends _CommonPage{
 			sMidPrice = getPrice(mobileAction.FuncGetText(midPrice));
 			sNaturalPrice = getPrice(mobileAction.FuncGetText(naturalPrice));
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 5, "down");
+			///mobileAction.FunctionSwipe("down", 200, 200);
 			mobileAction.selectItemFromList(leg1Action, getTestdata("Leg1Action2", XLSheetUserIDs));
 			mobileAction.FuncSwipeWhileElementNotFound(naturalPrice, false, 5, "up");
 			verifyPriceVarience(mobileAction.FuncGetText(midPrice),sMidPrice,"midPrice");
@@ -595,6 +625,8 @@ public class TradeMultiLeg extends _CommonPage{
 			sNaturalPrice = getPrice(mobileAction.FuncGetText(naturalPrice));
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Quantity, false, 5, "down");
 			enterQuantity(leg1Quantity,"2");
+			mobileAction.FuncClick(titleTrade, "titleTrade");
+			mobileAction.FuncClick(cancelButton, "cancelButton");
 			mobileAction.FuncSwipeWhileElementNotFound(naturalPrice, false, 5, "up");
 			verifyPriceVarience(mobileAction.FuncGetText(midPrice),sMidPrice,"midPrice");
 			verifyPriceVarience(mobileAction.FuncGetText(naturalPrice),sNaturalPrice,"naturalPrice");
@@ -610,6 +642,8 @@ public class TradeMultiLeg extends _CommonPage{
 			sNaturalPrice = getPrice(mobileAction.FuncGetText(naturalPrice));
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Quantity, false, 5, "down");
 			enterQuantity(leg2Quantity,"2");
+			mobileAction.FuncClick(titleTrade, "titleTrade");
+			mobileAction.FuncClick(cancelButton, "cancelButton");
 			mobileAction.FuncSwipeWhileElementNotFound(midPrice, false, 5, "up");
 			verifyPriceVarience(mobileAction.FuncGetText(midPrice),sMidPrice,"midPrice");
 			verifyPriceVarience(mobileAction.FuncGetText(naturalPrice),sNaturalPrice,"naturalPrice");
@@ -641,76 +675,80 @@ public class TradeMultiLeg extends _CommonPage{
 		try
 		{
 			SearchPageMIT.get().clickFirstSymbol();
-			//mobileAction.FunCnewSwipe(leg1Option,false,5);
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Option, false, 5, "up");
 			mobileAction.FuncClick(leg1Option, "Select Option Leg1");
 			//mobileAction.FunCnewSwipe(firstBidCALLS,false,5);
-			mobileAction.FuncSwipeWhileElementNotFound(firstBidCALLS, false, 5, "up");
+			///mobileAction.FuncSwipeWhileElementNotFound(firstBidCALLS, false, 5, "up");
+			///mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(firstBidCALLS);
+			
 			mobileAction.FuncClick(firstBidCALLS, "firstBidCALLS");
 			mobileAction.FuncClick(Continue, "Continue");
 			//mobileAction.FuncSendKeys(leg1Quantity,"1");
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Quantity, false, 5, "up");
 			enterQuantity(leg1Quantity,"1");
-/*			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-			mobileAction.FuncHideKeyboard();
-			else
-				mobileAction.FuncClick(iOSKybdOKButton, "OK");*/
-			//mobileAction.FunCnewSwipe(leg2Option,false,5);
+
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, false, 5, "up");
 			//mobileAction.FuncClick(leg2Option, "Select Option Leg2");
 			mobileAction.FuncClick(leg2Option, "Select Option Leg2");
 			if(mobileAction.isObjExists(leg2Option))
 				mobileAction.FuncClick(leg2Option, "Select Option Leg2");
 			//mobileAction.FunCnewSwipe(firstBidCALLS,false,5);
-			mobileAction.FuncSwipeWhileElementNotFound(firstBidCALLS, false, 5, "up");
+			///mobileAction.FuncSwipeWhileElementNotFound(firstBidCALLS, false, 5, "up");
+			///mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(firstBidCALLS);
+			
 			mobileAction.FuncClick(firstBidCALLS, "firstBidCALLS");
 			mobileAction.FuncClick(Continue, "Continue");
 			//mobileAction.FunCnewSwipe(leg2Quantity,false,5);
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Quantity, false, 5, "up");			
 			//mobileAction.FuncSendKeys(leg2Quantity,"1");
 			enterQuantity(leg2Quantity,"1");
-/*			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-			mobileAction.FuncHideKeyboard();
-			else
-				mobileAction.FuncClick(iOSKybdOKButton, "OK");*/
+
 			//mobileAction.FunCnewSwipe(midPrice,false,5);
-			mobileAction.FuncSwipeWhileElementNotFound(midPrice, false, 5, "up");	
+			///mobileAction.FuncSwipeWhileElementNotFound(midPrice, false, 5, "up");	
+			///mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(naturalPrice);
+			
 			mobileAction.verifyElementTextContains(midPrice, getTestdata("TextCredit", XLSheetUserIDs));
 			mobileAction.verifyElementTextContains(naturalPrice, getTestdata("TextCredit", XLSheetUserIDs));
 			verifyMidNaturalVarience();
 //
 			mobileAction.FuncClick(titleTrade, "titleTrade");
-			mobileAction.FuncClick(agreeButton, "agreeButton");
+			mobileAction.FuncClick(acceptButton, "acceptButton");
 			TradeMIT.get().clickInvestingTrade();
 			TradeMIT.get().selectTradeAccount_OrderType();
 			TradeMIT.get().tapTradeSearchBar();
 			SearchPageMIT.get().clickFirstSymbol();
 			mobileAction.FunCnewSwipe(leg1Option,false,5);
 			mobileAction.FuncClick(leg1Option, "Select Option Leg1");
-			mobileAction.FunCnewSwipe(firstStrikeCALLS,false,5);
+			///mobileAction.FunCnewSwipe(firstStrikeCALLS,false,5);
+			///mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(firstAskCALLS);
+			
 			mobileAction.FuncClick(firstAskCALLS, "firstBidCALLS");
 			mobileAction.FuncClick(Continue, "Continue");
-/*			mobileAction.FuncSendKeys(leg1Quantity,"1");
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-			mobileAction.FuncHideKeyboard();
-			else
-				mobileAction.FuncClick(iOSKybdOKButton, "OK");*/
+
 			enterQuantity(leg1Quantity,"1");
 			mobileAction.FunCnewSwipe(leg2Option,false,5);
 			mobileAction.FuncClick(leg2Option, "Select Option Leg2");
 			if(mobileAction.isObjExists(leg2Option))
 				mobileAction.FuncClick(leg2Option, "Select Option Leg2");
-			mobileAction.FunCnewSwipe(firstAskCALLS,false,5);
+			
+			///mobileAction.FunCnewSwipe(firstAskCALLS,false,5);
+			///mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(firstAskCALLS);
+			
 			mobileAction.FuncClick(firstAskCALLS, "firstBidCALLS");
 			mobileAction.FuncClick(Continue, "Continue");
-			mobileAction.FunCnewSwipe(leg2Quantity,false,5);
-/*			mobileAction.FuncSendKeys(leg2Quantity,"1");
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-			mobileAction.FuncHideKeyboard();
-			else
-				mobileAction.FuncClick(iOSKybdOKButton, "OK");*/
+			///mobileAction.FunCnewSwipe(leg2Quantity,false,5);
+			mobileAction.FuncSwipeWhileElementNotFound(leg2Quantity, false, 5, "up");	
+
 			enterQuantity(leg2Quantity,"1");
-			mobileAction.FunCnewSwipe(midPrice,false,5);
+			//mobileAction.FunCnewSwipe(midPrice,false,5);
+			///mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(naturalPrice);
+			
 			mobileAction.verifyElementTextContains(midPrice, getTestdata("TextDebit", XLSheetUserIDs));
 			mobileAction.verifyElementTextContains(naturalPrice, getTestdata("TextDebit", XLSheetUserIDs));
 			
@@ -801,10 +839,16 @@ public class TradeMultiLeg extends _CommonPage{
 			String[] sGoodTillValues = getTestdata("GoodTillValues", XLSheetUserIDs).split(";");
 			String accNumber = getTestdata("Account2", XLSheetUserIDs);
 			String xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
-			mobileAction.FuncSwipeWhileElementNotFound(goodTill, false, 7, "up");
+			
+			///mobileAction.FuncSwipeWhileElementNotFound(goodTill, false, 7, "up");
+			mobileAction.FuncSwipeUpTillScreenBottom(goodTill);
+			
 			mobileAction.verifyElement(goodTill, sGoodTillValues[0]);
 			mobileAction.selectItemFromList(price,sGoodTillValues[1]);
-			mobileAction.FuncSwipeWhileElementNotFound(goodTill, false, 7, "up");
+			
+			///mobileAction.FuncSwipeWhileElementNotFound(goodTill, false, 7, "up");
+			mobileAction.FuncSwipeUpTillScreenBottom(goodTill);
+			
 			mobileAction.FuncClick(goodTill, "goodTill");
 			mobileAction.verifyItemInList(sGoodTillValues[2]);
 			mobileAction.verifyItemInList(sGoodTillValues[3]);
@@ -815,25 +859,40 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.verifyItemInList(sGoodTillValues[6]);
 			mobileAction.verifyItemInList(sGoodTillValues[7]);	
 			mobileAction.FuncClick(goodTillCancel, "goodTillCancel");
-			mobileAction.FuncSwipeWhileElementNotFound(defaultTradeAccount, false, 5, "down");
+			
+			///mobileAction.FuncSwipeWhileElementNotFound(defaultTradeAccount, false, 5, "down");
+			mobileAction.FuncSwipeDownTillScreenTop(defaultTradeAccount);
+			
 			mobileAction.FuncClick(defaultTradeAccount, "defaultTradeAccount");
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount,true,10,"up");
 
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 7, "up");
 			mobileAction.selectItemFromList(leg1Action, sGoodTillValues[8]);
-			mobileAction.FuncSwipeWhileElementNotFound(goodTill, false, 7, "up");
+			
+			///mobileAction.FuncSwipeWhileElementNotFound(goodTill, false, 7, "up");
+			mobileAction.FuncSwipeUpTillScreenBottom(goodTill);
+			
 			mobileAction.FuncClick(goodTill, "goodTill");
 			mobileAction.verifyItemInList(sGoodTillValues[9]);
 			mobileAction.FuncClick(goodTillCancel, "goodTillCancel");
-			mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 5, "down");
+			
+			///mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 5, "down");
+			mobileAction.FuncSwipeDownTillScreenTop(defaultTradeAccount);
+			
 			mobileAction.selectItemFromList(leg1Action, sGoodTillValues[10]);
-			mobileAction.FuncSwipeWhileElementNotFound(goodTill, false, 7, "up");
+			
+			//mobileAction.FuncSwipeWhileElementNotFound(goodTill, false, 7, "up");
+			mobileAction.FuncSwipeUpTillScreenBottom(goodTill);
+			
 			mobileAction.FuncClick(goodTill, "goodTill");
 			mobileAction.verifyItemInList(sGoodTillValues[11]);
 			mobileAction.verifyItemInList(sGoodTillValues[12]);	
 			mobileAction.FuncClick(goodTillCancel, "goodTillCancel");
 			mobileAction.selectItemFromList(price,sGoodTillValues[13]);
-			mobileAction.FuncSwipeWhileElementNotFound(labelTradingPassword, false, 7, "up");			
+			
+			///mobileAction.FuncSwipeWhileElementNotFound(labelTradingPassword, false, 7, "up");	
+			mobileAction.FuncSwipeUpTillScreenBottom(labelTradingPassword);
+			
 			mobileAction.FuncClick(goodTill, "goodTill");
 			mobileAction.verifyItemInList(sGoodTillValues[14]);
 			mobileAction.verifyItemInList(sGoodTillValues[15]);
@@ -872,21 +931,33 @@ public class TradeMultiLeg extends _CommonPage{
 		{
 			String[] aShareholderType = getTestdata("ShareHolder", XLSheetUserIDs).split(";");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(labelTradingPassword, false, 7, "up");
+			///mobileAction.FuncSwipeWhileElementNotFound(labelTradingPassword, false, 7, "up");
+			mobileAction.FuncSwipeUpTillScreenBottom(labelTradingPassword);
+			
 			mobileAction.verifyElement(shareholderType, getTestdata("TextDefaultListItem", XLSheetUserIDs));
 			mobileAction.FuncClick(shareholderType, "shareholderType");
 			for(int i=0;i < aShareholderType.length;i++)
 			{
-			mobileAction.verifyItemInList(aShareholderType[i]);
+					if(aShareholderType[i].contains("autre"))
+						mobileAction.verifyItemInListContains("autre");
+					else
+						mobileAction.verifyItemInList(aShareholderType[i]);
 			}
 			
-			mobileAction.FuncSwipeWhileElementNotFound(defaultTradeAccount, true, 7, "down");
+			mobileAction.FuncClick(goodTillCancel, "goodTillCancel");
+			
+			///mobileAction.FuncSwipeWhileElementNotFound(defaultTradeAccount, true, 7, "down");
+			mobileAction.FuncSwipeDownTillScreenTop(defaultTradeAccount);
+			mobileAction.FuncClick(defaultTradeAccount, "defaultTradeAccount");
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount2,true,60,"up");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(labelTradingPassword, false, 7, "up");
+			///mobileAction.FuncSwipeWhileElementNotFound(labelTradingPassword, false, 7, "up");
+			mobileAction.FuncSwipeUpTillScreenBottom(labelTradingPassword);
 			mobileAction.verifyElement(shareholderType, getTestdata("TextDefaultListItem", XLSheetUserIDs));
 			
-			mobileAction.FuncSwipeWhileElementNotFound(defaultTradeAccount, true, 7, "down");
+			///mobileAction.FuncSwipeWhileElementNotFound(defaultTradeAccount, true, 7, "down");
+			mobileAction.FuncSwipeDownTillScreenTop(defaultTradeAccount);
+			mobileAction.FuncClick(defaultTradeAccount, "defaultTradeAccount");
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount3,true,60,"up");
 			
 			fillOptionOptionOrder(firstAskCALLS, "firstAskCALLS", firstAskPUTS, "firstAskPUTS");
@@ -992,8 +1063,11 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Quantity,false,5,"up");
 			mobileAction.FuncSwipeOnce("up");
 			enterQuantity(leg2Quantity,getTestdata("Leg2Qunatity",XLSheetUserIDs));
-			mobileAction.FuncSwipeWhileElementNotFound(commissionLink,false,5,"up");
-			mobileAction.FuncSwipeOnce("up");
+			
+/*			mobileAction.FuncSwipeWhileElementNotFound(commissionLink,false,5,"up");
+			mobileAction.FuncSwipeOnce("up");*/
+			mobileAction.FuncSwipeUpTillScreenBottom(commissionLink);
+			
 			String tempPrice = getTestdata("Price",XLSheetUserIDs);
 			mobileAction.selectItemFromList(price,tempPrice);
 			if(tempPrice.equalsIgnoreCase("Net Debit") || tempPrice.equalsIgnoreCase("Net Credit") || tempPrice.equalsIgnoreCase("Débit net") || tempPrice.equalsIgnoreCase("Crédit net"))
@@ -1096,8 +1170,10 @@ public class TradeMultiLeg extends _CommonPage{
 				//mobileAction.FuncClick(expiryItem36Days, "expiryItem36Days");
 			}
 			
-			mobileAction.FuncSwipeWhileElementNotFound(objLeg1SelectOption, false, 5, "up");
-			mobileAction.FuncSwipeOnce("up");
+/*			mobileAction.FuncSwipeWhileElementNotFound(objLeg1SelectOption, false, 5, "up");
+			mobileAction.FuncSwipeOnce("up");*/
+			mobileAction.FuncSwipeUpTillScreenBottom(objLeg1SelectOption);
+			
 			mobileAction.FuncClick(objLeg1SelectOption, sLeg1OptionDesc);
 			mobileAction.FuncClick(Continue, "Continue");
 			
@@ -1175,8 +1251,10 @@ public class TradeMultiLeg extends _CommonPage{
 				//mobileAction.FuncClick(expiryItem36Days, "expiryItem36Days");
 			}
 			
-			mobileAction.FuncSwipeWhileElementNotFound(objLeg2SelectOption, false, 5, "up");
-			mobileAction.FuncSwipeOnce("up");
+/*			mobileAction.FuncSwipeWhileElementNotFound(objLeg2SelectOption, false, 5, "up");
+			mobileAction.FuncSwipeOnce("up");*/
+			mobileAction.FuncSwipeUpTillScreenBottom(objLeg2SelectOption);
+			
 			mobileAction.FuncClick(objLeg2SelectOption, sLeg2OptionDesc);
 			mobileAction.FuncClick(Continue, "Continue");
 			
@@ -1186,7 +1264,9 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Quantity, false, 5, "up");	
 			//mobileAction.FuncSwipeOnce("up");
 			enterQuantity(leg2Quantity,getTestdata("Leg2Qunatity",XLSheetUserIDs));
-			mobileAction.FuncSwipeWhileElementNotFound(commissionLink,false,5,"up");
+			
+			///mobileAction.FuncSwipeWhileElementNotFound(commissionLink,false,5,"up");
+			mobileAction.FuncSwipeUpTillScreenBottom(commissionLink);
 			
 			String tempPrice = getTestdata("Price",XLSheetUserIDs);
 			mobileAction.selectItemFromList(price,tempPrice);
@@ -1278,7 +1358,7 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.FuncClick(cancelButton, "cancelButton");
 			mobileAction.FuncIsElementEnabled(previewOrderButton, "previewOrderButton");
 			mobileAction.FuncClick(backButton, "backButton");
-			mobileAction.FuncClick(agreeButton, "agreeButton");
+			mobileAction.FuncClick(acceptButton, "acceptButton");
 			mobileAction.FuncIsElementEnabled(Investing_Trade, "Investing_Trade");
 		}
 		catch(Exception e)
@@ -1440,7 +1520,7 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			mobileAction.FuncClick(search_txtSearchTitle, "search_txtSearchTitle");
 	
-			String xpathFlag="";
+/*			String xpathFlag="";
 			int temp =0;
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 			{
@@ -1460,7 +1540,8 @@ public class TradeMultiLeg extends _CommonPage{
 			catch(Exception e)
 			{
 				CL.GetReporting().FuncReport("Fail", "First Symbol not selected.");
-			}
+			}*/
+			SearchPageMIT.get().clickFirstSymbol("AAPL");
 			//
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 7, "up");
 			mobileAction.verifyElement(leg1Action, getTestdata("TextDefaultListItem",XLSheetUserIDs));
@@ -1515,7 +1596,7 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			mobileAction.FuncClick(search_txtSearchTitle, "search_txtSearchTitle");
 	
-			String xpathFlag="";
+/*			String xpathFlag="";
 			int temp =0;
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 			{
@@ -1528,8 +1609,8 @@ public class TradeMultiLeg extends _CommonPage{
 			}
 			mobileAction.FuncClick(search_symbol, "search_symbol");
 			SearchPageMIT.get().enterSymbol(search_symbol, "AAPL");
-			mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),"First Symbol");
-			
+			mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),"First Symbol");*/
+			SearchPageMIT.get().clickFirstSymbol("AAPL");
 			//
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 7, "up");
 			mobileAction.verifyElement(leg1Action, getTestdata("TextDefaultListItem",XLSheetUserIDs));
@@ -1587,7 +1668,7 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			mobileAction.FuncClick(searchBar, "searchBar");
 			
-			String xpathFlag="";
+/*			String xpathFlag="";
 			int temp =0;
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 			{
@@ -1608,7 +1689,9 @@ public class TradeMultiLeg extends _CommonPage{
 			catch(Exception e)
 			{
 				CL.GetReporting().FuncReport("Fail", "First searched symbol not clicked.");
-			}
+			}*/
+			
+			SearchPageMIT.get().clickFirstSymbol("G");
 			
 			mobileAction.selectItemFromList(selectedOrderType, aOrderTypeList[1]);
 			
@@ -1637,7 +1720,7 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			mobileAction.FuncClick(searchBar, "searchBar");
 			
-			String xpathFlag="";
+/*			String xpathFlag="";
 			int temp =0;
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 			{
@@ -1658,7 +1741,9 @@ public class TradeMultiLeg extends _CommonPage{
 			catch(Exception e)
 			{
 				CL.GetReporting().FuncReport("Fail", "First searched symbol not clicked.");
-			}
+			}*/
+			
+			SearchPageMIT.get().clickFirstSymbol("G");
 			
 			mobileAction.selectItemFromList(selectedOrderType, aOrderTypeList[1]);
 			

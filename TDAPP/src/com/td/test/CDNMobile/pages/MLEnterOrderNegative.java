@@ -37,11 +37,12 @@ public class MLEnterOrderNegative extends _CommonPage{
 
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'is not eligible for') or contains(@label,'pas admissible à ce')]")//@Author - Sushil 03-Mar-2017
-	@AndroidFindBy(id="android:id/message")
+	//@AndroidFindBy(id="android:id/message")
+	@AndroidFindBy(id="com.td:id/error_text")//@Author - Shahbaaz 17-Apr-2017
 	private MobileElement messageNegative;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Order') or contains(@label,'Type')]")
-	@AndroidFindBy(xpath = "//*[contains(@text,'Order') or contains(@text,'Actions et FNB')]")
+	@AndroidFindBy(xpath = "//*[contains(@text,'Order') or contains(@text,'Type')]")
 	private MobileElement orderTypeSelected;
 	
 
@@ -76,14 +77,14 @@ public class MLEnterOrderNegative extends _CommonPage{
 		
 		for(int iCnt=0;iCnt < aRapcode.length;iCnt++)
 		{
-
+			flag = false;
 		try
 			{
 			
 			String sRapcode = aRapcode[iCnt];
 			
 			mobileAction.waitForElement(defaultTradeAccount);
-			mobileAction.selectItemFromList(orderTypeSelected,getTestdata("OrderType","UserIDs"));
+			mobileAction.selectItemFromList(orderTypeSelected,getTestdata("OrderType",XLSheetUserIDs));
 			mobileAction.FuncClick(defaultTradeAccount, "defaultTradeAccount");
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 			{
