@@ -102,14 +102,8 @@ public class MainScreen extends _CommonPage {
 		String appiumPath = CL.getTestDataInstance().getAppiumPath(); //Jenkins parameters
 		System.out.println("DEBUG: Appium path: " + appiumPath);
         if (!StringUtils.isEmpty(appiumPath)) { // only jenkins sets this 
-		   if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-			          CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-			                       CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_Android"));
-		   } else {
-			          CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-			                       CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
-		   }
-		   CL.mobileApp(appiumPath);
+        	CL.getTestDataInstance().SetAppFilePath(CL.getTestDataInstance().targetEnvironment);
+        	CL.mobileApp(appiumPath);
         } else {
 			//Samsung phone - dda65bdf tablet - 9d0f2a81032ca237 - ipad air e054ae65ead3aba183484acc611497ef06a47741
 			// iphone 6 - 5ad12dcc0df2f1b65956f22e91035b8a0d288cd3
