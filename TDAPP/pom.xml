@@ -49,7 +49,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   
   
    <modelVersion>4.0.0</modelVersion>
-  <groupId>com.td</groupId>
+  <groupId>com.td.test.tdapp</groupId>
   <artifactId>tdapp</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>tdappappium</name>
@@ -87,7 +87,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
  </descriptorRefs>
 <archive>
 <manifest>
- <mainClass>com.td.test.tdapp.main</mainClass>
+ <mainClass>com.td</mainClass>
  </manifest>
  </archive>
  </configuration>
