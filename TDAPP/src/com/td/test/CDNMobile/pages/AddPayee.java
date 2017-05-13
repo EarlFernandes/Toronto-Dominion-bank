@@ -70,13 +70,9 @@ public class AddPayee extends _CommonPage {
 	public void searchPayee(){
 	Decorator();
 	try{
-			
 			mobileAction.FuncClick(searchForCanadianPayee, "Search For Canadian Payee");
 			mobileAction.FuncSendKeys(searchForCanadianPayee,selectVal);
 			mobileAction.verifyElementIsDisplayed(errorMessage,"We haven't found any matches. Please try again.");
-			
-		
-	
 	}catch (NoSuchElementException e) {
 		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

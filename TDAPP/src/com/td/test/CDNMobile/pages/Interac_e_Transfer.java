@@ -21,16 +21,18 @@ public class Interac_e_Transfer extends _CommonPage {
     private static Interac_e_Transfer Interac_e_Transfer;
 
     @iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Add Recipient']")
+    @AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Recipient' or @text='Add Recipient']")
     private MobileElement addRecipient_Interac;
 
     @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Interac e-Transfer']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Interac e-Transfer']")
     private MobileElement interac_Header;
 
     @iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
     private MobileElement progrees_Bar;
 
     @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Interac e-Transfer']")
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Interac e-Transfer']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Interac e-Transfer')]")
     private MobileElement interac_Etransfer_Header;
 
     @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Sender']")
@@ -106,16 +108,16 @@ public class Interac_e_Transfer extends _CommonPage {
     private MobileElement accountName;
 
     String sender_SelectSender = getTestdata("FromAccount");
-    String select_SenderValue = "//android.widget.TextView[starts-with(@text,'" + sender_SelectSender + "')]";
+    String select_SenderValue = "//android.widget.TextView[contains(@text,'" + sender_SelectSender + "')]";
     String t_interacHeader = "Interac e-Transfer";
 
     String transfer_fromAccount = getTestdata("FromAccount");
     String select_Account = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_from_account' and @text='"
 	    + transfer_fromAccount + "')]";
 
-    String transferRecipient = getTestdata("Accounts");
-    String select_Recipient = "//android.widget.TextView[@resource-id='com.td:id/txt_recipient_email' and @text='"
-    	    + transferRecipient + "']";
+    String transferRecipient = getTestdata("RecipientName");
+    String select_Recipient = "//android.widget.TextView[@resource-id='com.td:id/txt_recipient_email' and contains(@text,'"
+    	    + transferRecipient + "')]";
     
     
     @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From account, Select from account']")
@@ -372,6 +374,12 @@ try {
 	    	Thread.sleep(10000);
 		//mobileAction.FuncClick(selectSender, "Sender");
 		//mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart, sender_SelectSender);
+	    Thread.sleep(10000);
+	    	mobileAction.FuncClick(recipient, "Recipient");
+	    String selectRecipient="//XCUIElementTypeStaticText[contains(@label,'"+ transferRecipient +"')]";
+	    MobileElement recipientVal = (MobileElement) ((AppiumDriver) CL.GetDriver())
+				.findElement(By.xpath(selectRecipient));
+	    mobileAction.FuncClick(recipientVal, "Recipient");
 		mobileAction.FuncClick(etransfer_Amount, "Amount");
 		mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
 		mobileAction.FuncClick(done, "Done");
@@ -382,24 +390,33 @@ try {
 
 	    } else {
 
-		mobileAction.verifyElement(interac_Etransfer_Header, "Interac e-Transfer");
+		/*mobileAction.verifyElement(interac_Etransfer_Header, "Interac e-Transfer");
 		mobileAction.FuncClick(selectSender, "Sender");
 		mobileAction.FuncElementSwipeWhileNotFound(acntsListSender, select_SenderValue, 0, "down", true);
 
 		mobileAction.FuncClick(fromAccount, "From Account");
 		accVal = Double.parseDouble(mobileAction.getText(fromAccountVal));
-		mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Account, 0, "down", true);
-		mobileAction.FuncClick(recipient, "Recipient");
+		mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Account, 0, "down", true);*/
+	    	mobileAction.FuncClick(recipient, "Recipient");
 
-		mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Recipient, 0, "down", true);
-		String ValueofAmount = getTestdata("Amount");
-		mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
-		mobileAction.FuncClickBackButton();
-		mobileAction.FuncClick(transfer_Continue, "Continue");
-		mobileAction.FuncClick(sendMoney, "Send Money");
-		String conf_val = mobileAction.getText(confirmation_Val);
-		mobileAction.verifyElementIsDisplayed(transferSent, "Interac e-Transfer Sent");
-		mobileAction.FuncClickBackButton();
+			MobileElement Recipient = (MobileElement) ((AppiumDriver) CL.GetDriver())
+					.findElement(By.xpath(select_Recipient));
+
+			mobileAction.FunCnewSwipe(Recipient, true, 2);
+
+			mobileAction.waitForElementToDisappear(select_Recipient);
+
+			// mobileAction.FuncElementSwipeWhileNotFound(acntsList,
+			// select_Recipient, 1, "up", true);
+
+			mobileAction.FuncClick(etransfer_Amount, "Amount");
+			mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
+			mobileAction.FuncClickBackButton();
+			mobileAction.FuncClick(transfer_Continue, "Continue");
+			mobileAction.FuncClick(sendMoney, "Send Money");
+			String conf_val = mobileAction.getText(confirmation_Val);
+			mobileAction.verifyElementIsDisplayed(transferSent, "Interac e-Transfer Sent");
+			mobileAction.FuncClickBackButton();
 	    }
 
 	} catch (NoSuchElementException e) {

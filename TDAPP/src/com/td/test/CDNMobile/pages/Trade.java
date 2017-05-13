@@ -79,8 +79,8 @@ public class Trade extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/caption' and (contains(@text,'ordre') or @text='Order Type')]")
 	private MobileElement order_Type;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='Négociation']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Trade' or @text='Négociation')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='Nï¿½gociation']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Trade' or @text='Nï¿½gociation')]")
 	private MobileElement trade_header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Enter name or symbol' or contains(@label,'nom ou le symbole')]")
@@ -98,7 +98,7 @@ public class Trade extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[8]/XCUIElementTypeTextField[1]")
 //	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText' and (contains(@text,'Trigger Price ($)') or contains(@text,'Dï¿½clenchement'))]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Trigger Price') or contains(@text,'Déclenchement')]/../*[1]")//@Author - Sushil 17-Apr-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Trigger Price') or contains(@text,'Dï¿½clenchement')]/../*[1]")//@Author - Sushil 17-Apr-2017
 	private MobileElement triggerPriceEditText;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[8]/XCUIElementTypeTextField[1]")
@@ -115,8 +115,8 @@ public class Trade extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and (@text='Day' or @text='Jour')]")
 	private MobileElement btngood;
 
-//	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@value='Enter your trading password' or @value='Entrer votre mot de passe de Négociation']")
-	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@value='Enter your trading password' or @value='Entrer votre mot de passe de négociation']")//@Author - Shahbaaz 17-Apr-2017
+//	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@value='Enter your trading password' or @value='Entrer votre mot de passe de Nï¿½gociation']")
+	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@value='Enter your trading password' or @value='Entrer votre mot de passe de nï¿½gociation']")//@Author - Shahbaaz 17-Apr-2017
 //	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/editTextPassword' and (@content-desc='Enter your trading password' or @content-desc='Entrer votre mot de passe')]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/editTextPassword']")
 	private MobileElement trading_pwd;
@@ -159,11 +159,11 @@ public class Trade extends _CommonPage {
 	private MobileElement selectQuantity;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Price')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[(@text='Market' or @text='Cours du marché')and @resource-id='com.td:id/selectedText']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@text='Market' or @text='Cours du marchï¿½')and @resource-id='com.td:id/selectedText']")
 	private MobileElement selectPrice;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Cours')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[(@text='Market' or @text='Cours du marché') and @resource-id='com.td:id/selectedText']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@text='Market' or @text='Cours du marchï¿½') and @resource-id='com.td:id/selectedText']")
 	private MobileElement selectPriceFRE;
 	@iOSFindBy(xpath = "//*[contains(@label,'Stocks') or contains(@label,'Actions et FNB')] ")
 	//@AndroidFindBy(xpath = + "xpath_stocks_ETFs + ")
@@ -479,7 +479,7 @@ public class Trade extends _CommonPage {
 				*/
 				
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
-				mobileAction.FuncSendKeys(symbolEditText, searchKeyword);
+				mobileAction.FuncSendKeys(symbolEditText, getTestdata("Search"));
 				mobileAction.waitForElementToVanish(progressBar);
 				Thread.sleep(2000);
 				try{
@@ -490,10 +490,11 @@ public class Trade extends _CommonPage {
 					System.out.println(e.getMessage());
 				}
 			} else {
-
+			
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
 				mobileAction.FuncClick(symbolEditText, "Enter name or symbol");
-				mobileAction.FuncSendKeys(symbolEditText, searchKeyword);
+				mobileAction.FuncSendKeys(symbolEditText, getTestdata("Search"));
+			
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.FuncClick(selectSymbolValue, "Symbol");
 

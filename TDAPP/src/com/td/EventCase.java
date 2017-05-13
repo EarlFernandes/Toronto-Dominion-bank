@@ -152,13 +152,14 @@ public class EventCase {
 		USMarAccLongToShort, USMarginShort_Buy_Market,
 
 		verify_access_to_WB, Verify_account_activity_credit, Verify_Combined_Account, Verify_FP_Account, verify_login_5_times, Verify_PIA_Account, VerifyAccessCard, VerifyAccessCardDetails, VerifyActionFields, verifybill_landingpage, VerifyCombinedAccounts, verifyconfirm_order, VerifyDIAccounts, verifyErrorMessage, VerifyFPAccounts, VerifyIconDetails, VerifyInvestingScreen, VerifyNoEligibleAccounts, VerifyNoTradingAccounts, VerifyPIAAccounts, VerifyQuickIcons, VerifyReceipt, VerifySender, VerifySenderList, VerifyShareholderType, Verifytimestamp, VerifyTwoAccessCardDetails, VerifyUser, VerifyNickName, verifydefaultcard,View_profile,VerifyProfileHeader,VerifyContactInformationHeader,VerifyInitialNameforIndividual,VerifyInitialNameforBusinessUser,VerifyInitialNameInUpperCase,VerifyHomePhoneMasked,VerifyExtensionNotMasked,verifyProfileandSettingLandingPage,VerifyProfileNameLength,VerifyErrorMessage,VerifySecurityQuestionButton,VeirfySecuirtyQuestionPageheader,VerifyNotificationsButton,VeirfyNotificationsPageheader,VerifyQuickAccessSettings,VerifyQuickAccessSettingsHeader,VerifyTDForMeSettings,VerifyTDForMeSettingsHeader,VerifyWhatsNew,VerifyWhatsNewPageHeader,VerifyProfileAndSettingslink,VerifyEmailFormat,VerifyEmailIDLength,VerifyBlankEmailNotSuccesful,VerifyErrorMessageOrLength,VerifyEmailIDBlankorNot,VerifyEmailAddedSuccesful,VerifyPopUpWithCancelButton,VerifyClearTextIconDisplayed,VerifyPhoneNumberIsEmpty,
+		VerififyTdforMeNotificationsHeader,VerifyEnableNotificationsSwitchFunction,VerifyQuickAccessSwitchWork,VerifyTDForMeDisableSwitchFunction,VerifyTDForMeEnableSwitchFunction,ClickCustomizeNotificationlinkFromTDforMe,VerifyTDForMeNotificationPageHeader,
 		
 		VerifyPlaceHolderDisplayed,VerifyToastmessageDisplayed,VerifyPhoneEmailNotChanged,verifyQuickAccessBillPaidUpdate,ClickBackFromAppOrGooglePage,Verify_quick_link_go_back_home, Verify_quick_link_view_myaccounts, Verify_error_screen,
 		VerifyFIFOLogic,VerifyEquityAndETFs,VerifyTradeOnLandingPage,Verify_flyoutMenu,VerfiyOptionConfirmOrderScreen,verifyOptionConfirmOrderReceipt,
 
 		WatchLists_addSymbolToWatchLists, WatchLists_clickSearchBar, WatchLists_Header, Watchlists_verify_newOrderFlow_Watchlists, WatchLists_verifyRecentSearches, WatchLists_verifySymbol, WatchLists_verifySymbolAdded,
 
-		FindLoactions_VerifyFindlocations, BetweenMyAccounts_TransferChequeAccount, TradeLimitAndTriggerPrice,
+		FindLoactions_VerifyFindlocations, BetweenMyAccounts_TransferChequeAccount, TradeLimitAndTriggerPrice,ClickCustomizeNotificationsLinkFromNotifications,
 
 		Accounts_SelectAccount, AccountsCredit_ClickPayBill, AccountsCredit_verifyLastTranaction, AccountsCredit_clickLastTranaction, Transaction_VerifyTransac, AccountsCredit_clickSummaryTab, AccountsCredit_VerifySummaryDetails, AccountsCredit_clickStatementTab, AccountsCredit_VeifyStatementDetails, StatementBalance_VerifyBalanceDetails, Bill_PayCanada_verifyCurrentBalance, Bill_PayCanada_PayBill, AccountsCredit_ClickTransfers
 
@@ -238,10 +239,6 @@ public class EventCase {
 		VerifyRewardPayee,
 		VerifyRedemptionDetails,
 		VerifyCashBack
-		
-		
-		
-	
 		
 		
 		
@@ -1837,7 +1834,19 @@ public class EventCase {
 	    case VeirfyNotificationsPageheader:
 	    	Notifications.get().VerifyNotificationsPageHeader();
 		    break;
-		       
+		    
+	    case ClickCustomizeNotificationsLinkFromNotifications:
+	    	Notifications.get().ClickCustomizeNotificationsLink();
+		    break;
+
+	    case VerififyTdforMeNotificationsHeader:
+	    	Notifications.get().VerififyTdforMeNotificationsHeader();
+		    break;
+
+	    case VerifyEnableNotificationsSwitchFunction:
+	    	Notifications.get().VerifyEnableNotificationsSwitchFunction();
+		    break;
+		    		    
 	    case VerifyQuickAccessSettings:
 	    	Profile_And_Settings.get().VerifyQuickAccessSettings();
 		    break;		    
@@ -1845,7 +1854,11 @@ public class EventCase {
 	    case VerifyQuickAccessSettingsHeader:
 	    	QuickAccess.get().VerifyQuickAccessSettingsHeader();
 		    break;	
-
+		    
+	    case VerifyQuickAccessSwitchWork:
+	    	QuickAccess.get().VerifyQuickAccessSwitchWork();
+		    break;	
+		    
 	    case VerifyTDForMeSettings:
 	    	Profile_And_Settings.get().VerifyTDForMeSettings();
 		    break;		    
@@ -1854,6 +1867,23 @@ public class EventCase {
 	    	TDForMe.get().VerifyTDForMeSettingsHeader();
 		    break;
 
+		    
+	    case VerifyTDForMeDisableSwitchFunction:
+	    	TDForMe.get().VerifyTDForMeDisableSwitchFunction();
+		    break;
+
+	    case VerifyTDForMeEnableSwitchFunction:
+	    	TDForMe.get().VerifyTDForMeEnableSwitchFunction();
+		    break;
+
+	    case ClickCustomizeNotificationlinkFromTDforMe:
+	    	TDForMe.get().ClickCustomizeNotificationlink();
+		    break;
+		    
+	    case VerifyTDForMeNotificationPageHeader:
+	    	TDForMe.get().VerifyTDForMeNotificationPageHeader();
+		    break;
+		    
 	    case VerifyWhatsNew:
 	    	Profile_And_Settings.get().VerifyWhatsNew();
 		    break;		    

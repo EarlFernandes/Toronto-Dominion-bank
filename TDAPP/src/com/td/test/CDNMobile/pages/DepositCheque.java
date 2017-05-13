@@ -56,7 +56,6 @@ public class DepositCheque  extends _CommonPage{
 		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(depositCheque_Header, t_DepositCheque_Header);
-
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

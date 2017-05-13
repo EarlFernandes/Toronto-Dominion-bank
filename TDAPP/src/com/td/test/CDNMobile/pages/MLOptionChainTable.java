@@ -48,7 +48,7 @@ public class MLOptionChainTable extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Monthly' or @text='Chaque mois']")
 	private MobileElement defaultExpiryType;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Strikes,6' or @label='Levées,6']") //@Author - Sushil 03-Apr-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Strikes,6' or @label='Levï¿½es,6']") //@Author - Sushil 03-Apr-2017
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='6']")
 	private MobileElement defaultStrikes;
 	
@@ -60,8 +60,8 @@ public class MLOptionChainTable extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Expiry Type' or contains(@text,'expiration')]/../*[2]")
 	private MobileElement ExpiryType;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Strikes') or contains(@label,'Levées')]") //@Author - Sushil 03-Apr-2017
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Strikes' or @text='Levées']/../*[2]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Strikes') or contains(@label,'Levï¿½es')]") //@Author - Sushil 03-Apr-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Strikes' or @text='Levï¿½es']/../*[2]")
 	private MobileElement Strikes;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='All' or @label='Tous']") //@Author - Sushil 03-Apr-2017
@@ -80,7 +80,7 @@ public class MLOptionChainTable extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/button_select_option_continue")
 	private MobileElement Continue;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'Aperçu de')]")//@Author - Sushil 03-Mar-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'Aperï¿½u de')]")//@Author - Sushil 03-Mar-2017
 	@AndroidFindBy(id="com.td:id/orderEntryPreviewButton")
 	private MobileElement previewOrderButton;
 	
@@ -104,7 +104,7 @@ public class MLOptionChainTable extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/btn_order")
 	private MobileElement btn_ORDERS;
 	
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") //@Author - Sushil 23-Mar-2017
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Nï¿½gociation']") //@Author - Sushil 23-Mar-2017
 	@AndroidFindBy(id="com.td:id/btn_trade")
 	private MobileElement btn_trade;
 	
@@ -115,6 +115,14 @@ public class MLOptionChainTable extends _CommonPage{
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back' or @label='Retour']") //@Author - Sushil 07-Mar-2017
 	@AndroidFindBy(id="android:id/up")
 	private MobileElement backButtonOptionTable;
+	
+   @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Refresh' or @label='Actualiser']")//@Author - Sushil 03-Mar-2017
+   @AndroidFindBy(id="com.td:id/refresh_menu")
+   private MobileElement refreshButton;
+   
+	@iOSFindBy(xpath = "//*[@label='Cancel' or @label='Annuler']") //@Author - Sushil 08-Feb-2017
+	@AndroidFindBy(id="android:id/button2")
+	private MobileElement cancelButton;
 	
 	public void verifyStockOptionChainTableSubmit()
 	{
@@ -129,22 +137,39 @@ public class MLOptionChainTable extends _CommonPage{
 			
 			TradeMultiLeg.get().fillStockOptionOrder(firstAskPUTS, "firstAskPUTS");
 			
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			{
+				//Do nothing
+			}
+			else
+			{
+				 mobileAction.FuncClick(refreshButton, "refreshButton");
+				 mobileAction.FuncClick(refreshButton, "refreshButton");
+			}
+			
 			//Leg2 Option Table Display
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, true, 5, "down");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(firstAskPUTS, false, 5, "up");
-			mobileAction.FuncSwipeOnce("up");
+/*			mobileAction.FuncSwipeWhileElementNotFound(firstAskPUTS, false, 5, "up");
+			mobileAction.FuncSwipeOnce("up");*/
+			//mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(firstAskPUTS);
 			
 			sPreviousVal = mobileAction.FuncGetText(firstAskPUTS);
-			mobileAction.FuncSwipeWhileElementNotFound(defaultExpiryType, false, 5, "down");
-			mobileAction.FuncSwipeOnce("down");
+/*			mobileAction.FuncSwipeWhileElementNotFound(defaultExpiryType, false, 5, "down");
+			mobileAction.FuncSwipeOnce("down");*/
+			//mobileAction.FunctionSwipe("down", 200, 200);
+			mobileAction.FuncSwipeDownTillScreenTop(defaultExpiryType);
 			
 			mobileAction.selectItemFromList(defaultExpiryType, arrExpiryType);
 			mobileAction.selectItemFromList(defaultOptionType, arrOptionType);
 			mobileAction.selectItemFromList(defaultStrikes, arrStrikes);
 			
-			mobileAction.FuncSwipeWhileElementNotFound(firstAskPUTS, false, 5, "up");
-			mobileAction.FuncSwipeOnce("up");
+/*			mobileAction.FuncSwipeWhileElementNotFound(firstAskPUTS, false, 5, "up");
+			mobileAction.FuncSwipeOnce("up");*/
+			//mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(firstAskPUTS);
+			
 			sCurrentVal = mobileAction.FuncGetText(firstAskPUTS);
 			mobileAction.FuncClick(firstAskPUTS, "firstAskPUTS");
 			
@@ -191,12 +216,26 @@ public class MLOptionChainTable extends _CommonPage{
 			
 			TradeMultiLeg.get().fillOptionOptionOrder(firstAskCALLS, "firstAskCALLS", firstAskPUTS, "firstAskPUTS");
 			
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			{
+				//Do nothing
+			}
+			else
+			{
+				 mobileAction.FuncClick(refreshButton, "refreshButton");
+				 mobileAction.FuncClick(refreshButton, "refreshButton");
+			}
+			
 			//Leg1 Option Table Display
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Option, true, 5, "down");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(firstAskCALLS, false, 5, "up");
+			///mobileAction.FuncSwipeWhileElementNotFound(firstAskCALLS, false, 5, "up");
+			//mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(firstAskCALLS);
 			
 			sPreviousVal = mobileAction.FuncGetText(firstAskCALLS);
+			mobileAction.FuncSwipeDownTillScreenTop(defaultExpiryType);
+			
 			mobileAction.selectItemFromList(defaultExpiryType, arrExpiryType[0]);
 			mobileAction.selectItemFromList(defaultOptionType, arrOptionType[0]);
 			mobileAction.selectItemFromList(defaultStrikes, arrStrikes[0]);
@@ -212,18 +251,26 @@ public class MLOptionChainTable extends _CommonPage{
 			//Leg2 Option Table Display
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, true, 5, "up");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(firstAskPUTS, false, 5, "up");
-			mobileAction.FuncSwipeOnce("up");
+/*			mobileAction.FuncSwipeWhileElementNotFound(firstAskPUTS, false, 5, "up");
+			mobileAction.FuncSwipeOnce("up");*/
+			//mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(firstAskPUTS);
 			
 			sPreviousVal = mobileAction.FuncGetText(firstAskPUTS);
-			mobileAction.FuncSwipeWhileElementNotFound(defaultExpiryType, false, 5, "down");
-			mobileAction.FuncSwipeOnce("down");
+/*			mobileAction.FuncSwipeWhileElementNotFound(defaultExpiryType, false, 5, "down");
+			mobileAction.FuncSwipeOnce("down");*/
+			//mobileAction.FunctionSwipe("down", 200, 200);
+			mobileAction.FuncSwipeDownTillScreenTop(defaultExpiryType);
+			
 			mobileAction.selectItemFromList(defaultExpiryType, arrExpiryType[1]);
 			mobileAction.selectItemFromList(defaultOptionType, arrOptionType[1]);
 			mobileAction.selectItemFromList(defaultStrikes, arrStrikes[1]);
 			
-			mobileAction.FuncSwipeWhileElementNotFound(firstAskPUTS, false, 5, "up");
-			mobileAction.FuncSwipeOnce("up");
+/*			mobileAction.FuncSwipeWhileElementNotFound(firstAskPUTS, false, 5, "up");
+			mobileAction.FuncSwipeOnce("up");*/
+			//mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(firstAskPUTS);
+			
 			sCurrentVal = mobileAction.FuncGetText(firstAskPUTS);
 			mobileAction.FuncClick(firstAskPUTS, "firstAskPUTS");
 			
@@ -279,10 +326,22 @@ public class MLOptionChainTable extends _CommonPage{
 			
 			TradeMultiLeg.get().fillOptionOptionOrder(firstAskCALLS, "firstAskCALLS", firstAskPUTS, "firstAskPUTS");
 			
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			{
+				//Do nothing
+			}
+			else
+			{
+				 mobileAction.FuncClick(refreshButton, "refreshButton");
+				 mobileAction.FuncClick(refreshButton, "refreshButton");
+			}
+			
 			//Leg1 Option Table Display
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Option, true, 5, "down");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(firstBidCALLS, false, 5, "up");
+			///mobileAction.FuncSwipeWhileElementNotFound(firstBidCALLS, false, 5, "up");
+			//mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(firstBidCALLS);
 			
 			sPreviousVal = mobileAction.FuncGetText(firstBidCALLS);
 			mobileAction.selectItemFromList(defaultExpiryType, arrExpiryType[0]);
@@ -299,19 +358,27 @@ public class MLOptionChainTable extends _CommonPage{
 			//Leg2 Option Table Display
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, true, 5, "up");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(firstAskPUTS, false, 5, "up");
-			mobileAction.FuncSwipeOnce("up");
+/*			mobileAction.FuncSwipeWhileElementNotFound(firstAskPUTS, false, 5, "up");
+			mobileAction.FuncSwipeOnce("up");*/
+			//mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(firstAskPUTS);
 			
 			sPreviousVal = mobileAction.FuncGetText(firstBidPUTS);
-			mobileAction.FuncSwipeWhileElementNotFound(defaultExpiryType, false, 5, "down");
-			mobileAction.FuncSwipeOnce("down");
+/*			mobileAction.FuncSwipeWhileElementNotFound(defaultExpiryType, false, 5, "down");
+			mobileAction.FuncSwipeOnce("down");*/
+			//mobileAction.FunctionSwipe("down", 200, 200);
+			mobileAction.FuncSwipeDownTillScreenTop(defaultExpiryType);
 			
 			mobileAction.selectItemFromList(defaultExpiryType, arrExpiryType[1]);
 			mobileAction.selectItemFromList(defaultOptionType, arrOptionType[1]);
 			mobileAction.selectItemFromList(defaultStrikes, arrStrikes[1]);
 			
-			mobileAction.FuncSwipeWhileElementNotFound(firstAskPUTS, false, 5, "up");
-			mobileAction.FuncSwipeOnce("up");
+/*			mobileAction.FuncSwipeWhileElementNotFound(firstAskPUTS, false, 5, "up");
+			mobileAction.FuncSwipeOnce("up");*/
+			//mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(firstAskPUTS);
+			
+			
 			sCurrentVal = mobileAction.FuncGetText(firstBidPUTS);
 			mobileAction.FuncClick(firstAskPUTS, "firstAskPUTS");
 			
@@ -370,17 +437,25 @@ public class MLOptionChainTable extends _CommonPage{
 			//Leg2 Option Table Display
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, true, 5, "down");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(firstAskPUTS, false, 5, "up");
-			mobileAction.FuncSwipeOnce("up");
+/*			mobileAction.FuncSwipeWhileElementNotFound(firstAskPUTS, false, 5, "up");
+			mobileAction.FuncSwipeOnce("up");*/
+			//mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(firstAskPUTS);
 			
 			sPreviousVal = mobileAction.FuncGetText(firstBidPUTS);
-			mobileAction.FuncSwipeWhileElementNotFound(defaultExpiryType, false, 5, "down");
+			///mobileAction.FuncSwipeWhileElementNotFound(defaultExpiryType, false, 5, "down");
+			//mobileAction.FunctionSwipe("down", 200, 200);
+			mobileAction.FuncSwipeDownTillScreenTop(defaultExpiryType);
+			
 			mobileAction.selectItemFromList(defaultExpiryType, arrExpiryType);
 			mobileAction.selectItemFromList(defaultOptionType, arrOptionType);
 			mobileAction.selectItemFromList(defaultStrikes, arrStrikes);
 			
-			mobileAction.FuncSwipeWhileElementNotFound(firstBidPUTS, false, 5, "up");
-			mobileAction.FuncSwipeOnce("up");
+/*			mobileAction.FuncSwipeWhileElementNotFound(firstBidPUTS, false, 5, "up");
+			mobileAction.FuncSwipeOnce("up");*/
+			//mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(firstBidPUTS);
+			
 			sCurrentVal = mobileAction.FuncGetText(firstBidPUTS);
 			mobileAction.FuncClick(firstAskPUTS, "firstAskPUTS");
 			
@@ -404,6 +479,7 @@ public class MLOptionChainTable extends _CommonPage{
 			SearchPageMIT.get().clickFirstSymbol();
 			
 			mobileAction.FuncClick(backButtonOptionTable, "backButtonOptionTable");
+			mobileAction.FuncClick(cancelButton, "cancelButton");
 			
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, true, 5, "up");
 			mobileAction.FuncVerifyNonBlankValue(defaultExpiryType, "Leg2 defaultExpiryType");

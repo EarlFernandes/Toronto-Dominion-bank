@@ -25,6 +25,7 @@ public class ManageRecipients extends _CommonPage {
     private MobileElement manageRecipientHeader;
 
     @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Register']")
+    @AndroidFindBy(xpath = "//*[contains(@text,'Register') or contains(@content-desc,'Register')]")
     private MobileElement registerBtn;
 
     @iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")

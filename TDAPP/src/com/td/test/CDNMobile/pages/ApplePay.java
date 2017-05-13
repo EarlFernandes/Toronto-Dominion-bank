@@ -133,7 +133,6 @@ public class ApplePay extends _CommonPage {
 		Decorator();
 		mobileAction.waitForElementToVanish(progressBar);
 		try {
-
 			if (mobileAction.verifyElementIsPresent(continueButton)) {
 				mobileAction.FuncClick(continueButton, "Continue");
 				mobileAction.FuncClick(getStartedButton, "Get Started");

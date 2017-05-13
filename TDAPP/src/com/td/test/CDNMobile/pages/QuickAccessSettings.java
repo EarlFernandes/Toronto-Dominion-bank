@@ -27,8 +27,6 @@ public class QuickAccessSettings extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/easy_access_switch']")
 	private MobileElement QuickAccessToggle;
 	
-
-	
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/easy_access_rewards_on_off_switch']")
 	private MobileElement rewardsBalanceToggle;
 	

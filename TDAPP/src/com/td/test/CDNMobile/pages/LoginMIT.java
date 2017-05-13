@@ -135,7 +135,8 @@ public class LoginMIT extends _CommonPage {
 	private MobileElement done;
 
 	@iOSFindBy(xpath = "//*[@label='Login']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mfa_login_btn_txt' and @text='Login']")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mfa_login_btn_txt' and @text='Login']")
+	@AndroidFindBy(id = "com.td:id/mfa_login_btn")	
 	private MobileElement securityLogin;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'System Error')]")
@@ -158,8 +159,8 @@ public class LoginMIT extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id= 'com.td:id/remember_switch' and @text='YES']")
 	private MobileElement rememberMe_button_on;
 	
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") //@Author - Sushil 02-Feb-2017
-	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation']")
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Nï¿½gociation']") //@Author - Sushil 02-Feb-2017
+	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Nï¿½gociation']")
 	private MobileElement Investing_Trade;
 	
 	String verifyLogin_ios = "//*[contains(@label,'Your Login Info Please')]";

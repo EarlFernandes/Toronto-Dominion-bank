@@ -59,8 +59,8 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
 	private MobileElement home_button;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade' or @label='Négociation']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Trade' or @text='Négociation')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade' or @label='Nï¿½gociation']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Trade' or @text='Nï¿½gociation')]")
 	private MobileElement trade;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD Mobile Payment']")
@@ -609,6 +609,7 @@ public class MenuPage extends _CommonPage {
 			String elementText= mobileAction.getValue(give_feedback);
 			System.out.println("elementText:" +  elementText);
 			mobileAction.FuncClick(give_feedback, elementText);
+			mobileAction.waitForElementToVanish(progressBar);
 		}catch (Exception e){
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -642,6 +643,7 @@ public class MenuPage extends _CommonPage {
 			String elementText= mobileAction.getValue(contactUs);
 			System.out.println("Element Text:" +  elementText);
 			mobileAction.FuncClick(contactUs, elementText);
+			mobileAction.waitForElementToVanish(progressBar);
 		}catch (Exception e){
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -65,11 +65,12 @@ public class Bill_PayCanada extends _CommonPage {
 	String t_select_to_account = "//android.widget.TextView[@resource-id='com.td:id/edtPayee' and @text='Select Payee']";
 
 	String ToAccountXL = getTestdata("ToAccount");
+	String payee=getTestdata("Payee");
 
 	String ToAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountDesc' and @text='"
 			+ ToAccountXL + "']";
 
-	@iOSFindBy(xpath = "//")
+	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and @text='TD CLASSIC TRAVEL VIS... 4520020000005323']")
 	private MobileElement select_to_account;
 
@@ -110,7 +111,7 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement menu;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Pay Bill']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Pay Bill']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and contains(@text,'Pay Bill')]")
 	private MobileElement payBill_Header;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title'and @text='My Accounts']")
@@ -133,6 +134,7 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement progrees_bar;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Search for Canadian payees']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Search for Canadian payees']")
 	private MobileElement search_bar;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Add Payee']")
@@ -163,9 +165,9 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement ListViewToAccount;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]")
-	@AndroidFindBy(xpath = " ")
-	private MobileElement currDate;
-
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtDate']")
+	private MobileElement currDate;  
+	
 	int m = 1;
 	String Conf = "Confirmation";
 
@@ -194,6 +196,8 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView/android.widget.LinearLayout[@index=1]/android.widget.LinearLayout/android.widget.TextView")
 	private MobileElement selectSecondAccessCard;
 
+	String SelectSecondAccessCard="//android.widget.ListView/android.widget.LinearLayout[@index=1]/android.widget.LinearLayout/android.widget.TextView";
+	
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel' and @text='Cancel']")
 	private MobileElement cancelBtn;
@@ -219,11 +223,10 @@ public class Bill_PayCanada extends _CommonPage {
     
    
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Add Canadian Payees Now']")
-	@AndroidFindBy(xpath = "//android.widget.Button[ @content-desc='Add Canadian Payees Now']")
+	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Add Canadian Payees Now')]")
 	private MobileElement addCanadianPayee;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay With Rewards']")
-	@AndroidFindBy(xpath = "")
 	private MobileElement txtPaywithRewards;
 
 
@@ -281,8 +284,9 @@ public class Bill_PayCanada extends _CommonPage {
 			}
 
 			else {
-				String ToPostAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and @text='"
-						+ ToAccountXL + "']";
+				String payee=getTestdata("Payee");
+				String ToPostAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and contains(@text,'"
+						+ payee + "')]";
 				mobileAction.FuncClick(to_account_post, "Select Payee");
 				mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, ToPostAccountXpath, 1, "up", true);
 				mobileAction.waitForElementToDisappear(t_select_to_account);
@@ -450,7 +454,7 @@ public class Bill_PayCanada extends _CommonPage {
 			mobileAction.FuncClick(from_account_post, "From Account");
 			
 			System.out.println("From Account:"+ FromAccountXL);
-			String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + FromAccountXL + "')]";
+			String account_value = "//*[contains(@text,'" + FromAccountXL + "') or contains(@content-desc,'" + FromAccountXL + "')]";
 			MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 					.findElement(By.xpath(account_value));
 			mobileAction.FunCSwipeandScroll(fromAccountval, true);
@@ -458,7 +462,7 @@ public class Bill_PayCanada extends _CommonPage {
 
 			mobileAction.FuncClick(to_account_post, "Select Payee");
 			System.out.println("To Account:"+ ToAccountXL);
-			account_value = "//XCUIElementTypeStaticText[contains(@label,'" + ToAccountXL + "')]";
+			account_value = "//*[contains(@text,'" + ToAccountXL + "') or contains(@content-desc,'" + ToAccountXL + "')]";
 			MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 					.findElement(By.xpath(account_value));
 			mobileAction.FunCSwipeandScroll(toAccountval, true);
@@ -498,6 +502,9 @@ public class Bill_PayCanada extends _CommonPage {
 		} catch (IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (NullPointerException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NullPointerException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
@@ -751,7 +758,8 @@ public class Bill_PayCanada extends _CommonPage {
 
 		Decorator();
 		try {
-			mobileAction.FunCnewSwipe(PayBillQuickAccess, false, 1);
+			//mobileAction.FunCnewSwipe(PayBillQuickAccess, false, 1);
+			mobileAction.FunCSwipeandScroll(PayBillQuickAccess, false);
 			mobileAction.FuncClick(PayBillQuickAccess, "Pay Bill Quick Access Button");
 			mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
 
@@ -918,7 +926,7 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.FuncSendKeys(amount,amount_value);
 				mobileAction.FuncHideKeyboard();
 				String PaybillDate = mobileAction.getText(currDate);
-				//boolean validateDate=!PaybillDate.isEmpty();//********************************JA
+				//boolean validateDate=!PaybillDate.isEmpty();//
 				//String dateValue=validateDate?"Same":"Not Same";
 				//mobileAction.verifyTextEquality(dateValue, "Same");
 				mobileAction.FuncClick(continue_pay, "Continue_pay");

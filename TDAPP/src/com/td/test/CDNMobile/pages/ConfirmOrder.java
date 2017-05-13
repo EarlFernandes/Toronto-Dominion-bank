@@ -878,8 +878,8 @@ public class ConfirmOrder extends _CommonPage {
 			try {
 				mobileAction.FuncSwipeWhileElementNotFound(impInformationMessage, false, 10, "up");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 
 			mobileAction.verifyElementIsDisplayed(impInformationMessage, "Important Message Link");
@@ -917,9 +917,9 @@ public class ConfirmOrder extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 
-					+ " @ Delta de déclenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
+					+ " @ Delta de dï¿½clenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
 					+ " $ Delta limite " + df.format(Double.parseDouble(limitDelta_value)).replace(".", ",")
-					+ " $ Échéance " + goodXL;
+					+ " $ ï¿½chï¿½ance " + goodXL;
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 					+ " @ Trigger Delta $" + df.format(Double.parseDouble(triggerDelta_value)) + " Limit Delta $"
@@ -948,8 +948,8 @@ public class ConfirmOrder extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
-					+ " @ Delta de déclenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
-					+ " $ Échéance " + goodXL;
+					+ " @ Delta de dï¿½clenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
+					+ " $ ï¿½chï¿½ance " + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
@@ -978,8 +978,8 @@ public class ConfirmOrder extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
-					+ " @ Déclencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
-					+ " $ limite " + df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance "
+					+ " @ Dï¿½clencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
+					+ " $ limite " + df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ ï¿½chï¿½ance "
 					+ goodXL;
 
 		} else {
@@ -1013,8 +1013,8 @@ public class ConfirmOrder extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 
-					+ " @ Déclencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
-					+ " $ Échéance " + goodXL;
+					+ " @ Dï¿½clencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
+					+ " $ ï¿½chï¿½ance " + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
@@ -1043,7 +1043,7 @@ public class ConfirmOrder extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value + " @ "
-					+ df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance " + goodXL;
+					+ df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ ï¿½chï¿½ance " + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value + " @ $"
@@ -1073,7 +1073,7 @@ public class ConfirmOrder extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " @ " + price_value
 
-					+ " Échéance " + goodXL;//@Author - Sushil 19-Apr-2017 Modified
+					+ " ï¿½chï¿½ance " + goodXL;//@Author - Sushil 19-Apr-2017 Modified
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " @ " + price_value
 
@@ -1148,26 +1148,26 @@ public class ConfirmOrder extends _CommonPage {
 
 		switch (price_value) {
 		case "Market":
-		case "Cours du marché":
+		case "Cours du marchï¿½":
 			validateMarketBuy();
 			break;
 		case "Limit":
-		case "Cours limité":
+		case "Cours limitï¿½":
 
 			validateLimitBuy();
 			break;
 		case "Stop Market":
-		case "Cours du marché stop":
+		case "Cours du marchï¿½ stop":
 
 			validateStopMarket();
 			break;
 		case "Stop Limit":
-		case "Cours limité stop":
+		case "Cours limitï¿½ stop":
 
 			validateStopLimitBuy();
 			break;
 		case "Trailing Stop Market":
-		case "Stop suiveur marché":
+		case "Stop suiveur marchï¿½":
 
 			validateTrailingStopMarketBuy();
 			break;

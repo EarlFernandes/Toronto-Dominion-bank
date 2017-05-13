@@ -39,7 +39,7 @@ public class Accounts_Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/summaryTab']")
 	private MobileElement summaryTab;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Current Balance,')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Current Balance')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Current Balance']")
 	private MobileElement currentBalance;
 
@@ -55,7 +55,7 @@ public class Accounts_Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/availableCredit']")
 	private MobileElement availableAmount;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Credit Limit,')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Credit Limit')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Credit Limit']")
 	private MobileElement creditLimit;
 
@@ -156,7 +156,7 @@ public class Accounts_Credit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				String lastTransac = "//*[@label(contains," + getTestdata("confirmation_val") + "')]";
+				String lastTransac = "//*[@label(contains,'" + getTestdata("confirmation_val") + "')]";
 				MobileElement lastTransaction = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(lastTransac));
 				mobileAction.verifyElementIsDisplayed(activityTab, "Activity");
@@ -198,7 +198,6 @@ public class Accounts_Credit extends _CommonPage {
 	public void clickLastTransac()  {
 		 Decorator();
 		try {
-
 			mobileAction.FuncClick(lastStatement, "Last Statement");
 			Thread.sleep(3000);
 		} catch (NoSuchElementException e) {
@@ -232,7 +231,6 @@ public class Accounts_Credit extends _CommonPage {
 	public void clickSummary()  {
 		 Decorator();
 		try {
-
 			mobileAction.FuncClick(summaryTab, "Summary tab");
 			Thread.sleep(3000);
 		} catch (NoSuchElementException e) {
@@ -272,7 +270,6 @@ public class Accounts_Credit extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(availableAmount, "Available Amount");
 			mobileAction.verifyElementIsDisplayed(creditLimit, "Credit Limit");
 			mobileAction.verifyElementIsDisplayed(creditAmount, "credit amount");
-
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -301,7 +298,6 @@ public class Accounts_Credit extends _CommonPage {
 	public void clickStatement()  {
 		 Decorator();
 		try {
-
 			mobileAction.FuncClick(statementTab, "Statement tab");
 			Thread.sleep(3000);
 		} catch (NoSuchElementException e) {
@@ -339,7 +335,6 @@ public class Accounts_Credit extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(twoStatementAgo, "Two Statement Ago");
 			mobileAction.verifyElementIsDisplayed(threeStatementAgo, "Three Statements Ago");
 			mobileAction.FuncClick(latestStatement, "Last Statement");
-
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -360,7 +355,6 @@ public class Accounts_Credit extends _CommonPage {
 		try {
 			mobileAction.FuncClick(transfer_Btn, "Transfer");
 			mobileAction.waitForElementToVanish(progressBar);
-
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

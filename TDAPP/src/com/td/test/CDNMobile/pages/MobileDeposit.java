@@ -27,7 +27,7 @@ public class MobileDeposit extends _CommonPage {
 	private MobileElement dpstCheque_Btn;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'We')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/enrollment_headertitle1' and starts-with(@text,'We')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/enrollment_headertitle1' and contains(@text,'We')]")
 	private MobileElement validation_FirstLine;
 	
 

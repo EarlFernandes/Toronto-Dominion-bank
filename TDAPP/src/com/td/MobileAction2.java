@@ -43,7 +43,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "IllegalArgumentException");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			throw e;
@@ -51,7 +50,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Element not displayed");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			throw n;
@@ -59,7 +57,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "The element not present in current page");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			throw e;
@@ -1492,7 +1489,8 @@ public class MobileAction2 extends CommonLib {
 	catch(Exception e)
 	{
 		 GetReporting().FuncReport("Fail", "The element <b>- " + expectedText + "</b> is not displayed");
-		e.printStackTrace();
+		//e.printStackTrace();				//commented
+		 throw e;
 	}
    
 /*	} catch (IllegalArgumentException e) {
@@ -1837,7 +1835,7 @@ public class MobileAction2 extends CommonLib {
 
 		try {
 			if (elementToFind.isDisplayed() && !value.isEmpty()) {
-				GetReporting().FuncReport("Pass", "The text '" + value + "' is Displayed");
+				GetReporting().FuncReport("Pass", "The text '" + value + "' is Displayed");/*****************JA
 			}
 		} catch (Exception e) {
 			try {
@@ -2041,15 +2039,15 @@ public class MobileAction2 extends CommonLib {
 	}
 	
 	 /**
-     * This method will verify the header text is displayed on the screen.
+     * This method will verify the expected text is displayed on the screen.
      * 
      * @param The
      *            element which has to be identified
      * 
      * @param expectedText
-     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNÉES"
+     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNÃ‰ES"
      *            if language is English then "CONTACT INFORMATION "to be printed in report
-     *            if language is French then "COORDONNÉES" to be printed in report
+     *            if language is French then "COORDONNÃ‰ES" to be printed in report
      * 
      * @return nothing
      * 
@@ -2619,7 +2617,15 @@ public String FuncGetElementText(MobileElement objElement) { //@Author - Sushil 
 			e1.printStackTrace();
 		}
 	    //throw e;
-	}
+	}catch (NoSuchElementException e) {
+		 try {
+			GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	 
+	}//throw e;
 	return textToReturn;
 }
 public String getAppString(final String key) {
@@ -2719,6 +2725,102 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 		action.tap(startx, starty).perform();
 		}
 	}
+	
+	/**
+	* This method will get  current switch element status  //fengfr6 
+	*
+	* 
+	* @param MobileElement
+	*            switch mobile element
+	*    for android device, attribute "checked" is the switch status, true or false
+	*    for iOS device, attribute "value" is the switch status, true or false        
+	* 
+	* @throws IOException
+	*/
+	public String getSwitchStatus(MobileElement switchElement){
+		String status="";
+		if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			status = switchElement.getAttribute("checked");
+		}else{
+			status = switchElement.getAttribute("value");
+		}
+		return status;
+	}
+	
+	public void FuncSwipeUpTillScreenBottom(MobileElement mEle) //@Author - Sushil 10-May-2017
+	{
+		try
+		{
+			FunctionSwipe("up", 200, 100);
+			if(!mEle.isDisplayed())
+			{
+				FunctionSwipe("up", 200, 100);
+			}
+		}
+		catch(Exception e)
+		{
+			try {
+				FunctionSwipe("up", 200, 100);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+				try {
+					GetReporting().FuncReport("Fail", "Exception : FuncSwipeUpTillScreenBottom Failed.");
+				} catch (IOException e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
+	}
+	public void FuncSwipeDownTillScreenTop(MobileElement mEle) //@Author - Sushil 10-May-2017
+	{
+		try
+		{
+			FunctionSwipe("down", 200, 200);
+			if(!mEle.isDisplayed())
+			{
+				FunctionSwipe("down", 200, 200);
+			}
+		}
+		catch(Exception e)
+		{
+			try {
+				FunctionSwipe("down", 200, 200);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				try {
+					GetReporting().FuncReport("Fail", "Exception : FuncSwipeDownTillScreenTop Failed.");
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public void verifyItemInListContains(String sItem)//@Author-Sushil 11-May-2017
+	{
+		String xpathExpression="";
+		try
+		{
+			if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				xpathExpression = "//*[contains(@text,'" + sItem +"')]";
+			else
+				xpathExpression = "//*[contains(@label,'" + sItem +"')]";
+			
+			verifyElementTextContains((MobileElement) (GetDriver()).findElement(By.xpath(xpathExpression)), sItem);
+		}
+		catch(Exception e)
+		{
+			try{
+				GetReporting().FuncReport("Fail",sItem + " not found.");
+			}
+			catch(Exception e1)
+			{
+			e.printStackTrace();
+			}
+		}
+	}
 	public boolean verifyElementIsPresent(MobileElement elementToFind) {
 
 		try {
@@ -2776,7 +2878,6 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 		}
 
 	}
-	
 }
 
 

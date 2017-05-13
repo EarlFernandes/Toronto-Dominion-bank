@@ -247,13 +247,9 @@ public class Bills extends _CommonPage {
 	public void scheduledPayments() {
 		Decorator();
 		try {
-			
 			mobileAction.FuncClick(scheduledPayments,"Scheduled Payments");
 			mobileAction.waitForElementToVanish(progrees_Bar);
 			mobileAction.verifyElementIsDisplayed(paymentMessage,"No Upcoming Bills to display in this account");
-		
-			
-			
 		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

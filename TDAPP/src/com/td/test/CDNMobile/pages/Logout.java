@@ -41,11 +41,6 @@ public class Logout extends _CommonPage {
 	@iOSFindBy(xpath ="//XCUIElementTypeButton[@label='Retour']")
 	private MobileElement french_Back_Button; 
 	
-
-
-	
- 
-	
 	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='Terminé']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/success' and @text='Terminé']")
 	private MobileElement logoutHeaderFrench;

@@ -29,7 +29,7 @@ public class Pay_US_Bill extends _CommonPage {
 	// private MobileElement already_selected_from_Account;
 
 	@iOSFindBy(xpath = "//*[@label='Pay U.S. Bill']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Pay U.S. Bill']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and contains(@text,'Pay U.S. Bill')]")
 	private MobileElement us_Bill_Header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Payee')]")

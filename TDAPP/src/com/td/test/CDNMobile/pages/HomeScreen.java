@@ -23,7 +23,7 @@ public class HomeScreen extends _CommonPage {
 
 	private static HomeScreen HomeScreen;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu' or @label='Menu en en-tête']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu' or @label='Menu en en-tÃªte']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
@@ -60,7 +60,7 @@ public class HomeScreen extends _CommonPage {
 	MobileElement  investing_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'TRADE')]")
-	@AndroidFindBy(xpath = "//android.widget.TableRow[@text='TRADE']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trade']")
 	private MobileElement trade;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='VIREMENTS'] ")
@@ -71,7 +71,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/td_zones_dashboard' and @text='TD FOR ME']")
 	private MobileElement dashboard_Location;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD For Me']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='TD For Me']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='TD for Me']")
 	private MobileElement TD_For_Me;
 
@@ -110,7 +110,7 @@ public class HomeScreen extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@value='SEND MONEY']")
 	private MobileElement send_money_button;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Privacy, Security & Legal') or contains(@value,'Privacy, Security & Legal')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Privacy, Security & Legal']")
 	private MobileElement privacy;
 
@@ -153,6 +153,20 @@ public class HomeScreen extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='Accounts']")
 	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Accounts']")
 	private MobileElement accounts;
+	
+	@iOSFindBy(xpath = "//*[@label='Select AccessCard']")
+	//@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @content-desc='Username or Access Card']")
+	@AndroidFindBy(id="com.td:id/loginEditText")
+	private MobileElement select_accesscard;
+	
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/zones_feature_button' and @text='Continue']")
+	private MobileElement continueBtn;
+
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/zones_feature_button' and @text='Get Started']")
+	private MobileElement get_Started;
+	
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/acceptButton' and @text='Accept']")
+	private MobileElement accept;
 	
 	int i = 1;
 	String Firstpart = "//XCUIElementTypeCell[";
@@ -720,6 +734,9 @@ public class HomeScreen extends _CommonPage {
 			 if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.FuncClick(dashboard_Location, "TD Zone Dashboard");
+				if(mobileAction.verifyElementIsPresent(select_accesscard)){
+					Login.get().login();
+				}
 				mobileAction.waitForElementToVanish(progressBarIos);
 				mobileAction.verifyElement(TD_For_Me, "TD for Me");
 
@@ -767,6 +784,12 @@ public class HomeScreen extends _CommonPage {
 	public void verifyLocations() {
 		Decorator();
 		try {
+			if(mobileAction.verifyElementIsPresent(continueBtn)){
+				mobileAction.FuncClick(continueBtn, "Continue Button");
+				mobileAction.FuncClick(get_Started, "Get Started");
+				mobileAction.FuncClick(accept, "Accept Button");
+				mobileAction.waitForElementToDisappear(progressBar);
+			}
 			String location = mobileAction.getText(nearByLoaction);
 			mobileAction.verifyElement(viewingDetail, "Nearby");
 			mobileAction.FuncClick(chevron_Button, "Chevron Button");
