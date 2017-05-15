@@ -100,9 +100,17 @@ public class MainScreen extends _CommonPage {
 		String udid = CL.getTestDataInstance().getDeviceUdid();
 
 		String appiumPath = CL.getTestDataInstance().getAppiumPath(); //Jenkins parameters
+		final String targetEnv = CL.getTestDataInstance().targetEnvironment;
+		
 		System.out.println("DEBUG: Appium path: " + appiumPath);
         if (!StringUtils.isEmpty(appiumPath)) { // only jenkins sets this 
-        	CL.getTestDataInstance().SetAppFilePath(CL.getTestDataInstance().targetEnvironment);
+			if (CL.getTestDataInstance().getAppFilePath() == null
+					|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
+					CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
+							CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", targetEnv));
+					currentLocale = CL.LoadData("Language",
+							CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", targetEnv);
+			}
         	CL.mobileApp(appiumPath);
         } else {
 			//Samsung phone - dda65bdf tablet - 9d0f2a81032ca237 - ipad air e054ae65ead3aba183484acc611497ef06a47741
@@ -156,14 +164,12 @@ public class MainScreen extends _CommonPage {
 	
 				}
 			}
+			currentLocale = CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
         }
-		// Initialize App String map
-		final String locale =  CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
-		
-		if (StringUtils.isEmpty(locale)) {
+		if (StringUtils.isEmpty(currentLocale)) {
 			appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
 		} else {
-			appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(locale);
+			appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
 		}
 	}
 

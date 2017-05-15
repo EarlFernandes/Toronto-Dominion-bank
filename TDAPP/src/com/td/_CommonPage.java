@@ -26,6 +26,8 @@ public class _CommonPage {
 	protected com.td.MobileAction2 mobileAction = new com.td.MobileAction2();
 
 	protected static Map appStringMap;
+	protected static String currentLocale;
+	
 	// public Reporting report;// = CL.GetReporting();
 	// calculated or discovered values
 	protected By foundElement = null;

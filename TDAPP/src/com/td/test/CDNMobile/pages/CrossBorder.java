@@ -103,7 +103,6 @@ public class CrossBorder extends _CommonPage {
 	
 	public void verifyCrossBorderWelcomeTextElements() {
 		Decorator();
-		final String locale = CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
 //		Set<String> contextNames = CL.GetAppiumDriver().getContextHandles();
 //		for (String contextName : contextNames) {
 //			System.out.println("DAVID>>>>" + contextNames); //prints out something like [NATIVE_APP, WEBVIEW_<APP_PKG_NAME>]
@@ -111,7 +110,7 @@ public class CrossBorder extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				String expectedText = "";
-				switch(locale) {
+				switch(currentLocale) {
 					case "EN":
 						expectedText = POPUP_EXPECTED_TEXT_EN;
 						break;
@@ -147,7 +146,7 @@ public class CrossBorder extends _CommonPage {
 						.findElement(By.cssSelector("body")).getText();
 				//System.out.println(text);
 				String expectedText = "";
-				switch(locale) {
+				switch(currentLocale) {
 					case "EN":
 						expectedText = WELCOME_EXPECTED_TEXT_EN;
 						break;
@@ -181,11 +180,10 @@ public class CrossBorder extends _CommonPage {
 	
 	public void verifyCrossBorderLoginPopupTextElements() {
 		Decorator();
-		final String locale = CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				String expectedText = "";
-				switch(locale) {
+				switch(currentLocale) {
 					case "EN":
 						expectedText = POPUP_EXPECTED_TEXT_EN;
 						break;
@@ -221,7 +219,7 @@ public class CrossBorder extends _CommonPage {
 						.findElement(By.cssSelector("body")).getText();
 				//System.out.println(text);
 				String expectedText = "";
-				switch(locale) {
+				switch(currentLocale) {
 					case "EN":
 						expectedText = POPUP_EXPECTED_TEXT_EN;
 						break;

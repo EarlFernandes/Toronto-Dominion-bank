@@ -544,8 +544,8 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Decorator();
 			WebDriverWait wait = new WebDriverWait(CL.GetDriver(), 100);
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(
-//					By.xpath("//*[contains(@label,'The right mortgage can save you money')]")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(
+					By.xpath("//*[contains(@label,'The right mortgage can save you money')]")));
 			mobileAction.FuncClick(send_money_button, "sendMoney");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -952,14 +952,13 @@ public class HomeScreen extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 			} else {
-				final String locale = CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
 				final String accounts = mobileAction.getAppString("easy_access_accounts").toLowerCase().substring(0,1).toUpperCase() + mobileAction.getAppString("easy_access_accounts").toLowerCase().substring(1);
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + accounts + "']", "Accounts");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("transfers_str") + "']", "Transfers");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("bills_str") + "']", "Bills");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("td_moneyfit_header") + "']", "TD My Spend");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("TDZonesNavRowHeader") + "']", "TD For Me");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + StringLookup.lookupString(locale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing Accounts");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + StringLookup.lookupString(currentLocale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing Accounts");
 				final String xPathFooter = "//android.widget.TextView[@resource-id='com.td:id/dashboard_terms']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("contact_str") + "']", "Contact Us");
