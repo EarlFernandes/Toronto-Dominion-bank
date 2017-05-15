@@ -161,7 +161,6 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'android:id/action_bar_title'and @text='Receipt']")
 	private MobileElement receiptHeader;
 
-
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Finish Transfer']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id= 'com.td:id/myaccounts_entry_btn_confirm'and @text='Finish Transfer']")
 	private MobileElement finish_Transfer;
@@ -169,7 +168,6 @@ public class Between_My_accounts extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='-From Account']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/from_account_bal']")
 	private MobileElement fromAccountValue;
-	
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/account_desc']")
 	private MobileElement fromAccountNumber;
@@ -204,7 +202,6 @@ public class Between_My_accounts extends _CommonPage {
 	
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id= 'com.td:id/summaryContent']")
 	private MobileElement 	acntsListNew;
-
 
 	@iOSFindBy(xpath = "//XCUIElementTypeCell[@name='MAKE ANOTHER TRANSFER']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/transfers_make_another' and @text='MAKE ANOTHER TRANSFER']")

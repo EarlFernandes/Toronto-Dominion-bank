@@ -36,7 +36,7 @@ public class Options extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[contains(@text,'Sell') or contains(@text,'Vendre')]")
 	private MobileElement placedOrders;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Trading Password') or contains(@label,'Mot de passe de n�gociation')]/../XCUIElementTypeSecureTextField[1]")//@Author - Sushil 03-Mar-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Trading Password') or contains(@label,'Mot de passe de négociation')]/../XCUIElementTypeSecureTextField[1]")//@Author - Sushil 03-Mar-2017
 	@AndroidFindBy(id="com.td:id/editTextPassword")
 	private MobileElement editTextPassword;
 	
@@ -230,13 +230,6 @@ public class Options extends _CommonPage {
 	String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'"+symbolXL+"')]";
 
 
-	
-
-
-
-	
-	
-	
 	public synchronized static Options get() {
 		if (Options == null) {
 			Options = new Options();

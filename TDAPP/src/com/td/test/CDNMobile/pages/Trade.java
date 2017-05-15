@@ -116,7 +116,7 @@ public class Trade extends _CommonPage {
 	private MobileElement btngood;
 
 //	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@value='Enter your trading password' or @value='Entrer votre mot de passe de N�gociation']")
-	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@value='Enter your trading password' or @value='Entrer votre mot de passe']")//@Author - Shahbaaz 17-Apr-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@value='Enter your trading password' or @value='Entrer votre mot de passe de Négociation']")//@Author - Shahbaaz 17-Apr-2017
 //	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/editTextPassword' and (@content-desc='Enter your trading password' or @content-desc='Entrer votre mot de passe')]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/editTextPassword']")
 	private MobileElement trading_pwd;

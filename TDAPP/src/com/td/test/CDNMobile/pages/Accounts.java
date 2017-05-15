@@ -32,7 +32,6 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Investing' or @text='INVESTING']")
 	private MobileElement txtAccount_Investing_header;
 
-
 	@iOSFindBy(xpath = "//*[@label='CREDIT']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textView1'and @text='Total']")
 	private MobileElement txtCredit;
