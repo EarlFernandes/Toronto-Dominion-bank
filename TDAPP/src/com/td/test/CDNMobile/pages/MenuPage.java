@@ -59,8 +59,8 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
 	private MobileElement home_button;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade' or @label='N�gociation']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Trade' or @text='N�gociation')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade' or @label='Négociation']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Trade' or @text='Négociation')]")
 	private MobileElement trade;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD Mobile Payment']")

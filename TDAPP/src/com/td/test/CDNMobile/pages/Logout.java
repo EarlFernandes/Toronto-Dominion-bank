@@ -34,7 +34,7 @@ public class Logout extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Fermer la session']")
 	private MobileElement logout_French;
 	
-	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='']")
+	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='Logged Out']")
 	@AndroidFindBy(xpath = "android.widget.TextView//[@resource-id='android:id/action_bar_title' and @text='Logged Out']")
 	private MobileElement logoutHeader; 
 	

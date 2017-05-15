@@ -44,12 +44,12 @@ private void Decorator() {
 		@AndroidFindBy(id="com.td:id/btn_home")
 		private MobileElement btn_home;
 		
-		@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") //@Author - Sushil 23-Mar-2017
+		@iOSFindBy(xpath = "//*[@label='Trade' or @label='NÃ©gociation']") //@Author - Sushil 23-Mar-2017
 		@AndroidFindBy(id="com.td:id/btn_trade")
 		private MobileElement btn_trade;
 		
-		@iOSFindBy(xpath = "//*[contains(@label,'Receipt') or contains(@label,'Reçu')]") //@Author - Sushil 21-Mar-2017
-		@AndroidFindBy(xpath = "//*[contains(@text,'Receipt') or contains(@text,'Reçu')]")
+		@iOSFindBy(xpath = "//*[contains(@label,'Receipt') or contains(@label,'ReÃ§u')]")//@Author - Sushil 21-Mar-2017
+		@AndroidFindBy(xpath = "//*[contains(@text,'Receipt') or contains(@text,'ReÃ§u')]")
 		private MobileElement hdrReceipt;
 		
 		@iOSFindBy(xpath = "//*[@label='Send Order' or contains(@label,'Envoyer l')]") //@Author - Sushil 21-Mar-2017
@@ -80,7 +80,7 @@ private void Decorator() {
 		@AndroidFindBy(xpath = "//*[@text='Confirmation' or contains(@text,'confirmation')]")
 		private MobileElement ConfirmationNumber;
 		
-		@iOSFindBy(xpath = "//*[@label='ORDER DETAILS' or contains(@label,'DÉTAILS DE')]") //@Author - Sushil 23-Mar-2017
+		@iOSFindBy(xpath = "//*[@label='ORDER DETAILS' or contains(@label,'DÃ‰TAILS DE')]")//@Author - Sushil 23-Mar-2017
 		@AndroidFindBy(id="com.td:id/custom_text")
 		private MobileElement lblOrderDetails;
 		
@@ -112,12 +112,12 @@ private void Decorator() {
 		@AndroidFindBy(xpath="//android.widget.TextView[@text='Price' or @text='Cours']/../*[2]/*[1]")
 		private MobileElement price;
 		
-		@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Échéance')]") //@Author - Sushil 21-Feb-2017
-		@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Échéance')]")
+		@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Ã‰chÃ©ance')]")//@Author - Sushil 21-Feb-2017
+		@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Ã‰chÃ©ance')]")
 		private MobileElement lblGoodTill;
 		
-		@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Échéance')]/../*[2]") //@Author - Sushil 21-Feb-2017
-		@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Échéance')]/../*[2]/*[1]")
+		@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Ã‰chÃ©ance')]/../*[2]") //@Author - Sushil 21-Feb-2017
+		@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Ã‰chÃ©ance')]/../*[2]/*[1]")
 		private MobileElement goodTill;
 		
 		@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Shareholder Type') or contains(@label,'Type d')]") //@Author - Sushil 21-Feb-2017

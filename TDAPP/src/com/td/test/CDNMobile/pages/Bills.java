@@ -98,8 +98,8 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(pay_Cananda_Bill, "Pay Canada Bill");
-			//mobileAction.waitForElementToVanish(progrees_Bar);
-			Thread.sleep(5000);
+			mobileAction.waitForElementToVanish(progrees_Bar);
+			Thread.sleep(2000);
 		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

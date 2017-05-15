@@ -186,7 +186,7 @@ public class QuickAccessSettings extends _CommonPage{
 	    	
 	    	String accountXL = "//*[contains(@text,'" + CL.getTestDataInstance().getPrimaryAccount() + "') or contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "')  ]";
 	    	MobileElement accountValue=(MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(accountXL));
-	    	if(accountValue.isDisplayed());
+	    	if(mobileAction.verifyElementIsPresent(accountValue));
 	    	
 	    }catch (NoSuchElementException  e) {
 	  			try {

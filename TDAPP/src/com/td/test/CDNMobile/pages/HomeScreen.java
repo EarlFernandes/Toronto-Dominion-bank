@@ -151,7 +151,7 @@ public class HomeScreen extends _CommonPage {
 	private MobileElement applePayBtn;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='Accounts']")
-	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Accounts']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Accounts']")
 	private MobileElement accounts;
 	
 	@iOSFindBy(xpath = "//*[@label='Select AccessCard']")

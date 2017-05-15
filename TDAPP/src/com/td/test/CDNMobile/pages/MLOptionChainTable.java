@@ -48,7 +48,7 @@ public class MLOptionChainTable extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Monthly' or @text='Chaque mois']")
 	private MobileElement defaultExpiryType;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Strikes,6' or @label='Lev�es,6']") //@Author - Sushil 03-Apr-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Strikes,6' or @label='Levées,6']") //@Author - Sushil 03-Apr-2017
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='6']")
 	private MobileElement defaultStrikes;
 	
@@ -60,8 +60,8 @@ public class MLOptionChainTable extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Expiry Type' or contains(@text,'expiration')]/../*[2]")
 	private MobileElement ExpiryType;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Strikes') or contains(@label,'Lev�es')]") //@Author - Sushil 03-Apr-2017
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Strikes' or @text='Lev�es']/../*[2]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Strikes') or contains(@label,'Levées')]") //@Author - Sushil 03-Apr-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Strikes' or @text='Levées']/../*[2]")
 	private MobileElement Strikes;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='All' or @label='Tous']") //@Author - Sushil 03-Apr-2017
@@ -80,7 +80,7 @@ public class MLOptionChainTable extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/button_select_option_continue")
 	private MobileElement Continue;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'Aper�u de')]")//@Author - Sushil 03-Mar-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'Aperçu de')]")//@Author - Sushil 03-Mar-2017
 	@AndroidFindBy(id="com.td:id/orderEntryPreviewButton")
 	private MobileElement previewOrderButton;
 	
@@ -104,7 +104,7 @@ public class MLOptionChainTable extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/btn_order")
 	private MobileElement btn_ORDERS;
 	
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='N�gociation']") //@Author - Sushil 23-Mar-2017
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") //@Author - Sushil 23-Mar-2017
 	@AndroidFindBy(id="com.td:id/btn_trade")
 	private MobileElement btn_trade;
 	

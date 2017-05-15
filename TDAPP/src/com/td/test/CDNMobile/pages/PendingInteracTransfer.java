@@ -405,8 +405,8 @@ public class PendingInteracTransfer extends _CommonPage{
 			try {
 				
 				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-//					mobileAction.FuncClick(selectSender, "sender");
-//					mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+					mobileAction.FuncClick(selectSender, "sender");
+					mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
 					mobileAction.FuncClick(selectTransaction, "Select Transaction");
 					mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 					mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
@@ -460,8 +460,8 @@ public class PendingInteracTransfer extends _CommonPage{
 				try {
 					
 					if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-//						mobileAction.FuncClick(selectSender, "sender");
-//						mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+						mobileAction.FuncClick(selectSender, "sender");
+						mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
 						mobileAction.FuncClick(selectTransaction, "Select Transaction");
 						mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 						mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
@@ -469,8 +469,8 @@ public class PendingInteracTransfer extends _CommonPage{
 						mobileAction.FuncClick(cnfrmCancellation, "Confirm");
 						mobileAction.verifyElementIsDisplayed(receiptHeader, "Receipt Page Opens");
 						mobileAction.FuncClick(clickPendingIcon, "Click Pending Interac e-Transfer Icon");
-//						mobileAction.FuncClick(selectSender, "sender");
-//						mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+						mobileAction.FuncClick(selectSender, "sender");
+						mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
 						mobileAction.verifyElementIsDisplayed(pendingTransfer_Header,"The Cancelled pending interac e list is not appearing in pending interac transfer page");
 						
 					}else{
@@ -512,8 +512,8 @@ public class PendingInteracTransfer extends _CommonPage{
 				
 				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
 					TouchAction action2 = null;
-//					mobileAction.FuncClick(selectSender, "sender");
-//					mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+					mobileAction.FuncClick(selectSender, "sender");
+					mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
 					mobileAction.FuncClick(selectTransaction, "Select Transaction");
 					mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 					mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
@@ -578,8 +578,8 @@ public class PendingInteracTransfer extends _CommonPage{
 						
 						if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
 							
-//							mobileAction.FuncClick(selectSender, "sender");
-//							mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+							mobileAction.FuncClick(selectSender, "sender");
+							mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
 							mobileAction.FuncClick(selectTransaction, "Select Transaction");
 							mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 							mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
@@ -601,7 +601,7 @@ public class PendingInteracTransfer extends _CommonPage{
 							mobileAction.FuncClick(sender, "Sender");
 							mobileAction.waitForElementToDisappear(select_senderValue);
 							
-							//mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
+							mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
 							mobileAction.FuncClick(selectTransaction, "Select Transaction");
 							mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 							mobileAction.FuncClick(depositToContinue,"Continue");
@@ -661,7 +661,7 @@ public class PendingInteracTransfer extends _CommonPage{
 							
 							mobileAction.FuncClick(Sender, "Sender");
 							mobileAction.waitForElementToDisappear(select_senderValue);
-							//mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 1, "down", true);
+							mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 1, "down", true);
 							mobileAction.FuncClick(selectTransaction, "Select Transaction");
 							mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 							mobileAction.FuncClick(depositToContinue,"Continue");
@@ -697,8 +697,8 @@ public class PendingInteracTransfer extends _CommonPage{
 					try {
 						
 						if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-//							mobileAction.FuncClick(selectSender, "sender");
-//							mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+							mobileAction.FuncClick(selectSender, "sender");
+							mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
 							mobileAction.FuncClick(selectTransaction, "Select Transaction");
 							mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 							mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
@@ -710,7 +710,7 @@ public class PendingInteracTransfer extends _CommonPage{
 						}else{
 						
 							mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
-//							mobileAction.FuncClick(selectSender, "sender");
+							mobileAction.FuncClick(selectSender, "sender");
 							mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
 							mobileAction.FuncClick(selectTransaction, "Select Transaction");
 							mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
@@ -749,8 +749,8 @@ public class PendingInteracTransfer extends _CommonPage{
 					
 					if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
 						TouchAction action2 = null;
-//						mobileAction.FuncClick(selectSender, "sender");
-//						mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+						mobileAction.FuncClick(selectSender, "sender");
+						mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
 						mobileAction.FuncClick(selectTransaction, "Select Transaction");
 						//mobileAction.verifyElementIsDisplayed(verifyStatus,transfer_fromAccount);
 						mobileAction.verifyElementIsDisplayed(confirm_Val,transfer_fromAccount);

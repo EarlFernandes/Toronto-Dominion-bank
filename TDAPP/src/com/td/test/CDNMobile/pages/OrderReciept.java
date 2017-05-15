@@ -73,7 +73,7 @@ public class OrderReciept extends _CommonPage {
 	private MobileElement ordersent;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Confirmation #')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation' and @text='Confirmation # :Ã¢â‚¬Å¡Ãƒâ€žÃ¢â‚¬Â ']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation' and contains(@text,'Confirmation #')]")
 	private MobileElement confirmation;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Orders']")
@@ -98,8 +98,8 @@ public class OrderReciept extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Receipt']")
 	private MobileElement receipt_header;*/
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'Receipt') or contains(@label,'Reçu')]") //@Author - Sushil 18-Apr-2017
-	@AndroidFindBy(xpath = "//*[contains(@text,'Receipt') or contains(@text,'Reçu')]")
+	@iOSFindBy(xpath = "//*[contains(@label,'Receipt') or contains(@label,'ReÃ§u')]") //@Author - Sushil 18-Apr-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'Receipt') or contains(@text,'ReÃ§u')]")
 	private MobileElement receipt_header;
 
 	@AndroidFindBy(xpath = "android.widget.TextView[@text='GO BACK HOME']")
@@ -730,7 +730,7 @@ public class OrderReciept extends _CommonPage {
 	private MobileElement OrderButton;
 
 //	@iOSFindBy(xpath = "//*[@label='En cours']")
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']")//@Author - Shahbaaz 17-Apr-2017
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Nï¿½gociation']")//@Author - Shahbaaz 17-Apr-2017
 //	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_trade' and @text='TRADE']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_trade']")//@Author - Sushil 18-Apr-2017
 	private MobileElement tradeButton;
@@ -886,9 +886,9 @@ public class OrderReciept extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 
-					+ " @ Delta de déclenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
+					+ " @ Delta de dï¿½clenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
 					+ " $ Delta limite " + df.format(Double.parseDouble(limitDelta_value)).replace(".", ",")
-					+ " $ Échéance " + goodXL;
+					+ " $ ï¿½chï¿½ance " + goodXL;
 			System.out.println(orderValue);
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
@@ -919,8 +919,8 @@ public class OrderReciept extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
-					+ " @ Delta de déclenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
-					+ " $ Échéance " + goodXL;
+					+ " @ Delta de dï¿½clenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
+					+ " $ ï¿½chï¿½ance " + goodXL;
 			System.out.println(orderValue);
 
 		} else {
@@ -952,8 +952,8 @@ public class OrderReciept extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
-					+ " @ Déclencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
-					+ " $ limite " + df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance "
+					+ " @ Dï¿½clencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
+					+ " $ limite " + df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ ï¿½chï¿½ance "
 					+ goodXL;
 
 		} else {
@@ -988,8 +988,8 @@ public class OrderReciept extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 
-					+ " @ Déclencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
-					+ " $ Échéance " + goodXL;
+					+ " @ Dï¿½clencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
+					+ " $ ï¿½chï¿½ance " + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
@@ -1020,7 +1020,7 @@ public class OrderReciept extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value + " @ "
-					+ df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance " + goodXL;
+					+ df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ ï¿½chï¿½ance " + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value + " @ $"
@@ -1051,7 +1051,7 @@ public class OrderReciept extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " @ " + price_value
 
-					+ " Échéance " + goodXL;
+					+ " ï¿½chï¿½ance " + goodXL;
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " @ " + price_value
 
@@ -1091,26 +1091,26 @@ public class OrderReciept extends _CommonPage {
 		System.out.println(price_value);
 		switch (price_value) {
 		case "Market":
-		case "Cours du marché":
+		case "Cours du marchï¿½":
 			validateMarketBuy();
 			break;
 		case "Limit":
-		case "Cours limité":
+		case "Cours limitï¿½":
 
 			validateLimitBuy();
 			break;
 		case "Stop Market":
-		case "Cours du marché stop":
+		case "Cours du marchï¿½ stop":
 
 			validateStopMarket();
 			break;
 		case "Stop Limit":
-		case "Cours limité stop":
+		case "Cours limitï¿½ stop":
 
 			validateStopLimitBuy();
 			break;
 		case "Trailing Stop Market":
-		case "Stop suiveur marché":
+		case "Stop suiveur marchï¿½":
 
 			validateTrailingStopMarketBuy();
 			break;

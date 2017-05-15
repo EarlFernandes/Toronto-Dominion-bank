@@ -101,7 +101,7 @@ public class StatementBalance extends _CommonPage{
 	    public void verifyNoDollarsEarnedAndRedeemed(){
 		Decorator();
 		try {
-			if ((txtearned.isDisplayed()) && (txtRedeemed.isDisplayed())) {
+			if ((mobileAction.verifyElementIsPresent(txtearned)) && (mobileAction.verifyElementIsPresent(txtRedeemed))) {
 			
 			}
 		} catch (NoSuchElementException  e) {

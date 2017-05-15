@@ -29,7 +29,7 @@ public class Investing extends _CommonPage {
 	private MobileElement investing_header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[(@text='Trade' or @text='N�gociation') and @index='0']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@text='Trade' or @text='Négociation') and @index='0']")
 	private MobileElement trade;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Markets']")
@@ -122,8 +122,8 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/first_line' and @text='Your Watchlist is empty.']")
 	private MobileElement watchListsEmpty;
 	
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='N�gociation']") //@Author - Sushil 20-Apr-2017
-	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='N�gociation']")
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") //@Author - Sushil 20-Apr-2017
+	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation']")
 	private MobileElement Investing_Trade;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Investing') or contains(@label,'Placements directs')]") //@Author - Sushil 20-Apr-2017
@@ -134,7 +134,7 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(contains(@text,'Home') or contains(@text,'Accueil')) and @resource-id='android:id/action_bar_title']")
 	private MobileElement hdrHome;
 	
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='N�gociation']") //@Author - Sushil 20-Apr-2017
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") //@Author - Sushil 20-Apr-2017
 	@AndroidFindBy(id = "com.td:id/trade_dashboard")
 	private MobileElement trade_dashboard;
 	

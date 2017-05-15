@@ -29,7 +29,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @index='1']")
 	private MobileElement username;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Nom d�utilisateur ou num�ro de carte Acc�s']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Nom d’utilisateur ou numéro de carte Accès']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @index='1']")
 	private MobileElement usernameFRE;
 
@@ -889,7 +889,7 @@ public class Login extends _CommonPage {
 
 			//if (mobileAction.verifyLoginErrorOccured(verifyLogin_ios)){
 			try{
-				if(login_error.isDisplayed()){
+				if(mobileAction.verifyElementIsPresent(login_error)){
 					String loginerrorMessage = mobileAction.getValue(login_error);
 					if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
 						if(loginerrorMessage.contains("Your Login Info Please")){
@@ -958,7 +958,7 @@ public class Login extends _CommonPage {
 		}
 		
 		try {
-			if (securityQuestionHeader.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(securityQuestionHeader)) {
 				mobileAction.FuncClick(enterAnswer, "Enter your Answer");
 				mobileAction.FuncSendKeys(enterAnswer, "abcd");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -975,7 +975,7 @@ public class Login extends _CommonPage {
 		}
 
 		try {
-			if (TermsAndCondition_header.isDisplayed()) {
+			if (mobileAction.verifyElementIsPresent(TermsAndCondition_header)) {
 				String verify_terms = "Verifying TermsAndCondition Page Header";
 				mobileAction.verifyElementIsDisplayed(TermsAndCondition_header, verify_terms);
 				String button_clicked = "Thanks Button is clicked";

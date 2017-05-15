@@ -70,7 +70,7 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/ticker_layout']/android.widget.TextView")
 	private MobileElement leg2Option;
 	
-	@iOSFindBy(xpath = "//*[@label='RESULTS' or @label='R�SULTATS']") //@Author - Sushil 17-Feb-2017
+	@iOSFindBy(xpath = "//*[@label='RESULTS' or @label='RÉSULTATS']") //@Author - Sushil 17-Feb-2017
 	@AndroidFindBy(id="android:id/content")
 	private MobileElement tradeFrame;
 	
@@ -154,8 +154,8 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(xpath="//android.widget.FrameLayout[@index=0]")
 	private MobileElement TradeFrame;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'�ch�ance')]/../*[2]") //@Author - Sushil 08-Feb-2017
-	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'�ch�ance')]/../android.widget.TextView[@index=1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Échéance')]/../*[2]") //@Author - Sushil 08-Feb-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Échéance')]/../android.widget.TextView[@index=1]")
 	private MobileElement goodTill;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Price' or @label='Cours']/../*[2]")
@@ -173,11 +173,11 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']")
 	private MobileElement listview;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de n�gociation']")//@Author - Sushil 06-Feb-2017
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trading Password' or @text='Mot de passe de n�gociation']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de négociation']")//@Author - Sushil 06-Feb-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trading Password' or @text='Mot de passe de négociation']")
 	private MobileElement labelTradingPassword;	
 	
-	@iOSFindBy(xpath = "//*[@label='Commission Schedule' or @label='Bar�me des commissions']")//@Author - Sushil 02-Mar-2017
+	@iOSFindBy(xpath = "//*[@label='Commission Schedule' or @label='Barème des commissions']")//@Author - Sushil 02-Mar-2017
 	@AndroidFindBy(id="com.td:id/commissionLink")
 	private MobileElement commissionLink;
 	
@@ -193,7 +193,7 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/btnDone")
 	private MobileElement btnDone;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de n�gociation']/../XCUIElementTypeSecureTextField[1]")//@Author - Sushil 03-Mar-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de négociation']/../XCUIElementTypeSecureTextField[1]")//@Author - Sushil 03-Mar-2017
 	@AndroidFindBy(id="com.td:id/editTextPassword")
 	private MobileElement editTextPassword;
 	
@@ -205,16 +205,16 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Shareholder') or contains(@text,'actionnaire')]/../android.widget.TextView[@index=1]")
 	private MobileElement shareholderType;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'Aper�u de')]")//@Author - Sushil 03-Mar-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'Aperçu de')]")//@Author - Sushil 03-Mar-2017
 	@AndroidFindBy(id="com.td:id/orderEntryPreviewButton")
 	private MobileElement previewOrderButton;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeTextView[contains(@value,'want to go back?') or contains(@value,'vraiment revenir en arri�re?')]")//@Author - Sushil 03-Mar-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeTextView[contains(@value,'want to go back?') or contains(@value,'vraiment revenir en arrière?')]")//@Author - Sushil 03-Mar-2017
 	@AndroidFindBy(id="android:id/message")
 	private MobileElement messageBackButton;
 	
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='N�gociation']") //@Author - Sushil 07-Mar-2017
-	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='N�gociation']")
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") //@Author - Sushil 07-Mar-2017
+	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation']")
 	private MobileElement Investing_Trade;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Refresh' or @label='Actualiser']")//@Author - Sushil 03-Mar-2017
@@ -265,8 +265,8 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/txtSearchTitle")
 	private MobileElement searchBar;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='N�gociation']") //@Author - Sushil 29-Mar-2017
-	@AndroidFindBy(xpath = "//*[(@text='Trade' or @text='N�gociation') and @resource-id='android:id/action_bar_title']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='Négociation']") //@Author - Sushil 29-Mar-2017
+	@AndroidFindBy(xpath = "//*[(@text='Trade' or @text='Négociation') and @resource-id='android:id/action_bar_title']")
 	private MobileElement hdrTrade;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]") //@Author - Sushil 21-Mar-2017
@@ -325,8 +325,8 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(xpath = "//*[contains(@text,'Limit Price') or contains(@text,'Cours limit')]")
 	private MobileElement lblLimitPrice;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'�ch�ance')]") //@Author - Sushil 08-Feb-2017
-	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'�ch�ance')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Échéance')]") //@Author - Sushil 08-Feb-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Échéance')]")
 	private MobileElement lblgoodTill;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Shareholder Type') or contains(@label,'actionnaire')]") //@Author - Sushil 03-Mar-2017
@@ -1070,7 +1070,7 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			String tempPrice = getTestdata("Price",XLSheetUserIDs);
 			mobileAction.selectItemFromList(price,tempPrice);
-			if(tempPrice.equalsIgnoreCase("Net Debit") || tempPrice.equalsIgnoreCase("Net Credit") || tempPrice.equalsIgnoreCase("D�bit net") || tempPrice.equalsIgnoreCase("Cr�dit net"))
+			if(tempPrice.equalsIgnoreCase("Net Debit") || tempPrice.equalsIgnoreCase("Net Credit") || tempPrice.equalsIgnoreCase("Débit net") || tempPrice.equalsIgnoreCase("Crédit net"))
 			{
 				FuncEnterText(LimitPrice, getTestdata("SelectLimitPrice",XLSheetUserIDs));
 			}
@@ -1089,7 +1089,7 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.selectItemFromList(goodTill,tempGoodTill);
 			mobileAction.FuncSwipeOnce("up");
 			
-			if(tempGoodTill.equalsIgnoreCase("Specify") || tempGoodTill.equalsIgnoreCase("Pr�ciser"))
+			if(tempGoodTill.equalsIgnoreCase("Specify") || tempGoodTill.equalsIgnoreCase("Préciser"))
 			{
 				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 				selectDateSpecify_Android(leg2Option);
@@ -1270,7 +1270,7 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			String tempPrice = getTestdata("Price",XLSheetUserIDs);
 			mobileAction.selectItemFromList(price,tempPrice);
-			if(tempPrice.equalsIgnoreCase("Net Debit") || tempPrice.equalsIgnoreCase("Net Credit") || tempPrice.equalsIgnoreCase("D�bit net") || tempPrice.equalsIgnoreCase("Cr�dit net"))
+			if(tempPrice.equalsIgnoreCase("Net Debit") || tempPrice.equalsIgnoreCase("Net Credit") || tempPrice.equalsIgnoreCase("Débit net") || tempPrice.equalsIgnoreCase("Crédit net"))
 			{
 				FuncEnterText(LimitPrice, getTestdata("SelectLimitPrice",XLSheetUserIDs));
 			}
@@ -1289,7 +1289,7 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.selectItemFromList(goodTill,tempGoodTill);
 			mobileAction.FuncSwipeOnce("up");
 			
-			if(tempGoodTill.equalsIgnoreCase("Specify") || tempGoodTill.equalsIgnoreCase("Pr�ciser"))
+			if(tempGoodTill.equalsIgnoreCase("Specify") || tempGoodTill.equalsIgnoreCase("Préciser"))
 			{
 				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 				selectDateSpecify_Android(leg2Option);
@@ -1964,9 +1964,9 @@ public class TradeMultiLeg extends _CommonPage{
 			}
 			try{
 			if(!Err)
-				CL.GetReporting().FuncReport("Pass", String.format("<b> %s </b> list item selected", "Ni l�un, ni l�autre"));
+				CL.GetReporting().FuncReport("Pass", String.format("<b> %s </b> list item selected", "Ni l’un, ni l’autre"));
 			else
-				CL.GetReporting().FuncReport("Fail", String.format("<b> %s </b> list item not selected", "Ni l�un, ni l�autre"));
+				CL.GetReporting().FuncReport("Fail", String.format("<b> %s </b> list item not selected", "Ni l’un, ni l’autre"));
 			}catch(Exception e2)
 			{
 				e2.printStackTrace();

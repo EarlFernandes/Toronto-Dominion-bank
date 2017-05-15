@@ -73,8 +73,8 @@ public class MLChangeOrder extends _CommonPage {
 	@AndroidFindBy(id="android:id/action_bar_title")
 	private MobileElement backButton;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='Négociation']") //@Author - Sushil 29-Mar-2017
-	@AndroidFindBy(xpath = "//*[(@text='Trade' or @text='Négociation') and @resource-id='android:id/action_bar_title']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='NÃ©gociation']") //@Author - Sushil 29-Mar-2017
+	@AndroidFindBy(xpath = "//*[(@text='Trade' or @text='NÃ©gociation') and @resource-id='android:id/action_bar_title']")
 	private MobileElement hdrTrade;
 	
 	
@@ -189,7 +189,7 @@ public class MLChangeOrder extends _CommonPage {
 	private MobileElement naturalPrice;
 	
 	
-	@iOSFindBy(xpath = "//*[@label='Commission Schedule' or @label='Barème des commissions']")//@Author - Sushil 02-Mar-2017
+	@iOSFindBy(xpath = "//*[@label='Commission Schedule' or @label='BarÃ¨me des commissions']")//@Author - Sushil 02-Mar-2017
 	@AndroidFindBy(id="com.td:id/commissionLink")
 	private MobileElement commissionLink;
 	
@@ -208,12 +208,12 @@ public class MLChangeOrder extends _CommonPage {
 	private MobileElement shareholderType;
 	
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Échéance')]/../*[2]") //@Author - Sushil 08-Feb-2017
-	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Échéance')]/../android.widget.TextView[@index=1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Ã‰chÃ©ance')]/../*[2]") //@Author - Sushil 08-Feb-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Ã‰chÃ©ance')]/../android.widget.TextView[@index=1]")
 	private MobileElement goodTill;
 	
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de négociation']/../XCUIElementTypeSecureTextField[1]")//@Author - Sushil 03-Mar-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de nÃ©gociation']/../XCUIElementTypeSecureTextField[1]")//@Author - Sushil 03-Mar-2017
 	@AndroidFindBy(id="com.td:id/editTextPassword")
 	private MobileElement editTextPassword;
 	
@@ -222,7 +222,7 @@ public class MLChangeOrder extends _CommonPage {
 	@AndroidFindBy(id="com.td:id/importantInfoLink")
 	private MobileElement importantInfoLink;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'Aperçu de')]")//@Author - Sushil 03-Mar-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'AperÃ§u de')]")//@Author - Sushil 03-Mar-2017
 	@AndroidFindBy(id="com.td:id/orderEntryPreviewButton")
 	private MobileElement previewOrderButton;
 	
@@ -382,7 +382,7 @@ public void verifyStockOptionChangeOrder()
 		mobileAction.FuncSwipeOnce("up");
 		//String tempPrice = getTestdata("Price",XLSheetUserIDs);
 		mobileAction.selectItemFromList(price,sPrice);
-		if(sPrice.equalsIgnoreCase("Net Debit") || sPrice.equalsIgnoreCase("Net Credit") || sPrice.equalsIgnoreCase("Débit net") || sPrice.equalsIgnoreCase("Crédit net"))
+		if(sPrice.equalsIgnoreCase("Net Debit") || sPrice.equalsIgnoreCase("Net Credit") || sPrice.equalsIgnoreCase("DÃ©bit net") || sPrice.equalsIgnoreCase("CrÃ©dit net"))
 		{
 			TradeMultiLeg.get().FuncEnterText(LimitPrice, getTestdata("SelectLimitPrice",XLSheetUserIDs));
 		}
@@ -408,7 +408,7 @@ public void verifyStockOptionChangeOrder()
 		mobileAction.selectItemFromList(goodTill,sGoodTill1);
 		mobileAction.FuncSwipeOnce("up");
 		
-		if(sGoodTill1.equalsIgnoreCase("Specify") || sGoodTill1.equalsIgnoreCase("Préciser"))
+		if(sGoodTill1.equalsIgnoreCase("Specify") || sGoodTill1.equalsIgnoreCase("PrÃ©ciser"))
 		{
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 			TradeMultiLeg.get().selectDateSpecify_Android(leg2Option);
@@ -516,7 +516,7 @@ public void verifyOptionOptionChangeOrder()
 		mobileAction.FuncSwipeOnce("up");
 		//String tempPrice = getTestdata("Price",XLSheetUserIDs);
 		mobileAction.selectItemFromList(price,sPrice);
-		if(sPrice.equalsIgnoreCase("Net Debit") || sPrice.equalsIgnoreCase("Net Credit") || sPrice.equalsIgnoreCase("Débit net") || sPrice.equalsIgnoreCase("Crédit net"))
+		if(sPrice.equalsIgnoreCase("Net Debit") || sPrice.equalsIgnoreCase("Net Credit") || sPrice.equalsIgnoreCase("DÃ©bit net") || sPrice.equalsIgnoreCase("CrÃ©dit net"))
 		{
 			TradeMultiLeg.get().FuncEnterText(LimitPrice, getTestdata("SelectLimitPrice",XLSheetUserIDs));
 		}
@@ -542,7 +542,7 @@ public void verifyOptionOptionChangeOrder()
 		mobileAction.selectItemFromList(goodTill,sGoodTill1);
 		mobileAction.FuncSwipeOnce("up");
 		
-		if(sGoodTill1.equalsIgnoreCase("Specify") || sGoodTill1.equalsIgnoreCase("Préciser"))
+		if(sGoodTill1.equalsIgnoreCase("Specify") || sGoodTill1.equalsIgnoreCase("PrÃ©ciser"))
 		{
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 			TradeMultiLeg.get().selectDateSpecify_Android(leg2Option);

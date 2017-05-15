@@ -204,7 +204,7 @@ public class Interac_e_Transfer extends _CommonPage {
 	    String senderXpath = "//XCUIElementTypeStaticText[contains(@label,'" + sendermail + "')]";
 		MobileElement senderval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 				.findElement(By.xpath(senderXpath));
-		if(!senderval.isDisplayed()){
+		if(!mobileAction.verifyElementIsPresent(senderval)){
 			mobileAction.FuncClick(selectSender, "Sender");
 			mobileAction.FunCSwipeandScroll(senderval, true);
 		}
@@ -215,7 +215,7 @@ public class Interac_e_Transfer extends _CommonPage {
 		String fromAccXpath = "//XCUIElementTypeStaticText[contains(@label,'" + fromacc + "')]";
 		MobileElement fromAccval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 				.findElement(By.xpath(fromAccXpath));
-		if(!fromAccval.isDisplayed()){
+		if(!mobileAction.verifyElementIsPresent(fromAccval)){
 			mobileAction.FuncClick(fromAccount, "From Account");
 			mobileAction.FunCSwipeandScroll(fromAccval, true);
 		}

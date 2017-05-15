@@ -85,7 +85,7 @@ public class ConfirmOrder extends _CommonPage {
 	private MobileElement Action_and_quantity;
 
 
-	@iOSFindBy(xpath = "//*[@label='']")
+	@iOSFindBy(xpath = "//*[@label='Confirm']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
 	private MobileElement confirmDoNotCancel;
 

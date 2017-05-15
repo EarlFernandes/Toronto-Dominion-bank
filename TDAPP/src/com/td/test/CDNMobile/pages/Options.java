@@ -76,12 +76,12 @@ public class Options extends _CommonPage {
 	@AndroidFindBy(xpath="//android.widget.TextView[@text='Price' or @text='Cours']/../*[2]/*[1]")
 	private MobileElement price;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Échéance')]")
-	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Échéance')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Ã‰chÃ©ance')]")
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Ã‰chÃ©ance')]")
 	private MobileElement lblGoodTill;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Échéance')]/../*[2]") 
-	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Échéance')]/../*[2]/*[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Ã‰chÃ©ance')]/../*[2]") 
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Ã‰chÃ©ance')]/../*[2]/*[1]")
 	private MobileElement goodTill;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Estimated Principal') or contains(@label,'Principal estim')]") 
@@ -152,15 +152,15 @@ public class Options extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[contains(@text,'Limit Price') or contains(@text,'Cours limit')]/../*[@resource-id='com.td:id/amountEditText']")
 	private MobileElement LimitPrice;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'Trigger Price') or contains(@label,'déclench')]/../*[2]") 
-	@AndroidFindBy(xpath = "//*[contains(@text,'Trigger  Price') or contains(@text,'déclench')]/../*[@resource-id='com.td:id/amountEditText']")
+	@iOSFindBy(xpath = "//*[contains(@label,'Trigger Price') or contains(@label,' DÃ©clenchement')]/../*[2]") 
+	@AndroidFindBy(xpath = "//*[contains(@text,'Trigger  Price') or contains(@text,' DÃ©clenchement')]/../*[@resource-id='com.td:id/amountEditText']")
 	private MobileElement TriggerPrice;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Shareholder') or contains(@label,'actionnaire')]/../*[2]") 
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Shareholder') or contains(@text,'actionnaire')]/../android.widget.TextView[@index=1]")
 	private MobileElement shareholderType;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'Aperçu de')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'AperÃ§u de l')]")
 	@AndroidFindBy(id="com.td:id/orderEntryPreviewButton")
 	private MobileElement previewOrderButton;
 	
