@@ -93,10 +93,6 @@ public class OrderReciept extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='Limit Price']")
 	private MobileElement limitprice;
-
-/*	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='ReâˆšÃŸu']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Receipt']")
-	private MobileElement receipt_header;*/
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'Receipt') or contains(@label,'Reçu')]") //@Author - Sushil 18-Apr-2017
 	@AndroidFindBy(xpath = "//*[contains(@text,'Receipt') or contains(@text,'Reçu')]")
@@ -247,14 +243,14 @@ public class OrderReciept extends _CommonPage {
 			Decorator();
 			mobileAction.FuncClick(btnorders, "Orders");
 		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
-
-			e.printStackTrace();
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
-
-			e.printStackTrace();
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -730,7 +726,7 @@ public class OrderReciept extends _CommonPage {
 	private MobileElement OrderButton;
 
 //	@iOSFindBy(xpath = "//*[@label='En cours']")
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='N�gociation']")//@Author - Shahbaaz 17-Apr-2017
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']")//@Author - Shahbaaz 17-Apr-2017
 //	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_trade' and @text='TRADE']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_trade']")//@Author - Sushil 18-Apr-2017
 	private MobileElement tradeButton;
@@ -742,9 +738,6 @@ public class OrderReciept extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_subvalue']")
 	private MobileElement timeStampZone;
 
-/*	@iOSFindBy(xpath = "//*[@label='Ordre transmis avec succâˆšÂ®s.']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/message' and @text='Order sent successfully']")
-	private MobileElement success_message;*/
 	
 	@iOSFindBy(xpath = "//*[@label='Order sent successfully' or contains(@label,'Ordre transmis avec')]") //@Author - Sushil 18-Apr-2017
 	@AndroidFindBy(xpath = "//*[@text='Order sent successfully' or contains(@text,'Ordre transmis avec')]")
@@ -886,9 +879,9 @@ public class OrderReciept extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 
-					+ " @ Delta de d�clenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
+					+ " @ Delta de déclenchement" + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
 					+ " $ Delta limite " + df.format(Double.parseDouble(limitDelta_value)).replace(".", ",")
-					+ " $ �ch�ance " + goodXL;
+					+ " $ Échéance " + goodXL;
 			System.out.println(orderValue);
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
@@ -919,8 +912,8 @@ public class OrderReciept extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
-					+ " @ Delta de d�clenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
-					+ " $ �ch�ance " + goodXL;
+					+ " @ Delta de déclenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
+					+ " $ Échéance" + goodXL;
 			System.out.println(orderValue);
 
 		} else {
@@ -952,8 +945,8 @@ public class OrderReciept extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
-					+ " @ D�clencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
-					+ " $ limite " + df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ �ch�ance "
+					+ " @ Déclencheur  " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
+					+ " $ limite " + df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance"
 					+ goodXL;
 
 		} else {
@@ -988,8 +981,8 @@ public class OrderReciept extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 
-					+ " @ D�clencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
-					+ " $ �ch�ance " + goodXL;
+					+ " @ Déclencheur" + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
+					+ " $ Échéance" + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
@@ -1020,7 +1013,7 @@ public class OrderReciept extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value + " @ "
-					+ df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ �ch�ance " + goodXL;
+					+ df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance" + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value + " @ $"
@@ -1051,7 +1044,7 @@ public class OrderReciept extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " @ " + price_value
 
-					+ " �ch�ance " + goodXL;
+					+ " Échéance " + goodXL;
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " @ " + price_value
 
@@ -1091,26 +1084,26 @@ public class OrderReciept extends _CommonPage {
 		System.out.println(price_value);
 		switch (price_value) {
 		case "Market":
-		case "Cours du march�":
+		case "Cours du marché":
 			validateMarketBuy();
 			break;
 		case "Limit":
-		case "Cours limit�":
+		case "Cours limité":
 
 			validateLimitBuy();
 			break;
 		case "Stop Market":
-		case "Cours du march� stop":
+		case "Cours du marché stop":
 
 			validateStopMarket();
 			break;
 		case "Stop Limit":
-		case "Cours limit� stop":
+		case "Cours limité stop":
 
 			validateStopLimitBuy();
 			break;
 		case "Trailing Stop Market":
-		case "Stop suiveur march�":
+		case "Stop suiveur marché":
 
 			validateTrailingStopMarketBuy();
 			break;
@@ -1124,6 +1117,7 @@ public class OrderReciept extends _CommonPage {
 
 		receipt();
 	}
+
 
 	/**
 	 * This method will Validate the report as pass or fail

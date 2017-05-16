@@ -95,15 +95,15 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtSpecialAction' and @text='Cancel']")
     private MobileElement senderCancel;
 
-    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Account']")
     @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_from_account']")
     private MobileElement accountNum;
 
-    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='-Amount']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccountAmountTransfer]")
     private MobileElement totalAmount;
 
-    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Account']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_account']")
     private MobileElement accountName;
 

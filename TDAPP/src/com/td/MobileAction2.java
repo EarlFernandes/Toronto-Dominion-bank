@@ -1835,7 +1835,7 @@ public class MobileAction2 extends CommonLib {
 
 		try {
 			if (elementToFind.isDisplayed() && !value.isEmpty()) {
-				GetReporting().FuncReport("Pass", "The text '" + value + "' is Displayed");/*****************JA
+				GetReporting().FuncReport("Pass", "The text '" + value + "' is Displayed");
 			}
 		} catch (Exception e) {
 			try {

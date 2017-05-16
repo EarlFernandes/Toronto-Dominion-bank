@@ -258,7 +258,7 @@ public class MutualFunds extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText")
 	private MobileElement neither;
 
-	String quant = "//android.widget.EditText[@resource-id='com.td:id/amountEditText'and @text='Quantity,']";
+	String quant = "//android.widget.EditText[@resource-id='com.td:id/amountEditText'and contains(@text,'Quantity')]";
 
 	@iOSFindBy(xpath = "//*[@label='In progress' or @label='En cours']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading' or @text='En cours']")
@@ -408,7 +408,7 @@ public class MutualFunds extends _CommonPage {
 	private MobileElement includesComissionValue;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Estimated Principal') or contains(@label,'Principal estim')]/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Estimated Principal' or @text='Principal estim�']/following-sibling::*[1]/android.widget.TextView")//@Author - Sushil 21-Apr-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Estimated Principal' or contains(@text,'Principal estim')]/following-sibling::*[1]/android.widget.TextView")//@Author - Sushil 21-Apr-2017
 	private MobileElement estimatedPrincipal;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Commission']/../*[2]")
@@ -416,7 +416,7 @@ public class MutualFunds extends _CommonPage {
 	private MobileElement estimatedComission;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Estimated Total') or contains(@label,'Total estim')]/../*[2]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Estimated Total' or contains(@text,'Total estim�')]/following-sibling::*[1]/android.widget.TextView")//@Author - Sushil 21-Apr-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Estimated Total' or contains(@text,'Total estim')]/following-sibling::*[1]/android.widget.TextView")//@Author - Sushil 21-Apr-2017
 	private MobileElement estimatedTotal;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Important Information') or contains(@value,'Important Information') or contains(@label,'Renseignements importants')]")
@@ -434,7 +434,7 @@ public class MutualFunds extends _CommonPage {
 	@iOSFindBy(xpath = "//*[contains(@label,'Ordres') or  contains(@label,'ORDERS')]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_order' and contains(@text,'ORDERS')]")
 	private MobileElement order_widget;
-	@iOSFindBy(xpath = "//*[contains(@label,'N�gociation') or  contains(@label,'TRADE')]")
+	@iOSFindBy(xpath = "//*[contains(@label,'Négociation') or  contains(@label,'TRADE')]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_trade' and contains(@text,'TRADE')]")
 	private MobileElement trade_widget;
 

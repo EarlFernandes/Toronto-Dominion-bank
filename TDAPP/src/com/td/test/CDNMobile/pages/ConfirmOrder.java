@@ -917,9 +917,9 @@ public class ConfirmOrder extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 
-					+ " @ Delta de d�clenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
+					+ " @ Delta de déclenchement" + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
 					+ " $ Delta limite " + df.format(Double.parseDouble(limitDelta_value)).replace(".", ",")
-					+ " $ �ch�ance " + goodXL;
+					+ " $ Échéance" + goodXL;
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 					+ " @ Trigger Delta $" + df.format(Double.parseDouble(triggerDelta_value)) + " Limit Delta $"
@@ -948,8 +948,8 @@ public class ConfirmOrder extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
-					+ " @ Delta de d�clenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
-					+ " $ �ch�ance " + goodXL;
+					+ " @ Delta de déclenchement  " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
+					+ " $ Échéance" + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
@@ -978,8 +978,8 @@ public class ConfirmOrder extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
-					+ " @ D�clencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
-					+ " $ limite " + df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ �ch�ance "
+					+ " @ Déclencheur" + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
+					+ " $ limite " + df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance  "
 					+ goodXL;
 
 		} else {
@@ -1013,8 +1013,8 @@ public class ConfirmOrder extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 
-					+ " @ D�clencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
-					+ " $ �ch�ance " + goodXL;
+					+ " @ Déclencheur  " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
+					+ " $ Échéance" + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
@@ -1043,7 +1043,7 @@ public class ConfirmOrder extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value + " @ "
-					+ df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ �ch�ance " + goodXL;
+					+ df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance" + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value + " @ $"
@@ -1073,7 +1073,7 @@ public class ConfirmOrder extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " @ " + price_value
 
-					+ " �ch�ance " + goodXL;//@Author - Sushil 19-Apr-2017 Modified
+					+ " Échéance" + goodXL;//@Author - Sushil 19-Apr-2017 Modified
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " @ " + price_value
 
@@ -1148,26 +1148,26 @@ public class ConfirmOrder extends _CommonPage {
 
 		switch (price_value) {
 		case "Market":
-		case "Cours du march�":
+		case "Cours du marché":
 			validateMarketBuy();
 			break;
 		case "Limit":
-		case "Cours limit�":
+		case "Cours limité":
 
 			validateLimitBuy();
 			break;
 		case "Stop Market":
-		case "Cours du march� stop":
+		case "Cours du marché stop":
 
 			validateStopMarket();
 			break;
 		case "Stop Limit":
-		case "Cours limit� stop":
+		case "Cours limité stop":
 
 			validateStopLimitBuy();
 			break;
 		case "Trailing Stop Market":
-		case "Stop suiveur march�":
+		case "Stop suiveur marché":
 
 			validateTrailingStopMarketBuy();
 			break;
@@ -1179,6 +1179,8 @@ public class ConfirmOrder extends _CommonPage {
 
 		}
 	}
+
+
 
 	
 	/**
