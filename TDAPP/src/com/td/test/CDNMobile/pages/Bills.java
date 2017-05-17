@@ -100,6 +100,7 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
+	@iOSFindBy(accessibility = "PAYBILL_VIEW_DATE_VALUE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtDate']")
 	private MobileElement datePicker;
 
@@ -417,13 +418,13 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				final MobileElement scheduledPayment = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + getTestdata("Payee") + "']", "Scheduled payment");
+				final MobileElement scheduledPayment = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("Payee") + "')]", "Scheduled payment");
 				scheduledPayment.click();
-				final MobileElement header = mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE']", "Bill Details title");
-				mobileAction.verifyTextEquality(header.getText(), mobileAction.getAppString(""));
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='RECEIPTHEADER_TITLE' and @value='" + mobileAction.getAppString("str_Scheduled_Bill") + "']", "Scheduled Payment");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='RECEIPTHEADER_MESSAGE' and @value='" + mobileAction.getAppString("str_Active") + "']", "Active");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='RECEIPTHEADER_CONFIRM' and contains(@value, '" + mobileAction.getAppString("receipt_confirmation") + "')]", "Confirmation #");
+				//final MobileElement header = mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE']", "Bill Details title");
+				//mobileAction.verifyTextEquality(header.getText(), mobileAction.getAppString(""));
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='ENHANCED_RECEIPT_TITLE' and @label='" + mobileAction.getAppString("billsNavRowUpcomingBills") + "']", "Upcoming Payment");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='ENHANCED_RECEIPT_MESSAGE' and @value='" + mobileAction.getAppString("str_Active") + "']", "Active");
+				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value, '" + mobileAction.getAppString("receipt_confirmation") + "')]", "Confirmation #");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("payBillConfirmFieldHeaderFromAccount").replaceAll(" ", "\n") + "']", "From Account");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("payBillConfirmFieldHeaderDate") + "']", "Date");
@@ -594,7 +595,6 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				datePicker = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='-" + mobileAction.getAppString("payBillConfirmFieldHeaderDate") + "']", "Date object");
 				mobileAction.verifyTextEquality(bills_header.getText(), mobileAction.getAppString("pay_bill"));
 				mobileAction.verifyTextEquality(payeePayBillCad.getText(), mobileAction.getAppString("payee"));
 				// FIXME: once may adds this one, uncomment

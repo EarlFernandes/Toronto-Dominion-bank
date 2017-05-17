@@ -22,6 +22,10 @@ public class AddPayee extends _CommonPage {
 	
 	private static AddPayee AddPayee;
 	
+	// FIXME: Add id for this
+	@iOSFindBy(xpath = "//*[@label='Done' or @label='完成']")
+	private MobileElement done;
+	
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
@@ -257,7 +261,7 @@ public class AddPayee extends _CommonPage {
 	private void clickOnFirstUSPayeeFound() {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				final MobileElement payee = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[contains(@label, '" + getTestdata("Payee").toUpperCase() + "')]", "click payee");
+				final MobileElement payee = mobileAction.verifyElementUsingXPath("//XCUIElementTypeLink[contains(@label, '" + getTestdata("Payee").toUpperCase() + "')]", "click payee");
 				payee.click();
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("add_us_payee_title") + "']", "Add U.S. Payee title");				
@@ -478,9 +482,9 @@ public class AddPayee extends _CommonPage {
 	private void searchForPayee() throws IOException {
 		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 			try {
-				final MobileElement searchForPayee = mobileAction.verifyElementUsingXPath("//XCUIElementTypeTextField[@name='" + mobileAction.getAppString("add_cdn_payee_hint") + "']", "Search for payee");
+				final MobileElement searchForPayee = mobileAction.verifyElementUsingXPath("//XCUIElementTypeTextField", "Search for payee");
 				mobileAction.FuncSendKeys(searchForPayee, getTestdata("Payee"));
-				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClick(done, "Done");
 			} catch (NoSuchElementException | InterruptedException | IOException e) {
 				try {
 					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());

@@ -1609,7 +1609,7 @@ public class Between_My_accounts extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmFromAccount") + "']", "from account");
+				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='BETWEENMYACCOUNTS_FROM' and @label='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmFromAccount") + "']", "from account");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("from_account_hint") + "']", "from account hint");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmToAccount") + "']", "to account");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_transfers_select_to_account") + "']", "to account hint");
@@ -1702,9 +1702,9 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmToAccount") + "']", "Receipt To");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value, '" + mobileAction.getAppString("receipt_amount") + "')]", "amount");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value, '" + mobileAction.getAppString("transfersFXExchangeRate") + "')]", "exchange rate");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("receipt_home") + "']", "Cancel");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("receipt_another_transfer") + "']", "Make another transfer");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("receipt_transfers") + "']", "Finish Transfer");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='" + mobileAction.getAppString("receipt_home") + "']", "Cancel");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='" + mobileAction.getAppString("receipt_another_transfer") + "']", "Make another transfer");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='" + mobileAction.getAppString("receipt_transfers") + "']", "Finish Transfer");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("actionBarHeadingReceipt") + "']", "Receipt title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/thank_you' and @text='" + mobileAction.getAppString("ThankYou") + "']", "Thank you!");

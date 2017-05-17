@@ -321,7 +321,7 @@ try {
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("from") + "']", "From");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("eTransferConfirmRecipient") + "']", "Recipient");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("eTransferAmountLabel") + "']", "Amount");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("eTransferMessageLabel") + "']", "Message");
+				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("eTransferMessageLabel") + "']", "Message");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("etransfer_warning_label") + "']", "Warning");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("eTransferConfirmCancelButton") + "']", "Close button");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("eTransferConfirmSendMoneyButton") + "']", "Send button");
@@ -417,7 +417,7 @@ try {
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='" + mobileAction.getAppString("receipt_home") + "']", "HOME button");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='" + mobileAction.getAppString("receipt_another_etransfer") + "']", "ETRANSFERS button");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='" + mobileAction.getAppString("receipt_transfers") + "']", "TRANSFERS button");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='" + mobileAction.getAppString("receipt_pending_transfers") + "']", "PENDING TRANSFERS button");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='" + mobileAction.getAppString("globalStaticContentQuickLinksViewCancelETransfers") + "']", "PENDING TRANSFERS button");
 
 			} else {
 				fillInInteracETransferForm();
@@ -669,6 +669,7 @@ try {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				cancelFirstInteracETransfer();
+				Thread.sleep(1000);
 				MobileElement desc = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='INTERAC_RECLAIM_DES']", "Reclaim description");
 				MobileElement depositTo = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='INTERAC_RECLAIM_DEPOSIT']", "Deposit To");
 				MobileElement continueBtn = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@name='INTERAC_RECLAIM_CONTINUE']", "Continue");
@@ -682,7 +683,7 @@ try {
 				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@resource-id='com.td:id/deposit_account' and @text='" + mobileAction.getAppString("TransfersReclaimDepositToHint") + "']", "Deposit To hint");
 				mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/btn_continue' and @text='" + mobileAction.getAppString("TransfersReclaimDepositToContinueButton") + "']", "Continue");
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {
@@ -697,7 +698,7 @@ try {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// Get to cancel e-transfer screen, choose first interac e-transfer to cancel
-				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + getTestdata("RecipientName") + "']", ""), "Recipient to cancel");
+				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("RecipientName") + "')]", ""), "Recipient to cancel");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@label='" + mobileAction.getAppString("eTransferViewCancelCancelButton") + "']", "Cancel interac e-transfer title");
 			} else {
@@ -735,11 +736,11 @@ try {
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("interacEtransferCancelHeader").replaceAll("\\<.*?>","") + "']", "Transfer Details title");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("e_transfer_str").replaceAll("\\<.*?>","") + "']", "Interac e-Transfers title");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("IMT_SNT") + "']", "Sent");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("receipt_confirmation") + "']", "Confirmation #");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value, '" + mobileAction.getAppString("receipt_confirmation") + "')]", "Confirmation #");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("eTransferViewCancelPaymentDate") + "']", "Date Sent");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("eTransferViewCancelRecipient") + "']", "Recipient");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("eTransfersReceiveAnswerAmount") + "']", "Amount");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("etransfer_cancellation_fee_warning") + "']", "Please note");
+				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("etransfer_cancel_warning") + "']", "Please note");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("eTransferViewCancelCancelButton").replaceAll("\\<.*?>","") + "']", "Cancel");
 				// FIXME: How to get date headers here?
 				//				mobileAction.verifyDateFormat(payDate.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);

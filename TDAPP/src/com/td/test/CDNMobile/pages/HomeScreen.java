@@ -128,7 +128,7 @@ public class HomeScreen extends _CommonPage {
 	private MobileElement privacy;
 
 	// FIXME: Ask may to add this
-	@iOSFindBy(xpath = "//*[@label='背面' or @label='Back']")
+	@iOSFindBy(xpath = "//*[@label='背面' or @label='返回' or @label='Back']")
 	private MobileElement back_button;
 
 	@iOSFindBy(xpath = "//*[@label='Locations']")
@@ -334,7 +334,7 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Decorator();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				newAccount = mobileAction.verifyElementUsingXPath("//*[@name='" + mobileAction.getAppString("investing_open_account") + "']", "Opne a bank account");
+				newAccount = mobileAction.verifyElementUsingXPath("//*[@name='" + mobileAction.getAppString("str_banking_cross_sell_message") + "']", "Opne a bank account");
 			} else {
 				newAccount = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("str_banking_cross_sell_message") + "']", "Opne a bank account");
 			}
@@ -951,6 +951,16 @@ public class HomeScreen extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				final String accounts = mobileAction.getAppString("easy_access_accounts").toLowerCase().substring(0,1).toUpperCase() + mobileAction.getAppString("str_Accounts").toLowerCase().substring(1);
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + accounts + "']", "Accounts");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfers_str") + "']", "Transfers");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("bills_str") + "']", "Bills");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + StringLookup.lookupString(currentLocale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing Accounts");
+				final String xPathFooter = "//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("contact_str") + "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("dashboard_nearest_branch_lbl") + "' or @value='" + mobileAction.getAppString("dashboard_branch_lbl") + "']", "Nearest Branch");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("markets_str") + "']", "Markets");
+
 			} else {
 				final String accounts = mobileAction.getAppString("easy_access_accounts").toLowerCase().substring(0,1).toUpperCase() + mobileAction.getAppString("easy_access_accounts").toLowerCase().substring(1);
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + accounts + "']", "Accounts");

@@ -145,7 +145,8 @@ public class Accounts extends _CommonPage {
 	@iOSFindBy(accessibility = "CROSSSELL_CALL")
 	private MobileElement callNumber;
 
-	
+	@iOSFindBy(accessibility = "CROSSSELL_MESSAGE")
+	private MobileElement messageBody;
 
 	int i = 1;
 
@@ -663,10 +664,11 @@ public class Accounts extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyTextEquality(investingHeader.getText(), mobileAction.getAppString("str_Investing"));
-				mobileAction.verifyTextEquality(openADirectInvestingAccount.getText(), mobileAction.getAppString("investing_open_account"));
-				mobileAction.verifyTextEquality(goToWebBroker.getText(), mobileAction.getAppString("str_go_to_webbroker"));
-				mobileAction.verifyTextContains(callNumber, mobileAction.getAppString("str_webbroker_phone_cross_sell"));
+				mobileAction.verifyTextEquality(investingHeader.getText(), mobileAction.getAppString("str_Banking"));
+				mobileAction.verifyTextEquality(openADirectInvestingAccount.getText(), mobileAction.getAppString("str_banking_cross_sell_message"));
+				mobileAction.verifyTextEquality(messageBody.getText(), mobileAction.getAppString("str_banking_cross_sell_message_detail"));
+				mobileAction.verifyTextEquality(goToWebBroker.getText(), mobileAction.getAppString("securityQuestionMFASetupRequiredButtonGoToEW"));
+				mobileAction.verifyTextContains(callNumber, mobileAction.getAppString("call"));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("str_Banking") + "']", "Banking title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_banking_cross_sell_message") + "']", "Open a bank account");

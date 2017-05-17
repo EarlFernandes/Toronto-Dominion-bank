@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -47,7 +48,7 @@ public class Managee_Payee extends _CommonPage {
 	private MobileElement managePayees;
 	
 	// FIXME: Need accessibility id here
-	@iOSFindBy(xpath="//*[@label='Add Canadian Payee' or @label='添加加拿大收款人' or @label='Add U.S. Payee']")
+	@iOSFindBy(xpath="//*[@label='Add Canadian Payee' or @label='添加加拿大收款人' or @label='Add U.S. Payee' or @label='添加美國收款人' or @label='添加美国收款人']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement addPayee;
 	
@@ -84,7 +85,7 @@ public class Managee_Payee extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("billsNavRowManagePayee") + "']", "Manage Payees title");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("country_all") + "']", "All");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("canada") + "']", "Canada");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("country_us") + "']", "US");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("us") + "']", "US");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeLink[@label='" + mobileAction.getAppString("str_my_payees") + "']", "My Payees");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("billsNavRowManagePayee") + "']", "Manage Payees title");
@@ -170,7 +171,12 @@ public class Managee_Payee extends _CommonPage {
 	private void clickSpecificPayee() {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS Elements
+				String from_accountNo = "//XCUIElementTypeLink[@label='" + getTestdata("Payee") + "']";
+				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+                        .findElement(By.xpath(from_accountNo));
+				fromAccountval.click();
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("mng_payee_view_title") + "']", "View title");
+
 			} else {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
@@ -180,7 +186,7 @@ public class Managee_Payee extends _CommonPage {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("mng_payee_view_title") + "']", "View title");
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			// Switch back to native to get proper screenshots
 			mobileAction.switchAppiumContext("NATIVE_APP");
 			try {
@@ -212,7 +218,7 @@ public class Managee_Payee extends _CommonPage {
 					mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + payeeCountry.toUpperCase() + "']", "Payee country");
 				}
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("canada") + "']", "Canada");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("country_us") + "']", "US");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("us") + "']", "US");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("add_payee_search_instruction") + "']", "Please enter");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("add_payee_title") + "']", "Add Payee title");
@@ -329,7 +335,7 @@ public class Managee_Payee extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.verifyElementIsDisplayed(managePayees,"Manage Payees Header");
-				final MobileElement usElement = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("country_us") + "']", "US banner button");
+				final MobileElement usElement = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("us") + "']", "US banner button");
 				usElement.click();
 				mobileAction.FuncClick(addPayee,"Add US Payee");
 				Thread.sleep(10000);

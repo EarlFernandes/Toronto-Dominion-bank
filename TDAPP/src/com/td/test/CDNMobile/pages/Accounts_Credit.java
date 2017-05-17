@@ -363,7 +363,7 @@ public class Accounts_Credit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @text='" + mobileAction.getAppString("credit_str") + "']", "Credit title");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("credit_str") + "']", "Credit title");
 				// FIXME: Get proper app strings here
 //				mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='" + mobileAction.getAppString("str_PayBillsMakePayment") + " or @text='" + mobileAction.getAppString("str_PAY_BILL") + "']", "Pay button");
 //				mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='" + mobileAction.getAppString("str_TRANSFER") + "']", "transfer button");

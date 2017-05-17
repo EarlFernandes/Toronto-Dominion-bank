@@ -278,7 +278,7 @@ public class MobileDeposit extends _CommonPage {
 				}
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("mobiledeposit_successfeature_str_depositreceipts") + "']", "Deposit Cheque History");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='DEPOSIT_RECEIPT_VIEW_HEADER' and @label='" + mobileAction.getAppString("mobiledeposit_receipt_message") + "']", "Warning msg");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='DEPOSIT_RECEIPT_VIEW_FOOTER' and @label='" + mobileAction.getAppString("mobiledeposit_loc_not_available_temporary_disclaimer") + "']", "disclaimer");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='DEPOSIT_RECEIPT_VIEW_FOOTER']", "disclaimer");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("ActionBar_MobileDepositReceipt") + "']", "Deposit Cheque History");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDepositReceipt_Header_Description") + "']", "Warning msg");
@@ -309,7 +309,7 @@ public class MobileDeposit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("") + "']", "Header");
+				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("") + "']", "Header");
 				mobileAction.verifyTextEquality(amount.getText(), mobileAction.getAppString("mobiledeposit_depositcheque_str_amount"));
 				mobileAction.verifyTextEquality(toAccount.getText(), mobileAction.getAppString("mobiledeposit_depositcheque_str_history_toaccount"));
 				mobileAction.verifyTextEquality(toAccountHint.getText(), mobileAction.getAppString("mobiledeposit_depositcheque_str_selectAccount"));
@@ -449,7 +449,7 @@ public class MobileDeposit extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='DEPOSIT_RECEIPTS_DETAIL_DATE' and @label='" + mobileAction.getAppString("mobiledeposit_depositcheque_str_history_DateTime") + "']", "Date and time");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='DEPOSIT_RECEIPTS_DETAIL_DATE' and @label='" + mobileAction.getAppString("mobiledeposit_depositcheque_str_history_DateTime") + "']", "Date and time");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='DEPOSIT_RECEIPTS_DETAIL_CHEQUE' and @label='" + mobileAction.getAppString("mobiledeposit_depositcheque_str_chequefront") + "']", "Cheque Front");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("mobiledeposit_depositreciept_viewAccountHistory") + "']", "View acocunt history button");
+				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("mobiledeposit_depositreciept_viewAccountHistory") + "']", "View acocunt history button");
 			} else {
 				MobileElement chequeToSelect = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mobile_deposit_receipt_account_name' and @index='0']", "Cheque to Select");
 				chequeToSelect.click();
