@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td.MainScreen;
 import com.td.MobileAction2;
+import com.td.StringLookup;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -108,7 +109,8 @@ public class ManageRecipients extends _CommonPage {
 			WebElement contactsRecipients = null;
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				final MobileElement iOSContactsRecipient = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("add_contact_alert_title") + "']", "Recipients from Contacts button");
+				iOSContactsRecipient.click();
 			} else {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				contactsRecipients = mobileAction.verifyWebElementUsingXPath("//div[@class='add-recipient']", "Recipients from Contacts button");
@@ -134,7 +136,9 @@ public class ManageRecipients extends _CommonPage {
 	public void clickEditRecipient() {
 		Decorator();
 		try {
-
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				editRecipient = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label = '" + mobileAction.getAppString("mng_payee_modify_title") + "']", "Edit button");
+			} 
 			mobileAction.FuncClick(editRecipient, "Edit Recipient");
 			mobileAction.waitForElementToVanish(progress_bar);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -277,7 +281,8 @@ public class ManageRecipients extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + StringLookup.lookupString(StringLookup.ALLOW_CONTACTS_ACCESS_HEADER, currentLocale) + "']", "dialog title");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + StringLookup.lookupString(StringLookup.ALLOW_CONTACTS_ACCCESS_BODY, currentLocale) + "']", "dialog msg");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("add_contact_alert_title") + "']", "dialog title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text=\"" + mobileAction.getAppString("add_contact_alert_message") + "\"]", "dialog msg");
@@ -388,11 +393,20 @@ public class ManageRecipients extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
+				clickSpecificRecipient();
+				clickEditRecipient();
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@label='" + mobileAction.getAppString("modify_rcp_title") + "']", "Edit title");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[contains(@label, '" + mobileAction.getAppString("str_security_answer") + "')]", "Answer");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeTextField[@value='" + mobileAction.getAppString("str_enter_the_answer") + "']", "Answer confirm");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("modify_phonecontacts_heading") + "']", "phone contacts");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_rcp_name") + "']", "name");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_rcp_email1") + "']", "email");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_security_question") + "']", "security q");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_delete_recipient1") + "']", "delete button");
 			} else {
 				clickSpecificRecipient();
 				clickEditRecipient();
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("mng_payee_modify_title") + "']", "View title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("mng_payee_modify_title") + "']", "Edit title");
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				final WebElement update = mobileAction.verifyWebElementUsingXPath("//div[@class='add-recipient']/div[@class='heading ng-binding']", "Update");
