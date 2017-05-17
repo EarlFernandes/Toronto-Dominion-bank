@@ -7,6 +7,14 @@ import org.apache.commons.lang3.StringUtils;
 
 public class MainScreen extends _CommonPage {
 
+	// ***** LOCAL EXECUTION PARAMETERS *****
+	// Change this parameter if doing local execution to point to your appium server instance
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.27.23.62:4734/wd/hub";
+	// Change this parameter to point to the correct apk in Setup.xls for Android
+	private static final String APP_ANDROID = "APP_ANDROID";
+	// Change this parameter to point to the correct ipa in Setup.xls for ios
+	private static final String APP_IOS = "APP_IOS";
+	
 	String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env", "Amount",
 			"Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount", "AccessCard",
 			"Description", "Payee", "Timeout", "SecondTimeout", "MerchantName", "Price", "Quantity",
@@ -33,10 +41,16 @@ public class MainScreen extends _CommonPage {
 
 		readSheet();
 
+		// Jenkins only params
 		final String appiumPath = CL.getTestDataInstance().getAppiumPath();
+		final String targetEnv = CL.getTestDataInstance().targetEnvironment;
 
-		if (!StringUtils.isEmpty(appiumPath)) { // Jenkins execution
-			CL.getTestDataInstance().SetAppFilePath(CL.getTestDataInstance().targetEnvironment);
+		if (!StringUtils.isEmpty(appiumPath) && !StringUtils.isEmpty(targetEnv)) { // Jenkins execution
+			if (CL.getTestDataInstance().getAppFilePath() == null
+					|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
+				CL.getTestDataInstance().SetAppFilePath(
+						CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", targetEnv));
+			}
 			CL.mobileApp(appiumPath);
 		} else { // Local execution
 			try {
@@ -44,17 +58,13 @@ public class MainScreen extends _CommonPage {
 						|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_ANDROID"));
-					} else {
+								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_ANDROID));
+					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
+								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS));
 					}
 				}
-				CL.mobileApp("http://49.27.23.62:4734/wd/hub"); // Change this
-																// parameter to
-																// point to the
-																// correct
-																// appium server
+				CL.mobileApp(LOCAL_EXECUTION_APPIUM_SERVER); 
 
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
