@@ -13,6 +13,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
 
+@Deprecated
 public class MainScreenPNP extends _CommonPage {
 
 	@AndroidFindBy(className = "android.widget.Button")
