@@ -1001,7 +1001,7 @@ public class TradeMultiLeg extends _CommonPage{
 			if(getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Cancel") || getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Annuler"))
 			{
 				mobileAction.FuncClick(selectedExpiryListItem, "selectedExpiryListItem");
-				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+/*				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 				{
 					try{
 					CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(4).click();
@@ -1022,7 +1022,31 @@ public class TradeMultiLeg extends _CommonPage{
 					{
 						CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
 					}
-				}
+				}*/
+				try{
+		             String sixmonth = "";
+		             int size1 = CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).size();
+		             
+		             for(int i=0; i<size1; i++)
+		             {
+		                    CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText();
+		                    
+		                    sixmonth = mobileAction.FuncGetValByRegx(CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText().split("-")[1],"([0-9]+)");
+		                    if(Integer.parseInt(sixmonth) >= 183)
+		                    {
+		                           CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).click();
+		                           CL.GetReporting().FuncReport("Pass", "Expiry list item greater than 183 days selected.");
+		                           break;
+		                    }
+		             }      
+		
+		             }
+             catch(Exception e)
+             {
+                    CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
+             }
+
+
 				//mobileAction.FuncClick(expiryItem183Days, "expiryItem183Days");
 			}
 			else
@@ -1118,7 +1142,7 @@ public class TradeMultiLeg extends _CommonPage{
 			if(getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Cancel") || getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Annuler"))
 			{
 				mobileAction.FuncClick(selectedExpiryListItem, "selectedExpiryListItem");
-				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+/*				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 				{
 					try{
 					CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(4).click();
@@ -1139,7 +1163,29 @@ public class TradeMultiLeg extends _CommonPage{
 					{
 						CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
 					}
-				}
+				}*/
+				try{
+		             String sixmonth = "";
+		             int size1 = CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).size();
+		             
+		             for(int i=0; i<size1; i++)
+		             {
+		                    CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText();
+		                    
+		                    sixmonth = mobileAction.FuncGetValByRegx(CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText().split("-")[1],"([0-9]+)");
+		                    if(Integer.parseInt(sixmonth) >= 183)
+		                    {
+		                           CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).click();
+		                           CL.GetReporting().FuncReport("Pass", "Expiry list item greater than 183 days selected.");
+		                           break;
+		                    }
+		             }      
+		
+		             }
+            catch(Exception e)
+            {
+                   CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
+            }
 				//mobileAction.FuncClick(expiryItem183Days, "expiryItem183Days");
 			}
 			else
@@ -1199,7 +1245,7 @@ public class TradeMultiLeg extends _CommonPage{
 			if(getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Cancel") || getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Annuler"))
 			{
 				mobileAction.FuncClick(selectedExpiryListItem, "selectedExpiryListItem");
-				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+/*				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 				{
 					try{
 					CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(4).click();
@@ -1221,7 +1267,29 @@ public class TradeMultiLeg extends _CommonPage{
 						CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
 					}
 				}
-				//mobileAction.FuncClick(expiryItem183Days, "expiryItem183Days");
+*/				//mobileAction.FuncClick(expiryItem183Days, "expiryItem183Days");
+				try{
+		             String sixmonth = "";
+		             int size1 = CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).size();
+		             
+		             for(int i=0; i<size1; i++)
+		             {
+		                    CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText();
+		                    
+		                    sixmonth = mobileAction.FuncGetValByRegx(CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText().split("-")[1],"([0-9]+)");
+		                    if(Integer.parseInt(sixmonth) >= 183)
+		                    {
+		                           CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).click();
+		                           CL.GetReporting().FuncReport("Pass", "Expiry list item greater than 183 days selected.");
+		                           break;
+		                    }
+		             }      
+		
+		             }
+	            catch(Exception e)
+	            {
+	                   CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
+	            }
 			}
 			else
 			{
