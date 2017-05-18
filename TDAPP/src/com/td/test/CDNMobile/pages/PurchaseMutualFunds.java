@@ -32,6 +32,14 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/selectedText")
 	private MobileElement fund_dropdown_list;
 	
+	@iOSFindBy(xpath = "//*[@label='Mutual Funds' or @label='Sélectionner un fonds']")
+	@AndroidFindBy(id = "com.td:id/caption")
+	private MobileElement fund_dropdown_caption;
+	
+	@iOSFindBy(xpath = "//*[@label='Mutual Funds' or @label='Sélectionner un fonds']")
+	@AndroidFindBy(id = "com.td:id/captionTextView")
+	private MobileElement amount_caption;
+	
 	@iOSFindBy(xpath = "//*[@label='Cancel' or @label='Annuler']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/dialog_button']")
 	private MobileElement cancel_button;
@@ -40,8 +48,28 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='From Account']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']")
 	private MobileElement from_account_name;
 	
+	@iOSFindBy(xpath = "//*[@label='From Account' or @label='Avis']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='From Account']")
+	private MobileElement from_account_caption;
+	
+	@iOSFindBy(xpath = "//*[@label='From Account' or @label='Avis']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='To Account']")
+	private MobileElement to_account_caption;
+	
+	@iOSFindBy(xpath = "//*[@label='From Account' or @label='Avis']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/custom_text']")
+	private MobileElement contact_caption;
+	
+	@iOSFindBy(xpath = "//*[@label='From Account' or @label='Avis']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label']")
+	private MobileElement email_caption;
+	
+	@iOSFindBy(xpath = "//*[@label='From Account' or @label='Avis']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label']")
+	private MobileElement phone_caption;
+	
 	@iOSFindBy(xpath = "//*[contains(@label,'View Fund Facts') or contains(@label,'Veuillez consulter')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_value_main' and contains(@text,'View Fund Facts') or contains(@text,'Veuillez consulter l�Aper�u du fonds de')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_value_main' and contains(@text,'View Fund Facts')]")
 	private MobileElement view_fundFacts;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Email' or @label='Adresse courriel']/../XCUIElementTypeTextField")
