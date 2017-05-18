@@ -505,7 +505,11 @@ public class Profile extends _CommonPage {
 			String emailInfo = mobileAction.getValue(business_email_info);
 			
 			
-			emailInfo = emailInfo.replace(emailPlaceHolder, "");
+			emailInfo = replacePlaceholderToNothing(emailInfo,emailPlaceHolder);
+			if(emailInfo.isEmpty()){
+				System.out.println("Business email is empty");
+				return "";
+			}
 			emailInfo = mobileAction.FuncGetValByRegx(emailInfo, emailReg);
 			System.out.println("email:" + emailInfo);
 			return emailInfo;
@@ -530,8 +534,9 @@ public class Profile extends _CommonPage {
 		
 
 		//Remove placeholder
-		emailInfo = emailInfo.replace(emailPlaceHolder, "");
+		emailInfo = replacePlaceholderToNothing(emailInfo,emailPlaceHolder);
 		if(emailInfo.isEmpty()){
+			System.out.println("Personal email is empty");
 			return "";
 		}
 		emailInfo= mobileAction.FuncGetValByRegx(emailInfo, emailReg);

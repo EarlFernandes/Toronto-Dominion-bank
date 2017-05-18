@@ -55,9 +55,9 @@ public class LoginPNP extends _CommonPage {
 	@AndroidFindBy(id="com.td:id/loginEditText")
 	private MobileElement loginTextUsername;
 
-	@iOSFindBy(xpath = "//*[@label='Add Username or Access Card' or contains(@label,'Ajouter un nom')]")
-	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard' and @text='Add Username or Access Card']")
-	@AndroidFindBy(xpath = "//*[contains(@text,'Add Username') or contains(@text,'Ajouter un nom')]")
+	@iOSFindBy(xpath = "//*[@label='Add Username or Access Card' or contains(@label,'Ajouter un nom') or @label='添加用户名或易通卡']")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/commandButton']/android.widget.TextView[@resource-id='com.td:id/txtAccessCard']")
+	//@AndroidFindBy(xpath = "//*[contains(@text,'Add Username') or contains(@text,'Ajouter un nom') or contains(@text,'添加用户名或易通卡') or contains(@text,'')]")
 	private MobileElement addUser;
 
 	@iOSFindBy(xpath = "//*[@label='Username or Access Card']")

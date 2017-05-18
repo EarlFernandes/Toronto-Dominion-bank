@@ -2065,14 +2065,17 @@ public class MobileAction2 extends CommonLib {
 		    }else{
 		    	capturedText = mobileElement.getAttribute("label");
 		    }
+		    capturedText = capturedText.replaceAll("\n", "");
 		    for (int i=0; i< expectedHeadertext.length; i++){
 		    	if (capturedText.equalsIgnoreCase(expectedHeadertext[i].trim())){
+		    		System.out.println("Expected matched:" + capturedText);
 		    		GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
 		    		verified = true;
 		    		break;
 		    	}
 		    }
 		    if(!verified){
+		    	System.out.println("Not matched, Captured:" + capturedText + ", but expected is " + expectedText);
 		    	GetReporting().FuncReport("Fail", "expected header not displayed:" + expectedText);	
 		    	
 		    }

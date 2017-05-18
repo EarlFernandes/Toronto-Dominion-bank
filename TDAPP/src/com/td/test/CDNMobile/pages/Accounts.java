@@ -127,6 +127,9 @@ public class Accounts extends _CommonPage {
 	String from_Account = getTestdata("FromAccount");
 	String verify_Acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='" + from_Account
 			+ "']";
+	
+	String Acnt_Description = "//android.widget.TextView[@resource-id='com.td:id/accntDescrSum' and @text='" + from_Account
+			+ "']";
 
 	String account_Value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
 
@@ -436,7 +439,13 @@ public class Accounts extends _CommonPage {
 	public void verify_accounts_Header() throws Exception {
 		Decorator();
 		try {
-
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				String myAccountText= mobileAction.getAppString("str_My_Accounts");
+				System.out.println("myAccountText:"+myAccountText);
+				//myAccountText ="我的賬戶";
+				txtMy_Account_Header = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + myAccountText + "']", "My Accounts");
+			}
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, account_Header);
 
 		} catch (NoSuchElementException | IOException e) {
@@ -662,6 +671,37 @@ public class Accounts extends _CommonPage {
 		
 
 		}catch(Exception e){
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+	public void SelectAccountUsingAccountNameAndAccountNum() throws Exception {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
+				MobileElement account = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(account_Value));
+				mobileAction.FunCSwipeandScroll(account, true);
+			} else {
+				System.out.println("Account Des:" + from_Account);
+				String from_Account_des,  from_Account_num;
+				from_Account_num = mobileAction.FuncGetValByRegx(from_Account, "\\d+");
+				from_Account_des = from_Account.replaceAll(from_Account_num, "").trim();
+				
+				Acnt_Description = "//android.widget.TextView[@resource-id='com.td:id/accntDescrSum' and @text='" + from_Account_des
+						+ "']";
+				
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, false, 10, "up");
+				
+				String Acnt_num = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='" + from_Account_num
+						+ "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_num, true, 10, "up");
+			}
+
+		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}

@@ -74,6 +74,10 @@ import com.td.test.CDNMobile.pages.Transaction;
 import com.td.test.CDNMobile.pages.Transfers;
 import com.td.test.CDNMobile.pages.WatchLists;
 import com.td.test.CDNMobile.pages.WhatsNew;
+import com.td.test.framework.MobileAction;
+import com.td.test.CDNMobile.pages.PurchaseMutualFunds;
+import com.td.test.CDNMobile.pages.FundDetails;
+import com.td.test.CDNMobile.pages.TransactionDetails;
 
 public class EventCase {
 
@@ -149,8 +153,9 @@ public class EventCase {
 
 		verify_access_to_WB, Verify_account_activity_credit, Verify_Combined_Account, Verify_FP_Account, verify_login_5_times, Verify_PIA_Account, VerifyAccessCard, VerifyAccessCardDetails, VerifyActionFields, verifybill_landingpage, VerifyCombinedAccounts, verifyconfirm_order, VerifyDIAccounts, verifyErrorMessage, VerifyFPAccounts, VerifyIconDetails, VerifyInvestingScreen, VerifyNoEligibleAccounts, VerifyNoTradingAccounts, VerifyPIAAccounts, VerifyQuickIcons, VerifyReceipt, VerifySender, VerifySenderList, VerifyShareholderType, Verifytimestamp, VerifyTwoAccessCardDetails, VerifyUser, VerifyNickName, verifydefaultcard,View_profile,VerifyProfileHeader,VerifyContactInformationHeader,VerifyInitialNameforIndividual,VerifyInitialNameforBusinessUser,VerifyInitialNameInUpperCase,VerifyHomePhoneMasked,VerifyExtensionNotMasked,verifyProfileandSettingLandingPage,VerifyProfileNameLength,VerifyErrorMessage,VerifySecurityQuestionButton,VeirfySecuirtyQuestionPageheader,VerifyNotificationsButton,VeirfyNotificationsPageheader,VerifyQuickAccessSettings,VerifyQuickAccessSettingsHeader,VerifyTDForMeSettings,VerifyTDForMeSettingsHeader,VerifyWhatsNew,VerifyWhatsNewPageHeader,VerifyProfileAndSettingslink,VerifyEmailFormat,VerifyEmailIDLength,VerifyBlankEmailNotSuccesful,VerifyErrorMessageOrLength,VerifyEmailIDBlankorNot,VerifyEmailAddedSuccesful,VerifyPopUpWithCancelButton,VerifyClearTextIconDisplayed,VerifyPhoneNumberIsEmpty,VerifyTDForMeDisableSwitchFunction,VerifyTDForMeEnableSwitchFunction,ClickCustomizeNotificationlinkFromTDforMe, VerifyTDForMeNotificationPageHeader,VerifyQuickAccessSwitchWork,
 		
-		VerifyPlaceHolderDisplayed,VerifyToastmessageDisplayed,VerifyPhoneEmailNotChanged,verifyQuickAccessBillPaidUpdate,ClickBackFromAppOrGooglePage,Verify_quick_link_go_back_home, Verify_quick_link_view_myaccounts, Verify_error_screen, ClickCustomizeNotificationsLinkFromNotifications, VerififyTdforMeNotificationsHeader,VerifyEnableNotificationsSwitchFunction,
+		VerifyPlaceHolderDisplayed,VerifyToastmessageDisplayed,VerifyPhoneEmailNotChanged,verifyQuickAccessBillPaidUpdate,ClickBackFromAppOrGooglePage,Verify_quick_link_go_back_home, Verify_quick_link_view_myaccounts, Verify_error_screen, ClickCustomizeNotificationsLinkFromNotifications, VerififyTdforMeNotificationsHeader,VerifyEnableNotificationsSwitchFunction, ClickPurchaseMF,VerifyPurchaseMFPageHeader, SelectAccountUsingAccountName, VerifyFundDropdownList, VerifyFromAccountBeStaticAndLinked, ClickBackFromMFPurchase, ClickFundsTab, SelectFirstFund, VerifyFundDetailsPageHeader, ClickPurchaseButton,
 		
+		ClickActivityTab, SelectFirstTransaction, VerifyTransactionDetailHeader, VerifyTransactionDetails, SelectPreviousTransaction, VerifyMFChineseContent,
 
 		WatchLists_addSymbolToWatchLists, WatchLists_clickSearchBar, WatchLists_Header, Watchlists_verify_newOrderFlow_Watchlists, WatchLists_verifyRecentSearches, WatchLists_verifySymbol, WatchLists_verifySymbolAdded,
 
@@ -378,6 +383,10 @@ public class EventCase {
 
 		case InvestingHeader:
 			Investing.get().verifyInvestingHeader();
+			break;
+			
+		case ClickPurchaseMF:
+			Investing.get().ClickPurchaseMF();
 			break;
 		//
 		//// case TradeHeader:
@@ -2077,9 +2086,73 @@ public class EventCase {
 	    case  Verify_error_screen:
 	    	MoodSelectorScreen.get().Verify_error_screen();
 		    break;	
-		    
+		    			    
 		//end of profile and preference
 
+		//Start of Purchase Mutual funds
+	    case  VerifyPurchaseMFPageHeader:
+	    	PurchaseMutualFunds.get().VerifyPurchaseMFPageHeader();
+		    break;
+		    
+	    case  SelectAccountUsingAccountName:
+	    	Accounts.get().SelectAccountUsingAccountNameAndAccountNum();
+		    break;
+
+	    case  VerifyFundDropdownList:
+	    	PurchaseMutualFunds.get().VerifyFundDropdownList();
+		    break;
+		    
+	    case  VerifyFromAccountBeStaticAndLinked:
+	    	PurchaseMutualFunds.get().VerifyFromAccountBeStaticAndLinked();
+		    break;	
+
+	    case  ClickBackFromMFPurchase:
+	    	PurchaseMutualFunds.get().ClickBackFromMFPurchase();
+		    break;
+		    
+	    case  ClickFundsTab:
+	    	Investing.get().ClickFundsTab();
+		    break;	
+		    
+	    case  SelectFirstFund:
+	    	Investing.get().SelectFirstFund();
+		    break;	
+		    
+	    case  VerifyFundDetailsPageHeader:
+	    	FundDetails.get().VerifyFundDetailsPageHeader();
+		    break;	
+		    
+	    case  ClickPurchaseButton:
+	    	FundDetails.get().click_PurchaseButton();
+		    break;	
+
+	    case  ClickActivityTab:
+	    	Investing.get().ClickActivityTab();
+		    break;	
+		    
+	    case  SelectFirstTransaction:
+	    	Investing.get().SelectFirstTransaction();
+		    break;	
+		    
+	    case  VerifyTransactionDetailHeader:
+	    	TransactionDetails.get().verifyTransactionHeader();
+		    break;	
+		    
+	    case  VerifyTransactionDetails:
+	    	TransactionDetails.get().verifyTransactionDetails();
+		    break;	
+		    
+	    case  SelectPreviousTransaction:
+	    	Investing.get().SelectPreviousTransaction();
+		    break;	
+
+	    case  VerifyMFChineseContent:
+	    	Investing.get().VerifyMFChineseContent();
+		    break;
+		     
+		    
+		//End of Purchase Mutual funds    
+		    
 	    case Trade_clickCross:
 			//Trade.get().clickCross();
 			break;
