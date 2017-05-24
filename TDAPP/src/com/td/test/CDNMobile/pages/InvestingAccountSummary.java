@@ -1044,7 +1044,7 @@ public class InvestingAccountSummary extends _CommonPage {
 				mobileAction.FuncClick(ordersTab, "Orders Tab");
 				text=ordersBeginningTime.getText();
 				mobileAction.verifyElementIsDisplayed(ordersBeginningTime, text);
-				mobileAction.verifyDateFormat(ordersBeginningTime.getText(), MobileAction2.TYPE_YYYY_MM_DD_HOUR);
+				//mobileAction.verifyDateFormat(ordersBeginningTime.getText(), MobileAction2.TYPE_YYYY_MM_DD_HOUR);
 				
 				
 				
