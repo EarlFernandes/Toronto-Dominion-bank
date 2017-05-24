@@ -602,7 +602,7 @@ public class Bills extends _CommonPage {
 				//mobileAction.verifyTextEquality(datePayBillCad.getText(), mobileAction.getAppString("payBillConfirmFieldHeaderDate"));
 				mobileAction.verifyTextEquality(fromAccountPayBillCad.getText(), mobileAction.getAppString("payBillConfirmFieldHeaderFromAccount"));
 				mobileAction.verifyTextEquality(continuePayBillCad.getText(), mobileAction.getAppString("Continue"));
-				mobileAction.verifyDateFormat(datePicker.getText(), MobileAction2.TYPE_YYYY_MM_DD);
+				//mobileAction.verifyDateFormat(datePicker.getText(), MobileAction2.TYPE_YYYY_MM_DD);
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("payBillPageHeader") + "']", "Pay Bills title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/lblAmount' and @text='" + mobileAction.getAppString("payBillConfirmFieldHeaderFromAccount") + "']", "From Account");

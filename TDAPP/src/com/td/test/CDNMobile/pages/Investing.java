@@ -640,7 +640,46 @@ public class Investing extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS Elements
+				final MobileElement investingHeader = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeOther[@name='TDVIEW_TITLE']",
+						"Investing Header");
+				mobileAction.containsHanScript(investingHeader.getText());
+				final MobileElement searchHint = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeSearchField",
+						"Search Hint");
+				mobileAction.containsHanScript(searchHint.getText());
+				final MobileElement trade = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@name='INVESTING_ACCOUNT_SUMMARY_TABLECELL_TITLE0']",
+						"trade");
+				mobileAction.containsHanScript(trade.getText());
+				final MobileElement tradeHint = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@name='INVESTING_ACCOUNT_SUMMARY_TABLECELL_DES0']",
+						"trade hint");
+				mobileAction.containsHanScript(tradeHint.getText());
+				final MobileElement watchList = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@name='INVESTING_ACCOUNT_SUMMARY_TABLECELL_TITLE1']",
+						"watchList");
+				mobileAction.containsHanScript(watchList.getText());
+				final MobileElement watchListHint = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@name='INVESTING_ACCOUNT_SUMMARY_TABLECELL_DES1']",
+						"watchListHint");
+				mobileAction.containsHanScript(watchListHint.getText());
+				final MobileElement markets = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@name='INVESTING_ACCOUNT_SUMMARY_TABLECELL_TITLE2']",
+						"watchList");
+				mobileAction.containsHanScript(markets.getText());
+				final MobileElement marketsHint = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@name='INVESTING_ACCOUNT_SUMMARY_TABLECELL_DES2']",
+						"watchListHint");
+				mobileAction.containsHanScript(marketsHint.getText());
+				final MobileElement accountSummary = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@name='INVESTING_ACCOUNT_SUMMARY_ACCOUNT']",
+						"accountSummary");
+				mobileAction.containsHanScript(accountSummary.getText());
+				final MobileElement accountDetails1 = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@name='INVESTING_ACCOUNT_SUMMARY_DETAILCELL_1']",
+						"accountDetails1");
+				mobileAction.containsHanScript(accountDetails1.getText());
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
@@ -676,22 +715,22 @@ public class Investing extends _CommonPage {
 								+ mobileAction.getAppString("str_Accounts") + "']",
 						"Accounts");
 				
-				for(int i=0;i<accountDefinition.size();i++){
-					
-					mobileAction.verifyElementIsDisplayed(accountDefinition.get(i), "Account Definition "+(i+1));
-				}
-				for(int i=0;i<20;i++){
-					mobileAction.FunctionSwipe("up", 50, 200);
-				}
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/textView1' and @text='"
-								+ mobileAction.getAppString("str_Total") + "']",
-						"Total");
-				
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='"
-								+ mobileAction.getAppString("str_td_mutual_funds_offered") + "']",
-						"Mutual Funds offered by:");
+//				for(int i=0;i<accountDefinition.size();i++){
+//					
+//					mobileAction.verifyElementIsDisplayed(accountDefinition.get(i), "Account Definition "+(i+1));
+//				}
+//				for(int i=0;i<20;i++){
+//					mobileAction.FunctionSwipe("up", 50, 200);
+//				}
+//				mobileAction.verifyElementUsingXPath(
+//						"//android.widget.TextView[@resource-id='com.td:id/textView1' and @text='"
+//								+ mobileAction.getAppString("str_Total") + "']",
+//						"Total");
+//				
+//				mobileAction.verifyElementUsingXPath(
+//						"//android.widget.TextView[@text='"
+//								+ mobileAction.getAppString("str_td_mutual_funds_offered") + "']",
+//						"Mutual Funds offered by:");
 			}
 		}
 
@@ -729,8 +768,10 @@ public class Investing extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-
-				//TODO:iOS
+				String from_accountNo = "//XCUIElementTypeStaticText[contains(@name, 'INVESTING_ACCOUNT_SUMMARY_DETAILCELL_') and contains(@value, '" + getTestdata("FromAccount") + "')]";
+				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+                        .findElement(By.xpath(from_accountNo));
+				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 			} else {
 				
 				while(flag&&count<5)
@@ -758,7 +799,7 @@ public class Investing extends _CommonPage {
 
 		}
 
-		 catch (NoSuchElementException | InterruptedException | IOException e) {
+		 catch (Exception e) {
 				try {
 					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
 				} catch (IOException ex) {

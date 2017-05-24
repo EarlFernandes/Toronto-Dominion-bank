@@ -48,7 +48,7 @@ public class Managee_Payee extends _CommonPage {
 	private MobileElement managePayees;
 	
 	// FIXME: Need accessibility id here
-	@iOSFindBy(xpath="//*[@label='Add Canadian Payee' or @label='添加加拿大收款人' or @label='Add U.S. Payee' or @label='添加美國收款人' or @label='添加美国收款人']")
+	@iOSFindBy(xpath="//*[@label='Add Canadian Payee' or @label='添加加拿大收款人' or @label='新增加拿大收款人' or @label='Add U.S. Payee' or @label='新增美國收款人' or @label='添加美国收款人']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement addPayee;
 	

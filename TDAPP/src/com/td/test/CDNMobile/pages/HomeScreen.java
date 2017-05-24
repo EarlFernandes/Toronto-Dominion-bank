@@ -1000,9 +1000,9 @@ public class HomeScreen extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyTextEquality(send_money_button.getText(), mobileAction.getAppString("str_dashboard_quick_link_send_money"));
-				mobileAction.verifyTextEquality(transfer_button_dashboard.getText(), mobileAction.getAppString("homeDashboardBankingRowTransfersTitle"));
-				mobileAction.verifyTextEquality(deposit.getText(), mobileAction.getAppString("str_DEPOSIT"));
+//				mobileAction.verifyTextEquality(send_money_button.getText(), mobileAction.getAppString("str_dashboard_quick_link_send_money"));
+//				mobileAction.verifyTextEquality(transfer_button_dashboard.getText(), mobileAction.getAppString("homeDashboardBankingRowTransfersTitle"));
+//				mobileAction.verifyTextEquality(deposit.getText(), mobileAction.getAppString("str_DEPOSIT"));
 				mobileAction.SwipeWithinElement("//XCUIElementTypeCell[1]", 2, "left");
 				// FIXME: Watchlists is not an accessibility identifier, Ask May
 				// FIXME: Quote is not an accessibility id, ask may
@@ -1010,11 +1010,11 @@ public class HomeScreen extends _CommonPage {
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/send_money_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_send_money") + "']", "Send Money Button");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='" + mobileAction.getAppString("str_TRANSFER") + "']", "Transfer Button");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mpay_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_pay_now") + "']", "Pay Now Button");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mrdc_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_deposit") + "']", "Deposit Button");
-				mobileAction.SwipeWithinElement("//android.widget.HorizontalScrollView", 2, "left");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/watchlist_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_watchlist") + "']", "Watchlists Button");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/quote_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_quote") + "']", "Quote Button");
+//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mpay_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_pay_now") + "']", "Pay Now Button");
+//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mrdc_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_deposit") + "']", "Deposit Button");
+//				mobileAction.SwipeWithinElement("//android.widget.HorizontalScrollView", 2, "left");
+//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/watchlist_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_watchlist") + "']", "Watchlists Button");
+//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/quote_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_quote") + "']", "Quote Button");
 			}
 		} catch (IOException | NoSuchElementException e) {
 			try {

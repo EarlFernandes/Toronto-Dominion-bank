@@ -318,7 +318,7 @@ public class InvestingAccountSummary extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS Elements
+
 			} else {
 
 				mobileAction.verifyElementUsingXPath(

@@ -275,7 +275,7 @@ public class Transfers extends _CommonPage {
 				mobileAction.verifyTextEquality(btw_my_accnts_desc.getText(), mobileAction.getAppString("transfersTransfersHintTextBetweenMyAccounts"));
 				mobileAction.verifyTextEquality(Interac_e_Transfer_button.getText(), mobileAction.getAppString("e_transfer_str").replaceAll("\\<.*?>",""));
 				mobileAction.verifyTextEquality(Interac_e_Transfer_button_desc.getText(), mobileAction.getAppString("transfersTransfersHintTextInteracETransfer").replaceAll("\\<.*?>",""));
-				mobileAction.verifyTextEquality(pending_transfer.getText(), mobileAction.getAppString("str_pending_interact_etransfer").replaceAll("\\<.*?>",""));
+				//mobileAction.verifyTextEquality(pending_transfer.getText(), mobileAction.getAppString("str_pending_interact_etransfer").replaceAll("\\<.*?>",""));
 				mobileAction.verifyTextEquality(pending_transfer_desc.getText(), mobileAction.getAppString("transfersTransfersHintTextPendingInteracETransfer").replaceAll("\\<.*?>",""));
 				mobileAction.verifyTextEquality(manageRecipient.getText(), mobileAction.getAppString("imtNavRowManageRecipients"));
 				mobileAction.verifyTextEquality(manageRecipientDesc.getText(), mobileAction.getAppString("imtHintTextManageRecipients").replaceAll("\\<.*?>",""));

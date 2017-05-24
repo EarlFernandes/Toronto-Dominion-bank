@@ -314,8 +314,8 @@ public class Bill_PayCanada extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				payCanadianBillToConfirmation();
-				final MobileElement header  = mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE']", "confirm header");
-				final MobileElement warningMsg = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='TDVIEW_MESSAGE']", "warning note");
+				//final MobileElement header  = mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE']", "confirm header");
+				//final MobileElement warningMsg = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='TDVIEW_MESSAGE']", "warning note");
 				final MobileElement fromAccount = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='PAYBILL_CONFIRMVIEW_FROM']", "from account");
 				final MobileElement payeeTo =  mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='PAYBILL_CONFIRMVIEW_TO']", "to payee");
 				final MobileElement amount =  mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='PAYBILL_CONFIRMVIEW_AMOUNT']", "amount");
@@ -325,7 +325,7 @@ public class Bill_PayCanada extends _CommonPage {
 				final MobileElement payButton = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@name='PAYBILL_CONFIRMVIEW_CONTINUE']", "pay bill");
 
 				//mobileAction.verifyTextEquality(header.getText(), mobileAction.getAppString("confirm_title"));
-				mobileAction.verifyTextEquality(warningMsg.getText(), mobileAction.getAppString("payBillConfirmCopyTop"));
+				//mobileAction.verifyTextEquality(warningMsg.getText(), mobileAction.getAppString("payBillConfirmCopyTop"));
 				mobileAction.verifyTextEquality(fromAccount.getText(), mobileAction.getAppString("payBillReceiptFieldHeaderFromAccount"));
 				mobileAction.verifyTextEquality(payeeTo.getText(), mobileAction.getAppString("payBillDropdownHeaderPayee"));
 				mobileAction.verifyTextEquality(amount.getText(), mobileAction.getAppString("payBillReceiptFieldHeaderAmount"));

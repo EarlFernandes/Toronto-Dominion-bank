@@ -44,7 +44,7 @@ public class Between_My_accounts extends _CommonPage {
 	private MobileElement amountSent;
 
 	// FIXME: Figure this out
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'To Account') or contains(@label, '转入账户')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'To Account') or contains(@label, '转入账户') or contains(@label, '轉入賬戶')]")
 	private MobileElement txtTo_acnt_2;
 	
 	@iOSFindBy(accessibility = "BETWEENMYACCOUNTS_TO1")
@@ -1610,7 +1610,7 @@ public class Between_My_accounts extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='BETWEENMYACCOUNTS_FROM' and @label='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmFromAccount") + "']", "from account");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("from_account_hint") + "']", "from account hint");
+				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("from_account_hint") + "']", "from account hint");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfersBetweenMyAccountsConfirmToAccount") + "']", "to account");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_transfers_select_to_account") + "']", "to account hint");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfersBetweenMyAccountsFieldTitleAmount") + "']", "amount");
@@ -1707,7 +1707,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='" + mobileAction.getAppString("receipt_transfers") + "']", "Finish Transfer");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("actionBarHeadingReceipt") + "']", "Receipt title");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/thank_you' and @text='" + mobileAction.getAppString("ThankYou") + "']", "Thank you!");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/thank_you' and @text='" + mobileAction.getAppString("receipt_thankyou") + "']", "Thank you!");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/message' and @text='" + mobileAction.getAppString("receipt_transfer_msg") + "']", "Transfer Successful");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/confirmation' and @text='" + mobileAction.getAppString("receipt_confirmation") + "']", "Confirmation");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/from_account' and @text='" + mobileAction.getAppString("receipt_from") + "']", "From");
