@@ -502,32 +502,34 @@ public class InvestingAccountSummary extends _CommonPage {
 		Decorator();
 
 		try {
-
-			mobileAction.FuncClick(activityTab, "Activity Tab");
-			mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/current_balance']",
-					"Current Balance");
-			mobileAction.verifyElementUsingXPath(
-					"//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='"
-							+ mobileAction.getAppString("str_PAY") + "']",
-					"Pay bills quick link");
-			mobileAction.verifyElementUsingXPath(
-					"//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='"
-							+ mobileAction.getAppString("str_TRANSFER") + "']",
-					"Transfer quick link");
-			mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/activityTab']",
-					"Activity Tab");
-			mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/summaryTab']",
-					"Summary Tab");
-			mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/statementTab']",
-					"Statements Tab");
-			mobileAction
-					.verifyElementUsingXPath(
-							"//android.widget.TextView[@resource-id='com.td:id/sectionTitle' and @text='"
-									+ mobileAction.getAppString("rtb_posted_transactions") + "']",
-							"Posted Transactions");
-			mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/date']",
-					"Transaction date");
-
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS Elements
+			} else {
+				mobileAction.FuncClick(activityTab, "Activity Tab");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/current_balance']",
+						"Current Balance");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='"
+								+ mobileAction.getAppString("str_PAY") + "']",
+						"Pay bills quick link");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='"
+								+ mobileAction.getAppString("str_TRANSFER") + "']",
+						"Transfer quick link");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/activityTab']",
+						"Activity Tab");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/summaryTab']",
+						"Summary Tab");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/statementTab']",
+						"Statements Tab");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.TextView[@resource-id='com.td:id/sectionTitle' and @text='"
+										+ mobileAction.getAppString("rtb_posted_transactions") + "']",
+								"Posted Transactions");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/date']",
+						"Transaction date");
+			}
 
 		}
 
@@ -1149,77 +1151,79 @@ public class InvestingAccountSummary extends _CommonPage {
 		String text=null;
 
 		try {
-
-			mobileAction.verifyElementUsingXPath(
-					"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
-							+ mobileAction.getAppString("str_Investing") + "']",
-					"Investing Header");
-			
-			mobileAction.verifyElementIsDisplayed(ordersTab, "Orders Tab");
-			mobileAction.FuncClick(ordersTab, "Orders Tab");
-			
-			String symbol=getTestdata("Symbol");
-			String orderName="//android.widget.TextView[@resource-id='com.td:id/symbol' and @text='"+symbol+"']";
-			
-			mobileAction.swipeAndSelect(orderName, symbol, 3);
-			
-			if(!mobileAction.swipeAndSelect(orderName, symbol, 3)){
-				
-				
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS Elements
+			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
-								+ mobileAction.getAppString("str_OrderDetails") + "']",
-						"Order Details");
+								+ mobileAction.getAppString("str_Investing") + "']",
+						"Investing Header");
 				
-				text=orderTimeStamp.getText();
-				mobileAction.verifyElementIsDisplayed(orderTimeStamp, text);
-				mobileAction.verifyElementIsDisplayed(orderAccount, "Account Label");
+				mobileAction.verifyElementIsDisplayed(ordersTab, "Orders Tab");
+				mobileAction.FuncClick(ordersTab, "Orders Tab");
 				
-				mobileAction.verifyElementIsDisplayed(ordersLabels.get(0), "Action & Amount");	//no key available
+				String symbol=getTestdata("Symbol");
+				String orderName="//android.widget.TextView[@resource-id='com.td:id/symbol' and @text='"+symbol+"']";
 				
+				mobileAction.swipeAndSelect(orderName, symbol, 3);
 				
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
-								+ mobileAction.getAppString("str_includes_commission") + "']",
-						"Includes Commission?");
-				
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
-								+ mobileAction.getAppString("str_filled_quantity") + "']",
-						"Quantity Filled");
-				
-				mobileAction.FunctionSwipe("up", 200, 200);
-				
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
-								+ mobileAction.getAppString("str_Dividend_Option") + "']",
-						"Dividend Option");
-				
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
-								+ mobileAction.getAppString("str_OrderStatus") + "']",
-						"Order Status");
-				
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
-								+ mobileAction.getAppString("str_receipt_order_reference_number") + "']",
-						"Confirmation Number");
-				
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
-								+ mobileAction.getAppString("str_OrderPlaced") + "']",
-						"Order Placed");
-				//mobileAction.verifyElementIsDisplayed(ordersFooter, "Footer Text");
-				//mobileAction.verifyElementIsDisplayed(callBtn, "Call Button");
-				
-				mobileAction.verifyTextEquality(ordersFooter.getText(), mobileAction.getAppString("mutual_funds_order_detail_footer"));
-				mobileAction.verifyTextEquality(callBtn.getText(), mobileAction.getAppString("str_CALL"));
-				
-				
-			}else{
-				mobileAction.stringToReport("Fail", "No Orders are Present");
+				if(!mobileAction.swipeAndSelect(orderName, symbol, 3)){
+					
+					
+					mobileAction.verifyElementUsingXPath(
+							"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
+									+ mobileAction.getAppString("str_OrderDetails") + "']",
+							"Order Details");
+					
+					text=orderTimeStamp.getText();
+					mobileAction.verifyElementIsDisplayed(orderTimeStamp, text);
+					mobileAction.verifyElementIsDisplayed(orderAccount, "Account Label");
+					
+					mobileAction.verifyElementIsDisplayed(ordersLabels.get(0), "Action & Amount");	//no key available
+					
+					
+					mobileAction.verifyElementUsingXPath(
+							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
+									+ mobileAction.getAppString("str_includes_commission") + "']",
+							"Includes Commission?");
+					
+					mobileAction.verifyElementUsingXPath(
+							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
+									+ mobileAction.getAppString("str_filled_quantity") + "']",
+							"Quantity Filled");
+					
+					mobileAction.FunctionSwipe("up", 200, 200);
+					
+					mobileAction.verifyElementUsingXPath(
+							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
+									+ mobileAction.getAppString("str_Dividend_Option") + "']",
+							"Dividend Option");
+					
+					mobileAction.verifyElementUsingXPath(
+							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
+									+ mobileAction.getAppString("str_OrderStatus") + "']",
+							"Order Status");
+					
+					mobileAction.verifyElementUsingXPath(
+							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
+									+ mobileAction.getAppString("str_receipt_order_reference_number") + "']",
+							"Confirmation Number");
+					
+					mobileAction.verifyElementUsingXPath(
+							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
+									+ mobileAction.getAppString("str_OrderPlaced") + "']",
+							"Order Placed");
+					//mobileAction.verifyElementIsDisplayed(ordersFooter, "Footer Text");
+					//mobileAction.verifyElementIsDisplayed(callBtn, "Call Button");
+					
+					mobileAction.verifyTextEquality(ordersFooter.getText(), mobileAction.getAppString("mutual_funds_order_detail_footer"));
+					mobileAction.verifyTextEquality(callBtn.getText(), mobileAction.getAppString("str_CALL"));
+					
+					
+				}else{
+					mobileAction.stringToReport("Fail", "No Orders are Present");
+				}
 			}
-			
 		}catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
@@ -1256,57 +1260,59 @@ public class InvestingAccountSummary extends _CommonPage {
 		int count=0;
 
 		try {
-
-			mobileAction.verifyElementUsingXPath(
-					"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
-							+ mobileAction.getAppString("str_Investing") + "']",
-					"Investing Header");
-			
-			mobileAction.verifyElementUsingXPath(
-					"//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='"
-							+ mobileAction.getAppString("str_Transfer") + "']",
-					"Transfer");
-			
-			mobileAction.verifyElementUsingXPath(
-					"//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='"
-							+ mobileAction.getAppString("str_QUOTE") + "']",
-					"Quote");
-			
-			mobileAction.verifyElementIsDisplayed(activityTab, "Activity Tab");
-			mobileAction.verifyTextEquality(activityTab.getText(), mobileAction.getAppString("str_Activity"));
-			mobileAction.FuncClick(activityTab, "Activity Tab");
-			mobileAction.verifyElementIsDisplayed(dateSettle, "DATE/SETTLE");
-			mobileAction.verifyTextEquality(dateSettle.getText(), mobileAction.getAppString("date_settle_str"));
-			mobileAction.verifyElementIsDisplayed(details, "DETAILS");
-			mobileAction.verifyTextEquality(details.getText(), mobileAction.getAppString("details"));
-			mobileAction.verifyElementIsDisplayed(activityAmount, "AMOUNT");
-			mobileAction.verifyTextEquality(activityAmount.getText(), mobileAction.getAppString("str_AMOUNT"));
-			
-			
-			
-			
-			while(flag&&count<6){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				// TODO: iOS Elements
+			} else {
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
+								+ mobileAction.getAppString("str_Investing") + "']",
+						"Investing Header");
 				
-				try{
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='"
+								+ mobileAction.getAppString("str_Transfer") + "']",
+						"Transfer");
+				
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='"
+								+ mobileAction.getAppString("str_QUOTE") + "']",
+						"Quote");
+				
+				mobileAction.verifyElementIsDisplayed(activityTab, "Activity Tab");
+				mobileAction.verifyTextEquality(activityTab.getText(), mobileAction.getAppString("str_Activity"));
+				mobileAction.FuncClick(activityTab, "Activity Tab");
+				mobileAction.verifyElementIsDisplayed(dateSettle, "DATE/SETTLE");
+				mobileAction.verifyTextEquality(dateSettle.getText(), mobileAction.getAppString("date_settle_str"));
+				mobileAction.verifyElementIsDisplayed(details, "DETAILS");
+				mobileAction.verifyTextEquality(details.getText(), mobileAction.getAppString("details"));
+				mobileAction.verifyElementIsDisplayed(activityAmount, "AMOUNT");
+				mobileAction.verifyTextEquality(activityAmount.getText(), mobileAction.getAppString("str_AMOUNT"));
+				
+				
+				
+				
+				while(flag&&count<6){
 					
-					if(activityTimeStamp.isDisplayed()){
-						text=activityTimeStamp.getText();
-						mobileAction.verifyElementIsDisplayed(activityTimeStamp, text);
-						flag=false;
-					}else{
+					try{
+						
+						if(activityTimeStamp.isDisplayed()){
+							text=activityTimeStamp.getText();
+							mobileAction.verifyElementIsDisplayed(activityTimeStamp, text);
+							flag=false;
+						}else{
+							
+							mobileAction.FunctionSwipe("up", 200, 200);
+							count++;
+						}
+						
+					}catch(Exception e){
 						
 						mobileAction.FunctionSwipe("up", 200, 200);
 						count++;
 					}
-					
-				}catch(Exception e){
-					
-					mobileAction.FunctionSwipe("up", 200, 200);
-					count++;
 				}
+				
 			}
-			
-			
 			
 			
 		}

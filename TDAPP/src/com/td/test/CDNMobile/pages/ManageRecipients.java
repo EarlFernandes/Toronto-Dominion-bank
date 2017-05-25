@@ -106,18 +106,21 @@ public class ManageRecipients extends _CommonPage {
 	public void clickAddRecipientFromContactsList() {
 		Decorator();
 		try {
-			WebElement contactsRecipients = null;
-
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				final MobileElement iOSContactsRecipient = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("add_contact_alert_title") + "']", "Recipients from Contacts button");
-				iOSContactsRecipient.click();
+				
 			} else {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				contactsRecipients = mobileAction.verifyWebElementUsingXPath("//div[@class='add-recipient']", "Recipients from Contacts button");
-				contactsRecipients.click();
-				mobileAction.switchAppiumContext("NATIVE_APP");
+				WebElement contactsRecipients = null;
+	
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					final MobileElement iOSContactsRecipient = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("add_contact_alert_title") + "']", "Recipients from Contacts button");
+					iOSContactsRecipient.click();
+				} else {
+					mobileAction.switchAppiumContext("WEBVIEW_com.td");
+					contactsRecipients = mobileAction.verifyWebElementUsingXPath("//div[@class='add-recipient']", "Recipients from Contacts button");
+					contactsRecipients.click();
+					mobileAction.switchAppiumContext("NATIVE_APP");
+				}
 			}
-
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -126,8 +129,12 @@ public class ManageRecipients extends _CommonPage {
 	
 	public void addRecipientFromContactList() {
 		Decorator();
-		try {
-			mobileAction.FuncClick(yesButtonContacts, "Yes to Add contacts");
+		try {			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			// TODO: iOS elements
+			} else {
+				mobileAction.FuncClick(yesButtonContacts, "Yes to Add contacts");
+			}
 		}catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
