@@ -107,8 +107,8 @@ public class MainScreenMIT extends _CommonPage {
 	// iOS
 	    else
 	    {
-		  CL.getTestDataInstance().SetAppFilePath("/opt/app/banking-wealth-17.3.1-20170503.161937-750-ENTERPRISE-DEBUG-TESTING.ipa"); //path at iOS Mac Mini
-	     CL.mobileApp("http://49.19.17.226:4727/wd/hub"); // iOS Mac Pro
+		  CL.getTestDataInstance().SetAppFilePath("/opt/app/banking-wealth-17.3.1-20170519.225543-822-ENTERPRISE-DEBUG-TESTING.ipa"); //path at iOS Mac Mini
+	     CL.mobileApp("http://49.19.17.226:4726/wd/hub"); // iOS Mac Pro
 	      //CL.mobileApp("http://192.168.2.8:4727/wd/hub"); // iOS Mac Mini
 	    }
 	      

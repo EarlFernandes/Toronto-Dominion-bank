@@ -23,7 +23,8 @@ public class HomeScreen extends _CommonPage {
 
 	private static HomeScreen HomeScreen;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu' or @label='Menu en en-tête']")
+//	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu' or @label='Menu en en-tête']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu' or contains(@label,'Menu en en-t�te')]")//@Author - Shahbaaz 25-May-2017
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
@@ -336,7 +337,7 @@ public class HomeScreen extends _CommonPage {
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountno, true, 60, "Up");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e.printStackTrace();	
 			}*/
 			mobileAction.FuncClick(menu, "Menu");
 

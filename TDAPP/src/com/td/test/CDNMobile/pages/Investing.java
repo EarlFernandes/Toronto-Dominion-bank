@@ -29,7 +29,7 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Investing']")//@Author - Shahbaaz 17-Apr-2017
 	private MobileElement investing_header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade'or contains(@label,'Négociation')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[(@text='Trade' or @text='Négociation') and @index='0']")
 	private MobileElement trade;
 
@@ -78,10 +78,13 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='My Accounts]")
 	private MobileElement my_accounts;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu' or @label='Menu en en-tÃƒÂªte']")
+	
+//	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu' or @label='Menu en en-tÃªte']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu' or contains(@label,'Menu en en-tête')]")//@Author - Shahbaaz 25-May-2017
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
+	
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='BANKING']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and @text='BANKING']")
 	private MobileElement account_Banking_header;
@@ -180,7 +183,7 @@ public class Investing extends _CommonPage {
 
 		try {
 			Decorator();
-			Thread.sleep(10000);
+			//Thread.sleep(10000);
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncClick(trade, "Trade");
 

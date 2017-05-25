@@ -409,13 +409,19 @@ public class Trade extends _CommonPage {
 				mobileAction.FuncClick(selectSymbolValue, "Symbol");
 				*/
 				
-				mobileAction.FuncClick(symbol, "Enter name or symbol");
-				mobileAction.FuncSendKeys(symbolEditText, searchKeyword);
+				/*mobileAction.FuncClick(symbol, "Enter name or symbol");
+				//mobileAction.FuncSendKeys(symbolEditText, searchKeyword);
+				SearchPageMIT.get().enterSymbol(symbolEditText, searchKeyword);
+				//SearchPageMIT.get().clickFirstSymbol(searchKeyword);
 				mobileAction.waitForElementToVanish(progressBar);
-				Thread.sleep(2000);
-				try{
-				String xpathSymbolFlag_ios="//XCUIElementTypeCell[contains(@label,'CA')]";
-				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathSymbolFlag_ios)).get(0),"First Symbol");
+				//Thread.sleep(2000);*/	
+			try{
+				String xpathSymbolFlag_ios="//XCUIElementTypeCell[contains(@label,'CA') or contains(@label,'Comptant CAN']";
+				SearchPageMIT.get().clickFirstSymbol1(searchKeyword);
+			Thread.sleep(1000);
+				//mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathSymbolFlag_ios)).get(0),"First Symbol");
+			//	Thread.sleep(1000);
+				
 				}catch(Exception e){
 					e.printStackTrace();
 					System.out.println(e.getMessage());
@@ -425,7 +431,8 @@ public class Trade extends _CommonPage {
 
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
 				mobileAction.FuncClick(symbolEditText, "Enter name or symbol");
-				mobileAction.FuncSendKeys(symbolEditText, searchKeyword);
+			//	mobileAction.FuncSendKeys(symbolEditText, searchKeyword);
+				SearchPageMIT.get().enterSymbol(symbolEditText, searchKeyword);
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.FuncClick(selectSymbolValue, "Symbol");
 
@@ -1222,6 +1229,7 @@ public class Trade extends _CommonPage {
 			currentPricePath="//XCUIElementTypeStaticText[contains(@label,'name or symbol') or contains(@label,'autre nom ou symbole')]/../following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]";//@Author - Shahbaaz 17-Apr-2017
 			System.out.println("CurrentPricePath  "+currentPricePath);
 		} else {
+			
 			currentPricePath = "//android.widget.TextView[@resource-id='com.td:id/txt_price']";
 
 		}

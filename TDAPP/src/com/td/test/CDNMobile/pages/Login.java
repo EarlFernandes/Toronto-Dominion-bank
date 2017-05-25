@@ -41,11 +41,11 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement passwordFRE;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Login']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Login' or contains(@label,'Ouvrir une session')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/loginBtnText']")
 	private MobileElement login;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Login']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Login'or contains(@label,'Ouvrir une session')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/loginBtnText']")
 	private MobileElement loginFRE;
 
