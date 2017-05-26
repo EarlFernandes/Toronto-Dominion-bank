@@ -2622,9 +2622,16 @@ public String FuncGetElementText(MobileElement objElement) { //@Author - Sushil 
 	}
 	return textToReturn;
 }
+
 public String getAppString(final String key) {
 	//System.out.println(((AppiumDriver) GetDriver()).getAppStringMap().toString());
 	final String s = (String)((AppiumDriver) GetDriver()).getAppStringMap().get(key);
+	//System.out.println("String returned from key is: " + s);
+	return s;
+}
+public String getAppString(String language, final String key) {
+	//System.out.println(((AppiumDriver) GetDriver()).getAppStringMap().toString());
+	final String s = (String)((AppiumDriver) GetDriver()).getAppStringMap(language).get(key);
 	//System.out.println("String returned from key is: " + s);
 	return s;
 }

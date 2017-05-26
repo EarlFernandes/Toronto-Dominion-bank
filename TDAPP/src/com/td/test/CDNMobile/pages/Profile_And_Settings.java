@@ -21,6 +21,10 @@ public class Profile_And_Settings extends _CommonPage {
 
 	String preferences = "Profile & Settings | Profil et paramètres";
 	
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	private MobileElement progressBar;
+	
 	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement profile_preferences_Header;
@@ -110,10 +114,12 @@ public class Profile_And_Settings extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(view_profile, "view profile");
+			mobileAction.waitForElementToVanish(progressBar);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
@@ -130,6 +136,7 @@ public class Profile_And_Settings extends _CommonPage {
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
@@ -141,11 +148,12 @@ public class Profile_And_Settings extends _CommonPage {
 			
 			String security = mobileAction.getValue(security_questions);
 			mobileAction.FuncClick(security_questions, security);
-			Thread.sleep(2000);
+			mobileAction.waitForElementToVanish(progressBar);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -156,11 +164,12 @@ public class Profile_And_Settings extends _CommonPage {
 
 			String notifi = mobileAction.getValue(notifications);
 			mobileAction.FuncClick(notifications, notifi);
-			Thread.sleep(2000);
+			mobileAction.waitForElementToVanish(progressBar);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -170,11 +179,12 @@ public class Profile_And_Settings extends _CommonPage {
 		try {
 			String quickSetting = mobileAction.getValue(quickaccesssetting);
 			mobileAction.FuncClick(quickaccesssetting, quickSetting);
-			Thread.sleep(2000);
+			mobileAction.waitForElementToVanish(progressBar);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -185,11 +195,12 @@ public class Profile_And_Settings extends _CommonPage {
 
 			String tdme = mobileAction.getValue(tdformesettings);
 			mobileAction.FuncClick(tdformesettings, tdme);
-			Thread.sleep(2000);
+			mobileAction.waitForElementToVanish(progressBar);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -200,11 +211,12 @@ public class Profile_And_Settings extends _CommonPage {
 			
 			String whatnew= mobileAction.getValue(whatsnew);
 			mobileAction.FuncClick(whatsnew, whatnew);
-			Thread.sleep(2000);
+			mobileAction.waitForElementToVanish(progressBar);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
@@ -229,6 +241,7 @@ public class Profile_And_Settings extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(paymentsAndTransfers, "Payments & Transfers");
+			mobileAction.waitForElementToVanish(progressBar);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

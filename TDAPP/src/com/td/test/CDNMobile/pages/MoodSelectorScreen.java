@@ -534,7 +534,7 @@ public class MoodSelectorScreen extends _CommonPage {
 		}
 		
 		try{
-			mobileAction.verifyElementTextIsDisplayed(quick_link_go_back_home_btn, "GO BACK HOME | RETOUR À L'ACCUEIL");
+			mobileAction.verifyElementTextIsDisplayed(quick_link_go_back_home_btn, "GO BACK HOME | RETOUR À L'ACCUEIL | RETOUR À L’ACCUEIL");
 		}catch(Exception e){
 			System.err.println("TestCase has failed while clicking 'Go BACK HOME'");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

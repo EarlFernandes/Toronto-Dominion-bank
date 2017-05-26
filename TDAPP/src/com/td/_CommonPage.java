@@ -40,6 +40,8 @@ public class _CommonPage {
 	public static final String commonpassword = "abcde123";
 	// success/fail status
 	public String overallSuccess = PASS;
+	
+	public String locale_used ="EN";//"zh-rHK"; //"EN";//"zh-Hans";
 
 	@iOSFindBy(id = "com.td:id/list_slidermenu")
 	@AndroidFindBy(id = "com.td:id/list_slidermenu")

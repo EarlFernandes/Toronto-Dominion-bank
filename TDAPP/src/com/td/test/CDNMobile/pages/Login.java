@@ -25,7 +25,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/remember_switch' and @index='1']")
 	private MobileElement rememberMe;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Username or Access Card']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Username or Access Card' or @name='LOGIN_USERNAME']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @index='1']")
 	private MobileElement username;
 
@@ -33,7 +33,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @index='1']")
 	private MobileElement usernameFRE;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@label='Password']")
+	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@label='Password' or @name='LOGIN_PASSWORD']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement password;
 
@@ -41,7 +41,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement passwordFRE;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Login' or @label='Ouvrir une session']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Login' or @label='Ouvrir une session' or @name='LOGIN_LOGINBUTTON']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/loginBtnText']")
 	private MobileElement login;
 
@@ -65,7 +65,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(id="com.td:id/loginEditText")
 	private MobileElement select_accesscard;
 
-	@iOSFindBy(xpath = "//*[@label='Add Username or Access Card' or contains(@label,'Ajouter un nom')]")
+	@iOSFindBy(xpath = "//*[@label='Add Username or Access Card' or contains(@label,'Ajouter un nom') or @name='ACTION_SHEET_LOGIN_DATA_CELL_0']")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/commandButton']/android.widget.TextView[@resource-id='com.td:id/txtAccessCard']")
 	//@AndroidFindBy(xpath = "//*[contains(@text,'Add Username') or contains(@text,'Ajouter un nom')]")
 	private MobileElement addUser;
@@ -122,19 +122,19 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Logged Out']")
 	private MobileElement logoutHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Security Question']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Security Question']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Security Question' or @label='Question de sécurité' or @name='TDVIEW_TITLE']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Security Question' or @text='Questions de sécurité')]")
 	private MobileElement securityQuestionHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@value='Enter your answer']")
+	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@value='Enter your answer' or contains(@value,'Entrez votre')]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/mfa_answer']")
 	private MobileElement enterAnswer;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
+	@iOSFindBy(xpath = "//*[@label='Done' or @label='OK']")
 	private MobileElement done;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Login']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/mfa_login_btn' and @text='Login']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Login' or @label='Ouvrir une session']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/mfa_login_btn']")  //fengfr6, remove @text so that any language matches
 	private MobileElement securityLogin;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'System Error')]")
@@ -266,12 +266,22 @@ public class Login extends _CommonPage {
 	public void verifySecurityQuestion() {
 		Decorator();
 		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				securityQuestionHeader = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString(locale_used,"securityQuestionPageHeader") + "']", "Security Questions");
+			}
 			if (mobileAction.FuncIsDisplayed(securityQuestionHeader)) {
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
+					enterAnswer = mobileAction.verifyElementUsingXPath("//XCUIElementTypeSecureTextField[@value='" + mobileAction.getAppString(locale_used, "mfa_enter_answer") + "']", "Enter your answer");										
+				}
 				mobileAction.FuncSendKeys(enterAnswer, "abcde");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or @label='OK' or @label='" + mobileAction.getAppString(locale_used, "secureLoginEditButtonDone") + "']", "Done");
 					mobileAction.FuncClick(done, "Done");
 				} else {
 					mobileAction.FuncHideKeyboard();
+				}
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){					
+					securityLogin = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString(locale_used, "secureLoginButton") + "']", "Login");					
 				}
 				mobileAction.FuncClick(securityLogin, "Login");
 				mobileAction.waitForElementToVanish(progressBar);
@@ -336,9 +346,9 @@ public class Login extends _CommonPage {
 				Thread.sleep(5000);
 				
 			}
-			verifySystemError();
+//			verifySystemError();
 			verifySecurityQuestion();
-			verifyTandC();
+			//verifyTandC();
 			
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {

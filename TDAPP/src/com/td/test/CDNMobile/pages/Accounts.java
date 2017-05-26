@@ -24,7 +24,7 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/accntBalanceSum']")
 	private MobileElement txtBalance;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Accounts' or @label='Comptes']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Accounts' or @label='Comptes' or @name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Accounts' or @text='Mes comptes']")
 	private MobileElement txtMy_Account_Header;
 	
@@ -69,6 +69,7 @@ public class Accounts extends _CommonPage {
 	private MobileElement txtWebBroker;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progresssBar;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Activity']")
@@ -440,13 +441,16 @@ public class Accounts extends _CommonPage {
 		Decorator();
 		try {
 			
+			mobileAction.waitForElementToVanish(progresssBar);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				String myAccountText= mobileAction.getAppString("str_My_Accounts");
+				String myAccountText= mobileAction.getAppString(locale_used, "str_My_Accounts");
 				System.out.println("myAccountText:"+myAccountText);
-				//myAccountText ="我的賬戶";
+
 				txtMy_Account_Header = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + myAccountText + "']", "My Accounts");
+				mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, account_Header);
+			}else{
+				mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, ios_Account_Header);
 			}
-			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, account_Header);
 
 		} catch (NoSuchElementException | IOException e) {
 			e.printStackTrace();
@@ -673,37 +677,44 @@ public class Accounts extends _CommonPage {
 		}catch(Exception e){
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
-	public void SelectAccountUsingAccountNameAndAccountNum() throws Exception {
+	public void SelectAccountUsingAccountNameAndAccountNum() {
 		Decorator();
 		try {
-
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-
-				MobileElement account = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(account_Value));
-				mobileAction.FunCSwipeandScroll(account, true);
-			} else {
-				System.out.println("Account Des:" + from_Account);
-				String from_Account_des,  from_Account_num;
-				from_Account_num = mobileAction.FuncGetValByRegx(from_Account, "\\d+");
-				from_Account_des = from_Account.replaceAll(from_Account_num, "").trim();
+			System.out.println("Account Des:" + from_Account);
+			String from_Account_des,  from_Account_num;
+			from_Account_num = mobileAction.FuncGetValByRegx(from_Account, "\\d+");
+			from_Account_des = from_Account.replaceAll(from_Account_num, "").trim();
+			
+			String Acnt_num="";
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				Acnt_Description = "//XCUIElementTypeStaticText[@label='" + from_Account_des + "']";
+				Acnt_num = "//XCUIElementTypeStaticText[@label='" + from_Account_num + "']";
 				
+			}else{
 				Acnt_Description = "//android.widget.TextView[@resource-id='com.td:id/accntDescrSum' and @text='" + from_Account_des
 						+ "']";
-				
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, false, 10, "up");
-				
-				String Acnt_num = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='" + from_Account_num
+				Acnt_num = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='" + from_Account_num
 						+ "']";
+			}
+						
+			if(from_Account_num.isEmpty()){
+
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, true, 10, "up");
+				
+			}else{
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, false, 10, "up");
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_num, true, 10, "up");
 			}
 
 		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

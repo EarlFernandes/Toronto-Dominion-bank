@@ -40,7 +40,8 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Mobile Deposit']")
 	private MobileElement mobile_Deposit_button;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Accounts' or @label='Mes comptes']")
+	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Accounts' or @label='Mes comptes']")
+	@iOSFindBy(xpath = "//XCUIElementTypeCell[@name='NAV_DRAWER_ITEMS_ACCOUNTS']/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='My Accounts' or @text='Mes comptes')]")
 	private MobileElement accounts_button;
 
@@ -96,6 +97,7 @@ public class MenuPage extends _CommonPage {
 		PageFactory.initElements(
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
 				this);
+		//System.out.println(((AppiumDriver) CL.GetDriver()).getAppStringMap(locale_used).toString());
 	}
 
 	/**
@@ -189,9 +191,8 @@ public class MenuPage extends _CommonPage {
 		try {
 			Thread.sleep(5000);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				String myAccountText= mobileAction.getAppString("str_My_Accounts");
+				String myAccountText= mobileAction.getAppString(locale_used,"str_My_Accounts");
 				System.out.println("myAccountText:"+myAccountText);
-				//myAccountText ="我的賬戶";
 				accounts_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + myAccountText + "']", "My Accounts");
 			}
 			mobileAction.FuncClick(accounts_button, "Accounts");

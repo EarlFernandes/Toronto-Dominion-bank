@@ -37,7 +37,7 @@ public class FundDetails extends _CommonPage {
     private MobileElement QuoteBtn;
     
     @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good 'til, Day')]")
-    @AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/fund_facts_view']//android.widget.TextView")
+    @AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/fund_facts_view']//android.widget.TextView[@index='0']")
     private MobileElement fund_facts_view_text;
 //
 //    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Agree']")
@@ -59,6 +59,14 @@ public class FundDetails extends _CommonPage {
 	PageFactory.initElements(
 		new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(5, TimeUnit.SECONDS)),
 		this);
+		try{
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				String investingTitle=mobileAction.getAppString(locale_used,"str_Holding_Detail");
+				FundDetails_header = mobileAction.verifyElementUsingXPath("//*[@label='" + investingTitle + "']", "Investing");
+			}
+		}catch (Exception e){
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
     }
 
 
@@ -92,7 +100,7 @@ public class FundDetails extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(FundDetails_header, "Fund Details | Avis");
+			mobileAction.verifyElementTextIsDisplayed(FundDetails_header, "Fund Details | 持有投资详情");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -105,29 +113,45 @@ public class FundDetails extends _CommonPage {
 		Decorator();
 		try {
 
-			//mobileAction.verifyElementTextIsDisplayed(FundDetails_header, "Fund Details | Avis");
-			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				Purchase = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString(locale_used,"str_BUY") + "']", "Buy");
+				CallBtn = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString(locale_used,"str_CALL") + "']", "Call");
+				QuoteBtn = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString(locale_used,"str_QUOTE") + "']", "Quote");
+			}
 			mobileAction.verifyElementTextIsDisplayed(Purchase, "买入| 買入");
 			mobileAction.verifyElementTextIsDisplayed(CallBtn, "致电 | 致電 ");
 			mobileAction.verifyElementTextIsDisplayed(QuoteBtn, "报价| 報價 ");
 			
-			String []expectedText = {"市场价值 |市場價值", "帐面价值 | 賬面價值", "此帐户的投资组合百分比 | 此賬戶的投資組合百分比", 
+			String []expectedText = {"市场价值 |市場價值", "账面价值 | 賬面價值", "此账户的投资组合百分比 | 此賬戶的投資組合百分比", 
 					"所持单位数 |所持單位數","单位价格 | 單位價格","未实现收益/亏损 | 未實現收益/虧損 "};
 			int lengthOfText = expectedText.length;
 			System.out.println("Expected fund details number:" + lengthOfText);
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				List<MobileElement> InfoList = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[@index='1']/android.widget.LinearLayout/android.widget.TextView");
+				List<MobileElement> InfoList = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[@index='1']/android.widget.LinearLayout/android.widget.TextView[@index='0']");
 				int size = InfoList.size();
-				System.out.println("Capture fund details number:" + (size+1));
-				if(size != lengthOfText-1){
+				System.out.println("Capture fund details number:" + size);
+				if(size != lengthOfText){
 					System.out.println("The number of fund details not match");
 					mobileAction.Report_Fail("Fun Details not match");
+					return;
 				}
 				for(int i=0; i<size; i++){
 					mobileAction.verifyElementTextIsDisplayed(InfoList.get(i), expectedText[i]);
 				}
-			}			
-			mobileAction.verifyElementTextIsDisplayed(fund_facts_view_text, "查看基金概況（表现和費用| 查看基金概況（表現和費用 ");
+				mobileAction.SwipeWithinElement("//android.widget.ScrollView",  1, "down");
+			}else{
+				//for IOS
+				List<MobileElement> InfoList = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//*[@name='TDVIEW_TITLE']/../..//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
+				int size = InfoList.size();
+				System.out.println("Capture fund details number:" + size);
+				for(int i=0; i<lengthOfText; i++){
+					mobileAction.verifyElementTextIsDisplayed(InfoList.get(i+1), expectedText[i]);
+				}
+				fund_facts_view_text = mobileAction.verifyElementUsingXPath("//*[@name='TDVIEW_TITLE']/../..//XCUIElementTypeTable/XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]", "View Fund Facts");
+			}
+			
+			
+			mobileAction.verifyElementTextIsDisplayed(fund_facts_view_text, "查看基金概况（表现和费用）| 查看基金概况（表现和费用） ");
 			
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

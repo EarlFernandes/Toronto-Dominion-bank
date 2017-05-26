@@ -74,10 +74,10 @@ import com.td.test.CDNMobile.pages.Transaction;
 import com.td.test.CDNMobile.pages.Transfers;
 import com.td.test.CDNMobile.pages.WatchLists;
 import com.td.test.CDNMobile.pages.WhatsNew;
-import com.td.test.framework.MobileAction;
 import com.td.test.CDNMobile.pages.PurchaseMutualFunds;
 import com.td.test.CDNMobile.pages.FundDetails;
 import com.td.test.CDNMobile.pages.TransactionDetails;
+import com.td.test.CDNMobile.pages.PreviewPurchase;
 
 public class EventCase {
 
@@ -155,9 +155,9 @@ public class EventCase {
 		
 		VerifyPlaceHolderDisplayed,VerifyToastmessageDisplayed,VerifyPhoneEmailNotChanged,verifyQuickAccessBillPaidUpdate,ClickBackFromAppOrGooglePage,Verify_quick_link_go_back_home, Verify_quick_link_view_myaccounts, Verify_error_screen, ClickCustomizeNotificationsLinkFromNotifications, VerififyTdforMeNotificationsHeader,VerifyEnableNotificationsSwitchFunction, ClickPurchaseMF,VerifyPurchaseMFPageHeader, SelectAccountUsingAccountName, VerifyFundDropdownList, VerifyFromAccountBeStaticAndLinked, ClickBackFromMFPurchase, ClickFundsTab, SelectFirstFund, VerifyFundDetailsPageHeader, ClickPurchaseButton,
 		
-		ClickActivityTab, SelectFirstTransaction, VerifyTransactionDetailHeader, VerifyTransactionDetails, SelectPreviousTransaction, VerifyMFChineseContent,
+		ClickActivityTab, SelectFirstTransaction, VerifyTransactionDetailHeader, VerifyTransactionDetails, SelectPreviousTransaction, VerifyMFChineseContent, VerifyPurchaseMFPageInChinese, VerifyMFActivityChineseContent,VerifyFundDetailsInformationInChinese, verifyTransactionDetailsInChinese, ClickPreviewPurchase, VerifyPreviewPurchasePageHeader, VerifyPreviewPurchasePhoneFormat, VerifyPreviewPurchasePhoneNotMasked, VerifyPreviewPurchaseContentInChinese,
 
-		WatchLists_addSymbolToWatchLists, WatchLists_clickSearchBar, WatchLists_Header, Watchlists_verify_newOrderFlow_Watchlists, WatchLists_verifyRecentSearches, WatchLists_verifySymbol, WatchLists_verifySymbolAdded,
+		WatchLists_addSymbolToWatchLists, WatchLists_clickSearchBar, WatchLists_Header, Watchlists_verify_newOrderFlow_Watchlists, WatchLists_verifyRecentSearches, WatchLists_verifySymbol, WatchLists_verifySymbolAdded, 
 
 		FindLoactions_VerifyFindlocations, BetweenMyAccounts_TransferChequeAccount, TradeLimitAndTriggerPrice,
 
@@ -2149,8 +2149,42 @@ public class EventCase {
 	    case  VerifyMFChineseContent:
 	    	Investing.get().VerifyMFChineseContent();
 		    break;
-		     
+
+	    case  VerifyPurchaseMFPageInChinese:
+	    	PurchaseMutualFunds.get().VerifyPurchaseMFPageInChinese();
+		    break;		     
+		    	
+	    case  VerifyMFActivityChineseContent:
+	    	Investing.get().VerifyMFActivityChineseContent();
+		    break;	
+
+	    case  VerifyFundDetailsInformationInChinese:
+	    	FundDetails.get().VerifyFundDetailsInformationInChinese();
+		    break;
 		    
+	    case  verifyTransactionDetailsInChinese:
+	    	TransactionDetails.get().verifyTransactionDetailsInChinese();
+		    break;	
+		    
+	    case  ClickPreviewPurchase:
+	    	PurchaseMutualFunds.get().ClickPreviewPurchase();
+		    break;
+		    
+	    case  VerifyPreviewPurchasePageHeader:
+	    	PreviewPurchase.get().VerifyPreviewPurchasePageHeader();
+		    break;
+		    
+	    case  VerifyPreviewPurchasePhoneFormat:
+	    	PreviewPurchase.get().VerifyPreviewPurchasePhoneFormat();
+		    break;
+
+	    case  VerifyPreviewPurchasePhoneNotMasked:
+	    	PreviewPurchase.get().VerifyPreviewPurchasePhoneNotMasked();
+		    break;
+		    
+	    case  VerifyPreviewPurchaseContentInChinese:
+	    	PreviewPurchase.get().VerifyPreviewPurchaseContentInChinese();
+		    break;		    
 		//End of Purchase Mutual funds    
 		    
 	    case Trade_clickCross:
