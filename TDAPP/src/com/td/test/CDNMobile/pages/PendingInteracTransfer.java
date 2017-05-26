@@ -421,10 +421,7 @@ public class PendingInteracTransfer extends _CommonPage{
 					mobileAction.FuncClick(selectSender, "sender");
 					//mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
 					
-					MobileElement Sender = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(select_senderValue));
-					
-					mobileAction.FunCSwipeandScroll(Sender, true);
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_senderValue, true, 25, "Up");
 					mobileAction.FuncClick(selectTransaction, "Select Transaction");
 					mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 					mobileAction.FuncClick(depositToContinue,"Continue");
@@ -596,8 +593,7 @@ public class PendingInteracTransfer extends _CommonPage{
 						
 							mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
 							mobileAction.FuncClick(selectSender, "sender");
-							MobileElement sender = (MobileElement) ((AppiumDriver) CL.GetDriver())
-									.findElement(By.xpath(select_senderValue));
+							MobileElement sender = mobileAction.verifyElementUsingXPath(select_senderValue,"Sender");
 							mobileAction.FuncClick(sender, "Sender");
 							mobileAction.waitForElementToDisappear(select_senderValue);
 							
@@ -656,9 +652,7 @@ public class PendingInteracTransfer extends _CommonPage{
 							mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
 							mobileAction.FuncClick(selectSender, "sender");
 							
-							MobileElement Sender = (MobileElement) ((AppiumDriver) CL.GetDriver())
-									.findElement(By.xpath(select_senderValue));
-							
+							MobileElement Sender = mobileAction.verifyElementUsingXPath(select_senderValue, "Sender");
 							mobileAction.FuncClick(Sender, "Sender");
 							mobileAction.waitForElementToDisappear(select_senderValue);
 							mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 1, "down", true);

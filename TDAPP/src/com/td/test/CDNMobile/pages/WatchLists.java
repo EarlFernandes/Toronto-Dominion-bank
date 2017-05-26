@@ -166,8 +166,7 @@ public class WatchLists extends _CommonPage {
 				mobileAction.FuncClick(symbol, symbolXL);
 
 				String WishListXpath = "//android.widget.LinearLayout[@index='" + i + "']";
-				MobileElement wishList = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(WishListXpath));
+				MobileElement wishList = mobileAction.verifyElementUsingXPath(WishListXpath,"WishList");
 
 				mobileAction.FuncClick(wishList, "WishList " + i);
 

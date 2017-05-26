@@ -366,9 +366,7 @@ public class Trade extends _CommonPage {
 			mobileAction.FunctionSwipe("down", 200, 200);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(selectAccount, "AccountSelected");
-				MobileElement marginAccVal = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(accountno));
-				mobileAction.FunCSwipeandScroll(marginAccVal, true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountno, true, 25, "Up");
 			} else {
 				mobileAction.FuncClick(selectAccount, "Account Selected");
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(accselected, true, 60, "up");
@@ -401,13 +399,10 @@ public class Trade extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				MobileElement OrderType = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(orderType));
+				MobileElement OrderType = mobileAction.verifyElementUsingXPath(orderType,"Order Type");
 
 				mobileAction.FuncClick(OrderType, "OrderType");
 				String orderValue = "//XCUIElementTypeStaticText[contains(@label,'" + orderValueXL + "')]";
-				MobileElement ordertypeval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(orderValue));
 				mobileAction.selectItemFromList(stocks_ETFs,getTestdata("orderValueXL"));
 			} else {
 				mobileAction.FuncClick(order_Type, "OrderType");
@@ -813,8 +808,7 @@ public class Trade extends _CommonPage {
 				mobileAction.FuncClick(priceElement, "Price");
 				// mobileAction.FuncSwipeWhileElementNotFound(priceElement,
 				// true, 5, "up");
-				MobileElement priceType = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(pricetype));
+				MobileElement priceType = mobileAction.verifyElementUsingXPath(pricetype, "Price Type");
 				mobileAction.FuncClick(priceType, "Price");
 			}
 		}catch (NoSuchElementException e) {
@@ -850,8 +844,7 @@ public class Trade extends _CommonPage {
 				mobileAction.FuncClick(btngood, "Good Till");
 				// mobileAction.FuncSwipeWhileElementNotFound(btngood, true, 1,
 				// "up");
-				MobileElement actionList = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(selectgoodtill));
+				MobileElement actionList = mobileAction.verifyElementUsingXPath(selectgoodtill, "Good Till");
 
 				mobileAction.FuncClick(actionList, "Good'Till value");
 			}
@@ -889,8 +882,7 @@ public class Trade extends _CommonPage {
 				mobileAction.FuncClick(btngood, "Good Till");
 				// mobileAction.FuncSwipeWhileElementNotFound(btngood, true, 1,
 				// "up");
-				MobileElement actionList = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(selectgoodtill));
+				MobileElement actionList =  mobileAction.verifyElementUsingXPath(selectgoodtill, "Good Till");
 
 				mobileAction.FuncClick(actionList, "Good'Till value");
 			}
@@ -1149,8 +1141,7 @@ public class Trade extends _CommonPage {
 					mobileAction.FuncClick(share_holder, "Share holder");
 					// mobileAction.FuncSwipeWhileElementNotFound(share_holder,
 					// true, 1, "up");
-					MobileElement actionList = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(shareholder_select));
+					MobileElement actionList = mobileAction.verifyElementUsingXPath(shareholder_select, "ShareHolder");
 
 					mobileAction.FuncClick(actionList, "Share Holder value");
 				}

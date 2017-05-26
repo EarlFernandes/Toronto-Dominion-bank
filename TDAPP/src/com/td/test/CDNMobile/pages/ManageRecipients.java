@@ -148,8 +148,7 @@ public class ManageRecipients extends _CommonPage {
     		mobileAction.waitForElementToVanish(progressBar);
     	    mobileAction.verifyElementIsDisplayed(manageRecipientHeader, "Manage Recipients");
     	    String select_recipient ="//android.view.View[@content-desc='" + sender_SelectSender+ "']";
-		    MobileElement selectRecipient = (MobileElement) ((AppiumDriver) CL.GetDriver())
-					.findElement(By.xpath(select_recipient));
+		    MobileElement selectRecipient = mobileAction.verifyElementUsingXPath(select_recipient, "Select Recipient");
     	    mobileAction.FuncClick(selectRecipient, "Select Recipient");
     	    mobileAction.FuncClick(editRecipient, "Edit Recipient");
     	    mobileAction.FuncClick(recipientMailAddr,"recipientMail");

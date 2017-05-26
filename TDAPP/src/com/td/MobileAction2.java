@@ -1097,6 +1097,7 @@ public class MobileAction2 extends CommonLib {
 
 	public void FunCSwipeandScroll(MobileElement elementToFind, boolean clickYorN) {
 		try {
+			
 			Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 			int startx = size.width;
 			int starty = size.height;

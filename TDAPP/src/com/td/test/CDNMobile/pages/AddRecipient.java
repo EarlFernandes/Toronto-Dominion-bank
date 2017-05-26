@@ -107,8 +107,7 @@ public class AddRecipient extends _CommonPage {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
 	        	mobileAction.FuncClick(done, "Done");
 		            }
-		        else
-		        	{
+		        else{
 		        		mobileAction.FuncHideKeyboard();
 		        	}
 

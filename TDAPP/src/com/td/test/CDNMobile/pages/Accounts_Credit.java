@@ -157,17 +157,14 @@ public class Accounts_Credit extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				String lastTransac = "//*[@label(contains,'" + getTestdata("confirmation_val") + "')]";
-				MobileElement lastTransaction = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(lastTransac));
 				mobileAction.verifyElementIsDisplayed(activityTab, "Activity");
-				mobileAction.verifyElementIsDisplayed(lastTransaction, "Last Transactions");
+				mobileAction.verifyElementUsingXPath(lastTransac, "Confirmation Value");
+				
 			} else {
 				String lastTransac = "//android.widget.TextView[@resource-id='com.td:id/description' and contains(@text,'"
 						+ getTestdata("confirmation_val") + "']";
-				MobileElement lastTransaction = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(lastTransac));
 				mobileAction.verifyElementIsDisplayed(activityTab, "Activity");
-				mobileAction.verifyElementIsDisplayed(lastTransaction, "Last Transactions");
+				mobileAction.verifyElementUsingXPath(lastTransac, "Confirmation Value");
 			}
 
 		} catch (NoSuchElementException e) {

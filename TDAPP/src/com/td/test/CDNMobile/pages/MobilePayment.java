@@ -747,7 +747,7 @@ public class MobilePayment extends _CommonPage {
 
 		Decorator();
 		try {
-			MobileElement cardVal = (MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(selectcard));
+			MobileElement cardVal = mobileAction.verifyElementUsingXPath(selectcard,"Select Card");
 			mobileAction.FuncClick(cardVal, "Select the card");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

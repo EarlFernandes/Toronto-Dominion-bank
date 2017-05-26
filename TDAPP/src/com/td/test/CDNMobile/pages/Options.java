@@ -532,8 +532,7 @@ public class Options extends _CommonPage {
 
 		mobileAction.FuncClick(searchSymbol, "Search symbol");
 		enterSymbol(searchSymbol, getTestdata("Symbol", XLSheetUserIDs));
-		MobileElement searchSymbol = (MobileElement) ((AppiumDriver) CL.GetDriver())
-				.findElement(By.xpath(xpathSymbolFlag));
+		MobileElement searchSymbol = mobileAction.verifyElementUsingXPath(xpathSymbolFlag,"Symbol");
 		mobileAction.FuncClick(searchSymbol, "Search symbol");
 		mobileAction.FuncClick(clickOptions, "click on Options");
 		mobileAction.waitForElementToVanished(progressBar);

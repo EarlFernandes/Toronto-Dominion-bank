@@ -177,7 +177,6 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_launch_browser'and contains(@text,'do this later on my computer')]")
 	private MobileElement popup_ok_button;
 
-	String securityPassword = getTestdata("SecurityPassword");
 
 	String platFormName = CL.getTestDataInstance().getMobilePlatForm();
 	String progressBarFrench = "//android.widget.ProgressBar[@resource-id='android:id/progress']";
@@ -287,7 +286,7 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 			if (mobileAction.FuncIsDisplayed(securityQuestionHeader)) {
-				mobileAction.FuncSendKeys(enterAnswer, getTestdata("SecurityPassword"));
+				mobileAction.FuncSendKeys(enterAnswer, getTestdata("SecurityAnswer"));
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					mobileAction.FuncClick(done, "Done");
 				} else {

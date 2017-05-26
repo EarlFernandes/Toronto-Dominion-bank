@@ -65,11 +65,6 @@ public class Bill_PayCanada extends _CommonPage {
 	String t_select_to_account = "//android.widget.TextView[@resource-id='com.td:id/edtPayee' and @text='Select Payee']";
 
 	String ToAccountXL = getTestdata("ToAccount");
-	String payee=getTestdata("Payee");
-
-	String ToAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountDesc' and @text='"
-			+ ToAccountXL + "']";
-
 	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and @text='TD CLASSIC TRAVEL VIS... 4520020000005323']")
 	private MobileElement select_to_account;
@@ -455,9 +450,7 @@ public class Bill_PayCanada extends _CommonPage {
 			
 			System.out.println("From Account:"+ FromAccountXL);
 			String account_value = "//*[contains(@text,'" + FromAccountXL + "') or contains(@content-desc,'" + FromAccountXL + "')]";
-			MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-					.findElement(By.xpath(account_value));
-			mobileAction.FunCSwipeandScroll(fromAccountval, true);
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 			//mobileAction.FuncClick(frm_acnt_post, "fromAccountPost");
 
 			mobileAction.FuncClick(to_account_post, "Select Payee");
@@ -989,9 +982,7 @@ public class Bill_PayCanada extends _CommonPage {
 
 				mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");				
 				mobileAction.FuncClick(from_account, "From_Account");
-				MobileElement account = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(account_value));
-				mobileAction.FunCSwipeandScroll(account, true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 				Thread.sleep(3000);
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				String Amount = getTestdata("Amount");

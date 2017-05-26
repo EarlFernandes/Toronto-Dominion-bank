@@ -204,9 +204,7 @@ public class Accounts extends _CommonPage {
 
 				//mobileAction.FuncSelectElementInTable(accountsPage_Table, firstPart , accountsSecondPart, from_Account);
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
-				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(account_value));
-				mobileAction.FunCSwipeandScroll(fromAccountval, true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 			} else {
 				mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 10, "down", true);
 
@@ -411,9 +409,7 @@ public class Accounts extends _CommonPage {
 				System.out.println("Verify account:" + from_Account);
 				//mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, from_AccountNo);
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
-				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(account_value));
-				mobileAction.FunCSwipeandScroll(fromAccountval, true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 30, "Up");
 			}else{
 				mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 10, "down", true);
 			}
@@ -489,9 +485,7 @@ public class Accounts extends _CommonPage {
 
 				//mobileAction.FuncSelectElementInTable(accountsPage_Table, firstPart , accountsSecondPart, from_Account);
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
-				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(account_value));
-				mobileAction.FunCSwipeandScroll(fromAccountval, true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 			} else {
 				mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 25, "down", true);
 
@@ -708,13 +702,9 @@ public class Accounts extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				MobileElement account = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(account_Value));
-				mobileAction.FunCSwipeandScroll(account, true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_Value, true, 30, "Up");
 			} else {
-				MobileElement account = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(verify_Acnt));
-				mobileAction.FunCSwipeandScroll(account, true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(verify_Acnt, true, 30, "Up");
 			}
 
 		} catch (NoSuchElementException e) {

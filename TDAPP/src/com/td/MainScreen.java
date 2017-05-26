@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -25,55 +26,21 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class MainScreen extends _CommonPage {
 
-	@AndroidFindBy(className = "android.widget.Button")
-	private MobileElement btnContinue;
-
-	@iOSFindBy(id = " ")
-	@AndroidFindBy(id = "com.td:id/laterButton")
-	private MobileElement btnLater;
-
-	@iOSFindBy(id = " ")
-	@AndroidFindBy(id = "com.td:id/loginEditText")
-	private MobileElement EditUser;
-
-	@iOSFindBy(id = " ")
-	@AndroidFindBy(id = "com.td:id/password_input")
-	private MobileElement Password;
-
-	@iOSFindBy(id = " ")
-	@AndroidFindBy(id = "com.td:id/remember_switch")
-	private MobileElement RememberME;
-
-	@iOSFindBy(id = " ")
-	@AndroidFindBy(id = "com.td:id/loginBtnText")
-	private MobileElement btnLogin;
-
-	@iOSFindBy(id = " ")
-	@AndroidFindBy(id = "android:id/action_bar_title")
-	private MobileElement tapHome;
-
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='Accounts']")
-	private MobileElement accountBtn;
-
-	@iOSFindBy(id = " ")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.tdbank:id/core_clearable_edit_text' and @index='0']")
-
-	private MobileElement password;
-
-	private void Decorator() {
-		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
-
-	}
-
+	// ***** LOCAL EXECUTION PARAMETERS *****
+	// Change this parameter if doing local execution to point to your appium server instance
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.27.23.62:4734/wd/hub";
+	// Change this parameter to point to the correct apk in Setup.xls for Android
+	private static final String APP_ANDROID = "APP_ANDROID";
+	// Change this parameter to point to the correct ipa in Setup.xls for ios
+	private static final String APP_IOS = "APP_IOS";
+	
 	String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env", "Amount",
 			"Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount", "AccessCard",
 			"Description", "Payee", "Timeout", "SecondTimeout", "MerchantName", "Price", "Quantity",
 			"Security_Question", "RecipientName", "RecipientMail", "Trading_Pwd", "Symbol", "ShareHolder",
 			"SecurityPassword", "TriggerDelta", "CDNMarginAccount", "QuantityType", "Dividend", "SelectLimitPrice",
 			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName",
-			"Passcode", "NewPasscode", "Email","Name" };
+			"Passcode", "NewPasscode", "Email", "Name", "EmailProfile","PhoneProfile", "PostSurveyText"};
 
 	public void readSheet() {
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
@@ -98,48 +65,31 @@ public class MainScreen extends _CommonPage {
 		// CL.getTestDataInstance().getMasterTestData(), "Batch Run", "TCtoRun",
 		// CL.getTestDataInstance().TestCaseID));
 
-		// String
-		// orientation=CL.getTestDataInstance().TCParameters.get("DeviceOrientation");
+		// Jenkins only params
+		final String appiumPath = CL.getTestDataInstance().getAppiumPath();
+		final String targetEnv = CL.getTestDataInstance().targetEnvironment;
 
-		if (udid.equalsIgnoreCase("dda65bdf")) {
-
-			try {
-				if (CL.getTestDataInstance().getAppFilePath() == null
-						|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
-					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_ANDROID"));
-					} else {
-						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
-					}
-				}
-				CL.mobileApp("http://0.0.0.0:4725/wd/hub");
-				//CL.mobileApp("http://49.27.22.144:4724/wd/hub");
-			} catch (Exception e) {
-				System.err.println("Unable to load APP file Path Exiting");
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
+		if (!StringUtils.isEmpty(appiumPath) && !StringUtils.isEmpty(targetEnv)) { // Jenkins execution
+			if (CL.getTestDataInstance().getAppFilePath() == null
+					|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
+				CL.getTestDataInstance().SetAppFilePath(
+						CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", targetEnv));
 			}
-
-		} else {
-
+			CL.mobileApp(appiumPath);
+		} else { // Local execution
 			try {
 				if (CL.getTestDataInstance().getAppFilePath() == null
 						|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_ANDROID"));
-					} else {
+								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_ANDROID));
+					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
+								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS));
 					}
 				}
-				CL.mobileApp("http://49.27.23.62:4734/wd/hub");//Iphone 7 Plus
-				//CL.mobileApp("http://49.27.23.62:4764/wd/hub");//Iphone 6s
-				//CL.mobileApp("http://49.27.23.62:4744/wd/hub");
-				//CL.mobileApp("http://49.27.22.144:4736/wd/hub");//Samsung UDID 988673394d39433156
-				
+				CL.mobileApp(LOCAL_EXECUTION_APPIUM_SERVER); 
+
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;

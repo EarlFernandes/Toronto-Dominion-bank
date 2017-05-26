@@ -390,7 +390,7 @@ public class Investing extends _CommonPage {
 
 			mobileAction.FuncClick(order, "order");
 			mobileAction.waitForElementToVanish(progressBar);
-			MobileElement OrderVal = (MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(order_value));
+			MobileElement OrderVal = mobileAction.verifyElementUsingXPath(order_value,"Order");
 			mobileAction.FuncClick(OrderVal, "ordervalue");
 			mobileAction.waitForElementToVanish(progressBar);
 
@@ -919,8 +919,7 @@ public class Investing extends _CommonPage {
 			}
 			mobileAction.verifyElementUsingXPath(diAccountXL, "The first PIA/FP Account");
 			mobileAction.verifyElementUsingXPath(diAccountXL2, "The Second PIA/FP Account");
-			MobileElement accountVal = (MobileElement) ((AppiumDriver) CL.GetDriver())
-					.findElement(By.xpath(diAccountXL2));
+			MobileElement accountVal = mobileAction.verifyElementUsingXPath(diAccountXL2,"DI Account");
 			mobileAction.FuncClick(accountVal, "PIA/FP");
 			if(mobileAction.isObjExists(Investing_Trade)) //@Author - Sushil 20-Apr-2017
 				CL.GetReporting().FuncReport("Fail", "Trade option should not be displayed on the Investing landing page for connectID with only PIA/FP accounts");

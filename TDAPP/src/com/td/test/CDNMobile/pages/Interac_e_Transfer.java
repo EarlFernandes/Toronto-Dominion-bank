@@ -95,15 +95,15 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtSpecialAction' and @text='Cancel']")
     private MobileElement senderCancel;
 
-    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Account']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account']/following-sibling::XCUIElementTypeStaticText[2]")
     @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_from_account']")
     private MobileElement accountNum;
 
-    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='-Amount']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account']/following-sibling::XCUIElementTypeStaticText[3]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccountAmountTransfer]")
     private MobileElement totalAmount;
 
-    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Account']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account']/following-sibling::XCUIElementTypeStaticText[1]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_account']")
     private MobileElement accountName;
 
@@ -224,9 +224,7 @@ public class Interac_e_Transfer extends _CommonPage {
 		System.out.println("Recipient:"+recipientmail);
 		mobileAction.FuncClick(recipient, "Recipient");
 		String recipientXpath = "//XCUIElementTypeStaticText[contains(@label,'" + recipientmail + "')]";
-		MobileElement recipientval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-				.findElement(By.xpath(recipientXpath));
-		mobileAction.FunCSwipeandScroll(recipientval, true);		
+		mobileAction.FuncSwipeWhileElementNotFoundByxpath(recipientXpath, true, 25, "Up");
 		//mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart, sender_SelectSender);
 	    
 	    	//mobileAction.FuncClick(recipient, "Recipient");
@@ -377,8 +375,7 @@ try {
 	    Thread.sleep(10000);
 	    	mobileAction.FuncClick(recipient, "Recipient");
 	    String selectRecipient="//XCUIElementTypeStaticText[contains(@label,'"+ transferRecipient +"')]";
-	    MobileElement recipientVal = (MobileElement) ((AppiumDriver) CL.GetDriver())
-				.findElement(By.xpath(selectRecipient));
+	    MobileElement recipientVal = mobileAction.verifyElementUsingXPath(selectRecipient, "Recipient");
 	    mobileAction.FuncClick(recipientVal, "Recipient");
 		mobileAction.FuncClick(etransfer_Amount, "Amount");
 		mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
@@ -389,20 +386,9 @@ try {
 		mobileAction.verifyElementIsDisplayed(transferSent, "Interac e-Transfer Sent");
 
 	    } else {
-
-		/*mobileAction.verifyElement(interac_Etransfer_Header, "Interac e-Transfer");
-		mobileAction.FuncClick(selectSender, "Sender");
-		mobileAction.FuncElementSwipeWhileNotFound(acntsListSender, select_SenderValue, 0, "down", true);
-
-		mobileAction.FuncClick(fromAccount, "From Account");
-		accVal = Double.parseDouble(mobileAction.getText(fromAccountVal));
-		mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Account, 0, "down", true);*/
 	    	mobileAction.FuncClick(recipient, "Recipient");
-
-			MobileElement Recipient = (MobileElement) ((AppiumDriver) CL.GetDriver())
-					.findElement(By.xpath(select_Recipient));
-
-			mobileAction.FunCnewSwipe(Recipient, true, 2);
+	    	
+	    	mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_Recipient, true, 2, "Up");
 
 			mobileAction.waitForElementToDisappear(select_Recipient);
 

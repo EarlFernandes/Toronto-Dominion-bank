@@ -140,15 +140,12 @@ public class Pay_US_Bill extends _CommonPage {
 					System.out.println("From Account:" + select_accountno);
 					//mobileAction.FuncSelectElementInTable(select_account_table, firstPart, secondPart, select_accountno);
 					String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + select_accountno + "')]";
-					MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(account_value));
-					mobileAction.FunCSwipeandScroll(fromAccountval, true);
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 					
 					mobileAction.FuncClick(select_Account, "Select_Account");
 					String to_account_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountno + "')]";
-					MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(to_account_value));
-					mobileAction.FunCSwipeandScroll(toAccountval, true);	
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(to_account_value, true, 25, "Up");
+					
 					//mobileAction.FuncSelectElementInTable(to_account_table, firstPart, secondPart, to_accountno);
 					
 					mobileAction.FuncClick(amount, "Amount");
@@ -231,9 +228,7 @@ public class Pay_US_Bill extends _CommonPage {
 					String us_accountno = getTestdata("USAccount");
 					System.out.println("us_accountno" + us_accountno);
 					String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + us_accountno + "')]";
-					MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(account_value));
-					mobileAction.FunCSwipeandScroll(fromAccountval, true);
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 					
 					//mobileAction.FuncSelectElementInTable(select_account_table, firstPart, secondPart, us_accountno);
 					boolean elementExists = currency_Switchbox.isDisplayed();

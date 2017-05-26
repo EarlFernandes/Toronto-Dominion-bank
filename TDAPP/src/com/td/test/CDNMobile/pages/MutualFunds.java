@@ -714,8 +714,7 @@ public class MutualFunds extends _CommonPage {
 				mobileAction.FuncSendKeys(symbolEditText1, searchKeyword1);
 				mobileAction.waitForElementToVanish(progressBar);
 				
-				MobileElement selectSymbolValue1 = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(selectSymbolVal1));
+				MobileElement selectSymbolValue1 =mobileAction.verifyElementUsingXPath(selectSymbolVal1, "Symbol");
 				
 				mobileAction.FuncClick(selectSymbolValue1, "Symbol");
 
@@ -727,8 +726,7 @@ public class MutualFunds extends _CommonPage {
 				mobileAction.FuncSendKeys(symbolEditText2, searchKeyword1);
 				mobileAction.waitForElementToVanish(progressBar);
 				
-				MobileElement selectSymbolValue = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(selectSymbolVal2));
+				MobileElement selectSymbolValue = mobileAction.verifyElementUsingXPath(selectSymbolVal2, "Symbol");
 				
 				mobileAction.FuncClick(selectSymbolValue, "Symbol");
 				}
@@ -780,63 +778,24 @@ public class MutualFunds extends _CommonPage {
 
 				mobileAction.FuncClick(back, "Back button");
 
-				MobileElement dividendoption = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(dividendXpath));
-
-				mobileAction.verifyElementIsDisplayed(dividendoption, dividendOption);
-
-				MobileElement quanty = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(quantityxpath));
-
-				mobileAction.verifyElementIsDisplayed(quanty, quantity);
-
-				MobileElement amount = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(amountXpath));
-
-				mobileAction.verifyElementIsDisplayed(amount, amountXL);
-
+				mobileAction.verifyElementUsingXPath(dividendXpath, dividendOption);
+				mobileAction.verifyElementUsingXPath(quantityxpath, quantity);
+				mobileAction.verifyElementUsingXPath(amountXpath, amountXL);
 				mobileAction.FunctionSwipe("down", 200, 200);
-
-				MobileElement action = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(actionXpath));
-
-				mobileAction.verifyElementIsDisplayed(action, actionToPerform);
-
-				MobileElement accountNumber = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(accountNumberXpath));
-
-				mobileAction.verifyElementIsDisplayed(accountNumber, trade_account_no);
+				mobileAction.verifyElementUsingXPath(actionXpath, actionToPerform);
+				mobileAction.verifyElementUsingXPath(accountNumberXpath, trade_account_no);
+				
 			} else {
 
 				mobileAction.FuncClick(back, "Back button");
-
-				MobileElement dividendoption = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(dividendiOSXpath));
-
-				mobileAction.verifyElementIsDisplayed(dividendoption, dividendOption);
-
-				MobileElement quanty = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(quantityiOSxpath));
-
-				mobileAction.verifyElementIsDisplayed(quanty, quantity);
-
-				MobileElement amount = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(amountiOSXpath));
-
-				mobileAction.verifyElementIsDisplayed(amount, amountXL);
-
+				
+				mobileAction.verifyElementUsingXPath(dividendiOSXpath, dividendOption);
+				mobileAction.verifyElementUsingXPath(quantityiOSxpath, quantity);
+				mobileAction.verifyElementUsingXPath(amountiOSXpath, amountXL);
 				mobileAction.FunctionSwipe("down", 200, 200);
-
-				MobileElement action = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(actioniOSXpath));
-
-				mobileAction.verifyElementIsDisplayed(action, actionToPerform);
-
-				MobileElement accountNumber = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(accountNumberiOSXpath));
-
-				mobileAction.verifyElementIsDisplayed(accountNumber, trade_account_no);
-
+				mobileAction.verifyElementUsingXPath(actioniOSXpath, actionToPerform);
+				mobileAction.verifyElementUsingXPath(accountNumberiOSXpath, trade_account_no);
+				
 			}
 
 		}
@@ -881,8 +840,7 @@ public class MutualFunds extends _CommonPage {
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(mutualQuantity, "Mutual Quantity");
 			if (platformName.equalsIgnoreCase("Android")) {
-				MobileElement selectQuantity = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(quantityXpath));
+				MobileElement selectQuantity = mobileAction.verifyElementUsingXPath(quantityXpath, "Quantity");
 				mobileAction.FuncClick(selectQuantity, quantity);
 			} else {
 				mobileAction.FuncSelectElementInTable(action_table, Firstpart, Secondpart, quantity);
@@ -936,12 +894,10 @@ public class MutualFunds extends _CommonPage {
 		Decorator();
 		try {
 			if (platformName.equalsIgnoreCase("Android")) {
-				MobileElement comission = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(comissionXpath));
+				MobileElement comission = mobileAction.verifyElementUsingXPath(comissionXpath, "Comission");
 				mobileAction.FuncClick(comission, comissionXpath);
 			} else {
-				MobileElement comission = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(comissionXpathiOS));
+				MobileElement comission = mobileAction.verifyElementUsingXPath(comissionXpathiOS,"Comission");
 				mobileAction.FuncClick(comission, comissionXpath);
 			}
 		} catch (NoSuchElementException e) {
@@ -965,8 +921,7 @@ public class MutualFunds extends _CommonPage {
 
 			mobileAction.FuncClick(dividendOptions, "Dividend Option");
 			if (platformName.equalsIgnoreCase("Android")) {
-				MobileElement dividentOptionElement = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(dividendOptionValue));
+				MobileElement dividentOptionElement = mobileAction.verifyElementUsingXPath(dividendOptionValue,"Dividend");
 				mobileAction.FuncClick(dividentOptionElement, dividendOption);
 			} else {
 				mobileAction.FuncSelectElementInTable(action_table, Firstpart, Secondpart, dividendOption);
