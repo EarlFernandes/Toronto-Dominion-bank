@@ -98,7 +98,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @enabled='true']")
 	private MobileElement zone_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investing']")//@Author - Sushil 21-Apr-2017 modified
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Investing')]")//@Author - Sushil 21-Apr-2017 modified
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Investing Accounts' or @text='Comptes Placements directs TD')]")
 	private MobileElement InvestingHamburgeMenu;
 
@@ -649,6 +649,7 @@ public class HomeScreen extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(InvestingHamburgeMenu, "Investing button clicked");
+			Thread.sleep(1000);
 
 		}
 

@@ -41,7 +41,7 @@ public class MutualFunds extends _CommonPage {
 	 * Mutual Fund
 	 **********************************************/
 
-	@iOSFindBy(xpath = "[@label='Trade' or @label='Négociation']")
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']")
 //	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Trade' or @text='Négociation')]")//@Author - Sushil 21-Apr-2017
 	private MobileElement trade_header;
@@ -359,7 +359,8 @@ public class MutualFunds extends _CommonPage {
 	String dividendOptionValue = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='"
 			+ dividendOption + "']";
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Trading Password') or contains(@label,'Mot de passe de négociation')]")
+	//@iOSFindBy(xpath = "//*[@label='Trading Password' or contains(@label,'Mot de passe de négociation')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de négociation']/../XCUIElementTypeSecureTextField[1]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/editTextPassword']")
 	private MobileElement tradingPassword;
 
@@ -581,6 +582,7 @@ public class MutualFunds extends _CommonPage {
 		try {
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.verifyElementIsDisplayed(trade_header, t_verifyTrade);
+			Thread.sleep(1000);
 			//mobileAction.FunctionSwipe("up", 200, 200);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(selectAccount, "AccountSelected");
@@ -651,7 +653,7 @@ public class MutualFunds extends _CommonPage {
 				mobileAction.waitForElementToVanish(progressBar);
 				Thread.sleep(2000);
 				try {
-					String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'CA')]";
+					String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'CA') or contains(@label,'CAN')]";
 					mobileAction.FuncClick(
 							(MobileElement) CL.GetDriver().findElements(By.xpath(xpathSymbolFlag_ios)).get(0),
 							"First Symbol");
@@ -912,6 +914,7 @@ public class MutualFunds extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(amount, "Amount");
+			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncSendKeys(amount, amountXL);
 			if (platformName.equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
@@ -993,8 +996,11 @@ public class MutualFunds extends _CommonPage {
 		Decorator();
 
 		try {
+			if(mobileAction.isObjExists(tradingPassword, 2))
+			{
 			mobileAction.FuncClick(tradingPassword, "Trading Password");
 			mobileAction.FuncSendKeys(tradingPassword, trading_pwd_value);
+			}
 			if (platformName.equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 			} else {

@@ -327,7 +327,8 @@ public class SearchPageMIT extends _CommonPage {
 	{
 		try
 		{
-			mobileAction.FuncSendKeys(mEle, symbol + " ");
+			//mobileAction.FuncSendKeys(mEle, symbol + " ");
+			mEle.sendKeys(symbol + " ");
 			((RemoteWebDriver) CL.GetDriver()).getKeyboard().pressKey(Keys.BACK_SPACE);
 			//Thread.sleep(1000);
 			//mobileAction.FuncSendKeys(mEle,"\u0008");
@@ -337,6 +338,12 @@ public class SearchPageMIT extends _CommonPage {
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			try {
+				CL.GetReporting().FuncReport("Fail", "Symbol not entered.");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 	
