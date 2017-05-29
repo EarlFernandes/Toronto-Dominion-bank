@@ -301,7 +301,7 @@ public class Trade extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(selectAccount, "AccountSelected");
 				//MobileElement marginAccVal = (MobileElement) ((AppiumDriver) CL.GetDriver())
-					//	.findElement(By.xpath(accountno));
+					//.findElement(By.xpath(accountno));
 				
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountno, true, 60, "Up");
 				//mobileAction.FunCSwipeandScroll(marginAccVal, true);
