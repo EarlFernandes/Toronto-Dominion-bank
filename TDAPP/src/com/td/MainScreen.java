@@ -76,6 +76,7 @@ public class MainScreen extends _CommonPage {
 
 
 	public void readSheet() {
+		CL.CommonLibDebug = true;
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
 		String inputValue = "";
 		for (String columnName : fieldsArray) {
