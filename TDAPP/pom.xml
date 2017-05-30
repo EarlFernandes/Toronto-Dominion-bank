@@ -170,7 +170,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   	<dependency>
   		<groupId>com.td.test.alm</groupId>
   		<artifactId>ALM</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
+  		<version>0.0.2</version>
   	</dependency>
   	<dependency>
   		<groupId>com.td.test.framework</groupId>
