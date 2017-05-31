@@ -359,10 +359,17 @@ public class MutualFunds extends _CommonPage {
 	String dividendOptionValue = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='"
 			+ dividendOption + "']";
 
-	//@iOSFindBy(xpath = "//*[@label='Trading Password' or contains(@label,'Mot de passe de négociation')]")
+/*	//@iOSFindBy(xpath = "//*[@label='Trading Password' or contains(@label,'Mot de passe de négociation')]")
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de négociation']/../XCUIElementTypeSecureTextField[1]")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/editTextPassword']")
-	private MobileElement tradingPassword;
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/caption']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Trigger Delta') or contains(@text,'Votre mot de passe est inactif')]")
+	private MobileElement tradingPassword;*/
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de négociation']/../XCUIElementTypeSecureTextField[1]")//@Author - Sushil 03-Mar-2017
+	@AndroidFindBy(id="com.td:id/editTextPassword")
+	private MobileElement editTextPassword;
+	
+	
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Preview Order') or contains(@label,'Aperçu de')]")
 	@AndroidFindBy(id = "com.td:id/orderEntryPreviewButton")//@Author - Sushil 21-Apr-2017
@@ -478,6 +485,9 @@ public class MutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation']")
 	private MobileElement Investing_Trade;
 
+	@AndroidFindBy(xpath = "//android.widget.Button[(@text='Cancel' or @text='Annuler') and @resource-id='android:id/button2']")
+	private MobileElement ignoreBackButton;
+	
 	String dividendXpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='"
 			+ dividendOption + "']";
 
@@ -996,13 +1006,17 @@ public class MutualFunds extends _CommonPage {
 		Decorator();
 
 		try {
-			if(mobileAction.isObjExists(tradingPassword, 2))
+			if(mobileAction.isObjExists(editTextPassword, 2))
 			{
-			mobileAction.FuncClick(tradingPassword, "Trading Password");
-			mobileAction.FuncSendKeys(tradingPassword, trading_pwd_value);
+			mobileAction.FuncClick(editTextPassword, "Trading Password");
+			mobileAction.FuncSendKeys(editTextPassword, trading_pwd_value);
+			Thread.sleep(1000);
 			}
 			if (platformName.equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
+				if (mobileAction.FuncIsDisplayed(ignoreBackButton)) {
+					mobileAction.FuncClick(ignoreBackButton, "ignore back");
+				}
 			} else {
 				mobileAction.FuncClick(done, "Done");
 			}
@@ -1081,8 +1095,11 @@ public class MutualFunds extends _CommonPage {
 		try {
 
 			mobileAction.FunctionSwipe("up", 200, 200);
+			if(mobileAction.isObjExists(acknowledgement, 2))
+			{
 			mobileAction.verifyElementIsDisplayed(acknowledgement, "Acknowledgement");
 			mobileAction.FuncClick(acknowledgement, "Acknowledgement");
+			}
 
 		} catch (NoSuchElementException e) {
 

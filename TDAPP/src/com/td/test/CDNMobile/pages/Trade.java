@@ -94,17 +94,20 @@ public class Trade extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[8]/XCUIElementTypeTextField[1]")
 //	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText' and (contains(@text,'Trigger Price ($)') or contains(@text,'Dï¿½clenchement'))]")
-	@AndroidFindBy(xpath = "(//android.widget.EditText[@resource-id='com.td:id/amountEditText'])[2]")//@Author - Sushil 17-Apr-2017
+	//@AndroidFindBy(xpath = "(//android.widget.EditText[@resource-id='com.td:id/amountEditText'])[2]")//@Author - Sushil 17-Apr-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Trigger Price') or contains(@text,'Déclenchement')]/../*[2]/*[1]")//@Author - Shahbaaz 30-May-2017
 	private MobileElement triggerPriceEditText;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[8]/XCUIElementTypeTextField[1]")
 //	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText' and (contains(@text,'Limit Price ($)')or contains(@text,'Cours limite'))]")
-	@AndroidFindBy(xpath = "(//android.widget.EditText[@resource-id='com.td:id/amountEditText'])[2]")//@Author - Sushil 17-Apr-2017
+//	@AndroidFindBy(xpath = "(//android.widget.EditText[@resource-id='com.td:id/amountEditText'])[3]")//@Author - Sushil 17-Apr-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Limit Price') or contains(@text,'Cours limite')]/../*[2]/*[1]")//@Author - Shahbaaz 30-May-2017
 	private MobileElement limitPriceEditText;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[9]/XCUIElementTypeTextField[1]")
 //	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText' and (contains(@text,'Limit Price ($)')or contains(@text,'Cours limite'))]")
-	@AndroidFindBy(xpath = "(//android.widget.EditText[@resource-id='com.td:id/amountEditText'])[3]")//@Author - Sushil 17-Apr-2017
+	//@AndroidFindBy(xpath = "(//android.widget.EditText[@resource-id='com.td:id/amountEditText'])[3]")//@Author - Sushil 17-Apr-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Limit Price') or contains(@text,'Cours limite')]/../*[2]/*[1]")//@Author - Shahbaaz 30-May-2017
 	private MobileElement limitPriceEditTextWithTrigger;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Day' or @label='Jour']")
@@ -123,18 +126,21 @@ public class Trade extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[9]/XCUIElementTypeTextField[1]")
 //	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText' and (contains(@text,'Trigger Delta')or contains(@text,'dï¿½clenchement'))]")
-	@AndroidFindBy(xpath = "(//android.widget.EditText[@resource-id='com.td:id/amountEditText'])[2]")//@Author - Sushil 17-Apr-2017
+//	@AndroidFindBy(xpath = "(//android.widget.EditText[@resource-id='com.td:id/amountEditText'])[2]")//@Author - Sushil 17-Apr-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Trigger Delta') or contains(@text,'déclenchement')]/../*[2]/*[1]")//@Author - Shahbaaz 30-May-2017
 	private MobileElement triggerDelta;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[9]/XCUIElementTypeTextField[1]")
 //	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText' and (contains(@text,'Limit Delta ($)')or contains(@text,'$ Delta limite,'))]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Limit Delta') or contains(@text,'Delta limite')]/../*[1]") //@Author - Sushil 17-Apr-2017
+	//@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Limit Delta') or contains(@text,'Delta limite')]/../*[1]") //@Author - Sushil 17-Apr-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Limit Delta') or contains(@text,'Delta limite')]/../*[2]/*[1]")//@Author - Shahbaaz 30-May-2017
 	private MobileElement limitDelta;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[10]/XCUIElementTypeTextField[1]")
 	//@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText' and (contains(@text,'Limit Delta ($)')or contains(@text,'$ Delta limite,'))]")
 	//@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Limit Delta') or contains(@text,'Delta limite')]/../*[1]") //@Author - Sushil 17-Apr-2017
-	@AndroidFindBy(xpath = "(//android.widget.EditText[@resource-id='com.td:id/amountEditText'])[3]") //@Author - Sushil 17-Apr-2017
+	//@AndroidFindBy(xpath = "(//android.widget.EditText[@resource-id='com.td:id/amountEditText'])[3]") //@Author - Sushil 17-Apr-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Limit Delta') or contains(@text,'Delta limite')]/../*[2]/*[1]")//@Author - Shahbaaz 30-May-2017
 	private MobileElement limitDeltaWithTrigger;
 
 	//@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Preview Order' or contains(@label,'Aperï¿½u de')]")Aperçu de l'ordre

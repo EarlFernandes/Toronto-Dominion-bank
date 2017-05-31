@@ -365,7 +365,10 @@ public class Login extends _CommonPage {
 
 		Decorator();
 		try {
-
+			Thread.sleep(2000);
+			verifyAccessCardFRE();
+			mobileAction.FuncClick(username_InFrench, "username");
+			mobileAction.FuncSendKeys(username_InFrench, CL.getTestDataInstance().Userid);
 			mobileAction.FuncClick(password_InFrench, "Password");
 			mobileAction.FuncSendKeys(password_InFrench, CL.getTestDataInstance().UserPassword);
 
