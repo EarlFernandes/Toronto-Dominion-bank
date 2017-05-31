@@ -2812,6 +2812,29 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 			}
 		}
 	}
+	
+	
+	public boolean verifyElementIsPresent(MobileElement element){
+		
+		boolean flag=false;
+		
+		try{
+			
+			if(element.isDisplayed()){
+				flag=true;
+			}else{
+				flag=false;
+			}
+			
+		}catch(Exception e){
+			flag=false;
+		}
+		
+		return flag;
+		
+	}
+
+	
 }
 
 

@@ -400,9 +400,11 @@ public class MenuPage extends _CommonPage {
 				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 					mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
 				}
+				else{
+					mobileAction.FunctionSwipe("down", 200, 200);
+				}
 				String profileSettings = mobileAction.getValue(profile_and_settings);
 				mobileAction.FuncClick(profile_and_settings, profileSettings);
-				mobileAction.waitForElementToVanish(progressBar);
 			} catch (NoSuchElementException | InterruptedException | IOException e) {
 				System.err.println("TestCase has failed.");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;

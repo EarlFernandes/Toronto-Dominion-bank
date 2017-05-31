@@ -331,13 +331,14 @@ public class HomeScreen extends _CommonPage {
 	public void clickMenu() {
 		try {
 			Decorator();
-/*			try {
-				Thread.sleep(5000);
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountno, true, 60, "Up");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
+			
+			if(platformName.equalsIgnoreCase("iOS")){
+			
+			if(mobileAction.verifyElementIsPresent(back_button)){
+				mobileAction.FuncClick(back_button, "Back Button");
+			}
+			}
+			
 			mobileAction.FuncClick(menu, "Menu");
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
