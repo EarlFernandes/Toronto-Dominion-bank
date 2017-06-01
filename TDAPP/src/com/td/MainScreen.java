@@ -1,9 +1,28 @@
 package com.td;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.openqa.selenium.support.PageFactory;
+
+//import bsh.Capabilities;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.pagefactory.TimeOutDuration;
+import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class MainScreen extends _CommonPage {
 
@@ -34,11 +53,16 @@ public class MainScreen extends _CommonPage {
 
 			}
 		}
+
 	}
 
 	public void Splash_Conitnue() throws IOException {
+
 		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
 		readSheet();
+		// CL.getTestDataInstance().TCParameters.put("DeviceOrientation",CL.LoadData("DeviceOrientation",
+		// CL.getTestDataInstance().getMasterTestData(), "Batch Run", "TCtoRun",
+		// CL.getTestDataInstance().TestCaseID));
 
 		final String udid = CL.getTestDataInstance().getDeviceUdid();
 
@@ -73,9 +97,31 @@ public class MainScreen extends _CommonPage {
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+
 			}
+
 		}
 	}
+
+	// Decorator();
+
+	/*
+	 * if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
+	 * "Android")) { //CL.getTestDataInstance().SetAppFilePath(
+	 * "C:/Users/baraps2/MIT_Builds/Android/banking-wealth-17.3.1-20170130.145242-90-debug.apk"
+	 * );
+	 * CL.getTestDataInstance().SetAppFilePath("/opt/app/Android_Gold_43.apk");
+	 * //path at simulator server
+	 * CL.mobileApp("http://49.27.22.144:4724/wd/hub");; // android }
+	 * CL.getTestDataInstance().SetAppFilePath("/opt/app/Android_Gold_43.apk");
+	 * CL.mobileApp("http://49.27.22.144:4724/wd/hub");
+	 * 
+	 * } catch (Exception e) {
+	 * System.err.println("Unable to load APP file Path Exiting");
+	 * CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	 * 
+	 * } }
+	 */
 
 	// Singleton object of self
 	private static MainScreen MainScreen;
