@@ -488,6 +488,11 @@ public class MutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[(@text='Cancel' or @text='Annuler') and @resource-id='android:id/button2']")
 	private MobileElement ignoreBackButton;
 	
+	
+	@iOSFindBy(xpath = "//*[@label='OK' or @label='Done']") //@Author - Sushil 08-Feb-2017
+	//@AndroidFindBy(id="android:id/button1")
+	private MobileElement iOSKybdOKButton;
+	
 	String dividendXpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='"
 			+ dividendOption + "']";
 
@@ -1017,9 +1022,16 @@ public class MutualFunds extends _CommonPage {
 				if (mobileAction.FuncIsDisplayed(ignoreBackButton)) {
 					mobileAction.FuncClick(ignoreBackButton, "ignore back");
 				}
-			} else {
+			} 
+			else if(mobileAction.isObjExists(iOSKybdOKButton))
+				mobileAction.FuncClick(iOSKybdOKButton, "iOSKybdOKButton");
+			
+			
+			
+			
+			/*else {
 				mobileAction.FuncClick(done, "Done");
-			}
+			}*/
 
 		} catch (NoSuchElementException e) {
 
@@ -1076,6 +1088,7 @@ public class MutualFunds extends _CommonPage {
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.verifyElementIsDisplayed(estimatedTotal, "Estimated Total");
 			mobileAction.verifyElementIsDisplayed(importantInformation, "Important Information");
+			selectAcknowledgement();
 
 		} catch (NoSuchElementException e) {
 

@@ -183,7 +183,7 @@ public class Investing extends _CommonPage {
 
 		try {
 			Decorator();
-			//Thread.sleep(10000);
+			Thread.sleep(2000);
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncClick(trade, "Trade");
 
