@@ -413,7 +413,7 @@ public class Bill_PayCanada extends _CommonPage {
 					String payeeValue = PayeVal.getAttribute("label");
 					mobileAction.verifyTextEquality(payee, payeeValue);
 					mobileAction.FuncClick(accesscard, "Access Card");
-					mobileAction.FuncClick(selectSecondAccessCard, "Select Access Card from Access card table");
+					mobileAction.verifyElementUsingXPath("XCUIElementTypeStaticText[@value='ACCESS CARD']", "ACCESS CARD TITLE");
 				}
 
 			} else {

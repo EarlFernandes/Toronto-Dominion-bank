@@ -142,9 +142,9 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Transfers']")
 	private MobileElement txtTransfers_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Quick Access']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@value='Quick Access']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Home']")
-	private MobileElement btnHome;
+	private MobileElement quickAccess;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
 	private MobileElement homeBtn;
@@ -893,7 +893,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(cancelBtn, "Cancel");
 				mobileAction.verifyElementIsDisplayed(txtTransfers_Header, "Transfers");
 				mobileAction.FuncClick(backBtn, "Back");
-				mobileAction.verifyElementIsDisplayed(btnHome, "Home Page");
+				mobileAction.verifyElementIsDisplayed(quickAccess, "Home Page");
 
 			} else {
 				mobileAction.FuncClick(txtFrom_Acnt, "From Account");
@@ -912,7 +912,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(txtTransfers_Header, "Transfers");
 				mobileAction.FuncClick(btnMenu, "Menu");
 				mobileAction.FuncClick(homeBtn, "Home");
-				mobileAction.verifyElementIsDisplayed(btnHome, "Home Page");
+				mobileAction.verifyElementIsDisplayed(quickAccess, "Home Page");
 			}
 
 		} catch (NoSuchElementException e) {

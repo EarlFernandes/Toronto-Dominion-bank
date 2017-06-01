@@ -139,34 +139,6 @@ public class MobileAction2 extends CommonLib {
 			objElement.click();
 
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
-		} catch (IllegalArgumentException e) {
-			try {
-				GetReporting().FuncReport("Fail", "IllegalArgumentException");
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			throw e;
-		} catch (TimeoutException e) {
-			try{
-				GetReporting().FuncReport("Pass", "Able to write to TimeoutException");
-			}catch(IOException e1){
-			try {
-				GetReporting().FuncReport("Fail", "TimeOut Exception");
-			} catch (IOException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
-			
-			}
-		}catch (NoSuchElementException n) {
-			try {
-				GetReporting().FuncReport("Fail", "Element not displayed: " + text);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			throw n;
 		} catch (Exception e) {
 			try {
 				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
