@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.MainScreen;
@@ -146,7 +147,7 @@ public class Login extends _CommonPage {
 	private MobileElement TermsAndCondition_header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'do this later on my computer')]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_launch_browser'and contains(@text,'do this later on my computer')]")
+	@AndroidFindBy(xpath = "//android.widget.Button[contains(@text,'do this later on my computer')]")//changed by Rashmi
 	private MobileElement thanks_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Clear text']")
@@ -611,10 +612,16 @@ public class Login extends _CommonPage {
 					String passwords = getTestdata("Password");
 
 					mobileAction.FuncSendKeys(password, passwords);
+					if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+						mobileAction.FuncClick(done, "Done");
+					}else{
+						mobileAction.FuncHideKeyboard();
+					}
 					mobileAction.FuncClick(login, "Login");
 					Thread.sleep(3000);
 					mobileAction.waitForElementToVanish(progressBar);
 					verifySecurityQuestion();
+					verifyTandC();//Changed by Rashmi
 					clickLogoutLnk();
 				}
 		}  catch (NoSuchElementException e) {
@@ -651,9 +658,15 @@ public class Login extends _CommonPage {
 				HomeScreen.get().clickMenu();
 				HomeScreen.get().clickBill();
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1184,11 +1197,17 @@ public class Login extends _CommonPage {
 			else
 				mobileAction.waitForElementToAppear(session, message);
 		} catch (InterruptedException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (TimeoutException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("TimeoutException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		}catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

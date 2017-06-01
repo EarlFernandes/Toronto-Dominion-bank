@@ -50,7 +50,8 @@ public class MobileDeposit extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[starts-with(@label,'To make a deposit, please visit a Branch or ATM')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'To make a deposit')]")
 	private MobileElement validation_SixthLine;
-
+	
+	String progressBar = "//android.widget.TextView[@resource-id='com.td:id/ProgressBar_TextView' and contains(@text,'Loading')]";
 	
 	String mobile_Header_value = "Mobile Deposit";
 
@@ -90,7 +91,7 @@ public class MobileDeposit extends _CommonPage {
 	
 		Decorator();
 		try {
-			
+			mobileAction.waitForElementToDisappear(progressBar);
 			mobileAction.verifyElementIsDisplayed(mobile_Deposit_Header, mobile_Header_value);
 			mobileAction.verifyElementIsDisplayed(validation_FirstLine, ConstantClass.firstLine_Value);
 			mobileAction.verifyElementIsDisplayed(validation_SecondLine,ConstantClass.secondLine_Value);

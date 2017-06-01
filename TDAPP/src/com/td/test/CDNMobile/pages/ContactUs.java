@@ -28,11 +28,13 @@ public class ContactUs extends _CommonPage {
 	private MobileElement tdDirectInvesting;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'TD Direct Investing')]/../XCUIElementTypeButton")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/ivTDWealthDINumberPhone']")
+	//@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/ivTDWealthDINumberPhone']")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/rlTDMainNumber']")  //changed by rashmi
 	private MobileElement call_Button;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Call']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Call']")
+	//@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Call']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/continue_call_button' and contains(@text,'Continue call')]") //changed by rashmi
 	private MobileElement callNow;
 	
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='OK']")

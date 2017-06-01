@@ -44,7 +44,7 @@ public class Transfers extends _CommonPage {
 	private MobileElement Interac_e_Transfer_Button;
 	
 	@iOSFindBy(xpath= "//XCUIElementTypeStaticText[@label='Between My Accounts']")  //changed by rashmi
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textView1' and contains(@text,'Move money quickly and easily')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Between My Accounts')]")
 	private MobileElement btw_My_Accnts;
 	
 	@iOSFindBy(xpath="//XCUIElementTypeActivityIndicator[@label='In progress']")

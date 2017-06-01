@@ -28,7 +28,7 @@ public class MainScreen extends _CommonPage {
 
 	// ***** LOCAL EXECUTION PARAMETERS *****
 	// Change this parameter if doing local execution to point to your appium server instance
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.27.23.62:4734/wd/hub";
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.104:4760/wd/hub";
 	// Change this parameter to point to the correct apk in Setup.xls for Android
 	private static final String APP_ANDROID = "APP_ANDROID";
 	// Change this parameter to point to the correct ipa in Setup.xls for ios
@@ -59,11 +59,12 @@ public class MainScreen extends _CommonPage {
 	public void Splash_Conitnue() throws IOException {
 
 		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
-		String udid = CL.getTestDataInstance().getDeviceUdid();
 		readSheet();
 		// CL.getTestDataInstance().TCParameters.put("DeviceOrientation",CL.LoadData("DeviceOrientation",
 		// CL.getTestDataInstance().getMasterTestData(), "Batch Run", "TCtoRun",
 		// CL.getTestDataInstance().TestCaseID));
+
+		final String udid = CL.getTestDataInstance().getDeviceUdid();
 
 		// Jenkins only params
 		final String appiumPath = CL.getTestDataInstance().getAppiumPath();
@@ -78,6 +79,9 @@ public class MainScreen extends _CommonPage {
 			CL.mobileApp(appiumPath);
 		} else { // Local execution
 			try {
+				// Set udid explicitly for local execution, to handle udid with all caps, when reading from excel sheet
+				// it seems that framework forces to lower case
+				CL.getTestDataInstance().DriversCapability.put("udid", udid);
 				if (CL.getTestDataInstance().getAppFilePath() == null
 						|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {

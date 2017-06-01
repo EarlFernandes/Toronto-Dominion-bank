@@ -24,11 +24,11 @@ public class HomeScreen extends _CommonPage {
 	private static HomeScreen HomeScreen;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu' or @label='Menu en en-tête']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up' and @index='0']")
 	private MobileElement menu;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Bills']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Bills']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/title' or @resource-id='com.td:id/navText') and @text='Bills']")
 	private MobileElement bills;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='Accounts']")
@@ -68,15 +68,16 @@ public class HomeScreen extends _CommonPage {
 	private MobileElement french_transfers;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD for Me']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/td_zones_dashboard' and @text='TD FOR ME']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='TD for Me']")//Changed by Rashmi
 	private MobileElement dashboard_Location;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='TD For Me']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='TD for Me']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='TD for Me']")//Changed by Rashmi
 	private MobileElement TD_For_Me;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress'] ")
-	private MobileElement progressBarIos;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	private MobileElement progressBar;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='DEPOSIT']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mrdc_dashboard' and @text='DEPOSIT']")
@@ -104,8 +105,6 @@ public class HomeScreen extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Logout']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
-
-	String progressBar = "//android.widget.ProgressBar[@resource-id='android:id/progress' and @enabled='true']";
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@value='SEND MONEY']")
 	private MobileElement send_money_button;
@@ -737,19 +736,23 @@ public class HomeScreen extends _CommonPage {
 				if(mobileAction.verifyElementIsPresent(select_accesscard)){
 					Login.get().login();
 				}
-				mobileAction.waitForElementToVanish(progressBarIos);
+				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.verifyElement(TD_For_Me, "TD for Me");
 
-			} else {
+			} else {//Changed by Rashmi
 
 				AppiumDriver<WebElement> driver = ((AppiumDriver<WebElement>) CL.GetDriver());
 				WebDriverWait wait = new WebDriverWait(driver, 10);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-						"//android.widget.TextView[@resource-id='com.td:id/td_zones_dashboard' and @text='TD FOR ME']")));
+						"//android.widget.TextView[@text='TD for Me']")));
 				mobileAction.FuncClick(dashboard_Location, "TD Zone Dashboard");
+				if(mobileAction.verifyElementIsPresent(select_accesscard)){
+					Login.get().login();
+				}
 				// mobileAction.waitForElementToVanish(progressBarIos);a
 				// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.TextView[@resource-id='android:id/action_bar_title'
 				// and @text='TD for Me']")));
+				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.verifyElement(TD_For_Me, "TD for Me");
 
 			}
@@ -788,7 +791,7 @@ public class HomeScreen extends _CommonPage {
 				mobileAction.FuncClick(continueBtn, "Continue Button");
 				mobileAction.FuncClick(get_Started, "Get Started");
 				mobileAction.FuncClick(accept, "Accept Button");
-				mobileAction.waitForElementToDisappear(progressBar);
+				mobileAction.waitForElementToVanish(progressBar);
 			}
 			String location = mobileAction.getText(nearByLoaction);
 			mobileAction.verifyElement(viewingDetail, "Nearby");
@@ -796,7 +799,7 @@ public class HomeScreen extends _CommonPage {
 			mobileAction.FunctionSwipe("Up", 100, 0);
 			String addr = mobileAction.getText(zone_Name);
 			mobileAction.FuncClick(zone_Name, "Zone Name");
-			mobileAction.waitForElementToDisappear(progressBar);
+			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.verifyElement(zone_Header, addr);
 
 		}catch (NoSuchElementException e) {

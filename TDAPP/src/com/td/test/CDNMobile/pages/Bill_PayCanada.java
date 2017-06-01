@@ -65,7 +65,7 @@ public class Bill_PayCanada extends _CommonPage {
 	String t_select_to_account = "//android.widget.TextView[@resource-id='com.td:id/edtPayee' and @text='Select Payee']";
 
 	String ToAccountXL = getTestdata("ToAccount");
-	
+
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and @text='TD CLASSIC TRAVEL VIS... 4520020000005323']")
 	private MobileElement select_to_account;
 
@@ -223,6 +223,9 @@ public class Bill_PayCanada extends _CommonPage {
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay With Rewards']")
 	private MobileElement txtPaywithRewards;
+	
+	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
+	private MobileElement payeeValue;
 
 
 	String accesscardTable = " //XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
@@ -282,9 +285,15 @@ public class Bill_PayCanada extends _CommonPage {
 				String payee=getTestdata("Payee");
 				String ToPostAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and contains(@text,'"
 						+ payee + "')]";
-				mobileAction.FuncClick(to_account_post, "Select Payee");
-				mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, ToPostAccountXpath, 1, "up", true);
-				mobileAction.waitForElementToDisappear(t_select_to_account);
+			
+				if (mobileAction.verifyElementIsPresent(payeeValue)) {
+
+				} else {
+					mobileAction.FuncClick(to_account_post, "Select Payee");
+					mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, ToPostAccountXpath, 1, "up", true);
+					mobileAction.waitForElementToDisappear(t_select_to_account);
+				}
+
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
 				mobileAction.FuncHideKeyboard();

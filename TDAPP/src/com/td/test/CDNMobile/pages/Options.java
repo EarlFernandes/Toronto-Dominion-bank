@@ -254,7 +254,7 @@ public class Options extends _CommonPage {
 			mobileAction.FuncClick(cancel_btn, "Cancel Order");
 			if(mobileAction.isObjExists(editTextPassword, 2))
 			{
-				TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+				TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("Trading_Pwd"));
 			}
 			mobileAction.FuncClick(cancel_btn, "Cancel Order");
 			MainScreenMIT.get().tapInvesting();
@@ -314,7 +314,7 @@ public class Options extends _CommonPage {
 			mobileAction.FuncSwipeOnce("up");
 			if(mobileAction.isObjExists(editTextPassword, 2))
 			{
-				TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+				TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("Trading_Pwd"));
 			}
 			mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
 			mobileAction.FuncClick(agreeButton, "agreeButton");
@@ -419,7 +419,7 @@ public class Options extends _CommonPage {
 			
 				if(mobileAction.isObjExists(editTextPassword, 2))
 					{
-						TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+						TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("Trading_Pwd"));
 					}
 				mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
 				mobileAction.FuncClick(agreeButton, "agreeButton");
@@ -467,7 +467,7 @@ public class Options extends _CommonPage {
 			
 				if(mobileAction.isObjExists(editTextPassword, 2))
 					{
-						TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+						TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("Trading_Pwd"));
 					}
 				mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
 				mobileAction.FuncClick(agreeButton, "agreeButton");
@@ -505,7 +505,7 @@ public class Options extends _CommonPage {
 			
 				if(mobileAction.isObjExists(editTextPassword, 2))
 					{
-						TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+						TradeMultiLeg.get().FuncEnterText(editTextPassword,getTestdata("Trading_Pwd"));
 					}
 				mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
 				mobileAction.FuncClick(agreeButton, "agreeButton");
@@ -597,7 +597,7 @@ public class Options extends _CommonPage {
 				mobileAction.FuncClick(cancel_btn, "Cancel Order");
 				if(mobileAction.isObjExists(editTextPassword, 2))
 				{
-					TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+					TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("Trading_Pwd"));
 				}
 			} catch (NoSuchElementException e) {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
