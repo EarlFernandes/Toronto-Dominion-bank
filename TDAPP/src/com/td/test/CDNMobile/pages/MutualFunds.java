@@ -428,7 +428,7 @@ public class MutualFunds extends _CommonPage {
 	private MobileElement estimatedTotal;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Important Information') or contains(@value,'Important Information') or contains(@label,'Renseignements importants')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/importantInfoLink' and @text='Important Information']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/importantInfoLink' and @text='Important Information' or @text='Renseignements importants']")
 	private MobileElement importantInformation;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Send Order') or contains(@label,'Envoyer l’ordre')]")
@@ -1107,6 +1107,7 @@ public class MutualFunds extends _CommonPage {
 
 		try {
 
+			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FunctionSwipe("up", 200, 200);
 			if(mobileAction.isObjExists(acknowledgement, 2))
 			{

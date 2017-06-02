@@ -327,9 +327,9 @@ public class SearchPageMIT extends _CommonPage {
 	{
 		try
 		{
-			//mobileAction.FuncSendKeys(mEle, symbol + " ");
-			mEle.sendKeys(symbol + " ");
-			((RemoteWebDriver) CL.GetDriver()).getKeyboard().pressKey(Keys.BACK_SPACE);
+			mobileAction.FuncSendKeys(mEle, symbol + " ");
+			//mEle.sendKeys(symbol + " ");
+			//((RemoteWebDriver) CL.GetDriver()).getKeyboard().pressKey(Keys.BACK_SPACE);
 			//Thread.sleep(1000);
 			//mobileAction.FuncSendKeys(mEle,"\u0008");
 			//mEle.sendKeys(Keys.DELETE);
