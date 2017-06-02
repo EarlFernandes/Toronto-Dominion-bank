@@ -181,11 +181,6 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Home' or @text='Accueil') and @resource-id='android:id/action_bar_title']")
 	private MobileElement hdrHome;
 	
-/*	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Home' or @label='Accueil']") //@Author - Sushil 29-Mar-2017
-	@AndroidFindBy(xpath = "//*[(@text='Home' or @text='Accueil') and @resource-id='android:id/action_bar_title']")
-	private MobileElement hdrHome;*/
-
-	
 	@iOSFindBy(xpath = "//*[@label='Send Order' or contains(@label,'Envoyer l')]") //@Author - Sushil 21-Mar-2017
 	@AndroidFindBy(id="com.td:id/btn_continue")
 	private MobileElement btnSendOrder;
