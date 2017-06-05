@@ -331,14 +331,7 @@ public class HomeScreen extends _CommonPage {
 	public void clickMenu() {
 		try {
 			Decorator();
-			
-			if(platformName.equalsIgnoreCase("iOS")){
-			
-			if(mobileAction.verifyElementIsPresent(back_button)){
-				mobileAction.FuncClick(back_button, "Back Button");
-			}
-			}
-			
+			// FIXED removed back button
 			mobileAction.FuncClick(menu, "Menu");
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {

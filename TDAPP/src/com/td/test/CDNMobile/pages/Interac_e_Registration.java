@@ -135,9 +135,12 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Send Money']")
 	private MobileElement sendMoney;
 	
-	
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[contains(@content-desc,'Navigate up')]")
 	private MobileElement backButton;
+	
+	
+	
 	
 
 	int profileCount=0;
@@ -511,6 +514,14 @@ public class Interac_e_Registration extends _CommonPage {
 				
 				if(platformName.equalsIgnoreCase("Android")){
 					if(i<1 && !mobileAction.verifyElementIsPresent(registerAnotherProfile)){
+						
+						if (platformName.equalsIgnoreCase("iOS")) {
+
+							if (mobileAction.verifyElementIsPresent(backButton)) {
+								mobileAction.FuncClick(backButton, "Back Button");
+							}
+						}
+						
 					HomeScreen.get().clickMenu();
 					MenuPage.get().clickProfileAndSettings();
 					Profile_And_Settings.get().clickPaymentsAndTransfers();

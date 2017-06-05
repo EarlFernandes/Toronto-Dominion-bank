@@ -65,69 +65,52 @@ public class MainScreen extends _CommonPage {
 
 		readSheet();
 		readP2PSheet();
-		
-		if(getTestdata("ProfileType").equalsIgnoreCase("Personal")){
-			System.out.println("ProfileType: "+getTestdata("ProfileType"));
+
+		if (getTestdata("ProfileType").equalsIgnoreCase("Personal")) {
+			System.out.println("ProfileType: " + getTestdata("ProfileType"));
 			Executor.get().createPersonalProfile();
-		}else if(getTestdata("ProfileType").equalsIgnoreCase("Business")){
+		} else if (getTestdata("ProfileType").equalsIgnoreCase("Business")) {
 			Executor.get().createBusinessProfile();
-		}else if(getTestdata("ProfileType").equalsIgnoreCase("Multi")){
+		} else if (getTestdata("ProfileType").equalsIgnoreCase("Multi")) {
 			Executor.get().createMultiProfile();
 		}
-		
+
 		final String udid = CL.getTestDataInstance().getDeviceUdid();
 
 		// Jenkins only params
-		
-		 /* final String appiumPath = CL.getTestDataInstance().getAppiumPath();
-		  final String targetEnv = CL.getTestDataInstance().targetEnvironment;
-		  
-		  if (!StringUtils.isEmpty(appiumPath) &&
-		  !StringUtils.isEmpty(targetEnv)) { // Jenkins execution 
-		  if (CL.getTestDataInstance().getAppFilePath() == null || CL.getTestDataInstance().getAppFilePath().length() < 1) {
-		  CL.getTestDataInstance().SetAppFilePath( CL.LoadData("Value",
-		  CL.getTestDataInstance().getSetupFile(), "AppURL", "Name",
-		  targetEnv)); } CL.mobileApp(appiumPath); } else { // Local execution
-		  try { // Set udid explicitly for local execution, to handle udid with all caps, when reading from excel sheet // it seems that framework forces to lower case
-		  CL.getTestDataInstance().DriversCapability.put("udid", udid); if
-		  (CL.getTestDataInstance().getAppFilePath() == null ||
-		  CL.getTestDataInstance().getAppFilePath().length() < 1) { if
-		  (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
-		  "Android")) {
-		  CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-		  CL.getTestDataInstance().getSetupFile(), "AppURL", "Name",
-		  APP_ANDROID)); } else if
-		  (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")
-		  ) { CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-		  CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS));
-		  } } CL.mobileApp(LOCAL_EXECUTION_APPIUM_SERVER);
-		  
-		  } catch (Exception e) {
-		  System.err.println("Unable to load APP file Path Exiting");
-		  CL.getGlobalVarriablesInstance().bStopNextFunction = false; } }
-		 
-		*/
-		
-		if (udid.equalsIgnoreCase("1021f602")) {
 
-			try {
+		final String appiumPath = CL.getTestDataInstance().getAppiumPath();
+		final String targetEnv = CL.getTestDataInstance().targetEnvironment;
+
+		if (!StringUtils.isEmpty(appiumPath) && !StringUtils.isEmpty(targetEnv)) { // Jenkins
+																					// execution
+			if (CL.getTestDataInstance().getAppFilePath() == null
+					|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
+				CL.getTestDataInstance().SetAppFilePath(
+						CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", targetEnv));
+			}
+			CL.mobileApp(appiumPath);
+		} else { // Local execution
+			try { // Set udid explicitly for local execution, to handle udid
+					// with all caps, when reading from excel sheet // it seems
+					// that framework forces to lower case
+				CL.getTestDataInstance().DriversCapability.put("udid", udid);
 				if (CL.getTestDataInstance().getAppFilePath() == null
 						|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_ANDROID"));
-					} else {
+								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_ANDROID));
+					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
+								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS));
 					}
 				}
-				CL.mobileApp("http://49.27.22.144:4724/wd/hub");
+				CL.mobileApp(LOCAL_EXECUTION_APPIUM_SERVER);
+
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
 			}
-		
 		}
 		
 	}

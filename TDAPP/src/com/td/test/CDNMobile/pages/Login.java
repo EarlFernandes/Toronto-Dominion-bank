@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
@@ -30,7 +31,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @index='1']")
 	private MobileElement username;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Nom d�utilisateur ou num�ro de carte Acc�s']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Nom d’utilisateur ou numéro de carte Accès']")	//FIXED
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @index='1']")
 	private MobileElement usernameFRE;
 
@@ -327,9 +328,9 @@ public class Login extends _CommonPage {
 			Thread.sleep(2000);
 			verifyAccessCard();
 
-			if (CL.getTestDataInstance().Userid.equalsIgnoreCase(null)) {
+			if (StringUtils.isEmpty(CL.getTestDataInstance().Userid)) {
 
-				if (!Executor.acsNo.equalsIgnoreCase(null)) {
+				if (!StringUtils.isEmpty(Executor.acsNo)) {
 
 					mobileAction.FuncSendKeys(username, Executor.acsNo);
 

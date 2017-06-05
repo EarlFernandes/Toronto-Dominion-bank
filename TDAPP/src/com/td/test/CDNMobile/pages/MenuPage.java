@@ -405,6 +405,7 @@ public class MenuPage extends _CommonPage {
 				}
 				String profileSettings = mobileAction.getValue(profile_and_settings);
 				mobileAction.FuncClick(profile_and_settings, profileSettings);
+				mobileAction.waitForElementToVanish(progressBar);
 			} catch (NoSuchElementException | InterruptedException | IOException e) {
 				System.err.println("TestCase has failed.");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
