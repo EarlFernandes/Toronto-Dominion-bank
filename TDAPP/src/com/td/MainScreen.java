@@ -50,8 +50,7 @@ public class MainScreen extends _CommonPage {
 		if (!StringUtils.isEmpty(appiumPath) && !StringUtils.isEmpty(targetEnv)) { // Jenkins execution
 			if (CL.getTestDataInstance().getAppFilePath() == null
 					|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
-				CL.getTestDataInstance().SetAppFilePath(
-						CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", targetEnv));
+				CL.getTestDataInstance().SetAppFilePath(targetEnv);
 			}
 			CL.mobileApp(appiumPath);
 		} else { // Local execution
