@@ -13,14 +13,14 @@ public class MainScreen extends _CommonPage {
 	private static final String APP_ANDROID = "APP_ANDROID";
 	// Change this parameter to point to the correct ipa in Setup.xls for ios
 	private static final String APP_IOS = "APP_IOS";
-	
+
 	String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env", "Amount",
 			"Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount", "AccessCard",
 			"Description", "Payee", "Timeout", "SecondTimeout", "MerchantName", "Price", "Quantity",
 			"Security_Question", "RecipientName", "RecipientMail", "Trading_Pwd", "Symbol", "ShareHolder",
 			"SecurityPassword", "TriggerDelta", "CDNMarginAccount", "QuantityType", "Dividend", "SelectLimitPrice",
 			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName",
-			"Passcode", "NewPasscode", "Email", "Name", "EmailProfile","PhoneProfile", "PostSurveyText"};
+			"Passcode", "NewPasscode", "Email", "Name", "EmailProfile", "PhoneProfile", "PostSurveyText" };
 
 	public void readSheet() {
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
@@ -50,8 +50,7 @@ public class MainScreen extends _CommonPage {
 		if (!StringUtils.isEmpty(appiumPath) && !StringUtils.isEmpty(targetEnv)) { // Jenkins execution
 			if (CL.getTestDataInstance().getAppFilePath() == null
 					|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
-				CL.getTestDataInstance().SetAppFilePath(
-						CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", targetEnv));
+				CL.getTestDataInstance().SetAppFilePath(targetEnv);
 			}
 			CL.mobileApp(appiumPath);
 		} else { // Local execution
@@ -64,12 +63,12 @@ public class MainScreen extends _CommonPage {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_ANDROID));
-					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS));
 					}
 				}
-				CL.mobileApp(LOCAL_EXECUTION_APPIUM_SERVER); 
+				CL.mobileApp(LOCAL_EXECUTION_APPIUM_SERVER);
 
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
