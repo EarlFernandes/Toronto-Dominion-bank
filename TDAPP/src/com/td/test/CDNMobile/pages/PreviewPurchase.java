@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
@@ -64,6 +65,14 @@ public class PreviewPurchase extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Cancel']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/custom_text']")
 	private MobileElement disclaimer_info;
+	
+	@iOSFindBy(xpath = "//*[@label='Cancel' or @label='Annuler']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
+	private MobileElement cancel_Popup_button;	
+
+	@iOSFindBy(xpath = "//*[@label='Yes, go back' or @label='Oui']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
+	private MobileElement goback_Popup_button;
 	
 	String androidphoneReg ="\\(\\d{3}\\) \\d{3}-\\d{4}";
 
@@ -207,5 +216,63 @@ public class PreviewPurchase extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+	}
+	
+	public void ClickBackFromPreviewPurchase(){
+		Decorator();
+		String back_xpath ="";
+
+		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			try{
+				mobileAction.FuncClickBackButton();
+				return;
+			}catch (Exception e){
+				back_xpath = "//android.widget.ImageView[@resource-id='android:id/up']";
+			}
+			
+		}else{
+			back_xpath = "//*[@label='Back' or @label='Retour']";
+		}
+		
+		try{
+			MobileElement back_arrow = (MobileElement)CL.GetDriver().findElement(By.xpath(back_xpath));
+			mobileAction.FuncClick(back_arrow, "<");
+				
+		}catch (Exception e) {
+	        System.err.println("TestCase has failed.");
+	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	    }
+	}
+	
+	public void ClickPopupGoBackButton(){
+		Decorator();
+		try{
+			mobileAction.FuncClick(goback_Popup_button, "Yes, Go Back");
+		}catch (Exception e){
+	        System.err.println("TestCase has failed.");
+	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+	        return;	
+		}
+	}
+	
+	public void savePhoneInforForPFVerification(){
+		String phoneinfo = mobileAction.getValue(phone_number);
+		if(!phoneinfo.isEmpty()){
+			CL.getTestDataInstance().TCParameters.put("PhoneProfile", phoneinfo);
+			mobileAction.Report_Pass_Verified("phone:" + phoneinfo);
+		}else{
+			mobileAction.Report_Pass_Verified("Phone is empty");
+		}
+	}
+	
+	public void ClickPurchaseNowBtn(){
+		Decorator();
+		try{
+			mobileAction.FuncClick(purchase_now_button, "Purchase Now");
+		}catch (Exception e){
+	        System.err.println("TestCase has failed.");
+	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+	        return;	
+		}		
 	}
 }

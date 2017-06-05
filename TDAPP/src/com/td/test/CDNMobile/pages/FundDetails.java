@@ -127,7 +127,7 @@ public class FundDetails extends _CommonPage {
 			int lengthOfText = expectedText.length;
 			System.out.println("Expected fund details number:" + lengthOfText);
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				List<MobileElement> InfoList = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[@index='1']/android.widget.LinearLayout/android.widget.TextView[@index='0']");
+				List<MobileElement> InfoList = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[@index='2']/android.widget.LinearLayout/android.widget.TextView[@index='0']");
 				int size = InfoList.size();
 				System.out.println("Capture fund details number:" + size);
 				if(size != lengthOfText){

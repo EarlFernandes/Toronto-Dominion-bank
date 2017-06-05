@@ -19,8 +19,11 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class PurchaseMutualFunds extends _CommonPage {
 
 	private static PurchaseMutualFunds purchaseMutualFunds;
+	
+	private static String MIN_AMOUNT = "100.00";
+	private static String MAX_AMOUNT = "999999.99";
 
-	@iOSFindBy(xpath = "//*[@label='Purchase Mutual Funds' or @label='Achat de fonds communs de placement']")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText") //[@label='Purchase Mutual Funds' or @label='Achat de fonds communs de placement']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement purchaseMF_title;
 
@@ -28,11 +31,11 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progress_bar;
 	
-	@iOSFindBy(xpath = "//*[@label='Purchase Mutual Funds' or @label='Sélectionner un fonds']")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/selectedText")
 	private MobileElement fund_dropdown_list;
 	
-	@iOSFindBy(xpath = "//*[@label='Mutual Funds' or @label='Sélectionner un fonds']")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(id = "com.td:id/caption")
 	private MobileElement fund_dropdown_caption;
 	
@@ -40,35 +43,35 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/captionTextView")
 	private MobileElement amount_caption;
 	
-	@iOSFindBy(xpath = "//*[@label='Cancel' or @label='Annuler']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@name='actionSheetCancelButton']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/dialog_button']")
 	private MobileElement cancel_button;
 	
-	@iOSFindBy(xpath = "//*[@label='From Account' or @label='Avis']")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeCell[3]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='From Account']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']")
 	private MobileElement from_account_name;
 	
-	@iOSFindBy(xpath = "//*[@label='From Account' or @label='Avis']")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeCell[3]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='From Account']")
 	private MobileElement from_account_caption;
 	
-	@iOSFindBy(xpath = "//*[@label='From Account' or @label='Avis']")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeCell[4]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='To Account']")
 	private MobileElement to_account_caption;
 	
-	@iOSFindBy(xpath = "//*[@label='From Account' or @label='Avis']")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/custom_text']")
 	private MobileElement contact_caption;
 	
-	@iOSFindBy(xpath = "//*[@label='From Account' or @label='Avis']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label']")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeCell[7]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label']")
 	private MobileElement email_caption;
 	
-	@iOSFindBy(xpath = "//*[@label='From Account' or @label='Avis']")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label']")
 	private MobileElement phone_caption;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'View Fund Facts') or contains(@label,'Veuillez consulter')]")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeCell[9]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_value_main']")
 	private MobileElement view_fundFacts;
 	
@@ -76,7 +79,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/description']")
 	private MobileElement email_info;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Mobile Phone' or @label='N° de tél. (cell.)']/../XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Phone Number' or @label='N° de tél. (cell.)']/../XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/phone_number']")
 	private MobileElement phone_info;
 	
@@ -84,6 +87,9 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText']")
 	private MobileElement amount;
 	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount']")
+	@AndroidFindBy(xpath = "//android.widget.CheckBox[@resource-id='com.td:id/checkbox']")
+	private MobileElement consent_checkbox;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Mobile Phone' or @label='N° de tél. (cell.)']/../XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/purchasePreviewButton']")
@@ -117,6 +123,21 @@ public class PurchaseMutualFunds extends _CommonPage {
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
 				this);
 
+	}
+	
+	private void enterAmount(String amountentered){
+		try{
+			mobileAction.FuncSendKeys(amount, amountentered);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or @label='OK' or @label='" + mobileAction.getAppString(locale_used, "secureLoginEditButtonDone") + "']", "Done");
+				mobileAction.FuncClick(done, "Done");
+			} else {
+				mobileAction.FuncHideKeyboard();
+			}
+		}catch ( InterruptedException | IOException  e){
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+		
 	}
 	
 	private String replacePlaceholderToNothing(String text, String placeHolder){
@@ -329,9 +350,14 @@ public class PurchaseMutualFunds extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(fund_dropdown_caption, "基金 |基金");
 			mobileAction.verifyElementTextIsDisplayed(fund_dropdown_list, "选择基金|選擇基金 ");
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				from_account_caption = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='" + mobileAction.getAppString("MF_from_account") + "']", "From Account");
-				to_account_caption = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='" + mobileAction.getAppString("MF_to_mf_account") + "']", "To Account");
-				contact_caption = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/custom_text' and @text='" + mobileAction.getAppString("MF_contact_information") + "']", "Contact Information");
+//				System.out.println(mobileAction.getAppString("MF_from_account"));
+//				System.out.println(mobileAction.getAppString("MF_to_mf_account"));
+//				System.out.println(mobileAction.getAppString("MF_contact_information"));
+				from_account_caption = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='" + mobileAction.getAppString(locale_used, "MF_from_account") + "']", "From Account");
+				to_account_caption = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='" + mobileAction.getAppString(locale_used, "MF_to_mf_account") + "']", "To Account");
+				contact_caption = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/custom_text' and @text='" + mobileAction.getAppString(locale_used, "MF_contact_information") + "']", "Contact Information");
+				
+			}else{
 				
 			}
 			mobileAction.verifyElementTextIsDisplayed(from_account_caption, "转出账户|轉出賬戶 ");
@@ -339,6 +365,8 @@ public class PurchaseMutualFunds extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(contact_caption, "联系方式|聯絡資訊 ");
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView",  1, "down");
+			}else{
+				mobileAction.SwipeWithinElement("//XCUIElementTypeTable",  1, "down");
 			}
 			mobileAction.verifyElementTextIsDisplayed(email_caption, "电子邮件|電郵地址");
 			mobileAction.verifyElementTextIsDisplayed(phone_caption, "电话号码|電話號碼");
@@ -348,9 +376,9 @@ public class PurchaseMutualFunds extends _CommonPage {
 			
 			
 		} catch (NoSuchElementException | IOException  e) {
-			System.err.println("TestCase has failed to VerifyPhoneNotMasked.");
+			System.err.println("TestCase has failed to VerifyPurchaseMFPageInChinese.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			mobileAction.Report_Fail("Exception for VerifyPhoneNotMasked");
+			mobileAction.Report_Fail("Exception for VerifyPurchaseMFPageInChinese");
 		}
 	}
 	
@@ -373,17 +401,11 @@ public class PurchaseMutualFunds extends _CommonPage {
 				
 			}
 			//MobileElement FundsInList = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='" + selectedFund + "']", selectedFund);
-			mobileAction.FuncSendKeys(amount, amount_selected);
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				done = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString(locale_used, "secureLoginEditButtonDone") + "']", "Done");
-				mobileAction.FuncClick(done, "Done");
-			} else {
-				mobileAction.FuncHideKeyboard();
-			}
+			enterAmount(amount_selected);
 			
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){			
 				//mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView",  1, "down");
-				mobileAction.FuncSwipeWhileElementNotFound(phone_info, false, 3, "up");
+				mobileAction.FuncSwipeWhileElementNotFound(consent_checkbox, false, 5, "up");
 			}
 			mobileAction.FuncSendKeys(email_info, user_email);
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
@@ -396,6 +418,8 @@ public class PurchaseMutualFunds extends _CommonPage {
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}
+			
+			mobileAction.FuncClick(consent_checkbox, "consent check box");
 					
 		}catch (Exception e){
 			return false;
@@ -412,6 +436,13 @@ public class PurchaseMutualFunds extends _CommonPage {
 			}
 
 			String enableStatus= preview_purchase_button.getAttribute("enabled");
+//			if(enableStatus.equalsIgnoreCase("false")){
+//				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+//				mobileAction.Report_Fail("Preview Purchase Button is not enabled");
+//				return;
+//			}
+//			
+//			System.out.println("Preview Button is enabled");
 			int count=0;
 			
 			while(enableStatus.equalsIgnoreCase("false") && count <10){
@@ -434,5 +465,160 @@ public class PurchaseMutualFunds extends _CommonPage {
 			mobileAction.Report_Fail("Exception for ClickPreviewPurchase");
 		}
 	}
+	
+	private String checkErrorMessageIsFound(){
+		return "";
+	}
+	
+	public void VerifyMinimumAmount() {
+		Decorator();
+		try {
+			String amountLessthanMinimum ="99.99";
+			enterAmount(amountLessthanMinimum);
+			String errorMessage = checkErrorMessageIsFound();
+			if(errorMessage.isEmpty()){
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				mobileAction.Report_Fail("No error message for amount "+ amountLessthanMinimum);
+				return;
+			}else{
+				System.out.println("Found error message:"+ errorMessage);
+				mobileAction.Report_Pass_Verified(errorMessage);
+			}
+			
+			enterAmount(MIN_AMOUNT);
+			
+			errorMessage = checkErrorMessageIsFound();
+			if(errorMessage.isEmpty()){
+				mobileAction.Report_Pass_Verified("Min Amount "+ MIN_AMOUNT);
+			}else{
+				System.out.println("Found error message:"+ errorMessage + " with amount " +MIN_AMOUNT);
+				mobileAction.Report_Fail_Not_Verified("Min Amount "+ MIN_AMOUNT);
+			}
+
+
+		} catch (NoSuchElementException  e) {
+			System.err.println("TestCase has failed to VerifyMinmumAmount.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			mobileAction.Report_Fail("Exception for VerifyMinmumAmount");
+		}
+	}
+
+	public void VerifyMaximumAmount() {
+		Decorator();
+		try {
+			String amounGreaterthanMaximum ="1000000.00";
+			enterAmount(amounGreaterthanMaximum);
+			String errorMessage = checkErrorMessageIsFound();
+			if(errorMessage.isEmpty()){
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				mobileAction.Report_Fail("No error message for amount "+ amounGreaterthanMaximum);
+				return;
+			}else{
+				System.out.println("Found error message:"+ errorMessage);
+				mobileAction.Report_Pass_Verified(errorMessage);
+			}
+			
+			enterAmount(MAX_AMOUNT);
+			
+			errorMessage = checkErrorMessageIsFound();
+			if(errorMessage.isEmpty()){
+				mobileAction.Report_Pass_Verified("Max Amount "+ MAX_AMOUNT);
+			}else{
+				System.out.println("Found error message:"+ errorMessage + " with amount " +MAX_AMOUNT);
+				mobileAction.Report_Fail_Not_Verified("Max Amount "+ MAX_AMOUNT);
+			}
+
+		} catch (NoSuchElementException  e) {
+			System.err.println("TestCase has failed to VerifyMaxmumAmount.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			mobileAction.Report_Fail("Exception for VerifyMaxmumAmount");
+		}		
+	}
+	
+	public void VerifyErrorMsgFromCADAccountToUSDMFAccount() {
+		Decorator();
+		try {
+			if(!fillPurchaseForm()){
+				mobileAction.Report_Fail("Failed to fill purchase form");
+				return;
+			}
+			
+			String errorMessage = checkErrorMessageIsFound();
+			String expectedError = "You're not able to purchase a U.S. currency mutual fund using a Canadian currency account. Try another fund or start over and select another account. You can also call us for help at x-xxx-xxx-xxxx";
+			System.out.println("Found error message:"+ errorMessage);
+			if(errorMessage.equalsIgnoreCase(expectedError)){
+				mobileAction.Report_Pass_Verified("Error message found from CAD account to USD MF Account");
+			}else{
+				
+				mobileAction.Report_Fail_Not_Verified("Error message found from CAD account to USD MF Account");
+			}
+
+		} catch (NoSuchElementException  e) {
+			System.err.println("TestCase has failed to VerifyErrorMsgFromCADAccountToUSDMFAccount.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			mobileAction.Report_Fail("Exception for VerifyErrorMsgFromCADAccountToUSDMFAccount");
+		}		
+	}	
+	
+	public void VerifyPhoneIsPopulatedWithProfilePhone() {
+		Decorator();
+		try {
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){			
+				//mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView",  1, "down");
+				mobileAction.FuncSwipeWhileElementNotFound(phone_info, false, 3, "up");
+			}
+			
+			String phoneInfo = mobileAction.getValue(phone_info);
+			String expectedPhone = CL.getTestDataInstance().TCParameters.get("PhoneProfile");
+			System.out.println("Expected:" + expectedPhone);
+			if(phoneInfo.equalsIgnoreCase(expectedPhone)){
+				mobileAction.Report_Pass_Verified("Phone is populated :" + phoneInfo);
+			}else{
+				mobileAction.Report_Fail_Not_Verified("Phone is not populated" + phoneInfo);
+			}
+
+		} catch (NoSuchElementException  e) {
+			System.err.println("TestCase has failed to VerifyPhoneIsPopulatedWithProfilePhone.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			mobileAction.Report_Fail("Exception for VerifyPhoneIsPopulatedWithProfilePhone");
+		}		
+	}
+	
+	public void VerifyEmailIsPopulatedWithProfileEmail() {
+		Decorator();
+		try {
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){			
+				//mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView",  1, "down");
+				mobileAction.FuncSwipeWhileElementNotFound(phone_info, false, 3, "up");
+			}
+			
+			String emialInfo = mobileAction.getValue(email_info);
+			String expectedEmail = CL.getTestDataInstance().TCParameters.get("EmailProfile");
+			System.out.println("Expected:" + expectedEmail);
+			if(emialInfo.equalsIgnoreCase(expectedEmail)){
+				mobileAction.Report_Pass_Verified("Email is populated :" + emialInfo);
+			}else{
+				mobileAction.Report_Fail_Not_Verified("Email is not populated " + emialInfo);
+			}
+
+		} catch (NoSuchElementException  e) {
+			System.err.println("TestCase has failed to VerifyEmailIsPopulatedWithProfileEmail.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			mobileAction.Report_Fail("Exception for VerifyEmailIsPopulatedWithProfileEmail");
+		}		
+	}
+	
+	public void ClickviewfundFacts(){
+		Decorator();
+		try {
+			mobileAction.FuncClick(view_fundFacts, "view fund Facts");
+			
+		} catch ( InterruptedException | IOException e) {
+			System.err.println("TestCase has failed to clickviewfundFacts.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			mobileAction.Report_Fail("Exception for clickviewfundFacts");
+		}	
+	}
+	
 	
 }

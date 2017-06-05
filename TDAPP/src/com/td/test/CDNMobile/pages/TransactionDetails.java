@@ -23,31 +23,31 @@ public class TransactionDetails extends _CommonPage{
 	 @AndroidFindBy(xpath="//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	 private MobileElement transactionDetailsHeader;
 	 
-	 @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Date')]")
+	 @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
 	 @AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/date']")
 	 private MobileElement transacDate;
 	 
-	 @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Posted Date')]")
+	 @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
 	 @AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/transaction_type']")
 	 private MobileElement ptransactionType;
 	 
-	 @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Posted Date')]")
+	 @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[2]")
 	 @AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/gross_amount']")
 	 private MobileElement grossAmount;
 	 
-	 @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Posted Date')]")
+	 @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[4]/XCUIElementTypeStaticText[2]")
 	 @AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/transaction_charge']")
 	 private MobileElement transactionCharge;
 	 
-	 @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Posted Date')]")
+	 @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]")
 	 @AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/net_amount']")
 	 private MobileElement netAmount;
 	 
-	 @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Posted Date')]")
+	 @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[6]/XCUIElementTypeStaticText[2]")
 	 @AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/unit_price']")
 	 private MobileElement unitPrice;
 	 
-	 @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Posted Date')]")
+	 @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[7]/XCUIElementTypeStaticText[2]")
 	 @AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/transaction_units']")
 	 private MobileElement transactionUnit;
 	 	 

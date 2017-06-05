@@ -297,6 +297,29 @@ public class Profile extends _CommonPage {
 		}
 	}
 	
+	public void savePhoneInforForMFVerification(){
+		String phoneInfo = get_phone_info();
+		if(!phoneInfo.isEmpty()){
+			CL.getTestDataInstance().TCParameters.put("PhoneProfile", phoneInfo);
+			mobileAction.Report_Pass_Verified("Phone:" + phoneInfo);
+		}else{
+			mobileAction.Report_Pass_Verified("Phone is empty");
+		}
+		
+	}
+	
+	public void VerifyPhoneIsNotUpdatedAsMFChanges(){
+		String phoneInfo = get_phone_info();
+		String phone_MF = CL.getTestDataInstance().TCParameters.get("PhoneProfile");
+		if(phoneInfo.equals(phone_MF)){
+			mobileAction.Report_Fail("Profile Phone is updated as MF phone changes :"+phoneInfo);
+		}else{
+			mobileAction.Report_Pass_Verified("Profile Phone is updated as MF phone changes");
+			System.out.println("profile phone:" + phoneInfo);
+			System.out.println("MF phone:" + phone_MF);
+		}
+	}
+	
 	public String get_name_detail_info() {
 		
 		try {
@@ -576,6 +599,17 @@ public class Profile extends _CommonPage {
 		}catch (Exception e){
 			return get_personal_email_info();
 		}
+	}
+	
+	public void saveEmailInforForMFVerification(){
+		String emailInfo = get_email_info();
+		if(!emailInfo.isEmpty()){
+			CL.getTestDataInstance().TCParameters.put("EmailProfile", emailInfo);
+			mobileAction.Report_Pass_Verified("Email:" + emailInfo);
+		}else{
+			mobileAction.Report_Pass_Verified("Email is empty");
+		}
+		
 	}
 	
 	/**

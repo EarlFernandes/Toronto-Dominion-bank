@@ -155,8 +155,10 @@ public class EventCase {
 		
 		VerifyPlaceHolderDisplayed,VerifyToastmessageDisplayed,VerifyPhoneEmailNotChanged,verifyQuickAccessBillPaidUpdate,ClickBackFromAppOrGooglePage,Verify_quick_link_go_back_home, Verify_quick_link_view_myaccounts, Verify_error_screen, ClickCustomizeNotificationsLinkFromNotifications, VerififyTdforMeNotificationsHeader,VerifyEnableNotificationsSwitchFunction, ClickPurchaseMF,VerifyPurchaseMFPageHeader, SelectAccountUsingAccountName, VerifyFundDropdownList, VerifyFromAccountBeStaticAndLinked, ClickBackFromMFPurchase, ClickFundsTab, SelectFirstFund, VerifyFundDetailsPageHeader, ClickPurchaseButton,
 		
-		ClickActivityTab, SelectFirstTransaction, VerifyTransactionDetailHeader, VerifyTransactionDetails, SelectPreviousTransaction, VerifyMFChineseContent, VerifyPurchaseMFPageInChinese, VerifyMFActivityChineseContent,VerifyFundDetailsInformationInChinese, verifyTransactionDetailsInChinese, ClickPreviewPurchase, VerifyPreviewPurchasePageHeader, VerifyPreviewPurchasePhoneFormat, VerifyPreviewPurchasePhoneNotMasked, VerifyPreviewPurchaseContentInChinese,
+		ClickActivityTab, SelectFirstTransaction, VerifyTransactionDetailHeader, VerifyTransactionDetails, SelectPreviousTransaction, VerifyMFChineseContent, VerifyPurchaseMFPageInChinese, VerifyMFActivityChineseContent,VerifyFundDetailsInformationInChinese, verifyTransactionDetailsInChinese, ClickPreviewPurchase, VerifyPreviewPurchasePageHeader, VerifyPreviewPurchasePhoneFormat, VerifyPreviewPurchasePhoneNotMasked, VerifyPreviewPurchaseContentInChinese, VerifyMinimumAmount, VerifyMaximumAmount, savePhoneInforForMFVerification, saveEmailInforForMFVerification,VerifyPhoneIsPopulatedWithProfilePhone, VerifyEmailIsPopulatedWithProfileEmail, ClickBackFromInvesting, 
 
+		ClickBackFromPreviewPurchase, savePhoneInforForPFVerification, VerifyPhoneIsNotUpdatedAsMFChanges,VerifyConfirmationPageHeader,ClickPurchaseNowBtn,ClickGoBackHomeBtn, ClickViewMyAccountsBtn, VerifyQuickLinkPurchaseChineseContent, VerifyReceiptDetailChineseContent, VerifyFeedBackNTimes,
+		
 		WatchLists_addSymbolToWatchLists, WatchLists_clickSearchBar, WatchLists_Header, Watchlists_verify_newOrderFlow_Watchlists, WatchLists_verifyRecentSearches, WatchLists_verifySymbol, WatchLists_verifySymbolAdded, 
 
 		FindLoactions_VerifyFindlocations, BetweenMyAccounts_TransferChequeAccount, TradeLimitAndTriggerPrice,
@@ -2085,7 +2087,11 @@ public class EventCase {
 
 	    case  Verify_error_screen:
 	    	MoodSelectorScreen.get().Verify_error_screen();
-		    break;	
+		    break;
+		    		    
+	    case  VerifyFeedBackNTimes:
+	    	MoodSelectorScreen.get().VerifyFeedBackNTimes();
+		    break;		    
 		    			    
 		//end of profile and preference
 
@@ -2116,7 +2122,11 @@ public class EventCase {
 		    
 	    case  SelectFirstFund:
 	    	Investing.get().SelectFirstFund();
-		    break;	
+		    break;
+		    		    
+	    case  ClickBackFromInvesting:
+	    	Investing.get().ClickBackFromInvesting();
+		    break;		    
 		    
 	    case  VerifyFundDetailsPageHeader:
 	    	FundDetails.get().VerifyFundDetailsPageHeader();
@@ -2184,7 +2194,68 @@ public class EventCase {
 		    
 	    case  VerifyPreviewPurchaseContentInChinese:
 	    	PreviewPurchase.get().VerifyPreviewPurchaseContentInChinese();
+		    break;	
+
+	    case  VerifyMinimumAmount:
+	    	PurchaseMutualFunds.get().VerifyMinimumAmount();
+		    break;
+		    
+	    case  VerifyMaximumAmount:
+	    	PurchaseMutualFunds.get().VerifyMaximumAmount();
 		    break;		    
+		    		    
+	    case  savePhoneInforForMFVerification:
+	    	Profile.get().savePhoneInforForMFVerification();
+		    break;	
+		    
+	    case  saveEmailInforForMFVerification:
+	    	Profile.get().saveEmailInforForMFVerification();
+		    break;
+		    		    
+	    case  VerifyPhoneIsPopulatedWithProfilePhone:
+	    	PurchaseMutualFunds.get().VerifyPhoneIsPopulatedWithProfilePhone();
+		    break;
+		    
+	    case  VerifyEmailIsPopulatedWithProfileEmail:
+	    	PurchaseMutualFunds.get().VerifyEmailIsPopulatedWithProfileEmail();
+		    break;
+		    
+	    case  ClickBackFromPreviewPurchase:
+	    	PreviewPurchase.get().ClickBackFromPreviewPurchase();
+		    break;
+		    
+	    case  savePhoneInforForPFVerification:
+	    	PreviewPurchase.get().savePhoneInforForPFVerification();
+		    break;		    
+		    
+	    case  VerifyPhoneIsNotUpdatedAsMFChanges:
+	    	Profile.get().VerifyPhoneIsNotUpdatedAsMFChanges();
+		    break;
+		    
+	    case  VerifyConfirmationPageHeader:
+	    	Receipt.get().VerifyConfirmationPageHeader();
+		    break;	 
+
+	    case  ClickPurchaseNowBtn:
+	    	PreviewPurchase.get().ClickPurchaseNowBtn();
+		    break;
+		    
+	    case  ClickGoBackHomeBtn:
+	    	Receipt.get().ClickGoBackHomeBtn();
+		    break;
+		    
+	    case  ClickViewMyAccountsBtn:
+	    	Receipt.get().ClickViewMyAccountsBtn();
+		    break;	
+		    
+	    case  VerifyQuickLinkPurchaseChineseContent:
+	    	Investing.get().VerifyQuickLinkPurchaseChineseContent();
+		    break;
+		    
+	    case  VerifyReceiptDetailChineseContent:
+	    	Receipt.get().VerifyReceiptDetailChineseContent();
+		    break;			    
+		    
 		//End of Purchase Mutual funds    
 		    
 	    case Trade_clickCross:

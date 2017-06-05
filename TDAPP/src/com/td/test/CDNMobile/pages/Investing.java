@@ -1,6 +1,8 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -152,7 +154,7 @@ public class Investing extends _CommonPage {
 	String InvestingAccountsXpath = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
 			+ InvestingAccountsXL + "')]";
 
-	@iOSFindBy(xpath = "//*[@label='PURCHASE MUTUAL FUNDS' or @label='ACHETER DES FONDS COMMUNS DE PLACEMENT']") //@Author - fengfr6 15-May-2017
+	@iOSFindBy(xpath = "//*[@label='PURCHASE MUTUAL FUNDS' or @label='ACHETER DES FONDS COMMUNS DE PLACEMENT' or @name='QUICKACCESS_CELL_PM-PURCHASE-ICON']") //@Author - fengfr6 15-May-2017
 	@AndroidFindBy(id = "com.td:id/quick_link_item_layout_button")
 	private MobileElement purchase_MF_button;
 	
@@ -1079,33 +1081,36 @@ public class Investing extends _CommonPage {
 		Decorator();
 		try{
 
-			String currentDate = mobileAction.getValue(time_stamp);
-			currentDate = currentDate.replaceAll("As of ", "");
-			currentDate = currentDate.substring(0, 12);
+//			String currentDate = mobileAction.getValue(time_stamp);
+//			currentDate = currentDate.replaceAll("As of ", "");
+//			currentDate = currentDate.substring(0, 12);
+			LocalDate localDate = LocalDate.now();
+			String currentDate = DateTimeFormatter.ofPattern("MMM dd, yyyy").format(localDate);
 			System.out.println("Today is:" + currentDate);
+			List<MobileElement> transactionListDate = null;
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				List<MobileElement> transactionListDate = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//android.widget.ListView[@resource-id='com.td:id/activityContent']//android.widget.TextView[@resource-id='com.td:id/date']");
-				
-				int size= transactionListDate.size();
-				for (int i=0; i< size; i++){
-					String transactionDate = mobileAction.getValue(transactionListDate.get(i));
-					System.out.println("Transaction date:" + transactionDate);
-					if(!transactionDate.equalsIgnoreCase(currentDate)){
-						mobileAction.FuncClick(transactionListDate.get(i), "Transaction on " +transactionDate);
-						mobileAction.waitForElementToVanish(progressBar);
-						break;
-					}
-					if(i == size){
-						mobileAction.Report_Fail("No previous transaction found");
-						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-					}			
-				}
+				transactionListDate = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//android.widget.ListView[@resource-id='com.td:id/activityContent']//android.widget.TextView[@resource-id='com.td:id/date']");
 			}else{
-				
+				transactionListDate = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
 			}
-
-			
-		}catch (NoSuchElementException | InterruptedException | IOException e) {
+				
+			int size= transactionListDate.size();
+			for (int i=0; i< size; i++){
+				String transactionDate = mobileAction.getValue(transactionListDate.get(i));
+				System.out.println("Transaction date:" + transactionDate);
+				if(!transactionDate.equalsIgnoreCase(currentDate)){
+					mobileAction.FuncSwipeWhileElementNotFound(transactionListDate.get(i), true, 10, "up");
+					//mobileAction.FuncClick(transactionListDate.get(i), "Transaction on " +transactionDate);
+					mobileAction.waitForElementToVanish(progressBar);
+					break;
+				}
+				if(i == size){
+					mobileAction.Report_Fail("No previous transaction found");
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				}			
+			}
+	
+		}catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
@@ -1151,7 +1156,45 @@ public class Investing extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(activity_tab, "活动 | 活動 ");
 			mobileAction.verifyElementTextIsDisplayed(table_heading_left, "日期 | 日期");
 			mobileAction.verifyElementTextIsDisplayed(table_heading_middle, "交易 | 交易 ");
-			mobileAction.verifyElementTextIsDisplayed(table_heading_right, "金额  | 金额 ");
+			mobileAction.verifyElementTextIsDisplayed(table_heading_right, "金额  | 金額 ");
+						
+		}catch (NoSuchElementException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	public void ClickBackFromInvesting(){
+		Decorator();
+		String back_xpath ="";
+
+		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			try{
+				mobileAction.FuncClickBackButton();
+				return;
+			}catch (Exception e){
+				back_xpath = "//android.widget.ImageView[@resource-id='android:id/up']";
+			}
+			
+		}else{
+			back_xpath = "//*[@label='Back' or @label='Retour']";
+		}
+		try{
+			MobileElement back_arrow = (MobileElement)CL.GetDriver().findElement(By.xpath(back_xpath));
+			mobileAction.FuncClick(back_arrow, "<");
+				
+		}catch (Exception e) {
+	        System.err.println("TestCase has failed.");
+	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	    }
+	}
+	
+	public void VerifyQuickLinkPurchaseChineseContent(){
+		Decorator();
+		try{
+			mobileAction.verifyElementTextIsDisplayed(purchase_MF_button, "购买互惠基金 | 購買互惠基金  ");
+
 						
 		}catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

@@ -208,7 +208,15 @@ public class Profile_And_Settings extends _CommonPage {
 		
 		Decorator();
 		try {
-			
+			if(!mobileAction.isObjExists(whatsnew)){
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
+					mobileAction.SwipeWithinElement("//XCUIElementTypeTable", 2, "down");
+				}else{					
+					mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout", 2, "down");
+				}
+				
+			}
+				
 			String whatnew= mobileAction.getValue(whatsnew);
 			mobileAction.FuncClick(whatsnew, whatnew);
 			mobileAction.waitForElementToVanish(progressBar);
