@@ -176,7 +176,8 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 	@AndroidFindBy(id="com.td:id/caption")
 	private MobileElement lblAccount;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Home' or @label='Accueil']") //@Author - Sushil 29-Mar-2017
+	//@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Home' or @label='Accueil']") //@Author - Sushil 29-Mar-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeImage[@name='logo_home.png']")
 	@AndroidFindBy(xpath = "//*[(@text='Home' or @text='Accueil') and @resource-id='android:id/action_bar_title']")
 	private MobileElement hdrHome;
 	
@@ -237,7 +238,7 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 			mobileAction.FuncSwipeWhileElementNotFound(btn_ORDERS, false, 5, "up");
 			String sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
 			if(sTempPrice!="")
-				mobileAction.verifyElementTextContains(price,getTestdata("SelectLimitPrice",XLSheetUserIDs));
+				mobileAction.verifyElementTextContains(price,getTestdata("Price",XLSheetUserIDs));
 			
 
 			mobileAction.verifyElementIsDisplayed(lblGoodTill, "Good till");
@@ -315,7 +316,7 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 			mobileAction.FuncSwipeWhileElementNotFound(btn_ORDERS, false, 5, "up");
 			String sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
 			if(sTempPrice!="")
-				mobileAction.verifyElementTextContains(price,getTestdata("SelectLimitPrice",XLSheetUserIDs));
+				mobileAction.verifyElementTextContains(price,getTestdata("Price",XLSheetUserIDs));
 			
 
 			mobileAction.verifyElementIsDisplayed(lblGoodTill, "Good till");

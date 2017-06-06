@@ -86,10 +86,10 @@ public class TradeMIT extends _CommonPage {
 	String CDNMarginAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
 			+ CDNMarginAccountXL + "']";
 	
-	String accNumber = getTestdata("Accounts", "UserIDs").trim();// @Author - Sushil 06-Feb-2017
+/*	String accNumber = getTestdata("Accounts", "UserIDs").trim();// @Author - Sushil 06-Feb-2017
 
 	//String xpathAccount = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'" + accNumber + "']";
-	String xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
+	String xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";*/
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Action')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/caption'")
@@ -840,8 +840,17 @@ public class TradeMIT extends _CommonPage {
 	
 	public void selectTradeAccount_OrderType()
 	{
+		Decorator();
+		String accNumber ="";
+		String xpathAccount ="";
+		
 		try
 		{
+			accNumber = getTestdata("Accounts", "UserIDs").trim();// @Author - Sushil 06-Feb-2017
+
+			//String xpathAccount = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'" + accNumber + "']";
+			xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
+			
 			mobileAction.waitForElement(defaultTradeAccount);
 			mobileAction.FuncClick(defaultTradeAccount, "defaultTradeAccount");
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount,true,60,"up");
