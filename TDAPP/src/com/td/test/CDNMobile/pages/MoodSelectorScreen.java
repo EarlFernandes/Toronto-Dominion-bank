@@ -66,11 +66,11 @@ public class MoodSelectorScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/go_home_btn']")
 	private MobileElement go_back_home_btn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[1]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button']")
 	private MobileElement quick_link_go_back_home_btn;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[2]")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[2]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button']")
 	private MobileElement quick_link_view_my_accounts_btn;	
 
@@ -128,11 +128,12 @@ public class MoodSelectorScreen extends _CommonPage {
 //		}
 	
 		try {
+			Thread.sleep(5000);
 			String title= mobileAction.getValue(feedback_title);
 			System.out.println("Mood Selector title:" +  title);
-			mobileAction.verifyElementTextIsDisplayed(feedback_title, "How was your TD app experience today? | Comment était votre expérience avec l’appli TD aujourd’hui?");
+			mobileAction.verifyElementTextIsDisplayed(feedback_title, "How was your TD app experience today? | Comment Ã©tait votre expÃ©rience avec lâ€™appliÂ TD aujourdâ€™hui?");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
@@ -163,7 +164,7 @@ public class MoodSelectorScreen extends _CommonPage {
 			}
 		}
 		System.out.println("Mood Text:" + moodSequence);
-		if(moodSequence.contains("Great/Could've been better/It wasn't working") || moodSequence.contains("Excellente!/Ça aurait pu être mieux/Elle ne fonctionnait pas")){
+		if(moodSequence.contains("Great/Could've been better/It wasn't working") || moodSequence.contains("Excellente!/Ã‡a aurait pu Ãªtre mieux/Elle ne fonctionnait pas")){
 			mobileAction.Report_Pass_Verified(moodSequence);
 		}else{
 			mobileAction.Report_Fail_Not_Verified(moodSequence);
@@ -258,7 +259,7 @@ public class MoodSelectorScreen extends _CommonPage {
 		try{
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				String xpath = "//android.widget.TextView[@resource-id='com.td:id/nav_row_profile_title' and @text=\"" + mobileAction.getAppString("negative_feedback_action_bar") + "\"]";
-				xpath = xpath.replaceAll("’", "'");
+				xpath = xpath.replaceAll("â€™", "'");
 				System.out.println("xpath:" +  xpath);
 				couldvebeenbetter_link = mobileAction.verifyElementUsingXPath(xpath, "Could've been better Link");		
 			}else{
@@ -533,7 +534,7 @@ public class MoodSelectorScreen extends _CommonPage {
 		}
 		
 		try{
-			mobileAction.verifyElementTextIsDisplayed(quick_link_go_back_home_btn, "GO BACK HOME | RETOUR À L'ACCUEIL");
+			mobileAction.verifyElementTextIsDisplayed(quick_link_go_back_home_btn, "GO BACK HOME | RETOUR Ã€ L'ACCUEIL");
 		}catch(Exception e){
 			System.err.println("TestCase has failed while clicking 'Go BACK HOME'");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -574,7 +575,7 @@ public class MoodSelectorScreen extends _CommonPage {
 	public void Verify_error_screen(){
 		Decorator();
 		try{
-			String error_header ="Hmmm, something's not working right now. | Hum, quelque chose ne fonctionne pas pour l’instant.";
+			String error_header ="Hmmm, something's not working right now. | Hum, quelque chose ne fonctionne pas pour lâ€™instant.";
 			mobileAction.verifyElementTextIsDisplayed(error_screen_header, error_header);
 		}catch(Exception e){
 			System.err.println("TestCase has failed while verifying error header");
@@ -583,7 +584,7 @@ public class MoodSelectorScreen extends _CommonPage {
 		}
 		
 		try{
-			String error_header ="Please try again the next time you visit the TD app. | Veuillez essayer de nouveau la prochaine fois que vous utiliserez l’appli TD.";
+			String error_header ="Please try again the next time you visit the TD app. | Veuillez essayer de nouveau la prochaine fois que vous utiliserez lâ€™appli TD.";
 			mobileAction.verifyElementTextIsDisplayed(error_screen_description, error_header);
 		}catch(Exception e){
 			System.err.println("TestCase has failed while verifying error description");

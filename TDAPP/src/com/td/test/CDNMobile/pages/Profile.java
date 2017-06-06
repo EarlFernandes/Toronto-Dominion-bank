@@ -24,15 +24,15 @@ public class Profile extends _CommonPage {
 	private static Profile Profile;
 
 	String profileStr = "Profile | Profil";
-	String contactInfo = "CONTACT INFORMATION | COORDONNÉES";
+	String contactInfo = "CONTACT INFORMATION | COORDONNÃ‰ES";
 	String profileScrollView = "//android.widget.ScrollView[@resource-id='com.td:id/scrollView']";
 	String emailReg ="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
-	String androidphoneReg ="\\(\\•{3}\\)\\•{3}-\\d{4}";
-	String iosphoneReg = "\\(\\•{3}\\) \\•{3} - \\d{4}";
+	String androidphoneReg ="\\(\\â€¢{3}\\)\\â€¢{3}-\\d{4}";
+	String iosphoneReg = "\\(\\â€¢{3}\\) \\â€¢{3} - \\d{4}";
 	String extReg = "\\d+";
-	String emailPlaceHolder = "example@address.com";
-	String phonePlaceHolder ="Enter number | Entrer le numéro";
-	String extPlaceHolder ="Enter extension | Entrer n° de poste";
+	String emailPlaceHolder = "example@address.com | exemple@adresse.com";
+	String phonePlaceHolder ="Enter number | Entrer le numÃ©ro";
+	String extPlaceHolder ="Enter extension | Entrer nÂ° de poste";
 	int MAX_EMAIL_LENGTH =60;
 	int MAX_NAME_LENGTH = 40;
 	String ori_email="";
@@ -43,53 +43,58 @@ public class Profile extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Profile' or @label='Profil']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Profile' or @text='Profil')]")
 	private MobileElement profile_Header;
+	
+	@iOSFindBy(xpath = "//*[@label='In progress']")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
+	private MobileElement progressBar;
 
-	@iOSFindBy(xpath = "//*[@label='CONTACT INFORMATION']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title_text' and (@text='CONTACT INFORMATION' or @text='COORDONNÉES')]")
+	@iOSFindBy(xpath = "//*[@label='CONTACT INFORMATION' or @label='COORDONNÃ‰ES']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title_text' and (@text='CONTACT INFORMATION' or @text='COORDONNÃ‰ES')]")
 	private MobileElement profile_contact_info_header;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Home Phone']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Home Phone' or @text='No de tél. (domicile)')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Home Phone' or @text='No de tÃ©l. (domicile)')]")
 	private MobileElement home_phone_label;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Home Phone' or @label='N° de tél. (domicile)']/../XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Home Phone' or @label='NÂ° de tÃ©l. (domicile)']/../XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/home_phone']//android.widget.EditText[@resource-id='com.td:id/phone_number']")
 	private MobileElement home_phone_info;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Work Phone']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Work Phone' or @text='No de tél. (travail)')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Work Phone' or @text='No de tÃ©l. (travail)')]")
 	private MobileElement work_phone_label;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Work Phone']/../XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Work Phone' or @label='No de tÃ©l. (travail)]/../XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/work_phone']//android.widget.EditText[@resource-id='com.td:id/phone_number']")
 	private MobileElement work_phone_info;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Mobile Phone']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Mobile Phone' or @text='No de tél. (cell.)')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Mobile Phone' or @text='No de tÃ©l. (cell.)')]")
 	private MobileElement mobile_phone_label;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Mobile Phone' or @label='N° de tél. (cell.)']/../XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Mobile Phone' or @label='NÂ° de tÃ©l. (cell.)']/../XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/mobile_phone']//android.widget.EditText[@resource-id='com.td:id/phone_number']")
 	private MobileElement mobile_phone_info;
 	
 	
 	@iOSFindBy(xpath = "//*[@label='Business Phone']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Business Phone' or @text='No de tél. (entreprise)']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Business Phone' or @text='No de tÃ©l. (entreprise)']")
 	private MobileElement business_phone_label;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Business Phone' or @label='N° de tél. (entreprise)']/../XCUIElementTypeTextField[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Business Phone' or @label='NÂ° de tÃ©l. (entreprise)']/../XCUIElementTypeTextField[1]")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/business_phone']//android.widget.EditText[@resource-id='com.td:id/phone_number']")
 	private MobileElement business_phone_info;
 	
-	@iOSFindBy(xpath = "//*[@label='Fax']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Fax' or @text='Télécopieur')]")
+	@iOSFindBy(xpath = "//*[@label='Fax' or @label='TÃ©lÃ©copieur']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Fax' or @text='TÃ©lÃ©copieur')]")
 	private MobileElement fax_label;
 	
-	@iOSFindBy(xpath = "//*[@label='Fax' or @label='Télécopieur']")
+	@iOSFindBy(xpath = "//*[@label='Fax' or @label='TÃ©lÃ©copieur']")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/fax_number']//android.widget.EditText[@resource-id='com.td:id/phone_number']")
 	private MobileElement fax_info;
 	
-	@iOSFindBy(xpath = "//*[@label='Ext. (optional)']")
+	@iOSFindBy(xpath = "//*[@label='Ext. (optional)' or @label='Poste (facultatif)']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label' and (@text='Ext. (optional)' or @text='Poste (facultatif)')]")
 	private MobileElement extention_label;
 	
@@ -97,7 +102,7 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/business_extension']//android.widget.EditText[@resource-id='com.td:id/extension']")
 	private MobileElement business_extension_info;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Ext. (optional)']/../XCUIElementTypeTextField[2]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Ext. (optional)' or @label='Poste (facultatif)']/../XCUIElementTypeTextField[2]")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/work_extension']//android.widget.EditText[@resource-id='com.td:id/extension']")
 	private MobileElement work_extension_info;
 	
@@ -113,7 +118,7 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/personal_email']//android.widget.EditText[@resource-id='com.td:id/description']")
 	private MobileElement personal_email_info;
 	
-	@iOSFindBy(xpath = "//*[@label='ADDRESS']")
+	@iOSFindBy(xpath = "//*[@label='ADDRESS' or @label='ADRESSE']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title_text' and (@text='ADDRESS' or @text='ADRESSE')]")
 	private MobileElement address_header;
 	
@@ -129,7 +134,7 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/user']")
 	private MobileElement name_detail;
 	
-	@iOSFindBy(xpath = "//*[@label='Save']")
+	@iOSFindBy(xpath = "//*[@label='Save' or @label='Enregistrer']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_primary']")
 	private MobileElement save_button;
 	
@@ -162,7 +167,7 @@ public class Profile extends _CommonPage {
 	private MobileElement clearText_button;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//*[@text='Address is Read-Only' or @text='Profile Updated' or @text='L’adresse ne peut être modifiée' or @text='Profil mis à jour']")
+	@AndroidFindBy(xpath = "//*[@text='Address is Read-Only' or @text='Profile Updated' or @text='Lâ€™adresse ne peut Ãªtre modifiÃ©e' or @text='Profil mis Ã  jour']")
 	private MobileElement toast_message;
 	
 	public synchronized static Profile get() {
@@ -526,7 +531,9 @@ public class Profile extends _CommonPage {
 
 		//Remove placeholder
 		emailInfo = emailInfo.replace(emailPlaceHolder, "");
-		
+		if(emailInfo.isEmpty()){
+			return "";
+		}
 		emailInfo= mobileAction.FuncGetValByRegx(emailInfo, emailReg);
 		System.out.println("email:" + emailInfo);
 		return emailInfo;
@@ -642,6 +649,7 @@ public class Profile extends _CommonPage {
 	public void VerifyHomePhoneMasked() {
 		Decorator();
 		String homenumber = get_home_phone_info();
+		System.out.println("Homephone:" + homenumber);
 		if(homenumber.isEmpty()){
 			mobileAction.Report_Pass_Verified("Home phone is empty");
 			return;
@@ -663,12 +671,17 @@ public class Profile extends _CommonPage {
 	
 	public void checkExtensionNotMasked(String extension) {
 		Decorator();
-		extension = extension.replace(extPlaceHolder, "");
+		extension = replacePlaceholderToNothing(extension, extPlaceHolder);
+		System.out.println("Extension:" + extension);
 		
-		if(extension.contains("*") || extension.contains("•")){
+		if(extension.contains("*") || extension.contains("â€¢")){
 			mobileAction.Report_Fail_Not_Verified(extension);
 			System.err.println("TestCase has failed for masked extension "+extension);
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+		if(extension.isEmpty()){
+			mobileAction.Report_Pass_Verified("Empty extension");
 			return;
 		}
 		String extensionDigit = mobileAction.FuncGetValByRegx(extension, extReg);
@@ -749,7 +762,8 @@ public class Profile extends _CommonPage {
 	
 	public void pressSaveButton(){
 		try{
-	        mobileAction.FuncClick(save_button, "Save");			
+	        mobileAction.FuncClick(save_button, "Save");
+	        mobileAction.waitForElementToVanish(progressBar);
 		}catch (NoSuchElementException | InterruptedException | IOException e) {
 	        System.err.println("TestCase has failed.");
 	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1023,7 +1037,12 @@ public class Profile extends _CommonPage {
 		}
 		
 		if(!email_address.isEmpty() ){
-			email_address = email_address.replace(emailPlaceHolder, "");			
+			email_address = replacePlaceholderToNothing(email_address, emailPlaceHolder);
+			
+			if(email_address.isEmpty()){
+				mobileAction.Report_Pass_Verified("Empty Email address");
+				return;
+			}
 			String emailInfo1 = mobileAction.FuncGetValByRegx(email_address, emailReg);
 			
 			if(!emailInfo1.isEmpty()){
@@ -1328,14 +1347,11 @@ public class Profile extends _CommonPage {
 		String toastMessage="";
 			
 		try{
-			
-			if(toast_message.isDisplayed()){
-				toastMessage = mobileAction.getValue(toast_message);
-				System.out.println("toastMessage:" +toastMessage);
-				if (!toastMessage.isEmpty()){
-					mobileAction.Report_Pass_Verified(toastMessage);
-				}
-				
+						
+			toastMessage = mobileAction.getValue(toast_message);
+			System.out.println("toastMessage:" +toastMessage);
+			if (!toastMessage.isEmpty()){
+				mobileAction.Report_Pass_Verified(toastMessage);				
 			}else{
 				System.err.println("TestCase has failed, no toast message found");
 		        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
