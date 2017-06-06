@@ -47,7 +47,6 @@ public class MainScreen extends _CommonPage {
 			"BusinessSecondName", "MultiGroupUser", "BusinessEmailID" };
 
 	public void readP2PSheet() {
-		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
 		String inputValue = "";
 		for (String columnName : p2pArray) {
 			inputValue = CL.LoadData(columnName, CL.getTestDataInstance().getMasterTestData(), "P2P", "CustomerID",
