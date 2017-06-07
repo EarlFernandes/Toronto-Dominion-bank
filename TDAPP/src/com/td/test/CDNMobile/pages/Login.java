@@ -216,7 +216,9 @@ public class Login extends _CommonPage {
 		boolean flag = false;
 		try {
 			if (mobileAction.FuncIsDisplayed(select_accesscard, "Select Access Card")) {
-				if(StringUtils.contains(select_accesscard.getText(), "**")) {
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios") || 
+						(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android") &&
+						StringUtils.contains(select_accesscard.getText(), "**"))) {
 					try {
 						mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 						mobileAction.FuncClick(addUser, "AddUser");
