@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.PageFactory;
@@ -215,22 +216,24 @@ public class Login extends _CommonPage {
 		boolean flag = false;
 		try {
 			if (mobileAction.FuncIsDisplayed(select_accesscard, "Select Access Card")) {
-				try {
-					mobileAction.FuncClick(select_accesscard, "Select Accesscard");
-					mobileAction.FuncClick(addUser, "AddUser");
-					flag = true;
-				}catch (NoSuchElementException e) {
-					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-					System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-				} catch (InterruptedException e) {
-					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-					System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-				} catch (IOException e) {
-					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-					System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-				} catch (Exception e) {
-					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-					System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+				if(StringUtils.contains(select_accesscard.getText(), "**")) {
+					try {
+						mobileAction.FuncClick(select_accesscard, "Select Accesscard");
+						mobileAction.FuncClick(addUser, "AddUser");
+						flag = true;
+					}catch (NoSuchElementException e) {
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+					} catch (InterruptedException e) {
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+					} catch (IOException e) {
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+					} catch (Exception e) {
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+					}
 				}
 			} else {
 				flag = false;
