@@ -142,6 +142,10 @@ public class MLCancelOrderReceipt extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/btn_continue")
 	private MobileElement btnSendOrder;
 	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de négociation']")//@Author - Sushil 06-Feb-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trading Password' or @text='Mot de passe de négociation']")
+	private MobileElement labelTradingPassword;	
+	
 	public void verifyStockOptionCancelOrderReceipt()
 	{
 		Decorator();
@@ -158,8 +162,8 @@ public class MLCancelOrderReceipt extends _CommonPage{
 			String sCurrentYear = format2.split(";")[3];*/
 			mobileAction.FuncClick(btnSendOrder, "btnSendOrder");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(btn_ORDERS, false, 7, "up");
-			//mobileAction.FunCnewSwipe(btn_ORDERS, false, 5);
+			///mobileAction.FuncSwipeWhileElementNotFound(btn_ORDERS, false, 7, "up");
+			mobileAction.FuncSwipeUpTillScreenBottom(btn_ORDERS);
 			mobileAction.FuncClick(btn_ORDERS, "Select ORDER button");
 			
 			mobileAction.FuncSwipeWhileElementNotFound(latestOrder, false, 7, "up");
@@ -167,9 +171,14 @@ public class MLCancelOrderReceipt extends _CommonPage{
 			
 			mobileAction.FuncClick(btnCancelOrder, "Cancel Button Clicked");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(editTextPassword, false, 5, "up");
+/*			mobileAction.FuncSwipeWhileElementNotFound(editTextPassword, false, 5, "up");
 			mobileAction.FuncSwipeOnce("up");
-			TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+			TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));*/
+			
+			mobileAction.FuncSwipeUpTillScreenBottom(labelTradingPassword);
+			
+			if(mobileAction.isObjExists(editTextPassword, 2))
+				TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
 
 			mobileAction.FuncClick(btnCancelOrder, "Cancel Button");
 			
@@ -248,17 +257,22 @@ public class MLCancelOrderReceipt extends _CommonPage{
 			
 			mobileAction.FuncClick(btnSendOrder, "btnSendOrder");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(btn_ORDERS, false, 7, "up");
-			//mobileAction.FunCnewSwipe(btn_ORDERS, false, 5);
+			///mobileAction.FuncSwipeWhileElementNotFound(btn_ORDERS, false, 7, "up");
+			mobileAction.FuncSwipeUpTillScreenBottom(btn_ORDERS);
 			mobileAction.FuncClick(btn_ORDERS, "Select ORDER button");
+			
 			mobileAction.FuncSwipeWhileElementNotFound(latestOrder, false, 7, "up");
 			mobileAction.FuncClick(latestOrder, "Select latest Order");
 			
 			mobileAction.FuncClick(btnCancelOrder, "Cancel Button");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(editTextPassword, false, 5, "up");
+			mobileAction.FuncSwipeUpTillScreenBottom(labelTradingPassword);
+			
+			if(mobileAction.isObjExists(editTextPassword, 2))
+				TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+/*			mobileAction.FuncSwipeWhileElementNotFound(editTextPassword, false, 5, "up");
 			mobileAction.FuncSwipeOnce("up");
-			TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+			TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));*/
 
 			mobileAction.FuncClick(btnCancelOrder, "Cancel Button");
 			
