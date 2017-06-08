@@ -27,8 +27,6 @@ public class QuickAccessSettings extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/easy_access_switch']")
 	private MobileElement QuickAccessToggle;
 	
-
-	
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/easy_access_rewards_on_off_switch']")
 	private MobileElement rewardsBalanceToggle;
 	
@@ -188,7 +186,7 @@ public class QuickAccessSettings extends _CommonPage{
 	    	
 	    	String accountXL = "//*[contains(@text,'" + CL.getTestDataInstance().getPrimaryAccount() + "') or contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "')  ]";
 	    	MobileElement accountValue=(MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(accountXL));
-	    	if(accountValue.isDisplayed());
+	    	if(mobileAction.verifyElementIsPresent(accountValue));
 	    	
 	    }catch (NoSuchElementException  e) {
 	  			try {

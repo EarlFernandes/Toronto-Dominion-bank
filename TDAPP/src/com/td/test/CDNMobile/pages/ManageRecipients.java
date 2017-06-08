@@ -25,6 +25,7 @@ public class ManageRecipients extends _CommonPage {
     private MobileElement manageRecipientHeader;
 
     @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Register']")
+    @AndroidFindBy(xpath = "//*[contains(@text,'Register') or contains(@content-desc,'Register')]")
     private MobileElement registerBtn;
 
     @iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
@@ -82,18 +83,31 @@ public class ManageRecipients extends _CommonPage {
      * 
      * 
      * @return void
-     * @throws IOException
-     * 
+     * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
+	 * 
      */
-    public void verify_RegisterButton() throws IOException {
+    public void verify_RegisterButton(){
 	try {
 	    Decorator();
 	    mobileAction.verifyElementIsDisplayed(manageRecipientHeader, "Manage Recipients");
 	    mobileAction.waitForElementToVanish(progressBar);
 	    mobileAction.verifyElementIsDisplayed(registerBtn, "Register");
-	} catch (NoSuchElementException e) {
-	    System.err.println("TestCase has failed.");
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	}  catch (NoSuchElementException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (Exception e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
     }
 
@@ -134,8 +148,7 @@ public class ManageRecipients extends _CommonPage {
     		mobileAction.waitForElementToVanish(progressBar);
     	    mobileAction.verifyElementIsDisplayed(manageRecipientHeader, "Manage Recipients");
     	    String select_recipient ="//android.view.View[@content-desc='" + sender_SelectSender+ "']";
-		    MobileElement selectRecipient = (MobileElement) ((AppiumDriver) CL.GetDriver())
-					.findElement(By.xpath(select_recipient));
+		    MobileElement selectRecipient = mobileAction.verifyElementUsingXPath(select_recipient, "Select Recipient");
     	    mobileAction.FuncClick(selectRecipient, "Select Recipient");
     	    mobileAction.FuncClick(editRecipient, "Edit Recipient");
     	    mobileAction.FuncClick(recipientMailAddr,"recipientMail");
@@ -152,9 +165,15 @@ public class ManageRecipients extends _CommonPage {
     	    //mobileAction.verifyElementIsDisplayed(recipient_Changes,"Success Recipient details have been saved");
     		 }
 
-	} catch (NoSuchElementException e) {
-	    System.err.println("TestCase has failed.");
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	}  catch (NoSuchElementException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (Exception e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
 
     }

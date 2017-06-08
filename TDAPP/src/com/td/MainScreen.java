@@ -2,7 +2,6 @@ package com.td;
 
 import java.io.IOException;
 import java.util.HashMap;
-
 import org.apache.commons.lang3.StringUtils;
 
 public class MainScreen extends _CommonPage {
@@ -34,11 +33,12 @@ public class MainScreen extends _CommonPage {
 
 			}
 		}
+
 	}
 
 	public void Splash_Conitnue() throws IOException {
-		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
 
+		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
 		readSheet();
 
 		final String udid = CL.getTestDataInstance().getDeviceUdid();
@@ -73,7 +73,9 @@ public class MainScreen extends _CommonPage {
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+
 			}
+
 		}
 	}
 

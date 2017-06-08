@@ -57,15 +57,12 @@ public class AddCanadian_Payee extends _CommonPage{
 		
 	}
 	
-	public AddCanadian_Payee(){
-		Decorator();
-	}
 	
-	/**s
+	
+	/**
 	 * This method will add canadian payee
 	 * 
 	 * @return void
-	 * @throws Exception 
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -73,10 +70,13 @@ public class AddCanadian_Payee extends _CommonPage{
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void addCanadianPayee_page() throws Exception {
+	public void addCanadianPayee_page() {
 		try {
-			//Decorator();
+			Decorator();
 		
 			//String payee_value=getTestdata("Payee");
 			String payee_value=getTestdata("Payee");
@@ -96,10 +96,20 @@ public class AddCanadian_Payee extends _CommonPage{
 			
 			
 			
-			}catch (NoSuchElementException | InterruptedException | IOException e) {
-		System.err.println("TestCase has failed.");
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-	}
+			}catch (NoSuchElementException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (InterruptedException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (IOException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+
 
 
 }

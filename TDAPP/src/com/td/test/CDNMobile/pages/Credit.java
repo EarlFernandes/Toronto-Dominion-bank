@@ -100,8 +100,8 @@ public class Credit extends _CommonPage {
 			
 		} catch (NoSuchElementException e) {
 			
-			System.err.println("TestCase has failed.");
-		     CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}

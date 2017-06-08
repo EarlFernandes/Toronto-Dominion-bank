@@ -27,6 +27,7 @@ public class MainScreenMIT extends _CommonPage {
 	@AndroidFindBy(accessibility="Home")
 	MobileElement  HomeLink;   */
 	
+
 	@iOSFindBy(xpath = "@label='Home'")
 	@AndroidFindBy(id="android:id/action_bar_title")
 	MobileElement  Home;   	
