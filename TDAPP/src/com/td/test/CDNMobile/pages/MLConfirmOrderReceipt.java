@@ -51,12 +51,12 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@text,'Cancel Order') or contains(@text,'Annuler l')]")
 	private MobileElement btnCancelOrder;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de négociation']/../XCUIElementTypeSecureTextField[1]")//@Author - Sushil 03-Mar-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de nÃ©gociation']/../XCUIElementTypeSecureTextField[1]")//@Author - Sushil 03-Mar-2017
 	@AndroidFindBy(id="com.td:id/editTextPassword")
 	private MobileElement editTextPassword;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'Receipt') or contains(@label,'Reçu')]") //@Author - Sushil 21-Mar-2017
-	@AndroidFindBy(xpath = "//*[contains(@text,'Receipt') or contains(@text,'Reçu')]")
+	@iOSFindBy(xpath = "//*[contains(@label,'Receipt') or contains(@label,'ReÃ§u')]") //@Author - Sushil 21-Mar-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'Receipt') or contains(@text,'ReÃ§u')]")
 	private MobileElement hdrReceipt;
 	
 	@iOSFindBy(xpath="//*[contains(@label,'Menu')]")
@@ -84,7 +84,7 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/confirmation2_val")
 	private MobileElement leg2ConfirmationNumber;
 	
-	@iOSFindBy(xpath = "//*[@label='ORDER DETAILS' or contains(@label,'DÉTAILS DE')]") //@Author - Sushil 23-Mar-2017
+	@iOSFindBy(xpath = "//*[@label='ORDER DETAILS' or contains(@label,'DÃ‰TAILS DE')]") //@Author - Sushil 23-Mar-2017
 	@AndroidFindBy(id="com.td:id/custom_text")
 	private MobileElement lblOrderDetails;
 	
@@ -125,12 +125,12 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 	@AndroidFindBy(xpath="//android.widget.TextView[@text='Price' or @text='Cours']/../*[2]/*[1]")
 	private MobileElement price;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Échéance')]") //@Author - Sushil 21-Feb-2017
-	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Échéance')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Ã‰chÃ©ance')]") //@Author - Sushil 21-Feb-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Ã‰chÃ©ance')]")
 	private MobileElement lblGoodTill;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Échéance')]/../*[2]") //@Author - Sushil 21-Feb-2017
-	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Échéance')]/../*[2]/*[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Ã‰chÃ©ance')]/../*[2]") //@Author - Sushil 21-Feb-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Ã‰chÃ©ance')]/../*[2]/*[1]")
 	private MobileElement goodTill;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Shareholder Type') or contains(@label,'Type d')]") //@Author - Sushil 21-Feb-2017
@@ -151,7 +151,7 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 	@AndroidFindBy(id="com.td:id/btn_home")
 	private MobileElement btn_home;
 	
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") //@Author - Sushil 23-Mar-2017
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='NÃ©gociation']") //@Author - Sushil 23-Mar-2017
 	@AndroidFindBy(id="com.td:id/btn_trade")
 	private MobileElement btn_trade;
 	
@@ -167,7 +167,7 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 	@AndroidFindBy(id="com.td:id/btn_order")
 	private MobileElement inVestingAccounts;
 	
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") //@Author - Sushil 23-Mar-2017
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='NÃ©gociation']") //@Author - Sushil 23-Mar-2017
 	@AndroidFindBy(id="com.td:id/navText")
 	private MobileElement trade;
 	
@@ -176,7 +176,8 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 	@AndroidFindBy(id="com.td:id/caption")
 	private MobileElement lblAccount;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Home' or @label='Accueil']") //@Author - Sushil 29-Mar-2017
+	//@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Home' or @label='Accueil']") //@Author - Sushil 29-Mar-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeImage[@name='logo_home.png']")
 	@AndroidFindBy(xpath = "//*[(@text='Home' or @text='Accueil') and @resource-id='android:id/action_bar_title']")
 	private MobileElement hdrHome;
 	
@@ -237,7 +238,7 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 			mobileAction.FuncSwipeWhileElementNotFound(btn_ORDERS, false, 5, "up");
 			String sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
 			if(sTempPrice!="")
-				mobileAction.verifyElementTextContains(price,getTestdata("SelectLimitPrice",XLSheetUserIDs));
+				mobileAction.verifyElementTextContains(price,getTestdata("Price",XLSheetUserIDs));
 			
 
 			mobileAction.verifyElementIsDisplayed(lblGoodTill, "Good till");
@@ -315,7 +316,7 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 			mobileAction.FuncSwipeWhileElementNotFound(btn_ORDERS, false, 5, "up");
 			String sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
 			if(sTempPrice!="")
-				mobileAction.verifyElementTextContains(price,getTestdata("SelectLimitPrice",XLSheetUserIDs));
+				mobileAction.verifyElementTextContains(price,getTestdata("Price",XLSheetUserIDs));
 			
 
 			mobileAction.verifyElementIsDisplayed(lblGoodTill, "Good till");

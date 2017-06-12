@@ -29,7 +29,7 @@ public class Pay_US_Bill extends _CommonPage {
 	// private MobileElement already_selected_from_Account;
 
 	@iOSFindBy(xpath = "//*[@label='Pay U.S. Bill']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Pay U.S. Bill']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and contains(@text,'Pay U.S. Bill')]")
 	private MobileElement us_Bill_Header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Payee')]")
@@ -112,8 +112,11 @@ public class Pay_US_Bill extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void pay_US_bill_ErrorMsg() throws Exception {
+	public void pay_US_bill_ErrorMsg()  {
 
 		try {
 			Decorator();
@@ -137,15 +140,12 @@ public class Pay_US_Bill extends _CommonPage {
 					System.out.println("From Account:" + select_accountno);
 					//mobileAction.FuncSelectElementInTable(select_account_table, firstPart, secondPart, select_accountno);
 					String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + select_accountno + "')]";
-					MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(account_value));
-					mobileAction.FunCSwipeandScroll(fromAccountval, true);
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 					
 					mobileAction.FuncClick(select_Account, "Select_Account");
 					String to_account_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountno + "')]";
-					MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(to_account_value));
-					mobileAction.FunCSwipeandScroll(toAccountval, true);	
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(to_account_value, true, 25, "Up");
+					
 					//mobileAction.FuncSelectElementInTable(to_account_table, firstPart, secondPart, to_accountno);
 					
 					mobileAction.FuncClick(amount, "Amount");
@@ -186,9 +186,18 @@ public class Pay_US_Bill extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(verify_Message, verification_message);
 			}
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -204,23 +213,22 @@ public class Pay_US_Bill extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void verifyCurrencyDropDown() throws Exception {
+	public void verifyCurrencyDropDown() {
 		try {
 			String t_currencyswitchbox="The currency switchbox is displayed";
 			Decorator();
 			if (platformName.equalsIgnoreCase("ios")) {
-				boolean flag = us_Bill_Header.isDisplayed();
-
-				if (flag){
+				if (mobileAction.verifyElementIsPresent(us_Bill_Header))
 					mobileAction.FuncClick(from_Account, "from_Account");
 					String us_accountno = getTestdata("USAccount");
 					System.out.println("us_accountno" + us_accountno);
 					String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + us_accountno + "')]";
-					MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(account_value));
-					mobileAction.FunCSwipeandScroll(fromAccountval, true);
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 					
 					//mobileAction.FuncSelectElementInTable(select_account_table, firstPart, secondPart, us_accountno);
 					boolean elementExists = currency_Switchbox.isDisplayed();
@@ -236,7 +244,7 @@ public class Pay_US_Bill extends _CommonPage {
 					
 	
 					}
-				}
+				
 			} else {
 				mobileAction.FuncClick(from_Account, "Select From Account");
 				mobileAction.FuncElementSwipeWhileNotFound(acntList, select_from_Account, 0, "down", true);
@@ -252,10 +260,20 @@ public class Pay_US_Bill extends _CommonPage {
 
 			}
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+
 
 	}
 }

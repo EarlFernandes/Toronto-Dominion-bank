@@ -48,12 +48,12 @@ public class MLCancelOrderReceipt extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@text,'Cancel Order') or contains(@text,'Annuler l')]")
 	private MobileElement btnCancelOrder;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de négociation']/../XCUIElementTypeSecureTextField[1]")//@Author - Sushil 03-Mar-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de nÃ©gociation']/../XCUIElementTypeSecureTextField[1]")//@Author - Sushil 03-Mar-2017
 	@AndroidFindBy(id="com.td:id/editTextPassword")
 	private MobileElement editTextPassword;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'Receipt') or contains(@label,'Reçu')]") //@Author - Sushil 21-Mar-2017
-	@AndroidFindBy(xpath = "//*[contains(@text,'Receipt') or contains(@text,'Reçu')]")
+	@iOSFindBy(xpath = "//*[contains(@label,'Receipt') or contains(@label,'ReÃ§u')]") //@Author - Sushil 21-Mar-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'Receipt') or contains(@text,'ReÃ§u')]")
 	private MobileElement hdrReceipt;
 	
 	@iOSFindBy(xpath="//*[contains(@label,'Menu')]")
@@ -68,7 +68,7 @@ public class MLCancelOrderReceipt extends _CommonPage{
 	@AndroidFindBy(xpath = "//*[@text='Your request to cancel the order was received.' or contains(@text,'Demande')]")
 	private MobileElement orderCancelMsg;
 	
-	@iOSFindBy(xpath = "//*[@label='ORDER DETAILS' or contains(@label,'DÉTAILS DE')]") //@Author - Sushil 23-Mar-2017
+	@iOSFindBy(xpath = "//*[@label='ORDER DETAILS' or contains(@label,'DÃ‰TAILS DE')]") //@Author - Sushil 23-Mar-2017
 	@AndroidFindBy(id="com.td:id/custom_text")
 	private MobileElement lblOrderDetails;
 	
@@ -108,12 +108,12 @@ public class MLCancelOrderReceipt extends _CommonPage{
 	@AndroidFindBy(xpath="//android.widget.TextView[@text='Price' or @text='Cours']/../*[2]/*[1]")
 	private MobileElement price;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Échéance')]") //@Author - Sushil 21-Feb-2017
-	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Échéance')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Ã‰chÃ©ance')]") //@Author - Sushil 21-Feb-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Ã‰chÃ©ance')]")
 	private MobileElement lblGoodTill;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Échéance')]/../*[2]") //@Author - Sushil 21-Feb-2017
-	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Échéance')]/../*[2]/*[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Ã‰chÃ©ance')]/../*[2]") //@Author - Sushil 21-Feb-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Ã‰chÃ©ance')]/../*[2]/*[1]")
 	private MobileElement goodTill;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Shareholder Type') or contains(@label,'Type d')]") //@Author - Sushil 21-Feb-2017
@@ -134,13 +134,17 @@ public class MLCancelOrderReceipt extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/btn_home")
 	private MobileElement btn_home;
 	
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") //@Author - Sushil 23-Mar-2017
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='NÃ©gociation']") //@Author - Sushil 23-Mar-2017
 	@AndroidFindBy(id="com.td:id/btn_trade")
 	private MobileElement btn_trade;
 	
 	@iOSFindBy(xpath = "//*[@label='Send Order' or contains(@label,'Envoyer l')]") //@Author - Sushil 21-Mar-2017
 	@AndroidFindBy(id="com.td:id/btn_continue")
 	private MobileElement btnSendOrder;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de négociation']")//@Author - Sushil 06-Feb-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trading Password' or @text='Mot de passe de négociation']")
+	private MobileElement labelTradingPassword;	
 	
 	public void verifyStockOptionCancelOrderReceipt()
 	{
@@ -158,8 +162,8 @@ public class MLCancelOrderReceipt extends _CommonPage{
 			String sCurrentYear = format2.split(";")[3];*/
 			mobileAction.FuncClick(btnSendOrder, "btnSendOrder");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(btn_ORDERS, false, 7, "up");
-			//mobileAction.FunCnewSwipe(btn_ORDERS, false, 5);
+			///mobileAction.FuncSwipeWhileElementNotFound(btn_ORDERS, false, 7, "up");
+			mobileAction.FuncSwipeUpTillScreenBottom(btn_ORDERS);
 			mobileAction.FuncClick(btn_ORDERS, "Select ORDER button");
 			
 			mobileAction.FuncSwipeWhileElementNotFound(latestOrder, false, 7, "up");
@@ -167,9 +171,14 @@ public class MLCancelOrderReceipt extends _CommonPage{
 			
 			mobileAction.FuncClick(btnCancelOrder, "Cancel Button Clicked");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(editTextPassword, false, 5, "up");
+/*			mobileAction.FuncSwipeWhileElementNotFound(editTextPassword, false, 5, "up");
 			mobileAction.FuncSwipeOnce("up");
-			TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+			TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));*/
+			
+			mobileAction.FuncSwipeUpTillScreenBottom(labelTradingPassword);
+			
+			if(mobileAction.isObjExists(editTextPassword, 2))
+				TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
 
 			mobileAction.FuncClick(btnCancelOrder, "Cancel Button");
 			
@@ -248,17 +257,22 @@ public class MLCancelOrderReceipt extends _CommonPage{
 			
 			mobileAction.FuncClick(btnSendOrder, "btnSendOrder");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(btn_ORDERS, false, 7, "up");
-			//mobileAction.FunCnewSwipe(btn_ORDERS, false, 5);
+			///mobileAction.FuncSwipeWhileElementNotFound(btn_ORDERS, false, 7, "up");
+			mobileAction.FuncSwipeUpTillScreenBottom(btn_ORDERS);
 			mobileAction.FuncClick(btn_ORDERS, "Select ORDER button");
+			
 			mobileAction.FuncSwipeWhileElementNotFound(latestOrder, false, 7, "up");
 			mobileAction.FuncClick(latestOrder, "Select latest Order");
 			
 			mobileAction.FuncClick(btnCancelOrder, "Cancel Button");
 			
-			mobileAction.FuncSwipeWhileElementNotFound(editTextPassword, false, 5, "up");
+			mobileAction.FuncSwipeUpTillScreenBottom(labelTradingPassword);
+			
+			if(mobileAction.isObjExists(editTextPassword, 2))
+				TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+/*			mobileAction.FuncSwipeWhileElementNotFound(editTextPassword, false, 5, "up");
 			mobileAction.FuncSwipeOnce("up");
-			TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+			TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));*/
 
 			mobileAction.FuncClick(btnCancelOrder, "Cancel Button");
 			

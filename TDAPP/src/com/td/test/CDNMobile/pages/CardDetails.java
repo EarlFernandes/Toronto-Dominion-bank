@@ -68,6 +68,9 @@ private static CardDetails CardDetails;
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 public void deletecard() {
 
@@ -77,10 +80,19 @@ public void deletecard() {
 		mobileAction.FuncClick(deleteIcon, "Click Delete Card");
 		mobileAction.verifyElementIsDisplayed(popup,"PopUp Diplayed");
 		mobileAction.FuncClick(confirmDelete, "Click Confirm Delete");
-		} catch (NoSuchElementException|InterruptedException |IOException e) {
-		System.err.println("TestCase has failed.");
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-	}
+		}catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
 }
 /**
  * This method will save default card details
@@ -95,6 +107,9 @@ public void deletecard() {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 public void enableToggleButton() {
 
@@ -104,10 +119,19 @@ public void enableToggleButton() {
 		mobileAction.verifyElementIsDisplayed(verifyPayment, "Verify Payment Mode");
 		mobileAction.FuncClick(enableOn, "Enable On");
 		mobileAction.FuncClick(save, "Click Save Button");
-		} catch (NoSuchElementException|InterruptedException |IOException e) {
-		System.err.println("TestCase has failed.");
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-	}
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
 }
 
 

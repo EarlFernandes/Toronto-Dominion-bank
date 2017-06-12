@@ -41,8 +41,8 @@ public class _CommonPage {
 	// success/fail status
 	public String overallSuccess = PASS;
 	
-	public String locale_used ="EN"; //"zh-rHK"; //"EN";//"zh-Hans" "FR";
-	//android //"zh-rHK"; //"EN";//"zh-Hans"
+	public String locale_used ="zh"; //"zh-rHK"; //"EN";//"zh-Hans" "FR";
+	//android //"zh-rHK"; //"EN";//"zh"
     //ios: zh-Hans, zh-Hant
 	@iOSFindBy(id = "com.td:id/list_slidermenu")
 	@AndroidFindBy(id = "com.td:id/list_slidermenu")
@@ -149,5 +149,5 @@ public class _CommonPage {
 		return CL.LoadData(aColumn, CL.getTestDataInstance().getMasterTestData(), aSheetName, "UserType",
 				CL.getTestDataInstance().TestCaseID);
 	}
-
+	
 }
