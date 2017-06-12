@@ -36,19 +36,15 @@ public class FundDetails extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quoteBtn']")
     private MobileElement QuoteBtn;
     
-    @iOSFindBy(xpath = "XCUIElementTypeTable/XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]")
+    @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]")
     @AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/fund_facts_view']//android.widget.TextView[@index='0']")
     private MobileElement fund_facts_view_text;
     
     @iOSFindBy(xpath = "XCUIElementTypeTable/XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]")
     @AndroidFindBy(xpath = "//android.view.View[@resource-id='com.google.android.apps.docs:id/action_bar']/android.widget.TextView")
     private MobileElement fund_facts_page_title;
-//
-//    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Agree']")
-//    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Agree']")
-//    private MobileElement AgreeButton;
     
-	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']/../..//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[@index='2']/android.widget.LinearLayout/android.widget.TextView[@index='0']")
 	private List<MobileElement> InfoList;
 
@@ -139,21 +135,30 @@ public class FundDetails extends _CommonPage {
 			System.out.println("Expected fund details number:" + lengthOfText);
 			int size = InfoList.size();
 			System.out.println("Capture fund details number:" + size);
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-
-				for(int i=0; i<size; i++){
-					mobileAction.verifyElementTextIsDisplayed(InfoList.get(i), expectedText[i]);
-				}
-				mobileAction.SwipeWithinElement("//android.widget.ScrollView",  1, "down");
-			}else{
-				//for IOS
-				for(int i=0; i<lengthOfText; i++){
-					mobileAction.verifyElementTextIsDisplayed(InfoList.get(i+1), expectedText[i]);
-				}
-				mobileAction.SwipeWithinElement("//XCUIElementTypeTable",  1, "down");
-				//fund_facts_view_text = mobileAction.verifyElementUsingXPath("//*[@name='TDVIEW_TITLE']/../..//XCUIElementTypeTable/XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]", "View Fund Facts");
+			if(lengthOfText > size){
+				System.out.println("Captured info size is less than expected,something wrong");
+				mobileAction.Report_Fail("Captured info size is less than expected");
+				return;
 			}
 			
+			for(int i=0; i<lengthOfText; i++){
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+					if(!mobileAction.verifyElementIsPresent(InfoList.get(i))){
+						mobileAction.FuncSwipeWhileElementNotFound(InfoList.get(i), false, 3, "up");
+					}
+					mobileAction.verifyElementTextIsDisplayed(InfoList.get(i), expectedText[i]);
+					//mobileAction.SwipeWithinElement("//android.widget.ScrollView",  1, "down");
+				}else{
+					if(!mobileAction.verifyElementIsPresent(InfoList.get(i+1))){
+						mobileAction.FuncSwipeWhileElementNotFound(InfoList.get(i+1), false, 3, "up");
+					}
+					mobileAction.verifyElementTextIsDisplayed(InfoList.get(i+1), expectedText[i]);
+				}
+			}
+
+			if(!mobileAction.verifyElementIsPresent(fund_facts_view_text)){
+				mobileAction.FuncSwipeWhileElementNotFound(fund_facts_view_text, false, 3, "up");
+			}
 			
 			mobileAction.verifyElementTextIsDisplayed(fund_facts_view_text, "查看基金概况（表现和费用）| 查看基金概況（表現和費用） ");
 			

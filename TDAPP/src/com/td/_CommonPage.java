@@ -41,7 +41,7 @@ public class _CommonPage {
 	// success/fail status
 	public String overallSuccess = PASS;
 	
-	public String locale_used ="zh"; //"zh-rHK"; //"EN";//"zh-Hans" "FR";
+	public String locale_used ="FR"; //"zh-rHK"; //"EN";//"zh-Hans" "FR";
 	//android //"zh-rHK"; //"EN";//"zh"
     //ios: zh-Hans, zh-Hant
 	@iOSFindBy(id = "com.td:id/list_slidermenu")
