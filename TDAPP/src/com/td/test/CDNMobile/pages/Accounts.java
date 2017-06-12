@@ -707,7 +707,7 @@ public class Accounts extends _CommonPage {
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, true, 10, "up");
 				
 			}else{
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, false, 10, "up");
+				//mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, false, 10, "up");
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_num, true, 10, "up");
 			}
 

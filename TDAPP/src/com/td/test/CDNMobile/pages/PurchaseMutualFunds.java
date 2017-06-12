@@ -23,7 +23,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	private static String MIN_AMOUNT = "100.00";
 	private static String MAX_AMOUNT = "999999.99";
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText") //[@label='Purchase Mutual Funds' or @label='Achat de fonds communs de placement']")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText") 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement purchaseMF_title;
 
@@ -75,11 +75,11 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_value_main']")
 	private MobileElement view_fundFacts;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Email' or @label='Adresse courriel']/../XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[7]/XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/description']")
 	private MobileElement email_info;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Phone Number' or @label='N° de tél. (cell.)']/../XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[8]/XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/phone_number']")
 	private MobileElement phone_info;
 	
@@ -87,13 +87,9 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText']")
 	private MobileElement amount;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount']")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeCell[10]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.CheckBox[@resource-id='com.td:id/checkbox']")
 	private MobileElement consent_checkbox;
-	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Mobile Phone' or @label='N° de tél. (cell.)']/../XCUIElementTypeTextField")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/purchasePreviewButton']")
-	private MobileElement preview_Purchase_button;
 	
 	String emailPlaceHolder = "example@address.com | exemple@adresse.com";
 	String phonePlaceHolder ="Enter number | Entrer le numéro";
@@ -102,7 +98,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	String iosphoneReg = "\\(\\•{3}\\) \\•{3} - \\d{4}";
 	String emailReg ="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
 
-	@iOSFindBy(xpath = "//*[@label='Preview Purchase' or @label='Avis']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/../XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@AndroidFindBy(id = "com.td:id/purchasePreviewButton")
 	private MobileElement preview_purchase_button;
 	
@@ -160,11 +156,11 @@ public class PurchaseMutualFunds extends _CommonPage {
 				return "";
 			}
 			
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				phoneNumber = mobileAction.FuncGetValByRegx(phoneNumber, androidphoneReg);
-			}else{
-				phoneNumber = mobileAction.FuncGetValByRegx(phoneNumber, iosphoneReg);
-			}
+//			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+//				phoneNumber = mobileAction.FuncGetValByRegx(phoneNumber, androidphoneReg);
+//			}else{
+//				phoneNumber = mobileAction.FuncGetValByRegx(phoneNumber, iosphoneReg);
+//			}
 			System.out.println("phoneNumber :" +phoneNumber);
 			return phoneNumber;
 			
@@ -249,32 +245,6 @@ public class PurchaseMutualFunds extends _CommonPage {
 		}
 	}
 	
-	public void ClickBackFromMFPurchase(){
-		Decorator();
-
-		String back_xpath ="";
-
-		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			try{
-				mobileAction.FuncClickBackButton();
-				return;
-			}catch (Exception e){
-				back_xpath = "//android.widget.ImageView[@resource-id='android:id/up']";
-			}
-			
-		}else{
-			back_xpath = "//*[@label='Back' or @label='Retour']";
-		}
-		try{
-			MobileElement back_arrow = (MobileElement)CL.GetDriver().findElement(By.xpath(back_xpath));
-			mobileAction.FuncClick(back_arrow, "<");
-				
-		}catch (Exception e) {
-	        System.err.println("TestCase has failed.");
-	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-	    } 
-		
-	}
 	
 	public void VerifyPhoneFormat() {
 		Decorator();
@@ -398,10 +368,13 @@ public class PurchaseMutualFunds extends _CommonPage {
 				MobileElement FundsInList = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='" + selectedFund + "']", selectedFund);
 				mobileAction.FuncClick(FundsInList, selectedFund);
 			}else{
-				
+				MobileElement FundsInList = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + selectedFund + "']", selectedFund);
+				mobileAction.FuncClick(FundsInList, selectedFund);
 			}
 			//MobileElement FundsInList = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='" + selectedFund + "']", selectedFund);
-			enterAmount(amount_selected);
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				enterAmount(amount_selected);
+			}
 			
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){			
 				//mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView",  1, "down");
@@ -410,6 +383,9 @@ public class PurchaseMutualFunds extends _CommonPage {
 			mobileAction.FuncSendKeys(email_info, user_email);
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				mobileAction.FuncHideKeyboard();
+			}else{
+				done = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString(locale_used, "secureLoginEditButtonDone") + "']", "Done");
+				mobileAction.FuncClick(done, "Done");
 			}
 			mobileAction.FuncSendKeys(phone_info, user_phone);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -434,27 +410,21 @@ public class PurchaseMutualFunds extends _CommonPage {
 				mobileAction.Report_Fail("Failed to fill purchase form");
 				return;
 			}
-
-			String enableStatus= preview_purchase_button.getAttribute("enabled");
-//			if(enableStatus.equalsIgnoreCase("false")){
-//				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-//				mobileAction.Report_Fail("Preview Purchase Button is not enabled");
-//				return;
-//			}
-//			
-//			System.out.println("Preview Button is enabled");
-			int count=0;
-			
-			while(enableStatus.equalsIgnoreCase("false") && count <10){
-				mobileAction.FuncSwipeOnce("down");
-				enableStatus= preview_purchase_button.getAttribute("enabled");
-				count++;
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				String enableStatus= preview_purchase_button.getAttribute("enabled");
+	
+				int count=0;
+				
+				while(enableStatus.equalsIgnoreCase("false") && count <10){
+					mobileAction.FuncSwipeOnce("down");
+					enableStatus= preview_purchase_button.getAttribute("enabled");
+					count++;
+				}
+				if(count>=10){
+					mobileAction.Report_Fail("PreviewPurchase button is disabled");
+					return;
+				}
 			}
-			if(count>=10){
-				mobileAction.Report_Fail("PreviewPurchase button is disabled");
-				return;
-			}
-			
 			String elementText = mobileAction.getValue(preview_purchase_button);
 			mobileAction.FuncClick(preview_purchase_button, elementText);
 			mobileAction.waitForElementToVanish(progress_bar);
@@ -563,18 +533,20 @@ public class PurchaseMutualFunds extends _CommonPage {
 	public void VerifyPhoneIsPopulatedWithProfilePhone() {
 		Decorator();
 		try {
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){			
-				//mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView",  1, "down");
-				mobileAction.FuncSwipeWhileElementNotFound(phone_info, false, 3, "up");
-			}
+			
+			mobileAction.FuncSwipeWhileElementNotFound(phone_info, false, 3, "up");
+			
 			
 			String phoneInfo = mobileAction.getValue(phone_info);
+			System.out.println("Phone now:" + phoneInfo);
 			String expectedPhone = CL.getTestDataInstance().TCParameters.get("PhoneProfile");
 			System.out.println("Expected:" + expectedPhone);
-			if(phoneInfo.equalsIgnoreCase(expectedPhone)){
-				mobileAction.Report_Pass_Verified("Phone is populated :" + phoneInfo);
+			String last_4_digit = mobileAction.FuncGetValByRegx(expectedPhone,"\\d+");
+			
+			if(phoneInfo.contains(last_4_digit)){
+				mobileAction.Report_Pass_Verified("Phone is populated:" + phoneInfo);
 			}else{
-				mobileAction.Report_Fail_Not_Verified("Phone is not populated" + phoneInfo);
+				mobileAction.Report_Fail_Not_Verified("Phone is not populated:" + phoneInfo);
 			}
 
 		} catch (NoSuchElementException  e) {
@@ -587,18 +559,17 @@ public class PurchaseMutualFunds extends _CommonPage {
 	public void VerifyEmailIsPopulatedWithProfileEmail() {
 		Decorator();
 		try {
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){			
-				//mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView",  1, "down");
-				mobileAction.FuncSwipeWhileElementNotFound(phone_info, false, 3, "up");
-			}
 			
+			mobileAction.FuncSwipeWhileElementNotFound(email_info, false, 3, "up");
+
 			String emialInfo = mobileAction.getValue(email_info);
+			System.out.println("Email now:" + emialInfo);
 			String expectedEmail = CL.getTestDataInstance().TCParameters.get("EmailProfile");
 			System.out.println("Expected:" + expectedEmail);
 			if(emialInfo.equalsIgnoreCase(expectedEmail)){
 				mobileAction.Report_Pass_Verified("Email is populated :" + emialInfo);
 			}else{
-				mobileAction.Report_Fail_Not_Verified("Email is not populated " + emialInfo);
+				mobileAction.Report_Fail_Not_Verified("Email is not populated:" + emialInfo);
 			}
 
 		} catch (NoSuchElementException  e) {
@@ -608,17 +579,22 @@ public class PurchaseMutualFunds extends _CommonPage {
 		}		
 	}
 	
-	public void ClickviewfundFacts(){
+	public void ClickViewfundFacts(){
 		Decorator();
 		try {
-			mobileAction.FuncClick(view_fundFacts, "view fund Facts");
+			mobileAction.FuncSwipeWhileElementNotFound(view_fundFacts, true, 5, "up");
+			//mobileAction.FuncClick(view_fundFacts, "view fund Facts");
 			
-		} catch ( InterruptedException | IOException e) {
+			
+		} catch ( NoSuchElementException  e) {
 			System.err.println("TestCase has failed to clickviewfundFacts.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			mobileAction.Report_Fail("Exception for clickviewfundFacts");
+			mobileAction.Report_Fail("Exception for clickviewfundFacts");			
 		}	
 	}
 	
+	public void VerifyFundfactsPageheader(){
+	
+	}
 	
 }

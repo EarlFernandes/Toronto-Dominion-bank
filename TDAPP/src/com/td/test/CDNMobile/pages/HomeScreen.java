@@ -973,9 +973,7 @@ public class HomeScreen extends _CommonPage {
 
 				mobileAction.SwipeWithinElement("//android.widget.ScrollView",  1, "down");
 			}else{
-				//XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable
-				//homeTable = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther";
-				mobileAction.FuncSwipeOnce("up");
+				mobileAction.SwipeWithinElement("//XCUIElementTypeTable",  1, "down");
 			}
 		}catch ( Exception e) {
 			try {

@@ -22,7 +22,7 @@ public class PreviewPurchase extends _CommonPage {
 
 	private static PreviewPurchase previewPurchase;
 
-	@iOSFindBy(xpath = "//*[@label='Purchase Mutual Funds' or @label='Achat de fonds communs de placement']")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement previewPurchase_title;
 
@@ -30,39 +30,39 @@ public class PreviewPurchase extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progress_bar;
 	
-	@iOSFindBy(xpath = "//*[@label='In progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[10]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Phone Number']/../android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement phone_number;	
 	
-	@iOSFindBy(xpath = "//*[@label='In progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[9]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Email']/../android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement email;
 	
-	@iOSFindBy(xpath = "//*[@label='In progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[9]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Email']")
 	private MobileElement email_label;
 	
-	@iOSFindBy(xpath = "//*[@label='In progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[10]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Phone Number']")
 	private MobileElement phone_label;
 	
-	@iOSFindBy(xpath = "//*[@label='In progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='CONTACT INFORMATION']")
 	private MobileElement contact_label;
 	
-	@iOSFindBy(xpath = "//*[@label='Purchase Now']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/../XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue']")
 	private MobileElement purchase_now_button;
 	
-	@iOSFindBy(xpath = "//*[@label='Cancel']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/../XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel']")
 	private MobileElement cancel_button;
 	
-	@iOSFindBy(xpath = "//*[@label='Cancel']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
 	private MobileElement alert_info;
 	
-	@iOSFindBy(xpath = "//*[@label='Cancel']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[11]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/custom_text']")
 	private MobileElement disclaimer_info;
 	
@@ -189,7 +189,10 @@ public class PreviewPurchase extends _CommonPage {
 				}
 				
 			}else{
-				
+				for (int i=0; i< expectedList.length; i++){
+					MobileElement element = (MobileElement)((MobileDriver) CL.GetDriver()).findElementByXPath("//XCUIElementTypeTable/XCUIElementTypeCell[" + (i+2) + "]/XCUIElementTypeStaticText[1]");
+					mobileAction.verifyElementTextIsDisplayed(element, expectedList[i]);
+				}
 			}
 			
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
@@ -203,7 +206,9 @@ public class PreviewPurchase extends _CommonPage {
 				disclaimer_info= mobileAction.verifyElementUsingXPath("//android.widget.TextView[contains(@text, '" + mobileAction.getAppString(locale_used, "MF_use_of_information_disclaimer") + "')]", "Disclaimer Information");
 				
 			}else{
-				
+				mobileAction.FuncSwipeOnce("up");
+				mobileAction.FuncSwipeOnce("up");
+				mobileAction.FuncSwipeOnce("up");
 			}
 			mobileAction.verifyElementTextIsDisplayed(contact_label, "联系方式|聯絡資訊");
 			mobileAction.verifyElementTextIsDisplayed(email_label, "电子邮件|電郵地址");
@@ -218,31 +223,6 @@ public class PreviewPurchase extends _CommonPage {
 		}
 	}
 	
-	public void ClickBackFromPreviewPurchase(){
-		Decorator();
-		String back_xpath ="";
-
-		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			try{
-				mobileAction.FuncClickBackButton();
-				return;
-			}catch (Exception e){
-				back_xpath = "//android.widget.ImageView[@resource-id='android:id/up']";
-			}
-			
-		}else{
-			back_xpath = "//*[@label='Back' or @label='Retour']";
-		}
-		
-		try{
-			MobileElement back_arrow = (MobileElement)CL.GetDriver().findElement(By.xpath(back_xpath));
-			mobileAction.FuncClick(back_arrow, "<");
-				
-		}catch (Exception e) {
-	        System.err.println("TestCase has failed.");
-	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-	    }
-	}
 	
 	public void ClickPopupGoBackButton(){
 		Decorator();

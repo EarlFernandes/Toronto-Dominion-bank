@@ -28,9 +28,9 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='' and @text='']")
 	private MobileElement tradeicon;
 
-	@iOSFindBy(xpath = "//*[@label='Investing']")   //fengfr6 change to * to match any classtype,sometimes the class is StaticText, sometimes it is Other
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")   //fengfr6 change to avoid using any text or label
 	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing Accounts']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Investing']")//@Author - Shahbaaz 17-Apr-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")//@Author - Shahbaaz 17-Apr-2017, remove @text - fengfr6
 	private MobileElement investing_header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade']")
@@ -206,16 +206,16 @@ public class Investing extends _CommonPage {
 		PageFactory.initElements(
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(7, TimeUnit.SECONDS)),
 				this);
-		try{
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				investing_header = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString(locale_used,"str_Investing") + "']", "Investing");
-			}else{
-				String investingTitle=mobileAction.getAppString(locale_used,"str_Investing");
-				investing_header = mobileAction.verifyElementUsingXPath("//*[@label='" + investingTitle + "']", "Investing");
-			}
-		}catch (Exception e){
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		}
+//		try{
+//			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+//				investing_header = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString(locale_used,"str_Investing") + "']", "Investing");
+//			}else{
+//				String investingTitle=mobileAction.getAppString(locale_used,"str_Investing");
+//				investing_header = mobileAction.verifyElementUsingXPath("//*[@label='" + investingTitle + "']", "Investing");
+//			}
+//		}catch (Exception e){
+//			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+//		}
 
 	}
 
@@ -1080,10 +1080,6 @@ public class Investing extends _CommonPage {
 	public void SelectPreviousTransaction(){
 		Decorator();
 		try{
-
-//			String currentDate = mobileAction.getValue(time_stamp);
-//			currentDate = currentDate.replaceAll("As of ", "");
-//			currentDate = currentDate.substring(0, 12);
 			LocalDate localDate = LocalDate.now();
 			String currentDate = DateTimeFormatter.ofPattern("MMM dd, yyyy").format(localDate);
 			System.out.println("Today is:" + currentDate);
@@ -1120,14 +1116,7 @@ public class Investing extends _CommonPage {
 	
 	public void VerifyMFChineseContent(){
 		Decorator();
-		try{
-			
-//			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-//				investing_header = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("str_Investing") + "']", "Investing");
-//			}else{
-//				
-//			}
-			
+		try{		
 			mobileAction.verifyElementTextIsDisplayed(investing_header, "投资 |投資  ");
 			mobileAction.verifyElementTextIsDisplayed(balance_tab, "结余 | 結餘  ");
 			mobileAction.verifyElementTextIsDisplayed(funds_tab, "基金 | 基金  ");
@@ -1164,32 +1153,7 @@ public class Investing extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
-	public void ClickBackFromInvesting(){
-		Decorator();
-		String back_xpath ="";
-
-		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			try{
-				mobileAction.FuncClickBackButton();
-				return;
-			}catch (Exception e){
-				back_xpath = "//android.widget.ImageView[@resource-id='android:id/up']";
-			}
-			
-		}else{
-			back_xpath = "//*[@label='Back' or @label='Retour']";
-		}
-		try{
-			MobileElement back_arrow = (MobileElement)CL.GetDriver().findElement(By.xpath(back_xpath));
-			mobileAction.FuncClick(back_arrow, "<");
-				
-		}catch (Exception e) {
-	        System.err.println("TestCase has failed.");
-	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-	    }
-	}
-	
+		
 	public void VerifyQuickLinkPurchaseChineseContent(){
 		Decorator();
 		try{

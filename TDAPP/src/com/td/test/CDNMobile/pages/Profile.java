@@ -298,7 +298,7 @@ public class Profile extends _CommonPage {
 	}
 	
 	public void savePhoneInforForMFVerification(){
-		String phoneInfo = get_phone_info();
+		String phoneInfo = get_mobile_phone_info();
 		if(!phoneInfo.isEmpty()){
 			CL.getTestDataInstance().TCParameters.put("PhoneProfile", phoneInfo);
 			mobileAction.Report_Pass_Verified("Phone:" + phoneInfo);

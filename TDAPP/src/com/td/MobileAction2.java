@@ -2822,6 +2822,32 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 			}
 		}
 	}
+	
+	//Add a common function here, we may need to click back button from any page, but the function is the same
+	public void ClickBackButton(){
+
+		String back_xpath ="";
+
+		if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			try{
+				FuncClickBackButton();
+				return;
+			}catch (Exception e){
+				back_xpath = "//android.widget.ImageView[@resource-id='android:id/up']";
+			}
+			
+		}else{
+			back_xpath = "//*[@label='Back' or @label='Retour']";
+		}
+		try{
+			MobileElement back_arrow = (MobileElement)GetDriver().findElement(By.xpath(back_xpath));
+			FuncClick(back_arrow, "<");
+				
+		}catch (Exception e) {
+			e.printStackTrace();
+	    } 
+		
+	}
 }
 
 

@@ -20,7 +20,7 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class FundDetails extends _CommonPage {
     private static FundDetails fundDetails;
 
-	@iOSFindBy(xpath = "//*[@label='Fund Details']")
+	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement FundDetails_header;
 	
@@ -36,13 +36,21 @@ public class FundDetails extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quoteBtn']")
     private MobileElement QuoteBtn;
     
-    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good 'til, Day')]")
+    @iOSFindBy(xpath = "XCUIElementTypeTable/XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]")
     @AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/fund_facts_view']//android.widget.TextView[@index='0']")
     private MobileElement fund_facts_view_text;
+    
+    @iOSFindBy(xpath = "XCUIElementTypeTable/XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]")
+    @AndroidFindBy(xpath = "//android.view.View[@resource-id='com.google.android.apps.docs:id/action_bar']/android.widget.TextView")
+    private MobileElement fund_facts_page_title;
 //
 //    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Agree']")
 //    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Agree']")
 //    private MobileElement AgreeButton;
+    
+	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']/../..//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[@index='2']/android.widget.LinearLayout/android.widget.TextView[@index='0']")
+	private List<MobileElement> InfoList;
 
     @iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
@@ -100,7 +108,7 @@ public class FundDetails extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(FundDetails_header, "Fund Details | 持有投资详情");
+			mobileAction.verifyElementTextIsDisplayed(FundDetails_header, "Fund Details | Renseignements sur le fonds| 持有投资详情");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -114,8 +122,11 @@ public class FundDetails extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				//System.out.println(mobileAction.getAppString(locale_used,"str_BUY"));
+				//System.out.println(mobileAction.getAppString(locale_used,"call"));
+				//System.out.println(mobileAction.getAppString(locale_used,"str_QUOTE"));
 				Purchase = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString(locale_used,"str_BUY") + "']", "Buy");
-				CallBtn = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString(locale_used,"str_CALL") + "']", "Call");
+				CallBtn = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString(locale_used,"call") + "']", "Call");
 				QuoteBtn = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString(locale_used,"str_QUOTE") + "']", "Quote");
 			}
 			mobileAction.verifyElementTextIsDisplayed(Purchase, "买入| 買入");
@@ -126,32 +137,25 @@ public class FundDetails extends _CommonPage {
 					"所持单位数 |所持單位數","单位价格 | 單位價格","未实现收益/亏损 | 未實現收益/虧損 "};
 			int lengthOfText = expectedText.length;
 			System.out.println("Expected fund details number:" + lengthOfText);
+			int size = InfoList.size();
+			System.out.println("Capture fund details number:" + size);
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				List<MobileElement> InfoList = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[@index='2']/android.widget.LinearLayout/android.widget.TextView[@index='0']");
-				int size = InfoList.size();
-				System.out.println("Capture fund details number:" + size);
-				if(size != lengthOfText){
-					System.out.println("The number of fund details not match");
-					mobileAction.Report_Fail("Fun Details not match");
-					return;
-				}
+
 				for(int i=0; i<size; i++){
 					mobileAction.verifyElementTextIsDisplayed(InfoList.get(i), expectedText[i]);
 				}
 				mobileAction.SwipeWithinElement("//android.widget.ScrollView",  1, "down");
 			}else{
 				//for IOS
-				List<MobileElement> InfoList = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//*[@name='TDVIEW_TITLE']/../..//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
-				int size = InfoList.size();
-				System.out.println("Capture fund details number:" + size);
 				for(int i=0; i<lengthOfText; i++){
 					mobileAction.verifyElementTextIsDisplayed(InfoList.get(i+1), expectedText[i]);
 				}
-				fund_facts_view_text = mobileAction.verifyElementUsingXPath("//*[@name='TDVIEW_TITLE']/../..//XCUIElementTypeTable/XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]", "View Fund Facts");
+				mobileAction.SwipeWithinElement("//XCUIElementTypeTable",  1, "down");
+				//fund_facts_view_text = mobileAction.verifyElementUsingXPath("//*[@name='TDVIEW_TITLE']/../..//XCUIElementTypeTable/XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]", "View Fund Facts");
 			}
 			
 			
-			mobileAction.verifyElementTextIsDisplayed(fund_facts_view_text, "查看基金概况（表现和费用）| 查看基金概况（表现和费用） ");
+			mobileAction.verifyElementTextIsDisplayed(fund_facts_view_text, "查看基金概况（表现和费用）| 查看基金概況（表現和費用） ");
 			
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -160,5 +164,41 @@ public class FundDetails extends _CommonPage {
 		}    	
     }
 
-
+	public void ClickfundFacts(){
+		Decorator();
+		try {
+			mobileAction.FuncSwipeWhileElementNotFound(fund_facts_view_text, true, 5, "up");			
+		} catch ( NoSuchElementException  e) {
+			System.err.println("TestCase has failed to ClickfundFacts.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			mobileAction.Report_Fail("Exception for ClickfundFacts");			
+		}	
+	}
+	
+	public void VerifyfundfactsDoc(){
+		Decorator();
+		try {
+			mobileAction.verifyElementTextIsDisplayed(fund_facts_page_title, "fund facts.pdf");  			
+		} catch ( Exception  e) {
+			System.err.println("TestCase has failed to verifyfundfactsDoc.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			mobileAction.Report_Fail("Exception for verifyfundfactsDoc");			
+		}	
+	}
+	
+	public void VerifyCallFuntionality(){
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				CallBtn = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString(locale_used,"call") + "']", "Call");
+			}
+			mobileAction.verifyElementTextIsDisplayed(CallBtn, "Call | Appeler");
+		} catch (NoSuchElementException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} 
+	}
+	
+	
 }
