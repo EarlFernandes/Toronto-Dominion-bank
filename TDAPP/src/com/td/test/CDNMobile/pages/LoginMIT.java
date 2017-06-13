@@ -172,6 +172,10 @@ public class LoginMIT extends _CommonPage {
 	@iOSFindBy(xpath = "//*[contains(@label,'OK')]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_launch_browser'and contains(@text,'do this later on my computer')]")
 	private MobileElement popup_ok_button;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
+	private MobileElement login_error;	
 
 	String securityPassword = getTestdata("SecurityPassword", "UserIDs");
 
@@ -201,39 +205,55 @@ public class LoginMIT extends _CommonPage {
 			
 			//System.out.println(CL.GetDriver().getPageSource());
 			//mobileAction.FuncClick(username, "Username");
-			if (select_accesscard.isDisplayed() == true) {
+//			if (select_accesscard.isDisplayed() == true) {
+			if (mobileAction.isObjExists(select_accesscard)) {
 
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");
 				mobileAction.FuncClick(username, "Username");
 				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
 				mobileAction.FuncClick(password, "Password");
-				mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				//mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+				TradeMultiLeg.get().FuncEnterText(password, CL.getTestDataInstance().UserPassword);
+				mobileAction.FuncClick(login, "Login");
+				
+				enterPwdifError();
+	/*			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					mobileAction.FuncHideKeyboard();
 					mobileAction.FuncClick(login, "Login");
 					mobileAction.waitForElementToVanished(progressBar);
+					if(mobileAction.isObjExists(login_error)) 
+					{
+						
+					}
 				} else {
 					mobileAction.FuncClick(login, "Login");
 					mobileAction.waitForElementToVanished(progressBar);
-				}
+				}*/
+				
+
+				
+				
 			} else {
 
 				mobileAction.FuncClick(username, "Username");
 				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
 
 				mobileAction.FuncClick(password, "Password");
-				mobileAction.FuncSendKeys(password, passwords);
+				//mobileAction.FuncSendKeys(password, passwords);
+				TradeMultiLeg.get().FuncEnterText(password, CL.getTestDataInstance().UserPassword);
+				mobileAction.FuncClick(login, "Login");
+				
+				enterPwdifError();
 
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+/*				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					mobileAction.FuncHideKeyboard();
 					mobileAction.FuncClick(login, "Login");
 					mobileAction.waitForElementToVanish(progressBar);
 				} else {
 					mobileAction.FuncClick(login, "Login");
 					mobileAction.waitForElementToVanish(progressBar);
-				}
+				}*/
 			}
 			//mobileAction.waitForElement(enterAnswer);
 			if(!mobileAction.isObjExists(Investing_Trade))
@@ -254,6 +274,43 @@ public class LoginMIT extends _CommonPage {
 	}
 
 
+	public void enterPwdifError()
+	{
+		Decorator();
+		
+		try
+		{
+			int iCnt = 1;
+			if(!mobileAction.isObjExists(Investing_Trade))
+			{
+			do
+			{
+				mobileAction.FuncClick(password, "Password");
+				TradeMultiLeg.get().FuncEnterText(password, CL.getTestDataInstance().UserPassword);
+				mobileAction.FuncClick(login, "Login");
+				iCnt++;
+			}while(!mobileAction.isObjExists(errorText) || iCnt>5);
+			}
+			
+			if(iCnt>5)
+			{
+				try {
+					CL.GetReporting().FuncReport("Fail", "Login Failed");
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			try {
+				CL.GetReporting().FuncReport("Fail", "Login Failed");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
 /*public void MITLogin(){
 	try{
 	 Decorator();

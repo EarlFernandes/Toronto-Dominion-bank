@@ -167,7 +167,8 @@ public class TradeMultiLeg extends _CommonPage{
 	private MobileElement goodTillCancel;
 	
 	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]")//@Author - Sushil 06-Feb-2017
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @index='0']")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @index='0']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText']")//@Author - Sushil 13-Jun-2017
 	private MobileElement defaultTradeAccount;
 	
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']")
@@ -424,7 +425,8 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.FunCnewSwipe(leg1Option,false,5);
 			mobileAction.FuncClick(leg1Option, "Select Option Leg1");
 			///mobileAction.FunCnewSwipe(firstStrikeCALLS,false,5);
-			mobileAction.FunctionSwipe("up", 200, 100);
+			///mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(firstBidCALLS);
 			mobileAction.FuncClick(firstBidCALLS, "firstBidCALLS");
 			sExpFormat = getOptionFormat(expiryDate,"CALLS");
 			mobileAction.FuncClick(Continue, "Continue");
@@ -878,8 +880,8 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.verifyItemInList(sGoodTillValues[9]);
 			mobileAction.FuncClick(goodTillCancel, "goodTillCancel");
 			
-			///mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 5, "down");
-			mobileAction.FuncSwipeDownTillScreenTop(defaultTradeAccount);
+			mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 5, "down");
+			///mobileAction.FuncSwipeDownTillScreenTop(leg1Action);
 			
 			mobileAction.selectItemFromList(leg1Action, sGoodTillValues[10]);
 			
@@ -1387,7 +1389,8 @@ public class TradeMultiLeg extends _CommonPage{
 			sMidPrice = getPrice(mobileAction.FuncGetText(midPrice));
 			sNaturalPrice = getPrice(mobileAction.FuncGetText(naturalPrice));
 			mobileAction.FuncClick(refreshButton, "refreshButton");
-			Thread.sleep(7000);
+			Thread.sleep(4000);
+			mobileAction.FuncClick(refreshButton, "refreshButton");
 			verifyPriceVarience(mobileAction.FuncGetText(midPrice),sMidPrice,"midPrice");
 			verifyPriceVarience(mobileAction.FuncGetText(naturalPrice),sNaturalPrice,"naturalPrice");
 		
