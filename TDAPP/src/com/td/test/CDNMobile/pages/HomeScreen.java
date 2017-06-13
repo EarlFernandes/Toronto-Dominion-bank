@@ -398,13 +398,7 @@ public class HomeScreen extends _CommonPage {
 	public void clickMenu() {
 		try {
 			Decorator();
-/*			try {
-				Thread.sleep(5000);
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountno, true, 60, "Up");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
+			// FIXED removed back button
 			mobileAction.FuncClick(menu, "Menu");
 
 		} catch (NoSuchElementException e) {

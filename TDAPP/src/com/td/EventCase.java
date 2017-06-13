@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.openqa.selenium.NoSuchElementException;
 
+import com.td.mainframe.Executor;
 import com.td.test.CDNMobile.pages.Accounts;
 import com.td.test.CDNMobile.pages.Accounts_Credit;
 import com.td.test.CDNMobile.pages.AddCanadian_Payee;
@@ -22,6 +23,7 @@ import com.td.test.CDNMobile.pages.DepositCheque;
 import com.td.test.CDNMobile.pages.FindLocations;
 import com.td.test.CDNMobile.pages.HoldingDetails;
 import com.td.test.CDNMobile.pages.HomeScreen;
+import com.td.test.CDNMobile.pages.Interac_e_Registration;
 import com.td.test.CDNMobile.pages.Interac_e_Transfer;
 import com.td.test.CDNMobile.pages.Investing;
 import com.td.test.CDNMobile.pages.InvestingAccountSummary;
@@ -184,15 +186,22 @@ public class EventCase {
 		Test,
 		
 		//P2P
-		
 		Transfers_clickManageContactsLink,
 		ManageContacts_verifyPageHEader,
-		Interac_e_Transfer_clickContinueButton,
+		Interac_e_Registration_clickContinueButton,
 		Profile_And_Settings_clickPaymentsAndTransfers,
-		Interac_e_Transfer_verifyErrorText,
-		Interac_e_Transfer_registerUser,
-		Interac_e_Transfer_verifyDetails,
-		Interac_e_Transfer_verifyRegSuccessMessage,
+		Interac_e_Registration_verifyErrorText,
+		Interac_e_Registration_registerPersonalUser,
+		Interac_e_Registration_registerBusinessUser,
+		Interac_e_Registration_registerMultiProfileUser,
+		Interac_e_Registration_clickGoBackHome,
+		Interac_e_Registration_verifyDetails,
+		Interac_e_Registration_verifyBusinessDetails,
+		Interac_e_Registration_verifyRegSuccessMessage,
+		Interac_e_Registration_clickRegisterAnotherProfile,
+		Executor_createPersonalProfile,
+		Executor_createBusinessProfile,
+		Executor_createMultiProfile,
 		
 		//Tetris Loyalty
 		CreditHeader,
@@ -468,24 +477,56 @@ public class EventCase {
 			ManageContacts.get().verifyPageHeader();
 			break;
 			
-		case Interac_e_Transfer_clickContinueButton:
-			Interac_e_Transfer.get().clickContinueButton();
+		case Interac_e_Registration_clickContinueButton:
+			Interac_e_Registration.get().clickContinueButton();
 			break;
 			
-		case Interac_e_Transfer_verifyErrorText:
-			Interac_e_Transfer.get().verifyErrorMessage();
+		case Interac_e_Registration_verifyErrorText:
+			Interac_e_Registration.get().verifyErrorMessage();
 			break;
 
-		case Interac_e_Transfer_registerUser:
-			Interac_e_Transfer.get().registerUser();
+		case Interac_e_Registration_registerPersonalUser:
+			Interac_e_Registration.get().registerPersonalUser();
 			break;
 			
-		case Interac_e_Transfer_verifyDetails:
-			Interac_e_Transfer.get().verifyDetails();
+		case Interac_e_Registration_registerBusinessUser:
+			Interac_e_Registration.get().registerBusinessUser();
 			break;
 			
-		case Interac_e_Transfer_verifyRegSuccessMessage:
-			Interac_e_Transfer.get().verifyRegSuccessMsg();
+		case Interac_e_Registration_registerMultiProfileUser:
+			Interac_e_Registration.get().registerMultiProfileUser();
+			break;
+			
+		case Interac_e_Registration_clickGoBackHome:
+			Interac_e_Registration.get().clickGoBackHome();
+			break;
+			
+		case Interac_e_Registration_clickRegisterAnotherProfile:
+			Interac_e_Registration.get().clickRegisterAnotherProfile();
+			break;
+			
+		case Executor_createPersonalProfile:
+			Executor.get().createPersonalProfile();
+			break;
+			
+		case Executor_createBusinessProfile:
+			Executor.get().createBusinessProfile();
+			break;
+			
+		case Executor_createMultiProfile:
+			Executor.get().createMultiProfile();
+			break;
+			
+		case Interac_e_Registration_verifyDetails:
+			Interac_e_Registration.get().verifyDetails();
+			break;
+			
+		case Interac_e_Registration_verifyBusinessDetails:
+			Interac_e_Registration.get().verifyBusinessDetails();
+			break;
+			
+		case Interac_e_Registration_verifyRegSuccessMessage:
+			Interac_e_Registration.get().verifyRegSuccessMsg();
 			break;
 			
 		case HomeScreen_ClickBills:
@@ -1082,8 +1123,6 @@ public class EventCase {
 		case VerifyCombinedAccounts:
 			Investing.get().verifyCombinedAccounts();
 			break;
-			
-		
 
 		case VerifyNoTradingAccounts:
 			Investing.get().verifyNoTradingAccounts();
@@ -1096,7 +1135,7 @@ public class EventCase {
 		case VerifyInvestingScreen:
 			Investing.get().verifyInvestingScreen();
 			break;
-			
+
 		case VerifyFPAccounts:
 			Investing.get().verifyFPAccounts();
 			break;
@@ -1382,7 +1421,7 @@ public class EventCase {
 		case Env_EnableMobilePayment:
 			Env_Settings.get().enableMobilePayment();
 			break;
-			
+
 		case ApplePay_AddCard:
 			ApplePay.get().clickAddCard();
 			break;
@@ -1397,7 +1436,7 @@ public class EventCase {
 		case ApplePay_ChangeDefaultCard:
 			ApplePay.get().changeDefaultCard();
 			break;
-		
+
 		case ApplePay_CheckPersonalCard:
 			ApplePay.get().checkPersonalCard();
 			break;
