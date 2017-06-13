@@ -28,11 +28,13 @@ public class ContactUs extends _CommonPage {
 	private MobileElement tdDirectInvesting;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'TD Direct Investing')]/../XCUIElementTypeButton")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/ivTDWealthDINumberPhone']")
+	//@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/ivTDWealthDINumberPhone']")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/rlTDMainNumber']")  //changed by rashmi
 	private MobileElement call_Button;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Call']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Call']")
+	//@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Call']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/continue_call_button' and contains(@text,'Continue call')]") //changed by rashmi
 	private MobileElement callNow;
 	
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='OK']")
@@ -65,22 +67,34 @@ public class ContactUs extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 *             
+	 *  @throws Exception
+	 *  		If there is problem while finding that element.
 	 */
 
 	public void verifyTDInvesting_Contact()  {
 		Decorator();
 		try {
-		if(contactUs.isDisplayed()==true){
+		if(mobileAction.verifyElementIsPresent(contactUs)){
 			
 			mobileAction.verifyElementIsDisplayed(call_Button, t_call);
 			mobileAction.FuncClick(call_Button, "Call Button");
 			mobileAction.FuncClick(callNow, "Call");
 			//mobileAction.FuncClick(ok, "Ok");
 		}
-		}catch (NoSuchElementException | IOException |InterruptedException e) {
-			e.printStackTrace();
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
+		}catch (NoSuchElementException e) {
+            CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+            System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+     } catch (InterruptedException e) {
+            CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+            System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+     } catch (IOException e) {
+            CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+            System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+     } catch (Exception e) {
+            CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+            System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+     }
 	}
 	
 	public void VerifyContactUsPageHeader(){

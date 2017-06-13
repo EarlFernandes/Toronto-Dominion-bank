@@ -30,7 +30,7 @@ public class Transfers extends _CommonPage {
 	}
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Pending Interac e-Transfer')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Pending Interac e-Transfer']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'View pending and cancelled Interac e-Transfers')]")  //changed by rashmi
 	private MobileElement pending_Transfer;
 
 
@@ -43,8 +43,8 @@ public class Transfers extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Interac e-Transfer')]")
 	private MobileElement Interac_e_Transfer_Button;
 	
-	@iOSFindBy(xpath= "//XCUIElementTypeStaticText[@label='Between My Accounts']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textView1' and @text='Move money quickly and easily']")
+	@iOSFindBy(xpath= "//XCUIElementTypeStaticText[@label='Between My Accounts']")  //changed by rashmi
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Between My Accounts')]")
 	private MobileElement btw_My_Accnts;
 	
 	@iOSFindBy(xpath="//XCUIElementTypeActivityIndicator[@label='In progress']")
@@ -79,6 +79,15 @@ public class Transfers extends _CommonPage {
 	 * 
 	 * 
 	 * @return void
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 * 
 	 */
 	public void clickBetweenMyAccountsTransfers() {
@@ -89,9 +98,18 @@ public class Transfers extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(transfers_Header, "Transfer");
 			mobileAction.FuncClick(btw_My_Accnts, "Between my Accounts");
 			mobileAction.waitForElementToVanish(progressBar);
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -101,16 +119,36 @@ public class Transfers extends _CommonPage {
 	 * 
 	 * 
 	 * @return void
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 * 
 	 */
 	public void clickInterac_e_Transfer() {
 		Decorator();
 		try {
+			Thread.sleep(5000);
 			mobileAction.verifyElementIsDisplayed(transfers_Header, "Transfer Header");	//added by Ashraf
 			mobileAction.FuncClick(Interac_e_Transfer_Button, "Interac e_Transfer");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+			//mobileAction.waitForElementToVanish(progrees_Bar);
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
@@ -120,6 +158,16 @@ public class Transfers extends _CommonPage {
 	 * 
 	 * 
 	 * @return void
+	 *
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 * 
 	 */
 	public void clickManageRecipients() {
@@ -127,9 +175,18 @@ public class Transfers extends _CommonPage {
 			Decorator();
 			mobileAction.FuncClick(manageRecipient, "Manage Recipients");
 			mobileAction.waitForElementToVanish(progressBar);
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -139,6 +196,16 @@ public class Transfers extends _CommonPage {
 	 * 
 	 * 
 	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 * 
 	 */
 	public void clickPendingTransfers() {
@@ -150,9 +217,18 @@ public class Transfers extends _CommonPage {
 			mobileAction.FuncClick(pending_Transfer, "Pending Transfers");
 			Thread.sleep(5000);
 			
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -167,8 +243,15 @@ public class Transfers extends _CommonPage {
 	 * This method will click on verify the Transfer Header
 	 * 
 	 * 
-	 * @return  NoSuchElementException
-	 * @return  IOException
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void verifyTransferHeader() {
 
@@ -178,9 +261,15 @@ public class Transfers extends _CommonPage {
 			
 			mobileAction.verifyElementIsDisplayed(transfers_Header, "Transfer");
 			
-		} catch (NoSuchElementException   | IOException e) {
-			System.err.println("TestCase has failed.");
+		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		}catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

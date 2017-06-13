@@ -52,7 +52,6 @@ public class Notifications extends _CommonPage {
 				this);
 
 	}
-	
 
 	public void VerifyNotificationsPageHeader() {
 		Decorator();

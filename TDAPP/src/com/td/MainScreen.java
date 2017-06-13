@@ -2,7 +2,6 @@ package com.td;
 
 import java.io.IOException;
 import java.util.HashMap;
-
 import org.apache.commons.lang3.StringUtils;
 
 import com.td.mainframe.Executor;
@@ -39,6 +38,7 @@ public class MainScreen extends _CommonPage {
 
 			}
 		}
+
 	}
 
 	public String p2pArray[] = { "HostPath", "HostUserName", "HostPassword", "ProfileType", "ProfileName", "ShortName",
@@ -59,9 +59,7 @@ public class MainScreen extends _CommonPage {
 	}
 
 	public void Splash_Conitnue() throws IOException {
-
 		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
-
 		readSheet();
 		readP2PSheet();
 
@@ -85,8 +83,7 @@ public class MainScreen extends _CommonPage {
 																					// execution
 			if (CL.getTestDataInstance().getAppFilePath() == null
 					|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
-				CL.getTestDataInstance().SetAppFilePath(
-						CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", targetEnv));
+				CL.getTestDataInstance().SetAppFilePath(targetEnv);
 			}
 			CL.mobileApp(appiumPath);
 		} else { // Local execution
@@ -109,7 +106,9 @@ public class MainScreen extends _CommonPage {
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+
 			}
+
 		}
 		
 	}

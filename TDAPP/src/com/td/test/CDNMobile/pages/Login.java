@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.MainScreen;
@@ -31,7 +32,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @index='1']")
 	private MobileElement username;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Nom d’utilisateur ou numéro de carte Accès']")	//FIXED
+	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Nom d’utilisateur ou numéro de carte Accès']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @index='1']")
 	private MobileElement usernameFRE;
 
@@ -152,7 +153,7 @@ public class Login extends _CommonPage {
 	private MobileElement TermsAndCondition_header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'do this later on my computer')]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_launch_browser'and contains(@text,'do this later on my computer')]")
+	@AndroidFindBy(xpath = "//android.widget.Button[contains(@text,'do this later on my computer')]")//changed by Rashmi
 	private MobileElement thanks_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Clear text']")
@@ -166,7 +167,7 @@ public class Login extends _CommonPage {
 	// String verifyLogin_ios =
 	// "//XCUIElementTypeStaticText[contains(@label,'Your Login Info Please')]";
 	String verifyLogin_ios = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[1]";
-	String verifyLogin_android = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
+	String verifyLogin_android = "//*[contains(@text,'Your Login Info Please')]";
 	String login_password = getTestdata("Password");
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
@@ -184,7 +185,6 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_launch_browser'and contains(@text,'do this later on my computer')]")
 	private MobileElement popup_ok_button;
 
-	String securityPassword = getTestdata("SecurityPassword");
 
 	String platFormName = CL.getTestDataInstance().getMobilePlatForm();
 	String progressBarFrench = "//android.widget.ProgressBar[@resource-id='android:id/progress']";
@@ -201,7 +201,7 @@ public class Login extends _CommonPage {
 	private MobileElement deluser;
 
 	String session = "//XCUIElementTypeStaticText[@label='Session Expired']";
-	String session1 = "//XCUIElementTypeStaticText[@text='Session Expired']";
+	String session1 = "//android.widget.TextView[contains(@text,'Session Expired')]";
 	String message = "Session Expired";
 
 	public synchronized static Login get() {
@@ -222,12 +222,26 @@ public class Login extends _CommonPage {
 		boolean flag = false;
 		try {
 			if (mobileAction.FuncIsDisplayed(select_accesscard, "Select Access Card")) {
-				try {
-					mobileAction.FuncClick(select_accesscard, "Select Accesscard");
-					mobileAction.FuncClick(addUser, "AddUser");
-					flag = true;
-				} catch (NoSuchElementException | InterruptedException | IOException e) {
-					System.out.println("Exception for select_accesscard or addUser ");
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios") || 
+						(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android") &&
+						StringUtils.contains(select_accesscard.getText(), "**"))) {
+					try {
+						mobileAction.FuncClick(select_accesscard, "Select Accesscard");
+						mobileAction.FuncClick(addUser, "AddUser");
+						flag = true;
+					}catch (NoSuchElementException e) {
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+					} catch (InterruptedException e) {
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+					} catch (IOException e) {
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+					} catch (Exception e) {
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+					}
 				}
 			} else {
 				flag = false;
@@ -246,8 +260,18 @@ public class Login extends _CommonPage {
 					mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 					mobileAction.FuncClick(addUser, "AddUser");
 					flag = true;
-				} catch (NoSuchElementException | InterruptedException | IOException e) {
-					System.out.println("Exception for no select_accesscard for FRE ");
+				} catch (NoSuchElementException e) {
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+				} catch (InterruptedException e) {
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+				} catch (IOException e) {
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				} catch (Exception e) {
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 				}
 			} else {
 				flag = false;
@@ -261,7 +285,7 @@ public class Login extends _CommonPage {
 	public void verifySystemError() {
 		Decorator();
 		try {
-			if (errorText.isDisplayed()) {
+			if (mobileAction.verifyElementIsPresent(errorText)) {
 				CL.GetReporting().FuncReport("Fail", "System exception occured during login");
 			}
 		} catch (Exception e) {
@@ -274,7 +298,7 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 			if (mobileAction.FuncIsDisplayed(securityQuestionHeader)) {
-				mobileAction.FuncSendKeys(enterAnswer, "abcde");
+				mobileAction.FuncSendKeys(enterAnswer, getTestdata("SecurityAnswer"));
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					mobileAction.FuncClick(done, "Done");
 				} else {
@@ -295,7 +319,7 @@ public class Login extends _CommonPage {
 	public void verifyTandC() {
 		Decorator();
 		try {
-			if (TermsAndCondition_header.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(TermsAndCondition_header)) {
 				String verify_terms = "Verifying TermsAndCondition Page Header";
 				mobileAction.verifyElementIsDisplayed(TermsAndCondition_header, verify_terms);
 				String button_clicked = "Thanks Button is clicked";
@@ -358,9 +382,18 @@ public class Login extends _CommonPage {
 			verifySecurityQuestion();
 			verifyTandC();
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		}  catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -402,9 +435,18 @@ public class Login extends _CommonPage {
 			mobileAction.waitForElementToDisappear(progressBarFrench);
 			// verifySecurityQuestion();
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -425,8 +467,15 @@ public class Login extends _CommonPage {
 			Decorator();
 			String verify_blank_page = "Verify The Blank Username and Password";
 			mobileAction.verifyElementIsDisplayed(verify_No_Username, verify_blank_page);
+		}  catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		}  catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -461,15 +510,18 @@ public class Login extends _CommonPage {
 				mobileAction.FuncClick(login, "Login");
 				mobileAction.waitForElementToVanish(progressBar);
 			}
-		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
+		}  catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -489,9 +541,18 @@ public class Login extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(Mostusername_Displayedfirst,
 						"Verify The Most User Name Displayed First");
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		}  catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -510,22 +571,36 @@ public class Login extends _CommonPage {
 				mobileAction.FuncClick(menu, "Menu");
 				mobileAction.FuncClick(logout, "Logout");
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		}  catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
-	public void loginVerify() throws IOException {
+	public void loginVerify() {
 		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(username, "no user name");
 
-		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
+		}  catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-
 	}
 
 	/**
@@ -540,7 +615,7 @@ public class Login extends _CommonPage {
 
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			
 				String connectIDs = getTestdata("ConnectID");
 				String userid[] = connectIDs.split(",");
 
@@ -559,24 +634,27 @@ public class Login extends _CommonPage {
 					String passwords = getTestdata("Password");
 
 					mobileAction.FuncSendKeys(password, passwords);
+					if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+						mobileAction.FuncClick(done, "Done");
+					}else{
+						mobileAction.FuncHideKeyboard();
+					}
 					mobileAction.FuncClick(login, "Login");
 					Thread.sleep(3000);
 					mobileAction.waitForElementToVanish(progressBar);
 					verifySecurityQuestion();
+					verifyTandC();//Changed by Rashmi
 					clickLogoutLnk();
 				}
-
-			} else {
-				mobileAction.FuncClick(menu, "Menu");
-				mobileAction.FuncClick(logout, "Logout");
-				mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
-				Thread.sleep(1000);
-				HomeScreen.get().clickMenu();
-				HomeScreen.get().clickBill();
-			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		}  catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -602,9 +680,15 @@ public class Login extends _CommonPage {
 				HomeScreen.get().clickMenu();
 				HomeScreen.get().clickBill();
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -621,7 +705,7 @@ public class Login extends _CommonPage {
 
 		Decorator();
 		try {
-			if (select_accesscard.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");
@@ -659,7 +743,7 @@ public class Login extends _CommonPage {
 
 		Decorator();
 		try {
-			if (select_accesscard.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");
@@ -709,7 +793,7 @@ public class Login extends _CommonPage {
 		try {
 			Decorator();
 
-			if (select_accesscard.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");
@@ -760,7 +844,7 @@ public class Login extends _CommonPage {
 
 		Decorator();
 		if (platFormName.equalsIgnoreCase("ios")) {
-			if (select_accesscard.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 
 				try {
 					mobileAction.FuncClick(select_accesscard, "Select Accesscard");
@@ -795,13 +879,13 @@ public class Login extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void verifylogin5times() throws SystemException {
+	public void verifylogin5times(){
 
 		Decorator();
 		int size = passwordArray.length;
 		try {
 
-			if (select_accesscard.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");
@@ -837,9 +921,8 @@ public class Login extends _CommonPage {
 				}
 			}
 
-			// if (mobileAction.verifyLoginErrorOccured(verifyLogin_ios)){
-			try {
-				if (login_error.isDisplayed()) {
+			try{
+				if(mobileAction.verifyElementIsPresent(login_error)){
 					String loginerrorMessage = mobileAction.getValue(login_error);
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 						if (loginerrorMessage.contains("Your Login Info Please")) {
@@ -893,18 +976,21 @@ public class Login extends _CommonPage {
 			// }
 
 		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 		try {
-			if (securityQuestionHeader.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(securityQuestionHeader)) {
 				mobileAction.FuncClick(enterAnswer, "Enter your Answer");
 				mobileAction.FuncSendKeys(enterAnswer, "abcd");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -921,7 +1007,7 @@ public class Login extends _CommonPage {
 		}
 
 		try {
-			if (TermsAndCondition_header.isDisplayed()) {
+			if (mobileAction.verifyElementIsPresent(TermsAndCondition_header)) {
 				String verify_terms = "Verifying TermsAndCondition Page Header";
 				mobileAction.verifyElementIsDisplayed(TermsAndCondition_header, verify_terms);
 				String button_clicked = "Thanks Button is clicked";
@@ -940,7 +1026,7 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 
-			if (select_accesscard.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");
@@ -976,7 +1062,7 @@ public class Login extends _CommonPage {
 				}
 			}
 			try {
-				if (errorText.isDisplayed() == true) {
+				if (mobileAction.verifyElementIsPresent(errorText)) {
 
 				}
 			} catch (Exception e) {
@@ -987,15 +1073,18 @@ public class Login extends _CommonPage {
 
 			logout();
 
-		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
+		}  catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -1012,12 +1101,12 @@ public class Login extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void loginWithoutTandC() throws SystemException {
+	public void loginWithoutTandC() {
 
 		Decorator();
 		try {
 
-			if (select_accesscard.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");
@@ -1055,7 +1144,7 @@ public class Login extends _CommonPage {
 			Thread.sleep(2000);
 
 			try {
-				if (errorText.isDisplayed() == true) {
+				if (mobileAction.verifyElementIsPresent(errorText)) {
 
 				}
 			} catch (Exception e) {
@@ -1064,7 +1153,7 @@ public class Login extends _CommonPage {
 			}
 
 			try {
-				if (securityQuestionHeader.isDisplayed() == true) {
+				if (mobileAction.verifyElementIsPresent(securityQuestionHeader)) {
 					mobileAction.FuncClick(enterAnswer, "Enter your Answer");
 					mobileAction.FuncSendKeys(enterAnswer, "abcd");
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -1082,7 +1171,7 @@ public class Login extends _CommonPage {
 			}
 
 			try {
-				if (TermsAndCondition_header.isDisplayed()) {
+				if (mobileAction.verifyElementIsPresent(TermsAndCondition_header)) {
 					String verify_terms = "Verifying TermsAndCondition Page Header";
 					mobileAction.verifyElementIsDisplayed(TermsAndCondition_header, verify_terms);
 					Thread.sleep(4000);
@@ -1103,14 +1192,17 @@ public class Login extends _CommonPage {
 			}
 
 		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -1125,11 +1217,17 @@ public class Login extends _CommonPage {
 			else
 				mobileAction.waitForElementToAppear(session, message);
 		} catch (InterruptedException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (TimeoutException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("TimeoutException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		}catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1143,22 +1241,32 @@ public class Login extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 				mobileAction.FuncClickTap(deluser, "AcessCard deleted");
 
-		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
+		}  catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
 
 	// This method will count the number of users present in the access card
 
-	public void verify_user() throws IOException {
+	public void verify_user() 
+{
 		Decorator();
 		try {
 			mobileAction.FuncClick(select_accesscard, "Access Card");
 			int count = user.size();
 			for (int i = 0; i < count; i++) {
-				if (user.get(i).isDisplayed()) {
+				if (mobileAction.verifyElementIsPresent(user.get(i))) {
 					if (platFormName.equalsIgnoreCase("Android")) {
 						mobileAction.verifyElementTextContains(user.get(i), "*");
 					} else if (platFormName.equalsIgnoreCase("iOS")) {
@@ -1168,19 +1276,22 @@ public class Login extends _CommonPage {
 				}
 			}
 
-		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
+		}  catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
-	public void login_errorMsg() throws SystemException {
+	public void login_errorMsg(){
 
 		String verifyLogin_ios = "//*[contains(@label,'Your Login Info Please')]";
 		String verifyLogin_android = "//android.widget.ImageView[@resource-id= 'com.td:id/imageView1']";
@@ -1188,7 +1299,7 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 
-			if (select_accesscard.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");
@@ -1224,11 +1335,10 @@ public class Login extends _CommonPage {
 				}
 			}
 			Thread.sleep(2000);
-			if (login_error.isDisplayed()) {
-				String errorMsg = mobileAction.getValue(login_error);
-				System.out.println("Got error Msg:" + errorMsg);
-				CL.GetReporting().FuncReport("Pass", errorMsg);
-
+			if(mobileAction.verifyElementIsPresent(login_error)){
+				String errorMsg= mobileAction.getValue(login_error);
+				System.out.println("Got error Msg:"+ errorMsg);
+				CL.GetReporting().FuncReport("Pass",errorMsg);
 			} else {
 				CL.GetReporting().FuncReport("Fail", "Your login information does not match info is not shown");
 
@@ -1258,15 +1368,18 @@ public class Login extends _CommonPage {
 			//
 			// }
 			// }
-		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
+		}  catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

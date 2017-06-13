@@ -35,6 +35,7 @@ public class QuickAccess  extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title_text']")
 	private MobileElement indiviual_accounts;
 	
+	
 	public synchronized static QuickAccess get() {
 		if (Quickaccess == null) {
 			Quickaccess = new QuickAccess();
@@ -48,8 +49,6 @@ public class QuickAccess  extends _CommonPage {
 				this);
 
 	}
-	
-
 
 	public void VerifyQuickAccessSettingsHeader() {
 		Decorator();

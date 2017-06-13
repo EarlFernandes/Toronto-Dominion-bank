@@ -24,11 +24,11 @@ public class HomeScreen extends _CommonPage {
 	private static HomeScreen HomeScreen;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu' or @label='Menu en en-tête']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up' and @index='0']")
 	private MobileElement menu;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Bills']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Bills']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/title' or @resource-id='com.td:id/navText') and @text='Bills']")
 	private MobileElement bills;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='Accounts']")
@@ -36,11 +36,11 @@ public class HomeScreen extends _CommonPage {
 	private MobileElement my_accounts;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfers' or @label='Virments']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' or @text='Transfers' or @text='Virments']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Transfers' or @text='Virments']")
 	private MobileElement transfers;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Markets']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Transfers']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Markets' or @content-desc='Markets']")
 	private MobileElement markets;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Transfers']")
@@ -60,7 +60,7 @@ public class HomeScreen extends _CommonPage {
 	MobileElement  investing_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'TRADE')]")
-	@AndroidFindBy(xpath = "//android.widget.TableRow[@text='TRADE']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trade']")
 	private MobileElement trade;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='VIREMENTS'] ")
@@ -68,15 +68,16 @@ public class HomeScreen extends _CommonPage {
 	private MobileElement french_transfers;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD for Me']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/td_zones_dashboard' and @text='TD FOR ME']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='TD for Me']")//Changed by Rashmi
 	private MobileElement dashboard_Location;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD For Me']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='TD for Me']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='TD For Me']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='TD for Me']")//Changed by Rashmi
 	private MobileElement TD_For_Me;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress'] ")
-	private MobileElement progressBarIos;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	private MobileElement progressBar;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='DEPOSIT']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mrdc_dashboard' and @text='DEPOSIT']")
@@ -105,12 +106,10 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 
-	String progressBar = "//android.widget.ProgressBar[@resource-id='android:id/progress' and @enabled='true']";
-
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@value='SEND MONEY']")
 	private MobileElement send_money_button;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Privacy, Security & Legal') or contains(@value,'Privacy, Security & Legal')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Privacy, Security & Legal']")
 	private MobileElement privacy;
 
@@ -129,7 +128,7 @@ public class HomeScreen extends _CommonPage {
 	private MobileElement Watchlists;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Trade']")
 	private MobileElement clickmenu_trade;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='PAY NOW']")
@@ -151,8 +150,22 @@ public class HomeScreen extends _CommonPage {
 	private MobileElement applePayBtn;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='Accounts']")
-	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Accounts']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Accounts']")
 	private MobileElement accounts;
+	
+	@iOSFindBy(xpath = "//*[@label='Select AccessCard']")
+	//@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @content-desc='Username or Access Card']")
+	@AndroidFindBy(id="com.td:id/loginEditText")
+	private MobileElement select_accesscard;
+	
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/zones_feature_button' and @text='Continue']")
+	private MobileElement continueBtn;
+
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/zones_feature_button' and @text='Get Started']")
+	private MobileElement get_Started;
+	
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/acceptButton' and @text='Accept']")
+	private MobileElement accept;
 	
 	int i = 1;
 	String Firstpart = "//XCUIElementTypeCell[";
@@ -192,9 +205,18 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.FuncClick(bills, "Bills");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -215,9 +237,18 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.FuncClick(bills, "Bills");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -238,9 +269,18 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.FuncClick(markets, "Markets");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -257,15 +297,24 @@ public class HomeScreen extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void clickWatchLists() throws Exception {
+	public void clickWatchLists()	 {
 
 		try {
 			Decorator();
 
 			mobileAction.FuncClick(Watchlists, "Watchlists");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -286,9 +335,18 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.FuncClick(quickAccess, "Quick Access");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -310,9 +368,18 @@ public class HomeScreen extends _CommonPage {
 
 			mobileAction.FuncClick(my_accounts, "My Accounts");
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	String accountno = "//*[contains(@label,'" + "AS12345" + "')]";
@@ -334,9 +401,18 @@ public class HomeScreen extends _CommonPage {
 			// FIXED removed back button
 			mobileAction.FuncClick(menu, "Menu");
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -357,11 +433,19 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.FuncClick(menu, "French_Menu");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-
 	}
 
 	/**
@@ -380,9 +464,18 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.FuncClick(transfers, "Transfers");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -402,9 +495,18 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.FuncClick(deposit, "Deposit");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -423,11 +525,24 @@ public class HomeScreen extends _CommonPage {
 	public void clickTrade() {
 		try {
 			Decorator();
-			mobileAction.verifyElementIsDisplayed(trade, "TRADE");
-			mobileAction.FuncClick(trade, "Trade");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+			 if(mobileAction.verifyElementIsPresent(trade)){
+	                mobileAction.FuncClick(trade, "Trade");
+	            }else{
+	                mobileAction.SwipeQuickLinks(200,200);
+	                mobileAction.FuncClick(trade, "Trade");
+	            }
+		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -447,9 +562,18 @@ public class HomeScreen extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(transfer_button_dashboard, "TRANSFER");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -470,9 +594,18 @@ public class HomeScreen extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(investing_button, "Investing");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -495,9 +628,18 @@ public class HomeScreen extends _CommonPage {
 			Decorator();
 			mobileAction.FuncClick(french_transfers, "VIREMENTS");
 			mobileAction.FuncClickBackButton();
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -509,9 +651,18 @@ public class HomeScreen extends _CommonPage {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(
 					By.xpath("//*[contains(@label,'The right mortgage can save you money')]")));
 			mobileAction.FuncClick(send_money_button, "sendMoney");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -541,11 +692,19 @@ public class HomeScreen extends _CommonPage {
 				mobileAction.FuncClickBackButton();
 			}
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-
 	}
 
 	/**
@@ -565,29 +724,44 @@ public class HomeScreen extends _CommonPage {
 		Decorator();
 		try {
 
-			String PlatformName = "";
-			if (PlatformName.equalsIgnoreCase("")) {
+			 if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.FuncClick(dashboard_Location, "TD Zone Dashboard");
-				mobileAction.waitForElementToVanish(progressBarIos);
+				if(mobileAction.verifyElementIsPresent(select_accesscard)){
+					Login.get().login();
+				}
+				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.verifyElement(TD_For_Me, "TD for Me");
 
-			} else {
+			} else {//Changed by Rashmi
 
 				AppiumDriver<WebElement> driver = ((AppiumDriver<WebElement>) CL.GetDriver());
 				WebDriverWait wait = new WebDriverWait(driver, 10);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-						"//android.widget.TextView[@resource-id='com.td:id/td_zones_dashboard' and @text='TD FOR ME']")));
+						"//android.widget.TextView[@text='TD for Me']")));
 				mobileAction.FuncClick(dashboard_Location, "TD Zone Dashboard");
+				if(mobileAction.verifyElementIsPresent(select_accesscard)){
+					Login.get().login();
+				}
 				// mobileAction.waitForElementToVanish(progressBarIos);a
 				// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.TextView[@resource-id='android:id/action_bar_title'
 				// and @text='TD for Me']")));
+				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.verifyElement(TD_For_Me, "TD for Me");
 
 			}
-		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -607,18 +781,33 @@ public class HomeScreen extends _CommonPage {
 	public void verifyLocations() {
 		Decorator();
 		try {
+			if(mobileAction.verifyElementIsPresent(continueBtn)){
+				mobileAction.FuncClick(continueBtn, "Continue Button");
+				mobileAction.FuncClick(get_Started, "Get Started");
+				mobileAction.FuncClick(accept, "Accept Button");
+				mobileAction.waitForElementToVanish(progressBar);
+			}
 			String location = mobileAction.getText(nearByLoaction);
 			mobileAction.verifyElement(viewingDetail, "Nearby");
 			mobileAction.FuncClick(chevron_Button, "Chevron Button");
 			mobileAction.FunctionSwipe("Up", 100, 0);
 			String addr = mobileAction.getText(zone_Name);
 			mobileAction.FuncClick(zone_Name, "Zone Name");
-			mobileAction.waitForElementToDisappear(progressBar);
+			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.verifyElement(zone_Header, addr);
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -643,14 +832,18 @@ public class HomeScreen extends _CommonPage {
 
 			mobileAction.FuncClick(InvestingHamburgeMenu, "Investing button clicked");
 
-		}
-
-		catch (NoSuchElementException e) {
+		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -682,12 +875,19 @@ public class HomeScreen extends _CommonPage {
 				mobileAction.FuncClick(menu, "Menu");
 			}
 
-		}
-
-		catch (NoSuchElementException | InterruptedException | IOException e) {
+		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-
 	}
 
 	/**
@@ -715,14 +915,18 @@ public class HomeScreen extends _CommonPage {
 			mobileAction.FuncClick(menu, "Menu");
 			mobileAction.verifyElementIsDisplayed(logout, "Logout");
 
-		}
-
-		catch (NoSuchElementException e) {
+		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -748,10 +952,12 @@ public class HomeScreen extends _CommonPage {
 
 			boolean flag = mobileAction.verifyElementNotPresent(logout, "Logout");
 
-		}
-
-		catch (NoSuchElementException e) {
+		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		}catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -778,14 +984,18 @@ public class HomeScreen extends _CommonPage {
 			String verifylocation = "Location Header Verified";
 			mobileAction.verifyElementIsDisplayed(locationheader, verifylocation);
 
-		}
-
-		catch (NoSuchElementException e) {
+		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -794,8 +1004,18 @@ public class HomeScreen extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(clickmenu_trade, "Click Menu Trade");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -814,14 +1034,23 @@ public class HomeScreen extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void clickPrivacy_Security() throws Exception {
+	public void clickPrivacy_Security() {
 		try {
 			Decorator();
 			mobileAction.FunCnewSwipe(privacy, false, 1);
 			mobileAction.FuncClick(privacy, "Privacy,Security and Legal");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -832,6 +1061,10 @@ public class HomeScreen extends _CommonPage {
 			mobileAction.verifyElementNotPresent(clickmenu_trade, "Menu Trade");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -840,9 +1073,18 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.FuncClick(pay_now_button, "Pay Now");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -866,10 +1108,18 @@ public class HomeScreen extends _CommonPage {
 
 			mobileAction.FuncClick(tdMobilePayment, "TD Mobile Payment clicked");
 
-		}
-
-		catch (NoSuchElementException|InterruptedException|IOException e) {
+		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -893,10 +1143,18 @@ public class HomeScreen extends _CommonPage {
 		try {
 			mobileAction.FuncClick(applePayBtn, "Apple Pay");
 
-		}
-
-		catch (NoSuchElementException|InterruptedException|IOException e) {
+		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -1011,9 +1269,18 @@ public class HomeScreen extends _CommonPage {
 
 			mobileAction.FuncClick(accounts, "Accounts");
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

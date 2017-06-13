@@ -113,23 +113,6 @@ public class Receipt extends _CommonPage{
                     System.out.println("false");
                  }
                  else
-                	 
-                	 
-                	 
-                	 
-                	 
-                	 
-                	 
-                	 
-                	 
-                	 
-                	 
-                	 
-                	 
-                	 
-                	 
-                	 
-                	 
                   System.out.println("true");
             }
             catch(Exception e) {

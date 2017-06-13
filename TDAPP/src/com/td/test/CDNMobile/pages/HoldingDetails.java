@@ -72,9 +72,18 @@ public class HoldingDetails extends _CommonPage {
 	    mobileAction.waitForElementToVanish(progressBar);
 	    mobileAction.FuncClick(Sell, "Sell");
 	    Thread.sleep(3000);
-	} catch (IOException | NoSuchElementException | InterruptedException e) {
-	    System.err.println("TestCase has failed.");
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	} catch (NoSuchElementException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (Exception e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
 
     }
@@ -92,9 +101,18 @@ public class HoldingDetails extends _CommonPage {
 	    mobileAction.waitForElementToVanish(progressBar);
 	    mobileAction.FuncClick(Sell, "Sell");
 	    Thread.sleep(3000);
-	} catch (IOException | NoSuchElementException | InterruptedException e) {
-	    System.err.println("TestCase has failed.");
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	} catch (NoSuchElementException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (Exception e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
 
 	
@@ -119,10 +137,19 @@ public class HoldingDetails extends _CommonPage {
     		mobileAction.verifyElementIsDisplayed(HoldingDetails_header, verify_HoldingDetails);
     		mobileAction.FuncClick(Buy, "Buy");
     		
+    		}catch (NoSuchElementException e) {
+    			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+    			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+    		} catch (InterruptedException e) {
+    			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+    			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+    		} catch (IOException e) {
+    			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+    			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+    		} catch (Exception e) {
+    			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+    			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
     		}
-    	 catch (IOException | NoSuchElementException | InterruptedException e) {
-    			e.printStackTrace();
-    	}
     	
     }
 
