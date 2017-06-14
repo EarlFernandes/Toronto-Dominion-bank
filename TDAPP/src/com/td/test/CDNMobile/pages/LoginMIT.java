@@ -139,7 +139,8 @@ public class LoginMIT extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/mfa_login_btn")	
 	private MobileElement securityLogin;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'System Error')]")
+	//@iOSFindBy(xpath = "//*[contains(@label,'System Error')]")
+	@iOSFindBy(xpath = "//*[contains(@label,'OK')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
 	private MobileElement errorText;
 
