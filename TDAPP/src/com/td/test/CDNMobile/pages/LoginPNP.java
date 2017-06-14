@@ -29,7 +29,7 @@ public class LoginPNP extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement password;
 
-	@iOSFindBy(xpath = "//*[@label='Login']")
+	@iOSFindBy(xpath = "//*[@label='Login' or @label='Ouvrir une session']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/loginBtnText']")
 	private MobileElement login;
 
@@ -124,8 +124,8 @@ public class LoginPNP extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Cannot add additional Access Cards.')]")
 	private MobileElement lblWarning;
 
-	@iOSFindBy(xpath = "//*[@label='Security Question' or @label='Question de sécurité']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Security Question' or @text='Questions de sécurité')]")
+	@iOSFindBy(xpath = "//*[@label='Security Question' or @label='Question de sÃ©curitÃ©']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Security Question' or @text='Questions de sÃ©curitÃ©')]")
 	private MobileElement securityQuestionHeader;
 
 	@iOSFindBy(xpath = "//*[@value='Enter your answer' or contains(@value,'Entrez votre')]")
@@ -216,6 +216,7 @@ public class LoginPNP extends _CommonPage {
 					mobileAction.FuncHideKeyboard();
 				}
 				mobileAction.FuncClick(login, "Login");
+				mobileAction.waitForElementToVanish(progressBar);
 				
 			}else{
 				System.out.println("Enter user name");
@@ -230,10 +231,11 @@ public class LoginPNP extends _CommonPage {
 					mobileAction.FuncHideKeyboard();
 				}
 				mobileAction.FuncClick(login, "Login");
+				mobileAction.waitForElementToVanish(progressBar);
 			}
 			
 
-			Thread.sleep(15000);
+			Thread.sleep(5000);
 			try{
 				String accountHeader = "";
 				if (!CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
