@@ -1212,7 +1212,9 @@ public class Executor extends _CommonPage {
 		sr.hitEnter();
 		sr.hitF9();
 		
-		
+		sr.hitF12();
+		sr.closeApplication();
+		sr.closeApplication();
 		
 		data[0] = AccountType;
 		data[1] = multiConnectID;
