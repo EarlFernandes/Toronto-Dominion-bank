@@ -19,13 +19,13 @@ public class ManageSettings extends _CommonPage {
 	private static ManageSettings ManageSettings;
 	
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/enable_passcode_switch' and @text='OFF']")
-	private MobileElement enablepasscode;
+	private MobileElement enablePasscode;
 	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/setup_passcode' and @text='Set Up Passcode']")
-	private MobileElement setuppasscode;
+	private MobileElement setupPasscode;
 	
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/setup_passcode_input1']")
-	private MobileElement sendppasscode;
+	private MobileElement sendPasscode;
 	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/setup_passcode' and @text='Change Passcode']")
 	private MobileElement changePasscode;
@@ -66,20 +66,31 @@ public class ManageSettings extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 public void click_enablepasscode() {
 
 
 	Decorator();
 	try {
-		mobileAction.FuncClick(enablepasscode, "Enable Passcode");
-		mobileAction.FuncClick(setuppasscode, "Click Setup Passcode");
-		mobileAction.FuncSendKeys(sendppasscode, passcode);
+		mobileAction.FuncClick(enablePasscode, "Enable Passcode");
+		mobileAction.FuncClick(setupPasscode, "Click Setup Passcode");
+		mobileAction.FuncSendKeys(sendPasscode, passcode);
 		
-		} catch (NoSuchElementException|InterruptedException |IOException e) {
-		System.err.println("TestCase has failed.");
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-	}
+		}catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
 }
 
 /**
@@ -95,6 +106,8 @@ public void click_enablepasscode() {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 public void changePasscode() {
 
@@ -106,10 +119,19 @@ public void changePasscode() {
 		mobileAction.verifyElementIsDisplayed(newPasscode, "New Passcode");
 		
 		
-		} catch (NoSuchElementException|InterruptedException |IOException e) {
-		System.err.println("TestCase has failed.");
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-	}
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
 }
 }
 

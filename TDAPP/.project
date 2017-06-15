@@ -15,4 +15,8 @@
     <nature>org.eclipse.m2e.core.maven2Nature</nature>
     <nature>org.eclipse.jdt.core.javanature</nature>
   </natures>
+<<<<<<< HEAD
 </projectDescription>
+=======
+</projectDescription> 
+>>>>>>> remotes/origin/master

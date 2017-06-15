@@ -21,15 +21,15 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class Accounts_Credit extends _CommonPage {
 	private static Accounts_Credit Accounts_Credit;
 
-	@iOSFindBy(xpath = "//*[@label='PAY BILL']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='PAY BILL']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/payBill' and @text='PAY BILL']")
 	private MobileElement payBill_Btn;
 
-	@iOSFindBy(xpath = "//*[@label='In Progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progresssBar;
 
-	@iOSFindBy(xpath = "//*[@label='Activity']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Activity']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/activityTab' and @text='Activity']")
 	private MobileElement activityTab;
 
@@ -37,12 +37,11 @@ public class Accounts_Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/description' and @index='0']")
 	private MobileElement lastStatement;
 
-	// FIXME: Ask may to add this
-	@iOSFindBy(xpath = "//*[@label='Summary']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Summary']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/summaryTab']")
 	private MobileElement summaryTab;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Current Balance,')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Current Balance')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Current Balance']")
 	private MobileElement currentBalance;
 
@@ -50,7 +49,7 @@ public class Accounts_Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/currentCredit']")
 	private MobileElement currentAmount;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Available Credit')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Available Credit')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Available Credit']")
 	private MobileElement availableBalance;
 
@@ -58,7 +57,7 @@ public class Accounts_Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/availableCredit']")
 	private MobileElement availableAmount;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Credit Limit,')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Credit Limit')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Credit Limit']")
 	private MobileElement creditLimit;
 
@@ -66,7 +65,7 @@ public class Accounts_Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/creditLimit']")
 	private MobileElement creditAmount;
 
-	@iOSFindBy(xpath = "//*[@label='Statements']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Statements']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/statementTab']")
 	private MobileElement statementTab;
 
@@ -85,11 +84,11 @@ public class Accounts_Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/three_statements_ago']")
 	private MobileElement threeStatementAgo;
 
-	@iOSFindBy(xpath = "//*[@label='TRANSFER']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='TRANSFER']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transferTo' and @text='TRANSFERS']")
-	private MobileElement Transfer_btn;
+	private MobileElement transfer_Btn;
 	
-	@iOSFindBy(xpath = "//*[@label='In Progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
@@ -101,6 +100,8 @@ public class Accounts_Credit extends _CommonPage {
 		}
 		return Accounts_Credit;
 	}
+	
+
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -114,20 +115,33 @@ public class Accounts_Credit extends _CommonPage {
 	 * 
 	 * @return void
 	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void clickPayBill() {
-		Decorator();
+	Decorator();
 		try {
 			mobileAction.FuncClick(payBill_Btn, "Pay Bill");
 			mobileAction.waitForElementToVanish(progresssBar);
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -140,28 +154,33 @@ public class Accounts_Credit extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void verifyLatestTransactions() {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				String lastTransac = "//*[@label(contains," + getTestdata("confirmation_val") + "')]";
-				MobileElement lastTransaction = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(lastTransac));
+				String lastTransac = "//*[@label(contains,'" + getTestdata("confirmation_val") + "')]";
 				mobileAction.verifyElementIsDisplayed(activityTab, "Activity");
-				mobileAction.verifyElementIsDisplayed(lastTransaction, "Last Transactions");
+				mobileAction.verifyElementUsingXPath(lastTransac, "Confirmation Value");
+				
 			} else {
 				String lastTransac = "//android.widget.TextView[@resource-id='com.td:id/description' and contains(@text,'"
 						+ getTestdata("confirmation_val") + "']";
-				MobileElement lastTransaction = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(lastTransac));
 				mobileAction.verifyElementIsDisplayed(activityTab, "Activity");
-				mobileAction.verifyElementIsDisplayed(lastTransaction, "Last Transactions");
+				mobileAction.verifyElementUsingXPath(lastTransac, "Confirmation Value");
 			}
 
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -170,21 +189,31 @@ public class Accounts_Credit extends _CommonPage {
 	 * 
 	 * @return void
 	 * @throws InterruptedException
-	 * 
+	 *             In case an exception occurs while clicking over the element.
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void clickLastTransac() throws InterruptedException {
-		Decorator();
+	public void clickLastTransac()  {
+		 Decorator();
 		try {
-
 			mobileAction.FuncClick(lastStatement, "Last Statement");
 			Thread.sleep(3000);
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -193,24 +222,31 @@ public class Accounts_Credit extends _CommonPage {
 	 * 
 	 * @return void
 	 * @throws InterruptedException
-	 * 
+	 *             In case an exception occurs while clicking over the element.
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void clickSummary() throws InterruptedException {
-		Decorator();
+	public void clickSummary()  {
+		 Decorator();
 		try {
-			// FIXME: Temporary, once may adds id, delete
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				summaryTab = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@name='" + mobileAction.getAppString("str_summary") + "']", "Summary Tab");
-			}
 			mobileAction.FuncClick(summaryTab, "Summary tab");
 			Thread.sleep(3000);
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -224,9 +260,11 @@ public class Accounts_Credit extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void verifySummaryDetails() throws InterruptedException {
-		Decorator();
+	public void verifySummaryDetails() {
+		 Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(currentBalance, "Current Balance");
 			mobileAction.verifyElementIsDisplayed(currentAmount, "Current Amount");
@@ -234,10 +272,15 @@ public class Accounts_Credit extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(availableAmount, "Available Amount");
 			mobileAction.verifyElementIsDisplayed(creditLimit, "Credit Limit");
 			mobileAction.verifyElementIsDisplayed(creditAmount, "credit amount");
-
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -246,21 +289,31 @@ public class Accounts_Credit extends _CommonPage {
 	 * 
 	 * @return void
 	 * @throws InterruptedException
-	 * 
+	 *             In case an exception occurs while clicking over the element.
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void clickStatement() throws InterruptedException {
-		Decorator();
+	public void clickStatement()  {
+		 Decorator();
 		try {
-
 			mobileAction.FuncClick(statementTab, "Statement tab");
 			Thread.sleep(3000);
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -269,35 +322,53 @@ public class Accounts_Credit extends _CommonPage {
 	 * 
 	 * @return void
 	 * @throws InterruptedException
-	 * 
+	 *             In case an exception occurs while clicking over the element.
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void verifyStatementDetails() throws InterruptedException {
-		Decorator();
+	public void verifyStatementDetails()  {
+		 Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(latestStatement, "Last Statement");
 			mobileAction.verifyElementIsDisplayed(twoStatementAgo, "Two Statement Ago");
 			mobileAction.verifyElementIsDisplayed(threeStatementAgo, "Three Statements Ago");
 			mobileAction.FuncClick(latestStatement, "Last Statement");
-
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
 	public void clickTransfer() {
 		Decorator();
 		try {
-			mobileAction.FuncClick(Transfer_btn, "Transfer");
+			mobileAction.FuncClick(transfer_Btn, "Transfer");
 			mobileAction.waitForElementToVanish(progressBar);
-
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

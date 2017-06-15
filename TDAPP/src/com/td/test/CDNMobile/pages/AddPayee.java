@@ -29,14 +29,13 @@ public class AddPayee extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
-	
-	@iOSFindBy(xpath = "//*[@label='Search for Canadian payees']")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Search for Canadian payees']")
 	private MobileElement searchForCanadianPayee ;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'found any matches. Please try again.')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'found any matches. Please try again.')]")
 	private MobileElement errorMessage;
 	
-	//String selectVal=getTestdata("Search");
 	String selectVal=getTestdata("Search");
 	
 	
@@ -47,6 +46,8 @@ public class AddPayee extends _CommonPage {
 		}
 		return AddPayee;
 	}
+	
+	
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -66,22 +67,30 @@ public class AddPayee extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 
 	public void searchPayee(){
 	Decorator();
 	try{
-			
 			mobileAction.FuncClick(searchForCanadianPayee, "Search For Canadian Payee");
 			mobileAction.FuncSendKeys(searchForCanadianPayee,selectVal);
 			mobileAction.verifyElementIsDisplayed(errorMessage,"We haven't found any matches. Please try again.");
-			
-		
-	
-	}catch (NoSuchElementException | InterruptedException | IOException e) {
-		System.err.println("TestCase has failed.");
+	}catch (NoSuchElementException e) {
 		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (Exception e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
 }
 	/**

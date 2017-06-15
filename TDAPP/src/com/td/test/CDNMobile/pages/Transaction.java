@@ -19,19 +19,19 @@ public class Transaction extends _CommonPage{
 
 	private static Transaction Transaction;
 	
-	 @iOSFindBy(xpath = "//*[@label='Transaction']")
+	 @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transaction']")
 	 @AndroidFindBy(xpath="//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Transaction']")
 	 private MobileElement transacHeader;
 	 
-	 @iOSFindBy(xpath = "//*[contains(@label,'Transaction Date')]")
+	 @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Transaction Date')]")
 	 @AndroidFindBy(xpath="//android.widget.TextView[@text='Transaction Date']")
 	 private MobileElement transacDate;
 	 
-	 @iOSFindBy(xpath = "//*[contains(@label,'Posted Date')]")
+	 @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Posted Date')]")
 	 @AndroidFindBy(xpath="//android.widget.TextView[@text='Posted Date']")
 	 private MobileElement postedDate;
 	 
-	 @iOSFindBy(xpath = "//*[contains(@label,'Card')]")
+	 @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Card')]")
 	 @AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Card')]")
 	 private MobileElement card;
 	
@@ -60,17 +60,23 @@ public class Transaction extends _CommonPage{
 	     * @throws NoSuchElementException
 	     *             In case the element is not found over the screen.
 	     */
-	    public void verifyTransac() throws InterruptedException {
+	    public void verifyTransac() {
 		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(transacHeader, "Transaction Header");
 			mobileAction.verifyElementIsDisplayed(transacDate, "Transaction date");
 			mobileAction.verifyElementIsDisplayed(postedDate, "Posted Date");
 			mobileAction.verifyElementIsDisplayed(card, "Card");
-			
-		} catch (NoSuchElementException | IOException e) {
-		    System.err.println("TestCase has failed.");
-		    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	    } 
 	    

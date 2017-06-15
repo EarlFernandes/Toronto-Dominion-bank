@@ -72,9 +72,8 @@ public class WatchLists extends _CommonPage {
 
 	int numberOfWatchlists = Integer.parseInt(getTestdata("WatchListNum"));
 
-	@iOSFindBy(xpath="//*[contains(@label,'CA']")
+	@iOSFindBy(xpath = "//*[contains(@label,'CA']")
 	private MobileElement symbolInWatchList;
-	
 
 	public synchronized static WatchLists get() {
 		if (WatchLists == null) {
@@ -87,7 +86,7 @@ public class WatchLists extends _CommonPage {
 		PageFactory.initElements(
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
 				this);
-		
+
 	}
 
 	/**
@@ -95,16 +94,28 @@ public class WatchLists extends _CommonPage {
 	 * 
 	 * The element is not displayed it will
 	 * 
-	 * @throws NoSuchElementException and IOException
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void verifyWatchListHeader() {
 		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(WatchList_Header, "WatchList_Header");
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -112,8 +123,18 @@ public class WatchLists extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(searchBar, "Symbol Search Bar");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.out.print(e.toString());
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -122,7 +143,11 @@ public class WatchLists extends _CommonPage {
 		try {
 			mobileAction.verifyElement(recentSearches, t_recent_searches);
 		} catch (NoSuchElementException e) {
-			System.out.print(e.toString());
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -133,6 +158,7 @@ public class WatchLists extends _CommonPage {
 	}
 
 	public void AddSymbolToWatchListSymbol() {
+		Decorator();
 		try {
 
 			for (int i = 0; i < numberOfWatchlists; i++) {
@@ -140,8 +166,7 @@ public class WatchLists extends _CommonPage {
 				mobileAction.FuncClick(symbol, symbolXL);
 
 				String WishListXpath = "//android.widget.LinearLayout[@index='" + i + "']";
-				MobileElement wishList = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(WishListXpath));
+				MobileElement wishList = mobileAction.verifyElementUsingXPath(WishListXpath,"WishList");
 
 				mobileAction.FuncClick(wishList, "WishList " + i);
 
@@ -151,42 +176,81 @@ public class WatchLists extends _CommonPage {
 
 			clickCancel();
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.out.print(e.toString());
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
 	public void clickCancel() {
-
+		Decorator();
 		try {
 			mobileAction.FuncClick(CancelBtn, "Cancel Button");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-		e.printStackTrace();
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
 	public void verifySymbolAdded() {
-
+		Decorator();
 		try {
 			for (int i = 0; i < numberOfWatchlists; i++) {
 				mobileAction.verifyElement(symbolinWatchList, symbolXL);
 				mobileAction.FunctionSwipe("left", 2, 100);
 			}
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
-			System.out.print(e.toString());
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
 
 	public void clickEditButton() {
+		Decorator();
 		try {
 			mobileAction.FuncClick(editBtn, "Cancel Button");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-	e.printStackTrace();
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
 	public void deleteSymbolsFromList() {
+		Decorator();
 
 		int symbolSize = symbolList.length;
 
@@ -199,23 +263,39 @@ public class WatchLists extends _CommonPage {
 			try {
 				// mobileAction.FuncClick(Symbol, symbolList[i]);
 				mobileAction.FuncElementSwipeWhileNotFound(listView, Symbol, 3, "up", true);
-			} catch (NoSuchElementException | IOException e) {
-				System.out.print(e.toString());
+			}  catch (NoSuchElementException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			}  catch (IOException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 		}
 
 		try {
 			mobileAction.FuncClick(deleteBtn, "Delete Button");
 			mobileAction.FuncClick(confirmTick, "Confirm tick");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
 
 	public void verifySymbolNotPresent() {
-
+		Decorator();
 		int symbolSize = symbolList.length;
 
 		for (int i = 0; i < symbolSize; i++) {
@@ -226,35 +306,54 @@ public class WatchLists extends _CommonPage {
 
 			try {
 				mobileAction.verifyElementNotPresent(Symbol, symbolList[i]);
-			} catch (NoSuchElementException e) {
-				e.printStackTrace();
+			}  catch (NoSuchElementException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			}  catch (Exception e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 		}
 
 	}
 
-public void verify_newOrderFlow_Watchlists(){
-		
-		
+	public void verify_newOrderFlow_Watchlists() {
+		Decorator();
 		try {
-			for(int i=0;i<numberOfWatchlists;i++){
-			mobileAction.verifyElement(symbolInWatchList, symbolXL);
-			mobileAction.FuncClick(symbolInWatchList, symbolXL);
-			
-			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
+			for (int i = 0; i < numberOfWatchlists; i++) {
+				mobileAction.verifyElement(symbolInWatchList, symbolXL);
+				mobileAction.FuncClick(symbolInWatchList, symbolXL);
 
+			}
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
 
 	public void swipeToNextWatchList() {
-
+		Decorator();
 		try {
 			mobileAction.FunctionSwipe("left", 2, 20);
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
-			e.printStackTrace();
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}

@@ -3,6 +3,7 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
@@ -18,7 +19,7 @@ public class CMOB_InitialSwipe extends _CommonPage {
 	private static CMOB_InitialSwipe CMOB_InitialSwipe;
 
 	@AndroidFindBy(xpath = "(//android.widget.Button[@resource-id='com.td:id/whatsnew_continue_button'])[2]")
-	private MobileElement lets_go_in;
+	private MobileElement lets_Go_In;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
 	private MobileElement home;
@@ -26,7 +27,7 @@ public class CMOB_InitialSwipe extends _CommonPage {
 	String t_home = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']";
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Continue']")
-	private MobileElement continue_screen;
+	private MobileElement continue_Screen;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.android.packageinstaller:id/permission_deny_button' and @text='Deny']")
 	private MobileElement deny;
@@ -53,6 +54,7 @@ public class CMOB_InitialSwipe extends _CommonPage {
 			int x = screensize[0];
 			int y = screensize[1];
 			try {
+				mobileAction.FunctionSwipe("left", 2000, 30);
 				mobileAction.FuncClickCoordinates(x / 2, y - 10, 1);
 
 				// Thread.sleep(5000);
@@ -69,12 +71,18 @@ public class CMOB_InitialSwipe extends _CommonPage {
 
 			// mobileAction.waitForElementToAppear(t_home);
 			// mobileAction.FuncClick(home,"Home");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

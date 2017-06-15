@@ -18,31 +18,31 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class HoldingDetails extends _CommonPage {
     private static HoldingDetails HoldingDetails;
 
-    @iOSFindBy(xpath = "//*[@label='Buy']")
+    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Buy']")
     @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
     private MobileElement Buy;
 
-    @iOSFindBy(xpath = "//*[@label='Sell']")
+    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Sell']")
     @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
     private MobileElement Sell;
 
-    @iOSFindBy(xpath = "//*[@label='Trade']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
     private MobileElement trade_header;
 
-	@iOSFindBy(xpath = "//*[@label='Holding Details']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Holding Details']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Holding Details']")
 	private MobileElement HoldingDetails_header;
 
-    @iOSFindBy(xpath = "//*[contains(@label,'Good 'til, Day')]")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good 'til, Day')]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
     private MobileElement Good;
 
-    @iOSFindBy(xpath = "//*[@label='Agree']")
+    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Agree']")
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Agree']")
     private MobileElement AgreeButton;
 
-    @iOSFindBy(xpath = "//*[@label='In progress']")
+    @iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
     private MobileElement progressBar;
 
@@ -72,9 +72,18 @@ public class HoldingDetails extends _CommonPage {
 	    mobileAction.waitForElementToVanish(progressBar);
 	    mobileAction.FuncClick(Sell, "Sell");
 	    Thread.sleep(3000);
-	} catch (IOException | NoSuchElementException | InterruptedException e) {
-	    System.err.println("TestCase has failed.");
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	} catch (NoSuchElementException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (Exception e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
 
     }
@@ -92,9 +101,18 @@ public class HoldingDetails extends _CommonPage {
 	    mobileAction.waitForElementToVanish(progressBar);
 	    mobileAction.FuncClick(Sell, "Sell");
 	    Thread.sleep(3000);
-	} catch (IOException | NoSuchElementException | InterruptedException e) {
-	    System.err.println("TestCase has failed.");
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	} catch (NoSuchElementException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (Exception e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
 
 	
@@ -119,10 +137,19 @@ public class HoldingDetails extends _CommonPage {
     		mobileAction.verifyElementIsDisplayed(HoldingDetails_header, verify_HoldingDetails);
     		mobileAction.FuncClick(Buy, "Buy");
     		
+    		}catch (NoSuchElementException e) {
+    			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+    			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+    		} catch (InterruptedException e) {
+    			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+    			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+    		} catch (IOException e) {
+    			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+    			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+    		} catch (Exception e) {
+    			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+    			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
     		}
-    	 catch (IOException | NoSuchElementException | InterruptedException e) {
-    			e.printStackTrace();
-    	}
     	
     }
 

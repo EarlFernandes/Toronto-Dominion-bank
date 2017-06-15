@@ -19,13 +19,14 @@ public class Profile_And_Settings extends _CommonPage {
 
 	private static Profile_And_Settings ProfileAndSettings;
 
-	String preferences = "Profile & Settings | Profil et paramtres";
+	String preferences = "Profile & Settings | Profil et paramètres";
+
 	
-	@iOSFindBy(xpath = "//*[@label='Profile & Settings']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Profile & Settings']")
+	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement profile_preferences_Header;
 	
-	@iOSFindBy(xpath = "//*[@label='View profile >']")
+	@iOSFindBy(xpath = "//*[@label='View profile >' or @label='Consulter le profil >']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[(@text='View profile' or @text='Consulter le profil')]")
 	private MobileElement view_profile;
 	
@@ -41,7 +42,7 @@ public class Profile_And_Settings extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@text='Click here to go to Business Profile Details :)']")
 	private MobileElement business_profile_details;
 	
-	@iOSFindBy(xpath = "//*[@label='Security Questions']")
+	@iOSFindBy(xpath = "//*[@label='Security Questions' or @label ='Questions de sécurité']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_security']/android.widget.TextView")
 	private MobileElement security_questions;
 
@@ -49,23 +50,27 @@ public class Profile_And_Settings extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_security']/android.widget.TextView")
 	private MobileElement touch_id;
 	
-	@iOSFindBy(xpath = "//*[@label='Notifications']")
+	@iOSFindBy(xpath = "//*[@label='Notifications' or @label='Avis']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_notifications']/android.widget.TextView")
 	private MobileElement notifications;
 	
 	
-	@iOSFindBy(xpath = "//*[@label='Quick Access Settings']")
+	@iOSFindBy(xpath = "//*[@label='Quick Access Settings' or @label='Paramètres Accès rapide']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_quick_access']/android.widget.TextView")
 	private MobileElement quickaccesssetting;
 	
-	@iOSFindBy(xpath = "//*[@label='TD for Me Settings']")
+	@iOSFindBy(xpath = "//*[@label='TD for Me Settings' or @label='Paramètres TD et moi']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_tdforme']/android.widget.TextView")
 	private MobileElement tdformesettings;
 	
-	@iOSFindBy(xpath = "//*[@label=\"What's New\"]")
+	@iOSFindBy(xpath = "//*[@label=\"What's New\" or @label='Nouveautés']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_whatsnew']/android.widget.TextView")
 	private MobileElement whatsnew;	
 		
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Payments & Transfers']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Payments & Transfers']")
+	private MobileElement paymentsAndTransfers;
+	
 	
 	public synchronized static Profile_And_Settings get() {
 		if (ProfileAndSettings == null) {
@@ -85,42 +90,6 @@ public class Profile_And_Settings extends _CommonPage {
 
 	}
 
-	public void prefernces_What_New_btn() {
-		Decorator();
-		try {
-
-			mobileAction.FuncClick(whatsnew, "What_New_Button");
-		} catch (Exception e) {
-			System.out.println("What's new not found");
-		}
-	}
-
-	/**
-	 * This method will verify the preferences header and click on the update
-	 * security question button.
-	 * 
-	 * @return void
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 */
-	public void prefernces_Update_Security_Question() {
-
-		
-		Decorator();
-		try {
-			mobileAction.verifyElementIsDisplayed(profile_preferences_Header, preferences);
-			mobileAction.FuncClick(security_questions, "Secret_Question_button");
-
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-	}
 
 	
 	/**
@@ -150,60 +119,6 @@ public class Profile_And_Settings extends _CommonPage {
 		}
 	}
 	
-	public void view_indivisual_profile() {
-
-		
-		Decorator();
-		try {
-
-			mobileAction.FuncClick(view_profile_individual, "view individual profile");
-
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-	}
-	
-	public void view_business_profile() {
-
-		
-		Decorator();
-		try {
-
-			mobileAction.FuncClick(view_profile_business, "view business profile");
-
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-	}
-	
-	/**
-	 * This method will verify click business profile Details button
-	 * then go to personal profile details page
-	 * 
-	 * @return void
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 */
-	public void view_business_profile_details() {
-
-		
-		Decorator();
-		try {
-
-			mobileAction.FuncClick(business_profile_details, "business_profile_details_button");
-
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-	}
 	
 	
 	public void verifyProfileandSettingLandingPage() {
@@ -212,7 +127,7 @@ public class Profile_And_Settings extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyHeaderIsDisplayed(profile_preferences_Header, preferences);
+			mobileAction.verifyElementTextIsDisplayed(profile_preferences_Header, preferences);
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -225,8 +140,9 @@ public class Profile_And_Settings extends _CommonPage {
 		
 		Decorator();
 		try {
-
-			mobileAction.FuncClick(security_questions, "Security Questions");
+			
+			String security = mobileAction.getValue(security_questions);
+			mobileAction.FuncClick(security_questions, security);
 			Thread.sleep(2000);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -240,7 +156,8 @@ public class Profile_And_Settings extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.FuncClick(notifications, "Notifications");
+			String notifi = mobileAction.getValue(notifications);
+			mobileAction.FuncClick(notifications, notifi);
 			Thread.sleep(2000);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -253,8 +170,8 @@ public class Profile_And_Settings extends _CommonPage {
 		
 		Decorator();
 		try {
-
-			mobileAction.FuncClick(quickaccesssetting, "Quick Access Settings");
+			String quickSetting = mobileAction.getValue(quickaccesssetting);
+			mobileAction.FuncClick(quickaccesssetting, quickSetting);
 			Thread.sleep(2000);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -268,7 +185,8 @@ public class Profile_And_Settings extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.FuncClick(tdformesettings, "TD for Me Settings");
+			String tdme = mobileAction.getValue(tdformesettings);
+			mobileAction.FuncClick(tdformesettings, tdme);
 			Thread.sleep(2000);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -281,8 +199,9 @@ public class Profile_And_Settings extends _CommonPage {
 		
 		Decorator();
 		try {
-
-			mobileAction.FuncClick(whatsnew, "What's New");
+			
+			String whatnew= mobileAction.getValue(whatsnew);
+			mobileAction.FuncClick(whatsnew, whatnew);
 			Thread.sleep(2000);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -290,5 +209,35 @@ public class Profile_And_Settings extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	
+	/**
+	 * @author Ashraf
+	 * This method will verify Profile and Settings page header and click on 'Payments & Transfers' link.
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void clickPaymentsAndTransfers() {
+
+		
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(paymentsAndTransfers, "Payments & Transfers");
+
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	
 	
 }

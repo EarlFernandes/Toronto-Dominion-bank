@@ -29,7 +29,7 @@ public class LoginPNP extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement password;
 
-	@iOSFindBy(xpath = "//*[@label='Login']")
+	@iOSFindBy(xpath = "//*[@label='Login' or @label='Ouvrir une session']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/loginBtnText']")
 	private MobileElement login;
 
@@ -124,19 +124,19 @@ public class LoginPNP extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Cannot add additional Access Cards.')]")
 	private MobileElement lblWarning;
 
-	@iOSFindBy(xpath = "//*[@label='Security Question']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Security Question']")
+	@iOSFindBy(xpath = "//*[@label='Security Question' or @label='Question de sécurité']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Security Question' or @text='Questions de sécurité')]")
 	private MobileElement securityQuestionHeader;
 
 	@iOSFindBy(xpath = "//*[@value='Enter your answer' or contains(@value,'Entrez votre')]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/mfa_answer']")
 	private MobileElement enterAnswer;
 
-	@iOSFindBy(xpath = "//*[@label='Done']")
+	@iOSFindBy(xpath = "//*[@label='Done' or @label='OK']")
 	private MobileElement done;
 
-	@iOSFindBy(xpath = "//*[@label='Login']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mfa_login_btn_txt' and @text='Login']")
+	@iOSFindBy(xpath = "//*[@label='Login' or @label='Ouvrir une session']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/mfa_login_btn']")
 	private MobileElement securityLogin;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'System Error')]")
@@ -216,6 +216,7 @@ public class LoginPNP extends _CommonPage {
 					mobileAction.FuncHideKeyboard();
 				}
 				mobileAction.FuncClick(login, "Login");
+				mobileAction.waitForElementToVanish(progressBar);
 				
 			}else{
 				System.out.println("Enter user name");
@@ -230,20 +231,21 @@ public class LoginPNP extends _CommonPage {
 					mobileAction.FuncHideKeyboard();
 				}
 				mobileAction.FuncClick(login, "Login");
+				mobileAction.waitForElementToVanish(progressBar);
 			}
 			
 
-			Thread.sleep(15000);
+			Thread.sleep(5000);
 			try{
 				String accountHeader = "";
 				if (!CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-					accountHeader = "//*[@label='Accounts']";
+					accountHeader = "//*[@label='Accounts' or @label='Comptes' or @label='Bills' or @label='Transfers']";
 				}else{
-					accountHeader = "//android.widget.TextView[@text='My Accounts']";
+					accountHeader = "//android.widget.TextView[@text='My Accounts' or @text ='Mes comptes' or @text='Bills' or @text='Transfers']";
 				}
 				MobileElement accountHeaderitem =(MobileElement) CL.GetDriver().findElement(By.xpath(accountHeader));
 				if(accountHeaderitem.isDisplayed()){
-					System.out.println("Accounts page found");
+					System.out.println(mobileAction.getValue(accountHeaderitem));
 				}else{
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 						if(mobileAction.isObjExists(enterAnswer)){
@@ -251,12 +253,13 @@ public class LoginPNP extends _CommonPage {
 							System.out.println("Security Answer:" + securityAnswer);
 							mobileAction.FuncSendKeys(enterAnswer,securityAnswer);
 							mobileAction.FuncClick(enterAnswer, "enterAnswer");
+							mobileAction.FuncHideKeyboard();
 							mobileAction.FuncClick(securityLogin, "Login");
 						}				
 					}else{
 						verifySystemError();
 						verifySecurityQuestion();
-						verifyTandC();
+						//verifyTandC();
 					}				
 				}
 			}catch (Exception e){
@@ -266,12 +269,13 @@ public class LoginPNP extends _CommonPage {
 						System.out.println("Security Answer:" + securityAnswer);
 						mobileAction.FuncSendKeys(enterAnswer,securityAnswer);
 						mobileAction.FuncClick(enterAnswer, "enterAnswer");
+						mobileAction.FuncHideKeyboard();
 						mobileAction.FuncClick(securityLogin, "Login");
 					}				
 				}else{
 					verifySystemError();
 					verifySecurityQuestion();
-					verifyTandC();
+					//verifyTandC();
 				}								
 			}
 				
@@ -306,7 +310,9 @@ public class LoginPNP extends _CommonPage {
 					mobileAction.FuncHideKeyboard();
 				}
 				mobileAction.FuncClick(securityLogin, "Login");
+				Thread.sleep(20000);
 				mobileAction.waitForElementToVanish(progressBar);
+				
 			} else {
 
 			}

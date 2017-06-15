@@ -135,7 +135,8 @@ public class LoginMIT extends _CommonPage {
 	private MobileElement done;
 
 	@iOSFindBy(xpath = "//*[@label='Login']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mfa_login_btn_txt' and @text='Login']")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mfa_login_btn_txt' and @text='Login']")
+	@AndroidFindBy(id = "com.td:id/mfa_login_btn")	
 	private MobileElement securityLogin;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'System Error')]")
@@ -157,6 +158,10 @@ public class LoginMIT extends _CommonPage {
 	@iOSFindBy(xpath = "//*[contains(@label,'Remember')]")
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id= 'com.td:id/remember_switch' and @text='YES']")
 	private MobileElement rememberMe_button_on;
+	
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") //@Author - Sushil 02-Feb-2017
+	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation']")
+	private MobileElement Investing_Trade;
 	
 	String verifyLogin_ios = "//*[contains(@label,'Your Login Info Please')]";
 	String verifyLogin_android = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
@@ -231,11 +236,15 @@ public class LoginMIT extends _CommonPage {
 				}
 			}
 			//mobileAction.waitForElement(enterAnswer);
+			if(!mobileAction.isObjExists(Investing_Trade))
+			{
 			if(mobileAction.isObjExists(enterAnswer))
 			{
-				mobileAction.FuncSendKeys(enterAnswer,getTestdata("SecurityPassword",XLSheetUserIDs));
-				mobileAction.FuncClick(enterAnswer, "enterAnswer");
+/*				mobileAction.FuncSendKeys(enterAnswer,getTestdata("SecurityPassword",XLSheetUserIDs));
+				mobileAction.FuncClick(enterAnswer, "enterAnswer");*/
+				TradeMultiLeg.get().FuncEnterText(enterAnswer, getTestdata("SecurityPassword",XLSheetUserIDs));
 				mobileAction.FuncClick(securityLogin, "Login");
+			}
 			}
 		}
 		catch(Exception e)

@@ -19,28 +19,30 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class Logout extends _CommonPage {
 	private static Logout Logout;
 	
-	@iOSFindBy(xpath ="//*[@label='Menu en en-tête']")
+	@iOSFindBy(xpath ="//XCUIElementTypeButton[@label='Menu en en-tête']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement french_Menu_button;
+	private MobileElement french_Menu_Button;
 	
-	@iOSFindBy(xpath ="//*[@label='Menu']")
+	@iOSFindBy(xpath ="//XCUIElementTypeButton[@label='Menu']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement Menu_button;
+	private MobileElement Menu_Button;
 	
+
 	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_LOGOUT")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 	
-	@iOSFindBy(xpath ="//*[@label='Fermer la session']")
+	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='Fermer la session']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Fermer la session']")
 	private MobileElement logout_French;
 	
+
 	@iOSFindBy(xpath ="//XCUIElementTypeNavigationBar/XCUIElementTypeOther")
 	@AndroidFindBy(xpath = "android.widget.TextView//[@resource-id='android:id/action_bar_title' and @text='Logged Out']")
 	private MobileElement logoutHeader; 
 	
-	@iOSFindBy(xpath ="//*[@label='Retour']")
-	private MobileElement french_back_button; 
+	@iOSFindBy(xpath ="//XCUIElementTypeButton[@label='Retour']")
+	private MobileElement french_Back_Button; 
 	
 	@iOSFindBy(accessibility = "LOGOUT_SUC")
 	private MobileElement successTitle; 
@@ -57,8 +59,7 @@ public class Logout extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell[3]")
 	private MobileElement locations;
  
-	
-	@iOSFindBy(xpath ="//*[@label='Terminé']")
+	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='Terminé']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/success' and @text='Terminé']")
 	private MobileElement logoutHeaderFrench;
 	
@@ -88,6 +89,8 @@ public class Logout extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.            
 	 */
 	public void french_clickMenuButton() {
 		
@@ -95,14 +98,23 @@ public class Logout extends _CommonPage {
 			Decorator();
 			
 			if(platformName.equalsIgnoreCase("ios")){
-				mobileAction.FuncClick(french_back_button, "BACK");
-				mobileAction.FuncClick(french_Menu_button, "French_Menu");
+				mobileAction.FuncClick(french_Back_Button, "BACK");
+				mobileAction.FuncClick(french_Menu_Button, "French_Menu");
 			}else{	
-			mobileAction.FuncClick(french_Menu_button, "French_Menu");
+			mobileAction.FuncClick(french_Menu_Button, "French_Menu");
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -119,6 +131,8 @@ public class Logout extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void clickLogoutFrench() {
 		
@@ -128,9 +142,18 @@ public class Logout extends _CommonPage {
 		try {
 			mobileAction.FuncClick(logout_French, "Logout French");
 			mobileAction.verifyElementIsDisplayed(logoutHeaderFrench, Logged_Out_French);
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 		/**
@@ -144,6 +167,8 @@ public class Logout extends _CommonPage {
 		 *             If there is problem while reporting.
 		 * @throws NoSuchElementException
 		 *             In case the element is not found over the screen.
+		 * @throws Exception
+		 *             If there is problem while finding that element.
 		 */
 		public void logout() {
 
@@ -152,14 +177,15 @@ public class Logout extends _CommonPage {
 				
 				String Log_Out = "Logged Out";
 				mobileAction.FuncClick(logout, "Logout");
-				
-				
-					
-}
-			
-			 catch (NoSuchElementException | InterruptedException | IOException e) {
-				System.err.println("TestCase has failed.");
+			}catch (NoSuchElementException e) {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (InterruptedException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 		}
 	

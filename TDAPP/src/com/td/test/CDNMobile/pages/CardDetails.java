@@ -19,22 +19,22 @@ public class CardDetails extends _CommonPage {
 private static CardDetails CardDetails;
 	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/action_delete']")
-	private MobileElement deleteicon;
+	private MobileElement deleteIcon;
 	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/alertTitle' and @text='Delete Card']")
 	private MobileElement popup;
 	
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Confirm']")
-	private MobileElement confirmdelete;
+	private MobileElement confirmDelete;
 	
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/always_on_switch' and @text='No']")
-	private MobileElement enableon;
+	private MobileElement enableOn;
 	
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/button_save' and @text='Save']")
 	private MobileElement save;
 	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/enable_always_on_text_view' and @text='Enable Always On']")
-	private MobileElement verifypayment;
+	private MobileElement verifyPayment;
 	
 	
 	
@@ -68,19 +68,31 @@ private static CardDetails CardDetails;
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 public void deletecard() {
 
 
 	Decorator();
 	try {
-		mobileAction.FuncClick(deleteicon, "Click Delete Card");
+		mobileAction.FuncClick(deleteIcon, "Click Delete Card");
 		mobileAction.verifyElementIsDisplayed(popup,"PopUp Diplayed");
-		mobileAction.FuncClick(confirmdelete, "Click Confirm Delete");
-		} catch (NoSuchElementException|InterruptedException |IOException e) {
-		System.err.println("TestCase has failed.");
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-	}
+		mobileAction.FuncClick(confirmDelete, "Click Confirm Delete");
+		}catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
 }
 /**
  * This method will save default card details
@@ -95,19 +107,31 @@ public void deletecard() {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 public void enableToggleButton() {
 
 
 	Decorator();
 	try {
-		mobileAction.verifyElementIsDisplayed(verifypayment, "Verify Payment Mode");
-		mobileAction.FuncClick(enableon, "Enable On");
+		mobileAction.verifyElementIsDisplayed(verifyPayment, "Verify Payment Mode");
+		mobileAction.FuncClick(enableOn, "Enable On");
 		mobileAction.FuncClick(save, "Click Save Button");
-		} catch (NoSuchElementException|InterruptedException |IOException e) {
-		System.err.println("TestCase has failed.");
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-	}
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
 }
 
 

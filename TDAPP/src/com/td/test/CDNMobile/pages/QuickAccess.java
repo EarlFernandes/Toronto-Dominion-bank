@@ -25,7 +25,7 @@ public class QuickAccess  extends _CommonPage {
 
 	@iOSFindBy(xpath = "//*[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progrees_bar;
+	private MobileElement progress_bar;
 
 	@iOSFindBy(accessibility = "QUICKBALANCE_ONBOARDING_VIEW_TITLE")
 	private MobileElement title;
@@ -35,6 +35,15 @@ public class QuickAccess  extends _CommonPage {
 	
 	@iOSFindBy(accessibility = "QUICKBALANCE_ONBOARDING_START_BUTTON")
 	private MobileElement getStartedButton;
+
+	@iOSFindBy(xpath = "//*[@label='Quick Access' or @label='Accès rapide']/../XCUIElementTypeSwitch")
+	@AndroidFindBy(xpath = "//android.widget.Switch[@content-desc='Quick Access' or @content-desc='Accès rapide']")
+	private MobileElement quickaccess_switch;	
+	
+	@iOSFindBy(xpath = "//*[@label='ACCOUNTS' or @label='COMPTES']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title_text']")
+	private MobileElement indiviual_accounts;
+	
 	
 	public synchronized static QuickAccess get() {
 		if (Quickaccess == null) {
@@ -53,14 +62,65 @@ public class QuickAccess  extends _CommonPage {
 	public void VerifyQuickAccessSettingsHeader() {
 		Decorator();
 		try {
-
-			mobileAction.verifyHeaderIsDisplayed(quickaccess_title, "Quick Access");
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				mobileAction.verifyElementTextIsDisplayed(quickaccess_title, "Quick Access Settings | Paramètres Accès rapide");
+			}else{
+				mobileAction.verifyElementTextIsDisplayed(quickaccess_title, "Quick Access | Accès rapide");
+			}
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	public void VerifyQuickAccessSwitchWork() {
+		Decorator();
+		try {
+			mobileAction.verifyElementIsDisplayed(quickaccess_switch, "Quick Access");
+			String switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch); 
+			System.out.println("Checked Status :" + switchCheckStatus);
+			if(switchCheckStatus.equalsIgnoreCase("true")){
+				//Enabled
+				mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, "ACCOUNTS | COMPTES ");
+				//Toggle to disable it
+				mobileAction.FuncClick(quickaccess_switch, "Quick Access Switch Toggle");
+				System.out.println("Toggle Switch");
+				mobileAction.waitForElementToVanish(progress_bar);
+				switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
+				System.out.println("Checked status now :" + switchCheckStatus);
+				
+				if(mobileAction.isObjExists(indiviual_accounts)){
+					mobileAction.Report_Fail("Account still exists even when switch toggle to disable");
+				}else{
+					mobileAction.Report_Pass_Verified("Accounts no displaying ");
+				}
+				
+			}else{
+				//Disabled
+				if(mobileAction.isObjExists(indiviual_accounts)){
+					mobileAction.Report_Fail("Account still exists when switch status  is false");
+				}else{
+					mobileAction.Report_Pass_Verified("Accounts no displaying ");
+					// Toggle to Enable it
+					mobileAction.FuncClick(quickaccess_switch, "Quick Access Switch Toggle");
+					System.out.println("Toggle Switch");
+					mobileAction.waitForElementToVanish(progress_bar);
+					switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
+					System.out.println("Checked now :" + switchCheckStatus);
+					mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, "ACCOUNTS | COMPTES ");
+				}
+			} 
+		} catch (Exception e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+		}
+	}
+	
+
 
 	/**
 	 * This method will verify text within elements for the FTE quick access page
@@ -120,9 +180,6 @@ public class QuickAccess  extends _CommonPage {
 			} catch (IOException ex) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-
 }

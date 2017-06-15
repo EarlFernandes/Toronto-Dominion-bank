@@ -23,10 +23,8 @@ public class Interac_e_Transfer extends _CommonPage {
     private static Interac_e_Transfer Interac_e_Transfer;
 
     @iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Add Recipient']")
+    @AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Recipient' or @text='Add Recipient']")
     private MobileElement addRecipient_Interac;
-
-    @iOSFindBy(accessibility = "TDVIEW_TITLE")
-    private MobileElement interac_Header;
 
     @iOSFindBy(accessibility = "-Title")
     private List<MobileElement> pendingETransfers;
@@ -41,6 +39,17 @@ public class Interac_e_Transfer extends _CommonPage {
     @iOSFindBy(accessibility = "TDVIEW_TITLE")
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Interac e-Transfer']")
     private MobileElement Interac_Etransfer_Header;
+
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Interac e-Transfer']")
+    private MobileElement interac_Header;
+
+    @iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+    private MobileElement progrees_Bar;
+
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Interac e-Transfer']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Interac e-Transfer')]")
+    private MobileElement interac_Etransfer_Header;
 
     @iOSFindBy(accessibility = "INTERACSEND_VIEW_SENDER")
    // @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_sender' and @text='Select Sender']")
@@ -64,19 +73,19 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_send_money']")
     private MobileElement sendMoney;
 
-    @iOSFindBy(xpath = "//*[@label='Interac e-Transfer Sent']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Interac e-Transfer Sent']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/message' and @text='Interac e-Transfer Sent']")
     private MobileElement transferSent;
 
-    @iOSFindBy(xpath = "//*[contains(@label,'Confirmation #')]")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Confirmation #')]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_val']")
-    private MobileElement confirmation_val;
+    private MobileElement confirmation_Val;
 
     @iOSFindBy(accessibility = "INTERACSEND_VIEW_FROM")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_account_title']")
     private MobileElement fromAccount;
 
-    @iOSFindBy(xpath = "//*[@label='-Balance-']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='-Balance-']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccountAmountTransfer']")
     private MobileElement fromAccountVal;
 
@@ -91,14 +100,14 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/recipient_title']")
     private MobileElement recipient;
 
-	// FIXME: Add id for this
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_recipient_name']")
+    private MobileElement first_recipient;    
+
 	@iOSFindBy(xpath = "//*[@label='Done' or @label='完成']")
     private MobileElement done;
 
-    @iOSFindBy(xpath = "//*[@label='PENDING E-TRANSFERS']")
-    private MobileElement pendingTransfer;
-
-    @iOSFindBy(xpath = "//*[@label='Cancel']")
+    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel']")
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel' and @text='Close']")
     private MobileElement cancel;
 
@@ -109,53 +118,97 @@ public class Interac_e_Transfer extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel']")
 	private MobileElement cancelTransfer;
 
-    @iOSFindBy(xpath = "//*[@label='CANCEL']")
+    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='CANCEL']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtSpecialAction' and @text='Cancel']")
-    private MobileElement SenderCancel;
+    private MobileElement senderCancel;
 
-    @iOSFindBy(xpath = "//*[@label='']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account']/following-sibling::XCUIElementTypeStaticText[2]")
     @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_from_account']")
-    private MobileElement accountnum;
+    private MobileElement accountNum;
 
-    @iOSFindBy(xpath = "//*[@label='']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account']/following-sibling::XCUIElementTypeStaticText[3]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccountAmountTransfer]")
-    private MobileElement totalamount;
+    private MobileElement totalAmount;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/date']")
     private List<MobileElement> dateHeaders;
     
-    @iOSFindBy(xpath = "//*[@label='']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account']/following-sibling::XCUIElementTypeStaticText[1]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_account']")
-    private MobileElement accountname;
+    private MobileElement accountName;
 
-    String sender_SelectSender = getTestdata("Sender");
-    String select_SenderValue = "//android.widget.TextView[starts-with(@text,'" + sender_SelectSender + "')]";
+    String sender_SelectSender = getTestdata("FromAccount");
+    String select_SenderValue = "//android.widget.TextView[contains(@text,'" + sender_SelectSender + "')]";
     String t_interacHeader = "Interac e-Transfer";
 
     String transfer_fromAccount = getTestdata("FromAccount");
     String select_Account = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_from_account' and @text='"
 	    + transfer_fromAccount + "')]";
 
-    String transferRecipient = getTestdata("Accounts");
-    String select_Recipient = "//android.widget.TextView[@resource-id='com.td:id/txt_recipient_email' and @text='"
-    	    + transferRecipient + "']";
+    String transferRecipient = getTestdata("RecipientName");
+    String select_Recipient = "//android.widget.TextView[@resource-id='com.td:id/txt_recipient_email' and contains(@text,'"
+    	    + transferRecipient + "')]";
     
     
-    @iOSFindBy(xpath = "//*[@label='From account, Select from account']")
+    @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From account, Select from account']")
     private MobileElement fromAccountData;
 
     @iOSFindBy(accessibility = "INTERACSEND_VIEW_MESSAGE")
     private MobileElement Message;
 
     int i = 1;
-    String senderTable = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]";
+    String senderTable = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]";
 
-    String Firstpart = "//XCUIElementTypeCell[";
-    String Secondpart = "]/XCUIElementTypeStaticText[1]";
-    String Finalpart = Firstpart + i + Secondpart;
+    String firstPart = "//XCUIElementTypeCell[";
+    String secondPart = "]/XCUIElementTypeStaticText[1]";
+    String finalPart = firstPart + i + secondPart;
 
     String ValueofAmount = getTestdata("Amount");
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and contains(@text,'Interac e-Transfer') and contains(@text,'Registration')]")
+    private MobileElement registrationPageHeader;
+    
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button' or @resource-id='com.td:id/btn_footer' or @text='Continue']")
+    private MobileElement continueButton;
+    
+    
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/errorButton1' or @text='Open an Account']")
+    private MobileElement openAnAccount;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/errorMessage']")
+    private MobileElement errorText;
+    
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/errorButton2' or @text='Find a Branch']")
+    private MobileElement findABranch;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_name']")
+    private MobileElement name;
+    
+    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_interac_registration_email']")
+    private MobileElement emailId;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='My Name']")
+    private MobileElement myName;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='My Name']/following-sibling::android.widget.TextView")
+    private MobileElement reviewName;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Email Address for Interac e-Transfer']")
+    private MobileElement emailAddress;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Email Address for Interac e-Transfer']/following-sibling::android.widget.TextView")
+    private MobileElement reviewEmailId;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Thank You']")
+    private MobileElement thankYou;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'now registered for Interac e-Transfer')]")
+    private MobileElement successMag;
+    
+    @iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	private MobileElement progressBar;
+    
     public synchronized static Interac_e_Transfer get() {
 	if (Interac_e_Transfer == null) {
 	    Interac_e_Transfer = new Interac_e_Transfer();
@@ -175,44 +228,82 @@ public class Interac_e_Transfer extends _CommonPage {
 	Decorator();
 	try {
 	    if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-		mobileAction.FuncClick(selectSender, "Sender");
-		mobileAction.FuncSelectElementInTable(senderTable, Firstpart, Secondpart, sender_SelectSender);
-		mobileAction.FuncClick(etransfer_Amount, "Amount");
-		String fromAccountMoney = fromAccountData.getAttribute("value");
-		mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
-		mobileAction.FuncClick(done, "Done");
-		mobileAction.FuncClick(Message, "Message");
-		mobileAction.FuncSendKeys(Message, "Transfering Amount");
-		mobileAction.FuncClick(transfer_Continue, "Continue");
-		mobileAction.FuncClick(sendMoney, "Send Money");
-		String confrmVal = mobileAction.getText(confirmation_val);
-		mobileAction.verifyElementIsDisplayed(transferSent, "Interac e-Transfer Sent");
+		    String sendermail= getTestdata("Sender");
+		    System.out.println("Sender:" +sendermail );
+		    String senderXpath = "//XCUIElementTypeStaticText[contains(@label,'" + sendermail + "')]";
+			MobileElement senderval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+					.findElement(By.xpath(senderXpath));
+			if(!mobileAction.verifyElementIsPresent(senderval)){
+				mobileAction.FuncClick(selectSender, "Sender");
+				mobileAction.FunCSwipeandScroll(senderval, true);
+			}
+			
+			String fromacc = getTestdata("FromAccount");
+			System.out.println("From account:" +fromacc);
+			
+			String fromAccXpath = "//XCUIElementTypeStaticText[contains(@label,'" + fromacc + "')]";
+			MobileElement fromAccval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+					.findElement(By.xpath(fromAccXpath));
+			if(!mobileAction.verifyElementIsPresent(fromAccval)){
+				mobileAction.FuncClick(fromAccount, "From Account");
+				mobileAction.FunCSwipeandScroll(fromAccval, true);
+			}
+			
+			String recipientmail = getTestdata("RecipientMail");
+			System.out.println("Recipient:"+recipientmail);
+			mobileAction.FuncClick(recipient, "Recipient");
+			String recipientXpath = "//XCUIElementTypeStaticText[contains(@label,'" + recipientmail + "')]";
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(recipientXpath, true, 25, "Up");
+			//mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart, sender_SelectSender);
+		    
+		    	//mobileAction.FuncClick(recipient, "Recipient");
+		    	
+			mobileAction.FuncClick(etransfer_Amount, "Amount");
+			System.out.println("Amount:" + ValueofAmount);
+			//String fromAccountMoney = fromAccountData.getAttribute("value");
+			mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
+			mobileAction.FuncClick(done, "Done");
+			//mobileAction.FuncClick(Message, "Message");
+			//mobileAction.FuncSendKeys(Message, "Transfering Amount");
+			mobileAction.FuncClick(transfer_Continue, "Continue");
+			mobileAction.FuncClick(sendMoney, "Send Money");
+			String confrmVal = mobileAction.getText(confirmation_Val);
+			mobileAction.verifyElementIsDisplayed(transferSent, "Interac e-Transfer Sent");
 
 	    } else {
-			mobileAction.verifyElement(Interac_Etransfer_Header, "Interac e-Transfer");
+			mobileAction.verifyElement(interac_Etransfer_Header, "Interac e-Transfer");
 			mobileAction.FuncClick(selectSender, "Sender");
 			mobileAction.FuncElementSwipeWhileNotFound(acntsListSender, select_SenderValue, 0, "down", true);
-
+	
 			mobileAction.FuncClick(fromAccount, "From Account");
+			accVal = Double.parseDouble(mobileAction.getText(fromAccountVal));
 			mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Account, 0, "down", true);
 			mobileAction.FuncClick(recipient, "Recipient");
-
+	
 			mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Recipient, 0, "down", true);
 			String ValueofAmount = getTestdata("Amount");
 			mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
 			mobileAction.FuncClickBackButton();
 			mobileAction.FuncClick(transfer_Continue, "Continue");
-		mobileAction.FuncClick(sendMoney, "Send Money");
-		String conf_val = mobileAction.getText(confirmation_val);
-		mobileAction.verifyElementIsDisplayed(transferSent, "Interac e-Transfer Sent");
-		mobileAction.FuncClickBackButton();
+	
+			mobileAction.FuncClick(sendMoney, "Send Money");
+			String conf_val = mobileAction.getText(confirmation_Val);
+			mobileAction.verifyElementIsDisplayed(transferSent, "Interac e-Transfer Sent");
+			mobileAction.FuncClickBackButton();
 	    }
 
-	} catch (NoSuchElementException | InterruptedException | IOException e) {
-	    System.err.println("TestCase has failed.");
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	} catch (NoSuchElementException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 	} catch (Exception e) {
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
 
     }
@@ -220,6 +311,15 @@ public class Interac_e_Transfer extends _CommonPage {
     /**
      * This method will click on AddRecipient in Interac e-transfers Screen
      * 
+     * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
      * 
      * @return void
      * 
@@ -228,31 +328,53 @@ public class Interac_e_Transfer extends _CommonPage {
 
 	Decorator();
 	try {
-	    interac_Header.isDisplayed();
+		mobileAction.verifyElementIsDisplayed(interac_Header, "Interac e-Transfer");
 	    mobileAction.FuncClick(addRecipient_Interac, "AddRecipient");
-	    mobileAction.waitForElementToVanish(progrees_bar);
+	    mobileAction.waitForElementToVanish(progrees_Bar);
 
-	} catch (NoSuchElementException | InterruptedException | IOException e) {
-	    System.err.println("TestCase has failed.");
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	} catch (NoSuchElementException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (Exception e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
     }
 
     /**
      * This method will click on AddRecipient in Interac e-transfers Screen
      * 
-     * @throws IOException
-     * @throws NoSuchElementException
+     * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
      */
     public void verifyInteracHeader() {
 
 Decorator();
 try {
-   mobileAction.verifyElementIsDisplayed(Interac_Etransfer_Header, t_interacHeader);
+   mobileAction.verifyElementIsDisplayed(interac_Etransfer_Header, t_interacHeader);
 
-} catch (NoSuchElementException | IOException e) {
-   System.err.println("TestCase has failed.");
-   CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+} catch (NoSuchElementException e) {
+	CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+} catch (IOException e) {
+	CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+} catch (Exception e) {
+	CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 }
     }
 
@@ -260,7 +382,15 @@ try {
      * This method will do the interac e transaction
      * 
      * 
-     * @return String
+     *@throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
      * 
      */
     public void interacTransfer() {
@@ -269,44 +399,51 @@ try {
 	try {
 
 	    if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-		mobileAction.FuncClick(selectSender, "Sender");
-		mobileAction.FuncSelectElementInTable(senderTable, Firstpart, Secondpart, sender_SelectSender);
+	    	Thread.sleep(10000);
+		//mobileAction.FuncClick(selectSender, "Sender");
+		//mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart, sender_SelectSender);
+	    Thread.sleep(10000);
+	    	mobileAction.FuncClick(recipient, "Recipient");
+	    String selectRecipient="//XCUIElementTypeStaticText[contains(@label,'"+ transferRecipient +"')]";
+	    MobileElement recipientVal = mobileAction.verifyElementUsingXPath(selectRecipient, "Recipient");
+	    mobileAction.FuncClick(recipientVal, "Recipient");
 		mobileAction.FuncClick(etransfer_Amount, "Amount");
 		mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
 		mobileAction.FuncClick(done, "Done");
-		;
 		mobileAction.FuncClick(transfer_Continue, "Continue");
 		mobileAction.FuncClick(sendMoney, "Send Money");
-		String confrmVal = mobileAction.getText(confirmation_val);
+		String confrmVal = mobileAction.getText(confirmation_Val);
 		mobileAction.verifyElementIsDisplayed(transferSent, "Interac e-Transfer Sent");
 
 	    } else {
+	    	mobileAction.FuncClick(recipient, "Recipient");
+	    	
+	    	mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_Recipient, true, 2, "Up");
 
-		mobileAction.verifyElement(Interac_Etransfer_Header, "Interac e-Transfer");
-		mobileAction.FuncClick(selectSender, "Sender");
-		mobileAction.FuncElementSwipeWhileNotFound(acntsListSender, select_SenderValue, 0, "down", true);
+			mobileAction.waitForElementToDisappear(select_Recipient);
 
-		mobileAction.FuncClick(fromAccount, "From Account");
-		accVal = Double.parseDouble(mobileAction.getText(fromAccountVal));
-		mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Account, 0, "down", true);
-		mobileAction.FuncClick(recipient, "Recipient");
+			// mobileAction.FuncElementSwipeWhileNotFound(acntsList,
+			// select_Recipient, 1, "up", true);
 
-		mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Recipient, 0, "down", true);
-		String ValueofAmount = getTestdata("Amount");
-		mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
-		mobileAction.FuncClickBackButton();
-		mobileAction.FuncClick(transfer_Continue, "Continue");
-		mobileAction.FuncClick(sendMoney, "Send Money");
-		String conf_val = mobileAction.getText(confirmation_val);
-		mobileAction.verifyElementIsDisplayed(transferSent, "Interac e-Transfer Sent");
-		mobileAction.FuncClickBackButton();
+			mobileAction.FuncClick(etransfer_Amount, "Amount");
+			mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
+			mobileAction.FuncClickBackButton();
+			mobileAction.FuncClick(transfer_Continue, "Continue");
+			mobileAction.FuncClick(sendMoney, "Send Money");
+			String conf_val = mobileAction.getText(confirmation_Val);
+			mobileAction.verifyElementIsDisplayed(transferSent, "Interac e-Transfer Sent");
+			mobileAction.FuncClickBackButton();
 	    }
 
-	} catch (NoSuchElementException | InterruptedException | IOException e) {
-	    System.err.println("TestCase has failed.");
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	} catch (NoSuchElementException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 	} catch (Exception e) {
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
 
     }
@@ -473,7 +610,17 @@ try {
      * 
      * 
      * @return String
-     * 
+     *  
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
+	 * 
      */
     public void interacTransfer_cancel() {
     	double accVal = 0.00;
@@ -482,8 +629,14 @@ try {
 
     	    if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
     		mobileAction.FuncClick(selectSender, "Sender");
-    		mobileAction.FuncSelectElementInTable(senderTable, Firstpart, Secondpart, sender_SelectSender);
+    		sender_SelectSender = getTestdata("FromAccount");
+    		System.out.println("Select Sender:" + sender_SelectSender);
+    		mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart, sender_SelectSender);
     		mobileAction.FuncClick(recipient, "Recipient");
+//    		String first_reci= mobileAction.getValue(first_recipient);
+//    		System.out.println("First recipient:" +first_reci );
+    		mobileAction.FuncClick(first_recipient, "Select one Recipent");
+    		//
     		mobileAction.FuncClick(etransfer_Amount, "Amount");
     		mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
     		mobileAction.FuncClick(done, "Done");
@@ -492,7 +645,7 @@ try {
 
     	    } else {
 
-    		mobileAction.verifyElement(Interac_Etransfer_Header, "Interac e-Transfer");
+    		mobileAction.verifyElement(interac_Etransfer_Header, "Interac e-Transfer");
     		mobileAction.FuncClick(selectSender, "Sender");
     		mobileAction.FuncElementSwipeWhileNotFound(acntsListSender, select_SenderValue, 1, "down", true);
 
@@ -505,13 +658,19 @@ try {
     		mobileAction.FuncClick(transfer_Continue, "Continue");
     		mobileAction.FuncClick(cancel, "Cancel");
     	    }
-    	} catch (NoSuchElementException | InterruptedException | IOException e) {
-    	    System.err.println("TestCase has failed.");
-    	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-    	} catch (Exception e) {
-    	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-    	}
-
+    	}catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
         }
 
     /**
@@ -530,11 +689,20 @@ try {
 	try {
 
 	    mobileAction.FuncClick(selectSender, "ClickSender");
-	    mobileAction.FuncClick(SenderCancel, "Click Cancel");
+	    mobileAction.FuncClick(senderCancel, "Click Cancel");
 
-	} catch (NoSuchElementException | IOException | InterruptedException e) {
-	    System.err.println("TestCase has failed.");
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	} catch (NoSuchElementException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (Exception e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
     }
 
@@ -544,27 +712,36 @@ try {
      * 
      * @throws NoSuchElementException
      *             In case the element is not found over the screen
+     * @throws Exception
+	 *             If there is problem while finding that element.
+	 * 
      * @return void
+     * @throws IOException 
+     * @throws InterruptedException 
      * 
      */
     public void verifyamountfield() {
 	Decorator();
 	try {
 	    if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-		String val = etransfer_Amount.getAttribute("value");
-		String excelVal = getTestdata("Amount");
-
-		mobileAction.verifyTextEquality(val, excelVal);
+//	    	String excelVal = getTestdata("Amount");
+	    	//default amount is '0.00'
+    		String val = mobileAction.getValue(etransfer_Amount);
+    		System.out.println("Amount value:" + val);
+  		
+    		mobileAction.verifyTextEquality(val, "$0.00");
 
 	    } else {
-		String val = etransfer_Amount.getText();
-		String excelVal = getTestdata("Amount");
-
-		mobileAction.verifyTextEquality(val, excelVal);
+//	    	String excelVal = getTestdata("Amount");
+	    	String val = etransfer_Amount.getText();
+	    	mobileAction.verifyTextEquality(val, "$0.00");
 	    }
-	} catch (NoSuchElementException e) {
-	    System.err.println("TestCase has failed.");
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	}  catch (NoSuchElementException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (Exception e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
 
     }
@@ -582,7 +759,7 @@ try {
      * @throws NoSuchElementException
      *             In case the element is not found over the screen.
      */
-    public void verifyaccountdetails() throws Exception {
+    public void verifyaccountdetails() {
 	double accVal = 0.00;
 	Decorator();
 	try {
@@ -590,24 +767,210 @@ try {
 	    if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 		mobileAction.FuncClick(selectSender, "Sender");
-		mobileAction.FuncSelectElementInTable(senderTable, Firstpart, Secondpart, sender_SelectSender);
+		mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart, sender_SelectSender);
 
 	    } else {
 		mobileAction.FuncClick(selectSender, "Sender");
 		mobileAction.FuncElementSwipeWhileNotFound(acntsListSender, select_SenderValue, 0, "down", true);
-		String account_name = accountname.getAttribute("AccountName");
+		String account_name = accountName.getAttribute("AccountName");
 		String excelaccountname = getTestdataOtherSheet("FromAccount", "smartPhoneRedesign_IET");
 		mobileAction.verifyTextEquality(account_name, excelaccountname);
-		String account_num = accountnum.getAttribute("Account Number");
+		String account_num = accountNum.getAttribute("Account Number");
 		String excelaccountnum = getTestdataOtherSheet("Accounts", "smartPhoneRedesign_IET");
 		mobileAction.verifyTextEquality(account_num, excelaccountnum);
-		String total_amount = totalamount.getAttribute("Total Amount");
+		String total_amount = totalAmount.getAttribute("Total Amount");
 		String excelamount = getTestdataOtherSheet("Amount", "smartPhoneRedesign_IET");
 		mobileAction.verifyTextEquality(total_amount, excelamount);
 	    }
-	} catch (NoSuchElementException | InterruptedException | IOException e) {
-	    System.err.println("TestCase has failed.");
-	    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	}  catch (NoSuchElementException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (Exception e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+	}
+    }
+
+    
+    /**
+     * @author Ashraf
+     * This method will verify The Registration Page and click on continue button.
+     * 
+     * @throws NoSuchElementException
+     *             In case the element is not found over the screen
+     * @throws IOException
+     *             If there is problem while reporting
+     * @return void
+     * 
+     */
+    public void clickContinueButton() {
+	Decorator();
+	try {
+
+	  mobileAction.verifyElementIsDisplayed(registrationPageHeader, "Interac e-Transfer® - Registration");
+	  mobileAction.FuncClick(continueButton, "Continue");
+
+	} catch (NoSuchElementException | IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	}
+    }
+    
+    
+    /**
+     * @author Ashraf
+     * This method will verify The Registration Page and click on continue button.
+     * 
+     * @throws NoSuchElementException
+     *             In case the element is not found over the screen
+     * @throws IOException
+     *             If there is problem while reporting
+     * @return void
+     * 
+     */
+    public void clickOpenAnAccount() {
+	Decorator();
+	try {
+
+	  mobileAction.FuncClick(openAnAccount, "Open An Account");
+
+	} catch (NoSuchElementException | IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	}
+    }
+    
+    
+    /**
+     * @author Ashraf
+     * This method will verify The error message on registration Page.
+     * 
+     * @throws NoSuchElementException
+     *             In case the element is not found over the screen
+     * @throws IOException
+     *             If there is problem while reporting
+     * @return void
+     * 
+     */
+    public void verifyErrorMessage() {
+	Decorator();
+	try {
+
+	 mobileAction.verifyElementIsDisplayed(errorText, "Error Message");
+	 mobileAction.verifyElementIsDisplayed(openAnAccount, "Open An Account");
+	 mobileAction.verifyElementIsDisplayed(findABranch, "Find A Branch");
+
+	} catch (NoSuchElementException | IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	}
+    }
+    
+    
+    /**
+     * @author Ashraf
+     * This method will enter the email address for registration and click on continue.
+     * 
+     * @throws NoSuchElementException
+     *             In case the element is not found over the screen
+     * @throws IOException
+     *             If there is problem while reporting
+     * @return void
+     * 
+     */
+    public void registerUser() {
+	Decorator();
+	try {
+
+		String email=getTestdata("Email");
+		String nameText=getTestdata("Name");
+		
+	mobileAction.verifyTextEquality(name.getText(), nameText);
+	mobileAction.FuncClick(emailId, "Email");
+	mobileAction.FuncSendKeys(emailId,email);
+	mobileAction.FuncHideKeyboard();
+	mobileAction.FunctionSwipe("up", 200, 200);
+	mobileAction.FuncClick(continueButton, "Continue Button");
+	mobileAction.waitForElementToVanish(progressBar);
+
+	} catch (NoSuchElementException | IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	}
+    }
+    
+    
+    /**
+     * @author Ashraf
+     * This method will verify the registration details for review and click on continue button.
+     * 
+     * @throws NoSuchElementException
+     *             In case the element is not found over the screen
+     * @throws IOException
+     *             If there is problem while reporting
+     * @return void
+     * 
+     */
+    public void verifyDetails() {
+	Decorator();
+	try {
+		String nameText=getTestdata("Name");
+		String email=getTestdata("Email");
+		
+		mobileAction.verifyElementIsDisplayed(myName, "My Name");
+		mobileAction.verifyTextEquality(reviewName.getText(), nameText);
+		mobileAction.verifyElementIsDisplayed(emailAddress, "My Name");
+		mobileAction.verifyTextEquality(reviewEmailId.getText(), email);
+		
+		mobileAction.FuncClick(continueButton, "Continue Button");
+		mobileAction.waitForElementToVanish(progressBar);
+	} catch (NoSuchElementException | IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	}
+    }
+    
+    
+    /**
+     * @author Ashraf
+     * This method will verify the success message after registration.
+     * 
+     * @throws NoSuchElementException
+     *             In case the element is not found over the screen
+     * @throws IOException
+     *             If there is problem while reporting
+     * @return void
+     * 
+     */
+    public void verifyRegSuccessMsg() {
+	Decorator();
+	try {
+
+		mobileAction.verifyElementIsDisplayed(thankYou, "Thank You");
+		mobileAction.verifyElementIsDisplayed(successMag, "You're now registered for Interac e-Transfer");
+		
+		
+	} catch (NoSuchElementException | IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 	}
     }
 

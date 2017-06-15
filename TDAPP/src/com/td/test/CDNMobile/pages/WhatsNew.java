@@ -18,9 +18,9 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class WhatsNew extends _CommonPage {
 
 	private static WhatsNew whatsnew;
-	String Whatsnew = "What\'s new";
+	String Whatsnew = "What\'s new | Nouveautés";
 
-	@iOSFindBy(xpath = "//*[@label='What\'s New']")
+	@iOSFindBy(xpath = "//*[@label='What\'s New' or @label='Nouveautés']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement whatsnew_title;
 
@@ -45,8 +45,11 @@ public class WhatsNew extends _CommonPage {
 	public void VerifyWhatsNewPageHeader() {
 		Decorator();
 		try {
-
-			mobileAction.verifyHeaderIsDisplayed(whatsnew_title, Whatsnew);
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				mobileAction.verifyElementTextIsDisplayed(whatsnew_title, Whatsnew);
+			}else{
+				//do nothing. IOS not implement it yet.
+			}
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

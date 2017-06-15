@@ -21,7 +21,7 @@ public class SearchPage extends _CommonPage {
 	private static SearchPage SearchPage;
 	
 	
-	@iOSFindBy(xpath = "//*[@label='Enter name or symbol']")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
 	private MobileElement searchBar;
 	String t_searchBar = "Search";
@@ -60,6 +60,9 @@ public class SearchPage extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 *             
+	 * @throws Exception
+	 *  		If there is problem while finding that element.
 	 */
 	
 	public void searchBar()  {
@@ -78,17 +81,19 @@ public class SearchPage extends _CommonPage {
 			mobileAction.FuncClick(selectTD, t_selectTD);
 			mobileAction.FuncClick(selectTD, t_selectTD);
 			Thread.sleep(3000);
-			
-			
-		}
-		catch (IOException e) {
-			System.err.println("TestCase has failed.");
+
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-		
-		catch (InterruptedException e) {
-			System.err.println("TestCase has failed.");
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 }

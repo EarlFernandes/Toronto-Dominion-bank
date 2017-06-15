@@ -22,7 +22,6 @@ public class MenuPage extends _CommonPage {
 
 	private static MenuPage MenuPage;
 
-	
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_TRANSFERS']/XCUIElementTypeStaticText")
 	private MobileElement transfers;
 
@@ -39,8 +38,8 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_INVESTING']/XCUIElementTypeStaticText")
 	private MobileElement investing;
 
-	@iOSFindBy(xpath = "//*[@label='Comptes Placements directs TD']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Investing']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Comptes Placements directs TD']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Comptes Placements directs TD']")
 	private MobileElement investingFRE;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_QUESTIONS']/XCUIElementTypeStaticText")
@@ -50,7 +49,6 @@ public class MenuPage extends _CommonPage {
 	private MobileElement feedback;
 	
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_DEPOSIT']/XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText']")
 	private MobileElement mobile_Deposit_button;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_ACCOUNTS']/XCUIElementTypeStaticText")
@@ -59,11 +57,11 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_TDFORME']/XCUIElementTypeStaticText")
 	private MobileElement tdForMe;
 
-	@iOSFindBy(xpath = "//*[@label='Virements'] ")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Virements'] ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard'and @text='VIREMENTS']")
 	private MobileElement french_transfers;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
@@ -77,17 +75,17 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_PRIVACY']/XCUIElementTypeStaticText")
 	private MobileElement privacy;
 	
-	@iOSFindBy(xpath = "//*[@label='Trade']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade' or @label='Négociation']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Trade' or @text='Négociation')]")
 	private MobileElement trade;
 
-	@iOSFindBy(xpath = "//*[@label='TD Mobile Payment']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD Mobile Payment']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='TD Mobile Payment']")
 	private MobileElement mobilePayment;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Apple Pay']")
 	private MobileElement applePay;
-	
+
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_LOCATIONS']/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
 	private MobileElement locations;
@@ -97,12 +95,17 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Profile and Settings' or @text='Profil et paramètres')]")
 	private MobileElement profile_and_settings;
 
+	//customer feedback
+	@iOSFindBy(xpath = "//*[@label='Give Feedback' or @label ='Fournir des commentaires']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Give Feedback' or @text='Fournir des commentaires')]")
+	private MobileElement give_feedback;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText']")
 	private List <MobileElement> menuOpts;
 	
 	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_ACCOUNTS")
 	private MobileElement menuAccounts;
+
 	
 	public synchronized static MenuPage get() {
 		if (MenuPage == null) {
@@ -145,6 +148,8 @@ public class MenuPage extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void clickMenuTransfer() {
 
@@ -156,9 +161,19 @@ public class MenuPage extends _CommonPage {
 				transfers = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("transfers_str") + "']", "Transfers");
 			}
 			mobileAction.FuncClick(transfers, "Transfers");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -174,6 +189,8 @@ public class MenuPage extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void clickMenuHome() {
 
@@ -183,9 +200,18 @@ public class MenuPage extends _CommonPage {
 				home_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("logoutSuccessQuickTaskHome") + "']", "Home");
 			}
 			mobileAction.FuncClick(home_button, "Home");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -201,15 +227,26 @@ public class MenuPage extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void clickTransfers_InFrench() {
 
 		Decorator();
 		try {
-			mobileAction.FuncClick(french_transfers, "Transfers");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+			mobileAction.FuncClick(transfers, "Transfers");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -225,6 +262,8 @@ public class MenuPage extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void clickMenuAccounts() {
 
@@ -233,10 +272,21 @@ public class MenuPage extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				accounts_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("str_My_Accounts") + "']", "My Accounts");
 			}
+			Thread.sleep(5000);
+
 			mobileAction.FuncClick(accounts_button, "Accounts");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -252,6 +302,8 @@ public class MenuPage extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void clickMenuInvesting() {
 
@@ -262,14 +314,22 @@ public class MenuPage extends _CommonPage {
 			} else {
 				// FIXME: Workaround
 				investing = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + StringLookup.lookupString(currentLocale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing menu element");
-
 			}
-			
-			mobileAction.FuncClick(investing, "Investing");
-			mobileAction.waitForElementToVanish(progressBar);
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+			boolean isLanguageFrench = getTestdata("Language").equals("FRE");
+			MobileElement investingElement = isLanguageFrench ? investingFRE : investing;
+			mobileAction.FuncClick(investingElement, "Investing");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -285,6 +345,8 @@ public class MenuPage extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void clickContactUs() {
 
@@ -293,9 +355,18 @@ public class MenuPage extends _CommonPage {
 		try {
 			mobileAction.FuncClick(contactUs, "contactUs");
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -311,6 +382,8 @@ public class MenuPage extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void clickMenuBills() {
 
@@ -320,9 +393,18 @@ public class MenuPage extends _CommonPage {
 				bills = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("bills_str") + "']", "Bills");
 			}
 			mobileAction.FuncClick(bills, "Bills");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -338,6 +420,8 @@ public class MenuPage extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void mobile_Deposit_click() {
 		Decorator();
@@ -348,9 +432,18 @@ public class MenuPage extends _CommonPage {
 			String mobile_Deposit = "Mobile Deposit";
 
 			mobileAction.FuncClick(mobile_Deposit_button, "Mobile_Deposit_Button");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -359,9 +452,18 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(trade, "Trade");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -392,6 +494,8 @@ public class MenuPage extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void clickMobilePayment() {
 
@@ -399,13 +503,21 @@ public class MenuPage extends _CommonPage {
 			Decorator();
 			mobileAction.FuncClick(mobilePayment, "Mobilepayment");
 			mobileAction.waitForElementToVanish(progressBar);
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
-	
+
 	/**
 	 * This method will click on the Apple Pay button in the menu page
 	 * 
@@ -417,17 +529,29 @@ public class MenuPage extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void clickApplePay() {
 
 		try {
 			Decorator();
 			mobileAction.FuncClick(applePay, "Apple Pay");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
+
 	/**
 	 * This method will click on the Locations on menu page
 	 * 
@@ -439,6 +563,8 @@ public class MenuPage extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void clickFindLocations() {
 
@@ -446,39 +572,62 @@ public class MenuPage extends _CommonPage {
 		try {
 			mobileAction.FuncClick(locations, "Locations");
 			Thread.sleep(2000);
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
 	
 	//For profile and preference
 	
-	/**
-	 * This method will click on "Profile & Setting" on menu page
-	 * 
-	 * @return void
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 */
-	public void clickProfileAndSettings() {
-		Decorator();
-		try {
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
+		/**
+		 * This method will click on "Profile & Setting" on menu page
+		 * 
+		 * @return void
+		 * 
+		 * @throws InterruptedException
+		 *             In case an exception occurs while clicking over the element.
+		 * @throws IOException
+		 *             If there is problem while reporting.
+		 * @throws NoSuchElementException
+		 *             In case the element is not found over the screen.
+		 */
+		public void clickProfileAndSettings() {
+			Decorator();
+			try {
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+					mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
+				}
+				else{
+					mobileAction.FunctionSwipe("down", 200, 200);
+				}
+				String profileSettings = mobileAction.getValue(profile_and_settings);
+				mobileAction.FuncClick(profile_and_settings, profileSettings);
+			}  catch (NoSuchElementException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (InterruptedException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (IOException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			mobileAction.FuncClick(profile_and_settings, "Profile & Settings");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
-	}
+
 
 	/**
 	 * This method will verify "Profile & Setting" is displayed on menu page
@@ -491,18 +640,95 @@ public class MenuPage extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void VerifyProfileAndSettingslink() {
 		Decorator();
 		try {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  2, "down");
+
 			}
-			mobileAction.verifyElement(profile_and_settings, "Profile & Settings");
+			//mobileAction.verifyElement(profile_and_settings, "Profile & Settings");
+			try {
+				mobileAction.verifyElementTextIsDisplayed(profile_and_settings, "Profile & Settings | Profil et paramètres");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+
 		}
+	}
+	//Customer feedback
+	public void ClickFeedback(){
+		Decorator();
+		try{
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  1, "down");
+				String xpath = "//android.widget.TextView[@text='" + mobileAction.getAppString("give_feedback") + "']";
+				System.out.println("xpath:" +  xpath);
+				give_feedback = mobileAction.verifyElementUsingXPath(xpath, "Give Feedback");		
+			}else{
+//				String xpath = "//*[@label='" + mobileAction.getAppString("nav_drawer_items_feedback") + "']";
+//				System.out.println("xpath:" +  xpath);
+//				give_feedback = mobileAction.verifyElementUsingXPath(xpath, "Give Feedback");
+			}
+		}catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+		try{
+			String elementText= mobileAction.getValue(give_feedback);
+			System.out.println("elementText:" +  elementText);
+			mobileAction.FuncClick(give_feedback, elementText);
+			mobileAction.waitForElementToVanish(progressBar);
+		}catch (Exception e){
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}		
+	}
+	
+	public void ClickContactUs_CF(){
+		Decorator();
+		try{
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  1, "down");
+				String xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("contact_str") + "']";
+				System.out.println("xpath:" +  xpath);
+				contactUs = mobileAction.verifyElementUsingXPath(xpath, "Contact Us");		
+			}else{
+//				String xpath = "//*[@label='" + mobileAction.getAppString("nav_drawer_items_contact") + "']";
+//				System.out.println("xpath:" +  xpath);
+//				contactUs = mobileAction.verifyElementUsingXPath(xpath, "Contact Us");
+			}
+		}catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+		try{
+			String elementText= mobileAction.getValue(contactUs);
+			System.out.println("Element Text:" +  elementText);
+			mobileAction.FuncClick(contactUs, elementText);
+			mobileAction.waitForElementToVanish(progressBar);
+		}catch (Exception e){
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}				
 	}
 
 	/**

@@ -21,13 +21,13 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class InvestingAccountSummary extends _CommonPage {
 	private static InvestingAccountSummary InvestingAccountSummary;
 
-	@iOSFindBy(xpath = "//*[@label='Balances']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Balances']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/balancesTab' and @text='Balances']")
 	private MobileElement llbBalance;
 
 	String progressBar = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
 
-	String iOSProgressBar = "//*[@label='In progress' or @label='En cours']";
+	String iOSProgressBar = "//XCUIElementTypeActivityIndicator[@label='In progress' or @label='En cours']";
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/gainLoss']/following-sibling::android.widget.TextView")
 	private MobileElement unrealized;
@@ -40,6 +40,9 @@ public class InvestingAccountSummary extends _CommonPage {
 	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/activityTab']")
 	private MobileElement activityTab;
+
+	String strAccount = getTestdata("Accounts");
+	String strAcc[] = strAccount.split(":");
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/summaryTab']")
 	private MobileElement summaryTab;
@@ -198,6 +201,8 @@ public class InvestingAccountSummary extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void verifySummaryScenario() {
 		Decorator();
@@ -213,7 +218,7 @@ public class InvestingAccountSummary extends _CommonPage {
 						String accountToSelect = "//*[contains(@text,'" + strAcc[0] + "')]";
 						MobileElement accountToSelected = (MobileElement) ((AppiumDriver) CL.GetDriver())
 								.findElement(By.xpath(accountToSelect));
-						if (accountToSelected.isDisplayed() && llbBalance.isDisplayed()) {
+						if(mobileAction.verifyElementIsPresent(accountToSelected) && mobileAction.verifyElementIsPresent(llbBalance)){
 							flag = false;
 							break;
 						} else {
@@ -232,7 +237,7 @@ public class InvestingAccountSummary extends _CommonPage {
 						String accountToSelect = "//*[contains(@text,'" + strAcc[1] + "')]";
 						MobileElement accountToSelected = (MobileElement) ((AppiumDriver) CL.GetDriver())
 								.findElement(By.xpath(accountToSelect));
-						if (accountToSelected.isDisplayed() && llbBalance.isDisplayed()) {
+						if (mobileAction.verifyElementIsPresent(accountToSelected) && mobileAction.verifyElementIsPresent(llbBalance)) {
 							flag = false;
 							break;
 						} else {
@@ -252,7 +257,7 @@ public class InvestingAccountSummary extends _CommonPage {
 						String accountToSelect = "//*[contains(@label,'" + strAcc[0] + "')]";
 						MobileElement accountToSelected = (MobileElement) ((AppiumDriver) CL.GetDriver())
 								.findElement(By.xpath(accountToSelect));
-						if (accountToSelected.isDisplayed() && llbBalance.isDisplayed()) {
+						if (mobileAction.verifyElementIsPresent(accountToSelected) && mobileAction.verifyElementIsPresent(llbBalance)) {
 							flag = false;
 							break;
 						} else {
@@ -271,7 +276,7 @@ public class InvestingAccountSummary extends _CommonPage {
 						String accountToSelect = "//*[contains(@label,'" + strAcc[1] + "')]";
 						MobileElement accountToSelected = (MobileElement) ((AppiumDriver) CL.GetDriver())
 								.findElement(By.xpath(accountToSelect));
-						if (accountToSelected.isDisplayed() && llbBalance.isDisplayed()) {
+						if (mobileAction.verifyElementIsPresent(accountToSelected) && mobileAction.verifyElementIsPresent(llbBalance)) {
 							flag = false;
 							break;
 						} else {
@@ -578,7 +583,7 @@ public class InvestingAccountSummary extends _CommonPage {
 				MobileElement pendingTransaction = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(pendingTransactionStr));
 
-				if (mobileAction.verifyElementPresent(pendingTransaction)) {
+				if (mobileAction.verifyElementIsPresent(pendingTransaction)) {
 					mobileAction.FuncClick(pendingTransaction, "Pending Transaction");
 				} else {
 					mobileAction.FunctionSwipe("up", 5000, 200);
@@ -656,7 +661,7 @@ public class InvestingAccountSummary extends _CommonPage {
 				MobileElement pendingTransaction = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(pendingTransactionStr));
 
-				if (mobileAction.verifyElementPresent(pendingTransaction)) {
+				if (mobileAction.verifyElementIsPresent(pendingTransaction)) {
 					mobileAction.FuncClick(pendingTransaction, "Pending Transaction");
 				} else {
 					mobileAction.FunctionSwipe("up", 5000, 200);
@@ -1051,7 +1056,7 @@ public class InvestingAccountSummary extends _CommonPage {
 				
 				
 				
-				while (!mobileAction.verifyElementPresent(ordersEndTime)) {
+				while (!mobileAction.verifyElementIsPresent(ordersEndTime)) {
 					try {
 						
 						
@@ -1118,14 +1123,18 @@ public class InvestingAccountSummary extends _CommonPage {
 			
 				
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			try {
-				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-			}
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}

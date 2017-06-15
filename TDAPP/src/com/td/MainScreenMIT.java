@@ -20,13 +20,14 @@ public class MainScreenMIT extends _CommonPage {
 
 	@iOSFindBy(xpath="//*[contains(@label,'Menu')]")
 	@AndroidFindBy(id="android:id/up")
-	  MobileElement  MenuUp;
+	MobileElement  MenuUp;
 	
 	
 /*	@iOSFindBy(accessibility="Home")
 	@AndroidFindBy(accessibility="Home")
 	MobileElement  HomeLink;   */
 	
+
 	@iOSFindBy(xpath = "@label='Home'")
 	@AndroidFindBy(id="android:id/action_bar_title")
 	MobileElement  Home;   	
@@ -101,14 +102,14 @@ public class MainScreenMIT extends _CommonPage {
 	    if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 	    {
 	    //CL.getTestDataInstance().SetAppFilePath("C:/Users/baraps2/MIT_Builds/Android/banking-wealth-17.3.1-20170130.145242-90-debug.apk");
-	    CL.getTestDataInstance().SetAppFilePath("C:/Automation/MIT_Builds/Android/banking-wealth-17.3.1-20170308.204244-366-debug.apk"); //path at simulator server
+	    CL.getTestDataInstance().SetAppFilePath("C:/Automation/MIT_Builds/Android/banking-wealth-17.5.1-20170517.212405-30-debug.apk"); //path at simulator server
 	      CL.mobileApp("http://0.0.0.0:4727/wd/hub"); // android
 	    }
 	// iOS
 	    else
 	    {
-		  CL.getTestDataInstance().SetAppFilePath("/opt/app/banking-wealth-17.3.1-20170306.172737-387-ENTERPRISE-DEBUG-TESTING.ipa"); //path at iOS Mac Mini
-	     CL.mobileApp("http://49.19.17.77:4727/wd/hub"); // iOS Mac Mini
+		  CL.getTestDataInstance().SetAppFilePath("/opt/app/banking-wealth-17.3.1-20170503.161937-750-ENTERPRISE-DEBUG-TESTING.ipa"); //path at iOS Mac Mini
+	     CL.mobileApp("http://49.19.17.226:4727/wd/hub"); // iOS Mac Pro
 	      //CL.mobileApp("http://192.168.2.8:4727/wd/hub"); // iOS Mac Mini
 	    }
 	      

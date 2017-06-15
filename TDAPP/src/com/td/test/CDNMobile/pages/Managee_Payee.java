@@ -22,25 +22,29 @@ public class Managee_Payee extends _CommonPage {
 
 	private static Managee_Payee Managee_Payee;
 	
-	@iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]")
+	//@iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]")
+	@iOSFindBy(xpath="//XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[@label='Access Card']/../../XCUIElementTypeOther[2]")
 	private MobileElement accesscard;
-	
-	
+		
 	//@iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeLink/XCUIElementTypeStaticText")
 	@iOSFindBy(xpath="//*[@label='MY PAYEES']")
 	private MobileElement myPayees;
 	
-	@iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
+	//@iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath="//XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeStaticText[@label='ACCESS CARD']/../../XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/listView']/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.TextView")
 	private MobileElement secondAccessCard;
 	
-	@iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText")
+	//@iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath="//XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeStaticText[@label='ACCESS CARD']/../../XCUIElementTypeCell[3]/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/listView']/android.widget.LinearLayout[3]/android.widget.LinearLayout/android.widget.TextView")
 	private MobileElement thirdAccessCard;
 	
-	@iOSFindBy(xpath="//*[@label='Add Canadian Payees Now']")
+	@iOSFindBy(xpath="//XCUIElementTypeButton[@label='Add Canadian Payees Now']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Canadian Payee']")
 	private MobileElement addCanadianPayee;
 	
-	@iOSFindBy(xpath="//*[@label='Manage Payees']")
+	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@label='Manage Payees']")
 	private MobileElement managePayeeHeader;
 	
 	@iOSFindBy(xpath="//XCUIElementTypeOther[@name='TDVIEW_TITLE']")
@@ -264,30 +268,62 @@ public class Managee_Payee extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 
 	public void verifyMultipleAccessCard(){
 	Decorator();
 	try{
-	boolean flag=accesscard.isDisplayed();
+		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			boolean flag=accesscard.isDisplayed();
 	
-	if(flag){
-			mobileAction.verifyElementIsDisplayed(myPayees,"My Payees");
-			mobileAction.FuncClick(accesscard, "Accesscard");
+			if(flag){
+					mobileAction.verifyElementIsDisplayed(myPayees,"My Payees");
+					mobileAction.FuncClick(accesscard, "Accesscard");
+					mobileAction.FuncClick(secondAccessCard, "Second Access Card");
+					Thread.sleep(2000);
+					mobileAction.verifyElementIsDisplayed(myPayees,"My Payees");
+					mobileAction.FuncClick(accesscard, "Accesscard");
+					mobileAction.FuncClick(thirdAccessCard, "Second Access Card");
+					Thread.sleep(2000);
+					mobileAction.verifyElementIsDisplayed(addCanadianPayee, "Add Canadian Payee");
+			}	
+		}else{
+			//For android, using webview to handle
+			((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td"); 
+			WebElement accessCard = CL.GetDriver().findElement(By.cssSelector("div.dropdown-holder"));
+			accessCard.click();
+			Thread.sleep(2000);
+			((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
 			mobileAction.FuncClick(secondAccessCard, "Second Access Card");
 			Thread.sleep(2000);
-			mobileAction.verifyElementIsDisplayed(myPayees,"My Payees");
-			mobileAction.FuncClick(accesscard, "Accesscard");
+			((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+			WebElement mypayees_android = CL.GetDriver().findElement(By.id("myPayees"));
+			mobileAction.verifyElementIsDisplayed((MobileElement)mypayees_android,"My Payees");
+			accessCard = CL.GetDriver().findElement(By.cssSelector("div.dropdown-holder"));
+			accessCard.click();
+			((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
 			mobileAction.FuncClick(thirdAccessCard, "Second Access Card");
 			Thread.sleep(2000);
-			mobileAction.verifyElementIsDisplayed(addCanadianPayee, "Add Canadian Payee");
-		
-		
-	}
-	}catch (NoSuchElementException | InterruptedException | IOException e) {
-		System.err.println("TestCase has failed.");
+			((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td"); 
+			WebElement addCanadianPayeeButton = CL.GetDriver().findElement(By.cssSelector("button.primary-button.ng-binding.ng-scope"));
+			mobileAction.verifyElementIsDisplayed((MobileElement)addCanadianPayeeButton, "Add Canadian Payee");
+			((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+		}
+	} catch (NoSuchElementException e) {
 		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (Exception e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
 }
 	
@@ -303,15 +339,23 @@ public class Managee_Payee extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void verifyAddCanadianPayeeButton()  {
 		Decorator();
 		try {
 		mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees Header");
 		mobileAction.verifyElementIsDisplayed(addCanadianPayee, "Add Canadian Payee");
-		} catch (NoSuchElementException | IOException   e) {
-		System.err.println("TestCase has failed.");
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}  catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		}catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 		}
 
@@ -375,6 +419,8 @@ public class Managee_Payee extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 
@@ -386,9 +432,18 @@ public class Managee_Payee extends _CommonPage {
 			mobileAction.FuncClick(addPayee,"Add Canadian Payee");
 			Thread.sleep(10000);
 	
-	}catch (NoSuchElementException | InterruptedException | IOException e) {
-		System.err.println("TestCase has failed.");
+	} catch (NoSuchElementException e) {
 		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (Exception e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
 	
 }
