@@ -785,6 +785,7 @@ public class TradeMultiLeg extends _CommonPage{
 	{
 		try
 		{
+			Thread.sleep(5000);
 			mobileAction.FuncSendKeys(objEle,sQty);
 /*			mobileAction.FuncClick(objEle, "Quantity");
 			((RemoteWebDriver) CL.GetDriver()).getKeyboard().sendKeys(sQty);*/
@@ -1029,20 +1030,34 @@ public class TradeMultiLeg extends _CommonPage{
 				}*/
 				try{
 		             String sixmonth = "";
-		             int size1 = CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).size();
-		             
-		             for(int i=0; i<size1; i++)
+		             boolean bFlag = false;
+		            // int size1 = CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).size();
+		             int size1 = 100;
+		             for (int j=1;j<5;j++)
 		             {
-		                    CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText();
-		                    
-		                    sixmonth = mobileAction.FuncGetValByRegx(CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText().split("-")[1],"([0-9]+)");
-		                    if(Integer.parseInt(sixmonth) >= 183)
-		                    {
-		                           CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).click();
-		                           CL.GetReporting().FuncReport("Pass", "Expiry list item greater than 183 days selected.");
-		                           break;
-		                    }
-		             }      
+		            	 Thread.sleep(2000);
+			             for(int i=0; i<5; i++)
+			             {
+			                    CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText();
+			                    
+			                    sixmonth = mobileAction.FuncGetValByRegx(CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText().split("-")[1],"([0-9]+)");
+			                    
+	/*		                    if(i>=5)
+			                    	mobileAction.FuncSwipeOnce("up");*/
+			                    
+			                    if(Integer.parseInt(sixmonth) >= 183)
+			                    {
+			                           CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).click();
+			                           CL.GetReporting().FuncReport("Pass", "Expiry list item greater than 183 days selected.");
+			                           bFlag=true;
+			                           break;
+			                    }
+			             } 
+			             if(bFlag)
+			            	 break;
+			             
+		            	 mobileAction.FuncSwipeOnce("up");
+		             }
 		
 		             }
              catch(Exception e)
@@ -1170,20 +1185,34 @@ public class TradeMultiLeg extends _CommonPage{
 				}*/
 				try{
 		             String sixmonth = "";
-		             int size1 = CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).size();
-		             
-		             for(int i=0; i<size1; i++)
+		             boolean bFlag = false;
+		            // int size1 = CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).size();
+		             int size1 = 100;
+		             for (int j=1;j<5;j++)
 		             {
-		                    CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText();
-		                    
-		                    sixmonth = mobileAction.FuncGetValByRegx(CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText().split("-")[1],"([0-9]+)");
-		                    if(Integer.parseInt(sixmonth) >= 183)
-		                    {
-		                           CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).click();
-		                           CL.GetReporting().FuncReport("Pass", "Expiry list item greater than 183 days selected.");
-		                           break;
-		                    }
-		             }      
+		            	 Thread.sleep(2000);
+			             for(int i=0; i<5; i++)
+			             {
+			                    CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText();
+			                    
+			                    sixmonth = mobileAction.FuncGetValByRegx(CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText().split("-")[1],"([0-9]+)");
+			                    
+	/*		                    if(i>=5)
+			                    	mobileAction.FuncSwipeOnce("up");*/
+			                    
+			                    if(Integer.parseInt(sixmonth) >= 183)
+			                    {
+			                           CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).click();
+			                           CL.GetReporting().FuncReport("Pass", "Expiry list item greater than 183 days selected.");
+			                           bFlag=true;
+			                           break;
+			                    }
+			             } 
+			             if(bFlag)
+			            	 break;
+			             
+		            	 mobileAction.FuncSwipeOnce("up");
+		             }
 		
 		             }
             catch(Exception e)
@@ -1389,8 +1418,7 @@ public class TradeMultiLeg extends _CommonPage{
 			sMidPrice = getPrice(mobileAction.FuncGetText(midPrice));
 			sNaturalPrice = getPrice(mobileAction.FuncGetText(naturalPrice));
 			mobileAction.FuncClick(refreshButton, "refreshButton");
-			Thread.sleep(4000);
-			mobileAction.FuncClick(refreshButton, "refreshButton");
+			Thread.sleep(7000);
 			verifyPriceVarience(mobileAction.FuncGetText(midPrice),sMidPrice,"midPrice");
 			verifyPriceVarience(mobileAction.FuncGetText(naturalPrice),sNaturalPrice,"naturalPrice");
 		

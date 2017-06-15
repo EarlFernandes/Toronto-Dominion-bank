@@ -282,7 +282,7 @@ public class LoginMIT extends _CommonPage {
 		try
 		{
 			int iCnt = 1;
-			if(!mobileAction.isObjExists(Investing_Trade))
+			if(!mobileAction.isObjExists(Investing_Trade) && mobileAction.isObjExists(errorText))
 			{
 			do
 			{
