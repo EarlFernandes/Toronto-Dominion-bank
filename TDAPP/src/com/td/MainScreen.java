@@ -11,7 +11,7 @@ public class MainScreen extends _CommonPage {
 	// ***** LOCAL EXECUTION PARAMETERS *****
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.27.22.144:4724/wd/hub";
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.104:4760/wd/hub";
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
 	private static final String APP_ANDROID = "APP_ANDROID";
@@ -25,7 +25,7 @@ public class MainScreen extends _CommonPage {
 			"SecurityPassword", "TriggerDelta", "CDNMarginAccount", "QuantityType", "Dividend", "SelectLimitPrice",
 			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName",
 			"Passcode", "NewPasscode", "Email", "Name", "EmailProfile", "PhoneProfile", "PostSurveyText", "Response",
-			"ProfileType" };
+			"UserProfileType" };
 
 	public void readSheet() {
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
@@ -62,14 +62,20 @@ public class MainScreen extends _CommonPage {
 		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
 		readSheet();
 		readP2PSheet();
-
+		
+		
+		if (StringUtils.isEmpty(CL.getTestDataInstance().Userid)) {
+		
 		if (getTestdata("ProfileType").equalsIgnoreCase("Personal")) {
 			System.out.println("ProfileType: " + getTestdata("ProfileType"));
 			Executor.get().createPersonalProfile();
 		} else if (getTestdata("ProfileType").equalsIgnoreCase("Business")) {
 			Executor.get().createBusinessProfile();
 		} else if (getTestdata("ProfileType").equalsIgnoreCase("Multi")) {
+			
 			Executor.get().createMultiProfile();
+		}
+		
 		}
 
 		final String udid = CL.getTestDataInstance().getDeviceUdid();

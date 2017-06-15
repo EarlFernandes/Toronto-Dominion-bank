@@ -96,11 +96,6 @@ public class Executor extends _CommonPage {
 	 */
 	public void createPersonalProfile() {
 
-		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
-		MainScreen.get().readSheet();
-		MainScreen.get().readP2PSheet();
-		
-		System.out.println("FilePath: "+getTestdata("UserType"));
 		
 		acsNo = null;
 		easyWebTempPass = null;
@@ -126,7 +121,7 @@ public class Executor extends _CommonPage {
 
 		/***** Multiple Application Interface Selection Menu ******/
 
-		sr.hitTab(3);
+		sr.hitTab(2);
 		sr.sendKeys("S");
 		sr.hitEnter();
 
@@ -408,7 +403,7 @@ public class Executor extends _CommonPage {
 
 		/***** Multiple Application Interface Selection Menu ******/
 
-		sr.hitTab(3);
+		sr.hitTab(2);
 		sr.sendKeys("S");
 		sr.hitEnter();
 
@@ -617,7 +612,7 @@ public class Executor extends _CommonPage {
 
 		/***** Multiple Application Interface Selection Menu ******/
 
-		sr.hitTab(3);
+		sr.hitTab(2);
 		sr.sendKeys("S");
 		sr.hitEnter();
 
@@ -746,7 +741,7 @@ public class Executor extends _CommonPage {
 
 		/***** Multiple Application Interface Selection Menu ******/
 
-		sr.hitTab(3);
+		sr.hitTab(2);
 		sr.sendKeys("S");
 		sr.hitEnter();
 
@@ -866,7 +861,7 @@ public class Executor extends _CommonPage {
 
 		/***** Multiple Application Interface Selection Menu ******/
 
-		sr.hitTab(3);
+		sr.hitTab(2);
 		sr.sendKeys("S");
 		sr.hitEnter();
 
@@ -977,7 +972,7 @@ public class Executor extends _CommonPage {
 
 		/***** Multiple Application Interface Selection Menu ******/
 
-		sr.hitTab(3);
+		sr.hitTab(2);
 		sr.sendKeys("S");
 		sr.hitEnter();
 
@@ -1049,7 +1044,7 @@ public class Executor extends _CommonPage {
 
 		/***** Multiple Application Interface Selection Menu ******/
 
-		sr.hitTab(3);
+		sr.hitTab(2);
 		sr.sendKeys("S");
 		sr.hitEnter();
 
@@ -1160,7 +1155,7 @@ public class Executor extends _CommonPage {
 
 		/***** Multiple Application Interface Selection Menu ******/
 
-		sr.hitTab(3);
+		sr.hitTab(2);
 		sr.sendKeys("S");
 		sr.hitEnter();
 

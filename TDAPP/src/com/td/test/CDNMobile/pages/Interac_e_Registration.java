@@ -450,7 +450,7 @@ public class Interac_e_Registration extends _CommonPage {
 			String email = getTestdata("Email");
 			String nameText = getTestdata("Name");
 			String[] nameArr = nameText.split(": ");
-			String profileType=getTestdata("ProfileType");
+			String profileType=getTestdata("UserProfileType");
 			String[] profileArr = profileType.split(": ");
 
 			for(int i=0;i<nameArr.length;i++){
