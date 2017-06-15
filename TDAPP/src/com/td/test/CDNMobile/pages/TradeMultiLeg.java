@@ -254,6 +254,11 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/txtSearchTitle")
 	private MobileElement search_txtSearchTitle;
 	
+	@iOSFindBy(xpath = "//*[contains(@label,'name or symbol') or contains(@label,'nom ou symbole')]") //@Author - shahbaaz
+	@AndroidFindBy(id="com.td:id/txtSearchTitle")
+	private MobileElement search_txtSearchTitlediff;
+	
+	
 	@iOSFindBy(xpath = "//*[contains(@label,'Type')]/../*[2]")//@Author - Sushil 20-Mar-2017
 	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Type')]/../*[@resource-id='com.td:id/selectedText']")
 	private MobileElement selectedOrderType;	
@@ -1619,7 +1624,7 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			mobileAction.FuncSwipeWhileElementNotFound(defaultTradeAccount, false, 7, "down");
 			
-			mobileAction.FuncClick(search_txtSearchTitle, "search_txtSearchTitle");
+			mobileAction.FuncClick(search_txtSearchTitlediff, "search_txtSearchTitlediff");
 	
 /*			String xpathFlag="";
 			int temp =0;
@@ -1695,7 +1700,7 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			mobileAction.FuncSwipeWhileElementNotFound(defaultTradeAccount, false, 7, "down");
 			
-			mobileAction.FuncClick(search_txtSearchTitle, "search_txtSearchTitle");
+			mobileAction.FuncClick(search_txtSearchTitlediff, "search_txtSearchTitlediff");
 	
 /*			String xpathFlag="";
 			int temp =0;
