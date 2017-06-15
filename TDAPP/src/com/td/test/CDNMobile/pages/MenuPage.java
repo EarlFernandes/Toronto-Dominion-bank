@@ -32,7 +32,7 @@ public class MenuPage extends _CommonPage {
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_MOVEN']/XCUIElementTypeStaticText")
 	private MobileElement tdMySpend;
-	
+
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_CROSSBORDER']/XCUIElementTypeStaticText")
 	private MobileElement crossBorder;
 	
@@ -93,7 +93,7 @@ public class MenuPage extends _CommonPage {
 	private MobileElement locations;
 	
 	//Profile and preference
-	@iOSFindBy(xpath = "//*[@label='Profile & Settings']")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_PREFERENCES")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Profile and Settings' or @text='Profil et paramètres')]")
 	private MobileElement profile_and_settings;
 
@@ -257,10 +257,6 @@ public class MenuPage extends _CommonPage {
 
 		Decorator();
 		try {
-
-			boolean isLanguageFrench = getTestdata("Language").equals("FRE");
-
-			MobileElement investingElement = isLanguageFrench ? investingFRE : investing;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				investing = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + StringLookup.lookupString(currentLocale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing menu element");
 			} else {
