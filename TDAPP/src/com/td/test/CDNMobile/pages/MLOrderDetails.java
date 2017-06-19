@@ -328,9 +328,21 @@ public class MLOrderDetails extends _CommonPage {
 			mobileAction.FuncGetValByRegx(mobileAction.FuncGetText(leg2ConfirmationNumber),"([A-Z]+)(-)([0-9]+)");
 			
 			mobileAction.FuncSwipeWhileElementNotFound(price, false, 5, "up");
-			String sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
+/*			String sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
+			if(sTempPrice!="")
+				mobileAction.verifyElementTextContains(price,getTestdata("SelectLimitPrice",XLSheetUserIDs));*/
+			
+			String sTempPrice = "";
+			if(mobileAction.FuncGetText(price).equalsIgnoreCase("Even") || mobileAction.FuncGetText(price).equalsIgnoreCase("Pair"))
+			{
+				//Do nothing
+			}
+			else
+			{
+			sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
 			if(sTempPrice!="")
 				mobileAction.verifyElementTextContains(price,getTestdata("SelectLimitPrice",XLSheetUserIDs));
+			}
 			
 			mobileAction.FuncSwipeWhileElementNotFound(OrderPlacedDetails, false, 5, "up");
 			mobileAction.verifyElementIsDisplayed(lblGoodTill, "Good till");
@@ -428,10 +440,6 @@ public class MLOrderDetails extends _CommonPage {
 			
 			mobileAction.verifyElementIsDisplayed(lblleg1ConfirmationNumber, "lblleg1ConfirmationNumber");	
 			
-			
-			
-			
-			
 			mobileAction.FuncGetValByRegx(mobileAction.FuncGetText(leg1ConfirmationNumberDeatils),"([A-Z]+)(-)([0-9]+)");
 		
 			
@@ -453,9 +461,21 @@ public class MLOrderDetails extends _CommonPage {
 			mobileAction.FuncGetValByRegx(mobileAction.FuncGetText(leg2ConfirmationNumber),"([A-Z]+)(-)([0-9]+)");
 			
 			mobileAction.FuncSwipeWhileElementNotFound(price, false, 5, "up");
-			String sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
+/*			String sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
+			if(sTempPrice!="")
+				mobileAction.verifyElementTextContains(price,getTestdata("SelectLimitPrice",XLSheetUserIDs));*/
+			
+			String sTempPrice = "";
+			if(mobileAction.FuncGetText(price).equalsIgnoreCase("Even") || mobileAction.FuncGetText(price).equalsIgnoreCase("Pair"))
+			{
+				//Do nothing
+			}
+			else
+			{
+			sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
 			if(sTempPrice!="")
 				mobileAction.verifyElementTextContains(price,getTestdata("SelectLimitPrice",XLSheetUserIDs));
+			}
 			
 			mobileAction.FuncSwipeWhileElementNotFound(OrderPlacedDetails, false, 5, "up");
 			mobileAction.verifyElementIsDisplayed(lblGoodTill, "Good till");

@@ -142,15 +142,12 @@ public class MLOrdersTab extends _CommonPage {
 			String sCurrentYear = format2.split(";")[3];
 	
 			
-			/*mobileAction.waitForElement(lblACCOUNTS);
+			mobileAction.waitForElement(lblACCOUNTS);
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount,true,60,"up");
 			
 			mobileAction.verifyElementIsDisplayed(ordersTab, "Orders Tab");
 			
 			mobileAction.FuncClick(ordersTab, "Orders Tab");
-			*/
-			
-			
 			
 			mobileAction.verifyElementTextContains(timestamp,sCurrentDate);
 			
@@ -176,10 +173,20 @@ public class MLOrdersTab extends _CommonPage {
 			mobileAction.FuncVerifyNonBlankValue(leg2QuantityFilled, "leg2QuantityFilled");
 	
 			mobileAction.FuncSwipeWhileElementNotFound(price, false, 5, "up");
-			String sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
+			
+			mobileAction.verifyElementTextContains(price,getTestdata("Price",XLSheetUserIDs));
+			
+			String sTempPrice = "";
+			if(mobileAction.FuncGetText(price).equalsIgnoreCase("Even") || mobileAction.FuncGetText(price).equalsIgnoreCase("Pair"))
+			{
+				//Do nothing
+			}
+			else
+			{
+			sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
 			if(sTempPrice!="")
 				mobileAction.verifyElementTextContains(price,getTestdata("SelectLimitPrice",XLSheetUserIDs));
-			
+			}
 			
 			mobileAction.verifyElementTextContains(orderStatus, getTestdata("OrderStatus",XLSheetUserIDs));
 			
@@ -188,9 +195,9 @@ public class MLOrdersTab extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(lbllegNumber2, "legNumber2");
 			
 			
-			mobileAction.verifyElementTextContains(leg1Action,getTestdata("Leg1Action2",XLSheetUserIDs));
+			mobileAction.verifyElementTextContainsReverse(leg1Action,getTestdata("Leg1Action2",XLSheetUserIDs));
 			
-			mobileAction.verifyElementTextContains(leg2Action,getTestdata("Leg2Action2",XLSheetUserIDs));
+			mobileAction.verifyElementTextContainsReverse(leg2Action,getTestdata("Leg2Action2",XLSheetUserIDs));
 			
 						
 		}

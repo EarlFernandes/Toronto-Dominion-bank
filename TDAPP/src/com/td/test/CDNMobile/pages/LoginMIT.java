@@ -207,15 +207,20 @@ public class LoginMIT extends _CommonPage {
 			//System.out.println(CL.GetDriver().getPageSource());
 			//mobileAction.FuncClick(username, "Username");
 //			if (select_accesscard.isDisplayed() == true) {
-			if (mobileAction.isObjExists(select_accesscard)) {
+			mobileAction.FuncClick(select_accesscard, "Select Accesscard");
+			//if (mobileAction.isObjExists(select_accesscard)) {
+				if (mobileAction.isObjExists(addUser)) {
 
-				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
+				//mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");
 				mobileAction.FuncClick(username, "Username");
 				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-				mobileAction.FuncClick(password, "Password");
+				//mobileAction.FuncClick(password, "Password");
 				//mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-				TradeMultiLeg.get().FuncEnterText(password, CL.getTestDataInstance().UserPassword);
+				//TradeMultiLeg.get().FuncEnterText(password, CL.getTestDataInstance().UserPassword);
+				mobileAction.FuncSendKeys(password,CL.getTestDataInstance().UserPassword);
+				TradeMultiLeg.get().handleKeyboard();
+				
 				mobileAction.FuncClick(login, "Login");
 				
 				enterPwdifError();
@@ -240,11 +245,13 @@ public class LoginMIT extends _CommonPage {
 				mobileAction.FuncClick(username, "Username");
 				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
 
-				mobileAction.FuncClick(password, "Password");
-				//mobileAction.FuncSendKeys(password, passwords);
-				TradeMultiLeg.get().FuncEnterText(password, CL.getTestDataInstance().UserPassword);
+				//mobileAction.FuncClick(password, "Password");
+				mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+				//TradeMultiLeg.get().FuncEnterText(password, CL.getTestDataInstance().UserPassword);
+				TradeMultiLeg.get().handleKeyboard();
 				mobileAction.FuncClick(login, "Login");
 				
+				if(!mobileAction.isObjExists(Investing_Trade))
 				enterPwdifError();
 
 /*				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -282,16 +289,17 @@ public class LoginMIT extends _CommonPage {
 		try
 		{
 			int iCnt = 1;
-			if(!mobileAction.isObjExists(Investing_Trade) && mobileAction.isObjExists(errorText))
+			//if(!mobileAction.isObjExists(Investing_Trade) && mobileAction.isObjExists(errorText))
+			if(mobileAction.isObjExists(errorText))
 			{
 			do
 			{
-				mobileAction.FuncClick(password, "Password");
-				TradeMultiLeg.get().FuncEnterText(password, CL.getTestDataInstance().UserPassword);
+				//mobileAction.FuncClick(password, "Password");
+				mobileAction.FuncSendKeys(password,CL.getTestDataInstance().UserPassword);
+				TradeMultiLeg.get().handleKeyboard();
 				mobileAction.FuncClick(login, "Login");
 				iCnt++;
-			}while(!mobileAction.isObjExists(errorText) || iCnt>5);
-			}
+			}while(mobileAction.isObjExists(errorText) || iCnt>5);
 			
 			if(iCnt>5)
 			{
@@ -300,6 +308,7 @@ public class LoginMIT extends _CommonPage {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
+			}
 			}
 		}
 		catch(Exception e)

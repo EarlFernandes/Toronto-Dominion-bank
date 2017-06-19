@@ -326,8 +326,16 @@ public class SearchPageMIT extends _CommonPage {
 	{
 		try
 		{
-			mobileAction.FuncSendKeys(mEle, symbol + " ");
-			((RemoteWebDriver) CL.GetDriver()).getKeyboard().pressKey(Keys.BACK_SPACE);
+
+			if (CL.getTestDataInstance().getMobilePlatFormVersion().contains("6"))
+			{
+				mobileAction.FuncSendKeys(mEle, symbol + " ");
+			}
+			else
+			{
+				mobileAction.FuncSendKeys(mEle, symbol + " ");
+				((RemoteWebDriver) CL.GetDriver()).getKeyboard().pressKey(Keys.BACK_SPACE);
+			}
 			
 			//mobileAction.FuncSendKeys(mEle,"\u0008");
 			//mEle.sendKeys(Keys.DELETE);
