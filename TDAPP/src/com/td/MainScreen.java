@@ -91,7 +91,8 @@ public class MainScreen extends _CommonPage {
 
 			// If length is 2, then second token is the locale
 			if (targetEnvVars.length == 2) {
-				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(targetEnvVars[1]);
+				currentLocale = targetEnvVars[1];
+				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
 			}
 
 			CL.mobileApp(appiumPath);
@@ -120,7 +121,6 @@ public class MainScreen extends _CommonPage {
 				} else {
 					appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
 				}
-
 
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
