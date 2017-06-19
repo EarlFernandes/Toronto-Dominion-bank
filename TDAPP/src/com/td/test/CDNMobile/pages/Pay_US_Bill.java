@@ -318,11 +318,11 @@ public class Pay_US_Bill extends _CommonPage {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception ex) {
+				System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

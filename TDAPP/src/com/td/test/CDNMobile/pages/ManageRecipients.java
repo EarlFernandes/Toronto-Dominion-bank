@@ -307,8 +307,8 @@ public class ManageRecipients extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + StringLookup.lookupString(StringLookup.ALLOW_CONTACTS_ACCESS_HEADER, currentLocale) + "']", "dialog title");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + StringLookup.lookupString(StringLookup.ALLOW_CONTACTS_ACCCESS_BODY, currentLocale) + "']", "dialog msg");
+//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + StringLookup.lookupString(StringLookup.ALLOW_CONTACTS_ACCESS_HEADER, currentLocale) + "']", "dialog title");
+//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + StringLookup.lookupString(StringLookup.ALLOW_CONTACTS_ACCCESS_BODY, currentLocale) + "']", "dialog msg");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("add_contact_alert_title") + "']", "dialog title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text=\"" + mobileAction.getAppString("add_contact_alert_message") + "\"]", "dialog msg");
@@ -546,29 +546,9 @@ public class ManageRecipients extends _CommonPage {
 	public void verifyAddRecipientTextElements() {
 		Decorator();
 		
-//		Set<String> contextNames = CL.GetAppiumDriver().getContextHandles();
-//		for (String contextName : contextNames) {
-//			System.out.println("DAVID>>>>" + contextNames); //prints out something like [NATIVE_APP, WEBVIEW_<APP_PKG_NAME>]
-//		}
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("add_rcp_title") + "']", "Add Recipients title");
-//				mobileAction.verifyWebElementUsingXPath("//div[@class='add-recipient']/div[@class='heading ng-binding']", "Add Recipient");
-//				mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[1]", "Name");
-//				mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_rcp_name_copy").replaceAll("\"", "") + "\"]", "Name sub");
-//				mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[2]", "Email");
-//				mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_rcp_email_hint").replaceAll("\"", "") + "\"]", "Email sub");
-//				mobileAction.verifyWebElementUsingXPath("(//span[@class='ng-binding'])[1]", "Note");
-//				mobileAction.verifyWebElementUsingXPath("(//label[@class=\"drop-down-label ng-binding\"])[2]", "Email lang");
-//				mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[3]", "Security Questions");
-//				mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_enter_security_question").replaceAll("\"", "") + "\"]", "Create a security question");
-//				mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[4]", "Answer");
-//				mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_enter_the_answer").replaceAll("\"", "") + "\"]", "Enter the answer");
-//				mobileAction.verifyWebElementUsingXPath("(//label[@class='ng-binding'])[5]", "Enter Answer");
-//				mobileAction.verifyWebElementUsingXPath("//input[@placeholder=\"" + mobileAction.getAppString("str_reenter_the_answer").replaceAll("\"", "") + "\"]", "ReEnter the answer");
-//				mobileAction.verifyWebElementUsingXPath("(//text[@class='ng-binding'])[1]", "To collect note");
-//				mobileAction.verifyWebElementUsingXPath("//a[@aria-label=\"" + mobileAction.getAppString("rcp_how_to_link").replaceAll("\"", "") + "\"]", "Create an effective message");
-//				mobileAction.verifyWebElementUsingXPath("//button[@aria-label=\"" + mobileAction.getAppString("btn_review_details") + "\"]", "Review");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("add_rcp_title") + "']", "Add Recipients title");
 				

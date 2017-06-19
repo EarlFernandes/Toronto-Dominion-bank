@@ -13,10 +13,10 @@ public class MainScreen extends _CommonPage {
 	// ***** LOCAL EXECUTION PARAMETERS *****
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.140.61:4728/wd/hub/";
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.201:4760/wd/hub/";
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
-	private static final String APP_ANDROID = "APP_ANDROID";
+	private static final String APP_ANDROID = "APP_ANDROID_ZH";
 	// Change this parameter to point to the correct ipa in Setup.xls for ios
 	private static final String APP_IOS = "APP_IOS_ZH";
 
@@ -63,16 +63,16 @@ public class MainScreen extends _CommonPage {
 	public void Splash_Conitnue() throws IOException {
 		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
 		readSheet();
-//		readP2PSheet();
-//
-//		if (getTestdata("ProfileType").equalsIgnoreCase("Personal")) {
-//			System.out.println("ProfileType: " + getTestdata("ProfileType"));
-//			Executor.get().createPersonalProfile();
-//		} else if (getTestdata("ProfileType").equalsIgnoreCase("Business")) {
-//			Executor.get().createBusinessProfile();
-//		} else if (getTestdata("ProfileType").equalsIgnoreCase("Multi")) {
-//			Executor.get().createMultiProfile();
-//		}
+		readP2PSheet();
+
+		if (getTestdata("ProfileType").equalsIgnoreCase("Personal")) {
+			System.out.println("ProfileType: " + getTestdata("ProfileType"));
+			Executor.get().createPersonalProfile();
+		} else if (getTestdata("ProfileType").equalsIgnoreCase("Business")) {
+			Executor.get().createBusinessProfile();
+		} else if (getTestdata("ProfileType").equalsIgnoreCase("Multi")) {
+			Executor.get().createMultiProfile();
+		}
 
 		final String udid = CL.getTestDataInstance().getDeviceUdid();
 		// Jenkins only params

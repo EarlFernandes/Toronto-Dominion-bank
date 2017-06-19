@@ -65,12 +65,8 @@ public class Between_My_accounts extends _CommonPage {
 	private MobileElement btnFinish_transfer;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/button_footer'and @text='Continue']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/button_footer']")
 	private MobileElement btncontinue_Transfer;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Finish Transfer']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id= 'com.td:id/myaccounts_entry_btn_confirm' and @text='Finish Transfer']")
-	private MobileElement btnFinish_Transfer;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Confirmation #')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_Val']")
@@ -509,7 +505,7 @@ public class Between_My_accounts extends _CommonPage {
 			perFormTransfer();
 			mobileAction.FuncClick(usd_Button, "USD");
 			mobileAction.FuncClick(btncontinue_Transfer, "Continue");
-			mobileAction.FuncClick(btnFinish_Transfer, "Finish");
+			mobileAction.FuncClick(btnFinish_transfer, "Finish");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.waitForElementToVanish(txtProgressBar);
 			}
@@ -543,7 +539,7 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.FuncClick(ok_Button, "OK");
 			mobileAction.FuncWaitForElement(ok_Button, Sndtimeout, "Ok");
 			mobileAction.FuncClick(ok_Button, "OK");*/
-			mobileAction.FuncClick(btnFinish_Transfer, "Finish");
+			mobileAction.FuncClick(btnFinish_transfer, "Finish");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.waitForElementToVanish(txtProgressBar);
 			}
@@ -633,7 +629,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.waitForElementToVanish(txtProgressBar);
 //				mobileAction.FuncWaitForElement(ok_Button, 120, "Ok");
 //				mobileAction.FuncClick(ok_Button, "OK");
-				mobileAction.FuncClick(btnFinish_Transfer, "Finish");
+				mobileAction.FuncClick(btnFinish_transfer, "Finish");
 				mobileAction.waitForElementToVanish(txtProgressBar);
 
 				String conf_val = mobileAction.getText(confirmation_Val);
@@ -676,7 +672,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 				mobileAction.FuncWaitForElement(ok_Button, 120, "Ok");
 				mobileAction.FuncClick(ok_Button, "OK");
-				mobileAction.FuncClick(btnFinish_Transfer, "Finish");
+				mobileAction.FuncClick(btnFinish_transfer, "Finish");
 
 				String conf_val = mobileAction.getText(confirmation_Val);
 
@@ -725,7 +721,7 @@ public class Between_My_accounts extends _CommonPage {
 	public void FinishButton() {
 		Decorator();
 		try {
-			mobileAction.FuncClick(btnFinish_Transfer, "Finish");
+			mobileAction.FuncClick(btnFinish_transfer, "Finish");
 			mobileAction.waitForElementToVanish(txtProgressBar);
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -853,7 +849,7 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.FuncClick(ok_Button, "OK");
 			mobileAction.FuncWaitForElement(ok_Button, timeout, "Ok");
 			mobileAction.FuncClick(ok_Button, "OK");
-			mobileAction.FuncClick(btnFinish_Transfer, "Finish");
+			mobileAction.FuncClick(btnFinish_transfer, "Finish");
 			String conf_val = mobileAction.getText(confirmation_Val);
 			mobileAction.FuncClick(btnMenu, "Menu");
 			mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
@@ -1097,14 +1093,14 @@ public class Between_My_accounts extends _CommonPage {
 			perFormTransfer();
 			mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(btnFinish_Transfer, "Finish");
+				mobileAction.FuncClick(btnFinish_transfer, "Finish");
 				mobileAction.verifyElementIsDisplayed(txtTrnsfrSucssfl, "Transfer Successful");
 
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
 				mobileAction.verifyElementIsDisplayed(confirmation_Val, "Confirmation Value");
 				mobileAction.verifyElementUsingXPath(account_value, "Account");
 			} else {
-				mobileAction.FuncClick(btnFinish_Transfer, "Finish");
+				mobileAction.FuncClick(btnFinish_transfer, "Finish");
 				String conf_val = mobileAction.getText(confirmation_Val);
 				mobileAction.verifyElementIsDisplayed(txtTrnsfrSucssfl, "Transfer Successful");
 				mobileAction.FuncClick(btnMenu, "Menu");
@@ -1275,7 +1271,7 @@ public class Between_My_accounts extends _CommonPage {
 			System.out.println("Wait for " + timeout +"s again until rate exchange expires");
 			mobileAction.FuncWaitForElement(ok_Button, timeout, "Ok");
 			mobileAction.FuncClick(ok_Button, "OK");
-			mobileAction.FuncClick(btnFinish_Transfer, "Finish");
+			mobileAction.FuncClick(btnFinish_transfer, "Finish");
 			mobileAction.verifyElementIsDisplayed(txtTrnsfrSucssfl, "Transfer Successful");
 			mobileAction.FuncClick(btnMenu, "Menu");
 			mobileAction.FuncClick(btnLogout, "Logout");
@@ -1377,7 +1373,7 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 					mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
 
-					mobileAction.FuncClick(btnFinish_Transfer, "Finish Transfer");
+					mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
 					Thread.sleep(5000);
 
 					mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
@@ -1394,7 +1390,7 @@ public class Between_My_accounts extends _CommonPage {
 					perFormTransfer() ;
 					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 					mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
-					mobileAction.FuncClick(btnFinish_Transfer, "Finish Transfer");
+					mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
 					mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
 					mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
 					mobileAction.verifyElementIsDisplayed(fromAccountValue, "From Account Value");
@@ -1522,7 +1518,7 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.FuncSendKeys(amount, amountXL);
 					mobileAction.FuncClick(done, "Done");
 					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
-					mobileAction.FuncClick(btnFinish_Transfer, "Finish Transfer");
+					mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
 					mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
 					mobileAction.verifyElement(cnfrDetail, "Confirm Details");
 					mobileAction.verifyElementIsDisplayed(fromAccountValue, "From Account Value");
@@ -1543,7 +1539,7 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.FuncHideKeyboard();
 					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 					mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
-					mobileAction.FuncClick(btnFinish_Transfer, "Finish Transfer");
+					mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
 					mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
 					mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
 					mobileAction.verifyElementIsDisplayed(fromAccountValue, "From Account Value");
@@ -1656,7 +1652,7 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.FuncSendKeys(amount, amountXL);
 					mobileAction.FuncClick(done, "Done");
 					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
-					mobileAction.FuncClick(btnFinish_Transfer, "Finish Transfer");
+					mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
 					mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
 					mobileAction.verifyElement(cnfrDetail, "Confirm Details");
 					mobileAction.FuncClick(btnMenu, "Menu");
@@ -1667,7 +1663,7 @@ public class Between_My_accounts extends _CommonPage {
 					perFormTransfer() ;
 					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 					mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
-					mobileAction.FuncClick(btnFinish_Transfer, "Finish Transfer");
+					mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
 					mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
 					mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
 					mobileAction.FuncClick(btnMenu, "Menu");
@@ -1719,7 +1715,7 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 					mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
 
-					mobileAction.FuncClick(btnFinish_Transfer, "Finish Transfer");
+					mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
 
 					mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
 					mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
@@ -1743,7 +1739,7 @@ public class Between_My_accounts extends _CommonPage {
 					perFormTransfer() ;
 					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 					mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
-					mobileAction.FuncClick(btnFinish_Transfer, "Finish Transfer");
+					mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
 					mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
 					mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
 					mobileAction.verifyElementIsDisplayed(fromAccountValue, "From Account Value");
@@ -1794,7 +1790,7 @@ public class Between_My_accounts extends _CommonPage {
 		mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
 
 		//Thread.sleep(105000);
-		mobileAction.FuncClick(btnFinish_Transfer, "Finish Transfer");
+		mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
 
 		mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
 		mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
@@ -1806,7 +1802,7 @@ public class Between_My_accounts extends _CommonPage {
 		perFormTransfer() ;
 		mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 		mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
-		mobileAction.FuncClick(btnFinish_Transfer, "Finish Transfer");
+		mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
 		mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
 		mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
 		mobileAction.verifyElementIsDisplayed(fromAccountValue, "From Account Value");

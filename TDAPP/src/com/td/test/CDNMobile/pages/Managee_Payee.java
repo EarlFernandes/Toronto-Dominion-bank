@@ -395,16 +395,20 @@ public class Managee_Payee extends _CommonPage {
 				mobileAction.waitForElementToVanish(progressBar);
 				Thread.sleep(10000);
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			// Switch back to native to get proper screenshots
-			mobileAction.switchAppiumContext("NATIVE_APP");
+		} catch (Exception e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				} catch (Exception ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			} catch (Exception exx) {
+				
 			}
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
 	

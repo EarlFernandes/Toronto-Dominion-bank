@@ -63,17 +63,14 @@ public class MobileDeposit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement mobile_Deposit_Header;
 	
-	@iOSFindBy(accessibility = "DEPOSITVIEW_DEPOSIT")
-	private MobileElement dpstCheque_btn;
-	
 	@iOSFindBy(accessibility = "DEPOSITVIEW_DEPOSIT_DES")
 	private MobileElement dpstCheque_btn_desc;
 	
 	@iOSFindBy(accessibility = "DEPOSITVIEW_HISTORY")
 	private MobileElement chequeHistoryButton;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Deposit Cheque']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/MobileDeposit_DepositCheque_Header_TextView' and @text='Deposit Cheque']")
+	@iOSFindBy(accessibility = "DEPOSITVIEW_DEPOSIT")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/MobileDeposit_DepositCheque_Header_TextView']")
 	private MobileElement dpstCheque_Btn;
 
 	@iOSFindBy(accessibility = "DEPOSITVIEW_HISTORY_DES")
@@ -136,7 +133,7 @@ public class MobileDeposit extends _CommonPage {
 	private void initElementDepositChequeButton() {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				dpstCheque_btn = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDeposit_DepositCheque_Header") + "']", "Deposit Cheque");
+				dpstCheque_Btn = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MobileDeposit_DepositCheque_Header") + "']", "Deposit Cheque");
 			} 
 		} catch (NoSuchElementException | IOException e) {
 			try {
@@ -400,7 +397,7 @@ public class MobileDeposit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyTextEquality(dpstCheque_btn.getText(), mobileAction.getAppString("mobiledeposit_successfeature_str_depositacheque"));
+				mobileAction.verifyTextEquality(dpstCheque_Btn.getText(), mobileAction.getAppString("mobiledeposit_successfeature_str_depositacheque"));
 				mobileAction.verifyTextEquality(dpstCheque_btn_desc.getText(), mobileAction.getAppString("mobiledeposit_successfeature_str_depositacheque_detailText"));
 				mobileAction.verifyTextEquality(chequeHistoryButton.getText(), mobileAction.getAppString("mobiledeposit_introfeature_str_mobileDepositHistory"));
 				mobileAction.verifyTextEquality(chequeHistoryButtonDesc.getText(), mobileAction.getAppString("mobiledeposit_successfeature_str_depositreceipts_detailText"));

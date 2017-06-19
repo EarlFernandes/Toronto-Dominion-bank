@@ -57,6 +57,7 @@ public class Transfers extends _CommonPage {
 	@iOSFindBy(accessibility = "TRANSFERVIEW_BETWEENACCOUNTS_DES")
 	private MobileElement btw_my_accnts_desc;
 	
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progrees_bar;
 	
@@ -73,9 +74,10 @@ public class Transfers extends _CommonPage {
 	@iOSFindBy(accessibility = "TRANSFERVIEW_RECIPIENTS_DES")
 	private MobileElement manageRecipientDesc;
 	
-	@iOSFindBy(xpath = "//*[@label='In progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
+
 	String transfer_Header_Value = "Transfers";
 	String confirm_Header = "Confirm";
 
@@ -189,6 +191,9 @@ public class Transfers extends _CommonPage {
 		try {
 			Decorator();
 			initElementManageRecipients();
+			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer Header");
+			mobileAction.FuncClick(manageRecipient, "Manage Recipients Link");
+			mobileAction.waitForElementToVanish(progressBar);
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -280,9 +285,7 @@ public class Transfers extends _CommonPage {
 
 	private void initElementManageRecipients() {
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				manageRecipient = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("imtNavRowManageRecipients") + "']", "Manage Recipients");
 			}
 		} catch (NoSuchElementException | IOException e) {

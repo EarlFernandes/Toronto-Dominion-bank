@@ -133,13 +133,13 @@ public class AddPayee extends _CommonPage {
 				// Switch back to native to get proper screenshots
 				mobileAction.switchAppiumContext("NATIVE_APP");
 			}
-		} catch (NoSuchElementException | IOException e) {
-			// Switch back to native to get proper screenshots
-			mobileAction.switchAppiumContext("NATIVE_APP");
+		} catch (Exception e) {
 			try {
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception ex) {
+				System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -224,12 +224,12 @@ public class AddPayee extends _CommonPage {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 			}
 		} catch (Exception e) {
-			// Switch back to native to get proper screenshots
-			mobileAction.switchAppiumContext("NATIVE_APP");
 			try {
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception ex) {
+				System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -281,12 +281,12 @@ public class AddPayee extends _CommonPage {
 				// Switch back to native to get proper screenshots
 				mobileAction.switchAppiumContext("NATIVE_APP");
 			}
-		} catch (NoSuchElementException | IOException e) {
-			// Switch back to native to get proper screenshots
-			mobileAction.switchAppiumContext("NATIVE_APP");
+		} catch (Exception e) {
 			try {
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
-			} catch (IOException ex) {
+			} catch (Exception ex) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			System.err.println("TestCase has failed.");
@@ -309,11 +309,11 @@ public class AddPayee extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("add_us_payee_title") + "']", "Add U.S. Payee title");
 			}
 		} catch (Exception e) {
-			// Switch back to native to get proper screenshots
-			mobileAction.switchAppiumContext("NATIVE_APP");
 			try {
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
-			} catch (IOException ex) {
+			} catch (Exception ex) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			System.err.println("TestCase has failed.");
@@ -335,12 +335,12 @@ public class AddPayee extends _CommonPage {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("add_cdn_payee_title") + "']", "Add Canadian Payee title");
 			}
-			} catch (NoSuchElementException | IOException e) {
-			// Switch back to native to get proper screenshots
-			mobileAction.switchAppiumContext("NATIVE_APP");
+			} catch (Exception e) {
 			try {
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
-			} catch (IOException ex) {
+			} catch (Exception ex) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			System.err.println("TestCase has failed.");
@@ -385,13 +385,13 @@ public class AddPayee extends _CommonPage {
 				// Switch back to native to get proper screenshots
 				mobileAction.switchAppiumContext("NATIVE_APP");
 			}
-		} catch (NoSuchElementException | IOException e) {
-			// Switch back to native to get proper screenshots
-			mobileAction.switchAppiumContext("NATIVE_APP");
+		} catch (Exception e) {
 			try {
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception ex) {
+				System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -420,13 +420,13 @@ public class AddPayee extends _CommonPage {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("review_details_title") + "']", "Confirm");
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			// Switch back to native to get proper screenshots
-			mobileAction.switchAppiumContext("NATIVE_APP");
+		} catch (Exception e) {
 			try {
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception ex) {
+				System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -480,13 +480,13 @@ public class AddPayee extends _CommonPage {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				
 			}
-		} catch (NoSuchElementException | IOException e) {
-			// Switch back to native to get proper screenshots
-			mobileAction.switchAppiumContext("NATIVE_APP");
+		} catch (Exception e) {
 			try {
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception ex) {
+				System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -509,13 +509,13 @@ public class AddPayee extends _CommonPage {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("add_payee_success_title") + "']", "Success title");
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			// Switch back to native to get proper screenshots
-			mobileAction.switchAppiumContext("NATIVE_APP");
+		} catch (Exception e) {
 			try {
+				// Switch back to native to get proper screenshots
+				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception ex) {
+				System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -538,11 +538,21 @@ public class AddPayee extends _CommonPage {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			}
 		} else {
-			// Switching to webview
-			mobileAction.switchAppiumContext("WEBVIEW_com.td");
-			final WebElement searchForPayee = mobileAction.verifyWebElementUsingXPath("//input[@ng-model='searchText']", "Search for payee");
-			searchForPayee.sendKeys(getTestdata("Payee"));
-			mobileAction.waitForElementToVanish(progressBar);
+			try {
+				// Switching to webview
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				final WebElement searchForPayee = mobileAction.verifyWebElementUsingXPath("//input[@ng-model='searchText']", "Search for payee");
+				searchForPayee.sendKeys(getTestdata("Payee"));
+				mobileAction.waitForElementToVanish(progressBar);
+			} catch (Exception e) {
+				try {
+					// Switch back to native to get proper screenshots
+					mobileAction.switchAppiumContext("NATIVE_APP");
+					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				} catch (Exception ex) {
+					System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+			}
 		}
 	}
 }

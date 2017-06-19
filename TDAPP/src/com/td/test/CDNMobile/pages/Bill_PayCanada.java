@@ -351,7 +351,7 @@ public class Bill_PayCanada extends _CommonPage {
 
 				//mobileAction.verifyTextEquality(header.getText(), mobileAction.getAppString("confirm_title"));
 				//mobileAction.verifyTextEquality(warningMsg.getText(), mobileAction.getAppString("payBillConfirmCopyTop"));
-				mobileAction.verifyTextEquality(fromAccount.getText(), mobileAction.getAppString("payBillReceiptFieldHeaderFromAccount"));
+				//mobileAction.verifyTextEquality(fromAccount.getText(), mobileAction.getAppString("payBillReceiptFieldHeaderFromAccount"));
 				mobileAction.verifyTextEquality(payeeTo.getText(), mobileAction.getAppString("payBillDropdownHeaderPayee"));
 				mobileAction.verifyTextEquality(amount.getText(), mobileAction.getAppString("payBillReceiptFieldHeaderAmount"));
 				mobileAction.verifyTextEquality(date.getText(), mobileAction.getAppString("payBillReceiptFieldHeaderDate"));

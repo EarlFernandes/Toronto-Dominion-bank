@@ -2891,9 +2891,7 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 	public static final String PATTERN_ZH_YYYY_MM_DD_RANGE = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日 – (\\d{4}年)*\\d{1,2}月\\d{1,2}日";
 	
 	public void verifyDateFormat(final String dateStr, final int type) {
-		final String locale =  super.LoadData("Value", super.getTestDataInstance().getSetupFile(), "AppURL", "Name", "LOCALE");
-
-		if (locale.startsWith("zh")) {
+		if (_CommonPage.currentLocale.startsWith("zh")) {
 			switch (type) {
 				case (TYPE_YYYY_MM_DD):
 					if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD)) {
@@ -2987,11 +2985,11 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 					break;
 			}
 
-		} else if (locale.equalsIgnoreCase("EN") || locale.equalsIgnoreCase("fr")) {
+		} else if (_CommonPage.currentLocale.equalsIgnoreCase("EN") || _CommonPage.currentLocale.equalsIgnoreCase("fr")) {
 			// Don't need to test this for now
 		} else {
 			try {
-				GetReporting().FuncReport("Fail", "Unknown locale found to test against date string: " + locale);
+				GetReporting().FuncReport("Fail", "Unknown locale found to test against date string: " + _CommonPage.currentLocale);
 			} catch (IOException e) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}			

@@ -310,7 +310,23 @@ public class EventCase {
 		PendingInterac_e_Transfer_cancel_deposit_to_VerifyText,
 		QuickAccess_VerifyActivateText,
 		QuickAccess_VerifyFTEText,
-		Transfer_VerifyTextElements
+		Transfer_VerifyTextElements,
+		InvestingAccountSummary_verifyDetails,
+		InvestingAccountSummary_verifyCreditCardSummaryDetails,
+		InvestingAccountSummary_verifyCreditCardActivityDetails,
+		InvestingAccountSummary_verifyCreditCardPaymentDetails,
+		InvestingAccountSummary_verifyCreditCardPaymentPurchaseDetails,
+		InvestingAccountSummary_verifyCreditCardStatementDetails,
+		InvestingAccountSummary_verifyCreditCardStatementTabDetails,
+		InvestingAccountSummary_verifyHoldingsDetails,
+		InvestingAccountSummary_verifyListedHoldingsDetails,
+		InvestingAccountSummary_verifyInvestingOrderDetails,
+		InvestingAccountSummary_verifyOrdersDetails,
+		InvestingAccountSummary_verifyActivityTabDetails,
+		Investing_verifyPageDetails,
+		Investing_clickAccount,
+		MutualFunds_verifyMutualFundDetails,
+		clickInvestingAccounts
 		
 		
 		
@@ -2935,7 +2951,68 @@ public class EventCase {
 		case CrossBorderBanking_VerifyTextWelcomePage:
 			CrossBorder.get().verifyCrossBorderWelcomeTextElements();
 			break;
-
+		case clickInvestingAccounts:
+			MenuPage.get().clickInvestingAccounts();;
+			break;
+			
+		case InvestingAccountSummary_verifyDetails:
+			InvestingAccountSummary.get().verifyInvestingAccountDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyCreditCardSummaryDetails:
+			InvestingAccountSummary.get().verifyCrediCardSummaryDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyCreditCardActivityDetails:
+			InvestingAccountSummary.get().verifyCrediCardActivityDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyCreditCardPaymentDetails:
+			InvestingAccountSummary.get().verifyCrediCardPaymentDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyCreditCardPaymentPurchaseDetails:
+			InvestingAccountSummary.get().verifyCrediCardPaymentPurchaseDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyCreditCardStatementDetails:
+			InvestingAccountSummary.get().verifyCreditCardStatementDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyCreditCardStatementTabDetails:
+			InvestingAccountSummary.get().verifyCreditCardStatementTabDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyHoldingsDetails:
+			InvestingAccountSummary.get().verifyInvestingHoldingDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyListedHoldingsDetails:
+			InvestingAccountSummary.get().verifyListedHoldingDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyInvestingOrderDetails:
+			InvestingAccountSummary.get().verifyInvestingOrderDetails();
+			break;
+			
+		case MutualFunds_verifyMutualFundDetails:
+			MutualFunds.get().verifyMutualFundDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyOrdersDetails:
+			InvestingAccountSummary.get().verifyOrderDetails();
+			break;
+			
+		case InvestingAccountSummary_verifyActivityTabDetails:
+			InvestingAccountSummary.get().verifyActivityTabDetails();
+			break;
+		case Investing_verifyPageDetails:
+			Investing.get().verifyInvestingPageDetails();
+			break;
+			
+		case Investing_clickAccount:
+			Investing.get().clickAccount();
+			break;			
 		} 	
 	}
 

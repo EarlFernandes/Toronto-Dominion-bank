@@ -36,9 +36,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Accounts']")
 	private MobileElement accounts;
 	
-	// FIXME: Ask may to add this back!
-	@iOSFindBy(xpath = "//*[@label='选单' or @label='Menu' or @label='選單']")
-	//@iOSFindBy(accessibility ="NAVIGATION_ITEM_MENU")
+	@iOSFindBy(accessibility ="NAVIGATION_ITEM_MENU")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
@@ -66,9 +64,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='TRANSFERS']")
 	private MobileElement transfer_button_dashboard;
 
-	// FIXME: Ask may to add this back!
-	@iOSFindBy(xpath = "//*[@label='特快结余查询' or @label='Quick Access' or @label='特快結餘查詢']")
-	//@iOSFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
+	@iOSFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access']|//android.widget.TextView[@resource-id='com.td:id/easy_access']")
 	private MobileElement quickAccess;
 
@@ -375,10 +371,6 @@ public class HomeScreen extends _CommonPage {
 			Decorator();
 			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				
-				if (mobileAction.verifyElementIsPresent(back_button)){
-					mobileAction.FuncClick(back_button, "Back button");
-				}
 				mobileAction.FuncClick(menu, "Menu");
 			} else {
 				mobileAction.FuncClick(menu, "Menu");
@@ -582,7 +574,7 @@ public class HomeScreen extends _CommonPage {
 
 		Decorator();
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2500);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.FuncClick(back_button, "BACK");

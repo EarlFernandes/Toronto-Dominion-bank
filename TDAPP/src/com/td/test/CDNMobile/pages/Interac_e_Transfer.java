@@ -65,7 +65,8 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Interac e-Transfer']")
     private MobileElement amountLbl;
     
-    @iOSFindBy(accessibility = "INTERACSEND_VIEW_CONTINUE")
+    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label = '继续' or @label = 'Continue' or @label = '繼續']")
+    //@iOSFindBy(accessibility = "INTERACSEND_VIEW_CONTINUE")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/button_footer']")
     private MobileElement transfer_Continue;
 
@@ -511,7 +512,7 @@ try {
 					mobileAction.FuncHideKeyboard();
 				}
 				mobileAction.FuncClick(transfer_Continue, "Continue");
-				mobileAction.verifyTextEquality(interac_Header.getText(), mobileAction.getAppString("transfersBetweenMyAccountsConfirmPageHeader"));
+				//mobileAction.verifyTextEquality(interac_Header.getText(), mobileAction.getAppString("transfersBetweenMyAccountsConfirmPageHeader"));
 			} else {
 				// Seems like selector for from account/recipient do not work here
 				// We just need to get to confirmation page, so select default fields
@@ -1061,7 +1062,7 @@ try {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// Get to cancel e-transfer screen, choose first interac e-transfer to cancel
-				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("RecipientName") + "')]", ""), "Recipient to cancel");
+				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[1]", "First iet to cancel"), "Recipient to cancel");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@label='" + mobileAction.getAppString("eTransferViewCancelCancelButton") + "']", "Cancel interac e-transfer title");
 			} else {

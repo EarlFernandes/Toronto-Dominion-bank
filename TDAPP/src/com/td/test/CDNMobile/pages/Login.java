@@ -125,7 +125,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 
-	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_MENU")
+	@iOSFindBy(accessibility = "NAVIGATION_ITEM_MENU")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
@@ -331,13 +331,9 @@ public class Login extends _CommonPage {
 				}
 				mobileAction.FuncClick(securityLogin, "Login");
 				mobileAction.waitForElementToVanish(progressBar);
-			} else {
-
 			}
-
 		} catch (Exception e) {
-			System.out.println("Exception no Security Question found");
-
+			System.out.println("No Security Question found");
 		}
 	}
 
@@ -400,12 +396,11 @@ public class Login extends _CommonPage {
 
 			} else {
 				mobileAction.FuncClick(login, "Login");
-				Thread.sleep(5000);
+				mobileAction.waitForElementToVanish(progressBar);
 			}
 			verifySystemError();
 			verifySecurityQuestion();
 			verifyTandC();
-
 		}  catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

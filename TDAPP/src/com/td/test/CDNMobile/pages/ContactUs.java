@@ -60,10 +60,7 @@ public class ContactUs extends _CommonPage {
 	
 	@iOSFindBy(accessibility = "CONTACTUS_CELL_4_PHONE_TITLE")
 	private MobileElement tdWealthFinancial;
-	
-	@iOSFindBy(accessibility = "CONTACTUS_CELL_5_PHONE_TITLE")
-	private MobileElement tdWealthPrivate;
-	
+
 	@iOSFindBy(accessibility = "CONTACTUS_CELL_0_MAIL_TITLE")
 	private MobileElement giveFeedback;
 	
@@ -152,7 +149,7 @@ public class ContactUs extends _CommonPage {
 				mobileAction.verifyTextEquality(tdSmallBusiness.getText().trim(), mobileAction.getAppString("contact_us_TD_Small_Business_Banking"));
 				mobileAction.verifyTextEquality(tdDirectInvs.getText().trim(), mobileAction.getAppString("direct_investment_str"));
 				mobileAction.verifyTextEquality(tdWealthFinancial.getText().trim(), mobileAction.getAppString("contact_us_TD_Wealth_Financial_Planning"));
-				mobileAction.verifyTextEquality(tdWealthPrivate.getText().trim(), mobileAction.getAppString("contact_us_TD_Wealth_Private_Investment_Advice"));
+				//mobileAction.verifyTextEquality(tdWealthPrivate.getText().trim(), mobileAction.getAppString("contact_us_TD_Wealth_Private_Investment_Advice"));
 				// FIXME: Get correct map string here
 				//mobileAction.verifyTextEquality(giveFeedback.getText().trim(), mobileAction.getAppString("give_feedback"));
 			} else {
@@ -166,7 +163,7 @@ public class ContactUs extends _CommonPage {
 				final String xPathFooter = "//android.widget.RelativeLayout[@resource-id='com.td:id/rlLinks']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 3, "up");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_TDWealth_FP").replaceAll("\\<.*?>","") + "']", "Wealth financial");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_TDWealth_PIA") + "']", "Wealth private");
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_TDWealth_PIA") + "']", "Wealth private");
 				// FIXME: What is the correct string here?
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("give_feedback") + "']", "Give feedback");				
 			}
