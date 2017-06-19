@@ -89,13 +89,13 @@ public class MainScreen extends _CommonPage {
 				CL.getTestDataInstance().SetAppFilePath(targetEnvVars[0]);
 			}
 
+			CL.mobileApp(appiumPath);
+			
 			// If length is 2, then second token is the locale
 			if (targetEnvVars.length == 2) {
 				currentLocale = targetEnvVars[1];
 				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
 			}
-
-			CL.mobileApp(appiumPath);
 		} else { // Local execution
 			try { // Set udid explicitly for local execution, to handle udid
 					// with all caps, when reading from excel sheet // it seems
