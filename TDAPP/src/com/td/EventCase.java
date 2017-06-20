@@ -23,6 +23,7 @@ import com.td.test.CDNMobile.pages.DepositCheque;
 import com.td.test.CDNMobile.pages.FindLocations;
 import com.td.test.CDNMobile.pages.HoldingDetails;
 import com.td.test.CDNMobile.pages.HomeScreen;
+import com.td.test.CDNMobile.pages.Interac_Send_Money;
 import com.td.test.CDNMobile.pages.Interac_e_Registration;
 import com.td.test.CDNMobile.pages.Interac_e_Transfer;
 import com.td.test.CDNMobile.pages.Investing;
@@ -188,6 +189,21 @@ public class EventCase {
 		//P2P
 		Transfers_clickManageContactsLink,
 		ManageContacts_verifyPageHEader,
+		ManageContacts_clickAddContactPlusSign,
+		ManageContacts_clickAddContactButton,
+		ManageContacts_addContact,
+		ManageContacts_clickAddContactfromPhone,
+		ManageContacts_AddContactfromPhone,
+		ManageContacts_clickContact,
+		ManageContacts_verifySuccessMessage,
+		ManageContacts_editContact,
+		ManageContacts_noDeleteContact,
+		ManageContacts_deleteContact,
+		ManageContacts_verifyContactEditSuccessMsg,
+		ManageContacts_MultiProfileEditContact,
+		ManageContacts_MultiProfileAddContact,
+		ManageContacts_MultiProfileDeleteContact,
+		ManageContacts_verifyContactDeleteSuccessMsg,
 		Interac_e_Registration_clickContinueButton,
 		Profile_And_Settings_clickPaymentsAndTransfers,
 		Interac_e_Registration_verifyErrorText,
@@ -199,9 +215,14 @@ public class EventCase {
 		Interac_e_Registration_verifyBusinessDetails,
 		Interac_e_Registration_verifyRegSuccessMessage,
 		Interac_e_Registration_clickRegisterAnotherProfile,
+		Interac_Send_Money_sendMoneyWithError,
+		Interac_Send_Money_sendMoney,
+		Interac_Send_Money_sendMoneyVerifySuccessMsg,
+		Interac_Send_Money_sendMoneyVerifyDetails,
 		Executor_createPersonalProfile,
 		Executor_createBusinessProfile,
 		Executor_createMultiProfile,
+		HomeScreen_clickSendMoney,
 		
 		//Tetris Loyalty
 		CreditHeader,
@@ -477,6 +498,66 @@ public class EventCase {
 			ManageContacts.get().verifyPageHeader();
 			break;
 			
+		case ManageContacts_verifyContactDeleteSuccessMsg:
+			ManageContacts.get().verifyContactDeleteSuccessMsg();
+			break;
+			
+		case ManageContacts_noDeleteContact:
+			ManageContacts.get().noDeleteContact();
+			break;
+			
+		case ManageContacts_deleteContact:
+			ManageContacts.get().deleteContact();
+			break;
+			
+		case ManageContacts_clickAddContactPlusSign:
+			ManageContacts.get().clickAddContactPlusSign();
+			break;
+			
+		case ManageContacts_clickAddContactButton:
+			ManageContacts.get().clickAddContactButton();
+			break;
+			
+		case ManageContacts_addContact:
+			ManageContacts.get().addContact();
+			break;
+			
+		case ManageContacts_clickAddContactfromPhone:
+			ManageContacts.get().clickAddContactfromPhone();
+			break;
+			
+		case ManageContacts_AddContactfromPhone:
+			ManageContacts.get().AddContactfromPhone();
+			break;
+			
+		case ManageContacts_clickContact:
+			ManageContacts.get().clickContact();
+			break;
+			
+		case ManageContacts_editContact:
+			ManageContacts.get().editContact();
+			break;
+			
+		case ManageContacts_verifyContactEditSuccessMsg:
+			ManageContacts.get().verifyContactEditSuccessMsg();
+			break;
+			
+		case ManageContacts_MultiProfileEditContact:
+			ManageContacts.get().MultiProfileEditContact();
+			break;
+			
+		case ManageContacts_MultiProfileDeleteContact:
+			ManageContacts.get().MultiProfileDeleteContact();
+			break;
+			
+		case ManageContacts_MultiProfileAddContact:
+			ManageContacts.get().MultiProfileAddContact();
+			break;
+			
+		case ManageContacts_verifySuccessMessage:
+			ManageContacts.get().verifySuccessMessage();
+			break;
+			
 		case Interac_e_Registration_clickContinueButton:
 			Interac_e_Registration.get().clickContinueButton();
 			break;
@@ -517,6 +598,10 @@ public class EventCase {
 			Executor.get().createMultiProfile();
 			break;
 			
+		case HomeScreen_clickSendMoney:
+			HomeScreen.get().sendMoney();
+			break;
+			
 		case Interac_e_Registration_verifyDetails:
 			Interac_e_Registration.get().verifyDetails();
 			break;
@@ -527,6 +612,22 @@ public class EventCase {
 			
 		case Interac_e_Registration_verifyRegSuccessMessage:
 			Interac_e_Registration.get().verifyRegSuccessMsg();
+			break;
+			
+		case Interac_Send_Money_sendMoneyWithError:
+			Interac_Send_Money.get().sendMoneyWithError();
+			break;
+			
+		case Interac_Send_Money_sendMoney:
+			Interac_Send_Money.get().sendMoney();
+			break;
+			
+		case Interac_Send_Money_sendMoneyVerifyDetails:
+			Interac_Send_Money.get().sendMoneyVerifyDetails();
+			break;
+			
+		case Interac_Send_Money_sendMoneyVerifySuccessMsg:
+			Interac_Send_Money.get().sendMoneyVerifySuccessMsg();
 			break;
 			
 		case HomeScreen_ClickBills:

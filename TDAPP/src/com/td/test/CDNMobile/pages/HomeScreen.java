@@ -106,6 +106,8 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 
+
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/send_money_dashboard']") //@Author Ashraf Sprint 2
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@value='SEND MONEY']")
 	private MobileElement send_money_button;
 
@@ -644,12 +646,16 @@ public class HomeScreen extends _CommonPage {
 
 	}
 
-	public void sendMoney() {
+	public void sendMoney() {			//Modified by @Ashraf Added if condition for IOS
 		try {
 			Decorator();
 			WebDriverWait wait = new WebDriverWait(CL.GetDriver(), 100);
+			
+			if(platformName.equalsIgnoreCase("iOS")){
 			wait.until(ExpectedConditions.visibilityOfElementLocated(
 					By.xpath("//*[contains(@label,'The right mortgage can save you money')]")));
+			}
+			
 			mobileAction.FuncClick(send_money_button, "sendMoney");
 		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

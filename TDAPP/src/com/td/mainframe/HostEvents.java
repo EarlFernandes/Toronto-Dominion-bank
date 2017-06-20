@@ -18,8 +18,8 @@ public class HostEvents extends Robot {
 	public int TabWait = 100;
 	public int EnterWait = 2000;
 	public int PauseBreakWait = 400;
-	public int F9Wait = 1500;
-	public int F10Wait = 1500;
+	public int F9Wait = 800;
+	public int F10Wait = 1000;
 	public int F12Wait = 1500;
 	public int RightArrowWait = 100;
 	public int LeftArrowWait = 100;

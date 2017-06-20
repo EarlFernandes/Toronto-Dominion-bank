@@ -133,7 +133,7 @@ public class Transfers extends _CommonPage {
 	public void clickInterac_e_Transfer() {
 		Decorator();
 		try {
-			Thread.sleep(5000);
+			//Thread.sleep(5000);
 			mobileAction.verifyElementIsDisplayed(transfers_Header, "Transfer Header");	//added by Ashraf
 			mobileAction.FuncClick(Interac_e_Transfer_Button, "Interac e_Transfer");
 			//mobileAction.waitForElementToVanish(progrees_Bar);
