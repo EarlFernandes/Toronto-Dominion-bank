@@ -53,28 +53,27 @@ public class MainScreen extends _CommonPage {
 		final String appiumPath = CL.getTestDataInstance().getAppiumPath();
 		final String targetEnv = CL.getTestDataInstance().targetEnvironment;
 		final String[] targetEnvVars;
-
+		final String currentTargetEnv;
+		
 		if (!StringUtils.isEmpty(appiumPath) && !StringUtils.isEmpty(targetEnv)) { // Jenkins execution
 			
 			targetEnvVars = StringUtils.split(targetEnv, ":::");
+			if (targetEnvVars.length == 2) {
+				currentLocale = targetEnvVars[1];
+				currentTargetEnv = targetEnvVars[0];
+			}else{
+				currentLocale ="EN";
+				currentTargetEnv = targetEnv;
+			}
+			
 			if (CL.getTestDataInstance().getAppFilePath() == null
 					|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
-				CL.getTestDataInstance().SetAppFilePath(targetEnv);
+				CL.getTestDataInstance().SetAppFilePath(currentTargetEnv);
 			}
 			CL.mobileApp(appiumPath);
 			
-			// If length is 2, then second token is the locale
-			if (targetEnvVars.length == 2) {
-				currentLocale = targetEnvVars[1];
-				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
-			}else{
-				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
-			}
-			if (!StringUtils.isEmpty(currentLocale)){
-				System.out.println("Currentlocale:"+currentLocale);
-			}else{
-				System.out.println("Currentlocale is not configured");
-			}
+			appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
+			System.out.println("Currentlocale:"+currentLocale);
 			
 		} else { // Local execution
 			try {
