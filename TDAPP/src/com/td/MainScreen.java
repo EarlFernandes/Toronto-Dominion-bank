@@ -67,6 +67,13 @@ public class MainScreen extends _CommonPage {
 			if (targetEnvVars.length == 2) {
 				currentLocale = targetEnvVars[1];
 				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
+			}else{
+				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
+			}
+			if (!StringUtils.isEmpty(currentLocale)){
+				System.out.println("Currentlocale:"+currentLocale);
+			}else{
+				System.out.println("Currentlocale is not configured");
 			}
 			
 		} else { // Local execution
