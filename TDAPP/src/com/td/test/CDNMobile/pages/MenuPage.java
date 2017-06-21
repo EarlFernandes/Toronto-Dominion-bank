@@ -79,6 +79,11 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label ='Profil et paramètres']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (contains(@text,'Settings') or @text='Profil et paramètres')]")
 	private MobileElement profile_and_settings;
+	
+	//Profile and preference
+	@iOSFindBy(xpath = "//*[@label='TD for Me' or @label ='TD et moi']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (contains(@text,'TD for Me') or @text='TD et moi')]")
+	private MobileElement TD_For_Me;
 
 	//customer feedback
 	@iOSFindBy(xpath = "//*[@label='Give Feedback' or @label ='Fournir des commentaires']")
@@ -97,7 +102,6 @@ public class MenuPage extends _CommonPage {
 		PageFactory.initElements(
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
 				this);
-		//System.out.println(((AppiumDriver) CL.GetDriver()).getAppStringMap(locale_used).toString());
 	}
 
 	/**
@@ -226,7 +230,7 @@ public class MenuPage extends _CommonPage {
 		try {
 			Thread.sleep(5000);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				String myAccountText= mobileAction.getAppString(locale_used,"str_My_Accounts");
+				String myAccountText= mobileAction.getAppString("str_My_Accounts");
 				System.out.println("myAccountText:"+myAccountText);
 				accounts_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + myAccountText + "']", "My Accounts");
 			}
@@ -555,6 +559,25 @@ public class MenuPage extends _CommonPage {
 		}
 
 
+		public void ClickTDForMe_Flyout() {
+			Decorator();
+			try {
+				String profileSettings = mobileAction.getValue(TD_For_Me);
+				mobileAction.FuncClick(TD_For_Me, profileSettings);
+			}  catch (NoSuchElementException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (InterruptedException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (IOException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+		}
 	/**
 	 * This method will verify "Profile & Setting" is displayed on menu page
 	 * 

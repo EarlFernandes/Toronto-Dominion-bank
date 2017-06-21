@@ -20,7 +20,7 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class FundDetails extends _CommonPage {
     private static FundDetails fundDetails;
 
-	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement FundDetails_header;
 	
@@ -51,6 +51,22 @@ public class FundDetails extends _CommonPage {
     @iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
     private MobileElement progressBar;
+    
+    @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/fund_category']")
+    private MobileElement fund_category; 
+    
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther[4]/XCUIElementTypeStaticText[2]") 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/conversion_rate_used']")
+	private MobileElement usd_conversion_rate;
+	
+    @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/cad_market_value']")
+    private MobileElement CAD_Market_Value; 
+    
+    @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/book_value']")
+    private MobileElement CAD_Book_Value; 
 
     public synchronized static FundDetails get() {
 		if (fundDetails == null) {
@@ -65,7 +81,7 @@ public class FundDetails extends _CommonPage {
 		this);
 		try{
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				String investingTitle=mobileAction.getAppString(locale_used,"str_Holding_Detail");
+				String investingTitle=mobileAction.getAppString("str_Holding_Detail");
 				FundDetails_header = mobileAction.verifyElementUsingXPath("//*[@label='" + investingTitle + "']", "Investing");
 			}
 		}catch (Exception e){
@@ -113,6 +129,20 @@ public class FundDetails extends _CommonPage {
 		}    	
     }
     
+	public void VerifyFundCategory(){
+		Decorator();
+		try{
+			String fundCategory = mobileAction.getValue(fund_category);
+			System.out.println("fundCategory:"+ fundCategory);
+			mobileAction.verifyElementIsDisplayed(fund_category, fundCategory);
+						
+		}catch (NoSuchElementException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+    
     public void VerifyFundDetailsInformationInChinese(){
 		Decorator();
 		try {
@@ -121,9 +151,9 @@ public class FundDetails extends _CommonPage {
 				//System.out.println(mobileAction.getAppString(locale_used,"str_BUY"));
 				//System.out.println(mobileAction.getAppString(locale_used,"call"));
 				//System.out.println(mobileAction.getAppString(locale_used,"str_QUOTE"));
-				Purchase = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString(locale_used,"str_BUY") + "']", "Buy");
-				CallBtn = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString(locale_used,"call") + "']", "Call");
-				QuoteBtn = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString(locale_used,"str_QUOTE") + "']", "Quote");
+				Purchase = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString("str_BUY") + "']", "Buy");
+				CallBtn = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString("call") + "']", "Call");
+				QuoteBtn = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString("str_QUOTE") + "']", "Quote");
 			}
 			mobileAction.verifyElementTextIsDisplayed(Purchase, "买入| 買入");
 			mobileAction.verifyElementTextIsDisplayed(CallBtn, "致电 | 致電 ");
@@ -195,7 +225,7 @@ public class FundDetails extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				CallBtn = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString(locale_used,"call") + "']", "Call");
+				CallBtn = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString("call") + "']", "Call");
 			}
 			mobileAction.verifyElementTextIsDisplayed(CallBtn, "Call | Appeler");
 		} catch (NoSuchElementException | IOException e) {
@@ -205,5 +235,80 @@ public class FundDetails extends _CommonPage {
 		} 
 	}
 	
+	public void VerifyPurchaseButtonNotpresent(){
+		try {
+			Decorator();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				Purchase = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString("str_BUY") + "']", "Buy");				
+			}
+			if(!mobileAction.verifyElementIsPresent(Purchase)){
+				mobileAction.Report_Pass_Verified("Purchase is not present for Zero account");
+			}else{
+				mobileAction.Report_Fail("Failed:Purchase is present for Zero account");
+			}
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	public void VerifyUSDConversionRatePresent() {
+		try {
+			Decorator();
+			mobileAction.FuncSwipeWhileElementNotFound(usd_conversion_rate, false, 10, "up");
+			String conversionText = mobileAction.getValue(usd_conversion_rate);
+			conversionText = conversionText.replaceAll(" ", " "); //French space to english space
+			//System.out.println("Found USD conversion rate:"+conversionText);
+			String expectedTextReg = "U\\.S\\. conversion rate used\\s*:\\s*\\d+\\.\\d+";
+			if(currentLocale.equalsIgnoreCase("FR")){
+				expectedTextReg ="Taux de conversion US utilisé\\s*:\\s*\\d+\\.\\d+";
+			}
+			String expectedText = mobileAction.FuncGetValByRegx(conversionText, expectedTextReg);
+			if(!expectedText.isEmpty()){
+				System.out.println(expectedText);
+				mobileAction.Report_Pass_Verified(expectedText);
+			}else{
+				mobileAction.Report_Fail("Conversion rate not found");
+			}
+			
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+		
+	public void VerifyCADValueForMarketAndBookValue() {
+		try {
+			Decorator();
+			
+			if(!mobileAction.verifyElementIsPresent(CAD_Market_Value)){
+				System.out.println("Failed: CAD Market value not found");
+				mobileAction.Report_Fail("Failed to find CAD market value for US MF");
+				return;
+			}
+			
+			if(!mobileAction.verifyElementIsPresent(CAD_Book_Value)){
+				System.out.println("Failed: CAD book value not found");
+				mobileAction.Report_Fail("Failed to find CAD book value for US MF");
+				return;
+			}
+			mobileAction.Report_Pass_Verified("Market and book value are displayed in CAD for US MF");
+			
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
 	
 }

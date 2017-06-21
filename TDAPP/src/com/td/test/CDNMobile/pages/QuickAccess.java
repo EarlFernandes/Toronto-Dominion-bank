@@ -52,13 +52,8 @@ public class QuickAccess  extends _CommonPage {
 
 	public void VerifyQuickAccessSettingsHeader() {
 		Decorator();
-		try {
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				mobileAction.verifyElementTextIsDisplayed(quickaccess_title, "Quick Access Settings | Paramètres Accès rapide");
-			}else{
-				mobileAction.verifyElementTextIsDisplayed(quickaccess_title, "Quick Access | Accès rapide");
-			}
-
+		try {			
+			mobileAction.verifyElementTextIsDisplayed(quickaccess_title, "Quick Access Settings | Paramètres Accès rapide");
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

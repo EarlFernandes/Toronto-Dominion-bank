@@ -177,7 +177,7 @@ public class Receipt extends _CommonPage{
 				
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView", 3, "down");
-				homeBtn = mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='" + mobileAction.getAppString(locale_used, "quick_links_go_back_home") + "']", "GO BACK HOME");			
+				homeBtn = mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='" + mobileAction.getAppString("quick_links_go_back_home") + "']", "GO BACK HOME");			
 			}
 
 
@@ -196,7 +196,7 @@ public class Receipt extends _CommonPage{
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				
 				mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView", 3, "down");
-				viewMyAccounts_Btn = mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='" + mobileAction.getAppString(locale_used, "feedback_quick_link_my_accounts") + "']", "VIEW MY ACCOUNTS");			
+				viewMyAccounts_Btn = mobileAction.verifyElementUsingXPath("//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='" + mobileAction.getAppString("feedback_quick_link_my_accounts") + "']", "VIEW MY ACCOUNTS");			
 			}
 
 			mobileAction.FuncClick(viewMyAccounts_Btn, "View My Accounts");

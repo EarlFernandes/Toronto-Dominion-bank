@@ -47,6 +47,19 @@ public class TDForMe extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement tdforme_Notification_title;
 	
+	@iOSFindBy(xpath = "//*[contains(@label,'Turn on Push Notifications') or contains(@label,'Activez les alertes instantanées pour recevoir')]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='Continue' or @text='Continue']")
+	private MobileElement turn_on_TD_For_Me;
+	
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Allow Notifications') or contains(@label,'Autoriser les avis')]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='Get Started' or @text='Get Started']")
+	private MobileElement get_started_allow_notification;
+	
+	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
+	private MobileElement back_button;
+	
 	public synchronized static TDForMe get() {
 		if (Tdforme == null) {
 			Tdforme = new TDForMe();
@@ -112,14 +125,14 @@ public class TDForMe extends _CommonPage {
 				}
 				
 				//verify page collapses for displaying  french Switch and battary saver Switch
-				if(mobileAction.isObjExists(tdforme_displayfrench_switch)){
+				if(mobileAction.verifyElementIsPresent(tdforme_displayfrench_switch)){
 					mobileAction.Report_Fail_Not_Verified("Collapses french display switch ");
 					return;
 				}else{
 					System.out.println("French display switch not diaplayed");
 				}
 				
-				if(mobileAction.isObjExists(tdforme_batterysave_switch)){
+				if(mobileAction.verifyElementIsPresent(tdforme_batterysave_switch)){
 					mobileAction.Report_Fail_Not_Verified("Collapses battary saver switch ");
 					return;
 				}else{
@@ -130,14 +143,14 @@ public class TDForMe extends _CommonPage {
 				
 			}else{//disabled:
 				//verify page collapses for displaying  french Switch and battary saver Switch
-				if(mobileAction.isObjExists(tdforme_displayfrench_switch)){
+				if(mobileAction.verifyElementIsPresent(tdforme_displayfrench_switch)){
 					mobileAction.Report_Fail_Not_Verified("Collapses french display switch ");
 					return;
 				}else{
 					System.out.println("French display switch not diaplayed");
 				}
 				
-				if(mobileAction.isObjExists(tdforme_batterysave_switch)){
+				if(mobileAction.verifyElementIsPresent(tdforme_batterysave_switch)){
 					mobileAction.Report_Fail_Not_Verified("Collapses battery saver switch ");
 					return;
 				}else{
@@ -147,6 +160,9 @@ public class TDForMe extends _CommonPage {
 				mobileAction.Report_Pass_Verified("Page Collapsed ");
 				
 			}
+			System.out.println("Toggle to Enable");
+			mobileAction.FuncClick(tdforme_enable_switch, "TD for Me Enable-Disable Switch");			
+			
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -187,14 +203,14 @@ public class TDForMe extends _CommonPage {
 				reDecoratorWhenswitchIsToggledtoEnable();
 
 				//verify page expands for displaying  french Switch and battary saver Switch
-				if(!mobileAction.isObjExists(tdforme_displayfrench_switch)){
+				if(!mobileAction.verifyElementIsPresent(tdforme_displayfrench_switch)){
 					mobileAction.Report_Fail_Not_Verified("Expands french display switch ");
 					return;
 				}else{
 					System.out.println("French display switch displayed");
 				}
 				
-				if(!mobileAction.isObjExists(tdforme_batterysave_switch)){
+				if(!mobileAction.verifyElementIsPresent(tdforme_batterysave_switch)){
 					mobileAction.Report_Fail_Not_Verified("Expends Battary saver switch ");
 					return;
 				}else{
@@ -232,4 +248,39 @@ public class TDForMe extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	public void TurnOnTDforMeIfNot() {
+		Decorator();
+		try {
+			if(mobileAction.verifyElementIsPresent(turn_on_TD_For_Me)){
+				
+				mobileAction.FuncClick(turn_on_TD_For_Me, "turn_on_TDForMe");	
+				Decorator();
+				String elementText= mobileAction.getValue(get_started_allow_notification);
+				mobileAction.FuncClick(get_started_allow_notification, elementText);
+				
+			}else{
+				System.out.println("TD for Me is turned on already");
+				mobileAction.Report_Pass_Verified("TD for Me is turned on already");
+				
+				if(mobileAction.verifyElementIsPresent(back_button)){
+					mobileAction.ClickBackButton();
+				}				
+			}	
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
 }

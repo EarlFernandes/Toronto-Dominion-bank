@@ -2,6 +2,7 @@
 package com.td;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -24,6 +25,9 @@ public class _CommonPage {
 	protected com.td.test.framework.PerformAction PerformAction = new com.td.test.framework.PerformAction();
 	protected com.td.MobileAction2 mobileAction = new com.td.MobileAction2();
 
+	protected static Map appStringMap;
+	protected static String currentLocale;
+	
 	// public Reporting report;// = CL.GetReporting();
 	// calculated or discovered values
 	protected By foundElement = null;
@@ -41,9 +45,6 @@ public class _CommonPage {
 	// success/fail status
 	public String overallSuccess = PASS;
 	
-	public String locale_used ="FR"; //"zh-rHK"; //"EN";//"zh-Hans" "FR";
-	//android //"zh-rHK"; //"EN";//"zh"
-    //ios: zh-Hans, zh-Hant
 	@iOSFindBy(id = "com.td:id/list_slidermenu")
 	@AndroidFindBy(id = "com.td:id/list_slidermenu")
 	public class widgetListview {

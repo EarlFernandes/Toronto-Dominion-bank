@@ -159,7 +159,7 @@ public class Investing extends _CommonPage {
 	String InvestingAccountsXpath = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
 			+ InvestingAccountsXL + "')]";
 
-	@iOSFindBy(xpath = "//*[@label='PURCHASE MUTUAL FUNDS' or @label='ACHETER DES FONDS COMMUNS DE PLACEMENT' or @name='QUICKACCESS_CELL_PM-PURCHASE-ICON']") //@Author - fengfr6 15-May-2017
+	@iOSFindBy(xpath = "//*[@label='PURCHASE MUTUAL FUNDS' or @label='ACHETER DES FONDS COMMUNS DE PLACEMENT' or @name='QUICKACCESS_CELL_FUND-PURCHASE-ICON']") //@Author - fengfr6 15-May-2017
 	@AndroidFindBy(id = "com.td:id/quick_link_item_layout_button")
 	private MobileElement purchase_MF_button;
 	
@@ -179,13 +179,17 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/symbol' and @index='0']")
 	private MobileElement first_fund;
 	
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1][contains(@label, 'US$') or contains(@label, '$US')]") 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/symbol' and (contains(@text, 'US$') or contains(@text,'$US'))]")
+	private MobileElement first_usd_fund;
+	
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]") 
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/activityContent']/android.widget.LinearLayout[@index='0']/android.widget.TextView[@index='1']")
 	private MobileElement first_transaction;
 	
-	@iOSFindBy(xpath = "//*[@label='Activity']") 
+	@iOSFindBy(xpath = "//*[@name='TD_ACCOUNT_FOOTER_VIEW_LABEL']") 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/timestamp']")
-	private MobileElement time_stamp;
+	private MobileElement foot_note;
 	
 	@iOSFindBy(xpath = "//*[@name='FOUND_HOLDING_FUND']") 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textview_left']")
@@ -198,6 +202,15 @@ public class Investing extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='FOUND_HOLDING_UNIT']") 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textview_right']")
 	private MobileElement table_heading_right;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText") 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/account_value']")
+	private MobileElement account_balance;	
+	
+	
+	@iOSFindBy(xpath = "//*[@name='TD_ACCOUNT_FOOTER_VIEW_LABEL']") 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/canadianDollarNote']")
+	private MobileElement usd_disclaimer_foot;
 	
 	
 	public synchronized static Investing get() {
@@ -1344,7 +1357,7 @@ public class Investing extends _CommonPage {
 		try{
 			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
-				funds_tab = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString(locale_used, "balance_str") + "']/following-sibling::XCUIElementTypeButton", "Funds Tab");										
+				funds_tab = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Balances") + "']/following-sibling::XCUIElementTypeButton", "Funds Tab");										
 			}
 			mobileAction.FuncClick(funds_tab, "Funds tab");
 			mobileAction.waitForElementToVanish(progressBar);
@@ -1360,7 +1373,7 @@ public class Investing extends _CommonPage {
 		Decorator();
 		try{
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
-				activity_tab = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString(locale_used, "str_Activity") + "']", "Activity Tab");										
+				activity_tab = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Activity") + "']", "Activity Tab");										
 			}
 			mobileAction.FuncClick(activity_tab, "Activity tab");
 			mobileAction.waitForElementToVanish(progressBar);
@@ -1379,6 +1392,67 @@ public class Investing extends _CommonPage {
 			String firstFundName = mobileAction.getValue(first_fund);
 			System.out.println("Fund:"+ firstFundName);
 			mobileAction.FuncClick(first_fund, firstFundName);
+			mobileAction.waitForElementToVanish(progressBar);
+			
+		}catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	
+	public void SelectUSDFunds(){
+		Decorator();
+		try{
+
+			mobileAction.FuncSwipeWhileElementNotFound(first_usd_fund, false, 10, "up");
+			String firstFundName = mobileAction.getValue(first_usd_fund);
+			System.out.println("Fund:"+ firstFundName);
+			mobileAction.FuncClick(first_usd_fund, firstFundName);
+			mobileAction.waitForElementToVanish(progressBar);
+			
+		}catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	public void randomlySelectOneFund(){
+		Decorator();
+		try{
+			if(!mobileAction.verifyElementIsPresent(foot_note)){
+				int randSwipe =  (int )(Math.random() * 5 + 1);
+				System.out.println("Randomly swipe times:" + (randSwipe-1));
+				for (int i=1; i<randSwipe ; i++){
+					if(mobileAction.verifyElementIsPresent(foot_note)){
+						break;
+					}else{
+						mobileAction.FuncSwipeOnce("up");
+					}
+				}
+			}
+			List<MobileElement> fundsList = null;
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				fundsList = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//android.widget.ListView[@resource-id='com.td:id/holdings_list']//android.widget.TextView[@resource-id='com.td:id/symbol']");
+			}else{
+				fundsList = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
+			}
+			int size = fundsList.size();
+			System.out.println("Funds List:"+size);
+			int randFund =  (int )(Math.random() * size );
+			if(randFund >= size){
+				randFund = size-1;
+			}
+			System.out.println("Randomly select "+ (randFund +1) + " from the list");
+			if(!mobileAction.verifyElementIsPresent(fundsList.get(randFund))){
+				mobileAction.FuncSwipeWhileElementNotFound(fundsList.get(randFund), false, 5, "up");
+			}
+			String fundName = mobileAction.getValue(fundsList.get(randFund));
+			System.out.println("Name of the selected fund:" + fundName);
+			mobileAction.FuncClick(fundsList.get(randFund), fundName);
+
 			mobileAction.waitForElementToVanish(progressBar);
 			
 		}catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -1440,6 +1514,30 @@ public class Investing extends _CommonPage {
 		}
 	}
 	
+	public void SelectLastTransaction(){
+		Decorator();
+		try{
+			mobileAction.FuncSwipeWhileElementNotFound(foot_note, false, 5, "up");
+			List<MobileElement> transactionListContent = null;
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				transactionListContent = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//android.widget.ListView[@resource-id='com.td:id/activityContent']//android.widget.TextView[@resource-id='com.td:id/transaction']");
+			}else{
+				transactionListContent = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
+			}
+			
+			int size= transactionListContent.size();
+			
+			String lastTransacName = mobileAction.getValue(transactionListContent.get(size-1));
+			System.out.println("Transaction:"+ lastTransacName);
+			mobileAction.FuncClick(transactionListContent.get(size-1), lastTransacName);
+			mobileAction.waitForElementToVanish(progressBar);
+			
+		}catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
 	
 	public void VerifyMFChineseContent(){
 		Decorator();
@@ -1464,10 +1562,10 @@ public class Investing extends _CommonPage {
 		try{
 			mobileAction.verifyElementTextIsDisplayed(investing_header, "投资 |投資  ");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
-				activity_tab = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString(locale_used, "str_Activity") + "']", "Activity Tab");
-				table_heading_left = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString(locale_used, "str_Activity") + "']/following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[1]", "left head");
-				table_heading_middle = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString(locale_used, "str_Activity") + "']/following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[2]", "Center head");
-				table_heading_right = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString(locale_used, "str_Activity") + "']/following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[3]", "Rifht head");
+				activity_tab = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Activity") + "']", "Activity Tab");
+				table_heading_left = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Activity") + "']/following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[1]", "left head");
+				table_heading_middle = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Activity") + "']/following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[2]", "Center head");
+				table_heading_right = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Activity") + "']/following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[3]", "Rifht head");
 			}
 			mobileAction.verifyElementTextIsDisplayed(activity_tab, "活动 | 活動 ");
 			mobileAction.verifyElementTextIsDisplayed(table_heading_left, "日期 | 日期");
@@ -1493,4 +1591,62 @@ public class Investing extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
+		
+	public void VerifyQuickLinkDisplayed() {
+		try {
+			Decorator();
+			mobileAction.verifyElementIsDisplayed(purchase_MF_button, "Purchase Mutual Funds");
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+	
+	public void VerifyZeroBalance() {
+		try {
+			Decorator();
+			String balance= mobileAction.getValue(account_balance);
+			if(balance.equalsIgnoreCase("$0.00")){
+				mobileAction.Report_Pass_Verified("Zero balance");
+			}else{
+				mobileAction.Report_Fail("Non Zero balance:"+ balance);
+			}
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	public void VerifyUSDDisclaimer() {
+		try {
+			Decorator();
+			mobileAction.FuncSwipeWhileElementNotFound(usd_disclaimer_foot, false, 10, "up");
+			String usDisclaimerText = mobileAction.getValue(usd_disclaimer_foot);
+			String expectedText = "All values in Canadian Dollars unless otherwise stated.";
+			if(usDisclaimerText.contains(expectedText)){
+				System.out.println(expectedText);
+				mobileAction.Report_Pass_Verified(expectedText);
+			}else{
+				mobileAction.Report_Fail("Failed: US disclaimer note not found");
+			}
+			
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
 }

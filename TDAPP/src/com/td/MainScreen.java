@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import org.apache.commons.lang3.StringUtils;
 
+import io.appium.java_client.AppiumDriver;
+
 public class MainScreen extends _CommonPage {
 
 	// ***** LOCAL EXECUTION PARAMETERS *****
@@ -15,7 +17,7 @@ public class MainScreen extends _CommonPage {
 	// Change this parameter to point to the correct apk in Setup.xls for Android
 	private static final String APP_ANDROID = "APP_ANDROID";
 	// Change this parameter to point to the correct ipa in Setup.xls for ios
-	private static final String APP_IOS = "APP_IOS";
+	private static final String APP_IOS = "APP_IOS_ZH";
 
 	String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env", "Amount",
 			"Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount", "AccessCard",
@@ -23,7 +25,8 @@ public class MainScreen extends _CommonPage {
 			"Security_Question", "RecipientName", "RecipientMail", "Trading_Pwd", "Symbol", "ShareHolder",
 			"SecurityPassword", "TriggerDelta", "CDNMarginAccount", "QuantityType", "Dividend", "SelectLimitPrice",
 			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName",
-			"Passcode", "NewPasscode", "Email", "Name", "EmailProfile", "PhoneProfile", "PostSurveyText" };
+			"Passcode", "NewPasscode", "Email", "Name", "EmailProfile", "PhoneProfile", "PostSurveyText", "Response",
+	        "ProfileType" };
 
 	public void readSheet() {
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
@@ -49,13 +52,23 @@ public class MainScreen extends _CommonPage {
 		// Jenkins only params
 		final String appiumPath = CL.getTestDataInstance().getAppiumPath();
 		final String targetEnv = CL.getTestDataInstance().targetEnvironment;
+		final String[] targetEnvVars;
 
 		if (!StringUtils.isEmpty(appiumPath) && !StringUtils.isEmpty(targetEnv)) { // Jenkins execution
+			
+			targetEnvVars = StringUtils.split(targetEnv, ":::");
 			if (CL.getTestDataInstance().getAppFilePath() == null
 					|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
 				CL.getTestDataInstance().SetAppFilePath(targetEnv);
 			}
 			CL.mobileApp(appiumPath);
+			
+			// If length is 2, then second token is the locale
+			if (targetEnvVars.length == 2) {
+				currentLocale = targetEnvVars[1];
+				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
+			}
+			
 		} else { // Local execution
 			try {
 				// Set udid explicitly for local execution, to handle udid with all caps, when reading from excel sheet
@@ -66,12 +79,23 @@ public class MainScreen extends _CommonPage {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_ANDROID));
+						currentLocale = CL.LoadData("Language",
+								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_ANDROID);
 					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS));
+						currentLocale = CL.LoadData("Language",
+								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS);
 					}
+					System.out.println("Locale:"+ currentLocale);
 				}
 				CL.mobileApp(LOCAL_EXECUTION_APPIUM_SERVER);
+				if (StringUtils.isEmpty(currentLocale)) {
+					appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
+				} else {
+					appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
+					//System.out.println(((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale).toString());
+				}
 
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");

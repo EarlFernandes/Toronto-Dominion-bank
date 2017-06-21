@@ -146,14 +146,6 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement back_arrow;	
 	
-	@iOSFindBy(xpath = "//*[@label='Cancel' or @label='Annuler']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
-	private MobileElement cancel_button;	
-
-	@iOSFindBy(xpath = "//*[@label='Yes, go back' or @label='Oui']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
-	private MobileElement goback_button;	
-	
 	@iOSFindBy(xpath = "//*[@id='banner_info']")
 	@AndroidFindBy(xpath = "//android.widget.ScrollView[@resource-id='com.td:id/scrollView']/android.widget.TextView")
 	private List<MobileElement> text_Edit;
@@ -1218,17 +1210,7 @@ public class Profile extends _CommonPage {
 	    }  
 	}
 
-	public void VerifyPopUpWithCancelButton(){
-		
-		Decorator();
-		try{
-			mobileAction.verifyElementIsDisplayed(cancel_button, "Cancel");
 
-		}catch (NoSuchElementException | IOException e) {
-	        System.err.println("TestCase has failed.");
-	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;			
-	    }  
-	}
 	
 	public void ClickPhoneNumber(){
 		Decorator();
@@ -1424,18 +1406,7 @@ public class Profile extends _CommonPage {
 		mobileAction.Report_Pass_Verified("ori_email:" +ori_email);
 		
 	}
-	
-	public void ClickPopupGoBackButton(){
-		Decorator();
-		try{
-			mobileAction.FuncClick(goback_button, "Yes, Go Back");
-		}catch (Exception e){
-	        System.err.println("TestCase has failed.");
-	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
-	        return;	
-		}
-	}
-	
+		
 	public void VerifyPhoneEmailNotChanged(){
 		Decorator();
 		String phone_after="";

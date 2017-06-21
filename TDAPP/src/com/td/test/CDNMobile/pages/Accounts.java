@@ -1,6 +1,7 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -11,6 +12,7 @@ import com.td.MainScreen;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -128,6 +130,14 @@ public class Accounts extends _CommonPage {
 	
 	@iOSFindBy(xpath = "//*[@label='Retour' or @label='Back']")
 	private MobileElement back_Btn;
+	
+	@iOSFindBy(xpath = "//*[@name='ACCOUNT_SUMMARY_BALANCE_FOOTER_TITLE']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/footer_text']")
+	private MobileElement foot_text;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	private MobileElement progressBar;
 
 	String from_Account = getTestdata("FromAccount");
 
@@ -532,7 +542,7 @@ public class Accounts extends _CommonPage {
 			
 			mobileAction.waitForElementToVanish(progresssBar);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				String myAccountText= mobileAction.getAppString(locale_used, "str_My_Accounts");
+				String myAccountText= mobileAction.getAppString("str_My_Accounts");
 				System.out.println("myAccountText:"+myAccountText);
 
 				txtMy_Account_Header = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + myAccountText + "']", "My Accounts");
@@ -752,12 +762,9 @@ public class Accounts extends _CommonPage {
 	public void NavigationToHomePage(){
 		Decorator();
 		try {
-
+			mobileAction.waitForElementToVanish(progressBar);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				
-				Thread.sleep(5000);
-				mobileAction.FuncClick(back_button, "<");
-				
+				mobileAction.FuncClick(back_button, "<");				
 			} else {
 				//For android doing nothing				
 			}
@@ -852,6 +859,48 @@ public class Accounts extends _CommonPage {
 				//mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, false, 10, "up");
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_num, true, 10, "up");
 			}
+
+		} catch (NoSuchElementException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	public void VerifyNoMutualFundAccounts() {
+		Decorator();
+		try {
+
+			List<MobileElement> accountList = null;
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				accountList = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//android.widget.TextView[@resource-id='com.td:id/accntDescrSum']");
+			}else{
+				accountList = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
+			}
+			while (true){
+				int size= accountList.size();
+				System.out.println("Account size:"+size);
+				for(int i=0; i<size; i++){
+					String accounttext = mobileAction.getValue(accountList.get(i));
+					System.out.println("Account " + (i+1)+":"+accounttext);
+					if(accounttext.toLowerCase().contains("mutual fund")){
+						mobileAction.Report_Fail("Mutual fund account found");
+						return;
+					}
+				}
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+					if(!mobileAction.verifyElementIsPresent(foot_text)){
+						mobileAction.FuncSwipeOnce("up");					
+						accountList = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//android.widget.TextView[@resource-id='com.td:id/accntDescrSum']");					
+					}else{
+						break;
+					}
+				}else{
+					//For ios, accountlist will list all of the account, don't need to swipe to the bottom					
+					break;
+				}
+			}
+			mobileAction.Report_Pass_Verified("No mutual funds found for closed account");
 
 		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");

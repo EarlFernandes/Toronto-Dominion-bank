@@ -292,22 +292,22 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				securityQuestionHeader = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString(locale_used,"securityQuestionPageHeader") + "']", "Security Questions");
+				securityQuestionHeader = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("securityQuestionPageHeader") + "']", "Security Questions");
 			}
 			if (mobileAction.FuncIsDisplayed(securityQuestionHeader)) {
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
-					enterAnswer = mobileAction.verifyElementUsingXPath("//XCUIElementTypeSecureTextField[@value='" + mobileAction.getAppString(locale_used, "mfa_enter_answer") + "']", "Enter your answer");										
+					enterAnswer = mobileAction.verifyElementUsingXPath("//XCUIElementTypeSecureTextField[@value='" + mobileAction.getAppString("mfa_enter_answer") + "']", "Enter your answer");										
 				}
 				mobileAction.FuncSendKeys(enterAnswer, getTestdata("SecurityAnswer"));
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or @label='OK' or @label='" + mobileAction.getAppString(locale_used, "secureLoginEditButtonDone") + "']", "Done");
+					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or @label='OK' or @label='" + mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
 					mobileAction.FuncClick(done, "Done");
 				} else {
 					mobileAction.FuncHideKeyboard();
 				}
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){					
-					securityLogin = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString(locale_used, "secureLoginButton") + "']", "Login");					
+					securityLogin = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("secureLoginButton") + "']", "Login");					
 				}
 				mobileAction.FuncClick(securityLogin, "Login");
 				mobileAction.waitForElementToVanish(progressBar);

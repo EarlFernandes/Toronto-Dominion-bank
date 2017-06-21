@@ -66,13 +66,9 @@ public class PreviewPurchase extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/custom_text']")
 	private MobileElement disclaimer_info;
 	
-	@iOSFindBy(xpath = "//*[@label='Cancel' or @label='Annuler']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
-	private MobileElement cancel_Popup_button;	
-
-	@iOSFindBy(xpath = "//*[@label='Yes, go back' or @label='Oui']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
-	private MobileElement goback_Popup_button;
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount']/../XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Amount']/../android.widget.RelativeLayout/android.widget.TextView")
+	private MobileElement amount_value;
 	
 	String androidphoneReg ="\\(\\d{3}\\) \\d{3}-\\d{4}";
 
@@ -109,7 +105,7 @@ public class PreviewPurchase extends _CommonPage {
 
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView", 2, "down");
-				phone_number = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString(locale_used, "label_phone_number") + "']/../android.widget.RelativeLayout/android.widget.TextView", "Phone Number");
+				phone_number = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("label_phone_number") + "']/../android.widget.RelativeLayout/android.widget.TextView", "Phone Number");
 			}else{
 				
 			}
@@ -142,7 +138,7 @@ public class PreviewPurchase extends _CommonPage {
 
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView", 2, "down");
-				phone_number = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString(locale_used, "label_phone_number") + "']/../android.widget.RelativeLayout/android.widget.TextView", "Phone Number");
+				phone_number = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("label_phone_number") + "']/../android.widget.RelativeLayout/android.widget.TextView", "Phone Number");
 			}else{
 				
 			}
@@ -200,10 +196,10 @@ public class PreviewPurchase extends _CommonPage {
 				mobileAction.FuncSwipeOnce("up");
 				mobileAction.FuncSwipeOnce("up");
 				
-				contact_label = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString(locale_used, "MF_contact_information") + "']", "Contact Information");
-				email_label= mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString(locale_used, "MF_email") + "']", "Email");
-				phone_label= mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString(locale_used, "MF_phone") + "']", "Phone Number");
-				disclaimer_info= mobileAction.verifyElementUsingXPath("//android.widget.TextView[contains(@text, '" + mobileAction.getAppString(locale_used, "MF_use_of_information_disclaimer") + "')]", "Disclaimer Information");
+				contact_label = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MF_contact_information") + "']", "Contact Information");
+				email_label= mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MF_email") + "']", "Email");
+				phone_label= mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("MF_phone") + "']", "Phone Number");
+				disclaimer_info= mobileAction.verifyElementUsingXPath("//android.widget.TextView[contains(@text, '" + mobileAction.getAppString("MF_use_of_information_disclaimer") + "')]", "Disclaimer Information");
 				
 			}else{
 				mobileAction.FuncSwipeOnce("up");
@@ -224,16 +220,16 @@ public class PreviewPurchase extends _CommonPage {
 	}
 	
 	
-	public void ClickPopupGoBackButton(){
-		Decorator();
-		try{
-			mobileAction.FuncClick(goback_Popup_button, "Yes, Go Back");
-		}catch (Exception e){
-	        System.err.println("TestCase has failed.");
-	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
-	        return;	
-		}
-	}
+//	public void ClickPopupGoBackButton(){
+//		Decorator();
+//		try{
+//			mobileAction.FuncClick(goback_Popup_button, "Yes, Go Back");
+//		}catch (Exception e){
+//	        System.err.println("TestCase has failed.");
+//	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+//	        return;	
+//		}
+//	}
 	
 	public void savePhoneInforForPFVerification(){
 		String phoneinfo = mobileAction.getValue(phone_number);
@@ -249,6 +245,40 @@ public class PreviewPurchase extends _CommonPage {
 		Decorator();
 		try{
 			mobileAction.FuncClick(purchase_now_button, "Purchase Now");
+		}catch (Exception e){
+	        System.err.println("TestCase has failed.");
+	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+	        return;	
+		}		
+	}
+	
+	public void ClickCancelMFpurchase(){
+		Decorator();
+		try{
+			mobileAction.FuncClick(cancel_button, "Cancel");
+		}catch (Exception e){
+	        System.err.println("TestCase has failed.");
+	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+	        return;	
+		}		
+	}
+	
+	public void VerifyUSDAmount(){
+		Decorator();
+		try{
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				amount_value = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_amount") + "']/../android.widget.RelativeLayout/android.widget.TextView", "Amount");
+			}else{
+				amount_value = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_Amount") + "']/../XCUIElementTypeStaticText[2]", "Amount");
+			}
+
+			String amountValue= mobileAction.getValue(amount_value);
+			System.out.println("Amount:" +amountValue);
+			if(amountValue.toLowerCase().contains("usd")){
+				mobileAction.Report_Pass_Verified("USD amount found");
+			}else{
+				mobileAction.Report_Fail("USD Amount not found");
+			}
 		}catch (Exception e){
 	        System.err.println("TestCase has failed.");
 	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
