@@ -451,32 +451,14 @@ public class MoodSelectorScreen extends _CommonPage {
 		
 	}
 	
-	public void ClickRateUsOnGooglePlayOrAppStore(){
+	public void VerifyRateUsOnGooglePlayButton(){
 		Decorator();
-//		try{
-//			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-//				//for android, just keep rate_us_on_google_play as defined
-//			}else{
-//				String xpath = "//*[@label='" + mobileAction.getAppString("nav_drawer_items_feedback") + "']";
-//				System.out.println("xpath:" +  xpath);
-//				rate_us_on_google_Or_App_Store = mobileAction.verifyElementUsingXPath(xpath, "Rate Us On Google Play");
-//			}
-//		}catch (NoSuchElementException | IOException e) {
-//			try {
-//				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
-//			} catch (IOException ex) {
-//				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-//			}
-//			System.err.println("TestCase has failed.");
-//			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-//			return;
-//		}
 	
 		try {
 			String elementText= mobileAction.getValue(rate_us_on_google_Or_App_Store);
 			System.out.println("ElementText:" +  elementText);
-			mobileAction.FuncClick(rate_us_on_google_Or_App_Store, elementText);
-
+			mobileAction.verifyElementIsDisplayed(rate_us_on_google_Or_App_Store, elementText);
+			
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
