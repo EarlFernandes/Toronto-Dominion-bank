@@ -19,7 +19,7 @@ public class QuickAccess  extends _CommonPage {
 
 	private static QuickAccess Quickaccess;
 
-	@iOSFindBy(xpath = "//*[@label='Quick Access' or @label='Accès rapide']")
+	@iOSFindBy(xpath = "//*[@label='Quick Access Settings' or @label='Paramètres Accès rapide']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement quickaccess_title;
 
