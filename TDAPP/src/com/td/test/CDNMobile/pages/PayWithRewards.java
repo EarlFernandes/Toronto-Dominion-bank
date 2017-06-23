@@ -110,6 +110,7 @@ public class PayWithRewards extends _CommonPage {
 
 		try {
 			String value = "";
+			System.out.println("Amount:" + amountXL);
 			int i = Integer.parseInt(amountXL);
 
 			// value=
@@ -120,8 +121,9 @@ public class PayWithRewards extends _CommonPage {
 				value = mobileAction.verifyElementUsingBy(androidMaxBtn);
 			}
 
-			String replaceValue = value.replaceAll("[^0-9]", "");
+			String replaceValue = value.replaceAll("[^0-9]", "");			
 			int maxValue = Integer.parseInt(replaceValue);
+			System.out.println("maxValue:" +maxValue);
 
 			if (i > ConstantClass.minimum_Value & i < maxValue) {
 				mobileAction.FuncClick(otherBtn, "Amount");
@@ -141,11 +143,11 @@ public class PayWithRewards extends _CommonPage {
 				}
 
 				else {
-					//mobileAction.FuncClick(amountValue, "Amount");
-					//mobileAction.FuncSendKeys(amountValue, "26");
-					CL.GetDriver().findElement(androidAmountValue).click();
-					//CL.GetDriver().findElement(androidAmountValue).clear();
-					CL.GetDriver().findElement(androidAmountValue).sendKeys("26");
+					mobileAction.FuncClick(amountValue, "Amount");
+					mobileAction.FuncSendKeys(amountXL);
+//					CL.GetDriver().findElement(androidAmountValue).click();
+//					//CL.GetDriver().findElement(androidAmountValue).clear();
+//					CL.GetDriver().findElement(androidAmountValue).sendKeys("26");
 					mobileAction.clickCoOrdinatesPercentage(0.90f, 0.95f, 1);
 
 					mobileAction.FuncClick(continueBtn, "Continue");
@@ -168,10 +170,11 @@ public class PayWithRewards extends _CommonPage {
 
 					mobileAction.FuncClick(amountValue, "Amount");
 
-					CL.GetDriver()
-							.findElement(By
-									.xpath("//android.widget.EditText[@resource-id='com.td:id/amount_payment_value']"))
-							.sendKeys(amountXL);
+//					CL.GetDriver()
+//							.findElement(By
+//									.xpath("//android.widget.EditText[@resource-id='com.td:id/amount_payment_value']"))
+//							.sendKeys(amountXL);
+					mobileAction.FuncSendKeys(amountXL);
 					mobileAction.clickCoOrdinatesPercentage(0.90f, 0.95f, 1);
 					mobileAction.verifyElementIsDisplayed(errortext, ConstantClass.error_msg + maxValue);
 

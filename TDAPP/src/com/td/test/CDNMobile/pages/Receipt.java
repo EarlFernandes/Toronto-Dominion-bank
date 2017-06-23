@@ -26,7 +26,7 @@ public class Receipt extends _CommonPage{
 	private MobileElement receiptHeader;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'HOME')]") 
-	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Rewards']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='GO BACK HOME']")
 	private MobileElement homeBtn;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Confirmation #')]") 

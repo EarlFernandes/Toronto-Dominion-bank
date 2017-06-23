@@ -1,5 +1,6 @@
 package com.td.test.CDNMobile.pages;
 
+import java.util.List;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -25,11 +26,11 @@ public class Rewards extends _CommonPage {
 	private static Rewards Rewards;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Rewards']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Rewards']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement rewardsHeader;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Visit TDRewards.com']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Rewards']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textview_action_title' and @text='Visit TDRewards.com']")
 	private MobileElement txtVisitTD;
 
 	@iOSFindBy(xpath = "//*[@label='Continue']")
@@ -43,6 +44,10 @@ public class Rewards extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay With Rewards']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay With Rewards']")
 	private MobileElement txtpayWithRewards;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textview_action_description']")
+	private List<MobileElement> redeem_text_list;
 	
 	By iosRedemptValue=By.xpath("//XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]");
 	
@@ -189,8 +194,8 @@ public class Rewards extends _CommonPage {
 	public void verifyRedemptiontxt(){
 		Decorator();
 		try{
-		String value=mobileAction.verifyElementUsingBy(iosRedemptValue);
-		
+		String value=mobileAction.getValue(redeem_text_list.get(1));
+		System.out.println("Redeem Value:" + value);
 		value.contains(ConstantClass.t_redemption);
 		CL.GetReporting().FuncReport("Pass", "The element <b>- " +ConstantClass.t_redemption + "</b> is displayed");
 	}catch (Exception e) {
