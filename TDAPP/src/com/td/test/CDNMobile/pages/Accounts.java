@@ -141,13 +141,10 @@ public class Accounts extends _CommonPage {
 
 	String from_Account = getTestdata("FromAccount");
 
-	
 	String Acnt_Description = "//android.widget.TextView[@resource-id='com.td:id/accntDescrSum' and @text='" + from_Account
 			+ "']";
 
-	String verify_Acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'" + from_Account
-			+ "')]";  
-
+	String verify_Acnt = "//android.widget.TextView[contains(@text,'" + from_Account + "')]";  
 
 	String account_Value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
 

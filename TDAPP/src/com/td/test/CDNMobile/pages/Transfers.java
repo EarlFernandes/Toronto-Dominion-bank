@@ -39,8 +39,8 @@ public class Transfers extends _CommonPage {
 	private MobileElement transfers_Header;
 	
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Interac e-Transfer']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Interac e-Transfer')]")	//changed by Ashraf
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Interac e-Transfer')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Interac e-Transfer')]")
 	private MobileElement Interac_e_Transfer_Button;
 	
 	@iOSFindBy(xpath= "//XCUIElementTypeStaticText[@label='Between My Accounts']")  //changed by rashmi
@@ -68,7 +68,7 @@ public class Transfers extends _CommonPage {
 
 	String confirm_transfer_value = "Thank you!";
 	
-	
+	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@label='Manage Contacts']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Contacts']")
 	private MobileElement manageContacts;
 	
@@ -133,8 +133,7 @@ public class Transfers extends _CommonPage {
 	public void clickInterac_e_Transfer() {
 		Decorator();
 		try {
-			//Thread.sleep(5000);
-			//transfers_Header.isDisplayed();
+			Thread.sleep(5000);
 			mobileAction.verifyElementIsDisplayed(transfers_Header, "Transfer Header");	//added by Ashraf
 			mobileAction.FuncClick(Interac_e_Transfer_Button, "Interac e_Transfer");
 			//mobileAction.waitForElementToVanish(progrees_Bar);
@@ -285,7 +284,6 @@ public class Transfers extends _CommonPage {
 	 * @return  IOException
 	 */
 	public void clickManageContactsLink() {
-
 	
 		Decorator();
 		try {

@@ -453,7 +453,6 @@ public class Between_My_accounts extends _CommonPage {
 				String to_accountNo = getTestdata("ToAccount");
 				String toAccount_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(toAccount_value, true, 25, "Up");
-				mobileAction.FuncClick(btnCancel, "Cancel");
 
 			} else {
 				mobileAction.FuncClick(txtFrom_Acnt, "From Account");
@@ -461,7 +460,6 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.waitForElementToDisappear(select_from_acnt);
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_to_Acnt, 3, "down", true);
-				mobileAction.FuncClick(btnCancel, "Cancel");
 			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -958,22 +956,11 @@ public class Between_My_accounts extends _CommonPage {
 				System.out.println("From_AccountNo:" + from_AccountNo);
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
-				mobileAction.FuncClick(txtto_Acnt, "To Account");
-				String to_accountNo = getTestdata("ToAccount");
-				System.out.println("To Account:" + to_accountNo);
-
-				String toAccount_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(toAccount_value, true, 25, "Up");
-				mobileAction.FuncClick(btnCancel, "Cancel");
 
 			} else {
 				mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_from_acnt, 8 , "down", true);
 				mobileAction.waitForElementToDisappear(select_from_acnt);
-				mobileAction.FuncClick(txtto_Acnt, "To Account");
-				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_to_Acnt, 8, "down", true);
-				mobileAction.FuncClick(btnCancel, "Cancel");
-
 			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1440,7 +1427,7 @@ public class Between_My_accounts extends _CommonPage {
 				perFormTransfer() ;
 				mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 				mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
-				mobileAction.FuncWaitForElement(ok_Button, 60, "Ok");
+				mobileAction.FuncWaitForElement(ok_Button, 61, "Ok");
 				mobileAction.FuncClick(ok_Button, "OK");
 			}
 		} catch (NoSuchElementException e) {

@@ -217,8 +217,8 @@ public class Bill_PayCanada extends _CommonPage {
 
     
    
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Add Canadian Payees Now']")
-	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Add Canadian Payees Now')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Add Canadian Payee']")
+	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Add Canadian Payee')]")
 	private MobileElement addCanadianPayee;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay With Rewards']")
@@ -861,7 +861,11 @@ public class Bill_PayCanada extends _CommonPage {
 			}
 			mobileAction.FuncClick(continue_pay, "Continue_pay");
 			mobileAction.waitForElementToVanish(progressBar);
-
+			Thread.sleep(2000);
+			mobileAction.FuncClick(pay_bill, "Pay Bill");
+			mobileAction.waitForElementToVanish(progressBar);
+			Thread.sleep(2000);
+			mobileAction.verifyElementIsDisplayed(verify_msg, "Invalid amount error message");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -932,6 +936,8 @@ public class Bill_PayCanada extends _CommonPage {
 				//String dateValue=validateDate?"Same":"Not Same";
 				//mobileAction.verifyTextEquality(dateValue, "Same");
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
+				mobileAction.waitForElementToVanish(progressBar);
+				Thread.sleep(2000);
 				mobileAction.FuncClick(pay_bill, "Pay Bill");
 				mobileAction.verifyElement(confirmationText, txtconfirmationText);
 			}

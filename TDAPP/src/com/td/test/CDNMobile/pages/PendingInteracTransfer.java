@@ -120,6 +120,9 @@ public class PendingInteracTransfer extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']")
 	private MobileElement acntsList;
 	
+	@AndroidFindBy(xpath = "//android.widget.ScrollView[@index='0']")
+	private MobileElement pendingIEMTList;
+
 	@iOSFindBy(id = "//XCUIElementTypeStaticText[@label='-sender']")
 	private MobileElement  verifySender;
 	
@@ -864,10 +867,9 @@ public class PendingInteracTransfer extends _CommonPage{
 					}else{
 					
 						mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
-						mobileAction.FuncClick(selectSender, "sender");
-						mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
 						mobileAction.FuncClick(selectTransaction, "Select Transaction");
 						mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
+						Thread.sleep(2000);
 						String balance = Balance.getAttribute("value");
 						mobileAction.FuncClick(depositToContinue,"Continue");
 						mobileAction.FuncClick(cnfrmCancellation, "Confirm");

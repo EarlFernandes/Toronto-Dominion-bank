@@ -21,7 +21,7 @@ public class QuickAccessPage extends _CommonPage {
 	private static QuickAccessPage QuickAccessPage;
 
 	@iOSFindBy(xpath = "//*[@label='Quick Access']") 
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Quick Access']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Welcome to Quick Access')]")
 	private MobileElement Access_Header; 
 
 	@iOSFindBy(xpath= "//XCUIElementTypeButton[@label='Get Started']")
@@ -78,18 +78,13 @@ public class QuickAccessPage extends _CommonPage {
 	public void quickAccess() {
 		Decorator();
 
-		String t_getStarted="Get Started";
-		
 		try {
-			boolean flag=Access_Header.isDisplayed();
-			if(flag){
-			mobileAction.verifyElementIsDisplayed(get_Started,t_getStarted);
-			mobileAction.quitDriver();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
+			mobileAction.verifyElementIsDisplayed(Access_Header, "Welcome to Quick Access");
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-
 	}
 	
 	public void verifyQuickAccessBillPaidUpdate() {

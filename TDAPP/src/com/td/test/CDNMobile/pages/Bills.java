@@ -36,7 +36,7 @@ public class Bills extends _CommonPage {
 	private MobileElement bills_Header;
 	
 	@iOSFindBy(xpath="//XCUIElementTypeStaticText[contains(@label,'Scheduled Payments')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Scheduled Payments']")
+	@AndroidFindBy(xpath = "//*[@text='Scheduled Payments']")
 	private MobileElement scheduledPayments;
 
 	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@label='No Upcoming Bills to display in this account']")

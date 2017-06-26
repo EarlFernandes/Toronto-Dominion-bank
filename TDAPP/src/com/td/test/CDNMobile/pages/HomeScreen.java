@@ -49,7 +49,7 @@ public class HomeScreen extends _CommonPage {
 	private MobileElement transfer_button_dashboard;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Quick Access']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access']")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access']")
 	private MobileElement quickAccess;
 
 /*	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investing Accounts']")
@@ -399,13 +399,7 @@ public class HomeScreen extends _CommonPage {
 	public void clickMenu() {
 		try {
 			Decorator();
-/*			try {
-				Thread.sleep(5000);
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountno, true, 60, "Up");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
+			// FIXED removed back button
 			mobileAction.FuncClick(menu, "Menu");
 
 		} catch (NoSuchElementException e) {
