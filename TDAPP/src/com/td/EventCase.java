@@ -80,7 +80,7 @@ import com.td.test.CDNMobile.pages.FundDetails;
 import com.td.test.CDNMobile.pages.TransactionDetails;
 import com.td.test.CDNMobile.pages.PreviewPurchase;
 import com.td.test.CDNMobile.pages.Popupwindow;
-
+import com.td.test.CDNMobile.pages.FundFacts;
 
 public class EventCase {
 
@@ -162,9 +162,9 @@ public class EventCase {
 
 		verify_access_to_WB, Verify_account_activity_credit, Verify_Combined_Account, Verify_FP_Account, verify_login_5_times, Verify_PIA_Account, VerifyAccessCard, VerifyAccessCardDetails, VerifyActionFields, verifybill_landingpage, VerifyCombinedAccounts, verifyconfirm_order, VerifyDIAccounts, verifyErrorMessage, VerifyFPAccounts, VerifyIconDetails, VerifyInvestingScreen, VerifyNoEligibleAccounts, VerifyNoTradingAccounts, VerifyPIAAccounts, VerifyQuickIcons, VerifyReceipt, VerifySender, VerifySenderList, VerifyShareholderType, Verifytimestamp, VerifyTwoAccessCardDetails, VerifyUser, VerifyNickName, verifydefaultcard,View_profile,VerifyProfileHeader,VerifyContactInformationHeader,VerifyInitialNameforIndividual,VerifyInitialNameforBusinessUser,VerifyInitialNameInUpperCase,VerifyHomePhoneMasked,VerifyExtensionNotMasked,verifyProfileandSettingLandingPage,VerifyProfileNameLength,VerifyErrorMessage,VerifySecurityQuestionButton,VeirfySecuirtyQuestionPageheader,VerifyNotificationsButton,VeirfyNotificationsPageheader,VerifyQuickAccessSettings,VerifyQuickAccessSettingsHeader,VerifyTDForMeSettings,VerifyTDForMeSettingsHeader,VerifyWhatsNew,VerifyWhatsNewPageHeader,VerifyProfileAndSettingslink,VerifyEmailFormat,VerifyEmailIDLength,VerifyBlankEmailNotSuccesful,VerifyErrorMessageOrLength,VerifyEmailIDBlankorNot,VerifyEmailAddedSuccesful,VerifyPopUpWithCancelButton,VerifyClearTextIconDisplayed,VerifyPhoneNumberIsEmpty,VerifyTDForMeDisableSwitchFunction,VerifyTDForMeEnableSwitchFunction,ClickCustomizeNotificationlinkFromTDforMe, VerifyTDForMeNotificationPageHeader,VerifyQuickAccessSwitchWork,
 		
-		VerifyPlaceHolderDisplayed,VerifyToastmessageDisplayed,VerifyPhoneEmailNotChanged,verifyQuickAccessBillPaidUpdate,ClickBackFromAppOrGooglePage,Verify_quick_link_go_back_home, Verify_quick_link_view_myaccounts, Verify_error_screen, ClickCustomizeNotificationsLinkFromNotifications, VerifyTdforMeNotificationsHeader,VerifyEnableNotificationsSwitchFunction, ClickPurchaseMF,VerifyPurchaseMFPageHeader, SelectAccountUsingAccountName, VerifyFundDropdownList, VerifyFromAccountBeStaticAndLinked, ClickFundsTab, SelectFirstFund, VerifyFundDetailsPageHeader, ClickPurchaseButton, ClickfundFacts, VerifyfundfactsDoc, ClickViewfundFacts, VerifyFundfactsPageheader,VerifyQuickLinkDisplayed,randomlySelectOneFund,VerifyFundCategory,VerifyUSDConversionRatePresent, VerifyCancelPopUpMessage, ClickCancelMFpurchase,SelectUSDFunds,VerifyNoMutualFundAccounts, VerifyErrorMessageForIneligibleFund,SelectIneligibleFund,
+		VerifyPlaceHolderDisplayed,VerifyToastmessageDisplayed,VerifyPhoneEmailNotChanged,verifyQuickAccessBillPaidUpdate,ClickBackFromAppOrGooglePage,Verify_quick_link_go_back_home, Verify_quick_link_view_myaccounts, Verify_error_screen, ClickCustomizeNotificationsLinkFromNotifications, VerifyTdforMeNotificationsHeader,VerifyEnableNotificationsSwitchFunction, ClickPurchaseMF,VerifyPurchaseMFPageHeader, SelectAccountUsingAccountName, VerifyFundDropdownList, VerifyFromAccountBeStaticAndLinked, ClickFundsTab, SelectFirstFund, VerifyFundDetailsPageHeader, ClickPurchaseButton, ClickfundFacts, VerifyfundfactsDoc, ClickViewfundFacts, VerifyFundfactsPageheader,VerifyQuickLinkDisplayed,randomlySelectOneFund,VerifyFundCategory,VerifyUSDConversionRatePresent, VerifyCancelPopUpMessage, ClickCancelMFpurchase,SelectUSDFunds,VerifyNoMutualFundAccounts, VerifyErrorMessageForIneligibleFund,SelectIneligibleFund,EditMobilePhoneNumber,
 		
-		ClickActivityTab, SelectFirstTransaction, VerifyTransactionDetailHeader, VerifyTransactionDetails, SelectPreviousTransaction, VerifyMFChineseContent, VerifyPurchaseMFPageInChinese, VerifyMFActivityChineseContent,VerifyFundDetailsInformationInChinese, verifyTransactionDetailsInChinese, ClickPreviewPurchase, VerifyPreviewPurchasePageHeader, VerifyPreviewPurchasePhoneFormat, VerifyPreviewPurchasePhoneNotMasked, VerifyPreviewPurchaseContentInChinese, VerifyMinimumAmount, VerifyMaximumAmount, savePhoneInforForMFVerification, saveEmailInforForMFVerification,VerifyPhoneIsPopulatedWithProfilePhone, VerifyEmailIsPopulatedWithProfileEmail, SelectLastTransaction, VerifyZeroBalance,VerifyPurchaseButtonNotpresent,VerifyUSDDisclaimer,VerifyPrepopulatedInformatiom,ClickTDForMe_Flyout, TurnOnTDforMeIfNot,VerifyCADValueForMarketAndBookValue,VerifyUSDAmount,
+		ClickActivityTab, SelectFirstTransaction, VerifyTransactionDetailHeader, VerifyTransactionDetails, SelectPreviousTransaction, VerifyMFChineseContent, VerifyPurchaseMFPageInChinese, VerifyMFActivityChineseContent,VerifyFundDetailsInformationInChinese, verifyTransactionDetailsInChinese, ClickPreviewPurchase, VerifyPreviewPurchasePageHeader, VerifyPreviewPurchasePhoneFormat, VerifyPreviewPurchasePhoneNotMasked, VerifyPreviewPurchaseContentInChinese, VerifyMinimumAmount, VerifyMaximumAmount, savePhoneInforForMFVerification, saveEmailInforForMFVerification,VerifyPhoneIsPopulatedWithProfilePhone, VerifyEmailIsPopulatedWithProfileEmail, SelectLastTransaction, VerifyZeroBalance,VerifyPurchaseButtonNotpresent,VerifyUSDDisclaimer,VerifyPrepopulatedInformatiom,ClickTDForMe_Flyout, TurnOnTDforMeIfNot,VerifyCADValueForMarketAndBookValue,VerifyUSDAmount,ClickMobilePhoneNumber,VerifyBorrowMoneyYesButton,
 
 		VerifyFIFOLogic,VerifyEquityAndETFs,VerifyTradeOnLandingPage,Verify_flyoutMenu,VerfiyOptionConfirmOrderScreen,verifyOptionConfirmOrderReceipt,
 
@@ -1977,7 +1977,11 @@ public class EventCase {
 	    case ClickPhoneNumber:
 	    	Profile.get().ClickPhoneNumber();
 		    break;
-
+		    
+	    case ClickMobilePhoneNumber:
+	    	Profile.get().ClickMobilePhoneNumber();
+		    break;
+		    
 	    case VerifyClearTextIconDisplayed:
 	    	Profile.get().VerifyClearTextIconDisplayed();
 		    break;
@@ -1997,7 +2001,11 @@ public class EventCase {
 	    case EditPhoneNumber:
 	    	Profile.get().EditPhoneNumber();
 		    break;
-		      
+		    
+	    case EditMobilePhoneNumber:
+	    	Profile.get().EditMobilePhoneNumber();
+		    break;
+		    
 	    case ClickAddressDetail:
 	    	Profile.get().ClickAddressDetail();
 		    break;		    
@@ -2192,10 +2200,14 @@ public class EventCase {
 		    
 	    case  ClickViewfundFacts:
 	    	PurchaseMutualFunds.get().ClickViewfundFacts();
-		    break;	
+		    break;
+		    		    
+	    case  VerifyBorrowMoneyYesButton:
+	    	PurchaseMutualFunds.get().VerifyBorrowMoneyYesButton();
+		    break;
 		    
 	    case  VerifyFundfactsPageheader:
-	    	PurchaseMutualFunds.get().VerifyFundfactsPageheader();
+	    	FundFacts.get().VerifyFundfactsPageheader();
 		    break;	
 		    	
 	    case  VerifyMFActivityChineseContent:

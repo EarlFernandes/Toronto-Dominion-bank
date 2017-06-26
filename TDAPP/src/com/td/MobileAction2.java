@@ -2033,12 +2033,7 @@ public class MobileAction2 extends CommonLib {
 			boolean verified = false;
 		    WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
 		    wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
-		    String capturedText="";
-		    if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-		    	capturedText = mobileElement.getText();
-		    }else{
-		    	capturedText = mobileElement.getAttribute("label");
-		    }
+		    String capturedText=getValue(mobileElement);
 		    capturedText = capturedText.replaceAll("\n", "");
 		    for (int i=0; i< expectedHeadertext.length; i++){
 		    	if (capturedText.equalsIgnoreCase(expectedHeadertext[i].trim())){

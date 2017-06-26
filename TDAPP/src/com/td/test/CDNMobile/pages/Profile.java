@@ -1235,6 +1235,23 @@ public class Profile extends _CommonPage {
 		}
 	}
 	
+	public void ClickMobilePhoneNumber(){
+		Decorator();
+		
+		if(!isPersonalUser){
+			mobileAction.Report_Fail("Failed to find mobile phone");
+			return;
+		}
+		
+		try{
+			mobileAction.FuncClick(mobile_phone_info, "Mobile Phone");
+		}catch (Exception e){
+
+	        System.err.println("TestCase has failed.");
+	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;				
+		}
+	}
+	
 	public void VerifyClearTextIconDisplayed(){
 		Decorator();
 		try{
@@ -1333,6 +1350,53 @@ public class Profile extends _CommonPage {
 			} 
 		}
 		
+		try{
+	        if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+	        	mobileAction.FuncHideKeyboard();	       
+	        }else{
+	        	mobileAction.FuncClick(done, "Done");
+	        }
+		}catch (Exception e){
+			System.err.println("TestCase has failed.");
+	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+	        return;
+		}
+	}
+	
+	public void EditMobilePhoneNumber(){
+		
+		Decorator();
+		String phoneNumber = CL.getTestDataInstance().TCParameters.get("PhoneProfile");
+		System.out.println("Phone from data table:" + phoneNumber);
+//		if(phoneNumber.length()==10){
+//			//this is a valid number, need to check this number is the same as the original one
+//			String last_4_digit = mobileAction.FuncGetValByRegx(ori_phone,extReg);
+//			if(!last_4_digit.isEmpty() && phoneNumber.contains(last_4_digit)){
+//				// possible the same phone
+//				String reverse_4_digit = new StringBuffer(last_4_digit).reverse().toString();
+//				phoneNumber = phoneNumber.replaceAll(last_4_digit, reverse_4_digit);
+//				System.out.println("Phone changed since last 4 digit is the same as original one:" + phoneNumber);
+//			}
+//		}
+		if(!isPersonalUser){
+			System.out.println("Failed to find mobile phone");
+			mobileAction.Report_Fail("Failed to find mobile phone");
+			return;
+		}
+		String currentMobilePhone = get_mobile_phone_info();
+		String last_4_digit = mobileAction.FuncGetValByRegx(currentMobilePhone,extReg);
+		if(!last_4_digit.isEmpty() && phoneNumber.contains(last_4_digit)){
+		// possible the same phone
+			String reverse_4_digit = new StringBuffer(last_4_digit).reverse().toString();
+			phoneNumber = phoneNumber.replaceAll(last_4_digit, reverse_4_digit);
+			System.out.println("Phone changed since last 4 digit is the same as original one:" + phoneNumber);
+		}
+		try{
+			mobileAction.FuncSendKeys(mobile_phone_info, phoneNumber);
+		}catch (Exception e1){
+			
+		}
+				
 		try{
 	        if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 	        	mobileAction.FuncHideKeyboard();	       

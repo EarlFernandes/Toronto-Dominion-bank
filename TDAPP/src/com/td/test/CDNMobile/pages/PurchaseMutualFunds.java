@@ -98,13 +98,24 @@ public class PurchaseMutualFunds extends _CommonPage {
 	String emailPlaceHolder = "example@address.com | exemple@adresse.com";
 	String phonePlaceHolder ="Enter number | Entrer le numéro";
 	String purchaseListView = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/purchaseListView']";
-	String androidphoneReg ="\\(\\•{3}\\)\\•{3}-\\d{4}";
-	String iosphoneReg = "\\(\\•{3}\\) \\•{3} - \\d{4}";
+	String phoneReg = "\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
 	String emailReg ="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/../XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
 	@AndroidFindBy(id = "com.td:id/purchasePreviewButton")
 	private MobileElement preview_purchase_button;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeSegmentedControl/XCUIElementTypeButton[1]")
+	@AndroidFindBy(xpath = "//XCUIElementTypeSegmentedControl/XCUIElementTypeButton")
+	private MobileElement borrow_money_yes_button;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeSegmentedControl/XCUIElementTypeButton[2]")
+	@AndroidFindBy(id = "com.td:id/purchasePreviewButton")
+	private MobileElement borrow_money_no_button;
+	
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeCell[6]/XCUIElementTypeStaticText")
+	@AndroidFindBy(id = "com.td:id/purchasePreviewButton")
+	private MobileElement borrow_money_warning_message;
 	
 	@iOSFindBy(xpath = "//*[@label='Done' or @label='OK']")
 	private MobileElement done;
@@ -231,7 +242,16 @@ public class PurchaseMutualFunds extends _CommonPage {
 	public void VerifyFromAccountBeStaticAndLinked() {
 		Decorator();
 		try {
-
+			String selectedFund = CL.getTestDataInstance().TCParameters.get("Accounts");
+			mobileAction.FuncClick(fund_dropdown_list, "Funds dorpdown list");
+			String FundInListText;
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				FundInListText = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='" + selectedFund + "']";
+			}else{
+				FundInListText = "//XCUIElementTypeStaticText[@label='" + selectedFund + "']";			
+			}
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(FundInListText, true, 10, "up");		
+			
 			mobileAction.verifyElementIsDisplayed(from_account_name, "From Account name");
 			mobileAction.FuncClick(from_account_name, "From Account name");
 			mobileAction.verifyElementIsDisplayed(from_account_name, "From Account name");
@@ -265,22 +285,12 @@ public class PurchaseMutualFunds extends _CommonPage {
 				return;
 			}
 			
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				
-				if(phoneNum.matches(androidphoneReg)){
-					mobileAction.Report_Pass_Verified("Phone format ");
-				}else{
-					mobileAction.Report_Fail_Not_Verified("Phone format ");
-				}
+			if(phoneNum.matches(phoneReg)){
+				mobileAction.Report_Pass_Verified("Phone format ");
 			}else{
-
-				if(phoneNum.matches(iosphoneReg)){
-					mobileAction.Report_Pass_Verified("Phone format ");
-				}else{
-					mobileAction.Report_Fail_Not_Verified("Phone format ");
-				}
+				mobileAction.Report_Fail_Not_Verified("Phone format ");
 			}
-			
+				
 		} catch (NoSuchElementException  e) {
 			System.err.println("TestCase has failed to VerifyPhoneFormat.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -298,20 +308,10 @@ public class PurchaseMutualFunds extends _CommonPage {
 				return;
 			}
 			
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				
-				if(phoneNum.matches(androidphoneReg)){
-					mobileAction.Report_Pass_Verified("Phone not masked ");
-				}else{
-					mobileAction.Report_Fail_Not_Verified("Phone not masked ");
-				}
+			if(phoneNum.matches(phoneReg)){
+				mobileAction.Report_Pass_Verified("Phone not masked ");
 			}else{
-
-				if(phoneNum.matches(iosphoneReg)){
-					mobileAction.Report_Pass_Verified("Phone not masked ");
-				}else{
-					mobileAction.Report_Fail_Not_Verified("Phone not masked ");
-				}
+				mobileAction.Report_Fail_Not_Verified("Phone not masked ");
 			}
 			
 		} catch (NoSuchElementException  e) {
@@ -356,6 +356,32 @@ public class PurchaseMutualFunds extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			mobileAction.Report_Fail("Exception for VerifyPurchaseMFPageInChinese");
 		}
+	}
+	
+	public void SelectFund(){
+		Decorator();
+		try {
+			String selectedFund = CL.getTestDataInstance().TCParameters.get("Accounts");
+			mobileAction.FuncClick(fund_dropdown_list, "Funds dorpdown list");
+
+			String FundInListText;
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				FundInListText = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='" + selectedFund + "']";
+			}else{
+				FundInListText = "//XCUIElementTypeStaticText[@label='" + selectedFund + "']";			
+			}
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(FundInListText, true, 10, "up");		
+			
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}	
 	}
 	
 	private boolean fillPurchaseForm() {
@@ -597,10 +623,9 @@ public class PurchaseMutualFunds extends _CommonPage {
 	public void ClickViewfundFacts(){
 		Decorator();
 		try {
+			SelectFund();
 			mobileAction.FuncSwipeWhileElementNotFound(view_fundFacts, true, 5, "up");
-			//mobileAction.FuncClick(view_fundFacts, "view fund Facts");
-			
-			
+			//mobileAction.FuncClick(view_fundFacts, "view fund Facts");	
 		} catch ( NoSuchElementException  e) {
 			System.err.println("TestCase has failed to clickviewfundFacts.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -608,9 +633,6 @@ public class PurchaseMutualFunds extends _CommonPage {
 		}	
 	}
 	
-	public void VerifyFundfactsPageheader(){
-	
-	}
 	
 	public void VerifyPrepopulatedInformatiom(){
 		Decorator();
@@ -702,6 +724,33 @@ public class PurchaseMutualFunds extends _CommonPage {
 					+"|Il semble que vous ne puissiez pas effectuer d’achats. Pour obtenir de l’aide, composez le x-xxx-xxx-xxxx.";			
 			mobileAction.verifyElementTextIsDisplayed(error_message, expectedErrorMsg);
 								
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}	
+	}
+	
+	public void VerifyBorrowMoneyYesButton(){
+		Decorator();
+		try {
+			if(!mobileAction.verifyElementIsPresent(borrow_money_warning_message)){
+				mobileAction.FuncClick(borrow_money_yes_button, "Yes");
+				if(mobileAction.verifyElementIsPresent(borrow_money_warning_message)){
+					String warningmsg= mobileAction.getValue(borrow_money_warning_message);
+					System.out.println("Warning msg:"+ warningmsg);
+					mobileAction.Report_Pass_Verified("Warning meesage when borrow money set to yes");
+				}else{
+					mobileAction.Report_Fail("Fail: No Warning meesage when borrow money set to yes");
+				}
+			}else{
+				mobileAction.Report_Pass_Verified("Warning meesage when borrow money set to yes");
+			}								
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

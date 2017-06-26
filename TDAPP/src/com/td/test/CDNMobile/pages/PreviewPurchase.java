@@ -70,7 +70,7 @@ public class PreviewPurchase extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Amount']/../android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement amount_value;
 	
-	String androidphoneReg ="\\(\\d{3}\\) \\d{3}-\\d{4}";
+	String phoneReg ="\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
 
 	public synchronized static PreviewPurchase get() {
 		if (previewPurchase == null) {
@@ -118,7 +118,7 @@ public class PreviewPurchase extends _CommonPage {
 			}
 			System.out.println("Phone number:" + phoneNumber);
 			
-			if(phoneNumber.matches(androidphoneReg)){
+			if(phoneNumber.matches(phoneReg)){
 				mobileAction.Report_Pass_Verified("Phone format (111) 1111-1111"); 
 			}else{
 				mobileAction.Report_Fail_Not_Verified("Phone format (111) 1111-1111");
@@ -151,7 +151,7 @@ public class PreviewPurchase extends _CommonPage {
 			}
 			System.out.println("Phone number:" + phoneNumber);
 			
-			if(phoneNumber.matches(androidphoneReg)){
+			if(phoneNumber.matches(phoneReg)){
 				mobileAction.Report_Pass_Verified("Phone "+ phoneNumber +" not masked"); 
 			}else{
 				mobileAction.Report_Fail("Phone "+ phoneNumber +" is masked");

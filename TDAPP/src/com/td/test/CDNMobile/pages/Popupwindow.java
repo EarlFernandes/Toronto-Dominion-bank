@@ -23,11 +23,11 @@ public class Popupwindow extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
 	private MobileElement cancel_button;	
 
-	@iOSFindBy(xpath = "//*[@label='Yes, go back' or @label='Oui']")
+	@iOSFindBy(xpath = "//*[@label='Yes, go back' or @label='Oui' or @name='alert_ok_button']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
 	private MobileElement goback_button;
 
-	@iOSFindBy(xpath = "//*[@label='Yes, go back' or @label='Oui']")
+	@iOSFindBy(xpath = "//*[@name='alert_ok_button']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeTextView")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement popup_message;
 	
@@ -76,6 +76,9 @@ public class Popupwindow extends _CommonPage {
 	public void VerifyCancelPopUpMessage(){
 		Decorator();
 		try{
+//			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+//				popup_message = mobileAction.verifyElementUsingXPath("//XCUIElementTypeTextView[@label='" + mobileAction.getAppString(" str_cancel_order_button") + "']", "Cancel order prompt");
+//			}
 			String expectedMsg= "Are you sure you want to cancel this order? | Êtes-vous certain de vouloir annuler cet ordre? |您确定要取消该订单？ | 確定要取消此訂單？";
 			mobileAction.verifyElementTextIsDisplayed(popup_message, expectedMsg);
 		}catch (Exception e){

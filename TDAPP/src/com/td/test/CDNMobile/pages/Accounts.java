@@ -764,7 +764,9 @@ public class Accounts extends _CommonPage {
 		try {
 			mobileAction.waitForElementToVanish(progressBar);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(back_button, "<");				
+				if(mobileAction.verifyElementIsPresent(back_button)){
+					mobileAction.FuncClick(back_button, "<");
+				}
 			} else {
 				//For android doing nothing				
 			}
