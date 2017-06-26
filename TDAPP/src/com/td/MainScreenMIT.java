@@ -100,11 +100,14 @@ public class MainScreenMIT extends _CommonPage {
 	// ANDROID    
 	    if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 	    {
+	    	CL.getTestDataInstance().DriversCapability.put("udid", CL.getTestDataInstance().getDeviceUdid());
 	    //CL.getTestDataInstance().SetAppFilePath("C:/Users/baraps2/MIT_Builds/Android/banking-wealth-17.3.1-20170130.145242-90-debug.apk");
-	    //CL.getTestDataInstance().SetAppFilePath("C:/Automation/MIT_Builds/Android/banking-wealth-17.5.1-20170616.145016-224-debug.apk"); //path at simulator server
-	    CL.getTestDataInstance().SetAppFilePath("/opt/app/Android/banking-wealth-17.5.1-20170616.145016-224-debug.apk"); //Mac Pro
-	     // CL.mobileApp("http://0.0.0.0:4727/wd/hub"); // android Local
-	    CL.mobileApp("http://49.19.17.226:4760/wd/hub"); // android Mac Pro
+	   // CL.getTestDataInstance().SetAppFilePath("C:/Automation/MIT_Builds/Android/banking-wealth-17.5.2-20170621.200502-2-debug.apk"); //path at simulator server
+	   // CL.getTestDataInstance().SetAppFilePath("/opt/app/Android/banking-wealth-17.5.2-20170621.200502-2-debug.apk"); //Mac Pro
+	    CL.getTestDataInstance().SetAppFilePath("/Users/mobileqa/builds/banking-wealth-17.5.2-20170621.200502-2-debug.apk"); //Appium Lab 
+	   //   CL.mobileApp("http://0.0.0.0:4727/wd/hub"); // android Local
+	  //  CL.mobileApp("http://49.19.17.226:4762/wd/hub"); // android Mac Pro
+	    CL.mobileApp("http://49.21.141.104:4760/wd/hub"); // Appium Lab
 	    }
 	// iOS
 	    else

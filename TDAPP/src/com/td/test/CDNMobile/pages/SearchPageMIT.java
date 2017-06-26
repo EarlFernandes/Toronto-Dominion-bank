@@ -160,18 +160,21 @@ public class SearchPageMIT extends _CommonPage {
 		Decorator();
 		int i,temp;
 		String sSymbolName="";
+		String property = "";
 		try
 		{
 			mobileAction.FuncClick(search_symbol, "search_symbol");
 			//mobileAction.FuncSendKeys(search_symbol, getTestdata("Symbol", "UserIDs") + " ");
 			enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs"));
 			String xpathFlag="";
-			String property = "";
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 			{
 				xpathFlag = xpathSymbolFlag;
 				temp =0;
-				property = "text";
+				if(CL.getTestDataInstance().getMobilePlatFormVersion().contains("7"))
+				property = "contentDescription";
+				else
+					property = "name";	
 			}
 			else
 			{
@@ -185,7 +188,7 @@ public class SearchPageMIT extends _CommonPage {
 			
 			 for(i=temp;i< listItem.size();i++)
 			 {
-				 if(listItem.get(i).getAttribute("name").contains("U S"))
+				 if(listItem.get(i).getAttribute(property).contains("U S"))
 				 //listItem.get(i).findElementByXPath(using)
 				 {
 					 sSymbolName = CL.GetDriver().findElements(By.xpath("//*[@resource-id='com.td:id/market_name']")).get(i).getText();
@@ -202,7 +205,8 @@ public class SearchPageMIT extends _CommonPage {
 			 try
 			 {
 			 CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
-			 CL.GetReporting().FuncReport("Pass", listItem.get(temp).getAttribute(property) + " from symbol search list selected."); 
+//			 CL.GetReporting().FuncReport("Pass", listItem.get(temp).getAttribute(property) + " from symbol search list selected.");
+			 CL.GetReporting().FuncReport("Pass","First Symbol from symbol search list selected."); 
 			 }
 			 catch(Exception e)
 			 {
@@ -327,7 +331,7 @@ public class SearchPageMIT extends _CommonPage {
 		try
 		{
 
-			if (CL.getTestDataInstance().getMobilePlatFormVersion().contains("6"))
+			if (Integer.parseInt(CL.getTestDataInstance().getMobilePlatFormVersion()) > 6 )//.contains("6")
 			{
 				mobileAction.FuncSendKeys(mEle, symbol + " ");
 			}
@@ -339,7 +343,7 @@ public class SearchPageMIT extends _CommonPage {
 			
 			//mobileAction.FuncSendKeys(mEle,"\u0008");
 			//mEle.sendKeys(Keys.DELETE);
-		
+			TradeMultiLeg.get().handleKeyboard();
 		}
 		catch(Exception e)
 		{

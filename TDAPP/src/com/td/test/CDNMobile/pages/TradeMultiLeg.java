@@ -381,7 +381,7 @@ public class TradeMultiLeg extends _CommonPage{
 		try
 		{
 			SearchPageMIT.get().clickFirstSymbol();
-			mobileAction.FunCnewSwipe(stockSymbol,false,5);
+			mobileAction.FunCnewSwipe(leg1Quantity,false,5);
 			mobileAction.verifyElement(stockSymbol, getTestdata("Symbol", XLSheetUserIDs));
 			mobileAction.verifyElement(leg1Action, getTestdata("TextDefaultListItem", XLSheetUserIDs));
 			mobileAction.FuncVerifyBlankValue(leg1Quantity, "leg1Quantity");
@@ -394,8 +394,9 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			String[] sUrlTitle= getTestdata("urlTitle", XLSheetUserIDs).split(";");
 			
-			///mobileAction.FuncSwipeWhileElementNotFound(commissionLink, false, 7, "up");
-			mobileAction.FunctionSwipe("up", 200, 100);
+			//mobileAction.FuncSwipeWhileElementNotFound(commissionLink, false, 7, "up");
+			//mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(commissionLink);
 			
 			mobileAction.verifyElement(tradingPwdDisableMsg, getTestdata("TradingPassword", XLSheetUserIDs));
 			
@@ -422,7 +423,7 @@ public class TradeMultiLeg extends _CommonPage{
 		try
 		{
 			SearchPageMIT.get().clickFirstSymbol();
-			mobileAction.FunCnewSwipe(leg1Option,false,5);
+			mobileAction.FuncSwipeWhileElementNotFound(leg1Quantity,false,5,"up");
 			mobileAction.verifyElement(leg1Option, getTestdata("OptionDefault", XLSheetUserIDs));
 			mobileAction.verifyElement(leg1Action, getTestdata("TextDefaultListItem", XLSheetUserIDs));
 			mobileAction.verifyElement(leg1Quantity, defaultQtyVal);
@@ -448,7 +449,8 @@ public class TradeMultiLeg extends _CommonPage{
 		{
 			SearchPageMIT.get().clickFirstSymbol();
 			sSymbolVal = mobileAction.FuncGetText(Quote_Symbol);
-			mobileAction.FunCnewSwipe(leg1Option,false,5);
+			//mobileAction.FunCnewSwipe(leg1Option,false,5);
+			mobileAction.FuncSwipeWhileElementNotFound(leg1Option, false, 5, "up");
 			mobileAction.FuncClick(leg1Option, "Select Option Leg1");
 			///mobileAction.FunCnewSwipe(firstStrikeCALLS,false,5);
 			///mobileAction.FunctionSwipe("up", 200, 100);
@@ -850,7 +852,8 @@ public class TradeMultiLeg extends _CommonPage{
 			//Thread.sleep(5000);
 			mobileAction.FuncSendKeys(objEle,sText);
 			handleKeyboard();
-			if(mobileAction.FuncGetText(objEle).length()<1)
+			//if(mobileAction.FuncGetText(objEle).length()<1)
+			if(mobileAction.FuncGetText(objEle).equals("") || mobileAction.FuncGetText(objEle)==null )
 			{
 				mobileAction.FuncSendKeys(objEle,sText);	
 				handleKeyboard();
@@ -1171,10 +1174,10 @@ public class TradeMultiLeg extends _CommonPage{
 			}
 			if(mobileAction.isObjExists(editTextPassword, 2))
 			{
-				//FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
-				mobileAction.FuncSendKeys(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+				FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+/*				mobileAction.FuncSendKeys(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
 				handleKeyboard();
-			}
+*/			}
 
 		}
 		catch(Exception e)
@@ -1431,9 +1434,9 @@ public class TradeMultiLeg extends _CommonPage{
 			}
 			if(mobileAction.isObjExists(editTextPassword, 2))
 			{
-				//FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
-				mobileAction.FuncSendKeys(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
-				handleKeyboard();
+				FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+/*				mobileAction.FuncSendKeys(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+				handleKeyboard();*/
 			}
 
 		}

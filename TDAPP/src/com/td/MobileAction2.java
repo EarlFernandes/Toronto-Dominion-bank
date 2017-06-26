@@ -2614,8 +2614,8 @@ public String FuncGetElementText(MobileElement objElement) { //@Author - Sushil 
 	String textToReturn = null;
 	try {
 
-		WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-		wait.until(ExpectedConditions.visibilityOf(objElement));
+/*		WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+		wait.until(ExpectedConditions.visibilityOf(objElement));*/
 		
 		if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 		{
