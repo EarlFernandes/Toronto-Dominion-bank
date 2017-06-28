@@ -97,7 +97,7 @@ public class EventCase {
 
 		Bill_PayCanada_AmountSelection, Bill_PayCanada_BillPaymentCurrentDate, Bill_PayCanada_PayBillCancel, Bill_PayCanada_VerifyBackButton, Bill_PayCanada_VerifyQuickAccess, Bills_ScheduledPayments, BillsHeader, BetweenMyAccounts_TFSAUSD_TFSACAD(),
 
-		CanadianPayee_ConfirmPage, Cancel,
+		CanadianPayee_ConfirmPage, Cancel,VerifyAndEnableQuickAccess,
 
 		CDNCash, CDNCash_Sell_StopMarket, CDNMargin_Buy, CDNMargin_Buy_TriggerDelta, CDNMargin_Sell_TrailingStopLimit, CDNMargin_Sell_TrailingStopMarket, CDNMarginLimit, CDNMarginLimitTradePreviewOrder,
 
@@ -2566,6 +2566,9 @@ public class EventCase {
 			QuickAccessPage.get().verifyCashBack();
 			break;
 			
+		case VerifyAndEnableQuickAccess:
+			QuickAccess.get().VerifyAndEnableQuickAccess();
+			break;			
 			//Tetris End
 			
 			

@@ -794,7 +794,7 @@ public class Accounts extends _CommonPage {
 			}}*/
 		
 		
-		mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountXL, true,10, "up");
+		mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountXL, true,40, "up");
 		mobileAction.waitForElementToVanished(progresssBar);
 		
 

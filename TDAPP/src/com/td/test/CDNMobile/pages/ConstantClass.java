@@ -17,6 +17,7 @@ public class ConstantClass {
 	public static final String t_amountValue = "$0";
 	public static final String t_rewardtxt = "Cash Back Dollars";
 	public static final String points = "TD Points";
-	public static final String maskedValue="••••";
+	public static final String maskedValue_Android="●●●●";
+	public static final String maskedValue_iOS="••••";
 
 }

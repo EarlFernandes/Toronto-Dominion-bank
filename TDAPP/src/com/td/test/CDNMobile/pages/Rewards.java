@@ -34,7 +34,7 @@ public class Rewards extends _CommonPage {
 	private MobileElement txtVisitTD;
 
 	@iOSFindBy(xpath = "//*[@label='Continue']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Rewards']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
 	private MobileElement continueBtn;
 
 	@FindBy(xpath = "//*[contains(@value,'‎tdrewards.com')]")

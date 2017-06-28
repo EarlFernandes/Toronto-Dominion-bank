@@ -48,14 +48,15 @@ public class PayWithRewards extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Done']")
 	private MobileElement doneBtn;
 
-	By rewardPayee = By.xpath("//XCUIElementTypeOther/XCUIElementTypeStaticText[1]");
+	By rewardPayee = By.xpath("//XCUIElementTypeTable/preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[1]");
 
-	By iosMaxBtn = By.xpath("//XCUIElementTypeSegmentedControl[1]/XCUIElementTypeButton[3]");
+	By iosMaxBtn = By.xpath("//XCUIElementTypeStaticText[@label='Maximum']/preceding-sibling::XCUIElementTypeButton[1]");
 	By androidMaxBtn = By.xpath("//android.widget.TextView[@resource-id='com.td:id/maximum_payment_value']");
 	By androidMinBtn = By.xpath("//android.widget.TextView[@resource-id='com.td:id/minimum_payment_value']");
-	By iosMinBtn = By.xpath("//XCUIElementTypeSegmentedControl[1]/XCUIElementTypeButton[1]");
+	By iosMinBtn = By.xpath("//XCUIElementTypeStaticText[@label='Minimum']/preceding-sibling::XCUIElementTypeButton[1]");
 	By iosamountXpath = By.xpath("//XCUIElementTypeCell[1]/XCUIElementTypeTextField[1]");
 	By androidAmountValue = By.xpath("//android.widget.EditText[@resource-id='com.td:id/amount_payment_value']");
+	By androidpayee = By.xpath("//android.widget.TextView[@resource-id='com.td:id/account_description']");
 
 	String amountXL = getTestdata("Amount");
 
@@ -110,6 +111,7 @@ public class PayWithRewards extends _CommonPage {
 
 		try {
 			String value = "";
+			amountXL = getTestdata("Amount");
 			System.out.println("Amount:" + amountXL);
 			int i = Integer.parseInt(amountXL);
 
@@ -269,7 +271,7 @@ public class PayWithRewards extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
 				value = CL.GetDriver().findElement(rewardPayee).getAttribute("label");
 			} else {
-				value = mobileAction.verifyElementUsingBy(androidAmountValue);
+				value = mobileAction.verifyElementUsingBy(androidpayee);
 			}
 			String rewardPayeeXL = getTestdata("FromAccount");
 			if (value.equals(rewardPayeeXL)) {
