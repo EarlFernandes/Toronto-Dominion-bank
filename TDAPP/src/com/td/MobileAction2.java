@@ -570,6 +570,90 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
+	 * This function will check if the given element is NOT in the list. Pass if it is not found, FAIL if it is found
+	 * 
+	 * @param swipeWithinElement
+	 *            The element within which elementToFind is located. We need to
+	 *            swipe within this element. Please also make sure that the
+	 *            element is swipeable, otherwise it will throw an error.
+	 * @param elementToFind
+	 *            The element that has to be found with the swipes.
+	 * @param maxSwipes
+	 *            The maximum number of times you want to swipe until the
+	 *            element has been found.
+	 * @param direction
+	 *            The direction of swipe. It is either 'up', 'down', 'left' or
+	 *            'right'. If the direction is something else, an
+	 *            IllegalArgumentException is thrown and the test will fail.
+	 * 
+	 * @throws IOException
+	 *             If some error comes in reporting.
+	 */
+	public boolean FuncElementNotInListSwipe(MobileElement swipeWithinElement, String xpathOfElement, int maxSwipes,
+			String direction) throws IOException {
+		try {
+			Dimension dimensionOfSwipingElement = swipeWithinElement.getSize();
+			Point locationOfSwipingElement = swipeWithinElement.getLocation();
+			int startx, starty, endx, endy;
+			if (direction.equalsIgnoreCase("down")) {
+				startx = locationOfSwipingElement.getX() + dimensionOfSwipingElement.getWidth() / 2;
+				;
+				starty = locationOfSwipingElement.getY() + dimensionOfSwipingElement.height - 20;
+				endx = startx;
+				endy = locationOfSwipingElement.getY() + 20;
+			} else if (direction.equalsIgnoreCase("up")) {
+				startx = locationOfSwipingElement.getX() + dimensionOfSwipingElement.getWidth() / 2;
+				starty = locationOfSwipingElement.getY() + 20;
+				endx = startx;
+				endy = locationOfSwipingElement.getY() + dimensionOfSwipingElement.getHeight() - 20;
+			} else if (direction.equalsIgnoreCase("right")) {
+				startx = locationOfSwipingElement.getX() + 10;
+				starty = locationOfSwipingElement.getY() + dimensionOfSwipingElement.height / 2;
+				endx = locationOfSwipingElement.getX() + dimensionOfSwipingElement.getWidth() - 10;
+				endy = starty;
+			} else if (direction.equalsIgnoreCase("left")) {
+				startx = locationOfSwipingElement.getX() + dimensionOfSwipingElement.getWidth() - 10;
+				starty = locationOfSwipingElement.getY() + dimensionOfSwipingElement.height / 2;
+				endx = locationOfSwipingElement.getX() + 10;
+				endy = starty;
+			} else {
+				throw new IllegalArgumentException("The direction given is '" + direction
+						+ "' is wrong. Please give either 'up', 'down', 'left' or 'right'.");
+			}
+
+			for (int i = 0; i < maxSwipes; i++) {
+				boolean elementFound = false;
+				WebElement elementToFind = null;
+				try {
+					elementToFind = ((AppiumDriver<WebElement>) GetDriver()).findElement(By.xpath(xpathOfElement));
+					elementFound = elementToFind.isDisplayed();
+
+				} catch (NoSuchElementException e) {
+					((MobileDriver) GetDriver()).swipe(startx, starty, endx, endy, 3000);
+				}
+				if (elementFound) {
+					GetReporting().FuncReport("Fail", "Element was found when it should not be in list! \n");
+					return false;
+				}
+			}
+			GetReporting().FuncReport("Pass",
+					"Could not find element: '" + xpathOfElement + "' in '" + maxSwipes + "' swipes.");
+			return true;
+		} catch (IllegalArgumentException e) {
+			GetReporting().FuncReport("Fail", "Error occured in swipeWhileNotFound. \n" + e.toString());
+			throw e;
+		} catch (NoSuchElementException e) {
+			GetReporting().FuncReport("Pass",
+					"Could not find element: '" + xpathOfElement + "' in '" + maxSwipes + "' swipes.");
+			return true;
+		} catch (Exception e) {
+			GetReporting().FuncReport("Fail",
+					"Exception '" + e.toString() + "' occurred while trying to use swipeWhileNotFound.");
+			throw e;
+		}
+	}
+	
+	/**
 	 * This method will return the text of the element which has been specified
 	 * and print it in the report as well.
 	 * 

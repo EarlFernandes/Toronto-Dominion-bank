@@ -31,8 +31,7 @@ public class Between_My_accounts extends _CommonPage {
 		return Between_My_accounts;
 	}
     
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'This amount is either below the minimum or above the maximum foreign exchange limit. "
-			+ "Please enter a different amount. (BQ15)')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'This amount is either below')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
 	private MobileElement errorMsg;
 
@@ -219,8 +218,6 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtToAccount' and @text='Select To Account']")
 	private MobileElement to_Acnt;
 
-	String tfsa_Account = "HIGH INTEREST TFSA SAVINGS ACCOUNT";
-
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Between My Accounts']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Between My Accounts']")
 	private MobileElement btw_My_Accounts_Header;
@@ -228,51 +225,7 @@ public class Between_My_accounts extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'From Account, Select from account')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccount' and @text='Select From Account']")
 	private MobileElement fromAccount;
-	
-	String error_txt = "This amount is either below the minimum or above the maximum foreign exchange limit. Please enter a different amount. (BQ15)";
 
-	String accountsPage_Table = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/"
-			+ "XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
-	String ValueofAmount = getTestdata("Amount");
-	String from_Account = getTestdata("FromAccount");
-
-	String to_account = getTestdata("ToAccount");
-
-	String progressBar = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
-
-	String verify_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'" + to_account   //changed by rashmi
-			+ "')]";
-	int i = 1;
-	String from_Accounts_table = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]";
-	String Firstpart = "//XCUIElementTypeCell[";
-	String Secondpart = "]/XCUIElementTypeStaticText[1]";
-
-	String Finalpart = Firstpart + i + Secondpart;
-
-	String select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
-			+ from_Account + "')]";  
-
-	String select_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
-			+ to_account + "')]";  
-
-	String verify_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-			+ from_Account + "']";
-	String account = getTestdata("Accounts");
-
-
-	String toaccount = getTestdata("Reason");
-	String account_verify_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-			+ account + "']";
-	
-	String account_verify_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-			+ toaccount+ "']";
-
-	String validate_message = "Withdrawals may impact your annual TFSA contribution limit.";
-	String iosFromAccount = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
-
-	String iosToAccount = "//XCUIElementTypeStaticText[contains(@label,'" + to_account + "')]";
-
-	String accountsSecondPart = "]/XCUIElementTypeStaticText[2]";
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	private MobileElement activityConfText;
 
@@ -289,11 +242,7 @@ public class Between_My_accounts extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[4]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountBalance']")
 	private MobileElement fromAccountBalance;
-	
-	String select_fromaccountvalue ="//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='" + from_Account+ "']";
-	
-	String select_toaccountvalue ="//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"+ to_account+ "']";
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[4]")
 	private MobileElement accountVal;
 	
@@ -339,7 +288,7 @@ public class Between_My_accounts extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(txtAmount, "Amount");
-			mobileAction.FuncSendKeys(txtAmount, ValueofAmount);
+			mobileAction.FuncSendKeys(txtAmount, getTestdata("Amount"));
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(done, "Done");
 			} else {
@@ -398,6 +347,11 @@ public class Between_My_accounts extends _CommonPage {
 						"When making deposits to this account, please ensure that you are");
 
 			} else {
+				String select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+						+ getTestdata("FromAccount") + "')]";  
+				String select_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+						+ getTestdata("ToAccount") + "')]";  
+				
 				mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_from_acnt, 5, "down", true);
 				mobileAction.waitForElementToDisappear(select_from_acnt);
@@ -455,6 +409,11 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(toAccount_value, true, 25, "Up");
 
 			} else {
+				String select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+						+ getTestdata("FromAccount") + "')]";  
+
+				String select_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+						+ getTestdata("ToAccount") + "')]";  
 				mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_from_acnt, 10 , "down", true);
 				mobileAction.waitForElementToDisappear(select_from_acnt);
@@ -580,8 +539,27 @@ public class Between_My_accounts extends _CommonPage {
 
 	public void exchange_rate_expired() {
 		Decorator();
-		try {
+		String verify_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'" + getTestdata("ToAccount")   //changed by rashmi
+		+ "')]";
+		String account_verify_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
+				+ getTestdata("ToAccount")+ "']";
 
+		String verify_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
+				+ getTestdata("FromAccount") + "']";
+		String select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+				+ getTestdata("FromAccount") + "')]";  
+
+		String select_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+				+ getTestdata("ToAccount") + "')]"; 
+		String progressBar = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
+		int i = 1;
+		String from_Accounts_table = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]";
+		String Firstpart = "//XCUIElementTypeCell[";
+		String Secondpart = "]/XCUIElementTypeStaticText[1]";
+		String accountsPage_Table = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/"
+				+ "XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
+		String Finalpart = Firstpart + i + Secondpart;
+		try {
 			mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -662,7 +640,7 @@ public class Between_My_accounts extends _CommonPage {
 
 					String org_amt[] = amount[1].split(".");
 
-					for (int i = 0; i < org_amt.length; i++)
+					for (int j = 0; j < org_amt.length; j++)
 						mobileAction.verifyTextEquality(org_amt[0], ValueofAmount);
 				}
 				mobileAction.FuncClickBackButton();
@@ -730,6 +708,9 @@ public class Between_My_accounts extends _CommonPage {
 	public void lira_US_to_UU()  {
 
 		Decorator();
+		String error_txt = "This amount is either below the minimum or above the maximum foreign exchange limit. Please enter a different amount. (BQ15)";
+		String select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+				+ getTestdata("FromAccount") + "')]";  
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -749,9 +730,8 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_from_acnt, 5, "down", true);
 				mobileAction.FuncClick(txtAmount, "Amount");
-				mobileAction.FuncSendKeys(txtAmount, ValueofAmount);
-				mobileAction.FuncClickBackButton();
-				mobileAction.FuncClick(usd_Button, "USD");
+				mobileAction.FuncSendKeys(txtAmount, getTestdata("Amount"));
+				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 				String error_actual = mobileAction.getText(errorMsg);
 				mobileAction.verifyTextEquality(error_actual, error_txt);
@@ -791,14 +771,28 @@ public class Between_My_accounts extends _CommonPage {
 	public void mobile_expiry_rate() {
 
 		Decorator();
+		String from_Accounts_table = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]";
+		String Firstpart = "//XCUIElementTypeCell[";
+		String Secondpart = "]/XCUIElementTypeStaticText[1]";
+
+
+		String select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+				+ getTestdata("FromAccount") + "')]";  
+
+		String select_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+				+ getTestdata("ToAccount") + "')]";  
+
+		String verify_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
+				+ getTestdata("FromAccount") + "']";
+		
 		try {
 
 			mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, from_Account);
+				mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, getTestdata("FromAccount"));
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
-				mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, to_account);
+				mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, getTestdata("ToAccount"));
 			} else {
 
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_from_acnt, 3, "down", true);
@@ -807,7 +801,7 @@ public class Between_My_accounts extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(txtAmount, "Amount");
-			mobileAction.FuncSendKeys(txtAmount, ValueofAmount);
+			mobileAction.FuncSendKeys(txtAmount, getTestdata("Amount"));
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(done, "Done");
@@ -827,12 +821,12 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.FuncClick(btnMenu, "Menu");
 			mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
+				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + getTestdata("FromAccount") + "')]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 				Thread.sleep(3000);
 
 			}else{
-				mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList, verify_from_acnt, 3, "down", true);
+				mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList, verify_from_acnt, 5, "down", true);
 				mobileAction.verifyTextContains(last_Transaction_List.get(0), conf_val);
 			}
 
@@ -869,6 +863,13 @@ public class Between_My_accounts extends _CommonPage {
 	public void negativerTestingTransferFunds() {
 
 		Decorator();
+		
+		String select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+				+ getTestdata("FromAccount") + "')]";  
+
+		String select_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+				+ getTestdata("ToAccount") + "')]";  
+
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
@@ -948,6 +949,10 @@ public class Between_My_accounts extends _CommonPage {
 	public void TDCTTFSA_CADTFSA()  {
 
 		Decorator();
+		
+		String select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+				+ getTestdata("FromAccount") + "')]";  
+
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
@@ -1051,6 +1056,11 @@ public class Between_My_accounts extends _CommonPage {
 	public void transfer_between_my_accounts_verify_receipt() {
 
 		Decorator();
+		
+		String verify_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
+				+ getTestdata("FromAccount") + "']";
+		
+		
 		try {
 			perFormTransfer();
 			mobileAction.FuncClick(btncontinue_Transfer, "Continue");
@@ -1058,7 +1068,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(btnFinish_Transfer, "Finish");
 				mobileAction.verifyElementIsDisplayed(txtTrnsfrSucssfl, "Transfer Successful");
 
-				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
+				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + getTestdata("FromAccount") + "')]";
 				mobileAction.verifyElementIsDisplayed(confirmation_Val, "Confirmation Value");
 				mobileAction.verifyElementUsingXPath(account_value, "Account");
 			} else {
@@ -1189,11 +1199,21 @@ public class Between_My_accounts extends _CommonPage {
 	 */
 	public void transferBtw_tfsa_other_Acct()  {
 		Decorator();
+		
+		String select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+				+ getTestdata("FromAccount") + "')]";  
+
+		String select_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+				+ getTestdata("ToAccount") + "')]";  
+
+
+		String validate_message = "Withdrawals may impact your annual TFSA contribution limit.";
+		String iosFromAccount = "//XCUIElementTypeStaticText[contains(@label,'" + getTestdata("FromAccount") + "')]";
+
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.verifyElementIsDisplayed(btw_My_Accounts_Header, "betweenMyAccountsHeader");
 				mobileAction.FuncClick(txtFrom_Acnt, "from_Account");
-				System.out.println("From account:" + from_Account);
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(iosFromAccount, true, 25, "Up");
 				mobileAction.verifyElementIsDisplayed(verify_Message, validate_message);
 			}
@@ -1258,7 +1278,7 @@ public class Between_My_accounts extends _CommonPage {
 		boolean flag = false;
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				String accountsList[] = from_Account.split(",");
+				String accountsList[] = getTestdata("FromAccount").split(",");
 				for (int i = 0; i < accountsList.length; i++) {
 					mobileAction.FuncClick(from_acnt, "From Account");
 					String accountno = "//XCUIElementTypeStaticText[contains(@label,'" + accountsList[i] + "')]";
@@ -1277,7 +1297,7 @@ public class Between_My_accounts extends _CommonPage {
 				Login.get().logout();
 			} else {
 
-				String accountsList[] = from_Account.split(":");
+				String accountsList[] = getTestdata("FromAccount").split(":");
 				mobileAction.FuncClick(from_acnt, "From Account");
 				for (int i = 0; i < accountsList.length; i++) {
 					String accountno = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
@@ -1413,11 +1433,11 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountValue, true, 25, "Up");
 				mobileAction.FuncClick(cad_Button, "CAD");
 				mobileAction.FuncClick(amount, "Amount");
-				mobileAction.FuncSendKeys(amount, ValueofAmount);
+				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
 				mobileAction.FuncClick(done, "Done");
 				mobileAction.FuncClick(continue_Transfer, "Continue");
 				mobileAction.waitForElementToVanish(txtProgressBar);
-				WebDriverWait wait = new WebDriverWait((AppiumDriver) CL.GetDriver(), 60);
+				WebDriverWait wait = new WebDriverWait((AppiumDriver) CL.GetDriver(), 122);
 				wait.until(ExpectedConditions.visibilityOf(ok_Button));
 				mobileAction.FuncClick(ok_Button, "OK");
 
@@ -1427,7 +1447,7 @@ public class Between_My_accounts extends _CommonPage {
 				perFormTransfer() ;
 				mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 				mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
-				mobileAction.FuncWaitForElement(ok_Button, 61, "Ok");
+				mobileAction.FuncWaitForElement(ok_Button, 122, "Ok");
 				mobileAction.FuncClick(ok_Button, "OK");
 			}
 		} catch (NoSuchElementException e) {
@@ -1464,6 +1484,13 @@ public class Between_My_accounts extends _CommonPage {
 
 	public void permissible_transfer_on_mobile()  {
 		Decorator();
+		
+		String select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+				+ getTestdata("FromAccount") + "')]";  
+
+		String select_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+				+ getTestdata("ToAccount") + "')]";  
+
 		try {
 			if (mobileAction.verifyElementIsPresent(btw_My_Accounts_Header)) {
 				
@@ -1497,7 +1524,7 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.FuncClick(txtto_Acnt, "To Account");
 					mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_to_Acnt, 10, "down", true);
 					mobileAction.FuncClick(txtAmount, "Amount");
-					mobileAction.FuncSendKeys(txtAmount, ValueofAmount);
+					mobileAction.FuncSendKeys(txtAmount, getTestdata("Amount"));
 					mobileAction.FuncHideKeyboard();
 					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 					mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
@@ -1544,6 +1571,8 @@ public class Between_My_accounts extends _CommonPage {
 
 	public double transferTDCTCad_USDVisa() {
 		Decorator();
+		String verify_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
+				+ getTestdata("FromAccount") + "']";
 		double fromAccountval = 0.00;
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) 
@@ -1561,7 +1590,7 @@ public class Between_My_accounts extends _CommonPage {
 				FinishButton();
 				mobileAction.FuncClick(btnMenu, "Menu");
 				mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
-				mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList, verify_from_acnt, 3, "down", true);
+				mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList, verify_from_acnt, 5, "down", true);
 				mobileAction.verifyElementIsDisplayed(verifyAmount, "Verify Amount");
 			}
 
@@ -1622,21 +1651,39 @@ public class Between_My_accounts extends _CommonPage {
 					
 				} else 
 				{
-					perFormTransfer() ;
-					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
-					mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
-					mobileAction.FuncClick(btnFinish_Transfer, "Finish Transfer");
-					mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
-					mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
-					mobileAction.FuncClick(btnMenu, "Menu");
-					mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
-					mobileAction.FuncElementSwipeWhileNotFound(acntsListNew,  account_verify_from_acnt, 10, "down", true);
-					mobileAction.verifyElementIsDisplayed(fromAccountNumber, "From Account Number");
-					mobileAction.verifyElementIsDisplayed(fromAccountbal, "From Account Balance Displayed");
-					mobileAction.FuncClick(backBtn, "Back");
-					mobileAction.FuncElementSwipeWhileNotFound(acntsListNew,  account_verify_to_Acnt, 10, "down", true);
-					mobileAction.verifyElementIsDisplayed(toAccountNumber, "From Account Number");
-					mobileAction.verifyElementIsDisplayed(toAccountbal, "From Account Balance Displayed");
+					String from_Account = getTestdata("FromAccount");
+
+					String select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
+							+ from_Account + "']";
+					mobileAction.FuncClick(txtFrom_Acnt, "From Account");
+					mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_from_acnt, 10, "down", true);
+					mobileAction.waitForElementToDisappear(select_from_acnt);
+					
+					mobileAction.FuncClick(txtto_Acnt, "To Account");
+					String to_account = getTestdata("ToAccount");
+					String select_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
+							+ to_account + "']";
+					
+					if(!mobileAction.FuncElementNotInListSwipe(acntsList, select_to_Acnt, 12, "down")) {
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					}
+
+					
+//					perFormTransfer() ;
+//					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
+//					mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
+//					mobileAction.FuncClick(btnFinish_Transfer, "Finish Transfer");
+//					mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
+//					mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
+//					mobileAction.FuncClick(btnMenu, "Menu");
+//					mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
+//					mobileAction.FuncElementSwipeWhileNotFound(acntsListNew,  account_verify_from_acnt, 10, "down", true);
+//					mobileAction.verifyElementIsDisplayed(fromAccountNumber, "From Account Number");
+//					mobileAction.verifyElementIsDisplayed(fromAccountbal, "From Account Balance Displayed");
+//					mobileAction.FuncClick(backBtn, "Back");
+//					mobileAction.FuncElementSwipeWhileNotFound(acntsListNew,  account_verify_to_Acnt, 10, "down", true);
+//					mobileAction.verifyElementIsDisplayed(toAccountNumber, "From Account Number");
+//					mobileAction.verifyElementIsDisplayed(toAccountbal, "From Account Balance Displayed");
 					
 				}
 			}
