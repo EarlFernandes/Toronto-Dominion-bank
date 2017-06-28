@@ -60,15 +60,15 @@ public class TradeMultiLeg extends _CommonPage{
 	//@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell[3]/*[2]") //@Author - Sushil 17-Feb-2017
 	@iOSFindBy(xpath = "//*[@name='ACTION_QTY_CELL_2']/*[2]")
 	//@AndroidFindBy(xpath = "//*[contains(@resource-id,'com.td:id/amountEditText')]")
-//	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*/*[@resource-id='com.td:id/amountEditText']") //Tablet 5.x
-	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[@resource-id='com.td:id/amountEditText']")//@Author - Sushil 10-May-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*/*[@resource-id='com.td:id/amountEditText']") //Tablet 5.x
+//	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[@resource-id='com.td:id/amountEditText']")//@Author - Sushil 10-May-2017
 	private MobileElement leg1Quantity;
 	
 	//@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell[3]/*[2]") //@Author - Sushil 17-Feb-2017
 	@iOSFindBy(xpath = "//*[@name='ACTION_QTY_CELL_3']/*[2]")
 	//@AndroidFindBy(xpath = "(//*[contains(@resource-id,'com.td:id/amountEditText')])[2]")
-//	@AndroidFindBy(xpath = 	"//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*/*[@resource-id='com.td:id/amountEditText']") //Tablet 5.x
-	@AndroidFindBy(xpath = 	"//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[@resource-id='com.td:id/amountEditText']")//@Author - Sushil 10-May-2017
+	@AndroidFindBy(xpath = 	"//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*/*[@resource-id='com.td:id/amountEditText']") //Tablet 5.x
+//	@AndroidFindBy(xpath = 	"//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[@resource-id='com.td:id/amountEditText']")//@Author - Sushil 10-May-2017
 	private MobileElement leg2Quantity;
 	
 	//@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell/*") //@Author - Sushil 17-Feb-2017
@@ -235,8 +235,8 @@ public class TradeMultiLeg extends _CommonPage{
 	private MobileElement Quote_price;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'Limit Price') or contains(@label,'Cours limit')]/../*[2]") //@Author - Sushil 08-Feb-2017
-	@AndroidFindBy(xpath = "//*[contains(@text,'Limit Price') or contains(@text,'Cours limit')]/../*[@resource-id='com.td:id/amountEditText']")
-//	@AndroidFindBy(xpath = "//*[contains(@text,'Limit Price') or contains(@text,'Cours limit')]/../*[@resource-id='com.td:id/amountEditText']") //Tablet 5.x
+//	@AndroidFindBy(xpath = "//*[contains(@text,'Limit Price') or contains(@text,'Cours limit')]/../*[@resource-id='com.td:id/amountEditText']")
+	@AndroidFindBy(xpath = "//*[contains(@text,'Limit Price') or contains(@text,'Cours limit')]/../*[@resource-id='com.td:id/amountEditText']") //Tablet 5.x
 	private MobileElement LimitPrice;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'Date')]/../*[2]") //@Author - Sushil 13-Mar-2017

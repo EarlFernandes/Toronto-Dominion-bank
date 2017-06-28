@@ -33,7 +33,8 @@ public class SearchPageMIT extends _CommonPage {
 	private MobileElement searchBar;
 	String t_searchBar = "Search";
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeSearchField[@label='Enter name or symbol' or contains(@label,'Entrez le')]") //@Author - Sushil 03-Feb-2017
+//	@iOSFindBy(xpath = "//XCUIElementTypeSearchField[@label='Enter name or symbol' or contains(@label,'Entrez le')]") //@Author - Sushil 03-Feb-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Enter name or symbol' or contains(@label,'Entrez le')]") //@Author - Sushil 03-Feb-2017
 	@AndroidFindBy(id="com.td:id/edt_search_field_search_mode")
 	private MobileElement search_symbol;
 	
@@ -331,7 +332,8 @@ public class SearchPageMIT extends _CommonPage {
 		try
 		{
 
-			if (Integer.parseInt(CL.getTestDataInstance().getMobilePlatFormVersion()) > 6 )//.contains("6")
+			//if (Integer.parseInt(CL.getTestDataInstance().getMobilePlatFormVersion()) > 6 )//.contains("6")
+			if (CL.getTestDataInstance().getMobilePlatFormVersion().contains("6") || CL.getTestDataInstance().getMobilePlatFormVersion().contains("7"))
 			{
 				mobileAction.FuncSendKeys(mEle, symbol + " ");
 			}

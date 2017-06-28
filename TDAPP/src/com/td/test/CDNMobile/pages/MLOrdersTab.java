@@ -150,8 +150,14 @@ public class MLOrdersTab extends _CommonPage {
 			mobileAction.verifyElementTextContains(lbltimestamp,sCurrentDate);
 			
 			mobileAction.verifyElementIsDisplayed(lblMultiLeg, "lblMultiLeg");
-				Thread.sleep(1000);
+			
 			mobileAction.verifyElementIsDisplayed(lbl1stleg, "lbl1stleg");
+			
+			mobileAction.FuncSwipeWhileElementNotFound(orderStatus, false, 5, "up");
+		
+			
+			
+			
 			
 			mobileAction.verifyElementTextContains(leg1Details, getTestdata("Symbol",XLSheetUserIDs));
 			
