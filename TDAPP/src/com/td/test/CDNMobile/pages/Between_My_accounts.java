@@ -353,10 +353,10 @@ public class Between_My_accounts extends _CommonPage {
 						+ getTestdata("ToAccount") + "')]";  
 				
 				mobileAction.FuncClick(txtFrom_Acnt, "From Account");
-				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_from_acnt, 5, "down", true);
+				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_from_acnt, 25, "down", true);
 				mobileAction.waitForElementToDisappear(select_from_acnt);
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
-				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_to_Acnt, 2, "down", true);
+				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_to_Acnt, 25, "down", true);
 				mobileAction.waitForElementToDisappear(select_to_Acnt);
 				mobileAction.verifyElementIsDisplayed(TDCT_TFSAMessage,
 						"When making deposits to this account, please ensure that you are");
