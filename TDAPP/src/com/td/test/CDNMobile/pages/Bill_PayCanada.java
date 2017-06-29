@@ -222,8 +222,10 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement addCanadianPayee;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay With Rewards']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textview_action_title']")
 	private MobileElement txtPaywithRewards;
 	
+	@iOSFindBy(xpath = "//*[@name='PAYBILL_VIEW_PAYEE']/following-sibling::XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
 	private MobileElement payeeValue;
 
@@ -1047,33 +1049,32 @@ public class Bill_PayCanada extends _CommonPage {
 	public void verifyPayWithRewards() {
 		Decorator();
 				try {
-					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-
-						mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
-						Thread.sleep(2000);
-						mobileAction.waitForElementToVanish(progressBar);
-						mobileAction.FuncClick(from_account, "From account");
 					
-						String accountXL = "//*[contains(@text,'" + CL.getTestDataInstance().getPrimaryAccount()
-								+ "') or contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "') ]";
-					
-						mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountXL, true, 10, "up");
-						//mobileAction.FuncClick(select_payee,"Selectpayee");
-						String payeeXL = "//*[contains(@text,'" + CL.getTestDataInstance().getPrimaryCreditCard()
-								+ "') or contains(@label,'" + CL.getTestDataInstance().getPrimaryCreditCard() + "') ]";
-						System.out.println(payeeXL);
-						if(CL.GetDriver().findElement(By.xpath(payeeXL)).isDisplayed());
-						CL.GetDriver().findElement(By.xpath(payeeXL)).click();
-						
-						CL.GetDriver().findElement(By.xpath(payeeXL)).click();
-						CL.GetReporting().FuncReport("Pass", "<b>" + payeeXL + "</b> is Clicked.");
-						
+					mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
+					Thread.sleep(2000);
+					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.FuncClick(from_account, "From account");
 				
-						mobileAction.waitForElementToVanished(progressBar);
-						mobileAction.verifyElementIsDisplayed(txtPaywithRewards, "Pay With Rewards ");
+					String accountXL = "//*[contains(@text,'" + CL.getTestDataInstance().getPrimaryAccount()
+							+ "') or contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "') ]";
+				
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountXL, true, 10, "up");
+					//mobileAction.FuncClick(select_payee,"Selectpayee");
+					String payeeXL = "//*[contains(@text,'" + CL.getTestDataInstance().getPrimaryCreditCard()
+							+ "') or contains(@label,'" + CL.getTestDataInstance().getPrimaryCreditCard() + "') ]";
+					System.out.println(payeeXL);
+					
+					mobileAction.FuncClick(payeeValue, "Payee");
+					CL.GetDriver().findElement(By.xpath(payeeXL)).click();
+					
+					//CL.GetDriver().findElement(By.xpath(payeeXL)).click();
+					CL.GetReporting().FuncReport("Pass", "<b>" + payeeXL + "</b> is Clicked.");
+					
+			
+					mobileAction.waitForElementToVanished(progressBar);
+					mobileAction.verifyElementIsDisplayed(txtPaywithRewards, "Pay With Rewards ");
 						
-
-					}
+					
 				} catch (Exception e) {
 					System.err.println("TestCase has failed.");
 					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
