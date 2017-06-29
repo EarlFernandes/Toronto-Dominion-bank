@@ -69,14 +69,9 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[ @text='Pay Bills']")
 	private MobileElement pay_bills;
 	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label, 'Invalid transaction amount')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text' and contains(@text,'Invalid transaction amount')]")
 	private MobileElement verify_msg;
-
-	// @AndroidFindBy(xpath =
-	// "//android.widget.EditText[@resource-id='com.td:id/edtAmount' and
-	// @text='$0.00']")
-	// private MobileElement amount;
-	// String t_amount = "$0.00";
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue' and @text='Continue']")
@@ -208,7 +203,7 @@ public class Bill_PayCanada extends _CommonPage {
 
     
    
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Add Canadian Payee']")
+	@iOSFindBy(xpath = "//*[@label='Add Canadian Payee']")
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Add Canadian Payee')]")
 	private MobileElement addCanadianPayee;
 	

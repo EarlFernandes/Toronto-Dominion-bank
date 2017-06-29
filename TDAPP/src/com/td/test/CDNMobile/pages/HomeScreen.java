@@ -67,8 +67,8 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='VIREMENTS']")
 	private MobileElement french_transfers;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD for Me']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='TD for Me']")//Changed by Rashmi
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Locations']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Locations']")//Changed by Rashmi
 	private MobileElement dashboard_Location;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='TD For Me']")
@@ -723,33 +723,9 @@ public class HomeScreen extends _CommonPage {
 	public void flyoutMenu_Locations() {
 		Decorator();
 		try {
-
-			 if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-
-				mobileAction.FuncClick(dashboard_Location, "TD Zone Dashboard");
-				if(mobileAction.verifyElementIsPresent(select_accesscard)){
-					Login.get().login();
-				}
-				mobileAction.waitForElementToVanish(progressBar);
-				mobileAction.verifyElement(TD_For_Me, "TD for Me");
-
-			} else {//Changed by Rashmi
-
-				AppiumDriver<WebElement> driver = ((AppiumDriver<WebElement>) CL.GetDriver());
-				WebDriverWait wait = new WebDriverWait(driver, 10);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-						"//android.widget.TextView[@text='TD for Me']")));
-				mobileAction.FuncClick(dashboard_Location, "TD Zone Dashboard");
-				if(mobileAction.verifyElementIsPresent(select_accesscard)){
-					Login.get().login();
-				}
-				// mobileAction.waitForElementToVanish(progressBarIos);a
-				// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.TextView[@resource-id='android:id/action_bar_title'
-				// and @text='TD for Me']")));
-				mobileAction.waitForElementToVanish(progressBar);
-				mobileAction.verifyElement(TD_For_Me, "TD for Me");
-
-			}
+			mobileAction.FuncClick(dashboard_Location, "Locations");
+			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.verifyElement(locationheader, "Locations header not present");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

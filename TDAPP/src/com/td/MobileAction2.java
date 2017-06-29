@@ -2068,6 +2068,63 @@ public class MobileAction2 extends CommonLib {
 
    }
 	
+    /**
+     * Makes sure that an element IS NOT in the list
+     * @param xpathEle
+     * @param clickYorN
+     * @param swipes
+     * @param direction
+     */
+    public boolean FuncSwipeEnsureElementNotFoundByxpath(String xpathEle, int swipes, String direction){// throws Exception {//@Author - Sushil 01-Mar-2017
+    	  
+    	Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
+    	int startx = size.width;
+    	int starty = size.height;
+    	int endy = size.height;
+    	int heightPer = (endy*25/100);
+    	boolean flag = true;
+    	int count = 0;
+    	String sEleName="";
+    	try {
+    	    while (flag && count <= swipes) {
+
+	    		try {
+	    			WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
+	    			wait.until(ExpectedConditions.visibilityOf(GetDriver().findElement(By.xpath(xpathEle))));
+	    			
+	    			flag = false;
+	    			sEleName = FuncGetTextByxpath(xpathEle);
+	    			
+	    		} catch (Exception e) {
+	    			    if(direction.equalsIgnoreCase("up"))
+	    			    	((MobileDriver) GetDriver()).swipe(startx / 2, starty/2, startx / 2, endy/2 - heightPer, 2000);
+	    				    else if(direction.equalsIgnoreCase("down"))
+	    				    ((MobileDriver) GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2 + heightPer , 2000);
+				    	count++;
+	    		}
+
+    	    }
+
+    		if(!flag) {
+    		    GetReporting().FuncReport("Fail", "Swiped " + direction + "  element was found when it shouldn't be there. Element : <b>" + sEleName + "</b>");
+    		    return false;
+    		} else {
+    			GetReporting().FuncReport("Pass", "Swiped " + direction + "  element not found. Swipes : " + count);
+    			return true;
+    		}
+
+    	} catch (Exception e) {
+    		try {
+				GetReporting().FuncReport("Pass", "Exception: Swiped " + direction + " element not found. Swipes : " + count);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+    		return true;
+    	}
+
+   }
+    
 	/**
 	 * This method will verify the element is not present on the screen.
 	 * 
