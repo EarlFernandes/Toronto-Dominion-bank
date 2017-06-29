@@ -887,34 +887,32 @@ public class PendingInteracTransfer extends _CommonPage{
 					
 					if(platformName.equalsIgnoreCase("ios")){
 						mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
-						mobileAction.FuncClick(selectSender, "sender");
-						mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
 						mobileAction.FuncClick(selectTransaction, "Select Transaction");
 						mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
-						mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
-						//get deposit to account
-						String deposit_account_Info = mobileAction.getValue(depositToAccount);
-						String deposit_to_account = mobileAction.FuncGetValByRegx(deposit_account_Info, "\\d+");
-						String balance = Balance.getAttribute("value");
-						System.out.println("Old Balance:" + balance);
-						mobileAction.FuncClick(depositToContinue,"Continue");
-						mobileAction.FuncClick(cnfrmCancellation, "Confirm");
-						mobileAction.verifyElementIsDisplayed(cancelSuccessMsg, "Interac e-Transfer reclaimed and deposited successfully");
-						String conf_val = mobileAction.getText(cancelCnfrmnVal);
-						mobileAction.FuncClick(menu, "Menu");
-						mobileAction.FuncClick(my_Accounts, "My Accounts");
-						System.out.println("From account:" + from_account);
-						mobileAction.FuncSelectElementInTable(accountsPage_Table,firstPart,accountssecondPart,deposit_to_account);
-						String balancenew = balanceNew.getAttribute("value");
-						System.out.println("New Balance:" + balancenew);
-						
-						if(balance.equalsIgnoreCase(balancenew)){
-							System.err.println("TestCase has failed.");
-						}
-						else{
-							//no home button can be found at this page
-							//mobileAction.FuncClick(home, "home button");
-						}
+//						mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
+//						//get deposit to account
+//						String deposit_account_Info = mobileAction.getValue(depositToAccount);
+//						String deposit_to_account = mobileAction.FuncGetValByRegx(deposit_account_Info, "\\d+");
+//						String balance = Balance.getAttribute("value");
+//						System.out.println("Old Balance:" + balance);
+//						mobileAction.FuncClick(depositToContinue,"Continue");
+//						mobileAction.FuncClick(cnfrmCancellation, "Confirm");
+//						mobileAction.verifyElementIsDisplayed(cancelSuccessMsg, "Interac e-Transfer reclaimed and deposited successfully");
+//						String conf_val = mobileAction.getText(cancelCnfrmnVal);
+//						mobileAction.FuncClick(menu, "Menu");
+//						mobileAction.FuncClick(my_Accounts, "My Accounts");
+//						System.out.println("From account:" + from_account);
+//						mobileAction.FuncSelectElementInTable(accountsPage_Table,firstPart,accountssecondPart,deposit_to_account);
+//						String balancenew = balanceNew.getAttribute("value");
+//						System.out.println("New Balance:" + balancenew);
+//						
+//						if(balance.equalsIgnoreCase(balancenew)){
+//							System.err.println("TestCase has failed.");
+//						}
+//						else{
+//							//no home button can be found at this page
+//							//mobileAction.FuncClick(home, "home button");
+//						}
 						
 						
 					}else{
@@ -922,24 +920,24 @@ public class PendingInteracTransfer extends _CommonPage{
 						mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
 						mobileAction.FuncClick(selectTransaction, "Select Transaction");
 						mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
-						Thread.sleep(2000);
-						String balance = Balance.getAttribute("value");
-						mobileAction.FuncClick(depositToContinue,"Continue");
-						mobileAction.FuncClick(cnfrmCancellation, "Confirm");
-						mobileAction.verifyElementIsDisplayed(cancelSuccessMsg, "Interac e-Transfer reclaimed and deposited successfully");
-						String conf_val = mobileAction.getText(cancelCnfrmnVal);
-						mobileAction.FuncClick(menu, "Menu");
-						mobileAction.FuncClick(my_Accounts, "My Accounts");
-						mobileAction.FuncSelectElementInTable(accountsPage_Table,firstPart,accountssecondPart,from_account);
-						String balancenew = balanceNew.getAttribute("value");
-						
-						if(balance.equalsIgnoreCase(balancenew)){
-							System.err.println("TestCase has failed.");
-						}
-						else{
-							//no home button can be found at this page
-							//mobileAction.FuncClick(home, "home button");
-						}
+//						Thread.sleep(2000);
+//						String balance = Balance.getAttribute("value");
+//						mobileAction.FuncClick(depositToContinue,"Continue");
+//						mobileAction.FuncClick(cnfrmCancellation, "Confirm");
+//						mobileAction.verifyElementIsDisplayed(cancelSuccessMsg, "Interac e-Transfer reclaimed and deposited successfully");
+//						String conf_val = mobileAction.getText(cancelCnfrmnVal);
+//						mobileAction.FuncClick(menu, "Menu");
+//						mobileAction.FuncClick(my_Accounts, "My Accounts");
+//						mobileAction.FuncSelectElementInTable(accountsPage_Table,firstPart,accountssecondPart,from_account);
+//						String balancenew = balanceNew.getAttribute("value");
+//						
+//						if(balance.equalsIgnoreCase(balancenew)){
+//							System.err.println("TestCase has failed.");
+//						}
+//						else{
+//							//no home button can be found at this page
+//							//mobileAction.FuncClick(home, "home button");
+//						}
 					}
 				} catch (NoSuchElementException e) {
 					CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -56,7 +56,7 @@ public class Accounts extends _CommonPage {
 	private MobileElement btnMenu;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Investing')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText'and @text='Investing']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText'and (@text='Investing' or @text='Investing Accounts')]")
 	private MobileElement txtInvesting;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investing']")
@@ -192,17 +192,13 @@ public class Accounts extends _CommonPage {
 
 		String from_Account = getTestdata("FromAccount");
 		String verify_Acnt = "//android.widget.TextView[contains(@text,'" + from_Account + "')]";  
-
-		String account_Value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
 		try {
 
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, account_Header);
 			System.out.println("From Account:"+ from_Account);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-
-				//mobileAction.FuncSelectElementInTable(accountsPage_Table, firstPart , accountsSecondPart, from_Account);
-				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
+				String account_value = "//XCUIElementTypeStaticText[contains(@value,'" + from_Account + "')]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 			} else {
 				mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 25, "down", true);
@@ -409,13 +405,10 @@ public class Accounts extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, "Accounts");
 			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-
-				System.out.println("Verify account:" + from_Account);
-				//mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, from_AccountNo);
-				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
+				String account_value = "//XCUIElementTypeStaticText[contains(@value,'" + from_Account + "')]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 30, "Up");
 			}else{
-				mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 10, "down", true);
+				mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 25, "down", true);
 			}
 						
 			mobileAction.FuncClick(txtActivity, "Activity");
@@ -491,18 +484,12 @@ public class Accounts extends _CommonPage {
 		try {
 				
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-
-				//mobileAction.FuncSelectElementInTable(accountsPage_Table, firstPart , accountsSecondPart, from_Account);
-				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
+				String account_value = "//XCUIElementTypeStaticText[contains(@value,'" + from_Account + "')]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 			} else {
 				mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 25, "down", true);
 
 			}
-			//mobileAction.FunCnewSwipe(txtAccount_Investing_header, false, 4);
-			//mobileAction.FunCSwipeandScroll(txtAccount_Investing_header, false);
-			//mobileAction.verifyElementIsDisplayed(txtAccount_Investing_header, t_Investing);
-
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -662,7 +649,7 @@ public class Accounts extends _CommonPage {
 		String from_Account = getTestdata("FromAccount");
 		String verify_Acnt = "//android.widget.TextView[contains(@text,'" + from_Account + "')]";  
 
-		String account_Value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
+		String account_Value = "//XCUIElementTypeStaticText[contains(@value,'" + from_Account + "')]";
 		try {
 			Thread.sleep(2000);
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, "Accounts");
