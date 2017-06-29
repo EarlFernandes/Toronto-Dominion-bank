@@ -120,6 +120,9 @@ public class PendingInteracTransfer extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']")
 	private MobileElement acntsList;
 	
+	@AndroidFindBy(xpath = "//android.widget.ScrollView[@index='0']")
+	private MobileElement pendingIEMTList;
+
 	@iOSFindBy(id = "//XCUIElementTypeStaticText[@label='-sender']")
 	private MobileElement  verifySender;
 	
@@ -183,31 +186,6 @@ public class PendingInteracTransfer extends _CommonPage{
 	@iOSFindBy(xpath = "//XCUIElementTypeCell[contains(@label,'GO BACK HOME')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/home']")
 	private MobileElement gobackhomeButton;
-
-	String accountsPage_Table="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/"
-			+ "XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
-	String accountssecondPart = "]/XCUIElementTypeStaticText[2]";
-	String from_account = getTestdata("FromAccount");
-	
-	
-	
-	String sender_selectSender = getTestdata("Sender");
-	String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
-	
-	String transferRecipient = getTestdata("FromAccount");
-	String select_Recipient = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_from_account' and @text='" + transferRecipient + "')]";
-	
-	String platformName=CL.getTestDataInstance().getMobilePlatForm();
-	String transfer_fromAccount = getTestdata("FromAccount");
-	
-	int i=1;
-	String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
-	
-	String firstPart="//XCUIElementTypeCell[";
-	String secondPart="]/XCUIElementTypeStaticText[1]";
-	String finalPart=firstPart+i+secondPart;
-	
-	
 
 	public synchronized static PendingInteracTransfer get() {
 		if (PendingInteracTransfer == null) {
@@ -344,6 +322,17 @@ public class PendingInteracTransfer extends _CommonPage{
 	 */
 	public void cancelPendingTransfer() {
 		Decorator();
+
+		String sender_selectSender = getTestdata("Sender");
+		String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
+
+		String transfer_fromAccount = getTestdata("FromAccount");
+
+		String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+
+		String firstPart="//XCUIElementTypeCell[";
+		String secondPart="]/XCUIElementTypeStaticText[1]";
+
 		try {
 			
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
@@ -402,6 +391,17 @@ public class PendingInteracTransfer extends _CommonPage{
 		 */
 		public void confirmscreen_cancelbutton() {
 			Decorator();
+
+			String sender_selectSender = getTestdata("Sender");
+			String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
+			
+			String transfer_fromAccount = getTestdata("FromAccount");
+			
+			String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+			
+			String firstPart="//XCUIElementTypeCell[";
+			String secondPart="]/XCUIElementTypeStaticText[1]";
+
 			try {
 				
 				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
@@ -454,6 +454,17 @@ public class PendingInteracTransfer extends _CommonPage{
 			 */
 			public void verifylist() {
 				Decorator();
+				
+				String sender_selectSender = getTestdata("Sender");
+				String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
+
+				String transfer_fromAccount = getTestdata("FromAccount");
+				
+				String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+				
+				String firstPart="//XCUIElementTypeCell[";
+				String secondPart="]/XCUIElementTypeStaticText[1]";
+
 				try {
 					
 					if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
@@ -504,7 +515,17 @@ public class PendingInteracTransfer extends _CommonPage{
 		 */
 		public void canceltransfer() {
 			Decorator();
+
+			String sender_selectSender = getTestdata("Sender");
+			String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
+
+			String transfer_fromAccount = getTestdata("FromAccount");
 			
+			String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+			
+			String firstPart="//XCUIElementTypeCell[";
+			String secondPart="]/XCUIElementTypeStaticText[1]";
+
 			try {
 				
 				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
@@ -571,6 +592,17 @@ public class PendingInteracTransfer extends _CommonPage{
 				 */
 				public void confirmbutton() {
 					Decorator();
+
+					String sender_selectSender = getTestdata("Sender");
+					String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
+
+					String transfer_fromAccount = getTestdata("FromAccount");
+					
+					String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+					
+					String firstPart="//XCUIElementTypeCell[";
+					String secondPart="]/XCUIElementTypeStaticText[1]";
+
 					try {
 						
 						if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
@@ -632,6 +664,17 @@ public class PendingInteracTransfer extends _CommonPage{
 				 */
 				public void cancelbutton() {
 					Decorator();
+
+					String sender_selectSender = getTestdata("Sender");
+					String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
+
+					String transfer_fromAccount = getTestdata("FromAccount");
+					
+					String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+					
+					String firstPart="//XCUIElementTypeCell[";
+					String secondPart="]/XCUIElementTypeStaticText[1]";
+
 					try {
 						
 						if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
@@ -688,6 +731,17 @@ public class PendingInteracTransfer extends _CommonPage{
 				 */
 				public void confirmstatus() {
 					Decorator();
+
+					String sender_selectSender = getTestdata("Sender");
+					String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
+
+					String transfer_fromAccount = getTestdata("FromAccount");
+					
+					String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+					
+					String firstPart="//XCUIElementTypeCell[";
+					String secondPart="]/XCUIElementTypeStaticText[1]";
+
 					try {
 						
 						if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
@@ -738,7 +792,16 @@ public class PendingInteracTransfer extends _CommonPage{
 			public void verifyconfirmation() {
 				Decorator();
 				
+				String sender_selectSender = getTestdata("Sender");
+				String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
+
+				String transfer_fromAccount = getTestdata("FromAccount");
 				
+				String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+				
+				String firstPart="//XCUIElementTypeCell[";
+				String secondPart="]/XCUIElementTypeStaticText[1]";
+
 				try {
 					
 					if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
@@ -827,6 +890,20 @@ public class PendingInteracTransfer extends _CommonPage{
 			public void verify_CancelPendingTransfer() {
 			
 				Decorator();
+				String accountsPage_Table="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/"
+						+ "XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
+				String accountssecondPart = "]/XCUIElementTypeStaticText[2]";
+				String from_account = getTestdata("FromAccount");
+			
+				String sender_selectSender = getTestdata("Sender");
+
+				String platformName=CL.getTestDataInstance().getMobilePlatForm();
+				String transfer_fromAccount = getTestdata("FromAccount");
+				
+				String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+				
+				String firstPart="//XCUIElementTypeCell[";
+				String secondPart="]/XCUIElementTypeStaticText[1]";
 				try {
 					
 					if(platformName.equalsIgnoreCase("ios")){
@@ -864,10 +941,9 @@ public class PendingInteracTransfer extends _CommonPage{
 					}else{
 					
 						mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
-						mobileAction.FuncClick(selectSender, "sender");
-						mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
 						mobileAction.FuncClick(selectTransaction, "Select Transaction");
 						mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
+						Thread.sleep(2000);
 						String balance = Balance.getAttribute("value");
 						mobileAction.FuncClick(depositToContinue,"Continue");
 						mobileAction.FuncClick(cnfrmCancellation, "Confirm");

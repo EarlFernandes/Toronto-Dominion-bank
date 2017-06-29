@@ -36,7 +36,7 @@ public class Bills extends _CommonPage {
 	private MobileElement bills_Header;
 	
 	@iOSFindBy(xpath="//XCUIElementTypeStaticText[contains(@label,'Scheduled Payments')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Scheduled Payments']")
+	@AndroidFindBy(xpath = "//*[@text='Scheduled Payments']")
 	private MobileElement scheduledPayments;
 
 	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@label='No Upcoming Bills to display in this account']")
@@ -56,7 +56,7 @@ public class Bills extends _CommonPage {
 	private MobileElement manage_Payees_Header;
 
 	@iOSFindBy(xpath ="//XCUIElementTypeOther[@label='Pay U.S. Bill' or @label='Pay U.S. bill']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay U.S. Bills']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay U.S. Bills' or @text='Pay U.S. bill']")
 	private MobileElement pay_US_Bills_Header;
 	
 	@iOSFindBy(xpath ="//XCUIElementTypeOther[@label='Scheduled Payments']")
@@ -282,37 +282,36 @@ public class Bills extends _CommonPage {
 		try {
 		Decorator();
 		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-		mobileAction.verifyElementIsDisplayed(bills_Header, "Verifyipay_US_Bills_Headerng Bill Page Header");
-		mobileAction.FuncClick(pay_Bills, "Pay Bills");
-		mobileAction.verifyElementIsDisplayed(pay_Bills_Header, "Pay Bill Functionality Page Displayed");
-		mobileAction.FuncClick(back_Button, "Back");
-		mobileAction.FuncClick(pay_US_Bills, "Pay US Bills");
-		mobileAction.verifyElementIsDisplayed(pay_US_Bills_Header, "Pay US Bill Functionality Page Displayed");
-		mobileAction.FuncClick(back_Button, "Back");
-		mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
-		mobileAction.verifyElementIsDisplayed(scheduled_Payments_Header, "Scheduled Payments Functionality Page Displayed");
-//		mobileAction.FuncClick(back_Button, "Back");
-//		mobileAction.FuncClick(back_Button, "Back");
+			mobileAction.verifyElementIsDisplayed(bills_Header, "Verifyipay_US_Bills_Headerng Bill Page Header");
+			mobileAction.FuncClick(pay_Bills, "Pay Bills");
+			mobileAction.verifyElementIsDisplayed(pay_Bills_Header, "Pay Bill Functionality Page Displayed");
+			mobileAction.FuncClick(back_Button, "Back");
+			mobileAction.FuncClick(pay_US_Bills, "Pay US Bills");
+			mobileAction.verifyElementIsDisplayed(pay_US_Bills_Header, "Pay US Bill Functionality Page Displayed");
+			mobileAction.FuncClick(back_Button, "Back");
+			mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
+			mobileAction.verifyElementIsDisplayed(scheduled_Payments_Header, "Scheduled Payments Functionality Page Displayed");
+	//		mobileAction.FuncClick(back_Button, "Back");
+	//		mobileAction.FuncClick(back_Button, "Back");
 		}else{
-		Thread.sleep(10000);
-		mobileAction.verifyElementIsDisplayed(bills_Header, "Verifying Bill Page Header");
-		mobileAction.FuncClick(pay_Bills, "Pay Bills");
-		mobileAction.verifyElementIsDisplayed(pay_Bills_Header, "Pay Bill Functionality Page Displayed");
-		mobileAction.FuncClick(back_Button,"back arrow button clicked");
-		mobileAction.FuncClick(pay_US_Bills, "Pay US Bills");
-		mobileAction.verifyElementIsDisplayed(pay_US_Bills_Header, "Pay US Bill Functionality Page Displayed");
-		mobileAction.FuncClick(back_Button,"back arrow button clicked");
-		mobileAction.FuncClick(manage_Payees, "Manage Payees");
-
-
-		mobileAction.verifyElementIsDisplayed(manage_Payees_Header, "Manage Payees Page Displayed");
-		mobileAction.FuncClick(back_Button,"back arrow button clicked");
-		mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
-		mobileAction.verifyElementIsDisplayed(scheduled_Payments_Header, "Scheduled Payments Functionality Page Displayed");
+			Thread.sleep(10000);
+			mobileAction.verifyElementIsDisplayed(bills_Header, "Verifying Bill Page Header");
+			mobileAction.FuncClick(pay_Bills, "Pay Bills");
+			mobileAction.verifyElementIsDisplayed(pay_Bills_Header, "Pay Bill Functionality Page Displayed");
+			mobileAction.FuncClick(back_Button,"back arrow button clicked");
+			mobileAction.FuncClick(pay_US_Bills, "Pay US Bills");
+			mobileAction.verifyElementIsDisplayed(pay_US_Bills_Header, "Pay US Bill Functionality Page Displayed");
+			mobileAction.FuncClick(back_Button,"back arrow button clicked");
+			mobileAction.FuncClick(manage_Payees, "Manage Payees");
+	
+	
+			mobileAction.verifyElementIsDisplayed(manage_Payees_Header, "Manage Payees Page Displayed");
+			mobileAction.FuncClick(back_Button,"back arrow button clicked");
+			mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
+			mobileAction.verifyElementIsDisplayed(scheduled_Payments_Header, "Scheduled Payments Functionality Page Displayed");
 		}
 		mobileAction.FuncClick(menu, "Click Menu");
 		mobileAction.FuncClick(logout,"Logout");
-		mobileAction.waitForElementToVanish(progrees_Bar);
 		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

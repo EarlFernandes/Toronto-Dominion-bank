@@ -11,7 +11,7 @@ public class MainScreen extends _CommonPage {
 	// ***** LOCAL EXECUTION PARAMETERS *****
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.140.61:4778/wd/hub";
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.140.61:4768/wd/hub";
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
 	private static final String APP_ANDROID = "APP_ANDROID";
