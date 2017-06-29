@@ -22,7 +22,7 @@ public class StatementBalance extends _CommonPage{
 	@AndroidFindBy(xpath="//android.widget.Button[@resource-id='com.td:id/btn_pay']")
 	 private MobileElement payBtn;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Cash Back Dollars Earned]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Cash Back Dollars Earned']")
 	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/points_earned_title']")
 	private MobileElement txtearned;
 	

@@ -785,6 +785,7 @@ public class Accounts extends _CommonPage {
 		try{
 			boolean flag=true;
 			int count=0;
+			System.out.println("Account selected:" + CL.getTestDataInstance().getPrimaryAccount());
 		String accountXL = "//*[contains(@text,'" + CL.getTestDataInstance().getPrimaryAccount() + "') or contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "')  ]";
 
 		/*MobileElement accountValue=(MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(accountXL));
@@ -799,7 +800,7 @@ public class Accounts extends _CommonPage {
 			}}*/
 		
 		
-		mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountXL, true,10, "up");
+		mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountXL, true,40, "up");
 		mobileAction.waitForElementToVanished(progresssBar);
 		
 
