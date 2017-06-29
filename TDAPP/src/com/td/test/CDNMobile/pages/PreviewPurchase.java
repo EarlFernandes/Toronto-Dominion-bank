@@ -220,16 +220,20 @@ public class PreviewPurchase extends _CommonPage {
 	}
 	
 	
-//	public void ClickPopupGoBackButton(){
-//		Decorator();
-//		try{
-//			mobileAction.FuncClick(goback_Popup_button, "Yes, Go Back");
-//		}catch (Exception e){
-//	        System.err.println("TestCase has failed.");
-//	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
-//	        return;	
-//		}
-//	}
+	public void VerifyWarningMessageContent() {
+		Decorator();
+		try {
+			String banner_info = "每周七天、每天 24 小时，您都可以进行购买。如果在工作日东部时间下午 3 点之前购买，将按当天价格交易。如果在东部时间下午 3 点之后或在周末购买，将按照下一个工作日的收市价交易。所有购买通常均需要数天的时间进行确认。" 
+			                 + "| 每週七天、每天 24 小時，您都可以購買。如果在工作日的東部時間下午 3 時之前購買，將按當天價格交易。如果在東部時間下午 3 時之後或在週末購買，將按下一個工作日的收市價交易。所有購買通常均需要數天的時間進行確認。"
+			                 +"|You can make a purchase 24-hours a day, 7 days a week.Purchases made before 3:00PM EST on a business day will be processed at that day's rate.If you make a purchase after 3:00PM EST, or on the weekend, it will be processed at the next business day's closing price.All purchases usually take a few days to confirm."
+			                 +"|Vous pouvez effectuer un achat en tout temps. Les achats effectués avant 15 h (HE) un jour ouvrable seront traitées au prix en vigueur à cette date. Les achats effectués après 15 h (HE) ou la fin de semaine seront traités au prix de clôture du jour ouvrable suivant. La confirmation des achats prend normalement quelques jours.";
+			mobileAction.verifyElementTextIsDisplayed(alert_info, banner_info);
+		}catch (NoSuchElementException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
 	
 	public void savePhoneInforForPFVerification(){
 		String phoneinfo = mobileAction.getValue(phone_number);

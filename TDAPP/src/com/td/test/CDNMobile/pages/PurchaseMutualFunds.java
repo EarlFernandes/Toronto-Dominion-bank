@@ -25,7 +25,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText") 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
-	private MobileElement purchaseMF_title;
+	private MobileElement page_title;
 
 	@iOSFindBy(xpath = "//*[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
@@ -137,6 +137,30 @@ public class PurchaseMutualFunds extends _CommonPage {
 				this);
 
 	}
+	private void clickpreview(){
+		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			String enableStatus= preview_purchase_button.getAttribute("enabled");
+
+			int count=0;
+			
+			while(enableStatus.equalsIgnoreCase("false") && count <10){
+				mobileAction.FuncSwipeOnce("down");
+				enableStatus= preview_purchase_button.getAttribute("enabled");
+				count++;
+			}
+			if(count>=10){
+				mobileAction.Report_Fail("PreviewPurchase button is disabled");
+				return;
+			}
+		}
+		String elementText = mobileAction.getValue(preview_purchase_button);
+		try{
+			mobileAction.FuncClick(preview_purchase_button, elementText);
+		}catch(NoSuchElementException | InterruptedException | IOException  e){
+			System.out.println("Failed to click preview purchase button");
+		}
+		mobileAction.waitForElementToVanish(progress_bar);
+	}
 	
 	private void enterAmount(String amountentered){
 		try{
@@ -214,7 +238,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(purchaseMF_title, "Purchase Mutual Funds | Achat de fonds communs de placement | 购买互惠基金|購買互惠基金");
+			mobileAction.verifyElementTextIsDisplayed(page_title, "Purchase Mutual Funds | Acheter des fonds communs de placement | 购买互惠基金|購買互惠基金");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -325,7 +349,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 		Decorator();
 		try {
 			
-			mobileAction.verifyElementTextIsDisplayed(purchaseMF_title, "购买互惠基金 | 購買互惠基金");
+			mobileAction.verifyElementTextIsDisplayed(page_title, "购买互惠基金 | 購買互惠基金");
 			mobileAction.verifyElementTextIsDisplayed(fund_dropdown_caption, "基金 |基金");
 			mobileAction.verifyElementTextIsDisplayed(fund_dropdown_list, "选择基金|選擇基金 ");
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
@@ -358,18 +382,33 @@ public class PurchaseMutualFunds extends _CommonPage {
 		}
 	}
 	
-	public void SelectFund(){
+	public void SelectFund(String selectedFund ){
 		Decorator();
 		try {
-			String selectedFund = CL.getTestDataInstance().TCParameters.get("Accounts");
+			String [] selectedFundArray =selectedFund.split("\\|");
 			mobileAction.FuncClick(fund_dropdown_list, "Funds dorpdown list");
-
+            int lengthOfArray = selectedFundArray.length;
 			String FundInListText;
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				FundInListText = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='" + selectedFund + "']";
+				FundInListText = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='";
+				for (int i=0; i< lengthOfArray; i++ ){
+					FundInListText = FundInListText + selectedFundArray[i].trim() + "'";
+					if(i< lengthOfArray -1 ){
+						FundInListText = FundInListText + " or @text='";
+					}
+				}
+				FundInListText = FundInListText +"]";
 			}else{
-				FundInListText = "//XCUIElementTypeStaticText[@label='" + selectedFund + "']";			
+				FundInListText = "//XCUIElementTypeStaticText[@label='";	
+				for (int i=0; i< lengthOfArray; i++ ){
+					FundInListText = FundInListText + selectedFundArray[i].trim() + "'";
+					if(i< lengthOfArray -1 ){
+						FundInListText = FundInListText + " or @label='";
+					}
+				}
+				FundInListText = FundInListText +"]";
 			}
+			System.out.println("FundInListText:" + FundInListText);
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(FundInListText, true, 10, "up");		
 			
 		} catch (NoSuchElementException e) {
@@ -394,14 +433,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 		System.out.println("Email:" + user_email);
 		System.out.println("Phone:" + user_phone);
 		try{
-			mobileAction.FuncClick(fund_dropdown_list, "Funds dorpdown list");
-			String FundInListText;
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				FundInListText = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='" + selectedFund + "']";
-			}else{
-				FundInListText = "//XCUIElementTypeStaticText[@label='" + selectedFund + "']";			
-			}
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(FundInListText, true, 10, "up");			
+			SelectFund(selectedFund);
 			enterAmount(amount_selected);
 			mobileAction.FuncSwipeWhileElementNotFound(consent_checkbox, false, 5, "up");
 			
@@ -438,6 +470,55 @@ public class PurchaseMutualFunds extends _CommonPage {
 		return true;
 	}
 	
+	private boolean fillPurchaseForm(String amountEntered) {
+		String selectedFund = CL.getTestDataInstance().TCParameters.get("Accounts");
+		String user_email = CL.getTestDataInstance().TCParameters.get("EmailProfile");
+		String user_phone = CL.getTestDataInstance().TCParameters.get("PhoneProfile");
+		String amount_selected = amountEntered;
+		System.out.println("selected funds:" + selectedFund);
+		System.out.println("amount::" + amount_selected);
+		System.out.println("Email:" + user_email);
+		System.out.println("Phone:" + user_phone);
+		try{
+			SelectFund(selectedFund);
+			enterAmount(amount_selected);
+			mobileAction.FuncSwipeWhileElementNotFound(consent_checkbox, false, 5, "up");
+			
+			String ori_email = getEmailInfo();
+			if(ori_email.isEmpty()){
+				mobileAction.FuncSendKeys(email_info, user_email);
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+					mobileAction.FuncHideKeyboard();
+				}else{
+					done = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
+					mobileAction.FuncClick(done, "Done");
+				}
+			}else{
+				System.out.println("Email populated:"+ori_email );
+			}
+			String ori_phone= getPhoneNumber();
+			if(ori_phone.isEmpty()){
+				mobileAction.FuncSendKeys(phone_info, user_phone);
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					done = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
+					mobileAction.FuncClick(done, "Done");
+				} else {
+					mobileAction.FuncHideKeyboard();
+				}
+			}else{
+				System.out.println("Phone populated:"+ori_phone );
+			}
+			
+			mobileAction.FuncClick(consent_checkbox, "consent check box");
+					
+		}catch (Exception e){
+			return false;
+		}
+		return true;
+	}
+	
+
+	
 	public void ClickPreviewPurchase() {
 		Decorator();
 		try {
@@ -445,26 +526,9 @@ public class PurchaseMutualFunds extends _CommonPage {
 				mobileAction.Report_Fail("Failed to fill purchase form");
 				return;
 			}
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				String enableStatus= preview_purchase_button.getAttribute("enabled");
-	
-				int count=0;
-				
-				while(enableStatus.equalsIgnoreCase("false") && count <10){
-					mobileAction.FuncSwipeOnce("down");
-					enableStatus= preview_purchase_button.getAttribute("enabled");
-					count++;
-				}
-				if(count>=10){
-					mobileAction.Report_Fail("PreviewPurchase button is disabled");
-					return;
-				}
-			}
-			String elementText = mobileAction.getValue(preview_purchase_button);
-			mobileAction.FuncClick(preview_purchase_button, elementText);
-			mobileAction.waitForElementToVanish(progress_bar);
+			clickpreview();
 
-		} catch (NoSuchElementException | InterruptedException | IOException  e) {
+		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed to ClickPreviewPurchase.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			mobileAction.Report_Fail("Exception for ClickPreviewPurchase");
@@ -484,8 +548,17 @@ public class PurchaseMutualFunds extends _CommonPage {
 	public void VerifyMinimumAmount() {
 		Decorator();
 		try {
+			
 			String amountLessthanMinimum ="99.99";
-			enterAmount(amountLessthanMinimum);
+			fillPurchaseForm(amountLessthanMinimum);			
+			clickpreview();
+			
+			if(!mobileAction.verifyElementIsPresent(error_message)){
+				System.out.println("No error message for amount:99.99");
+				mobileAction.Report_Fail("Failed to find error message for amount:99.99");
+				return;
+			}
+			
 			String errorMessage = checkErrorMessageIsFound();
 			if(errorMessage.isEmpty()){
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -497,17 +570,19 @@ public class PurchaseMutualFunds extends _CommonPage {
 			}
 			
 			enterAmount(MIN_AMOUNT);
+			clickpreview();
 			
-			errorMessage = checkErrorMessageIsFound();
-			if(errorMessage.isEmpty()){
-				mobileAction.Report_Pass_Verified("Min Amount "+ MIN_AMOUNT);
+			String pageTitle = mobileAction.getValue(page_title);
+			String expectedTitle = "Preview Purchase | Aperçu | 预览购买 | 預覽購買 ";
+			
+			if(!expectedTitle.contains(pageTitle)){
+				errorMessage = checkErrorMessageIsFound();
+				mobileAction.Report_Fail("Error message for min amount "+ MIN_AMOUNT);
 			}else{
-				System.out.println("Found error message:"+ errorMessage + " with amount " +MIN_AMOUNT);
-				mobileAction.Report_Fail_Not_Verified("Min Amount "+ MIN_AMOUNT);
+				System.out.println("page display:"+pageTitle);
 			}
-
-
-		} catch (NoSuchElementException  e) {
+						
+		} catch (Exception  e) {
 			System.err.println("TestCase has failed to VerifyMinmumAmount.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			mobileAction.Report_Fail("Exception for VerifyMinmumAmount");
@@ -518,7 +593,14 @@ public class PurchaseMutualFunds extends _CommonPage {
 		Decorator();
 		try {
 			String amounGreaterthanMaximum ="1000000.00";
-			enterAmount(amounGreaterthanMaximum);
+			fillPurchaseForm(amounGreaterthanMaximum);
+			clickpreview();
+			
+			if(!mobileAction.verifyElementIsPresent(error_message)){
+				System.out.println("No error message for amount:"+ amounGreaterthanMaximum);
+				mobileAction.Report_Fail("Failed to find error message for amount:"+amounGreaterthanMaximum);
+				return;
+			}		
 			String errorMessage = checkErrorMessageIsFound();
 			if(errorMessage.isEmpty()){
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -530,16 +612,17 @@ public class PurchaseMutualFunds extends _CommonPage {
 			}
 			
 			enterAmount(MAX_AMOUNT);
-			
-			errorMessage = checkErrorMessageIsFound();
-			if(errorMessage.isEmpty()){
-				mobileAction.Report_Pass_Verified("Max Amount "+ MAX_AMOUNT);
+			clickpreview();
+			String pageTitle = mobileAction.getValue(page_title);
+			String expectedTitle = "Preview Purchase | Aperçu | 预览购买 | 預覽購買 ";
+			if(!expectedTitle.contains(pageTitle)){
+				errorMessage = checkErrorMessageIsFound();
+				mobileAction.Report_Fail("Error message for Max amount "+ MAX_AMOUNT);
 			}else{
-				System.out.println("Found error message:"+ errorMessage + " with amount " +MAX_AMOUNT);
-				mobileAction.Report_Fail_Not_Verified("Max Amount "+ MAX_AMOUNT);
+				System.out.println("page display:"+pageTitle);
 			}
 
-		} catch (NoSuchElementException  e) {
+		} catch (Exception  e) {
 			System.err.println("TestCase has failed to VerifyMaxmumAmount.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			mobileAction.Report_Fail("Exception for VerifyMaxmumAmount");
@@ -623,7 +706,8 @@ public class PurchaseMutualFunds extends _CommonPage {
 	public void ClickViewfundFacts(){
 		Decorator();
 		try {
-			SelectFund();
+			String selectedFund = CL.getTestDataInstance().TCParameters.get("Accounts");
+			SelectFund(selectedFund);
 			mobileAction.FuncSwipeWhileElementNotFound(view_fundFacts, true, 5, "up");
 			//mobileAction.FuncClick(view_fundFacts, "view fund Facts");	
 		} catch ( NoSuchElementException  e) {
@@ -638,7 +722,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 		Decorator();
 		try {
 			
-			mobileAction.verifyElementIsDisplayed(purchaseMF_title, "Purchase Mutual Funds");
+			mobileAction.verifyElementIsDisplayed(page_title, "Purchase Mutual Funds");
 			if(!mobileAction.verifyElementIsPresent(fund_dropdown_list)){
 				mobileAction.FuncSwipeWhileElementNotFound(fund_dropdown_list, false, 10, "down");
 			}
