@@ -203,43 +203,43 @@ public class ManageRecipients extends _CommonPage {
     		 if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 	    mobileAction.waitForElementToVanish(progressBar);
 	    mobileAction.verifyElementIsDisplayed(manageRecipientHeader, "Manage Recipients");
-	    Thread.sleep(3000);
-	    mobileAction.FuncClick(selectRecipient, "Select Recipient");
-	    mobileAction.waitForElementToVanish(progressBar);
-	    mobileAction.FuncClick(editRecipient, "Edit Recipient");
-	    mobileAction.waitForElementToVanish(progressBar);
-	    recipientMailAddr.clear();
-	    System.out.println("Edit email:" + recipientMail);
-	    mobileAction.FuncSendKeys(recipientMailAddr, recipientMail);
-	    mobileAction.FuncClick(done, "Done");
-	    mobileAction.FuncClick(enterAnswer, "Enter Answer");
-	    mobileAction.FuncSendKeys(enterAnswer, answer);
-	    mobileAction.FuncClick(reEnterAnswer, "Re Enter your Answer");
-	    mobileAction.FuncSendKeys(reEnterAnswer, answer);
-	    mobileAction.FuncClick(done, "Done");
-	    mobileAction.waitForElementToVanish(progressBar);
+//	    Thread.sleep(3000);
+//	    mobileAction.FuncClick(selectRecipient, "Select Recipient");
+//	    mobileAction.waitForElementToVanish(progressBar);
+//	    mobileAction.FuncClick(editRecipient, "Edit Recipient");
+//	    mobileAction.waitForElementToVanish(progressBar);
+//	    recipientMailAddr.clear();
+//	    System.out.println("Edit email:" + recipientMail);
+//	    mobileAction.FuncSendKeys(recipientMailAddr, recipientMail);
+//	    mobileAction.FuncClick(done, "Done");
+//	    mobileAction.FuncClick(enterAnswer, "Enter Answer");
+//	    mobileAction.FuncSendKeys(enterAnswer, answer);
+//	    mobileAction.FuncClick(reEnterAnswer, "Re Enter your Answer");
+//	    mobileAction.FuncSendKeys(reEnterAnswer, answer);
+//	    mobileAction.FuncClick(done, "Done");
+//	    mobileAction.waitForElementToVanish(progressBar);
     	}
     	else
     		 {
     		//String recipient_saved = "Success Recipient details have been saved.";
     		mobileAction.waitForElementToVanish(progressBar);
     	    mobileAction.verifyElementIsDisplayed(manageRecipientHeader, "Manage Recipients");
-    	    String select_recipient ="//android.view.View[@content-desc='" + sender_SelectSender+ "']";
-		    MobileElement selectRecipient = mobileAction.verifyElementUsingXPath(select_recipient, "Select Recipient");
-    	    mobileAction.FuncClick(selectRecipient, "Select Recipient");
-    	    mobileAction.FuncClick(editRecipient, "Edit Recipient");
-    	    mobileAction.FuncClick(recipientMailAddr,"recipientMail");
-    	    recipientMailAddr.clear();
-    	    mobileAction.FuncSendKeys(recipientMailAddr, recipientMail);
-    	    mobileAction.FuncHideKeyboard();
-    	    mobileAction.FuncClick(enterAnswer, "Enter Answer");
-    	    mobileAction.FuncSendKeys(enterAnswer, answer);
-    	    mobileAction.FuncHideKeyboard();
-    	    mobileAction.FuncClick(reEnterAnswer, "Re Enter your Answer");
-    	    mobileAction.FuncSendKeys(reEnterAnswer, answer);
-    	    mobileAction.FuncHideKeyboard();
-    	    mobileAction.FuncClick(done, "Done"); 
-    	    //mobileAction.verifyElementIsDisplayed(recipient_Changes,"Success Recipient details have been saved");
+//    	    String select_recipient ="//android.view.View[@content-desc='" + sender_SelectSender+ "']";
+//		    MobileElement selectRecipient = mobileAction.verifyElementUsingXPath(select_recipient, "Select Recipient");
+//    	    mobileAction.FuncClick(selectRecipient, "Select Recipient");
+//    	    mobileAction.FuncClick(editRecipient, "Edit Recipient");
+//    	    mobileAction.FuncClick(recipientMailAddr,"recipientMail");
+//    	    recipientMailAddr.clear();
+//    	    mobileAction.FuncSendKeys(recipientMailAddr, recipientMail);
+//    	    mobileAction.FuncHideKeyboard();
+//    	    mobileAction.FuncClick(enterAnswer, "Enter Answer");
+//    	    mobileAction.FuncSendKeys(enterAnswer, answer);
+//    	    mobileAction.FuncHideKeyboard();
+//    	    mobileAction.FuncClick(reEnterAnswer, "Re Enter your Answer");
+//    	    mobileAction.FuncSendKeys(reEnterAnswer, answer);
+//    	    mobileAction.FuncHideKeyboard();
+//    	    mobileAction.FuncClick(done, "Done"); 
+//    	    //mobileAction.verifyElementIsDisplayed(recipient_Changes,"Success Recipient details have been saved");
     		 }
 
 	}  catch (NoSuchElementException e) {

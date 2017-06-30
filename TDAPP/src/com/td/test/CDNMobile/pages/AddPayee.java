@@ -36,10 +36,6 @@ public class AddPayee extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'found any matches. Please try again.')]")
 	private MobileElement errorMessage;
 	
-	String selectVal=getTestdata("Search");
-	
-	
-	
 	public synchronized static AddPayee get() {
 		if (AddPayee == null) {
 			AddPayee = new AddPayee();
@@ -77,7 +73,7 @@ public class AddPayee extends _CommonPage {
 	Decorator();
 	try{
 			mobileAction.FuncClick(searchForCanadianPayee, "Search For Canadian Payee");
-			mobileAction.FuncSendKeys(searchForCanadianPayee,selectVal);
+			mobileAction.FuncSendKeys(searchForCanadianPayee,getTestdata("Search"));
 			mobileAction.verifyElementIsDisplayed(errorMessage,"We haven't found any matches. Please try again.");
 	}catch (NoSuchElementException e) {
 		CL.getGlobalVarriablesInstance().bStopNextFunction = false;

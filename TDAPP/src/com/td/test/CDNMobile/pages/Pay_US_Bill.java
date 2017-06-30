@@ -81,19 +81,6 @@ public class Pay_US_Bill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/button_footer']")
 	private MobileElement pay_bill_button;
 
-	int i = 1;
-	String select_account_table = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]";
-
-	String to_account_table = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]";
-	String firstPart = "//XCUIElementTypeCell[";
-	String secondPart = "]/XCUIElementTypeStaticText[1]";
-	String finalPart = firstPart + i + secondPart;
-
-	String to_accountno = getTestdata("ToAccount");
-	String to_account = "//android.widget.TextView[@resource-id='com.td:id/subtitle' and @text='" + to_accountno + "']";
-	String us_accountno = getTestdata("USAccount");
-	String select_from_Account = "//android.widget.TextView[starts-with(@text,'" + us_accountno + "']";
-
 	public synchronized static Pay_US_Bill get() {
 		if (Pay_US_Bill == null) {
 			Pay_US_Bill = new Pay_US_Bill();
@@ -229,13 +216,21 @@ public class Pay_US_Bill extends _CommonPage {
 	 */
 
 	public void verifyCurrencyDropDown() {
+
+		String select_account_table = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]";
+		String firstPart = "//XCUIElementTypeCell[";
+		String secondPart = "]/XCUIElementTypeStaticText[1]";
+		String finalPart = firstPart + 1 + secondPart;
+
+		String us_accountno = getTestdata("USAccount");
+		String select_from_Account = "//android.widget.TextView[starts-with(@text,'" + us_accountno + "']";
 		try {
-			String t_currencyswitchbox="The currency switchbox is displayed";
 			Decorator();
 			if (platformName.equalsIgnoreCase("ios")) {
 				if (mobileAction.verifyElementIsPresent(us_Bill_Header))
+
 					mobileAction.FuncClick(from_account, "from_Account");
-					String us_accountno = getTestdata("USAccount");
+
 					System.out.println("us_accountno" + us_accountno);
 					String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + us_accountno + "')]";
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
@@ -244,8 +239,7 @@ public class Pay_US_Bill extends _CommonPage {
 					boolean elementExists = currency_Switchbox.isDisplayed();
 					mobileAction.verifyElementIsDisplayed(currency_Switchbox, "");
 					if (!elementExists) {
-						String finalPart = already_selected_from_Account + us_accountno + "')]";
-	
+
 						CL.GetDriver().findElement(By.xpath(finalPart)).click();;
 	
 						String from_Accountno = getTestdata("FromAccount");

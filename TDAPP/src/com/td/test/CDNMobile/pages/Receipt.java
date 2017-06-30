@@ -26,19 +26,19 @@ public class Receipt extends _CommonPage{
 	private MobileElement receiptHeader;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'HOME')]") 
-	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Rewards']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='GO BACK HOME']")
 	private MobileElement homeBtn;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Confirmation #')]") 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_val']")
 	private MobileElement confirmationNo;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'PAY WITH REWARDS')]") 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='PAY WITH REWARDS']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'REWARDS REDEMPTION')]") 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='REWARDS REDEMPTION']")
 	private MobileElement from_PayWithRewards;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'To')]/../XCUIElementTypeStaticText[3]") 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_subvalue']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='To']/following-sibling::android.widget.LinearLayout/android.widget.TextView[@resource-id='com.td:id/item_row_subvalue']")
 	private MobileElement payeeAccount;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'Amount')]/../XCUIElementTypeStaticText[2]") 
@@ -50,7 +50,7 @@ public class Receipt extends _CommonPage{
 	private MobileElement redeemedPoints;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'Date')]/../XCUIElementTypeStaticText[2]") 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_value_main']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Date']/following-sibling::android.widget.LinearLayout/android.widget.TextView[@resource-id='com.td:id/item_row_value_main']")
 	private MobileElement date;
 	
 	public synchronized static Receipt get() {
@@ -92,32 +92,38 @@ public class Receipt extends _CommonPage{
 
 	}
 	
-	public void verifyCurrentDate()   {
+	public boolean verifyCurrentDate()   {
 		Decorator();
 		String dt="";
-		SimpleDateFormat sdf =  new SimpleDateFormat("MMMMM dd,yyyy"); //
-		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-			 dt = date.getAttribute("label");//"Apr 21,2017";
-		}else{
-			dt = date.getAttribute("text");
-		}
-               Date d= null;
-               Date d1= null;
-            String today=   new SimpleDateFormat("MMMMM dd,yyyy").format(new Date());
-            try {
-                //System.out.println("expdate>> "+date);
-                System.out.println("today>> "+today+"\n\n");
-                d = sdf.parse(dt);
-                d1 = sdf.parse(today);
-                if(d1.compareTo(d) == 0){// not expired
-                    System.out.println("false");
-                 }
-                 else
-                  System.out.println("true");
-            }
-            catch(Exception e) {
-             e.printStackTrace();
-           }
+		SimpleDateFormat sdf =  new SimpleDateFormat("MMMM dd,yyyy"); //
+		dt = mobileAction.getValue(date);
+//		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+//			 dt = date.getAttribute("label");//"Apr 21,2017";
+//		}else{
+//			dt = date.getAttribute("text");
+//		}
+        Date d= null;
+        Date d1= null;
+	    String today=   new SimpleDateFormat("MMMM dd,yyyy").format(new Date());
+	    try {
+	        //System.out.println("expdate>> "+date);
+	    	System.out.println("Date captured >> "+dt);
+	        System.out.println("today>> "+today+"\n\n");	        
+	        d = sdf.parse(dt);
+	        d1 = sdf.parse(today);
+	        if(d1.compareTo(d) == 0){// not expired
+	            System.out.println("true");
+	           return true;
+	         }
+	         else{
+	        	 System.out.println("false");
+	        	 return false;
+	         }
+	    }
+	    catch(Exception e) {
+	     e.printStackTrace();
+	     return false;
+	   }
      }
 
 
@@ -131,17 +137,27 @@ public class Receipt extends _CommonPage{
 			mobileAction.verifyElementIsDisplayed(confirmationNo, "Confirmation Number");
 			mobileAction.verifyElementIsDisplayed(from_PayWithRewards, "Pay With Rewards");
 			mobileAction.verifyElementIsDisplayed(payeeAccount, "Payee Account");
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-				 payee=payeeAccount.getAttribute("label");
-			}else{
-				payee=payeeAccount.getAttribute("text");
-			}
+			payee = mobileAction.getValue(payeeAccount);
+//			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+//				 payee=payeeAccount.getAttribute("label");
+//			}else{
+//				payee=payeeAccount.getAttribute("text");
+//			}
 			
 			String maskedCreditCardNo=payee.substring(0,4);
-			mobileAction.verifyTextEquality(maskedCreditCardNo, ConstantClass.maskedValue);
+			System.out.println("maskedCreditCardNo:"+ maskedCreditCardNo);
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				mobileAction.verifyTextEquality(maskedCreditCardNo, ConstantClass.maskedValue_Android);
+			}else{
+				mobileAction.verifyTextEquality(maskedCreditCardNo, ConstantClass.maskedValue_iOS);
+			}
 			mobileAction.verifyElementTextContains(paymentAmount,ConstantClass.dollarSign);
 			mobileAction.verifyElementTextContains(redeemedPoints, ConstantClass.points);
-			verifyCurrentDate();
+			if(verifyCurrentDate()){
+				mobileAction.Report_Pass_Verified("Date");
+			}else{
+				mobileAction.Report_Fail("Fail: date is not verified");
+			}
 			
 			
 			

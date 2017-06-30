@@ -40,7 +40,7 @@ public class Managee_Payee extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/listView']/android.widget.LinearLayout[3]/android.widget.LinearLayout/android.widget.TextView")
 	private MobileElement thirdAccessCard;
 	
-	@iOSFindBy(xpath="//XCUIElementTypeButton[@label='Add Canadian Payees Now']")
+	@iOSFindBy(xpath="//XCUIElementTypeButton[contains(@label='Add Canadian')]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Canadian Payee']")
 	private MobileElement addCanadianPayee;
 	

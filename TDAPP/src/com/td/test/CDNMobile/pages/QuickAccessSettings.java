@@ -143,22 +143,31 @@ public class QuickAccessSettings extends _CommonPage{
 	    Decorator();
 	    try{
 	    	
-	    
+	    	accountXL = CL.getTestDataInstance().getPrimaryAccount();
+	    	System.out.println("Account:" + accountXL);
 	    	String rewardValue=cardToggle+ accountXL+ "')]";
 	       	if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-	    	CL.GetDriver().findElement(By.xpath(rewardValue)).isEnabled();
+	       		rewardValue = "//*[contains(@label,'" +accountXL +"')]/following-sibling::XCUIElementTypeSwitch";
+	       		//CL.GetDriver().findElement(By.xpath(rewardValue)).isEnabled();
 	       	}
 	       	else{
-		    	CL.GetDriver().findElement(By.xpath(rewardValue)).click();
+	       		rewardValue = "//*[contains(@text,'" +accountXL +"')]/following-sibling::android.widget.Switch";
+		    	//CL.GetDriver().findElement(By.xpath(rewardValue)).click();
 	       	}
 	    	
-	    	//MobileElement cardToggleBtn=(MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(rewardValue));
+	    	MobileElement cardToggleBtn=(MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(rewardValue));
+	    	
+	    	if(mobileAction.getSwitchStatus(cardToggleBtn).equalsIgnoreCase("true")){
+	    		mobileAction.FuncClick(cardToggleBtn, "Switch toggle to disable");
+	    	}else{
+	    		System.out.println("Already disabled");
+	    	}
 	    	
 	    	//mobileAction.FuncClick(cardToggleBtn, "cardTogglebutton clicked");
 	    	System.out.println("Clicked");
 	
 	    
-	    }catch(NoSuchElementException  e){
+	    }catch(Exception  e){
 
 	    	System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
