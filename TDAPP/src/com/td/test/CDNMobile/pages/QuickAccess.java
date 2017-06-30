@@ -52,7 +52,7 @@ public class QuickAccess  extends _CommonPage {
 
 	public void VerifyQuickAccessSettingsHeader() {
 		Decorator();
-		try {			
+		try {
 			mobileAction.verifyElementTextIsDisplayed(quickaccess_title, "Quick Access Settings | Paramètres Accès rapide");
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -95,6 +95,38 @@ public class QuickAccess  extends _CommonPage {
 					switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
 					System.out.println("Checked now :" + switchCheckStatus);
 					mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, "ACCOUNTS | COMPTES ");
+				}
+			}			
+
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+	public void VerifyAndEnableQuickAccess(){
+		Decorator();
+		try {
+			mobileAction.verifyElementIsDisplayed(quickaccess_switch, "Quick Access");
+			String switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch); 
+			System.out.println("Checked Status :" + switchCheckStatus);
+			if(switchCheckStatus.equalsIgnoreCase("true")){
+				//Enabled
+				System.out.println("Switch is on");
+				mobileAction.Report_Pass_Verified("QuickAccess Enabled");
+				
+			}else{
+				mobileAction.Report_Pass_Verified("Accounts no displaying ");
+				// Toggle to Enable it
+				mobileAction.FuncClick(quickaccess_switch, "Quick Access Switch Toggle");
+				System.out.println("Toggle Switch");
+				mobileAction.waitForElementToVanish(progress_bar);
+				switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
+				System.out.println("Checked now :" + switchCheckStatus);
+				if(switchCheckStatus.equalsIgnoreCase("true")){
+					mobileAction.Report_Pass_Verified("QuickAccess Enabled");
+				}else{
+					mobileAction.Report_Pass_Verified("Failed to enable QuickAccess");
 				}
 			}
 			

@@ -32,9 +32,8 @@ public class ContactUs extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/rlTDMainNumber']")  //changed by rashmi
 	private MobileElement call_Button;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Call']")
-	//@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Call']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/continue_call_button' and contains(@text,'Continue call')]") //changed by rashmi
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Call' or @label='Continue Call']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/continue_call_button']")
 	private MobileElement callNow;
 	
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='OK']")
@@ -80,7 +79,6 @@ public class ContactUs extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(call_Button, t_call);
 			mobileAction.FuncClick(call_Button, "Call Button");
 			mobileAction.FuncClick(callNow, "Call");
-			//mobileAction.FuncClick(ok, "Ok");
 		}
 		}catch (NoSuchElementException e) {
             CL.getGlobalVarriablesInstance().bStopNextFunction = false;

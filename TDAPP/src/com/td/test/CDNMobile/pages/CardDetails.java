@@ -36,10 +36,6 @@ private static CardDetails CardDetails;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/enable_always_on_text_view' and @text='Enable Always On']")
 	private MobileElement verifyPayment;
 	
-	
-	
-	
-	
 	public synchronized static  CardDetails get() {
 		if ( CardDetails == null) {
 			CardDetails = new  CardDetails();

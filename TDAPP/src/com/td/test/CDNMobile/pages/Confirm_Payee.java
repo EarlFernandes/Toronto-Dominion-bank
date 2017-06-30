@@ -58,8 +58,6 @@ public class Confirm_Payee extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
 	private MobileElement errorMsg;
 	
-	String accountNoXL=getTestdata("Payee");
-	
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[3]")
 	private MobileElement payee_Table;
 	
@@ -113,7 +111,7 @@ public class Confirm_Payee extends _CommonPage{
 		if(mobileAction.verifyElementIsPresent(payBill_Header))
 		{
 			String addedPayee=payee_Table.getAttribute("label");
-			mobileAction.verifyTextEquality(addedPayee, accountNoXL);
+			mobileAction.verifyTextEquality(addedPayee, getTestdata("Payee"));
 		}
 		
 	}catch (NoSuchElementException e) {
