@@ -1198,7 +1198,39 @@ public class HomeScreen extends _CommonPage {
 		}
 		
 	}
-	
+	/**
+	 * This method will click on the open new account button on home page
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void clickOpenNewAccount() {
+		try {
+			Decorator();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				newAccount = mobileAction.verifyElementUsingXPath("//*[@name='" + mobileAction.getAppString("str_banking_cross_sell_message") + "']", "Opne a bank account");
+			} else {
+				newAccount = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("str_banking_cross_sell_message") + "']", "Opne a bank account");
+			}
+			mobileAction.FuncClick(newAccount, "New Bank Account");
+
+		} catch (Exception e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+	}
 	public void ClickContactUsFromHomePage(){
 		Decorator();
 		//MobileElement contactUs = null;
