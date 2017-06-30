@@ -33,7 +33,7 @@ public class LoginMIT extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement password;
 
-	@iOSFindBy(xpath = "//*[@label='Login']")
+	@iOSFindBy(xpath = "//*[@label='Login' or contains(@label,'Ouvrir')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/loginBtnText']")
 	private MobileElement login;
 
@@ -140,7 +140,7 @@ public class LoginMIT extends _CommonPage {
 	private MobileElement securityLogin;
 
 	//@iOSFindBy(xpath = "//*[contains(@label,'System Error')]")
-	@iOSFindBy(xpath = "//*[contains(@label,'OK')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='OK']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
 	private MobileElement errorText;
 

@@ -34,7 +34,8 @@ public class SearchPageMIT extends _CommonPage {
 	String t_searchBar = "Search";
 	
 //	@iOSFindBy(xpath = "//XCUIElementTypeSearchField[@label='Enter name or symbol' or contains(@label,'Entrez le')]") //@Author - Sushil 03-Feb-2017
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Enter name or symbol' or contains(@label,'Entrez le')]") //@Author - Sushil 03-Feb-2017
+//	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Enter name or symbol' or contains(@label,'Entrez le')]") //@Author - Sushil 03-Feb-2017
+	@iOSFindBy(xpath = "//*[@name='TextField_0']") //@Author - Sushil 03-Feb-2017
 	@AndroidFindBy(id="com.td:id/edt_search_field_search_mode")
 	private MobileElement search_symbol;
 	

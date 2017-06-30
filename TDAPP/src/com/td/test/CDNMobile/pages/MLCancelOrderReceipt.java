@@ -178,8 +178,16 @@ public class MLCancelOrderReceipt extends _CommonPage{
 			mobileAction.FuncSwipeUpTillScreenBottom(labelTradingPassword);
 			
 			if(mobileAction.isObjExists(editTextPassword, 2))
-				TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
-
+				//TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+			{
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+					TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+				else
+				{
+				mobileAction.FuncSendKeys(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+				TradeMultiLeg.get().handleKeyboard();
+				}
+			}
 			mobileAction.FuncClick(btnCancelOrder, "Cancel Button");
 			
 			mobileAction.verifyElementIsDisplayed(hdrReceipt, "Header Reciept");
