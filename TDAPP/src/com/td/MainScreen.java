@@ -13,13 +13,13 @@ public class MainScreen extends _CommonPage {
 	// ***** LOCAL EXECUTION PARAMETERS *****
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.201:4760/wd/hub/";
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.104:4730/wd/hub/";
 
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
-	private static final String APP_ANDROID = "APP_ANDROID_ZH";
+	private static final String APP_ANDROID = "APP_ANDROID_ZH_TRAD";
 	// Change this parameter to point to the correct ipa in Setup.xls for ios
-	private static final String APP_IOS = "APP_IOS_ZH";
+	private static final String APP_IOS = "APP_IOS_ZH_TRAD";
 
 	public String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env",
 			"Amount", "Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount",
@@ -93,9 +93,12 @@ public class MainScreen extends _CommonPage {
 			CL.mobileApp(appiumPath);
 			
 			// If length is 2, then second token is the locale
-			if (targetEnvVars.length == 2) {
+			if (targetEnvVars.length >= 2) {
 				currentLocale = targetEnvVars[1];
 				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
+			} else {
+				currentLocale = "EN";
+				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
 			}
 		} else { // Local execution
 			try { // Set udid explicitly for local execution, to handle udid

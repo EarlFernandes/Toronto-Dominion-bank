@@ -27,7 +27,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up' and @index='0']")
 	private MobileElement menu;
 
-	@iOSFindBy(accessibility = "QUICK_ACCESS_ITEM_PAYBILL")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Bills']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/title' or @resource-id='com.td:id/navText') and @text='Bills']")
 	private MobileElement bills;
 
@@ -39,7 +39,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Accounts']")
 	private MobileElement my_accounts;
 
-	@iOSFindBy(accessibility = "QUICK_ACCESS_ITEM_TRANSFERS")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfers']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Transfers' or @text='Virments']")
 	private MobileElement transfers;
 
@@ -47,7 +47,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Markets' or @content-desc='Markets']")
 	private MobileElement markets;
 
-	@iOSFindBy(accessibility = "QUICK_ACCESS_ITEM_TRANSFER")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='TRANSFER']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='TRANSFERS']")
 	private MobileElement transfer_button_dashboard;
 
@@ -83,7 +83,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
-	@iOSFindBy(accessibility = "QUICK_ACCESS_ITEM_DEPOSIT")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='DEPOSIT']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mrdc_dashboard' and @text='DEPOSIT']")
 	private MobileElement deposit;
 
@@ -110,7 +110,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 
-	@iOSFindBy(accessibility = "QUICK_ACCESS_ITEM_SENDMONEY")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@value='SEND MONEY']")
 	private MobileElement send_money_button;
 
 	@iOSFindBy(accessibility = "QUICK_ACCESS_ITEM_QUOTE")
@@ -127,8 +127,8 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
 	private MobileElement location;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Find Locations']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Find Locations']")
+	@iOSFindBy(xpath = "//*[@value='Find Locations']")
+	@AndroidFindBy(xpath = "//*[@text='Find Locations']")
 	private MobileElement locationheader;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]//XCUIElementTypeCell[1]/XCUIElementTypeButton[7]")
@@ -732,7 +732,7 @@ public class HomeScreen extends _CommonPage {
 		try {
 			mobileAction.FuncClick(dashboard_Location, "Locations");
 			mobileAction.waitForElementToVanish(progressBar);
-			mobileAction.verifyElement(locationheader, "Locations header not present");
+			mobileAction.verifyElementIsDisplayed(locationheader, "Locations header not present");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

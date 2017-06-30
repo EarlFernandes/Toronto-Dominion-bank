@@ -112,6 +112,7 @@ public class CrossBorder extends _CommonPage {
 				String expectedText = "";
 				switch(currentLocale) {
 					case "EN":
+					case "en":
 						expectedText = POPUP_EXPECTED_TEXT_EN;
 						break;
 					case "zh-Hans":
@@ -148,6 +149,7 @@ public class CrossBorder extends _CommonPage {
 				String expectedText = "";
 				switch(currentLocale) {
 					case "EN":
+					case "en":
 						expectedText = WELCOME_EXPECTED_TEXT_EN;
 						break;
 					case "zh":
@@ -185,6 +187,7 @@ public class CrossBorder extends _CommonPage {
 				String expectedText = "";
 				switch(currentLocale) {
 					case "EN":
+					case "en":
 						expectedText = POPUP_EXPECTED_TEXT_EN;
 						break;
 					case "zh-Hans":
@@ -221,6 +224,7 @@ public class CrossBorder extends _CommonPage {
 				String expectedText = "";
 				switch(currentLocale) {
 					case "EN":
+					case "en":
 						expectedText = POPUP_EXPECTED_TEXT_EN;
 						break;
 					case "zh":

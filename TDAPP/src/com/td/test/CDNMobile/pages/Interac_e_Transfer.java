@@ -56,8 +56,7 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/sender_title']")
     private MobileElement selectSender;
 
-    // @iOSFindBy(xpath =
-    // "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]//XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[4]/XCUIElementTypeTextField")
+    @iOSFindBy(xpath= "//XCUIElementTypeStaticText[@name='INTERACSEND_VIEW_AMOUNT']/following-sibling::XCUIElementTypeTextField[1]")
     @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_amount']")
     private MobileElement etransfer_Amount;
 
@@ -470,7 +469,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				fillInInteracETransferForm();
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("eTransferConfirmNotice").replaceAll("\\<.*?>","") + "']", "Notice");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("eTransfersReceiveAnswerSender") + "']", "Sender");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("from") + "']", "From");
+				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("from") + "']", "From");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("eTransferConfirmRecipient") + "']", "Recipient");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("eTransferAmountLabel") + "']", "Amount");
 				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("eTransferMessageLabel") + "']", "Message");
