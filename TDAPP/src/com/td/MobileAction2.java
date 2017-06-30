@@ -2034,7 +2034,7 @@ public class MobileAction2 extends CommonLib {
 		    WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
 		    wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
 		    String capturedText=getValue(mobileElement);
-		    capturedText = capturedText.replaceAll("\n", "");
+		    capturedText = capturedText.trim().replaceAll("\n", "");
 		    for (int i=0; i< expectedHeadertext.length; i++){
 		    	if (capturedText.equalsIgnoreCase(expectedHeadertext[i].trim())){
 		    		System.out.println("Expected matched:" + capturedText);

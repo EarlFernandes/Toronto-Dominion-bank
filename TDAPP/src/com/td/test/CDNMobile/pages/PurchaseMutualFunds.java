@@ -39,7 +39,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/caption")
 	private MobileElement fund_dropdown_caption;
 	
-	@iOSFindBy(xpath = "//*[@label='Mutual Funds' or @label='Sélectionner un fonds']")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
 	@AndroidFindBy(id = "com.td:id/captionTextView")
 	private MobileElement amount_caption;
 	
@@ -47,39 +47,39 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/dialog_button']")
 	private MobileElement cancel_button;
 	
-	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeCell[3]/XCUIElementTypeStaticText[2]")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='From Account']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']")
 	private MobileElement from_account_name;
 	
-	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeCell[3]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='From Account']")
 	private MobileElement from_account_caption;
 	
-	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeCell[4]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[3]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='To Account']")
 	private MobileElement to_account_caption;
 	
-	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeOther[6]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/custom_text']")
 	private MobileElement contact_caption;
 	
-	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeCell[7]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[6]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label']")
 	private MobileElement email_caption;
 	
-	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[7]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label']")
 	private MobileElement phone_caption;
 	
-	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeCell[9]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_value_main']")
 	private MobileElement view_fundFacts;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[7]/XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[6]/XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/description']")
 	private MobileElement email_info;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[8]/XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[7]/XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/phone_number']")
 	private MobileElement phone_info;
 	
@@ -87,11 +87,19 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText']")
 	private MobileElement amount;
 	
-	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeCell[10]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[9]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.CheckBox[@resource-id='com.td:id/checkbox']")
 	private MobileElement consent_checkbox;
 	
-	@iOSFindBy(xpath = "//*[@name='TDVIEW_MESSAGE']")
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeOther[9]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer' and @index='7']/android.widget.TextView")
+	private MobileElement legal_text;
+	
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer' and @index='2']/android.widget.TextView")
+	private MobileElement copy_text;
+	
+	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/preceding-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
 	private MobileElement error_message;
 	
@@ -120,8 +128,8 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Done' or @label='OK']")
 	private MobileElement done;
 
-	@iOSFindBy(xpath = "////XCUIElementTypeStaticText[contains(@label,'Ineligible')]/../XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Ineligible')]/../android.widget.TextView[@resource-id='com.td:id/txtItemValue']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Ineligible') or contains(@label,'Non admissible')]/../XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Ineligible') or contains(@text,'Non admissible')]/../android.widget.TextView[@resource-id='com.td:id/txtItemValue']")
 	private MobileElement Ineligible_fund;
 
 	public synchronized static PurchaseMutualFunds get() {
@@ -352,6 +360,8 @@ public class PurchaseMutualFunds extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(page_title, "购买互惠基金 | 購買互惠基金");
 			mobileAction.verifyElementTextIsDisplayed(fund_dropdown_caption, "基金 |基金");
 			mobileAction.verifyElementTextIsDisplayed(fund_dropdown_list, "选择基金|選擇基金 ");
+			mobileAction.verifyElementTextIsDisplayed(amount_caption, "金额|金額");
+			
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				from_account_caption = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='" + mobileAction.getAppString("MF_from_account") + "']", "From Account");
 				to_account_caption = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='" + mobileAction.getAppString("MF_to_mf_account") + "']", "To Account");
@@ -370,10 +380,15 @@ public class PurchaseMutualFunds extends _CommonPage {
 			}
 			mobileAction.verifyElementTextIsDisplayed(email_caption, "电子邮件|電郵地址");
 			mobileAction.verifyElementTextIsDisplayed(phone_caption, "电话号码|電話號碼");
+			String expectedCopyText ="您的个人信息仅用于我们就您的基金购买情况与您联络。 | 我們僅在因有關您的購買時，才會使用您的資訊與您聯絡。";
+			mobileAction.verifyElementTextIsDisplayed(copy_text, expectedCopyText);
 			mobileAction.verifyElementTextIsDisplayed(view_fundFacts, " 查看基金概况（表现和费用）|查看基金概況（表現和費用）"
 					+ "");
-			
-			
+			mobileAction.verifyElementTextIsDisplayed(consent_checkbox, " 我同意通过电子方式获取基金概况和费用，并确认我有机会在购买基金之前查阅基金概况和费用。|我同意以電子方式獲取基金詳情和費用，並確認我在購買基金前都有機會先查閱內容。 "
+					+ "");
+//			String expectedLegalText ="您购买的基金有最短持有期要求。如果您在最短持有期到期之前赎回，则可能需向基金支付最高 2% 的短期交易费，此要求适用于道明互惠基金的所有单位（货币市场基金除外）。详情请参阅相关基金概况。"+
+//					"| 您購買的基金有最短持有期要求。如果您在最短持有期到期之前贖回，則可能需向基金支付最高 2% 的短期交易費，此要求適用於道明互惠基金的所有單位（貨幣市場基金除外）。詳情請參閱相關基金概況。";
+//			mobileAction.verifyElementTextIsDisplayed(legal_text, expectedLegalText);
 			
 		} catch (NoSuchElementException | IOException  e) {
 			System.err.println("TestCase has failed to VerifyPurchaseMFPageInChinese.");
