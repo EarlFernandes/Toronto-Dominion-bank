@@ -273,7 +273,11 @@ public class PreviewPurchase extends _CommonPage {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				amount_value = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_amount") + "']/../android.widget.RelativeLayout/android.widget.TextView", "Amount");
 			}else{
-				amount_value = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_Amount") + "']/../XCUIElementTypeStaticText[2]", "Amount");
+				try{
+					amount_value = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_Amount") + "']/../XCUIElementTypeStaticText[3]", "Amount");
+				}catch (Exception e1){
+					amount_value = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_Amount") + "']/../XCUIElementTypeStaticText[2]", "Amount");
+				}
 			}
 
 			String amountValue= mobileAction.getValue(amount_value);

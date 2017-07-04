@@ -109,7 +109,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	String phoneReg = "\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
 	String emailReg ="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/../XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/../XCUIElementTypeOther[1]/XCUIElementTypeButton")
 	@AndroidFindBy(id = "com.td:id/purchasePreviewButton")
 	private MobileElement preview_purchase_button;
 	
@@ -363,7 +363,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(amount_caption, "金额|金額");
 			
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				from_account_caption = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='" + mobileAction.getAppString("MF_from_account") + "']", "From Account");
+				from_account_caption = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='" + mobileAction.getAppString("str_transfers_from_account") + "']", "From Account");
 				to_account_caption = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='" + mobileAction.getAppString("MF_to_mf_account") + "']", "To Account");
 				contact_caption = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/custom_text' and @text='" + mobileAction.getAppString("MF_contact_information") + "']", "Contact Information");
 				
@@ -450,7 +450,9 @@ public class PurchaseMutualFunds extends _CommonPage {
 		try{
 			SelectFund(selectedFund);
 			enterAmount(amount_selected);
-			mobileAction.FuncSwipeWhileElementNotFound(consent_checkbox, false, 5, "up");
+			if(!mobileAction.verifyElementIsPresent(consent_checkbox)){
+				mobileAction.FuncSwipeWhileElementNotFound(consent_checkbox, false, 5, "up");
+			}
 			
 			String ori_email = getEmailInfo();
 			if(ori_email.isEmpty()){
@@ -468,7 +470,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			if(ori_phone.isEmpty()){
 				mobileAction.FuncSendKeys(phone_info, user_phone);
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					done = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
+					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or label='OK' or label='" + mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
 					mobileAction.FuncClick(done, "Done");
 				} else {
 					mobileAction.FuncHideKeyboard();
@@ -476,7 +478,9 @@ public class PurchaseMutualFunds extends _CommonPage {
 			}else{
 				System.out.println("Phone populated:"+ori_phone );
 			}
-			
+			if(!mobileAction.verifyElementIsPresent(consent_checkbox)){
+				mobileAction.FuncSwipeWhileElementNotFound(consent_checkbox, false, 5, "up");
+			}
 			mobileAction.FuncClick(consent_checkbox, "consent check box");
 					
 		}catch (Exception e){
@@ -644,30 +648,74 @@ public class PurchaseMutualFunds extends _CommonPage {
 		}		
 	}
 	
-	public void VerifyErrorMsgFromCADAccountToUSDMFAccount() {
+	public void VerifyFromCADAccountToUSDMFAccountIsNotAllowed() {
 		Decorator();
 		try {
-			if(!fillPurchaseForm()){
-				mobileAction.Report_Fail("Failed to fill purchase form");
-				return;
-			}
-			
-			String errorMessage = checkErrorMessageIsFound();
-			String expectedError = "You're not able to purchase a U.S. currency mutual fund using a Canadian currency account. Try another fund or start over and select another account. You can also call us for help at x-xxx-xxx-xxxx";
-			System.out.println("Found error message:"+ errorMessage);
-			if(errorMessage.equalsIgnoreCase(expectedError)){
-				mobileAction.Report_Pass_Verified("Error message found from CAD account to USD MF Account");
+			String selectedFund = CL.getTestDataInstance().TCParameters.get("Accounts");
+			System.out.println("Fund configured:"+selectedFund);
+			SelectFund(selectedFund);
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				System.out.println("//android.widget.TextView[@text='" + mobileAction.getAppString("str_transfers_from_account") + "']/../android.widget.RelativeLayout/android.widget.TextView[@resource-id='com.td:id/mf_account_name']");
+				from_account_name = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_transfers_from_account") + "']/../android.widget.RelativeLayout/android.widget.TextView[@resource-id='com.td:id/mf_account_name']", "From Account");
 			}else{
 				
-				mobileAction.Report_Fail_Not_Verified("Error message found from CAD account to USD MF Account");
+			}
+			String fromAccount = mobileAction.getValue(from_account_name);
+			System.out.println("From account name:" + fromAccount);
+
+			if(fromAccount.contains("US $")){
+				mobileAction.Report_Pass_Verified("From CAD account to US MF not allowed, from account:"+fromAccount);
+			}else{
+				
+				mobileAction.Report_Fail_Not_Verified("Not allowing from CAD account to US MF,from account:"+fromAccount);
 			}
 
-		} catch (NoSuchElementException  e) {
-			System.err.println("TestCase has failed to VerifyErrorMsgFromCADAccountToUSDMFAccount.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			mobileAction.Report_Fail("Exception for VerifyErrorMsgFromCADAccountToUSDMFAccount");
-		}		
-	}	
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}	
+	}
+	
+	public void VerifyFromUSDAccountToCADMFAccountIsNotAllowed() {
+		Decorator();
+		try {
+			String selectedFund = CL.getTestDataInstance().TCParameters.get("Accounts");
+			System.out.println("Fund configured:"+selectedFund);
+			SelectFund(selectedFund);
+			
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				from_account_name = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_transfers_from_account") + "']/../android.widget.RelativeLayout/*[@resource-id='com.td:id/mf_account_name']", "From Account");
+			}else{
+				
+			}
+			
+			String fromAccount = mobileAction.getValue(from_account_name);
+			System.out.println("From account name:" + fromAccount);
+
+			if(!fromAccount.toLowerCase().contains("us $")){
+				mobileAction.Report_Pass_Verified("From USD account to CAD MF not allowed,from account:"+fromAccount);
+			}else{
+				
+				mobileAction.Report_Fail_Not_Verified("Not allowing from USD account to CAD MF,from account:"+fromAccount);
+			}
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}	
+	}
 	
 	public void VerifyPhoneIsPopulatedWithProfilePhone() {
 		Decorator();

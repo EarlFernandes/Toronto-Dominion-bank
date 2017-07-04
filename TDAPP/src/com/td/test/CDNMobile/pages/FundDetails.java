@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileDriver;
+//import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -39,11 +39,7 @@ public class FundDetails extends _CommonPage {
     @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]")
     @AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/fund_facts_view']//android.widget.TextView[@index='0']")
     private MobileElement fund_facts_view_text;
-    
-    @iOSFindBy(xpath = "XCUIElementTypeTable/XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]")
-    @AndroidFindBy(xpath = "//android.view.View[@resource-id='com.google.android.apps.docs:id/action_bar']/android.widget.TextView")
-    private MobileElement fund_facts_page_title;
-    
+        
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[@index='2']/android.widget.LinearLayout/android.widget.TextView[@index='0']")
 	private List<MobileElement> InfoList;
@@ -210,16 +206,16 @@ public class FundDetails extends _CommonPage {
 		}	
 	}
 	
-	public void VerifyfundfactsDoc(){
-		Decorator();
-		try {
-			mobileAction.verifyElementTextIsDisplayed(fund_facts_page_title, "fund facts.pdf");  			
-		} catch ( Exception  e) {
-			System.err.println("TestCase has failed to verifyfundfactsDoc.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			mobileAction.Report_Fail("Exception for verifyfundfactsDoc");			
-		}	
-	}
+//	public void VerifyfundfactsDoc(){
+//		Decorator();
+//		try {
+//			mobileAction.verifyElementTextIsDisplayed(fund_facts_page_title, "fund facts.pdf");  			
+//		} catch ( Exception  e) {
+//			System.err.println("TestCase has failed to verifyfundfactsDoc.");
+//			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+//			mobileAction.Report_Fail("Exception for verifyfundfactsDoc");			
+//		}	
+//	}
 	
 	public void VerifyCallFuntionality(){
 		Decorator();

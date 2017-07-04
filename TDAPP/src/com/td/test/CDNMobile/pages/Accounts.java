@@ -838,34 +838,36 @@ public class Accounts extends _CommonPage {
 		try {
 			String from_Account = getTestdata("FromAccount");
 
-			String Acnt_Description = "//android.widget.TextView[@resource-id='com.td:id/accntDescrSum' and @text='" + from_Account
-					+ "']";
+			String Acnt_Description = "";
 			System.out.println("From Account:" + from_Account);
 			String from_Account_des,  from_Account_num;
 			from_Account_num = mobileAction.FuncGetValByRegx(from_Account, "\\d+");
 			from_Account_des = from_Account.replaceAll(from_Account_num, "").trim();
 			
-			String Acnt_num="";
-			
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-				Acnt_Description = "//XCUIElementTypeStaticText[@label='" + from_Account_des + "']";
-				Acnt_num = "//XCUIElementTypeStaticText[@label='" + from_Account_num + "']";
-				
-			}else{
-				Acnt_Description = "//android.widget.TextView[@resource-id='com.td:id/accntDescrSum' and @text='" + from_Account_des
-						+ "']";
-				Acnt_num = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='" + from_Account_num
-						+ "']";
-			}
-						
 			if(from_Account_num.isEmpty()){
-
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, true, 10, "up");
+				System.out.println("Failed:Account number is NOT configured, account cannot be selected");
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				return;
+			}
+					
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				if(!from_Account_des.isEmpty()){
+					Acnt_Description = "//XCUIElementTypeStaticText[@label='" + from_Account_des + "']/../XCUIElementTypeStaticText[@label='" + from_Account_num + "']";
+				}else{
+					Acnt_Description = "//*[@label='" + from_Account_num + "']";
+				}
 				
 			}else{
-				//mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, false, 10, "up");
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_num, true, 10, "up");
+				if(!from_Account_des.isEmpty()){
+					Acnt_Description = "//android.widget.TextView[@text='" + from_Account_des+ "']/../../android.widget.TextView[@text='" + from_Account_num+ "']";
+				}else{
+					Acnt_Description = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='" + from_Account_num+ "']";
+				}
+				
 			}
+			System.out.println("Acnt_Description:" + Acnt_Description);
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, true, 30, "up");						
 
 		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");

@@ -20,12 +20,18 @@ public class FundFacts extends _CommonPage{
 	private static FundFacts Fundfacts;
 
 	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@package='com.google.android.apps.docs']")
 	private MobileElement view_fundFacts_page_header;
 
 	@iOSFindBy(xpath = "//*[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progress_bar;
+	
+//    @iOSFindBy(xpath = "XCUIElementTypeTable/XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]")
+//    @AndroidFindBy(xpath = "//android.view.View[@resource-id='com.google.android.apps.docs:id/action_bar']/android.widget.TextView")
+//    private MobileElement fund_facts_page_title;
+//	
+	
 	
 
 	public synchronized static FundFacts get() {
@@ -45,11 +51,22 @@ public class FundFacts extends _CommonPage{
 	public void VerifyFundfactsPageheader() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(view_fundFacts_page_header, "Fund Facts | Paramètres TD et moi");
+			mobileAction.verifyElementTextIsDisplayed(view_fundFacts_page_header, "Fund Facts | fund facts.pdf");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+//	public void VerifyfundfactsDoc(){
+//		Decorator();
+//		try {
+//			mobileAction.verifyElementTextIsDisplayed(fund_facts_page_title, "fund facts.pdf");  			
+//		} catch ( Exception  e) {
+//			System.err.println("TestCase has failed to verifyfundfactsDoc.");
+//			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+//			mobileAction.Report_Fail("Exception for verifyfundfactsDoc");			
+//		}	
+//	}
 }
