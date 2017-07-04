@@ -36,7 +36,7 @@ public class MLEnterOrderNegative extends _CommonPage{
 	}
 
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'is not eligible for') or contains(@label,'pas admissible à ce')]")//@Author - Sushil 03-Mar-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'is not eligible for') or contains(@label,'pas admissible Ã  ce')]")//@Author - Sushil 03-Mar-2017
 	//@AndroidFindBy(id="android:id/message")
 	@AndroidFindBy(id="com.td:id/error_text")//@Author - Shahbaaz 17-Apr-2017
 	private MobileElement messageNegative;
@@ -59,7 +59,7 @@ public class MLEnterOrderNegative extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/error_text")
 	private MobileElement ErrTradingPwd;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'Aperçu de')]")//@Author - Sushil 03-Mar-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'AperÃ§u de')]")//@Author - Sushil 03-Mar-2017
 	@AndroidFindBy(id="com.td:id/orderEntryPreviewButton")
 	private MobileElement previewOrderButton;
 

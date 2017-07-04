@@ -46,18 +46,25 @@ public class DepositCheque  extends _CommonPage{
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 *
 	 */
-	public void verifyDepositCheque() throws IOException {
+	public void verifyDepositCheque()  {
 
 	
 		Decorator();
 		try {
-			mobileAction.verifyElementIsDisplayed(depositCheque_Header,t_DepositCheque_Header );
-			
-		}catch(NoSuchElementException | IOException e){
-			System.err.println("TestCase has failed.");
+			mobileAction.verifyElementIsDisplayed(depositCheque_Header, t_DepositCheque_Header);
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 		
 	}

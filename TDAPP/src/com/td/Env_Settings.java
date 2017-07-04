@@ -256,6 +256,9 @@ public class Env_Settings extends _CommonPage {
 				mobileAction.FuncClick(okButton, "OK");
 
 			}
+			MobileElement envt = (MobileElement) ((AppiumDriver) CL.GetDriver())
+					.findElement(By.xpath(env));
+			mobileAction.FunCSwipeandScroll(envt, true);
 			mobileAction.FunCSwipeandScroll(environment, true);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");

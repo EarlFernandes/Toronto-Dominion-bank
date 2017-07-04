@@ -82,12 +82,12 @@ public class StockOptionLeg extends _CommonPage{
 	private MobileElement actionSelltoClose;
 	
 	@iOSFindBy(xpath = "//*[@text='Sell to Open Covered']") 
-	@AndroidFindBy(xpath = "(//*[@text='Sell to Open Covered'and @index='0']) | (//*[@text='Vente pour ouvrir – couvert'and @index='0']) ")
+	@AndroidFindBy(xpath = "(//*[@text='Sell to Open Covered'and @index='0']) | (//*[@text='Vente pour ouvrir â€“ couvert'and @index='0']) ")
 	
 	private MobileElement actionSelltoOpenCovered;
 	
 	@iOSFindBy(xpath = "//*[@text='Sell to Open Uncovered']") 
-	@AndroidFindBy(xpath = "(//*[@text='Sell to Open Uncovered'and @index='0']) | (//*[@text='Vente pour ouvrir – non couvert'and @index='0']) ")
+	@AndroidFindBy(xpath = "(//*[@text='Sell to Open Uncovered'and @index='0']) | (//*[@text='Vente pour ouvrir â€“ non couvert'and @index='0']) ")
 	
 	private MobileElement actionSelltoOpenUncovered;
 	
@@ -130,17 +130,17 @@ public class StockOptionLeg extends _CommonPage{
 	
 	
 	@iOSFindBy(xpath = "//*[@text='Net Debit']") 
-	@AndroidFindBy(xpath = "(//*[@text='Net Debit' and @index = '0']) | (//*[@text='Débit net' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Net Debit' and @index = '0']) | (//*[@text='DÃ©bit net' and @index = '0'])")
 	
 	private MobileElement priceNetDebit;
 	
 	@iOSFindBy(xpath = "//*[@text='Net Credit']") 
-	@AndroidFindBy(xpath = "(//*[@text='Net Credit' and @index = '0']) | (//*[@text='Crédit net' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Net Credit' and @index = '0']) | (//*[@text='CrÃ©dit net' and @index = '0'])")
 	
 	private MobileElement priceNetCredit;
 	
 	@iOSFindBy(xpath = "//*[@text='Market']") 
-	@AndroidFindBy(xpath = "(//*[@text='Market' and @index = '0']) | (//*[@text='Cours du marché' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Market' and @index = '0']) | (//*[@text='Cours du marchÃ©' and @index = '0'])")
 	
 	private MobileElement priceMarket;
 	
@@ -150,22 +150,22 @@ public class StockOptionLeg extends _CommonPage{
 	private MobileElement priceEven;
 	
 	@iOSFindBy(xpath = "//*[@text='Limit Price ($)']") 
-	@AndroidFindBy(xpath = "(//*[@text='Limit Price ($)' and @index = '1']) | (//*[@text='Cours limité ($)' and @index = '1'])")
+	@AndroidFindBy(xpath = "(//*[@text='Limit Price ($)' and @index = '1']) | (//*[@text='Cours limitÃ© ($)' and @index = '1'])")
 	
 	private MobileElement limitprice;
 	
 	@iOSFindBy(xpath = "//*[@text='Shareholder Type']") 
-	@AndroidFindBy(xpath = "(//*[@text='Shareholder Type' and @index = '0']) | (//*[@text='Type d’actionnaire' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Shareholder Type' and @index = '0']) | (//*[@text='Type dâ€™actionnaire' and @index = '0'])")
 	
 	private MobileElement shareholdertype;
 	
 	@iOSFindBy(xpath = "//*[@text='Insider']") 
-	@AndroidFindBy(xpath = "(//*[@text='Insider' and @index = '0']) | (//*[@text='Initié' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Insider' and @index = '0']) | (//*[@text='InitiÃ©' and @index = '0'])")
 	
 	private MobileElement shareholderInsider;
 	
 	@iOSFindBy(xpath = "//*[@text='Neither']") 
-	@AndroidFindBy(xpath = "(//*[@text='Neither' and @index = '0']) | (//*[@text='Ni l’un, ni l’autre' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Neither' and @index = '0']) | (//*[@text='Ni lâ€™un, ni lâ€™autre' and @index = '0'])")
 	
 	private MobileElement shareholderNeither;
 	
@@ -175,7 +175,7 @@ public class StockOptionLeg extends _CommonPage{
 	private MobileElement shareholderSignificant;
 	
 	@iOSFindBy(xpath = "//*[@text='Trading Password']") 
-	@AndroidFindBy(xpath = "(//*[@text='Trading Password' and @index = '0']) | (//*[@text='Mot de passe de négociation' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Trading Password' and @index = '0']) | (//*[@text='Mot de passe de nÃ©gociation' and @index = '0'])")
 	
 	private MobileElement password;
 	
@@ -185,7 +185,7 @@ public class StockOptionLeg extends _CommonPage{
 	private MobileElement passwordtext;
 	
 	@iOSFindBy(xpath = "//*[@text='Preview Order']") 
-	@AndroidFindBy(xpath = "(//*[@text='Preview Order' and @index = '0']) | (//*[@text='Aperçu de l’ordre' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Preview Order' and @index = '0']) | (//*[@text='AperÃ§u de lâ€™ordre' and @index = '0'])")
 	
 	private MobileElement previeworder;
 	
@@ -243,22 +243,22 @@ public class StockOptionLeg extends _CommonPage{
 	private MobileElement lblPriceValue;
 	
 	@iOSFindBy(xpath = "//*[contains(@text,'Good')]") 
-	@AndroidFindBy(xpath = "(//*[contains(@text,'Good') and @index = '0']) | (//*[contains(@text,'Échéance') and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[contains(@text,'Good') and @index = '0']) | (//*[contains(@text,'Ã‰chÃ©ance') and @index = '0'])")
 	
 	private MobileElement lblGoodTil;
 	
 	@iOSFindBy(xpath = "//*[contains(@text,'Good')]") 
-	@AndroidFindBy(xpath = "(//*[contains(@text,'Good') and @index = '0']/following-sibling::*[1]) | (//*[contains(@text,'Échéance') and @index = '0']/following-sibling::*[1])")
+	@AndroidFindBy(xpath = "(//*[contains(@text,'Good') and @index = '0']/following-sibling::*[1]) | (//*[contains(@text,'Ã‰chÃ©ance') and @index = '0']/following-sibling::*[1])")
 	
 	private MobileElement lblGoodTilValue;
 	
 	@iOSFindBy(xpath = "//*[@text='Estimated Principal']") 
-	@AndroidFindBy(xpath = "(//*[@text='Estimated Principal' and @index = '0']) | (//*[@text='Principal estimé' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Estimated Principal' and @index = '0']) | (//*[@text='Principal estimÃ©' and @index = '0'])")
 	
 	private MobileElement lblEstimatedPrincipal;
 	
 	@iOSFindBy(xpath = "//*[@text='Estimated Principal']") 
-	@AndroidFindBy(xpath = "(//*[@text='Estimated Principal' and @index = '0']/following-sibling::*[1]) | (//*[@text='Principal estimé' and @index = '0']/following-sibling::*[1]) ")
+	@AndroidFindBy(xpath = "(//*[@text='Estimated Principal' and @index = '0']/following-sibling::*[1]) | (//*[@text='Principal estimÃ©' and @index = '0']/following-sibling::*[1]) ")
 	
 	private MobileElement lblEstimatedPrincipalValue;
 	
@@ -273,32 +273,32 @@ public class StockOptionLeg extends _CommonPage{
 	private MobileElement lblCommissionValue;
 	
 	@iOSFindBy(xpath = "//*[@text='Estimated Total']") 
-	@AndroidFindBy(xpath = "(//*[@text='Estimated Total' and @index = '0']) | (//*[@text='Total estimé' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Estimated Total' and @index = '0']) | (//*[@text='Total estimÃ©' and @index = '0'])")
 	
 	private MobileElement lblEstimatedTotal;
 	
 	@iOSFindBy(xpath = "//*[@text='Estimated Total']") 
-	@AndroidFindBy(xpath = "(//*[@text='Estimated Total' and @index = '0']/following-sibling::*[1]) | (//*[@text='Total estimé' and @index = '0']/following-sibling::*[1])")
+	@AndroidFindBy(xpath = "(//*[@text='Estimated Total' and @index = '0']/following-sibling::*[1]) | (//*[@text='Total estimÃ©' and @index = '0']/following-sibling::*[1])")
 	
 	private MobileElement lblEstimatedTotalValue;
 	
 	@iOSFindBy(xpath = "//*[@text='Shareholder Type']") 
-	@AndroidFindBy(xpath = "(//*[@text='Shareholder Type' and @index = '0']) | (//*[@text='Type d’actionnaire' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Shareholder Type' and @index = '0']) | (//*[@text='Type dâ€™actionnaire' and @index = '0'])")
 	
 	private MobileElement lblShareholderType;
 	
 	@iOSFindBy(xpath = "//*[@text='Shareholder Type']") 
-	@AndroidFindBy(xpath = "(//*[@text='Shareholder Type' and @index = '0']/following-sibling::*[1]) | (//*[@text='Type d’actionnaire' and @index = '0']/following-sibling::*[1])")
+	@AndroidFindBy(xpath = "(//*[@text='Shareholder Type' and @index = '0']/following-sibling::*[1]) | (//*[@text='Type dâ€™actionnaire' and @index = '0']/following-sibling::*[1])")
 	
 	private MobileElement lblShareholderTypeValue;
 	
 	@iOSFindBy(xpath = "//*[@text='Buying Power Required']") 
-	@AndroidFindBy(xpath = "(//*[@text='Buying Power Required' and @index = '0']) | (//*[@text='Pouvoir d’achat requis' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Buying Power Required' and @index = '0']) | (//*[@text='Pouvoir dâ€™achat requis' and @index = '0'])")
 	
 	private MobileElement lblBuyingPowerReqd;
 	
 	@iOSFindBy(xpath = "//*[@text='Buying Power Required']") 
-	@AndroidFindBy(xpath = "(//*[@text='Buying Power Required' and @index = '0']/following-sibling::*[1]) | (//*[@text='Pouvoir d’achat requis' and @index = '0']/following-sibling::*[1])")
+	@AndroidFindBy(xpath = "(//*[@text='Buying Power Required' and @index = '0']/following-sibling::*[1]) | (//*[@text='Pouvoir dâ€™achat requis' and @index = '0']/following-sibling::*[1])")
 	
 	private MobileElement lblBuyingPowerReqdValue;
 	
@@ -313,19 +313,19 @@ public class StockOptionLeg extends _CommonPage{
 	private MobileElement btnCancel;
 	
 	@iOSFindBy(xpath = "//*[@text='Send Order']") 
-	@AndroidFindBy(xpath = "(//*[@text='Send Order' and @index = '1']) | (//*[@text='Envoyer l’ordre' and @index = '1'])")
+	@AndroidFindBy(xpath = "(//*[@text='Send Order' and @index = '1']) | (//*[@text='Envoyer lâ€™ordre' and @index = '1'])")
 	
 	private MobileElement btnSendOrder;
 	
 	@iOSFindBy(xpath = "//*[@text='Order sent successfully']") 
-	@AndroidFindBy(xpath = "(//*[@text='Order sent successfully' and @index = '1']) | (//*[@text='Ordre transmis avec succès.' and @index = '1'])")
+	@AndroidFindBy(xpath = "(//*[@text='Order sent successfully' and @index = '1']) | (//*[@text='Ordre transmis avec succÃ¨s.' and @index = '1'])")
 	
 	private MobileElement btnOrderSent;
 	
 		
 		
 	@iOSFindBy(xpath = "//*[@text='HOME']") 
-	@AndroidFindBy(xpath = "(//*[@text='HOME' and @index = '0']) | (//*[@text='RETOUR À L’ACCUEIL' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='HOME' and @index = '0']) | (//*[@text='RETOUR Ã€ Lâ€™ACCUEIL' and @index = '0'])")
 	
 	private MobileElement btnHome;
 	
@@ -335,7 +335,7 @@ public class StockOptionLeg extends _CommonPage{
 	private MobileElement btnOrders;
 	
 	@iOSFindBy(xpath = "//*[@text='TRADE']") 
-	@AndroidFindBy(xpath = "(//*[@text='TRADE' and @index = '2']) | (//*[@text='NÉGOCIATION' and @index = '2'])")
+	@AndroidFindBy(xpath = "(//*[@text='TRADE' and @index = '2']) | (//*[@text='NÃ‰GOCIATION' and @index = '2'])")
 	
 	private MobileElement btnTrade;
 	
@@ -345,47 +345,47 @@ public class StockOptionLeg extends _CommonPage{
 	private MobileElement lnkMultiLeg;
 	
 	@iOSFindBy(xpath = "//*[@text='Action & Quantity']") 
-	@AndroidFindBy(xpath = "(//*[@text='Action & Quantity' and @index = '0']) | (//*[@text='Action et Quantité' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Action & Quantity' and @index = '0']) | (//*[@text='Action et QuantitÃ©' and @index = '0'])")
 	
 	private MobileElement lblActionQuantity;
 	
 	@iOSFindBy(xpath = "//*[@text='Action & Quantity']") 
-	@AndroidFindBy(xpath = "(//*[@text='Action & Quantity' and @index = '0']/following-sibling::*[1]) | (//*[@text='Action et Quantité' and @index = '0']/following-sibling::*[1])")
+	@AndroidFindBy(xpath = "(//*[@text='Action & Quantity' and @index = '0']/following-sibling::*[1]) | (//*[@text='Action et QuantitÃ©' and @index = '0']/following-sibling::*[1])")
 	
 	private MobileElement lblActionQuantityValue;
 	
 	@iOSFindBy(xpath = "//*[@text='Quantity Filled']") 
-	@AndroidFindBy(xpath = "(//*[@text='Quantity Filled' and @index = '0']) | (//*[@text='Quantité exécutée' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Quantity Filled' and @index = '0']) | (//*[@text='QuantitÃ© exÃ©cutÃ©e' and @index = '0'])")
 	
 	private MobileElement lblQuantityFilled;
 	
 	@iOSFindBy(xpath = "//*[@text='Quantity Filled']") 
-	@AndroidFindBy(xpath = "(//*[@text='Quantity Filled' and @index = '0']/following-sibling::*[1]) | (//*[@text='Quantité exécutée' and @index = '0']/following-sibling::*[1]) ")
+	@AndroidFindBy(xpath = "(//*[@text='Quantity Filled' and @index = '0']/following-sibling::*[1]) | (//*[@text='QuantitÃ© exÃ©cutÃ©e' and @index = '0']/following-sibling::*[1]) ")
 	
 	private MobileElement lblQuantityFilledValue;
 	
 	@iOSFindBy(xpath = "//*[@text='Confirmation Number']") 
-	@AndroidFindBy(xpath = "(//*[@text='Confirmation Number' and @index = '0']) | (//*[@text='Numéro de confirmation' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Confirmation Number' and @index = '0']) | (//*[@text='NumÃ©ro de confirmation' and @index = '0'])")
 	
 	private MobileElement lblConfirmationNumber;
 	
 	@iOSFindBy(xpath = "//*[@text='Confirmation Number']") 
-	@AndroidFindBy(xpath = "(//*[@text='Confirmation Number' and @index = '0']/following-sibling::*[1]) | (//*[@text='Numéro de confirmation' and @index = '0']/following-sibling::*[1])")
+	@AndroidFindBy(xpath = "(//*[@text='Confirmation Number' and @index = '0']/following-sibling::*[1]) | (//*[@text='NumÃ©ro de confirmation' and @index = '0']/following-sibling::*[1])")
 	
 	private MobileElement lblConfirmationNumberValue;
 	
 	@iOSFindBy(xpath = "//*[@text='Cancel Order']") 
-	@AndroidFindBy(xpath = "(//*[@text='Cancel Order' and @index = '0']) | (//*[@text='Annuler l’ordre' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Cancel Order' and @index = '0']) | (//*[@text='Annuler lâ€™ordre' and @index = '0'])")
 	
 	private MobileElement btnCancelOrder;
 	
 	@iOSFindBy(xpath = "//*[@text='Order Status']") 
-	@AndroidFindBy(xpath = "(//*[@text='Order Status' and @index = '0']) | (//*[@text='État de l'ordre' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Order Status' and @index = '0']) | (//*[@text='Ã‰tat de l'ordre' and @index = '0'])")
 	
 	private MobileElement lblOrderStatus;
 	
 	@iOSFindBy(xpath = "//*[@text='Order Status']") 
-	@AndroidFindBy(xpath = "(//*[@text='Order Status' and @index = '0']/following-sibling::*[1]) | (//*[@text='État de l'ordre' and @index = '0']/following-sibling::*[1])")
+	@AndroidFindBy(xpath = "(//*[@text='Order Status' and @index = '0']/following-sibling::*[1]) | (//*[@text='Ã‰tat de l'ordre' and @index = '0']/following-sibling::*[1])")
 	
 	private MobileElement lblOrderStatusValue;
 	
@@ -411,34 +411,34 @@ public class StockOptionLeg extends _CommonPage{
 	
 	private MobileElement lblThankYou;
 	
-	@iOSFindBy(xpath = "//*[@text='1st Leg Confirmation # : ']") 
-	@AndroidFindBy(xpath = "(//*[@text='1st Leg Confirmation # : ' and @index = '0']) | (//*[@text='1re Volet Confirmation # : ' and @index = '0'])")	
+	@iOSFindBy(xpath = "//*[@text='1st Leg Confirmation # :Â ']") 
+	@AndroidFindBy(xpath = "(//*[@text='1st Leg Confirmation # :Â ' and @index = '0']) | (//*[@text='1re Volet Confirmation # :Â ' and @index = '0'])")	
 	
 	private MobileElement lblFirstLegConfirmation;
 	
 	
-	@iOSFindBy(xpath = "//*[@text='1st Leg Confirmation # : ']") 
-	@AndroidFindBy(xpath = "(//*[@text='1st Leg Confirmation # : ' and @index = '0']/following-sibling::*[1]) | (//*[@text='1re Volet Confirmation # : ' and @index = '0']/following-sibling::*[1])")	
+	@iOSFindBy(xpath = "//*[@text='1st Leg Confirmation # :Â ']") 
+	@AndroidFindBy(xpath = "(//*[@text='1st Leg Confirmation # :Â ' and @index = '0']/following-sibling::*[1]) | (//*[@text='1re Volet Confirmation # :Â ' and @index = '0']/following-sibling::*[1])")	
 	
 	private MobileElement lblFirstLegConfirmationNumber;
 	
-	@iOSFindBy(xpath = "//*[@text='2nd Leg Confirmation # : ']") 
-	@AndroidFindBy(xpath = "(//*[@text='2nd Leg Confirmation # : ' and @index = '0']) | (//*[@text='2re Volet Confirmation # : ' and @index = '0'])")
+	@iOSFindBy(xpath = "//*[@text='2nd Leg Confirmation # :Â ']") 
+	@AndroidFindBy(xpath = "(//*[@text='2nd Leg Confirmation # :Â ' and @index = '0']) | (//*[@text='2re Volet Confirmation # :Â ' and @index = '0'])")
 	
 	private MobileElement lblSecondLegConfirmation;
 	
-	@iOSFindBy(xpath = "//*[@text='2nd Leg Confirmation # : ']") 
-	@AndroidFindBy(xpath = "(//*[@text='2nd Leg Confirmation # : ' and @index = '0']/following-sibling::*[1]) | (//*[@text='2re Volet Confirmation # : ' and @index = '0']/following-sibling::*[1])")
+	@iOSFindBy(xpath = "//*[@text='2nd Leg Confirmation # :Â ']") 
+	@AndroidFindBy(xpath = "(//*[@text='2nd Leg Confirmation # :Â ' and @index = '0']/following-sibling::*[1]) | (//*[@text='2re Volet Confirmation # :Â ' and @index = '0']/following-sibling::*[1])")
 	
 	private MobileElement lblSecondLegConfirmationNumber;
 	
 	@iOSFindBy(xpath = "//*[@text='Order Placed']") 
-	@AndroidFindBy(xpath = "(//*[@text='Order Placed' and @index = '0']) | (//*[@text='Ordre passé le' and @index = '0']) ")
+	@AndroidFindBy(xpath = "(//*[@text='Order Placed' and @index = '0']) | (//*[@text='Ordre passÃ© le' and @index = '0']) ")
 	
 	private MobileElement lblOrderPlaced;
 	
 	@iOSFindBy(xpath = "//*[@text='Order sent successfully']") 
-	@AndroidFindBy(xpath = "(//*[@text='Order sent successfully' and @index = '1']) | (//*[@text='	Ordre transmis avec succès.' and @index = '1'])")
+	@AndroidFindBy(xpath = "(//*[@text='Order sent successfully' and @index = '1']) | (//*[@text='	Ordre transmis avec succÃ¨s.' and @index = '1'])")
 	
 	private MobileElement lblOrderSentMsg;
 	
@@ -483,22 +483,22 @@ public class StockOptionLeg extends _CommonPage{
 	private MobileElement lblReceipt_PriceValue;
 	
 	@iOSFindBy(xpath = "//*[contains(@text,'Good')]") 
-	@AndroidFindBy(xpath = "(//*[contains(@text,'Good') and @index = '0']) | (//*[contains(@text,'Échéance') and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[contains(@text,'Good') and @index = '0']) | (//*[contains(@text,'Ã‰chÃ©ance') and @index = '0'])")
 	
 	private MobileElement lblReceipt_GoodTil;
 	
 	@iOSFindBy(xpath = "//*[contains(@text,'Good')]") 
-	@AndroidFindBy(xpath = "(//*[contains(@text,'Good') and @index = '0']/following-sibling::*[1]) | (//*[contains(@text,'Échéance') and @index = '0']/following-sibling::*[1])")
+	@AndroidFindBy(xpath = "(//*[contains(@text,'Good') and @index = '0']/following-sibling::*[1]) | (//*[contains(@text,'Ã‰chÃ©ance') and @index = '0']/following-sibling::*[1])")
 	
 	private MobileElement lblReceipt_GoodTilValue;
 	
 	@iOSFindBy(xpath = "//*[@text='Shareholder Type']") 
-	@AndroidFindBy(xpath = "(//*[@text='Shareholder Type' and @index = '0']) | (//*[@text='Type d’actionnaire' and @index = '0'])")
+	@AndroidFindBy(xpath = "(//*[@text='Shareholder Type' and @index = '0']) | (//*[@text='Type dâ€™actionnaire' and @index = '0'])")
 	
 	private MobileElement lblReceipt_ShareholderType;
 	
 	@iOSFindBy(xpath = "//*[@text='Shareholder Type']") 
-	@AndroidFindBy(xpath = "(//*[@text='Shareholder Type' and @index = '0']/following-sibling::*[1]) | (//*[@text='Type d’actionnaire' and @index = '0']/following-sibling::*[1])")
+	@AndroidFindBy(xpath = "(//*[@text='Shareholder Type' and @index = '0']/following-sibling::*[1]) | (//*[@text='Type dâ€™actionnaire' and @index = '0']/following-sibling::*[1])")
 	
 	private MobileElement lblReceipt_ShareholderTypeValue;
 	
@@ -720,9 +720,9 @@ public class StockOptionLeg extends _CommonPage{
 				mobileAction.FuncClick(actionSelltoClose, "Action - Buy to Open");
 			else if (secondLegAction.equalsIgnoreCase("Buy to Close") | secondLegAction.equalsIgnoreCase("Achat pour fermer"))
 				mobileAction.FuncClick(actionBuyToClose, "Action - Buy to Open");
-			else if (secondLegAction.equalsIgnoreCase("Sell to Open Covered") | secondLegAction.equalsIgnoreCase("Vente pour ouvrir – couvert"))
+			else if (secondLegAction.equalsIgnoreCase("Sell to Open Covered") | secondLegAction.equalsIgnoreCase("Vente pour ouvrir â€“ couvert"))
 				mobileAction.FuncClick(actionSelltoOpenCovered, "Action - Sell to Open Covered");
-			else if (secondLegAction.equalsIgnoreCase("Sell to Open Uncovered") | secondLegAction.equalsIgnoreCase("Vente pour ouvrir – non couvert"))
+			else if (secondLegAction.equalsIgnoreCase("Sell to Open Uncovered") | secondLegAction.equalsIgnoreCase("Vente pour ouvrir â€“ non couvert"))
 				mobileAction.FuncClick(actionSelltoOpenUncovered, "Action - Sell to Open Uncovered");
 		}
 		catch(Exception e){
@@ -836,9 +836,9 @@ public class StockOptionLeg extends _CommonPage{
 				mobileAction.FuncClick(priceMarket, "Price Type - Market");
 			else if (priceType.equalsIgnoreCase("Even"))
 				mobileAction.FuncClick(priceEven, "Price Type - Even");
-			else if (priceType.equalsIgnoreCase("Net Debit")  || priceType.equalsIgnoreCase("Débit net"))
+			else if (priceType.equalsIgnoreCase("Net Debit")  || priceType.equalsIgnoreCase("DÃ©bit net"))
 				mobileAction.FuncClick(priceNetDebit, "Price Type - Net Debit");
-			else if (priceType.equalsIgnoreCase("Net Credit")  || priceType.equalsIgnoreCase("Crédit net"))
+			else if (priceType.equalsIgnoreCase("Net Credit")  || priceType.equalsIgnoreCase("CrÃ©dit net"))
 				mobileAction.FuncClick(priceNetDebit, "Price Type - Net Credit");
 		}
 		catch(Exception e){

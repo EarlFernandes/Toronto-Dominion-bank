@@ -139,34 +139,6 @@ public class MobileAction2 extends CommonLib {
 			objElement.click();
 
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
-		} catch (IllegalArgumentException e) {
-			try {
-				GetReporting().FuncReport("Fail", "IllegalArgumentException");
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			throw e;
-		} catch (TimeoutException e) {
-			try{
-				GetReporting().FuncReport("Pass", "Able to write to TimeoutException");
-			}catch(IOException e1){
-			try {
-				GetReporting().FuncReport("Fail", "TimeOut Exception");
-			} catch (IOException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
-			
-			}
-		}catch (NoSuchElementException n) {
-			try {
-				GetReporting().FuncReport("Fail", "Element not displayed: " + text);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			throw n;
 		} catch (Exception e) {
 			try {
 				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
@@ -1097,6 +1069,7 @@ public class MobileAction2 extends CommonLib {
 
 	public void FunCSwipeandScroll(MobileElement elementToFind, boolean clickYorN) {
 		try {
+			
 			Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 			int startx = size.width;
 			int starty = size.height;
@@ -1489,7 +1462,8 @@ public class MobileAction2 extends CommonLib {
 	catch(Exception e)
 	{
 		 GetReporting().FuncReport("Fail", "The element <b>- " + expectedText + "</b> is not displayed");
-		e.printStackTrace();
+		//e.printStackTrace();				//commented
+		 throw e;
 	}
    
 /*	} catch (IllegalArgumentException e) {
@@ -1577,47 +1551,6 @@ public class MobileAction2 extends CommonLib {
 		{
 			sEleText = "";
 			if (sEleText.contains(text)) 
-				GetReporting().FuncReport("Pass", "Element contains text<b> " + text + "</b> .Element text:" + sEleText);
-			else
-				GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
-		}
-	}
-	 catch (IOException e) {
-	    try {
-			GetReporting().FuncReport("Fail", "Element does not contain expected text:" + text);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	    //throw e;
-	}
-    }
-    
-	  /**
-     * This method will verify the text contained in another String.
-     * 
-     *
-     * @param objElement
-     *            The MobileElement on which the click action has to be
-     *            performed.
-     * @throws Exception
-     *             In case an exception occurs while clicking over the element.
-     *             In case the element is not found over the screen.
-     */
-    public void verifyElementTextContainsReverse(MobileElement objElement, String text) {//throws IOException { //@Author - Sushil 31-Mar-2017 Modified
-	try {
-		String sEleText = FuncGetElementText(objElement);
-		if(sEleText!=null)
-		{
-			if (text.contains(sEleText)) 
-				GetReporting().FuncReport("Pass", "Element contains text<b> " + text + "</b> .Element text:" + sEleText);
-			else
-				GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
-		}
-		else
-		{
-			sEleText = "";
-			if (text.contains(sEleText)) 
 				GetReporting().FuncReport("Pass", "Element contains text<b> " + text + "</b> .Element text:" + sEleText);
 			else
 				GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
@@ -1875,7 +1808,7 @@ public class MobileAction2 extends CommonLib {
 
 		try {
 			if (elementToFind.isDisplayed() && !value.isEmpty()) {
-				GetReporting().FuncReport("Pass", "The text '" + value + "' is Displayed");/*****************JA
+				GetReporting().FuncReport("Pass", "The text '" + value + "' is Displayed");
 			}
 		} catch (Exception e) {
 			try {
@@ -2614,8 +2547,8 @@ public String FuncGetElementText(MobileElement objElement) { //@Author - Sushil 
 	String textToReturn = null;
 	try {
 
-/*		WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-		wait.until(ExpectedConditions.visibilityOf(objElement));*/
+		WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+		wait.until(ExpectedConditions.visibilityOf(objElement));
 		
 		if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 		{
@@ -2657,7 +2590,15 @@ public String FuncGetElementText(MobileElement objElement) { //@Author - Sushil 
 			e1.printStackTrace();
 		}
 	    //throw e;
-	}
+	}catch (NoSuchElementException e) {
+		 try {
+			GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	 
+	}//throw e;
 	return textToReturn;
 }
 public String getAppString(final String key) {
@@ -2853,7 +2794,104 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 			}
 		}
 	}
-}
+	public boolean verifyElementIsPresent(MobileElement elementToFind) {
 
+		try {
+			if (elementToFind.isDisplayed()) {
+				
+				return true;
+			}else{
+				
+				return false;
+
+			}
+		} catch (Exception e) {
+
+
+			return false;
+		}
+	}
+	
+	/**
+	 * This method will swipe either up, Down, left or Right according to the
+	 * direction specified. This method takes the size of the screen and uses
+	 * the swipe function present in the Appium driver to swipe on the screen
+	 * with a particular timeout. There is one more method to implement swipe
+	 * using touch actions, which is not put up here.
+	 * 
+	 * @param Direction
+	 *            The direction we need to swipe in.
+	 * @param swipeTime
+	 *            The swipe time, ie the time for which the driver is supposed
+	 *            to swipe.
+	 * @param Offset
+	 *            The offset for the driver, eg. If you want to swipe 'up', then
+	 *            the offset is the number of pixels you want to leave from the
+	 *            bottom of the screen t start the swipe.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 */
+	public void SwipeQuickLinks(int swipeTime, int Offset) throws IOException {
+		try {
+
+			Dimension size;
+			size = ((AppiumDriver) GetDriver()).manage().window().getSize();
+			
+				int starty = (int) (size.height * 0.20);
+				int endy =(int) (size.height *0.20);
+				int startx = (int) (size.width * 0.90);
+				int endx = (int) (size.width * 0.10);
+				((MobileDriver) GetDriver()).swipe(startx - Offset, starty, endx, endy, swipeTime);
+			
+			GetReporting().FuncReport("Pass", "Swipe <b> left </b> Successful");
+
+		} catch (Exception e) {
+			GetReporting().FuncReport("Fail", "<b>- " + "</b> not present in current page");
+			throw e;
+		}
+
+	}
+	
+	  /**
+     * This method will verify the text contained in another String.
+     * 
+     *
+     * @param objElement
+     *            The MobileElement on which the click action has to be
+     *            performed.
+     * @throws Exception
+     *             In case an exception occurs while clicking over the element.
+     *             In case the element is not found over the screen.
+     */
+    public void verifyElementTextContainsReverse(MobileElement objElement, String text) {//throws IOException { //@Author - Sushil 31-Mar-2017 Modified
+	try {
+		String sEleText = FuncGetElementText(objElement);
+		if(sEleText!=null)
+		{
+			if (text.contains(sEleText)) 
+				GetReporting().FuncReport("Pass", "Element contains text<b> " + text + "</b> .Element text:" + sEleText);
+			else
+				GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
+		}
+		else
+		{
+			sEleText = "";
+			if (text.contains(sEleText)) 
+				GetReporting().FuncReport("Pass", "Element contains text<b> " + text + "</b> .Element text:" + sEleText);
+			else
+				GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
+		}
+	}
+	 catch (IOException e) {
+	    try {
+			GetReporting().FuncReport("Fail", "Element does not contain expected text:" + text);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    //throw e;
+	}
+    }
+}
 
 

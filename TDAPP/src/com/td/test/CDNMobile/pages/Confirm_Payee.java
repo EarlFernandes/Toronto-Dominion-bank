@@ -92,11 +92,15 @@ public class Confirm_Payee extends _CommonPage{
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	
 	public void verifyConfirmPage(){
+		Decorator();
 		try {
-			Decorator();
+			
 		mobileAction.verifyElementIsDisplayed(confirm_Header, "Confirm");
 		//mobileAction.verifyElementIsDisplayed(payee_Name, "Payee Name");
 		//mobileAction.verifyElementIsDisplayed(access_card, "Access Card");	
@@ -106,16 +110,24 @@ public class Confirm_Payee extends _CommonPage{
 		//mobileAction.verifyElementIsDisplayed(successMsg, "Thank You!");
 		mobileAction.FuncClick(payThisPayee, "Pay This Payee");
 		mobileAction.waitForElementToVanish(progressBar);
-		boolean flag=mobileAction.FuncIsDisplayed(payBill_Header);
-		if(flag)
+		if(mobileAction.verifyElementIsPresent(payBill_Header))
 		{
 			String addedPayee=payee_Table.getAttribute("label");
 			mobileAction.verifyTextEquality(addedPayee, accountNoXL);
 		}
 		
-	}catch (NoSuchElementException | InterruptedException | IOException e) {
-	
+	}catch (NoSuchElementException e) {
 		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (InterruptedException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (Exception e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
 
 	
@@ -125,10 +137,19 @@ public class Confirm_Payee extends _CommonPage{
 	 * This method will verify the error message when invalid amount is entered
 	 * 
 	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 * 
 	 */
 	
-	public void ConfirmPayee_InvalidAmount() throws Exception {
+	public void ConfirmPayee_InvalidAmount(){
 
 		try {
 			Decorator();
@@ -140,10 +161,18 @@ public class Confirm_Payee extends _CommonPage{
 			mobileAction.verifyElementIsDisplayed(errorMsg, err);
 				
 			
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-
-			System.err.println("TestCase has failed.");
+		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}

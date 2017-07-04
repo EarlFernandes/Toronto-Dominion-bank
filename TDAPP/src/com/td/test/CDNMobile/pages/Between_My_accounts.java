@@ -61,7 +61,7 @@ public class Between_My_accounts extends _CommonPage {
 	private MobileElement btncontinue_Transfer;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Finish Transfer']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id= 'com.td:id/myaccounts_entry_btn_confirm'and @text='Finish Transfer']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id= 'com.td:id/myaccounts_entry_btn_confirm' and @text='Finish Transfer']")
 	private MobileElement btnFinish_Transfer;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Confirmation #')]")
@@ -142,9 +142,9 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Transfers']")
 	private MobileElement txtTransfers_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Quick Access']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@value='Quick Access']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Home']")
-	private MobileElement btnHome;
+	private MobileElement quickAccess;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
 	private MobileElement homeBtn;
@@ -161,7 +161,6 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'android:id/action_bar_title'and @text='Receipt']")
 	private MobileElement receiptHeader;
 
-
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Finish Transfer']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id= 'com.td:id/myaccounts_entry_btn_confirm'and @text='Finish Transfer']")
 	private MobileElement finish_Transfer;
@@ -169,7 +168,6 @@ public class Between_My_accounts extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='-From Account']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/from_account_bal']")
 	private MobileElement fromAccountValue;
-	
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/account_desc']")
 	private MobileElement fromAccountNumber;
@@ -204,7 +202,6 @@ public class Between_My_accounts extends _CommonPage {
 	
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id= 'com.td:id/summaryContent']")
 	private MobileElement 	acntsListNew;
-
 
 	@iOSFindBy(xpath = "//XCUIElementTypeCell[@name='MAKE ANOTHER TRANSFER']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/transfers_make_another' and @text='MAKE ANOTHER TRANSFER']")
@@ -243,8 +240,8 @@ public class Between_My_accounts extends _CommonPage {
 
 	String progressBar = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
 
-	String verify_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='" + to_account
-			+ "']";
+	String verify_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'" + to_account   //changed by rashmi
+			+ "')]";
 	int i = 1;
 	String from_Accounts_table = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]";
 	String Firstpart = "//XCUIElementTypeCell[";
@@ -252,11 +249,11 @@ public class Between_My_accounts extends _CommonPage {
 
 	String Finalpart = Firstpart + i + Secondpart;
 
-	String select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
-			+ from_Account + "']";
+	String select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+			+ from_Account + "')]";  
 
-	String select_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
-			+ to_account + "']";
+	String select_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
+			+ to_account + "')]";  
 
 	String verify_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
 			+ from_Account + "']";
@@ -300,7 +297,13 @@ public class Between_My_accounts extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[4]")
 	private MobileElement accountVal;
 	
-	public void perFormTransfer() throws Exception {
+	private void Decorator() {
+		PageFactory.initElements(new AppiumFieldDecorator((CL.GetDriver()), new TimeOutDuration(10, TimeUnit.SECONDS)),
+				this);
+
+	}
+	
+	public void perFormTransfer() {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -310,23 +313,29 @@ public class Between_My_accounts extends _CommonPage {
 				System.out.println("From account:" + from_AccountNo);
 				//mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, from_AccountNo);
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
-				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(account_value));
-				mobileAction.FunCSwipeandScroll(fromAccountval, true);
-
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 				mobileAction.FuncClick(txtto_Acnt, "To Account");				
 				String to_accountNo = getTestdata("ToAccount");
 				System.out.println("To account:" + to_accountNo);
 				account_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
-				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(account_value));
-				mobileAction.FunCSwipeandScroll(toAccountval, true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 				//mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, to_accountNo);
 			} else {
+				String from_Account = getTestdata("FromAccount");
+
+				String select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
+						+ from_Account + "']";
 				mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_from_acnt, 10, "down", true);
+				mobileAction.waitForElementToDisappear(select_from_acnt);
+				
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
+				String to_account = getTestdata("ToAccount");
+				String select_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
+						+ to_account + "']";
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_to_Acnt, 10, "down", true);
+				mobileAction.waitForElementToDisappear(select_to_Acnt);
+				
 			}
 
 			mobileAction.FuncClick(txtAmount, "Amount");
@@ -336,8 +345,18 @@ public class Between_My_accounts extends _CommonPage {
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -354,9 +373,12 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void anyAccount_TDCTTFSA_Message() throws Exception {
+	public void anyAccount_TDCTTFSA_Message()  {
 
 		Decorator();
 		try {
@@ -366,16 +388,12 @@ public class Between_My_accounts extends _CommonPage {
 				String from_AccountNo = getTestdata("FromAccount");
 
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
-				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(account_value));
-				mobileAction.FunCSwipeandScroll(fromAccountval, true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
 				String to_accountNo = getTestdata("ToAccount");
 
 				String toAccount_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
-				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(toAccount_value));
-				mobileAction.FunCSwipeandScroll(toAccountval, true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(toAccount_value, true, 25, "Up");
 				mobileAction.verifyElementIsDisplayed(TDCT_TFSAMessage,
 						"When making deposits to this account, please ensure that you are");
 
@@ -389,10 +407,18 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(TDCT_TFSAMessage,
 						"When making deposits to this account, please ensure that you are");
 			}
-		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -408,9 +434,12 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void CADTFSA_TDCTTFSA() throws Exception {
+	public void CADTFSA_TDCTTFSA()  {
 
 		Decorator();
 		try {
@@ -419,16 +448,11 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 				String from_AccountNo = getTestdata("FromAccount");
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
-				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(account_value));
-				mobileAction.FunCSwipeandScroll(fromAccountval, true);
-
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
 				String to_accountNo = getTestdata("ToAccount");
 				String toAccount_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
-				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(toAccount_value));
-				mobileAction.FunCSwipeandScroll(toAccountval, false);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(toAccount_value, true, 25, "Up");
 				mobileAction.FuncClick(btnCancel, "Cancel");
 
 			} else {
@@ -438,11 +462,19 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_to_Acnt, 3, "down", true);
 				mobileAction.FuncClick(btnCancel, "Cancel");
-}
-		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
+			}
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -458,8 +490,11 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void canadianCash_To_USCash() throws Exception {
+	public void canadianCash_To_USCash() {
 
 		Decorator();
 		try {
@@ -474,12 +509,22 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.FuncClick(btnMenu, "Menu");
 			mobileAction.FuncClick(btnLogout, "Logout");
 			mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
-	public void CanadianToUS() throws Exception {
+	public void CanadianToUS() {
 		Decorator();
 		try {
 			perFormTransfer();
@@ -499,9 +544,18 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.FuncClick(btnLogout, "Logout");
 			mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -510,19 +564,23 @@ public class Between_My_accounts extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(btncontinue_Transfer, "Continue");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
 
-	private void Decorator() {
-		PageFactory.initElements(new AppiumFieldDecorator((CL.GetDriver()), new TimeOutDuration(10, TimeUnit.SECONDS)),
-				this);
-
-	}
-
-	public void exchange_rate_expired() throws Exception {
+	public void exchange_rate_expired() {
 		Decorator();
 		try {
 
@@ -610,7 +668,6 @@ public class Between_My_accounts extends _CommonPage {
 						mobileAction.verifyTextEquality(org_amt[0], ValueofAmount);
 				}
 				mobileAction.FuncClickBackButton();
-				;
 				mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList, verify_to_Acnt, 1, "down", true);
 				String amt_recvd = mobileAction.getText(amt_Trnsfrd.get(0));
 				String amt_sent_after_exchange = mobileAction.getText(amountSent);
@@ -621,9 +678,18 @@ public class Between_My_accounts extends _CommonPage {
 
 				mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -631,10 +697,19 @@ public class Between_My_accounts extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(btnFinish_Transfer, "Finish");
-			//mobileAction.waitForElementToDisappear(progressBar);
 			mobileAction.waitForElementToVanish(txtProgressBar);
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -643,7 +718,6 @@ public class Between_My_accounts extends _CommonPage {
 	 * less than $1 CAD or USD
 	 * 
 	 * @return void
-	 * @throws Exception
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -651,8 +725,11 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void lira_US_to_UU() throws Exception {
+	public void lira_US_to_UU()  {
 
 		Decorator();
 		try {
@@ -662,9 +739,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 				String accountNo = getTestdata("FromAccount");
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + accountNo + "')]";
-				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(account_value));
-				mobileAction.FunCSwipeandScroll(fromAccountval, true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 				mobileAction.FuncClick(txtAmount, "Amount");
 				mobileAction.FuncSendKeys(txtAmount, getTestdata("Amount"));
 				mobileAction.FuncClick(done, "Done");
@@ -683,9 +758,18 @@ public class Between_My_accounts extends _CommonPage {
 				String error_actual = mobileAction.getText(errorMsg);
 				mobileAction.verifyTextEquality(error_actual, error_txt);
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -695,7 +779,6 @@ public class Between_My_accounts extends _CommonPage {
 	 * when amount greater than $35,000 USD
 	 * 
 	 * @return void
-	 * @throws Exception
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -703,8 +786,11 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void mobile_expiry_rate() throws Exception {
+	public void mobile_expiry_rate() {
 
 		Decorator();
 		try {
@@ -742,11 +828,28 @@ public class Between_My_accounts extends _CommonPage {
 			String conf_val = mobileAction.getText(confirmation_Val);
 			mobileAction.FuncClick(btnMenu, "Menu");
 			mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
-			mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList, verify_from_acnt, 3, "down", true);
-			mobileAction.verifyTextContains(last_Transaction_List.get(0), conf_val);
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
+				Thread.sleep(3000);
+
+			}else{
+				mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList, verify_from_acnt, 3, "down", true);
+				mobileAction.verifyTextContains(last_Transaction_List.get(0), conf_val);
+			}
+
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -761,8 +864,11 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void negativerTestingTransferFunds() throws Exception {
+	public void negativerTestingTransferFunds() {
 
 		Decorator();
 		try {
@@ -772,18 +878,12 @@ public class Between_My_accounts extends _CommonPage {
 				String from_AccountNo = getTestdata("FromAccount");
 
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
-				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(account_value));
-				mobileAction.FunCSwipeandScroll(fromAccountval, true);
-
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
 				String to_accountNo = getTestdata("ToAccount");
 
 				String toAccount_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
-				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(toAccount_value));
-				mobileAction.FunCSwipeandScroll(toAccountval, true);
-
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(toAccount_value, true, 25, "Up");
 				mobileAction.FuncClick(txtAmount, "Amount");
 				mobileAction.FuncSendKeys(txtAmount, getTestdata("Amount"));
 				mobileAction.FuncClick(done, "Done");
@@ -793,7 +893,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(cancelBtn, "Cancel");
 				mobileAction.verifyElementIsDisplayed(txtTransfers_Header, "Transfers");
 				mobileAction.FuncClick(backBtn, "Back");
-				mobileAction.verifyElementIsDisplayed(btnHome, "Home Page");
+				mobileAction.verifyElementIsDisplayed(quickAccess, "Home Page");
 
 			} else {
 				mobileAction.FuncClick(txtFrom_Acnt, "From Account");
@@ -812,13 +912,21 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(txtTransfers_Header, "Transfers");
 				mobileAction.FuncClick(btnMenu, "Menu");
 				mobileAction.FuncClick(homeBtn, "Home");
-				mobileAction.verifyElementIsDisplayed(btnHome, "Home Page");
+				mobileAction.verifyElementIsDisplayed(quickAccess, "Home Page");
 			}
 
-		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -834,9 +942,12 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void TDCTTFSA_CADTFSA() throws Exception {
+	public void TDCTTFSA_CADTFSA()  {
 
 		Decorator();
 		try {
@@ -846,18 +957,13 @@ public class Between_My_accounts extends _CommonPage {
 				String from_AccountNo = getTestdata("FromAccount");
 				System.out.println("From_AccountNo:" + from_AccountNo);
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
-				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(account_value));
-				mobileAction.FunCSwipeandScroll(fromAccountval, true);
-
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
 				String to_accountNo = getTestdata("ToAccount");
 				System.out.println("To Account:" + to_accountNo);
 
 				String toAccount_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
-				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(toAccount_value));
-				mobileAction.FunCSwipeandScroll(toAccountval, false);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(toAccount_value, true, 25, "Up");
 				mobileAction.FuncClick(btnCancel, "Cancel");
 
 			} else {
@@ -869,10 +975,18 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(btnCancel, "Cancel");
 
 			}
-		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -881,7 +995,6 @@ public class Between_My_accounts extends _CommonPage {
 	 * it is successful.
 	 * 
 	 * @return void
-	 * @throws Exception
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -889,17 +1002,21 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void transfer_between_my_accounts() throws Exception {
+	public void transfer_between_my_accounts(){
 
 		Decorator();
 		try {
 			perFormTransfer();
 			continueButton();
 			FinishButton();
+			String from_AccountNo = getTestdata("FromAccount");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				String from_AccountNo = getTestdata("FromAccount");
+				
 
 				String conf_val = mobileAction.getText(confirmation_Val);
 				String confirmationValue[] = conf_val.split(":");
@@ -909,9 +1026,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.waitForElementToVanish(txtProgressBar);
 
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
-				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(account_value));
-				mobileAction.FunCSwipeandScroll(fromAccountval, true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 
 				mobileAction.verifyElementTextContains(activityConfText, confirmationValue[1].trim());
 
@@ -926,17 +1041,27 @@ public class Between_My_accounts extends _CommonPage {
 						.findElement(By.xpath(verify_from_acnt));
 				mobileAction.FunCSwipeandScroll(accountVal, true);*/
 				//mobileAction.FuncElementSwipeWhileNotFound(acntsListNew, verify_from_acnt, 8, "down", true);
-				mobileAction.FuncElementSwipeWhileNotFound(acntsListNew,  account_verify_from_acnt, 10, "down", true);
+				String account_value = "//*[contains(@text,'" + from_AccountNo + "') or contains(@content-desc,'" + from_AccountNo + "')]";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 				mobileAction.verifyElementIsDisplayed(balance, "Account Balance");
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
 
-	public void transfer_between_my_accounts_verify_receipt() throws Exception {
+	public void transfer_between_my_accounts_verify_receipt() {
 
 		Decorator();
 		try {
@@ -947,12 +1072,8 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(txtTrnsfrSucssfl, "Transfer Successful");
 
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
-				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(account_value));
 				mobileAction.verifyElementIsDisplayed(confirmation_Val, "Confirmation Value");
-
-				mobileAction.verifyElementIsDisplayed(fromAccountval, "From Account");
-
+				mobileAction.verifyElementUsingXPath(account_value, "Account");
 			} else {
 				mobileAction.FuncClick(btnFinish_Transfer, "Finish");
 				String conf_val = mobileAction.getText(confirmation_Val);
@@ -961,16 +1082,21 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
 				mobileAction.waitForElementToVanish(txtProgressBar);
 				//mobileAction.FuncElementSwipeWhileNotFound(acntsListNew, verify_from_acnt, 5, "down", true);
-				MobileElement accountVal = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(verify_from_acnt));
-
-			    mobileAction.FunCSwipeandScroll(accountVal, true);
-				
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(verify_from_acnt, true, 25, "Up");
 				mobileAction.verifyTextContains(last_Transaction_List.get(0), conf_val);
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -981,7 +1107,6 @@ public class Between_My_accounts extends _CommonPage {
 	 * message
 	 * 
 	 * @return void
-	 * @throws Exception
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -989,6 +1114,9 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void transfer_NotSupported() throws Exception {
@@ -1007,17 +1135,12 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 					String accountno = "//XCUIElementTypeStaticText[contains(@label,'" + accountsList[i] + "')]";
 
-					MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(accountno));
-					mobileAction.FunCSwipeandScroll(fromAccountval, true);
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountno, true, 25, "Up");
 					mobileAction.FuncClick(txtto_Acnt, "To Account");
 					try {
 						String toAccountNo = "//XCUIElementTypeStaticText[contains(@label,'" + toAcc + "')]";
-						MobileElement toAccountValue = (MobileElement) ((AppiumDriver) CL.GetDriver())
-								.findElement(By.xpath(toAccountNo));
-
-						//mobileAction.FunCnewSwipe(toAccountValue, false, 6);
-						mobileAction.FunCSwipeandScroll(toAccountValue, true);
+						
+						mobileAction.FuncSwipeWhileElementNotFoundByxpath(toAccountNo, true, 25, "Up");
 						flag = true;
 
 					} catch (Exception e) {
@@ -1028,7 +1151,7 @@ public class Between_My_accounts extends _CommonPage {
 			} else {
 
 				String accounts = getTestdata("FromAccount");
-				String accountsList[] = accounts.split(",");
+				String accountsList[] = accounts.split(":");
 				for (int i = 0; i < accountsList.length && flag == false; i++) {
 					mobileAction.FuncClick(txtFrom_Acnt, "Select From Account");
 					String accNo = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
@@ -1046,16 +1169,17 @@ public class Between_My_accounts extends _CommonPage {
 			}
 
 		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			e.printStackTrace();
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			e.printStackTrace();
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1065,7 +1189,6 @@ public class Between_My_accounts extends _CommonPage {
 	 * message
 	 * 
 	 * @return void
-	 * @throws Exception
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -1073,19 +1196,18 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void transferBtw_tfsa_other_Acct() throws Exception {
+	public void transferBtw_tfsa_other_Acct()  {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.verifyElementIsDisplayed(btw_My_Accounts_Header, "betweenMyAccountsHeader");
 				mobileAction.FuncClick(txtFrom_Acnt, "from_Account");
 				System.out.println("From account:" + from_Account);
-				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(iosFromAccount));
-
-				mobileAction.FunCSwipeandScroll(fromAccountval, true);
-
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(iosFromAccount, true, 25, "Up");
 				mobileAction.verifyElementIsDisplayed(verify_Message, validate_message);
 			}
 			else
@@ -1096,14 +1218,23 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_to_Acnt, 10, "down", true);
 				mobileAction.verifyElementIsDisplayed(verify_Message, validate_message);
 			}
-			
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			e.printStackTrace();
+
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
-	public void transferLessAmount() throws Exception {
+	public void transferLessAmount() {
 		Decorator();
 		try {
 			perFormTransfer();
@@ -1120,13 +1251,22 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.FuncClick(btnMenu, "Menu");
 			mobileAction.FuncClick(btnLogout, "Logout");
 			mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
-	public void verifyFromAccounts() throws Exception {
+	public void verifyFromAccounts() {
 		Decorator();
 		boolean flag = false;
 		try {
@@ -1156,8 +1296,7 @@ public class Between_My_accounts extends _CommonPage {
 					String accountno = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
 							+ accountsList[i] + "']";
 
-					MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(accountno));
+					MobileElement fromAccountval = mobileAction.verifyElementUsingXPath(accountno,"Account");
 					mobileAction.FunCSwipeandScroll(fromAccountval, false);
 					mobileAction.verifyElementIsDisplayed(fromAccountval, "From Account Number");
 					mobileAction.verifyElementIsDisplayed(fromAccountName, "From Account Name");
@@ -1171,15 +1310,24 @@ public class Between_My_accounts extends _CommonPage {
 			}
 
 		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
-	public void permissible_transfer() throws Exception {
+	public void permissible_transfer(){
 		Decorator();
 		try {
-			if (btw_My_Accounts_Header.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(btw_My_Accounts_Header)) {
 				//\mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -1188,17 +1336,12 @@ public class Between_My_accounts extends _CommonPage {
 					String from_AccountNo = getTestdata("FromAccount");
 					System.out.println("From Account:" + from_AccountNo);
 					String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
-					MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(account_value));
-					mobileAction.FunCSwipeandScroll(fromAccountval, true);
-
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 					mobileAction.FuncClick(txtto_Acnt, "To Account");
 					String to_accountNo = getTestdata("ToAccount");
 					System.out.println("To Account:" + to_accountNo);
 					String toAccount_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
-					MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(toAccount_value));
-					mobileAction.FunCSwipeandScroll(toAccountval, true);
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(toAccount_value, true, 25, "Up");
 					String amountXL = getTestdata("Amount");
 					mobileAction.FuncSendKeys(txtAmount, amountXL);
 					mobileAction.FuncClick(done, "Done");
@@ -1236,17 +1379,18 @@ public class Between_My_accounts extends _CommonPage {
 					}
 			}
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			String errorMsg="";
-			try{
-				errorMsg=mobileAction.getValue(generalerrorMsg);
-				System.err.println("TestCase has failed with error:" + errorMsg);
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				mobileAction.Report_Fail(errorMsg);
-			}catch(Exception e1){
-				System.err.println("TestCase has failed.");
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			}
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1261,9 +1405,12 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void mobileRateExpiryOnSmartphones() throws Exception {
+	public void mobileRateExpiryOnSmartphones()  {
 
 		Decorator();
 		try {
@@ -1272,15 +1419,11 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(from_acnt, "From Account");
 				String from_AccountNo = getTestdata("FromAccount");
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
-				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(account_value));
-				mobileAction.FunCSwipeandScroll(fromAccountval, true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 				mobileAction.FuncClick(to_Acnt, "To Account");
 				String to_accountNo = getTestdata("ToAccount");
 				String accountValue = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
-				MobileElement ToAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(accountValue));
-				mobileAction.FunCSwipeandScroll(ToAccountval, true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountValue, true, 25, "Up");
 				mobileAction.FuncClick(cad_Button, "CAD");
 				mobileAction.FuncClick(amount, "Amount");
 				mobileAction.FuncSendKeys(amount, ValueofAmount);
@@ -1300,10 +1443,18 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncWaitForElement(ok_Button, 60, "Ok");
 				mobileAction.FuncClick(ok_Button, "OK");
 			}
-		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1312,7 +1463,6 @@ public class Between_My_accounts extends _CommonPage {
 	 * to C16.
 	 * 
 	 * @return void
-	 * @throws Exception
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -1320,27 +1470,25 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void permissible_transfer_on_mobile() throws Exception {
+	public void permissible_transfer_on_mobile()  {
 		Decorator();
 		try {
-			if (btw_My_Accounts_Header.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(btw_My_Accounts_Header)) {
 				
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					mobileAction.FuncClick(from_acnt, "From Account");
 					String from_AccountNo = getTestdata("FromAccount");
 					String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
-					MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(account_value));
-					mobileAction.FunCSwipeandScroll(fromAccountval, true);
-
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 					mobileAction.FuncClick(to_Acnt, "To Account");
 					String to_accountNo = getTestdata("ToAccount");
 					String toAccount_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
-					MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(toAccount_value));
-					mobileAction.FunCSwipeandScroll(toAccountval, true);
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(toAccount_value, true, 25, "Up");
 					String amountXL = getTestdata("Amount");
 					mobileAction.FuncSendKeys(amount, amountXL);
 					mobileAction.FuncClick(done, "Done");
@@ -1377,7 +1525,18 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
 				}
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	/**
@@ -1391,10 +1550,14 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public double transferTDCTCad_USDVisa() throws Exception {
-		double fromAccountval=0.00;
+	public double transferTDCTCad_USDVisa() {
+		Decorator();
+		double fromAccountval = 0.00;
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) 
 			{
@@ -1413,12 +1576,20 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
 				mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList, verify_from_acnt, 3, "down", true);
 				mobileAction.verifyElementIsDisplayed(verifyAmount, "Verify Amount");
-				}
-			
-		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
 
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 		return fromAccountval;
 	}
@@ -1426,7 +1597,6 @@ public class Between_My_accounts extends _CommonPage {
 	 * This method will perform the transfer and get the amount of the from account
 	 * 
 	 * @return void
-	 * @throws Exception
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -1434,26 +1604,25 @@ public class Between_My_accounts extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void transfer_TFSAUSD_TFSACAD() throws Exception {
+	public void transfer_TFSAUSD_TFSACAD()  {
 		Decorator();
 		try {
-			if (btw_My_Accounts_Header.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(btw_My_Accounts_Header)) {
 				
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 					String from_AccountNo = getTestdata("FromAccount");
 					String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
-					MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(account_value));
-					mobileAction.FunCSwipeandScroll(fromAccountval, true);
-
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 					mobileAction.FuncClick(to_Acnt, "To Account");
 					String to_accountNo = getTestdata("ToAccount");
 					String toAccount_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
-					MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(toAccount_value));
-					mobileAction.FunCSwipeandScroll(toAccountval, true);
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(toAccount_value, true, 25, "Up");
 					String amountXL = getTestdata("Amount");
 					mobileAction.FuncSendKeys(amount, amountXL);
 					mobileAction.FuncClick(done, "Done");
@@ -1484,13 +1653,25 @@ public class Between_My_accounts extends _CommonPage {
 					
 				}
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	public void verify_permissible_transfer() throws Exception {
+
+	public void verify_permissible_transfer()  {
 		Decorator();
 		try {
-			if (btw_My_Accounts_Header.isDisplayed() == true) {
+			if (mobileAction.verifyElementIsPresent(btw_My_Accounts_Header)) {
 				//\mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -1547,16 +1728,25 @@ public class Between_My_accounts extends _CommonPage {
 					}
 			}
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
-	public void RTB_permissible_transfer() throws Exception {
+
+	public void RTB_permissible_transfer() {
 		Decorator();
 		try {
-		if (btw_My_Accounts_Header.isDisplayed() == true) {
+		if (mobileAction.verifyElementIsPresent(btw_My_Accounts_Header)) {
 		//\mobileAction.FuncClick(txtFrom_Acnt, "From Account");
 
 		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -1601,9 +1791,18 @@ public class Between_My_accounts extends _CommonPage {
 		}
 		}
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-		System.err.println("TestCase has failed.");
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 		}
 

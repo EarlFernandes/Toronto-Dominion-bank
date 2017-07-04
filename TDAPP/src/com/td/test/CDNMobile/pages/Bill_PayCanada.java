@@ -66,10 +66,6 @@ public class Bill_PayCanada extends _CommonPage {
 
 	String ToAccountXL = getTestdata("ToAccount");
 
-	String ToAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountDesc' and @text='"
-			+ ToAccountXL + "']";
-
-	@iOSFindBy(xpath = "//")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and @text='TD CLASSIC TRAVEL VIS... 4520020000005323']")
 	private MobileElement select_to_account;
 
@@ -110,7 +106,7 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement menu;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Pay Bill']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Pay Bill']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and contains(@text,'Pay Bill')]")
 	private MobileElement payBill_Header;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title'and @text='My Accounts']")
@@ -133,6 +129,7 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement progrees_bar;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Search for Canadian payees']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Search for Canadian payees']")
 	private MobileElement search_bar;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Add Payee']")
@@ -163,9 +160,9 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement ListViewToAccount;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]")
-	@AndroidFindBy(xpath = " ")
-	private MobileElement currDate;
-
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtDate']")
+	private MobileElement currDate;  
+	
 	int m = 1;
 	String Conf = "Confirmation";
 
@@ -194,6 +191,8 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView/android.widget.LinearLayout[@index=1]/android.widget.LinearLayout/android.widget.TextView")
 	private MobileElement selectSecondAccessCard;
 
+	String SelectSecondAccessCard="//android.widget.ListView/android.widget.LinearLayout[@index=1]/android.widget.LinearLayout/android.widget.TextView";
+	
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel' and @text='Cancel']")
 	private MobileElement cancelBtn;
@@ -219,12 +218,14 @@ public class Bill_PayCanada extends _CommonPage {
     
    
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Add Canadian Payees Now']")
-	@AndroidFindBy(xpath = "//android.widget.Button[ @content-desc='Add Canadian Payees Now']")
+	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Add Canadian Payees Now')]")
 	private MobileElement addCanadianPayee;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay With Rewards']")
-	@AndroidFindBy(xpath = "")
 	private MobileElement txtPaywithRewards;
+	
+	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
+	private MobileElement payeeValue;
 
 
 	String accesscardTable = " //XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
@@ -252,7 +253,7 @@ public class Bill_PayCanada extends _CommonPage {
 
 	}
 
-	public void pay_candadian_bill() throws Exception {
+	public void pay_candadian_bill()  {
 
 		try {
 			String payeeAccount = getTestdataOtherSheet("FromAccount", "Payment");
@@ -281,11 +282,18 @@ public class Bill_PayCanada extends _CommonPage {
 			}
 
 			else {
-				String ToPostAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and @text='"
-						+ ToAccountXL + "']";
-				mobileAction.FuncClick(to_account_post, "Select Payee");
-				mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, ToPostAccountXpath, 1, "up", true);
-				mobileAction.waitForElementToDisappear(t_select_to_account);
+				String payee=getTestdata("Payee");
+				String ToPostAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and contains(@text,'"
+						+ payee + "')]";
+			
+				if (mobileAction.verifyElementIsPresent(payeeValue)) {
+
+				} else {
+					mobileAction.FuncClick(to_account_post, "Select Payee");
+					mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, ToPostAccountXpath, 1, "up", true);
+					mobileAction.waitForElementToDisappear(t_select_to_account);
+				}
+
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
 				mobileAction.FuncHideKeyboard();
@@ -296,8 +304,17 @@ public class Bill_PayCanada extends _CommonPage {
 				String conf_val = mobileAction.getText(confirmation_val);
 				CL.getTestDataInstance().TCParameters.put("confirmation_val", conf_val);
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
@@ -305,9 +322,15 @@ public class Bill_PayCanada extends _CommonPage {
 
 	/**
 	 * This method will verify the Payee Access card DropDown is present or Not
-	 * 
+	 *
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
-	 *             and IOException
+	 *             In case the element is not found over the screen
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void verifyAccessCard_dropdown() {
@@ -319,8 +342,18 @@ public class Bill_PayCanada extends _CommonPage {
 			mobileAction.FuncClick(accesscard, "Accesscard");
 			mobileAction.verifyElementIsDisplayed(accesscardTableHeader, "ACCESS CARD");
 
-		} catch (NoSuchElementException | IOException | InterruptedException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -338,8 +371,15 @@ public class Bill_PayCanada extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(from_account, "From_Account");
 			mobileAction.verifyElementIsDisplayed(amountHeader, "amount");
 			mobileAction.verifyElementIsDisplayed(date, "Date");
-		} catch (NoSuchElementException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -347,13 +387,17 @@ public class Bill_PayCanada extends _CommonPage {
 	 * This method will verify both First and Second Access cards having Payee
 	 * and accounts details.
 	 * 
-	 * @throws Exception
 	 * @throws InterruptedException
-	 * 
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
-	 *             and IOException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void accesscardsWithPayeeandAccounts() throws Exception {
+	public void accesscardsWithPayeeandAccounts() {
 
 		Decorator();
 		try {
@@ -369,7 +413,7 @@ public class Bill_PayCanada extends _CommonPage {
 					String payeeValue = PayeVal.getAttribute("label");
 					mobileAction.verifyTextEquality(payee, payeeValue);
 					mobileAction.FuncClick(accesscard, "Access Card");
-					mobileAction.FuncClick(selectSecondAccessCard, "Select Access Card from Access card table");
+					mobileAction.verifyElementUsingXPath("XCUIElementTypeStaticText[@value='ACCESS CARD']", "ACCESS CARD TITLE");
 				}
 
 			} else {
@@ -384,8 +428,18 @@ public class Bill_PayCanada extends _CommonPage {
 				}
 			}
 
-		} catch (NoSuchElementException | IOException | InterruptedException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -404,15 +458,13 @@ public class Bill_PayCanada extends _CommonPage {
 			mobileAction.FuncClick(from_account_post, "From Account");
 			
 			System.out.println("From Account:"+ FromAccountXL);
-			String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + FromAccountXL + "')]";
-			MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-					.findElement(By.xpath(account_value));
-			mobileAction.FunCSwipeandScroll(fromAccountval, true);
+			String account_value = "//*[contains(@text,'" + FromAccountXL + "') or contains(@content-desc,'" + FromAccountXL + "')]";
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 			//mobileAction.FuncClick(frm_acnt_post, "fromAccountPost");
 
 			mobileAction.FuncClick(to_account_post, "Select Payee");
 			System.out.println("To Account:"+ ToAccountXL);
-			account_value = "//XCUIElementTypeStaticText[contains(@label,'" + ToAccountXL + "')]";
+			account_value = "//*[contains(@text,'" + ToAccountXL + "') or contains(@content-desc,'" + ToAccountXL + "')]";
 			MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 					.findElement(By.xpath(account_value));
 			mobileAction.FunCSwipeandScroll(toAccountval, true);
@@ -443,8 +495,21 @@ public class Bill_PayCanada extends _CommonPage {
 			// mobileAction.verifyTextContains(confirmation_text, Conf);
 			mobileAction.verifyElement(confirmationText, txtconfirmationText);
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (NullPointerException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NullPointerException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -472,19 +537,33 @@ public class Bill_PayCanada extends _CommonPage {
 
 			mobileAction.waitForElementToVanish(progrees_bar);
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
 	/**
 	 * This method will cancel the pay bill
 	 * 
-	 * @throws Exception
 	 * @throws InterruptedException
-	 * 
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
-	 *             and IOException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void payBillCancel() {
@@ -517,19 +596,32 @@ public class Bill_PayCanada extends _CommonPage {
 				Bills.get().verifyBillHeader();
 
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
 	/**
 	 * This method will verify the default value of the amount
 	 * 
-	 * @throws Exception
 	 * @throws InterruptedException
-	 * 
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
-	 *             and IOException
+	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void amountSelection() {
@@ -563,16 +655,32 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.FuncHideKeyboard();
 
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
 	/**
-	 * This method will verify the Back button on the Pay Bill landing page
+	 *This method will verify the Back button on the Pay Bill landing page
 	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             If there is problem while reporting.
+	 * @throws IOException
+	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
-	 *             and IOException
+	 *             In case the element is not found over the screen.
 	 */
 
 	public void verifyBackButton() {
@@ -587,16 +695,31 @@ public class Bill_PayCanada extends _CommonPage {
 			}
 			Bills.get().verifyBillHeader();
 
-		} catch (NoSuchElementException | IOException | InterruptedException e) {
+		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
 	/**
 	 * This method will verify the the Add canadian Payee Now button
 	 * 
+	 * @throws IOException
+	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
-	 *             and IOException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void verifyAddCanadianPayeeButton() {
@@ -606,8 +729,15 @@ public class Bill_PayCanada extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
 			mobileAction.verifyElementIsDisplayed(addCanadianPayee, "Add Canadian Payee");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -616,26 +746,41 @@ public class Bill_PayCanada extends _CommonPage {
 	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
-	 * 
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
-	 *             and IOException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void payBillQuickAccessBtn() throws Exception {
+	public void payBillQuickAccessBtn()  {
 
 		Decorator();
 		try {
-			mobileAction.FunCnewSwipe(PayBillQuickAccess, false, 1);
+			//mobileAction.FunCnewSwipe(PayBillQuickAccess, false, 1);
+			mobileAction.FunCSwipeandScroll(PayBillQuickAccess, false);
 			mobileAction.FuncClick(PayBillQuickAccess, "Pay Bill Quick Access Button");
 			mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
-
-	public void negativeTestingBillPayment() throws Exception {
+	public void negativeTestingBillPayment()  {
 		Decorator();
 		try {
 
@@ -668,9 +813,18 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(home, "Home");
 
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-
-			System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -678,10 +832,19 @@ public class Bill_PayCanada extends _CommonPage {
 	/**
 	 * This method will enter all the fields in pay bill page
 	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 * 
 	 * 
 	 */
-	public void payCanadianBill_InvalidAmount() throws Exception {
+	public void payCanadianBill_InvalidAmount()  {
 
 		try {
 			Decorator();
@@ -698,11 +861,19 @@ public class Bill_PayCanada extends _CommonPage {
 			}
 			mobileAction.FuncClick(continue_pay, "Continue_pay");
 			mobileAction.waitForElementToVanish(progressBar);
-		
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
 
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -712,12 +883,17 @@ public class Bill_PayCanada extends _CommonPage {
 	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
-	 * 
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
-	 *             and IOException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void billPaymentCurrentDate() throws InterruptedException, IOException {
+	public void billPaymentCurrentDate() {
 
 		Decorator();
 		try {
@@ -752,7 +928,7 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.FuncSendKeys(amount,amount_value);
 				mobileAction.FuncHideKeyboard();
 				String PaybillDate = mobileAction.getText(currDate);
-				//boolean validateDate=!PaybillDate.isEmpty();//********************************JA
+				//boolean validateDate=!PaybillDate.isEmpty();//
 				//String dateValue=validateDate?"Same":"Not Same";
 				//mobileAction.verifyTextEquality(dateValue, "Same");
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
@@ -762,6 +938,16 @@ public class Bill_PayCanada extends _CommonPage {
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -771,37 +957,41 @@ public class Bill_PayCanada extends _CommonPage {
 	 * 
 	 * @return void
 	 * @throws InterruptedException
-	 * 
+	 *             If there is problem while reporting.
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void verifyCurrentBalance() throws InterruptedException {
+	public void verifyCurrentBalance()  {
 		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(currBal, "Current Balance");
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
-	public void pay_bill() throws Exception {
-
+	public void pay_bill() {
+		Decorator();
 		try {
 			String payeeAccount = getTestdataOtherSheet("FromAccount", "Payment");
 			//String account_value = "//*[contains(@label,'" + from_account + "')]";
 			String account_value = getTestdata("Payee");
-			Decorator();
+			
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");				
 				mobileAction.FuncClick(from_account, "From_Account");
-				MobileElement account = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(account_value));
-				mobileAction.FunCSwipeandScroll(account, true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 				Thread.sleep(3000);
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				String Amount = getTestdata("Amount");
@@ -838,8 +1028,17 @@ public class Bill_PayCanada extends _CommonPage {
 				String conf_val = mobileAction.getText(confirmation_val);
 				CL.getTestDataInstance().TCParameters.put("confirmation_val", conf_val);
 			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
@@ -881,5 +1080,5 @@ public class Bill_PayCanada extends _CommonPage {
 				}
 
 			}
-
+	
 }
