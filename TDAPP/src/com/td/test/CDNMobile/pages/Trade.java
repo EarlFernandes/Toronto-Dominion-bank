@@ -129,10 +129,8 @@ public class Trade extends _CommonPage {
 	private MobileElement share_holder;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[9]/XCUIElementTypeTextField[1]")
-//	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText' and (contains(@text,'Trigger Delta')or contains(@text,'d�clenchement'))]")
-//	@AndroidFindBy(xpath = "(//android.widget.EditText[@resource-id='com.td:id/amountEditText'])[2]")//@Author - Sushil 17-Apr-2017
-	//@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Trigger Delta') or contains(@text,'d�clenchement')]/../*[2]/*[1]")//@Author - Shahbaaz 30-May-2017
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Trigger Delta') or contains(@text,'d�clenchement')]/../*[1]")private MobileElement triggerDelta;
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Trigger Delta') or contains(@text,'déclenchement')]/../*[1]")
+	private MobileElement triggerDelta;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[9]/XCUIElementTypeTextField[1]")
 //	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText' and (contains(@text,'Limit Delta ($)')or contains(@text,'$ Delta limite,'))]")
