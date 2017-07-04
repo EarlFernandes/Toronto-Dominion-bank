@@ -337,9 +337,9 @@ public class Login extends _CommonPage {
 				Thread.sleep(5000);
 				
 			}
-			/*verifySystemError();
+			verifySystemError();
 			verifySecurityQuestion();
-			verifyTandC();*/
+			verifyTandC();
 			
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {

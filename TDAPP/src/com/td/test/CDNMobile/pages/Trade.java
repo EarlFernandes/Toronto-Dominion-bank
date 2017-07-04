@@ -89,7 +89,7 @@ public class Trade extends _CommonPage {
 	private MobileElement symbolEditText;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/market_name'][1]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/market_name'])[2]")
 	private MobileElement selectSymbolValue;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[8]/XCUIElementTypeTextField[1]")
@@ -430,7 +430,8 @@ public class Trade extends _CommonPage {
 				mobileAction.waitForElementToVanish(progressBar);
 				//Thread.sleep(2000);*/	
 			try{
-				String xpathSymbolFlag_ios="//XCUIElementTypeCell[contains(@label,'CA') or contains(@label,'Comptant CAN']";
+				//String xpathSymbolFlag_ios="//XCUIElementTypeCell[contains(@label,'CA') or contains(@label,'Comptant CAN']";
+				String xpathSymbolFlag_ios="//XCUIElementTypeCell[contains(@label,'US') or contains(@label,'Comptant CAN']";
 				SearchPageMIT.get().clickFirstSymbol1(searchKeyword);
 			Thread.sleep(1000);
 				//mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathSymbolFlag_ios)).get(0),"First Symbol");
