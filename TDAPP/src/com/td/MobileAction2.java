@@ -139,34 +139,6 @@ public class MobileAction2 extends CommonLib {
 			objElement.click();
 
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
-		} catch (IllegalArgumentException e) {
-			try {
-				GetReporting().FuncReport("Fail", "IllegalArgumentException");
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			throw e;
-		} catch (TimeoutException e) {
-			try{
-				GetReporting().FuncReport("Pass", "Able to write to TimeoutException");
-			}catch(IOException e1){
-			try {
-				GetReporting().FuncReport("Fail", "TimeOut Exception");
-			} catch (IOException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
-			
-			}
-		}catch (NoSuchElementException n) {
-			try {
-				GetReporting().FuncReport("Fail", "Element not displayed: " + text);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			throw n;
 		} catch (Exception e) {
 			try {
 				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
@@ -597,6 +569,90 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
+	/**
+	 * This function will check if the given element is NOT in the list. Pass if it is not found, FAIL if it is found
+	 * 
+	 * @param swipeWithinElement
+	 *            The element within which elementToFind is located. We need to
+	 *            swipe within this element. Please also make sure that the
+	 *            element is swipeable, otherwise it will throw an error.
+	 * @param elementToFind
+	 *            The element that has to be found with the swipes.
+	 * @param maxSwipes
+	 *            The maximum number of times you want to swipe until the
+	 *            element has been found.
+	 * @param direction
+	 *            The direction of swipe. It is either 'up', 'down', 'left' or
+	 *            'right'. If the direction is something else, an
+	 *            IllegalArgumentException is thrown and the test will fail.
+	 * 
+	 * @throws IOException
+	 *             If some error comes in reporting.
+	 */
+	public boolean FuncElementNotInListSwipe(MobileElement swipeWithinElement, String xpathOfElement, int maxSwipes,
+			String direction) throws IOException {
+		try {
+			Dimension dimensionOfSwipingElement = swipeWithinElement.getSize();
+			Point locationOfSwipingElement = swipeWithinElement.getLocation();
+			int startx, starty, endx, endy;
+			if (direction.equalsIgnoreCase("down")) {
+				startx = locationOfSwipingElement.getX() + dimensionOfSwipingElement.getWidth() / 2;
+				;
+				starty = locationOfSwipingElement.getY() + dimensionOfSwipingElement.height - 20;
+				endx = startx;
+				endy = locationOfSwipingElement.getY() + 20;
+			} else if (direction.equalsIgnoreCase("up")) {
+				startx = locationOfSwipingElement.getX() + dimensionOfSwipingElement.getWidth() / 2;
+				starty = locationOfSwipingElement.getY() + 20;
+				endx = startx;
+				endy = locationOfSwipingElement.getY() + dimensionOfSwipingElement.getHeight() - 20;
+			} else if (direction.equalsIgnoreCase("right")) {
+				startx = locationOfSwipingElement.getX() + 10;
+				starty = locationOfSwipingElement.getY() + dimensionOfSwipingElement.height / 2;
+				endx = locationOfSwipingElement.getX() + dimensionOfSwipingElement.getWidth() - 10;
+				endy = starty;
+			} else if (direction.equalsIgnoreCase("left")) {
+				startx = locationOfSwipingElement.getX() + dimensionOfSwipingElement.getWidth() - 10;
+				starty = locationOfSwipingElement.getY() + dimensionOfSwipingElement.height / 2;
+				endx = locationOfSwipingElement.getX() + 10;
+				endy = starty;
+			} else {
+				throw new IllegalArgumentException("The direction given is '" + direction
+						+ "' is wrong. Please give either 'up', 'down', 'left' or 'right'.");
+			}
+
+			for (int i = 0; i < maxSwipes; i++) {
+				boolean elementFound = false;
+				WebElement elementToFind = null;
+				try {
+					elementToFind = ((AppiumDriver<WebElement>) GetDriver()).findElement(By.xpath(xpathOfElement));
+					elementFound = elementToFind.isDisplayed();
+
+				} catch (NoSuchElementException e) {
+					((MobileDriver) GetDriver()).swipe(startx, starty, endx, endy, 3000);
+				}
+				if (elementFound) {
+					GetReporting().FuncReport("Fail", "Element was found when it should not be in list! \n");
+					return false;
+				}
+			}
+			GetReporting().FuncReport("Pass",
+					"Could not find element: '" + xpathOfElement + "' in '" + maxSwipes + "' swipes.");
+			return true;
+		} catch (IllegalArgumentException e) {
+			GetReporting().FuncReport("Fail", "Error occured in swipeWhileNotFound. \n" + e.toString());
+			throw e;
+		} catch (NoSuchElementException e) {
+			GetReporting().FuncReport("Pass",
+					"Could not find element: '" + xpathOfElement + "' in '" + maxSwipes + "' swipes.");
+			return true;
+		} catch (Exception e) {
+			GetReporting().FuncReport("Fail",
+					"Exception '" + e.toString() + "' occurred while trying to use swipeWhileNotFound.");
+			throw e;
+		}
+	}
+	
 	/**
 	 * This method will return the text of the element which has been specified
 	 * and print it in the report as well.
@@ -1097,6 +1153,7 @@ public class MobileAction2 extends CommonLib {
 
 	public void FunCSwipeandScroll(MobileElement elementToFind, boolean clickYorN) {
 		try {
+			
 			Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 			int startx = size.width;
 			int starty = size.height;
@@ -1477,7 +1534,7 @@ public class MobileAction2 extends CommonLib {
      *         true if element is displayed or false
      * 
      */
-    public void verifyElementIsDisplayed(MobileElement mobileElement, String expectedText)throws IOException { //@Author - Sushil 03-Feb-2017 (Modified)
+    public void verifyElementIsDisplayed(WebElement mobileElement, String expectedText)throws IOException { //@Author - Sushil 03-Feb-2017 (Modified)
 	try {
 		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 		wait.until(ExpectedConditions.visibilityOf(mobileElement));
@@ -1489,7 +1546,8 @@ public class MobileAction2 extends CommonLib {
 	catch(Exception e)
 	{
 		 GetReporting().FuncReport("Fail", "The element <b>- " + expectedText + "</b> is not displayed");
-		e.printStackTrace();
+		//e.printStackTrace();				//commented
+		 throw e;
 	}
    
 /*	} catch (IllegalArgumentException e) {
@@ -1794,6 +1852,30 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
+	 * This method will verify the Element present using XPATH.
+	 * 
+	 *
+	 * @param objElement
+	 *            The MobileElement on which the click action has to be
+	 *            performed.
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             In case the element is not found over the screen.
+	 */
+	public WebElement verifyWebElementUsingXPath(String objElement, String text) throws IOException {
+		try {
+
+			WebElement objMobileElement = (WebElement) ((AppiumDriver) GetDriver())
+					.findElement(By.xpath(objElement));
+			verifyElementIsDisplayed(objMobileElement, text);
+			return objMobileElement;
+		} catch (IOException e) {
+			GetReporting().FuncReport("Fail", "IOException Exception occurred");
+			return null;
+		}
+	}
+	
+	/**
 	 * This method will convert the String to mobileElement and do swipe
 	 * function
 	 * 
@@ -1834,7 +1916,7 @@ public class MobileAction2 extends CommonLib {
 
 		try {
 			if (elementToFind.isDisplayed() && !value.isEmpty()) {
-				GetReporting().FuncReport("Pass", "The text '" + value + "' is Displayed");/*****************JA
+				GetReporting().FuncReport("Pass", "The text '" + value + "' is Displayed");
 			}
 		} catch (Exception e) {
 			try {
@@ -2010,6 +2092,63 @@ public class MobileAction2 extends CommonLib {
 
    }
 	
+    /**
+     * Makes sure that an element IS NOT in the list
+     * @param xpathEle
+     * @param clickYorN
+     * @param swipes
+     * @param direction
+     */
+    public boolean FuncSwipeEnsureElementNotFoundByxpath(String xpathEle, int swipes, String direction){// throws Exception {//@Author - Sushil 01-Mar-2017
+    	  
+    	Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
+    	int startx = size.width;
+    	int starty = size.height;
+    	int endy = size.height;
+    	int heightPer = (endy*25/100);
+    	boolean flag = true;
+    	int count = 0;
+    	String sEleName="";
+    	try {
+    	    while (flag && count <= swipes) {
+
+	    		try {
+	    			WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
+	    			wait.until(ExpectedConditions.visibilityOf(GetDriver().findElement(By.xpath(xpathEle))));
+	    			
+	    			flag = false;
+	    			sEleName = FuncGetTextByxpath(xpathEle);
+	    			
+	    		} catch (Exception e) {
+	    			    if(direction.equalsIgnoreCase("up"))
+	    			    	((MobileDriver) GetDriver()).swipe(startx / 2, starty/2, startx / 2, endy/2 - heightPer, 2000);
+	    				    else if(direction.equalsIgnoreCase("down"))
+	    				    ((MobileDriver) GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2 + heightPer , 2000);
+				    	count++;
+	    		}
+
+    	    }
+
+    		if(!flag) {
+    		    GetReporting().FuncReport("Fail", "Swiped " + direction + "  element was found when it shouldn't be there. Element : <b>" + sEleName + "</b>");
+    		    return false;
+    		} else {
+    			GetReporting().FuncReport("Pass", "Swiped " + direction + "  element not found. Swipes : " + count);
+    			return true;
+    		}
+
+    	} catch (Exception e) {
+    		try {
+				GetReporting().FuncReport("Pass", "Exception: Swiped " + direction + " element not found. Swipes : " + count);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+    		return true;
+    	}
+
+   }
+    
 	/**
 	 * This method will verify the element is not present on the screen.
 	 * 
@@ -2616,14 +2755,16 @@ public String FuncGetElementText(MobileElement objElement) { //@Author - Sushil 
 			e1.printStackTrace();
 		}
 	    //throw e;
-	}
+	}catch (NoSuchElementException e) {
+		 try {
+			GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	 
+	}//throw e;
 	return textToReturn;
-}
-public String getAppString(final String key) {
-	//System.out.println(((AppiumDriver) GetDriver()).getAppStringMap().toString());
-	final String s = (String)((AppiumDriver) GetDriver()).getAppStringMap().get(key);
-	//System.out.println("String returned from key is: " + s);
-	return s;
 }
 
 /**
@@ -2809,6 +2950,279 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 			catch(Exception e1)
 			{
 			e.printStackTrace();
+			}
+		}
+	}
+	public boolean verifyElementIsPresent(MobileElement elementToFind) {
+
+		try {
+			if (elementToFind.isDisplayed()) {
+				
+				return true;
+			}else{
+				
+				return false;
+
+			}
+		} catch (Exception e) {
+
+
+			return false;
+		}
+	}
+	
+	/**
+	 * This method will swipe either up, Down, left or Right according to the
+	 * direction specified. This method takes the size of the screen and uses
+	 * the swipe function present in the Appium driver to swipe on the screen
+	 * with a particular timeout. There is one more method to implement swipe
+	 * using touch actions, which is not put up here.
+	 * 
+	 * @param Direction
+	 *            The direction we need to swipe in.
+	 * @param swipeTime
+	 *            The swipe time, ie the time for which the driver is supposed
+	 *            to swipe.
+	 * @param Offset
+	 *            The offset for the driver, eg. If you want to swipe 'up', then
+	 *            the offset is the number of pixels you want to leave from the
+	 *            bottom of the screen t start the swipe.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 */
+	public void SwipeQuickLinks(int swipeTime, int Offset) throws IOException {
+		try {
+
+			Dimension size;
+			size = ((AppiumDriver) GetDriver()).manage().window().getSize();
+			
+				int starty = (int) (size.height * 0.20);
+				int endy =(int) (size.height *0.20);
+				int startx = (int) (size.width * 0.90);
+				int endx = (int) (size.width * 0.10);
+				((MobileDriver) GetDriver()).swipe(startx - Offset, starty, endx, endy, swipeTime);
+			
+			GetReporting().FuncReport("Pass", "Swipe <b> left </b> Successful");
+
+		} catch (Exception e) {
+			GetReporting().FuncReport("Fail", "<b>- " + "</b> not present in current page");
+			throw e;
+		}
+
+	}
+	
+	public String getAppString(final String key) {
+		String s = (String)_CommonPage.appStringMap.get(key);
+		//System.out.println("String returned from key is: " + s);
+		return s;
+	}
+
+	public static final int TYPE_YYYY_MM_DD = 1;
+	public static final int TYPE_YYYY_MM_DD_WEEKDATE = 2;
+	public static final int TYPE_MM_YYYY = 3;
+	public static final int TYPE_YYYY_MM_DD_TODAY = 4;
+	public static final int TYPE_YYYY_MM_DD_HOUR = 5;
+	public static final int TYPE_YYYY_MM_DD_RANGE = 6;
+	
+	public static final String PATTERN_ZH_YYYY_MM_DD = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日|待处理|尚待處理";
+	public static final String PATTERN_ZH_YYYY_MM_DD_WEEKDATE = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\((星期|週)[一|二|三|四|五|六|日|天]\\)";
+	public static final String PATTERN_ZH_MM_YYYY = "\\d{4}年\\s?\\d{1,2}月";
+	public static final String PATTERN_ZH_YYYY_MM_DD_TODAY = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\((今天|今日)\\)";
+	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日.*";
+	public static final String PATTERN_ZH_YYYY_MM_DD_RANGE = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日 – (\\d{4}年)*\\d{1,2}月\\d{1,2}日";
+	
+	public void verifyDateFormat(final String dateStr, final int type) {
+		if (_CommonPage.currentLocale.startsWith("zh")) {
+			switch (type) {
+				case (TYPE_YYYY_MM_DD):
+					if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD)) {
+						try {
+							GetReporting().FuncReport("Pass", "Correct date format found");
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}						
+					} else {
+						try {
+							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}	
+					}
+					break;
+				case (TYPE_YYYY_MM_DD_WEEKDATE):
+					if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD_WEEKDATE)) {
+						try {
+							GetReporting().FuncReport("Pass", "Correct date format found");
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}						
+					} else {
+						try {
+							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}	
+					}
+					break;
+				case (TYPE_MM_YYYY):
+					if (dateStr.matches(PATTERN_ZH_MM_YYYY)) {
+						try {
+							GetReporting().FuncReport("Pass", "Correct date format found");
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}						
+					} else {
+						try {
+							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}	
+					}
+					break;
+				case (TYPE_YYYY_MM_DD_TODAY):
+					if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD_TODAY)) {
+						try {
+							GetReporting().FuncReport("Pass", "Correct date format found");
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}						
+					} else {
+						try {
+							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}	
+					}
+					break;
+				case (TYPE_YYYY_MM_DD_HOUR):
+					if (dateStr.matches(PATTERN_ZH_YY_MM_DD_HOUR)) {
+						try {
+							GetReporting().FuncReport("Pass", "Correct date format found");
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}						
+					} else {
+						try {
+							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}	
+					}
+					break;
+				case (TYPE_YYYY_MM_DD_RANGE):
+					if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD_RANGE)) {
+						try {
+							GetReporting().FuncReport("Pass", "Correct date format found");
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}						
+					} else {
+						try {
+							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}	
+					}
+					break;
+			}
+
+		} else if (_CommonPage.currentLocale.equalsIgnoreCase("EN") || _CommonPage.currentLocale.equalsIgnoreCase("fr")) {
+			// Don't need to test this for now
+		} else {
+			try {
+				GetReporting().FuncReport("Fail", "Unknown locale found to test against date string: " + _CommonPage.currentLocale);
+			} catch (IOException e) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}			
+		}
+	}
+
+    /**
+     * This will allow the user to switch between Appium Driver contextes such as NATIVE_APP or WEBVIEW
+     * @param targetContext
+     */
+    public void switchAppiumContext(final String targetContext) {
+    	((AppiumDriver) GetDriver()).context(targetContext);
+    }
+    
+	public void containsHanScript(String s) throws IOException {
+		if(_CommonPage.currentLocale.startsWith("zh")) {
+		    for (int i = 0; i < s.length(); ) {
+		        int codepoint = s.codePointAt(i);
+		        i += Character.charCount(codepoint);
+		        if (Character.UnicodeScript.of(codepoint) == Character.UnicodeScript.HAN) {
+					GetReporting().FuncReport("Pass", "Element contains han characters");
+					return;
+		        }
+		    }
+		    GetReporting().FuncReport("Fail", "Element does not contain han characters");
+		}
+	}
+	
+	/**
+	 * @author Ashraf 
+	 * This method will convert the string xpath to MobileElement. Then Swipe and click on it once found.
+	 * 
+	 * @param elementXpath = String xpath of element
+	 * @param elementName = Name of element to be printed in report
+	 * @param swipeCount = number of swipe to search for element.
+	 */
+	public boolean swipeAndSelect(String elementXpath, String elementName,int swipeCount) {
+		
+		boolean flag=true;
+		int count=0;
+		
+		while(flag&&count<swipeCount)
+		{
+			try{
+		MobileElement element = (MobileElement) ((AppiumDriver) GetDriver())
+				.findElement(By.xpath(elementXpath));
+		if(element.isDisplayed()){
+			FuncClick(element, "Account Number");
+			flag=false;
+		}else{
+			FunctionSwipe("up", 1000, 200);
+			count++;
+		}
+			}catch(Exception e){
+				try {
+					FunctionSwipe("up", 1000, 200);
+				} catch (IOException e1) {
+					System.err.println("Failed to swipe");
+				}
+				count++;
+			}
+			
+			if(count==swipeCount){
+				stringToReport("Fail", elementName+" Not found after swiping "+swipeCount+" times.");
+			}
+			
+			
+			}
+		
+		return flag;
+	}
+	
+    /**
+	 * @author Ashraf
+	 * This method will print the given string to report
+	 * 
+	 * @param element
+	 *            Element to be printed.
+	 * 
+	 * @param text
+	 *            Description of the element.
+	 * @throws IOException
+	 */
+	public void stringToReport(String status, String string) {
+		try {
+			GetReporting().FuncReport(status, string);
+
+		} catch (NullPointerException | IOException e) {
+			try {
+				GetReporting().FuncReport("Fail", string + " Returned null value");
+			} catch (IOException e1) {
+				System.out.println("Failed to Write in report for element: " + string);
 			}
 		}
 	}

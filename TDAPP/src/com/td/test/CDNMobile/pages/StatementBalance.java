@@ -22,7 +22,7 @@ public class StatementBalance extends _CommonPage{
 	@AndroidFindBy(xpath="//android.widget.Button[@resource-id='com.td:id/btn_pay']")
 	 private MobileElement payBtn;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Cash Back Dollars Earned]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Cash Back Dollars Earned']")
 	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/points_earned_title']")
 	private MobileElement txtearned;
 	
@@ -49,31 +49,40 @@ public class StatementBalance extends _CommonPage{
 		PageFactory.initElements(
 			new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
 			this);
-
 	    }
-	    
-	    /**
-	     * This method will verify the statement Balance Details
-	     * button.
-	     * 
-	     * @return void
-	     * @throws InterruptedException 
-	     * 
-	     * @throws IOException
-	     *             If there is problem while reporting.
-	     * @throws NoSuchElementException
-	     *             In case the element is not found over the screen.
-	     */
-	    public void verifyStatementBalanceDetails() throws InterruptedException {
+	/**
+	 * This method will verify the statement Balance Details button.
+	 * 
+	 * @return void
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
+	 */
+	public void verifyStatementBalanceDetails() {
 		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(payBtn, "Pay Button");
 			mobileAction.FuncClick(payBtn, "pay Button");
 			Thread.sleep(3000);
-			
-		} catch (NoSuchElementException | IOException e) {
-		    System.err.println("TestCase has failed.");
-		    CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	    } 
 	    
@@ -92,7 +101,7 @@ public class StatementBalance extends _CommonPage{
 	    public void verifyNoDollarsEarnedAndRedeemed(){
 		Decorator();
 		try {
-			if ((txtearned.isDisplayed()) && (txtRedeemed.isDisplayed())) {
+			if ((mobileAction.verifyElementIsPresent(txtearned)) && (mobileAction.verifyElementIsPresent(txtRedeemed))) {
 			
 			}
 		} catch (NoSuchElementException  e) {

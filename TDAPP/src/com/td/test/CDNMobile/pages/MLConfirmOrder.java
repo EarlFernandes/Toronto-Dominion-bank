@@ -71,19 +71,19 @@ public class MLConfirmOrder  extends _CommonPage{
 	@AndroidFindBy(xpath="//android.widget.TextView[@text='Price' or @text='Cours']/../*[2]/*[1]")
 	private MobileElement price;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Échéance')]") //@Author - Sushil 21-Feb-2017
-	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Échéance')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Ã‰chÃ©ance')]") //@Author - Sushil 21-Feb-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Ã‰chÃ©ance')]")
 	private MobileElement lblGoodTill;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Échéance')]/../*[2]") //@Author - Sushil 21-Feb-2017
-	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Échéance')]/../*[2]/*[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good') or contains(@label,'Ã‰chÃ©ance')]/../*[2]") //@Author - Sushil 21-Feb-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Good') or contains(@text,'Ã‰chÃ©ance')]/../*[2]/*[1]")
 	private MobileElement goodTill;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Estimated Principal') or contains(@label,'Principal estimé')]") //@Author - Sushil 21-Feb-2017
-	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Estimated Principal') or contains(@text,'Principal estimé')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Estimated Principal') or contains(@label,'Principal estimÃ©')]") //@Author - Sushil 21-Feb-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Estimated Principal') or contains(@text,'Principal estimÃ©')]")
 	private MobileElement lblEstimatedPrincipal;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Estimated Principal') or contains(@label,'Principal estimé')]/../*[2]") //@Author - Sushil 21-Feb-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Estimated Principal') or contains(@label,'Principal estimÃ©')]/../*[2]") //@Author - Sushil 21-Feb-2017
 	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Principal')]/../*[2]/*[1]")
 	private MobileElement estimatedPrincipal;
 	
@@ -95,8 +95,8 @@ public class MLConfirmOrder  extends _CommonPage{
 	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Commission')]/../*[2]/*[1]")
 	private MobileElement Commission;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Estimated Total') or contains(@label,'Total estimé')]") //@Author - Sushil 21-Feb-2017
-	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Total') or contains(@label,'Total estimé')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Estimated Total') or contains(@label,'Total estimÃ©')]") //@Author - Sushil 21-Feb-2017
+	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Total') or contains(@label,'Total estimÃ©')]")
 	private MobileElement lblestimatedTotal;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Total')]/../*[2]") //@Author - Sushil 21-Feb-2017
@@ -147,7 +147,7 @@ public class MLConfirmOrder  extends _CommonPage{
 	@AndroidFindBy(xpath="//*[@resource-id='com.td:id/textview_info' and @index=19]")
 	private MobileElement firstAskPUTS;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'Aperçu de')]")//@Author - Sushil 03-Mar-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'AperÃ§u de')]")//@Author - Sushil 03-Mar-2017
 	@AndroidFindBy(id="com.td:id/orderEntryPreviewButton")
 	private MobileElement previewOrderButton;
 	

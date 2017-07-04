@@ -85,7 +85,7 @@ public class ConfirmOrder extends _CommonPage {
 	private MobileElement Action_and_quantity;
 
 
-	@iOSFindBy(xpath = "//*[@label='']")
+	@iOSFindBy(xpath = "//*[@label='Confirm']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
 	private MobileElement confirmDoNotCancel;
 
@@ -157,8 +157,11 @@ public class ConfirmOrder extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void verifyconfirm_order() throws InterruptedException {
+	public void verifyconfirm_order(){
 		try {
 			Decorator();
 			String verify_confirm_order_header = "Verifying Confirm Order Page Header";
@@ -183,9 +186,15 @@ public class ConfirmOrder extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(estimate_comission, "Estimated Commission");
 			mobileAction.verifyElementIsDisplayed(estimated_total_cost, "Estimated Total Cost");
 
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -200,9 +209,12 @@ public class ConfirmOrder extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void orderConfirmDetails() throws Exception {
-		Decorator();
+	public void orderConfirmDetails()  {
+		 Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(OrderAccountName, t_OrderAccountName);
 			mobileAction.verifyElementIsDisplayed(action_quantity, t_Action_and_quantity);
@@ -216,8 +228,13 @@ public class ConfirmOrder extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(order_placed, t_order_placed);
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -232,8 +249,11 @@ public class ConfirmOrder extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void verifycdnmargin_buy() throws InterruptedException {
+	public void verifycdnmargin_buy()  {
 		try {
 			Decorator();
 			mobileAction.verifyElementIsDisplayed(confirmorder_header, "Verifying Confirm Order Page Header");
@@ -246,9 +266,15 @@ public class ConfirmOrder extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(estimate_principle_value, "Verify Estimated Principal Value");
 			mobileAction.verifyElementIsDisplayed(estimate_comission, "Estimated Commission");
 			mobileAction.verifyElementIsDisplayed(estimated_total_cost, "Estimated Total Cost");
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -263,8 +289,11 @@ public class ConfirmOrder extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void verifySendOrder() throws InterruptedException {
+	public void verifySendOrder() {
 		try {
 			Decorator();
 			mobileAction.verifyElementIsDisplayed(confirmorder_header, "Verifying Confirm Order Page Header");
@@ -277,9 +306,15 @@ public class ConfirmOrder extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(estimate_principle_value, "Verify Estimated Principal Value");
 			mobileAction.verifyElementIsDisplayed(estimate_comission, "Estimated Commission");
 			mobileAction.verifyElementIsDisplayed(estimated_total_cost, "Estimated Total Cost");
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -294,8 +329,11 @@ public class ConfirmOrder extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void verifycancel_cdnmargin_buy_triggerdelta() throws InterruptedException {
+	public void verifycancel_cdnmargin_buy_triggerdelta()  {
 		try {
 			Decorator();
 			mobileAction.verifyElementIsDisplayed(confirmorder_header, "Verifying Confirm Order Page Header");
@@ -309,9 +347,15 @@ public class ConfirmOrder extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(estimate_principle_value, "Verify Estimated Principal Value");
 			mobileAction.verifyElementIsDisplayed(estimate_comission, "Estimated Commission");
 			mobileAction.verifyElementIsDisplayed(estimated_total_cost, "Estimated Total Cost");
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -321,13 +365,18 @@ public class ConfirmOrder extends _CommonPage {
 	 * @return void
 	 * @throws Exception
 	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void verifycdnmargin_limit() throws Exception {
+	public void verifycdnmargin_limit()  {
 
 		try {
 			Decorator();
@@ -343,9 +392,15 @@ public class ConfirmOrder extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(estimate_principle_value, "Verify Estimated Principal Value");
 			mobileAction.verifyElementIsDisplayed(estimate_comission, "Estimated Commission");
 			mobileAction.verifyElementIsDisplayed(estimated_total_cost, "Estimated Total Cost");
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -360,9 +415,11 @@ public class ConfirmOrder extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
-	public void cdncash_sell_stopmarket() throws InterruptedException {
+	public void cdncash_sell_stopmarket()  {
 		try {
 			Decorator();
 			mobileAction.verifyElementIsDisplayed(confirmorder_header, "Verifying Confirm Order Page Header");
@@ -374,9 +431,15 @@ public class ConfirmOrder extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(estimate_principle_value, "Verify Estimated Principal Value");
 			mobileAction.verifyElementIsDisplayed(estimate_comission, "Estimated Commission");
 			mobileAction.verifyElementIsDisplayed(estimated_total_cost, "Estimated Total Cost");
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -391,8 +454,11 @@ public class ConfirmOrder extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void verifycdncash() throws InterruptedException {
+	public void verifycdncash() {
 		try {
 			Decorator();
 			mobileAction.verifyElementIsDisplayed(confirmorder_header, "Verifying Confirm Order Page Header");
@@ -403,9 +469,15 @@ public class ConfirmOrder extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(estimate_principle_value, "zVerify Estimated Principal Value");
 			mobileAction.verifyElementIsDisplayed(estimate_comission, "Estimated Commission");
 			mobileAction.verifyElementIsDisplayed(estimated_total_cost, "Estimated Total Cost");
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -420,6 +492,9 @@ public class ConfirmOrder extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void clicksendorder() {
 		Decorator();
@@ -427,9 +502,18 @@ public class ConfirmOrder extends _CommonPage {
 			mobileAction.FuncClick(send_order, "Click Send Order Button");
 
 			mobileAction.waitForElementToVanish(progressBar);
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -444,8 +528,11 @@ public class ConfirmOrder extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void cdnmargin_sell_trailingstopmarket() throws Exception {
+	public void cdnmargin_sell_trailingstopmarket() {
 
 		try {
 			Decorator();
@@ -462,9 +549,15 @@ public class ConfirmOrder extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(estimated_total_cost, "Estimated Total Proceeds");
 			mobileAction.verifyElementIsDisplayed(cancelButton, "Cancel Button");
 			mobileAction.verifyElementIsDisplayed(send_order, "Send Order Button");
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -479,8 +572,11 @@ public class ConfirmOrder extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void cdncash_sell_trailingstoplimit() throws Exception {
+	public void cdncash_sell_trailingstoplimit()  {
 
 		try {
 			Decorator();
@@ -497,9 +593,15 @@ public class ConfirmOrder extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(estimated_total_cost, "Estimated Total Proceeds");
 			mobileAction.verifyElementIsDisplayed(cancelButton, "Cancel Button");
 			mobileAction.verifyElementIsDisplayed(send_order, "Send Order Button");
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -508,13 +610,17 @@ public class ConfirmOrder extends _CommonPage {
 	 * page
 	 * 
 	 * @return void
-	 * @throws Exception
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
-	public void usmarginshort_buytocover_market() throws Exception {
+	public void usmarginshort_buytocover_market()  {
 
 		try {
 			Decorator();
@@ -531,9 +637,15 @@ public class ConfirmOrder extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(estimated_total_cost, "Estimated Total Cost");
 			mobileAction.verifyElementIsDisplayed(cancelButton, "Cancel Button");
 			mobileAction.verifyElementIsDisplayed(send_order, "Send Order Button");
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -677,6 +789,9 @@ public class ConfirmOrder extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void clickCancel() {
@@ -686,9 +801,18 @@ public class ConfirmOrder extends _CommonPage {
 			Thread.sleep(5000);
 			mobileAction.FuncClick(confirmCancel, "Confirm Cancel");
 			mobileAction.verifyElementIsDisplayed(investingheader, "Verifying Investing Landing Page");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -704,6 +828,9 @@ public class ConfirmOrder extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 
@@ -713,9 +840,18 @@ public class ConfirmOrder extends _CommonPage {
 			mobileAction.FuncClick(cancelButton, "Cancel");
 			mobileAction.FuncClick(confirmDoNotCancel, "Do Not Cancel");
 			mobileAction.FuncClick(backButton, "Back");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -731,6 +867,9 @@ public class ConfirmOrder extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 
@@ -740,14 +879,20 @@ public class ConfirmOrder extends _CommonPage {
 			try {
 				mobileAction.FuncSwipeWhileElementNotFound(impInformationMessage, false, 10, "up");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 
 			mobileAction.verifyElementIsDisplayed(impInformationMessage, "Important Message Link");
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -773,9 +918,9 @@ public class ConfirmOrder extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 
-					+ " @ Delta de déclenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
+					+ " @ Delta de dÃ©clenchement" + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
 					+ " $ Delta limite " + df.format(Double.parseDouble(limitDelta_value)).replace(".", ",")
-					+ " $ Échéance " + goodXL;
+					+ " $ Ã‰chÃ©ance" + goodXL;
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 					+ " @ Trigger Delta $" + df.format(Double.parseDouble(triggerDelta_value)) + " Limit Delta $"
@@ -804,8 +949,8 @@ public class ConfirmOrder extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
-					+ " @ Delta de déclenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
-					+ " $ Échéance " + goodXL;
+					+ " @ Delta de dÃ©clenchement  " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
+					+ " $ Ã‰chÃ©ance" + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
@@ -834,8 +979,8 @@ public class ConfirmOrder extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
-					+ " @ Déclencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
-					+ " $ limite " + df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance "
+					+ " @ DÃ©clencheur" + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
+					+ " $ limite " + df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Ã‰chÃ©ance  "
 					+ goodXL;
 
 		} else {
@@ -869,8 +1014,8 @@ public class ConfirmOrder extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 
-					+ " @ Déclencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
-					+ " $ Échéance " + goodXL;
+					+ " @ DÃ©clencheur  " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
+					+ " $ Ã‰chÃ©ance" + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
@@ -899,7 +1044,7 @@ public class ConfirmOrder extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value + " @ "
-					+ df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance " + goodXL;
+					+ df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Ã‰chÃ©ance" + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value + " @ $"
@@ -929,7 +1074,7 @@ public class ConfirmOrder extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " @ " + price_value
 
-					+ " Échéance " + goodXL;//@Author - Sushil 19-Apr-2017 Modified
+					+ " Ã‰chÃ©ance" + goodXL;//@Author - Sushil 19-Apr-2017 Modified
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " @ " + price_value
 
@@ -951,6 +1096,9 @@ public class ConfirmOrder extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void confirmOrderClickBack() {
 		Decorator();
@@ -958,9 +1106,18 @@ public class ConfirmOrder extends _CommonPage {
 		try {
 			mobileAction.FuncClick(backButton, "Back");
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -992,26 +1149,26 @@ public class ConfirmOrder extends _CommonPage {
 
 		switch (price_value) {
 		case "Market":
-		case "Cours du marché":
+		case "Cours du marchÃ©":
 			validateMarketBuy();
 			break;
 		case "Limit":
-		case "Cours limité":
+		case "Cours limitÃ©":
 
 			validateLimitBuy();
 			break;
 		case "Stop Market":
-		case "Cours du marché stop":
+		case "Cours du marchÃ© stop":
 
 			validateStopMarket();
 			break;
 		case "Stop Limit":
-		case "Cours limité stop":
+		case "Cours limitÃ© stop":
 
 			validateStopLimitBuy();
 			break;
 		case "Trailing Stop Market":
-		case "Stop suiveur marché":
+		case "Stop suiveur marchÃ©":
 
 			validateTrailingStopMarketBuy();
 			break;
@@ -1023,6 +1180,8 @@ public class ConfirmOrder extends _CommonPage {
 
 		}
 	}
+
+
 
 	
 	/**
@@ -1037,6 +1196,9 @@ public class ConfirmOrder extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 	public void validationReport(String orderValue) {
 		try {
@@ -1056,8 +1218,15 @@ public class ConfirmOrder extends _CommonPage {
 			}
 
 			clicksendorder();
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
-			e.printStackTrace();
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

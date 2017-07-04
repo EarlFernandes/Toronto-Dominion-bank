@@ -20,6 +20,7 @@ public class Profile_And_Settings extends _CommonPage {
 	private static Profile_And_Settings ProfileAndSettings;
 
 	String preferences = "Profile & Settings | Profil et paramètres";
+
 	
 	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
@@ -66,6 +67,7 @@ public class Profile_And_Settings extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_whatsnew']/android.widget.TextView")
 	private MobileElement whatsnew;	
 		
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Payments & Transfers']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Payments & Transfers']")
 	private MobileElement paymentsAndTransfers;
 	

@@ -13,14 +13,17 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
+import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class ManageContacts extends _CommonPage {
 
 	private static ManageContacts ManageContacts;
 	
+	@iOSFindBy(xpath="//XCUIElementTypeSearchField[@name='Search for a contact']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/manage_contacts_search_field' and @text='Search']")
 	private MobileElement searchTextFiled;
 	
+	@iOSFindBy(xpath="//XCUIElementTypeNavigationBar[@name='Manage Contacts']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Manage Contacts']")
 	private MobileElement pageHeader;
 	

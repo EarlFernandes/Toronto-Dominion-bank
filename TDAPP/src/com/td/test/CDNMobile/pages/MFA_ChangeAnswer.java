@@ -75,6 +75,8 @@ public class MFA_ChangeAnswer extends _CommonPage {
 	 *             If there is problem while reporting.
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
 	 */
 
 	public void mfa_update() {
@@ -83,38 +85,48 @@ public class MFA_ChangeAnswer extends _CommonPage {
 		String security_ans_updated = "The security question was updated successfully";
 		try {
 			
-			if(security_Question_Header.isDisplayed()){
+			if(mobileAction.verifyElementIsPresent(security_Question_Header)){
 				//mobileAction.FuncClick(security_Question, "Security_Question");
 				mobileAction.FuncClick(security_Answer, "security_Answer");
 				String secret_Answer_value = getTestdata("SecurityAnswer");
 				mobileAction.FuncSendKeys(security_Answer, secret_Answer_value);
 				
 				
-				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-				
-					mobileAction.FuncClick(confirm_Security_Answer, "Confirm_Security_Answer");
-					mobileAction.FuncSendKeys(confirm_Security_Answer, secret_Answer_value);
-					mobileAction.FuncClick(done, "Done");
-					mobileAction.FuncClick(save_Changes, "Save_Changes");
+					if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
 					
-				}
-				else{
-					mobileAction.FuncHideKeyboard();
-					mobileAction.FuncClick(confirm_Security_Answer, "Confirm_Security_Answer");
-					String confirm_Sec_Answer_value = getTestdata("SecurityAnswer");
-					mobileAction.FuncSendKeys(confirm_Security_Answer, confirm_Sec_Answer_value);
-					mobileAction.FuncHideKeyboard();
-					mobileAction.FuncClick(save_Changes, "Save_Changes");
-					mobileAction.verifyElement(secret_Answer_Updated, security_ans_updated);
+						mobileAction.FuncClick(confirm_Security_Answer, "Confirm_Security_Answer");
+						mobileAction.FuncSendKeys(confirm_Security_Answer, secret_Answer_value);
+						mobileAction.FuncClick(done, "Done");
+						mobileAction.FuncClick(save_Changes, "Save_Changes");
+						
 					}
+					else{
+						mobileAction.FuncHideKeyboard();
+						mobileAction.FuncClick(confirm_Security_Answer, "Confirm_Security_Answer");
+						String confirm_Sec_Answer_value = getTestdata("SecurityAnswer");
+						mobileAction.FuncSendKeys(confirm_Security_Answer, confirm_Sec_Answer_value);
+						mobileAction.FuncHideKeyboard();
+						mobileAction.FuncClick(save_Changes, "Save_Changes");
+						mobileAction.verifyElement(secret_Answer_Updated, security_ans_updated);
+						}
 				}else{
 					System.out.println(security_header + " is not displayed");
 				}
-			} catch (NoSuchElementException | InterruptedException | IOException e) {
-				e.printStackTrace();
-			
+			}catch (NoSuchElementException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (InterruptedException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (IOException e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 		}
 
-	}
+
 
 }

@@ -39,21 +39,21 @@ public class Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/last_statement_details']")
 	private MobileElement stmtDetails;
 
-	//@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Summary']")
-	 @AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/last_statement_details']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Summary']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/summaryTab']")
 	private MobileElement summaryDetails;
 	 
-		@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='cash back rewards']")
-	 @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='cash back rewards']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='cash back rewards']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='cash back rewards']")
 	private MobileElement txtCashBackRwd;
 		
-		//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Cash Back Dollars')]")
-		//@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='REWARDS']")
-		//private MobileElement dollarSign;
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Cash Back Dollars')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/account_rewards_balance']")
+	private MobileElement dollarSign;
 	 
 		
-		By dollarSign=By.xpath("//XCUIElementTypeStaticText[contains(@label,'Cash Back Dollars')]");
-		By androidDollarSign= By.xpath("//android.widget.TextView[@resource-id='com.td:id/account_rewards_balance");
+//		By dollarSign=By.xpath("//XCUIElementTypeStaticText[contains(@label,'Cash Back Dollars')]");
+//		By androidDollarSign= By.xpath("//android.widget.TextView[@resource-id='com.td:id/account_rewards_balance");
 		
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Activity']")
@@ -100,8 +100,8 @@ public class Credit extends _CommonPage {
 			
 		} catch (NoSuchElementException e) {
 			
-			System.err.println("TestCase has failed.");
-		     CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -284,17 +284,12 @@ public class Credit extends _CommonPage {
 		public void verifyDollarRewardBalance() {
 			Decorator();
 			try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-			String verifydollarSign=mobileAction.verifyElementUsingBy(dollarSign);
-			if(verifydollarSign.startsWith(ConstantClass.dollarSign)){
-				CL.GetReporting().FuncReport("Pass", "The element <b>- " + ConstantClass.dollarSign + "</b> is present in Cash back dollar ");
-			}
-			}else{
-				String verifydollarSign=mobileAction.verifyElementUsingBy(androidDollarSign);
+				String verifydollarSign = mobileAction.getValue(dollarSign);
+							
 				if(verifydollarSign.startsWith(ConstantClass.dollarSign)){
 					CL.GetReporting().FuncReport("Pass", "The element <b>- " + ConstantClass.dollarSign + "</b> is present in Cash back dollar ");
 				}
-			}
+			
 			} catch (NoSuchElementException  |IOException  e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -316,11 +311,12 @@ public class Credit extends _CommonPage {
 			Decorator();
 			String decimalValue = "";
 			try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				decimalValue=mobileAction.verifyElementUsingBy(dollarSign);
-			}else{
-				decimalValue=mobileAction.verifyElementUsingBy(androidDollarSign);
-			}
+				decimalValue= mobileAction.getValue(dollarSign);
+//			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+//				decimalValue=mobileAction.verifyElementUsingBy(dollarSign);
+//			}else{
+//				decimalValue=mobileAction.verifyElementUsingBy(androidDollarSign);
+//			}
 			String decVal[] = decimalValue.split(" ");
 			System.out.println(decVal[0]);
 			String decVal1 = decVal[0].replaceAll("[$,]", "");
