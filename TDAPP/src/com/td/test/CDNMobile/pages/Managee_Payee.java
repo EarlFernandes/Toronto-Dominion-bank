@@ -51,9 +51,8 @@ public class Managee_Payee extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement managePayees;
 	
-	// FIXME: Need accessibility id here
-	@iOSFindBy(xpath="//*[@label='Add Canadian Payee' or @label='添加加拿大收款人' or @label='新增加拿大收款人' or @label='Add U.S. Payee' or @label='新增美國收款人' or @label='添加美国收款人']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
+    @iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[2]")
+    @AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement addPayee;
 	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")

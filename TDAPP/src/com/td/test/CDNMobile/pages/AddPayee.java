@@ -22,7 +22,6 @@ public class AddPayee extends _CommonPage {
 	
 	private static AddPayee AddPayee;
 	
-	// FIXME: Add id for this
 	@iOSFindBy(xpath = "//*[@label='Done' or @label='完成']")
 	private MobileElement done;
 	

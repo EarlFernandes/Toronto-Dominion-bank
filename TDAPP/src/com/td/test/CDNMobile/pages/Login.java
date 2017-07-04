@@ -77,7 +77,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/loginEditText")
 	private MobileElement select_accesscard;
 
-	@iOSFindBy(xpath = "//*[@label='添加用户名或易通卡' or @label='Add Username or Access Card' or @label='新增用戶名稱或易通卡' or contains(@label,'Ajouter un nom')]")
+	@iOSFindBy(accessibility = "ACTION_SHEET_LOGIN_DATA_CELL_0")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard' or contains(@text,'Ajouter un nom')]")
 	private MobileElement addUser;
 

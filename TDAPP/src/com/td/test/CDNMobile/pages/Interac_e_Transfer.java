@@ -26,11 +26,7 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Recipient' or @text='Add Recipient']")
     private MobileElement addRecipient_Interac;
 
-    @iOSFindBy(accessibility = "-Title")
-    private List<MobileElement> pendingETransfers;
-
-    // FIXME: Ask may to add this
-    @iOSFindBy(accessibility = "FIXME")
+    @iOSFindBy(accessibility = "MESSAGE_INPUT_PLACEHOLDER")
     private MobileElement optional;
  
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
@@ -64,8 +60,7 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Interac e-Transfer']")
     private MobileElement amountLbl;
     
-    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label = '继续' or @label = 'Continue' or @label = '繼續']")
-    //@iOSFindBy(accessibility = "INTERACSEND_VIEW_CONTINUE")
+    @iOSFindBy(accessibility = "INTERACSEND_VIEW_CONTINUE")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/button_footer']")
     private MobileElement transfer_Continue;
 
@@ -1021,7 +1016,6 @@ public class Interac_e_Transfer extends _CommonPage {
 				mobileAction.verifyTextEquality(recipient.getText(), mobileAction.getAppString("eTransferConfirmRecipient"));
 				mobileAction.verifyTextEquality(amountLbl.getText(), mobileAction.getAppString("eTransferAmountLabel"));
 				mobileAction.verifyTextEquality(Message.getText(), mobileAction.getAppString("eTransferReceiptMessage"));
-				// FIXME: Once May adds it, uncomment
 				//mobileAction.verifyTextEquality(optional.getText(), mobileAction.getAppString("str_optional"));
 				mobileAction.verifyTextEquality(transfer_Continue.getText(), mobileAction.getAppString("Continue"));
 			} else {
