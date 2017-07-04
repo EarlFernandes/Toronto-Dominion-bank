@@ -1534,7 +1534,7 @@ public class MobileAction2 extends CommonLib {
      *         true if element is displayed or false
      * 
      */
-    public void verifyElementIsDisplayed(MobileElement mobileElement, String expectedText)throws IOException { //@Author - Sushil 03-Feb-2017 (Modified)
+    public void verifyElementIsDisplayed(WebElement mobileElement, String expectedText)throws IOException { //@Author - Sushil 03-Feb-2017 (Modified)
 	try {
 		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 		wait.until(ExpectedConditions.visibilityOf(mobileElement));
@@ -1851,6 +1851,30 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
+	/**
+	 * This method will verify the Element present using XPATH.
+	 * 
+	 *
+	 * @param objElement
+	 *            The MobileElement on which the click action has to be
+	 *            performed.
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             In case the element is not found over the screen.
+	 */
+	public WebElement verifyWebElementUsingXPath(String objElement, String text) throws IOException {
+		try {
+
+			WebElement objMobileElement = (WebElement) ((AppiumDriver) GetDriver())
+					.findElement(By.xpath(objElement));
+			verifyElementIsDisplayed(objMobileElement, text);
+			return objMobileElement;
+		} catch (IOException e) {
+			GetReporting().FuncReport("Fail", "IOException Exception occurred");
+			return null;
+		}
+	}
+	
 	/**
 	 * This method will convert the String to mobileElement and do swipe
 	 * function
@@ -2742,12 +2766,6 @@ public String FuncGetElementText(MobileElement objElement) { //@Author - Sushil 
 	}//throw e;
 	return textToReturn;
 }
-public String getAppString(final String key) {
-	//System.out.println(((AppiumDriver) GetDriver()).getAppStringMap().toString());
-	final String s = (String)((AppiumDriver) GetDriver()).getAppStringMap().get(key);
-	//System.out.println("String returned from key is: " + s);
-	return s;
-}
 
 /**
  * This method will get the Mobile element from XPATH
@@ -2991,6 +3009,222 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 			throw e;
 		}
 
+	}
+	
+	public String getAppString(final String key) {
+		String s = (String)_CommonPage.appStringMap.get(key);
+		//System.out.println("String returned from key is: " + s);
+		return s;
+	}
+
+	public static final int TYPE_YYYY_MM_DD = 1;
+	public static final int TYPE_YYYY_MM_DD_WEEKDATE = 2;
+	public static final int TYPE_MM_YYYY = 3;
+	public static final int TYPE_YYYY_MM_DD_TODAY = 4;
+	public static final int TYPE_YYYY_MM_DD_HOUR = 5;
+	public static final int TYPE_YYYY_MM_DD_RANGE = 6;
+	
+	public static final String PATTERN_ZH_YYYY_MM_DD = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日|待处理|尚待處理";
+	public static final String PATTERN_ZH_YYYY_MM_DD_WEEKDATE = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\((星期|週)[一|二|三|四|五|六|日|天]\\)";
+	public static final String PATTERN_ZH_MM_YYYY = "\\d{4}年\\s?\\d{1,2}月";
+	public static final String PATTERN_ZH_YYYY_MM_DD_TODAY = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\((今天|今日)\\)";
+	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日.*";
+	public static final String PATTERN_ZH_YYYY_MM_DD_RANGE = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日 – (\\d{4}年)*\\d{1,2}月\\d{1,2}日";
+	
+	public void verifyDateFormat(final String dateStr, final int type) {
+		if (_CommonPage.currentLocale.startsWith("zh")) {
+			switch (type) {
+				case (TYPE_YYYY_MM_DD):
+					if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD)) {
+						try {
+							GetReporting().FuncReport("Pass", "Correct date format found");
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}						
+					} else {
+						try {
+							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}	
+					}
+					break;
+				case (TYPE_YYYY_MM_DD_WEEKDATE):
+					if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD_WEEKDATE)) {
+						try {
+							GetReporting().FuncReport("Pass", "Correct date format found");
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}						
+					} else {
+						try {
+							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}	
+					}
+					break;
+				case (TYPE_MM_YYYY):
+					if (dateStr.matches(PATTERN_ZH_MM_YYYY)) {
+						try {
+							GetReporting().FuncReport("Pass", "Correct date format found");
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}						
+					} else {
+						try {
+							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}	
+					}
+					break;
+				case (TYPE_YYYY_MM_DD_TODAY):
+					if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD_TODAY)) {
+						try {
+							GetReporting().FuncReport("Pass", "Correct date format found");
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}						
+					} else {
+						try {
+							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}	
+					}
+					break;
+				case (TYPE_YYYY_MM_DD_HOUR):
+					if (dateStr.matches(PATTERN_ZH_YY_MM_DD_HOUR)) {
+						try {
+							GetReporting().FuncReport("Pass", "Correct date format found");
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}						
+					} else {
+						try {
+							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}	
+					}
+					break;
+				case (TYPE_YYYY_MM_DD_RANGE):
+					if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD_RANGE)) {
+						try {
+							GetReporting().FuncReport("Pass", "Correct date format found");
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}						
+					} else {
+						try {
+							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+						} catch (IOException e) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}	
+					}
+					break;
+			}
+
+		} else if (_CommonPage.currentLocale.equalsIgnoreCase("EN") || _CommonPage.currentLocale.equalsIgnoreCase("fr")) {
+			// Don't need to test this for now
+		} else {
+			try {
+				GetReporting().FuncReport("Fail", "Unknown locale found to test against date string: " + _CommonPage.currentLocale);
+			} catch (IOException e) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}			
+		}
+	}
+
+    /**
+     * This will allow the user to switch between Appium Driver contextes such as NATIVE_APP or WEBVIEW
+     * @param targetContext
+     */
+    public void switchAppiumContext(final String targetContext) {
+    	((AppiumDriver) GetDriver()).context(targetContext);
+    }
+    
+	public void containsHanScript(String s) throws IOException {
+		if(_CommonPage.currentLocale.startsWith("zh")) {
+		    for (int i = 0; i < s.length(); ) {
+		        int codepoint = s.codePointAt(i);
+		        i += Character.charCount(codepoint);
+		        if (Character.UnicodeScript.of(codepoint) == Character.UnicodeScript.HAN) {
+					GetReporting().FuncReport("Pass", "Element contains han characters");
+					return;
+		        }
+		    }
+		    GetReporting().FuncReport("Fail", "Element does not contain han characters");
+		}
+	}
+	
+	/**
+	 * @author Ashraf 
+	 * This method will convert the string xpath to MobileElement. Then Swipe and click on it once found.
+	 * 
+	 * @param elementXpath = String xpath of element
+	 * @param elementName = Name of element to be printed in report
+	 * @param swipeCount = number of swipe to search for element.
+	 */
+	public boolean swipeAndSelect(String elementXpath, String elementName,int swipeCount) {
+		
+		boolean flag=true;
+		int count=0;
+		
+		while(flag&&count<swipeCount)
+		{
+			try{
+		MobileElement element = (MobileElement) ((AppiumDriver) GetDriver())
+				.findElement(By.xpath(elementXpath));
+		if(element.isDisplayed()){
+			FuncClick(element, "Account Number");
+			flag=false;
+		}else{
+			FunctionSwipe("up", 1000, 200);
+			count++;
+		}
+			}catch(Exception e){
+				try {
+					FunctionSwipe("up", 1000, 200);
+				} catch (IOException e1) {
+					System.err.println("Failed to swipe");
+				}
+				count++;
+			}
+			
+			if(count==swipeCount){
+				stringToReport("Fail", elementName+" Not found after swiping "+swipeCount+" times.");
+			}
+			
+			
+			}
+		
+		return flag;
+	}
+	
+    /**
+	 * @author Ashraf
+	 * This method will print the given string to report
+	 * 
+	 * @param element
+	 *            Element to be printed.
+	 * 
+	 * @param text
+	 *            Description of the element.
+	 * @throws IOException
+	 */
+	public void stringToReport(String status, String string) {
+		try {
+			GetReporting().FuncReport(status, string);
+
+		} catch (NullPointerException | IOException e) {
+			try {
+				GetReporting().FuncReport("Fail", string + " Returned null value");
+			} catch (IOException e1) {
+				System.out.println("Failed to Write in report for element: " + string);
+			}
+		}
 	}
 }
 
