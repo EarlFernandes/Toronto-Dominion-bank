@@ -78,34 +78,30 @@ public class MainScreen extends _CommonPage {
 		}
 
 		final String udid = CL.getTestDataInstance().getDeviceUdid();
-
 		// Jenkins only params
 
 		final String appiumPath = CL.getTestDataInstance().getAppiumPath();
 		final String targetEnv = CL.getTestDataInstance().targetEnvironment;
 		final String[] targetEnvVars;
-		final String currentTargetEnv;
-		
-		if (!StringUtils.isEmpty(appiumPath) && !StringUtils.isEmpty(targetEnv)) { // Jenkins execution
-			
+
+		if (!StringUtils.isEmpty(appiumPath) && !StringUtils.isEmpty(targetEnv)) { // Jenkins
+																					// execution
 			targetEnvVars = StringUtils.split(targetEnv, ":::");
-			if (targetEnvVars.length == 2) {
-				currentLocale = targetEnvVars[1];
-				currentTargetEnv = targetEnvVars[0];
-			}else{
-				currentLocale ="EN";
-				currentTargetEnv = targetEnv;
-			}
-			
 			if (CL.getTestDataInstance().getAppFilePath() == null
 					|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
-				CL.getTestDataInstance().SetAppFilePath(currentTargetEnv);
+				CL.getTestDataInstance().SetAppFilePath(targetEnvVars[0]);
 			}
+
 			CL.mobileApp(appiumPath);
 			
-			appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
-			System.out.println("Currentlocale:"+currentLocale);
-			
+			// If length is 2, then second token is the locale
+			if (targetEnvVars.length >= 2) {
+				currentLocale = targetEnvVars[1];
+				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
+			} else {
+				currentLocale = "EN";
+				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
+			}
 		} else { // Local execution
 			try { // Set udid explicitly for local execution, to handle udid
 					// with all caps, when reading from excel sheet // it seems
@@ -124,14 +120,12 @@ public class MainScreen extends _CommonPage {
 						currentLocale = CL.LoadData("Language",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS);
 					}
-					System.out.println("Locale:"+ currentLocale);
 				}
 				CL.mobileApp(LOCAL_EXECUTION_APPIUM_SERVER);
 				if (StringUtils.isEmpty(currentLocale)) {
 					appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
 				} else {
 					appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
-					//System.out.println(((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale).toString());
 				}
 
 			} catch (Exception e) {
@@ -141,6 +135,7 @@ public class MainScreen extends _CommonPage {
 			}
 
 		}
+
 		
 	}
 
