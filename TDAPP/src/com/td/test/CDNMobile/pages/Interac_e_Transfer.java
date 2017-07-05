@@ -60,7 +60,9 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Interac e-Transfer']")
     private MobileElement amountLbl;
     
-    @iOSFindBy(accessibility = "INTERACSEND_VIEW_CONTINUE")
+    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label = '继续' or @label = 'Continue' or @label = '繼續']")
+    // FIXME: This is a bug, not seen in 17.5.1+ builds
+    //@iOSFindBy(accessibility = "INTERACSEND_VIEW_CONTINUE")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/button_footer']")
     private MobileElement transfer_Continue;
 

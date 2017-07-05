@@ -35,7 +35,7 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_CROSSBORDER']/XCUIElementTypeStaticText")
 	private MobileElement crossBorder;
 	
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_INVESTING']/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_menu_icon_investing' or @name='SIDEBAR_ITEM_7']/XCUIElementTypeStaticText")
 	private MobileElement investing;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Comptes Placements directs TD']")
@@ -48,7 +48,7 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_FEEDBACK']/XCUIElementTypeStaticText")
 	private MobileElement feedback;
 	
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_DEPOSIT']/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_DEPOSIT' or @name='SIDEBAR_ITEM_6']/XCUIElementTypeStaticText")
 	private MobileElement mobile_Deposit_button;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_ACCOUNTS']/XCUIElementTypeStaticText")
@@ -311,9 +311,6 @@ public class MenuPage extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				investing = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + StringLookup.lookupString(currentLocale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing menu element");
-			} else {
-				// FIXME: Workaround
-				investing = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + StringLookup.lookupString(currentLocale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing menu element");
 			}
 			boolean isLanguageFrench = getTestdata("Language").equals("FRE");
 			MobileElement investingElement = isLanguageFrench ? investingFRE : investing;
