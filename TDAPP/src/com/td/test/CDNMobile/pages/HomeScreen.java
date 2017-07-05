@@ -64,7 +64,7 @@ public class HomeScreen extends _CommonPage {
 	MobileElement  investing_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'TRADE')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trade']")
+	@AndroidFindBy(xpath = "//android.widget.TableRow[@text='TRADE']")
 	private MobileElement trade;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='VIREMENTS'] ")
@@ -102,7 +102,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @enabled='true']")
 	private MobileElement zone_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investing']")//@Author - Sushil 21-Apr-2017 modified
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Investing')]")//@Author - Sushil 21-Apr-2017 modified
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Investing Accounts' or @text='Comptes Placements directs TD')]")
 	private MobileElement InvestingHamburgeMenu;
 
@@ -814,7 +814,7 @@ public class HomeScreen extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(InvestingHamburgeMenu, "Investing button clicked");
-
+			Thread.sleep(1000);
 		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

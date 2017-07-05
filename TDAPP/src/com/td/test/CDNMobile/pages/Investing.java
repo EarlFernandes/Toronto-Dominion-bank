@@ -25,7 +25,7 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='TRADE']")
 	private MobileElement tradeicon;
 
-	@iOSFindBy(accessibility = "TDVIEW_TITLE")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Investing']")
 	private MobileElement investing_header;
 
@@ -212,7 +212,6 @@ public class Investing extends _CommonPage {
 
 		try {
 			Decorator();
-			Thread.sleep(10000);
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncClick(trade, "Trade");
 

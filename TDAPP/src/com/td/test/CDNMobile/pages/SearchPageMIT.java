@@ -52,6 +52,7 @@ public class SearchPageMIT extends _CommonPage {
 	//String xpathSymbolFlag = "//android.widget.ImageView[(@resource-id='com.td:id/market_symbol' and @content-desc='U S')] or //XCUIElementTypeCell[contains(@label,'US')]";
 	//String xpathSymbolFlag_ios = "//XCUIElementTypeStaticText[contains(@label,'RESULTS')]/../XCUIElementTypeCell[contains(@label,'US')]";
 	String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'US')]";
+	String xpathSymbolFlag_ios1 = "//XCUIElementTypeCell[contains(@label,'CA') or @label='Comptant CAN']";
 	String xpathSymbolName = "//*[@id='com.td:id/market_name']";
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'name or symbol') or contains(@label,'nom ou symbole')]") //@Author - Sushil 07-Feb-2017
@@ -343,7 +344,6 @@ public class SearchPageMIT extends _CommonPage {
 				mobileAction.FuncSendKeys(mEle, symbol + " ");
 				((RemoteWebDriver) CL.GetDriver()).getKeyboard().pressKey(Keys.BACK_SPACE);
 			}
-			
 			//mobileAction.FuncSendKeys(mEle,"\u0008");
 			//mEle.sendKeys(Keys.DELETE);
 			TradeMultiLeg.get().handleKeyboard();
@@ -351,6 +351,12 @@ public class SearchPageMIT extends _CommonPage {
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			try {
+				CL.GetReporting().FuncReport("Fail", "Symbol not entered.");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 	
@@ -369,7 +375,7 @@ public class SearchPageMIT extends _CommonPage {
 
 			mobileAction.FuncClick(search_symbol, "search_symbol");
 			enterSymbol(search_symbol, sSymbolName);
-			mobileAction.verifyElement(txt_results,getTestdata("RESULTS", XLSheetUserIDs));
+			//mobileAction.verifyElement(txt_results,getTestdata("RESULTS", XLSheetUserIDs));
 			TradeMultiLeg.get().handleKeyboard();
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 			{
@@ -416,5 +422,76 @@ public class SearchPageMIT extends _CommonPage {
 			e.printStackTrace();
 		}
 	}
+	
+	public void clickFirstSymbol1(String sSymbolName)//@Author - Sushil 05-May-2017
+	{
+		Decorator();
+		try
+		{
+			String xpathFlag="";
+			int temp =0;
+			//String sSymbol = getTestdata("Symbol", XLSheetUserIDs).trim();
+			boolean bFound=false;
+			String sProperty = "";
+			//String sSymbolName = "";
+			boolean bSymbolText=false;
+
+			mobileAction.FuncClick(search_symbol, "search_symbol");
+			enterSymbol(search_symbol, sSymbolName);
+		//	mobileAction.verifyElement(txt_results,getTestdata("RESULTS", XLSheetUserIDs));
+			TradeMultiLeg.get().handleKeyboard();
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			{
+				xpathFlag = xpathSymbolFlag;
+				sProperty = "text";
+				//sSymbolName = CL.GetDriver().findElements(By.xpath("//*[@resource-id='com.td:id/market_name']")).get(i).getText();
+				try
+				{
+					CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
+					CL.GetReporting().FuncReport("Pass", "Symbol <b> "+ sSymbolName + "</b> Clicked.");
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					CL.GetReporting().FuncReport("Fail", "Symbol <b> "+ sSymbolName + "</b> not Clicked.");
+				}
+			}
+			else
+			{
+				xpathFlag = xpathSymbolFlag_ios1;
+				//temp =0;
+				sProperty = "label";
+			do{
+			try{
+				if(CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).isDisplayed() && CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).getAttribute(sProperty).contains(sSymbolName))
+				{
+					bFound = true;
+					CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
+					CL.GetReporting().FuncReport("Pass", "Symbol <b> "+ sSymbolName + "</b> Clicked.");
+				}
+				else
+					temp++;
+			}
+			catch(Exception e)
+			{
+				temp++;
+			}
+			}while(!bFound && temp < CL.GetDriver().findElements(By.xpath(xpathFlag)).size());
+			}
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
 
