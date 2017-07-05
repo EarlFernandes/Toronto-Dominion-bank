@@ -102,8 +102,8 @@ public class MLOrderDetails extends _CommonPage {
 	
 	
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Order Details' or contains(@label,'Détails de')]") //@Author - Sushil 29-Mar-2017
-	@AndroidFindBy(xpath = "//*[(@text='Order Details' or contains(@text,'Détails de')) and @resource-id='android:id/action_bar_title']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Order Details' or contains(@label,'DÃ©tails de')]") //@Author - Sushil 29-Mar-2017
+	@AndroidFindBy(xpath = "//*[(@text='Order Details' or contains(@text,'DÃ©tails de')) and @resource-id='android:id/action_bar_title']")
 	private MobileElement hdrOrderDetails;
 	
 	
