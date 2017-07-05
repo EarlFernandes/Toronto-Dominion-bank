@@ -125,9 +125,8 @@ public class AddRecipient extends _CommonPage {
 							mobileAction.FuncHideKeyboard();
 						}
 			mobileAction.FuncClick(answer, "Answer");
-			String answer_value = getTestdata("SecurityAnswer");
 
-			mobileAction.FuncSendKeys(answer, answer_value);
+			mobileAction.FuncSendKeys(answer, "aa");
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
 	        	mobileAction.FuncClick(done, "Done");
 						}
@@ -138,7 +137,7 @@ public class AddRecipient extends _CommonPage {
 
 			mobileAction.FuncClick(confirm_Answer, "Confirm_Answer");
 
-			mobileAction.FuncSendKeys(confirm_Answer, answer_value);
+			mobileAction.FuncSendKeys(confirm_Answer, "aa");
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
 		        	mobileAction.FuncClick(done, "Done");
 					}

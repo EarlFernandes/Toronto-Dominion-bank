@@ -1,6 +1,7 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -24,9 +25,15 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='TRADE']")
 	private MobileElement tradeicon;
 
-	@iOSFindBy(xpath = " //XCUIElementTypeOther[@label='Investing']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Investing')]")
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Investing']")
 	private MobileElement investing_header;
+
+	@iOSFindBy(accessibility = "CROSSSELL_VIEWTITLE")
+	private MobileElement investing_body_title;
+
+	@iOSFindBy(accessibility = "CROSSSELL_MESSAGE")
+	private MobileElement investing_body_msg;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[(@text='Trade' or @text='Négociation') and @index='0']")
@@ -54,10 +61,13 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/summaryContent' and @index='0']")
 	private MobileElement investingListView;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Go to WebBroker')]")
+	@iOSFindBy(accessibility = "CROSSSELL_GOTO")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_launch_browser'and contains(@text,'do this later on my computer')]")
 	private MobileElement go_to_webbroker_button;
 
+	@iOSFindBy(accessibility = "CROSSSELL_CALL")
+	private MobileElement call_button;
+	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Holdings']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trade' and @index='0']")
 	private MobileElement Holdings;
@@ -153,6 +163,22 @@ public class Investing extends _CommonPage {
 	String InvestingAccountsXpath = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
 			+ InvestingAccountsXL + "')]";
 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum']")
+	private List <MobileElement> accountDefinition;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/footer_text']")
+	private MobileElement mutualFundOfferedBy;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mf_link']")
+	private MobileElement tdInvestmentServices;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/disclaimer_link']")
+	private MobileElement tdDirectInvestment;
+	
+	String accountNum = getTestdata("FromAccount");
+	String accountNumXpath="//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"+accountNum+"')]";
+	
+	
 	public synchronized static Investing get() {
 		if (Investing == null) {
 			Investing = new Investing();
@@ -1265,4 +1291,233 @@ public class Investing extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
+	
+	/**
+	 * This method will verify text within elements for open a new account page
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyOpenNewAccountTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.verifyTextEquality(investing_header.getText(), mobileAction.getAppString("Investing"));
+				mobileAction.verifyTextEquality(investing_body_title.getText(), mobileAction.getAppString("investing_open_account"));
+				mobileAction.verifyTextEquality(investing_body_msg.getText(), mobileAction.getAppString("str_investing_cross_sell_message_detail"));
+				mobileAction.verifyTextEquality(go_to_webbroker_button.getText(), mobileAction.getAppString("str_go_to_webbroker"));
+				mobileAction.verifyTextEquality(call_button.getText().split(" ")[0], mobileAction.getAppString("call_phone").replace(" %1$s", ""));
+			} else {
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("str_Investing") + "']", "Investing title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_investing_cross_sell_message") + "']", "Open a direct investing account");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text=\"" + mobileAction.getAppString("str_investing_cross_sell_message_detail") + "\"]", "Open a bank account msg body");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("str_go_to_webbroker") + "']", "Go to webbroker");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[contains(@text, '" + mobileAction.getAppString("str_call_phone").replace(" %1$s", "") + "')]", "call 1-800");
+			}
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+	
+	/**
+	 * @author Ashraf This method will verify the details on investing page.
+	 * 
+	 * @return void
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+
+	public void verifyInvestingPageDetails() {
+
+		Decorator();
+
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				final MobileElement investingHeader = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeOther[@name='TDVIEW_TITLE']",
+						"Investing Header");
+				mobileAction.containsHanScript(investingHeader.getText());
+				final MobileElement searchHint = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeSearchField",
+						"Search Hint");
+				mobileAction.containsHanScript(searchHint.getText());
+				final MobileElement trade = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@name='INVESTING_ACCOUNT_SUMMARY_TABLECELL_TITLE0']",
+						"trade");
+				mobileAction.containsHanScript(trade.getText());
+				final MobileElement tradeHint = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@name='INVESTING_ACCOUNT_SUMMARY_TABLECELL_DES0']",
+						"trade hint");
+				mobileAction.containsHanScript(tradeHint.getText());
+				final MobileElement watchList = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@name='INVESTING_ACCOUNT_SUMMARY_TABLECELL_TITLE1']",
+						"watchList");
+				mobileAction.containsHanScript(watchList.getText());
+				final MobileElement watchListHint = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@name='INVESTING_ACCOUNT_SUMMARY_TABLECELL_DES1']",
+						"watchListHint");
+				mobileAction.containsHanScript(watchListHint.getText());
+				final MobileElement markets = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@name='INVESTING_ACCOUNT_SUMMARY_TABLECELL_TITLE2']",
+						"watchList");
+				mobileAction.containsHanScript(markets.getText());
+				final MobileElement marketsHint = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@name='INVESTING_ACCOUNT_SUMMARY_TABLECELL_DES2']",
+						"watchListHint");
+				mobileAction.containsHanScript(marketsHint.getText());
+				final MobileElement accountSummary = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@name='INVESTING_ACCOUNT_SUMMARY_ACCOUNT']",
+						"accountSummary");
+				mobileAction.containsHanScript(accountSummary.getText());
+				final MobileElement accountDetails1 = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@name='INVESTING_ACCOUNT_SUMMARY_DETAILCELL_1']",
+						"accountDetails1");
+				mobileAction.containsHanScript(accountDetails1.getText());
+			} else {
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
+								+ mobileAction.getAppString("str_Investing") + "']",
+						"Investing Header");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='"
+										+ mobileAction.getAppString("str_search_for_a_symbol") + "']",
+								"Enter name or symbol");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("trade_str") + "']", "Trade");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='"
+								+ mobileAction.getAppString("str_BuySellEquityOptionSecurities_hint") + "']",
+						"Buy and Sell securities and equities");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("watchlists_str") + "']",
+						"WatchLists");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='"
+								+ mobileAction.getAppString("str_CreateManageTrackWatchlist_hint") + "']",
+						"Create and Manage your watchlists");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("markets_str") + "']",
+						"Markets");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='"
+								+ mobileAction.getAppString("str_ViewCurrentMarketTrendCondition_hint") + "']",
+						"View current market trends");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and @text='"
+								+ mobileAction.getAppString("str_Accounts") + "']",
+						"Accounts");
+				
+//				for(int i=0;i<accountDefinition.size();i++){
+//					
+//					mobileAction.verifyElementIsDisplayed(accountDefinition.get(i), "Account Definition "+(i+1));
+//				}
+//				for(int i=0;i<20;i++){
+//					mobileAction.FunctionSwipe("up", 50, 200);
+//				}
+//				mobileAction.verifyElementUsingXPath(
+//						"//android.widget.TextView[@resource-id='com.td:id/textView1' and @text='"
+//								+ mobileAction.getAppString("str_Total") + "']",
+//						"Total");
+//				
+//				mobileAction.verifyElementUsingXPath(
+//						"//android.widget.TextView[@text='"
+//								+ mobileAction.getAppString("str_td_mutual_funds_offered") + "']",
+//						"Mutual Funds offered by:");
+			}
+		}
+
+		 catch (NoSuchElementException | IOException e) {
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
+
+	}
+	
+	
+	/**
+	 * @author Ashraf This method will click on first investing account on
+	 *         investing page.
+	 * 
+	 * @return void
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+
+	public void clickAccount() {
+
+		Decorator();
+		boolean flag=true;
+		int count=0;
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				String from_accountNo = "//XCUIElementTypeStaticText[contains(@name, 'INVESTING_ACCOUNT_SUMMARY_DETAILCELL_') and contains(@value, '" + getTestdata("FromAccount") + "')]";
+				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+                        .findElement(By.xpath(from_accountNo));
+				mobileAction.FunCSwipeandScroll(fromAccountval, true);
+			} else {
+				
+				while(flag&&count<5)
+				{
+					try{
+				MobileElement account = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(accountNumXpath));
+				if(account.isDisplayed()){
+					mobileAction.FuncClick(account, "Account Number");
+					flag=false;
+				}else{
+					mobileAction.FunctionSwipe("up", 1000, 200);
+					count++;
+				}
+					}catch(NoSuchElementException | InterruptedException e){
+						mobileAction.FunctionSwipe("up", 1000, 200);
+						count++;
+						if(count == 5) {
+							throw e;
+						}
+					}
+					}
+				
+			}
+
+		}
+
+		 catch (Exception e) {
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
+
+	}
+
+
+	
 }
