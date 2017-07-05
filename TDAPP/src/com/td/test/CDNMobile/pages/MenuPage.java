@@ -92,7 +92,7 @@ public class MenuPage extends _CommonPage {
 	private MobileElement locations;
 	
 	//Profile and preference
-	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_PREFERENCES")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_PREFERENCES']/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Profile and Settings' or @text='Profil et paramètres')]")
 	private MobileElement profile_and_settings;
 	

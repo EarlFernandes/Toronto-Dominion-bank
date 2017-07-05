@@ -19,7 +19,7 @@ public class FundFacts extends _CommonPage{
 
 	private static FundFacts Fundfacts;
 
-	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']")
+	@iOSFindBy(accessibility ="TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@package='com.google.android.apps.docs']")
 	private MobileElement view_fundFacts_page_header;
 

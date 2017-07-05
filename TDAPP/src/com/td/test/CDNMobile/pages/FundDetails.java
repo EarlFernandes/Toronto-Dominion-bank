@@ -19,6 +19,8 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class FundDetails extends _CommonPage {
     private static FundDetails fundDetails;
+    private String regDate ="[A-Za-z]{3}\\s*\\d{2},\\s*\\d{4}";
+    private String regTime ="\\d{2}:\\d{2}:\\d{2}";
 
 	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
@@ -63,6 +65,10 @@ public class FundDetails extends _CommonPage {
     @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/book_value']")
     private MobileElement CAD_Book_Value; 
+    
+    @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeStaticText[1]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/timestamp']")
+    private MobileElement time_stamp;
 
     public synchronized static FundDetails get() {
 		if (fundDetails == null) {
@@ -296,6 +302,31 @@ public class FundDetails extends _CommonPage {
 				return;
 			}
 			mobileAction.Report_Pass_Verified("Market and book value are displayed in CAD for US MF");
+			
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+	
+	public void VerifyClosingDayDisclaimer() {
+		try {
+			Decorator();
+			
+			String timeStamp = mobileAction.getValue(time_stamp);
+			System.out.println("TimeStamp:"+timeStamp);
+			String dateInDisclaimer = mobileAction.FuncGetValByRegx(timeStamp, regDate);
+			String timeInDisclaimer = mobileAction.FuncGetValByRegx(timeStamp, regTime);
+			
+			if(!(dateInDisclaimer.isEmpty() || timeInDisclaimer.isEmpty())){
+				mobileAction.Report_Pass_Verified(timeStamp);
+			}else{
+				mobileAction.Report_Fail_Not_Verified(timeStamp);
+			}
 			
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

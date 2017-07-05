@@ -31,7 +31,7 @@ public class Notifications extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Customize Notifications' or @text='Personnaliser les avis']")
 	private MobileElement customize_notification_link;	
 	
-	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']")
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement TDforme_notification_Header;
 	
