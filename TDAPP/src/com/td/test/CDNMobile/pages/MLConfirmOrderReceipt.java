@@ -86,7 +86,7 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 	
 	@iOSFindBy(xpath = "//*[@label='ORDER DETAILS' or contains(@label,'DÉTAILS DE')]") //@Author - Sushil 23-Mar-2017
 	@AndroidFindBy(id="com.td:id/custom_text")
-	private MobileElement lblOrderDetails;
+	private MobileElement lblOrderDetails; 
 	
 	@iOSFindBy(xpath = "//*[@label='Account' or @label='Compte']/../*[3]") //@Author - Sushil 21-Mar-2017
 	@AndroidFindBy(id="com.td:id/textview_account_number")
@@ -167,13 +167,14 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 	@AndroidFindBy(id="com.td:id/btn_order")
 	private MobileElement inVestingAccounts;
 	
+
 	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") //@Author - Sushil 23-Mar-2017
-	@AndroidFindBy(id="com.td:id/navText")
+	@AndroidFindBy(xpath = "//*[(@text='Trade' or @text='Négociation') and @resource-id='com.td:id/navText']")
 	private MobileElement trade;
 	
 	
 	@iOSFindBy(xpath = "//*[@label='Account' or @label='Compte']") //@Author - Sushil 23-Mar-2017
-	@AndroidFindBy(id="com.td:id/caption")
+	@AndroidFindBy(xpath = "//*[(@text='Account' or @text='Compte') and @resource-id='com.td:id/caption']")
 	private MobileElement lblAccount;
 	
 	//@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Home' or @label='Accueil']") //@Author - Sushil 29-Mar-2017

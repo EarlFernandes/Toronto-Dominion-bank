@@ -47,7 +47,8 @@ public class MLEnterOrderNegative extends _CommonPage{
 	
 
 	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]")//@Author - Sushil 06-Feb-2017
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @index='0']")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @index='0']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText2']/../*[@resource-id='com.td:id/selectedValue']")//@Author - Sushil 16-Jun-2017
 	private MobileElement defaultTradeAccount;
 
 	@iOSFindBy(xpath = "(//XCUIElementTypeOther[contains(@label,'CALLS Ask') or contains(@label,'ACHAT Vendeur')])[1]") //@Author - Sushil 17-Feb-2017

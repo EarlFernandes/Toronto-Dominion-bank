@@ -51,7 +51,7 @@ public class MLOrderDetails extends _CommonPage {
 	
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[1]") //@Author - Sushil 21-Mar-2017
-	@AndroidFindBy(xpath = "//*[contains(@text,'1st Leg') or contains(@text,'1re volet')]")
+	@AndroidFindBy(xpath = "//*[contains(@text,'1st Leg') or contains(@text,'1re Volet')]")
 	private MobileElement latestOrder;
 	
 	
@@ -101,8 +101,9 @@ public class MLOrderDetails extends _CommonPage {
 	private MobileElement buyingPowerAmount;
 	
 	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Order Details' or contains(@label,'Détails de')]") //@Author - Sushil 29-Mar-2017
-	@AndroidFindBy(xpath = "//*[(@text='Order Details' or @text='Détails de') and @resource-id='android:id/action_bar_title']")
+	@AndroidFindBy(xpath = "//*[(@text='Order Details' or contains(@text,'Détails de')) and @resource-id='android:id/action_bar_title']")
 	private MobileElement hdrOrderDetails;
 	
 	
@@ -136,7 +137,7 @@ public class MLOrderDetails extends _CommonPage {
 	
 	
 	@iOSFindBy(xpath = "//*[@label='1st Leg' or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell[1]/*[2]") //@Author - Sushil 21-Mar-2017
-	@AndroidFindBy(xpath = "//*[@text='1st Leg' or @text='1re']/../following-sibling::*/*/*[2]/*[1]")
+	@AndroidFindBy(xpath = "//*[@text='1st Leg' or @text='1re Volet']/../following-sibling::*/*/*[2]/*[1]")
 	private MobileElement leg1ActQntDetails;
 	
 	
@@ -160,12 +161,12 @@ public class MLOrderDetails extends _CommonPage {
 	private MobileElement leg1ConfirmationNumberDeatils;
 	
 	@iOSFindBy(xpath = "//*[@label='2nd Leg' or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell[1]/*[1]") //@Author - Sushil 21-Mar-2017
-	@AndroidFindBy(xpath = "//*[@text='2nd Leg' or @text='2e']/../following-sibling::*/*/*[1]")
+	@AndroidFindBy(xpath = "//*[@text='2nd Leg' or @text='2e Volet']/../following-sibling::*/*/*[1]")
 	private MobileElement lbl2ndlegActQnt;
 	
 	
 	@iOSFindBy(xpath = "//*[@label='2nd Leg' or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell[1]/*[2]") //@Author - Sushil 21-Mar-2017
-	@AndroidFindBy(xpath = "//*[@text='2nd Leg' or @text='2e']/../following-sibling::*/*/*[2]/*[1]")
+	@AndroidFindBy(xpath = "//*[@text='2nd Leg' or @text='2e Volet']/../following-sibling::*/*/*[2]/*[1]")
 	private MobileElement leg2ActQntDetails;
 	
 	
@@ -263,15 +264,15 @@ public class MLOrderDetails extends _CommonPage {
 //			String sCurrentDay = format2.split(";")[0];
 			String sCurrentDate = format2.split(";")[1];
 			String sCurrentMonth = format2.split(";")[2];
-			String sCurrentYear = format2.split(";")[3];
+		//	String sCurrentYear = format2.split(";")[3];
 		
 
 			
-			mobileAction.waitForElement(lblACCOUNTS);
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount,true,60,"up");
+/*			mobileAction.waitForElement(lblACCOUNTS);
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount,true,60,"up");*/
 			
-			mobileAction.verifyElementIsDisplayed(ordersTab, "Orders Tab");
-			mobileAction.FuncClick(ordersTab, "Orders Tab");
+/*			mobileAction.verifyElementIsDisplayed(ordersTab, "Orders Tab");
+			mobileAction.FuncClick(ordersTab, "Orders Tab");*/
 			
 			mobileAction.FuncSwipeWhileElementNotFound(latestOrder, false, 7, "up");
 			mobileAction.FuncClick(latestOrder, "Select latest Order");
@@ -328,9 +329,21 @@ public class MLOrderDetails extends _CommonPage {
 			mobileAction.FuncGetValByRegx(mobileAction.FuncGetText(leg2ConfirmationNumber),"([A-Z]+)(-)([0-9]+)");
 			
 			mobileAction.FuncSwipeWhileElementNotFound(price, false, 5, "up");
-			String sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
+/*			String sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
+			if(sTempPrice!="")
+				mobileAction.verifyElementTextContains(price,getTestdata("SelectLimitPrice",XLSheetUserIDs));*/
+			
+			String sTempPrice = "";
+			if(mobileAction.FuncGetText(price).equalsIgnoreCase("Even") || mobileAction.FuncGetText(price).equalsIgnoreCase("Pair"))
+			{
+				//Do nothing
+			}
+			else
+			{
+			sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
 			if(sTempPrice!="")
 				mobileAction.verifyElementTextContains(price,getTestdata("SelectLimitPrice",XLSheetUserIDs));
+			}
 			
 			mobileAction.FuncSwipeWhileElementNotFound(OrderPlacedDetails, false, 5, "up");
 			mobileAction.verifyElementIsDisplayed(lblGoodTill, "Good till");
@@ -350,7 +363,8 @@ public class MLOrderDetails extends _CommonPage {
 			
 			mobileAction.FuncSwipeOnce("up");
 			mobileAction.verifyElementIsDisplayed(lblOrderStatus, "lblOrderStatus");
-			mobileAction.FuncVerifyNonBlankValue(OrderStatus, "OrderStatus");	
+			//mobileAction.FuncVerifyNonBlankValue(OrderStatus, "OrderStatus");	
+			mobileAction.verifyElementTextContains(OrderStatus, getTestdata("OrderStatus",XLSheetUserIDs));
 			
 			
 			mobileAction.verifyElementIsDisplayed(lblOrderPlaced, "Order Placed");
@@ -389,11 +403,11 @@ public class MLOrderDetails extends _CommonPage {
 		
 
 			
-			mobileAction.waitForElement(lblACCOUNTS);
+/*			mobileAction.waitForElement(lblACCOUNTS);
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount,true,60,"up");
 			
 			mobileAction.verifyElementIsDisplayed(ordersTab, "Orders Tab");
-			mobileAction.FuncClick(ordersTab, "Orders Tab");
+			mobileAction.FuncClick(ordersTab, "Orders Tab");*/
 			
 			mobileAction.FuncSwipeWhileElementNotFound(latestOrder, false, 7, "up");
 			mobileAction.FuncClick(latestOrder, "Select latest Order");
@@ -428,10 +442,6 @@ public class MLOrderDetails extends _CommonPage {
 			
 			mobileAction.verifyElementIsDisplayed(lblleg1ConfirmationNumber, "lblleg1ConfirmationNumber");	
 			
-			
-			
-			
-			
 			mobileAction.FuncGetValByRegx(mobileAction.FuncGetText(leg1ConfirmationNumberDeatils),"([A-Z]+)(-)([0-9]+)");
 		
 			
@@ -453,9 +463,21 @@ public class MLOrderDetails extends _CommonPage {
 			mobileAction.FuncGetValByRegx(mobileAction.FuncGetText(leg2ConfirmationNumber),"([A-Z]+)(-)([0-9]+)");
 			
 			mobileAction.FuncSwipeWhileElementNotFound(price, false, 5, "up");
-			String sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
+/*			String sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
+			if(sTempPrice!="")
+				mobileAction.verifyElementTextContains(price,getTestdata("SelectLimitPrice",XLSheetUserIDs));*/
+			
+			String sTempPrice = "";
+			if(mobileAction.FuncGetText(price).equalsIgnoreCase("Even") || mobileAction.FuncGetText(price).equalsIgnoreCase("Pair"))
+			{
+				//Do nothing
+			}
+			else
+			{
+			sTempPrice = TradeMultiLeg.get().getPrice(mobileAction.FuncGetText(price));
 			if(sTempPrice!="")
 				mobileAction.verifyElementTextContains(price,getTestdata("SelectLimitPrice",XLSheetUserIDs));
+			}
 			
 			mobileAction.FuncSwipeWhileElementNotFound(OrderPlacedDetails, false, 5, "up");
 			mobileAction.verifyElementIsDisplayed(lblGoodTill, "Good till");
