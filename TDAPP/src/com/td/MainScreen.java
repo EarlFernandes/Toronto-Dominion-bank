@@ -14,17 +14,19 @@ public class MainScreen extends _CommonPage {
 
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
+
 	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.140.61:4774/wd/hub";
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
 
 	private static final String APP_ANDROID = "APP_ANDROID";
+
 	// Change this parameter to point to the correct ipa in Setup.xls for ios
 	private static final String APP_IOS = "APP_IOS";
 
-	public String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env", "Amount",
-			"Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount", "AccessCard",
-			"Description", "Payee", "Timeout", "SecondTimeout", "MerchantName", "Price", "Quantity",
+	public String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env",
+			"Amount", "Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount",
+			"AccessCard", "Description", "Payee", "Timeout", "SecondTimeout", "MerchantName", "Price", "Quantity",
 			"Security_Question", "RecipientName", "RecipientMail", "Trading_Pwd", "Symbol", "ShareHolder",
 			"SecurityPassword", "TriggerDelta", "CDNMarginAccount", "QuantityType", "Dividend", "SelectLimitPrice",
 			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName",
@@ -136,7 +138,6 @@ public class MainScreen extends _CommonPage {
 
 		}
 
-		
 	}
 
 	// Singleton object of self

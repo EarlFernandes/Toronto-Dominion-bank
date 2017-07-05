@@ -20,6 +20,7 @@ public class Profile_And_Settings extends _CommonPage {
 	private static Profile_And_Settings ProfileAndSettings;
 
 	String preferences = "Profile & Settings | Profil et paramètres";
+
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
