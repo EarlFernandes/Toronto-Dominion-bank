@@ -258,7 +258,7 @@ public class MutualFunds extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText")
 	private MobileElement neither;
 
-	String quant = "//android.widget.EditText[@resource-id='com.td:id/amountEditText'and @text='Quantity,']";
+	String quant = "//android.widget.EditText[@resource-id='com.td:id/amountEditText'and @text='Quantity']";
 
 	@iOSFindBy(xpath = "//*[@label='In progress' or @label='En cours']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading' or @text='En cours']")
@@ -1017,7 +1017,6 @@ public class MutualFunds extends _CommonPage {
 			{
 			mobileAction.FuncClick(editTextPassword, "Trading Password");
 			mobileAction.FuncSendKeys(editTextPassword, trading_pwd_value);
-			Thread.sleep(1000);
 			}
 			if (platformName.equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();

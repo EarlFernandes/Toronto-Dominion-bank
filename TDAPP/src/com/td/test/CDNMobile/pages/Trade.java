@@ -331,7 +331,6 @@ public class Trade extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.waitForElementToVanish(progressBar);
-			Thread.sleep(5000);
 			//mobileAction.verifyElementIsDisplayed(trade_header, t_verifyTrade);
 			//mobileAction.FunctionSwipe("up", 200, 200);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {

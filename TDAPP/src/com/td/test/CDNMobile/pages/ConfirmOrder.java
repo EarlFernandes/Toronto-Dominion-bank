@@ -798,7 +798,7 @@ public class ConfirmOrder extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(cancelButton, "Cancel");
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			mobileAction.FuncClick(confirmCancel, "Confirm Cancel");
 			mobileAction.verifyElementIsDisplayed(investingheader, "Verifying Investing Landing Page");
 		} catch (NoSuchElementException e) {
