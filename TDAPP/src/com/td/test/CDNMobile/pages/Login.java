@@ -95,7 +95,8 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement password_InFrench;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Login']")
+	//@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Login']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Login' or contains(@label,'Ouvrir une session')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/loginBtnText' and @text='Ouvrir une session']")
 	private MobileElement login_InFrench;
 
@@ -442,7 +443,10 @@ public class Login extends _CommonPage {
 
 		Decorator();
 		try {
-
+			Thread.sleep(2000);
+			verifyAccessCardFRE();
+			mobileAction.FuncClick(username_InFrench, "username");
+			mobileAction.FuncSendKeys(username_InFrench, CL.getTestDataInstance().Userid);
 			mobileAction.FuncClick(password_InFrench, "Password");
 			mobileAction.FuncSendKeys(password_InFrench, CL.getTestDataInstance().UserPassword);
 

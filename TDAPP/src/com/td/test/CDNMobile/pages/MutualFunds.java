@@ -41,7 +41,7 @@ public class MutualFunds extends _CommonPage {
 	 * Mutual Fund
 	 **********************************************/
 
-	@iOSFindBy(xpath = "[@label='Trade' or @label='Négociation']")
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']")
 //	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Trade' or @text='Négociation')]")//@Author - Sushil 21-Apr-2017
 	private MobileElement trade_header;
@@ -258,7 +258,7 @@ public class MutualFunds extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText")
 	private MobileElement neither;
 
-	String quant = "//android.widget.EditText[@resource-id='com.td:id/amountEditText'and contains(@text,'Quantity')]";
+	String quant = "//android.widget.EditText[@resource-id='com.td:id/amountEditText'and @text='Quantity']";
 
 	@iOSFindBy(xpath = "//*[@label='In progress' or @label='En cours']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading' or @text='En cours']")
@@ -359,10 +359,14 @@ public class MutualFunds extends _CommonPage {
 	String dividendOptionValue = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='"
 			+ dividendOption + "']";
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Trading Password') or contains(@label,'Mot de passe de Négociation')]")
+/*	@iOSFindBy(xpath = "//*[contains(@label,'Trading Password') or contains(@label,'Mot de passe de Négociation')]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/editTextPassword']")
-	private MobileElement tradingPassword;
+	private MobileElement tradingPassword;*/
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de négociation']/../XCUIElementTypeSecureTextField[1]")//@Author - Sushil 03-Mar-2017
+	@AndroidFindBy(id="com.td:id/editTextPassword")
+	private MobileElement editTextPassword;
+	
 	@iOSFindBy(xpath = "//*[contains(@label,'Preview Order') or contains(@label,'Aperçu de')]")
 	@AndroidFindBy(id = "com.td:id/orderEntryPreviewButton")//@Author - Sushil 21-Apr-2017
 	private MobileElement previewOrderBtn;
@@ -407,21 +411,20 @@ public class MutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Includes Commission?' or @text='Commissions incluses?']/following-sibling::*[1]/*")//@Author - Sushil 21-Apr-2017
 	private MobileElement includesComissionValue;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Estimated Principal') or contains(@label,'Principal estim')]/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Estimated Principal' or contains(@text,'Principal estim')]/following-sibling::*[1]/android.widget.TextView")//@Author - Sushil 21-Apr-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Estimated Principal') or contains(@label,'Principal estimé')]/following-sibling::XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Estimated Principal' or @text='Principal estimé']/following-sibling::*[1]/android.widget.TextView")//@Author - Sushil 21-Apr-2017
 	private MobileElement estimatedPrincipal;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Commission']/../*[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Commission']/following-sibling::*[1]/android.widget.TextView")//@Author - Sushil 21-Apr-2017
 	private MobileElement estimatedComission;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Estimated Total') or contains(@label,'Total estim')]/../*[2]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Estimated Total' or contains(@text,'Total estim')]/following-sibling::*[1]/android.widget.TextView")//@Author - Sushil 21-Apr-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Estimated Total') or contains(@label,'Total estimé')]/../*[2]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Estimated Total' or contains(@text,'Total estimé')]/following-sibling::*[1]/android.widget.TextView")//@Author - Sushil 21-Apr-2017
 	private MobileElement estimatedTotal;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Important Information') or contains(@value,'Important Information') or contains(@label,'Renseignements importants')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/importantInfoLink' and @text='Important Information']")
-	private MobileElement importantInformation;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/importantInfoLink' and @text='Important Information' or @text='Renseignements importants']")	private MobileElement importantInformation;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Send Order') or contains(@label,'Envoyer l’ordre')]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue' and (@text='Send Order' or @text='Envoyer l’ordre')]")
@@ -477,6 +480,14 @@ public class MutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation']")
 	private MobileElement Investing_Trade;
 
+	@AndroidFindBy(xpath = "//android.widget.Button[(@text='Cancel' or @text='Annuler') and @resource-id='android:id/button2']")
+	private MobileElement ignoreBackButton;
+	
+	
+	@iOSFindBy(xpath = "//*[@label='OK' or @label='Done']") //@Author - Sushil 08-Feb-2017
+	//@AndroidFindBy(id="android:id/button1")
+	private MobileElement iOSKybdOKButton;
+	
 	String dividendXpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='"
 			+ dividendOption + "']";
 
@@ -581,6 +592,7 @@ public class MutualFunds extends _CommonPage {
 		try {
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.verifyElementIsDisplayed(trade_header, t_verifyTrade);
+			Thread.sleep(1000);
 			//mobileAction.FunctionSwipe("up", 200, 200);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(selectAccount, "AccountSelected");
@@ -651,7 +663,7 @@ public class MutualFunds extends _CommonPage {
 				mobileAction.waitForElementToVanish(progressBar);
 				Thread.sleep(2000);
 				try {
-					String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'CA')]";
+					String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'CA') or contains(@label,'CAN')]";
 					mobileAction.FuncClick(
 							(MobileElement) CL.GetDriver().findElements(By.xpath(xpathSymbolFlag_ios)).get(0),
 							"First Symbol");
@@ -714,7 +726,8 @@ public class MutualFunds extends _CommonPage {
 				mobileAction.FuncSendKeys(symbolEditText1, searchKeyword1);
 				mobileAction.waitForElementToVanish(progressBar);
 				
-				MobileElement selectSymbolValue1 =mobileAction.verifyElementUsingXPath(selectSymbolVal1, "Symbol");
+				MobileElement selectSymbolValue1 = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(selectSymbolVal1));
 				
 				mobileAction.FuncClick(selectSymbolValue1, "Symbol");
 
@@ -726,7 +739,8 @@ public class MutualFunds extends _CommonPage {
 				mobileAction.FuncSendKeys(symbolEditText2, searchKeyword1);
 				mobileAction.waitForElementToVanish(progressBar);
 				
-				MobileElement selectSymbolValue = mobileAction.verifyElementUsingXPath(selectSymbolVal2, "Symbol");
+				MobileElement selectSymbolValue = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(selectSymbolVal2));
 				
 				mobileAction.FuncClick(selectSymbolValue, "Symbol");
 				}
@@ -778,23 +792,67 @@ public class MutualFunds extends _CommonPage {
 
 				mobileAction.FuncClick(back, "Back button");
 
-				mobileAction.verifyElementUsingXPath(dividendXpath, dividendOption);
-				mobileAction.verifyElementUsingXPath(quantityxpath, quantity);
-				mobileAction.verifyElementUsingXPath(amountXpath, amountXL);
+				MobileElement dividendoption = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(dividendXpath));
+
+				mobileAction.verifyElementIsDisplayed(dividendoption, dividendOption);
+
+				MobileElement quanty = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(quantityxpath));
+
+				mobileAction.verifyElementIsDisplayed(quanty, quantity);
+
+				MobileElement amount = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(amountXpath));
+
+				mobileAction.verifyElementIsDisplayed(amount, amountXL);
 				mobileAction.FunctionSwipe("down", 200, 200);
-				mobileAction.verifyElementUsingXPath(actionXpath, actionToPerform);
-				mobileAction.verifyElementUsingXPath(accountNumberXpath, trade_account_no);
+
+				MobileElement action = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(actionXpath));
+
+				mobileAction.verifyElementIsDisplayed(action, actionToPerform);
+
+				MobileElement accountNumber = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(accountNumberXpath));
+
+				mobileAction.verifyElementIsDisplayed(accountNumber, trade_account_no);
+
 				
 			} else {
 
 				mobileAction.FuncClick(back, "Back button");
 				
-				mobileAction.verifyElementUsingXPath(dividendiOSXpath, dividendOption);
-				mobileAction.verifyElementUsingXPath(quantityiOSxpath, quantity);
-				mobileAction.verifyElementUsingXPath(amountiOSXpath, amountXL);
+
+				MobileElement dividendoption = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(dividendiOSXpath));
+
+				mobileAction.verifyElementIsDisplayed(dividendoption, dividendOption);
+
+				MobileElement quanty = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(quantityiOSxpath));
+
+				mobileAction.verifyElementIsDisplayed(quanty, quantity);
+
+				MobileElement amount = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(amountiOSXpath));
+
+				mobileAction.verifyElementIsDisplayed(amount, amountXL);
+
+
 				mobileAction.FunctionSwipe("down", 200, 200);
-				mobileAction.verifyElementUsingXPath(actioniOSXpath, actionToPerform);
-				mobileAction.verifyElementUsingXPath(accountNumberiOSXpath, trade_account_no);
+
+				MobileElement action = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(actioniOSXpath));
+
+				mobileAction.verifyElementIsDisplayed(action, actionToPerform);
+
+				MobileElement accountNumber = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(accountNumberiOSXpath));
+
+				mobileAction.verifyElementIsDisplayed(accountNumber, trade_account_no);
+
+
 				
 			}
 
@@ -840,7 +898,9 @@ public class MutualFunds extends _CommonPage {
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(mutualQuantity, "Mutual Quantity");
 			if (platformName.equalsIgnoreCase("Android")) {
-				MobileElement selectQuantity = mobileAction.verifyElementUsingXPath(quantityXpath, "Quantity");
+				MobileElement selectQuantity = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(quantityXpath));
+
 				mobileAction.FuncClick(selectQuantity, quantity);
 			} else {
 				mobileAction.FuncSelectElementInTable(action_table, Firstpart, Secondpart, quantity);
@@ -870,6 +930,7 @@ public class MutualFunds extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(amount, "Amount");
+			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncSendKeys(amount, amountXL);
 			if (platformName.equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
@@ -894,10 +955,13 @@ public class MutualFunds extends _CommonPage {
 		Decorator();
 		try {
 			if (platformName.equalsIgnoreCase("Android")) {
-				MobileElement comission = mobileAction.verifyElementUsingXPath(comissionXpath, "Comission");
+				MobileElement comission = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(comissionXpath));
 				mobileAction.FuncClick(comission, comissionXpath);
 			} else {
-				MobileElement comission = mobileAction.verifyElementUsingXPath(comissionXpathiOS,"Comission");
+				MobileElement comission = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(comissionXpathiOS));
+
 				mobileAction.FuncClick(comission, comissionXpath);
 			}
 		} catch (NoSuchElementException e) {
@@ -921,7 +985,8 @@ public class MutualFunds extends _CommonPage {
 
 			mobileAction.FuncClick(dividendOptions, "Dividend Option");
 			if (platformName.equalsIgnoreCase("Android")) {
-				MobileElement dividentOptionElement = mobileAction.verifyElementUsingXPath(dividendOptionValue,"Dividend");
+				MobileElement dividentOptionElement = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						.findElement(By.xpath(dividendOptionValue));
 				mobileAction.FuncClick(dividentOptionElement, dividendOption);
 			} else {
 				mobileAction.FuncSelectElementInTable(action_table, Firstpart, Secondpart, dividendOption);
@@ -948,13 +1013,26 @@ public class MutualFunds extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(tradingPassword, "Trading Password");
-			mobileAction.FuncSendKeys(tradingPassword, trading_pwd_value);
+			if(mobileAction.isObjExists(editTextPassword, 2))
+			{
+			mobileAction.FuncClick(editTextPassword, "Trading Password");
+			mobileAction.FuncSendKeys(editTextPassword, trading_pwd_value);
+			}
 			if (platformName.equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
-			} else {
+				if (mobileAction.FuncIsDisplayed(ignoreBackButton)) {
+					mobileAction.FuncClick(ignoreBackButton, "ignore back");
+				}
+			} 
+			else if(mobileAction.isObjExists(iOSKybdOKButton))
+				mobileAction.FuncClick(iOSKybdOKButton, "iOSKybdOKButton");
+			
+			
+			
+			
+			/*else {
 				mobileAction.FuncClick(done, "Done");
-			}
+			}*/
 
 		} catch (NoSuchElementException e) {
 
@@ -1011,7 +1089,7 @@ public class MutualFunds extends _CommonPage {
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.verifyElementIsDisplayed(estimatedTotal, "Estimated Total");
 			mobileAction.verifyElementIsDisplayed(importantInformation, "Important Information");
-
+			selectAcknowledgement();
 		} catch (NoSuchElementException e) {
 
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1030,8 +1108,12 @@ public class MutualFunds extends _CommonPage {
 		try {
 
 			mobileAction.FunctionSwipe("up", 200, 200);
+			mobileAction.FunctionSwipe("up", 200, 200);
+			if(mobileAction.isObjExists(acknowledgement, 2))
+			{
 			mobileAction.verifyElementIsDisplayed(acknowledgement, "Acknowledgement");
 			mobileAction.FuncClick(acknowledgement, "Acknowledgement");
+			}
 
 		} catch (NoSuchElementException e) {
 

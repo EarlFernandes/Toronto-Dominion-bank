@@ -1686,7 +1686,8 @@ public class EventCase {
 			break;
 
 		case TradeStopLimitSell:
-			Trade.get().stopMarketSell();
+			//Trade.get().stopMarketSell();
+			Trade.get().stopLimitSell();//@Author - Shahbaaz 02-June-2017
 			break;
 		case TradeMarket:
 			Trade.get().market();
