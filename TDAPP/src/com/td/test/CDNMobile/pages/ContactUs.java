@@ -101,7 +101,7 @@ public class ContactUs extends _CommonPage {
 			
 			mobileAction.verifyElementIsDisplayed(call_Button, t_call);
 			mobileAction.FuncClick(call_Button, "Call Button");
-			mobileAction.FuncClick(callNow, "Call");
+			//mobileAction.FuncClick(callNow, "Call");
 		}
 		}catch (NoSuchElementException e) {
             CL.getGlobalVarriablesInstance().bStopNextFunction = false;
