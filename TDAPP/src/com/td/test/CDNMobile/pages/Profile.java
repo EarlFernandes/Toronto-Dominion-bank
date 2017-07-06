@@ -665,6 +665,12 @@ public class Profile extends _CommonPage {
 		Decorator();
 		String intial_name = get_name_initial_info();
 		String detail_name = get_name_detail_info();
+		if(intial_name.isEmpty() || detail_name.isEmpty()){
+			mobileAction.Report_Fail("Failed for empty name");
+			System.err.println("TestCase has failed for empty name");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
 		System.out.println("intial_name:"+ intial_name);
 		System.out.println("detail_name:"+ detail_name);
 		if(intial_name.equals(detail_name.substring(0, 1).toUpperCase())){	
