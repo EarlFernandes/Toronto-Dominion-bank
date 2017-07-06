@@ -70,6 +70,10 @@ public class PreviewPurchase extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Amount']/../android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement amount_value;
 	
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[7]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Accepted Fund Details & Fees']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
+	private MobileElement fund_facts_acknowledgement;
+	
 	String phoneReg ="\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
 
 	public synchronized static PreviewPurchase get() {
@@ -294,5 +298,33 @@ public class PreviewPurchase extends _CommonPage {
 		}		
 	}
 	
+	public void VerifyFundfactsAcknowledgement(){
+		Decorator();
+		try{
+//			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+//				amount_value = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_amount") + "']/../android.widget.RelativeLayout/android.widget.TextView", "Amount");
+//			}else{
+//				try{
+//					amount_value = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_Amount") + "']/../XCUIElementTypeStaticText[3]", "Amount");
+//				}catch (Exception e1){
+//					amount_value = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_Amount") + "']/../XCUIElementTypeStaticText[2]", "Amount");
+//				}
+//			}
+			if(!mobileAction.verifyElementIsPresent(fund_facts_acknowledgement)){
+				mobileAction.FuncSwipeWhileElementNotFound(fund_facts_acknowledgement, false, 5, "up");
+			}
+			String acknowlegmentText= mobileAction.getValue(fund_facts_acknowledgement);
+			System.out.println("acknowlegmentText:" +acknowlegmentText);
+			if(acknowlegmentText.toLowerCase().contains("yes")){
+				mobileAction.Report_Pass_Verified("Fund acknowledgement is "+acknowlegmentText);
+			}else{
+				mobileAction.Report_Fail("Fund acknowledgement is "+ acknowlegmentText);
+			}
+		}catch (Exception e){
+	        System.err.println("TestCase has failed.");
+	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+	        return;	
+		}			
+	}
 
 }

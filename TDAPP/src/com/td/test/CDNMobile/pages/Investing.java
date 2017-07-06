@@ -1478,14 +1478,16 @@ public class Investing extends _CommonPage {
 	public void randomlySelectOneFund(){
 		Decorator();
 		try{
-			if(!mobileAction.verifyElementIsPresent(foot_note)){
-				int randSwipe =  (int )(Math.random() * 5 + 1);
-				System.out.println("Randomly swipe times:" + (randSwipe-1));
-				for (int i=1; i<randSwipe ; i++){
-					if(mobileAction.verifyElementIsPresent(foot_note)){
-						break;
-					}else{
-						mobileAction.FuncSwipeOnce("up");
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				if(!mobileAction.verifyElementIsPresent(foot_note)){
+					int randSwipe =  (int )(Math.random() * 5 + 1);
+					System.out.println("Randomly swipe times:" + (randSwipe-1));
+					for (int i=1; i<randSwipe ; i++){
+						if(mobileAction.verifyElementIsPresent(foot_note)){
+							break;
+						}else{
+							mobileAction.FuncSwipeOnce("up");
+						}
 					}
 				}
 			}
@@ -1503,7 +1505,7 @@ public class Investing extends _CommonPage {
 			}
 			System.out.println("Randomly select "+ (randFund +1) + " from the list");
 			if(!mobileAction.verifyElementIsPresent(fundsList.get(randFund))){
-				mobileAction.FuncSwipeWhileElementNotFound(fundsList.get(randFund), false, 5, "up");
+				mobileAction.FuncSwipeWhileElementNotFound(fundsList.get(randFund), false, 20, "up");
 			}
 			String fundName = mobileAction.getValue(fundsList.get(randFund));
 			System.out.println("Name of the selected fund:" + fundName);

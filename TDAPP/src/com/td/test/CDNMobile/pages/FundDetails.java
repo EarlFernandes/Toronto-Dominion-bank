@@ -19,8 +19,6 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class FundDetails extends _CommonPage {
     private static FundDetails fundDetails;
-    private String regDate ="[A-Za-z]{3}\\s*\\d{2},\\s*\\d{4}";
-    private String regTime ="\\d{2}:\\d{2}:\\d{2}";
 
 	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
@@ -58,13 +56,17 @@ public class FundDetails extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/conversion_rate_used']")
 	private MobileElement usd_conversion_rate;
 	
-    @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+    @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/cad_market_value']")
     private MobileElement CAD_Market_Value; 
     
-    @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
+    @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[3]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/usd_market_value']")
+    private MobileElement USD_Market_Value; 
+    
+    @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[2]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/book_value']")
-    private MobileElement CAD_Book_Value; 
+    private MobileElement Book_Value; 
     
     @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeStaticText[1]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/timestamp']")
@@ -294,14 +296,34 @@ public class FundDetails extends _CommonPage {
 				System.out.println("Failed: CAD Market value not found");
 				mobileAction.Report_Fail("Failed to find CAD market value for US MF");
 				return;
+			}else{
+				String cadMarketValue = mobileAction.getValue(CAD_Market_Value);
+				mobileAction.Report_Pass_Verified("Market CAD value:"+cadMarketValue);
 			}
 			
-			if(!mobileAction.verifyElementIsPresent(CAD_Book_Value)){
+			if(!mobileAction.verifyElementIsPresent(USD_Market_Value)){
+				System.out.println("Failed: USD Market value not found");
+				mobileAction.Report_Fail("Failed to find USD market value for US MF");
+				return;
+			}else{
+				String cadMarketValue = mobileAction.getValue(USD_Market_Value);
+				mobileAction.Report_Pass_Verified("Market USD value:"+cadMarketValue);
+			}		
+			
+			
+			if(!mobileAction.verifyElementIsPresent(Book_Value)){
 				System.out.println("Failed: CAD book value not found");
 				mobileAction.Report_Fail("Failed to find CAD book value for US MF");
 				return;
+			}else{
+				String USD_bookvalue = mobileAction.getValue(Book_Value);
+				if(USD_bookvalue.contains("USD")){
+					mobileAction.Report_Pass_Verified("Book USD value:"+USD_bookvalue);
+				}else{
+					mobileAction.Report_Fail("USD fund of book value:"+USD_bookvalue);
+				}
 			}
-			mobileAction.Report_Pass_Verified("Market and book value are displayed in CAD for US MF");
+
 			
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -319,10 +341,9 @@ public class FundDetails extends _CommonPage {
 			
 			String timeStamp = mobileAction.getValue(time_stamp);
 			System.out.println("TimeStamp:"+timeStamp);
-			String dateInDisclaimer = mobileAction.FuncGetValByRegx(timeStamp, regDate);
-			String timeInDisclaimer = mobileAction.FuncGetValByRegx(timeStamp, regTime);
 			
-			if(!(dateInDisclaimer.isEmpty() || timeInDisclaimer.isEmpty())){
+			String disclaimerReg = "As of [A-Za-z]{3}\\s*\\d{2},\\s*\\d{4} at \\d{2}:\\d{2}:\\d{2}.*";
+			if(timeStamp.matches(disclaimerReg)){
 				mobileAction.Report_Pass_Verified(timeStamp);
 			}else{
 				mobileAction.Report_Fail_Not_Verified(timeStamp);

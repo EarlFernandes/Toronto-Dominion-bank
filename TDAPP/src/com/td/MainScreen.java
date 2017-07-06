@@ -102,7 +102,7 @@ public class MainScreen extends _CommonPage {
 				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
 			} else {
 				currentLocale = "EN";
-				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
+				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();				
 			}
 		} else { // Local execution
 			try { // Set udid explicitly for local execution, to handle udid
@@ -129,7 +129,7 @@ public class MainScreen extends _CommonPage {
 				} else {
 					appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
 				}
-
+				//System.out.println(appStringMap.toString());
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
