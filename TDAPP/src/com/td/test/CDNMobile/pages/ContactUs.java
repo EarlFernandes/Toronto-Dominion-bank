@@ -100,16 +100,16 @@ public class ContactUs extends _CommonPage {
 		if(mobileAction.verifyElementIsPresent(contactUs)){
 			
 			mobileAction.verifyElementIsDisplayed(call_Button, t_call);
-			mobileAction.FuncClick(call_Button, "Call Button");
+			//mobileAction.FuncClick(call_Button, "Call Button");
 			//mobileAction.FuncClick(callNow, "Call");
 		}
 		}catch (NoSuchElementException e) {
             CL.getGlobalVarriablesInstance().bStopNextFunction = false;
             System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-     } catch (InterruptedException e) {
+     } /*catch (InterruptedException e) {
             CL.getGlobalVarriablesInstance().bStopNextFunction = false;
             System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-     } catch (IOException e) {
+     }*/ catch (IOException e) {
             CL.getGlobalVarriablesInstance().bStopNextFunction = false;
             System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
      } catch (Exception e) {
