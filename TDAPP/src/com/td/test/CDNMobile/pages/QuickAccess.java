@@ -72,7 +72,7 @@ public class QuickAccess  extends _CommonPage {
 	public void VerifyQuickAccessSwitchWork() {
 		Decorator();
 		try {
-			mobileAction.verifyElementIsDisplayed(quickaccess_switch, "Quick Access");
+			mobileAction.verifyElementIsDisplayed(quickaccess_switch, "Quick Access Switch");
 			String switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch); 
 			System.out.println("Checked Status :" + switchCheckStatus);
 			if(switchCheckStatus.equalsIgnoreCase("true")){

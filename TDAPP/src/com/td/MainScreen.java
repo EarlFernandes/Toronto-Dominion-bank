@@ -13,14 +13,14 @@ public class MainScreen extends _CommonPage {
 	// ***** LOCAL EXECUTION PARAMETERS *****
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.104:4730/wd/hub/";
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.140.61:4764/wd/hub/";
 
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
-	private static final String APP_ANDROID = "APP_ANDROID_ZH_TRAD";
+	private static final String APP_ANDROID = "APP_ANDROID";
 
 	// Change this parameter to point to the correct ipa in Setup.xls for ios
-	private static final String APP_IOS = "APP_IOS_ZH_TRAD";
+	private static final String APP_IOS = "APP_IOS";
 
 	public String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env",
 			"Amount", "Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount",
