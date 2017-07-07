@@ -1080,6 +1080,8 @@ public class TradeMultiLeg extends _CommonPage{
 	/*		                    if(i>=5)
 			                    	mobileAction.FuncSwipeOnce("up");*/
 			                    
+			                    //Thread.sleep(1000)
+			                    
 			                    if(Integer.parseInt(sixmonth) >= 183)
 			                    {
 			                           CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).click();
