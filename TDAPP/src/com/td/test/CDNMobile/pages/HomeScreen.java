@@ -1316,11 +1316,11 @@ public class HomeScreen extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + accounts + "']", "Accounts");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfers_str") + "']", "Transfers");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("bills_str") + "']", "Bills");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + StringLookup.lookupString(currentLocale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing Accounts");
+				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + StringLookup.lookupString(currentLocale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing Accounts");
 				final String xPathFooter = "//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("contact_str") + "']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("dashboard_nearest_branch_lbl") + "' or @value='" + mobileAction.getAppString("dashboard_branch_lbl") + "']", "Nearest Branch");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("markets_str") + "']", "Markets");
+				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("markets_str") + "']", "Markets");
 	
 			} else {
 				final String accounts = mobileAction.getAppString("easy_access_accounts").toLowerCase().substring(0,1).toUpperCase() + mobileAction.getAppString("easy_access_accounts").toLowerCase().substring(1);
