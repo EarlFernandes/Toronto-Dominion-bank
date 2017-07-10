@@ -86,10 +86,10 @@ public class Managee_Payee extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("billsNavRowManagePayee") + "']", "Manage Payees title");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("country_all") + "']", "All");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("canada") + "']", "Canada");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("us") + "']", "US");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeLink[@label='" + mobileAction.getAppString("str_my_payees") + "']", "My Payees");
+//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("country_all") + "']", "All");
+//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("canada") + "']", "Canada");
+//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("us") + "']", "US");
+//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeLink[@label='" + mobileAction.getAppString("str_my_payees") + "']", "My Payees");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("billsNavRowManagePayee") + "']", "Manage Payees title");
 				// Switching to webview
