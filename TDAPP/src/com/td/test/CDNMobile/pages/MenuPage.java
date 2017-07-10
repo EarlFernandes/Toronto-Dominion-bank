@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.ChineseStrings;
 import com.td.MainScreen;
 import com.td.StringLookup;
 import com.td._CommonPage;
@@ -35,7 +36,7 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_CROSSBORDER']/XCUIElementTypeStaticText")
 	private MobileElement crossBorder;
 	
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_menu_icon_investing' or @name='SIDEBAR_ITEM_7']/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label= '" + ChineseStrings.Simplified.FLYOUT_MENU_INVESTING_ACCOUNTS + "' or @label='"+ ChineseStrings.Traditional.FLYOUT_MENU_INVESTING_ACCOUNTS + "']")
 	private MobileElement investing;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Comptes Placements directs TD']")
@@ -48,7 +49,7 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_FEEDBACK']/XCUIElementTypeStaticText")
 	private MobileElement feedback;
 	
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_DEPOSIT' or @name='SIDEBAR_ITEM_6']/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_DEPOSIT']/XCUIElementTypeStaticText")
 	private MobileElement mobile_Deposit_button;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_ACCOUNTS']/XCUIElementTypeStaticText")

@@ -1366,11 +1366,11 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(fromAccountValue, "From Account Value");
 					mobileAction.verifyElementIsDisplayed(ToAccountValue, "To Account Value");
 					mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
-					mobileAction.verifyElementIsDisplayed(exchangeRate, "Exchange Rate");
+					//mobileAction.verifyElementIsDisplayed(exchangeRate, "Exchange Rate");
 					mobileAction.verifyElementIsDisplayed(makeAnthTran_Button, "MAKE ANOTHER Transfer");
-					mobileAction.FuncClick(btnMenu, "Menu");
-					mobileAction.FuncClick(btnLogout, "Logout");
-					mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
+//					mobileAction.FuncClick(btnMenu, "Menu");
+//					mobileAction.FuncClick(btnLogout, "Logout");
+//					mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
 				} else {
 					perFormTransfer() ;
 					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
@@ -1383,9 +1383,9 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
 					mobileAction.FunCnewSwipe(makeAnthTran_Button, false, 1);
 					mobileAction.verifyElementIsDisplayed(makeAnthTran_Button, "MAKE ANOTHER Transfer");
-					mobileAction.FuncClick(btnMenu, "Menu");
-					mobileAction.FuncClick(btnLogout, "Logout");
-					mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
+//					mobileAction.FuncClick(btnMenu, "Menu");
+//					mobileAction.FuncClick(btnLogout, "Logout");
+//					mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
 					}
 			}
 
