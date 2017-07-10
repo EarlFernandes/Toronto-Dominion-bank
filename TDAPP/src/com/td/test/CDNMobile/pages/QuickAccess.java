@@ -162,10 +162,7 @@ public class QuickAccess  extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyTextEquality(quickaccess_title.getText(), mobileAction.getAppString("easy_access_tc_title"));
 				mobileAction.verifyTextEquality(title.getText().trim(), mobileAction.getAppString("easy_access_enroll_text1").trim());
-				// FIXME: What is the correct string message here?
-				//mobileAction.verifyTextEquality(msg.getText(), mobileAction.getAppString("watch_toggle_footer"));
 				mobileAction.verifyTextEquality(getStartedButton.getText(), mobileAction.getAppString("btn_get_started"));
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("easy_access_enroll_title") + "']", "Welcome to quick access title");

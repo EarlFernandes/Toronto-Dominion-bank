@@ -201,19 +201,19 @@ public class Logout extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyTextEquality(logoutHeader.getText(), mobileAction.getAppString("logoutSuccessPageHeader"));
-				mobileAction.verifyTextEquality(successMsg.getText(), mobileAction.getAppString("logoutSuccessCopy"));
-				mobileAction.verifyTextEquality(successTitle.getText(), mobileAction.getAppString("success"));
-				mobileAction.verifyTextEquality(goBackHome.getText(), mobileAction.getAppString("btn_go_back_home"));
-				mobileAction.verifyTextEquality(contactUs.getText(), mobileAction.getAppString("logoutSuccessQuickTaskContact"));
-				mobileAction.verifyTextEquality(locations.getText(), mobileAction.getAppString("logoutSuccessQuickTaskFindLocations"));
+//				mobileAction.verifyTextEquality(logoutHeader.getText(), mobileAction.getAppString("logoutSuccessPageHeader"));
+//				mobileAction.verifyTextEquality(successMsg.getText(), mobileAction.getAppString("logoutSuccessCopy"));
+//				mobileAction.verifyTextEquality(successTitle.getText(), mobileAction.getAppString("success"));
+//				mobileAction.verifyTextEquality(goBackHome.getText(), mobileAction.getAppString("btn_go_back_home"));
+//				mobileAction.verifyTextEquality(contactUs.getText(), mobileAction.getAppString("logoutSuccessQuickTaskContact"));
+//				mobileAction.verifyTextEquality(locations.getText(), mobileAction.getAppString("logoutSuccessQuickTaskFindLocations"));
 			} else {
-				mobileAction.verifyElementUsingXPath("//android.widget.RelativeLayout[@resource-id='com.td:id/receipt_info_layout']/android.widget.TextView[@text='" + mobileAction.getAppString("success") + "']", "Success");
-				mobileAction.verifyElementUsingXPath("//android.widget.RelativeLayout[@resource-id='com.td:id/receipt_info_layout']/android.widget.TextView[@text='" + mobileAction.getAppString("logoutSuccessCopy") + "']", "Success Message");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("logoutSuccessPageHeader") + "']", "Logged Out header");
-				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("quick_links_go_back_home").toUpperCase() + "']", "Go back home");
-				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("contact_str").toUpperCase() + "']", "Contact us");
-				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("find_locations").toUpperCase() + "']", "Locations");
+//				mobileAction.verifyElementUsingXPath("//android.widget.RelativeLayout[@resource-id='com.td:id/receipt_info_layout']/android.widget.TextView[@text='" + mobileAction.getAppString("success") + "']", "Success");
+//				mobileAction.verifyElementUsingXPath("//android.widget.RelativeLayout[@resource-id='com.td:id/receipt_info_layout']/android.widget.TextView[@text='" + mobileAction.getAppString("logoutSuccessCopy") + "']", "Success Message");
+//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("logoutSuccessPageHeader") + "']", "Logged Out header");
+//				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("quick_links_go_back_home").toUpperCase() + "']", "Go back home");
+//				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("contact_str").toUpperCase() + "']", "Contact us");
+//				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("find_locations").toUpperCase() + "']", "Locations");
 			}
 		} catch (Exception e) {
 			try {
