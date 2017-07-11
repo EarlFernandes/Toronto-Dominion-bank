@@ -36,7 +36,7 @@ public class QuickAccess  extends _CommonPage {
 	@iOSFindBy(accessibility = "QUICKBALANCE_ONBOARDING_START_BUTTON")
 	private MobileElement getStartedButton;
 
-	@iOSFindBy(xpath = "//*[@label='Quick Access' or @label='Accès rapide']/../XCUIElementTypeSwitch")
+	@iOSFindBy(xpath = "//*[@label='Quick Access Settings' or @label='Paramètres Accès rapide']/../XCUIElementTypeSwitch")
 	@AndroidFindBy(xpath = "//android.widget.Switch[@content-desc='Quick Access' or @content-desc='Accès rapide']")
 	private MobileElement quickaccess_switch;	
 	
