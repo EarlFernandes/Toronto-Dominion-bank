@@ -711,7 +711,7 @@ public class PendingInteracTransfer extends _CommonPage{
 								MobileElement Sender = mobileAction.verifyElementUsingXPath(select_senderValue, "Sender");
 								mobileAction.FuncClick(Sender, "Sender");
 								mobileAction.waitForElementToDisappear(select_senderValue);
-								mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 1, "down", true);
+								//mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 1, "down", true);
 							}
 							mobileAction.FuncClick(selectTransaction, "Select Transaction");
 							mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
