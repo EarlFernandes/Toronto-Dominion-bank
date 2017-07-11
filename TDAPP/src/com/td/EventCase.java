@@ -37,6 +37,7 @@ import com.td.test.CDNMobile.pages.MLConfirmOrderReceipt;
 import com.td.test.CDNMobile.pages.MLEnterOrderNegative;
 import com.td.test.CDNMobile.pages.MLOptionChainTable;
 import com.td.test.CDNMobile.pages.MLOrderDetails;
+import com.td.test.CDNMobile.pages.MLOrdersTab;
 import com.td.test.CDNMobile.pages.ManageContacts;
 import com.td.test.CDNMobile.pages.ManageRecipients;
 import com.td.test.CDNMobile.pages.ManageSettings;
@@ -195,7 +196,7 @@ public class EventCase {
 		verifyStockOptionConfirmOrderReceipt,verifyOptionOptionConfirmOrderReceipt,clickPostorderMyAccount,
 		clickPostorderTrade,clickQuickLinkHome,clickQuickLinkTrade,clickQuickLinkOrder,verifyOptionOptionChainTableSubmit,
 		verifyStockOptionChainTableSubmit,verifyStockOptionChainTableCancel,verifyOptionOptionChainTableCancel,
-		verifyInvalidTradingPassword,verifyStockOptionChangeOrder,verifyOptionOptionChangeOrder,verifyStockOptionOrderDetails,verifyOptionOptionOrderDetails,
+		verifyInvalidTradingPassword,verifyStockOptionChangeOrder,verifyOptionOptionChangeOrder,verifyStockOptionOrderDetails,verifyOptionOptionOrderDetails,verifyMLOrdersTabDetails,
 		Test,
 		
 		//P2P
@@ -2674,6 +2675,10 @@ public class EventCase {
 			MLOrderDetails.get().verifyOptionOptionOrderDetails();
 		break;
 		
+		case verifyMLOrdersTabDetails:
+			MLOrdersTab.get().verifyMLOrdersTabDetails();
+		break;
+		
 		case Test:
 			MLConfirmOrder.get().Test();
 		break;
@@ -3313,3 +3318,4 @@ public class EventCase {
 	}
 
 }
+

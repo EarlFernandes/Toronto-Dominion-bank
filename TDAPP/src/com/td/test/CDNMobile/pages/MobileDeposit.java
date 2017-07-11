@@ -83,7 +83,8 @@ public class MobileDeposit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/MobileDepositReceipts_ViewDetails_Date_TextView']")
 	private MobileElement datePicker;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/enrollment_headertitle1' and contains(@text,'We')]")
+	@iOSFindBy(accessibility="MRDCNOTELIGIBLE_LABLE1")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/enrollment_headertitle1']")
 	private MobileElement validation_FirstLine;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'not eligible to use TD Mobile Deposit at this time.')]")
@@ -184,12 +185,12 @@ public class MobileDeposit extends _CommonPage {
 		try {
 			mobileAction.waitForElementToDisappear(progressBar);
 			mobileAction.verifyElementIsDisplayed(mobile_Deposit_Header, mobile_Header_value);
-			mobileAction.verifyElementIsDisplayed(validation_FirstLine, ConstantClass.firstLine_Value);
-			mobileAction.verifyElementIsDisplayed(validation_SecondLine,ConstantClass.secondLine_Value);
-			mobileAction.verifyElementIsDisplayed(validation_ThirdLine, ConstantClass.t_thirdLine_Value);
-			//mobileAction.verifyElementIsDisplayed(validationfourthLine, ConstantClass.t_fourthLine_Value);
-			mobileAction.verifyElementIsDisplayed(validation_FifthLine, ConstantClass.t_fifthLine_Value);
-			mobileAction.verifyElementIsDisplayed(validation_SixthLine, ConstantClass.t_sixthLine_Value);
+			mobileAction.verifyElementIsPresent(validation_FirstLine);
+//			mobileAction.verifyElementIsDisplayed(validation_SecondLine,ConstantClass.secondLine_Value);
+//			mobileAction.verifyElementIsDisplayed(validation_ThirdLine, ConstantClass.t_thirdLine_Value);
+//			//mobileAction.verifyElementIsDisplayed(validationfourthLine, ConstantClass.t_fourthLine_Value);
+//			mobileAction.verifyElementIsDisplayed(validation_FifthLine, ConstantClass.t_fifthLine_Value);
+//			mobileAction.verifyElementIsDisplayed(validation_SixthLine, ConstantClass.t_sixthLine_Value);
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

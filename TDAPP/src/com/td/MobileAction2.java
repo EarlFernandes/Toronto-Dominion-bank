@@ -3038,6 +3038,46 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 
 	}
 	
+	  /**
+     * This method will verify the text contained in another String.
+     * 
+     *
+     * @param objElement
+     *            The MobileElement on which the click action has to be
+     *            performed.
+     * @throws Exception
+     *             In case an exception occurs while clicking over the element.
+     *             In case the element is not found over the screen.
+     */
+    public void verifyElementTextContainsReverse(MobileElement objElement, String text) {//throws IOException { //@Author - Sushil 31-Mar-2017 Modified
+	try {
+		String sEleText = FuncGetElementText(objElement);
+		if(sEleText!=null)
+		{
+			if (text.contains(sEleText)) 
+				GetReporting().FuncReport("Pass", "Element contains text<b> " + text + "</b> .Element text:" + sEleText);
+			else
+				GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
+		}
+		else
+		{
+			sEleText = "";
+			if (text.contains(sEleText)) 
+				GetReporting().FuncReport("Pass", "Element contains text<b> " + text + "</b> .Element text:" + sEleText);
+			else
+				GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
+		}
+	}
+	 catch (IOException e) {
+	    try {
+			GetReporting().FuncReport("Fail", "Element does not contain expected text:" + text);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    //throw e;
+	}
+    }
 	public String getAppString(final String key) {
 		String s = (String)_CommonPage.appStringMap.get(key);
 		//System.out.println("String returned from key is: " + s);

@@ -784,7 +784,7 @@ public class Accounts extends _CommonPage {
 	public void NavigationToHomePage(){
 		Decorator();
 		try {
-			mobileAction.waitForElementToVanish(progressBar);
+			//mobileAction.waitForElementToVanish(progressBar);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				if(mobileAction.verifyElementIsPresent(back_button)){
 					mobileAction.FuncClick(back_button, "<");

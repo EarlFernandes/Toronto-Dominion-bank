@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.ChineseStrings;
 import com.td.MainScreen;
 import com.td.StringLookup;
 import com.td._CommonPage;
@@ -35,7 +36,7 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_CROSSBORDER']/XCUIElementTypeStaticText")
 	private MobileElement crossBorder;
 	
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_INVESTING']/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label= '" + ChineseStrings.Simplified.FLYOUT_MENU_INVESTING_ACCOUNTS + "' or @label='"+ ChineseStrings.Traditional.FLYOUT_MENU_INVESTING_ACCOUNTS + "']")
 	private MobileElement investing;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Comptes Placements directs TD']")
@@ -324,9 +325,6 @@ public class MenuPage extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				investing = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + StringLookup.lookupString(currentLocale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing menu element");
-			} else {
-				// FIXME: Workaround
-				investing = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + StringLookup.lookupString(currentLocale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing menu element");
 			}
 			boolean isLanguageFrench = getTestdata("Language").equals("FRE");
 			MobileElement investingElement = isLanguageFrench ? investingFRE : investing;

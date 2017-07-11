@@ -71,7 +71,8 @@ public class TradeMIT extends _CommonPage {
 	private MobileElement selectAccount;
 
 	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]")//@Author - Sushil 06-Feb-2017
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @index='0']")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @index='0']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText']")
 	private MobileElement defaultTradeAccount;
 	
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']")

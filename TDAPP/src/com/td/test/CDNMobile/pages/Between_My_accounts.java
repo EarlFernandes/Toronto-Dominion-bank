@@ -46,7 +46,9 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/second_amount_val']")
 	private MobileElement amountSent;
 
-	@iOSFindBy(accessibility = "BETWEENMYACCOUNTS_TO1")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'To Account') or contains(@label, '转入账户') or contains(@label, '轉入賬戶')]")
+    // FIXME: This is a bug, not seen in 17.5.1+ builds
+	//@iOSFindBy(accessibility = "BETWEENMYACCOUNTS_TO1")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtToAccount']")
 	private MobileElement txtto_Acnt;
 
@@ -1364,11 +1366,11 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(fromAccountValue, "From Account Value");
 					mobileAction.verifyElementIsDisplayed(ToAccountValue, "To Account Value");
 					mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
-					mobileAction.verifyElementIsDisplayed(exchangeRate, "Exchange Rate");
+					//mobileAction.verifyElementIsDisplayed(exchangeRate, "Exchange Rate");
 					mobileAction.verifyElementIsDisplayed(makeAnthTran_Button, "MAKE ANOTHER Transfer");
-					mobileAction.FuncClick(btnMenu, "Menu");
-					mobileAction.FuncClick(btnLogout, "Logout");
-					mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
+//					mobileAction.FuncClick(btnMenu, "Menu");
+//					mobileAction.FuncClick(btnLogout, "Logout");
+//					mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
 				} else {
 					perFormTransfer() ;
 					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
@@ -1381,9 +1383,9 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
 					mobileAction.FunCnewSwipe(makeAnthTran_Button, false, 1);
 					mobileAction.verifyElementIsDisplayed(makeAnthTran_Button, "MAKE ANOTHER Transfer");
-					mobileAction.FuncClick(btnMenu, "Menu");
-					mobileAction.FuncClick(btnLogout, "Logout");
-					mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
+//					mobileAction.FuncClick(btnMenu, "Menu");
+//					mobileAction.FuncClick(btnLogout, "Logout");
+//					mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
 					}
 			}
 

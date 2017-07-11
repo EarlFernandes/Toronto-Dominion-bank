@@ -60,7 +60,9 @@ public class Interac_e_Transfer extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Interac e-Transfer']")
     private MobileElement amountLbl;
     
-    @iOSFindBy(accessibility = "INTERACSEND_VIEW_CONTINUE")
+    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label = '继续' or @label = 'Continue' or @label = '繼續']")
+    // FIXME: This is a bug, not seen in 17.5.1+ builds
+    //@iOSFindBy(accessibility = "INTERACSEND_VIEW_CONTINUE")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/button_footer']")
     private MobileElement transfer_Continue;
 
@@ -1167,12 +1169,7 @@ public class Interac_e_Transfer extends _CommonPage {
 	public void verifyPendingETransfersTextElements() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyTextEquality(interac_Header.getText(), mobileAction.getAppString("str_pending_interact_etransfer").replaceAll("\\<.*?>",""));
-//				for(MobileElement m : dateHeaders) {
-//					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
-//				}
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderPendingInteracETransfer").replaceAll("\\<.*?>","") + "']", "Pending Interac e-transfer title");
 				for(MobileElement m : dateHeaders) {
 					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
