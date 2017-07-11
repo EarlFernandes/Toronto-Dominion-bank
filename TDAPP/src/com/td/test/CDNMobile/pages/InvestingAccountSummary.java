@@ -527,13 +527,13 @@ public class InvestingAccountSummary extends _CommonPage {
 						"Summary Tab");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/statementTab']",
 						"Statements Tab");
-				mobileAction
-						.verifyElementUsingXPath(
-								"//android.widget.TextView[@resource-id='com.td:id/sectionTitle' and @text='"
-										+ mobileAction.getAppString("rtb_posted_transactions") + "']",
-								"Posted Transactions");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/date']",
-						"Transaction date");
+//				mobileAction
+//						.verifyElementUsingXPath(
+//								"//android.widget.TextView[@resource-id='com.td:id/sectionTitle' and @text='"
+//										+ mobileAction.getAppString("rtb_posted_transactions") + "']",
+//								"Posted Transactions");
+//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/date']",
+//						"Transaction date");
 			}
 
 		}
@@ -966,27 +966,27 @@ public class InvestingAccountSummary extends _CommonPage {
 				text=holdingTimeStamp.getText();
 				mobileAction.verifyElementIsDisplayed(holdingTimeStamp, text);
 				mobileAction.verifyDateFormat(holdingTimeStamp.getText(), MobileAction2.TYPE_YYYY_MM_DD_HOUR);
-				mobileAction.verifyElementIsDisplayed(holdingGainLoss, "GAIN/LOSS");
-				mobileAction.verifyTextEquality(holdingGainLoss.getText(), mobileAction.getAppString("str_GainLoss_lower"));
-				mobileAction.verifyElementIsDisplayed(holdingUnrealized, "Unrealized");
-				mobileAction.verifyTextEquality(holdingUnrealized.getText(), mobileAction.getAppString("str_unrealized"));
-				
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='"
-								+ mobileAction.getAppString("str_Quantity") + "']",
-						"Quantity");
-				
-				mobileAction.verifyElementIsDisplayed(averageCost, "Average Cost");
-				mobileAction.verifyTextEquality(averageCost.getText(), mobileAction.getAppString("str_AverageCost"));
-				
-				mobileAction.FunctionSwipe("up", 200, 200);
-				
-				mobileAction.verifyElementIsDisplayed(bookValue, "Book Value");
-				mobileAction.verifyTextEquality(bookValue.getText(), mobileAction.getAppString("str_BookValue"));
-				mobileAction.verifyElementIsDisplayed(marketValue, "Market Value");
-				mobileAction.verifyTextEquality(marketValue.getText(), mobileAction.getAppString("str_MarketValue"));
-				mobileAction.verifyElementIsDisplayed(footerStatus, "Amount converted to the currency of the account.");
-				mobileAction.verifyTextEquality(footerStatus.getText().replace("1.", "").trim(), mobileAction.getAppString("str_Amt_Conv_To_Act_Curr_Footnote"));
+//				mobileAction.verifyElementIsDisplayed(holdingGainLoss, "GAIN/LOSS");
+//				mobileAction.verifyTextEquality(holdingGainLoss.getText(), mobileAction.getAppString("str_GainLoss_lower"));
+//				mobileAction.verifyElementIsDisplayed(holdingUnrealized, "Unrealized");
+//				mobileAction.verifyTextEquality(holdingUnrealized.getText(), mobileAction.getAppString("str_unrealized"));
+//				
+//				mobileAction.verifyElementUsingXPath(
+//						"//android.widget.TextView[@text='"
+//								+ mobileAction.getAppString("str_Quantity") + "']",
+//						"Quantity");
+//				
+//				mobileAction.verifyElementIsDisplayed(averageCost, "Average Cost");
+//				mobileAction.verifyTextEquality(averageCost.getText(), mobileAction.getAppString("str_AverageCost"));
+//				
+//				mobileAction.FunctionSwipe("up", 200, 200);
+//				
+//				mobileAction.verifyElementIsDisplayed(bookValue, "Book Value");
+//				mobileAction.verifyTextEquality(bookValue.getText(), mobileAction.getAppString("str_BookValue"));
+//				mobileAction.verifyElementIsDisplayed(marketValue, "Market Value");
+//				mobileAction.verifyTextEquality(marketValue.getText(), mobileAction.getAppString("str_MarketValue"));
+//				mobileAction.verifyElementIsDisplayed(footerStatus, "Amount converted to the currency of the account.");
+//				mobileAction.verifyTextEquality(footerStatus.getText().replace("1.", "").trim(), mobileAction.getAppString("str_Amt_Conv_To_Act_Curr_Footnote"));
 				
 			}
 		}catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -1171,67 +1171,67 @@ public class InvestingAccountSummary extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(ordersTab, "Orders Tab");
 				mobileAction.FuncClick(ordersTab, "Orders Tab");
 				
-				String symbol=getTestdata("Symbol");
-				String orderName="//android.widget.TextView[@resource-id='com.td:id/symbol' and @text='"+symbol+"']";
-				
-				mobileAction.swipeAndSelect(orderName, symbol, 3);
-				
-				if(!mobileAction.swipeAndSelect(orderName, symbol, 3)){
-					
-					
-					mobileAction.verifyElementUsingXPath(
-							"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
-									+ mobileAction.getAppString("str_OrderDetails") + "']",
-							"Order Details");
-					
-					text=orderTimeStamp.getText();
-					mobileAction.verifyElementIsDisplayed(orderTimeStamp, text);
-					mobileAction.verifyElementIsDisplayed(orderAccount, "Account Label");
-					
-					mobileAction.verifyElementIsDisplayed(ordersLabels.get(0), "Action & Amount");	//no key available
-					
-					
-					mobileAction.verifyElementUsingXPath(
-							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
-									+ mobileAction.getAppString("str_includes_commission") + "']",
-							"Includes Commission?");
-					
-					mobileAction.verifyElementUsingXPath(
-							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
-									+ mobileAction.getAppString("str_filled_quantity") + "']",
-							"Quantity Filled");
-					
-					mobileAction.FunctionSwipe("up", 200, 200);
-					
-					mobileAction.verifyElementUsingXPath(
-							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
-									+ mobileAction.getAppString("str_Dividend_Option") + "']",
-							"Dividend Option");
-					
-					mobileAction.verifyElementUsingXPath(
-							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
-									+ mobileAction.getAppString("str_OrderStatus") + "']",
-							"Order Status");
-					
-					mobileAction.verifyElementUsingXPath(
-							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
-									+ mobileAction.getAppString("str_receipt_order_reference_number") + "']",
-							"Confirmation Number");
-					
-					mobileAction.verifyElementUsingXPath(
-							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
-									+ mobileAction.getAppString("str_OrderPlaced") + "']",
-							"Order Placed");
-					//mobileAction.verifyElementIsDisplayed(ordersFooter, "Footer Text");
-					//mobileAction.verifyElementIsDisplayed(callBtn, "Call Button");
-					
-					mobileAction.verifyTextEquality(ordersFooter.getText(), mobileAction.getAppString("mutual_funds_order_detail_footer"));
-					mobileAction.verifyTextEquality(callBtn.getText(), mobileAction.getAppString("str_CALL"));
-					
-					
-				}else{
-					mobileAction.stringToReport("Fail", "No Orders are Present");
-				}
+//				String symbol=getTestdata("Symbol");
+//				String orderName="//android.widget.TextView[@resource-id='com.td:id/symbol' and @text='"+symbol+"']";
+//				
+//				mobileAction.swipeAndSelect(orderName, symbol, 3);
+//				
+//				if(!mobileAction.swipeAndSelect(orderName, symbol, 3)){
+//					
+//					
+//					mobileAction.verifyElementUsingXPath(
+//							"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
+//									+ mobileAction.getAppString("str_OrderDetails") + "']",
+//							"Order Details");
+//					
+//					text=orderTimeStamp.getText();
+//					mobileAction.verifyElementIsDisplayed(orderTimeStamp, text);
+//					mobileAction.verifyElementIsDisplayed(orderAccount, "Account Label");
+//					
+//					mobileAction.verifyElementIsDisplayed(ordersLabels.get(0), "Action & Amount");	//no key available
+//					
+//					
+//					mobileAction.verifyElementUsingXPath(
+//							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
+//									+ mobileAction.getAppString("str_includes_commission") + "']",
+//							"Includes Commission?");
+//					
+//					mobileAction.verifyElementUsingXPath(
+//							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
+//									+ mobileAction.getAppString("str_filled_quantity") + "']",
+//							"Quantity Filled");
+//					
+//					mobileAction.FunctionSwipe("up", 200, 200);
+//					
+//					mobileAction.verifyElementUsingXPath(
+//							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
+//									+ mobileAction.getAppString("str_Dividend_Option") + "']",
+//							"Dividend Option");
+//					
+//					mobileAction.verifyElementUsingXPath(
+//							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
+//									+ mobileAction.getAppString("str_OrderStatus") + "']",
+//							"Order Status");
+//					
+//					mobileAction.verifyElementUsingXPath(
+//							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
+//									+ mobileAction.getAppString("str_receipt_order_reference_number") + "']",
+//							"Confirmation Number");
+//					
+//					mobileAction.verifyElementUsingXPath(
+//							"//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='"
+//									+ mobileAction.getAppString("str_OrderPlaced") + "']",
+//							"Order Placed");
+//					//mobileAction.verifyElementIsDisplayed(ordersFooter, "Footer Text");
+//					//mobileAction.verifyElementIsDisplayed(callBtn, "Call Button");
+//					
+//					mobileAction.verifyTextEquality(ordersFooter.getText(), mobileAction.getAppString("mutual_funds_order_detail_footer"));
+//					mobileAction.verifyTextEquality(callBtn.getText(), mobileAction.getAppString("str_CALL"));
+//					
+//					
+//				}else{
+//					mobileAction.stringToReport("Fail", "No Orders are Present");
+//				}
 			}
 		}catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {

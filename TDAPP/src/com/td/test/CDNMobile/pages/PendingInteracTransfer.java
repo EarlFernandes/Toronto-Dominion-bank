@@ -72,7 +72,7 @@ public class PendingInteracTransfer extends _CommonPage{
 	private MobileElement cancel;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Don')]")
-	@AndroidFindBy(xpath = "//android.widget.Button@resource-id='android:id/button1' and @text='Don't Cancel']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Don't Cancel']")
 	private MobileElement dontCancel;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Transfers']")
@@ -638,7 +638,7 @@ public class PendingInteracTransfer extends _CommonPage{
 								mobileAction.FuncClick(sender, "Sender");
 								mobileAction.waitForElementToDisappear(select_senderValue);
 							}
-							mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
+//							mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 3, "down", true);
 							mobileAction.FuncClick(selectTransaction, "Select Transaction");
 							mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 							mobileAction.FuncClick(depositToContinue,"Continue");

@@ -2,6 +2,7 @@ package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -725,7 +726,7 @@ public class ManageRecipients extends _CommonPage {
 				final WebElement name = mobileAction.verifyWebElementUsingXPath("//input[@name='name']", "Name");
 				name.sendKeys(getTestdata("RecipientName"));
 				final WebElement email = mobileAction.verifyWebElementUsingXPath("//input[@name='email']", "Email");
-				email.sendKeys(getTestdata("RecipientMail"));
+				email.sendKeys(UUID.randomUUID().toString().replace("-", "") + "@test.zz");
 				final WebElement securityQ = mobileAction.verifyWebElementUsingXPath("//input[@name='question']", "Security Questions");
 				securityQ.sendKeys(getTestdata("Security_Question"));
 				final WebElement answer = mobileAction.verifyWebElementUsingXPath("//input[@name='securityAnswer']", "Answer");
