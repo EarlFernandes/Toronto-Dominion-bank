@@ -509,7 +509,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 					mobileAction.FuncHideKeyboard();
 				}else{
-					done = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
+					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or label='OK' or label='" + mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
 					mobileAction.FuncClick(done, "Done");
 				}
 			}else{
@@ -909,5 +909,60 @@ public class PurchaseMutualFunds extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}	
 	}
+	
+	public void VerifyEmailAddressIsEditable(){
+		Decorator();
+		try {
+			mobileAction.FuncSwipeWhileElementNotFound(email_info, false, 3, "up");
+
+			String emialInfo = mobileAction.getValue(email_info);
+			
+			if(!emialInfo.isEmpty()){
+				System.out.println("Email now:" + emialInfo);
+				mobileAction.FuncSendKeys(email_info, "");
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+					mobileAction.FuncHideKeyboard();
+				}else{
+					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or label='OK' or label='" + mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
+					mobileAction.FuncClick(done, "Done");
+				}
+				
+				emialInfo = mobileAction.getValue(email_info);
+				emialInfo = replacePlaceholderToNothing(emialInfo, emailPlaceHolder);
+				if(emialInfo.isEmpty()){
+					mobileAction.Report_Pass_Verified("Email is edited to empty");
+				}else{
+					mobileAction.Report_Fail("Email is not empty as expected");
+				}
+			}else{
+				System.out.println("Email is empty");
+				mobileAction.FuncSendKeys(email_info, "test@td.com");
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+					mobileAction.FuncHideKeyboard();
+				}else{
+					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or label='OK' or label='" + mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
+					mobileAction.FuncClick(done, "Done");
+				}
+				
+				emialInfo = mobileAction.getValue(email_info);
+				if(emialInfo.equalsIgnoreCase("test@td.com")){
+					mobileAction.Report_Pass_Verified("Email is edited to test@td.com");
+				}else{
+					mobileAction.Report_Fail("Email is:" + emialInfo +" not as expected");
+				}
+			}
+											
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}	
+	}
+	
 	
 }

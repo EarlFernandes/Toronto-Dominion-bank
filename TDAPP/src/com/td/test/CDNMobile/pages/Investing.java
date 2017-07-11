@@ -192,12 +192,16 @@ public class Investing extends _CommonPage {
 	private MobileElement first_usd_fund;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]") 
-	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/activityContent']/android.widget.LinearLayout[@index='0']/android.widget.TextView[@index='1']")
+	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/activityContent']/android.widget.LinearLayout[@index='0']/android.widget.LinearLayout/android.widget.TextView[@index='1']")
 	private MobileElement first_transaction;
 	
 	@iOSFindBy(xpath = "//*[@name='TD_ACCOUNT_FOOTER_VIEW_LABEL']") 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/timestamp']")
 	private MobileElement foot_note;
+	
+	@iOSFindBy(xpath = "//*[@name='TD_ACCOUNT_FOOTER_VIEW_LABEL']") 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/canadianDollarNote']")
+	private MobileElement transaction_foot_note;
 	
 	@iOSFindBy(xpath = "//*[@name='FOUND_HOLDING_FUND']") 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textview_left']")
@@ -1575,10 +1579,10 @@ public class Investing extends _CommonPage {
 	public void SelectLastTransaction(){
 		Decorator();
 		try{
-			mobileAction.FuncSwipeWhileElementNotFound(foot_note, false, 5, "up");
+			mobileAction.FuncSwipeWhileElementNotFound(transaction_foot_note, false, 5, "up");
 			List<MobileElement> transactionListContent = null;
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				transactionListContent = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//android.widget.ListView[@resource-id='com.td:id/activityContent']//android.widget.TextView[@resource-id='com.td:id/transaction']");
+				transactionListContent = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//android.widget.ListView[@resource-id='com.td:id/activityContent']//android.widget.TextView[@resource-id='com.td:id/transaction_fund_name']");
 			}else{
 				transactionListContent = ((MobileDriver) CL.GetDriver()).findElementsByXPath("//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
 			}

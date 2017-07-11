@@ -27,13 +27,6 @@ public class FundFacts extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progress_bar;
 	
-//    @iOSFindBy(xpath = "XCUIElementTypeTable/XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]")
-//    @AndroidFindBy(xpath = "//android.view.View[@resource-id='com.google.android.apps.docs:id/action_bar']/android.widget.TextView")
-//    private MobileElement fund_facts_page_title;
-//	
-	
-	
-
 	public synchronized static FundFacts get() {
 		if (Fundfacts == null) {
 			Fundfacts = new FundFacts();

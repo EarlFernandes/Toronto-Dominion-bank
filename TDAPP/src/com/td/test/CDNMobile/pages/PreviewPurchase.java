@@ -276,20 +276,16 @@ public class PreviewPurchase extends _CommonPage {
 		try{
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				amount_value = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_amount") + "']/../android.widget.RelativeLayout/android.widget.TextView", "Amount");
-			}else{
-				try{
-					amount_value = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_Amount") + "']/../XCUIElementTypeStaticText[3]", "Amount");
-				}catch (Exception e1){
-					amount_value = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_Amount") + "']/../XCUIElementTypeStaticText[2]", "Amount");
-				}
+			}else{				
+				amount_value = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_Amount") + "']/../XCUIElementTypeStaticText[2]", "Amount");				
 			}
 
 			String amountValue= mobileAction.getValue(amount_value);
 			System.out.println("Amount:" +amountValue);
 			if(amountValue.toLowerCase().contains("usd")){
-				mobileAction.Report_Pass_Verified("USD amount found");
+				mobileAction.Report_Pass_Verified("USD amount found:"+amountValue);
 			}else{
-				mobileAction.Report_Fail("USD Amount not found");
+				mobileAction.Report_Fail("USD Amount not found:"+amountValue);
 			}
 		}catch (Exception e){
 	        System.err.println("TestCase has failed.");
@@ -301,15 +297,6 @@ public class PreviewPurchase extends _CommonPage {
 	public void VerifyFundfactsAcknowledgement(){
 		Decorator();
 		try{
-//			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-//				amount_value = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_amount") + "']/../android.widget.RelativeLayout/android.widget.TextView", "Amount");
-//			}else{
-//				try{
-//					amount_value = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_Amount") + "']/../XCUIElementTypeStaticText[3]", "Amount");
-//				}catch (Exception e1){
-//					amount_value = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_Amount") + "']/../XCUIElementTypeStaticText[2]", "Amount");
-//				}
-//			}
 			if(!mobileAction.verifyElementIsPresent(fund_facts_acknowledgement)){
 				mobileAction.FuncSwipeWhileElementNotFound(fund_facts_acknowledgement, false, 5, "up");
 			}
