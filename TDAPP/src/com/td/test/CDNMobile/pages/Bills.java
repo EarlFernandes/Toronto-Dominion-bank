@@ -413,8 +413,8 @@ public class Bills extends _CommonPage {
 			mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
 			mobileAction.verifyElementIsDisplayed(scheduled_Payments_Header, "Scheduled Payments Functionality Page Displayed");
 		}
-		mobileAction.FuncClick(menu, "Click Menu");
-		mobileAction.FuncClick(logout,"Logout");
+//		mobileAction.FuncClick(menu, "Click Menu");
+//		mobileAction.FuncClick(logout,"Logout");
 		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

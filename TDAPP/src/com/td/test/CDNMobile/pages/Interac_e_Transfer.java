@@ -1091,7 +1091,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@label='" + mobileAction.getAppString("eTransferViewCancelCancelButton") + "']", "Cancel interac e-transfer title");
 			} else {
 				// Get to cancel e-transfer screen, choose first interac e-transfer to cancel
-				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + getTestdata("RecipientName") + "']", ""), "Recipient to cancel");
+				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//android.widget.RelativeLayout[@index='1']", ""), "Recipient to cancel");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("eTransferViewCancelCancelButton").replaceAll("\\<.*?>","").replace("&lt;i>", "").replace("&lt;/i>", "") + "']", "Cancel Interac e-transfer title");
 			}
@@ -1135,7 +1135,7 @@ public class Interac_e_Transfer extends _CommonPage {
 
 			} else {
 				// Get to cancel e-transfer screen, choose first interac e-transfer to cancel
-				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + getTestdata("RecipientName") + "']", ""), "Recipient to cancel");
+				mobileAction.FuncClick(mobileAction.verifyElementUsingXPath("//android.widget.RelativeLayout[@index='1']", ""), "Recipient to cancel");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("interacEtransferCancelHeader").replaceAll("\\<.*?>","") + "']", "Transfer Details title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("e_transfer_str").replaceAll("\\<.*?>","") + "']", "Interac e-Transfers title");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("IMT_SNT") + "']", "Sent");

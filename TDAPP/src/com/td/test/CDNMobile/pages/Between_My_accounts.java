@@ -1366,11 +1366,11 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(fromAccountValue, "From Account Value");
 					mobileAction.verifyElementIsDisplayed(ToAccountValue, "To Account Value");
 					mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
-					mobileAction.verifyElementIsDisplayed(exchangeRate, "Exchange Rate");
+					//mobileAction.verifyElementIsDisplayed(exchangeRate, "Exchange Rate");
 					mobileAction.verifyElementIsDisplayed(makeAnthTran_Button, "MAKE ANOTHER Transfer");
-					mobileAction.FuncClick(btnMenu, "Menu");
-					mobileAction.FuncClick(btnLogout, "Logout");
-					mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
+//					mobileAction.FuncClick(btnMenu, "Menu");
+//					mobileAction.FuncClick(btnLogout, "Logout");
+//					mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
 				} else {
 					perFormTransfer() ;
 					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
@@ -1383,9 +1383,9 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
 					mobileAction.FunCnewSwipe(makeAnthTran_Button, false, 1);
 					mobileAction.verifyElementIsDisplayed(makeAnthTran_Button, "MAKE ANOTHER Transfer");
-					mobileAction.FuncClick(btnMenu, "Menu");
-					mobileAction.FuncClick(btnLogout, "Logout");
-					mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
+//					mobileAction.FuncClick(btnMenu, "Menu");
+//					mobileAction.FuncClick(btnLogout, "Logout");
+//					mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
 					}
 			}
 
@@ -1954,11 +1954,11 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/to_account' and @text='" + mobileAction.getAppString("receipt_to") + "']", "To");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/amount' and @text='" + mobileAction.getAppString("receipt_amount") + "']", "Amount");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersFXExchangeRate") + "']", "Exchange Rate");
-				final String xPathFooter = "//android.widget.TableRow[@resource-id='tableRow1']";
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='home' and @text='" + mobileAction.getAppString("receipt_home") + "']", "HOME button");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='etransfers' and @text='" + mobileAction.getAppString("receipt_another_transfer") + "']", "MAKE ANOTHER TRANSFER button");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='transfers' and @text='" + mobileAction.getAppString("receipt_transfers") + "']", "TRANSFERS button");
+//				final String xPathFooter = "//android.widget.TableRow[@resource-id='tableRow1']";
+//				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
+//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='home' and @text='" + mobileAction.getAppString("receipt_home") + "']", "HOME button");
+//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='etransfers' and @text='" + mobileAction.getAppString("receipt_another_transfer") + "']", "MAKE ANOTHER TRANSFER button");
+//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='transfers' and @text='" + mobileAction.getAppString("receipt_transfers") + "']", "TRANSFERS button");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {

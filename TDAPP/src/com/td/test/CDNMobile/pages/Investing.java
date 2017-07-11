@@ -151,17 +151,11 @@ public class Investing extends _CommonPage {
 
 	String Investing_Table = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
 	String order_value = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/ XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]";
-
-	int i = 1;
-
 	String Firstpart = "//XCUIElementTypeCell[";
 	String Secondpart = "]/XCUIElementTypeStaticText[1]";
-	String Finalpart = Firstpart + i + Secondpart;
+	String Finalpart = Firstpart + 1 + Secondpart;
 
 	String platformName = CL.getTestDataInstance().getMobilePlatForm();
-	String InvestingAccountsXL = getTestdata("FromAccount");
-	String InvestingAccountsXpath = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
-			+ InvestingAccountsXL + "')]";
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum']")
 	private List <MobileElement> accountDefinition;
@@ -174,10 +168,6 @@ public class Investing extends _CommonPage {
 	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/disclaimer_link']")
 	private MobileElement tdDirectInvestment;
-	
-	String accountNum = getTestdata("FromAccount");
-	String accountNumXpath="//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"+accountNum+"')]";
-	
 	
 	public synchronized static Investing get() {
 		if (Investing == null) {
@@ -366,7 +356,9 @@ public class Investing extends _CommonPage {
 		Decorator();
 
 		try {
-
+			String InvestingAccountsXL = getTestdata("FromAccount");
+			String InvestingAccountsXpath = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
+					+ InvestingAccountsXL + "')]";
 			if (platformName.equalsIgnoreCase("ios")) {
 
 				String investingacc_value = "//*[contains(@label,'" + InvestingAccountsXL + "')]";
@@ -1479,6 +1471,8 @@ public class Investing extends _CommonPage {
                         .findElement(By.xpath(from_accountNo));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 			} else {
+				String accountNum = getTestdata("FromAccount");
+				String accountNumXpath="//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"+accountNum+"')]";
 				
 				while(flag&&count<5)
 				{

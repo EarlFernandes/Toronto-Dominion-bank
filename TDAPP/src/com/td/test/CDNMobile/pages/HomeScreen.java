@@ -127,7 +127,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
 	private MobileElement location;
 
-	@iOSFindBy(xpath = "//*[@value='Find Locations']")
+	@iOSFindBy(xpath = "//*[@label='Find Locations']")
 	@AndroidFindBy(xpath = "//*[@text='Find Locations']")
 	private MobileElement locationheader;
 
