@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.EnglishStrings;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -22,8 +23,8 @@ public class Profile_And_Settings extends _CommonPage {
 	String preferences = "Profile & Settings | Profil et paramètres";
 
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='"+EnglishStrings.LOADING_PROGRESS_BAR_IOS+"']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='"+EnglishStrings.LOADING_PROGRESS_BAR_AND+"']")
 	private MobileElement progressBar;
 	
 	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres']")
