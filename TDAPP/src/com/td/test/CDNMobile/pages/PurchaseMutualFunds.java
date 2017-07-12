@@ -43,7 +43,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/captionTextView")
 	private MobileElement amount_caption;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/../XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@iOSFindBy(xpath = "//*[@name='actionSheetCancelButton']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/dialog_button']")
 	private MobileElement cancel_button;
 	
@@ -286,15 +286,8 @@ public class PurchaseMutualFunds extends _CommonPage {
 		Decorator();
 		try {
 			String selectedFund = CL.getTestDataInstance().TCParameters.get("Accounts");
-			mobileAction.FuncClick(fund_dropdown_list, "Funds dorpdown list");
-			String FundInListText;
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				FundInListText = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='" + selectedFund + "']";
-			}else{
-				FundInListText = "//XCUIElementTypeStaticText[@label='" + selectedFund + "']";			
-			}
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(FundInListText, true, 10, "up");		
-			
+			SelectFund(selectedFund);
+
 			mobileAction.verifyElementIsDisplayed(from_account_name, "From Account name");
 			mobileAction.FuncClick(from_account_name, "From Account name");
 			mobileAction.verifyElementIsDisplayed(from_account_name, "From Account name");

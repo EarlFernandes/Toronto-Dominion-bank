@@ -342,7 +342,13 @@ public class FundDetails extends _CommonPage {
 			String timeStamp = mobileAction.getValue(time_stamp);
 			System.out.println("TimeStamp:"+timeStamp);
 			
-			String disclaimerReg = "As of [A-Za-z]{3}\\s*\\d{2},\\s*\\d{4} at \\d{2}:\\d{2}:\\d{2}.*";
+			String disclaimerReg;
+			if(currentLocale.equalsIgnoreCase("FR")){
+				disclaimerReg = "Au juil. 12, 2017 2:19PM";
+			}else{
+				disclaimerReg = "As of [A-Za-z]{3}\\s*\\d{2},\\s*\\d{4} at \\d{2}:\\d{2}:\\d{2}.*";
+			}
+			
 			if(timeStamp.matches(disclaimerReg)){
 				mobileAction.Report_Pass_Verified(timeStamp);
 			}else{
