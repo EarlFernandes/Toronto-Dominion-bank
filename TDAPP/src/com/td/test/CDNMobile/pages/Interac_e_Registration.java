@@ -21,7 +21,7 @@ public class Interac_e_Registration extends _CommonPage {
 
 	private static Interac_e_Registration Interac_e_Registration;
 
-	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@label='Interac e-Transfer® - Registration']")
+	@iOSFindBy(xpath="//XCUIElementTypeOther[contains(@label,'Interac e-Transfer') or contains(@label,'Registration')]")		//xpath changed in new build
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and contains(@text,'Interac e-Transfer') and contains(@text,'Registration')]")
 	private MobileElement registrationPageHeader;
 
@@ -91,19 +91,21 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[contains(@value,'Please choose which profile')]")
+	//@iOSFindBy(xpath = "//XCUIElementTypeTextField[contains(@value,'Please choose which profile')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@value,'Please choose which profile')]")
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_multi_profile']")
 	private MobileElement chooseProfile;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Business Name:']/following-sibling::XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Business Name')]/following-sibling::XCUIElementTypeStaticText") //xpath changed in new build
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_name']")
 	private MobileElement businessName;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Registered Trade Name']/following-sibling::XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Trade Name')]/following-sibling::XCUIElementTypeStaticText") //xpath changed - new build
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_trade_name']")
 	private MobileElement tradeName;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[contains(@value,'I acknowledge the trade name displayed')]")
+	//@iOSFindBy(xpath = "//XCUIElementTypeTextField[contains(@value,'I acknowledge the trade name displayed')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@value,'I acknowledge the trade name displayed')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_trade_name_response']")
 	private MobileElement tradeResponse;
 
@@ -176,6 +178,7 @@ public class Interac_e_Registration extends _CommonPage {
 		Decorator();
 		try {
 
+			
 			mobileAction.verifyElementIsDisplayed(registrationPageHeader, "Interac e-Transfer® - Registration");
 			mobileAction.FuncClick(continueButton, "Continue");
 			
@@ -330,13 +333,15 @@ public class Interac_e_Registration extends _CommonPage {
 
 		try {
 
+			
 			String email = getTestdata("Email");
 
 			if (platformName.equalsIgnoreCase("iOS")) {
 				mobileAction.verifyElementIsDisplayed(businessName, businessName.getText());
 				mobileAction.verifyElementIsDisplayed(tradeName, tradeName.getText());
 				mobileAction.FuncClick(tradeResponse, "Trade Response");
-				String response = "//XCUIElementTypeStaticText[contains(@name,'"+getTestdata("Response")+"')]";
+			
+				String response = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@name,'"+getTestdata("Response")+"')]";
 				MobileElement tradeResponse = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(response));
 				mobileAction.FuncClick(tradeResponse, "Trade Response Option");
@@ -458,7 +463,9 @@ public class Interac_e_Registration extends _CommonPage {
 			if (platformName.equalsIgnoreCase("iOS")) {
 				
 				if(i!=(nameArr.length-1)){
+					
 				mobileAction.FuncClick(chooseProfile, "Select Profile");
+				mobileAction.getPageSource();
 				String profileStr = "//XCUIElementTypeStaticText[@label='" + nameArr[i] + "']";
 				MobileElement profile = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(profileStr));

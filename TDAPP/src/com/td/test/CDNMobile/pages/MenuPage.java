@@ -20,7 +20,8 @@ public class MenuPage extends _CommonPage {
 
 	private static MenuPage MenuPage;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Virements' or @label='Transfers']")
+	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Virements' or @label='Transfers']")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_TRANSFERS']/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Transfers']")
 	private MobileElement transfers;
 
@@ -116,6 +117,7 @@ public class MenuPage extends _CommonPage {
 
 		Decorator();
 		try {
+	
 			mobileAction.FuncClick(transfers, "Transfers");
 
 		} catch (NoSuchElementException e) {
