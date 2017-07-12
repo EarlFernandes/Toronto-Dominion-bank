@@ -52,7 +52,7 @@ public class HomeScreen extends _CommonPage {
 	private MobileElement transfer_button_dashboard;
 
 	@iOSFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access']")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access']") // This is sometimes TextView or Button
 	private MobileElement quickAccess;
 
 /*	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investing Accounts']")

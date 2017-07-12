@@ -207,7 +207,7 @@ public class Interac_e_Transfer extends _CommonPage {
 
     public void verify_interacTransfer() {
 	double accVal = 0.00;
-    String sender_SelectSender = getTestdata("FromAccount");
+    String sender_SelectSender = getTestdata("Sender");
     String select_SenderValue = "//android.widget.TextView[contains(@text,'" + sender_SelectSender + "')]";
     String t_interacHeader = "Interac e-Transfer";
 
@@ -269,8 +269,9 @@ public class Interac_e_Transfer extends _CommonPage {
 	    } else {
 			mobileAction.verifyElement(interac_Etransfer_Header, "Interac e-Transfer");
 			mobileAction.FuncClick(selectSender, "Sender");
+			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncElementSwipeWhileNotFound(acntsListSender, select_SenderValue, 0, "down", true);
-	
+			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncClick(fromAccount, "From Account");
 			accVal = Double.parseDouble(mobileAction.getText(fromAccountVal));
 			mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Account, 0, "down", true);
@@ -393,7 +394,7 @@ public class Interac_e_Transfer extends _CommonPage {
     public void interacTransfer() {
 	double accVal = 0.00;
 	Decorator();
-    String sender_SelectSender = getTestdata("FromAccount");
+    String sender_SelectSender = getTestdata("Sender");
     String select_SenderValue = "//android.widget.TextView[contains(@text,'" + sender_SelectSender + "')]";
     String t_interacHeader = "Interac e-Transfer";
 
@@ -413,7 +414,7 @@ public class Interac_e_Transfer extends _CommonPage {
 	    	Thread.sleep(10000);
 			//mobileAction.FuncClick(selectSender, "Sender");
 			//mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart, sender_SelectSender);
-		    	mobileAction.FuncClick(fromAccount, "From Account");
+		    mobileAction.FuncClick(fromAccount, "From Account");
 		    String fromAcc="//XCUIElementTypeStaticText[contains(@label,'"+ sender_SelectSender +"')]";
 		    mobileAction.FuncSwipeWhileElementNotFoundByxpath(fromAcc, true, 25, "Up");
 		    
@@ -636,7 +637,7 @@ public class Interac_e_Transfer extends _CommonPage {
     public void interacTransfer_cancel() {
     	double accVal = 0.00;
     	Decorator();
-        String sender_SelectSender = getTestdata("FromAccount");
+        String sender_SelectSender = getTestdata("Sender");
         String select_SenderValue = "//android.widget.TextView[contains(@text,'" + sender_SelectSender + "')]";
         String t_interacHeader = "Interac e-Transfer";
 
@@ -672,8 +673,9 @@ public class Interac_e_Transfer extends _CommonPage {
 
     		mobileAction.verifyElement(interac_Etransfer_Header, "Interac e-Transfer");
     		mobileAction.FuncClick(selectSender, "Sender");
+    		mobileAction.waitForElementToVanish(progressBar);
     		mobileAction.FuncElementSwipeWhileNotFound(acntsListSender, select_SenderValue, 1, "down", true);
-
+    		mobileAction.waitForElementToVanish(progressBar);
     		mobileAction.FuncClick(recipient, "Recipient");
 
     		mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Recipient, 2, "down", true);
@@ -713,6 +715,7 @@ public class Interac_e_Transfer extends _CommonPage {
 	try {
 
 	    mobileAction.FuncClick(selectSender, "ClickSender");
+	    mobileAction.waitForElementToVanish(progressBar);
 	    mobileAction.FuncClick(senderCancel, "Click Cancel");
 
 	} catch (NoSuchElementException e) {
@@ -785,7 +788,7 @@ public class Interac_e_Transfer extends _CommonPage {
      */
     public void verifyaccountdetails() {
 	Decorator();
-    String sender_SelectSender = getTestdata("FromAccount");
+    String sender_SelectSender = getTestdata("Sender");
     String select_SenderValue = "//android.widget.TextView[contains(@text,'" + sender_SelectSender + "')]";
 
 	try {
