@@ -865,29 +865,46 @@ public class Accounts extends _CommonPage {
 			String from_Account_des,  from_Account_num;
 			from_Account_num = mobileAction.FuncGetValByRegx(from_Account, "\\d+");
 			from_Account_des = from_Account.replaceAll(from_Account_num, "").trim();
-			
+						
 			if(from_Account_num.isEmpty()){
 				System.out.println("Failed:Account number is NOT configured, account cannot be selected");
 				System.err.println("TestCase has failed.");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				return;
 			}
+			
+			String [] from_Account_des_option = from_Account_des.split("\\|");
 					
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-				if(!from_Account_des.isEmpty()){
-					Acnt_Description = "//XCUIElementTypeStaticText[@label='" + from_Account_des + "']/../XCUIElementTypeStaticText[@label='" + from_Account_num + "']";
+            int lengthOfArray = from_Account_des_option.length;
+
+			if(lengthOfArray == 0){
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+					Acnt_Description = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='" + from_Account_num+ "']";
 				}else{
 					Acnt_Description = "//*[@label='" + from_Account_num + "']";
 				}
-				
 			}else{
-				if(!from_Account_des.isEmpty()){
-					Acnt_Description = "//android.widget.TextView[@text='" + from_Account_des+ "']/../../android.widget.TextView[@text='" + from_Account_num+ "']";
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+					Acnt_Description = "//android.widget.TextView[@text='";
+					for (int i=0; i< lengthOfArray; i++ ){
+						Acnt_Description = Acnt_Description + from_Account_des_option[i].trim() + "'";
+						if(i< lengthOfArray -1 ){
+							Acnt_Description = Acnt_Description + " or @text='";
+						}
+					}
+					Acnt_Description = Acnt_Description +"]/../XCUIElementTypeStaticText[@label='" + from_Account_num + "']";
 				}else{
-					Acnt_Description = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='" + from_Account_num+ "']";
-				}
-				
+					Acnt_Description = "//XCUIElementTypeStaticText[@label='";	
+					for (int i=0; i< lengthOfArray; i++ ){
+						Acnt_Description = Acnt_Description + from_Account_des_option[i].trim() + "'";
+						if(i< lengthOfArray -1 ){
+							Acnt_Description = Acnt_Description + " or @label='";
+						}
+					}
+					Acnt_Description = Acnt_Description +"]/../XCUIElementTypeStaticText[@label='" + from_Account_num + "']";
+				}				
 			}
+			
 			System.out.println("Acnt_Description:" + Acnt_Description);
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, true, 30, "up");						
 

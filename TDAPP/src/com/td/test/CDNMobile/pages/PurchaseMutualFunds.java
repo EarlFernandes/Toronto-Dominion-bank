@@ -83,7 +83,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/phone_number']")
 	private MobileElement phone_info;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount']/../XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount' or @label='Montant']/../XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText']")
 	private MobileElement amount;
 	
@@ -252,6 +252,17 @@ public class PurchaseMutualFunds extends _CommonPage {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
+	}
+	
+	public void clickpreviewButtonWithNoForm(){
+
+		String elementText = mobileAction.getValue(preview_purchase_button);
+		try{
+			mobileAction.FuncClick(preview_purchase_button, elementText);
+		}catch(NoSuchElementException | InterruptedException | IOException  e){
+			System.out.println("Failed to click preview purchase button");
+		}
+		mobileAction.waitForElementToVanish(progress_bar);
 	}
 	
 	public void VerifyFundDropdownList() {
@@ -877,6 +888,57 @@ public class PurchaseMutualFunds extends _CommonPage {
 		} catch (IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}	
+	}
+	
+	public void VerifyErrorMessageForClosedFund(){
+		Decorator();
+		try {
+			if(mobileAction.verifyElementIsPresent(from_account_name)){
+				mobileAction.Report_Fail("Failed:From Account is not blank");
+				return;
+			}
+			
+			//String capturedErrorMsg = mobileAction.getValue(error_message);
+			String expectedErrorMsg ="Looks like the account you are using is closed. Try another fund or let us help you by calling x-xxx-xxx-xxxx."
+					+"|Il semble que le compte est fermé. Essayez avec un autre fonds, ou appelez-nous au x-xxx-xxx-xxxx pour obtenir de l’aide.";			
+			mobileAction.verifyElementTextIsDisplayed(error_message, expectedErrorMsg);
+								
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}	
+	}
+	
+	public void VerifyErrorMessageWithoutFundSelected(){
+		Decorator();
+		try {
+			
+			String expectedErrorMsg ="Please Select a Fund | Veuillez sélectionner un fonds";
+					
+			//mobileAction.verifyElementTextIsDisplayed(error_message, expectedErrorMsg);
+			String CapturedString = mobileAction.getValue(error_message);
+			System.out.println("Captured message:"+ CapturedString);
+			String [] expectedErrorMsgArray =expectedErrorMsg.split("\\|");
+			for (int i=0; i< expectedErrorMsgArray.length; i++){
+				if(CapturedString.contains(expectedErrorMsgArray[i].trim())){
+					mobileAction.Report_Pass_Verified(expectedErrorMsgArray[i].trim());
+					return;
+				}
+			}
+			mobileAction.Report_Fail("Error message is not expected:"+ CapturedString);					
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());

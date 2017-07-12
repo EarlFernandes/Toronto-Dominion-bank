@@ -317,7 +317,7 @@ public class FundDetails extends _CommonPage {
 				return;
 			}else{
 				String USD_bookvalue = mobileAction.getValue(Book_Value);
-				if(USD_bookvalue.contains("USD")){
+				if(USD_bookvalue.contains("US")){
 					mobileAction.Report_Pass_Verified("Book USD value:"+USD_bookvalue);
 				}else{
 					mobileAction.Report_Fail("USD fund of book value:"+USD_bookvalue);
