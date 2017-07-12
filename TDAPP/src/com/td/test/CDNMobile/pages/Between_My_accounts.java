@@ -581,9 +581,8 @@ public class Between_My_accounts extends _CommonPage {
 				+ "XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
 
 		try {
-			mobileAction.FuncClick(txtFrom_acnt, "From Account");
-
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.FuncClick(txtFrom_acnt, "From Account");
 				String accountNo = getTestdata("FromAccount");
 				System.out.println("From Account:"+ accountNo);
 				mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, accountNo);
