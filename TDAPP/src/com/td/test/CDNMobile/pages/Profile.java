@@ -301,7 +301,7 @@ public class Profile extends _CommonPage {
 	}
 	
 	public void VerifyPhoneIsNotUpdatedAsMFChanges(){
-		String phoneInfo = get_phone_info();
+		String phoneInfo = get_mobile_phone_info();
 		String phone_MF = CL.getTestDataInstance().TCParameters.get("PhoneProfile");
 		if(phoneInfo.equals(phone_MF)){
 			mobileAction.Report_Fail("Profile Phone is updated as MF phone changes :"+phoneInfo);

@@ -459,22 +459,22 @@ public class PurchaseMutualFunds extends _CommonPage {
 			}
 			
 			String ori_email = getEmailInfo();
-			if(ori_email.isEmpty()){
+			if(!user_email.isEmpty()){
 				mobileAction.FuncSendKeys(email_info, user_email);
 				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 					mobileAction.FuncHideKeyboard();
 				}else{
-					done = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
+					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or @label='OK' or @label='" + mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
 					mobileAction.FuncClick(done, "Done");
 				}
 			}else{
 				System.out.println("Email populated:"+ori_email );
 			}
 			String ori_phone= getPhoneNumber();
-			if(ori_phone.isEmpty()){
+			if(!user_phone.isEmpty()){
 				mobileAction.FuncSendKeys(phone_info, user_phone);
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or label='OK' or label='" + mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
+					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or @label='OK' or @label='" + mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
 					mobileAction.FuncClick(done, "Done");
 				} else {
 					mobileAction.FuncHideKeyboard();
@@ -513,7 +513,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 					mobileAction.FuncHideKeyboard();
 				}else{
-					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or label='OK' or label='" + mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
+					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or @label='OK' or @label='" + mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
 					mobileAction.FuncClick(done, "Done");
 				}
 			}else{
@@ -523,7 +523,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			if(ori_phone.isEmpty()){
 				mobileAction.FuncSendKeys(phone_info, user_phone);
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					done = mobileAction.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
+					done = mobileAction.verifyElementUsingXPath("/*[@label='Done' or @label='OK' or @label='" + mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
 					mobileAction.FuncClick(done, "Done");
 				} else {
 					mobileAction.FuncHideKeyboard();
@@ -667,7 +667,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			String fromAccount = mobileAction.getValue(from_account_name);
 			System.out.println("From account name:" + fromAccount);
 
-			if(fromAccount.contains("US $")){
+			if(fromAccount.contains("US $") || fromAccount.contains("DOLLARS US")){
 				mobileAction.Report_Pass_Verified("From CAD account to US MF not allowed, from account:"+fromAccount);
 			}else{
 				
@@ -702,7 +702,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			String fromAccount = mobileAction.getValue(from_account_name);
 			System.out.println("From account name:" + fromAccount);
 
-			if(!fromAccount.toLowerCase().contains("us $")){
+			if(!fromAccount.toLowerCase().contains("us $") && !fromAccount.toLowerCase().contains("dollars us")){
 				mobileAction.Report_Pass_Verified("From USD account to CAD MF not allowed,from account:"+fromAccount);
 			}else{
 				

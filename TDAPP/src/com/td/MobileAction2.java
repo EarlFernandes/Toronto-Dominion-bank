@@ -2978,6 +2978,9 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 			e.printStackTrace();
 	    } 
 	}
+	
+
+	
 
 	public boolean verifyElementIsPresent(MobileElement elementToFind) {
 

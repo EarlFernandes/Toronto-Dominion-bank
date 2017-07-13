@@ -75,6 +75,10 @@ public class PreviewPurchase extends _CommonPage {
 	private MobileElement fund_facts_acknowledgement;
 	
 	String phoneReg ="\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
+	
+	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
+	private MobileElement back_icon;
 
 	public synchronized static PreviewPurchase get() {
 		if (previewPurchase == null) {
@@ -240,12 +244,26 @@ public class PreviewPurchase extends _CommonPage {
 	}
 	
 	public void savePhoneInforForPFVerification(){
-		String phoneinfo = mobileAction.getValue(phone_number);
-		if(!phoneinfo.isEmpty()){
-			CL.getTestDataInstance().TCParameters.put("PhoneProfile", phoneinfo);
-			mobileAction.Report_Pass_Verified("phone:" + phoneinfo);
-		}else{
-			mobileAction.Report_Pass_Verified("Phone is empty");
+		try{
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")){
+				String phoneNumberxpath = "//XCUIElementTypeStaticText[@label='" +mobileAction.getAppString("label_phone_number") +"']/following-sibling::XCUIElementTypeStaticText";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(phoneNumberxpath, false, 10, "up");
+				phone_number = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("label_phone_number") +"']/following-sibling::XCUIElementTypeStaticText", "Email");
+			}else{
+				mobileAction.FuncSwipeWhileElementNotFound(phone_number, false, 10, "up");
+			}
+			String phoneinfo = mobileAction.getValue(phone_number);
+			System.out.println("phone got:"+phoneinfo );
+			if(!phoneinfo.isEmpty()){
+				CL.getTestDataInstance().TCParameters.put("PhoneProfile", phoneinfo);
+				mobileAction.Report_Pass_Verified("phone:" + phoneinfo);
+			}else{
+				mobileAction.Report_Pass_Verified("Phone is empty");
+			}
+		}catch (NoSuchElementException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
@@ -302,7 +320,7 @@ public class PreviewPurchase extends _CommonPage {
 			}
 			String acknowlegmentText= mobileAction.getValue(fund_facts_acknowledgement);
 			System.out.println("acknowlegmentText:" +acknowlegmentText);
-			if(acknowlegmentText.toLowerCase().contains("yes")){
+			if(acknowlegmentText.toLowerCase().contains("yes") || acknowlegmentText.toLowerCase().contains("oui") ){
 				mobileAction.Report_Pass_Verified("Fund acknowledgement is "+acknowlegmentText);
 			}else{
 				mobileAction.Report_Fail("Fund acknowledgement is "+ acknowlegmentText);
@@ -312,6 +330,24 @@ public class PreviewPurchase extends _CommonPage {
 	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
 	        return;	
 		}			
+	}
+	
+	public void GoBackToHomePage(){
+		Decorator();
+		int count=10;
+		try{
+			while(mobileAction.verifyElementIsPresent(back_icon) && count!=0){
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+					mobileAction.FuncClickBackButton();
+				}else{
+					mobileAction.FuncClick(back_icon, "<");
+				}
+				count--;
+			}
+			System.out.println("Go back to home already");
+		}catch(Exception e){
+			System.out.println("Exception: back to home");
+		}
 	}
 
 }

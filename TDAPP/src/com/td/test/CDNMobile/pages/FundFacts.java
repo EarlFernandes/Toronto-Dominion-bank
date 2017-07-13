@@ -44,7 +44,7 @@ public class FundFacts extends _CommonPage{
 	public void VerifyFundfactsPageheader() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(view_fundFacts_page_header, "Fund Facts | fund facts.pdf");
+			mobileAction.verifyElementTextIsDisplayed(view_fundFacts_page_header, "Fund Facts | fund facts.pdf |Aperçu du fonds ");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

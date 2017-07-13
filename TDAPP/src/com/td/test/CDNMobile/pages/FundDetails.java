@@ -24,15 +24,15 @@ public class FundDetails extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement FundDetails_header;
 	
-    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Purchase']")
+    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Purchase' or @label='Acheter']")
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/purchaseBtn']")
     private MobileElement Purchase;
     
-    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Call']")
+    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Call' or @label='Appeler']")
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/callBtn']")
     private MobileElement CallBtn;
     
-    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Quote']")
+    @iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Quote' or @label='Cote']")
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quoteBtn']")
     private MobileElement QuoteBtn;
     

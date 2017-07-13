@@ -1503,6 +1503,11 @@ public class Investing extends _CommonPage {
 			}
 			int size = fundsList.size();
 			System.out.println("Funds List:"+size);
+			if(size == 0){
+				System.err.println("TestCase has failed for no funds in list.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				return;
+			}
 			int randFund =  (int )(Math.random() * size );
 			if(randFund >= size){
 				randFund = size-1;
@@ -1694,7 +1699,13 @@ public class Investing extends _CommonPage {
 			Decorator();
 			mobileAction.FuncSwipeWhileElementNotFound(usd_disclaimer_foot, false, 10, "up");
 			String usDisclaimerText = mobileAction.getValue(usd_disclaimer_foot);
-			String expectedText = "All values in Canadian Dollars unless otherwise stated.";
+			String expectedText;
+			if(currentLocale.equalsIgnoreCase("fr")){
+				expectedText = "Toutes les valeurs sont données en dollars canadiens, sauf avis contraire.";
+			}else{
+				expectedText = "All values in Canadian Dollars unless otherwise stated.";
+			}
+			
 			if(usDisclaimerText.contains(expectedText)){
 				System.out.println(expectedText);
 				mobileAction.Report_Pass_Verified(expectedText);
