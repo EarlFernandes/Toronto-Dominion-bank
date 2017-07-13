@@ -246,7 +246,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(page_title, "Purchase Mutual Funds | Acheter des fonds communs de placement | 购买互惠基金|購買互惠基金");
+			mobileAction.verifyElementTextIsDisplayed(page_title, "Purchase Mutual Funds |Achat de fonds| Acheter des fonds communs de placement | 购买互惠基金|購買互惠基金");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
