@@ -893,7 +893,7 @@ public class Accounts extends _CommonPage {
 							Acnt_Description = Acnt_Description + " or @text='";
 						}
 					}
-					Acnt_Description = Acnt_Description +"]/../XCUIElementTypeStaticText[@label='" + from_Account_num + "']";
+					Acnt_Description = Acnt_Description +"]/../../android.widget.TextView[@text='" + from_Account_num + "']";
 				}else{
 					Acnt_Description = "//XCUIElementTypeStaticText[@label='";	
 					for (int i=0; i< lengthOfArray; i++ ){
