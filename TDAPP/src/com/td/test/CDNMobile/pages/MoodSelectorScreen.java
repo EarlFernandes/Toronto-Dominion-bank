@@ -9,9 +9,12 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.EnglishStrings;
+import com.td.FrenchStrings;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -86,6 +89,15 @@ public class MoodSelectorScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/checkbox_form_container']")
 	private MobileElement check_box_container;	
 	
+	/*******************************************************/
+	@iOSFindBy(accessibility ="NAVIGATION_ITEM_MENU")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
+	private MobileElement menu;
+	
+	@iOSFindBy(xpath = "//*[@label='" + EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK + "' or @label ='" + FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK +"']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='" + EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK +"' or @text='" +FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK + "')]")
+	private MobileElement give_feedback;
+	
 	//and (@text='Rate this app' or @text='Notez cette application')
 	public synchronized static MoodSelectorScreen get() {
 		if (MoodSelector == null) {
@@ -128,7 +140,7 @@ public class MoodSelectorScreen extends _CommonPage {
 //		}
 	
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 			String title= mobileAction.getValue(feedback_title);
 			System.out.println("Mood Selector title:" +  title);
 			mobileAction.verifyElementTextIsDisplayed(feedback_title, "How was your TD app experience today? | Comment était votre expérience avec l’appli TD aujourd’hui?");
@@ -441,32 +453,14 @@ public class MoodSelectorScreen extends _CommonPage {
 		
 	}
 	
-	public void ClickRateUsOnGooglePlayOrAppStore(){
+	public void VerifyRateUsOnGooglePlayButton(){
 		Decorator();
-//		try{
-//			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-//				//for android, just keep rate_us_on_google_play as defined
-//			}else{
-//				String xpath = "//*[@label='" + mobileAction.getAppString("nav_drawer_items_feedback") + "']";
-//				System.out.println("xpath:" +  xpath);
-//				rate_us_on_google_Or_App_Store = mobileAction.verifyElementUsingXPath(xpath, "Rate Us On Google Play");
-//			}
-//		}catch (NoSuchElementException | IOException e) {
-//			try {
-//				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
-//			} catch (IOException ex) {
-//				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-//			}
-//			System.err.println("TestCase has failed.");
-//			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-//			return;
-//		}
 	
 		try {
 			String elementText= mobileAction.getValue(rate_us_on_google_Or_App_Store);
 			System.out.println("ElementText:" +  elementText);
-			mobileAction.FuncClick(rate_us_on_google_Or_App_Store, elementText);
-
+			mobileAction.verifyElementIsDisplayed(rate_us_on_google_Or_App_Store, elementText);
+			
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -591,6 +585,51 @@ public class MoodSelectorScreen extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			return;
 		}
+	}
+	
+	public void VerifyFeedBackNTimes(){
+		Decorator();
+		int count =200;
+		int failedCount =0;
+		for(int i=0; i< count; i++){
+			try{
+				String title= mobileAction.getValue(feedback_title);
+				//System.out.println("Mood Selector title:" +  title);
+				if(!title.equalsIgnoreCase("How was your TD app experience today?")){
+					failedCount++;
+					System.out.println("Failed times:"+failedCount);
+					mobileAction.Report_Pass_Verified("Error message found");
+				}
+			}catch(Exception e){
+				failedCount++;
+				System.out.println("Failed times:"+failedCount);
+				mobileAction.Report_Pass_Verified("Error message found");
+			}
+			ClickBackFromMoodSelector();
+			
+			try{
+				Decorator();
+				//mobileAction.FuncClick(menu, "menu");
+				menu.click();
+			}catch (Exception e){
+				System.out.println("failed to click menu");
+				break;
+			}
+			
+			try{				
+				//mobileAction.FuncClick(give_feedback, "feed back");
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+					mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",  1, "down");
+				}
+				Decorator();
+				give_feedback.click();
+			}catch (Exception e){
+				System.out.println("failed to click menu");
+				break;
+			}
+			
+		}
+		System.out.println("Total Failed times:"+failedCount +"/"+count);
 	}
 	
 }

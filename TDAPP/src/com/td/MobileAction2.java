@@ -2207,11 +2207,7 @@ public class MobileAction2 extends CommonLib {
 		    WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
 		    wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
 		    String capturedText="";
-		    if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-		    	capturedText = mobileElement.getText();
-		    }else{
-		    	capturedText = mobileElement.getAttribute("label");
-		    }
+		    capturedText = getValue(mobileElement);
 		    for (int i=0; i< expectedHeadertext.length; i++){
 		    	if (capturedText.equalsIgnoreCase(expectedHeadertext[i].trim())){
 		    		GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");

@@ -28,7 +28,6 @@ import com.td.test.CDNMobile.pages.Investing;
 import com.td.test.CDNMobile.pages.InvestingAccountSummary;
 import com.td.test.CDNMobile.pages.Login;
 import com.td.test.CDNMobile.pages.LoginMIT;
-import com.td.test.CDNMobile.pages.LoginPNP;
 import com.td.test.CDNMobile.pages.Logout;
 import com.td.test.CDNMobile.pages.MFA_ChangeAnswer;
 import com.td.test.CDNMobile.pages.MLCancelOrderReceipt;
@@ -113,7 +112,7 @@ public class EventCase {
 
 		Env_set, Env_EnableMobilePayment,EditEmailAddressWithNonAformat,EditEmailAddressWithlonger60Char,EditEmailAddressWithNolonger60Char,EditEmailAddressWithoutSave,EditPhoneNumber,Env_DeleteDefaultCard,
 		
-		getProfileInformation,GetEmailAndPhoneNumber,ClickFeedback,	ClickContactUs_CF,VerifyMoodSelectorScreen,	VerifyEmotionsAnimateFromTopToBottom,ClickGreatLink,VerifyPostSurveyScreen,ClickCouldvebeenBetterLink,ClickItwasntWorkingLink,ClickBackFromMoodSelector, VerifyHomePageDashBoard, ClickContactUsFromHomePage, ClickSendFeedbackNow, ClickRateUsOnGooglePlay, VerifyGooglePlayRatePage, ClickBackFromPostSurvey, VerifyContactUsPageHeader,
+		getProfileInformation,GetEmailAndPhoneNumber,ClickFeedback,	ClickContactUs_CF,VerifyMoodSelectorScreen,	VerifyEmotionsAnimateFromTopToBottom,ClickGreatLink,VerifyPostSurveyScreen,ClickCouldvebeenBetterLink,ClickItwasntWorkingLink,ClickBackFromMoodSelector, VerifyHomePageDashBoard, ClickContactUsFromHomePage, ClickSendFeedbackNow, VerifyRateUsOnGooglePlayButton, VerifyGooglePlayRatePage, ClickBackFromPostSurvey, VerifyContactUsPageHeader,
 
 		FlyOut_HOME, Flyout_Location,Fill_OptionOrder, HoldingDetails_click_BuyButton, HoldingDetails_verify_Account_CADCash, HoldingDetails_verify_Account_US_MarginShort,
 
@@ -125,7 +124,7 @@ public class EventCase {
 
 		Investing_clickMarkets, Investing_clickOrderTab, Investing_clickPlacedorder, Investing_clickTrade, Investing_clickTrade_French, Investing_clickWatchLists, Investing_Header, Investing_verifyAdvanceorderdetails, Investingacc_verifySummary, InvestingHeader, IOS_Account_Home_Button,
 
-		Login, Login_and_Logout, Login_clearPasswordField, Login_Error, Login_Ntimes, Login_PasswordFieldDelete, Login_usernameFieldDelete, Login_verifyPasswordField, Login_verifyUsernameField, login_without_tandc, LoginFrench, Loginverify, LoginWithRemember, Logout, LogoutFrench,LoginPNP,
+		Login, Login_and_Logout, Login_clearPasswordField, Login_Error, Login_Ntimes, Login_PasswordFieldDelete, Login_usernameFieldDelete, Login_verifyPasswordField, Login_verifyUsernameField, login_without_tandc, LoginFrench, Loginverify, LoginWithRemember, Logout, LogoutFrench,
 
 		ManagePayee_AddCanadianPayee, ManagePayee_MutlipleAccesscard, ManagePayee_VerifyAddCanadianPayeeBtn, ManagePayees_Button, ManageRecipient_EditManageRecipient, ManageRecipient_ModifyRecipient, ManageRecipients_VerifyRegisterButton, mask_user,
 
@@ -135,7 +134,7 @@ public class EventCase {
 
 		NavigationBackToProfileandSettingPage,NavigationToHomePage,
 		
-		OpenApp, OrderDetails_CancelOrder, OrderDetails_clickChangeorder, OrderDetailsLimitPrice, OrderDetailsPage_orderConfirmDetails, OrderDetailsPage_verifyStockChangeorderConfirmScreen, OrderDetailsTriggerPrice, OrderReciept_CancelOrderReceipt, OrderReciept_French, OrderReciept_orderdetailMutualfund, OrderReciept_orderDetails, OrderReciept_orders, OrderReciept_OrdersIcon, OrderReciept_ordertab, OrderReciept_updatemsg, OrderReciept_verifyOrderScreen, Ordertype_Cancel,OpenAppPNP,
+		OpenApp, OrderDetails_CancelOrder, OrderDetails_clickChangeorder, OrderDetailsLimitPrice, OrderDetailsPage_orderConfirmDetails, OrderDetailsPage_verifyStockChangeorderConfirmScreen, OrderDetailsTriggerPrice, OrderReciept_CancelOrderReceipt, OrderReciept_French, OrderReciept_orderdetailMutualfund, OrderReciept_orderDetails, OrderReciept_orders, OrderReciept_OrdersIcon, OrderReciept_ordertab, OrderReciept_updatemsg, OrderReciept_verifyOrderScreen, Ordertype_Cancel,
 		OptionOrderChangeQuantity,Options_verifyOptionsForNewOrder,Options_Changeprice,Options_ChangeGoodTil,Options_CancelOrder,Options_CancelOrderConfirmScreen,Options_VerifytradingPassword,Options_Verifybackbutton,Options_VerifyImportantInformation,
 		Options_VerifyCancelReceipt,
 		
@@ -154,7 +153,7 @@ public class EventCase {
 		USMarAccLongToShort, USMarginShort_Buy_Market,
 
 		verify_access_to_WB, Verify_account_activity_credit, Verify_Combined_Account, Verify_FP_Account, verify_login_5_times, Verify_PIA_Account, VerifyAccessCard, VerifyAccessCardDetails, VerifyActionFields, verifybill_landingpage, VerifyCombinedAccounts, verifyconfirm_order, VerifyDIAccounts, verifyErrorMessage, VerifyFPAccounts, VerifyIconDetails, VerifyInvestingScreen, VerifyNoEligibleAccounts, VerifyNoTradingAccounts, VerifyPIAAccounts, VerifyQuickIcons, VerifyReceipt, VerifySender, VerifySenderList, VerifyShareholderType, Verifytimestamp, VerifyTwoAccessCardDetails, VerifyUser, VerifyNickName, verifydefaultcard,View_profile,VerifyProfileHeader,VerifyContactInformationHeader,VerifyInitialNameforIndividual,VerifyInitialNameforBusinessUser,VerifyInitialNameInUpperCase,VerifyHomePhoneMasked,VerifyExtensionNotMasked,verifyProfileandSettingLandingPage,VerifyProfileNameLength,VerifyErrorMessage,VerifySecurityQuestionButton,VeirfySecuirtyQuestionPageheader,VerifyNotificationsButton,VeirfyNotificationsPageheader,VerifyQuickAccessSettings,VerifyQuickAccessSettingsHeader,VerifyTDForMeSettings,VerifyTDForMeSettingsHeader,VerifyWhatsNew,VerifyWhatsNewPageHeader,VerifyProfileAndSettingslink,VerifyEmailFormat,VerifyEmailIDLength,VerifyBlankEmailNotSuccesful,VerifyErrorMessageOrLength,VerifyEmailIDBlankorNot,VerifyEmailAddedSuccesful,VerifyPopUpWithCancelButton,VerifyClearTextIconDisplayed,VerifyPhoneNumberIsEmpty,
-		VerififyTdforMeNotificationsHeader,VerifyEnableNotificationsSwitchFunction,VerifyQuickAccessSwitchWork,VerifyTDForMeDisableSwitchFunction,VerifyTDForMeEnableSwitchFunction,ClickCustomizeNotificationlinkFromTDforMe,VerifyTDForMeNotificationPageHeader,
+		VerifyTdforMeNotificationsHeader,VerifyEnableNotificationsSwitchFunction,VerifyQuickAccessSwitchWork,VerifyTDForMeDisableSwitchFunction,VerifyTDForMeEnableSwitchFunction,ClickCustomizeNotificationlinkFromTDforMe,VerifyTDForMeNotificationPageHeader,
 		
 		VerifyPlaceHolderDisplayed,VerifyToastmessageDisplayed,VerifyPhoneEmailNotChanged,verifyQuickAccessBillPaidUpdate,ClickBackFromAppOrGooglePage,Verify_quick_link_go_back_home, Verify_quick_link_view_myaccounts, Verify_error_screen,
 		VerifyFIFOLogic,VerifyEquityAndETFs,VerifyTradeOnLandingPage,Verify_flyoutMenu,VerfiyOptionConfirmOrderScreen,verifyOptionConfirmOrderReceipt,
@@ -1836,14 +1835,6 @@ public class EventCase {
 			break;
 		
 			//profile and preference
-
-		case OpenAppPNP:
-			MainScreenPNP.get().Splash_Conitnue();
-		    break;
-		    
-		case LoginPNP:
-		    LoginPNP.get().PNPLogin();
-		    break;
 		    
 		case Menu_Profile_And_Settings:
 		    MenuPage.get().clickProfileAndSettings();
@@ -1927,8 +1918,8 @@ public class EventCase {
 	    	Notifications.get().ClickCustomizeNotificationsLink();
 		    break;
 
-	    case VerififyTdforMeNotificationsHeader:
-	    	Notifications.get().VerififyTdforMeNotificationsHeader();
+	    case VerifyTdforMeNotificationsHeader:
+	    	Notifications.get().VerifyTdforMeNotificationsHeader();
 		    break;
 
 	    case VerifyEnableNotificationsSwitchFunction:
@@ -2135,14 +2126,13 @@ public class EventCase {
 	    	HomeScreen.get().ClickContactUsFromHomePage();
 		    break;
 		        
-
 	    case  ClickSendFeedbackNow:
 	    	MoodSelectorScreen.get().ClickSendFeedbackNow();
 		    break; 
-
-	    case  ClickRateUsOnGooglePlay:
-	    	MoodSelectorScreen.get().ClickRateUsOnGooglePlayOrAppStore();
-		    break; 
+		    
+	    case  VerifyRateUsOnGooglePlayButton:
+	    	MoodSelectorScreen.get().VerifyRateUsOnGooglePlayButton();
+		    break; 		    
 
 	    case  VerifyGooglePlayRatePage:
 	    	MoodSelectorScreen.get().VerifyGooglePlayRatePage();

@@ -79,7 +79,7 @@ public class Notifications extends _CommonPage {
 		}
 	}
 	
-	public void VerififyTdforMeNotificationsHeader() {
+	public void VerifyTdforMeNotificationsHeader() {
 		Decorator();
 		try {
 
