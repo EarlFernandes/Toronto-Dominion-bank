@@ -786,7 +786,7 @@ public class MutualFunds extends _CommonPage {
 
 		Decorator();
 
-		try {
+//		try {
 
 			if (platformName.equalsIgnoreCase("Android")) {
 
@@ -855,18 +855,18 @@ public class MutualFunds extends _CommonPage {
 
 				
 			}
-
-		}
-
-		catch (NoSuchElementException e) {
-
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-
-		}
+//
+//		}
+//
+//		catch (NoSuchElementException e) {
+//
+//			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+//		} catch (IOException e) {
+//
+//			e.printStackTrace();
+//		} catch (InterruptedException e) {
+//
+//		}
 
 	}
 
