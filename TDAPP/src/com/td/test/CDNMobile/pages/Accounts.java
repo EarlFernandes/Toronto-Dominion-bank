@@ -226,11 +226,11 @@ public class Accounts extends _CommonPage {
 
 			}
 			mobileAction.FuncClick(summaryBtn, "Summary");
-			mobileAction.verifyElementIsDisplayed(current_Balance, "Current balance");
+			//mobileAction.verifyElementIsDisplayed(current_Balance, "Current balance");
 			mobileAction.verifyElementIsDisplayed(account_Desc, "Account Description");
 			mobileAction.verifyElementIsDisplayed(available_Balance, "Available balance");
 			CL.GetReporting().FuncReport("PASS",
-					" Current Balance,Account Desc, Available Balance is verified");
+					"Account Desc, Available Balance is verified");
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

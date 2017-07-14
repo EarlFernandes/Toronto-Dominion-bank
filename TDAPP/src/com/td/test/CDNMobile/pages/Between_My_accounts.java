@@ -60,7 +60,7 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id= 'com.td:id/myaccounts_entry_btn_confirm']")
 	private MobileElement btnFinish_transfer;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue']")
+	@iOSFindBy(accessibility = "BETWEENMYACCOUNTS_CONTINUE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/button_footer']")
 	private MobileElement btncontinue_Transfer;
 

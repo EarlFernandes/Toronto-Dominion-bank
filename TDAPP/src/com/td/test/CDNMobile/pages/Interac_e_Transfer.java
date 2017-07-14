@@ -415,7 +415,7 @@ public class Interac_e_Transfer extends _CommonPage {
 			//mobileAction.FuncClick(selectSender, "Sender");
 			//mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart, sender_SelectSender);
 		    mobileAction.FuncClick(fromAccount, "From Account");
-		    String fromAcc="//XCUIElementTypeStaticText[contains(@label,'"+ sender_SelectSender +"')]";
+		    String fromAcc="//XCUIElementTypeStaticText[contains(@label,'"+ transfer_fromAccount +"')]";
 		    mobileAction.FuncSwipeWhileElementNotFoundByxpath(fromAcc, true, 25, "Up");
 		    
 		    mobileAction.FuncClick(recipient, "Recipient");
