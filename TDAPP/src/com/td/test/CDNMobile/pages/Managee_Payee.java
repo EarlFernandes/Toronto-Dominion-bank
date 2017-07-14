@@ -55,7 +55,8 @@ public class Managee_Payee extends _CommonPage {
     @AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement addPayee;
 	
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
+    @iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
 	
@@ -433,7 +434,9 @@ public class Managee_Payee extends _CommonPage {
 		
 			mobileAction.verifyElementIsDisplayed(managePayees,"Manage Payees Header");
 			mobileAction.FuncClick(addPayee,"Add Canadian Payee");
+			mobileAction.waitForElementToVanish(progressBar);
 			Thread.sleep(10000);
+			
 	
 	} catch (NoSuchElementException e) {
 		CL.getGlobalVarriablesInstance().bStopNextFunction = false;

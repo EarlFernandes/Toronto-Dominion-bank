@@ -32,6 +32,7 @@ public class Confirm_Payee extends _CommonPage{
 	private MobileElement access_Card;
 
 	@iOSFindBy(xpath="//XCUIElementTypeButton[@label='Add Payee']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Payee']")
 	private MobileElement addPayee_Btn;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
@@ -39,19 +40,21 @@ public class Confirm_Payee extends _CommonPage{
 	private MobileElement progressBar;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Pay This Payee']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Pay This Payee']")
 	private MobileElement payThisPayee;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Thank You!')]")
 	private MobileElement successMsg;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Pay Bill']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Pay Bill']")
 	private MobileElement payBill_Header;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Select Payee']")
 	private MobileElement select_Payee;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Pay Bill']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue'and @text='Pay Bill']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue' and @text='Pay Bill']")
 	private MobileElement pay_Bill;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Invalid transaction amount.')]")
@@ -59,6 +62,7 @@ public class Confirm_Payee extends _CommonPage{
 	private MobileElement errorMsg;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[3]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
 	private MobileElement payee_Table;
 	
 	public synchronized static Confirm_Payee get() {
@@ -103,15 +107,19 @@ public class Confirm_Payee extends _CommonPage{
 		//mobileAction.verifyElementIsDisplayed(payee_Name, "Payee Name");
 		//mobileAction.verifyElementIsDisplayed(access_card, "Access Card");	
 		mobileAction.FuncClick(addPayee_Btn, "AddPayee");
-		mobileAction.waitForElementToVanish(progressBar);
+		mobileAction.waitForElementToVanish(progressBar); 
 		
 		//mobileAction.verifyElementIsDisplayed(successMsg, "Thank You!");
-		mobileAction.FuncClick(payThisPayee, "Pay This Payee");
+		mobileAction.FuncSwipeWhileElementNotFound(payThisPayee, true, 5, "up");
 		mobileAction.waitForElementToVanish(progressBar);
 		if(mobileAction.verifyElementIsPresent(payBill_Header))
 		{
-			String addedPayee=payee_Table.getAttribute("label");
-			mobileAction.verifyTextEquality(addedPayee, getTestdata("Payee"));
+			String addedPayee= mobileAction.getValue(payee_Table); 
+			
+			System.out.println("Captured Added payee:"+addedPayee);
+			String expectedPayee = getTestdata("Description") + " "+ CL.getTestDataInstance().TCParameters.get("Payee");
+			System.out.println("Expected added payee:" + expectedPayee);
+			mobileAction.verifyTextEquality(addedPayee, expectedPayee);
 		}
 		
 	}catch (NoSuchElementException e) {
