@@ -23,9 +23,17 @@ public class Popupwindow extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
 	private MobileElement cancel_button;	
 
-	@iOSFindBy(xpath = "//*[@label='Yes, go back' or @label='Oui' or @label='Annuler' or @name='alert_cancel_button']")
+	@iOSFindBy(xpath = "//*[@label='Yes, go back' or @label='Oui']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
 	private MobileElement goback_button;
+	
+	@iOSFindBy(xpath = "//*[@name='alert_ok_button']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
+	private MobileElement back_button;
+	
+	@iOSFindBy(xpath = "//*[@name='alert_cancel_button']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
+	private MobileElement cancel_order_button;
 
 	@iOSFindBy(xpath = "//*[@name='alert_ok_button']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeTextView")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
@@ -64,8 +72,19 @@ public class Popupwindow extends _CommonPage {
 	
 	public void ClickPopupGoBackButton(){
 		Decorator();
-		try{
+		try{			
 			mobileAction.FuncClick(goback_button, "Yes, Go Back");
+		}catch (Exception e){
+	        System.err.println("TestCase has failed.");
+	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	
+	        return;	
+		}
+	}
+	
+	public void ClickPopupCancelOrderButton(){
+		Decorator();
+		try{
+			mobileAction.FuncClick(cancel_order_button, "Cancel Order");
 		}catch (Exception e){
 	        System.err.println("TestCase has failed.");
 	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	

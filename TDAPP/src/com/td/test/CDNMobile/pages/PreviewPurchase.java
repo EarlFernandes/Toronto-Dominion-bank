@@ -270,7 +270,7 @@ public class PreviewPurchase extends _CommonPage {
 	public void ClickPurchaseNowBtn(){
 		Decorator();
 		try{
-			mobileAction.FuncClick(purchase_now_button, "Purchase Now");
+			mobileAction.FuncClick(purchase_now_button, "Purchase");
 		}catch (Exception e){
 	        System.err.println("TestCase has failed.");
 	        CL.getGlobalVarriablesInstance().bStopNextFunction = false;	

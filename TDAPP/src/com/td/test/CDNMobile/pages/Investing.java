@@ -167,7 +167,7 @@ public class Investing extends _CommonPage {
 	String InvestingAccountsXpath = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
 			+ InvestingAccountsXL + "')]";
 
-	@iOSFindBy(xpath = "//*[@label='PURCHASE MUTUAL FUNDS' or @label='ACHETER DES FONDS COMMUNS DE PLACEMENT' or @name='QUICKACCESS_CELL_FUND-PURCHASE-ICON']") //@Author - fengfr6 15-May-2017
+	@iOSFindBy(accessibility = "QUICKACCESS_CELL_FUND-PURCHASE-ICON") 
 	@AndroidFindBy(id = "com.td:id/quick_link_item_layout_button")
 	private MobileElement purchase_MF_button;
 	
@@ -222,6 +222,10 @@ public class Investing extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='TD_ACCOUNT_FOOTER_VIEW_LABEL']") 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/canadianDollarNote']")
 	private MobileElement usd_disclaimer_foot;
+	
+	@iOSFindBy(xpath = "//*[@name='FUND_BALANCE_MARKET_VALUE']/../XCUIElementTypeStaticText[2]") 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/totalMarketValue']")
+	private MobileElement total_market_value;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum']")
 	private List <MobileElement> accountDefinition;
@@ -1376,6 +1380,22 @@ public class Investing extends _CommonPage {
 		}
 	}
 	
+	public void ClickBalanceTab(){
+		Decorator();
+		try{
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
+				balance_tab = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Balances") + "']", "Balance Tab");										
+			}
+			mobileAction.FuncClick(balance_tab, "balance tab");
+			mobileAction.waitForElementToVanish(progressBar);
+			
+		}catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
 	
 	public void ClickFundsTab(){
 		Decorator();
@@ -1679,8 +1699,9 @@ public class Investing extends _CommonPage {
 	public void VerifyZeroBalance() {
 		try {
 			Decorator();
-			String balance= mobileAction.getValue(account_balance);
-			if(balance.equalsIgnoreCase("$0.00")){
+			String balance= mobileAction.getValue(total_market_value);
+			System.out.println("Balance:"+balance);
+			if(balance.contentEquals("$0.00") || balance.contentEquals("0,00 $")){
 				mobileAction.Report_Pass_Verified("Zero balance");
 			}else{
 				mobileAction.Report_Fail("Non Zero balance:"+ balance);
