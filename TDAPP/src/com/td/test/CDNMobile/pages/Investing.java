@@ -26,7 +26,7 @@ public class Investing extends _CommonPage {
 	private MobileElement tradeicon;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeOther")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Investing']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement investing_header;
 
 	@iOSFindBy(accessibility = "CROSSSELL_VIEWTITLE")
@@ -274,8 +274,8 @@ public class Investing extends _CommonPage {
 	 */
 	public void verifyInvestingHeader()  {
 		Decorator();
-		try {
-			mobileAction.verifyTextEquality(investing_header.getAttribute("label"), mobileAction.getAppString("Investing"));
+		try {						
+			mobileAction.verifyTextEquality(mobileAction.getValue(investing_header), mobileAction.getAppString("str_Investing"));			
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
