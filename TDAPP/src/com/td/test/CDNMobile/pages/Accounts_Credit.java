@@ -390,12 +390,12 @@ public class Accounts_Credit extends _CommonPage {
 //				final String lastStatement  ="//android.widget.TextView[@text='" + mobileAction.getAppString("last_statement") + "' or @text='" + mobileAction.getAppString("str_2_STATEMENTS") + "']";
 //				mobileAction.FuncSwipeWhileElementNotFoundByxpath(lastStatement, false, 2, "up");
 //				// Scroll down here
-				final String xPathFooter = "//XCUIElementTypeStaticText[@name='RVB_DETAIL_FOOTER_DES']";
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 6, "up");
-				// Verify select date headers at the bottom
-				for(MobileElement m : dateHeaders) {
-					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
-				}
+//				final String xPathFooter = "//XCUIElementTypeStaticText[@name='RVB_DETAIL_FOOTER_DES']";
+//				mobileAction.FuncSw(xPathFooter, false, 6, "up");
+//				// Verify select date headers at the bottom
+//				for(MobileElement m : dateHeaders) {
+//					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
+//				}
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/activityTab' and @text='" + mobileAction.getAppString("str_Activity") + "']", "activity Tab");
 				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_authorized_transactions_header") + "']", "Pending Transactions");

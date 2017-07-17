@@ -8,6 +8,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.ChineseStrings;
+import com.td.EnglishStrings;
+import com.td.FrenchStrings;
 import com.td.MainScreen;
 import com.td.StringLookup;
 import com.td._CommonPage;
@@ -94,7 +96,7 @@ public class MenuPage extends _CommonPage {
 	
 	//Profile and preference
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_PREFERENCES']/XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Profile & Settings' or @text='Profil et paramètres')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='" + EnglishStrings.FLYOUT_MENU_PROFILE_AND_PREFERENCE +"' or @text='" + FrenchStrings.FLYOUT_MENU_PROFILE_AND_PREFERENCE+"')]")
 	private MobileElement profile_and_settings;
 	
 	//Profile and preference
@@ -103,8 +105,8 @@ public class MenuPage extends _CommonPage {
 	private MobileElement TD_For_Me;
 
 	//customer feedback
-	@iOSFindBy(xpath = "//*[@label='Give Feedback' or @label ='Fournir des commentaires']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Give Feedback' or @text='Fournir des commentaires')]")
+	@iOSFindBy(xpath = "//*[@label='" + EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK + "' or @label ='" + FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK +"']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='" + EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK +"' or @text='" +FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK + "')]")
 	private MobileElement give_feedback;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText']")

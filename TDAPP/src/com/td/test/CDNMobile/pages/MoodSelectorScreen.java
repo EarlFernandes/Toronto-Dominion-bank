@@ -9,6 +9,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.EnglishStrings;
+import com.td.FrenchStrings;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -88,12 +90,12 @@ public class MoodSelectorScreen extends _CommonPage {
 	private MobileElement check_box_container;	
 	
 	/*******************************************************/
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu' or @label='Menu en en-tête' or @name='NAVIGATION_ITEM_MENU']")
+	@iOSFindBy(accessibility ="NAVIGATION_ITEM_MENU")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 	
-	@iOSFindBy(xpath = "//*[@label='Give Feedback' or @label ='Fournir des commentaires']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Give Feedback' or @text='Fournir des commentaires')]")
+	@iOSFindBy(xpath = "//*[@label='" + EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK + "' or @label ='" + FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK +"']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='" + EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK +"' or @text='" +FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK + "')]")
 	private MobileElement give_feedback;
 	
 	//and (@text='Rate this app' or @text='Notez cette application')

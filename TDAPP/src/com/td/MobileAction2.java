@@ -1151,22 +1151,30 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
-	public void FunCSwipeandScroll(MobileElement elementToFind, boolean clickYorN) {
+	public void FunCSwipeandScroll(MobileElement elementToFind, boolean clickYorN) throws Exception {
 		try {
 			
 			Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 			int startx = size.width;
 			int starty = size.height;
-			while (!elementToFind.isDisplayed()) {
+			int j = 0;
+			while (!elementToFind.isDisplayed() && j < 30) {
 				((MobileDriver) GetDriver()).swipe(startx / 2, starty - starty / 4, startx / 2, starty / 4, 600);
-				GetReporting().FuncReport("Pass", "Swipe done");
+				j++;
+			}
+			if(j == 30) {
+				throw new Exception("Not able to find element in list");
 			}
 			if (clickYorN) {
 				elementToFind.tap(1, 3000);
 			}
-		} catch (IllegalArgumentException | IOException e) {
-
-			e.printStackTrace();
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "Did not find element in list");
+			} catch (IOException e1) {
+				throw e1;
+			}
+			throw e;
 		}
 	}
 
@@ -2183,9 +2191,9 @@ public class MobileAction2 extends CommonLib {
      *            element which has to be identified
      * 
      * @param expectedText
-     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNÉES"
+     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNÃ‰ES"
      *            if language is English then "CONTACT INFORMATION "to be printed in report
-     *            if language is French then "COORDONNÉES" to be printed in report
+     *            if language is French then "COORDONNÃ‰ES" to be printed in report
      * 
      * @return nothing
      * 

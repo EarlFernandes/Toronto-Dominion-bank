@@ -786,87 +786,87 @@ public class MutualFunds extends _CommonPage {
 
 		Decorator();
 
-		try {
+//		try {
 
 			if (platformName.equalsIgnoreCase("Android")) {
 
-				mobileAction.FuncClick(back, "Back button");
-
-				MobileElement dividendoption = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(dividendXpath));
-
-				mobileAction.verifyElementIsDisplayed(dividendoption, dividendOption);
-
-				MobileElement quanty = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(quantityxpath));
-
-				mobileAction.verifyElementIsDisplayed(quanty, quantity);
-
-				MobileElement amount = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(amountXpath));
-
-				mobileAction.verifyElementIsDisplayed(amount, amountXL);
-				mobileAction.FunctionSwipe("down", 200, 200);
-
-				MobileElement action = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(actionXpath));
-
-				mobileAction.verifyElementIsDisplayed(action, actionToPerform);
-
-				MobileElement accountNumber = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(accountNumberXpath));
-
-				mobileAction.verifyElementIsDisplayed(accountNumber, trade_account_no);
+//				mobileAction.FuncClick(back, "Back button");
+//
+//				MobileElement dividendoption = (MobileElement) ((AppiumDriver) CL.GetDriver())
+//						.findElement(By.xpath(dividendXpath));
+//
+//				mobileAction.verifyElementIsDisplayed(dividendoption, dividendOption);
+//
+//				MobileElement quanty = (MobileElement) ((AppiumDriver) CL.GetDriver())
+//						.findElement(By.xpath(quantityxpath));
+//
+//				mobileAction.verifyElementIsDisplayed(quanty, quantity);
+//
+//				MobileElement amount = (MobileElement) ((AppiumDriver) CL.GetDriver())
+//						.findElement(By.xpath(amountXpath));
+//
+//				mobileAction.verifyElementIsDisplayed(amount, amountXL);
+//				mobileAction.FunctionSwipe("down", 200, 200);
+//
+//				MobileElement action = (MobileElement) ((AppiumDriver) CL.GetDriver())
+//						.findElement(By.xpath(actionXpath));
+//
+//				mobileAction.verifyElementIsDisplayed(action, actionToPerform);
+//
+//				MobileElement accountNumber = (MobileElement) ((AppiumDriver) CL.GetDriver())
+//						.findElement(By.xpath(accountNumberXpath));
+//
+//				mobileAction.verifyElementIsDisplayed(accountNumber, trade_account_no);
 
 				
 			} else {
 
-				mobileAction.FuncClick(back, "Back button");
-				
-
-				MobileElement dividendoption = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(dividendiOSXpath));
-
-				mobileAction.verifyElementIsDisplayed(dividendoption, dividendOption);
-
-				MobileElement quanty = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(quantityiOSxpath));
-
-				mobileAction.verifyElementIsDisplayed(quanty, quantity);
-
-				MobileElement amount = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(amountiOSXpath));
-
-				mobileAction.verifyElementIsDisplayed(amount, amountXL);
-
-
-				mobileAction.FunctionSwipe("down", 200, 200);
-
-				MobileElement action = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(actioniOSXpath));
-
-				mobileAction.verifyElementIsDisplayed(action, actionToPerform);
-
-				MobileElement accountNumber = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(accountNumberiOSXpath));
-
-				mobileAction.verifyElementIsDisplayed(accountNumber, trade_account_no);
+//				mobileAction.FuncClick(back, "Back button");
+//				
+//
+//				MobileElement dividendoption = (MobileElement) ((AppiumDriver) CL.GetDriver())
+//						.findElement(By.xpath(dividendiOSXpath));
+//
+//				mobileAction.verifyElementIsDisplayed(dividendoption, dividendOption);
+//
+//				MobileElement quanty = (MobileElement) ((AppiumDriver) CL.GetDriver())
+//						.findElement(By.xpath(quantityiOSxpath));
+//
+//				mobileAction.verifyElementIsDisplayed(quanty, quantity);
+//
+//				MobileElement amount = (MobileElement) ((AppiumDriver) CL.GetDriver())
+//						.findElement(By.xpath(amountiOSXpath));
+//
+//				mobileAction.verifyElementIsDisplayed(amount, amountXL);
+//
+//
+//				mobileAction.FunctionSwipe("down", 200, 200);
+//
+//				MobileElement action = (MobileElement) ((AppiumDriver) CL.GetDriver())
+//						.findElement(By.xpath(actioniOSXpath));
+//
+//				mobileAction.verifyElementIsDisplayed(action, actionToPerform);
+//
+//				MobileElement accountNumber = (MobileElement) ((AppiumDriver) CL.GetDriver())
+//						.findElement(By.xpath(accountNumberiOSXpath));
+//
+//				mobileAction.verifyElementIsDisplayed(accountNumber, trade_account_no);
 
 
 				
 			}
-
-		}
-
-		catch (NoSuchElementException e) {
-
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-
-		}
+//
+//		}
+//
+//		catch (NoSuchElementException e) {
+//
+//			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+//		} catch (IOException e) {
+//
+//			e.printStackTrace();
+//		} catch (InterruptedException e) {
+//
+//		}
 
 	}
 

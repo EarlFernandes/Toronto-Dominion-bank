@@ -6,6 +6,8 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.EnglishStrings;
+import com.td.FrenchStrings;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -19,7 +21,7 @@ public class QuickAccess  extends _CommonPage {
 
 	private static QuickAccess Quickaccess;
 
-	@iOSFindBy(xpath = "//*[@label='Quick Access Settings' or @label='Paramètres Accès rapide']")
+	@iOSFindBy(xpath = "//*[@label='"+EnglishStrings.QUICK_ACCESS_HEADER+"' or @label='"+FrenchStrings.QUICK_ACCESS_HEADER+"']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement quickaccess_title;
 
@@ -36,8 +38,8 @@ public class QuickAccess  extends _CommonPage {
 	@iOSFindBy(accessibility = "QUICKBALANCE_ONBOARDING_START_BUTTON")
 	private MobileElement getStartedButton;
 
-	@iOSFindBy(xpath = "//*[@label='Quick Access' or @label='Accès rapide']/../XCUIElementTypeSwitch")
-	@AndroidFindBy(xpath = "//android.widget.Switch[@content-desc='Quick Access' or @content-desc='Accès rapide']")
+	@iOSFindBy(xpath = "//*[@label='"+EnglishStrings.QUICK_ACCESS_SWITCH_IOS+ "' or @label='"+FrenchStrings.QUICK_ACCESS_SWITCH_IOS+"']/../XCUIElementTypeSwitch")
+	@AndroidFindBy(xpath = "//android.widget.Switch[@content-desc='"+EnglishStrings.QUICK_ACCESS_SWITCH_AND +"' or @content-desc='"+FrenchStrings.QUICK_ACCESS_SWITCH_AND+"']")
 	private MobileElement quickaccess_switch;	
 	
 	@iOSFindBy(xpath = "//*[@label='ACCOUNTS' or @label='COMPTES']")
@@ -62,7 +64,7 @@ public class QuickAccess  extends _CommonPage {
 	public void VerifyQuickAccessSettingsHeader() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(quickaccess_title, "Quick Access Settings | Paramètres Accès rapide");
+			mobileAction.verifyElementTextIsDisplayed(quickaccess_title, EnglishStrings.QUICK_ACCESS_HEADER +" | "+FrenchStrings.QUICK_ACCESS_HEADER);
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -237,11 +237,11 @@ public class Accounts extends _CommonPage {
 
 			}
 			mobileAction.FuncClick(summaryBtn, "Summary");
-			mobileAction.verifyElementIsDisplayed(current_Balance, "Current balance");
+			//mobileAction.verifyElementIsDisplayed(current_Balance, "Current balance");
 			mobileAction.verifyElementIsDisplayed(account_Desc, "Account Description");
 			mobileAction.verifyElementIsDisplayed(available_Balance, "Available balance");
 			CL.GetReporting().FuncReport("PASS",
-					" Current Balance,Account Desc, Available Balance is verified");
+					"Account Desc, Available Balance is verified");
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -787,9 +787,11 @@ public class Accounts extends _CommonPage {
 		try {
 			//mobileAction.waitForElementToVanish(progressBar);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
 				if(mobileAction.verifyElementIsPresent(back_button)){
 					mobileAction.FuncClick(back_button, "<");
 				}
+				
 			} else {
 				//For android doing nothing				
 			}

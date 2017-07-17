@@ -22,7 +22,7 @@ public class MainScreen extends _CommonPage {
 	private static final String APP_ANDROID = "APP_ANDROID";
 
 	// Change this parameter to point to the correct ipa in Setup.xls for ios
-	private static final String APP_IOS = "APP_IOS_FR";
+	private static final String APP_IOS = "APP_IOS";
 
 	public String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env",
 			"Amount", "Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount",

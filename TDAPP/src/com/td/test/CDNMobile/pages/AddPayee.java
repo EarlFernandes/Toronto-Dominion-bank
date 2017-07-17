@@ -445,31 +445,31 @@ public class AddPayee extends _CommonPage {
 				searchForPayee();
 				clickOnFirstCanadianPayeeFound();
 				addPayeeReview();
-				addPayeeConfirm();
-				// Switching to webview
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				mobileAction.waitForElementToVanish(progressBar);
-
-				final WebElement thankYou = mobileAction.verifyWebElementUsingXPath("//div[@class='thank-you ng-binding']", "Thank you");
-				final WebElement successMsg = mobileAction.verifyWebElementUsingXPath("//div[@class='copy ng-binding']", "Success Msg");
-				final WebElement payeeName = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding ng-scope'])[1]", "Payee Name");
-				final WebElement payeeAccount2 = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[2]", "Payee Account");
-				final WebElement description = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[3]", "description msg");
-				final WebElement home = mobileAction.verifyWebElementUsingXPath("//button[@class='home ng-binding']", "home button");
-				final WebElement addAnother = mobileAction.verifyWebElementUsingXPath("//button[@class='add-payee ng-binding']", "add payee button");
-				final WebElement payPayee = mobileAction.verifyWebElementUsingXPath("//button[@class='pay-payee ng-binding']", "pay payee button");
-
-				if (!mobileAction.verifyTextEquality(thankYou.getText().trim(), mobileAction.getAppString("str_thank_you")) ||
-						!mobileAction.verifyTextEquality(successMsg.getText().trim(), mobileAction.getAppString("add_cdn_payee_success_copy")) || 
-						!mobileAction.verifyTextEquality(payeeName.getText().trim(), mobileAction.getAppString("str_payee_name")) || 
-						!mobileAction.verifyTextEquality(payeeAccount2.getText().trim(), mobileAction.getAppString("str_payee_account")) ||
-						!mobileAction.verifyTextEquality(description.getText().trim(), mobileAction.getAppString("str_description")) ||
-						!mobileAction.verifyTextEquality(home.getText().trim(), mobileAction.getAppString("btn_go_back_home")) ||
-						!mobileAction.verifyTextEquality(addAnother.getText().trim(), mobileAction.getAppString("btn_add_another_payee")) ||
-						!mobileAction.verifyTextEquality(payPayee.getText().trim(), mobileAction.getAppString("btn_payee_this_payee"))){
-					System.err.println("TestCase has failed.");
-					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				}
+//				addPayeeConfirm();
+//				// Switching to webview
+//				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+//				mobileAction.waitForElementToVanish(progressBar);
+//
+//				final WebElement thankYou = mobileAction.verifyWebElementUsingXPath("//div[@class='thank-you ng-binding']", "Thank you");
+//				final WebElement successMsg = mobileAction.verifyWebElementUsingXPath("//div[@class='copy ng-binding']", "Success Msg");
+//				final WebElement payeeName = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding ng-scope'])[1]", "Payee Name");
+//				final WebElement payeeAccount2 = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[2]", "Payee Account");
+//				final WebElement description = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[3]", "description msg");
+//				final WebElement home = mobileAction.verifyWebElementUsingXPath("//button[@class='home ng-binding']", "home button");
+//				final WebElement addAnother = mobileAction.verifyWebElementUsingXPath("//button[@class='add-payee ng-binding']", "add payee button");
+//				final WebElement payPayee = mobileAction.verifyWebElementUsingXPath("//button[@class='pay-payee ng-binding']", "pay payee button");
+//
+//				if (!mobileAction.verifyTextEquality(thankYou.getText().trim(), mobileAction.getAppString("str_thank_you")) ||
+//						!mobileAction.verifyTextEquality(successMsg.getText().trim(), mobileAction.getAppString("add_cdn_payee_success_copy")) || 
+//						!mobileAction.verifyTextEquality(payeeName.getText().trim(), mobileAction.getAppString("str_payee_name")) || 
+//						!mobileAction.verifyTextEquality(payeeAccount2.getText().trim(), mobileAction.getAppString("str_payee_account")) ||
+//						!mobileAction.verifyTextEquality(description.getText().trim(), mobileAction.getAppString("str_description")) ||
+//						!mobileAction.verifyTextEquality(home.getText().trim(), mobileAction.getAppString("btn_go_back_home")) ||
+//						!mobileAction.verifyTextEquality(addAnother.getText().trim(), mobileAction.getAppString("btn_add_another_payee")) ||
+//						!mobileAction.verifyTextEquality(payPayee.getText().trim(), mobileAction.getAppString("btn_payee_this_payee"))){
+//					System.err.println("TestCase has failed.");
+//					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+//				}
 
 				// Switch back to native to get proper screenshots
 				mobileAction.switchAppiumContext("NATIVE_APP");

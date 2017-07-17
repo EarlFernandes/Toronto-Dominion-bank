@@ -270,6 +270,7 @@ public class Transfers extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// TODO: iOS elements
 			} else {
+				System.out.println(mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer"));
 				Interac_e_Transfer_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer").replaceAll("\\<.*?>","") + "']", "Send Money");
 			}
 		} catch (NoSuchElementException | IOException e) {

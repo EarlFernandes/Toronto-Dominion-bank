@@ -60,7 +60,7 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id= 'com.td:id/myaccounts_entry_btn_confirm']")
 	private MobileElement btnFinish_transfer;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue']")
+	@iOSFindBy(accessibility = "BETWEENMYACCOUNTS_CONTINUE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/button_footer']")
 	private MobileElement btncontinue_Transfer;
 
@@ -581,9 +581,8 @@ public class Between_My_accounts extends _CommonPage {
 				+ "XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
 
 		try {
-			mobileAction.FuncClick(txtFrom_acnt, "From Account");
-
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.FuncClick(txtFrom_acnt, "From Account");
 				String accountNo = getTestdata("FromAccount");
 				System.out.println("From Account:"+ accountNo);
 				mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, accountNo);
@@ -1954,11 +1953,11 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/to_account' and @text='" + mobileAction.getAppString("receipt_to") + "']", "To");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/amount' and @text='" + mobileAction.getAppString("receipt_amount") + "']", "Amount");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("transfersFXExchangeRate") + "']", "Exchange Rate");
-				final String xPathFooter = "//android.widget.TableRow[@resource-id='tableRow1']";
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='home' and @text='" + mobileAction.getAppString("receipt_home") + "']", "HOME button");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='etransfers' and @text='" + mobileAction.getAppString("receipt_another_transfer") + "']", "MAKE ANOTHER TRANSFER button");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='transfers' and @text='" + mobileAction.getAppString("receipt_transfers") + "']", "TRANSFERS button");
+//				final String xPathFooter = "//android.widget.TableRow[@resource-id='tableRow1']";
+//				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
+//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='home' and @text='" + mobileAction.getAppString("receipt_home") + "']", "HOME button");
+//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='etransfers' and @text='" + mobileAction.getAppString("receipt_another_transfer") + "']", "MAKE ANOTHER TRANSFER button");
+//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='transfers' and @text='" + mobileAction.getAppString("receipt_transfers") + "']", "TRANSFERS button");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {
