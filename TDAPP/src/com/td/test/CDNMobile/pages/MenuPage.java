@@ -282,12 +282,6 @@ public class MenuPage extends _CommonPage {
 				accounts_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + mobileAction.getAppString("str_My_Accounts") + "']", "My Accounts");
 			}
 			Thread.sleep(5000);
-
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				String myAccountText= mobileAction.getAppString("str_My_Accounts");
-				System.out.println("myAccountText:"+myAccountText);
-				accounts_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + myAccountText + "']", "My Accounts");
-			}
 			
 			mobileAction.FuncClick(accounts_button, "Accounts");
 		} catch (NoSuchElementException e) {

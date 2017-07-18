@@ -124,7 +124,7 @@ public class FundDetails extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(FundDetails_header, "Fund Details | Renseignements sur le fonds| 持有投资详情");
+			mobileAction.verifyElementTextIsDisplayed(FundDetails_header, "Fund Details | Détails sur le fonds|基金详情|基金詳情");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

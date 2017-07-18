@@ -350,7 +350,7 @@ public class Investing extends _CommonPage {
 	public void verifyInvestingHeader()  {
 		Decorator();
 		try {
-			mobileAction.verifyTextEquality(investing_header.getAttribute("label"), mobileAction.getAppString("Investing"));
+			mobileAction.verifyTextEquality(mobileAction.getValue(investing_header), mobileAction.getAppString("str_Investing"));			
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -1710,7 +1710,7 @@ public class Investing extends _CommonPage {
 			String usDisclaimerText = mobileAction.getValue(usd_disclaimer_foot);
 			String expectedText;
 			if(currentLocale.equalsIgnoreCase("fr")){
-				expectedText = "Toutes les valeurs sont données en dollars canadiens, sauf avis contraire.";
+				expectedText = "Toutes les valeurs sont en dollars canadiens, sauf avis contraire.";
 			}else{
 				expectedText = "All values in Canadian Dollars unless otherwise stated.";
 			}

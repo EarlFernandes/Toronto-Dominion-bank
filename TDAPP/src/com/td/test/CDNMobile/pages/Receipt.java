@@ -227,7 +227,7 @@ public class Receipt extends _CommonPage{
 	public void VerifyConfirmationPageHeader() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(receiptHeader, "Receipt|收据|收據");
+			mobileAction.verifyElementTextIsDisplayed(receiptHeader, "Receipt|Reçu|收据|收據");
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -237,7 +237,7 @@ public class Receipt extends _CommonPage{
 	public void VerifyReceiptDetailChineseContent() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(receiptHeader, "Receipt|收据|收據");
+			mobileAction.verifyElementTextIsDisplayed(receiptHeader, "Receipt|Reçu|收据|收據");
 			mobileAction.verifyElementTextIsDisplayed(subheader_thanksyou, " 谢谢！| 謝謝您！");
 			mobileAction.verifyElementTextIsDisplayed(reply_message, "我们已经开始处理您的购买。如有问题，我们将与您联系。|我們已開始處理您的購買。如有問題，我們將與您聯絡。");
 			

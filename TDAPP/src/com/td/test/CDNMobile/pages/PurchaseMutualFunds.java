@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.EnglishStrings;
+import com.td.FrenchStrings;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -48,15 +50,15 @@ public class PurchaseMutualFunds extends _CommonPage {
 	private MobileElement cancel_button;
 	
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='From Account']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='" +EnglishStrings.MF_FROM_ACCOUNT+"' or @text ='" +FrenchStrings.MF_FROM_ACCOUNT+"']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']")
 	private MobileElement from_account_name;
 	
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='From Account']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='" +EnglishStrings.MF_FROM_ACCOUNT+"' or @text ='" +FrenchStrings.MF_FROM_ACCOUNT+"']")
 	private MobileElement from_account_caption;
 	
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[3]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='To Account']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='" +EnglishStrings.MF_TO_MF_ACCOUNT+"' or @text ='" +FrenchStrings.MF_TO_MF_ACCOUNT+"']")
 	private MobileElement to_account_caption;
 	
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeOther[6]/XCUIElementTypeStaticText[1]")
@@ -108,6 +110,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	String purchaseListView = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/purchaseListView']";
 	String phoneReg = "\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
 	String emailReg ="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
+	String errorPhoneReg="\\d*-*\\d{3}-\\d{3}-\\d{4}";
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/../XCUIElementTypeOther[1]/XCUIElementTypeButton")
 	@AndroidFindBy(id = "com.td:id/purchasePreviewButton")
@@ -246,7 +249,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(page_title, "Purchase Mutual Funds |Achat de fonds| Acheter des fonds communs de placement | 购买互惠基金|購買互惠基金");
+			mobileAction.verifyElementTextIsDisplayed(page_title, "Purchase Mutual Funds |Achat de fonds| 购买互惠基金|購買互惠基金");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -870,9 +873,10 @@ public class PurchaseMutualFunds extends _CommonPage {
 				return;
 			}
 			
+			
 			//String capturedErrorMsg = mobileAction.getValue(error_message);
-			String expectedErrorMsg ="Looks like you're not set up to purchase mutual funds. Let us help you by calling x-xxx-xxx-xxxx."
-					+"|Il semble que vous ne puissiez pas effectuer d’achats. Pour obtenir de l’aide, composez le x-xxx-xxx-xxxx.";			
+			String expectedErrorMsg ="Looks like you're not set up to purchase mutual funds. Let us help you by calling "+ errorPhoneReg+"."
+					+"|Il semble que vous ne puissiez pas effectuer d’achats. Pour obtenir de l’aide, composez le "+errorPhoneReg+".";			
 			mobileAction.verifyElementTextIsDisplayed(error_message, expectedErrorMsg);
 								
 		} catch (NoSuchElementException e) {

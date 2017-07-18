@@ -2209,16 +2209,23 @@ public class MobileAction2 extends CommonLib {
 		    String capturedText=getValue(mobileElement);
 		    capturedText = capturedText.trim().replaceAll("\n", "");
 		    for (int i=0; i< expectedHeadertext.length; i++){
-		    	if (capturedText.equalsIgnoreCase(expectedHeadertext[i].trim())){
-		    		System.out.println("Expected matched:" + capturedText);
-		    		GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
-		    		verified = true;
-		    		break;
-		    	}
+//		    	if (capturedText.equalsIgnoreCase(expectedHeadertext[i].trim())){
+//		    		System.out.println("Expected matched:" + capturedText);
+//		    		GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
+//		    		verified = true;
+//		    		break;
+//		    	}
+		    	if (capturedText.matches(expectedHeadertext[i].trim())){
+	    		System.out.println("Expected matched:" + capturedText);
+	    		GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
+	    		verified = true;
+	    		break;
+	    	}
+		    	
 		    }
 		    if(!verified){
 		    	System.out.println("Not matched, Captured:" + capturedText + ", but expected is " + expectedText);
-		    	GetReporting().FuncReport("Fail", "expected header not displayed:" + expectedText);	
+		    	GetReporting().FuncReport("Fail", "expected text not matched:" + expectedText);	
 		    	
 		    }
 		} catch (IllegalArgumentException e) {

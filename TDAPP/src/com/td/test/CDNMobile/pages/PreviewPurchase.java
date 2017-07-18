@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.EnglishStrings;
+import com.td.FrenchStrings;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -71,7 +73,7 @@ public class PreviewPurchase extends _CommonPage {
 	private MobileElement amount_value;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[7]/XCUIElementTypeStaticText[2]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Accepted Fund Details & Fees']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='"+EnglishStrings.MF_ACCEPTED_FUND_DETAIL_FEE+"' or @text='"+FrenchStrings.MF_ACCEPTED_FUND_DETAIL_FEE+"']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement fund_facts_acknowledgement;
 	
 	String phoneReg ="\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
@@ -250,7 +252,10 @@ public class PreviewPurchase extends _CommonPage {
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(phoneNumberxpath, false, 10, "up");
 				phone_number = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("label_phone_number") +"']/following-sibling::XCUIElementTypeStaticText", "Email");
 			}else{
-				mobileAction.FuncSwipeWhileElementNotFound(phone_number, false, 10, "up");
+				String phoneNumberxpath = "//android.widget.TextView[@text='" + mobileAction.getAppString("label_phone_number") + "']/../android.widget.RelativeLayout/android.widget.TextView";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(phoneNumberxpath, false, 10, "up");
+				phone_number = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("label_phone_number") + "']/../android.widget.RelativeLayout/android.widget.TextView", "Phone Number");
+				//mobileAction.FuncSwipeWhileElementNotFound(phone_number, false, 10, "up");
 			}
 			String phoneinfo = mobileAction.getValue(phone_number);
 			System.out.println("phone got:"+phoneinfo );
@@ -300,7 +305,7 @@ public class PreviewPurchase extends _CommonPage {
 
 			String amountValue= mobileAction.getValue(amount_value);
 			System.out.println("Amount:" +amountValue);
-			if(amountValue.toLowerCase().contains("usd")){
+			if(amountValue.toLowerCase().contains("us")){
 				mobileAction.Report_Pass_Verified("USD amount found:"+amountValue);
 			}else{
 				mobileAction.Report_Fail("USD Amount not found:"+amountValue);
