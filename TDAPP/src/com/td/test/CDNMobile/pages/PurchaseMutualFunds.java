@@ -412,7 +412,7 @@ public class PurchaseMutualFunds extends _CommonPage {
             int lengthOfArray = selectedFundArray.length;
 			String FundInListText;
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				FundInListText = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='";
+				FundInListText = "//android.widget.TextView[@text='";
 				for (int i=0; i< lengthOfArray; i++ ){
 					FundInListText = FundInListText + selectedFundArray[i].trim() + "'";
 					if(i< lengthOfArray -1 ){
