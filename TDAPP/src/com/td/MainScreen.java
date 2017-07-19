@@ -32,7 +32,7 @@ public class MainScreen extends _CommonPage {
 			"SecurityPassword", "TriggerDelta", "CDNMarginAccount", "QuantityType", "Dividend", "SelectLimitPrice",
 			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName",
 			"Passcode", "NewPasscode", "Email", "Name", "EmailProfile", "PhoneProfile", "PostSurveyText", "Response",
-			"UserProfileType" };
+			"UserProfileType","SecurityQuestion","Amount" };
 
 	public void readSheet() {
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
