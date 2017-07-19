@@ -58,9 +58,14 @@ public class Confirm_Payee extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
 	private MobileElement errorMsg;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[3]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
 	private MobileElement payee_Table;
+
+	@iOSFindBy(xpath = "//*[@name='PAYBILL_VIEW_PAYEE']/../XCUIElementTypeStaticText[2]")
+	private MobileElement ios_payee_Table_name;
+
+	@iOSFindBy(xpath = "//*[@name='PAYBILL_VIEW_PAYEE']/../XCUIElementTypeStaticText[3]")
+	private MobileElement ios_payee_Table_number;
 
 	public synchronized static Confirm_Payee get() {
 		if (Confirm_Payee == null) {
@@ -107,7 +112,13 @@ public class Confirm_Payee extends _CommonPage {
 			mobileAction.FuncSwipeWhileElementNotFound(payThisPayee, true, 5, "up");
 			mobileAction.waitForElementToVanish(progressBar);
 			if (mobileAction.verifyElementIsPresent(payBill_Header)) {
-				String addedPayee = mobileAction.getValue(payee_Table);
+				String addedPayee;
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					addedPayee = mobileAction.getValue(ios_payee_Table_name);
+					addedPayee = addedPayee + " " + mobileAction.getValue(ios_payee_Table_number);
+				} else {
+					addedPayee = mobileAction.getValue(payee_Table);
+				}
 
 				System.out.println("Captured Added payee:" + addedPayee);
 				String expectedPayee = getTestdata("Description") + " "
