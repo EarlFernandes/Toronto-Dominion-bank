@@ -24,11 +24,11 @@ public class AddCanadian_Payee extends _CommonPage{
 	@iOSFindBy(xpath="//XCUIElementTypeOther[@label='Add Canadian Payee']")
 	private MobileElement addCanadianPayee_Header;
 	
-	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@value='Enter your payee account number']")
+	@iOSFindBy(xpath="//XCUIElementTypeTextField[@label='Payee Account']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='accountNumber']")
 	private MobileElement payee_AccountNum;
 	
-	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@value='Optional']")
+	@iOSFindBy(xpath="//XCUIElementTypeTextField[@label='Description']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@text='Description']")
 	private MobileElement description;
 

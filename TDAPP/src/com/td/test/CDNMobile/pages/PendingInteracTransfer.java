@@ -54,6 +54,10 @@ public class PendingInteracTransfer extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel' and @text='Cancel Interac e-Transfer']")
 	private MobileElement cancelTransfer;
 	
+	//for android only
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtSpecialAction']")
+	private MobileElement cancelSender;
+	
 	@iOSFindBy(xpath = "//XCUIElementTypeCell[contains(@label,'Deposit To')]")// Need to change account
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/deposit_account']")
 	private MobileElement depositToAccount;
@@ -72,7 +76,7 @@ public class PendingInteracTransfer extends _CommonPage{
 	private MobileElement cancel;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Don')]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Don't Cancel']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text=\"Don't Cancel\"]")
 	private MobileElement dontCancel;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Transfers']")
@@ -570,7 +574,13 @@ public class PendingInteracTransfer extends _CommonPage{
 					if(mobileAction.verifyElementIsPresent(selectSender)) {
 						mobileAction.FuncClick(selectSender, "sender");
 						mobileAction.waitForElementToVanish(progressBar);
-						mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
+						//mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "up", true);
+						mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_senderValue, true, 5, "up");
+						//add click cancel when cancel is still present, this is an issue for android
+						if(mobileAction.verifyElementIsPresent(cancelSender)){
+							mobileAction.FuncClick(cancelSender, "Cancel");
+						}
+						
 						mobileAction.waitForElementToVanish(progressBar);
 					}
 					mobileAction.FuncClick(selectTransaction, "Select Transaction");
