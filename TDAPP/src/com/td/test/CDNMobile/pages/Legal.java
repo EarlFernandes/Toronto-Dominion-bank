@@ -8,45 +8,43 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
 
-public class Legal extends _CommonPage{
-private static Legal Legal;
-	
-	@iOSFindBy(xpath ="//XCUIElementTypeOther[@label='Legal']")
+public class Legal extends _CommonPage {
+	private static Legal Legal;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Legal']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Legal']")
 	private MobileElement legal_Header;
-	
-	@iOSFindBy(xpath ="//XCUIElementTypeButton[@label='Back']")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement back_Button;
-	
-	
-	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='Mobile Privacy, How we handle the information we collect when yo']")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Mobile Privacy, How we handle the information we collect when yo']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tvPrivacy' and @text='Mobile Privacy']")
 	private MobileElement mobile_Privacy;
-	
-	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='Privacy & Security, Bank & invest with confidence']")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Privacy & Security, Bank & invest with confidence']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tvSecurity' and @text='Privacy & Security']")
 	private MobileElement privacy_Security;
-	
-	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='Legal, Terms & Conditions']")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Legal, Terms & Conditions']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tvLegal' and @text='Legal']")
 	private MobileElement legal;
-	
-	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='Terms of Use, The terms of use you agree to by using EasyWeb or ']")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Terms of Use, The terms of use you agree to by using EasyWeb or ']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Terms of Use']")
 	private MobileElement termsofuse;
-	
-	@iOSFindBy(xpath ="//XCUIElementTypeOther[@label='Terms of Use']")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Terms of Use']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Terms of Use']")
 	private MobileElement termsofuse_Header;
-	
+
 	public synchronized static Legal get() {
 		if (Legal == null) {
 			Legal = new Legal();
@@ -56,10 +54,10 @@ private static Legal Legal;
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
-		
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+
 	}
+
 	/**
 	 * This method will click on the Trade button on Investing page
 	 * 
@@ -79,7 +77,7 @@ private static Legal Legal;
 		try {
 			Decorator();
 			mobileAction.verifyElementIsDisplayed(legal_Header, "Verifying Legal Header");
-			
+
 			mobileAction.FuncClick(legal, "Click Legal");
 			mobileAction.verifyElementIsDisplayed(legal_Header, "Verifying Legal Page Header");
 			mobileAction.FuncClick(back_Button, "Back");
@@ -87,9 +85,9 @@ private static Legal Legal;
 			mobileAction.FuncClick(termsofuse, "Click Terms Of Use");
 			mobileAction.verifyElementIsDisplayed(termsofuse_Header, "Verifying Terms Of Use");
 			mobileAction.FuncClick(back_Button, "Back");
-			
+
 			mobileAction.verifyElementIsDisplayed(mobile_Privacy, "Click Mobile Privacy");
-			
+
 			mobileAction.verifyElementIsDisplayed(privacy_Security, "Click Privacy And Security");
 
 		} catch (NoSuchElementException e) {

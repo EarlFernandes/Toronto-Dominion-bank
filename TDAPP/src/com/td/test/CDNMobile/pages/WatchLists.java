@@ -7,10 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
-import com.td.MainScreen;
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -46,8 +44,8 @@ public class WatchLists extends _CommonPage {
 
 	String symbolXL = getTestdata("Symbol");
 	String symbolXpath = "//android.widget.TextView[@resource-id='com.td:id/market_name' and @text='" + symbolXL + "']";
-	@SuppressWarnings("unchecked")
-	MobileElement symbol = (MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(symbolXpath));
+
+	MobileElement symbol = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(symbolXpath));
 
 	@iOSFindBy(xpath = "//*[contains(@label,'CA']")
 	private MobileElement symbol_td;
@@ -63,8 +61,8 @@ public class WatchLists extends _CommonPage {
 
 	String symbolInWatchListXpath = "//android.widget.TextView[@resource-id='com.td:id/symbol' and @text='" + symbolXL
 			+ "']";
-	@SuppressWarnings("unchecked")
-	MobileElement symbolinWatchList = (MobileElement) ((AppiumDriver) CL.GetDriver())
+
+	MobileElement symbolinWatchList = (MobileElement) (CL.GetAppiumDriver())
 			.findElement(By.xpath(symbolInWatchListXpath)); // once
 
 	String SymbolsXL = getTestdata("Symbols");
@@ -84,8 +82,7 @@ public class WatchLists extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -166,7 +163,7 @@ public class WatchLists extends _CommonPage {
 				mobileAction.FuncClick(symbol, symbolXL);
 
 				String WishListXpath = "//android.widget.LinearLayout[@index='" + i + "']";
-				MobileElement wishList = mobileAction.verifyElementUsingXPath(WishListXpath,"WishList");
+				MobileElement wishList = mobileAction.verifyElementUsingXPath(WishListXpath, "WishList");
 
 				mobileAction.FuncClick(wishList, "WishList " + i);
 
@@ -258,15 +255,16 @@ public class WatchLists extends _CommonPage {
 
 			String SymbolXpath = "//android.widget.TextView[@resource-id='com.td:id/symbol' and contains(@text,'"
 					+ symbolList[i] + "')]";
-			MobileElement Symbol = (MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(SymbolXpath));
+			MobileElement Symbol = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(SymbolXpath));
 
 			try {
 				// mobileAction.FuncClick(Symbol, symbolList[i]);
 				mobileAction.FuncElementSwipeWhileNotFound(listView, Symbol, 3, "up", true);
-			}  catch (NoSuchElementException e) {
+			} catch (NoSuchElementException e) {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-			}  catch (IOException e) {
+				System.out.println(
+						"NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (IOException e) {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			} catch (Exception e) {
@@ -302,14 +300,15 @@ public class WatchLists extends _CommonPage {
 
 			String SymbolXpath = "//android.widget.TextView[@resource-id='com.td:id/symbol' and contains(@text,'"
 					+ symbolList[i] + "')]";
-			MobileElement Symbol = (MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(SymbolXpath));
+			MobileElement Symbol = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(SymbolXpath));
 
 			try {
 				mobileAction.verifyElementNotPresent(Symbol, symbolList[i]);
-			}  catch (NoSuchElementException e) {
+			} catch (NoSuchElementException e) {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-			}  catch (Exception e) {
+				System.out.println(
+						"NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception e) {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}

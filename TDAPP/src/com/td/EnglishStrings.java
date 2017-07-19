@@ -8,6 +8,5 @@ public final class EnglishStrings {
 	public static final String QUICK_ACCESS_SWITCH_IOS = "Quick Access Settings";
 	public static final String QUICK_ACCESS_SWITCH_AND = "Quick Access";
 	public static final String QUICK_ACCESS_HEADER = "Quick Access Settings";
-	
-	
+
 }

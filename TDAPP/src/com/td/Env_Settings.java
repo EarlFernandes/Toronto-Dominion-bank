@@ -9,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td.test.CDNMobile.pages.CMOB_InitialSwipe;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.InteractsWithApps;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -28,7 +27,6 @@ public class Env_Settings extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Banking Service Configuration']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Network Settings']")
 	private MobileElement network_settings;
-	
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/preference_summary_text'and @index='1']")
 	private MobileElement env_set;
@@ -56,26 +54,25 @@ public class Env_Settings extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TDMobilePayments']")
 	private MobileElement TDMobilePaymentsButton;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Allow']")
 	private MobileElement allow;
 
 	String env_need_set = getTestdata("Env");
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeSwitch[@label='Enable MIT Phase4' or @value='false']")
 	private MobileElement enableMITPhase4;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'SYS70']")
 	private MobileElement environment;
-	
-	
+
 	String env = "//XCUIElementTypeStaticText[@label='" + env_need_set + "']";
-	
-	//@resource-id='com.td:id/title' and 
+
+	// @resource-id='com.td:id/title' and
 	String env_Set = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]";
-	String networkSet="//android.widget.TextView[@resource-id='com.td:id/navText'and @text='Network Settings']";
-	String cnfgrn ="//android.widget.TextView[contains(@text,'" + env_need_set + "')]";
-	
+	String networkSet = "//android.widget.TextView[@resource-id='com.td:id/navText'and @text='Network Settings']";
+	String cnfgrn = "//android.widget.TextView[contains(@text,'" + env_need_set + "')]";
+
 	int i = 1;
 	String Firstpart = "//XCUIElementTypeCell[";
 	String Secondpart = "]/XCUIElementTypeStaticText[1]";
@@ -89,14 +86,14 @@ public class Env_Settings extends _CommonPage {
 		return Env_Settings;
 	}
 
-	public Env_Settings(){
-		
+	public Env_Settings() {
+
 		Decorator();
 	}
+
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -114,84 +111,80 @@ public class Env_Settings extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void set_environment() throws Exception {
-		boolean  flag=true;
-		boolean boolEnv=true;
-		int count=0;
-		
+		boolean flag = true;
+		boolean boolEnv = true;
+		int count = 0;
+
 		try {
 
 			if (platformName.equalsIgnoreCase("ios")) {
-				if(mobileAction.verifyElementVisible(menu, "Menu")){
+				if (mobileAction.verifyElementVisible(menu, "Menu")) {
 					mobileAction.FuncClick(menu, "Menu");
 					mobileAction.FunCSwipeandScroll(network_settings, true);
 					Thread.sleep(2000);
-					//mobileAction.FuncClick(enableMITPhase4, "Enable MIT Phase4");
-					//mobileAction.FunCSwipeandScroll(network_settings, true);
-					MobileElement envt = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(env));
+					// mobileAction.FuncClick(enableMITPhase4, "Enable MIT
+					// Phase4");
+					// mobileAction.FunCSwipeandScroll(network_settings, true);
+					MobileElement envt = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(env));
 					mobileAction.FunCSwipeandScroll(envt, true);
-					/*while(flag && count<10){
-						if(mobileAction.verifyElementVisible(envt, "Environment")){
-							mobileAction.FuncClick(envt, "Environment");
-							flag=false;
-						}else{
-							mobileAction.FunctionSwipe("Up", 200, 200);
-							count++;
-						}
-					}
-					*/
-					//mobileAction.FuncSelectElementInTable(env_Set, Firstpart, Secondpart, env_need_set);
-					
-				}else{
+					/*
+					 * while(flag && count<10){
+					 * if(mobileAction.verifyElementVisible(envt,
+					 * "Environment")){ mobileAction.FuncClick(envt,
+					 * "Environment"); flag=false; }else{
+					 * mobileAction.FunctionSwipe("Up", 200, 200); count++; } }
+					 */
+					// mobileAction.FuncSelectElementInTable(env_Set, Firstpart,
+					// Secondpart, env_need_set);
+
+				} else {
 					mobileAction.FuncClick(allow, "Allow");
 					CMOB_InitialSwipe.get().InitialSwipe();
 				}
-				
 
 			} else {
-				if(mobileAction.verifyElementVisible(menu, "Menu")){
-					
-				}else{
+				if (mobileAction.verifyElementVisible(menu, "Menu")) {
+
+				} else {
 					CMOB_InitialSwipe.get().InitialSwipe();
 				}
 				mobileAction.FuncClick(menu, "Menu");
-				//mobileAction.FunCSwipeandScroll(network_settings, true);
-				//mobileAction.FuncElementSwipeWhileNotFound(envList, cnfgrn, 5, "down", true);
-				//mobileAction.FuncSwipeWhileElementNotFoundByxpath(networkSet, true, 7, "Up");
-				while(flag && count<5){
-					if(mobileAction.verifyElementVisible(network_settings, "Network Settings")){
+				// mobileAction.FunCSwipeandScroll(network_settings, true);
+				// mobileAction.FuncElementSwipeWhileNotFound(envList, cnfgrn,
+				// 5, "down", true);
+				// mobileAction.FuncSwipeWhileElementNotFoundByxpath(networkSet,
+				// true, 7, "Up");
+				while (flag && count < 5) {
+					if (mobileAction.verifyElementVisible(network_settings, "Network Settings")) {
 						mobileAction.FuncClick(network_settings, "Networksettings");
-						flag=false;
-					}else{
+						flag = false;
+					} else {
 						mobileAction.FunctionSwipe("Up", 100, 100);
 						count++;
 					}
 				}
-				//mobileAction.FunCnewSwipe(network_settings, true, 3);
+				// mobileAction.FunCnewSwipe(network_settings, true, 3);
 				String env_exist = mobileAction.getText(env_set);
 				if (env_exist.equalsIgnoreCase(env_need_set)) {
 
 				} else {
 					mobileAction.FuncClick(configuration, "Configuration");
 					mobileAction.FunctionSwipe("Up", 150, 150);
-					MobileElement config = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(cnfgrn));
+					MobileElement config = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(cnfgrn));
 					mobileAction.FuncClick(config, "Environment");
-					/*while(boolEnv && count<10){
-						//mobileAction.FunctionSwipe("Up", 200, 200);
-						MobileElement config = (MobileElement) ((AppiumDriver) CL.GetDriver())
-								.findElement(By.xpath(cnfgrn));
-						
-							
-							if(mobileAction.verifyElementVisible(config, "Environment")){
-								mobileAction.FuncClick(config, "Environment");
-								boolEnv=false;
-							}else{
-								mobileAction.FunctionSwipe("Up", 200, 200);
-								count++;
-							}
-					}*/
-					//mobileAction.FunCSwipeandScroll(config, true);
+					/*
+					 * while(boolEnv && count<10){
+					 * //mobileAction.FunctionSwipe("Up", 200, 200);
+					 * MobileElement config = (MobileElement) ((AppiumDriver)
+					 * CL.GetDriver()) .findElement(By.xpath(cnfgrn));
+					 * 
+					 * 
+					 * if(mobileAction.verifyElementVisible(config,
+					 * "Environment")){ mobileAction.FuncClick(config,
+					 * "Environment"); boolEnv=false; }else{
+					 * mobileAction.FunctionSwipe("Up", 200, 200); count++; } }
+					 */
+					// mobileAction.FunCSwipeandScroll(config, true);
 					// mobileAction.FuncElementSwipeWhileNotFound(envList,
 					// cnfgrn, 5, "down", true);
 				}
@@ -256,8 +249,7 @@ public class Env_Settings extends _CommonPage {
 				mobileAction.FuncClick(okButton, "OK");
 
 			}
-			MobileElement envt = (MobileElement) ((AppiumDriver) CL.GetDriver())
-					.findElement(By.xpath(env));
+			MobileElement envt = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(env));
 			mobileAction.FunCSwipeandScroll(envt, true);
 			mobileAction.FunCSwipeandScroll(environment, true);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -265,7 +257,7 @@ public class Env_Settings extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
+
 	public void deleteDefaultCard() throws Exception {
 		try {
 
@@ -285,9 +277,8 @@ public class Env_Settings extends _CommonPage {
 				}
 			}
 
-			mobileAction.FunCSwipeandScroll((MobileElement) ((AppiumDriver) CL.GetDriver())
-					.findElement(By.xpath(env)), true);
-			
+			mobileAction.FunCSwipeandScroll((MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(env)), true);
+
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
