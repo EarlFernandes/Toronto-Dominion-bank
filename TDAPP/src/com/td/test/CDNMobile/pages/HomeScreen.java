@@ -408,7 +408,7 @@ public class HomeScreen extends _CommonPage {
 			Decorator();
 			// FIXED removed back button
 			mobileAction.FuncClick(menu, "Menu");
-
+			System.out.println("clicked on menu");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
