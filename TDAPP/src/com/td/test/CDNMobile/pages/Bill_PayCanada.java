@@ -67,7 +67,7 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement select_to_account;
 
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[contains(@value, '$')]")
+	@iOSFindBy(xpath = "//*[@name='PAYBILL_VIEW_AMOUNT']/../XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edtAmt' and @index='1']")
 	private MobileElement amount;
 
@@ -144,6 +144,7 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement confirmation_text;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Select Payee']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
 	private MobileElement select_payee;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
@@ -246,6 +247,30 @@ public class Bill_PayCanada extends _CommonPage {
 				this);
 
 	}
+	
+	private void selectPayee(){
+		
+		String payeeAccount = getTestdata("Payee");
+		System.out.println("Payee account:"+ payeeAccount);
+		try{
+			String payeeNumber = mobileAction.FuncGetValByRegx(payeeAccount, "\\d+");
+			String payeeName = payeeAccount.replaceAll(payeeNumber, "").trim();
+			System.out.println("Payee name:"+payeeName);
+			mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
+			//select payee
+			mobileAction.FuncClick(select_payee, "Select Payee");
+			String payeeAccountxpath;
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				payeeAccountxpath="//*[contains(@label, '" + payeeName +"')]";
+			}else{
+				payeeAccountxpath ="//android.widget.TextView[contains(@text,'" +payeeName +"')]";
+			}
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(payeeAccountxpath, true, 10, "up");
+		}catch (Exception e){
+			System.out.println("Failed to select payee:"+ payeeAccount);
+		}
+		
+	}
 
 	public void pay_candadian_bill()  {
 
@@ -255,9 +280,14 @@ public class Bill_PayCanada extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
+				selectPayee();
+				Decorator();
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				String Amount = getTestdata("Amount");
-				mobileAction.FuncSendKeys(amount, Amount);
+				//mobileAction.FuncSendKeys(amount, Amount);
+				Decorator();
+				Thread.sleep(2000);
+				amount.sendKeys(Amount);
 				mobileAction.FuncClick(done, "Done");
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
 				mobileAction.waitForElementToVanish(progressBar);
@@ -274,18 +304,18 @@ public class Bill_PayCanada extends _CommonPage {
 			}
 
 			else {
-				String payee=getTestdata("Payee");
-				String ToPostAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and contains(@text,'"
-						+ payee + "')]";
-			
-				if (mobileAction.verifyElementIsPresent(payeeValue)) {
-
-				} else {
-					mobileAction.FuncClick(to_account_post, "Select Payee");
-					mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, ToPostAccountXpath, 1, "up", true);
-					mobileAction.waitForElementToDisappear(t_select_to_account);
-				}
-
+//				String payee=getTestdata("Payee");
+//				String ToPostAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and contains(@text,'"
+//						+ payee + "')]";
+//			
+//				if (mobileAction.verifyElementIsPresent(payeeValue)) {
+//
+//				} else {
+//					mobileAction.FuncClick(to_account_post, "Select Payee");
+//					mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount, ToPostAccountXpath, 1, "up", true);
+//					mobileAction.waitForElementToDisappear(t_select_to_account);
+//				}
+				selectPayee();
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
 				mobileAction.FuncHideKeyboard();
@@ -661,32 +691,25 @@ public class Bill_PayCanada extends _CommonPage {
 		Decorator();
 		try {
 
-			String payeeAccount = getTestdataOtherSheet("FromAccount", "Payment");
-
+			selectPayee();
+			Decorator();
+			mobileAction.FuncClick(amount, "Amount button clicked");
+			String Amount = getTestdata("Amount");
+			System.out.println("Amount:" + Amount);
+			Thread.sleep(2000);
+			Decorator();
+			//mobileAction.FuncSendKeys(amount, Amount); //very strange, not clear why this doesn't work fro IOS at this case
+			amount.sendKeys(Amount);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-
-				mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
-				mobileAction.FuncClick(amount, "Amount button clicked");
-				String Amount = getTestdata("Amount");
-				mobileAction.FuncSendKeys(amount, Amount);
 				mobileAction.FuncClick(done, "Done");
-				mobileAction.FuncClick(continue_pay, "Continue_pay");
-				mobileAction.waitForElementToVanish(progressBar);
-				mobileAction.FuncClick(cancelBtn, "Cancel");
-
-			}
-
-			else {
-				mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
-				mobileAction.FuncClick(amount, "Amount button clicked");
-				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
+			}else{
 				mobileAction.FuncHideKeyboard();
-				mobileAction.FuncClick(continue_pay, "Continue_pay");
-				mobileAction.waitForElementToVanish(progressBar);
-				mobileAction.FuncClick(cancelBtn, "Cancel");
-				Bills.get().verifyBillHeader();
-
 			}
+			mobileAction.FuncClick(continue_pay, "Continue_pay");
+			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.FuncClick(cancelBtn, "Cancel");
+			Bills.get().verifyBillHeader();
+
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -878,8 +901,14 @@ public class Bill_PayCanada extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
+				selectPayee();
+				Decorator();
 				mobileAction.FuncClick(amount, "Amount button clicked");
-				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
+				//mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
+				String Amount = getTestdata("Amount");
+				Decorator();
+				Thread.sleep(2000);
+				amount.sendKeys(Amount);
 				mobileAction.FuncClick(done, "Done");
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
 				mobileAction.waitForElementToVanish(progressBar);
@@ -892,6 +921,7 @@ public class Bill_PayCanada extends _CommonPage {
 
 			else {
 				mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
+				selectPayee();
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
 				mobileAction.FuncHideKeyboard();
@@ -941,9 +971,14 @@ public class Bill_PayCanada extends _CommonPage {
 			Decorator();
 			
 			mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
+			selectPayee();
+			Decorator();
 			mobileAction.FuncClick(amount, "Amount button clicked");
 			String Amount = getTestdata("Amount");
-			mobileAction.FuncSendKeys(amount, Amount);
+			//mobileAction.FuncSendKeys(amount, Amount);
+			Decorator();
+			Thread.sleep(2000);
+			amount.sendKeys(Amount);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(done, "Done");
