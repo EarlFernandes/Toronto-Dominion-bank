@@ -3,9 +3,9 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import com.td.StringLookup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,7 +23,7 @@ public class HomeScreen extends _CommonPage {
 
 	private static HomeScreen HomeScreen;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu' or @label='Menu en en-tête']")
+	@iOSFindBy(accessibility ="NAVIGATION_ITEM_MENU")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up' and @index='0']")
 	private MobileElement menu;
 
@@ -31,11 +31,15 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/title' or @resource-id='com.td:id/navText') and @text='Bills']")
 	private MobileElement bills;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='Open a Bank Account']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Open a Bank Account']")
+	private MobileElement newAccount;
+
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='Accounts']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Accounts']")
 	private MobileElement my_accounts;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfers' or @label='Virments']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfers']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Transfers' or @text='Virments']")
 	private MobileElement transfers;
 
@@ -43,12 +47,12 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Markets' or @content-desc='Markets']")
 	private MobileElement markets;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Transfers']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='TRANSFER']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='TRANSFERS']")
 	private MobileElement transfer_button_dashboard;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Quick Access']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access']")
+	@iOSFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access']") // This is sometimes TextView or Button
 	private MobileElement quickAccess;
 
 /*	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investing Accounts']")
@@ -60,15 +64,15 @@ public class HomeScreen extends _CommonPage {
 	MobileElement  investing_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'TRADE')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trade']")
+	@AndroidFindBy(xpath = "//android.widget.TableRow[@text='TRADE']")
 	private MobileElement trade;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='VIREMENTS'] ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='VIREMENTS']")
 	private MobileElement french_transfers;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD for Me']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='TD for Me']")//Changed by Rashmi
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Locations']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Locations']")//Changed by Rashmi
 	private MobileElement dashboard_Location;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='TD For Me']")
@@ -98,7 +102,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @enabled='true']")
 	private MobileElement zone_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investing']")//@Author - Sushil 21-Apr-2017 modified
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Investing')]")//@Author - Sushil 21-Apr-2017 modified
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Investing Accounts' or @text='Comptes Placements directs TD')]")
 	private MobileElement InvestingHamburgeMenu;
 
@@ -106,24 +110,26 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 
-
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/send_money_dashboard']") //@Author Ashraf Sprint 2
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@value='SEND MONEY']")
 	private MobileElement send_money_button;
 
+	@iOSFindBy(accessibility = "QUICK_ACCESS_ITEM_QUOTE")
+	private MobileElement quote;
+	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Privacy, Security & Legal') or contains(@value,'Privacy, Security & Legal')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Privacy, Security & Legal']")
 	private MobileElement privacy;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
+	@iOSFindBy(xpath = "//*[@label='背面' or @label='返回' or @label='Back']")
 	private MobileElement back_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Locations']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
 	private MobileElement location;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Find Locations']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Find Locations']")
+	@iOSFindBy(xpath = "//*[@label='Find Locations']")
+	@AndroidFindBy(xpath = "//*[@text='Find Locations']")
 	private MobileElement locationheader;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]//XCUIElementTypeCell[1]/XCUIElementTypeButton[7]")
@@ -646,6 +652,7 @@ public class HomeScreen extends _CommonPage {
 
 	}
 
+
 	public void sendMoney() {			//Modified by @Ashraf Added if condition for IOS
 		try {
 			Decorator();
@@ -689,7 +696,7 @@ public class HomeScreen extends _CommonPage {
 
 		Decorator();
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2500);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.FuncClick(back_button, "BACK");
@@ -729,33 +736,9 @@ public class HomeScreen extends _CommonPage {
 	public void flyoutMenu_Locations() {
 		Decorator();
 		try {
-
-			 if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-
-				mobileAction.FuncClick(dashboard_Location, "TD Zone Dashboard");
-				if(mobileAction.verifyElementIsPresent(select_accesscard)){
-					Login.get().login();
-				}
-				mobileAction.waitForElementToVanish(progressBar);
-				mobileAction.verifyElement(TD_For_Me, "TD for Me");
-
-			} else {//Changed by Rashmi
-
-				AppiumDriver<WebElement> driver = ((AppiumDriver<WebElement>) CL.GetDriver());
-				WebDriverWait wait = new WebDriverWait(driver, 10);
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-						"//android.widget.TextView[@text='TD for Me']")));
-				mobileAction.FuncClick(dashboard_Location, "TD Zone Dashboard");
-				if(mobileAction.verifyElementIsPresent(select_accesscard)){
-					Login.get().login();
-				}
-				// mobileAction.waitForElementToVanish(progressBarIos);a
-				// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.TextView[@resource-id='android:id/action_bar_title'
-				// and @text='TD for Me']")));
-				mobileAction.waitForElementToVanish(progressBar);
-				mobileAction.verifyElement(TD_For_Me, "TD for Me");
-
-			}
+			mobileAction.FuncClick(dashboard_Location, "Locations");
+			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.verifyElementIsDisplayed(locationheader, "Locations header not present");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -837,7 +820,7 @@ public class HomeScreen extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(InvestingHamburgeMenu, "Investing button clicked");
-
+			Thread.sleep(1000);
 		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -1221,7 +1204,39 @@ public class HomeScreen extends _CommonPage {
 		}
 		
 	}
-	
+	/**
+	 * This method will click on the open new account button on home page
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void clickOpenNewAccount() {
+		try {
+			Decorator();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				newAccount = mobileAction.verifyElementUsingXPath("//*[@name='" + mobileAction.getAppString("str_banking_cross_sell_message") + "']", "Opne a bank account");
+			} else {
+				newAccount = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("str_banking_cross_sell_message") + "']", "Opne a bank account");
+			}
+			mobileAction.FuncClick(newAccount, "New Bank Account");
+
+		} catch (Exception e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+	}
 	public void ClickContactUsFromHomePage(){
 		Decorator();
 		//MobileElement contactUs = null;
@@ -1287,6 +1302,95 @@ public class HomeScreen extends _CommonPage {
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+
+	/**
+	 * This method will verify text within elements for the home screen
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyHomeScreenTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				final String accounts = mobileAction.getAppString("easy_access_accounts").toLowerCase().substring(0,1).toUpperCase() + mobileAction.getAppString("str_Accounts").toLowerCase().substring(1);
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + accounts + "']", "Accounts");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfers_str") + "']", "Transfers");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("bills_str") + "']", "Bills");
+				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + StringLookup.lookupString(currentLocale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing Accounts");
+				final String xPathFooter = "//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("contact_str") + "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("dashboard_nearest_branch_lbl") + "' or @value='" + mobileAction.getAppString("dashboard_branch_lbl") + "']", "Nearest Branch");
+				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("markets_str") + "']", "Markets");
+	
+			} else {
+				final String accounts = mobileAction.getAppString("easy_access_accounts").toLowerCase().substring(0,1).toUpperCase() + mobileAction.getAppString("easy_access_accounts").toLowerCase().substring(1);
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + accounts + "']", "Accounts");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("transfers_str") + "']", "Transfers");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("bills_str") + "']", "Bills");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("td_moneyfit_header") + "']", "TD My Spend");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("TDZonesNavRowHeader") + "']", "TD For Me");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + StringLookup.lookupString(currentLocale, StringLookup.INVESTING_ACCOUNTS) + "']", "Investing Accounts");
+				final String xPathFooter = "//android.widget.TextView[@resource-id='com.td:id/dashboard_terms']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("contact_str") + "']", "Contact Us");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("terms_of_use") + "']", "Terms of Use");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("dashboard_nearest_branch_lbl") + "' or @text='" + mobileAction.getAppString("dashboard_find_locations") + "']", "Nearest Branch");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("markets_str") + "']", "Markets");
+				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='" + mobileAction.getAppString("trade_str") + "']", "Trade");
+			}
+		} catch (Exception e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+	/**
+	 * This method will verify text within elements for the home screen dashboard buttons
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyHomeScreenDashboardButtonsTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+	//			mobileAction.verifyTextEquality(send_money_button.getText(), mobileAction.getAppString("str_dashboard_quick_link_send_money"));
+	//			mobileAction.verifyTextEquality(transfer_button_dashboard.getText(), mobileAction.getAppString("homeDashboardBankingRowTransfersTitle"));
+	//			mobileAction.verifyTextEquality(deposit.getText(), mobileAction.getAppString("str_DEPOSIT"));
+				mobileAction.SwipeWithinElement("//XCUIElementTypeCell[1]", 2, "left");
+				// FIXME: Watchlists is not an accessibility identifier, Ask May
+				// FIXME: Quote is not an accessibility id, ask may
+				//mobileAction.verifyTextEquality(quote.getText(), mobileAction.getAppString("str_QUOTE"));
+			} else {
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/send_money_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_send_money") + "']", "Send Money Button");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='" + mobileAction.getAppString("str_TRANSFER") + "']", "Transfer Button");
+	//			mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mpay_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_pay_now") + "']", "Pay Now Button");
+	//			mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/mrdc_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_deposit") + "']", "Deposit Button");
+	//			mobileAction.SwipeWithinElement("//android.widget.HorizontalScrollView", 2, "left");
+	//			mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/watchlist_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_watchlist") + "']", "Watchlists Button");
+	//			mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/quote_dashboard' and @text='" + mobileAction.getAppString("str_dashboard_quick_link_quote") + "']", "Quote Button");
+			}
+		} catch (Exception e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
 

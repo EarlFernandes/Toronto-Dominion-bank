@@ -692,7 +692,7 @@ public class ConfirmOrder extends _CommonPage {
 	String currentPricePath = null;
 
 //	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Order']/../XCUIElementTypeStaticText[2]")
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Order']/../XCUIElementTypeStaticText[2]")//@Author - Shahbaaz 17-Apr-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Order' or @label='Ordre']/../XCUIElementTypeStaticText[2]")//@Author - Shahbaaz 17-Apr-2017
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_value_main' and contains(@text,' @ ')]")
 	private MobileElement orderElement;
 
@@ -798,6 +798,7 @@ public class ConfirmOrder extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(cancelButton, "Cancel");
+			Thread.sleep(3000);
 			mobileAction.FuncClick(confirmCancel, "Confirm Cancel");
 			mobileAction.verifyElementIsDisplayed(investingheader, "Verifying Investing Landing Page");
 		} catch (NoSuchElementException e) {

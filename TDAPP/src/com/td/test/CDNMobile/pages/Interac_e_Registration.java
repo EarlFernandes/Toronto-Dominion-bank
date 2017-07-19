@@ -465,7 +465,6 @@ public class Interac_e_Registration extends _CommonPage {
 				if(i!=(nameArr.length-1)){
 					
 				mobileAction.FuncClick(chooseProfile, "Select Profile");
-				mobileAction.getPageSource();
 				String profileStr = "//XCUIElementTypeStaticText[@label='" + nameArr[i] + "']";
 				MobileElement profile = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(profileStr));

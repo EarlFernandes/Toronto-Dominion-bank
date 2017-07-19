@@ -6,21 +6,28 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.td.mainframe.Executor;
 
+import io.appium.java_client.AppiumDriver;
+
 public class MainScreen extends _CommonPage {
 
 	// ***** LOCAL EXECUTION PARAMETERS *****
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.104:4780/wd/hub";
+
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.104:4772/wd/hub";
+
+
+
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
-	private static final String APP_ANDROID = "APP_ANDROID";
-	// Change this parameter to point to the correct ipa in Setup.xls for ios
-	private static final String APP_IOS = "APP_IOS";
+	private static final String APP_ANDROID = "APP_ANDROID_ZH_TRAD";
 
-	public String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env", "Amount",
-			"Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount", "AccessCard",
-			"Description", "Payee", "Timeout", "SecondTimeout", "MerchantName", "Price", "Quantity",
+	// Change this parameter to point to the correct ipa in Setup.xls for ios
+	private static final String APP_IOS = "APP_IOS_ZH_TRAD";
+
+	public String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env",
+			"Amount", "Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount",
+			"AccessCard", "Description", "Payee", "Timeout", "SecondTimeout", "MerchantName", "Price", "Quantity",
 			"Security_Question", "RecipientName", "RecipientMail", "Trading_Pwd", "Symbol", "ShareHolder",
 			"SecurityPassword", "TriggerDelta", "CDNMarginAccount", "QuantityType", "Dividend", "SelectLimitPrice",
 			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName",
@@ -79,19 +86,30 @@ public class MainScreen extends _CommonPage {
 		}
 
 		final String udid = CL.getTestDataInstance().getDeviceUdid();
-
 		// Jenkins only params
 
 		final String appiumPath = CL.getTestDataInstance().getAppiumPath();
 		final String targetEnv = CL.getTestDataInstance().targetEnvironment;
+		final String[] targetEnvVars;
 
 		if (!StringUtils.isEmpty(appiumPath) && !StringUtils.isEmpty(targetEnv)) { // Jenkins
 																					// execution
+			targetEnvVars = StringUtils.split(targetEnv, ":::");
 			if (CL.getTestDataInstance().getAppFilePath() == null
 					|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
-				CL.getTestDataInstance().SetAppFilePath(targetEnv);
+				CL.getTestDataInstance().SetAppFilePath(targetEnvVars[0]);
 			}
+
 			CL.mobileApp(appiumPath);
+			
+			// If length is 2, then second token is the locale
+			if (targetEnvVars.length >= 2) {
+				currentLocale = targetEnvVars[1];
+				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
+			} else {
+				currentLocale = "EN";
+				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
+			}
 		} else { // Local execution
 			try { // Set udid explicitly for local execution, to handle udid
 					// with all caps, when reading from excel sheet // it seems
@@ -102,12 +120,21 @@ public class MainScreen extends _CommonPage {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_ANDROID));
+						currentLocale = CL.LoadData("Language",
+								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_ANDROID);
 					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS));
+						currentLocale = CL.LoadData("Language",
+								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS);
 					}
 				}
 				CL.mobileApp(LOCAL_EXECUTION_APPIUM_SERVER);
+				if (StringUtils.isEmpty(currentLocale)) {
+					appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
+				} else {
+					appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
+				}
 
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
@@ -116,7 +143,7 @@ public class MainScreen extends _CommonPage {
 			}
 
 		}
-		
+
 	}
 
 	// Singleton object of self

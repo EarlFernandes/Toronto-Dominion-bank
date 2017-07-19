@@ -142,8 +142,8 @@ public class MLCancelOrderReceipt extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/btn_continue")
 	private MobileElement btnSendOrder;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de négociation']")//@Author - Sushil 06-Feb-2017
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trading Password' or @text='Mot de passe de négociation']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trading Password' or @label='Mot de passe de nÃ©gociation']")//@Author - Sushil 06-Feb-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trading Password' or @text='Mot de passe de nÃ©gociation']")
 	private MobileElement labelTradingPassword;	
 	
 	public void verifyStockOptionCancelOrderReceipt()
@@ -178,8 +178,16 @@ public class MLCancelOrderReceipt extends _CommonPage{
 			mobileAction.FuncSwipeUpTillScreenBottom(labelTradingPassword);
 			
 			if(mobileAction.isObjExists(editTextPassword, 2))
-				TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
-
+				//TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+			{
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+					TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+				else
+				{
+				mobileAction.FuncSendKeys(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+				TradeMultiLeg.get().handleKeyboard();
+				}
+			}
 			mobileAction.FuncClick(btnCancelOrder, "Cancel Button");
 			
 			mobileAction.verifyElementIsDisplayed(hdrReceipt, "Header Reciept");

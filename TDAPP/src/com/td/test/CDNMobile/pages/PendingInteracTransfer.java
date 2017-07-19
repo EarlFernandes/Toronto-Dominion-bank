@@ -31,7 +31,7 @@ public class PendingInteracTransfer extends _CommonPage{
 	private MobileElement pending_Interace_Transfer_Header; 
 	
 	@iOSFindBy(xpath= "//XCUIElementTypeStaticText[@label='-sender' or @label='-Sender']")
-	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/layout_etransfer_sender_layout']")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/layout_etransfer_sender_layout' or @resource-id='com.td:id/layout_etransfer_sender']")
 	private MobileElement sender;
 	
 	@iOSFindBy(xpath= "//XCUIElementTypeStaticText[@label='-sender']")
@@ -46,7 +46,7 @@ public class PendingInteracTransfer extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/layout_etransfer_sender_layout']")
 	private MobileElement selectSender;
 	
-	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='-Balance'][1]")
+	@iOSFindBy(xpath ="//XCUIElementTypeStaticText[@label='-Balance-' or @label='-Balance'][1]")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index='1']")
 	private MobileElement selectTransaction;
 	
@@ -72,7 +72,7 @@ public class PendingInteracTransfer extends _CommonPage{
 	private MobileElement cancel;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Don')]")
-	@AndroidFindBy(xpath = "//android.widget.Button@resource-id='android:id/button1' and @text='Don't Cancel']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Don't Cancel']")
 	private MobileElement dontCancel;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Transfers']")
@@ -101,7 +101,7 @@ public class PendingInteracTransfer extends _CommonPage{
 	private MobileElement cnfrmCancellation;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeCell[@label='PENDING E-TRANSFERS']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/pending_transfers' and @text='PENDING E-TRANSFERS']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/pending_transfers']")
 	private MobileElement clickPendingIcon;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Confirmation #')]")
@@ -120,6 +120,9 @@ public class PendingInteracTransfer extends _CommonPage{
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']")
 	private MobileElement acntsList;
 	
+	@AndroidFindBy(xpath = "//android.widget.ScrollView[@index='0']")
+	private MobileElement pendingIEMTList;
+
 	@iOSFindBy(id = "//XCUIElementTypeStaticText[@label='-sender']")
 	private MobileElement  verifySender;
 	
@@ -183,31 +186,6 @@ public class PendingInteracTransfer extends _CommonPage{
 	@iOSFindBy(xpath = "//XCUIElementTypeCell[contains(@label,'GO BACK HOME')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/home']")
 	private MobileElement gobackhomeButton;
-
-	String accountsPage_Table="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/"
-			+ "XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
-	String accountssecondPart = "]/XCUIElementTypeStaticText[2]";
-	String from_account = getTestdata("FromAccount");
-	
-	
-	
-	String sender_selectSender = getTestdata("Sender");
-	String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
-	
-	String transferRecipient = getTestdata("FromAccount");
-	String select_Recipient = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_from_account' and @text='" + transferRecipient + "')]";
-	
-	String platformName=CL.getTestDataInstance().getMobilePlatForm();
-	String transfer_fromAccount = getTestdata("FromAccount");
-	
-	int i=1;
-	String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
-	
-	String firstPart="//XCUIElementTypeCell[";
-	String secondPart="]/XCUIElementTypeStaticText[1]";
-	String finalPart=firstPart+i+secondPart;
-	
-	
 
 	public synchronized static PendingInteracTransfer get() {
 		if (PendingInteracTransfer == null) {
@@ -315,9 +293,9 @@ public class PendingInteracTransfer extends _CommonPage{
 			}
 			else
 			{
-			String listofsender = "Verifying List Of sender";
-			mobileAction.FuncClick(sender,"Clicksender");
-			mobileAction.verifyElementIsDisplayed(senderList, listofsender);
+				String listofsender = "Verifying List Of sender";
+				mobileAction.FuncClick(sender,"Clicksender");
+				mobileAction.verifyElementIsDisplayed(senderList, listofsender);
 	
 			}
 		}catch (NoSuchElementException |IOException | InterruptedException e) {
@@ -344,11 +322,24 @@ public class PendingInteracTransfer extends _CommonPage{
 	 */
 	public void cancelPendingTransfer() {
 		Decorator();
+
+		String sender_selectSender = getTestdata("Sender");
+		String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
+
+		String transfer_fromAccount = getTestdata("FromAccount");
+
+		String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+
+		String firstPart="//XCUIElementTypeCell[";
+		String secondPart="]/XCUIElementTypeStaticText[1]";
+
 		try {
 			
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-				mobileAction.FuncClick(selectSender, "sender");
-				mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+				if(mobileAction.verifyElementIsPresent(selectSender)) {
+					mobileAction.FuncClick(selectSender, "sender");
+					mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+				}
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 				mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
@@ -360,12 +351,17 @@ public class PendingInteracTransfer extends _CommonPage{
 			}else{
 			
 				mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
-				mobileAction.FuncClick(selectSender, "sender");
-				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 1, "down", true);
+				if(mobileAction.verifyElementIsPresent(selectSender)) { 
+					mobileAction.FuncClick(selectSender, "sender");
+					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 1, "down", true);
+					mobileAction.waitForElementToVanish(progressBar);
+				}
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 				mobileAction.FuncClick(depositToContinue,"Continue");
 				mobileAction.FuncClick(cnfrmCancellation, "Confirm");
+				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.verifyElementIsDisplayed(cancelSuccessMsg, "Interac e-Transfer reclaimed and deposited successfully");
 				String conf_val = mobileAction.getText(cancelCnfrmnVal);
 			}
@@ -402,11 +398,24 @@ public class PendingInteracTransfer extends _CommonPage{
 		 */
 		public void confirmscreen_cancelbutton() {
 			Decorator();
+
+			String sender_selectSender = getTestdata("Sender");
+			String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
+			
+			String transfer_fromAccount = getTestdata("FromAccount");
+			
+			String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+			
+			String firstPart="//XCUIElementTypeCell[";
+			String secondPart="]/XCUIElementTypeStaticText[1]";
+
 			try {
 				
 				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-					mobileAction.FuncClick(selectSender, "sender");
-					mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+					if(mobileAction.verifyElementIsPresent(selectSender)) {
+						mobileAction.FuncClick(selectSender, "sender");
+						mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+					}
 					mobileAction.FuncClick(selectTransaction, "Select Transaction");
 					mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 					mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
@@ -418,10 +427,12 @@ public class PendingInteracTransfer extends _CommonPage{
 				}else{
 				
 					mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
-					mobileAction.FuncClick(selectSender, "sender");
-					//mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
-					
-					mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_senderValue, true, 25, "Up");
+					if(mobileAction.verifyElementIsPresent(selectSender)) {
+						mobileAction.FuncClick(selectSender, "sender");
+						mobileAction.waitForElementToVanish(progressBar);
+						mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_senderValue, true, 2, "Up");
+						mobileAction.waitForElementToVanish(progressBar);
+					}
 					mobileAction.FuncClick(selectTransaction, "Select Transaction");
 					mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 					mobileAction.FuncClick(depositToContinue,"Continue");
@@ -454,6 +465,17 @@ public class PendingInteracTransfer extends _CommonPage{
 			 */
 			public void verifylist() {
 				Decorator();
+				
+				String sender_selectSender = getTestdata("Sender");
+				String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
+
+				String transfer_fromAccount = getTestdata("FromAccount");
+				
+				String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+				
+				String firstPart="//XCUIElementTypeCell[";
+				String secondPart="]/XCUIElementTypeStaticText[1]";
+
 				try {
 					
 					if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
@@ -474,18 +496,21 @@ public class PendingInteracTransfer extends _CommonPage{
 					
 						mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
 						mobileAction.FuncClick(selectSender, "sender");
-						mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
+						mobileAction.waitForElementToVanish(progressBar);
+						mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 5, "down", true);
+						mobileAction.waitForElementToVanish(progressBar);
 						mobileAction.FuncClick(selectTransaction, "Select Transaction");
 						mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 						mobileAction.FuncClick(depositToContinue,"Continue");
 						mobileAction.FuncClick(cnfrmCancellation, "Confirm");
+						mobileAction.waitForElementToVanish(progressBar);
 						mobileAction.verifyElementIsDisplayed(receiptHeader, "Receipt Page Opens");
 						mobileAction.FuncClick(clickPendingIcon, "Click Pending Interac e-Transfer Icon");
-//						mobileAction.FuncClick(selectSender, "sender");
-						mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
+						mobileAction.FuncClick(selectSender, "sender");
+						mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 5, "down", true);
 						mobileAction.verifyElementIsDisplayed(pendingTransfer_Header,"The Cancelled pending interac e list is not appearing in pending interac transfer page");
 						
-						}
+					}
 				} catch (NoSuchElementException | InterruptedException | IOException e) {
 					System.err.println("TestCase has failed.");
 					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -504,13 +529,25 @@ public class PendingInteracTransfer extends _CommonPage{
 		 */
 		public void canceltransfer() {
 			Decorator();
+
+			String sender_selectSender = getTestdata("Sender");
+			String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
+
+			String transfer_fromAccount = getTestdata("FromAccount");
 			
+			String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+			
+			String firstPart="//XCUIElementTypeCell[";
+			String secondPart="]/XCUIElementTypeStaticText[1]";
+
 			try {
 				
 				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
 					TouchAction action2 = null;
-					mobileAction.FuncClick(selectSender, "sender");
-					mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+					if(mobileAction.verifyElementIsPresent(selectSender)) {
+						mobileAction.FuncClick(selectSender, "sender");
+						mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+					}
 					mobileAction.FuncClick(selectTransaction, "Select Transaction");
 					mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 					mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
@@ -530,23 +567,24 @@ public class PendingInteracTransfer extends _CommonPage{
 				}else{
 					TouchAction action2 = null;
 					mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
-					mobileAction.FuncClick(selectSender, "sender");
-					mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
+					if(mobileAction.verifyElementIsPresent(selectSender)) {
+						mobileAction.FuncClick(selectSender, "sender");
+						mobileAction.waitForElementToVanish(progressBar);
+						mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
+						mobileAction.waitForElementToVanish(progressBar);
+					}
 					mobileAction.FuncClick(selectTransaction, "Select Transaction");
 					mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 					mobileAction.FuncClick(depositToContinue,"Continue");
 					mobileAction.FuncClick(cnfrmCancellation, "Confirm");
+					Thread.sleep(3000);
 					mobileAction.verifyElementIsDisplayed(receiptHeader, "Receipt Page Opens");
 					String confrmVal= mobileAction.getText(confirmation_Val);
-					System.out.println("Confirmation:"+ confrmVal);
-//					MobileElement cnfmVal=(MobileElement) ((AppiumDriver) CL.GetDriver())
-//							.findElement(By.xpath(confrmVal));
-					
 				    action2 = new TouchAction(((MobileDriver) CL.GetDriver())).longPress(confirmation_Val, 2);
 					
 					CL.GetReporting().FuncReport("Pass", "Confirmation displays and selectable");
 					
-					}
+				}
 			}catch (NoSuchElementException e) {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -571,12 +609,24 @@ public class PendingInteracTransfer extends _CommonPage{
 				 */
 				public void confirmbutton() {
 					Decorator();
+
+					String sender_selectSender = getTestdata("Sender");
+					String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
+
+					String transfer_fromAccount = getTestdata("FromAccount");
+					
+					String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+					
+					String firstPart="//XCUIElementTypeCell[";
+					String secondPart="]/XCUIElementTypeStaticText[1]";
+
 					try {
 						
 						if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-							
-							mobileAction.FuncClick(selectSender, "sender");
-							mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+							if(mobileAction.verifyElementIsPresent(selectSender)) {
+								mobileAction.FuncClick(selectSender, "sender");
+								mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+							}
 							mobileAction.FuncClick(selectTransaction, "Select Transaction");
 							mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 							mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
@@ -592,16 +642,18 @@ public class PendingInteracTransfer extends _CommonPage{
 						}else{
 						
 							mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
-							mobileAction.FuncClick(selectSender, "sender");
-							MobileElement sender = mobileAction.verifyElementUsingXPath(select_senderValue,"Sender");
-							mobileAction.FuncClick(sender, "Sender");
-							mobileAction.waitForElementToDisappear(select_senderValue);
-							
-							mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
+							if(mobileAction.verifyElementIsPresent(selectSender)) {
+								mobileAction.FuncClick(selectSender, "sender");
+								MobileElement sender = mobileAction.verifyElementUsingXPath(select_senderValue,"Sender");
+								mobileAction.FuncClick(sender, "Sender");
+								mobileAction.waitForElementToDisappear(select_senderValue);
+							}
+//							mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 3, "down", true);
 							mobileAction.FuncClick(selectTransaction, "Select Transaction");
 							mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 							mobileAction.FuncClick(depositToContinue,"Continue");
 							mobileAction.FuncClick(cnfrmCancellation, "Confirm");
+							Thread.sleep(3000);
 							mobileAction.verifyElementIsDisplayed(receiptHeader, "Receipt Page Opens");
 							mobileAction.FuncClick(menu, "Menu");
 							mobileAction.FuncClick(home,"Home Button Clicked");
@@ -632,11 +684,24 @@ public class PendingInteracTransfer extends _CommonPage{
 				 */
 				public void cancelbutton() {
 					Decorator();
+
+					String sender_selectSender = getTestdata("Sender");
+					String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
+
+					String transfer_fromAccount = getTestdata("FromAccount");
+					
+					String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+					
+					String firstPart="//XCUIElementTypeCell[";
+					String secondPart="]/XCUIElementTypeStaticText[1]";
+
 					try {
 						
 						if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-							mobileAction.FuncClick(selectSender, "sender");
-							mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+							if(mobileAction.verifyElementIsPresent(selectSender)) {
+								mobileAction.FuncClick(selectSender, "sender");
+								mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+							}
 							mobileAction.FuncClick(selectTransaction, "Select Transaction");
 							mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 							mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
@@ -650,12 +715,14 @@ public class PendingInteracTransfer extends _CommonPage{
 						}else{
 						
 							mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
-							mobileAction.FuncClick(selectSender, "sender");
-							
-							MobileElement Sender = mobileAction.verifyElementUsingXPath(select_senderValue, "Sender");
-							mobileAction.FuncClick(Sender, "Sender");
-							mobileAction.waitForElementToDisappear(select_senderValue);
-							mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 1, "down", true);
+							if(mobileAction.verifyElementIsPresent(selectSender)) {
+								mobileAction.FuncClick(selectSender, "sender");
+								mobileAction.waitForElementToVanish(progressBar);
+								MobileElement Sender = mobileAction.verifyElementUsingXPath(select_senderValue, "Sender");
+								mobileAction.FuncClick(Sender, "Sender");
+								mobileAction.waitForElementToDisappear(select_senderValue);
+								//mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 1, "down", true);
+							}
 							mobileAction.FuncClick(selectTransaction, "Select Transaction");
 							mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 							mobileAction.FuncClick(depositToContinue,"Continue");
@@ -688,11 +755,24 @@ public class PendingInteracTransfer extends _CommonPage{
 				 */
 				public void confirmstatus() {
 					Decorator();
+
+					String sender_selectSender = getTestdata("Sender");
+					String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
+
+					String transfer_fromAccount = getTestdata("FromAccount");
+					
+					String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+					
+					String firstPart="//XCUIElementTypeCell[";
+					String secondPart="]/XCUIElementTypeStaticText[1]";
+
 					try {
 						
 						if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-							mobileAction.FuncClick(selectSender, "sender");
-							mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+							if(mobileAction.verifyElementIsPresent(selectSender)) {
+								mobileAction.FuncClick(selectSender, "sender");
+								mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+							}
 							mobileAction.FuncClick(selectTransaction, "Select Transaction");
 							mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 							mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
@@ -704,8 +784,10 @@ public class PendingInteracTransfer extends _CommonPage{
 						}else{
 						
 							mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
-							mobileAction.FuncClick(selectSender, "sender");
-							mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
+							if(mobileAction.verifyElementIsPresent(selectSender)) {
+								mobileAction.FuncClick(selectSender, "sender");
+								mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
+							}
 							mobileAction.FuncClick(selectTransaction, "Select Transaction");
 							mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 							mobileAction.FuncClick(depositToContinue,"Continue");
@@ -738,15 +820,25 @@ public class PendingInteracTransfer extends _CommonPage{
 			public void verifyconfirmation() {
 				Decorator();
 				
+				String sender_selectSender = getTestdata("Sender");
+				String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]";  //changed by rashmi
+
+				String transfer_fromAccount = getTestdata("FromAccount");
 				
+				String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+				
+				String firstPart="//XCUIElementTypeCell[";
+				String secondPart="]/XCUIElementTypeStaticText[1]";
+
 				try {
 					
 					if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-						TouchAction action2 = null;
-						mobileAction.FuncClick(selectSender, "sender");
-						mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+						if(mobileAction.verifyElementIsPresent(selectSender)) {
+							mobileAction.FuncClick(selectSender, "sender");
+							mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
+						}
 						mobileAction.FuncClick(selectTransaction, "Select Transaction");
-						//mobileAction.verifyElementIsDisplayed(verifyStatus,transfer_fromAccount);
+
 						mobileAction.verifyElementIsDisplayed(confirm_Val,transfer_fromAccount);
 						
 						mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
@@ -757,26 +849,21 @@ public class PendingInteracTransfer extends _CommonPage{
 						
 						mobileAction.FuncClick(cnfrmCancellation, "Confirm");
 						mobileAction.verifyElementIsDisplayed(receiptHeader, "Receipt Page Opens");
-	                    String confrmVal= mobileAction.getText(confirmation_Val);
-//						MobileElement cnfmVal=(MobileElement) ((AppiumDriver) CL.GetDriver())
-//								.findElement(By.xpath(confrmVal));
-						
-					    action2 = new TouchAction(((MobileDriver) CL.GetDriver())).longPress(confirmation_Val,2);
-						
-						CL.GetReporting().FuncReport("Pass", "Confirmation displays and selectable");
 						mobileAction.verifyElementIsDisplayed(verifyAccountName, "Verifying Accout Name and Email Id");
 						mobileAction.verifyElementIsDisplayed(verifyAccountNum, "Verifying Account Number");
 						mobileAction.verifyElementIsDisplayed(verifyAmount, "Verifying Amount");
 						
 						
 					}else{
-						TouchAction action2 = null;
 						mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
-						mobileAction.FuncClick(selectSender, "sender");
-						mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
+						if(mobileAction.verifyElementIsPresent(selectSender)) {
+							mobileAction.FuncClick(selectSender, "sender");
+							mobileAction.waitForElementToVanish(progressBar);
+							mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 2, "down", true);
+							mobileAction.waitForElementToVanish(progressBar);
+						}
 						mobileAction.FuncClick(selectTransaction, "Select Transaction");
-						
-						//mobileAction.verifyElementIsDisplayed(verifyStatus,transfer_fromAccount);
+
 						mobileAction.verifyElementIsDisplayed(confirm_Val,transfer_fromAccount);
 						
 						mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
@@ -786,14 +873,8 @@ public class PendingInteracTransfer extends _CommonPage{
 						mobileAction.verifyElementIsDisplayed(recipientEmailId,transfer_fromAccount);
 						
 						mobileAction.FuncClick(cnfrmCancellation, "Confirm");
+						mobileAction.waitForElementToVanish(progressBar);
 						mobileAction.verifyElementIsDisplayed(receiptHeader, "Receipt Page Opens");
-						String confrmVal= mobileAction.getText(confirmation_Val);
-//						MobileElement cnfmVal=(MobileElement) ((AppiumDriver) CL.GetDriver())
-//								.findElement(By.xpath(confrmVal));
-						
-					    action2 = new TouchAction(((MobileDriver) CL.GetDriver())).longPress(confirmation_Val, 2);
-						
-						CL.GetReporting().FuncReport("Pass", "Confirmation displays and selectable");
 						mobileAction.verifyElementIsDisplayed(verifyAccountName, "Verifying Accout Name");
 						mobileAction.verifyElementIsDisplayed(verifyAccountEmailId, "Verifying Email Id");
 						mobileAction.verifyElementIsDisplayed(verifyAccountNum, "Verifying Account Number");
@@ -827,64 +908,75 @@ public class PendingInteracTransfer extends _CommonPage{
 			public void verify_CancelPendingTransfer() {
 			
 				Decorator();
+				String accountsPage_Table="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/"
+						+ "XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
+				String accountssecondPart = "]/XCUIElementTypeStaticText[2]";
+				String from_account = getTestdata("FromAccount");
+			
+				String sender_selectSender = getTestdata("Sender");
+
+				String platformName=CL.getTestDataInstance().getMobilePlatForm();
+				String transfer_fromAccount = getTestdata("FromAccount");
+				
+				String senderTable="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
+				
+				String firstPart="//XCUIElementTypeCell[";
+				String secondPart="]/XCUIElementTypeStaticText[1]";
 				try {
 					
 					if(platformName.equalsIgnoreCase("ios")){
 						mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
-						mobileAction.FuncClick(selectSender, "sender");
-						mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart,sender_selectSender );
 						mobileAction.FuncClick(selectTransaction, "Select Transaction");
 						mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
-						mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
-						//get deposit to account
-						String deposit_account_Info = mobileAction.getValue(depositToAccount);
-						String deposit_to_account = mobileAction.FuncGetValByRegx(deposit_account_Info, "\\d+");
-						String balance = Balance.getAttribute("value");
-						System.out.println("Old Balance:" + balance);
-						mobileAction.FuncClick(depositToContinue,"Continue");
-						mobileAction.FuncClick(cnfrmCancellation, "Confirm");
-						mobileAction.verifyElementIsDisplayed(cancelSuccessMsg, "Interac e-Transfer reclaimed and deposited successfully");
-						String conf_val = mobileAction.getText(cancelCnfrmnVal);
-						mobileAction.FuncClick(menu, "Menu");
-						mobileAction.FuncClick(my_Accounts, "My Accounts");
-						System.out.println("From account:" + from_account);
-						mobileAction.FuncSelectElementInTable(accountsPage_Table,firstPart,accountssecondPart,deposit_to_account);
-						String balancenew = balanceNew.getAttribute("value");
-						System.out.println("New Balance:" + balancenew);
-						
-						if(balance.equalsIgnoreCase(balancenew)){
-							System.err.println("TestCase has failed.");
-						}
-						else{
-							//no home button can be found at this page
-							//mobileAction.FuncClick(home, "home button");
-						}
+//						mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
+//						//get deposit to account
+//						String deposit_account_Info = mobileAction.getValue(depositToAccount);
+//						String deposit_to_account = mobileAction.FuncGetValByRegx(deposit_account_Info, "\\d+");
+//						String balance = Balance.getAttribute("value");
+//						System.out.println("Old Balance:" + balance);
+//						mobileAction.FuncClick(depositToContinue,"Continue");
+//						mobileAction.FuncClick(cnfrmCancellation, "Confirm");
+//						mobileAction.verifyElementIsDisplayed(cancelSuccessMsg, "Interac e-Transfer reclaimed and deposited successfully");
+//						String conf_val = mobileAction.getText(cancelCnfrmnVal);
+//						mobileAction.FuncClick(menu, "Menu");
+//						mobileAction.FuncClick(my_Accounts, "My Accounts");
+//						System.out.println("From account:" + from_account);
+//						mobileAction.FuncSelectElementInTable(accountsPage_Table,firstPart,accountssecondPart,deposit_to_account);
+//						String balancenew = balanceNew.getAttribute("value");
+//						System.out.println("New Balance:" + balancenew);
+//						
+//						if(balance.equalsIgnoreCase(balancenew)){
+//							System.err.println("TestCase has failed.");
+//						}
+//						else{
+//							//no home button can be found at this page
+//							//mobileAction.FuncClick(home, "home button");
+//						}
 						
 						
 					}else{
 					
 						mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
-						mobileAction.FuncClick(selectSender, "sender");
-						mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
 						mobileAction.FuncClick(selectTransaction, "Select Transaction");
 						mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
-						String balance = Balance.getAttribute("value");
-						mobileAction.FuncClick(depositToContinue,"Continue");
-						mobileAction.FuncClick(cnfrmCancellation, "Confirm");
-						mobileAction.verifyElementIsDisplayed(cancelSuccessMsg, "Interac e-Transfer reclaimed and deposited successfully");
-						String conf_val = mobileAction.getText(cancelCnfrmnVal);
-						mobileAction.FuncClick(menu, "Menu");
-						mobileAction.FuncClick(my_Accounts, "My Accounts");
-						mobileAction.FuncSelectElementInTable(accountsPage_Table,firstPart,accountssecondPart,from_account);
-						String balancenew = balanceNew.getAttribute("value");
-						
-						if(balance.equalsIgnoreCase(balancenew)){
-							System.err.println("TestCase has failed.");
-						}
-						else{
-							//no home button can be found at this page
-							//mobileAction.FuncClick(home, "home button");
-						}
+//						Thread.sleep(2000);
+//						String balance = Balance.getAttribute("value");
+//						mobileAction.FuncClick(depositToContinue,"Continue");
+//						mobileAction.FuncClick(cnfrmCancellation, "Confirm");
+//						mobileAction.verifyElementIsDisplayed(cancelSuccessMsg, "Interac e-Transfer reclaimed and deposited successfully");
+//						String conf_val = mobileAction.getText(cancelCnfrmnVal);
+//						mobileAction.FuncClick(menu, "Menu");
+//						mobileAction.FuncClick(my_Accounts, "My Accounts");
+//						mobileAction.FuncSelectElementInTable(accountsPage_Table,firstPart,accountssecondPart,from_account);
+//						String balancenew = balanceNew.getAttribute("value");
+//						
+//						if(balance.equalsIgnoreCase(balancenew)){
+//							System.err.println("TestCase has failed.");
+//						}
+//						else{
+//							//no home button can be found at this page
+//							//mobileAction.FuncClick(home, "home button");
+//						}
 					}
 				} catch (NoSuchElementException e) {
 					CL.getGlobalVarriablesInstance().bStopNextFunction = false;

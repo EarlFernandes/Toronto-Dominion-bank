@@ -101,15 +101,22 @@ public class MainScreenMIT extends _CommonPage {
 	// ANDROID    
 	    if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 	    {
-	    //CL.getTestDataInstance().SetAppFilePath("C:/Users/baraps2/MIT_Builds/Android/banking-wealth-17.3.1-20170130.145242-90-debug.apk");
-	    CL.getTestDataInstance().SetAppFilePath("C:/Automation/MIT_Builds/Android/banking-wealth-17.5.1-20170517.212405-30-debug.apk"); //path at simulator server
-	      CL.mobileApp("http://0.0.0.0:4727/wd/hub"); // android
+	    	CL.getTestDataInstance().DriversCapability.put("udid", CL.getTestDataInstance().getDeviceUdid());
+	   // CL.getTestDataInstance().SetAppFilePath("C:/Users/baraps2/MIT_Builds/Android/banking-wealth-17.5.2-20170621.200502-2-debug.apk");
+	   // CL.getTestDataInstance().SetAppFilePath("C:/Automation/MIT_Builds/Android/banking-wealth-17.5.2-20170628.154723-39-debug.apk"); //path at simulator server
+	   CL.getTestDataInstance().SetAppFilePath("/opt/app/Android/banking-wealth-17.5.2-20170621.200502-2-debug.apk"); //Mac Pro
+	    //CL.getTestDataInstance().SetAppFilePath("/Users/mobileqa/builds/banking-wealth-17.5.2-20170621.200502-2-debug.apk"); //Appium Lab 
+	    //  CL.mobileApp("http://0.0.0.0:4727/wd/hub"); // android Local
+	    CL.mobileApp("http://49.19.17.226:4760/wd/hub"); // android Mac Pro
+	    //CL.mobileApp("http://49.21.141.104:4760/wd/hub"); // Appium Lab
 	    }
 	// iOS
 	    else
 	    {
-		  CL.getTestDataInstance().SetAppFilePath("/opt/app/banking-wealth-17.3.1-20170503.161937-750-ENTERPRISE-DEBUG-TESTING.ipa"); //path at iOS Mac Mini
-	     CL.mobileApp("http://49.19.17.226:4727/wd/hub"); // iOS Mac Pro
+
+		  CL.getTestDataInstance().SetAppFilePath("/opt/app/banking-wealth-17.4.3-20170627.213247-56-ENTERPRISE-DEBUG-TESTING.ipa"); //path at iOS Mac Mini
+	     CL.mobileApp("http://49.19.17.226:4728/wd/hub"); // iOS Mac Pro
+
 	      //CL.mobileApp("http://192.168.2.8:4727/wd/hub"); // iOS Mac Mini
 	    }
 	      
@@ -181,12 +188,18 @@ public class MainScreenMIT extends _CommonPage {
 		try{
 			//System.out.println(CL.GetDriver().getPageSource());
 			Decorator();
-
+			
+			if(CL.getTestDataInstance().getMobilePlatFormVersion().contains("9"))
+				mobileAction.FuncClick(InvestingAccount,"InvestingAccount");
+			else
+			{
 			mobileAction.FuncClick(MenuUp, "MenuUp");
 			//mobileAction.FuncClick(Home, "Home");
 			//System.out.println(CL.GetDriver().getPageSource());		
 			mobileAction.FuncClick(InvestingAccount,"InvestingAccount");
 			//CL.GetDriver().getPageSource();
+			}
+				
 		}
 		 catch(Exception e)
 		{

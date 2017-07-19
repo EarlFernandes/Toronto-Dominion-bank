@@ -42,31 +42,37 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/ticker")
 	private MobileElement stockSymbol;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell/*") //@Author - Sushil 16-Feb-2017
+	//@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell/*") //@Author - Sushil 16-Feb-2017
+    @iOSFindBy(xpath = "//*[@name='MULTILEG_CELL_2']/*[1]")
 	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/ticker_layout']/android.widget.TextView")
 	private MobileElement leg1Option;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell[2]/*[2]") //@Author - Sushil 17-Feb-2017
+	//@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell[2]/*[2]") //@Author - Sushil 17-Feb-2017
+	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_2']/*[2]")
 	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/edtSpinner']/*/*[2]")
 	private MobileElement leg1Action;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell[2]/*[2]") //@Author - Sushil 17-Feb-2017
+	//@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell[2]/*[2]") //@Author - Sushil 17-Feb-2017
+	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_3']/*[2]")
 	@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/edtSpinner']/*/*[2]")
 	private MobileElement leg2Action;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell[3]/*[2]") //@Author - Sushil 17-Feb-2017
+	//@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell[3]/*[2]") //@Author - Sushil 17-Feb-2017
+	@iOSFindBy(xpath = "//*[@name='ACTION_QTY_CELL_2']/*[2]")
 	//@AndroidFindBy(xpath = "//*[contains(@resource-id,'com.td:id/amountEditText')]")
-//	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*[@resource-id='com.td:id/amountEditText']")
+//	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*/*[@resource-id='com.td:id/amountEditText']") //Tablet 5.x
 	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[@resource-id='com.td:id/amountEditText']")//@Author - Sushil 10-May-2017
 	private MobileElement leg1Quantity;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell[3]/*[2]") //@Author - Sushil 17-Feb-2017
+	//@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell[3]/*[2]") //@Author - Sushil 17-Feb-2017
+	@iOSFindBy(xpath = "//*[@name='ACTION_QTY_CELL_3']/*[2]")
 	//@AndroidFindBy(xpath = "(//*[contains(@resource-id,'com.td:id/amountEditText')])[2]")
-//	@AndroidFindBy(xpath = 	"//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*[@resource-id='com.td:id/amountEditText']")
+//	@AndroidFindBy(xpath = 	"//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*/*[@resource-id='com.td:id/amountEditText']") //Tablet 5.x
 	@AndroidFindBy(xpath = 	"//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[@resource-id='com.td:id/amountEditText']")//@Author - Sushil 10-May-2017
 	private MobileElement leg2Quantity;
 	
-	@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell/*") //@Author - Sushil 17-Feb-2017
+	//@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell/*") //@Author - Sushil 17-Feb-2017
+	@iOSFindBy(xpath = "//*[@name='MULTILEG_CELL_3']/*[1]")
 	@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/ticker_layout']/android.widget.TextView")
 	private MobileElement leg2Option;
 	
@@ -167,7 +173,10 @@ public class TradeMultiLeg extends _CommonPage{
 	private MobileElement goodTillCancel;
 	
 	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]")//@Author - Sushil 06-Feb-2017
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @index='0']")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @index='0']")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText']")//@Author - Sushil 13-Jun-2017
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText2']/../*[@resource-id='com.td:id/selectedValue']")//@Author - Sushil 16-Jun-2017
+	
 	private MobileElement defaultTradeAccount;
 	
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']")
@@ -227,6 +236,7 @@ public class TradeMultiLeg extends _CommonPage{
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'Limit Price') or contains(@label,'Cours limit')]/../*[2]") //@Author - Sushil 08-Feb-2017
 	@AndroidFindBy(xpath = "//*[contains(@text,'Limit Price') or contains(@text,'Cours limit')]/../*[@resource-id='com.td:id/amountEditText']")
+//	@AndroidFindBy(xpath = "//*[contains(@text,'Limit Price') or contains(@text,'Cours limit')]/../*[@resource-id='com.td:id/amountEditText']") //Tablet 5.x
 	private MobileElement LimitPrice;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'Date')]/../*[2]") //@Author - Sushil 13-Mar-2017
@@ -253,12 +263,19 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(id="com.td:id/txtSearchTitle")
 	private MobileElement search_txtSearchTitle;
 	
+	@iOSFindBy(xpath = "//*[contains(@label,'name or symbol') or contains(@label,'nom ou symbole')]") //@Author - shahbaaz
+	@AndroidFindBy(id="com.td:id/txtSearchTitle")
+	private MobileElement search_txtSearchTitlediff;
+	
+	
 	@iOSFindBy(xpath = "//*[contains(@label,'Type')]/../*[2]")//@Author - Sushil 20-Mar-2017
 	@AndroidFindBy(xpath="//android.widget.TextView[contains(@text,'Type')]/../*[@resource-id='com.td:id/selectedText']")
 	private MobileElement selectedOrderType;	
 	
 	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]/../*[3]")//@Author - Sushil 28-Mar-2017
-	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/selectedValue' and @index=1]")
+	//@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/selectedValue' and @index=1]")
+	//@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td:id/selectedValue']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText2]/../*[@resource-id='com.td:id/selectedValue']")//@Author - Sushil 16-Jun-2017
 	private MobileElement selectedAccountValue;
 	
 	@iOSFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]")//@Author - Sushil 28-Feb-2017
@@ -274,27 +291,33 @@ public class TradeMultiLeg extends _CommonPage{
 	private MobileElement timestamp;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'Account') or contains(@label,'Compte')]/../*[2]") //@Author - Sushil 21-Mar-2017
-	@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[1]")
+//	@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText2']/../*[@resource-id='com.td:id/selectedText']")//@Author - Sushil 16-Jun-2017
 	private MobileElement account_type;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'Account') or contains(@label,'Compte')]/../*[3]") //@Author - Sushil 21-Mar-2017
-	@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[2]")
+	//@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[2]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText2']/../*[@resource-id='com.td:id/selectedValue']")//@Author - Sushil 16-Jun-2017
 	private MobileElement account_number;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'Account') or contains(@label,'Compte')]/../*[4]") //@Author - Sushil 21-Mar-2017
-	@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[3]")
+	//@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[3]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText2']")//@Author - Sushil 16-Jun-2017
 	private MobileElement lblCash;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'Account') or contains(@label,'Compte')]/../*[5]") //@Author - Sushil 21-Mar-2017
-	@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[4]")
+	//@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[4]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedValue2']")//@Author - Sushil 16-Jun-2017
 	private MobileElement cashAmount;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'Account') or contains(@label,'Compte')]/../*[6]") //@Author - Sushil 21-Mar-2017
-	@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[5]")
+	//@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[5]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText3']")//@Author - Sushil 16-Jun-2017
 	private MobileElement lblbuyingPower;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'Account') or contains(@label,'Compte')]/../*[7]") //@Author - Sushil 21-Mar-2017
-	@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[6]")
+	//@AndroidFindBy(xpath = "//*[contains(@text,'Account') or contains(@text,'Compte')]/../*[2]/*[6]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedValue3']")//@Author - Sushil 16-Jun-2017
 	private MobileElement buyingPowerAmount;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'Stocks') or contains(@label,'Actions et FNB')] ")
@@ -313,8 +336,12 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(xpath = "//*[contains(@text,'Mid Price') or contains(@text,'Prix Milieu')]")
 	private MobileElement lblmidPrice;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Natural Price') or contains(@label,'Prix naturel')]/../XCUIElementTypeStaticText[4]") //@Author - Sushil 08-Feb-2017
+/*	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Natural Price') or contains(@label,'Prix naturel')]/../XCUIElementTypeStaticText[4]") //@Author - Sushil 08-Feb-2017
 	@AndroidFindBy(xpath = "//*[contains(@text,'Natural Price') or contains(@text,'Prix naturel')]")
+	private MobileElement lblnaturalPrice;*/
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Natural') or contains(@label,'naturel')]/../XCUIElementTypeStaticText[4]") //@Author - Sushil 08-Feb-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'Natural') or contains(@text,'naturel')]")
 	private MobileElement lblnaturalPrice;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Price' or @label='Cours']")
@@ -354,7 +381,7 @@ public class TradeMultiLeg extends _CommonPage{
 		try
 		{
 			SearchPageMIT.get().clickFirstSymbol();
-			mobileAction.FunCnewSwipe(stockSymbol,false,5);
+			mobileAction.FunCnewSwipe(leg1Quantity,false,5);
 			mobileAction.verifyElement(stockSymbol, getTestdata("Symbol", XLSheetUserIDs));
 			mobileAction.verifyElement(leg1Action, getTestdata("TextDefaultListItem", XLSheetUserIDs));
 			mobileAction.FuncVerifyBlankValue(leg1Quantity, "leg1Quantity");
@@ -367,8 +394,9 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			String[] sUrlTitle= getTestdata("urlTitle", XLSheetUserIDs).split(";");
 			
-			///mobileAction.FuncSwipeWhileElementNotFound(commissionLink, false, 7, "up");
-			mobileAction.FunctionSwipe("up", 200, 100);
+			//mobileAction.FuncSwipeWhileElementNotFound(commissionLink, false, 7, "up");
+			//mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(commissionLink);
 			
 			mobileAction.verifyElement(tradingPwdDisableMsg, getTestdata("TradingPassword", XLSheetUserIDs));
 			
@@ -395,7 +423,7 @@ public class TradeMultiLeg extends _CommonPage{
 		try
 		{
 			SearchPageMIT.get().clickFirstSymbol();
-			mobileAction.FunCnewSwipe(leg1Option,false,5);
+			mobileAction.FuncSwipeWhileElementNotFound(leg1Quantity,false,5,"up");
 			mobileAction.verifyElement(leg1Option, getTestdata("OptionDefault", XLSheetUserIDs));
 			mobileAction.verifyElement(leg1Action, getTestdata("TextDefaultListItem", XLSheetUserIDs));
 			mobileAction.verifyElement(leg1Quantity, defaultQtyVal);
@@ -421,10 +449,12 @@ public class TradeMultiLeg extends _CommonPage{
 		{
 			SearchPageMIT.get().clickFirstSymbol();
 			sSymbolVal = mobileAction.FuncGetText(Quote_Symbol);
-			mobileAction.FunCnewSwipe(leg1Option,false,5);
+			//mobileAction.FunCnewSwipe(leg1Option,false,5);
+			mobileAction.FuncSwipeWhileElementNotFound(leg1Option, false, 5, "up");
 			mobileAction.FuncClick(leg1Option, "Select Option Leg1");
 			///mobileAction.FunCnewSwipe(firstStrikeCALLS,false,5);
-			mobileAction.FunctionSwipe("up", 200, 100);
+			///mobileAction.FunctionSwipe("up", 200, 100);
+			mobileAction.FuncSwipeUpTillScreenBottom(firstBidCALLS);
 			mobileAction.FuncClick(firstBidCALLS, "firstBidCALLS");
 			sExpFormat = getOptionFormat(expiryDate,"CALLS");
 			mobileAction.FuncClick(Continue, "Continue");
@@ -783,14 +813,21 @@ public class TradeMultiLeg extends _CommonPage{
 	{
 		try
 		{
+			Thread.sleep(5000);
 			mobileAction.FuncSendKeys(objEle,sQty);
+			
+/*			final String command = "adb -s " + CL.getTestDataInstance().getDeviceUdid() + " input keyevent KEYCODE_1"; 
+ 			//final String command = "adb -s " + CL.getTestDataInstance().getDeviceUdid() + "input keyevent " + sQty; 
+			Runtime.getRuntime().exec(command); */
+			
 /*			mobileAction.FuncClick(objEle, "Quantity");
 			((RemoteWebDriver) CL.GetDriver()).getKeyboard().sendKeys(sQty);*/
 			//((RemoteWebDriver) CL.GetDriver()).getKeyboard().pressKey(sQty);
 			//Thread.sleep(2000);
 			handleKeyboard();
 
-			if(objEle.getText()==null || objEle.getText().length()<1)
+//			if(objEle.getText()==null || objEle.getText().length()<1)
+			if(mobileAction.FuncGetText(objEle).length()<1)
 			{
 				mobileAction.FuncSendKeys(objEle,sQty);	
 				handleKeyboard();
@@ -812,10 +849,11 @@ public class TradeMultiLeg extends _CommonPage{
 	{
 		try
 		{
+			//Thread.sleep(5000);
 			mobileAction.FuncSendKeys(objEle,sText);
 			handleKeyboard();
-			if(objEle.getText()==null) //|| objEle.getText().length()<1)
-			//if(objEle.getText().length()<1)
+			//if(mobileAction.FuncGetText(objEle).length()<1)
+			if(mobileAction.FuncGetText(objEle).equals("") || mobileAction.FuncGetText(objEle)==null )
 			{
 				mobileAction.FuncSendKeys(objEle,sText);	
 				handleKeyboard();
@@ -878,8 +916,8 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.verifyItemInList(sGoodTillValues[9]);
 			mobileAction.FuncClick(goodTillCancel, "goodTillCancel");
 			
-			///mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 5, "down");
-			mobileAction.FuncSwipeDownTillScreenTop(defaultTradeAccount);
+			mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 5, "down");
+			///mobileAction.FuncSwipeDownTillScreenTop(leg1Action);
 			
 			mobileAction.selectItemFromList(leg1Action, sGoodTillValues[10]);
 			
@@ -1027,25 +1065,39 @@ public class TradeMultiLeg extends _CommonPage{
 				}*/
 				try{
 		             String sixmonth = "";
-		             int size1 = CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).size();
-		             
-		             for(int i=0; i<size1; i++)
+		             boolean bFlag = false;
+		            // int size1 = CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).size();
+		             int size1 = 100;
+		             for (int j=1;j<5;j++)
 		             {
-		                    CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText();
-		                    
-		                    sixmonth = mobileAction.FuncGetValByRegx(CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText().split("-")[1],"([0-9]+)");
-		                    if(Integer.parseInt(sixmonth) >= 183)
-		                    {
-		                           CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).click();
-		                           CL.GetReporting().FuncReport("Pass", "Expiry list item greater than 183 days selected.");
-		                           break;
-		                    }
-		             }      
+		            	 Thread.sleep(2000);
+			             for(int i=0; i<5; i++)
+			             {
+			                    //CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText();
+			                    
+			                    sixmonth = mobileAction.FuncGetValByRegx(CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText().split("-")[1],"([0-9]+)");
+			                    
+	/*		                    if(i>=5)
+			                    	mobileAction.FuncSwipeOnce("up");*/
+			                    
+			                    if(Integer.parseInt(sixmonth) >= 183)
+			                    {
+			                           CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).click();
+			                           CL.GetReporting().FuncReport("Pass", "Expiry list item greater than 183 days selected.");
+			                           bFlag=true;
+			                           break;
+			                    }
+			             } 
+			             if(bFlag)
+			            	 break;
+			             
+		            	 mobileAction.FuncSwipeOnce("up");
+		             }
 		
 		             }
              catch(Exception e)
              {
-                    CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
+                    CL.GetReporting().FuncReport("Fail", "Expiry list item greater than 183 days not selected.");
              }
 
 
@@ -1122,7 +1174,13 @@ public class TradeMultiLeg extends _CommonPage{
 			}
 			if(mobileAction.isObjExists(editTextPassword, 2))
 			{
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 				FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+				else
+				{
+				mobileAction.FuncSendKeys(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+				handleKeyboard();
+				}
 			}
 
 		}
@@ -1168,20 +1226,34 @@ public class TradeMultiLeg extends _CommonPage{
 				}*/
 				try{
 		             String sixmonth = "";
-		             int size1 = CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).size();
-		             
-		             for(int i=0; i<size1; i++)
+		             boolean bFlag = false;
+		            // int size1 = CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).size();
+		             int size1 = 100;
+		             for (int j=1;j<5;j++)
 		             {
-		                    CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText();
-		                    
-		                    sixmonth = mobileAction.FuncGetValByRegx(CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText().split("-")[1],"([0-9]+)");
-		                    if(Integer.parseInt(sixmonth) >= 183)
-		                    {
-		                           CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).click();
-		                           CL.GetReporting().FuncReport("Pass", "Expiry list item greater than 183 days selected.");
-		                           break;
-		                    }
-		             }      
+		            	 Thread.sleep(2000);
+			             for(int i=0; i<5; i++)
+			             {
+			                    //CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText();
+			                    
+			                    sixmonth = mobileAction.FuncGetValByRegx(CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText().split("-")[1],"([0-9]+)");
+			                    
+	/*		                    if(i>=5)
+			                    	mobileAction.FuncSwipeOnce("up");*/
+			                    
+			                    if(Integer.parseInt(sixmonth) >= 183)
+			                    {
+			                           CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).click();
+			                           CL.GetReporting().FuncReport("Pass", "Expiry list item greater than 183 days selected.");
+			                           bFlag=true;
+			                           break;
+			                    }
+			             } 
+			             if(bFlag)
+			            	 break;
+			             
+		            	 mobileAction.FuncSwipeOnce("up");
+		             }
 		
 		             }
             catch(Exception e)
@@ -1366,7 +1438,13 @@ public class TradeMultiLeg extends _CommonPage{
 			}
 			if(mobileAction.isObjExists(editTextPassword, 2))
 			{
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 				FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+				else
+				{
+				mobileAction.FuncSendKeys(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+				handleKeyboard();
+				}
 			}
 
 		}
@@ -1588,7 +1666,7 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			mobileAction.FuncSwipeWhileElementNotFound(defaultTradeAccount, false, 7, "down");
 			
-			mobileAction.FuncClick(search_txtSearchTitle, "search_txtSearchTitle");
+			mobileAction.FuncClick(search_txtSearchTitlediff, "search_txtSearchTitlediff");
 	
 /*			String xpathFlag="";
 			int temp =0;
@@ -1664,7 +1742,7 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			mobileAction.FuncSwipeWhileElementNotFound(defaultTradeAccount, false, 7, "down");
 			
-			mobileAction.FuncClick(search_txtSearchTitle, "search_txtSearchTitle");
+			mobileAction.FuncClick(search_txtSearchTitlediff, "search_txtSearchTitlediff");
 	
 /*			String xpathFlag="";
 			int temp =0;
@@ -1909,6 +1987,7 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			mobileAction.FuncSwipeWhileElementNotFound(firstBidCALLS, false, 7, "up");
 			mobileAction.FuncSwipeOnce("up");
+			mobileAction.FuncSwipeWhileElementNotFound(selectedExpiryListItem, false, 7, "down");
 			mobileAction.FuncVerifyNonBlankValue(selectedExpiryListItem, "default expiry date");
 			mobileAction.verifyElementTextContains(firstBidCALLS, "-");
 			mobileAction.verifyElementTextContains(firstAskPUTS, "-");
@@ -1988,18 +2067,6 @@ public class TradeMultiLeg extends _CommonPage{
 				xpathDate = "//android.view.View[@content-desc='"+ sCurrentDate + "']";
 				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(xpathDate)),sCurrentDate);
 			}
-			else if((Integer.parseInt(sCurrentDate) < Integer.parseInt(sExpiryDate)) && !sCurrentDay.equalsIgnoreCase("FRI"))
-			{
-				iSelectDate = Integer.parseInt(sCurrentDate) + 1;
-				xpathDate = "//android.view.View[@content-desc='"+ iSelectDate + "']";
-				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(xpathDate)),Integer.toString(iSelectDate));
-			}
-			else if((Integer.parseInt(sCurrentDate) < Integer.parseInt(sExpiryDate)) && sCurrentDay.equalsIgnoreCase("FRI"))
-			{
-				iSelectDate = Integer.parseInt(sCurrentDate) + 3;
-				xpathDate = "//android.view.View[@content-desc='"+ iSelectDate + "']";
-				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(xpathDate)),Integer.toString(iSelectDate));
-			}
 			else if((now.getActualMaximum(Calendar.DAY_OF_MONTH) == Integer.parseInt(sCurrentDate)))
 			{
 				mobileAction.FuncClick(monthNextButton, "monthNextButton");
@@ -2007,6 +2074,27 @@ public class TradeMultiLeg extends _CommonPage{
 				xpathDate = "//android.view.View[@content-desc='"+ iSelectDate + "']";
 				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(xpathDate)),Integer.toString(iSelectDate));
 			}
+			//else if((Integer.parseInt(sCurrentDate) < Integer.parseInt(sExpiryDate)) && !sCurrentDay.equalsIgnoreCase("FRI"))
+			else if(!sCurrentDay.equalsIgnoreCase("FRI"))
+			{
+				iSelectDate = Integer.parseInt(sCurrentDate) + 1;
+				xpathDate = "//android.view.View[@content-desc='"+ iSelectDate + "']";
+				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(xpathDate)),Integer.toString(iSelectDate));
+			}
+			//else if((Integer.parseInt(sCurrentDate) < Integer.parseInt(sExpiryDate)) && sCurrentDay.equalsIgnoreCase("FRI"))
+			else if(sCurrentDay.equalsIgnoreCase("FRI"))
+			{
+				iSelectDate = Integer.parseInt(sCurrentDate) + 3;
+				xpathDate = "//android.view.View[@content-desc='"+ iSelectDate + "']";
+				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(xpathDate)),Integer.toString(iSelectDate));
+			}
+/*			else if((now.getActualMaximum(Calendar.DAY_OF_MONTH) == Integer.parseInt(sCurrentDate)))
+			{
+				mobileAction.FuncClick(monthNextButton, "monthNextButton");
+				iSelectDate = 3;
+				xpathDate = "//android.view.View[@content-desc='"+ iSelectDate + "']";
+				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(xpathDate)),Integer.toString(iSelectDate));
+			}*/
 			
 		}
 		catch(Exception e)

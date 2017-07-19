@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.MainScreen;
@@ -56,7 +57,7 @@ public class Accounts extends _CommonPage {
 	private MobileElement btnMenu;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Investing')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText'and @text='Investing']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText'and (@text='Investing' or @text='Investing Accounts')]")
 	private MobileElement txtInvesting;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investing']")
@@ -85,6 +86,7 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/summaryContent']")
 	private MobileElement 	acntsListnew;
 	
+
 	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement back_button;
@@ -124,15 +126,24 @@ public class Accounts extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
 	private MobileElement currencyCheck;
+
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
+	private MobileElement investingHeader;
 	
+	@iOSFindBy(accessibility = "CROSSSELL_VIEWTITLE")
+	private MobileElement openADirectInvestingAccount;
+	
+	@iOSFindBy(accessibility = "CROSSSELL_GOTO")
+	private MobileElement goToWebBroker;
+	
+	@iOSFindBy(accessibility = "CROSSSELL_CALL")
+	private MobileElement callNumber;
+
+	@iOSFindBy(accessibility = "CROSSSELL_MESSAGE")
+	private MobileElement messageBody;
+
 	@iOSFindBy(xpath = "//*[@label='Retour' or @label='Back']")
 	private MobileElement back_Btn;
-
-	String from_Account = getTestdata("FromAccount");
-	String verify_Acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'" + from_Account
-			+ "')]";  
-
-	String account_Value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
 
 	int i = 1;
 
@@ -195,6 +206,10 @@ public class Accounts extends _CommonPage {
 	public void selectItemFromList() {
 
 		Decorator();
+
+		String from_Account = getTestdata("FromAccount");
+		String verify_Acnt = "//android.widget.TextView[contains(@text,'" + from_Account + "')]";  
+
 		try {
 
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, account_Header);
@@ -202,11 +217,12 @@ public class Accounts extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				//mobileAction.FuncSelectElementInTable(accountsPage_Table, firstPart , accountsSecondPart, from_Account);
-				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
+				String account_value = "//XCUIElementTypeStaticText[contains(@value,'" + from_Account + "')]";
+
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
+
 			} else {
-				mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 10, "down", true);
+				mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 25, "down", true);
 
 			}
 			mobileAction.FuncClick(summaryBtn, "Summary");
@@ -401,17 +417,20 @@ public class Accounts extends _CommonPage {
 	public void verify_TFS_ACC_ISPresent() {
 
 		Decorator();
+
+		String from_Account = getTestdata("FromAccount");
+		String verify_Acnt = "//android.widget.TextView[contains(@text,'" + from_Account + "')]";  
+
+		String account_Value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
+
 		try {
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, "Accounts");
 			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-
-				System.out.println("Verify account:" + from_Account);
-				//mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, from_AccountNo);
-				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
+				String account_value = "//XCUIElementTypeStaticText[contains(@value,'" + from_Account + "')]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 30, "Up");
 			}else{
-				mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 10, "down", true);
+				mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 25, "down", true);
 			}
 						
 			mobileAction.FuncClick(txtActivity, "Activity");
@@ -479,21 +498,20 @@ public class Accounts extends _CommonPage {
 	 */
 	public void verify_Investing_Header()  {
 		 Decorator();
+
+			String from_Account = getTestdata("FromAccount");
+			String verify_Acnt = "//android.widget.TextView[contains(@text,'" + from_Account + "')]";  
+
+			String account_Value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
 		try {
 				
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-
-				//mobileAction.FuncSelectElementInTable(accountsPage_Table, firstPart , accountsSecondPart, from_Account);
-				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
+				String account_value = "//XCUIElementTypeStaticText[contains(@value,'" + from_Account + "')]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 			} else {
 				mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 25, "down", true);
 
 			}
-			//mobileAction.FunCnewSwipe(txtAccount_Investing_header, false, 4);
-			//mobileAction.FunCSwipeandScroll(txtAccount_Investing_header, false);
-			//mobileAction.verifyElementIsDisplayed(txtAccount_Investing_header, t_Investing);
-
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -649,6 +667,11 @@ public class Accounts extends _CommonPage {
 	public void verifyCreditAccountActivity()  {
 
 		Decorator();
+
+		String from_Account = getTestdata("FromAccount");
+		String verify_Acnt = "//android.widget.TextView[contains(@text,'" + from_Account + "')]";  
+
+		String account_Value = "//XCUIElementTypeStaticText[contains(@value,'" + from_Account + "')]";
 		try {
 			Thread.sleep(2000);
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, "Accounts");
@@ -658,9 +681,9 @@ public class Accounts extends _CommonPage {
 			// mobileAction.FuncSelectElementInTable(accountsPage_Table,
 			// Firstpart, accountsSecondPart, from_account);
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_Value, true, 20, "Up");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_Value, true, 30, "Up");
 			}else{
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(verify_Acnt, true, 20, "Up");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(verify_Acnt, true, 30, "Up");
 			}
 			mobileAction.waitForElementToVanish(progresssBar);
 
@@ -696,12 +719,17 @@ public class Accounts extends _CommonPage {
 	 * @throws Exception
 	 *             If there is problem while finding that element.
 	 */
+
 	public void selectAccount()  {
 	 Decorator();
+
+		String from_Account = getTestdata("FromAccount");
+		String verify_Acnt = "//android.widget.TextView[contains(@text,'" + from_Account + "')]";  
+
+		String account_Value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_Value, true, 30, "Up");
 			} else {
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(verify_Acnt, true, 30, "Up");
@@ -779,6 +807,7 @@ public class Accounts extends _CommonPage {
 		try{
 			boolean flag=true;
 			int count=0;
+			System.out.println("Account selected:" + CL.getTestDataInstance().getPrimaryAccount());
 		String accountXL = "//*[contains(@text,'" + CL.getTestDataInstance().getPrimaryAccount() + "') or contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "')  ]";
 
 		/*MobileElement accountValue=(MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(accountXL));
@@ -793,7 +822,7 @@ public class Accounts extends _CommonPage {
 			}}*/
 		
 		
-		mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountXL, true,10, "up");
+		mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountXL, true,40, "up");
 		mobileAction.waitForElementToVanished(progresssBar);
 		
 
@@ -802,8 +831,38 @@ public class Accounts extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-
+	/**
+	 * This method will verify text within elements for open a new account page
+	 * 
+	 * @return void
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyOpenNewAccountTextElements() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.verifyTextEquality(investingHeader.getText(), mobileAction.getAppString("str_Banking"));
+				mobileAction.verifyTextEquality(openADirectInvestingAccount.getText(), mobileAction.getAppString("str_banking_cross_sell_message"));
+				mobileAction.verifyTextEquality(messageBody.getText(), mobileAction.getAppString("str_banking_cross_sell_message_detail"));
+				mobileAction.verifyTextEquality(goToWebBroker.getText(), mobileAction.getAppString("securityQuestionMFASetupRequiredButtonGoToEW"));
+				mobileAction.verifyTextContains(callNumber, mobileAction.getAppString("call"));
+			} else {
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("str_Banking") + "']", "Banking title");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_banking_cross_sell_message") + "']", "Open a bank account");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text=\"" + mobileAction.getAppString("str_banking_cross_sell_message_detail") + "\"]", "Open a bank account msg body");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("securityQuestionMFASetupRequiredButtonGoToEW") + "']", "Go to easyweb button");
+				mobileAction.verifyElementUsingXPath("//android.widget.Button[contains(@text, '" + mobileAction.getAppString("str_call_phone").replace(" %1$s", "") + "')]", "call 1-800");
+			}
+		} catch (Exception e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
 }
-
-
-
