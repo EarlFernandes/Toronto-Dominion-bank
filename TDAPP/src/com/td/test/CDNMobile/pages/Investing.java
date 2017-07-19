@@ -1601,6 +1601,11 @@ public class Investing extends _CommonPage {
 			}
 			
 			int size= transactionListContent.size();
+			if(size == 0){
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				mobileAction.Report_Fail("Failed:No transaction found");
+				return;
+			}
 			
 			String lastTransacName = mobileAction.getValue(transactionListContent.get(size-1));
 			System.out.println("Transaction:"+ lastTransacName);

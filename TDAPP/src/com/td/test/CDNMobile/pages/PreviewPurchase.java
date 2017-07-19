@@ -147,10 +147,14 @@ public class PreviewPurchase extends _CommonPage {
 		try {
 
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView", 2, "down");
-				phone_number = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("label_phone_number") + "']/../android.widget.RelativeLayout/android.widget.TextView", "Phone Number");
-			}else{
+				//mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView", 2, "down");
+				String phoneNumberxpath = "//android.widget.TextView[@text='" + mobileAction.getAppString("label_phone_number") + "']/../android.widget.RelativeLayout/android.widget.TextView";
 				
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(phoneNumberxpath, false, 10, "up");
+				phone_number = mobileAction.verifyElementUsingXPath(phoneNumberxpath, "Phone Number");
+				
+			}else{
+				mobileAction.FuncSwipeWhileElementNotFound(phone_number, false, 10, "up");
 			}
 			
 			String phoneNumber= mobileAction.getValue(phone_number);

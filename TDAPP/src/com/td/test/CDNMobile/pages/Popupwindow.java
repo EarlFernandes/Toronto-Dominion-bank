@@ -98,7 +98,7 @@ public class Popupwindow extends _CommonPage {
 //			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 //				popup_message = mobileAction.verifyElementUsingXPath("//XCUIElementTypeTextView[@label='" + mobileAction.getAppString(" str_cancel_order_button") + "']", "Cancel order prompt");
 //			}
-			String expectedMsg= "Are you sure you want to cancel this order? | Êtes-vous certain de vouloir annuler cet ordre? |您确定要取消该订单？ | 確定要取消此訂單？";
+			String expectedMsg= "Are you sure you want to cancel this order? |Êtes-vous certain de vouloir annuler cet ordre? |您确定要取消该订单？ | 確定要取消此訂單？";
 			mobileAction.verifyElementTextIsDisplayed(popup_message, expectedMsg);
 		}catch (Exception e){
 	        System.err.println("TestCase has failed.");

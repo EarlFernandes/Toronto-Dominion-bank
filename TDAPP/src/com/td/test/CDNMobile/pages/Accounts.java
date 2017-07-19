@@ -553,7 +553,12 @@ public class Accounts extends _CommonPage {
 		try {
 			
 			mobileAction.waitForElementToVanish(progresssBar);
-			String myAccountText= mobileAction.getAppString("str_My_Accounts");
+			String myAccountText;
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				myAccountText= mobileAction.getAppString("accountsPageHeader");
+			}else{
+				myAccountText= mobileAction.getAppString("str_My_Accounts");
+			}
 			System.out.println("myAccountText:"+myAccountText);
 			mobileAction.verifyTextEquality(mobileAction.getValue(txtMy_Account_Header), myAccountText);
 //			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
