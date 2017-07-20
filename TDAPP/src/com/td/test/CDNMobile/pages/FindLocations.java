@@ -15,29 +15,28 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
 
-public class FindLocations extends _CommonPage{
+public class FindLocations extends _CommonPage {
 
 	private static FindLocations FindLocations;
-	
-	
+
 	@iOSFindBy(xpath = "//*[@label='Find Locations']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Find Locations']")
 	private MobileElement findLocations_Header;
-	
-	public synchronized static FindLocations get(){
-		if(FindLocations == null){
+
+	public synchronized static FindLocations get() {
+		if (FindLocations == null) {
 			FindLocations = new FindLocations();
 		}
 		return FindLocations;
 	}
-	
-	private void Decorator(){
-		
+
+	private void Decorator() {
+
 		PageFactory.initElements(
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(8, TimeUnit.SECONDS)),
 				this);
 	}
-	
+
 	/**
 	 * This method will verify the find locations header
 	 * 

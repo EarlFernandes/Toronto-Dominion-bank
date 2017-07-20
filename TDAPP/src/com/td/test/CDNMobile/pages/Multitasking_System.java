@@ -26,7 +26,7 @@ public class Multitasking_System extends _CommonPage {
 		return Multitasking_System;
 	}
 
-	@iOSFindBy(xpath= "//XCUIElementTypeButton[@label='Quick Access']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Quick Access']")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access']")
 	private MobileElement home;
 
@@ -54,7 +54,6 @@ public class Multitasking_System extends _CommonPage {
 	public void multitasking() {
 		Decorator();
 
-		
 		try {
 			mobileAction.verifyElementIsDisplayed(home, "Home");
 			mobileAction.FuncRunAppInBackground(120);

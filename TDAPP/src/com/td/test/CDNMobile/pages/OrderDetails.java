@@ -75,7 +75,7 @@ public class OrderDetails extends _CommonPage {
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
 				this);
 	}
-	
+
 	/**
 	 * This method will click on Change Order Button
 	 * 
@@ -115,10 +115,10 @@ public class OrderDetails extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	/**
-	 * This method will click on the Cancel Order Button and verify the order is 
-	 * 			Cancelled Successfully
+	 * This method will click on the Cancel Order Button and verify the order is
+	 * Cancelled Successfully
 	 * 
 	 * 
 	 * @return void

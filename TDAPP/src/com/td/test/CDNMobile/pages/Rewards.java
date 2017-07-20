@@ -44,15 +44,14 @@ public class Rewards extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay With Rewards']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay With Rewards']")
 	private MobileElement txtpayWithRewards;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textview_action_description']")
 	private List<MobileElement> redeem_text_list;
-	
-	By iosRedemptValue=By.xpath("//XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]");
-	
-	By iosRewardValue=By.xpath("//XCUIElementTypeStaticText[contains(@label,'Dollars')]");
 
+	By iosRedemptValue = By.xpath("//XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]");
+
+	By iosRewardValue = By.xpath("//XCUIElementTypeStaticText[contains(@label,'Dollars')]");
 
 	public synchronized static Rewards get() {
 		if (Rewards == null) {
@@ -110,10 +109,6 @@ public class Rewards extends _CommonPage {
 
 		}
 	}
-	
-	
-	
-	
 
 	/**
 	 * This method will verify and Click the Visit TD Rewards link in Rewards
@@ -131,8 +126,6 @@ public class Rewards extends _CommonPage {
 				mobileAction.FuncClick(txtVisitTD, "Visit TD Rewards");
 			}
 			mobileAction.FuncClick(continueBtn, "Continue");
-			
-		
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -156,8 +149,8 @@ public class Rewards extends _CommonPage {
 		Decorator();
 		try {
 
-			if (txtpayWithRewards.isDisplayed());
-				
+			if (txtpayWithRewards.isDisplayed())
+				;
 
 		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
@@ -176,7 +169,7 @@ public class Rewards extends _CommonPage {
 	 * 
 	 */
 
-	public void verifyURLName()  {
+	public void verifyURLName() {
 		Decorator();
 		try {
 
@@ -190,63 +183,55 @@ public class Rewards extends _CommonPage {
 
 		}
 	}
-	
-	public void verifyRedemptiontxt(){
+
+	public void verifyRedemptiontxt() {
 		Decorator();
-		try{
-		String value=mobileAction.getValue(redeem_text_list.get(1));
-		System.out.println("Redeem Value:" + value);
-		value.contains(ConstantClass.t_redemption);
-		CL.GetReporting().FuncReport("Pass", "The element <b>- " +ConstantClass.t_redemption + "</b> is displayed");
-	}catch (Exception e) {
-		System.err.println("TestCase has failed.");
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		try {
+			String value = mobileAction.getValue(redeem_text_list.get(1));
+			System.out.println("Redeem Value:" + value);
+			value.contains(ConstantClass.t_redemption);
+			CL.GetReporting().FuncReport("Pass",
+					"The element <b>- " + ConstantClass.t_redemption + "</b> is displayed");
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 
-	}
-	}
-
-
-public void verifyRewardstxt(){
-	Decorator();
-	try{
-	String value=mobileAction.verifyElementUsingBy(iosRewardValue);
-	
-	value.contains(ConstantClass.t_cashBack);
-	CL.GetReporting().FuncReport("Pass", "The element <b>- " +ConstantClass.t_cashBack + "</b> is displayed");
-}catch (Exception e) {
-	System.err.println("TestCase has failed.");
-	CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-}
-}
-
-/**
- * This method will verify Pay With Rewards text in
- * Rewards Page If Visible
- * 
- * @throws NoSuchElementException
- * 
- * 
- */
-
-public void verifyPayWithRewardsText() {
-	Decorator();
-	try {
-		if (mobileAction.FuncISDisplayed(txtpayWithRewards, "Pay with Rewards with the appropriate message")) {
-			
 		}
+	}
 
-	} catch (NoSuchElementException e) {
-		System.err.println("TestCase has failed.");
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	public void verifyRewardstxt() {
+		Decorator();
+		try {
+			String value = mobileAction.verifyElementUsingBy(iosRewardValue);
 
+			value.contains(ConstantClass.t_cashBack);
+			CL.GetReporting().FuncReport("Pass", "The element <b>- " + ConstantClass.t_cashBack + "</b> is displayed");
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+
+		}
+	}
+
+	/**
+	 * This method will verify Pay With Rewards text in Rewards Page If Visible
+	 * 
+	 * @throws NoSuchElementException
+	 * 
+	 * 
+	 */
+
+	public void verifyPayWithRewardsText() {
+		Decorator();
+		try {
+			if (mobileAction.FuncISDisplayed(txtpayWithRewards, "Pay with Rewards with the appropriate message")) {
+
+			}
+
+		} catch (NoSuchElementException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+
+		}
 	}
 }
-}
-		
-		
-		
-		
-		
-
-

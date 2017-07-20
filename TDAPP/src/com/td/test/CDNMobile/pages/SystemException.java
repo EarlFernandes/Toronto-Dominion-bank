@@ -1,8 +1,8 @@
 package com.td.test.CDNMobile.pages;
 
-public class SystemException extends Exception{
+public class SystemException extends Exception {
 
-	SystemException(String s){  
-		  super(s);  
-		 }  
+	SystemException(String s) {
+		super(s);
+	}
 }

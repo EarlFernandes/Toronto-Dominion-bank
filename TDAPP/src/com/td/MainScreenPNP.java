@@ -63,8 +63,8 @@ public class MainScreenPNP extends _CommonPage {
 			"Description", "Payee", "Timeout", "SecondTimeout", "MerchantName", "Price", "Quantity",
 			"Security_Question", "RecipientName", "RecipientMail", "Trading_Pwd", "Symbol", "ShareHolder",
 			"SecurityPassword", "TriggerDelta", "CDNMarginAccount", "QuantityType", "Dividend", "SelectLimitPrice",
-			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName", "Passcode" ,"NewPasscode","EmailProfile","PhoneProfile", "PostSurveyText"};
-
+			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName",
+			"Passcode", "NewPasscode", "EmailProfile", "PhoneProfile", "PostSurveyText" };
 
 	public void readSheet() {
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
@@ -74,7 +74,7 @@ public class MainScreenPNP extends _CommonPage {
 					CL.getTestDataInstance().sUserType);
 			if (!inputValue.equals("") || columnName.equals("Language")) {
 				CL.getTestDataInstance().TCParameters.put(columnName, inputValue);
-				
+
 			}
 		}
 
@@ -83,40 +83,40 @@ public class MainScreenPNP extends _CommonPage {
 	public void Splash_Conitnue() throws IOException {
 
 		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
-		
-		
+
 		readSheet();
-        
+
 		String udid = CL.getTestDataInstance().getDeviceUdid();
 		String definedUDID = udid;
-		//if (udid.equalsIgnoreCase("c52ac686ec37348c007c9b3846d3ad43df2ccc02")) {
-		//if (udid.equalsIgnoreCase("f56c9af3")) {
-		//if (udid.equalsIgnoreCase(definedUDID)) {
+		// if
+		// (udid.equalsIgnoreCase("c52ac686ec37348c007c9b3846d3ad43df2ccc02")) {
+		// if (udid.equalsIgnoreCase("f56c9af3")) {
+		// if (udid.equalsIgnoreCase(definedUDID)) {
 
-			try {
-				if (CL.getTestDataInstance().getAppFilePath() == null
-						|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
-					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
+		try {
+			if (CL.getTestDataInstance().getAppFilePath() == null
+					|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+					CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_ANDROID"));
-					else
-						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
-				}
-				CL.mobileApp("http://49.21.140.61:4723/wd/hub");
-				//CL.mobileApp("http://49.21.141.201:4723/wd/hub");
-				//CL.mobileApp("http://49.27.23.62:4723/wd/hub");
-				//CL.mobileApp("http://0.0.0.0:4725/wd/hub");
-				Decorator();
-			} catch (Exception e) {
-				System.err.println("Unable to load APP file Path Exiting");
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
+							CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_ANDROID"));
+				else
+					CL.getTestDataInstance().SetAppFilePath(
+							CL.LoadData("Value", CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", "APP_IOS"));
 			}
-		//} 
+			CL.mobileApp("http://49.21.140.61:4723/wd/hub");
+			// CL.mobileApp("http://49.21.141.201:4723/wd/hub");
+			// CL.mobileApp("http://49.27.23.62:4723/wd/hub");
+			// CL.mobileApp("http://0.0.0.0:4725/wd/hub");
+			Decorator();
+		} catch (Exception e) {
+			System.err.println("Unable to load APP file Path Exiting");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+
+		}
+		// }
 	}
-	
+
 	// Singleton object of self
 	private static MainScreenPNP MainScreen;
 
@@ -135,4 +135,3 @@ public class MainScreenPNP extends _CommonPage {
 	}
 
 }
-

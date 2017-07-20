@@ -72,10 +72,9 @@ public class ApplePay extends _CommonPage {
 
 	@iOSFindBy(xpath = " //XCUIElementTypeButton[@label='Get Started')]")
 	private MobileElement getStartedButton;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Login to add all your TD cards']")
 	private MobileElement addAllCardsButton;
-
 
 	public synchronized static ApplePay get() {
 		if (ApplePay == null) {
@@ -89,8 +88,6 @@ public class ApplePay extends _CommonPage {
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
 				this);
 	}
-	
-	
 
 	/**
 	 * This method will click on the add on card in apple pay page
@@ -295,7 +292,7 @@ public class ApplePay extends _CommonPage {
 		}
 
 	}
-	
+
 	public void checkDefaultCard() {
 
 		infoPage();
@@ -320,7 +317,7 @@ public class ApplePay extends _CommonPage {
 		}
 
 	}
-	
+
 	public void addAllCards() {
 
 		infoPage();
@@ -344,7 +341,7 @@ public class ApplePay extends _CommonPage {
 		}
 
 	}
-	
+
 	public void otherEligibleCards() {
 
 		infoPage();
@@ -367,5 +364,3 @@ public class ApplePay extends _CommonPage {
 	}
 
 }
-
-

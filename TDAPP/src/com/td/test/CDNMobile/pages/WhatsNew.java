@@ -45,10 +45,10 @@ public class WhatsNew extends _CommonPage {
 	public void VerifyWhatsNewPageHeader() {
 		Decorator();
 		try {
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementTextIsDisplayed(whatsnew_title, Whatsnew);
-			}else{
-				//do nothing. IOS not implement it yet.
+			} else {
+				// do nothing. IOS not implement it yet.
 			}
 
 		} catch (NoSuchElementException | IOException e) {
