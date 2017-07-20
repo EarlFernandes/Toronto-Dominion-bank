@@ -229,8 +229,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				String sendermail = getTestdata("Sender");
 				System.out.println("Sender:" + sendermail);
 				String senderXpath = "//XCUIElementTypeStaticText[contains(@label,'" + sendermail + "')]";
-				MobileElement senderval = (MobileElement) (CL.GetAppiumDriver())
-						.findElement(By.xpath(senderXpath));
+				MobileElement senderval = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(senderXpath));
 				if (!mobileAction.verifyElementIsPresent(senderval)) {
 					mobileAction.FuncClick(selectSender, "Sender");
 					mobileAction.FunCSwipeandScroll(senderval, true);
@@ -240,8 +239,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				System.out.println("From account:" + fromacc);
 
 				String fromAccXpath = "//XCUIElementTypeStaticText[contains(@label,'" + fromacc + "')]";
-				MobileElement fromAccval = (MobileElement) (CL.GetAppiumDriver())
-						.findElement(By.xpath(fromAccXpath));
+				MobileElement fromAccval = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(fromAccXpath));
 				if (!mobileAction.verifyElementIsPresent(fromAccval)) {
 					mobileAction.FuncClick(fromAccount, "From Account");
 					mobileAction.FunCSwipeandScroll(fromAccval, true);

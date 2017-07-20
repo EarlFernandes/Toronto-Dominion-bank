@@ -296,8 +296,7 @@ public class TradeMIT extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(5, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(5, TimeUnit.SECONDS)), this);
 	}
 
 	/**
@@ -706,8 +705,7 @@ public class TradeMIT extends _CommonPage {
 				mobileAction.FuncClick(selectAccount, "AccountSelected");
 				String accountno = "//*[contains(@label,'" + trade_account_no + "')]";
 
-				MobileElement marginAccVal = (MobileElement) (CL.GetAppiumDriver())
-						.findElement(By.xpath(accountno));
+				MobileElement marginAccVal = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(accountno));
 				mobileAction.FunCSwipeandScroll(marginAccVal, true);
 				// mobileAction.FuncSelectElementInTable(select_Accounts_table,
 				// Firstpart, Secondpart,trade_account_no );
@@ -718,8 +716,7 @@ public class TradeMIT extends _CommonPage {
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
 				mobileAction.FuncClick(symbol1, "Enter name or symbol");
 				mobileAction.FuncSendKeys(symbol1, searchKeyword);
-				MobileElement lstAction = (MobileElement) (CL.GetAppiumDriver())
-						.findElement(By.xpath(selectSymbol));
+				MobileElement lstAction = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(selectSymbol));
 				lstAction.click();
 				mobileAction.FunCSwipeandScroll(trading_pwd, false);
 

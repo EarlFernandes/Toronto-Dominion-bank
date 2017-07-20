@@ -36,8 +36,7 @@ public class CrossBorder extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -59,8 +58,7 @@ public class CrossBorder extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement loginButton = (WebElement) (CL.GetAppiumDriver())
-						.findElement(By.id("callLoginpopup"));
+				final WebElement loginButton = (WebElement) (CL.GetAppiumDriver()).findElement(By.id("callLoginpopup"));
 				loginButton.click();
 			}
 
