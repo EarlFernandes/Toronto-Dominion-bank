@@ -184,7 +184,7 @@ public class Receipt extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				String homeBtnxpath = "//android.widget.Button[@text='"
+				String homeBtnxpath = "//android.widget.Button[@text='RETOURNER À L’ACCUEIL' or @text='"
 						+ mobileAction.getAppString("quick_links_go_back_home") + "']";
 				System.out.println("Go back home:" + homeBtnxpath);
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(homeBtnxpath, true, 10, "up");

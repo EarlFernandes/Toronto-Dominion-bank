@@ -938,13 +938,14 @@ public class Accounts extends _CommonPage {
 				accountList = ((MobileDriver) CL.GetDriver())
 						.findElementsByXPath("//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
 			}
+			int count=20;
 			while (true) {
 				int size = accountList.size();
 				System.out.println("Account size:" + size);
 				for (int i = 0; i < size; i++) {
 					String accounttext = mobileAction.getValue(accountList.get(i));
 					System.out.println("Account " + (i + 1) + ":" + accounttext);
-					if (accounttext.toLowerCase().contains("mutual fund")) {
+					if (accounttext.toLowerCase().contains("mutual fund") ||accounttext.contains("FONDS COMM.") ) {
 						mobileAction.Report_Fail("Mutual fund account found");
 						return;
 					}
@@ -952,6 +953,7 @@ public class Accounts extends _CommonPage {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					if (!mobileAction.verifyElementIsPresent(foot_text)) {
 						mobileAction.FuncSwipeOnce("up");
+						count --;
 						accountList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
 								"//android.widget.TextView[@resource-id='com.td:id/accntDescrSum']");
 					} else {
@@ -960,6 +962,9 @@ public class Accounts extends _CommonPage {
 				} else {
 					// For ios, accountlist will list all of the account, don't
 					// need to swipe to the bottom
+					break;
+				}
+				if(count==0){
 					break;
 				}
 			}
