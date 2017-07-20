@@ -378,7 +378,7 @@ public class ManageContacts extends _CommonPage {
      * @return void
      * 
      */
-    public void AddContactfromPhone() {		//updated for Android 7 on 7/14/2017 @Ashraf
+    public void AddContactfromPhone() {
 	Decorator();
 	try {
 
@@ -497,7 +497,7 @@ public class ManageContacts extends _CommonPage {
 		mobileAction.FuncClick(securityAns, "Security Answer");
 		mobileAction.FuncSendKeys(securityAns,getTestdata("SecurityAnswer"));
 		mobileAction.FuncHideKeyboard();
-		mobileAction.FuncClick(confirmAnswer, "Confirm Answer");					//added confirm answer
+		mobileAction.FuncClick(confirmAnswer, "Confirm Answer");				
 		mobileAction.FuncSendKeys(confirmAnswer,getTestdata("SecurityAnswer"));
 		mobileAction.FuncHideKeyboard();
 		}

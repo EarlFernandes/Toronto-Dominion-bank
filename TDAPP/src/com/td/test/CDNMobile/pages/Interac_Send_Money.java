@@ -31,7 +31,7 @@ public class Interac_Send_Money extends _CommonPage{
 
 	//TODO::use mobileAction.mobileElementUsingXPath(element); method for converting all xpaths to elements
 	
-	@iOSFindBy(xpath="//XCUIElementTypeButton[@label='Continue']")		//TODO::change xpath when element available 
+	@iOSFindBy(xpath="//XCUIElementTypeButton[@label='Send Money']") 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Send Money']")
 	private MobileElement sendMoneyHeader;
 	
@@ -159,8 +159,7 @@ public class Interac_Send_Money extends _CommonPage{
 			if(platformName.equalsIgnoreCase("Android")){
 			String recipientXpath = "//android.widget.TextView[@text='" + getTestdata("ToAccount")
 					+ "']/preceding-sibling::android.widget.RadioButton";
-			MobileElement recipient = (MobileElement) ((AppiumDriver) CL.GetDriver())
-					.findElement(By.xpath(recipientXpath));
+			MobileElement recipient = mobileAction.mobileElementUsingXPath(recipientXpath);
 			mobileAction.FuncClick(recipient, "Recipient " + recipient.getText());
 			mobileAction.FuncClick(done, "Done Button");
 			mobileAction.FunctionSwipe("up", 200, 200);
@@ -183,8 +182,7 @@ public class Interac_Send_Money extends _CommonPage{
 			}
 			else{
 				String recipientXpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'"+getTestdata("ToAccount")+"')]";
-				MobileElement recipient = (MobileElement) ((AppiumDriver) CL.GetDriver())
-				.findElement(By.xpath(recipientXpath));
+				MobileElement recipient = mobileAction.mobileElementUsingXPath(recipientXpath);
 				mobileAction.FuncClick(recipient, "Recipient " + recipient.getText());
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(amount, "Amount");
@@ -237,8 +235,7 @@ public class Interac_Send_Money extends _CommonPage{
 
 			String recipientXpath = "//android.widget.TextView[@text='" + getTestdata("ToAccount")
 					+ "']/preceding-sibling::android.widget.RadioButton";
-			MobileElement recipient = (MobileElement) ((AppiumDriver) CL.GetDriver())
-					.findElement(By.xpath(recipientXpath));
+			MobileElement recipient = mobileAction.mobileElementUsingXPath(recipientXpath);
 			mobileAction.FuncClick(recipient, "Recipient " + recipient.getText());
 			mobileAction.FuncClick(done, "Done Button");
 			mobileAction.FunctionSwipe("up", 200, 200);

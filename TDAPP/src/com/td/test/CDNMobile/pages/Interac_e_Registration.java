@@ -342,8 +342,7 @@ public class Interac_e_Registration extends _CommonPage {
 				mobileAction.FuncClick(tradeResponse, "Trade Response");
 			
 				String response = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@name,'"+getTestdata("Response")+"')]";
-				MobileElement tradeResponse = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(response));
+				MobileElement tradeResponse = mobileAction.mobileElementUsingXPath(response);
 				mobileAction.FuncClick(tradeResponse, "Trade Response Option");
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(emailId, "Email");
@@ -360,8 +359,7 @@ public class Interac_e_Registration extends _CommonPage {
 				mobileAction.FuncClick(tradeResponse, "Trade Response");
 				String response = "//android.widget.TextView[@text='" + getTestdata("Response")
 						+ "']/preceding-sibling::android.widget.RadioButton";
-				MobileElement tradeResponse = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(response));
+				MobileElement tradeResponse = mobileAction.mobileElementUsingXPath(response);
 				mobileAction.FuncClick(tradeResponse, "Trade Response Option");
 				mobileAction.FuncClick(done, "Done Button");
 
@@ -466,8 +464,7 @@ public class Interac_e_Registration extends _CommonPage {
 					
 				mobileAction.FuncClick(chooseProfile, "Select Profile");
 				String profileStr = "//XCUIElementTypeStaticText[@label='" + nameArr[i] + "']";
-				MobileElement profile = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(profileStr));
+				MobileElement profile = mobileAction.mobileElementUsingXPath(profileStr);
 				mobileAction.FuncClick(profile, "Profile Name "+nameArr[i]);
 				}
 				
@@ -491,8 +488,7 @@ public class Interac_e_Registration extends _CommonPage {
 				if(i!=(nameArr.length-1)){
 				mobileAction.FuncClick(chooseProfile, "Select Profile");
 				String profileStr = "//android.widget.TextView[@text='" + nameArr[i] + "']/preceding-sibling::android.widget.RadioButton";
-				MobileElement profile = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(profileStr));
+				MobileElement profile = mobileAction.mobileElementUsingXPath(profileStr);
 				mobileAction.FuncClick(profile, nameArr[i]);
 				mobileAction.FuncClick(done, "Done");
 				}

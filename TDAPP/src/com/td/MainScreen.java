@@ -13,17 +13,14 @@ public class MainScreen extends _CommonPage {
 	// ***** LOCAL EXECUTION PARAMETERS *****
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
-
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.104:4772/wd/hub";
-
-
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.201:4760/wd/hub/";
 
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
-	private static final String APP_ANDROID = "APP_ANDROID_ZH_TRAD";
+	private static final String APP_ANDROID = "APP_ANDROID";
 
 	// Change this parameter to point to the correct ipa in Setup.xls for ios
-	private static final String APP_IOS = "APP_IOS_ZH_TRAD";
+	private static final String APP_IOS = "APP_IOS";
 
 	public String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env",
 			"Amount", "Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount",
@@ -32,7 +29,7 @@ public class MainScreen extends _CommonPage {
 			"SecurityPassword", "TriggerDelta", "CDNMarginAccount", "QuantityType", "Dividend", "SelectLimitPrice",
 			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName",
 			"Passcode", "NewPasscode", "Email", "Name", "EmailProfile", "PhoneProfile", "PostSurveyText", "Response",
-			"UserProfileType","SecurityQuestion","Amount" };
+			"ProfileType","SecurityQuestion","Amount"};
 
 	public void readSheet() {
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
@@ -48,7 +45,7 @@ public class MainScreen extends _CommonPage {
 
 	}
 
-	public String p2pArray[] = { "CustomerID","HostPath", "HostUserName", "HostPassword", "ProfileType", "ProfileName", "ShortName",
+	public String p2pArray[] = { "HostPath", "HostUserName", "HostPassword", "ProfileType", "ProfileName", "ShortName",
 			"FirstName", "Sirname", "Title", "GroupUser", "GroupPassword", "TestSet", "PersonalAccountACS",
 			"PersonalAccountName", "BusinessAccountACSFirst", "BusinessFirstName", "BusinessAccountACSSecond",
 			"BusinessSecondName", "MultiGroupUser", "BusinessEmailID" };
@@ -69,20 +66,14 @@ public class MainScreen extends _CommonPage {
 		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
 		readSheet();
 		readP2PSheet();
-		
-		
-		if (StringUtils.isEmpty(CL.getTestDataInstance().Userid)) {
-		
+
 		if (getTestdata("ProfileType").equalsIgnoreCase("Personal")) {
 			System.out.println("ProfileType: " + getTestdata("ProfileType"));
 			Executor.get().createPersonalProfile();
 		} else if (getTestdata("ProfileType").equalsIgnoreCase("Business")) {
 			Executor.get().createBusinessProfile();
 		} else if (getTestdata("ProfileType").equalsIgnoreCase("Multi")) {
-			
 			Executor.get().createMultiProfile();
-		}
-		
 		}
 
 		final String udid = CL.getTestDataInstance().getDeviceUdid();

@@ -110,7 +110,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/send_money_dashboard']") //@Author Ashraf Sprint 2
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/send_money_dashboard']")
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@value='SEND MONEY']")
 	private MobileElement send_money_button;
 
@@ -408,7 +408,6 @@ public class HomeScreen extends _CommonPage {
 			Decorator();
 			// FIXED removed back button
 			mobileAction.FuncClick(menu, "Menu");
-			System.out.println("clicked on menu");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -653,16 +652,9 @@ public class HomeScreen extends _CommonPage {
 	}
 
 
-	public void sendMoney() {			//Modified by @Ashraf Added if condition for IOS
+	public void sendMoney() {
 		try {
 			Decorator();
-			WebDriverWait wait = new WebDriverWait(CL.GetDriver(), 100);
-			
-			if(platformName.equalsIgnoreCase("iOS")){
-			wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("//*[contains(@label,'The right mortgage can save you money')]")));
-			}
-			
 			mobileAction.FuncClick(send_money_button, "sendMoney");
 		}catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
