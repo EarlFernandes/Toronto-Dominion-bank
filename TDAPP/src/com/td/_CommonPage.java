@@ -27,14 +27,8 @@ public class _CommonPage {
 
 	protected static Map appStringMap;
 	protected static String currentLocale;
-	
-	// public Reporting report;// = CL.GetReporting();
-	// calculated or discovered values
+
 	protected By foundElement = null;
-	// public com.td.test.framework.GlobalVariables GV;// =
-	// com.td.test.framework.GlobalVariables;
-	// public static com.td.test.framework.DriverScript DriverScript;
-	// Language map
 
 	public HashMap<String, String> languageMap = new HashMap<String, String>();
 
@@ -137,15 +131,14 @@ public class _CommonPage {
 			multiValue = currentCellValue.split(",");
 
 		} else {
-			String value= currentCellValue;
-			multiValue=new String[1];
-			multiValue[0]=value;
+			String value = currentCellValue;
+			multiValue = new String[1];
+			multiValue[0] = value;
 
 		}
 		return multiValue;
 	}
 
-	
 	public String getTestdata(String aColumn, String aSheetName) {
 		return CL.LoadData(aColumn, CL.getTestDataInstance().getMasterTestData(), aSheetName, "UserType",
 				CL.getTestDataInstance().TestCaseID);

@@ -14,7 +14,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
@@ -93,8 +92,11 @@ public class OrderReciept extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='Limit Price']")
 	private MobileElement limitprice;
-	
-	@iOSFindBy(xpath = "//*[contains(@label,'Receipt') or contains(@label,'Reçu')]") //@Author - Sushil 18-Apr-2017
+
+	@iOSFindBy(xpath = "//*[contains(@label,'Receipt') or contains(@label,'Reçu')]") // @Author
+																						// -
+																						// Sushil
+																						// 18-Apr-2017
 	@AndroidFindBy(xpath = "//*[contains(@text,'Receipt') or contains(@text,'Reçu')]")
 	private MobileElement receipt_header;
 
@@ -153,8 +155,7 @@ public class OrderReciept extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 	}
 
 	/**
@@ -188,7 +189,7 @@ public class OrderReciept extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	/**
 	 * This method will verify the orders details in the Orders Tab
 	 * 
@@ -254,7 +255,7 @@ public class OrderReciept extends _CommonPage {
 		}
 
 	}
-	
+
 	/**
 	 * This method will verify the orders details for Mutual Fund
 	 * 
@@ -288,7 +289,7 @@ public class OrderReciept extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	/**
 	 * This method will verify the orders details in the Receipt Screen
 	 * 
@@ -448,7 +449,7 @@ public class OrderReciept extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(price, "Price");
 			mobileAction.verifyElementIsDisplayed(triggerprice, "Trigger Price");
 			mobileAction.verifyElementIsDisplayed(Good, "Good 'til");
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
@@ -700,8 +701,11 @@ public class OrderReciept extends _CommonPage {
 
 	// new code
 
-//	@iOSFindBy(xpath = "//*[@label='En cours']")
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Order']/../XCUIElementTypeStaticText[2]")//@Author - Shahbaaz 17-Apr-2017
+	// @iOSFindBy(xpath = "//*[@label='En cours']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Order']/../XCUIElementTypeStaticText[2]") // @Author
+																										// -
+																										// Shahbaaz
+																										// 17-Apr-2017
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_value_main' and contains(@text,' @ ')]")
 	private MobileElement orderElement;
 
@@ -713,33 +717,61 @@ public class OrderReciept extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='En cours']")
 	private MobileElement progressBarFRE;
 
-//	@iOSFindBy(xpath = "//*[@label='En cours']")
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Home' or @label='Accueil']") //@Author - Shahbaaz 17-Apr-2017
-//	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_home' and @text='HOME']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_home']")//@Author - Sushil 18-Apr-2017
+	// @iOSFindBy(xpath = "//*[@label='En cours']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Home' or @label='Accueil']") // @Author
+																						// -
+																						// Shahbaaz
+																						// 17-Apr-2017
+	// @AndroidFindBy(xpath =
+	// "//android.widget.Button[@resource-id='com.td:id/btn_home' and
+	// @text='HOME']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_home']") // @Author
+																							// -
+																							// Sushil
+																							// 18-Apr-2017
 	private MobileElement homeButton;
 
-//	@iOSFindBy(xpath = "//*[@label='En cours']")
-	@iOSFindBy(xpath = "//*[@label='Orders' or @label='Ordres']") //@Author - Shahbaaz 17-Apr-2017
-//	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_order' and @text='ORDERS']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_order']")//@Author - Sushil 18-Apr-2017
+	// @iOSFindBy(xpath = "//*[@label='En cours']")
+	@iOSFindBy(xpath = "//*[@label='Orders' or @label='Ordres']") // @Author -
+																	// Shahbaaz
+																	// 17-Apr-2017
+	// @AndroidFindBy(xpath =
+	// "//android.widget.Button[@resource-id='com.td:id/btn_order' and
+	// @text='ORDERS']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_order']") // @Author
+																							// -
+																							// Sushil
+																							// 18-Apr-2017
 	private MobileElement OrderButton;
 
-//	@iOSFindBy(xpath = "//*[@label='En cours']")
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']")//@Author - Shahbaaz 17-Apr-2017
-//	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_trade' and @text='TRADE']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_trade']")//@Author - Sushil 18-Apr-2017
+	// @iOSFindBy(xpath = "//*[@label='En cours']")
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") // @Author
+																		// -
+																		// Shahbaaz
+																		// 17-Apr-2017
+	// @AndroidFindBy(xpath =
+	// "//android.widget.Button[@resource-id='com.td:id/btn_trade' and
+	// @text='TRADE']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_trade']") // @Author
+																							// -
+																							// Sushil
+																							// 18-Apr-2017
 	private MobileElement tradeButton;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]")//@Author - Shahbaaz 17-Apr-2017
+	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]") // @Author
+																				// -
+																				// Shahbaaz
+																				// 17-Apr-2017
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_value_main' and contains(@text,',')]")
 	private MobileElement timeStampDate;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_subvalue']")
 	private MobileElement timeStampZone;
 
-	
-	@iOSFindBy(xpath = "//*[@label='Order sent successfully' or contains(@label,'Ordre transmis avec')]") //@Author - Sushil 18-Apr-2017
+	@iOSFindBy(xpath = "//*[@label='Order sent successfully' or contains(@label,'Ordre transmis avec')]") // @Author
+																											// -
+																											// Sushil
+																											// 18-Apr-2017
 	@AndroidFindBy(xpath = "//*[@text='Order sent successfully' or contains(@text,'Ordre transmis avec')]")
 	private MobileElement success_message;
 
@@ -826,7 +858,7 @@ public class OrderReciept extends _CommonPage {
 
 		mobileAction.waitForElementToVanish(progressBar);
 	}
-	
+
 	/**
 	 * This method will verify the orders details in the Orders Tab
 	 * 
@@ -858,10 +890,10 @@ public class OrderReciept extends _CommonPage {
 		}
 		return valueToReturn;
 	}
-	
+
 	/**
-	 * This method will Validate the order details for price type 
-	 * 				Trailing stop limit and action Buy
+	 * This method will Validate the order details for price type Trailing stop
+	 * limit and action Buy
 	 * 
 	 * @return void
 	 * 
@@ -873,7 +905,8 @@ public class OrderReciept extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 
-	public void validateTrailingStopLimitBuy() {//@Author - Sushil 19-Apr-2017 Modified
+	public void validateTrailingStopLimitBuy() {// @Author - Sushil 19-Apr-2017
+												// Modified
 		DecimalFormat df = new DecimalFormat("#.00");
 		String orderValue = "";
 		if (isLanguageFrench) {
@@ -892,10 +925,10 @@ public class OrderReciept extends _CommonPage {
 		validationReport(orderValue);
 
 	}
-	
+
 	/**
-	 * This method will Validate the order details for price type 
-	 * 				Trailing stop Market and action Buy
+	 * This method will Validate the order details for price type Trailing stop
+	 * Market and action Buy
 	 * 
 	 * @return void
 	 * 
@@ -907,7 +940,8 @@ public class OrderReciept extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 
-	public void validateTrailingStopMarketBuy() {//@Author - Sushil 19-Apr-2017 Modified
+	public void validateTrailingStopMarketBuy() {// @Author - Sushil 19-Apr-2017
+													// Modified
 		DecimalFormat df = new DecimalFormat("#.00");
 		String orderValue = "";
 		if (isLanguageFrench) {
@@ -924,10 +958,10 @@ public class OrderReciept extends _CommonPage {
 		validationReport(orderValue);
 
 	}
-	
+
 	/**
-	 * This method will Validate the order details for price type 
-	 * 				 stop limit and action Buy
+	 * This method will Validate the order details for price type stop limit and
+	 * action Buy
 	 * 
 	 * @return void
 	 * 
@@ -939,7 +973,7 @@ public class OrderReciept extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 
-	public void validateStopLimitBuy() {//@Author - Sushil 19-Apr-2017 Modified
+	public void validateStopLimitBuy() {// @Author - Sushil 19-Apr-2017 Modified
 		DecimalFormat df = new DecimalFormat("#.00");
 
 		String orderValue = "";
@@ -960,10 +994,10 @@ public class OrderReciept extends _CommonPage {
 	}
 
 	// Acheter 1 TD Cours du marché stop @ Déclencheur 65,72 $ Échéance Jour
-	
+
 	/**
-	 * This method will Validate the order details for price type 
-	 * 				Trailing stop Market 
+	 * This method will Validate the order details for price type Trailing stop
+	 * Market
 	 * 
 	 * @return void
 	 * 
@@ -974,7 +1008,7 @@ public class OrderReciept extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void validateStopMarket() {//@Author - Sushil 19-Apr-2017 Modified
+	public void validateStopMarket() {// @Author - Sushil 19-Apr-2017 Modified
 		DecimalFormat df = new DecimalFormat("#.00");
 
 		String orderValue = "";
@@ -993,10 +1027,10 @@ public class OrderReciept extends _CommonPage {
 		validationReport(orderValue);
 
 	}
-	
+
 	/**
-	 * This method will Validate the order details for price type 
-	 * 				limit  and action Buy
+	 * This method will Validate the order details for price type limit and
+	 * action Buy
 	 * 
 	 * @return void
 	 * 
@@ -1026,8 +1060,8 @@ public class OrderReciept extends _CommonPage {
 	}
 
 	/**
-	 * This method will Validate the order details for price type 
-	 * 				Market and action Buy
+	 * This method will Validate the order details for price type Market and
+	 * action Buy
 	 * 
 	 * @return void
 	 * 
@@ -1054,9 +1088,10 @@ public class OrderReciept extends _CommonPage {
 		validationReport(orderValue);
 
 	}
+
 	/**
 	 * This method will Validate the order details for action Buy
-	 * 				 
+	 * 
 	 * 
 	 * @return void
 	 * 
@@ -1074,7 +1109,6 @@ public class OrderReciept extends _CommonPage {
 		try {
 			mobileAction.FuncSwipeWhileElementNotFound(orderElement, false, 10, "up");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -1118,10 +1152,9 @@ public class OrderReciept extends _CommonPage {
 		receipt();
 	}
 
-
 	/**
 	 * This method will Validate the report as pass or fail
-	 * 				 
+	 * 
 	 * 
 	 * @return void
 	 * 
@@ -1155,9 +1188,10 @@ public class OrderReciept extends _CommonPage {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * This method will Validate the QuickLinks
-	 * 				 
+	 * 
 	 * 
 	 * @return void
 	 * 
@@ -1181,21 +1215,21 @@ public class OrderReciept extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(OrderButton, "Order Button");
 			mobileAction.verifyElementIsDisplayed(tradeButton, "Trade Button");
 
-		}catch (NoSuchElementException e) {
-            CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-            System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-     }catch (IOException e) {
-            CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-            System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-     } catch (Exception e) {
-            CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-            System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-     }
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
 	}
-	
+
 	/**
 	 * This method will click on the orders tab
-	 * 				 
+	 * 
 	 * 
 	 * @return void
 	 * 
@@ -1229,7 +1263,7 @@ public class OrderReciept extends _CommonPage {
 
 	/**
 	 * This method will Validate the TimeStamp
-	 * 				 
+	 * 
 	 * 
 	 * @return void
 	 * 

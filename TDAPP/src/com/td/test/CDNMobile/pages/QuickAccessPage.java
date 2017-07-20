@@ -9,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -20,26 +19,26 @@ public class QuickAccessPage extends _CommonPage {
 
 	private static QuickAccessPage QuickAccessPage;
 
-	@iOSFindBy(xpath = "//*[contains(@label, 'Quick Access')]") 
+	@iOSFindBy(xpath = "//*[contains(@label, 'Quick Access')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Welcome to Quick Access')]")
-	private MobileElement Access_Header; 
+	private MobileElement Access_Header;
 
-	@iOSFindBy(xpath= "//XCUIElementTypeButton[@label='Get Started']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Get Started']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_easy_access_enroll' and @text='Get Started']")
 	private MobileElement get_Started;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'From Account')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccount' and @text='Select From Account']")
 	private MobileElement from_Account;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Cash Back Dollars']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Cash Back Dollars']")
 	private MobileElement cashBack;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Rewards']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/easy_access_rewards_balance_currency_name']")
 	private MobileElement txtRewards;
-	
+
 	@iOSFindBy(xpath = "//*[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
@@ -47,12 +46,11 @@ public class QuickAccessPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Quick Access Settings']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Quick Access Settings']")
 	private MobileElement quickAccessSettings;
-	
+
 	By androidRewardstxt = By
 			.xpath("//android.widget.TextView[@resource-id='com.td:id/easy_access_rewards_balance_currency_name']");
 
 	By iosRewardstxt = By.xpath("//XCUIElementTypeStaticText[@label='Cash Back Dollars']");
-
 
 	public synchronized static QuickAccessPage get() {
 		if (QuickAccessPage == null) {
@@ -63,9 +61,8 @@ public class QuickAccessPage extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
-	
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+
 	}
 
 	/**
@@ -86,24 +83,23 @@ public class QuickAccessPage extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	public void verifyQuickAccessBillPaidUpdate() {
 		Decorator();
 		try {
-			boolean flag=Access_Header.isDisplayed();
-			if(flag){
-			//mobileAction.verifyElementIsDisplayed(get_started,t_getStarted);
-			//mobileAction.FuncClick(Access_header, "QuickAccess");
-			mobileAction.verifyElement(from_Account, "Account");
-			mobileAction.quitDriver();
+			boolean flag = Access_Header.isDisplayed();
+			if (flag) {
+				// mobileAction.verifyElementIsDisplayed(get_started,t_getStarted);
+				// mobileAction.FuncClick(Access_header, "QuickAccess");
+				mobileAction.verifyElement(from_Account, "Account");
+				mobileAction.quitDriver();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
-	
-}
-	
+
+	}
+
 	/**
 	 * This method will verify the CashBack on Quick access page
 	 * 
@@ -116,7 +112,6 @@ public class QuickAccessPage extends _CommonPage {
 
 	public void verifyCashBack() {
 		Decorator();
-		boolean flag = false;
 		try {
 
 			mobileAction.verifyElementIsDisplayed(cashBack, "Cash Back Dollars");
@@ -162,7 +157,7 @@ public class QuickAccessPage extends _CommonPage {
 
 		}
 	}
-	
+
 	public void verifyNoRewards() {
 		Decorator();
 
@@ -174,12 +169,10 @@ public class QuickAccessPage extends _CommonPage {
 				CL.GetReporting().FuncReport("PASS", "The '" + "REWARDS value" + "' is not displayed");
 			} catch (IOException e1) {
 				System.out.println("IOException from Method" + this.getClass().toString() + " " + e.getCause());
-				// TODO Auto-generated catch block
-
 			}
 		}
 	}
-	
+
 	/**
 	 * This method will click the Quick access settings button in Quick Access
 	 * Fly out menu

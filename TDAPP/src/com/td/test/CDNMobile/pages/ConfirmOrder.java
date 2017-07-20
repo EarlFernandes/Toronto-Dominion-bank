@@ -9,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -47,8 +46,11 @@ public class ConfirmOrder extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_trigger_delta_title_field' and @text='Trigger Delta']")
 	private MobileElement triggerdelta;
-	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Investing') or contains(@label,'Investir')]")//@Author - Shahbaaz 17-Apr-2017
+
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Investing') or contains(@label,'Investir')]") // @Author
+																													// -
+																													// Shahbaaz
+																													// 17-Apr-2017
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Investing']")
 	private MobileElement investingheader;
 
@@ -84,7 +86,6 @@ public class ConfirmOrder extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label' and @text='Action & Quantity'] ")
 	private MobileElement Action_and_quantity;
 
-
 	@iOSFindBy(xpath = "//*[@label='Confirm']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
 	private MobileElement confirmDoNotCancel;
@@ -92,7 +93,7 @@ public class ConfirmOrder extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Important Information']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/importantInfoLink' and @text='Important Information']")
 	private MobileElement impInformationMessage;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Quantity Filled')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/progress_bar_caption' and @text='Quantity Filled']")
 	private MobileElement quantityFiled;
@@ -141,8 +142,7 @@ public class ConfirmOrder extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class ConfirmOrder extends _CommonPage {
 	 * @throws Exception
 	 *             If there is problem while finding that element.
 	 */
-	public void verifyconfirm_order(){
+	public void verifyconfirm_order() {
 		try {
 			Decorator();
 			String verify_confirm_order_header = "Verifying Confirm Order Page Header";
@@ -213,8 +213,8 @@ public class ConfirmOrder extends _CommonPage {
 	 * @throws Exception
 	 *             If there is problem while finding that element.
 	 */
-	public void orderConfirmDetails()  {
-		 Decorator();
+	public void orderConfirmDetails() {
+		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(OrderAccountName, t_OrderAccountName);
 			mobileAction.verifyElementIsDisplayed(action_quantity, t_Action_and_quantity);
@@ -253,7 +253,7 @@ public class ConfirmOrder extends _CommonPage {
 	 * @throws Exception
 	 *             If there is problem while finding that element.
 	 */
-	public void verifycdnmargin_buy()  {
+	public void verifycdnmargin_buy() {
 		try {
 			Decorator();
 			mobileAction.verifyElementIsDisplayed(confirmorder_header, "Verifying Confirm Order Page Header");
@@ -333,7 +333,7 @@ public class ConfirmOrder extends _CommonPage {
 	 * @throws Exception
 	 *             If there is problem while finding that element.
 	 */
-	public void verifycancel_cdnmargin_buy_triggerdelta()  {
+	public void verifycancel_cdnmargin_buy_triggerdelta() {
 		try {
 			Decorator();
 			mobileAction.verifyElementIsDisplayed(confirmorder_header, "Verifying Confirm Order Page Header");
@@ -376,7 +376,7 @@ public class ConfirmOrder extends _CommonPage {
 	 *             If there is problem while finding that element.
 	 */
 
-	public void verifycdnmargin_limit()  {
+	public void verifycdnmargin_limit() {
 
 		try {
 			Decorator();
@@ -419,7 +419,7 @@ public class ConfirmOrder extends _CommonPage {
 	 *             If there is problem while finding that element.
 	 */
 
-	public void cdncash_sell_stopmarket()  {
+	public void cdncash_sell_stopmarket() {
 		try {
 			Decorator();
 			mobileAction.verifyElementIsDisplayed(confirmorder_header, "Verifying Confirm Order Page Header");
@@ -576,7 +576,7 @@ public class ConfirmOrder extends _CommonPage {
 	 * @throws Exception
 	 *             If there is problem while finding that element.
 	 */
-	public void cdncash_sell_trailingstoplimit()  {
+	public void cdncash_sell_trailingstoplimit() {
 
 		try {
 			Decorator();
@@ -620,7 +620,7 @@ public class ConfirmOrder extends _CommonPage {
 	 * @throws Exception
 	 *             If there is problem while finding that element.
 	 */
-	public void usmarginshort_buytocover_market()  {
+	public void usmarginshort_buytocover_market() {
 
 		try {
 			Decorator();
@@ -691,8 +691,12 @@ public class ConfirmOrder extends _CommonPage {
 	String limitDelta_value = "";
 	String currentPricePath = null;
 
-//	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Order']/../XCUIElementTypeStaticText[2]")
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Order' or @label='Ordre']/../XCUIElementTypeStaticText[2]")//@Author - Shahbaaz 17-Apr-2017
+	// @iOSFindBy(xpath =
+	// "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Order']/../XCUIElementTypeStaticText[2]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Order' or @label='Ordre']/../XCUIElementTypeStaticText[2]") // @Author
+																														// -
+																														// Shahbaaz
+																														// 17-Apr-2017
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_value_main' and contains(@text,' @ ')]")
 	private MobileElement orderElement;
 
@@ -700,7 +704,9 @@ public class ConfirmOrder extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel' and (@text='Cancel' or @text='Annuler')]")
 	private MobileElement cancelButton;
 
-	@iOSFindBy(xpath = "//*[@label='Annuler' or @label='Cancel']") //@Author - Shahbaaz 17-Apr-2017
+	@iOSFindBy(xpath = "//*[@label='Annuler' or @label='Cancel']") // @Author -
+																	// Shahbaaz
+																	// 17-Apr-2017
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and (@text='Cancel' or @text='Annuler')]")
 	private MobileElement confirmCancel;
 
@@ -722,7 +728,6 @@ public class ConfirmOrder extends _CommonPage {
 	String confirmOrderValue;
 	String triggerPriceValue;
 	String limitPriceValue;
-
 
 	public void init() {
 
@@ -816,7 +821,7 @@ public class ConfirmOrder extends _CommonPage {
 		}
 
 	}
-	
+
 	/**
 	 * This method will click on Do Not Cancel Button
 	 * 
@@ -832,7 +837,6 @@ public class ConfirmOrder extends _CommonPage {
 	 * @throws Exception
 	 *             If there is problem while finding that element.
 	 */
-
 
 	public void clickDoNotCancel() {
 		Decorator();
@@ -855,7 +859,7 @@ public class ConfirmOrder extends _CommonPage {
 		}
 
 	}
-	
+
 	/**
 	 * This method will Check for Important Imformation
 	 * 
@@ -871,7 +875,6 @@ public class ConfirmOrder extends _CommonPage {
 	 * @throws Exception
 	 *             If there is problem while finding that element.
 	 */
-
 
 	public void checkImpInformation() {
 		Decorator();
@@ -896,10 +899,10 @@ public class ConfirmOrder extends _CommonPage {
 		}
 
 	}
-	
+
 	/**
-	 * This method will validates for PriceType Tailing Stop Limit and Action is Buy
-	 * 		It validates by concatenating the Order Placed 
+	 * This method will validates for PriceType Tailing Stop Limit and Action is
+	 * Buy It validates by concatenating the Order Placed
 	 * 
 	 * @return void
 	 * 
@@ -911,8 +914,8 @@ public class ConfirmOrder extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 
-
-	public void validateTrailingStopLimitBuy() {//@Author - Sushil 19-Apr-2017 Modified
+	public void validateTrailingStopLimitBuy() {// @Author - Sushil 19-Apr-2017
+												// Modified
 		DecimalFormat df = new DecimalFormat("#.00");
 		String orderValue = "";
 		if (isLanguageFrench) {
@@ -929,10 +932,10 @@ public class ConfirmOrder extends _CommonPage {
 		validationReport(orderValue);
 
 	}
-	
+
 	/**
-	 * This method will validates for PriceType Tailing Stop Market and Action is Buy
-	 * 		It validates by concatenating the Order Placed 
+	 * This method will validates for PriceType Tailing Stop Market and Action
+	 * is Buy It validates by concatenating the Order Placed
 	 * 
 	 * @return void
 	 * 
@@ -944,13 +947,14 @@ public class ConfirmOrder extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 
-	public void validateTrailingStopMarketBuy() {//@Author - Sushil 19-Apr-2017 Modified
+	public void validateTrailingStopMarketBuy() {// @Author - Sushil 19-Apr-2017
+													// Modified
 		DecimalFormat df = new DecimalFormat("#.00");
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
-					+ " @ Delta de déclenchement  " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
-					+ " $ Échéance" + goodXL;
+					+ " @ Delta de déclenchement  "
+					+ df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",") + " $ Échéance" + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
@@ -961,8 +965,8 @@ public class ConfirmOrder extends _CommonPage {
 	}
 
 	/**
-	 * This method will validates for PriceType Stop Limit and Action is Buy
-	 * 		It validates by concatenating the Order Placed 
+	 * This method will validates for PriceType Stop Limit and Action is Buy It
+	 * validates by concatenating the Order Placed
 	 * 
 	 * @return void
 	 * 
@@ -973,7 +977,7 @@ public class ConfirmOrder extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void validateStopLimitBuy() {//@Author - Sushil 19-Apr-2017 Modified
+	public void validateStopLimitBuy() {// @Author - Sushil 19-Apr-2017 Modified
 		DecimalFormat df = new DecimalFormat("#.00");
 
 		String orderValue = "";
@@ -993,10 +997,10 @@ public class ConfirmOrder extends _CommonPage {
 	}
 
 	// Acheter 1 TD Cours du marché stop @ Déclencheur 65,72 $ Échéance Jour
-	
+
 	/**
-	 * This method will validates for PriceType Stop Market 
-	 * 		It validates by concatenating the Order Placed 
+	 * This method will validates for PriceType Stop Market It validates by
+	 * concatenating the Order Placed
 	 * 
 	 * @return void
 	 * 
@@ -1007,7 +1011,7 @@ public class ConfirmOrder extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void validateStopMarket() {//@Author - Sushil 19-Apr-2017 Modified
+	public void validateStopMarket() {// @Author - Sushil 19-Apr-2017 Modified
 		DecimalFormat df = new DecimalFormat("#.00");
 
 		String orderValue = "";
@@ -1027,8 +1031,8 @@ public class ConfirmOrder extends _CommonPage {
 	}
 
 	/**
-	 * This method will validates for PriceType Limit and Action is Buy
-	 * 		It validates by concatenating the Order Placed 
+	 * This method will validates for PriceType Limit and Action is Buy It
+	 * validates by concatenating the Order Placed
 	 * 
 	 * @return void
 	 * 
@@ -1056,8 +1060,8 @@ public class ConfirmOrder extends _CommonPage {
 	}
 
 	/**
-	 * This method will validates for PriceType  Market and Action is Buy
-	 * 		It validates by concatenating the Order Placed 
+	 * This method will validates for PriceType Market and Action is Buy It
+	 * validates by concatenating the Order Placed
 	 * 
 	 * @return void
 	 * 
@@ -1074,7 +1078,8 @@ public class ConfirmOrder extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " @ " + price_value
 
-					+ " Échéance" + goodXL;//@Author - Sushil 19-Apr-2017 Modified
+					+ " Échéance" + goodXL;// @Author - Sushil 19-Apr-2017
+											// Modified
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " @ " + price_value
 
@@ -1085,8 +1090,8 @@ public class ConfirmOrder extends _CommonPage {
 	}
 
 	/**
-	 * This method will Click on the Back Button from the Confirm Order Page 
-	 * 		
+	 * This method will Click on the Back Button from the Confirm Order Page
+	 * 
 	 * 
 	 * @return void
 	 * 
@@ -1123,8 +1128,8 @@ public class ConfirmOrder extends _CommonPage {
 	}
 
 	/**
-	 * This method will validates ConfirmOrder Page where Action is Buy
-	 * 		It validates by concatenating the Order Placed 
+	 * This method will validates ConfirmOrder Page where Action is Buy It
+	 * validates by concatenating the Order Placed
 	 * 
 	 * @return void
 	 * 
@@ -1135,7 +1140,8 @@ public class ConfirmOrder extends _CommonPage {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void validateConfirmOrderBuy() { //@Author - Sushil 19-Apr-2017 Modified
+	public void validateConfirmOrderBuy() { // @Author - Sushil 19-Apr-2017
+											// Modified
 		Decorator();
 		init();
 		try {
@@ -1181,12 +1187,9 @@ public class ConfirmOrder extends _CommonPage {
 		}
 	}
 
-
-
-	
 	/**
 	 * This method will validates the orders and will report for pass or Fail
-	 * 		
+	 * 
 	 * 
 	 * @return void
 	 * 

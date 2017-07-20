@@ -8,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -72,10 +71,9 @@ public class ApplePay extends _CommonPage {
 
 	@iOSFindBy(xpath = " //XCUIElementTypeButton[@label='Get Started')]")
 	private MobileElement getStartedButton;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Login to add all your TD cards']")
 	private MobileElement addAllCardsButton;
-
 
 	public synchronized static ApplePay get() {
 		if (ApplePay == null) {
@@ -86,11 +84,8 @@ public class ApplePay extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 	}
-	
-	
 
 	/**
 	 * This method will click on the add on card in apple pay page
@@ -295,7 +290,7 @@ public class ApplePay extends _CommonPage {
 		}
 
 	}
-	
+
 	public void checkDefaultCard() {
 
 		infoPage();
@@ -320,7 +315,7 @@ public class ApplePay extends _CommonPage {
 		}
 
 	}
-	
+
 	public void addAllCards() {
 
 		infoPage();
@@ -344,7 +339,7 @@ public class ApplePay extends _CommonPage {
 		}
 
 	}
-	
+
 	public void otherEligibleCards() {
 
 		infoPage();
@@ -367,5 +362,3 @@ public class ApplePay extends _CommonPage {
 	}
 
 }
-
-

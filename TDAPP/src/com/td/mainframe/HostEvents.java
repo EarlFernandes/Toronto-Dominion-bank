@@ -12,7 +12,6 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
-
 public class HostEvents extends Robot {
 
 	public int TabWait = 100;
@@ -25,7 +24,7 @@ public class HostEvents extends Robot {
 	public int LeftArrowWait = 100;
 	public int UpArrowWait = 100;
 	public int DownArrowWait = 100;
-	
+
 	public HostEvents() throws AWTException {
 		super();
 	}
@@ -43,7 +42,7 @@ public class HostEvents extends Robot {
 	public void openSession(String SessionPath) {
 
 		try {
-			System.out.println("FilePath: "+SessionPath);
+			System.out.println("FilePath: " + SessionPath);
 			Desktop.getDesktop().open(setFile(SessionPath));
 			Thread.sleep(5000);
 		} catch (Exception e) {
@@ -67,15 +66,15 @@ public class HostEvents extends Robot {
 	 */
 	public void pasteClipboard() {
 
-		try{
-		
-		keyPress(KeyEvent.VK_CONTROL);
-		keyPress(KeyEvent.VK_V);
-		delay(50);
-		keyRelease(KeyEvent.VK_V);
-		keyRelease(KeyEvent.VK_CONTROL);
-		
-		}catch(Exception e){
+		try {
+
+			keyPress(KeyEvent.VK_CONTROL);
+			keyPress(KeyEvent.VK_V);
+			delay(50);
+			keyRelease(KeyEvent.VK_V);
+			keyRelease(KeyEvent.VK_CONTROL);
+
+		} catch (Exception e) {
 			System.err.println("Failed to paste to clipboard");
 		}
 	}
@@ -87,12 +86,12 @@ public class HostEvents extends Robot {
 	 */
 	public void sendKeys(String text) {
 		try {
-			
+
 			writeToClipboard(text);
 			pasteClipboard();
 			Thread.sleep(500);
 		} catch (Exception e) {
-			System.err.println("Failed to send text: "+text);
+			System.err.println("Failed to send text: " + text);
 		}
 
 	}
@@ -104,12 +103,12 @@ public class HostEvents extends Robot {
 	 * @param y
 	 */
 	public void moveMouse(int x, int y) {
-		
-		try{
-		mouseMove(x, y);
-		mousePress(InputEvent.BUTTON1_MASK);
-		mouseRelease(InputEvent.BUTTON1_MASK);
-		}catch(Exception e){
+
+		try {
+			mouseMove(x, y);
+			mousePress(InputEvent.BUTTON1_MASK);
+			mouseRelease(InputEvent.BUTTON1_MASK);
+		} catch (Exception e) {
 			System.err.println("Failed to move mouse");
 		}
 	}
@@ -163,15 +162,15 @@ public class HostEvents extends Robot {
 	 * @param y
 	 */
 	public void doubleClick(int x, int y) {
-		try{
-		
-		mouseMove(x, y);
-		mousePress(InputEvent.BUTTON1_MASK);
-		mouseRelease(InputEvent.BUTTON1_MASK);
-		mousePress(InputEvent.BUTTON1_MASK);
-		mouseRelease(InputEvent.BUTTON1_MASK);
-		
-		}catch(Exception e){
+		try {
+
+			mouseMove(x, y);
+			mousePress(InputEvent.BUTTON1_MASK);
+			mouseRelease(InputEvent.BUTTON1_MASK);
+			mousePress(InputEvent.BUTTON1_MASK);
+			mouseRelease(InputEvent.BUTTON1_MASK);
+
+		} catch (Exception e) {
 			System.err.println("Failed to Double click");
 		}
 	}
@@ -335,16 +334,16 @@ public class HostEvents extends Robot {
 			System.err.println("Failed to hit Pause key");
 		}
 	}
-	
-	
+
 	/**
-	 * @author Ashraf Method to check whether the text is present in the current screen.
+	 * @author Ashraf Method to check whether the text is present in the current
+	 *         screen.
 	 */
 	public boolean isTextPresent(String text) {
-		
-		String result=null;
-		boolean flag=false;
-		
+
+		String result = null;
+		boolean flag = false;
+
 		try {
 			Thread.sleep(400);
 			keyPress(KeyEvent.VK_CONTROL);
@@ -355,7 +354,7 @@ public class HostEvents extends Robot {
 			Thread.sleep(400);
 			keyRelease(KeyEvent.VK_CONTROL);
 			Thread.sleep(400);
-			
+
 			keyPress(KeyEvent.VK_CONTROL);
 			Thread.sleep(400);
 			keyPress(KeyEvent.VK_C);
@@ -364,37 +363,31 @@ public class HostEvents extends Robot {
 			Thread.sleep(400);
 			keyRelease(KeyEvent.VK_CONTROL);
 			Thread.sleep(400);
-			
+
 			Toolkit toolkit = Toolkit.getDefaultToolkit();
 			Clipboard clipboard = toolkit.getSystemClipboard();
 			result = (String) clipboard.getData(DataFlavor.stringFlavor);
 
-			
-			if(result.contains(text)){
-				flag=true;
-			}else{
-				flag=false;
+			if (result.contains(text)) {
+				flag = true;
+			} else {
+				flag = false;
 			}
-			
-			
-			
+
 		} catch (Exception e) {
 			System.err.println("Failed to hit Pause key");
 		}
-		
+
 		return flag;
 	}
-	
-	
-	
-	
+
 	/**
 	 * @author Ashraf Method to copy screen text.
 	 */
 	public String copyScreen() {
-		
-		String result=null;
-		
+
+		String result = null;
+
 		try {
 			Thread.sleep(400);
 			keyPress(KeyEvent.VK_CONTROL);
@@ -405,7 +398,7 @@ public class HostEvents extends Robot {
 			Thread.sleep(400);
 			keyRelease(KeyEvent.VK_CONTROL);
 			Thread.sleep(400);
-			
+
 			keyPress(KeyEvent.VK_CONTROL);
 			Thread.sleep(400);
 			keyPress(KeyEvent.VK_C);
@@ -414,27 +407,23 @@ public class HostEvents extends Robot {
 			Thread.sleep(400);
 			keyRelease(KeyEvent.VK_CONTROL);
 			Thread.sleep(400);
-			
+
 			Toolkit toolkit = Toolkit.getDefaultToolkit();
 			Clipboard clipboard = toolkit.getSystemClipboard();
 			result = (String) clipboard.getData(DataFlavor.stringFlavor);
 
-			
-			
-			
 		} catch (Exception e) {
 			System.err.println("Failed to hit Pause key");
 		}
-		
+
 		return result;
 	}
 
-	
 	/**
 	 * @author Ashraf Method to minimize the window.
 	 */
 	public void minimizeWindow() {
-		
+
 		try {
 			keyPress(KeyEvent.VK_ALT);
 			keyPress(KeyEvent.VK_SPACE);
@@ -442,12 +431,11 @@ public class HostEvents extends Robot {
 			keyRelease(KeyEvent.VK_N);
 			keyRelease(KeyEvent.VK_SPACE);
 			keyRelease(KeyEvent.VK_ALT);
-			
+
 		} catch (Exception e) {
 			System.err.println("Failed to hit Pause key");
 		}
-		
+
 	}
 
-	
 }

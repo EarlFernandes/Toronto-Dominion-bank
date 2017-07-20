@@ -6,8 +6,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.td.mainframe.Executor;
 
-import io.appium.java_client.AppiumDriver;
-
 public class MainScreen extends _CommonPage {
 
 	// ***** LOCAL EXECUTION PARAMETERS *****
@@ -92,14 +90,14 @@ public class MainScreen extends _CommonPage {
 			}
 
 			CL.mobileApp(appiumPath);
-			
+
 			// If length is 2, then second token is the locale
 			if (targetEnvVars.length >= 2) {
 				currentLocale = targetEnvVars[1];
-				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
+				appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
 			} else {
 				currentLocale = "EN";
-				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
+				appStringMap = (CL.GetAppiumDriver()).getAppStringMap();
 			}
 		} else { // Local execution
 			try { // Set udid explicitly for local execution, to handle udid
@@ -111,20 +109,20 @@ public class MainScreen extends _CommonPage {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_ANDROID));
-						currentLocale = CL.LoadData("Language",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_ANDROID);
+						currentLocale = CL.LoadData("Language", CL.getTestDataInstance().getSetupFile(), "AppURL",
+								"Name", APP_ANDROID);
 					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS));
-						currentLocale = CL.LoadData("Language",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS);
+						currentLocale = CL.LoadData("Language", CL.getTestDataInstance().getSetupFile(), "AppURL",
+								"Name", APP_IOS);
 					}
 				}
 				CL.mobileApp(LOCAL_EXECUTION_APPIUM_SERVER);
 				if (StringUtils.isEmpty(currentLocale)) {
-					appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
+					appStringMap = (CL.GetAppiumDriver()).getAppStringMap();
 				} else {
-					appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
+					appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
 				}
 
 			} catch (Exception e) {

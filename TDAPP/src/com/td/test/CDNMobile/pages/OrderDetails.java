@@ -6,10 +6,8 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
-import com.td.MainScreen;
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -72,10 +70,9 @@ public class OrderDetails extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 	}
-	
+
 	/**
 	 * This method will click on Change Order Button
 	 * 
@@ -115,10 +112,10 @@ public class OrderDetails extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	/**
-	 * This method will click on the Cancel Order Button and verify the order is 
-	 * 			Cancelled Successfully
+	 * This method will click on the Cancel Order Button and verify the order is
+	 * Cancelled Successfully
 	 * 
 	 * 
 	 * @return void
