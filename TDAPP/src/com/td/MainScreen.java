@@ -45,7 +45,7 @@ public class MainScreen extends _CommonPage {
 
 	}
 
-	public String p2pArray[] = { "HostPath", "HostUserName", "HostPassword", "ProfileType", "ProfileName", "ShortName",
+	public String p2pArray[] = { "CustomerID","HostPath", "HostUserName", "HostPassword", "ProfileType", "ProfileName", "ShortName",
 			"FirstName", "Sirname", "Title", "GroupUser", "GroupPassword", "TestSet", "PersonalAccountACS",
 			"PersonalAccountName", "BusinessAccountACSFirst", "BusinessFirstName", "BusinessAccountACSSecond",
 			"BusinessSecondName", "MultiGroupUser", "BusinessEmailID" };
@@ -67,6 +67,8 @@ public class MainScreen extends _CommonPage {
 		readSheet();
 		readP2PSheet();
 
+		if (StringUtils.isEmpty(CL.getTestDataInstance().Userid)) {
+		
 		if (getTestdata("ProfileType").equalsIgnoreCase("Personal")) {
 			System.out.println("ProfileType: " + getTestdata("ProfileType"));
 			Executor.get().createPersonalProfile();
@@ -76,6 +78,7 @@ public class MainScreen extends _CommonPage {
 			Executor.get().createMultiProfile();
 		}
 
+		}
 		final String udid = CL.getTestDataInstance().getDeviceUdid();
 		// Jenkins only params
 
