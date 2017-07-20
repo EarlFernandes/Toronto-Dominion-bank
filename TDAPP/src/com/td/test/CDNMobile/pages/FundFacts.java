@@ -15,18 +15,18 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
 
-public class FundFacts extends _CommonPage{
+public class FundFacts extends _CommonPage {
 
 	private static FundFacts Fundfacts;
 
-	@iOSFindBy(accessibility ="TDVIEW_TITLE")
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@package='com.google.android.apps.docs']")
 	private MobileElement view_fundFacts_page_header;
 
 	@iOSFindBy(xpath = "//*[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progress_bar;
-	
+
 	public synchronized static FundFacts get() {
 		if (Fundfacts == null) {
 			Fundfacts = new FundFacts();
@@ -40,26 +40,28 @@ public class FundFacts extends _CommonPage{
 				this);
 
 	}
-	
+
 	public void VerifyFundfactsPageheader() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(view_fundFacts_page_header, "Fund Facts | fund facts.pdf |Aperçu du fonds ");
+			mobileAction.verifyElementTextIsDisplayed(view_fundFacts_page_header,
+					"Fund Facts | fund facts.pdf |Aperçu du fonds |Aperçu du fonds.pdf");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
-//	public void VerifyfundfactsDoc(){
-//		Decorator();
-//		try {
-//			mobileAction.verifyElementTextIsDisplayed(fund_facts_page_title, "fund facts.pdf");  			
-//		} catch ( Exception  e) {
-//			System.err.println("TestCase has failed to verifyfundfactsDoc.");
-//			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-//			mobileAction.Report_Fail("Exception for verifyfundfactsDoc");			
-//		}	
-//	}
+
+	// public void VerifyfundfactsDoc(){
+	// Decorator();
+	// try {
+	// mobileAction.verifyElementTextIsDisplayed(fund_facts_page_title, "fund
+	// facts.pdf");
+	// } catch ( Exception e) {
+	// System.err.println("TestCase has failed to verifyfundfactsDoc.");
+	// CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+	// mobileAction.Report_Fail("Exception for verifyfundfactsDoc");
+	// }
+	// }
 }

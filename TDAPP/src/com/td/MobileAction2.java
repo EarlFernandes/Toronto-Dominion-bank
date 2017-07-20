@@ -28,14 +28,11 @@ import io.appium.java_client.ios.IOSDriver;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-
-
 public class MobileAction2 extends CommonLib {
 
 	public final int MaxTimeoutInSec = 25;
 
-	public void findElementByXpathAndClick(String xpath) throws IOException{
+	public void findElementByXpathAndClick(String xpath) throws IOException {
 		try {
 			((AppiumDriver) GetDriver()).findElementByXPath(xpath).click();
 			GetReporting().FuncReport("Pass", "The element Clicked");
@@ -570,7 +567,8 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This function will check if the given element is NOT in the list. Pass if it is not found, FAIL if it is found
+	 * This function will check if the given element is NOT in the list. Pass if
+	 * it is not found, FAIL if it is found
 	 * 
 	 * @param swipeWithinElement
 	 *            The element within which elementToFind is located. We need to
@@ -652,7 +650,7 @@ public class MobileAction2 extends CommonLib {
 			throw e;
 		}
 	}
-	
+
 	/**
 	 * This method will return the text of the element which has been specified
 	 * and print it in the report as well.
@@ -663,76 +661,63 @@ public class MobileAction2 extends CommonLib {
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 */
-	public String FuncGetText(MobileElement objElement) {//throws IOException {//@Author - Sushil 13-Apr-2017
+	public String FuncGetText(MobileElement objElement) {// throws IOException
+															// {//@Author -
+															// Sushil
+															// 13-Apr-2017
 		String textToReturn = null;
-/*		try {
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-			wait.until(ExpectedConditions.visibilityOf(objElement));
-			textToReturn = objElement.getText();
-			GetReporting().FuncReport("Pass",
-					"Text of the element " + objElement.getTagName() + " is '" + textToReturn + "'.");
-		} catch (IllegalArgumentException e) {
-			GetReporting().FuncReport("Fail", "IllegalArgumentException");
-			throw e;
-		} catch (NoSuchElementException n) {
-			GetReporting().FuncReport("Fail", "Element not displayed" + objElement.getTagName());
-			throw n;
-		} catch (Exception e) {
-			GetReporting().FuncReport("Fail",
-					"The element <b>- " + objElement.getTagName() + "</b> not present in current page");
-			throw e;
-		} finally {
-			return textToReturn;
-		}*/
+		/*
+		 * try { WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+		 * wait.until(ExpectedConditions.visibilityOf(objElement)); textToReturn
+		 * = objElement.getText(); GetReporting().FuncReport("Pass",
+		 * "Text of the element " + objElement.getTagName() + " is '" +
+		 * textToReturn + "'."); } catch (IllegalArgumentException e) {
+		 * GetReporting().FuncReport("Fail", "IllegalArgumentException"); throw
+		 * e; } catch (NoSuchElementException n) {
+		 * GetReporting().FuncReport("Fail", "Element not displayed" +
+		 * objElement.getTagName()); throw n; } catch (Exception e) {
+		 * GetReporting().FuncReport("Fail", "The element <b>- " +
+		 * objElement.getTagName() + "</b> not present in current page"); throw
+		 * e; } finally { return textToReturn; }
+		 */
 		try {
 
 			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
 			wait.until(ExpectedConditions.visibilityOf(objElement));
-			
-			if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-			{
-				try{
-				textToReturn = objElement.getText();
-				GetReporting().FuncReport("Pass", "Text of the element : <b> " + textToReturn + "</b>");
-				}
-				catch(Exception e){
+
+			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				try {
+					textToReturn = objElement.getText();
+					GetReporting().FuncReport("Pass", "Text of the element : <b> " + textToReturn + "</b>");
+				} catch (Exception e) {
 					GetReporting().FuncReport("Fail", "Exception in FuncGetText(). getText() failed.");
 				}
-			}
-			else
-			{
-				try{
+			} else {
+				try {
 					textToReturn = objElement.getAttribute("label");
 					GetReporting().FuncReport("Pass", "Text of the element : <b> " + textToReturn + "</b>");
-					}
-				catch(Exception e)
-				{
-					try{
+				} catch (Exception e) {
+					try {
 						textToReturn = objElement.getAttribute("value");
 						GetReporting().FuncReport("Pass", "Text of the element : <b> " + textToReturn + "</b>");
-					}
-					catch(Exception e1)
-					{
-						try{
-						textToReturn = objElement.getAttribute("name");
-						GetReporting().FuncReport("Pass", "Text of the element : <b> " + textToReturn + "</b>");
-						}
-						catch(Exception e2)
-						{
+					} catch (Exception e1) {
+						try {
+							textToReturn = objElement.getAttribute("name");
+							GetReporting().FuncReport("Pass", "Text of the element : <b> " + textToReturn + "</b>");
+						} catch (Exception e2) {
 							GetReporting().FuncReport("Fail", "Exception in FuncGetText(). getText() failed.");
 						}
 					}
 				}
 			}
-		}
-		 catch (IOException e) {
-			 try {
+		} catch (IOException e) {
+			try {
 				GetReporting().FuncReport("Fail", "Exception in FuncGetText(). getText() failed.");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		    //throw e;
+			// throw e;
 		}
 		return textToReturn;
 	}
@@ -1153,7 +1138,7 @@ public class MobileAction2 extends CommonLib {
 
 	public void FunCSwipeandScroll(MobileElement elementToFind, boolean clickYorN) throws Exception {
 		try {
-			
+
 			Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 			int startx = size.width;
 			int starty = size.height;
@@ -1162,7 +1147,7 @@ public class MobileAction2 extends CommonLib {
 				((MobileDriver) GetDriver()).swipe(startx / 2, starty - starty / 4, startx / 2, starty / 4, 600);
 				j++;
 			}
-			if(j == 30) {
+			if (j == 30) {
 				throw new Exception("Not able to find element in list");
 			}
 			if (clickYorN) {
@@ -1393,111 +1378,135 @@ public class MobileAction2 extends CommonLib {
 
 	}
 
-/*	*//**
-	 * This method will verify the text of the element is same as the expected
-	 * text
-	 * 
-	 * @param The
-	 *            element which has to be identified
-	 * 
-	 * @param The
-	 *            expected text
-	 * 
-	 * @return boolean
-	 * 
-	 *         true if element is displayed or false
-	 * 
-	 *//*
-	public boolean verifyElement(MobileElement mobileElement, String text) {
-		String elementText = mobileElement.getText();
-		WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-		wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
+	/*	*//**
+			 * This method will verify the text of the element is same as the
+			 * expected text
+			 * 
+			 * @param The
+			 *            element which has to be identified
+			 * 
+			 * @param The
+			 *            expected text
+			 * 
+			 * @return boolean
+			 * 
+			 *         true if element is displayed or false
+			 * 
+			 *//*
+			 * public boolean verifyElement(MobileElement mobileElement, String
+			 * text) { String elementText = mobileElement.getText();
+			 * WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+			 * wait.until(ExpectedConditions.elementToBeClickable(mobileElement)
+			 * );
+			 * 
+			 * if (elementText.equalsIgnoreCase(text)) { try {
+			 * GetReporting().FuncReport("Pass", "The text '" + text +
+			 * "' is verified"); } catch (IOException e) { System.out.print(
+			 * "IOException from Method " + this.getClass().toString() + " " +
+			 * e.getCause()); } return true; } else { try {
+			 * GetReporting().FuncReport("Fail", "The text '" + text +
+			 * "' is not verified"); } catch (IOException e) { System.out.print(
+			 * "IOException from Method " + this.getClass().toString() + " " +
+			 * e.getCause()); } return false; } }
+			 */
+	public boolean verifyElement(MobileElement mobileElement, String text) { // @Author
+																				// -
+																				// Sushil
+																				// 17-Feb-2017
+																				// (Modified)
 
-		if (elementText.equalsIgnoreCase(text)) {
-			try {
-				GetReporting().FuncReport("Pass", "The text '" + text + "' is verified");
-			} catch (IOException e) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-			}
-			return true;
-		} else {
-			try {
-				GetReporting().FuncReport("Fail", "The text '" + text + "' is not verified");
-			} catch (IOException e) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-			}
-			return false;
-		}
-	}*/
-    public boolean verifyElement(MobileElement mobileElement, String text) { //@Author - Sushil 17-Feb-2017 (Modified)
+		try {
+			String elementText = "";
+			boolean verifyFlag = true;
 
-    try
-    {
-	String elementText = "";
-	boolean verifyFlag = true;
-	
-	WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-	wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
-	
-/*	 if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-	        elementText = mobileElement.getText();
-	 else
-	 {
-	        elementText = mobileElement.getAttribute("label");
-	        if(elementText == null)
-	        	elementText = mobileElement.getAttribute("value");
-	 }*/
-	elementText = FuncGetElementText(mobileElement);
-	if(elementText!=null)
-	{
-	if (elementText.equalsIgnoreCase(text)) {
-	    try {
-	    	GetReporting().FuncReport("Pass", "The element <b>  " + elementText + " </b> is verified");
-	    } catch (IOException e) {
-		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-	    }
-	    return true;
-	} else {
-	    try {
-	    	GetReporting().FuncReport("Fail",  "The element <b>  " + elementText + " </b> does not match.");
-	    } catch (IOException e) {
-		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-	    }
-	}
-	}
-	else
-	{
-		elementText ="";
-		if (elementText.equalsIgnoreCase(text)) {
-		    try {
-		    	GetReporting().FuncReport("Pass", "The element <b>  " + elementText + " </b> is verified");
-		    } catch (IOException e) {
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		    }
-		    return true;
-		} else {
-		    try {
-		    	GetReporting().FuncReport("Fail",  "The element <b>  " + elementText + " </b> does not match.");
-		    } catch (IOException e) {
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		    }
-		}
-	}
-    }
-    catch(Exception e1)
-    {
-    	 	try {
-				GetReporting().FuncReport("Fail",  "The element does not exists. " + text);
+			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
+
+			/*
+			 * if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
+			 * "Android")) elementText = mobileElement.getText(); else {
+			 * elementText = mobileElement.getAttribute("label"); if(elementText
+			 * == null) elementText = mobileElement.getAttribute("value"); }
+			 */
+			elementText = FuncGetElementText(mobileElement);
+			if (elementText != null) {
+				if (elementText.equalsIgnoreCase(text)) {
+					try {
+						GetReporting().FuncReport("Pass", "The element <b>  " + elementText + " </b> is verified");
+					} catch (IOException e) {
+						System.out
+								.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+					}
+					return true;
+				} else {
+					try {
+						GetReporting().FuncReport("Fail", "The element <b>  " + elementText + " </b> does not match.");
+					} catch (IOException e) {
+						System.out
+								.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+					}
+				}
+			} else {
+				elementText = "";
+				if (elementText.equalsIgnoreCase(text)) {
+					try {
+						GetReporting().FuncReport("Pass", "The element <b>  " + elementText + " </b> is verified");
+					} catch (IOException e) {
+						System.out
+								.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+					}
+					return true;
+				} else {
+					try {
+						GetReporting().FuncReport("Fail", "The element <b>  " + elementText + " </b> does not match.");
+					} catch (IOException e) {
+						System.out
+								.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+					}
+				}
+			}
+		} catch (Exception e1) {
+			try {
+				GetReporting().FuncReport("Fail", "The element does not exists. " + text);
 				e1.printStackTrace();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-       }
-    return false;
+		}
+		return false;
 	}
 
-/*	*//**
+	/*	*//**
+			 * This method will verify the element is displayed on the screen.
+			 * 
+			 * @param The
+			 *            element which has to be identified
+			 * 
+			 * @param Text
+			 *            to print in report
+			 * 
+			 * @return boolean
+			 * 
+			 *         true if element is displayed or false
+			 * 
+			 *//*
+			 * public void verifyElementIsDisplayed(MobileElement mobileElement,
+			 * String expectedText) throws IOException { try { WebDriverWait
+			 * wait = new WebDriverWait(GetDriver(), 10L);
+			 * wait.until(ExpectedConditions.elementToBeClickable(mobileElement)
+			 * ); mobileElement.isDisplayed(); GetReporting().FuncReport("Pass",
+			 * "The '" + expectedText + "' is verified"); } catch
+			 * (IllegalArgumentException e) { GetReporting().FuncReport("Fail",
+			 * "IllegalArgumentException"); throw e; } catch
+			 * (NoSuchElementException n) { GetReporting().FuncReport("Fail",
+			 * "Element not displayed" + expectedText); throw n; } catch
+			 * (Exception e) { GetReporting().FuncReport("Fail",
+			 * "The element <b>- " + expectedText +
+			 * "</b> not present in current page"); throw e; } }
+			 */
+
+	/**
 	 * This method will verify the element is displayed on the screen.
 	 * 
 	 * @param The
@@ -1510,66 +1519,35 @@ public class MobileAction2 extends CommonLib {
 	 * 
 	 *         true if element is displayed or false
 	 * 
-	 *//*
-	public void verifyElementIsDisplayed(MobileElement mobileElement, String expectedText) throws IOException {
+	 */
+	public void verifyElementIsDisplayed(WebElement mobileElement, String expectedText) throws IOException { // @Author
+																												// -
+																												// Sushil
+																												// 03-Feb-2017
+																												// (Modified)
 		try {
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
-			mobileElement.isDisplayed();
-			GetReporting().FuncReport("Pass", "The '" + expectedText + "' is verified");
-		} catch (IllegalArgumentException e) {
-			GetReporting().FuncReport("Fail", "IllegalArgumentException");
-			throw e;
-		} catch (NoSuchElementException n) {
-			GetReporting().FuncReport("Fail", "Element not displayed" + expectedText);
-			throw n;
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+			wait.until(ExpectedConditions.visibilityOf(mobileElement));
+			if (mobileElement.isDisplayed())
+				GetReporting().FuncReport("Pass", "The element <b>- " + expectedText + "</b> is displayed.");
+			else
+				GetReporting().FuncReport("Fail", "The element <b>- " + expectedText + "</b> is not displayed");
 		} catch (Exception e) {
-			GetReporting().FuncReport("Fail", "The element <b>- " + expectedText + "</b> not present in current page");
+			GetReporting().FuncReport("Fail", "The element <b>- " + expectedText + "</b> is not displayed");
+			// e.printStackTrace(); //commented
 			throw e;
 		}
-	}*/
-	   /**
-     * This method will verify the element is displayed on the screen.
-     * 
-     * @param The
-     *            element which has to be identified
-     * 
-     * @param Text
-     *            to print in report
-     * 
-     * @return boolean
-     * 
-     *         true if element is displayed or false
-     * 
-     */
-    public void verifyElementIsDisplayed(WebElement mobileElement, String expectedText)throws IOException { //@Author - Sushil 03-Feb-2017 (Modified)
-	try {
-		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
-		wait.until(ExpectedConditions.visibilityOf(mobileElement));
-	    if (mobileElement.isDisplayed())
-	    	GetReporting().FuncReport("Pass", "The element <b>- " + expectedText + "</b> is displayed.");
-	    else
-	    	 GetReporting().FuncReport("Fail", "The element <b>- " + expectedText + "</b> is not displayed");	
+
+		/*
+		 * } catch (IllegalArgumentException e) {
+		 * GetReporting().FuncReport("Fail", "IllegalArgumentException"); throw
+		 * e; } catch (NoSuchElementException n) {
+		 * GetReporting().FuncReport("Fail", "Element not displayed" +
+		 * expectedText); throw n; } catch (Exception e) {
+		 * GetReporting().FuncReport("Fail", "The element <b>- " + expectedText
+		 * + "</b> not present in current page"); throw e; }
+		 */
 	}
-	catch(Exception e)
-	{
-		 GetReporting().FuncReport("Fail", "The element <b>- " + expectedText + "</b> is not displayed");
-		//e.printStackTrace();				//commented
-		 throw e;
-	}
-   
-/*	} catch (IllegalArgumentException e) {
-	    GetReporting().FuncReport("Fail", "IllegalArgumentException");
-	    throw e;
-	} catch (NoSuchElementException n) {
-	    GetReporting().FuncReport("Fail", "Element not displayed" + expectedText);
-	    throw n;
-	} catch (Exception e) {
-	    GetReporting().FuncReport("Fail", "The element <b>- " + expectedText + "</b> not present in current page");
-	    throw e;
-	}*/
-    }
-	
 
 	public boolean verifyElementNotPresent(MobileElement mobileElement, String expectedText) {
 		WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
@@ -1594,6 +1572,32 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/*	*//**
+			 * This method will verify the text contained in another String.
+			 * 
+			 *
+			 * @param objElement
+			 *            The MobileElement on which the click action has to be
+			 *            performed.
+			 * @throws Exception
+			 *             In case an exception occurs while clicking over the
+			 *             element. In case the element is not found over the
+			 *             screen.
+			 *//*
+			 * public void verifyElementTextContains(MobileElement objElement,
+			 * String text) throws IOException { try {
+			 * 
+			 * if (objElement.getAttribute("label").contains(text)) {
+			 * 
+			 * GetReporting().FuncReport("Pass", "Element contains text " +
+			 * text);
+			 * 
+			 * }
+			 * 
+			 * } catch (IOException e) { GetReporting().FuncReport("Fail",
+			 * "IOException Exception occurred"); throw e; } }
+			 */
+
+	/**
 	 * This method will verify the text contained in another String.
 	 * 
 	 *
@@ -1603,61 +1607,41 @@ public class MobileAction2 extends CommonLib {
 	 * @throws Exception
 	 *             In case an exception occurs while clicking over the element.
 	 *             In case the element is not found over the screen.
-	 *//*
-	public void verifyElementTextContains(MobileElement objElement, String text) throws IOException {
+	 */
+	public void verifyElementTextContains(MobileElement objElement, String text) {// throws
+																					// IOException
+																					// {
+																					// //@Author
+																					// -
+																					// Sushil
+																					// 31-Mar-2017
+																					// Modified
 		try {
-
-			if (objElement.getAttribute("label").contains(text)) {
-
-				GetReporting().FuncReport("Pass", "Element contains text " + text);
-
+			String sEleText = FuncGetElementText(objElement);
+			if (sEleText != null) {
+				if (sEleText.contains(text))
+					GetReporting().FuncReport("Pass",
+							"Element contains text<b> " + text + "</b> .Element text:" + sEleText);
+				else
+					GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
+			} else {
+				sEleText = "";
+				if (sEleText.contains(text))
+					GetReporting().FuncReport("Pass",
+							"Element contains text<b> " + text + "</b> .Element text:" + sEleText);
+				else
+					GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
 			}
-
 		} catch (IOException e) {
-			GetReporting().FuncReport("Fail", "IOException Exception occurred");
-			throw e;
-		}
-	}*/
-	  /**
-     * This method will verify the text contained in another String.
-     * 
-     *
-     * @param objElement
-     *            The MobileElement on which the click action has to be
-     *            performed.
-     * @throws Exception
-     *             In case an exception occurs while clicking over the element.
-     *             In case the element is not found over the screen.
-     */
-    public void verifyElementTextContains(MobileElement objElement, String text) {//throws IOException { //@Author - Sushil 31-Mar-2017 Modified
-	try {
-		String sEleText = FuncGetElementText(objElement);
-		if(sEleText!=null)
-		{
-			if (sEleText.contains(text)) 
-				GetReporting().FuncReport("Pass", "Element contains text<b> " + text + "</b> .Element text:" + sEleText);
-			else
-				GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
-		}
-		else
-		{
-			sEleText = "";
-			if (sEleText.contains(text)) 
-				GetReporting().FuncReport("Pass", "Element contains text<b> " + text + "</b> .Element text:" + sEleText);
-			else
-				GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
+			try {
+				GetReporting().FuncReport("Fail", "Element does not contain expected text:" + text);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			// throw e;
 		}
 	}
-	 catch (IOException e) {
-	    try {
-			GetReporting().FuncReport("Fail", "Element does not contain expected text:" + text);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	    //throw e;
-	}
-    }
 
 	/**
 	 * verify login for 5 times
@@ -1766,7 +1750,7 @@ public class MobileAction2 extends CommonLib {
 	public void waitForElementToAppear(String locater, String text) throws InterruptedException, IOException {
 		long timeoutInSeconds = 660;
 		try {
-			System.out.println("Wait for " + timeoutInSeconds +"s");
+			System.out.println("Wait for " + timeoutInSeconds + "s");
 			WebDriverWait wait = new WebDriverWait(GetDriver(), timeoutInSeconds);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locater)));
 			GetReporting().FuncReport("Pass", "The text '" + text + "' is visible");
@@ -1826,7 +1810,7 @@ public class MobileAction2 extends CommonLib {
 					} catch (NoSuchElementException e) {
 						break;
 					}
-				}else{
+				} else {
 					break;
 				}
 			}
@@ -1873,8 +1857,7 @@ public class MobileAction2 extends CommonLib {
 	public WebElement verifyWebElementUsingXPath(String objElement, String text) throws IOException {
 		try {
 
-			WebElement objMobileElement = (WebElement) ((AppiumDriver) GetDriver())
-					.findElement(By.xpath(objElement));
+			WebElement objMobileElement = (WebElement) ((AppiumDriver) GetDriver()).findElement(By.xpath(objElement));
 			verifyElementIsDisplayed(objMobileElement, text);
 			return objMobileElement;
 		} catch (IOException e) {
@@ -1882,7 +1865,7 @@ public class MobileAction2 extends CommonLib {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * This method will convert the String to mobileElement and do swipe
 	 * function
@@ -1920,37 +1903,28 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
-	/*public void FuncISDisplayed(MobileElement elementToFind, String value) {
-
-		try {
-			if (elementToFind.isDisplayed() && !value.isEmpty()) {
-				GetReporting().FuncReport("Pass", "The text '" + value + "' is Displayed");
-			}
-		} catch (Exception e) {
-			try {
-				GetReporting().FuncReport("Fail", "The text '" + value + "' is not appeared");
-			} catch (IOException ie) {
-				// TODO Auto-generated catch block
-				ie.printStackTrace();
-			}
-			e.printStackTrace();
-		}
-	}*/
-	
+	/*
+	 * public void FuncISDisplayed(MobileElement elementToFind, String value) {
+	 * 
+	 * try { if (elementToFind.isDisplayed() && !value.isEmpty()) {
+	 * GetReporting().FuncReport("Pass", "The text '" + value + "' is Displayed"
+	 * ); } } catch (Exception e) { try { GetReporting().FuncReport("Fail",
+	 * "The text '" + value + "' is not appeared"); } catch (IOException ie) {
+	 * // TODO Auto-generated catch block ie.printStackTrace(); }
+	 * e.printStackTrace(); } }
+	 */
 
 	public boolean FuncIsDisplayed(MobileElement elementToFind) {
 
 		try {
 			if (elementToFind.isDisplayed()) {
 				return true;
-			}else{
+			} else {
 				return false;
 
 			}
 		} catch (Exception e) {
 
-			
-			
 			return false;
 		}
 	}
@@ -1961,202 +1935,219 @@ public class MobileAction2 extends CommonLib {
 			if (elementToFind.isDisplayed()) {
 				GetReporting().FuncReport("Pass", "The text '" + value + "' is Displayed");
 				return true;
-			}else{
+			} else {
 				GetReporting().FuncReport("Fail", "The text '" + value + "' is not appeared");
 				return false;
 
 			}
 		} catch (Exception e) {
 
-			
 			e.printStackTrace();
 
 			return false;
 		}
 	}
 
-    public void FuncSwipeWhileElementNotFound(MobileElement elementToFind, boolean clickYorN, int swipes, String direction) {//throws Exception {//@Author - Sushil 24-Feb-2017
-  	  
-    	Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
-    	int startx = size.width;
-    	int starty = size.height;
-    	int endy = size.height;
-    	int heightPer = (endy*25/100);
-    	boolean flag = true;
-    	int count = 0;
-    	String sEleName="";
-    	try {
-    	    while (flag && count <= swipes) {
+	public void FuncSwipeWhileElementNotFound(MobileElement elementToFind, boolean clickYorN, int swipes,
+			String direction) {// throws Exception {//@Author - Sushil
+								// 24-Feb-2017
 
-    		try {
-/*		    		    if (elementToFind.isDisplayed())
-	    		    {
-		    			flag = false;
-		    			sEleName = FuncGetText(elementToFind);
-	    		    }
-    		    else
-    		    {
-    			    if(direction.equalsIgnoreCase("up"))
-    			    	((MobileDriver) GetDriver()).swipe(startx / 2, starty/2, startx / 2, endy/2 - heightPer, 2000);
-    				    else if(direction.equalsIgnoreCase("down"))
-    				    ((MobileDriver) GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2 + heightPer , 2000);
-    			    	count++;
-    		    }*/
-    			WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
-    			wait.until(ExpectedConditions.visibilityOf(elementToFind));
-    			
-    			flag = false;
-    			sEleName = FuncGetElementText(elementToFind);
-    			
-    		} catch (Exception e) {
-			    if(direction.equalsIgnoreCase("up"))
-			    	((MobileDriver) GetDriver()).swipe(startx / 2, starty/2, startx / 2, endy/2 - heightPer, 2000);
-				    else if(direction.equalsIgnoreCase("down"))
-				    ((MobileDriver) GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2 + heightPer , 2000);
-			    	count++;
-    		}
+		Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
+		int startx = size.width;
+		int starty = size.height;
+		int endy = size.height;
+		int heightPer = (endy * 25 / 100);
+		boolean flag = true;
+		int count = 0;
+		String sEleName = "";
+		try {
+			while (flag && count <= swipes) {
 
-    	    }
-    		
-    		if(!flag)
-    		{
-    		    GetReporting().FuncReport("Pass", "Swiped " + direction + " till element found. Element : <b>" + sEleName + "</b>");
-	    		if (clickYorN)
-	    			FuncClick(elementToFind, sEleName);
-    		}
-    		else
-    			GetReporting().FuncReport("Fail", "Exception: Swiped " + direction + " but element not found. Swipes : " + count);
-    		
-    	} catch (Exception e) {
-    		try {
-				GetReporting().FuncReport("Fail", "Exception: Swiped " + direction + " but element not found. Swipes : " + count);
+				try {
+					/*
+					 * if (elementToFind.isDisplayed()) { flag = false; sEleName
+					 * = FuncGetText(elementToFind); } else {
+					 * if(direction.equalsIgnoreCase("up")) ((MobileDriver)
+					 * GetDriver()).swipe(startx / 2, starty/2, startx / 2,
+					 * endy/2 - heightPer, 2000); else
+					 * if(direction.equalsIgnoreCase("down")) ((MobileDriver)
+					 * GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2
+					 * + heightPer , 2000); count++; }
+					 */
+					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
+					wait.until(ExpectedConditions.visibilityOf(elementToFind));
+
+					flag = false;
+					sEleName = FuncGetElementText(elementToFind);
+
+				} catch (Exception e) {
+					if (direction.equalsIgnoreCase("up"))
+						((MobileDriver) GetDriver()).swipe(startx / 2, starty / 2, startx / 2, endy / 2 - heightPer,
+								2000);
+					else if (direction.equalsIgnoreCase("down"))
+						((MobileDriver) GetDriver()).swipe(startx / 2, endy / 2, startx / 2, endy / 2 + heightPer,
+								2000);
+					count++;
+				}
+
+			}
+
+			if (!flag) {
+				GetReporting().FuncReport("Pass",
+						"Swiped " + direction + " till element found. Element : <b>" + sEleName + "</b>");
+				if (clickYorN)
+					FuncClick(elementToFind, sEleName);
+			} else
+				GetReporting().FuncReport("Fail",
+						"Exception: Swiped " + direction + " but element not found. Swipes : " + count);
+
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail",
+						"Exception: Swiped " + direction + " but element not found. Swipes : " + count);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-    	}
-     }
+		}
+	}
 
-    public void FuncSwipeWhileElementNotFoundByxpath(String xpathEle, boolean clickYorN, int swipes, String direction){// throws Exception {//@Author - Sushil 01-Mar-2017
-  	  
-    	Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
-    	int startx = size.width;
-    	int starty = size.height;
-    	int endy = size.height;
-    	int heightPer = (endy*25/100);
-    	boolean flag = true;
-    	int count = 0;
-    	String sEleName="";
-    	try {
-    	    while (flag && count <= swipes) {
+	public void FuncSwipeWhileElementNotFoundByxpath(String xpathEle, boolean clickYorN, int swipes, String direction) {// throws
+																														// Exception
+																														// {//@Author
+																														// -
+																														// Sushil
+																														// 01-Mar-2017
 
-    		try {
-/*	    		    if (GetDriver().findElement(By.xpath(xpathEle)).isDisplayed())
-    		    {
-	    			flag = false;
-	    			sEleName = FuncGetTextByxpath(xpathEle);
-    		    }
-    		    else
-    		    {
-    			    if(direction.equalsIgnoreCase("up"))
-    			    	((MobileDriver) GetDriver()).swipe(startx / 2, starty/2, startx / 2, endy/2 - heightPer, 2000);
-    				    else if(direction.equalsIgnoreCase("down"))
-    				    ((MobileDriver) GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2 + heightPer , 2000);
-    			    	count++;
-    		    }*/
-    			WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
-    			wait.until(ExpectedConditions.visibilityOf(GetDriver().findElement(By.xpath(xpathEle))));
-    			
-    			flag = false;
-    			sEleName = FuncGetTextByxpath(xpathEle);
-    			
-    		} catch (Exception e) {
-    			    if(direction.equalsIgnoreCase("up"))
-    			    	((MobileDriver) GetDriver()).swipe(startx / 2, starty/2, startx / 2, endy/2 - heightPer, 2000);
-    				    else if(direction.equalsIgnoreCase("down"))
-    				    ((MobileDriver) GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2 + heightPer , 2000);
-			    	count++;
-    		}
+		Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
+		int startx = size.width;
+		int starty = size.height;
+		int endy = size.height;
+		int heightPer = (endy * 25 / 100);
+		boolean flag = true;
+		int count = 0;
+		String sEleName = "";
+		try {
+			while (flag && count <= swipes) {
 
-    	    }
+				try {
+					/*
+					 * if
+					 * (GetDriver().findElement(By.xpath(xpathEle)).isDisplayed(
+					 * )) { flag = false; sEleName =
+					 * FuncGetTextByxpath(xpathEle); } else {
+					 * if(direction.equalsIgnoreCase("up")) ((MobileDriver)
+					 * GetDriver()).swipe(startx / 2, starty/2, startx / 2,
+					 * endy/2 - heightPer, 2000); else
+					 * if(direction.equalsIgnoreCase("down")) ((MobileDriver)
+					 * GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2
+					 * + heightPer , 2000); count++; }
+					 */
+					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
+					wait.until(ExpectedConditions.visibilityOf(GetDriver().findElement(By.xpath(xpathEle))));
 
-    		if(!flag)
-    		{
-    		    GetReporting().FuncReport("Pass", "Swiped " + direction + " till element found. Element : <b>" + sEleName + "</b>");
-	    		if (clickYorN) 
-	    			FuncClick((MobileElement)GetDriver().findElement(By.xpath(xpathEle)), sEleName);
-    		}
-    		else
-    			GetReporting().FuncReport("Fail", "Swiped " + direction + " but element not found. Swipes : " + count);
+					flag = false;
+					sEleName = FuncGetTextByxpath(xpathEle);
 
-    	} catch (Exception e) {
-    		try {
-				GetReporting().FuncReport("Fail", "Exception: Swiped " + direction + " but element not found. Swipes : " + count);
+				} catch (Exception e) {
+					if (direction.equalsIgnoreCase("up"))
+						((MobileDriver) GetDriver()).swipe(startx / 2, starty / 2, startx / 2, endy / 2 - heightPer,
+								2000);
+					else if (direction.equalsIgnoreCase("down"))
+						((MobileDriver) GetDriver()).swipe(startx / 2, endy / 2, startx / 2, endy / 2 + heightPer,
+								2000);
+					count++;
+				}
+
+			}
+
+			if (!flag) {
+				GetReporting().FuncReport("Pass",
+						"Swiped " + direction + " till element found. Element : <b>" + sEleName + "</b>");
+				if (clickYorN)
+					FuncClick((MobileElement) GetDriver().findElement(By.xpath(xpathEle)), sEleName);
+			} else
+				GetReporting().FuncReport("Fail", "Swiped " + direction + " but element not found. Swipes : " + count);
+
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail",
+						"Exception: Swiped " + direction + " but element not found. Swipes : " + count);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-    	}
+		}
 
-   }
-	
-    /**
-     * Makes sure that an element IS NOT in the list
-     * @param xpathEle
-     * @param clickYorN
-     * @param swipes
-     * @param direction
-     */
-    public boolean FuncSwipeEnsureElementNotFoundByxpath(String xpathEle, int swipes, String direction){// throws Exception {//@Author - Sushil 01-Mar-2017
-    	  
-    	Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
-    	int startx = size.width;
-    	int starty = size.height;
-    	int endy = size.height;
-    	int heightPer = (endy*25/100);
-    	boolean flag = true;
-    	int count = 0;
-    	String sEleName="";
-    	try {
-    	    while (flag && count <= swipes) {
+	}
 
-	    		try {
-	    			WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
-	    			wait.until(ExpectedConditions.visibilityOf(GetDriver().findElement(By.xpath(xpathEle))));
-	    			
-	    			flag = false;
-	    			sEleName = FuncGetTextByxpath(xpathEle);
-	    			
-	    		} catch (Exception e) {
-	    			    if(direction.equalsIgnoreCase("up"))
-	    			    	((MobileDriver) GetDriver()).swipe(startx / 2, starty/2, startx / 2, endy/2 - heightPer, 2000);
-	    				    else if(direction.equalsIgnoreCase("down"))
-	    				    ((MobileDriver) GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2 + heightPer , 2000);
-				    	count++;
-	    		}
+	/**
+	 * Makes sure that an element IS NOT in the list
+	 * 
+	 * @param xpathEle
+	 * @param clickYorN
+	 * @param swipes
+	 * @param direction
+	 */
+	public boolean FuncSwipeEnsureElementNotFoundByxpath(String xpathEle, int swipes, String direction) {// throws
+																											// Exception
+																											// {//@Author
+																											// -
+																											// Sushil
+																											// 01-Mar-2017
 
-    	    }
+		Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
+		int startx = size.width;
+		int starty = size.height;
+		int endy = size.height;
+		int heightPer = (endy * 25 / 100);
+		boolean flag = true;
+		int count = 0;
+		String sEleName = "";
+		try {
+			while (flag && count <= swipes) {
 
-    		if(!flag) {
-    		    GetReporting().FuncReport("Fail", "Swiped " + direction + "  element was found when it shouldn't be there. Element : <b>" + sEleName + "</b>");
-    		    return false;
-    		} else {
-    			GetReporting().FuncReport("Pass", "Swiped " + direction + "  element not found. Swipes : " + count);
-    			return true;
-    		}
+				try {
+					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
+					wait.until(ExpectedConditions.visibilityOf(GetDriver().findElement(By.xpath(xpathEle))));
 
-    	} catch (Exception e) {
-    		try {
-				GetReporting().FuncReport("Pass", "Exception: Swiped " + direction + " element not found. Swipes : " + count);
+					flag = false;
+					sEleName = FuncGetTextByxpath(xpathEle);
+
+				} catch (Exception e) {
+					if (direction.equalsIgnoreCase("up"))
+						((MobileDriver) GetDriver()).swipe(startx / 2, starty / 2, startx / 2, endy / 2 - heightPer,
+								2000);
+					else if (direction.equalsIgnoreCase("down"))
+						((MobileDriver) GetDriver()).swipe(startx / 2, endy / 2, startx / 2, endy / 2 + heightPer,
+								2000);
+					count++;
+				}
+
+			}
+
+			if (!flag) {
+				GetReporting().FuncReport("Fail", "Swiped " + direction
+						+ "  element was found when it shouldn't be there. Element : <b>" + sEleName + "</b>");
+				return false;
+			} else {
+				GetReporting().FuncReport("Pass", "Swiped " + direction + "  element not found. Swipes : " + count);
+				return true;
+			}
+
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Pass",
+						"Exception: Swiped " + direction + " element not found. Swipes : " + count);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-    		return true;
-    	}
+			return true;
+		}
 
-   }
-    
+	}
+
 	/**
 	 * This method will verify the element is not present on the screen.
 	 * 
@@ -2183,727 +2174,661 @@ public class MobileAction2 extends CommonLib {
 		return flag;
 
 	}
-	
-	 /**
-     * This method will verify the expected text is displayed on the screen.
-     * 
-     * @param The
-     *            element which has to be identified
-     * 
-     * @param expectedText
-     *            The expected text in this format like: "CONTACT INFORMATION | COORDONNÃ‰ES"
-     *            if language is English then "CONTACT INFORMATION "to be printed in report
-     *            if language is French then "COORDONNÃ‰ES" to be printed in report
-     * 
-     * @return nothing
-     * 
-     * 
-     */
-    public void verifyElementTextIsDisplayed(MobileElement mobileElement, String expectedText) throws IOException {
-    	String[] expectedHeadertext = expectedText.split("\\|");
-    	
+
+	/**
+	 * This method will verify the expected text is displayed on the screen.
+	 * 
+	 * @param The
+	 *            element which has to be identified
+	 * 
+	 * @param expectedText
+	 *            The expected text in this format like:
+	 *            "CONTACT INFORMATION | COORDONNÃ‰ES" if language is English
+	 *            then "CONTACT INFORMATION "to be printed in report if language
+	 *            is French then "COORDONNÃ‰ES" to be printed in report
+	 * 
+	 * @return nothing
+	 * 
+	 * 
+	 */
+	public void verifyElementTextIsDisplayed(MobileElement mobileElement, String expectedText) throws IOException {
+		String[] expectedHeadertext = expectedText.split("\\|");
+
 		try {
 			boolean verified = false;
-		    WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
-		    wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
-		    String capturedText=getValue(mobileElement);
-		    capturedText = capturedText.trim().replaceAll("\n", "");
-		    for (int i=0; i< expectedHeadertext.length; i++){
-		    	if (capturedText.equalsIgnoreCase(expectedHeadertext[i].trim())){
-		    		System.out.println("Expected matched:" + capturedText);
-		    		GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
-		    		verified = true;
-		    		break;
-		    	}else if (capturedText.matches(expectedHeadertext[i].trim())){
-		    		System.out.println("Expected matched:" + capturedText);
-		    		GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
-		    		verified = true;
-		    		break;
-		    	}
-	    	}
+			WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
+			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
+			String capturedText = getValue(mobileElement);
+			capturedText = capturedText.trim().replaceAll("\n", "");
+			for (int i = 0; i < expectedHeadertext.length; i++) {
+				if (capturedText.equalsIgnoreCase(expectedHeadertext[i].trim())) {
+					System.out.println("Expected matched:" + capturedText);
+					GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
+					verified = true;
+					break;
+				} else if (capturedText.matches(expectedHeadertext[i].trim())) {
+					System.out.println("Expected matched:" + capturedText);
+					GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
+					verified = true;
+					break;
+				}
+			}
 
-		    if(!verified){
-		    	System.out.println("Not matched, Captured:" + capturedText + ", but expected is " + expectedText);
-		    	GetReporting().FuncReport("Fail", "expected text not matched:" + expectedText);	
-		    	
-		    }
+			if (!verified) {
+				System.out.println("Not matched, Captured:" + capturedText + ", but expected is " + expectedText);
+				GetReporting().FuncReport("Fail", "expected text not matched:" + expectedText);
+
+			}
 		} catch (IllegalArgumentException e) {
-		    GetReporting().FuncReport("Fail", "IllegalArgumentException");
-		    throw e;
-		    
+			GetReporting().FuncReport("Fail", "IllegalArgumentException");
+			throw e;
+
 		} catch (NoSuchElementException n) {
-		    GetReporting().FuncReport("Fail", "Element not displayed: " + expectedText);
-		    throw n;
+			GetReporting().FuncReport("Fail", "Element not displayed: " + expectedText);
+			throw n;
 		} catch (Exception e) {
-		    GetReporting().FuncReport("Fail", "The element <b>- " + expectedText + "</b> not present in current page");
-		    throw e;
+			GetReporting().FuncReport("Fail", "The element <b>- " + expectedText + "</b> not present in current page");
+			throw e;
 		}
-    }
-    
-    
+	}
+
 	/**
 	 * This method will return the text associated with the mobile element.
 	 * 
 	 * @param The
 	 *            element whose text has to be retrieved.
 	 * 
-	 * @return String The text that is associated with the mobile element
-	 *                  or value for iOS device
+	 * @return String The text that is associated with the mobile element or
+	 *         value for iOS device
 	 * 
 	 */
-public String getValue(MobileElement objElement) {
-		if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+	public String getValue(MobileElement objElement) {
+		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 			return objElement.getText();
-		}else{
+		} else {
 			String value = objElement.getAttribute("label");
-			if(value == null || value.isEmpty()){
+			if (value == null || value.isEmpty()) {
 				value = objElement.getAttribute("value");
 			}
 			return value;
 		}
 	}
 
+	/**
+	 * This method will swipe within an element
+	 * 
+	 * @param swipeWithinElement
+	 *            The element identified by xpath maxSwipes: maximum times swipe
+	 *            direction: swipe direction: down , up, etc
+	 * 
+	 * @return nothing
+	 * 
+	 */
+	public void SwipeWithinElement(String swipeWithinElement, int maxSwipes, String direction) {
 
-/**
- * This method will swipe within an element
- * 
- * @param swipeWithinElement
- *           The element identified by xpath 
- *        maxSwipes: maximum times swipe
- *        direction: swipe direction: down , up,  etc
- * 
- * @return  nothing
- * 
- */
-public void SwipeWithinElement(String swipeWithinElement, int maxSwipes,
-	    String direction) {
+		Point elementWithinLocation = ((AppiumDriver) GetDriver()).findElement(By.xpath(swipeWithinElement))
+				.getLocation();
+		Dimension elementWithinDimension = ((AppiumDriver) GetDriver()).findElement(By.xpath(swipeWithinElement))
+				.getSize();
+		int locationX = elementWithinLocation.getX();
+		int locationY = elementWithinLocation.getY();
+		int dimensionX = elementWithinDimension.width;
+		int dimensionY = elementWithinDimension.height;
 
-	Point elementWithinLocation = ((AppiumDriver) GetDriver()).findElement(By.xpath(swipeWithinElement))
-		.getLocation();
-	Dimension elementWithinDimension = ((AppiumDriver) GetDriver()).findElement(By.xpath(swipeWithinElement))
-		.getSize();
-	int locationX = elementWithinLocation.getX();
-	int locationY = elementWithinLocation.getY();
-	int dimensionX = elementWithinDimension.width;
-	int dimensionY = elementWithinDimension.height;
-
-	int startx, starty, endx, endy;
-	if (direction.equalsIgnoreCase("up")) {
-	    startx = locationX + dimensionX / 2;
-	    endx = startx;
-	    starty = locationY + dimensionY - 5;
-	    endy = locationY + 10;
-	} else {
-	    startx = locationX + dimensionX / 2;
-	    endx = startx;
-	    starty = locationY + dimensionY - 10;
-	    endy = locationY + 10;
-	}
-
-	boolean elementFound = false;
-	for (int i = 1; i <= maxSwipes; i++) {
-
-		((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
-	    }
-	}
-
-public void waitForElementToVanished(MobileElement elementToVanish) {
-	try {
-	    boolean isElementDisplayed = false;
-	    int count=1;
-	    do {
-		Thread.sleep(1000);
-		isElementDisplayed = elementToVanish.isDisplayed();
-	    } while (!isElementDisplayed);
-
-	} catch (Exception e) {
-		System.out.println("Exception from Method " + this.getClass().toString());
-	}
-    }
-
-public void FuncSwipeOnce(String sDirection)
-{
-	try
-	{
-    	Dimension size = (GetDriver()).manage().window().getSize();
-    	int startx = size.width;
-    	int starty = size.height;
-    	int endy = size.height;
-    	int heightPer = (endy*25/100);
-    	
-	    if(sDirection.equalsIgnoreCase("up"))
-	    {
-	    	((MobileDriver) GetDriver()).swipe(startx / 2, starty/2, startx / 2, endy/2 - heightPer, 2000);
-	    		GetReporting().FuncReport("Pass", "Swipe Up once.");
-	    }
-		    else if(sDirection.equalsIgnoreCase("down"))
-		    {
-		    	((MobileDriver) GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2 + heightPer , 2000);
-		    GetReporting().FuncReport("Pass", "Swipe Down once.");
-		    }
-		else
-			GetReporting().FuncReport("Fail", "Invalid direction given.");
+		int startx, starty, endx, endy;
+		if (direction.equalsIgnoreCase("up")) {
+			startx = locationX + dimensionX / 2;
+			endx = startx;
+			starty = locationY + dimensionY - 5;
+			endy = locationY + 10;
+		} else {
+			startx = locationX + dimensionX / 2;
+			endx = startx;
+			starty = locationY + dimensionY - 10;
+			endy = locationY + 10;
 		}
-		catch(Exception e)
-		{
-			try
-			{
+
+		boolean elementFound = false;
+		for (int i = 1; i <= maxSwipes; i++) {
+
+			((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
+		}
+	}
+
+	public void waitForElementToVanished(MobileElement elementToVanish) {
+		try {
+			boolean isElementDisplayed = false;
+			int count = 1;
+			do {
+				Thread.sleep(1000);
+				isElementDisplayed = elementToVanish.isDisplayed();
+			} while (!isElementDisplayed);
+
+		} catch (Exception e) {
+			System.out.println("Exception from Method " + this.getClass().toString());
+		}
+	}
+
+	public void FuncSwipeOnce(String sDirection) {
+		try {
+			Dimension size = (GetDriver()).manage().window().getSize();
+			int startx = size.width;
+			int starty = size.height;
+			int endy = size.height;
+			int heightPer = (endy * 25 / 100);
+
+			if (sDirection.equalsIgnoreCase("up")) {
+				((MobileDriver) GetDriver()).swipe(startx / 2, starty / 2, startx / 2, endy / 2 - heightPer, 2000);
+				GetReporting().FuncReport("Pass", "Swipe Up once.");
+			} else if (sDirection.equalsIgnoreCase("down")) {
+				((MobileDriver) GetDriver()).swipe(startx / 2, endy / 2, startx / 2, endy / 2 + heightPer, 2000);
+				GetReporting().FuncReport("Pass", "Swipe Down once.");
+			} else
+				GetReporting().FuncReport("Fail", "Invalid direction given.");
+		} catch (Exception e) {
+			try {
 				GetReporting().FuncReport("Fail", "Exception occurred.Swiped failed.");
 				e.printStackTrace();
-			}
-			catch(Exception e1)
-			{
+			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		}
-		
-}
-public boolean isObjExists(MobileElement element) //throws Exception @Author - Sushil 01-Mar-2017
-{
-	try
-	{
-		Thread.sleep(5000);
-		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
-		wait.until(ExpectedConditions.visibilityOf(element));
-		
-		if( element == null)
-		GetReporting().FuncReport("Fail", "Object not found.");
-	}
-	catch(Exception e)
-	{
-		return false;
-	}
-	return true;
-}
 
-public void waitForElement(MobileElement ele)// @Author - Sushil 06-Feb-2017
-{
-	boolean foundFlag = false;
-	try
+	}
+
+	public boolean isObjExists(MobileElement element) // throws Exception
+														// @Author - Sushil
+														// 01-Mar-2017
 	{
-		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
-		wait.until(ExpectedConditions.visibilityOf(ele));
-		if(ele.isDisplayed())
-		{
-			foundFlag = true;	
+		try {
+			Thread.sleep(5000);
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+			wait.until(ExpectedConditions.visibilityOf(element));
+
+			if (element == null)
+				GetReporting().FuncReport("Fail", "Object not found.");
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public void waitForElement(MobileElement ele)// @Author - Sushil 06-Feb-2017
+	{
+		boolean foundFlag = false;
+		try {
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+			wait.until(ExpectedConditions.visibilityOf(ele));
+			if (ele.isDisplayed()) {
+				foundFlag = true;
+			}
+		} catch (Exception e) {
+			foundFlag = false;
+		}
+		try {
+			if (foundFlag)
+				GetReporting().FuncReport("Pass", "Element Loaded");
+			else
+				GetReporting().FuncReport("Fail", "Element not Loaded.Timeout reached.");
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 	}
-	catch(Exception e)
+
+	public void selectItemFromList(MobileElement defaultItem, String item) // throws
+																			// Exception
+																			// //@Author
+																			// -
+																			// Sushil
+																			// 06-Feb-2017
 	{
-		foundFlag = false;
-	}
-	try{
-		if(foundFlag)
-			GetReporting().FuncReport("Pass", "Element Loaded");
+		boolean Err = false;
+		String xpathExpression = "";
+		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			xpathExpression = "//*[@text='" + item + "']";
 		else
-			GetReporting().FuncReport("Fail", "Element not Loaded.Timeout reached.");
-	}
-	catch(Exception e1)
-	{
-		e1.printStackTrace();
-	}
-}
-public void selectItemFromList(MobileElement defaultItem,String item) //throws Exception //@Author - Sushil 06-Feb-2017
-{
-	boolean Err = false; 
-	String xpathExpression="";
-		if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-			xpathExpression = "//*[@text='" + item +"']";
-		else
-			xpathExpression = "//*[@label='" + item +"']";
-		try{
-			//waitForElement(defaultItem);
+			xpathExpression = "//*[@label='" + item + "']";
+		try {
+			// waitForElement(defaultItem);
 			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.visibilityOf(defaultItem));
 			FuncClick(defaultItem, "defaultItem");
-		if(GetDriver().findElement(By.xpath(xpathExpression)).isDisplayed())
-			GetDriver().findElement(By.xpath(xpathExpression)).click();
-			}
-		catch(Exception e1)
-		{
+			if (GetDriver().findElement(By.xpath(xpathExpression)).isDisplayed())
+				GetDriver().findElement(By.xpath(xpathExpression)).click();
+		} catch (Exception e1) {
 			Err = true;
 		}
-		try{
-		if(!Err)
-			GetReporting().FuncReport("Pass", String.format("<b> %s </b> list item selected", item));
-		else
-			GetReporting().FuncReport("Fail", String.format("<b> %s </b> list item not selected", item));
-		}catch(Exception e2)
-		{
+		try {
+			if (!Err)
+				GetReporting().FuncReport("Pass", String.format("<b> %s </b> list item selected", item));
+			else
+				GetReporting().FuncReport("Fail", String.format("<b> %s </b> list item not selected", item));
+		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
-}
-public String FuncGetValByRegx(String sText,String sPattern) //@Author - Sushil 14-Mar-2017
-{
-	String sReturnVal = "";
-	try
+	}
+
+	public String FuncGetValByRegx(String sText, String sPattern) // @Author -
+																	// Sushil
+																	// 14-Mar-2017
 	{
-			//Pattern p = Pattern.compile("([0-9]+)([.|,])([0-9]+)");
+		String sReturnVal = "";
+		try {
+			// Pattern p = Pattern.compile("([0-9]+)([.|,])([0-9]+)");
 			Pattern p = Pattern.compile(sPattern);
-			
-		    Matcher m = p.matcher(sText);
 
-		    // if an occurrence if a pattern was found in a given string...
-		    if (m.find()) {
-		    	sReturnVal = m.group(0).trim();
-		    	GetReporting().FuncReport("Pass", "Regular expression return value: " + sReturnVal);
-				}
-		    else
-		    {
-		    	GetReporting().FuncReport("Fail", "Regular expression failed for Text:" + sText);
-		    }
-		    }
-	//}
-	catch(Exception e)
-	{
-		e.printStackTrace();
-	}
-	return sReturnVal;
-}
+			Matcher m = p.matcher(sText);
 
-/**
- * This method will report failure
- * 
- * @param Text
- *            text which is not verified.
- * 
- * @return  void
- * 
- */
-public void Report_Fail_Not_Verified(String text){
-	try {
-		GetReporting().FuncReport("Fail",  "'" + text + "' is not verified");
-	    } catch (IOException e) {
-		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-	    }   	
-}
-
-/**
- * This method will report failure with error message
- * 
- * @param Text
- *            text : error message
- * 
- * @return  void
- * 
- */
-public void Report_Fail(String text){
-	try {
-		GetReporting().FuncReport("Fail",  text);
-	    } catch (IOException e) {
-		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-	    }   	
-}  
-
-/**
- * This method will report pass
- * 
- * @param Text
- *            text which is verified.
- * 
- * @return  void
- * 
- */
-
-public void Report_Pass_Verified(String text){
-	try {
-		GetReporting().FuncReport("Pass",  "'" +text + "' is verified");
-	    } catch (IOException e) {
-		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-	    }
-}
-
-public boolean isObjExists(MobileElement element,int iTimeOut) //throws Exception @Author - Sushil 01-Mar-2017
-{
-	try
-	{
-		Thread.sleep(5000);
-		WebDriverWait wait = new WebDriverWait(GetDriver(), iTimeOut);
-		wait.until(ExpectedConditions.visibilityOf(element));
-		
-		if( element == null)
-			//throw new Exception("Object not found.");
-		GetReporting().FuncReport("Fail", "Object not found.");
-	}
-	catch(Exception e)
-	{
-		return false;
-	}
-	return true;
-}
-public void verifyItemInList(String sItem)//@Author-Sushil 27-Feb-2017
-{
-	String xpathExpression="";
-	try
-	{
-		if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-			xpathExpression = "//*[@text='" + sItem +"']";
-		else
-			xpathExpression = "//*[@label='" + sItem +"']";
-		
-		verifyElement((MobileElement) (GetDriver()).findElement(By.xpath(xpathExpression)), sItem);
-	}
-	catch(Exception e)
-	{
-		try{
-			GetReporting().FuncReport("Fail",sItem + " not found.");
-		}
-		catch(Exception e1)
-		{
-		e.printStackTrace();
-		}
-	}
-}
-
-public void FuncVerifyBlankValue(MobileElement objMobileElement,String sDesc) //@Author - Sushil 06-Mar-2017
-{
-	String sText = "";
-	try
-	{
-		sText = objMobileElement.getText();
-		if(sText != null)
-		{
-			if(sText.equalsIgnoreCase(""))
-				GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is blank.");
-			else
-				GetReporting().FuncReport("Fail", sDesc + " should be blank.");
-		}
-		else
-		{
-			sText = FuncGetElementText(objMobileElement);
-			if(sText.equalsIgnoreCase(""))
-				GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is blank.");
-			else
-				GetReporting().FuncReport("Fail", sDesc + " should be blank.");
-		}
-	}
-	catch(Exception e)
-	{
-		try
-		{
-			GetReporting().FuncReport("Fail", "Exception occurred." + sDesc + " Blank value not verified.");
-			e.printStackTrace();
-		}
-		catch(Exception e1)
-		{
-			e1.printStackTrace();
-		}
-	}
-}
-
-public void FuncVerifyNonBlankValue(MobileElement objMobileElement,String sDesc) //@Author - Sushil 06-Mar-2017
-{
-	String sText = "";
-	try
-	{
-		sText = objMobileElement.getText();
-		if(sText != null)
-		{
-			if(sText.length() > 0)
-				GetReporting().FuncReport("Pass", sDesc + " is not blank. " + sText);
-			else
-				GetReporting().FuncReport("Fail", sDesc + " should not blank.");
-		}
-		else
-		{
-			sText = FuncGetElementText(objMobileElement);
-			if(sText.length() > 0)
-				GetReporting().FuncReport("Pass", sDesc + " is not blank. " + sText);
-			else
-				GetReporting().FuncReport("Fail", sDesc + " should not blank.");
-		}
-	}
-	catch(Exception e)
-	{
-		try
-		{
-			GetReporting().FuncReport("Fail", "Exception occurred." + sDesc + " Non Blank value not verified.");
-			e.printStackTrace();
-		}
-		catch(Exception e1)
-		{
-			e1.printStackTrace();
-		}
-	}
-}
-
-public void FuncIsElementEnabled(MobileElement objMobileElement,String sDesc)//@Author - Sushil 06-Mar-2017
-{
-	WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
-	wait.until(ExpectedConditions.visibilityOf(objMobileElement));
-	
-	try
-	{
-		if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-		{
-		if(objMobileElement.isEnabled())
-			GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is enabled.");
-		else
-			GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
-		}
-		else
-		{
-			if(objMobileElement.isDisplayed())
-				GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is enabled.");
-			else
-				GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+			// if an occurrence if a pattern was found in a given string...
+			if (m.find()) {
+				sReturnVal = m.group(0).trim();
+				GetReporting().FuncReport("Pass", "Regular expression return value: " + sReturnVal);
+			} else {
+				GetReporting().FuncReport("Fail", "Regular expression failed for Text:" + sText);
 			}
-	}
-	catch(Exception e)
-	{
-		try
-		{
-			GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+		}
+		// }
+		catch (Exception e) {
 			e.printStackTrace();
 		}
-		catch(Exception e1)
-		{
-			e1.printStackTrace();
+		return sReturnVal;
+	}
+
+	/**
+	 * This method will report failure
+	 * 
+	 * @param Text
+	 *            text which is not verified.
+	 * 
+	 * @return void
+	 * 
+	 */
+	public void Report_Fail_Not_Verified(String text) {
+		try {
+			GetReporting().FuncReport("Fail", "'" + text + "' is not verified");
+		} catch (IOException e) {
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-}
 
-public String FuncGetTextByxpath(String xpathEle)//@Author - Sushil 13-Apr-2017
-{
-	String sEleText = "";
-	if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-	{
-		try{
-		sEleText = GetDriver().findElement(By.xpath(xpathEle)).getText();
+	/**
+	 * This method will report failure with error message
+	 * 
+	 * @param Text
+	 *            text : error message
+	 * 
+	 * @return void
+	 * 
+	 */
+	public void Report_Fail(String text) {
+		try {
+			GetReporting().FuncReport("Fail", text);
+		} catch (IOException e) {
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-		catch(Exception e)
-		{
+	}
+
+	/**
+	 * This method will report pass
+	 * 
+	 * @param Text
+	 *            text which is verified.
+	 * 
+	 * @return void
+	 * 
+	 */
+
+	public void Report_Pass_Verified(String text) {
+		try {
+			GetReporting().FuncReport("Pass", "'" + text + "' is verified");
+		} catch (IOException e) {
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public boolean isObjExists(MobileElement element, int iTimeOut) // throws
+																	// Exception
+																	// @Author -
+																	// Sushil
+																	// 01-Mar-2017
+	{
+		try {
+			Thread.sleep(5000);
+			WebDriverWait wait = new WebDriverWait(GetDriver(), iTimeOut);
+			wait.until(ExpectedConditions.visibilityOf(element));
+
+			if (element == null)
+				// throw new Exception("Object not found.");
+				GetReporting().FuncReport("Fail", "Object not found.");
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public void verifyItemInList(String sItem)// @Author-Sushil 27-Feb-2017
+	{
+		String xpathExpression = "";
+		try {
+			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				xpathExpression = "//*[@text='" + sItem + "']";
+			else
+				xpathExpression = "//*[@label='" + sItem + "']";
+
+			verifyElement((MobileElement) (GetDriver()).findElement(By.xpath(xpathExpression)), sItem);
+		} catch (Exception e) {
 			try {
-				GetReporting().FuncReport("Fail", "Exception in FuncGetTextByxpath(). getText() failed.");
+				GetReporting().FuncReport("Fail", sItem + " not found.");
+			} catch (Exception e1) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void FuncVerifyBlankValue(MobileElement objMobileElement, String sDesc) // @Author
+																					// -
+																					// Sushil
+																					// 06-Mar-2017
+	{
+		String sText = "";
+		try {
+			sText = objMobileElement.getText();
+			if (sText != null) {
+				if (sText.equalsIgnoreCase(""))
+					GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is blank.");
+				else
+					GetReporting().FuncReport("Fail", sDesc + " should be blank.");
+			} else {
+				sText = FuncGetElementText(objMobileElement);
+				if (sText.equalsIgnoreCase(""))
+					GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is blank.");
+				else
+					GetReporting().FuncReport("Fail", sDesc + " should be blank.");
+			}
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "Exception occurred." + sDesc + " Blank value not verified.");
+				e.printStackTrace();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	public void FuncVerifyNonBlankValue(MobileElement objMobileElement, String sDesc) // @Author
+																						// -
+																						// Sushil
+																						// 06-Mar-2017
+	{
+		String sText = "";
+		try {
+			sText = objMobileElement.getText();
+			if (sText != null) {
+				if (sText.length() > 0)
+					GetReporting().FuncReport("Pass", sDesc + " is not blank. " + sText);
+				else
+					GetReporting().FuncReport("Fail", sDesc + " should not blank.");
+			} else {
+				sText = FuncGetElementText(objMobileElement);
+				if (sText.length() > 0)
+					GetReporting().FuncReport("Pass", sDesc + " is not blank. " + sText);
+				else
+					GetReporting().FuncReport("Fail", sDesc + " should not blank.");
+			}
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "Exception occurred." + sDesc + " Non Blank value not verified.");
+				e.printStackTrace();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	public void FuncIsElementEnabled(MobileElement objMobileElement, String sDesc)// @Author
+																					// -
+																					// Sushil
+																					// 06-Mar-2017
+	{
+		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+		wait.until(ExpectedConditions.visibilityOf(objMobileElement));
+
+		try {
+			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				if (objMobileElement.isEnabled())
+					GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is enabled.");
+				else
+					GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+			} else {
+				if (objMobileElement.isDisplayed())
+					GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is enabled.");
+				else
+					GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+			}
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+				e.printStackTrace();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	public String FuncGetTextByxpath(String xpathEle)// @Author - Sushil
+														// 13-Apr-2017
+	{
+		String sEleText = "";
+		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			try {
+				sEleText = GetDriver().findElement(By.xpath(xpathEle)).getText();
+			} catch (Exception e) {
+				try {
+					GetReporting().FuncReport("Fail", "Exception in FuncGetTextByxpath(). getText() failed.");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		} else {
+			try {
+				sEleText = GetDriver().findElement(By.xpath(xpathEle)).getAttribute("label");
+			} catch (Exception e) {
+				try {
+					sEleText = GetDriver().findElement(By.xpath(xpathEle)).getAttribute("value");
+				} catch (Exception e1) {
+					try {
+						sEleText = GetDriver().findElement(By.xpath(xpathEle)).getAttribute("name");
+					} catch (Exception e2) {
+						try {
+							GetReporting().FuncReport("Fail", "Exception in FuncGetTextByxpath(). getText() failed.");
+						} catch (IOException e3) {
+							// TODO Auto-generated catch block
+							e3.printStackTrace();
+						}
+					}
+				}
+			}
+		}
+		return sEleText;
+	}
+
+	/**
+	 * This method will return the text of the element which has been specified
+	 * and print it in the report as well.
+	 * 
+	 * @param objElement
+	 *            The element for which the text is to be printed in the report.
+	 * @return The String value of the Text in the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 */
+	public String FuncGetElementText(MobileElement objElement) { // @Author -
+																	// Sushil
+																	// 13-Apr-2017
+		String textToReturn = null;
+		try {
+
+			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+			wait.until(ExpectedConditions.visibilityOf(objElement));
+
+			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				try {
+					textToReturn = objElement.getText();
+				} catch (Exception e) {
+					GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
+				}
+			} else {
+				try {
+					textToReturn = objElement.getAttribute("label");
+				} catch (Exception e) {
+					try {
+						textToReturn = objElement.getAttribute("value");
+					} catch (Exception e1) {
+						try {
+							textToReturn = objElement.getAttribute("name");
+						} catch (Exception e2) {
+							GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
+						}
+					}
+				}
+			}
+		} catch (IOException e) {
+			try {
+				GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		}
-	}
-	else
-	{
-		try{
-			sEleText = GetDriver().findElement(By.xpath(xpathEle)).getAttribute("label");
-		}
-		catch(Exception e)
-		{
-			try{
-				sEleText = GetDriver().findElement(By.xpath(xpathEle)).getAttribute("value");
-			}
-			catch(Exception e1){
-				try{
-				sEleText = GetDriver().findElement(By.xpath(xpathEle)).getAttribute("name");
-				}
-				catch(Exception e2)
-				{
-    				try {
-						GetReporting().FuncReport("Fail", "Exception in FuncGetTextByxpath(). getText() failed.");
-					} catch (IOException e3) {
-						// TODO Auto-generated catch block
-						e3.printStackTrace();
-					}
-				}
-			}
-		}
-	}
-	return sEleText;
-}
-
-/**
- * This method will return the text of the element which has been specified
- * and print it in the report as well.
- * 
- * @param objElement
- *            The element for which the text is to be printed in the report.
- * @return The String value of the Text in the element.
- * @throws IOException
- *             If there is problem while reporting.
- */
-public String FuncGetElementText(MobileElement objElement) { //@Author - Sushil 13-Apr-2017
-	String textToReturn = null;
-	try {
-
-		WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-		wait.until(ExpectedConditions.visibilityOf(objElement));
-		
-		if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-		{
-			try{
-			textToReturn = objElement.getText();
-			}
-			catch(Exception e){
-				GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
-			}
-		}
-		else
-		{
-			try{
-				textToReturn = objElement.getAttribute("label");
-				}
-			catch(Exception e)
-			{
-				try{
-					textToReturn = objElement.getAttribute("value");
-				}
-				catch(Exception e1)
-				{
-					try{
-					textToReturn = objElement.getAttribute("name");
-					}
-					catch(Exception e2)
-					{
-						GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
-					}
-				}
-			}
-		}
-	}
-	 catch (IOException e) {
-		 try {
-			GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	    //throw e;
-	}catch (NoSuchElementException e) {
-		 try {
-			GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	 
-	}//throw e;
-	return textToReturn;
-}
-
-
-/**
- * This method will get the Mobile element from XPATH
- * 
- *
- * @param objElement
- *            The MobileElement on which the click action has to be
- *            performed.
- * @throws Exception
- *             In case an exception occurs while clicking over the element.
- *             In case the element is not found over the screen.
- */
-public MobileElement mobileElementUsingXPath(String objElement) throws IOException {
-
-	MobileElement objMobileElement = (MobileElement) ((AppiumDriver) GetDriver()).findElement(By.xpath(objElement));
-
-	return objMobileElement;
-
-}
-
-public String verifyElementUsingBy(By value) { 
-	  
-	String elementText="";
-	//boolean verifyFlag = true;
-	  try{
-	
-	WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-	wait.until(ExpectedConditions.elementToBeClickable(value));
-	
-	if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-		 elementText= ((AndroidDriver) GetDriver()).findElement(value).getAttribute("text");
-	}
- else
- {
-	 elementText= ((IOSDriver) GetDriver()).findElement(value).getAttribute("label");
-        
- }
-
-}catch(NoSuchElementException e){
-	
-	}
-	  return elementText;
-
-
-	
-	
-	
-}
-public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
-
+			// throw e;
+		} catch (NoSuchElementException e) {
 			try {
-			if (elementToFind.isDisplayed()) {
-			GetReporting().FuncReport("Pass", "The text '" + text + "' is Displayed");
-			return true;
-			} else 
-			
-			return false;
-			
-			} catch (Exception e) {
-		
-		
-			return false;
+				GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 
-}
+		} // throw e;
+		return textToReturn;
+	}
 
-		/**
-		* This method will click on the element according to coordinates.
-		*
-		* 
-		* @param widthCord
-		*            Width of the element
-		* @param HeightCord
-		*            Height of the element
-		* @param TapCount
-		*            Number of times to tap
-		* 
-		* @throws IOException
-		*/
+	/**
+	 * This method will get the Mobile element from XPATH
+	 * 
+	 *
+	 * @param objElement
+	 *            The MobileElement on which the click action has to be
+	 *            performed.
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             In case the element is not found over the screen.
+	 */
+	public MobileElement mobileElementUsingXPath(String objElement) throws IOException {
+
+		MobileElement objMobileElement = (MobileElement) ((AppiumDriver) GetDriver()).findElement(By.xpath(objElement));
+
+		return objMobileElement;
+
+	}
+
+	public String verifyElementUsingBy(By value) {
+
+		String elementText = "";
+		// boolean verifyFlag = true;
+		try {
+
+			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+			wait.until(ExpectedConditions.elementToBeClickable(value));
+
+			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				elementText = ((AndroidDriver) GetDriver()).findElement(value).getAttribute("text");
+			} else {
+				elementText = ((IOSDriver) GetDriver()).findElement(value).getAttribute("label");
+
+			}
+
+		} catch (NoSuchElementException e) {
+
+		}
+		return elementText;
+
+	}
+
+	public boolean FuncISDisplayed(MobileElement elementToFind, String text) {
+
+		try {
+			if (elementToFind.isDisplayed()) {
+				GetReporting().FuncReport("Pass", "The text '" + text + "' is Displayed");
+				return true;
+			} else
+
+				return false;
+
+		} catch (Exception e) {
+
+			return false;
+		}
+
+	}
+
+	/**
+	 * This method will click on the element according to coordinates.
+	 *
+	 * 
+	 * @param widthCord
+	 *            Width of the element
+	 * @param HeightCord
+	 *            Height of the element
+	 * @param TapCount
+	 *            Number of times to tap
+	 * 
+	 * @throws IOException
+	 */
 	public void clickCoOrdinatesPercentage(float widthCord, float HeightCord, int TapCount) {
 
 		Dimension size;
 		size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 		int startx = (int) (size.width * widthCord);
 		int starty = (int) (size.height * HeightCord);
-		
+
 		TouchAction action = new TouchAction(((MobileDriver) GetDriver()));
 		for (int i = 0; i < TapCount; i++) {
-		action.tap(startx, starty).perform();
+			action.tap(startx, starty).perform();
 		}
 	}
-	
+
 	/**
-	* This method will get  current switch element status  //fengfr6 
-	*
-	* 
-	* @param MobileElement
-	*            switch mobile element
-	*    for android device, attribute "checked" is the switch status, true or false
-	*    for iOS device, attribute "value" is the switch status, true or false        
-	* 
-	* @throws IOException
-	*/
-	public String getSwitchStatus(MobileElement switchElement){
-		String status="";
-		if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+	 * This method will get current switch element status //fengfr6
+	 *
+	 * 
+	 * @param MobileElement
+	 *            switch mobile element for android device, attribute "checked"
+	 *            is the switch status, true or false for iOS device, attribute
+	 *            "value" is the switch status, true or false
+	 * 
+	 * @throws IOException
+	 */
+	public String getSwitchStatus(MobileElement switchElement) {
+		String status = "";
+		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 			status = switchElement.getAttribute("checked");
-		}else{
+		} else {
 			status = switchElement.getAttribute("value");
 		}
 		return status;
 	}
-	
-	public void FuncSwipeUpTillScreenBottom(MobileElement mEle) //@Author - Sushil 10-May-2017
+
+	public void FuncSwipeUpTillScreenBottom(MobileElement mEle) // @Author -
+																// Sushil
+																// 10-May-2017
 	{
-		try
-		{
+		try {
 			FunctionSwipe("up", 200, 100);
-			if(!mEle.isDisplayed())
-			{
+			if (!mEle.isDisplayed()) {
 				FunctionSwipe("up", 200, 100);
 			}
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			try {
 				FunctionSwipe("up", 200, 100);
 			} catch (IOException e1) {
@@ -2916,18 +2841,17 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 			}
 		}
 	}
-	public void FuncSwipeDownTillScreenTop(MobileElement mEle) //@Author - Sushil 10-May-2017
+
+	public void FuncSwipeDownTillScreenTop(MobileElement mEle) // @Author -
+																// Sushil
+																// 10-May-2017
 	{
-		try
-		{
+		try {
 			FunctionSwipe("down", 200, 200);
-			if(!mEle.isDisplayed())
-			{
+			if (!mEle.isDisplayed()) {
 				FunctionSwipe("down", 200, 200);
 			}
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			try {
 				FunctionSwipe("down", 200, 200);
 			} catch (IOException e1) {
@@ -2942,78 +2866,70 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 			}
 		}
 	}
-	
-	public void verifyItemInListContains(String sItem)//@Author-Sushil 11-May-2017
+
+	public void verifyItemInListContains(String sItem)// @Author-Sushil
+														// 11-May-2017
 	{
-		String xpathExpression="";
-		try
-		{
-			if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-				xpathExpression = "//*[contains(@text,'" + sItem +"')]";
+		String xpathExpression = "";
+		try {
+			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				xpathExpression = "//*[contains(@text,'" + sItem + "')]";
 			else
-				xpathExpression = "//*[contains(@label,'" + sItem +"')]";
-			
+				xpathExpression = "//*[contains(@label,'" + sItem + "')]";
+
 			verifyElementTextContains((MobileElement) (GetDriver()).findElement(By.xpath(xpathExpression)), sItem);
-		}
-		catch(Exception e)
-		{
-			try{
-				GetReporting().FuncReport("Fail",sItem + " not found.");
-			}
-			catch(Exception e1)
-			{
-			e.printStackTrace();
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", sItem + " not found.");
+			} catch (Exception e1) {
+				e.printStackTrace();
 			}
 		}
 	}
 
-	
-	//Add a common function here, we may need to click back button from any page, but the function is the same
-	public void ClickBackButton(){
+	// Add a common function here, we may need to click back button from any
+	// page, but the function is the same
+	public void ClickBackButton() {
 
-		String back_xpath ="";
+		String back_xpath = "";
 
-		if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-			try{
+		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			try {
 				FuncClickBackButton();
 				return;
-			}catch (Exception e){
+			} catch (Exception e) {
 				back_xpath = "//android.widget.ImageView[@resource-id='android:id/up']";
 			}
-			
-		}else{
+
+		} else {
 			back_xpath = "//*[@label='Back' or @label='Retour']";
 		}
-		try{
-			MobileElement back_arrow = (MobileElement)GetDriver().findElement(By.xpath(back_xpath));
+		try {
+			MobileElement back_arrow = (MobileElement) GetDriver().findElement(By.xpath(back_xpath));
 			FuncClick(back_arrow, "<");
-				
-		}catch (Exception e) {
-			e.printStackTrace();
-	    } 
-	}
-	
 
-	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public boolean verifyElementIsPresent(MobileElement elementToFind) {
 
 		try {
 			if (elementToFind.isDisplayed()) {
-				
+
 				return true;
-			}else{
-				
+			} else {
+
 				return false;
 
 			}
 		} catch (Exception e) {
 
-
 			return false;
 		}
 	}
-	
+
 	/**
 	 * This method will swipe either up, Down, left or Right according to the
 	 * direction specified. This method takes the size of the screen and uses
@@ -3038,13 +2954,13 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 
 			Dimension size;
 			size = ((AppiumDriver) GetDriver()).manage().window().getSize();
-			
-				int starty = (int) (size.height * 0.20);
-				int endy =(int) (size.height *0.20);
-				int startx = (int) (size.width * 0.90);
-				int endx = (int) (size.width * 0.10);
-				((MobileDriver) GetDriver()).swipe(startx - Offset, starty, endx, endy, swipeTime);
-			
+
+			int starty = (int) (size.height * 0.20);
+			int endy = (int) (size.height * 0.20);
+			int startx = (int) (size.width * 0.90);
+			int endx = (int) (size.width * 0.10);
+			((MobileDriver) GetDriver()).swipe(startx - Offset, starty, endx, endy, swipeTime);
+
 			GetReporting().FuncReport("Pass", "Swipe <b> left </b> Successful");
 
 		} catch (Exception e) {
@@ -3052,52 +2968,57 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 			throw e;
 		}
 
+	}
 
-	}
-	
-	  /**
-     * This method will verify the text contained in another String.
-     * 
-     *
-     * @param objElement
-     *            The MobileElement on which the click action has to be
-     *            performed.
-     * @throws Exception
-     *             In case an exception occurs while clicking over the element.
-     *             In case the element is not found over the screen.
-     */
-    public void verifyElementTextContainsReverse(MobileElement objElement, String text) {//throws IOException { //@Author - Sushil 31-Mar-2017 Modified
-	try {
-		String sEleText = FuncGetElementText(objElement);
-		if(sEleText!=null)
-		{
-			if (text.contains(sEleText)) 
-				GetReporting().FuncReport("Pass", "Element contains text<b> " + text + "</b> .Element text:" + sEleText);
-			else
-				GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
+	/**
+	 * This method will verify the text contained in another String.
+	 * 
+	 *
+	 * @param objElement
+	 *            The MobileElement on which the click action has to be
+	 *            performed.
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             In case the element is not found over the screen.
+	 */
+	public void verifyElementTextContainsReverse(MobileElement objElement, String text) {// throws
+																							// IOException
+																							// {
+																							// //@Author
+																							// -
+																							// Sushil
+																							// 31-Mar-2017
+																							// Modified
+		try {
+			String sEleText = FuncGetElementText(objElement);
+			if (sEleText != null) {
+				if (text.contains(sEleText))
+					GetReporting().FuncReport("Pass",
+							"Element contains text<b> " + text + "</b> .Element text:" + sEleText);
+				else
+					GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
+			} else {
+				sEleText = "";
+				if (text.contains(sEleText))
+					GetReporting().FuncReport("Pass",
+							"Element contains text<b> " + text + "</b> .Element text:" + sEleText);
+				else
+					GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
+			}
+		} catch (IOException e) {
+			try {
+				GetReporting().FuncReport("Fail", "Element does not contain expected text:" + text);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			// throw e;
 		}
-		else
-		{
-			sEleText = "";
-			if (text.contains(sEleText)) 
-				GetReporting().FuncReport("Pass", "Element contains text<b> " + text + "</b> .Element text:" + sEleText);
-			else
-				GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
-		}
 	}
-	 catch (IOException e) {
-	    try {
-			GetReporting().FuncReport("Fail", "Element does not contain expected text:" + text);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	    //throw e;
-	}
-    }
+
 	public String getAppString(final String key) {
-		String s = (String)_CommonPage.appStringMap.get(key);
-		//System.out.println("String returned from key is: " + s);
+		String s = (String) _CommonPage.appStringMap.get(key);
+		// System.out.println("String returned from key is: " + s);
 		return s;
 	}
 
@@ -3107,168 +3028,174 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 	public static final int TYPE_YYYY_MM_DD_TODAY = 4;
 	public static final int TYPE_YYYY_MM_DD_HOUR = 5;
 	public static final int TYPE_YYYY_MM_DD_RANGE = 6;
-	
+
 	public static final String PATTERN_ZH_YYYY_MM_DD = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日|待处理|尚待處理";
 	public static final String PATTERN_ZH_YYYY_MM_DD_WEEKDATE = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\((星期|週)[一|二|三|四|五|六|日|天]\\)";
 	public static final String PATTERN_ZH_MM_YYYY = "\\d{4}年\\s?\\d{1,2}月";
 	public static final String PATTERN_ZH_YYYY_MM_DD_TODAY = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\((今天|今日)\\)";
 	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日.*";
 	public static final String PATTERN_ZH_YYYY_MM_DD_RANGE = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日 – (\\d{4}年)*\\d{1,2}月\\d{1,2}日";
-	
+
 	public void verifyDateFormat(final String dateStr, final int type) {
 		if (_CommonPage.currentLocale.startsWith("zh")) {
 			switch (type) {
-				case (TYPE_YYYY_MM_DD):
-					if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD)) {
-						try {
-							GetReporting().FuncReport("Pass", "Correct date format found");
-						} catch (IOException e) {
-							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-						}						
-					} else {
-						try {
-							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
-						} catch (IOException e) {
-							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-						}	
+			case (TYPE_YYYY_MM_DD):
+				if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD)) {
+					try {
+						GetReporting().FuncReport("Pass", "Correct date format found");
+					} catch (IOException e) {
+						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
-					break;
-				case (TYPE_YYYY_MM_DD_WEEKDATE):
-					if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD_WEEKDATE)) {
-						try {
-							GetReporting().FuncReport("Pass", "Correct date format found");
-						} catch (IOException e) {
-							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-						}						
-					} else {
-						try {
-							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
-						} catch (IOException e) {
-							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-						}	
+				} else {
+					try {
+						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+					} catch (IOException e) {
+						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
-					break;
-				case (TYPE_MM_YYYY):
-					if (dateStr.matches(PATTERN_ZH_MM_YYYY)) {
-						try {
-							GetReporting().FuncReport("Pass", "Correct date format found");
-						} catch (IOException e) {
-							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-						}						
-					} else {
-						try {
-							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
-						} catch (IOException e) {
-							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-						}	
+				}
+				break;
+			case (TYPE_YYYY_MM_DD_WEEKDATE):
+				if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD_WEEKDATE)) {
+					try {
+						GetReporting().FuncReport("Pass", "Correct date format found");
+					} catch (IOException e) {
+						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
-					break;
-				case (TYPE_YYYY_MM_DD_TODAY):
-					if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD_TODAY)) {
-						try {
-							GetReporting().FuncReport("Pass", "Correct date format found");
-						} catch (IOException e) {
-							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-						}						
-					} else {
-						try {
-							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
-						} catch (IOException e) {
-							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-						}	
+				} else {
+					try {
+						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+					} catch (IOException e) {
+						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
-					break;
-				case (TYPE_YYYY_MM_DD_HOUR):
-					if (dateStr.matches(PATTERN_ZH_YY_MM_DD_HOUR)) {
-						try {
-							GetReporting().FuncReport("Pass", "Correct date format found");
-						} catch (IOException e) {
-							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-						}						
-					} else {
-						try {
-							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
-						} catch (IOException e) {
-							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-						}	
+				}
+				break;
+			case (TYPE_MM_YYYY):
+				if (dateStr.matches(PATTERN_ZH_MM_YYYY)) {
+					try {
+						GetReporting().FuncReport("Pass", "Correct date format found");
+					} catch (IOException e) {
+						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
-					break;
-				case (TYPE_YYYY_MM_DD_RANGE):
-					if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD_RANGE)) {
-						try {
-							GetReporting().FuncReport("Pass", "Correct date format found");
-						} catch (IOException e) {
-							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-						}						
-					} else {
-						try {
-							GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
-						} catch (IOException e) {
-							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-						}	
+				} else {
+					try {
+						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+					} catch (IOException e) {
+						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
-					break;
+				}
+				break;
+			case (TYPE_YYYY_MM_DD_TODAY):
+				if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD_TODAY)) {
+					try {
+						GetReporting().FuncReport("Pass", "Correct date format found");
+					} catch (IOException e) {
+						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+					}
+				} else {
+					try {
+						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+					} catch (IOException e) {
+						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+					}
+				}
+				break;
+			case (TYPE_YYYY_MM_DD_HOUR):
+				if (dateStr.matches(PATTERN_ZH_YY_MM_DD_HOUR)) {
+					try {
+						GetReporting().FuncReport("Pass", "Correct date format found");
+					} catch (IOException e) {
+						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+					}
+				} else {
+					try {
+						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+					} catch (IOException e) {
+						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+					}
+				}
+				break;
+			case (TYPE_YYYY_MM_DD_RANGE):
+				if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD_RANGE)) {
+					try {
+						GetReporting().FuncReport("Pass", "Correct date format found");
+					} catch (IOException e) {
+						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+					}
+				} else {
+					try {
+						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
+					} catch (IOException e) {
+						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+					}
+				}
+				break;
 			}
 
-		} else if (_CommonPage.currentLocale.equalsIgnoreCase("EN") || _CommonPage.currentLocale.equalsIgnoreCase("fr")) {
+		} else if (_CommonPage.currentLocale.equalsIgnoreCase("EN")
+				|| _CommonPage.currentLocale.equalsIgnoreCase("fr")) {
 			// Don't need to test this for now
 		} else {
 			try {
-				GetReporting().FuncReport("Fail", "Unknown locale found to test against date string: " + _CommonPage.currentLocale);
+				GetReporting().FuncReport("Fail",
+						"Unknown locale found to test against date string: " + _CommonPage.currentLocale);
 			} catch (IOException e) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-			}			
+			}
 		}
 	}
 
-    /**
-     * This will allow the user to switch between Appium Driver contextes such as NATIVE_APP or WEBVIEW
-     * @param targetContext
-     */
-    public void switchAppiumContext(final String targetContext) {
-    	((AppiumDriver) GetDriver()).context(targetContext);
-    }
-    
+	/**
+	 * This will allow the user to switch between Appium Driver contextes such
+	 * as NATIVE_APP or WEBVIEW
+	 * 
+	 * @param targetContext
+	 */
+	public void switchAppiumContext(final String targetContext) {
+		((AppiumDriver) GetDriver()).context(targetContext);
+	}
+
 	public void containsHanScript(String s) throws IOException {
-		if(_CommonPage.currentLocale.startsWith("zh")) {
-		    for (int i = 0; i < s.length(); ) {
-		        int codepoint = s.codePointAt(i);
-		        i += Character.charCount(codepoint);
-		        if (Character.UnicodeScript.of(codepoint) == Character.UnicodeScript.HAN) {
+		if (_CommonPage.currentLocale.startsWith("zh")) {
+			for (int i = 0; i < s.length();) {
+				int codepoint = s.codePointAt(i);
+				i += Character.charCount(codepoint);
+				if (Character.UnicodeScript.of(codepoint) == Character.UnicodeScript.HAN) {
 					GetReporting().FuncReport("Pass", "Element contains han characters");
 					return;
-		        }
-		    }
-		    GetReporting().FuncReport("Fail", "Element does not contain han characters");
+				}
+			}
+			GetReporting().FuncReport("Fail", "Element does not contain han characters");
 		}
 	}
-	
+
 	/**
-	 * @author Ashraf 
-	 * This method will convert the string xpath to MobileElement. Then Swipe and click on it once found.
+	 * @author Ashraf This method will convert the string xpath to
+	 *         MobileElement. Then Swipe and click on it once found.
 	 * 
-	 * @param elementXpath = String xpath of element
-	 * @param elementName = Name of element to be printed in report
-	 * @param swipeCount = number of swipe to search for element.
+	 * @param elementXpath
+	 *            = String xpath of element
+	 * @param elementName
+	 *            = Name of element to be printed in report
+	 * @param swipeCount
+	 *            = number of swipe to search for element.
 	 */
-	public boolean swipeAndSelect(String elementXpath, String elementName,int swipeCount) {
-		
-		boolean flag=true;
-		int count=0;
-		
-		while(flag&&count<swipeCount)
-		{
-			try{
-		MobileElement element = (MobileElement) ((AppiumDriver) GetDriver())
-				.findElement(By.xpath(elementXpath));
-		if(element.isDisplayed()){
-			FuncClick(element, "Account Number");
-			flag=false;
-		}else{
-			FunctionSwipe("up", 1000, 200);
-			count++;
-		}
-			}catch(Exception e){
+	public boolean swipeAndSelect(String elementXpath, String elementName, int swipeCount) {
+
+		boolean flag = true;
+		int count = 0;
+
+		while (flag && count < swipeCount) {
+			try {
+				MobileElement element = (MobileElement) ((AppiumDriver) GetDriver())
+						.findElement(By.xpath(elementXpath));
+				if (element.isDisplayed()) {
+					FuncClick(element, "Account Number");
+					flag = false;
+				} else {
+					FunctionSwipe("up", 1000, 200);
+					count++;
+				}
+			} catch (Exception e) {
 				try {
 					FunctionSwipe("up", 1000, 200);
 				} catch (IOException e1) {
@@ -3276,20 +3203,18 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 				}
 				count++;
 			}
-			
-			if(count==swipeCount){
-				stringToReport("Fail", elementName+" Not found after swiping "+swipeCount+" times.");
+
+			if (count == swipeCount) {
+				stringToReport("Fail", elementName + " Not found after swiping " + swipeCount + " times.");
 			}
-			
-			
-			}
-		
+
+		}
+
 		return flag;
 	}
-	
-    /**
-	 * @author Ashraf
-	 * This method will print the given string to report
+
+	/**
+	 * @author Ashraf This method will print the given string to report
 	 * 
 	 * @param element
 	 *            Element to be printed.
@@ -3311,6 +3236,3 @@ public boolean FuncISDisplayed(MobileElement elementToFind,String text) {
 		}
 	}
 }
-
-
-

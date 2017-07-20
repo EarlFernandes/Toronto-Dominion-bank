@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import io.appium.java_client.AppiumDriver;
 import com.td.mainframe.Executor;
 
-
 public class MainScreen extends _CommonPage {
 
 	// ***** LOCAL EXECUTION PARAMETERS *****
@@ -15,11 +14,11 @@ public class MainScreen extends _CommonPage {
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
 
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.140.61:4764/wd/hub";
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.140.61:4786/wd/hub";
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
 
-	private static final String APP_ANDROID = "APP_ANDROID_ZHT";
+	private static final String APP_ANDROID = "APP_ANDROID_FR";
 
 	// Change this parameter to point to the correct ipa in Setup.xls for ios
 	private static final String APP_IOS = "APP_IOS";
@@ -32,7 +31,6 @@ public class MainScreen extends _CommonPage {
 			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName",
 			"Passcode", "NewPasscode", "Email", "Name", "EmailProfile", "PhoneProfile", "PostSurveyText", "Response",
 			"ProfileType" };
-
 
 	public void readSheet() {
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
@@ -95,14 +93,14 @@ public class MainScreen extends _CommonPage {
 			}
 
 			CL.mobileApp(appiumPath);
-			
+
 			// If length is 2, then second token is the locale
 			if (targetEnvVars.length >= 2) {
 				currentLocale = targetEnvVars[1];
 				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
 			} else {
 				currentLocale = "EN";
-				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();				
+				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
 			}
 		} else { // Local execution
 			try { // Set udid explicitly for local execution, to handle udid
@@ -114,13 +112,13 @@ public class MainScreen extends _CommonPage {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_ANDROID));
-						currentLocale = CL.LoadData("Language",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_ANDROID);
+						currentLocale = CL.LoadData("Language", CL.getTestDataInstance().getSetupFile(), "AppURL",
+								"Name", APP_ANDROID);
 					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS));
-						currentLocale = CL.LoadData("Language",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS);
+						currentLocale = CL.LoadData("Language", CL.getTestDataInstance().getSetupFile(), "AppURL",
+								"Name", APP_IOS);
 					}
 				}
 				CL.mobileApp(LOCAL_EXECUTION_APPIUM_SERVER);
@@ -129,7 +127,7 @@ public class MainScreen extends _CommonPage {
 				} else {
 					appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
 				}
-				//System.out.println(appStringMap.toString());
+				// System.out.println(appStringMap.toString());
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;

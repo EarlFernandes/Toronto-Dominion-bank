@@ -11,6 +11,5 @@ public final class EnglishStrings {
 	public static final String MF_FROM_ACCOUNT = "From Account";
 	public static final String MF_TO_MF_ACCOUNT = "To Mutual Fund Account";
 	public static final String MF_ACCEPTED_FUND_DETAIL_FEE = "Accepted Fund Details & Fees";
-	
-	
+
 }

@@ -9,6 +9,5 @@ public final class FrenchStrings {
 	public static final String MF_FROM_ACCOUNT = "Compte d’origine";
 	public static final String MF_TO_MF_ACCOUNT = "Compte de fonds";
 	public static final String MF_ACCEPTED_FUND_DETAIL_FEE = "Infos sur le fonds et les frais acceptées";
-	
-	
+
 }

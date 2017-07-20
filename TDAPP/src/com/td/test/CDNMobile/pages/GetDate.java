@@ -1,7 +1,5 @@
 package com.td.test.CDNMobile.pages;
 
-
-
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 

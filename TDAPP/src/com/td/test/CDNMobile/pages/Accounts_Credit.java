@@ -87,21 +87,17 @@ public class Accounts_Credit extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='TRANSFER']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transferTo' and @text='TRANSFERS']")
 	private MobileElement transfer_Btn;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
-
-	
 	public synchronized static Accounts_Credit get() {
 		if (Accounts_Credit == null) {
 			Accounts_Credit = new Accounts_Credit();
 		}
 		return Accounts_Credit;
 	}
-	
-
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -125,7 +121,7 @@ public class Accounts_Credit extends _CommonPage {
 	 *             If there is problem while finding that element.
 	 */
 	public void clickPayBill() {
-	Decorator();
+		Decorator();
 		try {
 			mobileAction.FuncClick(payBill_Btn, "Pay Bill");
 			mobileAction.waitForElementToVanish(progresssBar);
@@ -164,7 +160,7 @@ public class Accounts_Credit extends _CommonPage {
 				String lastTransac = "//*[@label(contains,'" + getTestdata("confirmation_val") + "')]";
 				mobileAction.verifyElementIsDisplayed(activityTab, "Activity");
 				mobileAction.verifyElementUsingXPath(lastTransac, "Confirmation Value");
-				
+
 			} else {
 				String lastTransac = "//android.widget.TextView[@resource-id='com.td:id/description' and contains(@text,'"
 						+ getTestdata("confirmation_val") + "']";
@@ -197,8 +193,8 @@ public class Accounts_Credit extends _CommonPage {
 	 * @throws Exception
 	 *             If there is problem while finding that element.
 	 */
-	public void clickLastTransac()  {
-		 Decorator();
+	public void clickLastTransac() {
+		Decorator();
 		try {
 			mobileAction.FuncClick(lastStatement, "Last Statement");
 			Thread.sleep(3000);
@@ -230,8 +226,8 @@ public class Accounts_Credit extends _CommonPage {
 	 * @throws Exception
 	 *             If there is problem while finding that element.
 	 */
-	public void clickSummary()  {
-		 Decorator();
+	public void clickSummary() {
+		Decorator();
 		try {
 			mobileAction.FuncClick(summaryTab, "Summary tab");
 			Thread.sleep(3000);
@@ -264,7 +260,7 @@ public class Accounts_Credit extends _CommonPage {
 	 *             If there is problem while finding that element.
 	 */
 	public void verifySummaryDetails() {
-		 Decorator();
+		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(currentBalance, "Current Balance");
 			mobileAction.verifyElementIsDisplayed(currentAmount, "Current Amount");
@@ -297,8 +293,8 @@ public class Accounts_Credit extends _CommonPage {
 	 * @throws Exception
 	 *             If there is problem while finding that element.
 	 */
-	public void clickStatement()  {
-		 Decorator();
+	public void clickStatement() {
+		Decorator();
 		try {
 			mobileAction.FuncClick(statementTab, "Statement tab");
 			Thread.sleep(3000);
@@ -330,8 +326,8 @@ public class Accounts_Credit extends _CommonPage {
 	 * @throws Exception
 	 *             If there is problem while finding that element.
 	 */
-	public void verifyStatementDetails()  {
-		 Decorator();
+	public void verifyStatementDetails() {
+		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(latestStatement, "Last Statement");
 			mobileAction.verifyElementIsDisplayed(twoStatementAgo, "Two Statement Ago");
@@ -351,7 +347,7 @@ public class Accounts_Credit extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	public void clickTransfer() {
 		Decorator();
 		try {
@@ -373,7 +369,8 @@ public class Accounts_Credit extends _CommonPage {
 	}
 
 	/**
-	 * This method will verify text within elements for the accounts activity tab
+	 * This method will verify text within elements for the accounts activity
+	 * tab
 	 * 
 	 * @return void
 	 * 
@@ -384,36 +381,60 @@ public class Accounts_Credit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Activity") + "']", "activity Tab");
-//				final String postedTransactions = "//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_posted_transactions") + "']";
-//				mobileAction.FuncSwipeWhileElementNotFoundByxpath(postedTransactions, false, 2, "up");
-//				final String lastStatement  ="//android.widget.TextView[@text='" + mobileAction.getAppString("last_statement") + "' or @text='" + mobileAction.getAppString("str_2_STATEMENTS") + "']";
-//				mobileAction.FuncSwipeWhileElementNotFoundByxpath(lastStatement, false, 2, "up");
-//				// Scroll down here
-//				final String xPathFooter = "//XCUIElementTypeStaticText[@name='RVB_DETAIL_FOOTER_DES']";
-//				mobileAction.FuncSw(xPathFooter, false, 6, "up");
-//				// Verify select date headers at the bottom
-//				for(MobileElement m : dateHeaders) {
-//					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
-//				}
+				mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Activity") + "']",
+						"activity Tab");
+				// final String postedTransactions =
+				// "//android.widget.TextView[@text='" +
+				// mobileAction.getAppString("rtb_posted_transactions") + "']";
+				// mobileAction.FuncSwipeWhileElementNotFoundByxpath(postedTransactions,
+				// false, 2, "up");
+				// final String lastStatement
+				// ="//android.widget.TextView[@text='" +
+				// mobileAction.getAppString("last_statement") + "' or @text='"
+				// + mobileAction.getAppString("str_2_STATEMENTS") + "']";
+				// mobileAction.FuncSwipeWhileElementNotFoundByxpath(lastStatement,
+				// false, 2, "up");
+				// // Scroll down here
+				// final String xPathFooter =
+				// "//XCUIElementTypeStaticText[@name='RVB_DETAIL_FOOTER_DES']";
+				// mobileAction.FuncSw(xPathFooter, false, 6, "up");
+				// // Verify select date headers at the bottom
+				// for(MobileElement m : dateHeaders) {
+				// mobileAction.verifyDateFormat(m.getText(),
+				// MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
+				// }
 			} else {
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/activityTab' and @text='" + mobileAction.getAppString("str_Activity") + "']", "activity Tab");
-				//mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_authorized_transactions_header") + "']", "Pending Transactions");
-				final String postedTransactions = "//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_posted_transactions") + "']";
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@resource-id='com.td:id/activityTab' and @text='"
+								+ mobileAction.getAppString("str_Activity") + "']",
+						"activity Tab");
+				// mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+				// +
+				// mobileAction.getAppString("rtb_authorized_transactions_header")
+				// + "']", "Pending Transactions");
+				final String postedTransactions = "//android.widget.TextView[@text='"
+						+ mobileAction.getAppString("rtb_posted_transactions") + "']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(postedTransactions, false, 2, "up");
-				//final String lastStatement  ="//android.widget.TextView[@text='" + mobileAction.getAppString("last_statement") + "' or @text='" + mobileAction.getAppString("str_2_STATEMENTS") + "']";
-				//mobileAction.FuncSwipeWhileElementNotFoundByxpath(lastStatement, false, 2, "up");
+				// final String lastStatement
+				// ="//android.widget.TextView[@text='" +
+				// mobileAction.getAppString("last_statement") + "' or @text='"
+				// + mobileAction.getAppString("str_2_STATEMENTS") + "']";
+				// mobileAction.FuncSwipeWhileElementNotFoundByxpath(lastStatement,
+				// false, 2, "up");
 				// Scroll down here
-				final String xPathFooter = "//android.widget.TextView[@text='" + mobileAction.getAppString("str_no_more_activity_footer") + "']";
+				final String xPathFooter = "//android.widget.TextView[@text='"
+						+ mobileAction.getAppString("str_no_more_activity_footer") + "']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
 				// Verify select date headers at the bottom
-				for(MobileElement m : dateHeaders) {
+				for (MobileElement m : dateHeaders) {
 					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
 				}
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				mobileAction.GetReporting().FuncReport("Fail",
+						"No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
@@ -434,24 +455,51 @@ public class Accounts_Credit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("credit_str") + "']", "Credit title");
+				mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("credit_str") + "']",
+						"Credit title");
 				// FIXME: Get proper app strings here
-//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='" + mobileAction.getAppString("str_PayBillsMakePayment") + " or @text='" + mobileAction.getAppString("str_PAY_BILL") + "']", "Pay button");
-//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='" + mobileAction.getAppString("str_TRANSFER") + "']", "transfer button");
-//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Activity") + "']", "activity tab");
-//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_summary") + "']", "summary tab");
-//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("rtb_statements") + "']", "statements tab");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='"
+				// + mobileAction.getAppString("str_PayBillsMakePayment") + " or
+				// @text='" + mobileAction.getAppString("str_PAY_BILL") + "']",
+				// "Pay button");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='"
+				// + mobileAction.getAppString("str_TRANSFER") + "']", "transfer
+				// button");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+				// + mobileAction.getAppString("str_Activity") + "']", "activity
+				// tab");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+				// + mobileAction.getAppString("str_summary") + "']", "summary
+				// tab");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+				// + mobileAction.getAppString("rtb_statements") + "']",
+				// "statements tab");
 			} else {
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("str_Credit") + "']", "Credit title");
-				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("rtb_pay_now") + "']", "Pay button");
-				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='" + mobileAction.getAppString("str_TRANSFER") + "']", "transfer button");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_Activity") + "']", "activity tab");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_summary") + "']", "summary tab");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_statements") + "']", "statements tab");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
+								+ mobileAction.getAppString("str_Credit") + "']",
+						"Credit title");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.Button[@text='" + mobileAction.getAppString("rtb_pay_now") + "']",
+						"Pay button");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.Button[@text='" + mobileAction.getAppString("str_TRANSFER") + "']",
+						"transfer button");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_Activity") + "']",
+						"activity tab");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_summary") + "']",
+						"summary tab");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_statements") + "']",
+						"statements tab");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				mobileAction.GetReporting().FuncReport("Fail",
+						"No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
@@ -472,18 +520,32 @@ public class Accounts_Credit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_summary") + "']", "Summary Tab");
-//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_Account_number") + "']", "Account #");
-//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_Available_Balance") + "']", "Available Balance");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+				// + mobileAction.getAppString("str_summary") + "']", "Summary
+				// Tab");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
+				// + mobileAction.getAppString("str_Account_number") + "']",
+				// "Account #");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
+				// + mobileAction.getAppString("str_Available_Balance") + "']",
+				// "Available Balance");
 
 			} else {
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/summaryTab' and @text='" + mobileAction.getAppString("str_summary") + "']", "Summary Tab");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_Account_number") + "']", "Account #");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_Available_Balance") + "']", "Available Balance");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@resource-id='com.td:id/summaryTab' and @text='"
+								+ mobileAction.getAppString("str_summary") + "']",
+						"Summary Tab");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_Account_number") + "']",
+						"Account #");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_Available_Balance") + "']",
+						"Available Balance");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				mobileAction.GetReporting().FuncReport("Fail",
+						"No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
@@ -504,19 +566,33 @@ public class Accounts_Credit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_summary") + "']", "Summary Tab");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Activity") + "']", "Activity Tab");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+				// + mobileAction.getAppString("str_summary") + "']", "Summary
+				// Tab");
+				mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Activity") + "']",
+						"Activity Tab");
 				// FIXME: Where is the string for this?
-				//mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("rtb_statements") + "']", "Statements Tab");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+				// + mobileAction.getAppString("rtb_statements") + "']",
+				// "Statements Tab");
 
 			} else {
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/summaryTab' and @text='" + mobileAction.getAppString("str_summary") + "']", "Activity Tab");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("str_Activity") + "']", "Summary Tab");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_statements") + "']", "Statements Tab");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@resource-id='com.td:id/summaryTab' and @text='"
+								+ mobileAction.getAppString("str_summary") + "']",
+						"Activity Tab");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_Activity") + "']",
+						"Summary Tab");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_statements") + "']",
+						"Statements Tab");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				mobileAction.GetReporting().FuncReport("Fail",
+						"No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}

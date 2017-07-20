@@ -18,48 +18,47 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
 
-public class Managee_Payee extends _CommonPage { 
+public class Managee_Payee extends _CommonPage {
 
 	private static Managee_Payee Managee_Payee;
-	
-	//@iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]")
-	@iOSFindBy(xpath="//XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[@label='Access Card']/../../XCUIElementTypeOther[2]")
+
+	// @iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[@label='Access Card']/../../XCUIElementTypeOther[2]")
 	private MobileElement accesscard;
-		
-	//@iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeLink/XCUIElementTypeStaticText")
-	@iOSFindBy(xpath="//*[@label='MY PAYEES']")
+
+	// @iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeLink/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//*[@label='MY PAYEES']")
 	private MobileElement myPayees;
-	
-	//@iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
-	@iOSFindBy(xpath="//XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeStaticText[@label='ACCESS CARD']/../../XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
+
+	// @iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeStaticText[@label='ACCESS CARD']/../../XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/listView']/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.TextView")
 	private MobileElement secondAccessCard;
-	
-	//@iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText")
-	@iOSFindBy(xpath="//XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeStaticText[@label='ACCESS CARD']/../../XCUIElementTypeCell[3]/XCUIElementTypeStaticText")
+
+	// @iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeStaticText[@label='ACCESS CARD']/../../XCUIElementTypeCell[3]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/listView']/android.widget.LinearLayout[3]/android.widget.LinearLayout/android.widget.TextView")
 	private MobileElement thirdAccessCard;
-	
-	@iOSFindBy(xpath="//XCUIElementTypeButton[contains(@label='Add Canadian')]")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label='Add Canadian')]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Canadian Payee']")
 	private MobileElement addCanadianPayee;
-	
-	@iOSFindBy(xpath="//XCUIElementTypeStaticText[@label='Manage Payees']")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Manage Payees']")
 	private MobileElement managePayeeHeader;
-	
-	@iOSFindBy(xpath="//XCUIElementTypeOther[@name='TDVIEW_TITLE']")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement managePayees;
-	
-    @iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[2]")
-    @AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[2]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement addPayee;
-	
-    @iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
-	
 	public synchronized static Managee_Payee get() {
 		if (Managee_Payee == null) {
 			Managee_Payee = new Managee_Payee();
@@ -73,7 +72,7 @@ public class Managee_Payee extends _CommonPage {
 				this);
 
 	}
-	
+
 	/**
 	 * This method will verify text within elements for the manage payees page
 	 * 
@@ -86,28 +85,53 @@ public class Managee_Payee extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("billsNavRowManagePayee") + "']", "Manage Payees title");
-//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("country_all") + "']", "All");
-//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("canada") + "']", "Canada");
-//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("us") + "']", "US");
-//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeLink[@label='" + mobileAction.getAppString("str_my_payees") + "']", "My Payees");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
+						+ mobileAction.getAppString("billsNavRowManagePayee") + "']", "Manage Payees title");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+				// + mobileAction.getAppString("country_all") + "']", "All");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+				// + mobileAction.getAppString("canada") + "']", "Canada");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+				// + mobileAction.getAppString("us") + "']", "US");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeLink[@label='"
+				// + mobileAction.getAppString("str_my_payees") + "']", "My
+				// Payees");
 			} else {
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("billsNavRowManagePayee") + "']", "Manage Payees title");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
+										+ mobileAction.getAppString("billsNavRowManagePayee") + "']",
+								"Manage Payees title");
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				//System.out.println("source : "+ ((AppiumDriver) CL.GetDriver()).getPageSource());
-				mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("manage_payees_search_hint") + "']", "Search for payee");
-//				final WebElement all = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[1]", "All");
-//				final WebElement canada = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[2]", "Canada");
-//				final WebElement us = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[3]", "US");
-//				final WebElement myPayees = mobileAction.verifyWebElementUsingXPath("//a[@id='myPayees']", "My payees");
-//				if (!mobileAction.verifyTextEquality(all.getText().trim(), mobileAction.getAppString("str_all")) ||
-//						!mobileAction.verifyTextEquality(canada.getText().trim(), mobileAction.getAppString("ca")) || 
-//						!mobileAction.verifyTextEquality(us.getText().trim(), mobileAction.getAppString("us")) ||
-//						!mobileAction.verifyTextEquality(myPayees.getText().trim(), mobileAction.getAppString("str_my_payees"))) {
-//					System.err.println("TestCase has failed.");
-//					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-//				}
+				// System.out.println("source : "+ ((AppiumDriver)
+				// CL.GetDriver()).getPageSource());
+				mobileAction.verifyWebElementUsingXPath(
+						"//input[@placeholder='" + mobileAction.getAppString("manage_payees_search_hint") + "']",
+						"Search for payee");
+				// final WebElement all =
+				// mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label
+				// in labels'])[1]", "All");
+				// final WebElement canada =
+				// mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label
+				// in labels'])[2]", "Canada");
+				// final WebElement us =
+				// mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label
+				// in labels'])[3]", "US");
+				// final WebElement myPayees =
+				// mobileAction.verifyWebElementUsingXPath("//a[@id='myPayees']",
+				// "My payees");
+				// if (!mobileAction.verifyTextEquality(all.getText().trim(),
+				// mobileAction.getAppString("str_all")) ||
+				// !mobileAction.verifyTextEquality(canada.getText().trim(),
+				// mobileAction.getAppString("ca")) ||
+				// !mobileAction.verifyTextEquality(us.getText().trim(),
+				// mobileAction.getAppString("us")) ||
+				// !mobileAction.verifyTextEquality(myPayees.getText().trim(),
+				// mobileAction.getAppString("str_my_payees"))) {
+				// System.err.println("TestCase has failed.");
+				// CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				// }
 				// Switch back to native to get proper screenshots
 				mobileAction.switchAppiumContext("NATIVE_APP");
 			}
@@ -115,7 +139,8 @@ public class Managee_Payee extends _CommonPage {
 			// Switch back to native to get proper screenshots
 			mobileAction.switchAppiumContext("NATIVE_APP");
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				mobileAction.GetReporting().FuncReport("Fail",
+						"No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
@@ -137,22 +162,38 @@ public class Managee_Payee extends _CommonPage {
 		try {
 			clickSpecificPayee();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				MobileElement header = mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE']", "header");
+				MobileElement header = mobileAction
+						.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE']", "header");
 				mobileAction.verifyTextEquality(header.getText(), mobileAction.getAppString("mng_payee_view_title"));
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_payee_name") + "']", "payee name");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_payee_account") + "']", "payee accont");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_description") + "']", "description");
+				mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_payee_name") + "']",
+						"payee name");
+				mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_payee_account") + "']",
+						"payee accont");
+				mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_description") + "']",
+						"description");
 			} else {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement name = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[1]", "name");
-				//final WebElement address = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[2]", "address");
-				final WebElement account = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[3]", "account");
-				final WebElement description = mobileAction.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[4]", "description");
-				if (!mobileAction.verifyTextEquality(name.getText().trim(), mobileAction.getAppString("str_payee_name")) ||
-						//!mobileAction.verifyTextEquality(address.getText().trim(), mobileAction.getAppString("str_payee_address")) || 
-						!mobileAction.verifyTextEquality(account.getText().trim(), mobileAction.getAppString("str_payee_account")) ||
-						!mobileAction.verifyTextEquality(description.getText().trim(), mobileAction.getAppString("str_description"))) {
+				final WebElement name = mobileAction
+						.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[1]", "name");
+				// final WebElement address =
+				// mobileAction.verifyWebElementUsingXPath("(//div[@class='column1
+				// ng-binding'])[2]", "address");
+				final WebElement account = mobileAction
+						.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[3]", "account");
+				final WebElement description = mobileAction
+						.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[4]", "description");
+				if (!mobileAction.verifyTextEquality(name.getText().trim(), mobileAction.getAppString("str_payee_name"))
+						||
+						// !mobileAction.verifyTextEquality(address.getText().trim(),
+						// mobileAction.getAppString("str_payee_address")) ||
+						!mobileAction.verifyTextEquality(account.getText().trim(),
+								mobileAction.getAppString("str_payee_account"))
+						|| !mobileAction.verifyTextEquality(description.getText().trim(),
+								mobileAction.getAppString("str_description"))) {
 					System.err.println("TestCase has failed.");
 					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				}
@@ -163,7 +204,8 @@ public class Managee_Payee extends _CommonPage {
 			// Switch back to native to get proper screenshots
 			mobileAction.switchAppiumContext("NATIVE_APP");
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				mobileAction.GetReporting().FuncReport("Fail",
+						"No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
@@ -177,24 +219,30 @@ public class Managee_Payee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				String from_accountNo = "//XCUIElementTypeLink[@label='" + getTestdata("Payee") + "']";
 				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-                        .findElement(By.xpath(from_accountNo));
+						.findElement(By.xpath(from_accountNo));
 				fromAccountval.click();
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("mng_payee_view_title") + "']", "View title");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
+						+ mobileAction.getAppString("mng_payee_view_title") + "']", "View title");
 
 			} else {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement firstPayee = mobileAction.verifyWebElementUsingXPath("//div[@ng-if='payee.AccountNO' and text()='" + getTestdata("Payee") + "']", "Payee");
+				final WebElement firstPayee = mobileAction.verifyWebElementUsingXPath(
+						"//div[@ng-if='payee.AccountNO' and text()='" + getTestdata("Payee") + "']", "Payee");
 				firstPayee.click();
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.switchAppiumContext("NATIVE_APP");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("mng_payee_view_title") + "']", "View title");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
+								+ mobileAction.getAppString("mng_payee_view_title") + "']",
+						"View title");
 			}
 		} catch (Exception e) {
 			// Switch back to native to get proper screenshots
 			mobileAction.switchAppiumContext("NATIVE_APP");
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				mobileAction.GetReporting().FuncReport("Fail",
+						"No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
@@ -215,29 +263,49 @@ public class Managee_Payee extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction.getAppString("add_payee_title") + "']", "Add Payee title");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeTextField[@label='" + mobileAction.getAppString("add_cdn_payee_hint") + "']", "Search payee");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
+						+ mobileAction.getAppString("add_payee_title") + "']", "Add Payee title");
+				mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeTextField[@label='" + mobileAction.getAppString("add_cdn_payee_hint") + "']",
+						"Search payee");
 				final String payeeCountry = mobileAction.getAppString("payee_country");
-				if(!StringUtils.isEmpty(payeeCountry)) {
-					mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + payeeCountry.toUpperCase() + "']", "Payee country");
+				if (!StringUtils.isEmpty(payeeCountry)) {
+					mobileAction.verifyElementUsingXPath(
+							"//XCUIElementTypeStaticText[@label='" + payeeCountry.toUpperCase() + "']",
+							"Payee country");
 				}
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("canada") + "']", "Canada");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("us") + "']", "US");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("add_payee_search_instruction") + "']", "Please enter");
+				mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("canada") + "']", "Canada");
+				mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("us") + "']", "US");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
+						+ mobileAction.getAppString("add_payee_search_instruction") + "']", "Please enter");
 			} else {
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='" + mobileAction.getAppString("add_payee_title") + "']", "Add Payee title");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
+								+ mobileAction.getAppString("add_payee_title") + "']",
+						"Add Payee title");
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				//System.out.println("source : "+ ((AppiumDriver) CL.GetDriver()).getPageSource());
-				mobileAction.verifyWebElementUsingXPath("//input[@placeholder='" + mobileAction.getAppString("add_cdn_payee_hint") + "']", "Search for Canadian payee");
-				final WebElement payeeCountry = mobileAction.verifyWebElementUsingXPath("//div[@class='switch-title ng-binding']", "Payee Country");
-				final WebElement canada = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[1]", "Canada");
-				final WebElement us = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[2]", "US");
-				final WebElement note = mobileAction.verifyWebElementUsingXPath("//div[@class='placeholder ng-binding']", "My payees");
-				if (!mobileAction.verifyTextEquality(payeeCountry.getText().trim(), mobileAction.getAppString("payee_country")) ||
-						!mobileAction.verifyTextEquality(canada.getText().trim(), mobileAction.getAppString("ca")) || 
-						!mobileAction.verifyTextEquality(us.getText().trim(), mobileAction.getAppString("us")) ||
-						!mobileAction.verifyTextEquality(note.getText().trim(), mobileAction.getAppString("add_payee_search_instruction"))) {
+				// System.out.println("source : "+ ((AppiumDriver)
+				// CL.GetDriver()).getPageSource());
+				mobileAction.verifyWebElementUsingXPath(
+						"//input[@placeholder='" + mobileAction.getAppString("add_cdn_payee_hint") + "']",
+						"Search for Canadian payee");
+				final WebElement payeeCountry = mobileAction
+						.verifyWebElementUsingXPath("//div[@class='switch-title ng-binding']", "Payee Country");
+				final WebElement canada = mobileAction
+						.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[1]", "Canada");
+				final WebElement us = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[2]",
+						"US");
+				final WebElement note = mobileAction
+						.verifyWebElementUsingXPath("//div[@class='placeholder ng-binding']", "My payees");
+				if (!mobileAction.verifyTextEquality(payeeCountry.getText().trim(),
+						mobileAction.getAppString("payee_country"))
+						|| !mobileAction.verifyTextEquality(canada.getText().trim(), mobileAction.getAppString("ca"))
+						|| !mobileAction.verifyTextEquality(us.getText().trim(), mobileAction.getAppString("us"))
+						|| !mobileAction.verifyTextEquality(note.getText().trim(),
+								mobileAction.getAppString("add_payee_search_instruction"))) {
 					System.err.println("TestCase has failed.");
 					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				}
@@ -248,7 +316,8 @@ public class Managee_Payee extends _CommonPage {
 			// Switch back to native to get proper screenshots
 			mobileAction.switchAppiumContext("NATIVE_APP");
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+				mobileAction.GetReporting().FuncReport("Fail",
+						"No such element was found on screen: " + e.getMessage());
 			} catch (IOException ex) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
@@ -272,68 +341,69 @@ public class Managee_Payee extends _CommonPage {
 	 *             If there is problem while finding that element.
 	 */
 
+	public void verifyMultipleAccessCard() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				boolean flag = accesscard.isDisplayed();
 
-	public void verifyMultipleAccessCard(){
-	Decorator();
-	try{
-		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-			boolean flag=accesscard.isDisplayed();
-	
-			if(flag){
-					mobileAction.verifyElementIsDisplayed(myPayees,"My Payees");
+				if (flag) {
+					mobileAction.verifyElementIsDisplayed(myPayees, "My Payees");
 					mobileAction.FuncClick(accesscard, "Accesscard");
 					mobileAction.FuncClick(secondAccessCard, "Second Access Card");
 					Thread.sleep(2000);
-					mobileAction.verifyElementIsDisplayed(myPayees,"My Payees");
+					mobileAction.verifyElementIsDisplayed(myPayees, "My Payees");
 					mobileAction.FuncClick(accesscard, "Accesscard");
 					mobileAction.FuncClick(thirdAccessCard, "Second Access Card");
 					Thread.sleep(2000);
 					mobileAction.verifyElementIsDisplayed(addCanadianPayee, "Add Canadian Payee");
-			}	
-		}else{
-			//For android, using webview to handle
-			((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td"); 
-			WebElement accessCard = CL.GetDriver().findElement(By.cssSelector("div.dropdown-holder"));
-			accessCard.click();
-			Thread.sleep(2000);
-			((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
-			mobileAction.FuncClick(secondAccessCard, "Second Access Card");
-			Thread.sleep(2000);
-			((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
-			WebElement mypayees_android = CL.GetDriver().findElement(By.id("myPayees"));
-			mobileAction.verifyElementIsDisplayed((MobileElement)mypayees_android,"My Payees");
-			accessCard = CL.GetDriver().findElement(By.cssSelector("div.dropdown-holder"));
-			accessCard.click();
-			((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
-			mobileAction.FuncClick(thirdAccessCard, "Second Access Card");
-			Thread.sleep(2000);
-			((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td"); 
-			WebElement addCanadianPayeeButton = CL.GetDriver().findElement(By.cssSelector("button.primary-button.ng-binding.ng-scope"));
-			mobileAction.verifyElementIsDisplayed((MobileElement)addCanadianPayeeButton, "Add Canadian Payee");
-			((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+				}
+			} else {
+				// For android, using webview to handle
+				((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+				WebElement accessCard = CL.GetDriver().findElement(By.cssSelector("div.dropdown-holder"));
+				accessCard.click();
+				Thread.sleep(2000);
+				((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+				mobileAction.FuncClick(secondAccessCard, "Second Access Card");
+				Thread.sleep(2000);
+				((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+				WebElement mypayees_android = CL.GetDriver().findElement(By.id("myPayees"));
+				mobileAction.verifyElementIsDisplayed((MobileElement) mypayees_android, "My Payees");
+				accessCard = CL.GetDriver().findElement(By.cssSelector("div.dropdown-holder"));
+				accessCard.click();
+				((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+				mobileAction.FuncClick(thirdAccessCard, "Second Access Card");
+				Thread.sleep(2000);
+				((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+				WebElement addCanadianPayeeButton = CL.GetDriver()
+						.findElement(By.cssSelector("button.primary-button.ng-binding.ng-scope"));
+				mobileAction.verifyElementIsDisplayed((MobileElement) addCanadianPayeeButton, "Add Canadian Payee");
+				((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+			}
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-	} catch (NoSuchElementException e) {
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-	} catch (InterruptedException e) {
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-	} catch (IOException e) {
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-	} catch (Exception e) {
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
-}
-	
+
 	/**
 	 * This method verify the Add canadian Payee Now button
 	 * 
 	 * 
 	 *
 	 * In case an exception occurs while clicking over the element.
-	 * @throws InterruptedException 
+	 * 
+	 * @throws InterruptedException
 	 * 
 	 * @throws IOException
 	 *             If there is problem while reporting.
@@ -342,22 +412,22 @@ public class Managee_Payee extends _CommonPage {
 	 * @throws Exception
 	 *             If there is problem while finding that element.
 	 */
-	public void verifyAddCanadianPayeeButton()  {
+	public void verifyAddCanadianPayeeButton() {
 		Decorator();
 		try {
-		mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees Header");
-		mobileAction.verifyElementIsDisplayed(addCanadianPayee, "Add Canadian Payee");
-		}  catch (NoSuchElementException e) {
+			mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees Header");
+			mobileAction.verifyElementIsDisplayed(addCanadianPayee, "Add Canadian Payee");
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		}catch (IOException e) {
+		} catch (IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-		}
+	}
 
 	/**
 	 * This method will click on add US payee button
@@ -372,26 +442,28 @@ public class Managee_Payee extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 
-
-	public void addUSPayee(){
+	public void addUSPayee() {
 		Decorator();
-		//Decorator();
+		// Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyElementIsDisplayed(managePayees,"Manage Payees Header");
-				final MobileElement usElement = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + mobileAction.getAppString("us") + "']", "US banner button");
+				mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees Header");
+				final MobileElement usElement = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("us") + "']",
+						"US banner button");
 				usElement.click();
-				mobileAction.FuncClick(addPayee,"Add US Payee");
+				mobileAction.FuncClick(addPayee, "Add US Payee");
 				Thread.sleep(10000);
 			} else {
-				mobileAction.verifyElementIsDisplayed(managePayees,"Manage Payees Header");
+				mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees Header");
 				// Switch to webview and click on U.S.
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement usWebElement = mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[3]", "US banner button");
+				final WebElement usWebElement = mobileAction
+						.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[3]", "US banner button");
 				usWebElement.click();
 				// Switch back to native to get proper screenshots
 				mobileAction.switchAppiumContext("NATIVE_APP");
-				mobileAction.FuncClick(addPayee,"Add US Payee");
+				mobileAction.FuncClick(addPayee, "Add US Payee");
 				mobileAction.waitForElementToVanish(progressBar);
 				Thread.sleep(10000);
 			}
@@ -400,18 +472,19 @@ public class Managee_Payee extends _CommonPage {
 				// Switch back to native to get proper screenshots
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				try {
-					mobileAction.GetReporting().FuncReport("Fail", "No such element was found on screen: " + e.getMessage());
+					mobileAction.GetReporting().FuncReport("Fail",
+							"No such element was found on screen: " + e.getMessage());
 				} catch (Exception ex) {
 					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 				}
 				System.err.println("TestCase has failed.");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			} catch (Exception exx) {
-				
+
 			}
 		}
 	}
-	
+
 	/**
 	 * This method will click on add payee button
 	 * 
@@ -427,39 +500,29 @@ public class Managee_Payee extends _CommonPage {
 	 *             If there is problem while finding that element.
 	 */
 
+	public void addPayee() {
+		Decorator();
+		try {
 
-	public void addPayee(){
-	Decorator();
-	try{
-		
-			mobileAction.verifyElementIsDisplayed(managePayees,"Manage Payees Header");
-			mobileAction.FuncClick(addPayee,"Add Canadian Payee");
+			mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees Header");
+			mobileAction.FuncClick(addPayee, "Add Canadian Payee");
 			mobileAction.waitForElementToVanish(progressBar);
 			Thread.sleep(10000);
-			
-	
-	} catch (NoSuchElementException e) {
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-	} catch (InterruptedException e) {
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-	} catch (IOException e) {
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-	} catch (Exception e) {
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
 	}
-	
-}
-
-	
 
 }
-
-
-
-
-
-

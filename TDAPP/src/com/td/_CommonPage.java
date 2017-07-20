@@ -27,7 +27,7 @@ public class _CommonPage {
 
 	protected static Map appStringMap;
 	protected static String currentLocale;
-	
+
 	// public Reporting report;// = CL.GetReporting();
 	// calculated or discovered values
 	protected By foundElement = null;
@@ -44,7 +44,7 @@ public class _CommonPage {
 	public static final String commonpassword = "abcde123";
 	// success/fail status
 	public String overallSuccess = PASS;
-	
+
 	@iOSFindBy(id = "com.td:id/list_slidermenu")
 	@AndroidFindBy(id = "com.td:id/list_slidermenu")
 	public class widgetListview {
@@ -137,18 +137,17 @@ public class _CommonPage {
 			multiValue = currentCellValue.split(",");
 
 		} else {
-			String value= currentCellValue;
-			multiValue=new String[1];
-			multiValue[0]=value;
+			String value = currentCellValue;
+			multiValue = new String[1];
+			multiValue[0] = value;
 
 		}
 		return multiValue;
 	}
 
-	
 	public String getTestdata(String aColumn, String aSheetName) {
 		return CL.LoadData(aColumn, CL.getTestDataInstance().getMasterTestData(), aSheetName, "UserType",
 				CL.getTestDataInstance().TestCaseID);
 	}
-	
+
 }

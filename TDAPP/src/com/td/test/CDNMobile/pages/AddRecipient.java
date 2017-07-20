@@ -61,8 +61,6 @@ public class AddRecipient extends _CommonPage {
 		}
 		return AddRecipient;
 	}
-	
-	
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -104,12 +102,11 @@ public class AddRecipient extends _CommonPage {
 			mobileAction.FuncClick(recipient_Email, "Recipient_Email");
 
 			mobileAction.FuncSendKeys(recipient_Email, recipient_Email_value);
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
-	        	mobileAction.FuncClick(done, "Done");
-		            }
-		        else{
-		        		mobileAction.FuncHideKeyboard();
-		        	}
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				mobileAction.FuncClick(done, "Done");
+			} else {
+				mobileAction.FuncHideKeyboard();
+			}
 
 			mobileAction.FuncClick(security_Question, "Security_Question");
 			// String security_Question_value
@@ -117,36 +114,30 @@ public class AddRecipient extends _CommonPage {
 			String security_Question_value = getTestdata("Security_Question");
 
 			mobileAction.FuncSendKeys(security_Question, security_Question_value);
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
-	        	mobileAction.FuncClick(done, "Done");
-					}
-					else
-						{
-							mobileAction.FuncHideKeyboard();
-						}
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				mobileAction.FuncClick(done, "Done");
+			} else {
+				mobileAction.FuncHideKeyboard();
+			}
 			mobileAction.FuncClick(answer, "Answer");
 
 			mobileAction.FuncSendKeys(answer, "aa");
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
-	        	mobileAction.FuncClick(done, "Done");
-						}
-					else
-						{
-								mobileAction.FuncHideKeyboard();
-						}
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				mobileAction.FuncClick(done, "Done");
+			} else {
+				mobileAction.FuncHideKeyboard();
+			}
 
 			mobileAction.FuncClick(confirm_Answer, "Confirm_Answer");
 
 			mobileAction.FuncSendKeys(confirm_Answer, "aa");
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
-		        	mobileAction.FuncClick(done, "Done");
-					}
-					else
-						{
-							mobileAction.FuncHideKeyboard();
-						}
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				mobileAction.FuncClick(done, "Done");
+			} else {
+				mobileAction.FuncHideKeyboard();
+			}
 			mobileAction.FuncClick(review_Button, "Review_button");
-			mobileAction.verifyElementIsDisplayed(verify_Msg,"Error Message");
+			mobileAction.verifyElementIsDisplayed(verify_Msg, "Error Message");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
