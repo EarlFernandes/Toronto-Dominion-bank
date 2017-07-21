@@ -142,12 +142,9 @@ public class MainScreenMIT extends _CommonPage {
 			CL.GetReporting().FuncReport(PASS, "Application Opened.");
 		} catch (Exception e) {
 			/*
-			 * try { CL.GetReporting().FuncReport(FAIL, <<<<<<< HEAD
+			 * try { CL.GetReporting().FuncReport(FAIL,
 			 * "Application not Opened."); } catch (IOException e1) { // TODO
-			 * Auto-generated catch block e1.printStackTrace(); } =======
-			 * "Application not Opened."); } catch (IOException e1) {
-			 * e1.printStackTrace(); } >>>>>>>
-			 * ca9017068d9f95e43cb4f6bd238e332e5fd15997
+			 * Auto-generated catch block e1.printStackTrace(); }
 			 */
 			e.printStackTrace();
 		}

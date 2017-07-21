@@ -1907,12 +1907,9 @@ public class MobileAction2 extends CommonLib {
 	 * try { if (elementToFind.isDisplayed() && !value.isEmpty()) {
 	 * GetReporting().FuncReport("Pass", "The text '" + value +
 	 * "' is Displayed"); } } catch (Exception e) { try {
-	 * GetReporting().FuncReport("Fail", "The text '" + value + <<<<<<< HEAD
+	 * GetReporting().FuncReport("Fail", "The text '" + value +
 	 * "' is not appeared"); } catch (IOException ie) { // TODO Auto-generated
-	 * catch block ie.printStackTrace(); } e.printStackTrace(); } } =======
-	 * "' is not appeared"); } catch (IOException ie) { catch block
-	 * ie.printStackTrace(); } e.printStackTrace(); } } >>>>>>>
-	 * ca9017068d9f95e43cb4f6bd238e332e5fd15997
+	 * catch block ie.printStackTrace(); } e.printStackTrace(); } }
 	 */
 
 	public boolean FuncIsDisplayed(MobileElement elementToFind) {
