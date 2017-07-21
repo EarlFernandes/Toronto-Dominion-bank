@@ -298,14 +298,20 @@ public class Profile extends _CommonPage {
 	}
 
 	public void VerifyPhoneIsNotUpdatedAsMFChanges() {
-		String phoneInfo = get_mobile_phone_info();
-		String phone_MF = CL.getTestDataInstance().TCParameters.get("PhoneProfile");
-		if (phoneInfo.equals(phone_MF)) {
-			mobileAction.Report_Fail("Profile Phone is updated as MF phone changes :" + phoneInfo);
-		} else {
-			mobileAction.Report_Pass_Verified("Profile Phone is updated as MF phone changes");
-			System.out.println("profile phone:" + phoneInfo);
-			System.out.println("MF phone:" + phone_MF);
+		try {
+			String phoneInfo = get_mobile_phone_info();
+			String phone_MF = CL.getTestDataInstance().TCParameters.get("PhoneProfile");
+			if (phoneInfo.equals(phone_MF)) {
+				mobileAction.Report_Fail("Profile Phone is updated as MF phone changes :" + phoneInfo);
+			} else {
+				mobileAction.Report_Pass_Verified("Profile Phone is updated as MF phone changes");
+				System.out.println("profile phone:" + phoneInfo);
+				System.out.println("MF phone:" + phone_MF);
+			}
+		} catch (NoSuchElementException e) {
+			mobileAction.Report_Fail("Exception to get mobile phone");
+			System.err.println("TestCase has failed for VerifyPhoneIsNotUpdatedAsMFChanges");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
 

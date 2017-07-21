@@ -220,8 +220,12 @@ public class Investing extends _CommonPage {
 	private MobileElement table_heading_middle;
 
 	@iOSFindBy(xpath = "//*[@name='FOUND_HOLDING_UNIT']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textview_right']")
-	private MobileElement table_heading_right;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textview_units']")
+	private MobileElement table_heading_unit;
+
+	@iOSFindBy(xpath = "//*[@name='FOUND_HOLDING_UNIT']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textview_price_per_unit']")
+	private MobileElement table_heading_unit_price;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/account_value']")
@@ -1681,7 +1685,12 @@ public class Investing extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(activity_tab, "活动 | 活動 ");
 			mobileAction.verifyElementTextIsDisplayed(table_heading_left, "基金 | 基金 ");
 			mobileAction.verifyElementTextIsDisplayed(table_heading_middle, "市场价值 | 市價 ");
-			mobileAction.verifyElementTextIsDisplayed(table_heading_right, "单位单位价格  | 單位單位價格 | 单位 单位价格 | 單位 單位價格");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				mobileAction.verifyElementTextIsDisplayed(table_heading_unit, "单位单位价格  | 單位單位價格");
+			} else {
+				mobileAction.verifyElementTextIsDisplayed(table_heading_unit, "单位  | 單位");
+				mobileAction.verifyElementTextIsDisplayed(table_heading_unit_price, "单位价格  | 單位價格");
+			}
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -1706,7 +1715,7 @@ public class Investing extends _CommonPage {
 						"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Activity")
 								+ "']/following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[2]",
 						"Center head");
-				table_heading_right = mobileAction.verifyElementUsingXPath(
+				table_heading_unit = mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Activity")
 								+ "']/following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[3]",
 						"Rifht head");
@@ -1714,7 +1723,7 @@ public class Investing extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(activity_tab, "活动 | 活動 ");
 			mobileAction.verifyElementTextIsDisplayed(table_heading_left, "日期 | 日期");
 			mobileAction.verifyElementTextIsDisplayed(table_heading_middle, "交易 | 交易 ");
-			mobileAction.verifyElementTextIsDisplayed(table_heading_right, "金额  | 金額 ");
+			mobileAction.verifyElementTextIsDisplayed(table_heading_unit, "金额  | 金額 ");
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

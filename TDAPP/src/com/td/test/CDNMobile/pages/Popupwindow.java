@@ -31,7 +31,7 @@ public class Popupwindow extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
 	private MobileElement back_button;
 
-	@iOSFindBy(xpath = "//*[@name='alert_cancel_button']")
+	@iOSFindBy(xpath = "//*[@name='alert_ok_button']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
 	private MobileElement cancel_order_button;
 

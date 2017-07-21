@@ -23,7 +23,7 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class Receipt extends _CommonPage {
 	private static Receipt Receipt;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Receipt']")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement receiptHeader;
 
@@ -55,7 +55,7 @@ public class Receipt extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Date']/following-sibling::android.widget.LinearLayout/android.widget.TextView[@resource-id='com.td:id/item_row_value_main']")
 	private MobileElement date;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'HOME')]")
+	@iOSFindBy(accessibility = "QUICKACCESS_CELL_MENU_ICON_ACCOUNTS")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='VIEW MY ACCOUNTS']")
 	private MobileElement viewMyAccounts_Btn;
 
@@ -205,14 +205,13 @@ public class Receipt extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 
-				mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView", 3, "down");
-				viewMyAccounts_Btn = mobileAction.verifyElementUsingXPath(
-						"//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='"
-								+ mobileAction.getAppString("feedback_quick_link_my_accounts") + "']",
-						"VIEW MY ACCOUNTS");
-			}
+				String viewMyAccountXpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='"
+						+ mobileAction.getAppString("feedback_quick_link_my_accounts") + "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(viewMyAccountXpath, true, 10, "up");
 
-			mobileAction.FuncClick(viewMyAccounts_Btn, "View My Accounts");
+			}else{
+				mobileAction.FuncSwipeWhileElementNotFound(viewMyAccounts_Btn, true, 10, "up");
+			}
 
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
@@ -243,7 +242,7 @@ public class Receipt extends _CommonPage {
 					"如果您在工作日东部时间下午 3 点之前购买，将按当天价格交易。 | 如果在工作日的東部時間下午 3 時之前購買，將按當天價格交易。", "下午 3 点之后的购买 |下午 3 時之後的購買",
 					"如果您在东部时间下午 3 点之后或在周末购买，将按照下一个工作日的收市价交易。|如果在東部時間下午 3 時之後或在週末購買，將按下一個工作日的收市價交易。", "购买确认|購買確認",
 					"我们处理完您的购买之后，您能够即刻在您的互惠基金账户结余中看到新的基金。|我們處理完您的購買之後，您便能在您的互惠基金賬戶結餘中看到新的基金。", "-购买详情|購買詳情",
-					"-购买详情|購買詳情", "参考编号|參考號碼", "基金|基金", "金额|金額", "发送请求时间|請求送出時間", "转出账户|轉出賬戶", "转入互惠基金账户|轉入互惠基金賬戶"
+					"购买详情|購買詳情", "参考编号|參考號碼", "基金|基金", "金额|金額", "发送请求时间|請求送出時間", "转出账户|轉出賬戶", "转入互惠基金账户|轉入互惠基金賬戶"
 
 			};
 

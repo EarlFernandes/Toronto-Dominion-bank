@@ -52,7 +52,7 @@ public class FundDetails extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/fund_category']")
 	private MobileElement fund_category;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther[4]/XCUIElementTypeStaticText[2]")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther[4]/XCUIElementTypeStaticText[@name='footnote_label']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/conversion_rate_used']")
 	private MobileElement usd_conversion_rate;
 
@@ -352,8 +352,8 @@ public class FundDetails extends _CommonPage {
 			System.out.println("TimeStamp:" + timeStamp);
 
 			String disclaimerReg;
-			if (currentLocale.equalsIgnoreCase("FR")) {
-				disclaimerReg = "Au [A-Za-z]{3}\\s*\\d{2},\\s*\\d{4} à \\d{2}:\\d{2}:\\d{2}.*";
+			if (currentLocale.equalsIgnoreCase("fr")) {
+				disclaimerReg = "Au .{3,5}\\s*\\d{2},\\s*\\d{4} à \\d{2}:\\d{2}:\\d{2}.*";
 			} else {
 				disclaimerReg = "As of [A-Za-z]{3}\\s*\\d{2},\\s*\\d{4} at \\d{2}:\\d{2}:\\d{2}.*";
 			}

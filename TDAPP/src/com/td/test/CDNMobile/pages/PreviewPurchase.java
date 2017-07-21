@@ -221,12 +221,14 @@ public class PreviewPurchase extends _CommonPage {
 				mobileAction.FuncSwipeOnce("up");
 				mobileAction.FuncSwipeOnce("up");
 
-				contact_label = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("MF_contact_information") + "']", "Contact Information");
+				contact_label = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("contact_information") + "']",
+						"Contact Information");
 				email_label = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("MF_email") + "']", "Email");
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("contact_email") + "']",
+						"Email");
 				phone_label = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("MF_phone") + "']",
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("label_phone_number") + "']",
 						"Phone Number");
 				disclaimer_info = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[contains(@text, '"
@@ -241,7 +243,7 @@ public class PreviewPurchase extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(contact_label, "联系方式|聯絡資訊");
 			mobileAction.verifyElementTextIsDisplayed(email_label, "电子邮件|電郵地址");
 			mobileAction.verifyElementTextIsDisplayed(phone_label, "电话号码|電話號碼");
-			String disclaimerInfo = "您的个人信息仅用于我们就您的基金购买情况与您联络。道明资产管理有限公司（TDAM）在您持有道明互惠基金单位期间向道明投资服务有限公司（TDIS）支付尾随佣金，作为其向您提供服务和咨询的费用。有关详细信息，请参阅基金概况。(simp)If a trade is rejected for any reason, we'll cancel it and notify you via email within one business day.";
+			String disclaimerInfo = "您的个人信息仅用于我们就您的基金购买情况与您联络。请确保所有注册退休储蓄计划(RSP)和免税储蓄账户(TFSA) 交易不超过您允许的供款限额。如果交易出于任何原因被拒，我们将在一个工作日内取消交易并向您发送电子邮件通知。您购买的基金有最短持有期要求。如果您在最短持有期到期之前赎回，则可能需向基金支付最高 2% 的短期交易费，此要求适用于道明互惠基金的所有单位（货币市场基金除外）。详情请参阅相关基金概况。   道明资产管理有限公司（TDAM）在您持有道明互惠基金单位期间向道明投资服务有限公司（TDIS）支付尾随佣金，作为其向您提供服务和咨询的费用。有关详细信息，请参阅基金概况。";
 			mobileAction.verifyElementTextIsDisplayed(disclaimer_info, disclaimerInfo);
 
 		} catch (NoSuchElementException | IOException e) {
