@@ -11,7 +11,6 @@ import org.openqa.selenium.support.PageFactory;
 import com.td.MobileAction2;
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -184,8 +183,7 @@ public class InvestingAccountSummary extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -215,7 +213,7 @@ public class InvestingAccountSummary extends _CommonPage {
 				while (flag) {
 					try {
 						String accountToSelect = "//*[contains(@text,'" + strAcc[0] + "')]";
-						MobileElement accountToSelected = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						MobileElement accountToSelected = (MobileElement) (CL.GetAppiumDriver())
 								.findElement(By.xpath(accountToSelect));
 						if (mobileAction.verifyElementIsPresent(accountToSelected)
 								&& mobileAction.verifyElementIsPresent(llbBalance)) {
@@ -235,7 +233,7 @@ public class InvestingAccountSummary extends _CommonPage {
 
 					try {
 						String accountToSelect = "//*[contains(@text,'" + strAcc[1] + "')]";
-						MobileElement accountToSelected = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						MobileElement accountToSelected = (MobileElement) (CL.GetAppiumDriver())
 								.findElement(By.xpath(accountToSelect));
 						if (mobileAction.verifyElementIsPresent(accountToSelected)
 								&& mobileAction.verifyElementIsPresent(llbBalance)) {
@@ -256,7 +254,7 @@ public class InvestingAccountSummary extends _CommonPage {
 				while (flag) {
 					try {
 						String accountToSelect = "//*[contains(@label,'" + strAcc[0] + "')]";
-						MobileElement accountToSelected = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						MobileElement accountToSelected = (MobileElement) (CL.GetAppiumDriver())
 								.findElement(By.xpath(accountToSelect));
 						if (mobileAction.verifyElementIsPresent(accountToSelected)
 								&& mobileAction.verifyElementIsPresent(llbBalance)) {
@@ -276,7 +274,7 @@ public class InvestingAccountSummary extends _CommonPage {
 
 					try {
 						String accountToSelect = "//*[contains(@label,'" + strAcc[1] + "')]";
-						MobileElement accountToSelected = (MobileElement) ((AppiumDriver) CL.GetDriver())
+						MobileElement accountToSelected = (MobileElement) (CL.GetAppiumDriver())
 								.findElement(By.xpath(accountToSelect));
 						if (mobileAction.verifyElementIsPresent(accountToSelected)
 								&& mobileAction.verifyElementIsPresent(llbBalance)) {
@@ -424,10 +422,7 @@ public class InvestingAccountSummary extends _CommonPage {
 
 		try {
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS Elements
-			} else {
-
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(summaryTab, "Summary Tab");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/current_balance']", "Current Balance");
@@ -512,9 +507,7 @@ public class InvestingAccountSummary extends _CommonPage {
 		Decorator();
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS Elements
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(activityTab, "Activity Tab");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/current_balance']", "Current Balance");
@@ -577,16 +570,13 @@ public class InvestingAccountSummary extends _CommonPage {
 
 		try {
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS Elements
-			} else {
-
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(activityTab, "Activity Tab");
 
 				String pendingTransactionStr = "//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("rtb_authorized_transactions_header")
 						+ "']/../following-sibling::android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView";
-				MobileElement pendingTransaction = (MobileElement) ((AppiumDriver) CL.GetDriver())
+				MobileElement pendingTransaction = (MobileElement) (CL.GetAppiumDriver())
 						.findElement(By.xpath(pendingTransactionStr));
 
 				if (mobileAction.verifyElementIsPresent(pendingTransaction)) {
@@ -595,7 +585,7 @@ public class InvestingAccountSummary extends _CommonPage {
 					mobileAction.FunctionSwipe("up", 5000, 200);
 
 					String otherTransactionStr = "//android.widget.TextView[@resource-id='com.td:id/date']/../../following-sibling::android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView";
-					MobileElement otherTransaction = (MobileElement) ((AppiumDriver) CL.GetDriver())
+					MobileElement otherTransaction = (MobileElement) (CL.GetAppiumDriver())
 							.findElement(By.xpath(otherTransactionStr));
 					mobileAction.FuncClick(otherTransaction, "Transaction");
 
@@ -654,16 +644,13 @@ public class InvestingAccountSummary extends _CommonPage {
 
 		try {
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS Elements
-			} else {
-
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(activityTab, "Activity Tab");
 
 				String pendingTransactionStr = "//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("rtb_authorized_transactions_header")
 						+ "']/../following-sibling::android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView";
-				MobileElement pendingTransaction = (MobileElement) ((AppiumDriver) CL.GetDriver())
+				MobileElement pendingTransaction = (MobileElement) (CL.GetAppiumDriver())
 						.findElement(By.xpath(pendingTransactionStr));
 
 				if (mobileAction.verifyElementIsPresent(pendingTransaction)) {
@@ -672,7 +659,7 @@ public class InvestingAccountSummary extends _CommonPage {
 					mobileAction.FunctionSwipe("up", 5000, 200);
 
 					String otherTransactionStr = "//android.widget.TextView[@resource-id='com.td:id/date']/../../following-sibling::android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView";
-					MobileElement otherTransaction = (MobileElement) ((AppiumDriver) CL.GetDriver())
+					MobileElement otherTransaction = (MobileElement) (CL.GetAppiumDriver())
 							.findElement(By.xpath(otherTransactionStr));
 					mobileAction.FuncClick(otherTransaction, "Transaction");
 
@@ -729,10 +716,7 @@ public class InvestingAccountSummary extends _CommonPage {
 		Decorator();
 		try {
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS Elements
-			} else {
-
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(statementTab, "Statement Tab");
 				mobileAction.FuncClick(CClastStatement, "Last Statement");
 				mobileAction.verifyElementUsingXPath(
@@ -789,10 +773,7 @@ public class InvestingAccountSummary extends _CommonPage {
 		Decorator();
 		try {
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS Elements
-			} else {
-
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(statementTab, "Statement Tab");
 
 				mobileAction.verifyElementUsingXPath(
@@ -861,10 +842,7 @@ public class InvestingAccountSummary extends _CommonPage {
 
 		try {
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS Elements
-			} else {
-
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementIsDisplayed(holdingsTab, "Holdings tab");
 				mobileAction.FuncClick(holdingsTab, "Holdings Tab");
 
@@ -923,10 +901,7 @@ public class InvestingAccountSummary extends _CommonPage {
 
 		try {
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS Elements
-			} else {
-
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementIsDisplayed(holdingsTab, "Holdings tab");
 				mobileAction.FuncClick(holdingsTab, "Holdings Tab");
 
@@ -1034,10 +1009,7 @@ public class InvestingAccountSummary extends _CommonPage {
 
 		try {
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS Elements
-			} else {
-
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
 								+ mobileAction.getAppString("str_Investing") + "']",
@@ -1070,7 +1042,8 @@ public class InvestingAccountSummary extends _CommonPage {
 							String openXpath = "//android.widget.TextView[contains(@text,'"
 									+ mobileAction.getAppString("open_string") + "')]";
 
-							MobileElement openStatus = (MobileElement) ((AppiumDriver) CL.GetDriver())
+							MobileElement openStatus = (MobileElement) (CL.GetAppiumDriver())
+
 									.findElement(By.xpath(openXpath));
 
 							if (openStatus.isDisplayed()) {
@@ -1083,7 +1056,8 @@ public class InvestingAccountSummary extends _CommonPage {
 							String pricedMarketXpath = "//android.widget.TextView[contains(@text,'"
 									+ mobileAction.getAppString("mutual_funds_pricing") + "')]";
 
-							MobileElement pricedMarket = (MobileElement) ((AppiumDriver) CL.GetDriver())
+							MobileElement pricedMarket = (MobileElement) (CL.GetAppiumDriver())
+
 									.findElement(By.xpath(pricedMarketXpath));
 
 							if (pricedMarket.isDisplayed()) {
@@ -1096,7 +1070,8 @@ public class InvestingAccountSummary extends _CommonPage {
 							String switchOptXpath = "//android.widget.TextView[contains(@text,'"
 									+ mobileAction.getAppString("str_Switch") + "')]";
 
-							MobileElement switchOpt = (MobileElement) ((AppiumDriver) CL.GetDriver())
+							MobileElement switchOpt = (MobileElement) (CL.GetAppiumDriver())
+
 									.findElement(By.xpath(switchOptXpath));
 
 							if (switchOpt.isDisplayed()) {
@@ -1149,12 +1124,9 @@ public class InvestingAccountSummary extends _CommonPage {
 	public void verifyOrderDetails() {
 
 		Decorator();
-		String text = null;
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS Elements
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
 								+ mobileAction.getAppString("str_Investing") + "']",
@@ -1163,85 +1135,6 @@ public class InvestingAccountSummary extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(ordersTab, "Orders Tab");
 				mobileAction.FuncClick(ordersTab, "Orders Tab");
 
-				// String symbol=getTestdata("Symbol");
-				// String
-				// orderName="//android.widget.TextView[@resource-id='com.td:id/symbol'
-				// and @text='"+symbol+"']";
-				//
-				// mobileAction.swipeAndSelect(orderName, symbol, 3);
-				//
-				// if(!mobileAction.swipeAndSelect(orderName, symbol, 3)){
-				//
-				//
-				// mobileAction.verifyElementUsingXPath(
-				// "//android.widget.TextView[@resource-id='android:id/action_bar_title'
-				// and @text='"
-				// + mobileAction.getAppString("str_OrderDetails") + "']",
-				// "Order Details");
-				//
-				// text=orderTimeStamp.getText();
-				// mobileAction.verifyElementIsDisplayed(orderTimeStamp, text);
-				// mobileAction.verifyElementIsDisplayed(orderAccount, "Account
-				// Label");
-				//
-				// mobileAction.verifyElementIsDisplayed(ordersLabels.get(0),
-				// "Action & Amount"); //no key available
-				//
-				//
-				// mobileAction.verifyElementUsingXPath(
-				// "//android.widget.TextView[@resource-id='com.td:id/item_row_label'
-				// and @text='"
-				// + mobileAction.getAppString("str_includes_commission") +
-				// "']",
-				// "Includes Commission?");
-				//
-				// mobileAction.verifyElementUsingXPath(
-				// "//android.widget.TextView[@resource-id='com.td:id/item_row_label'
-				// and @text='"
-				// + mobileAction.getAppString("str_filled_quantity") + "']",
-				// "Quantity Filled");
-				//
-				// mobileAction.FunctionSwipe("up", 200, 200);
-				//
-				// mobileAction.verifyElementUsingXPath(
-				// "//android.widget.TextView[@resource-id='com.td:id/item_row_label'
-				// and @text='"
-				// + mobileAction.getAppString("str_Dividend_Option") + "']",
-				// "Dividend Option");
-				//
-				// mobileAction.verifyElementUsingXPath(
-				// "//android.widget.TextView[@resource-id='com.td:id/item_row_label'
-				// and @text='"
-				// + mobileAction.getAppString("str_OrderStatus") + "']",
-				// "Order Status");
-				//
-				// mobileAction.verifyElementUsingXPath(
-				// "//android.widget.TextView[@resource-id='com.td:id/item_row_label'
-				// and @text='"
-				// +
-				// mobileAction.getAppString("str_receipt_order_reference_number")
-				// + "']",
-				// "Confirmation Number");
-				//
-				// mobileAction.verifyElementUsingXPath(
-				// "//android.widget.TextView[@resource-id='com.td:id/item_row_label'
-				// and @text='"
-				// + mobileAction.getAppString("str_OrderPlaced") + "']",
-				// "Order Placed");
-				// //mobileAction.verifyElementIsDisplayed(ordersFooter, "Footer
-				// Text");
-				// //mobileAction.verifyElementIsDisplayed(callBtn, "Call
-				// Button");
-				//
-				// mobileAction.verifyTextEquality(ordersFooter.getText(),
-				// mobileAction.getAppString("mutual_funds_order_detail_footer"));
-				// mobileAction.verifyTextEquality(callBtn.getText(),
-				// mobileAction.getAppString("str_CALL"));
-				//
-				//
-				// }else{
-				// mobileAction.stringToReport("Fail", "No Orders are Present");
-				// }
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {
@@ -1278,8 +1171,6 @@ public class InvestingAccountSummary extends _CommonPage {
 
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS Elements
-			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
 								+ mobileAction.getAppString("str_Investing") + "']",

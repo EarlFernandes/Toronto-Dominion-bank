@@ -10,7 +10,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -26,6 +25,7 @@ public class Interac_e_Registration extends _CommonPage {
 																															// in
 																															// new
 																															// build
+
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and contains(@text,'Interac e-Transfer') and contains(@text,'Registration')]")
 	private MobileElement registrationPageHeader;
 
@@ -95,8 +95,6 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
-	// @iOSFindBy(xpath = "//XCUIElementTypeTextField[contains(@value,'Please
-	// choose which profile')]")
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@value,'Please choose which profile')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_multi_profile']")
 	private MobileElement chooseProfile;
@@ -168,8 +166,7 @@ public class Interac_e_Registration extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -347,6 +344,7 @@ public class Interac_e_Registration extends _CommonPage {
 				String response = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@name,'"
 						+ getTestdata("Response") + "')]";
 				MobileElement tradeResponse = mobileAction.mobileElementUsingXPath(response);
+
 				mobileAction.FuncClick(tradeResponse, "Trade Response Option");
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(emailId, "Email");
@@ -363,7 +361,9 @@ public class Interac_e_Registration extends _CommonPage {
 				mobileAction.FuncClick(tradeResponse, "Trade Response");
 				String response = "//android.widget.TextView[@text='" + getTestdata("Response")
 						+ "']/preceding-sibling::android.widget.RadioButton";
+
 				MobileElement tradeResponse = mobileAction.mobileElementUsingXPath(response);
+
 				mobileAction.FuncClick(tradeResponse, "Trade Response Option");
 				mobileAction.FuncClick(done, "Done Button");
 
@@ -451,11 +451,11 @@ public class Interac_e_Registration extends _CommonPage {
 		Decorator();
 
 		try {
-
-			String email = getTestdata("Email");
 			String nameText = getTestdata("Name");
 			String[] nameArr = nameText.split(": ");
+
 			String profileType = getTestdata("UserProfileType");
+
 			String[] profileArr = profileType.split(": ");
 
 			for (int i = 0; i < nameArr.length; i++) {
@@ -467,6 +467,7 @@ public class Interac_e_Registration extends _CommonPage {
 						mobileAction.FuncClick(chooseProfile, "Select Profile");
 						String profileStr = "//XCUIElementTypeStaticText[@label='" + nameArr[i] + "']";
 						MobileElement profile = mobileAction.mobileElementUsingXPath(profileStr);
+
 						mobileAction.FuncClick(profile, "Profile Name " + nameArr[i]);
 					}
 
@@ -489,7 +490,9 @@ public class Interac_e_Registration extends _CommonPage {
 						mobileAction.FuncClick(chooseProfile, "Select Profile");
 						String profileStr = "//android.widget.TextView[@text='" + nameArr[i]
 								+ "']/preceding-sibling::android.widget.RadioButton";
+
 						MobileElement profile = mobileAction.mobileElementUsingXPath(profileStr);
+
 						mobileAction.FuncClick(profile, nameArr[i]);
 						mobileAction.FuncClick(done, "Done");
 					}
@@ -542,6 +545,7 @@ public class Interac_e_Registration extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+
 	}
 
 	/**

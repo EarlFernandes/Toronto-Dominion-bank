@@ -8,11 +8,11 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.ChineseStrings;
-import com.td.MainScreen;
+import com.td.EnglishStrings;
+import com.td.FrenchStrings;
 import com.td.StringLookup;
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -99,13 +99,20 @@ public class MenuPage extends _CommonPage {
 	private MobileElement locations;
 
 	// Profile and preference
-	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_PREFERENCES")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Profile and Settings' or @text='Profil et paramètres')]")
+
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_PREFERENCES']/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='"
+			+ EnglishStrings.FLYOUT_MENU_PROFILE_AND_PREFERENCE + "' or @text='"
+			+ FrenchStrings.FLYOUT_MENU_PROFILE_AND_PREFERENCE + "')]")
 	private MobileElement profile_and_settings;
 
 	// customer feedback
-	@iOSFindBy(xpath = "//*[@label='Give Feedback' or @label ='Fournir des commentaires']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Give Feedback' or @text='Fournir des commentaires')]")
+	@iOSFindBy(xpath = "//*[@label='" + EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK + "' or @label ='"
+			+ FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK + "']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='"
+			+ EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK + "' or @text='" + FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK
+			+ "')]")
+
 	private MobileElement give_feedback;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText']")
@@ -123,9 +130,9 @@ public class MenuPage extends _CommonPage {
 
 	private void initElementContactUs() {
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
 				contactUs = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
 								+ mobileAction.getAppString("contact_str") + "']",
@@ -145,8 +152,7 @@ public class MenuPage extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 	}
 
 	/**
@@ -168,9 +174,8 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS xpath expression required
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
 				transfers = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
 								+ mobileAction.getAppString("transfers_str") + "']",
@@ -459,8 +464,6 @@ public class MenuPage extends _CommonPage {
 										+ mobileAction.getAppString("ActionBar_MobileDeposit") + "']",
 								"Mobile Deposit");
 			}
-			String mobile_Deposit = "Mobile Deposit";
-
 			mobileAction.FuncClick(mobile_Deposit_button, "Mobile_Deposit_Button");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

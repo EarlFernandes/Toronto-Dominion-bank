@@ -11,7 +11,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -22,20 +21,16 @@ public class Managee_Payee extends _CommonPage {
 
 	private static Managee_Payee Managee_Payee;
 
-	// @iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]")
 	@iOSFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[@label='Access Card']/../../XCUIElementTypeOther[2]")
 	private MobileElement accesscard;
 
-	// @iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeLink/XCUIElementTypeStaticText")
 	@iOSFindBy(xpath = "//*[@label='MY PAYEES']")
 	private MobileElement myPayees;
 
-	// @iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeStaticText[@label='ACCESS CARD']/../../XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/listView']/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.TextView")
 	private MobileElement secondAccessCard;
 
-	// @iOSFindBy(xpath="//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText")
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeStaticText[@label='ACCESS CARD']/../../XCUIElementTypeCell[3]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/listView']/android.widget.LinearLayout[3]/android.widget.LinearLayout/android.widget.TextView")
 	private MobileElement thirdAccessCard;
@@ -55,7 +50,8 @@ public class Managee_Payee extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement addPayee;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
 	public synchronized static Managee_Payee get() {
@@ -67,8 +63,7 @@ public class Managee_Payee extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -217,7 +212,8 @@ public class Managee_Payee extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				String from_accountNo = "//XCUIElementTypeLink[@label='" + getTestdata("Payee") + "']";
-				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+
+				MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())
 						.findElement(By.xpath(from_accountNo));
 				fromAccountval.click();
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
@@ -359,26 +355,29 @@ public class Managee_Payee extends _CommonPage {
 				}
 			} else {
 				// For android, using webview to handle
-				((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				WebElement accessCard = CL.GetDriver().findElement(By.cssSelector("div.dropdown-holder"));
 				accessCard.click();
 				Thread.sleep(2000);
-				((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncClick(secondAccessCard, "Second Access Card");
 				Thread.sleep(2000);
-				((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				WebElement mypayees_android = CL.GetDriver().findElement(By.id("myPayees"));
 				mobileAction.verifyElementIsDisplayed((MobileElement) mypayees_android, "My Payees");
 				accessCard = CL.GetDriver().findElement(By.cssSelector("div.dropdown-holder"));
 				accessCard.click();
-				((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+
+				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncClick(thirdAccessCard, "Second Access Card");
 				Thread.sleep(2000);
-				((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				WebElement addCanadianPayeeButton = CL.GetDriver()
 						.findElement(By.cssSelector("button.primary-button.ng-binding.ng-scope"));
 				mobileAction.verifyElementIsDisplayed((MobileElement) addCanadianPayeeButton, "Add Canadian Payee");
-				((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+				mobileAction.switchAppiumContext("NATIVE_APP");
+
 			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -505,6 +504,9 @@ public class Managee_Payee extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees Header");
 			mobileAction.FuncClick(addPayee, "Add Canadian Payee");
+
+			mobileAction.waitForElementToVanish(progressBar);
+
 			Thread.sleep(10000);
 
 		} catch (NoSuchElementException e) {

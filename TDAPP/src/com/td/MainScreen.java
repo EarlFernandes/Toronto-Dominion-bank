@@ -6,14 +6,13 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.td.mainframe.Executor;
 
-import io.appium.java_client.AppiumDriver;
-
 public class MainScreen extends _CommonPage {
 
 	// ***** LOCAL EXECUTION PARAMETERS *****
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.104:4780/wd/hub/";
+
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.201:4760/wd/hub/";
 
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
@@ -99,10 +98,10 @@ public class MainScreen extends _CommonPage {
 			// If length is 2, then second token is the locale
 			if (targetEnvVars.length >= 2) {
 				currentLocale = targetEnvVars[1];
-				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
+				appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
 			} else {
 				currentLocale = "EN";
-				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
+				appStringMap = (CL.GetAppiumDriver()).getAppStringMap();
 			}
 		} else { // Local execution
 			try { // Set udid explicitly for local execution, to handle udid
@@ -125,9 +124,9 @@ public class MainScreen extends _CommonPage {
 				}
 				CL.mobileApp(LOCAL_EXECUTION_APPIUM_SERVER);
 				if (StringUtils.isEmpty(currentLocale)) {
-					appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
+					appStringMap = (CL.GetAppiumDriver()).getAppStringMap();
 				} else {
-					appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
+					appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
 				}
 
 			} catch (Exception e) {

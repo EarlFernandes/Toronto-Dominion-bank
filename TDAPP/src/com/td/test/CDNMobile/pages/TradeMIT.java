@@ -1,19 +1,16 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
 //import com.td.test.CDNMobile._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -299,8 +296,7 @@ public class TradeMIT extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(5, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(5, TimeUnit.SECONDS)), this);
 	}
 
 	/**
@@ -709,8 +705,8 @@ public class TradeMIT extends _CommonPage {
 				mobileAction.FuncClick(selectAccount, "AccountSelected");
 				String accountno = "//*[contains(@label,'" + trade_account_no + "')]";
 
-				MobileElement marginAccVal = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(accountno));
+				MobileElement marginAccVal = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(accountno));
+
 				mobileAction.FunCSwipeandScroll(marginAccVal, true);
 				// mobileAction.FuncSelectElementInTable(select_Accounts_table,
 				// Firstpart, Secondpart,trade_account_no );
@@ -721,8 +717,9 @@ public class TradeMIT extends _CommonPage {
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
 				mobileAction.FuncClick(symbol1, "Enter name or symbol");
 				mobileAction.FuncSendKeys(symbol1, searchKeyword);
-				MobileElement lstAction = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(selectSymbol));
+
+				MobileElement lstAction = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(selectSymbol));
+
 				lstAction.click();
 				mobileAction.FunCSwipeandScroll(trading_pwd, false);
 

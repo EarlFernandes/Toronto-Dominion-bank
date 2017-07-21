@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
@@ -12,7 +11,6 @@ import org.openqa.selenium.support.PageFactory;
 import com.td.MobileAction2;
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -124,8 +122,8 @@ public class MobileDeposit extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(10, TimeUnit.SECONDS)),
-				this);
+
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(10, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -318,7 +316,9 @@ public class MobileDeposit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				dateHeaders = ((AppiumDriver) CL.GetDriver()).findElements(
+
+				dateHeaders = (CL.GetAppiumDriver()).findElements(
+
 						By.xpath("//XCUIElementTypeStaticText[contains(@name, 'DEPOSIT_RECEIPT_VIEW_DATE')]"));
 				for (MobileElement m : dateHeaders) {
 					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_YYYY_MM_DD);
@@ -525,20 +525,7 @@ public class MobileDeposit extends _CommonPage {
 						"//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
 								+ mobileAction.getAppString("mobiledeposit_depositreciept_header") + "']",
 						"Mobile Deposit");
-				// FIXME: Get correct app string
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value=\""
-				// +
-				// mobileAction.getAppString("MRDC_DEPOSITCHEQUE_NOT_ELIGIBLE_TITLE").replaceAll("\"",
-				// "") + "\"]", "We're sorry");
-				// final MobileElement textBody =
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='MRDCNOTELIGIBLE_LABLE2']",
-				// "Text Body Ineligible");
-				// final String appString =
-				// mobileAction.getAppString("MRDC_DEPOSITCHEQUE_NOT_ELIGIBLE");
-				// if (!appString.contains(textBody.getText())) {
-				// throw new NoSuchElementException("Ineligible text body not
-				// found");
-				// }
+
 				final String xPathLocate = "//XCUIElementTypeButton[@label='"
 						+ mobileAction.getAppString("MRDC_DEPOSITCHEQUE_INVALID_ACCOUNT_HYPERLINK2") + "']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathLocate, false, 2, "up");

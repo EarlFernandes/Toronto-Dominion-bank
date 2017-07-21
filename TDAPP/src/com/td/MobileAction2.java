@@ -1,7 +1,6 @@
 package com.td;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -88,7 +87,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "IllegalArgumentException");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			throw e;
@@ -96,7 +95,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Element not displayed" + text);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			throw n;
@@ -104,7 +103,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			throw e;
@@ -140,7 +139,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			throw e;
@@ -179,7 +178,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "IllegalArgumentException");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			throw e;
@@ -187,7 +186,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Element not displayed");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			throw n;
@@ -195,7 +194,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "The element not present in current page");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			throw e;
@@ -714,7 +713,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Exception in FuncGetText(). getText() failed.");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			// throw e;
@@ -1001,7 +1000,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "IllegalArgumentException");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 		}
@@ -1418,7 +1417,6 @@ public class MobileAction2 extends CommonLib {
 
 		try {
 			String elementText = "";
-			boolean verifyFlag = true;
 
 			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
 			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
@@ -1471,7 +1469,7 @@ public class MobileAction2 extends CommonLib {
 				GetReporting().FuncReport("Fail", "The element does not exists. " + text);
 				e1.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
@@ -1637,7 +1635,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Element does not contain expected text:" + text);
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			// throw e;
@@ -1910,9 +1907,12 @@ public class MobileAction2 extends CommonLib {
 	 * try { if (elementToFind.isDisplayed() && !value.isEmpty()) {
 	 * GetReporting().FuncReport("Pass", "The text '" + value +
 	 * "' is Displayed"); } } catch (Exception e) { try {
-	 * GetReporting().FuncReport("Fail", "The text '" + value +
+	 * GetReporting().FuncReport("Fail", "The text '" + value + <<<<<<< HEAD
 	 * "' is not appeared"); } catch (IOException ie) { // TODO Auto-generated
-	 * catch block ie.printStackTrace(); } e.printStackTrace(); } }
+	 * catch block ie.printStackTrace(); } e.printStackTrace(); } } =======
+	 * "' is not appeared"); } catch (IOException ie) { catch block
+	 * ie.printStackTrace(); } e.printStackTrace(); } } >>>>>>>
+	 * ca9017068d9f95e43cb4f6bd238e332e5fd15997
 	 */
 
 	public boolean FuncIsDisplayed(MobileElement elementToFind) {
@@ -2007,7 +2007,7 @@ public class MobileAction2 extends CommonLib {
 				GetReporting().FuncReport("Fail",
 						"Exception: Swiped " + direction + " but element not found. Swipes : " + count);
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 		}
@@ -2075,7 +2075,7 @@ public class MobileAction2 extends CommonLib {
 				GetReporting().FuncReport("Fail",
 						"Exception: Swiped " + direction + " but element not found. Swipes : " + count);
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 		}
@@ -2141,7 +2141,7 @@ public class MobileAction2 extends CommonLib {
 				GetReporting().FuncReport("Pass",
 						"Exception: Swiped " + direction + " element not found. Swipes : " + count);
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			return true;
@@ -2200,11 +2200,7 @@ public class MobileAction2 extends CommonLib {
 			WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
 			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
 			String capturedText = "";
-			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				capturedText = mobileElement.getText();
-			} else {
-				capturedText = mobileElement.getAttribute("label");
-			}
+			capturedText = getValue(mobileElement);
 			for (int i = 0; i < expectedHeadertext.length; i++) {
 				if (capturedText.equalsIgnoreCase(expectedHeadertext[i].trim())) {
 					GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
@@ -2601,6 +2597,7 @@ public class MobileAction2 extends CommonLib {
 					GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is enabled.");
 				else
 					GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+
 			}
 		} catch (Exception e) {
 			try {
@@ -2623,7 +2620,6 @@ public class MobileAction2 extends CommonLib {
 				try {
 					GetReporting().FuncReport("Fail", "Exception in FuncGetTextByxpath(). getText() failed.");
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -2640,7 +2636,6 @@ public class MobileAction2 extends CommonLib {
 						try {
 							GetReporting().FuncReport("Fail", "Exception in FuncGetTextByxpath(). getText() failed.");
 						} catch (IOException e3) {
-							// TODO Auto-generated catch block
 							e3.printStackTrace();
 						}
 					}
@@ -2694,7 +2689,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			// throw e;
@@ -2702,7 +2696,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 
@@ -2852,12 +2845,12 @@ public class MobileAction2 extends CommonLib {
 			try {
 				FunctionSwipe("down", 200, 200);
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 				try {
 					GetReporting().FuncReport("Fail", "Exception : FuncSwipeDownTillScreenTop Failed.");
 				} catch (IOException e2) {
-					// TODO Auto-generated catch block
+
 					e2.printStackTrace();
 				}
 			}
@@ -2980,7 +2973,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Element does not contain expected text:" + text);
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			// throw e;

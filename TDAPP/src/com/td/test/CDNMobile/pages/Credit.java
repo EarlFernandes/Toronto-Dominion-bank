@@ -4,15 +4,11 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -79,8 +75,7 @@ public class Credit extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -204,14 +199,14 @@ public class Credit extends _CommonPage {
 	public void rewardsNotVisible() {
 		Decorator();
 		try {
-			if (rewardBtn.isDisplayed()) {
-			}
+
+			rewardBtn.isDisplayed();
+
 		} catch (NoSuchElementException e) {
 			try {
 				CL.GetReporting().FuncReport("PASS", "The '" + "REWARDS button" + "' is not displayed");
 			} catch (IOException e1) {
 				System.out.println("IOException from Method" + this.getClass().toString() + " " + e.getCause());
-				// TODO Auto-generated catch block
 
 			}
 		}

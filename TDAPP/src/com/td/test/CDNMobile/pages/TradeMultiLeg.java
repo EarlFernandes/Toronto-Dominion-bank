@@ -8,13 +8,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -33,8 +30,9 @@ public class TradeMultiLeg extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+
 	}
 
 	@iOSFindBy(xpath = "//XCUIElementTypeSearchField[@label='Enter name or symbol' or contains(@label,'Entrez le')]") // @Author
@@ -1022,7 +1020,9 @@ public class TradeMultiLeg extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				// mobileAction.FuncHideKeyboard();
-				((AppiumDriver) CL.GetDriver()).hideKeyboard();
+
+				(CL.GetAppiumDriver()).hideKeyboard();
+
 				// if(mobileAction.isObjExists(cancelButton,2))
 				// mobileAction.FuncClick(cancelButton, "cancelButton");
 			} else if (mobileAction.isObjExists(iOSKybdOKButton))

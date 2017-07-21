@@ -6,9 +6,10 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.EnglishStrings;
+import com.td.FrenchStrings;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -86,6 +87,18 @@ public class MoodSelectorScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/checkbox_form_container']")
 	private MobileElement check_box_container;
 
+	/*******************************************************/
+	@iOSFindBy(accessibility = "NAVIGATION_ITEM_MENU")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
+	private MobileElement menu;
+
+	@iOSFindBy(xpath = "//*[@label='" + EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK + "' or @label ='"
+			+ FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK + "']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='"
+			+ EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK + "' or @text='" + FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK
+			+ "')]")
+	private MobileElement give_feedback;
+
 	// and (@text='Rate this app' or @text='Notez cette application')
 	public synchronized static MoodSelectorScreen get() {
 		if (MoodSelector == null) {
@@ -100,8 +113,7 @@ public class MoodSelectorScreen extends _CommonPage {
 		// System.out.println(((AppiumDriver)
 		// CL.GetDriver()).getAppStringMap().toString());
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -135,7 +147,9 @@ public class MoodSelectorScreen extends _CommonPage {
 		// }
 
 		try {
-			Thread.sleep(5000);
+
+			Thread.sleep(2000);
+
 			String title = mobileAction.getValue(feedback_title);
 			System.out.println("Mood Selector title:" + title);
 			mobileAction.verifyElementTextIsDisplayed(feedback_title,
@@ -149,23 +163,26 @@ public class MoodSelectorScreen extends _CommonPage {
 
 	public void VerifyEmotionsAnimateFromTopToBottom() {
 		Decorator();
-		List<MobileElement> MoodList = null;
+
+		List<MobileElement> moodList = null;
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				MoodList = ((AppiumDriver) CL.GetDriver()).findElements(
+				moodList = ((AppiumDriver) CL.GetDriver()).findElements(
 						By.xpath("//android.widget.TextView[@resource-id='com.td:id/nav_row_profile_title']"));
 			} else {
 				String xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText";
-				MoodList = ((AppiumDriver) CL.GetDriver()).findElements(By.xpath(xpath));
+				moodList = ((AppiumDriver) CL.GetDriver()).findElements(By.xpath(xpath));
+
 			}
 		} catch (Exception e) {
 
 		}
 
 		String moodSequence = "";
-		int size = MoodList.size();
+
+		int size = moodList.size();
 		for (int i = 0; i < size; i++) {
-			String idText = MoodList.get(i).getText();
+			String idText = moodList.get(i).getText();
 
 			moodSequence = moodSequence + idText;
 			if (i < size - 1) {
@@ -422,35 +439,14 @@ public class MoodSelectorScreen extends _CommonPage {
 
 	public void ClickSendFeedbackNow() {
 		Decorator();
-		// try{
-		// if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-		// //for android, just keep send_feedback_now as defined
-		// }else{
-		// String xpath = "//*[@label='" +
-		// mobileAction.getAppString("nav_drawer_items_feedback") + "']";
-		// System.out.println("xpath:" + xpath);
-		// send_feedback_now = mobileAction.verifyElementUsingXPath(xpath, "Send
-		// Feedback Now");
-		// }
-		// }catch (NoSuchElementException | IOException e) {
-		// try {
-		// mobileAction.GetReporting().FuncReport("Fail", "No such element was
-		// found on screen: " + e.getMessage());
-		// } catch (IOException ex) {
-		// System.out.print("IOException from Method " +
-		// this.getClass().toString() + " " + e.getCause());
-		// }
-		// System.err.println("TestCase has failed.");
-		// CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		// return;
-		// }
 
 		try {
 			List<MobileElement> checkboxList = null;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				// checkboxList =
 				// check_box_container.findElements(By.xpath("//android.widget.CheckBox"));
-				checkboxList = ((AppiumDriver) (CL.GetDriver())).findElements(By.xpath(
+
+				checkboxList = (CL.GetAppiumDriver()).findElements(By.xpath(
 						"//android.widget.LinearLayout[@resource-id='com.td:id/checkbox_form_container']//android.widget.CheckBox"));
 				for (int i = 0; i < checkboxList.size(); i++) {
 					mobileAction.FuncClick(checkboxList.get(i), "Check box " + (i + 1));
@@ -475,36 +471,14 @@ public class MoodSelectorScreen extends _CommonPage {
 
 	}
 
-	public void ClickRateUsOnGooglePlayOrAppStore() {
+	public void VerifyRateUsOnGooglePlayButton() {
 		Decorator();
-		// try{
-		// if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-		// //for android, just keep rate_us_on_google_play as defined
-		// }else{
-		// String xpath = "//*[@label='" +
-		// mobileAction.getAppString("nav_drawer_items_feedback") + "']";
-		// System.out.println("xpath:" + xpath);
-		// rate_us_on_google_Or_App_Store =
-		// mobileAction.verifyElementUsingXPath(xpath, "Rate Us On Google
-		// Play");
-		// }
-		// }catch (NoSuchElementException | IOException e) {
-		// try {
-		// mobileAction.GetReporting().FuncReport("Fail", "No such element was
-		// found on screen: " + e.getMessage());
-		// } catch (IOException ex) {
-		// System.out.print("IOException from Method " +
-		// this.getClass().toString() + " " + e.getCause());
-		// }
-		// System.err.println("TestCase has failed.");
-		// CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		// return;
-		// }
 
 		try {
 			String elementText = mobileAction.getValue(rate_us_on_google_Or_App_Store);
 			System.out.println("ElementText:" + elementText);
-			mobileAction.FuncClick(rate_us_on_google_Or_App_Store, elementText);
+
+			mobileAction.verifyElementIsDisplayed(rate_us_on_google_Or_App_Store, elementText);
 
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
@@ -640,6 +614,51 @@ public class MoodSelectorScreen extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			return;
 		}
+	}
+
+	public void VerifyFeedBackNTimes() {
+		Decorator();
+		int count = 200;
+		int failedCount = 0;
+		for (int i = 0; i < count; i++) {
+			try {
+				String title = mobileAction.getValue(feedback_title);
+				// System.out.println("Mood Selector title:" + title);
+				if (!title.equalsIgnoreCase("How was your TD app experience today?")) {
+					failedCount++;
+					System.out.println("Failed times:" + failedCount);
+					mobileAction.Report_Pass_Verified("Error message found");
+				}
+			} catch (Exception e) {
+				failedCount++;
+				System.out.println("Failed times:" + failedCount);
+				mobileAction.Report_Pass_Verified("Error message found");
+			}
+			ClickBackFromMoodSelector();
+
+			try {
+				Decorator();
+				// mobileAction.FuncClick(menu, "menu");
+				menu.click();
+			} catch (Exception e) {
+				System.out.println("failed to click menu");
+				break;
+			}
+
+			try {
+				// mobileAction.FuncClick(give_feedback, "feed back");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+					mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout", 1, "down");
+				}
+				Decorator();
+				give_feedback.click();
+			} catch (Exception e) {
+				System.out.println("failed to click menu");
+				break;
+			}
+
+		}
+		System.out.println("Total Failed times:" + failedCount + "/" + count);
 	}
 
 }
