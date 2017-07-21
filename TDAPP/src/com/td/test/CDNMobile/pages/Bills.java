@@ -664,6 +664,7 @@ public class Bills extends _CommonPage {
 						+ mobileAction.getAppString("upcomingBillDetailsFieldHeaderDate") + "']", "Date tab");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
 						+ mobileAction.getAppString("upcomingBillDetailsFieldHeaderPayee") + "']", "Payee");
+
 			} else {
 				mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
 				mobileAction.waitForElementToVanish(progrees_bar);
@@ -763,9 +764,11 @@ public class Bills extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.verifyTextEquality(bills_Header.getText(), mobileAction.getAppString("pay_bill"));
 				mobileAction.verifyTextEquality(payeePayBillCad.getText(), mobileAction.getAppString("payee"));
+
 				mobileAction.verifyTextEquality(fromAccountPayBillCad.getText(),
 						mobileAction.getAppString("payBillConfirmFieldHeaderFromAccount"));
 				mobileAction.verifyTextEquality(continuePayBillCad.getText(), mobileAction.getAppString("Continue"));
+
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"

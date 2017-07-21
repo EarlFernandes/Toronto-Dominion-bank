@@ -793,6 +793,7 @@ public class Accounts extends _CommonPage {
 
 		Decorator();
 		try {
+
 			System.out.println("Account selected:" + CL.getTestDataInstance().getPrimaryAccount());
 			String accountXL = "//*[contains(@text,'" + CL.getTestDataInstance().getPrimaryAccount()
 					+ "') or contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "')  ]";

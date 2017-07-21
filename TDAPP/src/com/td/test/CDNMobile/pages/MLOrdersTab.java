@@ -27,7 +27,9 @@ public class MLOrdersTab extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
+
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+
 	}
 
 	@iOSFindBy(xpath = " //*[contains(@label,'ACCOUNTS') or contains(@label,'COMPTES')]") // @Author

@@ -110,7 +110,9 @@ public class TDForMe extends _CommonPage {
 
 				// verify page collapses for displaying french Switch and
 				// battary saver Switch
+
 				if (mobileAction.verifyElementIsPresent(tdforme_displayfrench_switch)) {
+
 					mobileAction.Report_Fail_Not_Verified("Collapses french display switch ");
 					return;
 				} else {
@@ -118,6 +120,7 @@ public class TDForMe extends _CommonPage {
 				}
 
 				if (mobileAction.verifyElementIsPresent(tdforme_batterysave_switch)) {
+
 					mobileAction.Report_Fail_Not_Verified("Collapses battary saver switch ");
 					return;
 				} else {
@@ -129,7 +132,9 @@ public class TDForMe extends _CommonPage {
 			} else {// disabled:
 					// verify page collapses for displaying french Switch and
 					// battary saver Switch
+
 				if (mobileAction.verifyElementIsPresent(tdforme_displayfrench_switch)) {
+
 					mobileAction.Report_Fail_Not_Verified("Collapses french display switch ");
 					return;
 				} else {
@@ -187,7 +192,9 @@ public class TDForMe extends _CommonPage {
 
 				// verify page expands for displaying french Switch and battary
 				// saver Switch
+
 				if (!mobileAction.verifyElementIsPresent(tdforme_displayfrench_switch)) {
+
 					mobileAction.Report_Fail_Not_Verified("Expands french display switch ");
 					return;
 				} else {
@@ -195,6 +202,7 @@ public class TDForMe extends _CommonPage {
 				}
 
 				if (!mobileAction.verifyElementIsPresent(tdforme_batterysave_switch)) {
+
 					mobileAction.Report_Fail_Not_Verified("Expends Battary saver switch ");
 					return;
 				} else {

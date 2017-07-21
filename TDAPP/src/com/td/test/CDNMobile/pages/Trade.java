@@ -1508,6 +1508,7 @@ public class Trade extends _CommonPage {
 		}
 
 		MobileElement pricePath = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(currentPricePath));
+
 		System.out.println(pricePath.getText());
 		CL.getTestDataInstance().TCParameters.put("CurrentPrice", pricePath.getText());
 

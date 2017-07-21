@@ -89,7 +89,9 @@ public class MainScreenMIT extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
+
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(60, TimeUnit.SECONDS)), this);
+
 	}
 
 	public void OpenApp() {
@@ -141,8 +143,8 @@ public class MainScreenMIT extends _CommonPage {
 		} catch (Exception e) {
 			/*
 			 * try { CL.GetReporting().FuncReport(FAIL,
-			 * "Application not Opened."); } catch (IOException e1) {
-			 * e1.printStackTrace(); }
+			 * "Application not Opened."); } catch (IOException e1) { // TODO
+			 * Auto-generated catch block e1.printStackTrace(); }
 			 */
 			e.printStackTrace();
 		}

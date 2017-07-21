@@ -208,7 +208,9 @@ public class SearchPageMIT extends _CommonPage {
 				property = "name";
 			}
 			// US_Symbol.click();
+
 			List<MobileElement> listItem = (List<MobileElement>) (CL.GetAppiumDriver())
+
 					.findElements(By.xpath(xpathFlag));
 			// listItem = (List<MobileElement>) ((AppiumDriver)
 			// CL.GetDriver()).findElements(By.xpath(xpathSymbol));

@@ -203,6 +203,7 @@ public class Interac_e_Transfer extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
+
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
@@ -210,7 +211,7 @@ public class Interac_e_Transfer extends _CommonPage {
 	public void verify_interacTransfer() {
 		double accVal = 0.00;
 		String sender_SelectSender = getTestdata("Sender");
-		System.out.println("Sender:" + sender_SelectSender);
+
 		String select_SenderValue = "//android.widget.TextView[contains(@text,'" + sender_SelectSender + "')]";
 		String t_interacHeader = "Interac e-Transfer";
 
@@ -229,7 +230,9 @@ public class Interac_e_Transfer extends _CommonPage {
 				String sendermail = getTestdata("Sender");
 				System.out.println("Sender:" + sendermail);
 				String senderXpath = "//XCUIElementTypeStaticText[contains(@label,'" + sendermail + "')]";
+
 				MobileElement senderval = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(senderXpath));
+
 				if (!mobileAction.verifyElementIsPresent(senderval)) {
 					mobileAction.FuncClick(selectSender, "Sender");
 					mobileAction.FunCSwipeandScroll(senderval, true);
@@ -239,7 +242,9 @@ public class Interac_e_Transfer extends _CommonPage {
 				System.out.println("From account:" + fromacc);
 
 				String fromAccXpath = "//XCUIElementTypeStaticText[contains(@label,'" + fromacc + "')]";
+
 				MobileElement fromAccval = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(fromAccXpath));
+
 				if (!mobileAction.verifyElementIsPresent(fromAccval)) {
 					mobileAction.FuncClick(fromAccount, "From Account");
 					mobileAction.FunCSwipeandScroll(fromAccval, true);
@@ -272,6 +277,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				mobileAction.verifyElement(interac_Etransfer_Header, "Interac e-Transfer");
 				mobileAction.FuncClick(selectSender, "Sender");
 				mobileAction.waitForElementToVanish(progressBar);
+
 				// mobileAction.FuncElementSwipeWhileNotFound(acntsListSender,
 				// select_SenderValue, 0, "up", true);
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_SenderValue, true, 5, "up");
@@ -280,6 +286,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				if (mobileAction.verifyElementIsPresent(cancelSender)) {
 					mobileAction.FuncClick(cancelSender, "Cancel");
 				}
+
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.FuncClick(fromAccount, "From Account");
 				accVal = Double.parseDouble(mobileAction.getText(fromAccountVal));
@@ -408,6 +415,7 @@ public class Interac_e_Transfer extends _CommonPage {
 		String t_interacHeader = "Interac e-Transfer";
 
 		String transfer_fromAccount = getTestdata("FromAccount");
+
 		String select_Account = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
 				+ transfer_fromAccount + "']";
 
@@ -557,6 +565,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				mobileAction.FuncClick(fromAccount, "From Account");
 				String from_accountNo = "//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("FromAccount")
 						+ "')]";
+
 				MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())
 						.findElement(By.xpath(from_accountNo));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
@@ -802,6 +811,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				mobileAction.verifyElement(interac_Etransfer_Header, "Interac e-Transfer");
 				mobileAction.FuncClick(selectSender, "Sender");
 				mobileAction.waitForElementToVanish(progressBar);
+
 				// mobileAction.FuncElementSwipeWhileNotFound(acntsListSender,
 				// select_SenderValue, 1, "up", true);
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_SenderValue, true, 5, "up");
@@ -815,12 +825,14 @@ public class Interac_e_Transfer extends _CommonPage {
 				mobileAction.FuncClick(recipient, "Recipient");
 
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Recipient, 2, "up", true);
+
 				mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
 				mobileAction.FuncClickBackButton();
 				mobileAction.FuncClick(transfer_Continue, "Continue");
 				mobileAction.FuncClick(cancel, "Cancel");
 			}
 		} catch (NoSuchElementException e) {
+
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {

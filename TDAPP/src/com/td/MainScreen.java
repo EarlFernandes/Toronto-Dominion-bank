@@ -11,6 +11,7 @@ public class MainScreen extends _CommonPage {
 	// ***** LOCAL EXECUTION PARAMETERS *****
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
+
 	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.201:4760/wd/hub/";
 
 	// Change this parameter to point to the correct apk in Setup.xls for
@@ -27,7 +28,7 @@ public class MainScreen extends _CommonPage {
 			"SecurityPassword", "TriggerDelta", "CDNMarginAccount", "QuantityType", "Dividend", "SelectLimitPrice",
 			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName",
 			"Passcode", "NewPasscode", "Email", "Name", "EmailProfile", "PhoneProfile", "PostSurveyText", "Response",
-			"ProfileType" };
+			"ProfileType", "SecurityQuestion" };
 
 	public void readSheet() {
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
@@ -43,8 +44,8 @@ public class MainScreen extends _CommonPage {
 
 	}
 
-	public String p2pArray[] = { "HostPath", "HostUserName", "HostPassword", "ProfileType", "ProfileName", "ShortName",
-			"FirstName", "Sirname", "Title", "GroupUser", "GroupPassword", "TestSet", "PersonalAccountACS",
+	public String p2pArray[] = { "CustomerID", "HostPath", "HostUserName", "HostPassword", "ProfileType", "ProfileName",
+			"ShortName", "FirstName", "Sirname", "Title", "GroupUser", "GroupPassword", "TestSet", "PersonalAccountACS",
 			"PersonalAccountName", "BusinessAccountACSFirst", "BusinessFirstName", "BusinessAccountACSSecond",
 			"BusinessSecondName", "MultiGroupUser", "BusinessEmailID" };
 
@@ -65,15 +66,18 @@ public class MainScreen extends _CommonPage {
 		readSheet();
 		readP2PSheet();
 
-		if (getTestdata("ProfileType").equalsIgnoreCase("Personal")) {
-			System.out.println("ProfileType: " + getTestdata("ProfileType"));
-			Executor.get().createPersonalProfile();
-		} else if (getTestdata("ProfileType").equalsIgnoreCase("Business")) {
-			Executor.get().createBusinessProfile();
-		} else if (getTestdata("ProfileType").equalsIgnoreCase("Multi")) {
-			Executor.get().createMultiProfile();
-		}
+		if (StringUtils.isEmpty(CL.getTestDataInstance().Userid)) {
 
+			if (getTestdata("ProfileType").equalsIgnoreCase("Personal")) {
+				System.out.println("ProfileType: " + getTestdata("ProfileType"));
+				Executor.get().createPersonalProfile();
+			} else if (getTestdata("ProfileType").equalsIgnoreCase("Business")) {
+				Executor.get().createBusinessProfile();
+			} else if (getTestdata("ProfileType").equalsIgnoreCase("Multi")) {
+				Executor.get().createMultiProfile();
+			}
+
+		}
 		final String udid = CL.getTestDataInstance().getDeviceUdid();
 		// Jenkins only params
 

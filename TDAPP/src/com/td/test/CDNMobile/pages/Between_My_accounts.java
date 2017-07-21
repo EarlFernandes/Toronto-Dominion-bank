@@ -1285,7 +1285,9 @@ public class Between_My_accounts extends _CommonPage {
 					MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())
 							.findElement(By.xpath(accountno));
 					mobileAction.FunCSwipeandScroll(fromAccountval, true);
+
 					fromAccountval = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(accountno));
+
 					mobileAction.verifyElementIsDisplayed(fromAccountval, "From Account Number");
 					mobileAction.verifyElementIsDisplayed(fromAccountName, "From Account Name");
 					mobileAction.verifyElementIsDisplayed(fromAccountBalance, "From Account Balance");

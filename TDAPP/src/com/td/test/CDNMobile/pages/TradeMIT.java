@@ -706,6 +706,7 @@ public class TradeMIT extends _CommonPage {
 				String accountno = "//*[contains(@label,'" + trade_account_no + "')]";
 
 				MobileElement marginAccVal = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(accountno));
+
 				mobileAction.FunCSwipeandScroll(marginAccVal, true);
 				// mobileAction.FuncSelectElementInTable(select_Accounts_table,
 				// Firstpart, Secondpart,trade_account_no );
@@ -716,7 +717,9 @@ public class TradeMIT extends _CommonPage {
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
 				mobileAction.FuncClick(symbol1, "Enter name or symbol");
 				mobileAction.FuncSendKeys(symbol1, searchKeyword);
+
 				MobileElement lstAction = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(selectSymbol));
+
 				lstAction.click();
 				mobileAction.FunCSwipeandScroll(trading_pwd, false);
 

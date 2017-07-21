@@ -28,7 +28,9 @@ public class MLEnterOrderNegative extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
+
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+
 	}
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'is not eligible for') or contains(@label,'pas admissible à ce')]") // @Author

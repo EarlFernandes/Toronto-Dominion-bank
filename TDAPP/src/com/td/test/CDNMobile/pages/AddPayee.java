@@ -196,7 +196,9 @@ public class AddPayee extends _CommonPage {
 						"zip hint");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
 						+ mobileAction.getAppString("str_payee_account_info") + "']", "payee account info");
+
 				MobileElement desc = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(
+
 						"//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_description") + "']"));
 				mobileAction.FunCSwipeandScroll(desc, false);
 				mobileAction.verifyElementUsingXPath(
@@ -243,6 +245,7 @@ public class AddPayee extends _CommonPage {
 						"account hint");
 				final WebElement desc = mobileAction.verifyWebElementUsingXPath("//label[@id='description_label']",
 						"description");
+
 				final WebElement payeeAccountInfo = mobileAction
 						.verifyWebElementUsingXPath("(//span[@class='ng-binding'])[2]", "payee account info header");
 				final WebElement enterAccNumber = mobileAction.verifyWebElementUsingXPath(
@@ -515,13 +518,16 @@ public class AddPayee extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+
 				final WebElement payeeAccount = mobileAction.verifyWebElementUsingXPath("//input[@id='accountNumber']",
 						"Payee Account");
 				payeeAccount.sendKeys(getTestdata("FromAccount"));
 				Thread.sleep(4000);
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+
 				final WebElement continueButton = (WebElement) (CL.GetAppiumDriver()).findElement(By.id("btn"));
+
 				mobileAction.verifyElementIsDisplayed(continueButton, "Continue");
 				continueButton.click();
 				continueButton.click();

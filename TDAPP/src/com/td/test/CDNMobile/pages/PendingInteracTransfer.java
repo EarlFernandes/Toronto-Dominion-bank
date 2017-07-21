@@ -286,6 +286,7 @@ public class PendingInteracTransfer extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				WebDriverWait wait = new WebDriverWait(CL.GetAppiumDriver(), 60);
+
 				wait.until(ExpectedConditions
 						.visibilityOfElementLocated(By.xpath("//*[@label='-sender' or @label='-Sender']")));
 
@@ -591,6 +592,7 @@ public class PendingInteracTransfer extends _CommonPage {
 				if (mobileAction.verifyElementIsPresent(selectSender)) {
 					mobileAction.FuncClick(selectSender, "sender");
 					mobileAction.waitForElementToVanish(progressBar);
+
 					// mobileAction.FuncElementSwipeWhileNotFound(acntsList,
 					// select_senderValue, 0, "up", true);
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_senderValue, true, 5, "up");
@@ -609,6 +611,7 @@ public class PendingInteracTransfer extends _CommonPage {
 				Thread.sleep(3000);
 				mobileAction.verifyElementIsDisplayed(receiptHeader, "Receipt Page Opens");
 				String confrmVal = mobileAction.getText(confirmation_Val);
+
 				action2 = new TouchAction((CL.GetAppiumDriver())).longPress(confirmation_Val, 2);
 
 				CL.GetReporting().FuncReport("Pass", "Confirmation displays and selectable");
@@ -814,6 +817,7 @@ public class PendingInteracTransfer extends _CommonPage {
 				if (mobileAction.verifyElementIsPresent(selectSender)) {
 					mobileAction.FuncClick(selectSender, "sender");
 					mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart, sender_selectSender);
+
 				}
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
@@ -833,6 +837,7 @@ public class PendingInteracTransfer extends _CommonPage {
 				}
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
+
 				mobileAction.FuncClick(depositToContinue, "Continue");
 				mobileAction.FuncClick(cnfrmCancellation, "Confirm");
 				mobileAction.verifyElementIsDisplayed(receiptHeader, "Receipt Page Opens");
@@ -957,6 +962,7 @@ public class PendingInteracTransfer extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
 				mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");

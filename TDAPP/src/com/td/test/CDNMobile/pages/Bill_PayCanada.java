@@ -295,6 +295,7 @@ public class Bill_PayCanada extends _CommonPage {
 			}
 
 			else {
+
 				// String payee=getTestdata("Payee");
 				// String ToPostAccountXpath =
 				// "//android.widget.TextView[@resource-id='com.td:id/txtPayee'
@@ -428,12 +429,16 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.FuncClick(from_account, "From Account");
 				String from_accountNo = "//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("FromAccount")
 						+ "')]";
+
 				MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())
+
 						.findElement(By.xpath(from_accountNo));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 				mobileAction.FuncClick(to_account_post, "To Payee");
 				String to_accountNo = "//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("Payee") + "')]";
+
 				MobileElement toAccountval = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(to_accountNo));
+
 				mobileAction.FunCSwipeandScroll(toAccountval, true);
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
@@ -620,7 +625,9 @@ public class Bill_PayCanada extends _CommonPage {
 			mobileAction.FuncClick(to_account_post, "Select Payee");
 			account_value = "//*[contains(@text,'" + getTestdata("ToAccount") + "') or contains(@content-desc,'"
 					+ getTestdata("ToAccount") + "')]";
+
 			MobileElement toAccountval = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(account_value));
+
 			mobileAction.FunCSwipeandScroll(toAccountval, true);
 
 			// mobileAction.FuncClick(to_acnt_post, "toAccountPost");

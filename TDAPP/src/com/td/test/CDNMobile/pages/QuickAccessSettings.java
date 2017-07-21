@@ -45,6 +45,7 @@ public class QuickAccessSettings extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
+
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 	}
 
@@ -194,7 +195,9 @@ public class QuickAccessSettings extends _CommonPage {
 
 			String accountXL = "//*[contains(@text,'" + CL.getTestDataInstance().getPrimaryAccount()
 					+ "') or contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "')  ]";
+
 			MobileElement accountValue = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(accountXL));
+
 			if (mobileAction.verifyElementIsPresent(accountValue))
 				;
 
@@ -203,6 +206,7 @@ public class QuickAccessSettings extends _CommonPage {
 				CL.GetReporting().FuncReport("PASS", "The '" + "REWARDS value" + "' is not displayed");
 			} catch (IOException e1) {
 				System.out.println("IOException from Method" + this.getClass().toString() + " " + e.getCause());
+
 			}
 		}
 	}

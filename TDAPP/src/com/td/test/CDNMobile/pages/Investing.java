@@ -1302,8 +1302,10 @@ public class Investing extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
 				mobileAction.verifyTextEquality(investing_header.getAttribute("label"),
 						mobileAction.getAppString("Investing"));
+
 				mobileAction.verifyTextEquality(investing_body_title.getText(),
 						mobileAction.getAppString("investing_open_account"));
 				mobileAction.verifyTextEquality(investing_body_msg.getText(),
@@ -1490,7 +1492,9 @@ public class Investing extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				String from_accountNo = "//XCUIElementTypeStaticText[contains(@name, 'INVESTING_ACCOUNT_SUMMARY_DETAILCELL_') and contains(@value, '"
 						+ getTestdata("FromAccount") + "')]";
+
 				MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())
+
 						.findElement(By.xpath(from_accountNo));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 			} else {
@@ -1500,7 +1504,9 @@ public class Investing extends _CommonPage {
 
 				while (flag && count < 5) {
 					try {
+
 						MobileElement account = (MobileElement) (CL.GetAppiumDriver())
+
 								.findElement(By.xpath(accountNumXpath));
 						if (account.isDisplayed()) {
 							mobileAction.FuncClick(account, "Account Number");

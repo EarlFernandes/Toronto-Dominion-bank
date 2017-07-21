@@ -42,6 +42,7 @@ public class QuickAccess extends _CommonPage {
 			+ FrenchStrings.QUICK_ACCESS_SWITCH_IOS + "']/../XCUIElementTypeSwitch")
 	@AndroidFindBy(xpath = "//android.widget.Switch[@content-desc='" + EnglishStrings.QUICK_ACCESS_SWITCH_AND
 			+ "' or @content-desc='" + FrenchStrings.QUICK_ACCESS_SWITCH_AND + "']")
+
 	private MobileElement quickaccess_switch;
 
 	@iOSFindBy(xpath = "//*[@label='ACCOUNTS' or @label='COMPTES']")
@@ -65,7 +66,9 @@ public class QuickAccess extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.verifyElementTextIsDisplayed(quickaccess_title,
+
 					EnglishStrings.QUICK_ACCESS_HEADER + " | " + FrenchStrings.QUICK_ACCESS_HEADER);
+
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -75,7 +78,9 @@ public class QuickAccess extends _CommonPage {
 	public void VerifyQuickAccessSwitchWork() {
 		Decorator();
 		try {
+
 			mobileAction.verifyElementIsDisplayed(quickaccess_switch, "Quick Access Switch");
+
 			String switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
 			System.out.println("Checked Status :" + switchCheckStatus);
 			if (switchCheckStatus.equalsIgnoreCase("true")) {

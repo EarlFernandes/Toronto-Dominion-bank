@@ -28,6 +28,9 @@ public class _CommonPage {
 	protected static Map appStringMap;
 	protected static String currentLocale;
 
+	// public Reporting report;// = CL.GetReporting();
+	// calculated or discovered values
+
 	protected By foundElement = null;
 
 	public HashMap<String, String> languageMap = new HashMap<String, String>();

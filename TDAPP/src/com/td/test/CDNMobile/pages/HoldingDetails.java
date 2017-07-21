@@ -54,7 +54,9 @@ public class HoldingDetails extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
+
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(5, TimeUnit.SECONDS)), this);
+
 	}
 
 	public void verify_Account_CADCash() {

@@ -1043,6 +1043,7 @@ public class InvestingAccountSummary extends _CommonPage {
 									+ mobileAction.getAppString("open_string") + "')]";
 
 							MobileElement openStatus = (MobileElement) (CL.GetAppiumDriver())
+
 									.findElement(By.xpath(openXpath));
 
 							if (openStatus.isDisplayed()) {
@@ -1056,6 +1057,7 @@ public class InvestingAccountSummary extends _CommonPage {
 									+ mobileAction.getAppString("mutual_funds_pricing") + "')]";
 
 							MobileElement pricedMarket = (MobileElement) (CL.GetAppiumDriver())
+
 									.findElement(By.xpath(pricedMarketXpath));
 
 							if (pricedMarket.isDisplayed()) {
@@ -1069,6 +1071,7 @@ public class InvestingAccountSummary extends _CommonPage {
 									+ mobileAction.getAppString("str_Switch") + "')]";
 
 							MobileElement switchOpt = (MobileElement) (CL.GetAppiumDriver())
+
 									.findElement(By.xpath(switchOptXpath));
 
 							if (switchOpt.isDisplayed()) {
@@ -1131,6 +1134,7 @@ public class InvestingAccountSummary extends _CommonPage {
 
 				mobileAction.verifyElementIsDisplayed(ordersTab, "Orders Tab");
 				mobileAction.FuncClick(ordersTab, "Orders Tab");
+
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {

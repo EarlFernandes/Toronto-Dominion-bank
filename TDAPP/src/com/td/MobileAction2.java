@@ -1635,7 +1635,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Element does not contain expected text:" + text);
 			} catch (IOException e1) {
-
 				e1.printStackTrace();
 			}
 			// throw e;
@@ -1909,8 +1908,8 @@ public class MobileAction2 extends CommonLib {
 	 * GetReporting().FuncReport("Pass", "The text '" + value +
 	 * "' is Displayed"); } } catch (Exception e) { try {
 	 * GetReporting().FuncReport("Fail", "The text '" + value +
-	 * "' is not appeared"); } catch (IOException ie) { catch block
-	 * ie.printStackTrace(); } e.printStackTrace(); } }
+	 * "' is not appeared"); } catch (IOException ie) { // TODO Auto-generated
+	 * catch block ie.printStackTrace(); } e.printStackTrace(); } }
 	 */
 
 	public boolean FuncIsDisplayed(MobileElement elementToFind) {
@@ -2595,6 +2594,7 @@ public class MobileAction2 extends CommonLib {
 					GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is enabled.");
 				else
 					GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+
 			}
 		} catch (Exception e) {
 			try {
@@ -2617,7 +2617,6 @@ public class MobileAction2 extends CommonLib {
 				try {
 					GetReporting().FuncReport("Fail", "Exception in FuncGetTextByxpath(). getText() failed.");
 				} catch (IOException e1) {
-
 					e1.printStackTrace();
 				}
 			}
@@ -2634,7 +2633,6 @@ public class MobileAction2 extends CommonLib {
 						try {
 							GetReporting().FuncReport("Fail", "Exception in FuncGetTextByxpath(). getText() failed.");
 						} catch (IOException e3) {
-
 							e3.printStackTrace();
 						}
 					}
@@ -2688,7 +2686,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
 			} catch (IOException e1) {
-
 				e1.printStackTrace();
 			}
 			// throw e;
@@ -2696,7 +2693,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
 			} catch (IOException e1) {
-
 				e1.printStackTrace();
 			}
 
@@ -2974,7 +2970,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Element does not contain expected text:" + text);
 			} catch (IOException e1) {
-
 				e1.printStackTrace();
 			}
 			// throw e;

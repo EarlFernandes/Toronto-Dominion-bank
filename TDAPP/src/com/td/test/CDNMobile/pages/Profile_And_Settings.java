@@ -196,6 +196,7 @@ public class Profile_And_Settings extends _CommonPage {
 
 		Decorator();
 		try {
+
 			if (!mobileAction.isObjExists(whatsnew)) {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 					mobileAction.SwipeWithinElement("//XCUIElementTypeTable", 2, "down");

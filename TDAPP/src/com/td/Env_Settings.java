@@ -125,7 +125,9 @@ public class Env_Settings extends _CommonPage {
 					// mobileAction.FuncClick(enableMITPhase4, "Enable MIT
 					// Phase4");
 					// mobileAction.FunCSwipeandScroll(network_settings, true);
+
 					MobileElement envt = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(env));
+
 					mobileAction.FunCSwipeandScroll(envt, true);
 					/*
 					 * while(flag && count<10){
@@ -249,7 +251,9 @@ public class Env_Settings extends _CommonPage {
 				mobileAction.FuncClick(okButton, "OK");
 
 			}
+
 			MobileElement envt = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(env));
+
 			mobileAction.FunCSwipeandScroll(envt, true);
 			mobileAction.FunCSwipeandScroll(environment, true);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {

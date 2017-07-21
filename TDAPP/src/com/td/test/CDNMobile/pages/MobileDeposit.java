@@ -122,6 +122,7 @@ public class MobileDeposit extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
+
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(10, TimeUnit.SECONDS)), this);
 
 	}
@@ -315,7 +316,9 @@ public class MobileDeposit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
 				dateHeaders = (CL.GetAppiumDriver()).findElements(
+
 						By.xpath("//XCUIElementTypeStaticText[contains(@name, 'DEPOSIT_RECEIPT_VIEW_DATE')]"));
 				for (MobileElement m : dateHeaders) {
 					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_YYYY_MM_DD);
@@ -522,6 +525,7 @@ public class MobileDeposit extends _CommonPage {
 						"//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
 								+ mobileAction.getAppString("mobiledeposit_depositreciept_header") + "']",
 						"Mobile Deposit");
+
 				final String xPathLocate = "//XCUIElementTypeButton[@label='"
 						+ mobileAction.getAppString("MRDC_DEPOSITCHEQUE_INVALID_ACCOUNT_HYPERLINK2") + "']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathLocate, false, 2, "up");

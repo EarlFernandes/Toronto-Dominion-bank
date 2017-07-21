@@ -501,6 +501,7 @@ public class Profile extends _CommonPage {
 				System.out.println("Business email is empty");
 				return "";
 			}
+
 			emailInfo = mobileAction.FuncGetValByRegx(emailInfo, emailReg);
 			System.out.println("email:" + emailInfo);
 			return emailInfo;
@@ -526,6 +527,7 @@ public class Profile extends _CommonPage {
 			emailInfo = replacePlaceholderToNothing(emailInfo, emailPlaceHolder);
 			if (emailInfo.isEmpty()) {
 				System.out.println("Personal email is empty");
+
 				return "";
 			}
 			emailInfo = mobileAction.FuncGetValByRegx(emailInfo, emailReg);
@@ -623,12 +625,14 @@ public class Profile extends _CommonPage {
 		Decorator();
 		String intial_name = get_name_initial_info();
 		String detail_name = get_name_detail_info();
+
 		if (intial_name.isEmpty() || detail_name.isEmpty()) {
 			mobileAction.Report_Fail("Failed for empty name");
 			System.err.println("TestCase has failed for empty name");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			return;
 		}
+
 		System.out.println("intial_name:" + intial_name);
 		System.out.println("detail_name:" + detail_name);
 		if (intial_name.equals(detail_name.substring(0, 1).toUpperCase())) {
@@ -1142,6 +1146,7 @@ public class Profile extends _CommonPage {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		} catch (InterruptedException e) {
+
 			e.printStackTrace();
 		}
 	}

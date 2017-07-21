@@ -29,7 +29,9 @@ public class Confirm_Payee extends _CommonPage {
 	private MobileElement access_Card;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Add Payee']")
+
 	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Payee']")
+
 	private MobileElement addPayee_Btn;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
@@ -76,6 +78,7 @@ public class Confirm_Payee extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
+
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
@@ -109,6 +112,7 @@ public class Confirm_Payee extends _CommonPage {
 			mobileAction.waitForElementToVanish(progressBar);
 
 			// mobileAction.verifyElementIsDisplayed(successMsg, "Thank You!");
+
 			mobileAction.FuncSwipeWhileElementNotFound(payThisPayee, true, 5, "up");
 			mobileAction.waitForElementToVanish(progressBar);
 			if (mobileAction.verifyElementIsPresent(payBill_Header)) {
@@ -125,6 +129,7 @@ public class Confirm_Payee extends _CommonPage {
 						+ CL.getTestDataInstance().TCParameters.get("Payee");
 				System.out.println("Expected added payee:" + expectedPayee);
 				mobileAction.verifyTextEquality(addedPayee, expectedPayee);
+
 			}
 
 		} catch (NoSuchElementException e) {

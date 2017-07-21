@@ -29,7 +29,9 @@ public class MLChangeOrder extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
+
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+
 	}
 
 	@iOSFindBy(xpath = "//*[@label='Send Order' or contains(@label,'Envoyer l')]") // @Author
@@ -395,6 +397,7 @@ public class MLChangeOrder extends _CommonPage {
 			try {
 				CL.GetReporting().FuncReport("Fail", "Exception in getOptionOptionChangeOrderData().");
 			} catch (IOException e1) {
+
 				e1.printStackTrace();
 			}
 			e.printStackTrace();

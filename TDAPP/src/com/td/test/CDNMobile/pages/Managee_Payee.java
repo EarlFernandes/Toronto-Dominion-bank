@@ -212,6 +212,7 @@ public class Managee_Payee extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				String from_accountNo = "//XCUIElementTypeLink[@label='" + getTestdata("Payee") + "']";
+
 				MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())
 						.findElement(By.xpath(from_accountNo));
 				fromAccountval.click();
@@ -354,6 +355,7 @@ public class Managee_Payee extends _CommonPage {
 				}
 			} else {
 				// For android, using webview to handle
+
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				WebElement accessCard = CL.GetDriver().findElement(By.cssSelector("div.dropdown-holder"));
 				accessCard.click();
@@ -366,6 +368,7 @@ public class Managee_Payee extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed((MobileElement) mypayees_android, "My Payees");
 				accessCard = CL.GetDriver().findElement(By.cssSelector("div.dropdown-holder"));
 				accessCard.click();
+
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncClick(thirdAccessCard, "Second Access Card");
 				Thread.sleep(2000);
@@ -374,6 +377,7 @@ public class Managee_Payee extends _CommonPage {
 						.findElement(By.cssSelector("button.primary-button.ng-binding.ng-scope"));
 				mobileAction.verifyElementIsDisplayed((MobileElement) addCanadianPayeeButton, "Add Canadian Payee");
 				mobileAction.switchAppiumContext("NATIVE_APP");
+
 			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -500,7 +504,9 @@ public class Managee_Payee extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees Header");
 			mobileAction.FuncClick(addPayee, "Add Canadian Payee");
+
 			mobileAction.waitForElementToVanish(progressBar);
+
 			Thread.sleep(10000);
 
 		} catch (NoSuchElementException e) {

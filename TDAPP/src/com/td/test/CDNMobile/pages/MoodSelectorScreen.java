@@ -147,7 +147,9 @@ public class MoodSelectorScreen extends _CommonPage {
 		// }
 
 		try {
+
 			Thread.sleep(2000);
+
 			String title = mobileAction.getValue(feedback_title);
 			System.out.println("Mood Selector title:" + title);
 			mobileAction.verifyElementTextIsDisplayed(feedback_title,
@@ -161,6 +163,7 @@ public class MoodSelectorScreen extends _CommonPage {
 
 	public void VerifyEmotionsAnimateFromTopToBottom() {
 		Decorator();
+
 		List<MobileElement> moodList = null;
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -169,12 +172,14 @@ public class MoodSelectorScreen extends _CommonPage {
 			} else {
 				String xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText";
 				moodList = ((AppiumDriver) CL.GetDriver()).findElements(By.xpath(xpath));
+
 			}
 		} catch (Exception e) {
 
 		}
 
 		String moodSequence = "";
+
 		int size = moodList.size();
 		for (int i = 0; i < size; i++) {
 			String idText = moodList.get(i).getText();
@@ -434,11 +439,13 @@ public class MoodSelectorScreen extends _CommonPage {
 
 	public void ClickSendFeedbackNow() {
 		Decorator();
+
 		try {
 			List<MobileElement> checkboxList = null;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				// checkboxList =
 				// check_box_container.findElements(By.xpath("//android.widget.CheckBox"));
+
 				checkboxList = (CL.GetAppiumDriver()).findElements(By.xpath(
 						"//android.widget.LinearLayout[@resource-id='com.td:id/checkbox_form_container']//android.widget.CheckBox"));
 				for (int i = 0; i < checkboxList.size(); i++) {
@@ -470,6 +477,7 @@ public class MoodSelectorScreen extends _CommonPage {
 		try {
 			String elementText = mobileAction.getValue(rate_us_on_google_Or_App_Store);
 			System.out.println("ElementText:" + elementText);
+
 			mobileAction.verifyElementIsDisplayed(rate_us_on_google_Or_App_Store, elementText);
 
 		} catch (Exception e) {
