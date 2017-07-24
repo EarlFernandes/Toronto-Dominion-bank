@@ -1040,8 +1040,9 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			if(getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Cancel") || getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Annuler"))
 			{
-				mobileAction.FuncClick(selectedExpiryListItem, "selectedExpiryListItem");
-/*				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				selectGoodTillCancel();
+/*				mobileAction.FuncClick(selectedExpiryListItem, "selectedExpiryListItem");
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 				{
 					try{
 					CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(4).click();
@@ -1062,7 +1063,7 @@ public class TradeMultiLeg extends _CommonPage{
 					{
 						CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
 					}
-				}*/
+				}
 				try{
 		             String sixmonth = "";
 		             boolean bFlag = false;
@@ -1077,8 +1078,8 @@ public class TradeMultiLeg extends _CommonPage{
 			                    
 			                    sixmonth = mobileAction.FuncGetValByRegx(CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText().split("-")[1],"([0-9]+)");
 			                    
-	/*		                    if(i>=5)
-			                    	mobileAction.FuncSwipeOnce("up");*/
+			                    if(i>=5)
+			                    	mobileAction.FuncSwipeOnce("up");
 			                    
 			                    if(Integer.parseInt(sixmonth) >= 183)
 			                    {
@@ -1098,7 +1099,7 @@ public class TradeMultiLeg extends _CommonPage{
              catch(Exception e)
              {
                     CL.GetReporting().FuncReport("Fail", "Expiry list item greater than 183 days not selected.");
-             }
+             }*/
 
 
 				//mobileAction.FuncClick(expiryItem183Days, "expiryItem183Days");
@@ -1201,45 +1202,24 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			if(getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Cancel") || getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Annuler"))
 			{
-				mobileAction.FuncClick(selectedExpiryListItem, "selectedExpiryListItem");
-/*				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-				{
-					try{
-					CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(4).click();
-					CL.GetReporting().FuncReport("Pass", "Expiry list last item selected.");
-					}
-					catch(Exception e)
-					{
-						CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
-					}
-				}
-				else
-				{
-					try{
-					CL.GetDriver().findElements(By.xpath(xpathExpiryItem_iOS)).get(4).click();
-					CL.GetReporting().FuncReport("Pass", "Expiry list last item selected.");
-					}
-					catch(Exception e)
-					{
-						CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
-					}
-				}*/
+				selectGoodTillCancel();
+/*				mobileAction.FuncClick(selectedExpiryListItem, "selectedExpiryListItem");
 				try{
 		             String sixmonth = "";
 		             boolean bFlag = false;
-		            // int size1 = CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).size();
-		             int size1 = 100;
+		             int size1 = CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).size();
+		            // int size1 = 100;
 		             for (int j=1;j<5;j++)
 		             {
 		            	 Thread.sleep(2000);
-			             for(int i=0; i<5; i++)
+			             for(int i=0; i<size1; i++)
 			             {
 			                    //CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText();
 			                    
 			                    sixmonth = mobileAction.FuncGetValByRegx(CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText().split("-")[1],"([0-9]+)");
 			                    
-	/*		                    if(i>=5)
-			                    	mobileAction.FuncSwipeOnce("up");*/
+			                    if(i>=5)
+			                    	mobileAction.FuncSwipeOnce("up");
 			                    
 			                    if(Integer.parseInt(sixmonth) >= 183)
 			                    {
@@ -1259,7 +1239,7 @@ public class TradeMultiLeg extends _CommonPage{
             catch(Exception e)
             {
                    CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
-            }
+            }*/
 				//mobileAction.FuncClick(expiryItem183Days, "expiryItem183Days");
 			}
 			else
@@ -1318,8 +1298,9 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			if(getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Cancel") || getTestdata("Good'til",XLSheetUserIDs).equalsIgnoreCase("Annuler"))
 			{
-				mobileAction.FuncClick(selectedExpiryListItem, "selectedExpiryListItem");
-/*				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				selectGoodTillCancel();
+/*				mobileAction.FuncClick(selectedExpiryListItem, "selectedExpiryListItem");
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 				{
 					try{
 					CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(4).click();
@@ -1341,7 +1322,7 @@ public class TradeMultiLeg extends _CommonPage{
 						CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
 					}
 				}
-*/				//mobileAction.FuncClick(expiryItem183Days, "expiryItem183Days");
+				//mobileAction.FuncClick(expiryItem183Days, "expiryItem183Days");
 				try{
 		             String sixmonth = "";
 		             int size1 = CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).size();
@@ -1363,7 +1344,7 @@ public class TradeMultiLeg extends _CommonPage{
 	            catch(Exception e)
 	            {
 	                   CL.GetReporting().FuncReport("Fail", "Expiry list last item not selected.");
-	            }
+	            }*/
 			}
 			else
 			{
@@ -1668,29 +1649,8 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			mobileAction.FuncClick(search_txtSearchTitlediff, "search_txtSearchTitlediff");
 	
-/*			String xpathFlag="";
-			int temp =0;
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-			{
-				xpathFlag = xpathSymbolFlag;
-			}
-			else
-			{
-				xpathFlag = xpathSymbolFlag_ios;
-				temp =1;
-			}
-			mobileAction.FuncClick(search_symbol, "search_symbol");
-			SearchPageMIT.get().enterSymbol(search_symbol, "AAPL");
-			try
-			{
-			mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),"First Symbol");
-			}
-			catch(Exception e)
-			{
-				CL.GetReporting().FuncReport("Fail", "First Symbol not selected.");
-			}*/
 			SearchPageMIT.get().clickFirstSymbol("AAPL");
-			//
+			
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 7, "up");
 			mobileAction.verifyElement(leg1Action, getTestdata("TextDefaultListItem",XLSheetUserIDs));
 			mobileAction.FuncSwipeOnce("up");
@@ -1744,20 +1704,6 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			mobileAction.FuncClick(search_txtSearchTitlediff, "search_txtSearchTitlediff");
 	
-/*			String xpathFlag="";
-			int temp =0;
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-			{
-				xpathFlag = xpathSymbolFlag;
-			}
-			else
-			{
-				xpathFlag = xpathSymbolFlag_ios;
-				temp =1;
-			}
-			mobileAction.FuncClick(search_symbol, "search_symbol");
-			SearchPageMIT.get().enterSymbol(search_symbol, "AAPL");
-			mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),"First Symbol");*/
 			SearchPageMIT.get().clickFirstSymbol("AAPL");
 			//
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Action, false, 7, "up");
@@ -1816,29 +1762,6 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			mobileAction.FuncClick(searchBar, "searchBar");
 			
-/*			String xpathFlag="";
-			int temp =0;
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-			{
-				xpathFlag = xpathSymbolFlag;
-			}
-			else
-			{
-				xpathFlag = xpathSymbolFlag_ios;
-				temp =1;
-			}
-
-			mobileAction.FuncClick(search_symbol, "search_symbol");
-			SearchPageMIT.get().enterSymbol(search_symbol, "G ");
-			Thread.sleep(5000);
-			try{
-			mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),"First Symbol");
-			}
-			catch(Exception e)
-			{
-				CL.GetReporting().FuncReport("Fail", "First searched symbol not clicked.");
-			}*/
-			
 			SearchPageMIT.get().clickFirstSymbol("G");
 			
 			mobileAction.selectItemFromList(selectedOrderType, aOrderTypeList[1]);
@@ -1867,29 +1790,6 @@ public class TradeMultiLeg extends _CommonPage{
 			mobileAction.verifyElementIsDisplayed(searchBar, "searchBar");
 			
 			mobileAction.FuncClick(searchBar, "searchBar");
-			
-/*			String xpathFlag="";
-			int temp =0;
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-			{
-				xpathFlag = xpathSymbolFlag;
-			}
-			else
-			{
-				xpathFlag = xpathSymbolFlag_ios;
-				temp =1;
-			}
-
-			mobileAction.FuncClick(search_symbol, "search_symbol");
-			SearchPageMIT.get().enterSymbol(search_symbol, "G ");
-			Thread.sleep(5000);
-			try{
-			mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),"First Symbol");
-			}
-			catch(Exception e)
-			{
-				CL.GetReporting().FuncReport("Fail", "First searched symbol not clicked.");
-			}*/
 			
 			SearchPageMIT.get().clickFirstSymbol("G");
 			
@@ -2130,5 +2030,56 @@ public class TradeMultiLeg extends _CommonPage{
 				e2.printStackTrace();
 			}
 
+	}
+	
+	public void selectGoodTillCancel()
+	{
+		Decorator();
+		try
+		{
+				mobileAction.FuncClick(selectedExpiryListItem, "selectedExpiryListItem");
+				try{
+		             String sixmonth = "";
+		             boolean bFlag = false;
+		             int size1 = CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).size();
+		            // int size1 = 100;
+		             for (int j=1;j<5;j++)
+		             {
+		            	 Thread.sleep(2000);
+			             for(int i=0; i<size1; i++)
+			             {
+			                    //CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText();
+			                    
+			                    sixmonth = mobileAction.FuncGetValByRegx(CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).getText().split("-")[1],"([0-9]+)");
+			                    
+	/*		                    if(i>=5)
+			                    	mobileAction.FuncSwipeOnce("up");*/
+			                    
+			                    if(Integer.parseInt(sixmonth) >= 183)
+			                    {
+			                           CL.GetDriver().findElements(By.xpath(xpathExpiryItem)).get(i).click();
+			                           CL.GetReporting().FuncReport("Pass", "Expiry list item greater than 183 days selected.");
+			                           bFlag=true;
+			                           break;
+			                    }
+			             } 
+			             if(bFlag)
+			            	 break;
+			             
+		            	 mobileAction.FuncSwipeOnce("up");
+		             }
+		
+		             }
+            catch(Exception e)
+            {
+                   CL.GetReporting().FuncReport("Fail", "Expiry list item greater than 183 days not selected.");
+            }
+				//mobileAction.FuncClick(expiryItem183Days, "expiryItem183Days");
+			}
+		
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 }
