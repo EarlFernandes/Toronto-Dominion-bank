@@ -74,7 +74,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	private MobileElement email_caption;
 
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[7]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/label']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/phone_number']/../../android.widget.TextView")
 	private MobileElement phone_caption;
 
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]")
@@ -96,13 +96,16 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[9]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.CheckBox[@resource-id='com.td:id/checkbox']")
 	private MobileElement consent_checkbox;
-
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/checkbox_description']")
+	private MobileElement consent_checkbox_description;
+	
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeOther[9]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer' and @index='7']/android.widget.TextView")
 	private MobileElement legal_text;
 
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer' and @index='2']/android.widget.TextView")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer']/android.widget.TextView")
 	private MobileElement copy_text;
 
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/preceding-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
@@ -114,10 +117,6 @@ public class PurchaseMutualFunds extends _CommonPage {
 	String purchaseListView = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/purchaseListView']";
 	String phoneReg = "\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
 	String emailReg = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
-	String errorPhoneReg = "\\d{1}-\\d{3}-\\d{3}-\\d{4}";
-	String errorPhoneRegFR = "\\d{1}–\\d{3}–\\d{3}–\\d{4}"; // French – is
-															// different from
-															// English -
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/../XCUIElementTypeOther[1]/XCUIElementTypeButton")
 	@AndroidFindBy(id = "com.td:id/purchasePreviewButton")
@@ -433,9 +432,13 @@ public class PurchaseMutualFunds extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(phone_caption, "电话号码|電話號碼");
 			String expectedCopyText = "您的个人信息仅用于我们就您的基金购买情况与您联络。 | 我們僅在因有關您的購買時，才會使用您的資訊與您聯絡。";
 			mobileAction.verifyElementTextIsDisplayed(copy_text, expectedCopyText);
-			mobileAction.verifyElementTextIsDisplayed(view_fundFacts, " 查看基金概况（表现和费用）|查看基金概況（表現和費用）" + "");
-			mobileAction.verifyElementTextIsDisplayed(consent_checkbox,
-					" 我同意通过电子方式获取基金概况和费用，并确认我有机会在购买基金之前查阅基金概况和费用。|我同意以電子方式獲取基金詳情和費用，並確認我在購買基金前都有機會先查閱內容。 " + "");
+			mobileAction.verifyElementTextIsDisplayed(view_fundFacts, " 查看基金概况（表现和费用）|查看基金概況（表現和費用）");
+			String expectedCheckBox = "我同意通过电子方式获取基金概况和费用，并确认我有机会在购买基金之前查阅基金概况和费用。|我同意以電子方式獲取基金詳情和費用，並確認我在購買基金前都有機會先查閱內容。 ";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				mobileAction.verifyElementTextIsDisplayed(consent_checkbox_description,expectedCheckBox);
+			}else{
+				mobileAction.verifyElementTextIsDisplayed(consent_checkbox,expectedCheckBox);
+			}
 			// String expectedLegalText
 			// ="您购买的基金有最短持有期要求。如果您在最短持有期到期之前赎回，则可能需向基金支付最高 2%
 			// 的短期交易费，此要求适用于道明互惠基金的所有单位（货币市场基金除外）。详情请参阅相关基金概况。"+

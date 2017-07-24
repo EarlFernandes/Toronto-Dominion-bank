@@ -59,15 +59,15 @@ public class Receipt extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='VIEW MY ACCOUNTS']")
 	private MobileElement viewMyAccounts_Btn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'HOME')]")
+	@iOSFindBy(xpath = "//*[@name='bg_receipt_success']/following-sibling::XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/thank_you']")
 	private MobileElement subheader_thanksyou;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'HOME')]")
+	@iOSFindBy(xpath = "//*[@name='bg_receipt_success']/following-sibling::XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/message']")
 	private MobileElement reply_message;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'HOME')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[12]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/footer_txt_note']")
 	private MobileElement foot_note;
 
@@ -237,16 +237,14 @@ public class Receipt extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(subheader_thanksyou, " 谢谢！| 謝謝您！");
 			mobileAction.verifyElementTextIsDisplayed(reply_message,
 					"我们已经开始处理您的购买。如有问题，我们将与您联系。|我們已開始處理您的購買。如有問題，我們將與您聯絡。");
-
-			String[] detailInfomation = { "后续流程|後續流程", "下午 3 点之前的购买 |下午 3 時之前的購買",
-					"如果您在工作日东部时间下午 3 点之前购买，将按当天价格交易。 | 如果在工作日的東部時間下午 3 時之前購買，將按當天價格交易。", "下午 3 点之后的购买 |下午 3 時之後的購買",
-					"如果您在东部时间下午 3 点之后或在周末购买，将按照下一个工作日的收市价交易。|如果在東部時間下午 3 時之後或在週末購買，將按下一個工作日的收市價交易。", "购买确认|購買確認",
-					"我们处理完您的购买之后，您能够即刻在您的互惠基金账户结余中看到新的基金。|我們處理完您的購買之後，您便能在您的互惠基金賬戶結餘中看到新的基金。", "-购买详情|購買詳情",
-					"购买详情|購買詳情", "参考编号|參考號碼", "基金|基金", "金额|金額", "发送请求时间|請求送出時間", "转出账户|轉出賬戶", "转入互惠基金账户|轉入互惠基金賬戶"
-
-			};
-
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				String[] detailInfomation = { "后续流程|後續流程", "下午 3 点之前的购买 |下午 3 時之前的購買",
+						"如果您在工作日东部时间下午 3 点之前购买，将按当天价格交易。 | 如果在工作日的東部時間下午 3 時之前購買，將按當天價格交易。", "下午 3 点之后的购买 |下午 3 時之後的購買",
+						"如果您在东部时间下午 3 点之后或在周末购买，将按照下一个工作日的收市价交易。|如果在東部時間下午 3 時之後或在週末購買，將按下一個工作日的收市價交易。", "购买确认|購買確認",
+						"我们处理完您的购买之后，您能够即刻在您的互惠基金账户结余中看到新的基金。|我們處理完您的購買之後，您便能在您的互惠基金賬戶結餘中看到新的基金。", "购买详情|購買詳情",
+						"购买详情|購買詳情","参考编号|參考號碼", "基金|基金", "金额|金額", "发送请求时间|請求送出時間", "转出账户|轉出賬戶", "转入互惠基金账户|轉入互惠基金賬戶"
+
+				};
 				List<MobileElement> detailList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
 						"//android.support.v7.widget.RecyclerView/android.widget.LinearLayout/android.widget.TextView");
 
@@ -277,30 +275,60 @@ public class Receipt extends _CommonPage {
 				for (int i = 1; i < size1; i++) {
 					mobileAction.verifyElementTextIsDisplayed(detailList.get(i), detailInfomation[i + size]);
 				}
+			}else{
+				List<MobileElement> detailList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
+						"//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText");
+				String[] detailInfomation = { "后续流程|後續流程", "下午 3 点之前的购买 |下午 3 時之前的購買",
+						"如果您在工作日东部时间下午 3 点之前购买，将按当天价格交易。 | 如果在工作日的東部時間下午 3 時之前購買，將按當天價格交易。", "下午 3 点之后的购买 |下午 3 時之後的購買",
+						"如果您在东部时间下午 3 点之后或在周末购买，将按照下一个工作日的收市价交易。|如果在東部時間下午 3 時之後或在週末購買，將按下一個工作日的收市價交易。", "购买确认|購買確認",
+						"我们处理完您的购买之后，您能够即刻在您的互惠基金账户结余中看到新的基金|我們處理完您的購買之後，您便能在您的互惠基金賬戶結餘中看到新的基金", "购买详情|購買詳情",
+						"购买详情|購買詳情", "参考编号|參考號碼", "ignore","基金|基金","ignore", "ignore","金额|金額","ignore", "发送请求时间|請求送出時間","ignore", "ignore",
+						"转出账户|轉出賬戶","ignore","ignore","ignore", "转入互惠基金账户|轉入互惠基金賬戶","ignore","ignore","您的账户结余没有显示您购买的基金。我们处理完您的购买后，您的账户结余将会即刻更新。"+
+						"|您的賬戶結餘沒有顯示您購買的基金。我們處理完您的購買後，您的賬戶結餘便會更新。"
+
+				};
+				int size = detailList.size();
+				System.out.println("size of data:"+size);
+				for(int i=0; i<size; i++){
+					if(detailInfomation[i].equalsIgnoreCase("ignore")){
+						System.out.println("ignore index "+ i);
+						continue;
+					}else{
+						if(!mobileAction.verifyElementIsPresent(detailList.get(i))){
+							mobileAction.FuncSwipeWhileElementNotFound(detailList.get(i), false, 5, "up");							
+						}
+						mobileAction.verifyElementTextIsDisplayed(detailList.get(i), detailInfomation[i]);
+					}
+					//System.out.println("Text "+ i+" "+detailList.get(i).getText() );
+				}
 			}
 
 			// mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView",
 			// 3, "down");
 			String footnote = "您的账户结余没有显示您购买的基金。我们处理完您的购买后，您的账户结余将会即刻更新。 | 您的賬戶結餘沒有顯示您購買的基金。我們處理完您的購買後，您的賬戶結餘便會更新。 ";
-			mobileAction.verifyElementTextIsDisplayed(foot_note, footnote);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView", 1, "down");
+				mobileAction.verifyElementTextIsDisplayed(foot_note, footnote);
 			}
-
+			mobileAction.FuncSwipeUpTillScreenBottom(homeBtn);
 			String[] button_text = { "返回主页|返回首頁", "查看我的账户|查看我的賬戶" };
+			List<MobileElement> btnList=null;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				List<MobileElement> btnList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
+				btnList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
 						"//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button']");
-				int size = btnList.size();
-				if (size < button_text.length) {
-					System.out.println("Failed due to button not match");
-					mobileAction.Report_Fail("Bottom Button number doesn't match");
-					return;
-				}
-				for (int i = 0; i < button_text.length; i++) {
-					mobileAction.verifyElementTextIsDisplayed(btnList.get(i), button_text[i]);
-				}
+			}else{
+				btnList =((MobileDriver) CL.GetDriver()).findElementsByXPath("//XCUIElementTypeCollectionView/XCUIElementTypeCell");
 			}
+				
+			int size = btnList.size();
+			if (size < button_text.length) {
+				System.out.println("Failed due to button not match");
+				mobileAction.Report_Fail("Bottom Button number doesn't match");
+				return;
+			}
+			for (int i = 0; i < button_text.length; i++) {
+				mobileAction.verifyElementTextIsDisplayed(btnList.get(i), button_text[i]);
+			}
+			
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
