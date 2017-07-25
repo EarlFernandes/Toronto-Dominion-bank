@@ -10,6 +10,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.html5.Location;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -1607,7 +1608,7 @@ public class MobileAction2 extends CommonLib {
 	 *             In case an exception occurs while clicking over the element.
 	 *             In case the element is not found over the screen.
 	 */
-	public void verifyElementTextContains(MobileElement objElement, String text) {// throws
+	public void verifyElementTextContains(WebElement objElement, String text) {// throws
 																					// IOException
 																					// {
 																					// //@Author
@@ -2652,7 +2653,7 @@ public class MobileAction2 extends CommonLib {
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 */
-	public String FuncGetElementText(MobileElement objElement) { // @Author -
+	public String FuncGetElementText(WebElement objElement) { // @Author -
 																	// Sushil
 																	// 13-Apr-2017
 		String textToReturn = null;
@@ -3193,6 +3194,30 @@ public class MobileAction2 extends CommonLib {
 			} catch (IOException e1) {
 				System.out.println("Failed to Write in report for element: " + string);
 			}
+		}
+	}
+	
+	/**
+	 * This method will use the Actions class to click on a web element
+	 * @param objElement
+	 * @param text
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * @throws NoSuchElementException
+	 */
+	public void FuncClickWithActions(WebElement objElement, String text)
+			throws InterruptedException, IOException, NoSuchElementException {
+		try {
+			Actions actions = new Actions(GetAppiumDriver());
+			actions.moveToElement(objElement).click().perform();
+			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			throw e;
 		}
 	}
 }
