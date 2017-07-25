@@ -14,14 +14,14 @@ public class MainScreen extends _CommonPage {
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
 
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.140.61:4786/wd/hub";
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.201:4760/wd/hub";
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
 
-	private static final String APP_ANDROID = "APP_ANDROID_FR";
+	private static final String APP_ANDROID = "APP_ANDROID_ZH";
 
 	// Change this parameter to point to the correct ipa in Setup.xls for ios
-	private static final String APP_IOS = "APP_IOS";
+	private static final String APP_IOS = "APP_IOS_ZHT";
 
 	public String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env",
 			"Amount", "Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount",
@@ -101,7 +101,7 @@ public class MainScreen extends _CommonPage {
 			} else {
 				currentLocale = "EN";
 				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
-			}
+			}			
 		} else { // Local execution
 			try { // Set udid explicitly for local execution, to handle udid
 					// with all caps, when reading from excel sheet // it seems
@@ -127,7 +127,7 @@ public class MainScreen extends _CommonPage {
 				} else {
 					appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
 				}
-				// System.out.println(appStringMap.toString());
+				//System.out.println(appStringMap.toString());
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;

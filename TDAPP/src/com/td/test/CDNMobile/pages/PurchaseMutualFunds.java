@@ -429,7 +429,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			} else {
 				mobileAction.SwipeWithinElement("//XCUIElementTypeTable", 1, "down");
 			}
-			mobileAction.verifyElementTextIsDisplayed(email_caption, "电子邮件|電郵地址|電子郵件");
+			mobileAction.verifyElementTextIsDisplayed(email_caption, "电子邮件|電郵地址");
 			mobileAction.verifyElementTextIsDisplayed(phone_caption, "电话号码|電話號碼");
 			String expectedCopyText = "您的个人信息仅用于我们就您的基金购买情况与您联络。 | 我們僅在因有關您的購買時，才會使用您的資訊與您聯絡。";
 			if(mobileAction.verifyElementIsPresent(copy_text)){

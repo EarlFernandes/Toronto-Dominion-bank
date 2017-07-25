@@ -244,7 +244,16 @@ public class PreviewPurchase extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(email_label, "电子邮件|電郵地址");
 			mobileAction.verifyElementTextIsDisplayed(phone_label, "电话号码|電話號碼");
 			String disclaimerInfo = "您的个人信息仅用于我们就您的基金购买情况与您联络。请确保所有注册退休储蓄计划(RSP)和免税储蓄账户(TFSA)交易不超过您允许的供款限额。如果交易出于任何原因被拒，我们将在一个工作日内取消交易并向您发送电子邮件通知。您购买的基金有最短持有期要求。如果您在最短持有期到期之前赎回，则可能需向基金支付最高2%的短期交易费，此要求适用于道明互惠基金的所有单位（货币市场基金除外）。详情请参阅相关基金概况。道明资产管理有限公司（TDAM）在您持有道明互惠基金单位期间向道明投资服务有限公司（TDIS）支付尾随佣金，作为其向您提供服务和咨询的费用。有关详细信息，请参阅基金概况。";
-			mobileAction.verifyElementTextIsDisplayed(disclaimer_info, disclaimerInfo);
+			if(currentLocale.equalsIgnoreCase("zh-Hant") ||currentLocale.equalsIgnoreCase("zh-rHK") ){
+				disclaimerInfo =  "我們僅在因有關您的購買時，才會使用您的資訊與您聯絡。請確保所有註冊退休儲蓄計劃(RSP)和免稅儲蓄賬戶(TFSA)交易不超過您允許的供款限額。如果交易因任何原因被拒，我們將在一個工作日內取消交易並向您發送電郵通知。您購買的基金有最短持有期要求。如果您在最短持有期到期之前贖回，可能需向基金支付最高 2%的短期交易費，此要求適用於道明互惠基金的所有單位（貨幣市場基金除外）。詳情請參閱相關基金概況。道明資產管理有限公司（TDAM）在您持有道明互惠基金單位期間向道明投資服務有限公司（TDIS）支付尾隨佣金，作為其向您提供服務和諮詢的費用。有關詳細信息，請參閱基金概況。";
+			}
+			String capturedText = mobileAction.getValue(disclaimer_info);
+			capturedText=capturedText.trim().replaceAll("\n", "");
+			capturedText= capturedText.replaceAll(" ", "");
+			capturedText= capturedText.replaceAll(" ", "");
+			//mobileAction.verifyElementTextIsDisplayed(disclaimer_info, disclaimerInfo);
+			System.out.println("Captured:"+capturedText);
+			mobileAction.verifyTextEquality(capturedText, disclaimerInfo);
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
