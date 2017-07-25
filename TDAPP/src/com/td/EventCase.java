@@ -183,7 +183,7 @@ public class EventCase {
 		clickPostorderTrade,clickQuickLinkHome,clickQuickLinkTrade,clickQuickLinkOrder,verifyOptionOptionChainTableSubmit,
 		verifyStockOptionChainTableSubmit,verifyStockOptionChainTableCancel,verifyOptionOptionChainTableCancel,
 		verifyInvalidTradingPassword,verifyStockOptionChangeOrder,verifyOptionOptionChangeOrder,verifyStockOptionOrderDetails,verifyOptionOptionOrderDetails,verifyMLOrdersTabDetails,
-		Test,
+		Test,verifyBackButton,
 		
 		//P2P
 		
@@ -2248,6 +2248,11 @@ public class EventCase {
 		case verifyGoodTill:
 			TradeMultiLeg.get().verifyGoodTill();
 		break;	
+		
+		case verifyBackButton:
+			TradeMultiLeg.get().verifyBackButton();
+		break;	
+		
 		
 		case verifyGoodTillExpiryDate:
 			TradeMultiLeg.get().verifyGoodTillExpiryDate();

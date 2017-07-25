@@ -57,6 +57,15 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/edtSpinner']/*/*[2]")
 	private MobileElement leg2Action;
 	
+	
+	//@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell[2]/*[2]") //@Author - Sushil 17-Feb-2017
+	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
+	@AndroidFindBy(xpath = "//*[contains(@text,'Action') or contains(@text,'Action')]")
+	private MobileElement action;
+	
+	
+	
+	
 	//@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell[3]/*[2]") //@Author - Sushil 17-Feb-2017
 	@iOSFindBy(xpath = "//*[@name='ACTION_QTY_CELL_2']/*[2]")
 	//@AndroidFindBy(xpath = "//*[contains(@resource-id,'com.td:id/amountEditText')]")
@@ -324,6 +333,12 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(xpath = "//*[contains(@text,'Stocks') or contains(@text,'Actions et FNB')]")
 	private MobileElement stocks_ETFs;
 	
+	@iOSFindBy(xpath = "//*[contains(@label,'Options') or contains(@label,'Options')] ")
+	@AndroidFindBy(xpath = "//*[contains(@text,'Options') or contains(@text,'Options')]")
+	private MobileElement Options;
+	
+	
+	
 	@iOSFindBy(xpath = "//*[contains(@label,'1st Leg') or contains(@label,'1re Volet')]") //@Author - Sushil 21-Mar-2017
 	@AndroidFindBy(xpath = "//*[contains(@text,'1st Leg') or contains(@text,'1re Volet')]")
 	private MobileElement lbl1stLeg;
@@ -363,6 +378,11 @@ public class TradeMultiLeg extends _CommonPage{
 	@iOSFindBy(xpath = "//XCUIElementTypeImage[contains(@name,'error')]/../*[1]") //@Author - Sushil 29-Mar-2017
 	@AndroidFindBy(id="com.td:id/error_text")
 	private MobileElement error_text;
+	
+	
+    By Text_Condition = By.xpath("//*[@class='sprite flag flag-us']/../*[@class='symbol']/*[1]");
+	
+    By Option_Bid = By.xpath("(//*[@class='standard'])[1]");
 	
 	String xpathSymbolFlag = "//android.widget.ImageView[@resource-id='com.td:id/market_symbol' and @content-desc='U S']";
 	String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'US')]";
@@ -449,15 +469,14 @@ public class TradeMultiLeg extends _CommonPage{
 		{
 			SearchPageMIT.get().clickFirstSymbol();
 			sSymbolVal = mobileAction.FuncGetText(Quote_Symbol);
-			//mobileAction.FunCnewSwipe(leg1Option,false,5);
+	
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Option, false, 5, "up");
 			mobileAction.FuncClick(leg1Option, "Select Option Leg1");
-			///mobileAction.FunCnewSwipe(firstStrikeCALLS,false,5);
-			///mobileAction.FunctionSwipe("up", 200, 100);
 			mobileAction.FuncSwipeUpTillScreenBottom(firstBidCALLS);
 			mobileAction.FuncClick(firstBidCALLS, "firstBidCALLS");
 			sExpFormat = getOptionFormat(expiryDate,"CALLS");
 			mobileAction.FuncClick(Continue, "Continue");
+			
 			mobileAction.verifyElement(leg1Option,sExpFormat);
 
 			//
@@ -944,6 +963,96 @@ public class TradeMultiLeg extends _CommonPage{
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
+	public void verifyBackButton()
+	{
+		Decorator();
+		try
+		{
+			
+			String[] sOrderTypeValues = getTestdata("OrderTypeList", XLSheetUserIDs).split(";");
+			
+			mobileAction.selectItemFromList(stocks_ETFs,sOrderTypeValues[0]);
+			
+			
+			mobileAction.FuncClick(searchBar, "searchBar");
+			
+			SearchPageMIT.get().clickFirstSymbol("TD");
+			
+			mobileAction.FuncClick(backButton, "backButton");
+			mobileAction.verifyElement(messageBackButton,getTestdata("WarningMessage",XLSheetUserIDs));
+			mobileAction.FuncClick(cancelButton, "cancelButton");
+			
+			String accNumber ="";
+			String xpathAccount ="";
+			
+			
+			accNumber = getTestdata("Accounts", "UserIDs").trim();// @Author - Sushil 06-Feb-2017
+			
+			xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
+			
+			mobileAction.waitForElement(defaultTradeAccount);
+			mobileAction.FuncClick(defaultTradeAccount, "defaultTradeAccount");
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount,true,60,"up");
+	
+			mobileAction.selectItemFromList(stocks_ETFs,sOrderTypeValues[1]);
+			
+			mobileAction.FuncClick(searchBar, "searchBar");
+			
+			SearchPageMIT.get().clickFirstSymbol("TD");
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			{
+			((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td"); //switch context to WebView to get the HTML DOM
+		
+			mobileAction.verifyElementIsDisplayed((MobileElement) CL.GetDriver().findElement(Option_Bid), "Option_Bid");
+
+			
+			
+			((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+			
+			}
+
+			mobileAction.FuncClick(backButton, "backButton");
+			mobileAction.verifyElement(messageBackButton,getTestdata("WarningMessage",XLSheetUserIDs));
+			mobileAction.FuncClick(cancelButton, "cancelButton");
+			
+			mobileAction.selectItemFromList(Options,sOrderTypeValues[2]);
+			
+			
+			mobileAction.selectItemFromList(action, getTestdata("Action",XLSheetUserIDs));
+			
+			mobileAction.FuncClick(searchBar, "searchBar");
+			
+			SearchPageMIT.get().clickFirstSymbol("TDB093");
+
+			mobileAction.FuncClick(backButton, "backButton");
+			mobileAction.verifyElement(messageBackButton,getTestdata("WarningMessage",XLSheetUserIDs));
+			
+	
+		
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public void verifyGoodTillExpiryDate()
 	{
