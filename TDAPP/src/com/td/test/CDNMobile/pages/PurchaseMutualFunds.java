@@ -432,10 +432,10 @@ public class PurchaseMutualFunds extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(email_caption, "电子邮件|電郵地址");
 			mobileAction.verifyElementTextIsDisplayed(phone_caption, "电话号码|電話號碼");
 			String expectedCopyText = "您的个人信息仅用于我们就您的基金购买情况与您联络。 | 我們僅在因有關您的購買時，才會使用您的資訊與您聯絡。";
-			if(mobileAction.verifyElementIsPresent(copy_text)){
+			if (mobileAction.verifyElementIsPresent(copy_text)) {
 				mobileAction.verifyElementTextIsDisplayed(copy_text, expectedCopyText);
 			}
-			
+
 			mobileAction.verifyElementTextIsDisplayed(view_fundFacts, " 查看基金概况（表现和费用）|查看基金概況（表現和費用）");
 			String expectedCheckBox = "我同意通过电子方式获取基金概况和费用，并确认我有机会在购买基金之前查阅基金概况和费用。|我同意以電子方式獲取基金詳情和費用，並確認我在購買基金前都有機會先查閱內容。 ";
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {

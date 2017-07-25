@@ -283,7 +283,8 @@ public class Receipt extends _CommonPage {
 						"如果您在东部时间下午 3 点之后或在周末购买，将按照下一个工作日的收市价交易。|如果在東部時間下午 3 時之後或在週末購買，將按下一個工作日的收市價交易。", "购买确认|購買確認",
 						"我们处理完您的购买之后，您能够即刻在您的互惠基金账户结余中看到新的基金|我們處理完您的購買之後，您便能在您的互惠基金賬戶結餘中看到新的基金。", "购买详情|購買詳情",
 						"参考编号|參考號碼", "ignore", "基金|基金", "ignore", "ignore", "金额|金額", "ignore", "发送请求时间|請求送出時間",
-						"ignore", "ignore", "ignore", "ignore", "转出账户|轉出賬戶", "ignore", "转入互惠基金账户|轉入互惠基金賬戶", "ignore","ignore",
+						"ignore", "ignore", "ignore", "ignore", "转出账户|轉出賬戶", "ignore", "转入互惠基金账户|轉入互惠基金賬戶", "ignore",
+						"ignore",
 						"您的账户结余没有显示您购买的基金。我们处理完您的购买后，您的账户结余将会即刻更新。" + "|您的賬戶結餘沒有顯示您購買的基金。我們處理完您的購買後，您的賬戶結餘便會更新。"
 
 				};
@@ -291,7 +292,7 @@ public class Receipt extends _CommonPage {
 				System.out.println("size of data:" + size);
 				for (int i = 0; i < size; i++) {
 					if (detailInfomation[i].equalsIgnoreCase("ignore")) {
-						//System.out.println("ignore index " + i);
+						// System.out.println("ignore index " + i);
 						continue;
 					} else {
 						if (!mobileAction.verifyElementIsPresent(detailList.get(i))) {
