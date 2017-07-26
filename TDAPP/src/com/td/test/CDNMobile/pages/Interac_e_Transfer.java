@@ -514,7 +514,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("eTransfersReceiveAnswerSender") + "']", "Sender");
 				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferConfirmFrom") + "']",
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("receipt_from") + "']",
 						"From");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("eTransferConfirmRecipient") + "']", "Recipient");
@@ -680,7 +680,7 @@ public class Interac_e_Transfer extends _CommonPage {
 								+ mobileAction.getAppString("eTransfersReceiveAnswerSender") + "']", "Sender");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/from_account' and @text='"
-								+ mobileAction.getAppString("eTransferConfirmFrom") + "']",
+								+ mobileAction.getAppString("receipt_from") + "']",
 						"From");
 				mobileAction
 						.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/amount' and @text='"
