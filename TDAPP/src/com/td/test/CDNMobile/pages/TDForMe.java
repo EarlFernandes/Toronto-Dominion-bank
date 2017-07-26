@@ -8,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -47,18 +46,6 @@ public class TDForMe extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement tdforme_Notification_title;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Turn on Push Notifications') or contains(@label,'Activez les alertes instantanées pour recevoir')]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='Continue' or @text='Continue']")
-	private MobileElement turn_on_TD_For_Me;
-
-	@iOSFindBy(xpath = "//*[contains(@label,'Allow Notifications') or contains(@label,'Autoriser les avis')]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='Get Started' or @text='Get Started']")
-	private MobileElement get_started_allow_notification;
-
-	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
-	private MobileElement back_button;
-
 	public synchronized static TDForMe get() {
 		if (Tdforme == null) {
 			Tdforme = new TDForMe();
@@ -68,8 +55,7 @@ public class TDForMe extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -124,6 +110,7 @@ public class TDForMe extends _CommonPage {
 
 				// verify page collapses for displaying french Switch and
 				// battary saver Switch
+
 				if (mobileAction.verifyElementIsPresent(tdforme_displayfrench_switch)) {
 					mobileAction.Report_Fail_Not_Verified("Collapses french display switch ");
 					return;
@@ -248,40 +235,6 @@ public class TDForMe extends _CommonPage {
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-	}
-
-	public void TurnOnTDforMeIfNot() {
-		Decorator();
-		try {
-			if (mobileAction.verifyElementIsPresent(turn_on_TD_For_Me)) {
-
-				mobileAction.FuncClick(turn_on_TD_For_Me, "turn_on_TDForMe");
-				Decorator();
-				String elementText = mobileAction.getValue(get_started_allow_notification);
-				mobileAction.FuncClick(get_started_allow_notification, elementText);
-
-			} else {
-				System.out.println("TD for Me is turned on already");
-				mobileAction.Report_Pass_Verified("TD for Me is turned on already");
-
-				if (mobileAction.verifyElementIsPresent(back_button)) {
-					mobileAction.ClickBackButton();
-				}
-			}
-
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

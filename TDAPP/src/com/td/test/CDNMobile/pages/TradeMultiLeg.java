@@ -8,13 +8,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -33,8 +30,8 @@ public class TradeMultiLeg extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+
 	}
 
 	@iOSFindBy(xpath = "//XCUIElementTypeSearchField[@label='Enter name or symbol' or contains(@label,'Entrez le')]") // @Author
@@ -1022,7 +1019,7 @@ public class TradeMultiLeg extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				// mobileAction.FuncHideKeyboard();
-				((AppiumDriver) CL.GetDriver()).hideKeyboard();
+				(CL.GetAppiumDriver()).hideKeyboard();
 				// if(mobileAction.isObjExists(cancelButton,2))
 				// mobileAction.FuncClick(cancelButton, "cancelButton");
 			} else if (mobileAction.isObjExists(iOSKybdOKButton))
@@ -1822,11 +1819,15 @@ public class TradeMultiLeg extends _CommonPage {
 			 * xpathSymbolFlag_ios; temp =1; }
 			 * mobileAction.FuncClick(search_symbol, "search_symbol");
 			 * SearchPageMIT.get().enterSymbol(search_symbol, "AAPL"); try {
-			 * mobileAction.FuncClick((MobileElement)
+			 * mobileAction.FuncClick((MobileElement) <<<<<<< HEAD
 			 * CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),
 			 * "First Symbol"); } catch(Exception e) {
 			 * CL.GetReporting().FuncReport("Fail", "First Symbol not selected."
-			 * ); }
+			 * ); } =======
+			 * CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp) ,
+			 * "First Symbol"); } catch(Exception e) {
+			 * CL.GetReporting().FuncReport("Fail", "First Symbol not selected."
+			 * ); } >>>>>>> remotes/origin/master
 			 */
 			SearchPageMIT.get().clickFirstSymbol("AAPL");
 			//
@@ -1883,9 +1884,11 @@ public class TradeMultiLeg extends _CommonPage {
 			 * xpathSymbolFlag_ios; temp =1; }
 			 * mobileAction.FuncClick(search_symbol, "search_symbol");
 			 * SearchPageMIT.get().enterSymbol(search_symbol, "AAPL");
-			 * mobileAction.FuncClick((MobileElement)
+			 * mobileAction.FuncClick((MobileElement) <<<<<<< HEAD
 			 * CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),
-			 * "First Symbol");
+			 * "First Symbol"); =======
+			 * CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp) ,
+			 * "First Symbol"); >>>>>>> remotes/origin/master
 			 */
 			SearchPageMIT.get().clickFirstSymbol("AAPL");
 			//
@@ -1948,9 +1951,12 @@ public class TradeMultiLeg extends _CommonPage {
 			 * mobileAction.FuncClick(search_symbol, "search_symbol");
 			 * SearchPageMIT.get().enterSymbol(search_symbol, "G ");
 			 * Thread.sleep(5000); try{ mobileAction.FuncClick((MobileElement)
+			 * <<<<<<< HEAD
 			 * CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),
-			 * "First Symbol"); } catch(Exception e) {
-			 * CL.GetReporting().FuncReport("Fail",
+			 * "First Symbol"); } catch(Exception e) { =======
+			 * CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp) ,
+			 * "First Symbol"); } catch(Exception e) { >>>>>>>
+			 * remotes/origin/master CL.GetReporting().FuncReport("Fail",
 			 * "First searched symbol not clicked."); }
 			 */
 
@@ -1988,9 +1994,12 @@ public class TradeMultiLeg extends _CommonPage {
 			 * mobileAction.FuncClick(search_symbol, "search_symbol");
 			 * SearchPageMIT.get().enterSymbol(search_symbol, "G ");
 			 * Thread.sleep(5000); try{ mobileAction.FuncClick((MobileElement)
+			 * <<<<<<< HEAD
 			 * CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),
-			 * "First Symbol"); } catch(Exception e) {
-			 * CL.GetReporting().FuncReport("Fail",
+			 * "First Symbol"); } catch(Exception e) { =======
+			 * CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp) ,
+			 * "First Symbol"); } catch(Exception e) { >>>>>>>
+			 * remotes/origin/master CL.GetReporting().FuncReport("Fail",
 			 * "First searched symbol not clicked."); }
 			 */
 

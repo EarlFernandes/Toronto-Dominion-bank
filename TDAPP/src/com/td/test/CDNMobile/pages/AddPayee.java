@@ -8,10 +8,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import com.td.MainScreen;
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -44,8 +42,7 @@ public class AddPayee extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -120,14 +117,9 @@ public class AddPayee extends _CommonPage {
 				clickOnFirstUSPayeeFound();
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement searchHint = mobileAction.verifyWebElementUsingXPath(
-						"//input[@placeholder='" + mobileAction.getAppString("search_address_hint") + "']",
-						"Search address hint");
 
 				final WebElement msg = mobileAction.verifyWebElementUsingXPath("//div[@class='placeholder ng-binding']",
 						"Select the payee address");
-				final WebElement msg2 = mobileAction.verifyWebElementUsingXPath("//span[@class='ng-binding ng-scope']",
-						"To add an address");
 
 				final WebElement tapHere = mobileAction
 						.verifyWebElementUsingXPath("//div[@class='custom_action ng-binding']", "Tap here");
@@ -204,7 +196,9 @@ public class AddPayee extends _CommonPage {
 						"zip hint");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
 						+ mobileAction.getAppString("str_payee_account_info") + "']", "payee account info");
-				MobileElement desc = (MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(
+
+				MobileElement desc = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(
+
 						"//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_description") + "']"));
 				mobileAction.FunCSwipeandScroll(desc, false);
 				mobileAction.verifyElementUsingXPath(
@@ -251,10 +245,7 @@ public class AddPayee extends _CommonPage {
 						"account hint");
 				final WebElement desc = mobileAction.verifyWebElementUsingXPath("//label[@id='description_label']",
 						"description");
-				// FIXME: This is not seen, why?
-				// mobileAction.verifyWebElementUsingXPath("//input[@placeholder='"
-				// + mobileAction.getAppString("optional") + "']", "description
-				// hint");
+
 				final WebElement payeeAccountInfo = mobileAction
 						.verifyWebElementUsingXPath("(//span[@class='ng-binding'])[2]", "payee account info header");
 				final WebElement enterAccNumber = mobileAction.verifyWebElementUsingXPath(
@@ -475,9 +466,7 @@ public class AddPayee extends _CommonPage {
 	public void verifyAddPayeeConfirmationTextElements() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				searchForPayee();
 				clickOnFirstCanadianPayeeFound();
 				addPayeeReview();
@@ -527,20 +516,18 @@ public class AddPayee extends _CommonPage {
 
 	private void addPayeeReview() {
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				// System.out.println("source : "+ ((AppiumDriver)
-				// CL.GetDriver()).getPageSource());
+
 				final WebElement payeeAccount = mobileAction.verifyWebElementUsingXPath("//input[@id='accountNumber']",
 						"Payee Account");
 				payeeAccount.sendKeys(getTestdata("FromAccount"));
 				Thread.sleep(4000);
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement continueButton = (WebElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.id("btn"));
+
+				final WebElement continueButton = (WebElement) (CL.GetAppiumDriver()).findElement(By.id("btn"));
+
 				mobileAction.verifyElementIsDisplayed(continueButton, "Continue");
 				continueButton.click();
 				continueButton.click();
@@ -578,9 +565,7 @@ public class AddPayee extends _CommonPage {
 	public void verifyAddPayeeSuccessTextElements() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				searchForPayee();
 				clickOnFirstCanadianPayeeFound();
 				addPayeeReview();
@@ -655,13 +640,10 @@ public class AddPayee extends _CommonPage {
 
 	private void addPayeeConfirm() {
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement addPayeeButton = (WebElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.id("btn"));
+				final WebElement addPayeeButton = (WebElement) (CL.GetAppiumDriver()).findElement(By.id("btn"));
 				mobileAction.verifyElementIsDisplayed(addPayeeButton, "Add Payee button");
 				addPayeeButton.click();
 				mobileAction.waitForElementToVanish(progressBar);

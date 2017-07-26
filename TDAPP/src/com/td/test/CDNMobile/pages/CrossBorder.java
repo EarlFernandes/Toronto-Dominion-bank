@@ -2,7 +2,6 @@ package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
@@ -13,9 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
@@ -39,9 +36,7 @@ public class CrossBorder extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
-
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 	}
 
 	/**
@@ -59,21 +54,10 @@ public class CrossBorder extends _CommonPage {
 	public void clickLogin() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
-				// Set<String> contextNames = ((AppiumDriver)
-				// CL.GetDriver()).getContextHandles();
-				// for (String contextName : contextNames) {
-				// System.out.println(contextNames); //prints out something like
-				// NATIVE_APP \n WEBVIEW_1
-				// }
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				// System.out.println("source : "+ ((AppiumDriver)
-				// CL.GetDriver()).getPageSource());
-				final WebElement loginButton = (WebElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.id("callLoginpopup"));
+				final WebElement loginButton = (WebElement) (CL.GetAppiumDriver()).findElement(By.id("callLoginpopup"));
 				loginButton.click();
 			}
 
@@ -107,11 +91,6 @@ public class CrossBorder extends _CommonPage {
 
 	public void verifyCrossBorderWelcomeTextElements() {
 		Decorator();
-		// Set<String> contextNames = CL.GetAppiumDriver().getContextHandles();
-		// for (String contextName : contextNames) {
-		// System.out.println("DAVID>>>>" + contextNames); //prints out
-		// something like [NATIVE_APP, WEBVIEW_<APP_PKG_NAME>]
-		// }
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				String expectedText = "";
@@ -149,10 +128,8 @@ public class CrossBorder extends _CommonPage {
 			} else {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				// System.out.println("DAVID >>>>" +
-				// CL.GetAppiumDriver().getPageSource());
-				final String text = ((AppiumDriver) CL.GetDriver()).findElement(By.cssSelector("body")).getText();
-				// System.out.println(text);
+				final String text = (CL.GetAppiumDriver()).findElement(By.cssSelector("body")).getText();
+
 				String expectedText = "";
 				switch (currentLocale) {
 				case "EN":
@@ -166,7 +143,6 @@ public class CrossBorder extends _CommonPage {
 					expectedText = WELCOME_EXPECTED_TEXT_ZH_TRAD;
 					break;
 				}
-				// System.out.println(text);
 				if (!text.trim().equals(expectedText)) {
 					throw new NoSuchElementException(
 							"Text were not equal, expected: " + expectedText + " was: " + text);
@@ -228,10 +204,8 @@ public class CrossBorder extends _CommonPage {
 			} else {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				// System.out.println("source : "+ ((AppiumDriver)
-				// CL.GetDriver()).getPageSource());
-				final String text = ((AppiumDriver) CL.GetDriver()).findElement(By.cssSelector("body")).getText();
-				// System.out.println(text);
+
+				final String text = (CL.GetAppiumDriver()).findElement(By.cssSelector("body")).getText();
 				String expectedText = "";
 				switch (currentLocale) {
 				case "EN":
@@ -245,7 +219,6 @@ public class CrossBorder extends _CommonPage {
 					expectedText = POPUP_EXPECTED_TEXT_ZH_TRAD;
 					break;
 				}
-				// System.out.println(text);
 				if (!text.trim().equals(expectedText)) {
 					throw new NoSuchElementException(
 							"Text were not equal, expected: " + expectedText + " was: " + text);

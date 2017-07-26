@@ -3,16 +3,10 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -503,8 +497,7 @@ public class StockOptionLeg extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(5, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(5, TimeUnit.SECONDS)), this);
 	}
 
 	// Enters the first Stock symbol for the US stock
@@ -594,19 +587,16 @@ public class StockOptionLeg extends _CommonPage {
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		try {
 			mobileAction.FuncHideKeyboard();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
@@ -626,7 +616,6 @@ public class StockOptionLeg extends _CommonPage {
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -795,7 +784,6 @@ public class StockOptionLeg extends _CommonPage {
 		try {
 			mobileAction.FuncHideKeyboard();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -841,7 +829,6 @@ public class StockOptionLeg extends _CommonPage {
 			try {
 				mobileAction.FuncHideKeyboard();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -997,7 +984,6 @@ public class StockOptionLeg extends _CommonPage {
 			}
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -1114,7 +1100,6 @@ public class StockOptionLeg extends _CommonPage {
 			}
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

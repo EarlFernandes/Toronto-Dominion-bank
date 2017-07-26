@@ -1,21 +1,15 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
-import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import com.td.MainScreen;
-import com.td.MobileAction2;
-import com.td.StringLookup;
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -88,9 +82,8 @@ public class ManageRecipients extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
 
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 	}
 
 	public void clickAddRecipient() {
@@ -136,9 +129,7 @@ public class ManageRecipients extends _CommonPage {
 	public void addRecipientFromContactList() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(yesButtonContacts, "Yes to Add contacts");
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -585,9 +576,7 @@ public class ManageRecipients extends _CommonPage {
 		Decorator();
 		MobileElement recipientTextView = null;
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				// click on recipient
 				recipientTextView = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + getTestdata("RecipientName") + "']",
@@ -793,9 +782,7 @@ public class ManageRecipients extends _CommonPage {
 	public void verifyAddRecipientConfirmationTextElements() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				addAndReviewRecipient();
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
@@ -856,9 +843,7 @@ public class ManageRecipients extends _CommonPage {
 	public void verifyAddRecipientSuccessTextElements() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				addAndReviewRecipient();
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
@@ -935,9 +920,7 @@ public class ManageRecipients extends _CommonPage {
 
 	private void addAndReviewRecipient() {
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				// Enter details and get to confirmation screen
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");

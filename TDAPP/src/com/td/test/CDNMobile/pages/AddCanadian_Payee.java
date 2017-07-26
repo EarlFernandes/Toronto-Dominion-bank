@@ -1,16 +1,13 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
-import com.td.MainScreen;
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -24,11 +21,11 @@ public class AddCanadian_Payee extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Add Canadian Payee']")
 	private MobileElement addCanadianPayee_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='Enter your payee account number']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Payee Account']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='accountNumber']")
 	private MobileElement payee_AccountNum;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='Optional']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Description']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@text='Description']")
 	private MobileElement description;
 
@@ -56,8 +53,8 @@ public class AddCanadian_Payee extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(20, TimeUnit.SECONDS)),
-				this);
+
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(20, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -126,6 +123,7 @@ public class AddCanadian_Payee extends _CommonPage {
 			String description_value = getTestdata("Description");
 			mobileAction.FuncClick(description, "Description");
 			mobileAction.FuncSendKeys(description, description_value);
+
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(done, "Done");
 			} else {
@@ -136,7 +134,9 @@ public class AddCanadian_Payee extends _CommonPage {
 			Thread.sleep(5000);
 			mobileAction.waitForElementToVanish(progressBar);
 
-		} catch (NoSuchElementException e) {
+		} catch (
+
+		NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
@@ -149,6 +149,6 @@ public class AddCanadian_Payee extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-
 	}
+
 }

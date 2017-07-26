@@ -10,7 +10,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -145,6 +144,14 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement back_arrow;
 
+	@iOSFindBy(xpath = "//*[@label='Cancel' or @label='Annuler']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
+	private MobileElement cancel_button;
+
+	@iOSFindBy(xpath = "//*[@label='Yes, go back' or @label='Oui']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
+	private MobileElement goback_button;
+
 	@iOSFindBy(xpath = "//*[@id='banner_info']")
 	@AndroidFindBy(xpath = "//android.widget.ScrollView[@resource-id='com.td:id/scrollView']/android.widget.TextView")
 	private List<MobileElement> text_Edit;
@@ -171,8 +178,7 @@ public class Profile extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -524,6 +530,7 @@ public class Profile extends _CommonPage {
 				System.out.println("Business email is empty");
 				return "";
 			}
+
 			emailInfo = mobileAction.FuncGetValByRegx(emailInfo, emailReg);
 			System.out.println("email:" + emailInfo);
 			return emailInfo;
@@ -657,12 +664,14 @@ public class Profile extends _CommonPage {
 		Decorator();
 		String intial_name = get_name_initial_info();
 		String detail_name = get_name_detail_info();
+
 		if (intial_name.isEmpty() || detail_name.isEmpty()) {
 			mobileAction.Report_Fail("Failed for empty name");
 			System.err.println("TestCase has failed for empty name");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			return;
 		}
+
 		System.out.println("intial_name:" + intial_name);
 		System.out.println("detail_name:" + detail_name);
 		if (intial_name.equals(detail_name.substring(0, 1).toUpperCase())) {
@@ -846,7 +855,6 @@ public class Profile extends _CommonPage {
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		// If the update email is the same as the original one, update will
@@ -1177,7 +1185,6 @@ public class Profile extends _CommonPage {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -1197,6 +1204,18 @@ public class Profile extends _CommonPage {
 
 		} catch (NoSuchElementException e) {
 			VerifyEmailIDLength();
+		}
+	}
+
+	public void VerifyPopUpWithCancelButton() {
+
+		Decorator();
+		try {
+			mobileAction.verifyElementIsDisplayed(cancel_button, "Cancel");
+
+		} catch (NoSuchElementException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
 
@@ -1462,6 +1481,17 @@ public class Profile extends _CommonPage {
 		mobileAction.Report_Pass_Verified("ori_phone:" + ori_phone);
 		mobileAction.Report_Pass_Verified("ori_email:" + ori_email);
 
+	}
+
+	public void ClickPopupGoBackButton() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(goback_button, "Yes, Go Back");
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
 	}
 
 	public void VerifyPhoneEmailNotChanged() {

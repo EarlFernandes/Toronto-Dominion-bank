@@ -96,12 +96,6 @@ public class Executor extends _CommonPage {
 	 */
 	public void createPersonalProfile() {
 
-		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
-		MainScreen.get().readSheet();
-		MainScreen.get().readP2PSheet();
-
-		System.out.println("FilePath: " + getTestdata("UserType"));
-
 		acsNo = null;
 		easyWebTempPass = null;
 		branchNo = null;
@@ -126,7 +120,7 @@ public class Executor extends _CommonPage {
 
 			/***** Multiple Application Interface Selection Menu ******/
 
-			sr.hitTab(3);
+			sr.hitTab(2);
 			sr.sendKeys("S");
 			sr.hitEnter();
 
@@ -408,7 +402,7 @@ public class Executor extends _CommonPage {
 
 			/***** Multiple Application Interface Selection Menu ******/
 
-			sr.hitTab(3);
+			sr.hitTab(2);
 			sr.sendKeys("S");
 			sr.hitEnter();
 
@@ -617,7 +611,7 @@ public class Executor extends _CommonPage {
 
 			/***** Multiple Application Interface Selection Menu ******/
 
-			sr.hitTab(3);
+			sr.hitTab(2);
 			sr.sendKeys("S");
 			sr.hitEnter();
 
@@ -746,7 +740,7 @@ public class Executor extends _CommonPage {
 
 			/***** Multiple Application Interface Selection Menu ******/
 
-			sr.hitTab(3);
+			sr.hitTab(2);
 			sr.sendKeys("S");
 			sr.hitEnter();
 
@@ -865,7 +859,7 @@ public class Executor extends _CommonPage {
 
 			/***** Multiple Application Interface Selection Menu ******/
 
-			sr.hitTab(3);
+			sr.hitTab(2);
 			sr.sendKeys("S");
 			sr.hitEnter();
 
@@ -976,7 +970,7 @@ public class Executor extends _CommonPage {
 
 			/***** Multiple Application Interface Selection Menu ******/
 
-			sr.hitTab(3);
+			sr.hitTab(2);
 			sr.sendKeys("S");
 			sr.hitEnter();
 
@@ -1048,7 +1042,7 @@ public class Executor extends _CommonPage {
 
 			/***** Multiple Application Interface Selection Menu ******/
 
-			sr.hitTab(3);
+			sr.hitTab(2);
 			sr.sendKeys("S");
 			sr.hitEnter();
 
@@ -1159,7 +1153,7 @@ public class Executor extends _CommonPage {
 
 			/***** Multiple Application Interface Selection Menu ******/
 
-			sr.hitTab(3);
+			sr.hitTab(2);
 			sr.sendKeys("S");
 			sr.hitEnter();
 
@@ -1215,6 +1209,10 @@ public class Executor extends _CommonPage {
 			sr.sendKeys(BusinessAccountACSSecond);
 			sr.hitEnter();
 			sr.hitF9();
+
+			sr.hitF12();
+			sr.closeApplication();
+			sr.closeApplication();
 
 			data[0] = AccountType;
 			data[1] = multiConnectID;

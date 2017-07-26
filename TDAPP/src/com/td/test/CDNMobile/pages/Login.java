@@ -8,15 +8,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.td.MainScreen;
 import com.td.StringLookup;
 import com.td._CommonPage;
 import com.td.mainframe.Executor;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -139,6 +135,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Cannot add additional Access Cards.')]")
 	private MobileElement lblWarning;
 
+	// FIXME: What is the identifier for this?
 	private MobileElement securityQuestionHeader;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField")
@@ -161,16 +158,8 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Terms & Conditions']")
 	private MobileElement TermsAndCondition_header;
 
-	// @iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Security Question']")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.TextView[@resource-id='android:id/action_bar_title' and
-	// @text='Security Question']")
-	// private MobileElement securityQuestionHeader;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'do this later on my computer')]")
-	@AndroidFindBy(xpath = "//android.widget.Button[contains(@text,'do this later on my computer')]") // changed
-																										// by
-																										// Rashmi
+	@AndroidFindBy(xpath = "//android.widget.Button[contains(@text,'do this later on my computer')]")
 	private MobileElement thanks_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Clear text']")
@@ -229,8 +218,7 @@ public class Login extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(6, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(6, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -429,7 +417,6 @@ public class Login extends _CommonPage {
 			}
 			// verifySystemError();
 			verifySecurityQuestion();
-			verifyTandC();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -1386,9 +1373,6 @@ public class Login extends _CommonPage {
 	}
 
 	public void login_errorMsg() {
-
-		String verifyLogin_ios = "//*[contains(@label,'Your Login Info Please')]";
-		String verifyLogin_android = "//android.widget.ImageView[@resource-id= 'com.td:id/imageView1']";
 
 		Decorator();
 		try {

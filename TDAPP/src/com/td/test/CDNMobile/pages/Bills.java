@@ -1,11 +1,7 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
@@ -15,7 +11,6 @@ import org.openqa.selenium.support.PageFactory;
 import com.td.MobileAction2;
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -203,8 +198,7 @@ public class Bills extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 	}
 
 	public void clickPayCanadianBill() {
@@ -324,9 +318,6 @@ public class Bills extends _CommonPage {
 		try {
 			Decorator();
 			initElementPayUSBill();
-			String Bill_header = "Verifying Bill Page Header";
-
-			// mobileAction.verifyElementIsDisplayed(bills_Header, Bill_header);
 			mobileAction.FuncClick(pay_US_Bills, "Pay US Bills");
 			mobileAction.waitForElementToVanish(progrees_bar);
 
@@ -673,11 +664,7 @@ public class Bills extends _CommonPage {
 						+ mobileAction.getAppString("upcomingBillDetailsFieldHeaderDate") + "']", "Date tab");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
 						+ mobileAction.getAppString("upcomingBillDetailsFieldHeaderPayee") + "']", "Payee");
-				// FIXME: Add in once date headers are labelled by id
-				// for(MobileElement m : dateHeaders) {
-				// mobileAction.verifyDateFormat(m.getText(),
-				// MobileAction2.TYPE_MM_YYYY);
-				// }
+
 			} else {
 				mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
 				mobileAction.waitForElementToVanish(progrees_bar);
@@ -777,16 +764,11 @@ public class Bills extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.verifyTextEquality(bills_Header.getText(), mobileAction.getAppString("pay_bill"));
 				mobileAction.verifyTextEquality(payeePayBillCad.getText(), mobileAction.getAppString("payee"));
-				// FIXME: once may adds this one, uncomment
-				// mobileAction.verifyTextEquality(amountPayBillCad.getText(),
-				// mobileAction.getAppString("payBillConfirmFieldHeaderAmount"));
-				// mobileAction.verifyTextEquality(datePayBillCad.getText(),
-				// mobileAction.getAppString("payBillConfirmFieldHeaderDate"));
+
 				mobileAction.verifyTextEquality(fromAccountPayBillCad.getText(),
 						mobileAction.getAppString("payBillConfirmFieldHeaderFromAccount"));
 				mobileAction.verifyTextEquality(continuePayBillCad.getText(), mobileAction.getAppString("Continue"));
-				// mobileAction.verifyDateFormat(datePicker.getText(),
-				// MobileAction2.TYPE_YYYY_MM_DD);
+
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
@@ -843,11 +825,13 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("disclaimer") + "']",
 						"Disclaimer");
+
 				mobileAction
 						.verifyElementUsingXPath(
 								"//XCUIElementTypeStaticText[@value='" + mobileAction
 										.getAppString("payBillDropdownHeaderFromAccount").replace(" ", "\n") + "']",
 								"From Account");
+
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
 						+ mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");
 				mobileAction.verifyElementUsingXPath(
@@ -865,7 +849,6 @@ public class Bills extends _CommonPage {
 						"Continue Button");
 				final String xPathLearnMore = "//XCUIElementTypeStaticText[@name='PAYUSBILL_VIEW_FOOTER']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathLearnMore, false, 4, "up");
-				final MobileElement elementLearnMore = mobileAction.verifyElementUsingXPath(xPathLearnMore, "footer");
 			} else {
 				mobileAction
 						.verifyElementUsingXPath(

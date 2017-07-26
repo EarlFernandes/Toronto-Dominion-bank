@@ -10,11 +10,9 @@ import org.openqa.selenium.support.PageFactory;
 import com.td.ChineseStrings;
 import com.td.EnglishStrings;
 import com.td.FrenchStrings;
-import com.td.MainScreen;
 import com.td.StringLookup;
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -26,6 +24,7 @@ public class MenuPage extends _CommonPage {
 	private static MenuPage MenuPage;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_TRANSFERS']/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Transfers']")
 	private MobileElement transfers;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_BILLS']/XCUIElementTypeStaticText")
@@ -41,6 +40,7 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label= '"
 			+ ChineseStrings.Simplified.FLYOUT_MENU_INVESTING_ACCOUNTS + "' or @label='"
 			+ ChineseStrings.Traditional.FLYOUT_MENU_INVESTING_ACCOUNTS + "']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Investing Accounts' or @text='Comptes Placements directs TD')]")
 	private MobileElement investing;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Comptes Placements directs TD']")
@@ -54,6 +54,7 @@ public class MenuPage extends _CommonPage {
 	private MobileElement feedback;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_DEPOSIT']/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Mobile Deposit']")
 	private MobileElement mobile_Deposit_button;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_ACCOUNTS']/XCUIElementTypeStaticText")
@@ -72,6 +73,7 @@ public class MenuPage extends _CommonPage {
 	private MobileElement progressBar;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_CONTACT']/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Contact Us' or @text='Contactez-nous')]")
 	private MobileElement contactUs;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']/XCUIElementTypeStaticText")
@@ -103,11 +105,6 @@ public class MenuPage extends _CommonPage {
 			+ FrenchStrings.FLYOUT_MENU_PROFILE_AND_PREFERENCE + "')]")
 	private MobileElement profile_and_settings;
 
-	// Profile and preference
-	@iOSFindBy(xpath = "//*[@label='TD for Me' or @label ='TD et moi']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (contains(@text,'TD for Me') or @text='TD et moi')]")
-	private MobileElement TD_For_Me;
-
 	// customer feedback
 	@iOSFindBy(xpath = "//*[@label='" + EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK + "' or @label ='"
 			+ FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK + "']")
@@ -131,9 +128,8 @@ public class MenuPage extends _CommonPage {
 
 	private void initElementContactUs() {
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				contactUs = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
 								+ mobileAction.getAppString("contact_str") + "']",
@@ -153,8 +149,7 @@ public class MenuPage extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 	}
 
 	/**
@@ -175,9 +170,9 @@ public class MenuPage extends _CommonPage {
 
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS xpath expression required
-			} else {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
 				transfers = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
 								+ mobileAction.getAppString("transfers_str") + "']",
@@ -314,6 +309,7 @@ public class MenuPage extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
+			e.printStackTrace();
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
@@ -465,8 +461,6 @@ public class MenuPage extends _CommonPage {
 										+ mobileAction.getAppString("ActionBar_MobileDeposit") + "']",
 								"Mobile Deposit");
 			}
-			String mobile_Deposit = "Mobile Deposit";
-
 			mobileAction.FuncClick(mobile_Deposit_button, "Mobile_Deposit_Button");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -650,26 +644,6 @@ public class MenuPage extends _CommonPage {
 			}
 			String profileSettings = mobileAction.getValue(profile_and_settings);
 			mobileAction.FuncClick(profile_and_settings, profileSettings);
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		}
-	}
-
-	public void ClickTDForMe_Flyout() {
-		Decorator();
-		try {
-			String profileSettings = mobileAction.getValue(TD_For_Me);
-			mobileAction.FuncClick(TD_For_Me, profileSettings);
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

@@ -8,11 +8,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import com.td.MainScreen;
 import com.td.MobileAction2;
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -63,7 +61,7 @@ public class Pay_US_Bill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[starts-with(@text,'Important Note')]")
 	private MobileElement verify_Message;
 
-	// FIXME: What is the id for this?
+	// FIXME: What is the accessibility id for this?
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/estimated_delivery_date']")
 	private MobileElement estDate;
 
@@ -76,7 +74,6 @@ public class Pay_US_Bill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/listView']")
 	private MobileElement payeeList;
 
-	// FIXME: Find the correct accessibility id here
 	@iOSFindBy(accessibility = "PAYBILLUS_PAY_BILL")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/button_footer']")
 	private MobileElement pay_bill_button;
@@ -90,8 +87,7 @@ public class Pay_US_Bill extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -293,9 +289,7 @@ public class Pay_US_Bill extends _CommonPage {
 	public void verifyPayUSBillWelcomeTextElements() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction
 						.verifyElementUsingXPath(
 								"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
@@ -574,13 +568,15 @@ public class Pay_US_Bill extends _CommonPage {
 				mobileAction.FuncClick(from_account, "From Account");
 				String from_accountNo = "//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("FromAccount")
 						+ "')]";
-				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+
+				MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())
 						.findElement(By.xpath(from_accountNo));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 				mobileAction.FuncClick(select_payee_account, "Select Payee");
 				String to_accountNo = "//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("Payee") + "')]";
-				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(to_accountNo));
+
+				MobileElement toAccountval = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(to_accountNo));
+
 				mobileAction.FunCSwipeandScroll(toAccountval, true);
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));

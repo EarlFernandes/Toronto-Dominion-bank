@@ -7,9 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-//import com.td.test.CMOB.MainScreenMIT;
-
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -206,8 +203,9 @@ public class LoginMIT extends _CommonPage {
 
 	private void Decorator() {
 		{
-			PageFactory.initElements(new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()),
-					new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+			PageFactory.initElements(
+					new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+
 		}
 
 	}
@@ -342,8 +340,8 @@ public class LoginMIT extends _CommonPage {
 	 * mobileAction.FuncClick(InvestingAccount,"InvestingAccount"); //
 	 * wv.MyAccount.click();
 	 * 
-	 * mobileAction.FuncClick(select_accesscard,"select_accesscard");
-	 * CL.GetReporting().FuncReport(PASS,String.format(
+	 * mobileAction.FuncClick(select_accesscard,"select_accesscard"); <<<<<<<
+	 * HEAD CL.GetReporting().FuncReport(PASS,String.format(
 	 * "TD Customer 'select_accesscard' button clicked."));
 	 * mobileAction.FuncClick(addUser,"addUser");
 	 * CL.GetReporting().FuncReport(PASS,String.format(
@@ -361,6 +359,25 @@ public class LoginMIT extends _CommonPage {
 	 * CL.getTestDataInstance().UserPassword);
 	 * CL.GetReporting().FuncReport(PASS, String.format(
 	 * "Entered RIBUsername '%s'", CL.getTestDataInstance().UserPassword));
+	 * ======= CL.GetReporting().FuncReport(PASS,String. format(
+	 * "TD Customer 'select_accesscard' button clicked."));
+	 * mobileAction.FuncClick(addUser,"addUser");
+	 * CL.GetReporting().FuncReport(PASS,String. format(
+	 * "TD Customer 'addUser' button clicked."));
+	 * mobileAction.FuncClick(username,"username");
+	 * CL.GetReporting().FuncReport(PASS,String. format(
+	 * "TD Customer 'username' button clicked."));
+	 * mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
+	 * CL.GetReporting().FuncReport(PASS, String.format(
+	 * "Entered RIBUsername '%s'", CL.getTestDataInstance().Userid));
+	 * mobileAction.FuncClick(password,"password");
+	 * CL.GetReporting().FuncReport(PASS,String. format(
+	 * "TD Customer 'password' button clicked."));
+	 * mobileAction.FuncSendKeys(password,
+	 * CL.getTestDataInstance().UserPassword);
+	 * CL.GetReporting().FuncReport(PASS, String.format(
+	 * "Entered RIBUsername '%s'", CL.getTestDataInstance().UserPassword));
+	 * >>>>>>> remotes/origin/master
 	 * 
 	 * MobileAction.FuncSendKeys(EditUser,CL.getTestDataInstance().Userid);
 	 * MobileAction.FuncSendKeys(Password,CL.getTestDataInstance().UserPassword+

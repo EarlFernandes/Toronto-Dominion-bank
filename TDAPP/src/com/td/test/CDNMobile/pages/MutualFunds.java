@@ -9,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -33,8 +32,7 @@ public class MutualFunds extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(5, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(5, TimeUnit.SECONDS)), this);
 	}
 
 	/***************************************************************
@@ -751,7 +749,7 @@ public class MutualFunds extends _CommonPage {
 					mobileAction.FuncSendKeys(symbolEditText1, searchKeyword1);
 					mobileAction.waitForElementToVanish(progressBar);
 
-					MobileElement selectSymbolValue1 = (MobileElement) ((AppiumDriver) CL.GetDriver())
+					MobileElement selectSymbolValue1 = (MobileElement) (CL.GetAppiumDriver())
 							.findElement(By.xpath(selectSymbolVal1));
 
 					mobileAction.FuncClick(selectSymbolValue1, "Symbol");
@@ -764,7 +762,7 @@ public class MutualFunds extends _CommonPage {
 					mobileAction.FuncSendKeys(symbolEditText1, searchKeyword1);
 					mobileAction.waitForElementToVanish(progressBar);
 
-					MobileElement selectSymbolValue1 = (MobileElement) ((AppiumDriver) CL.GetDriver())
+					MobileElement selectSymbolValue1 = (MobileElement) (CL.GetAppiumDriver())
 							.findElement(By.xpath(selectSymbolVal1));
 
 					mobileAction.FuncClick(selectSymbolValue1, "Symbol");
@@ -778,7 +776,7 @@ public class MutualFunds extends _CommonPage {
 					mobileAction.FuncSendKeys(symbolEditText2, searchKeyword1);
 					mobileAction.waitForElementToVanish(progressBar);
 
-					MobileElement selectSymbolValue = (MobileElement) ((AppiumDriver) CL.GetDriver())
+					MobileElement selectSymbolValue = (MobileElement) (CL.GetAppiumDriver())
 							.findElement(By.xpath(selectSymbolVal2));
 
 					mobileAction.FuncClick(selectSymbolValue, "Symbol");
@@ -948,7 +946,7 @@ public class MutualFunds extends _CommonPage {
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(mutualQuantity, "Mutual Quantity");
 			if (platformName.equalsIgnoreCase("Android")) {
-				MobileElement selectQuantity = (MobileElement) ((AppiumDriver) CL.GetDriver())
+				MobileElement selectQuantity = (MobileElement) (CL.GetAppiumDriver())
 						.findElement(By.xpath(quantityXpath));
 
 				mobileAction.FuncClick(selectQuantity, quantity);
@@ -1005,11 +1003,10 @@ public class MutualFunds extends _CommonPage {
 		Decorator();
 		try {
 			if (platformName.equalsIgnoreCase("Android")) {
-				MobileElement comission = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(comissionXpath));
+				MobileElement comission = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(comissionXpath));
 				mobileAction.FuncClick(comission, comissionXpath);
 			} else {
-				MobileElement comission = (MobileElement) ((AppiumDriver) CL.GetDriver())
+				MobileElement comission = (MobileElement) (CL.GetAppiumDriver())
 						.findElement(By.xpath(comissionXpathiOS));
 
 				mobileAction.FuncClick(comission, comissionXpath);
@@ -1035,7 +1032,7 @@ public class MutualFunds extends _CommonPage {
 
 			mobileAction.FuncClick(dividendOptions, "Dividend Option");
 			if (platformName.equalsIgnoreCase("Android")) {
-				MobileElement dividentOptionElement = (MobileElement) ((AppiumDriver) CL.GetDriver())
+				MobileElement dividentOptionElement = (MobileElement) (CL.GetAppiumDriver())
 						.findElement(By.xpath(dividendOptionValue));
 				mobileAction.FuncClick(dividentOptionElement, dividendOption);
 			} else {

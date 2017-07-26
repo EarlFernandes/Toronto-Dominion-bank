@@ -1,7 +1,6 @@
 package com.td;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -11,6 +10,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.html5.Location;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -88,7 +88,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "IllegalArgumentException");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			throw e;
@@ -96,7 +96,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Element not displayed" + text);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			throw n;
@@ -104,7 +104,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			throw e;
@@ -140,7 +140,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			throw e;
@@ -179,7 +179,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "IllegalArgumentException");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			throw e;
@@ -187,7 +187,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Element not displayed");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			throw n;
@@ -195,7 +195,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "The element not present in current page");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			throw e;
@@ -714,7 +714,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Exception in FuncGetText(). getText() failed.");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			// throw e;
@@ -1001,7 +1001,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "IllegalArgumentException");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 		}
@@ -1417,7 +1417,6 @@ public class MobileAction2 extends CommonLib {
 
 		try {
 			String elementText = "";
-			boolean verifyFlag = true;
 
 			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
 			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
@@ -1470,7 +1469,7 @@ public class MobileAction2 extends CommonLib {
 				GetReporting().FuncReport("Fail", "The element does not exists. " + text);
 				e1.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
@@ -1608,14 +1607,14 @@ public class MobileAction2 extends CommonLib {
 	 *             In case an exception occurs while clicking over the element.
 	 *             In case the element is not found over the screen.
 	 */
-	public void verifyElementTextContains(MobileElement objElement, String text) {// throws
-																					// IOException
-																					// {
-																					// //@Author
-																					// -
-																					// Sushil
-																					// 31-Mar-2017
-																					// Modified
+	public void verifyElementTextContains(WebElement objElement, String text) {// throws
+																				// IOException
+																				// {
+																				// //@Author
+																				// -
+																				// Sushil
+																				// 31-Mar-2017
+																				// Modified
 		try {
 			String sEleText = FuncGetElementText(objElement);
 			if (sEleText != null) {
@@ -1636,7 +1635,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Element does not contain expected text:" + text);
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			// throw e;
@@ -2006,7 +2004,7 @@ public class MobileAction2 extends CommonLib {
 				GetReporting().FuncReport("Fail",
 						"Exception: Swiped " + direction + " but element not found. Swipes : " + count);
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 		}
@@ -2074,7 +2072,7 @@ public class MobileAction2 extends CommonLib {
 				GetReporting().FuncReport("Fail",
 						"Exception: Swiped " + direction + " but element not found. Swipes : " + count);
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 		}
@@ -2140,7 +2138,7 @@ public class MobileAction2 extends CommonLib {
 				GetReporting().FuncReport("Pass",
 						"Exception: Swiped " + direction + " element not found. Swipes : " + count);
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			return true;
@@ -2182,10 +2180,10 @@ public class MobileAction2 extends CommonLib {
 	 *            element which has to be identified
 	 * 
 	 * @param expectedText
-	 *            The expected text in this format like:
-	 *            "CONTACT INFORMATION | COORDONNÃ‰ES" if language is English
-	 *            then "CONTACT INFORMATION "to be printed in report if language
-	 *            is French then "COORDONNÃ‰ES" to be printed in report
+	 *            The expected text in this format like: "CONTACT INFORMATION |
+	 *            COORDONNÃ‰ES" if language is English then "CONTACT INFORMATION
+	 *            "to be printed in report if language is French then
+	 *            "COORDONNÃ‰ES" to be printed in report
 	 * 
 	 * @return nothing
 	 * 
@@ -2213,7 +2211,6 @@ public class MobileAction2 extends CommonLib {
 					break;
 				}
 			}
-
 			if (!verified) {
 				System.out.println("Not matched, Captured:" + capturedText + ", but expected is " + expectedText);
 				GetReporting().FuncReport("Fail", "expected text not matched:" + expectedText);
@@ -2604,6 +2601,7 @@ public class MobileAction2 extends CommonLib {
 					GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is enabled.");
 				else
 					GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+
 			}
 		} catch (Exception e) {
 			try {
@@ -2626,7 +2624,6 @@ public class MobileAction2 extends CommonLib {
 				try {
 					GetReporting().FuncReport("Fail", "Exception in FuncGetTextByxpath(). getText() failed.");
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -2643,7 +2640,6 @@ public class MobileAction2 extends CommonLib {
 						try {
 							GetReporting().FuncReport("Fail", "Exception in FuncGetTextByxpath(). getText() failed.");
 						} catch (IOException e3) {
-							// TODO Auto-generated catch block
 							e3.printStackTrace();
 						}
 					}
@@ -2663,9 +2659,9 @@ public class MobileAction2 extends CommonLib {
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 */
-	public String FuncGetElementText(MobileElement objElement) { // @Author -
-																	// Sushil
-																	// 13-Apr-2017
+	public String FuncGetElementText(WebElement objElement) { // @Author -
+																// Sushil
+																// 13-Apr-2017
 		String textToReturn = null;
 		try {
 
@@ -2697,7 +2693,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			// throw e;
@@ -2705,7 +2700,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 
@@ -2855,12 +2849,12 @@ public class MobileAction2 extends CommonLib {
 			try {
 				FunctionSwipe("down", 200, 200);
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 				try {
 					GetReporting().FuncReport("Fail", "Exception : FuncSwipeDownTillScreenTop Failed.");
 				} catch (IOException e2) {
-					// TODO Auto-generated catch block
+
 					e2.printStackTrace();
 				}
 			}
@@ -3009,7 +3003,6 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Fail", "Element does not contain expected text:" + text);
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			// throw e;
@@ -3233,6 +3226,31 @@ public class MobileAction2 extends CommonLib {
 			} catch (IOException e1) {
 				System.out.println("Failed to Write in report for element: " + string);
 			}
+		}
+	}
+
+	/**
+	 * This method will use the Actions class to click on a web element
+	 * 
+	 * @param objElement
+	 * @param text
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * @throws NoSuchElementException
+	 */
+	public void FuncClickWithActions(WebElement objElement, String text)
+			throws InterruptedException, IOException, NoSuchElementException {
+		try {
+			Actions actions = new Actions(GetAppiumDriver());
+			actions.moveToElement(objElement).click().perform();
+			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			throw e;
 		}
 	}
 }

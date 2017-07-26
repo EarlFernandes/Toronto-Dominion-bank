@@ -6,13 +6,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.http.entity.mime.Header;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
-
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -80,8 +77,7 @@ public class Receipt extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(8, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(8, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -245,7 +241,7 @@ public class Receipt extends _CommonPage {
 						"购买详情|購買詳情", "参考编号|參考號碼", "基金|基金", "金额|金額", "发送请求时间|請求送出時間", "转出账户|轉出賬戶", "转入互惠基金账户|轉入互惠基金賬戶"
 
 				};
-				List<MobileElement> detailList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
+				List<MobileElement> detailList = ((MobileDriver) (CL.GetAppiumDriver())).findElementsByXPath(
 						"//android.support.v7.widget.RecyclerView/android.widget.LinearLayout/android.widget.TextView");
 
 				int size = detailList.size();
@@ -260,7 +256,7 @@ public class Receipt extends _CommonPage {
 					mobileAction.verifyElementTextIsDisplayed(detailList.get(i), detailInfomation[i]);
 				}
 				mobileAction.FuncSwipeWhileElementNotFound(foot_note, false, 5, "up");
-				detailList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
+				detailList = ((MobileDriver) (CL.GetAppiumDriver())).findElementsByXPath(
 						"//android.support.v7.widget.RecyclerView/android.widget.LinearLayout/android.widget.TextView");
 
 				int size1 = detailList.size();
@@ -276,7 +272,7 @@ public class Receipt extends _CommonPage {
 					mobileAction.verifyElementTextIsDisplayed(detailList.get(i), detailInfomation[i + size]);
 				}
 			} else {
-				List<MobileElement> detailList = ((MobileDriver) CL.GetDriver())
+				List<MobileElement> detailList = ((MobileDriver) (CL.GetAppiumDriver()))
 						.findElementsByXPath("//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText");
 				String[] detailInfomation = { "后续流程|後續流程", "下午 3 点之前的购买 |下午 3 時之前的購買",
 						"如果您在工作日东部时间下午 3 点之前购买，将按当天价格交易。 | 如果在工作日的東部時間下午 3 時之前購買，將按當天價格交易。", "下午 3 点之后的购买 |下午 3 時之後的購買",
@@ -315,10 +311,10 @@ public class Receipt extends _CommonPage {
 			String[] button_text = { "返回主页|返回首頁", "查看我的账户|查看我的賬戶" };
 			List<MobileElement> btnList = null;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				btnList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
+				btnList = ((MobileDriver) (CL.GetAppiumDriver())).findElementsByXPath(
 						"//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button']");
 			} else {
-				btnList = ((MobileDriver) CL.GetDriver())
+				btnList = ((MobileDriver) (CL.GetAppiumDriver()))
 						.findElementsByXPath("//XCUIElementTypeCollectionView/XCUIElementTypeCell");
 			}
 

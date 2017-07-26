@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import org.apache.commons.lang3.StringUtils;
 
-import io.appium.java_client.AppiumDriver;
 import com.td.mainframe.Executor;
 
 public class MainScreen extends _CommonPage {
@@ -30,7 +29,7 @@ public class MainScreen extends _CommonPage {
 			"SecurityPassword", "TriggerDelta", "CDNMarginAccount", "QuantityType", "Dividend", "SelectLimitPrice",
 			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName",
 			"Passcode", "NewPasscode", "Email", "Name", "EmailProfile", "PhoneProfile", "PostSurveyText", "Response",
-			"ProfileType" };
+			"ProfileType", "SecurityQuestion", "OTPSecurityCode" };
 
 	public void readSheet() {
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
@@ -46,8 +45,8 @@ public class MainScreen extends _CommonPage {
 
 	}
 
-	public String p2pArray[] = { "HostPath", "HostUserName", "HostPassword", "ProfileType", "ProfileName", "ShortName",
-			"FirstName", "Sirname", "Title", "GroupUser", "GroupPassword", "TestSet", "PersonalAccountACS",
+	public String p2pArray[] = { "CustomerID", "HostPath", "HostUserName", "HostPassword", "ProfileType", "ProfileName",
+			"ShortName", "FirstName", "Sirname", "Title", "GroupUser", "GroupPassword", "TestSet", "PersonalAccountACS",
 			"PersonalAccountName", "BusinessAccountACSFirst", "BusinessFirstName", "BusinessAccountACSSecond",
 			"BusinessSecondName", "MultiGroupUser", "BusinessEmailID" };
 
@@ -68,15 +67,18 @@ public class MainScreen extends _CommonPage {
 		readSheet();
 		readP2PSheet();
 
-		if (getTestdata("ProfileType").equalsIgnoreCase("Personal")) {
-			System.out.println("ProfileType: " + getTestdata("ProfileType"));
-			Executor.get().createPersonalProfile();
-		} else if (getTestdata("ProfileType").equalsIgnoreCase("Business")) {
-			Executor.get().createBusinessProfile();
-		} else if (getTestdata("ProfileType").equalsIgnoreCase("Multi")) {
-			Executor.get().createMultiProfile();
-		}
+		if (StringUtils.isEmpty(CL.getTestDataInstance().Userid)) {
 
+			if (getTestdata("ProfileType").equalsIgnoreCase("Personal")) {
+				System.out.println("ProfileType: " + getTestdata("ProfileType"));
+				Executor.get().createPersonalProfile();
+			} else if (getTestdata("ProfileType").equalsIgnoreCase("Business")) {
+				Executor.get().createBusinessProfile();
+			} else if (getTestdata("ProfileType").equalsIgnoreCase("Multi")) {
+				Executor.get().createMultiProfile();
+			}
+
+		}
 		final String udid = CL.getTestDataInstance().getDeviceUdid();
 		// Jenkins only params
 
@@ -97,10 +99,10 @@ public class MainScreen extends _CommonPage {
 			// If length is 2, then second token is the locale
 			if (targetEnvVars.length >= 2) {
 				currentLocale = targetEnvVars[1];
-				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
+				appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
 			} else {
 				currentLocale = "EN";
-				appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
+				appStringMap = (CL.GetAppiumDriver()).getAppStringMap();
 			}
 		} else { // Local execution
 			try { // Set udid explicitly for local execution, to handle udid
@@ -123,9 +125,9 @@ public class MainScreen extends _CommonPage {
 				}
 				CL.mobileApp(LOCAL_EXECUTION_APPIUM_SERVER);
 				if (StringUtils.isEmpty(currentLocale)) {
-					appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap();
+					appStringMap = (CL.GetAppiumDriver()).getAppStringMap();
 				} else {
-					appStringMap = ((AppiumDriver) CL.GetDriver()).getAppStringMap(currentLocale);
+					appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
 				}
 				// System.out.println(appStringMap.toString());
 			} catch (Exception e) {

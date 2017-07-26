@@ -4,15 +4,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import com.td.MainScreen;
 import com.td._CommonPage;
-
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -178,8 +173,7 @@ public class Accounts extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -429,8 +423,6 @@ public class Accounts extends _CommonPage {
 		String from_Account = getTestdata("FromAccount");
 		String verify_Acnt = "//android.widget.TextView[contains(@text,'" + from_Account + "')]";
 
-		String account_Value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
-
 		try {
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, "Accounts");
 
@@ -508,7 +500,6 @@ public class Accounts extends _CommonPage {
 		String from_Account = getTestdata("FromAccount");
 		String verify_Acnt = "//android.widget.TextView[contains(@text,'" + from_Account + "')]";
 
-		String account_Value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -836,22 +827,10 @@ public class Accounts extends _CommonPage {
 
 		Decorator();
 		try {
-			boolean flag = true;
-			int count = 0;
+
 			System.out.println("Account selected:" + CL.getTestDataInstance().getPrimaryAccount());
 			String accountXL = "//*[contains(@text,'" + CL.getTestDataInstance().getPrimaryAccount()
 					+ "') or contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "')  ]";
-
-			/*
-			 * MobileElement accountValue=(MobileElement) ((AppiumDriver)
-			 * CL.GetDriver()).findElement(By.xpath(accountXL)); while(flag &&
-			 * count<26){
-			 * 
-			 * if(mobileAction.verifyElementVisible(accountValue,
-			 * "Account Value")){ mobileAction.FuncClick(accountValue,
-			 * "Account"); flag=false; }else{ mobileAction.FunctionSwipe("Up",
-			 * 200, 200); count++; }}
-			 */
 
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountXL, true, 40, "up");
 			mobileAction.waitForElementToVanished(progresssBar);
@@ -938,14 +917,14 @@ public class Accounts extends _CommonPage {
 				accountList = ((MobileDriver) CL.GetDriver())
 						.findElementsByXPath("//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
 			}
-			int count=20;
+			int count = 20;
 			while (true) {
 				int size = accountList.size();
 				System.out.println("Account size:" + size);
 				for (int i = 0; i < size; i++) {
 					String accounttext = mobileAction.getValue(accountList.get(i));
 					System.out.println("Account " + (i + 1) + ":" + accounttext);
-					if (accounttext.toLowerCase().contains("mutual fund") ||accounttext.contains("FONDS COMM.") ) {
+					if (accounttext.toLowerCase().contains("mutual fund") || accounttext.contains("FONDS COMM.")) {
 						mobileAction.Report_Fail("Mutual fund account found");
 						return;
 					}
@@ -953,7 +932,7 @@ public class Accounts extends _CommonPage {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					if (!mobileAction.verifyElementIsPresent(foot_text)) {
 						mobileAction.FuncSwipeOnce("up");
-						count --;
+						count--;
 						accountList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
 								"//android.widget.TextView[@resource-id='com.td:id/accntDescrSum']");
 					} else {
@@ -964,7 +943,7 @@ public class Accounts extends _CommonPage {
 					// need to swipe to the bottom
 					break;
 				}
-				if(count==0){
+				if (count == 0) {
 					break;
 				}
 			}

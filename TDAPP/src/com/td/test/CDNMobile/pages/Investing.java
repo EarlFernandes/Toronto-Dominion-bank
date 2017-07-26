@@ -10,10 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
-import com.td.MainScreen;
 import com.td._CommonPage;
-
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -27,6 +24,7 @@ public class Investing extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TRADE']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='TRADE']")
 	private MobileElement tradeicon;
+
 
 	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
@@ -264,27 +262,8 @@ public class Investing extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(7, TimeUnit.SECONDS)),
-				this);
-		// try{
-		// if
-		// (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-		// {
-		// investing_header =
-		// mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title'
-		// and @text='" + mobileAction.getAppString(locale_used,"str_Investing")
-		// + "']", "Investing");
-		// }else{
-		// String
-		// investingTitle=mobileAction.getAppString(locale_used,"str_Investing");
-		// investing_header =
-		// mobileAction.verifyElementUsingXPath("//*[@label='" + investingTitle
-		// + "']", "Investing");
-		// }
-		// }catch (Exception e){
-		// System.out.println("Exception from Method " +
-		// this.getClass().toString() + " " + e.getCause());
-		// }
+
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(7, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -1481,6 +1460,7 @@ public class Investing extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
 				mobileAction.verifyTextEquality(investing_header.getAttribute("label"),
 						mobileAction.getAppString("Investing"));
 				mobileAction.verifyTextEquality(investing_body_title.getText(),
@@ -1559,10 +1539,10 @@ public class Investing extends _CommonPage {
 			}
 			List<MobileElement> fundsList = null;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				fundsList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
+				fundsList = ((MobileDriver) (CL.GetAppiumDriver())).findElementsByXPath(
 						"//android.widget.ListView[@resource-id='com.td:id/holdings_list']//android.widget.TextView[@resource-id='com.td:id/symbol']");
 			} else {
-				fundsList = ((MobileDriver) CL.GetDriver())
+				fundsList = ((MobileDriver) (CL.GetAppiumDriver()))
 						.findElementsByXPath("//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
 			}
 			int size = fundsList.size();
@@ -1617,10 +1597,10 @@ public class Investing extends _CommonPage {
 			System.out.println("Today is:" + currentDate);
 			List<MobileElement> transactionListDate = null;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				transactionListDate = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
+				transactionListDate = ((MobileDriver) (CL.GetAppiumDriver())).findElementsByXPath(
 						"//android.widget.ListView[@resource-id='com.td:id/activityContent']//android.widget.TextView[@resource-id='com.td:id/date']");
 			} else {
-				transactionListDate = ((MobileDriver) CL.GetDriver())
+				transactionListDate = ((MobileDriver) (CL.GetAppiumDriver()))
 						.findElementsByXPath("//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
 			}
 
@@ -1654,10 +1634,10 @@ public class Investing extends _CommonPage {
 			mobileAction.FuncSwipeWhileElementNotFound(transaction_foot_note, false, 5, "up");
 			List<MobileElement> transactionListContent = null;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				transactionListContent = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
+				transactionListContent = ((MobileDriver) (CL.GetAppiumDriver())).findElementsByXPath(
 						"//android.widget.ListView[@resource-id='com.td:id/activityContent']//android.widget.TextView[@resource-id='com.td:id/transaction_fund_name']");
 			} else {
-				transactionListContent = ((MobileDriver) CL.GetDriver())
+				transactionListContent = ((MobileDriver) (CL.GetAppiumDriver()))
 						.findElementsByXPath("//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
 			}
 
@@ -1957,7 +1937,9 @@ public class Investing extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				String from_accountNo = "//XCUIElementTypeStaticText[contains(@name, 'INVESTING_ACCOUNT_SUMMARY_DETAILCELL_') and contains(@value, '"
 						+ getTestdata("FromAccount") + "')]";
-				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+
+				MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())
+
 						.findElement(By.xpath(from_accountNo));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 			} else {
@@ -1967,7 +1949,8 @@ public class Investing extends _CommonPage {
 
 				while (flag && count < 5) {
 					try {
-						MobileElement account = (MobileElement) ((AppiumDriver) CL.GetDriver())
+
+						MobileElement account = (MobileElement) (CL.GetAppiumDriver())
 								.findElement(By.xpath(accountNumXpath));
 						if (account.isDisplayed()) {
 							mobileAction.FuncClick(account, "Account Number");

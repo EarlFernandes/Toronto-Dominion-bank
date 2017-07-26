@@ -9,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -62,8 +61,7 @@ public class QuickAccessPage extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -114,7 +112,6 @@ public class QuickAccessPage extends _CommonPage {
 
 	public void verifyCashBack() {
 		Decorator();
-		boolean flag = false;
 		try {
 
 			mobileAction.verifyElementIsDisplayed(cashBack, "Cash Back Dollars");
@@ -172,8 +169,6 @@ public class QuickAccessPage extends _CommonPage {
 				CL.GetReporting().FuncReport("PASS", "The '" + "REWARDS value" + "' is not displayed");
 			} catch (IOException e1) {
 				System.out.println("IOException from Method" + this.getClass().toString() + " " + e.getCause());
-				// TODO Auto-generated catch block
-
 			}
 		}
 	}

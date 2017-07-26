@@ -12,4 +12,8 @@ public final class EnglishStrings {
 	public static final String MF_TO_MF_ACCOUNT = "To Mutual Fund Account";
 	public static final String MF_ACCEPTED_FUND_DETAIL_FEE = "Accepted Fund Details & Fees";
 
+
+	// OTP Challenge
+	public static final String OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE = "we can't verify the security code entered.";
+	public static final String OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED = "you have requested too many passcodes without entering one";
 }

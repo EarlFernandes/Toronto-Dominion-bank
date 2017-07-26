@@ -9,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td.test.CDNMobile.pages.CMOB_InitialSwipe;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.InteractsWithApps;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -94,8 +93,7 @@ public class Env_Settings extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -127,7 +125,8 @@ public class Env_Settings extends _CommonPage {
 					// mobileAction.FuncClick(enableMITPhase4, "Enable MIT
 					// Phase4");
 					// mobileAction.FunCSwipeandScroll(network_settings, true);
-					MobileElement envt = (MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(env));
+
+					MobileElement envt = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(env));
 					mobileAction.FunCSwipeandScroll(envt, true);
 					/*
 					 * while(flag && count<10){
@@ -172,8 +171,7 @@ public class Env_Settings extends _CommonPage {
 				} else {
 					mobileAction.FuncClick(configuration, "Configuration");
 					mobileAction.FunctionSwipe("Up", 150, 150);
-					MobileElement config = (MobileElement) ((AppiumDriver) CL.GetDriver())
-							.findElement(By.xpath(cnfgrn));
+					MobileElement config = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(cnfgrn));
 					mobileAction.FuncClick(config, "Environment");
 					/*
 					 * while(boolEnv && count<10){
@@ -252,7 +250,8 @@ public class Env_Settings extends _CommonPage {
 				mobileAction.FuncClick(okButton, "OK");
 
 			}
-			MobileElement envt = (MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(env));
+
+			MobileElement envt = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(env));
 			mobileAction.FunCSwipeandScroll(envt, true);
 			mobileAction.FunCSwipeandScroll(environment, true);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -280,8 +279,7 @@ public class Env_Settings extends _CommonPage {
 				}
 			}
 
-			mobileAction.FunCSwipeandScroll((MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(By.xpath(env)),
-					true);
+			mobileAction.FunCSwipeandScroll((MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(env)), true);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
