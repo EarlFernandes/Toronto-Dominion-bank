@@ -340,8 +340,8 @@ public class LoginMIT extends _CommonPage {
 	 * mobileAction.FuncClick(InvestingAccount,"InvestingAccount"); //
 	 * wv.MyAccount.click();
 	 * 
-	 * mobileAction.FuncClick(select_accesscard,"select_accesscard"); <<<<<<<
-	 * HEAD CL.GetReporting().FuncReport(PASS,String.format(
+	 * mobileAction.FuncClick(select_accesscard,"select_accesscard"); 
+	 * CL.GetReporting().FuncReport(PASS,String.format(
 	 * "TD Customer 'select_accesscard' button clicked."));
 	 * mobileAction.FuncClick(addUser,"addUser");
 	 * CL.GetReporting().FuncReport(PASS,String.format(
@@ -359,7 +359,7 @@ public class LoginMIT extends _CommonPage {
 	 * CL.getTestDataInstance().UserPassword);
 	 * CL.GetReporting().FuncReport(PASS, String.format(
 	 * "Entered RIBUsername '%s'", CL.getTestDataInstance().UserPassword));
-	 * ======= CL.GetReporting().FuncReport(PASS,String. format(
+	 *  CL.GetReporting().FuncReport(PASS,String. format(
 	 * "TD Customer 'select_accesscard' button clicked."));
 	 * mobileAction.FuncClick(addUser,"addUser");
 	 * CL.GetReporting().FuncReport(PASS,String. format(
@@ -377,7 +377,6 @@ public class LoginMIT extends _CommonPage {
 	 * CL.getTestDataInstance().UserPassword);
 	 * CL.GetReporting().FuncReport(PASS, String.format(
 	 * "Entered RIBUsername '%s'", CL.getTestDataInstance().UserPassword));
-	 * >>>>>>> remotes/origin/master
 	 * 
 	 * MobileAction.FuncSendKeys(EditUser,CL.getTestDataInstance().Userid);
 	 * MobileAction.FuncSendKeys(Password,CL.getTestDataInstance().UserPassword+

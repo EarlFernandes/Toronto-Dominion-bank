@@ -529,13 +529,9 @@ public class Trade extends _CommonPage {
 
 				/*
 				 * mobileAction.FuncClick(symbol, "Enter name or symbol");
-				 * <<<<<<< HEAD mobileAction.FuncClick(symbolEditText,
-				 * "Enter name or symbol" );
-				 * mobileAction.FuncSendKeys(symbolEditText, searchKeyword);
-				 * ======= mobileAction.FuncClick(symbolEditText,
+				 * mobileAction.FuncClick(symbolEditText,
 				 * "Enter name or symbol");
 				 * mobileAction.FuncSendKeys(symbolEditText, searchKeyword);
-				 * >>>>>>> remotes/origin/master
 				 * mobileAction.FuncClick(selectSymbolValue, "Symbol");
 				 */
 

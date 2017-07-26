@@ -165,26 +165,6 @@ public class MainScreenMIT extends _CommonPage {
 		 * 
 		 * 
 		 * mobileAction.FuncClick(select_accesscard,"select_accesscard");
-<<<<<<< HEAD
-		 * //CL.GetReporting().FuncReport(PASS,String.format(
-		 * "TD Customer 'select_accesscard' button clicked."));
-		 * mobileAction.FuncClick(addUser,"addUser");
-		 * //CL.GetReporting().FuncReport(PASS,String.format(
-		 * "TD Customer 'addUser' button clicked."));
-		 * mobileAction.FuncClick(username,"username");
-		 * //CL.GetReporting().FuncReport(PASS,String.format(
-		 * "TD Customer 'username' button clicked."));
-		 * mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-		 * //CL.GetReporting().FuncReport(PASS, String.format(
-		 * "Entered RIBUsername '%s'", CL.getTestDataInstance().Userid));
-		 * mobileAction.FuncClick(password,"password");
-		 * //CL.GetReporting().FuncReport(PASS,String.format(
-		 * "TD Customer 'password' button clicked."));
-		 * mobileAction.FuncSendKeys(password,
-		 * CL.getTestDataInstance().UserPassword);
-		 * //CL.GetReporting().FuncReport(PASS, String.format(
-		 * "Entered RIBUsername '%s'", CL.getTestDataInstance().UserPassword));
-=======
 		 * //CL.GetReporting().FuncReport(PASS,String.
 		 * format("TD Customer 'select_accesscard' button clicked."));
 		 * mobileAction.FuncClick(addUser,"addUser");
@@ -205,7 +185,6 @@ public class MainScreenMIT extends _CommonPage {
 		 * //CL.GetReporting().FuncReport(PASS,
 		 * String.format("Entered RIBUsername '%s'",
 		 * CL.getTestDataInstance().UserPassword));
->>>>>>> remotes/origin/master
 		 * 
 		 * MobileAction.FuncSendKeys(EditUser,CL.getTestDataInstance().Userid);
 		 * MobileAction.FuncSendKeys(Password,CL.getTestDataInstance().

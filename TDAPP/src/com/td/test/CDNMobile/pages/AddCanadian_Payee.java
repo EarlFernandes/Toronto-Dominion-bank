@@ -134,9 +134,7 @@ public class AddCanadian_Payee extends _CommonPage {
 			Thread.sleep(5000);
 			mobileAction.waitForElementToVanish(progressBar);
 
-		} catch (
-
-		NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {

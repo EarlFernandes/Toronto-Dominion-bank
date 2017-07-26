@@ -73,8 +73,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/loginEditText")
 	private MobileElement select_accesscard;
 
-	@iOSFindBy(xpath = "//*[@label='Add Username or Access Card' or contains(@label,'Ajouter un nom') or @name='ACTION_SHEET_LOGIN_DATA_CELL_0']")
-	// @iOSFindBy(accessibility = "ACTION_SHEET_LOGIN_DATA_CELL_0")
+	@iOSFindBy(accessibility = "ACTION_SHEET_LOGIN_DATA_CELL_0")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/commandButton']/android.widget.TextView[@resource-id='com.td:id/txtAccessCard']")
 	private MobileElement addUser;
 
@@ -415,7 +414,7 @@ public class Login extends _CommonPage {
 				mobileAction.FuncClick(login, "Login");
 				mobileAction.waitForElementToVanish(progressBar);
 			}
-			// verifySystemError();
+			verifySystemError();
 			verifySecurityQuestion();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

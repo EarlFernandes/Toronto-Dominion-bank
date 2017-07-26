@@ -1738,11 +1738,9 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.FuncClick(btnMenu, "Menu");
 				} else {
 					/*
-					 * <<<<<<< HEAD String select_fromaccountvalue =
+					 *	String select_fromaccountvalue =
 					 * "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
-					 * ======= String select_fromaccountvalue =
-					 * "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
-					 * >>>>>>> remotes/origin/master + from_Account+ "']";
+					 *  + from_Account+ "']";
 					 * MobileElement fromAccountval = (MobileElement)
 					 * ((AppiumDriver) CL.GetDriver())
 					 * .findElement(By.xpath(select_fromaccountvalue));

@@ -540,7 +540,6 @@ public class PendingInteracTransfer extends _CommonPage {
 	}
 
 	/**
->>>>>>> remotes/origin/master
 	 * This method will verify the pending interac e transfer list is displaying
 	 * on Pending Interac Receipt page
 	 * 
