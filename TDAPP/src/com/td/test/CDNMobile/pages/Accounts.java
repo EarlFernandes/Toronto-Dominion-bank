@@ -990,10 +990,6 @@ public class Accounts extends _CommonPage {
 								+ mobileAction.getAppString("str_banking_cross_sell_message_detail") + "\"]",
 						"Open a bank account msg body");
 				mobileAction.verifyElementUsingXPath(
-						"//android.widget.Button[@text='"
-								+ mobileAction.getAppString("securityQuestionMFASetupRequiredButtonGoToEW") + "']",
-						"Go to easyweb button");
-				mobileAction.verifyElementUsingXPath(
 						"//android.widget.Button[contains(@text, '"
 								+ mobileAction.getAppString("str_call_phone").replace(" %1$s", "") + "')]",
 						"call 1-800");

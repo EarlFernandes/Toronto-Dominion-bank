@@ -396,7 +396,7 @@ public class Bill_PayCanada extends _CommonPage {
 								+ mobileAction.getAppString("review_details_title") + "']",
 						"Confirm title");
 				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferConfirmFrom") + "']",
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("receipt_from") + "']",
 						"From");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferConfirmTo") + "']",

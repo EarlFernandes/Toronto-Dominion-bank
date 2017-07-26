@@ -1398,7 +1398,7 @@ public class HomeScreen extends _CommonPage {
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("terms_of_use") + "']",
 						"Terms of Use");
 				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("dashboard_nearest_branch_lbl")
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("dashboard_nearest_branch_label")
 								+ "' or @text='" + mobileAction.getAppString("dashboard_find_locations") + "']",
 						"Nearest Branch");
 				mobileAction
