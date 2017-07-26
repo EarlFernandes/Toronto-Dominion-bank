@@ -183,7 +183,8 @@ public class SearchPageMIT extends _CommonPage {
 			{
 				xpathFlag = xpathSymbolFlag_ios;
 				temp =0;
-				property = "name";
+				//property = "name";
+				property = "label";
 			}
 			//US_Symbol.click();
 			List<MobileElement> listItem = (List<MobileElement>) ((AppiumDriver) CL.GetDriver()).findElements(By.xpath(xpathFlag));
@@ -197,7 +198,7 @@ public class SearchPageMIT extends _CommonPage {
 					 sSymbolName = CL.GetDriver().findElements(By.xpath("//*[@resource-id='com.td:id/market_name']")).get(i).getText();
 					 CL.GetReporting().FuncReport("Pass","US option found in search list. Item :" + sSymbolName);
 				 }
-				 else if(listItem.get(i).getAttribute("name").contains("US"))
+				 else if(listItem.get(i).getAttribute("label").contains("US"))
 				 {
 					 CL.GetReporting().FuncReport("Pass","US option found in search list. Item :" + listItem.get(i).getAttribute("name"));
 				 }
