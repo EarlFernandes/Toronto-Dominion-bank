@@ -698,22 +698,22 @@ public class Interac_e_Transfer extends _CommonPage {
 						"//android.widget.TextView[@resource-id='com.td:id/message' and @text='"
 								+ mobileAction.getAppString("eTransferMessageLabel") + "']",
 						"Message");
-				mobileAction
-						.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/home' and @text='"
-								+ mobileAction.getAppString("receipt_home") + "']", "HOME button");
-				mobileAction
-						.verifyElementUsingXPath(
-								"//android.widget.TextView[@resource-id='com.td:id/etransfers' and @text='"
-										+ mobileAction.getAppString("receipt_another_etransfer") + "']",
-								"ETRANSFERS button");
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/transfers' and @text='"
-								+ mobileAction.getAppString("receipt_transfers") + "']",
-						"TRANSFERS button");
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/pending_transfers' and @text='"
-								+ mobileAction.getAppString("receipt_pending_transfers") + "']",
-						"PENDING TRANSFERS button");
+//				mobileAction
+//						.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/home' and @text='"
+//								+ mobileAction.getAppString("receipt_home") + "']", "HOME button");
+//				mobileAction
+//						.verifyElementUsingXPath(
+//								"//android.widget.TextView[@resource-id='com.td:id/etransfers' and @text='"
+//										+ mobileAction.getAppString("receipt_another_etransfer") + "']",
+//								"ETRANSFERS button");
+//				mobileAction.verifyElementUsingXPath(
+//						"//android.widget.TextView[@resource-id='com.td:id/transfers' and @text='"
+//								+ mobileAction.getAppString("receipt_transfers") + "']",
+//						"TRANSFERS button");
+//				mobileAction.verifyElementUsingXPath(
+//						"//android.widget.TextView[@resource-id='com.td:id/pending_transfers' and @text='"
+//								+ mobileAction.getAppString("receipt_pending_transfers") + "']",
+//						"PENDING TRANSFERS button");
 			}
 
 		} catch (NoSuchElementException | IOException e) {
