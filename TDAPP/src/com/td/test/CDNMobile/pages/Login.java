@@ -1481,10 +1481,11 @@ public class Login extends _CommonPage {
 						"//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @text='"
 								+ mobileAction.getAppString("username_str") + "']",
 						"Username");
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @content-desc='"
-								+ mobileAction.getAppString("password_str") + "']",
-						"Password");
+				// mobileAction.verifyElementUsingXPath(
+				// "//android.widget.EditText[@resource-id=
+				// 'com.td:id/password_input' and @content-desc='"
+				// + mobileAction.getAppString("password_str") + "']",
+				// "Password");
 				mobileAction.FuncHideKeyboard();
 				// mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id=
 				// 'com.td:id/remember_text' and @text='" +
