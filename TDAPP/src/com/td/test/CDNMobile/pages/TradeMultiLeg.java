@@ -71,16 +71,19 @@ public class TradeMultiLeg extends _CommonPage{
 	@iOSFindBy(xpath = "//*[@name='ACTION_QTY_CELL_2']/*[2]")
 	//@AndroidFindBy(xpath = "//*[contains(@resource-id,'com.td:id/amountEditText')]")
 //	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*/*[@resource-id='com.td:id/amountEditText']") //Tablet 5.x
-//	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[2]/*[1]") //Tablet 5.x
-	@AndroidFindBy(xpath = 	"//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[@resource-id='com.td:id/amountEditText']")//@Author - Sushil 10-May-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[2]/*[1]") //Tablet 5.x
+//	@AndroidFindBy(xpath = 	"//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[@resource-id='com.td:id/amountEditText']")//@Author - Sushil 10-May-2017
+//	@AndroidFindBy(xpath = 	"//*[@resource-id='com.td:id/multi_leg1_quantity']/*/*/*[2]") //Phone
+//	@AndroidFindBy(xpath = 	"//*[@resource-id='com.td:id/amountEditText']/parent::*[@resource-id='com.td:id/multi_leg1_quantity']") //Phone
 	private MobileElement leg1Quantity;
 	
 	//@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell[3]/*[2]") //@Author - Sushil 17-Feb-2017
 	@iOSFindBy(xpath = "//*[@name='ACTION_QTY_CELL_3']/*[2]")
 	//@AndroidFindBy(xpath = "(//*[contains(@resource-id,'com.td:id/amountEditText')])[2]")
 //	@AndroidFindBy(xpath = 	"//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*/*[@resource-id='com.td:id/amountEditText']") //Tablet 5.x
-//	@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[2]/*[1]") //Tablet 5.x
-	@AndroidFindBy(xpath = 	"//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[@resource-id='com.td:id/amountEditText']")//@Author - Sushil 10-May-2017
+	@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[2]/*[1]") //Tablet 5.x
+//	@AndroidFindBy(xpath = 	"//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[@resource-id='com.td:id/amountEditText']")//@Author - Sushil 10-May-2017
+//	@AndroidFindBy(xpath = 	"//*[@resource-id='com.td:id/multi_leg2_quantity']/*/*/*[2]") //Phone
 	private MobileElement leg2Quantity;
 	
 	//@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell/*") //@Author - Sushil 17-Feb-2017
@@ -248,8 +251,8 @@ public class TradeMultiLeg extends _CommonPage{
 	private MobileElement Quote_price;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'Limit Price') or contains(@label,'Cours limit')]/../*[2]") //@Author - Sushil 08-Feb-2017
-	@AndroidFindBy(xpath = "//*[contains(@text,'Limit Price') or contains(@text,'Cours limit')]/../*[@resource-id='com.td:id/amountEditText']")
-//	@AndroidFindBy(xpath = "//*[contains(@text,'Limit Price') or contains(@text,'Cours limit')]/../*[2]/*[@resource-id='com.td:id/amountEditText']") //Tablet 5.x
+//	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/limit_price']/*/*/*[2]")
+	@AndroidFindBy(xpath = "//*[contains(@text,'Limit Price') or contains(@text,'Cours limit')]/../*[2]/*[@resource-id='com.td:id/amountEditText']") //Tablet 5.x
 	private MobileElement LimitPrice;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'Date')]/../*[2]") //@Author - Sushil 13-Mar-2017
@@ -382,6 +385,10 @@ public class TradeMultiLeg extends _CommonPage{
 	@iOSFindBy(xpath = "//XCUIElementTypeImage[contains(@name,'error')]/../*[1]") //@Author - Sushil 29-Mar-2017
 	@AndroidFindBy(id="com.td:id/error_text")
 	private MobileElement error_text;
+	
+	 @iOSFindBy(xpath = "//[contains(@label,'Strikes') or contains(@label,'Levée')]/../parent::Other/../*[1]/*[2]") //@Author - Sushil 17-Feb-2017
+	 @AndroidFindBy(xpath="//*[@resource-id='com.td:id/textview_info' and @index=1]")
+	 private MobileElement firstAskCALLSMUL;
 	
 	
     By Text_Condition = By.xpath("//*[@class='sprite flag flag-us']/../*[@class='symbol']/*[1]");
@@ -838,6 +845,8 @@ public class TradeMultiLeg extends _CommonPage{
 		try
 		{
 			Thread.sleep(5000);
+			objEle.click();
+			Thread.sleep(2000);
 			mobileAction.FuncSendKeys(objEle,sQty);
 			
 /*			final String command = "adb -s " + CL.getTestDataInstance().getDeviceUdid() + " input keyevent KEYCODE_1"; 
@@ -853,6 +862,8 @@ public class TradeMultiLeg extends _CommonPage{
 //			if(objEle.getText()==null || objEle.getText().length()<1)
 			if(mobileAction.FuncGetText(objEle).length()<1)
 			{
+				objEle.click();
+				Thread.sleep(2000);
 				mobileAction.FuncSendKeys(objEle,sQty);	
 				handleKeyboard();
 			}
@@ -1013,12 +1024,16 @@ public class TradeMultiLeg extends _CommonPage{
 			{
 			((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td"); //switch context to WebView to get the HTML DOM
 		
-			mobileAction.verifyElementIsDisplayed((MobileElement) CL.GetDriver().findElement(Option_Bid), "Option_Bid");
+			mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(Option_Bid), "Option_Bid");
 
 			
 			
 			((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
 			
+			}
+			else
+			{
+				mobileAction.FuncClick(firstAskCALLSMUL, "firstAskCALLSMUL");
 			}
 
 			mobileAction.FuncClick(backButton, "backButton");
@@ -1398,6 +1413,8 @@ public class TradeMultiLeg extends _CommonPage{
 			
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Quantity, false, 5, "up");
 			//mobileAction.FuncSwipeOnce("up");
+			
+			//leg1Quantity.clear();
 			enterQuantity(leg1Quantity,getTestdata("Leg1Qunatity",XLSheetUserIDs));
 			
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, false, 5, "up");
