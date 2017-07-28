@@ -50,7 +50,7 @@ public class AddRecipient extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Error You must enter a valid answer')]")
 	private MobileElement verify_Msg;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done' or @label='Go']")
 	private MobileElement done;
 
 	public synchronized static AddRecipient get() {
@@ -100,7 +100,7 @@ public class AddRecipient extends _CommonPage {
 
 			mobileAction.FuncSendKeys(recipient_Email, recipient_Email_value);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}
@@ -112,7 +112,7 @@ public class AddRecipient extends _CommonPage {
 
 			mobileAction.FuncSendKeys(security_Question, security_Question_value);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}
@@ -120,7 +120,7 @@ public class AddRecipient extends _CommonPage {
 
 			mobileAction.FuncSendKeys(answer, "aa");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}
@@ -129,7 +129,7 @@ public class AddRecipient extends _CommonPage {
 
 			mobileAction.FuncSendKeys(confirm_Answer, "aa");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}

@@ -331,7 +331,7 @@ public class Login extends _CommonPage {
 			if (mobileAction.FuncIsDisplayed(securityQuestionHeader)) {
 				mobileAction.FuncSendKeys(enterAnswer, getTestdata("SecurityAnswer"));
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 				} else {
 					mobileAction.FuncHideKeyboard();
 				}
@@ -669,7 +669,7 @@ public class Login extends _CommonPage {
 
 				mobileAction.FuncSendKeys(password, passwords);
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 				} else {
 					mobileAction.FuncHideKeyboard();
 				}
@@ -1045,7 +1045,7 @@ public class Login extends _CommonPage {
 				mobileAction.FuncClick(enterAnswer, "Enter your Answer");
 				mobileAction.FuncSendKeys(enterAnswer, "abcd");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 				} else {
 					mobileAction.FuncHideKeyboard();
 				}
@@ -1229,7 +1229,7 @@ public class Login extends _CommonPage {
 					mobileAction.FuncClick(enterAnswer, "Enter your Answer");
 					mobileAction.FuncSendKeys(enterAnswer, "abcd");
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-						mobileAction.FuncClick(done, "Done");
+						mobileAction.FuncClickDone();
 					} else {
 						mobileAction.FuncHideKeyboard();
 					}
@@ -1361,6 +1361,39 @@ public class Login extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
+	
+	private void login_without_ID_remembered(){
+		try{
+			mobileAction.FuncClick(username, "Username");
+			mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
+	
+			mobileAction.FuncClick(password, "Password");
+			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+	
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClick(login, "Login");
+				mobileAction.waitForElementToVanish(progressBar);
+			} else {
+				mobileAction.FuncClick(login, "Login");
+				mobileAction.waitForElementToVanish(progressBar);
+	
+			}
+		}catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+		
+	}
 
 	public void login_errorMsg() {
 
@@ -1387,24 +1420,12 @@ public class Login extends _CommonPage {
 						mobileAction.FuncClick(login, "Login");
 						mobileAction.waitForElementToVanish(progressBar);
 					}
+				}else{
+					login_without_ID_remembered();
 				}
 			} else {
 
-				mobileAction.FuncClick(username, "Username");
-				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-
-				mobileAction.FuncClick(password, "Password");
-				mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					mobileAction.FuncHideKeyboard();
-					mobileAction.FuncClick(login, "Login");
-					mobileAction.waitForElementToVanish(progressBar);
-				} else {
-					mobileAction.FuncClick(login, "Login");
-					mobileAction.waitForElementToVanish(progressBar);
-
-				}
+				login_without_ID_remembered();
 			}
 			Thread.sleep(2000);
 			if (mobileAction.verifyElementIsPresent(login_error)) {

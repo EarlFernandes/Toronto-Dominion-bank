@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.TimeoutException;
@@ -762,8 +763,10 @@ public class MobileAction2 extends CommonLib {
 	 * @throws IOException
 	 */
 	public void FuncHideKeyboard() throws IOException {
+		 
 		try {
-			((AppiumDriver) GetDriver()).navigate().back();
+			//((AppiumDriver) GetDriver()).navigate().back();
+			(GetAppiumDriver()).hideKeyboard();
 			GetReporting().FuncReport("Pass", "Keyboard has been closed.");
 		} catch (WebDriverException e) {
 			GetReporting().FuncReport("Fail", "WebDriverException occured while while closing keyboard.");
@@ -1401,14 +1404,13 @@ public class MobileAction2 extends CommonLib {
 			 * 
 			 * if (elementText.equalsIgnoreCase(text)) { try {
 			 * GetReporting().FuncReport("Pass", "The text '" + text +
-			 * "' is verified"); } catch (IOException e) {
-			 * System.out.print("IOException from Method " +
-			 * this.getClass().toString() + " " + e.getCause()); } return true;
-			 * } else { try { GetReporting().FuncReport("Fail", "The text '" +
-			 * text + "' is not verified"); } catch (IOException e) {
-			 * System.out.print("IOException from Method " +
-			 * this.getClass().toString() + " " + e.getCause()); } return false;
-			 * } }
+			 * "' is verified"); } catch (IOException e) { System.out.print(
+			 * "IOException from Method " + this.getClass().toString() + " " +
+			 * e.getCause()); } return true; } else { try {
+			 * GetReporting().FuncReport("Fail", "The text '" + text +
+			 * "' is not verified"); } catch (IOException e) { System.out.print(
+			 * "IOException from Method " + this.getClass().toString() + " " +
+			 * e.getCause()); } return false; } }
 			 */
 	public boolean verifyElement(MobileElement mobileElement, String text) { // @Author
 																				// -
@@ -1609,13 +1611,13 @@ public class MobileAction2 extends CommonLib {
 	 *             In case the element is not found over the screen.
 	 */
 	public void verifyElementTextContains(WebElement objElement, String text) {// throws
-																					// IOException
-																					// {
-																					// //@Author
-																					// -
-																					// Sushil
-																					// 31-Mar-2017
-																					// Modified
+																				// IOException
+																				// {
+																				// //@Author
+																				// -
+																				// Sushil
+																				// 31-Mar-2017
+																				// Modified
 		try {
 			String sEleText = FuncGetElementText(objElement);
 			if (sEleText != null) {
@@ -1906,11 +1908,11 @@ public class MobileAction2 extends CommonLib {
 	 * public void FuncISDisplayed(MobileElement elementToFind, String value) {
 	 * 
 	 * try { if (elementToFind.isDisplayed() && !value.isEmpty()) {
-	 * GetReporting().FuncReport("Pass", "The text '" + value +
-	 * "' is Displayed"); } } catch (Exception e) { try {
-	 * GetReporting().FuncReport("Fail", "The text '" + value +
-	 * "' is not appeared"); } catch (IOException ie) { // TODO Auto-generated
-	 * catch block ie.printStackTrace(); } e.printStackTrace(); } }
+	 * GetReporting().FuncReport("Pass", "The text '" + value + "' is Displayed"
+	 * ); } } catch (Exception e) { try { GetReporting().FuncReport("Fail",
+	 * "The text '" + value + "' is not appeared"); } catch (IOException ie) {
+	 * // TODO Auto-generated catch block ie.printStackTrace(); }
+	 * e.printStackTrace(); } }
 	 */
 
 	public boolean FuncIsDisplayed(MobileElement elementToFind) {
@@ -2654,8 +2656,8 @@ public class MobileAction2 extends CommonLib {
 	 *             If there is problem while reporting.
 	 */
 	public String FuncGetElementText(WebElement objElement) { // @Author -
-																	// Sushil
-																	// 13-Apr-2017
+																// Sushil
+																// 13-Apr-2017
 		String textToReturn = null;
 		try {
 
@@ -3196,9 +3198,10 @@ public class MobileAction2 extends CommonLib {
 			}
 		}
 	}
-	
+
 	/**
 	 * This method will use the Actions class to click on a web element
+	 * 
 	 * @param objElement
 	 * @param text
 	 * @throws InterruptedException
@@ -3220,4 +3223,33 @@ public class MobileAction2 extends CommonLib {
 			throw e;
 		}
 	}
+
+	/**
+	 * This method will Click Done in IOS device Keyboard
+	 * 
+	 * @throws NoSuchElementException
+	 */
+	public void FuncClickDone() throws InterruptedException, IOException, NoSuchElementException {
+		// Generally, it's "Done" on keyboard screen;
+		// in French it's OK; For Chinese, use secureLoginEditButtonDone mapping
+		// but sometimes it's Go (The good thing is the Name is 'Go' no matter
+		// what language)
+
+		try {
+			String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
+					+ getAppString("secureLoginEditButtonDone") + "']";
+			System.out.println("Donepath:" + donePath);
+			MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
+			Done.click();
+			GetReporting().FuncReport("Pass", "The element <b>  Done </b> Clicked");
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "The element <b> Done </b> not present in current page");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			throw e;
+		}
+	}
+
 }

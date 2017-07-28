@@ -146,12 +146,12 @@ public class Pay_US_Bill extends _CommonPage {
 					mobileAction.FuncClick(amount, "Amount");
 
 					mobileAction.FuncSendKeys(amount, amount_value);
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 					mobileAction.FuncClick(reasonForPayment, "Reason");
 
 					mobileAction.FuncSendKeys(reasonForPayment, reason_value);
 
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 					mobileAction.FuncClick(Continue, "continue");
 
 					mobileAction.verifyElementIsDisplayed(pay_bill_button, paybill);
@@ -575,7 +575,7 @@ public class Pay_US_Bill extends _CommonPage {
 				mobileAction.FunCSwipeandScroll(toAccountval, true);
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(Continue, "Continue_pay");
 			} else {
 				// Seems like selector for from account/payee do not work here
