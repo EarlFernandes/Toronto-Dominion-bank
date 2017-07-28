@@ -148,9 +148,13 @@ public class Login extends _CommonPage {
 	private MobileElement securityLogin;
 
 	// FIXME: What is the identifier for this?
-	@iOSFindBy(xpath = "//*[contains(@label,'System Error')]")
+	@iOSFindBy(xpath = "//*[contains(@label,'Something went wrong on') or contains(@label, 'MPAM') or contains(@label, 'request timed out') or contains(@label, 'setup failed')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
 	private MobileElement errorText;
+
+	@iOSFindBy(xpath = "//*[contains(@label,'Session Expired')]")
+	@AndroidFindBy(xpath = "//*[contains(@label,'Session Expired')")
+	private MobileElement sessionTimeout;
 
 	// FIXME: What is the identifier for this?
 	@iOSFindBy(xpath = " //*[contains(@label,'Conditions')]")
@@ -309,6 +313,19 @@ public class Login extends _CommonPage {
 
 	}
 
+	public void verifySessionTimeout() {
+		Decorator();
+		try {
+			if (mobileAction.verifyElementIsPresent(sessionTimeout)) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				CL.GetReporting().FuncReport("Fail", "Session Timeout during login");
+			}
+		} catch (Exception e) {
+			System.out.println("No session timeout found");
+		}
+
+	}
+
 	public void verifySecurityQuestion() {
 		Decorator();
 		try {
@@ -406,7 +423,8 @@ public class Login extends _CommonPage {
 			}
 			verifySystemError();
 			verifySecurityQuestion();
-			//verifyTandC();
+			verifySessionTimeout();
+			// verifyTandC();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
