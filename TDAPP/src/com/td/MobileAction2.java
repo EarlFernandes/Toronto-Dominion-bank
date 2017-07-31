@@ -126,7 +126,7 @@ public class MobileAction2 extends CommonLib {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void FuncClick(MobileElement objElement, String text)
+	public void FuncClick(WebElement objElement, String text)
 			throws InterruptedException, IOException, NoSuchElementException {
 		try {
 
@@ -1609,13 +1609,13 @@ public class MobileAction2 extends CommonLib {
 	 *             In case the element is not found over the screen.
 	 */
 	public void verifyElementTextContains(WebElement objElement, String text) {// throws
-																					// IOException
-																					// {
-																					// //@Author
-																					// -
-																					// Sushil
-																					// 31-Mar-2017
-																					// Modified
+																				// IOException
+																				// {
+																				// //@Author
+																				// -
+																				// Sushil
+																				// 31-Mar-2017
+																				// Modified
 		try {
 			String sEleText = FuncGetElementText(objElement);
 			if (sEleText != null) {
@@ -2654,8 +2654,8 @@ public class MobileAction2 extends CommonLib {
 	 *             If there is problem while reporting.
 	 */
 	public String FuncGetElementText(WebElement objElement) { // @Author -
-																	// Sushil
-																	// 13-Apr-2017
+																// Sushil
+																// 13-Apr-2017
 		String textToReturn = null;
 		try {
 
@@ -2875,7 +2875,7 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
-	public boolean verifyElementIsPresent(MobileElement elementToFind) {
+	public boolean verifyElementIsPresent(WebElement elementToFind) {
 
 		try {
 			if (elementToFind.isDisplayed()) {
@@ -3196,9 +3196,10 @@ public class MobileAction2 extends CommonLib {
 			}
 		}
 	}
-	
+
 	/**
 	 * This method will use the Actions class to click on a web element
+	 * 
 	 * @param objElement
 	 * @param text
 	 * @throws InterruptedException
@@ -3218,6 +3219,113 @@ public class MobileAction2 extends CommonLib {
 				e1.printStackTrace();
 			}
 			throw e;
+		}
+	}
+
+	/**
+	 * This method will look for an element on the screen to be tappable within
+	 * the given timeout and then click over the element.
+	 * 
+	 * @param objElement
+	 *            The MobileElement on which the click action has to be
+	 *            performed.
+	 * 
+	 * @param text
+	 *            The text of element objElement clicked.
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void TapCoOrdinates(int x, int y, String element)
+			throws InterruptedException, IOException, NoSuchElementException {
+		try {
+
+			TouchAction action = new TouchAction(((MobileDriver) GetDriver()));
+			action.tap(x, y).perform();
+
+			GetReporting().FuncReport("Pass", "The element <b>  " + element + " </b> Clicked");
+		} catch (IllegalArgumentException e) {
+			GetReporting().FuncReport("Fail", "IllegalArgumentException");
+
+		} catch (NoSuchElementException n) {
+			GetReporting().FuncReport("Fail", "Element not displayed" + element);
+
+		} catch (Exception e) {
+			GetReporting().FuncReport("Fail", "The element <b>- " + element + "</b> not present in current page");
+
+		}
+	}
+
+	/**
+	 * This method will look for an element on the screen to be tappable within
+	 * the given timeout and then click over the element based on the
+	 * coordinates.
+	 * 
+	 * @param objElement
+	 *            The MobileElement on which the click action has to be
+	 *            performed.
+	 * 
+	 * @param text
+	 *            The text of element objElement clicked.
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void FuncTapCord(MobileElement objElement, String text)
+			throws InterruptedException, IOException, NoSuchElementException {
+		try {
+			WebDriverWait wait = new WebDriverWait((AppiumDriver) GetDriver(), 10L);
+			wait.until(ExpectedConditions.elementToBeClickable(objElement));
+
+			int leftX = objElement.getLocation().getX();
+			int rightX = leftX + objElement.getSize().getWidth();
+			int middleX = (rightX + leftX) / 2;
+			int upperY = objElement.getLocation().getY();
+			int lowerY = upperY + objElement.getSize().getHeight();
+			int middleY = (upperY + lowerY) / 2;
+			int transMiddleY = middleY;
+			int transMiddleX = middleX;
+
+			TapCoOrdinates(transMiddleX, transMiddleY, text);
+
+			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
+		} catch (IllegalArgumentException e) {
+			GetReporting().FuncReport("Fail", "IllegalArgumentException");
+
+		} catch (NoSuchElementException n) {
+			GetReporting().FuncReport("Fail", "Element not displayed" + text);
+
+		} catch (Exception e) {
+			GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
+
+		}
+	}
+
+	public boolean verifyTextIsContained(WebElement mobileElement, String expectedText) {
+
+		String retrivedText = "";
+		try {
+			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				retrivedText = mobileElement.getText();
+			} else {
+				retrivedText = mobileElement.getAttribute("label");
+			}
+			if (retrivedText.contains(expectedText)) {
+				return true;
+			} else {
+
+				return false;
+
+			}
+		} catch (Exception e) {
+
+			return false;
 		}
 	}
 }
