@@ -166,10 +166,10 @@ public class ContactUs extends _CommonPage {
 						+ mobileAction.getAppString("td_contact_credit_card_str") + "']", "TD Credit Card");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("td_contact_small_business_str") + "']", "TD Small business");
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='"
-								+ mobileAction.getAppString("homeDashboardContactTDDirectInvestingTitle") + "']",
-						"TD Direct Investing");
+//				mobileAction.verifyElementUsingXPath(
+//						"//android.widget.TextView[@text='"
+//								+ mobileAction.getAppString("homeDashboardContactTDDirectInvestingTitle") + "']",
+//						"TD Direct Investing");
 				// Scroll down here
 				final String xPathFooter = "//android.widget.RelativeLayout[@resource-id='com.td:id/rlLinks']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 3, "up");
@@ -178,9 +178,9 @@ public class ContactUs extends _CommonPage {
 								+ mobileAction.getAppString("str_TDWealth_FP").replaceAll("\\<.*?>", "") + "']",
 						"Wealth financial");
 
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("give_feedback") + "']",
-						"Give feedback");
+//				mobileAction.verifyElementUsingXPath(
+//						"//android.widget.TextView[@text='" + mobileAction.getAppString("give_feedback") + "']",
+//						"Give feedback");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {

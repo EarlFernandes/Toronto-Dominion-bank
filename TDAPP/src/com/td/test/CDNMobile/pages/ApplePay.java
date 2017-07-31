@@ -173,7 +173,7 @@ public class ApplePay extends _CommonPage {
 			mobileAction.FuncClick(setUpPayButton, "Set Up Pay");
 
 			mobileAction.waitForElementToVanish(progressBar);
-			mobileAction.FuncClick(doneButton, "Done");
+			mobileAction.FuncClickDone();
 
 			mobileAction.waitForElementToVanish(progressBar);
 
@@ -201,7 +201,7 @@ public class ApplePay extends _CommonPage {
 			mobileAction.FuncClick(firstCard, "Select the card");
 			mobileAction.FuncClick(setUpPayButton, "Set Up Pay");
 			mobileAction.waitForElementToVanish(progressBar);
-			mobileAction.FuncClick(doneButton, "Done");
+			mobileAction.FuncClickDone();
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncClick(defaultCard, "Default Card");
 			mobileAction.FuncClick(payButton, "Pay");

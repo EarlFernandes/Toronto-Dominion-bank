@@ -27,7 +27,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/remember_switch' and @index='1']")
 	private MobileElement rememberMe;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Username or Access Card' or @name='LOGIN_USERNAME']")
+	@iOSFindBy(xpath = "//*[contains(@label,'Username or Access Card') or contains(@value,'Username or Access Card') or contains(@label,'Access Card or Username') or @name='LOGIN_USERNAME']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @index='1']")
 	private MobileElement username;
 
@@ -148,9 +148,13 @@ public class Login extends _CommonPage {
 	private MobileElement securityLogin;
 
 	// FIXME: What is the identifier for this?
-	@iOSFindBy(xpath = "//*[contains(@label,'System Error')]")
+	@iOSFindBy(xpath = "//*[contains(@label,'Something went wrong on') or contains(@label, 'MPAM') or contains(@label, 'request timed out') or contains(@label, 'setup failed')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
 	private MobileElement errorText;
+
+	@iOSFindBy(xpath = "//*[contains(@label,'Session Expired')]")
+	@AndroidFindBy(xpath = "//*[contains(@label,'Session Expired')")
+	private MobileElement sessionTimeout;
 
 	// FIXME: What is the identifier for this?
 	@iOSFindBy(xpath = " //*[contains(@label,'Conditions')]")
@@ -300,10 +304,24 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 			if (mobileAction.verifyElementIsPresent(errorText)) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				CL.GetReporting().FuncReport("Fail", "System exception occured during login");
 			}
 		} catch (Exception e) {
 			System.out.println("Exception for no System Error ");
+		}
+
+	}
+
+	public void verifySessionTimeout() {
+		Decorator();
+		try {
+			if (mobileAction.verifyElementIsPresent(sessionTimeout)) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				CL.GetReporting().FuncReport("Fail", "Session Timeout during login");
+			}
+		} catch (Exception e) {
+			System.out.println("No session timeout found");
 		}
 
 	}
@@ -334,9 +352,7 @@ public class Login extends _CommonPage {
 				}
 				mobileAction.FuncSendKeys(enterAnswer, getTestdata("SecurityAnswer"));
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or @label='OK' or @label='"
-							+ mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 				} else {
 					mobileAction.FuncHideKeyboard();
 				}
@@ -416,6 +432,8 @@ public class Login extends _CommonPage {
 			}
 			verifySystemError();
 			verifySecurityQuestion();
+			verifySessionTimeout();
+			// verifyTandC();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -678,7 +696,7 @@ public class Login extends _CommonPage {
 
 				mobileAction.FuncSendKeys(password, passwords);
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 				} else {
 					mobileAction.FuncHideKeyboard();
 				}
@@ -1054,7 +1072,7 @@ public class Login extends _CommonPage {
 				mobileAction.FuncClick(enterAnswer, "Enter your Answer");
 				mobileAction.FuncSendKeys(enterAnswer, "abcd");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 				} else {
 					mobileAction.FuncHideKeyboard();
 				}
@@ -1238,7 +1256,7 @@ public class Login extends _CommonPage {
 					mobileAction.FuncClick(enterAnswer, "Enter your Answer");
 					mobileAction.FuncSendKeys(enterAnswer, "abcd");
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-						mobileAction.FuncClick(done, "Done");
+						mobileAction.FuncClickDone();
 					} else {
 						mobileAction.FuncHideKeyboard();
 					}
@@ -1370,6 +1388,39 @@ public class Login extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
+	
+	private void login_without_ID_remembered(){
+		try{
+			mobileAction.FuncClick(username, "Username");
+			mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
+	
+			mobileAction.FuncClick(password, "Password");
+			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+	
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClick(login, "Login");
+				mobileAction.waitForElementToVanish(progressBar);
+			} else {
+				mobileAction.FuncClick(login, "Login");
+				mobileAction.waitForElementToVanish(progressBar);
+	
+			}
+		}catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+		
+	}
 
 	public void login_errorMsg() {
 
@@ -1396,24 +1447,12 @@ public class Login extends _CommonPage {
 						mobileAction.FuncClick(login, "Login");
 						mobileAction.waitForElementToVanish(progressBar);
 					}
+				}else{
+					login_without_ID_remembered();
 				}
 			} else {
 
-				mobileAction.FuncClick(username, "Username");
-				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-
-				mobileAction.FuncClick(password, "Password");
-				mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					mobileAction.FuncHideKeyboard();
-					mobileAction.FuncClick(login, "Login");
-					mobileAction.waitForElementToVanish(progressBar);
-				} else {
-					mobileAction.FuncClick(login, "Login");
-					mobileAction.waitForElementToVanish(progressBar);
-
-				}
+				login_without_ID_remembered();
 			}
 			Thread.sleep(2000);
 			if (mobileAction.verifyElementIsPresent(login_error)) {
@@ -1490,10 +1529,11 @@ public class Login extends _CommonPage {
 						"//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @text='"
 								+ mobileAction.getAppString("username_str") + "']",
 						"Username");
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @content-desc='"
-								+ mobileAction.getAppString("password_str") + "']",
-						"Password");
+				// mobileAction.verifyElementUsingXPath(
+				// "//android.widget.EditText[@resource-id=
+				// 'com.td:id/password_input' and @content-desc='"
+				// + mobileAction.getAppString("password_str") + "']",
+				// "Password");
 				mobileAction.FuncHideKeyboard();
 				// mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id=
 				// 'com.td:id/remember_text' and @text='" +

@@ -137,7 +137,7 @@ public class PayWithRewards extends _CommonPage {
 					CL.GetDriver().findElement(iosamountXpath).sendKeys(amountXL);
 					CL.GetReporting().FuncReport("Pass", "<b>" + amountXL + "</b> is entered.");
 
-					mobileAction.FuncClick(doneBtn, "Done");
+					mobileAction.FuncClickDone();
 					mobileAction.FuncClick(continueBtn, "Continue");
 
 				}
@@ -160,7 +160,7 @@ public class PayWithRewards extends _CommonPage {
 					CL.GetDriver().findElement(iosamountXpath).clear();
 					CL.GetDriver().findElement(iosamountXpath).sendKeys(amountXL);
 					CL.GetReporting().FuncReport("Pass", "<b>" + amountXL + "</b> is entered.");
-					mobileAction.FuncClick(doneBtn, "Done");
+					mobileAction.FuncClickDone();
 
 					mobileAction.verifyElementIsDisplayed(errortext, ConstantClass.error_msg);
 

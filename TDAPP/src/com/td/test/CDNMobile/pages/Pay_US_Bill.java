@@ -146,12 +146,12 @@ public class Pay_US_Bill extends _CommonPage {
 					mobileAction.FuncClick(amount, "Amount");
 
 					mobileAction.FuncSendKeys(amount, amount_value);
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 					mobileAction.FuncClick(reasonForPayment, "Reason");
 
 					mobileAction.FuncSendKeys(reasonForPayment, reason_value);
 
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 					mobileAction.FuncClick(Continue, "continue");
 
 					mobileAction.verifyElementIsDisplayed(pay_bill_button, paybill);
@@ -305,9 +305,7 @@ public class Pay_US_Bill extends _CommonPage {
 						"(//span[@class='limited-accounts-message ng-binding'])[2]", "Your payment is withdrawn msg");
 				final WebElement button = mobileAction.verifyWebElementUsingXPath(
 						"//button[@class='primary-button ng-binding']", "Get Started button");
-				if (!mobileAction.verifyTextEquality(header.getText().trim(),
-						mobileAction.getAppString("pay_us_bill_welcome_title"))
-						|| !mobileAction.verifyTextEquality(msg1.getText().trim(),
+				if (!mobileAction.verifyTextEquality(msg1.getText().trim(),
 								mobileAction.getAppString("USBillPayCustomerNotRegisteredDescription1"))
 						|| !mobileAction.verifyTextEquality(button.getText().trim(),
 								mobileAction.getAppString("btn_get_started"))
@@ -417,11 +415,10 @@ public class Pay_US_Bill extends _CommonPage {
 						"//android.widget.TextView[starts-with(@text, '"
 								+ mobileAction.getAppString("confirmation_no").replace("%1$s", "") + "')]",
 						"Confirmation #");
-				mobileAction
-						.verifyElementUsingXPath(
-								"//android.widget.TextView[@text='" + mobileAction
-										.getAppString("payBillConfirmFieldHeaderFromAccount").replace(" ", "\n") + "']",
-								"From Account");
+
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ mobileAction.getAppString("payBillDropdownHeaderFromAccount").replace(" ", "\n") + "']",
+						"From Account");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("payBillConfirmFieldHeaderAmount") + "']", "Amount");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
@@ -432,7 +429,7 @@ public class Pay_US_Bill extends _CommonPage {
 						"Exchange Rate");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/payee_label' and @text='"
-								+ mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']",
+								+ mobileAction.getAppString("payBillDropdownHeaderPayee") + "']",
 						"Payee");
 				final String xPathQuickActionBar = "//android.widget.HorizontalScrollView[@resource-id='com.td:id/quick_action_bar']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathQuickActionBar, false, 4, "up");
@@ -444,13 +441,13 @@ public class Pay_US_Bill extends _CommonPage {
 						"Total Amount");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("reason_for_payment_label") + "']", "Reason for payment");
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_HOME") + "']", "HOME");
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("pay_another_bill") + "']",
-						"PAY ANOTHER BILL");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("receipt_scheduledpayments") + "']", "SCHEDULED PAYMENTS");
+//				mobileAction.verifyElementUsingXPath(
+//						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_HOME") + "']", "HOME");
+//				mobileAction.verifyElementUsingXPath(
+//						"//android.widget.TextView[@text='" + mobileAction.getAppString("pay_another_bill") + "']",
+//						"PAY ANOTHER BILL");
+//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+//						+ mobileAction.getAppString("receipt_scheduledpayments") + "']", "SCHEDULED PAYMENTS");
 				mobileAction.verifyDateFormat(estDate.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -526,7 +523,7 @@ public class Pay_US_Bill extends _CommonPage {
 						"From Account");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/payee_label' and @text='"
-								+ mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']",
+								+ mobileAction.getAppString("payBillDropdownHeaderPayee") + "']",
 						"Payee");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("estimated_delivery_date") + "']", "Est delivery date");
@@ -580,7 +577,7 @@ public class Pay_US_Bill extends _CommonPage {
 				mobileAction.FunCSwipeandScroll(toAccountval, true);
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(Continue, "Continue_pay");
 			} else {
 				// Seems like selector for from account/payee do not work here

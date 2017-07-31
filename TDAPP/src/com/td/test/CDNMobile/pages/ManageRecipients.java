@@ -209,13 +209,13 @@ public class ManageRecipients extends _CommonPage {
 				// recipientMailAddr.clear();
 				// System.out.println("Edit email:" + recipientMail);
 				// mobileAction.FuncSendKeys(recipientMailAddr, recipientMail);
-				// mobileAction.FuncClick(done, "Done");
+				// mobileAction.FuncClickDone();
 				// mobileAction.FuncClick(enterAnswer, "Enter Answer");
 				// mobileAction.FuncSendKeys(enterAnswer, answer);
 				// mobileAction.FuncClick(reEnterAnswer, "Re Enter your
 				// Answer");
 				// mobileAction.FuncSendKeys(reEnterAnswer, answer);
-				// mobileAction.FuncClick(done, "Done");
+				// mobileAction.FuncClickDone();
 				// mobileAction.waitForElementToVanish(progressBar);
 			} else {
 				// String recipient_saved = "Success Recipient details have been
@@ -241,7 +241,7 @@ public class ManageRecipients extends _CommonPage {
 				// Answer");
 				// mobileAction.FuncSendKeys(reEnterAnswer, answer);
 				// mobileAction.FuncHideKeyboard();
-				// mobileAction.FuncClick(done, "Done");
+				// mobileAction.FuncClickDone();
 				// //mobileAction.verifyElementIsDisplayed(recipient_Changes,"Success
 				// Recipient details have been saved");
 			}

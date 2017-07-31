@@ -63,7 +63,7 @@ public class Between_My_accounts extends _CommonPage {
 	private MobileElement btncontinue_Transfer;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Confirmation #')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_Val']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_val']")
 	private MobileElement confirmation_Val;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu']")
@@ -290,7 +290,7 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.FuncClick(txtAmount, "Amount");
 			mobileAction.FuncSendKeys(txtAmount, getTestdata("Amount"));
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}
@@ -597,7 +597,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(txtAmount, "Amount");
 				String ValueofAmount = getTestdata("Amount");
 				mobileAction.FuncSendKeys(txtAmount, ValueofAmount);
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 				mobileAction.waitForElementToVanish(txtProgressBar);
 				// mobileAction.FuncWaitForElement(ok_Button, 120, "Ok");
@@ -743,7 +743,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 				mobileAction.FuncClick(txtAmount, "Amount");
 				mobileAction.FuncSendKeys(txtAmount, getTestdata("Amount"));
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(usd_Button, "USD");
 				mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 				mobileAction.verifyElementIsDisplayed(errorMsg, error_txt);
@@ -827,7 +827,7 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.FuncSendKeys(txtAmount, getTestdata("Amount"));
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 
 				mobileAction.FuncClickBackButton();
@@ -909,7 +909,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(toAccount_value, true, 25, "Up");
 				mobileAction.FuncClick(txtAmount, "Amount");
 				mobileAction.FuncSendKeys(txtAmount, getTestdata("Amount"));
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 				mobileAction.waitForElementToVanish(txtProgressBar);
 				mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "Confirm Page");
@@ -1351,7 +1351,7 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(toAccount_value, true, 25, "Up");
 					String amountXL = getTestdata("Amount");
 					mobileAction.FuncSendKeys(txtAmount, amountXL);
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 					mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
 
@@ -1437,7 +1437,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(cad_Button, "CAD");
 				mobileAction.FuncClick(amount, "Amount");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(continue_Transfer, "Continue");
 				mobileAction.waitForElementToVanish(txtProgressBar);
 				WebDriverWait wait = new WebDriverWait(CL.GetAppiumDriver(), 122);
@@ -1506,7 +1506,7 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(toAccount_value, true, 25, "Up");
 					String amountXL = getTestdata("Amount");
 					mobileAction.FuncSendKeys(amount, amountXL);
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 					mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
 					mobileAction.verifyElementIsDisplayed(receiptHeader, "ReceiptHeader");
@@ -1724,7 +1724,7 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 10, "up");
 					String amountXL = getTestdata("Amount");
 					mobileAction.FuncSendKeys(txtAmount, amountXL);
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 					mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
 
@@ -1808,7 +1808,7 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 10, "up");
 					String amountXL = getTestdata("Amount");
 					mobileAction.FuncSendKeys(txtAmount, amountXL);
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 					mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 					mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
 

@@ -145,7 +145,7 @@ public class OrderDetails extends _CommonPage {
 				String tradingPasswordEditText_value = getTestdata("tradingPasswordEditText");
 				mobileAction.FuncSendKeys(tradingPasswordEditText, tradingPasswordEditText_value);
 
-				mobileAction.FuncClick(doneButton, "doneButton");
+				mobileAction.FuncClickDone();
 
 				mobileAction.FuncClick(cancelOrderButton, "Cancel order");
 

@@ -98,7 +98,7 @@ public class AddCanadian_Payee extends _CommonPage {
 			String firstThreeChars = payee_name.substring(0, 3);
 			mobileAction.FuncSendKeys(search_payee_editbox, firstThreeChars);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}
@@ -114,7 +114,7 @@ public class AddCanadian_Payee extends _CommonPage {
 			mobileAction.FuncClick(payee_AccountNum, "PayeeAccount");
 			mobileAction.FuncSendKeys(payee_AccountNum, newPayeeNumber);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}
@@ -125,7 +125,7 @@ public class AddCanadian_Payee extends _CommonPage {
 			mobileAction.FuncSendKeys(description, description_value);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}

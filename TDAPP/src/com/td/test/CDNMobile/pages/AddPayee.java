@@ -674,7 +674,7 @@ public class AddPayee extends _CommonPage {
 				final MobileElement searchForPayee = mobileAction.verifyElementUsingXPath("//XCUIElementTypeTextField",
 						"Search for payee");
 				mobileAction.FuncSendKeys(searchForPayee, getTestdata("Payee"));
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			} catch (NoSuchElementException | InterruptedException | IOException e) {
 				try {
 					mobileAction.GetReporting().FuncReport("Fail",

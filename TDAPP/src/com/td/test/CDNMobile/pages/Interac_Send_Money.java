@@ -165,7 +165,7 @@ public class Interac_Send_Money extends _CommonPage {
 						+ "']/preceding-sibling::android.widget.RadioButton";
 				MobileElement recipient = mobileAction.mobileElementUsingXPath(recipientXpath);
 				mobileAction.FuncClick(recipient, "Recipient " + recipient.getText());
-				mobileAction.FuncClick(done, "Done Button");
+				mobileAction.FuncClickDone();
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(amount, "Amount");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
@@ -191,7 +191,7 @@ public class Interac_Send_Money extends _CommonPage {
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(amount, "Amount");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(continueButton, "ContinueButton");
 				mobileAction.FunctionSwipe("down", 200, 200);
 				mobileAction.verifyElementIsDisplayed(errorMessage, "Please enter a security question"); // TODO::Take
@@ -205,13 +205,13 @@ public class Interac_Send_Money extends _CommonPage {
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(securityQuestion, "Security Question");
 				mobileAction.FuncSendKeys(securityQuestion, getTestdata("SecurityQuestion"));
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(securityAnswer, "Enter A security answer");
 				mobileAction.FuncSendKeys(securityAnswer, getTestdata("SecurityAnswer"));
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(confirmAnswer, "Confirm security answer");
 				mobileAction.FuncSendKeys(confirmAnswer, getTestdata("SecurityAnswer"));
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 
 			}
 
@@ -247,7 +247,7 @@ public class Interac_Send_Money extends _CommonPage {
 					+ "']/preceding-sibling::android.widget.RadioButton";
 			MobileElement recipient = mobileAction.mobileElementUsingXPath(recipientXpath);
 			mobileAction.FuncClick(recipient, "Recipient " + recipient.getText());
-			mobileAction.FuncClick(done, "Done Button");
+			mobileAction.FuncClickDone();
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(securityQuestion, "Security Question");
 			mobileAction.FuncSendKeys(securityQuestion, getTestdata("SecurityQuestion"));
