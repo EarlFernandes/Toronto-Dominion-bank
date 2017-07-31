@@ -40,4 +40,82 @@ public class GetDate extends _CommonPage {
 		return (dayOfMonth + 1);
 	}
 
+	/**
+	 * This method will calculate the tommorow's day.
+	 * 
+	 * @return dayOfMonth Element will return the today's date
+	 */
+	public static String getCurrentMonth() {
+
+		Calendar cal = Calendar.getInstance();
+		int month = cal.get(Calendar.MONTH);
+		month = month + 1;
+		String monthRe = null;
+		switch (month) {
+
+		case 1:
+			monthRe = "January";
+			break;
+
+		case 2:
+			monthRe = "February";
+			break;
+
+		case 3:
+			monthRe = "March";
+			break;
+
+		case 4:
+			monthRe = "April";
+			break;
+
+		case 5:
+			monthRe = "May";
+			break;
+
+		case 6:
+			monthRe = "June";
+			break;
+
+		case 7:
+			monthRe = "July";
+			break;
+
+		case 8:
+			monthRe = "August";
+			break;
+
+		case 9:
+			monthRe = "September";
+			break;
+
+		case 10:
+			monthRe = "October";
+			break;
+
+		case 11:
+			monthRe = "November";
+			break;
+
+		case 12:
+			monthRe = "December";
+			break;
+
+		}
+
+		return (monthRe);
+	}
+
+	/**
+	 * This method will calculate the current year.
+	 * 
+	 * @return dayOfMonth Element will return the today's date
+	 */
+	public static int currentYear() {
+
+		Calendar c = Calendar.getInstance();
+		int currentYear = c.get(Calendar.YEAR);
+		return currentYear;
+	}
+
 }
