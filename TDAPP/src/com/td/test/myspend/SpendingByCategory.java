@@ -44,31 +44,38 @@ public class SpendingByCategory extends _CommonPage {
 	private MobileElement all;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'WANTS') or contains(@label,'Souhaits')]")
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='wantsFilter']")
 	private MobileElement wants;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'NEEDS') or contains(@label,'Besoins')]")
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='needsFilter']")
 	private MobileElement needs;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'All Categories. You') or contains(@label,'Toutes les catégories. Vous')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'All Categories. You')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'All Categories. You') or contains(@content-desc,'Toutes les catégories. Vous')]")
 	private MobileElement allCategoriesInfo;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'All Categories') or contains(@label,'Toutes les catégories')]")
 	private MobileElement allCategories;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Wants') or contains(@label,'Souhaits')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Wants') or contains(@content-desc,'Souhaits')]")
 	private MobileElement wantsCategories;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Needs') or contains(@label,'Besoins')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Needs') or contains(@content-desc,'Besoins')]")
 	private MobileElement needsCategories;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'currently spending') or contains(@label,'êtes actuellement')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'currently spending') or contains(@content-desc,'êtes actuellement')]")
 	private MobileElement youAreCurrentlySpending;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'typical spending') or contains(@label,'vos dépenses habituelles')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'typical spending') or contains(@content-desc,'vos dépenses habituelles')]")
 	private MobileElement typicalSpending;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'You have spent') or contains(@label,'Vous avez dépensé')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'You have spent') or contains(@content-desc,'Vous avez dépensé')]")
 	private MobileElement YouHaveSpent;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'change category') or contains(@name,'change category')]")
@@ -105,7 +112,7 @@ public class SpendingByCategory extends _CommonPage {
 	@FindBy(xpath = "//*[text()='All Categories' or contains(text(),'Toutes les catégories')]")
 	private WebElement allCategoriesAndroid;
 
-	@FindBy(xpath = "(//*[contains(text(),'currently spending' or contains(text(),'êtes actuellement')])[1]")
+	@FindBy(xpath = "(//*[contains(text(),'currently spending') or contains(text(),'êtes actuellement')])[1]")
 	private WebElement youAreCurrentlySpendingAndroid;
 
 	@FindBy(xpath = "//*[text()='Wants' or text()='Souhaits']")
@@ -423,22 +430,14 @@ public class SpendingByCategory extends _CommonPage {
 	public void verifyWantsCategory() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.FuncClick(wantsAndroid, "WANTS Tab");
-				mobileAction.verifyElementIsDisplayed(wantsAndroid, "WANTS Tab");
-				mobileAction.verifyElementIsDisplayed(wantsCategoriesAndroid, "Wants Categories Heading");
-				mobileAction.verifyElementIsDisplayed(youAreCurrentlySpendingAndroid, "You're currently spending");
-				verifyTransactions("Wants");
-			} else {
-				mobileAction.FuncClick(wants, "WANTS Tab");
-				mobileAction.verifyElementIsDisplayed(wants, "WANTS Tab");
-				mobileAction.verifyElementIsDisplayed(wantsCategories, "Wants Categories Heading");
-				mobileAction.verifyElementIsDisplayed(youAreCurrentlySpending, "You're currently spending");
-				mobileAction.verifyElementIsDisplayed(typicalSpending, "Typical Spending Bar");
-				mobileAction.verifyElementIsDisplayed(YouHaveSpent, "Current Spending Bar");
+			mobileAction.FuncClick(wants, "WANTS Tab");
+			mobileAction.verifyElementIsDisplayed(wants, "WANTS Tab");
+			mobileAction.verifyElementIsDisplayed(wantsCategories, "Wants Categories Heading");
+			mobileAction.verifyElementIsDisplayed(youAreCurrentlySpending, "You're currently spending");
+			mobileAction.verifyElementIsDisplayed(typicalSpending, "Typical Spending Bar");
+			mobileAction.verifyElementIsDisplayed(YouHaveSpent, "Current Spending Bar");
 
-				verifyTransactions("Wants");
-			}
+			verifyTransactions("Wants");
 
 		} catch (NoSuchElementException e) {
 			try {
@@ -484,22 +483,14 @@ public class SpendingByCategory extends _CommonPage {
 	public void verifyNeedsCategory() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.FuncClick(needsAndroid, "NEEDS Tab");
-				mobileAction.verifyElementIsDisplayed(needsAndroid, "NEEDS Tab");
-				mobileAction.verifyElementIsDisplayed(needsCategoriesAndroid, "Needs Categories Heading");
-				mobileAction.verifyElementIsDisplayed(youAreCurrentlySpendingAndroid, "You're currently spending");
-				verifyTransactions("Needs");
-			} else {
-				mobileAction.FuncClick(needs, "NEEDS Tab");
-				mobileAction.verifyElementIsDisplayed(needs, "NEEDS Tab");
-				mobileAction.verifyElementIsDisplayed(needsCategories, "Needs Categories Heading");
-				mobileAction.verifyElementIsDisplayed(youAreCurrentlySpending, "You're currently spending");
-				mobileAction.verifyElementIsDisplayed(typicalSpending, "Typical Spending Bar");
-				mobileAction.verifyElementIsDisplayed(YouHaveSpent, "Current Spending Bar");
+			mobileAction.FuncClick(needs, "NEEDS Tab");
+			mobileAction.verifyElementIsDisplayed(needs, "NEEDS Tab");
+			mobileAction.verifyElementIsDisplayed(needsCategories, "Needs Categories Heading");
+			mobileAction.verifyElementIsDisplayed(youAreCurrentlySpending, "You're currently spending");
+			mobileAction.verifyElementIsDisplayed(typicalSpending, "Typical Spending Bar");
+			mobileAction.verifyElementIsDisplayed(YouHaveSpent, "Current Spending Bar");
 
-				verifyTransactions("Needs");
-			}
+			verifyTransactions("Needs");
 
 		} catch (NoSuchElementException e) {
 			try {
@@ -549,6 +540,9 @@ public class SpendingByCategory extends _CommonPage {
 		try {
 
 			verifyAllCategory();
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				CL.GetAppiumDriver().context("NATIVE_APP");
+			}
 			verifyWantsCategory();
 			verifyNeedsCategory();
 
@@ -581,11 +575,14 @@ public class SpendingByCategory extends _CommonPage {
 	public void clickHistoricalInsightsBtn() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				
 				mobileAction.FuncClick(historicalInsightBtnAndroid, "Historical Insight Button");
-			} else {
-
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+					CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
+				}
+			}else{
+			
 				mobileAction.FuncClick(historicalInsightBtn, "Historical Insight Button");
 			}
 

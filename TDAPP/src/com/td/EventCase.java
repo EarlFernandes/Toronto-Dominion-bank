@@ -197,7 +197,7 @@ public class EventCase {
 		OTP_Challenge_ClickTextOption, OTP_Challenge_ClickVoiceOption, OTP_Challenge_ClickFirstPhoneNumber, OTP_Challenge_ClickGetCodeButton, OTP_Challenge_ClickSubmitCodeButton, OTP_Challenge_EnterSecurityCode, OTP_Challenge_WaitForOTPProgressBarToVanish, OTP_Challenge_VerifyInvalidSecurityCode, OTP_Challenge_ResendCode, OTP_Challenge_VerifyTooManySecurityCodesRequested,
 
 		// myspend
-		Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, TourPage_clickConnectTDApp, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, Preferences_verifyPageHeader, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickGetTDAppButton, click_PreferencesLink
+		Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, TourPage_clickConnectTDApp, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, Preferences_verifyPageHeader,Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage,SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickGetTDAppButton, click_PreferencesLink
 	}
 
 	public void FuncCOREEventCase(String sFunctionname)
@@ -3008,6 +3008,7 @@ public class EventCase {
 
 		// MySpend
 
+
 		case TourPage_clickConnectTDApp:
 			TourPage.get().clickConnectTDApp();
 			break;
@@ -3023,11 +3024,11 @@ public class EventCase {
 		case SideMenu_clickPreferences:
 			SideMenu.get().clickPreferences();
 			break;
-
+			
 		case SideMenu_clickSpendingByCategory:
 			SideMenu.get().clickSpendingByCategory();
 			break;
-
+			
 		case SideMenu_verifyDeepLinks:
 			SideMenu.get().verifyDeepLinks();
 			break;
@@ -3035,7 +3036,7 @@ public class EventCase {
 		case Preferences_verifyPageHeader:
 			MyspendPreferences.get().verifyPageHeader();
 			break;
-
+			
 		case Preferences_EnableAllAccounts:
 			MyspendPreferences.get().enableAllAccounts();
 			break;
@@ -3047,11 +3048,11 @@ public class EventCase {
 		case Spending_Insight_verifyPreferencesDisabled:
 			Spending_Insight.get().verifyPreferencesDisabled();
 			break;
-
+			
 		case Spending_Insight_logoutTDMySpend:
 			Spending_Insight.get().logoutApplication();
 			break;
-
+			
 		case Spending_Insight_verifyPreferencesEnabled:
 			Spending_Insight.get().verifyPreferencesEnabled();
 			break;
@@ -3059,11 +3060,11 @@ public class EventCase {
 		case SideMenu_clickSpendingHistory:
 			SideMenu.get().clickSpendingHistory();
 			break;
-
+			
 		case SideMenu_clickSpendingSpikes:
 			SideMenu.get().clickSpendingSpikes();
 			break;
-
+			
 		case SideMenu_clickSpendingInsights:
 			SideMenu.get().clickSpendingInsights();
 			break;
@@ -3071,113 +3072,122 @@ public class EventCase {
 		case SideMenu_clickTransactionHistory:
 			SideMenu.get().clickTransactionHistory();
 			break;
-
+			
 		case SpendingHistory_verifyNoSpendingHistory:
 			SpendingHistory.get().verifyNoSpendingHistory();
 			break;
-
+			
 		case click_PreferencesLink:
 			SpendingHistory.get().clickPreferencesLink();
 			break;
-
+			
 		case SpendingHistory_verifySpendingHistory:
 			SpendingHistory.get().verifySpendingHistory();
 			break;
-
+			
 		case spendingByCategory_verifyPageHeader:
 			SpendingByCategory.get().verifyPageHeader();
 			break;
-
+			
 		case spendingByCategory_verifyCategories:
 			SpendingByCategory.get().verifySpendingByCategories();
 			break;
-
+			
 		case spendingByCategory_changeCategoryForAllTabs:
 			SpendingByCategory.get().changeCategoryForAllTabs();
 			break;
-
+			
 		case spendingByCategory_changeCategory:
 			SpendingByCategory.get().changeCategory();
 			break;
-
+			
 		case SpendingSpike_verifyCurrentMonthSpending:
 			SpendingSpikes.get().clickCurrentMonthSpending();
 			break;
-
+			
 		case TransactionHistory_verifyNoTransactionsFound:
 			TransactionHistory.get().verifyNoTransactionsFound();
 			break;
-
+			
 		case TransactionHistory_verifyTransactions:
 			TransactionHistory.get().verifyTransactions();
 			break;
-
+			
 		case TransactionHistory_verifyPageHeader:
 			TransactionHistory.get().verifyPageHeader();
 			break;
-
+			
 		case TDAppHomePage_verifyPageHeader:
 			TDAppHomePage.get().verifyPageHeader();
 			break;
-
+			
 		case TDAppHomePage_clickTDMySpend:
 			TDAppHomePage.get().clickTDMySpend();
 			break;
-
+			
 		case SideMenu_clickMyAccounts:
 			SideMenu.get().clickMyAccounts();
 			break;
-
+			
 		case SideMenu_clickGetTDAppButton:
 			SideMenu.get().clickGetTDAppButton();
 			break;
-
+			
 		case SpendingHistory_clickMonthIcon:
 			SpendingHistory.get().clickMonthIcon();
 			break;
-
+			
 		case SpendingHistory_verifyTabs:
 			SpendingHistory.get().verifyTabs();
 			break;
-
+			
 		case SpendingHistory_clickHomeButton:
 			SpendingHistory.get().clickHomeButton();
 			break;
-
+			
 		case Spending_Insight_clickAndVerifyLogout:
 			LogoutMySpend.get().logoutMySpend();
 			break;
-
+			
 		case Spending_Insight_clickMoneyPathButton:
 			Spending_Insight.get().clickMoneyPathButton();
 			break;
-
+			
 		case MySpend_RegistrationFlow:
 			TourPage.get().registrationFlow();
 			break;
-
+			
 		case SpendingByCategory_clickHistoricalInsightBtn:
 			SpendingByCategory.get().clickHistoricalInsightsBtn();
 			break;
-
+			
 		case SpendingHistory_verifySpendingHistoryHeader:
 			SpendingHistory.get().verifySpendingHistoryHeader();
 			break;
-
+			
 		case TransactionHistory_transacHistoryFunctionality:
 			TransactionHistory.get().transactionHistoryPageFunctionality();
 			break;
-
+			
 		case MoneyPath_moneyPathFunctionality:
 			MoneyPath.get().moneyPathFunctionality();
 			break;
-
+			
 		case SpendingInsights_verifySpendingInsightsPage:
 			Spending_Insight.get().verifySpendingInsightsPage();
 			break;
-
+			
+			
 		case Logout_logout:
 			Logout.get().logout();
+			break;
+			
+		case SpendingHistory_clickSpendingHistory:
+			SpendingHistory.get().clickSpendingHistory();
+			break;
+			
+		case Preferences_enableAccounts:
+			MyspendPreferences.get().enableAccountsInPreferencePage();
 			break;
 		}
 	}

@@ -55,11 +55,11 @@ public class SideMenu extends com.td._CommonPage {
 	private MobileElement spendingInsights;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Go back to TD MySpend') or contains(@label,'Go back') or contains(@label,'Retourner à Dépense TD')]")
-	@AndroidFindBy(xpath = "//*[contains(@text,'Go back to TD MySpend')]")
+	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Go back to TD MySpend') or contains(@content-desc,'Retourner à Dépense TD')]")
 	private MobileElement quickLink;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Get the TD app' or contains(@label,'Obtenir l')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Get the TD app')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Get the TD app') or contains(@content-desc,'Obtenir l')]")
 	private MobileElement getTDApp;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Featured']")
@@ -587,27 +587,25 @@ public class SideMenu extends com.td._CommonPage {
 		try {
 			clickPreferences();
 			MyspendPreferences.get().verifyPageHeader();
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				CL.GetAppiumDriver().context("NATIVE_APP");
+			}
 			Spending_Insight.get().clickSideMenuButton();
 			clickMyAccounts();
 			mobileAction.FuncClick(quickLink, "Quick Link");
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
-			}
-			MyspendPreferences.get().verifyPageHeader();
 			Spending_Insight.get().clickSideMenuButton();
 			clickTransfers();
 			mobileAction.FuncClick(quickLink, "Quick Link");
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
-			}
-			MyspendPreferences.get().verifyPageHeader();
 			Spending_Insight.get().clickSideMenuButton();
 			clickBills();
 			mobileAction.FuncClick(quickLink, "Quick Link");
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
 			}
 			MyspendPreferences.get().verifyPageHeader();
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				CL.GetAppiumDriver().context("NATIVE_APP");
+			}
 
 		} catch (NoSuchElementException e) {
 			try {

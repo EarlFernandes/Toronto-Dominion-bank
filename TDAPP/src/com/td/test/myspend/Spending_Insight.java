@@ -31,7 +31,7 @@ public class Spending_Insight extends _CommonPage {
 	String platform = null;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Spending Insights') or contains(@label,'Aperçu des dépenses')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Spending Insights')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Spending Insights') or contains(@content-desc,'Aperçu des dépenses')]")
 	private MobileElement spendingInsightHeader;
 
 	@AndroidFindBy(xpath = "(//*[@aria-label='Menu'])[1]")
@@ -45,7 +45,7 @@ public class Spending_Insight extends _CommonPage {
 	private MobileElement accountSelected;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'MONEY PATH') or contains(@label,'Trajectoire financière')]")
-	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'MONEY PATH')]")
+	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'MONEY PATH') or contains(@content-desc,'Trajectoire financière')]")
 	private MobileElement moneyPathButton;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Logout') or contains(@label,'Fermer la session')]")
@@ -234,6 +234,14 @@ public class Spending_Insight extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail", "Exception from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

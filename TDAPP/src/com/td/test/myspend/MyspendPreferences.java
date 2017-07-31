@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
@@ -32,6 +33,7 @@ public class MyspendPreferences extends com.td._CommonPage {
 	private List<MobileElement> onButtons;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'SELECT ACCOUNTS') or contains(@label,'CHOISIR DES COMPTES')]/following-sibling::XCUIElementTypeOther[contains(@label,'OFF') or contains(@name,'OFF')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'OFF')]")
 	private List<MobileElement> offButtons;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Account Preferences') or contains(@label,'Paramètres du compte')]")
@@ -40,10 +42,10 @@ public class MyspendPreferences extends com.td._CommonPage {
 	@FindBy(xpath = "//*[contains(@ng-model,'isFWMOn')]")
 	private List<WebElement> onButtonsAndroid;
 
-	@FindBy(xpath = "//*[contains(@ng-model,'isFWMOff')]")
+	@FindBy(xpath = "//*[contains(@ng-model,'isFWMOn')]")
 	private List<WebElement> offButtonsAndroid;
 
-	@FindBy(xpath = "//*[@class='title header-item title-left']")
+	@FindBy(xpath="//*[text()='Account Preferences' or text()='Paramètres du compte']")
 	private WebElement pageHeaderAndroid;
 
 	private void Decorator() {
@@ -117,7 +119,10 @@ public class MyspendPreferences extends com.td._CommonPage {
 			}
 
 			if (platform.equalsIgnoreCase("Android")) {
-				mobileAction.FuncClickBackButton();
+				//mobileAction.FuncClickBackButton();
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickSideMenuButton();
+				SideMenu.get().clickSpendingInsights();
 			} else {
 				Spending_Insight.get().clickSideMenuButton();
 				SideMenu.get().clickSpendingInsights();
@@ -156,14 +161,14 @@ public class MyspendPreferences extends com.td._CommonPage {
 
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				if (offButtonsAndroid.isEmpty()) {
+				if(offButtons.isEmpty()){
 					disableAllAccounts();
 					Spending_Insight.get().clickSideMenuButton();
 					SideMenu.get().clickPreferences();
 				}
-
-				for (int i = 0; i < offButtonsAndroid.size(); i++) {
-					mobileAction.FuncClick(offButtonsAndroid.get(i), "Clicked OFF toggle Button");
+				System.out.println(offButtons.size());
+				while(offButtons.size()!=0){
+					mobileAction.FuncClick(offButtons.get(0), "Toggle button OFF");
 				}
 
 			} else {
@@ -179,7 +184,9 @@ public class MyspendPreferences extends com.td._CommonPage {
 			}
 
 			if (platform.equalsIgnoreCase("Android")) {
-				mobileAction.FuncClickBackButton();
+				//mobileAction.FuncClickBackButton();
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickSideMenuButton();
 
 			} else {
 				Spending_Insight.get().clickSideMenuButton();
@@ -214,5 +221,55 @@ public class MyspendPreferences extends com.td._CommonPage {
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
+		
+		/**
+		 * This method will enable the accounts in the preference page
+		 * 
+		 * @throws  InterruptedException
+		 *             In case an exception occurs while clicking over the element.
+		 * @throws IOException
+		 *             If there is problem while reporting.
+		 * @throws NoSuchElementException
+		 *             In case the element is not found over the screen.
+		 * 
+		 * 
+		 */
+		public void enableAccountsInPreferencePage() throws InterruptedException{
+			
+			Decorator();
+			
+			try{
+				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+					CL.GetAppiumDriver().context("NATIVE_APP");
+					enableAllAccounts();
+					CL.GetAppiumDriver().context("NATIVE_APP");
+
+				}else{
+					Spending_Insight.get().clickSideMenuButton();
+					Spending_Insight.get().clickSideMenuButton();
+					SideMenu.get().clickSpendingByCategory();
+					SpendingHistory.get().clickPreferencesLink();
+					enableAllAccounts();
+				}
+			}catch (NoSuchElementException e) {
+				try {
+					CL.GetReporting().FuncReport("Fail", "NoSuchElementException from Method " + this.getClass().toString());
+				} catch (IOException e1) {
+					
+					System.err.println("Failed to write in report.");
+				}
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception e) {
+				try {
+					CL.GetReporting().FuncReport("Fail", "Exception from Method " + this.getClass().toString());
+				} catch (IOException e1) {
+					System.err.println("Failed to write in report.");
+				}
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+			} 
+		}
+	
 
 }
