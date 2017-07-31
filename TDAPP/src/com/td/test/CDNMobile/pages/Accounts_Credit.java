@@ -475,7 +475,7 @@ public class Accounts_Credit extends _CommonPage {
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_summary") + "']",
 						"summary tab");
 				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_statements") + "']",
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_last_statements_header") + "']",
 						"statements tab");
 			}
 		} catch (NoSuchElementException | IOException e) {
