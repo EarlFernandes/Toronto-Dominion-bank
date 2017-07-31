@@ -587,7 +587,7 @@ public class SideMenu extends com.td._CommonPage {
 		try {
 			clickPreferences();
 			MyspendPreferences.get().verifyPageHeader();
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				CL.GetAppiumDriver().context("NATIVE_APP");
 			}
 			Spending_Insight.get().clickSideMenuButton();
@@ -599,11 +599,11 @@ public class SideMenu extends com.td._CommonPage {
 			Spending_Insight.get().clickSideMenuButton();
 			clickBills();
 			mobileAction.FuncClick(quickLink, "Quick Link");
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
 			}
 			MyspendPreferences.get().verifyPageHeader();
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				CL.GetAppiumDriver().context("NATIVE_APP");
 			}
 

@@ -540,7 +540,7 @@ public class SpendingByCategory extends _CommonPage {
 		try {
 
 			verifyAllCategory();
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				CL.GetAppiumDriver().context("NATIVE_APP");
 			}
 			verifyWantsCategory();
@@ -575,14 +575,14 @@ public class SpendingByCategory extends _CommonPage {
 	public void clickHistoricalInsightsBtn() {
 		Decorator();
 		try {
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
 				mobileAction.FuncClick(historicalInsightBtnAndroid, "Historical Insight Button");
-				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
 				}
-			}else{
-			
+			} else {
+
 				mobileAction.FuncClick(historicalInsightBtn, "Historical Insight Button");
 			}
 

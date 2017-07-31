@@ -62,7 +62,7 @@ public class TransactionHistory extends _CommonPage {
 	private MobileElement pageHeader;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Filter by Accounts') or contains(@label,'Filtrer par compte')]")
-	@AndroidFindBy(xpath="//android.view.View[contains(@content-desc,'Filter by Accounts') or contains(@content-desc,'Filtrer par compte')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Filter by Accounts') or contains(@content-desc,'Filtrer par compte')]")
 	private MobileElement filterAccount;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Filter by Category') or contains(@label,'Filtrer par catégorie')]")
@@ -82,10 +82,10 @@ public class TransactionHistory extends _CommonPage {
 	@FindBy(xpath = "//*[text()='Transaction History' or text()='Historique des opérations']")
 	private WebElement pageHeaderAndroid;
 
-	@FindBy(id="accountsFilter")
+	@FindBy(id = "accountsFilter")
 	private WebElement filterAccountAndroid;
 
-	@FindBy(id="categoryFilter")
+	@FindBy(id = "categoryFilter")
 	private WebElement filterCategoryAndroid;
 
 	@FindBy(xpath = "//*[contains(@class,'noTransactionsMsg')]")
@@ -247,24 +247,23 @@ public class TransactionHistory extends _CommonPage {
 				// Verify by Filtering Account
 				CL.GetAppiumDriver().context("NATIVE_APP");
 				mobileAction.FuncClick(filterAccount, "Filter Account");
-				account="//*[contains(@content-desc,'"+accountVal+"')]";
-				MobileElement selectAccount=mobileAction.mobileElementUsingXPath(account);
+				account = "//*[contains(@content-desc,'" + accountVal + "')]";
+				MobileElement selectAccount = mobileAction.mobileElementUsingXPath(account);
 				mobileAction.FuncClick(selectAccount, "Account");
-				filteredAccount="(//*[contains(@content-desc,'"+accountVal+"')])[1]";
-				MobileElement filteredAccounts=mobileAction.mobileElementUsingXPath(filteredAccount);
+				filteredAccount = "(//*[contains(@content-desc,'" + accountVal + "')])[1]";
+				MobileElement filteredAccounts = mobileAction.mobileElementUsingXPath(filteredAccount);
 				mobileAction.verifyElementIsDisplayed(filteredAccounts, "Filtered Account");
-				
-				//Verify by Filtering Categoty
+
+				// Verify by Filtering Categoty
 				mobileAction.FuncClick(filterCategory, "Filter Category");
-				category="//*[contains(@content-desc,'"+categoryVal+"')]";
-				MobileElement selectCategory=mobileAction.mobileElementUsingXPath(category);
+				category = "//*[contains(@content-desc,'" + categoryVal + "')]";
+				MobileElement selectCategory = mobileAction.mobileElementUsingXPath(category);
 				mobileAction.FuncClick(selectCategory, "Category");
-				filteredCategory="(//*[contains(@content-desc,'"+categoryVal+"')])[1]";
-				MobileElement filterCategory=mobileAction.mobileElementUsingXPath(filteredCategory);
-				if(mobileAction.verifyElementIsPresent(filterCategory))
-				{
+				filteredCategory = "(//*[contains(@content-desc,'" + categoryVal + "')])[1]";
+				MobileElement filterCategory = mobileAction.mobileElementUsingXPath(filteredCategory);
+				if (mobileAction.verifyElementIsPresent(filterCategory)) {
 					mobileAction.verifyElementIsDisplayed(filterCategory, "Filtered Category");
-				}else{
+				} else {
 					mobileAction.verifyElementIsDisplayed(noTransac, "No Transactions Found");
 				}
 

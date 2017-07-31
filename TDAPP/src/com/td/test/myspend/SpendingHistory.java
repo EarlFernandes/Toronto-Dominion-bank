@@ -58,7 +58,7 @@ public class SpendingHistory extends _CommonPage {
 	private MobileElement spendingHistoryBtn;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Home' or @label='Accueil']")
-	@AndroidFindBy(xpath="//android.widget.Button[contains(@content-desc,'Home') or contains(@content-desc,'Accueil')]")
+	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Home') or contains(@content-desc,'Accueil')]")
 	private MobileElement homeBtn;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Quick Access Settings' or @label='Paramètres Accès rapide']")
@@ -97,8 +97,8 @@ public class SpendingHistory extends _CommonPage {
 
 	@FindBy(xpath = "//*[text()='Preferences' or text()='Préférences.']")
 	private WebElement preferencesLinkAndroid;
-	
-	@FindBy(xpath="//*[contains(@class='spend-history')]")
+
+	@FindBy(xpath = "//*[contains(@class='spend-history')]")
 	private WebElement spendingHistoryBtnAndroid;
 
 	private void Decorator() {
@@ -288,32 +288,30 @@ public class SpendingHistory extends _CommonPage {
 		Decorator();
 		String currentMonth = GetDate.getCurrentMonth();
 		try {
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementIsDisplayed(spendingInsightsTabAndroid, "Spending Insights Tab");
 				mobileAction.verifyElementIsDisplayed(moneyPathTabAndroid, "MoneyPath Tab");
 				mobileAction.verifyElementIsDisplayed(spendingByCategoryTabAndroid, "Spending by Category Tab");
 				mobileAction.verifyElementIsDisplayed(leftArrowAndroid, "Left Arrow");
 				System.out.println(currentMonthElementAndroid.getText());
-				if(mobileAction.verifyTextIsContained(currentMonthElementAndroid, currentMonth)){
-					mobileAction.stringToReport("Pass",
-							"Next Month is not Enabled");
-				}else{
+				if (mobileAction.verifyTextIsContained(currentMonthElementAndroid, currentMonth)) {
+					mobileAction.stringToReport("Pass", "Next Month is not Enabled");
+				} else {
 					mobileAction.verifyElementIsDisplayed(RightArrowAndroid, "Right Arrow");
 				}
-			}else{
+			} else {
 				mobileAction.verifyElementIsDisplayed(spendingInsightsTab, "Spending Insights Tab");
 				mobileAction.verifyElementIsDisplayed(moneyPathTab, "MoneyPath Tab");
 				mobileAction.verifyElementIsDisplayed(spendingByCategoryTab, "Spending by Category Tab");
 				mobileAction.verifyElementIsDisplayed(leftArrow, "Left Arrow");
 				mobileAction.FuncClick(leftArrow, "Previous Month");
-				if(mobileAction.verifyTextIsContained(currentMonthElement, currentMonth)){
-					mobileAction.stringToReport("Pass",
-							"Next Month is not Enabled");
-				}else{
+				if (mobileAction.verifyTextIsContained(currentMonthElement, currentMonth)) {
+					mobileAction.stringToReport("Pass", "Next Month is not Enabled");
+				} else {
 					mobileAction.verifyElementIsDisplayed(RightArrow, "Right Arrow");
 				}
-				
-		 }
+
+			}
 		} catch (NoSuchElementException e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
@@ -425,7 +423,7 @@ public class SpendingHistory extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	/**
 	 * This method will verify the Spending History Header
 	 * 
@@ -441,16 +439,17 @@ public class SpendingHistory extends _CommonPage {
 	 *             If there is problem while finding that element.
 	 */
 	public void clickSpendingHistory() {
-	Decorator();
+		Decorator();
 		try {
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				CL.GetAppiumDriver().context("NATIVE_APP");
 			}
 			mobileAction.FuncClick(spendingHistoryBtn, "Spending History Button");
 
 		} catch (NoSuchElementException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "NoSuchElementException from Method " + this.getClass().toString());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
 			} catch (IOException e1) {
 				System.err.println("Failed to write in report.");
 			}
@@ -474,6 +473,5 @@ public class SpendingHistory extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
 
 }

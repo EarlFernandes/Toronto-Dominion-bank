@@ -45,7 +45,7 @@ public class MyspendPreferences extends com.td._CommonPage {
 	@FindBy(xpath = "//*[contains(@ng-model,'isFWMOn')]")
 	private List<WebElement> offButtonsAndroid;
 
-	@FindBy(xpath="//*[text()='Account Preferences' or text()='Paramètres du compte']")
+	@FindBy(xpath = "//*[text()='Account Preferences' or text()='Paramètres du compte']")
 	private WebElement pageHeaderAndroid;
 
 	private void Decorator() {
@@ -119,7 +119,7 @@ public class MyspendPreferences extends com.td._CommonPage {
 			}
 
 			if (platform.equalsIgnoreCase("Android")) {
-				//mobileAction.FuncClickBackButton();
+				// mobileAction.FuncClickBackButton();
 				CL.GetAppiumDriver().context("NATIVE_APP");
 				Spending_Insight.get().clickSideMenuButton();
 				SideMenu.get().clickSpendingInsights();
@@ -161,13 +161,13 @@ public class MyspendPreferences extends com.td._CommonPage {
 
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				if(offButtons.isEmpty()){
+				if (offButtons.isEmpty()) {
 					disableAllAccounts();
 					Spending_Insight.get().clickSideMenuButton();
 					SideMenu.get().clickPreferences();
 				}
 				System.out.println(offButtons.size());
-				while(offButtons.size()!=0){
+				while (offButtons.size() != 0) {
 					mobileAction.FuncClick(offButtons.get(0), "Toggle button OFF");
 				}
 
@@ -184,7 +184,7 @@ public class MyspendPreferences extends com.td._CommonPage {
 			}
 
 			if (platform.equalsIgnoreCase("Android")) {
-				//mobileAction.FuncClickBackButton();
+				// mobileAction.FuncClickBackButton();
 				CL.GetAppiumDriver().context("NATIVE_APP");
 				Spending_Insight.get().clickSideMenuButton();
 
@@ -221,55 +221,55 @@ public class MyspendPreferences extends com.td._CommonPage {
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-		
-		/**
-		 * This method will enable the accounts in the preference page
-		 * 
-		 * @throws  InterruptedException
-		 *             In case an exception occurs while clicking over the element.
-		 * @throws IOException
-		 *             If there is problem while reporting.
-		 * @throws NoSuchElementException
-		 *             In case the element is not found over the screen.
-		 * 
-		 * 
-		 */
-		public void enableAccountsInPreferencePage() throws InterruptedException{
-			
-			Decorator();
-			
-			try{
-				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-					CL.GetAppiumDriver().context("NATIVE_APP");
-					enableAllAccounts();
-					CL.GetAppiumDriver().context("NATIVE_APP");
 
-				}else{
-					Spending_Insight.get().clickSideMenuButton();
-					Spending_Insight.get().clickSideMenuButton();
-					SideMenu.get().clickSpendingByCategory();
-					SpendingHistory.get().clickPreferencesLink();
-					enableAllAccounts();
-				}
-			}catch (NoSuchElementException e) {
-				try {
-					CL.GetReporting().FuncReport("Fail", "NoSuchElementException from Method " + this.getClass().toString());
-				} catch (IOException e1) {
-					
-					System.err.println("Failed to write in report.");
-				}
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-			} catch (Exception e) {
-				try {
-					CL.GetReporting().FuncReport("Fail", "Exception from Method " + this.getClass().toString());
-				} catch (IOException e1) {
-					System.err.println("Failed to write in report.");
-				}
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-			} 
+	/**
+	 * This method will enable the accounts in the preference page
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void enableAccountsInPreferencePage() throws InterruptedException {
+
+		Decorator();
+
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				enableAllAccounts();
+				CL.GetAppiumDriver().context("NATIVE_APP");
+
+			} else {
+				Spending_Insight.get().clickSideMenuButton();
+				Spending_Insight.get().clickSideMenuButton();
+				SideMenu.get().clickSpendingByCategory();
+				SpendingHistory.get().clickPreferencesLink();
+				enableAllAccounts();
+			}
+		} catch (NoSuchElementException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail", "Exception from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-	
+	}
 
 }
