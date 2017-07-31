@@ -119,7 +119,9 @@ public class MoneyPath extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(noTransactionsAndroid, "No Transactions Found");
 				}
 				CL.GetAppiumDriver().context("NATIVE_APP");
-				mobileAction.TapCoOrdinates(30, 141, "Side Menu Bar");
+				//mobileAction.TapCoOrdinates(30, 141, "Side Menu Bar");
+				Spending_Insight.get().clickSideMenuButton();
+				CL.GetAppiumDriver().context("NATIVE_APP");
 			} else {
 				details = mobileAction.FuncGetElementText(spendingDetailsFromGraph);
 				System.out.println(details);
