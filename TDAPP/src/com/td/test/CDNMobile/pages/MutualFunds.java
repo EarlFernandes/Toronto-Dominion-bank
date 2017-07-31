@@ -986,7 +986,7 @@ public class MutualFunds extends _CommonPage {
 			if (platformName.equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 			} else {
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			}
 
 		} catch (NoSuchElementException e) {
@@ -1076,7 +1076,7 @@ public class MutualFunds extends _CommonPage {
 				mobileAction.FuncClick(iOSKybdOKButton, "iOSKybdOKButton");
 
 			/*
-			 * else { mobileAction.FuncClick(done, "Done"); }
+			 * else { mobileAction.FuncClickDone(); }
 			 */
 
 		} catch (NoSuchElementException e) {

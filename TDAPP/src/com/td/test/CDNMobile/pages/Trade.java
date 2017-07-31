@@ -604,7 +604,7 @@ public class Trade extends _CommonPage {
 					limitPriceEditText.clear();
 				}
 				mobileAction.FuncSendKeys(limitPriceEditText, limitPrice);
-				mobileAction.FuncClick(doneOK, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 
 				mobileAction.FunctionSwipe("up", 200, 100);
@@ -648,7 +648,7 @@ public class Trade extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FunCSwipeandScroll(limitPriceEditTextWithTrigger, true);
 				mobileAction.FuncSendKeys(limitPriceEditTextWithTrigger, limitPrice);
-				mobileAction.FuncClick(doneOK, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 
 				mobileAction.FunctionSwipe("up", 200, 100);
@@ -688,7 +688,7 @@ public class Trade extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(triggerPriceEditText, "TriggerPrice");
 				mobileAction.FuncSendKeys(triggerPriceEditText, triggerPriceValue);
-				mobileAction.FuncClick(doneOK, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 
 				mobileAction.FunctionSwipe("up", 200, 100);
@@ -994,7 +994,7 @@ public class Trade extends _CommonPage {
 				// "up");
 				mobileAction.FuncSendKeys(trading_pwd, trading_pwd_XL);
 				Thread.sleep(1000);
-				mobileAction.FuncClick(doneOK, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 				mobileAction.FunctionSwipe("up", 200, 100);
 				mobileAction.FuncClick(trading_pwd, "Trading Password");
@@ -1032,7 +1032,7 @@ public class Trade extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncSendKeys(selectQuantity, getTestdata("Quantity"));
-				mobileAction.FuncClick(doneOK, "Done");
+				mobileAction.FuncClickDone();
 
 			} else {
 
@@ -1079,7 +1079,7 @@ public class Trade extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(triggerDelta, "Trigger Delta");
 				mobileAction.FuncSendKeys(triggerDelta, triggerDelta_value);
-				mobileAction.FuncClick(doneOK, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 
 				// if (!mobileAction.FuncIsDisplayed(triggerDelta)) {
@@ -1121,7 +1121,7 @@ public class Trade extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(limitDelta, "Limit Delta");
 				mobileAction.FuncSendKeys(limitDelta, limitDelta_value);
-				mobileAction.FuncClick(doneOK, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 
 				// if (!mobileAction.FuncIsDisplayed(limitDelta)) {
@@ -1163,7 +1163,7 @@ public class Trade extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(limitDeltaWithTrigger, "Limit Delta");
 				mobileAction.FuncSendKeys(limitDeltaWithTrigger, limitDelta_value);
-				mobileAction.FuncClick(doneOK, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 				// if (!mobileAction.FuncIsDisplayed(limitDeltaWithTrigger)) {
 

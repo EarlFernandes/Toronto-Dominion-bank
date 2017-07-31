@@ -222,10 +222,10 @@ public class Interac_e_Registration extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(name, name.getText());
 				mobileAction.FuncClick(emailId, "Email");
 				mobileAction.FuncSendKeys(emailId, email);
-				mobileAction.FuncClick(done, "Done Button");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(confirmEmailId, "Confirm Email");
 				mobileAction.FuncSendKeys(confirmEmailId, email);
-				mobileAction.FuncClick(done, "Done Button");
+				mobileAction.FuncClickDone();
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(continueButton, "Continue Button");
 
@@ -349,10 +349,10 @@ public class Interac_e_Registration extends _CommonPage {
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(emailId, "Email");
 				mobileAction.FuncSendKeys(emailId, email);
-				mobileAction.FuncClick(done, "Done Button");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(confirmEmailId, "Confirm Email");
 				mobileAction.FuncSendKeys(confirmEmailId, email);
-				mobileAction.FuncClick(done, "Done Button");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(continueButton, "Continue Button");
 			} else {
 
@@ -365,7 +365,7 @@ public class Interac_e_Registration extends _CommonPage {
 				MobileElement tradeResponse = mobileAction.mobileElementUsingXPath(response);
 
 				mobileAction.FuncClick(tradeResponse, "Trade Response Option");
-				mobileAction.FuncClick(done, "Done Button");
+				mobileAction.FuncClickDone();
 
 				mobileAction.FunctionSwipe("up", 200, 200);
 
@@ -494,7 +494,7 @@ public class Interac_e_Registration extends _CommonPage {
 						MobileElement profile = mobileAction.mobileElementUsingXPath(profileStr);
 
 						mobileAction.FuncClick(profile, nameArr[i]);
-						mobileAction.FuncClick(done, "Done");
+						mobileAction.FuncClickDone();
 					}
 
 					if (profileArr[i].equalsIgnoreCase("Business")) {
