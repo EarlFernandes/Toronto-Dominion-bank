@@ -835,11 +835,14 @@ public class MenuPage extends _CommonPage {
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
 								+ mobileAction.getAppString("str_CrossBorder") + "']",
 						"Cross Border Banking");
-				mobileAction
-						.verifyElementUsingXPath(
-								"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
-										+ mobileAction.getAppString("logoutSuccessQuickTaskFindLocations") + "']",
-								"Locations");
+				// mobileAction
+				// .verifyElementUsingXPath(
+				// "//android.widget.TextView[@resource-id='com.td:id/navText'
+				// and @text='"
+				// +
+				// mobileAction.getAppString("logoutSuccessQuickTaskFindLocations")
+				// + "']",
+				// "Locations");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
 								+ mobileAction.getAppString("str_My_Accounts") + "']",
