@@ -639,7 +639,7 @@ public class Bill_PayCanada extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// mobileAction.FuncClick(from_account_post, "From Account");
 				// mobileAction.FuncClick(to_account_post, "Select Payee");
-				// mobileAction.FuncClick(done, "Done");
+				// mobileAction.FuncClickDone();
 
 			}
 

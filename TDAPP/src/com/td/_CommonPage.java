@@ -146,5 +146,61 @@ public class _CommonPage {
 		return CL.LoadData(aColumn, CL.getTestDataInstance().getMasterTestData(), aSheetName, "UserType",
 				CL.getTestDataInstance().TestCaseID);
 	}
+	
+	public String getTextInCurrentLocale(String textEnglish, String textFrench, 
+			String textInSimpliedCH, String textInTraditionCH){
+		String text = textEnglish.trim();
+		switch (currentLocale) {
+		case "EN":
+		case "en":
+			text = textEnglish.trim();
+			break;
+		case "FR":
+		case "fr":
+			text = textFrench.trim();
+			break;
+		case "zh":
+		case "zh-Hans":
+			text = textInSimpliedCH.trim();
+			break;
+		case "zh-rHK":
+		case "zh-rTW":
+		case "zh-Hant":
+			text = textInTraditionCH.trim();
+			break;
+		}
+		
+		return text;	
+	}
+	
+	public String getTextInCurrentLocale(String[] textArray){
+		
+		if(textArray.length != 4){
+			System.out.println("Failed to get text in currenLocale");
+			return "";
+		}
+		String text = textArray[0].trim();
+		switch (currentLocale) {
+		case "EN":
+		case "en":
+			text = textArray[0].trim();
+			break;
+		case "FR":
+		case "fr":
+			text = textArray[1].trim();
+			break;
+		case "zh":
+		case "zh-Hans":
+			text = textArray[2].trim();
+			break;
+		case "zh-rHK":
+		case "zh-rTW":
+		case "zh-Hant":
+			text = textArray[3].trim();
+			break;
+		}
+		
+		return text;	
+	}
 
 }

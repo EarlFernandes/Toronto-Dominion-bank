@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.td.ChineseStrings;
 import com.td.EnglishStrings;
 import com.td.FrenchStrings;
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -191,7 +192,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or @label='OK' or @label='"
 						+ mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}
@@ -255,13 +256,13 @@ public class PurchaseMutualFunds extends _CommonPage {
 		}
 		return "";
 	}
+	
 
 	public void VerifyPurchaseMFPageHeader() {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(page_title,
-					"Purchase Mutual Funds |Achat de fonds| 购买互惠基金|購買互惠基金");
+			mobileAction.verifyElementTextIsDisplayed(page_title, getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_HEADER));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -370,37 +371,18 @@ public class PurchaseMutualFunds extends _CommonPage {
 	}
 
 	private String get_To_MF_Account_text() {
-		String text = "To Mutual Fund Account";
-		switch (currentLocale) {
-		case "EN":
-		case "en":
-			text = "To Mutual Fund Account";
-			break;
-		case "FR":
-		case "fr":
-			text = "Compte de fonds";
-			break;
-		case "zh":
-		case "zh-Hans":
-			text = "转入互惠基金账户";
-			break;
-		case "zh-rHK":
-		case "zh-rTW":
-		case "zh-Hant":
-			text = "轉入互惠基金賬戶";
-			break;
-		}
-		return text;
+		return getTextInCurrentLocale(EnglishStrings.MF_TO_MF_ACCOUNT, FrenchStrings.MF_TO_MF_ACCOUNT,
+				ChineseStrings.Simplified.MF_TO_MF_ACCOUNT, ChineseStrings.Traditional.MF_TO_MF_ACCOUNT );
 	}
 
 	public void VerifyPurchaseMFPageInChinese() {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(page_title, "购买互惠基金 | 購買互惠基金");
-			mobileAction.verifyElementTextIsDisplayed(fund_dropdown_caption, "基金 |基金");
-			mobileAction.verifyElementTextIsDisplayed(fund_dropdown_list, "选择基金|選擇基金 ");
-			mobileAction.verifyElementTextIsDisplayed(amount_caption, "金额|金額");
+			mobileAction.verifyElementTextIsDisplayed(page_title, getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_HEADER));
+			mobileAction.verifyElementTextIsDisplayed(fund_dropdown_caption, getTextInCurrentLocale(StringArray.ARRAY_MF_FUNDS));
+			mobileAction.verifyElementTextIsDisplayed(fund_dropdown_list, getTextInCurrentLocale(StringArray.ARRAY_MF_SELECT_FUNDS));
+			mobileAction.verifyElementTextIsDisplayed(amount_caption, getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT));
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				from_account_caption = mobileAction
@@ -421,27 +403,25 @@ public class PurchaseMutualFunds extends _CommonPage {
 			} else {
 
 			}
-			mobileAction.verifyElementTextIsDisplayed(from_account_caption, "转出账户|轉出賬戶 ");
-			mobileAction.verifyElementTextIsDisplayed(to_account_caption, "转入互惠基金账户|轉入互惠基金賬戶");
-			mobileAction.verifyElementTextIsDisplayed(contact_caption, "联系方式|聯絡資訊 ");
+			mobileAction.verifyElementTextIsDisplayed(from_account_caption, getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT));
+			mobileAction.verifyElementTextIsDisplayed(to_account_caption, getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT));
+			mobileAction.verifyElementTextIsDisplayed(contact_caption, getTextInCurrentLocale(StringArray.ARRAY_MF_CONTACT_INFO));
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView", 1, "down");
 			} else {
 				mobileAction.SwipeWithinElement("//XCUIElementTypeTable", 1, "down");
 			}
-			mobileAction.verifyElementTextIsDisplayed(email_caption, "电子邮件|電郵地址");
-			mobileAction.verifyElementTextIsDisplayed(phone_caption, "电话号码|電話號碼");
-			String expectedCopyText = "您的个人信息仅用于我们就您的基金购买情况与您联络。 | 我們僅在因有關您的購買時，才會使用您的資訊與您聯絡。";
+			mobileAction.verifyElementTextIsDisplayed(email_caption, getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL) );
+			mobileAction.verifyElementTextIsDisplayed(phone_caption, getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE));
 			if (mobileAction.verifyElementIsPresent(copy_text)) {
-				mobileAction.verifyElementTextIsDisplayed(copy_text, expectedCopyText);
+				mobileAction.verifyElementTextIsDisplayed(copy_text, getTextInCurrentLocale(StringArray.ARRAY_MF_COPY_TEXT));
 			}
 
-			mobileAction.verifyElementTextIsDisplayed(view_fundFacts, " 查看基金概况（表现和费用）|查看基金概況（表現和費用）");
-			String expectedCheckBox = "我同意通过电子方式获取基金概况和费用，并确认我有机会在购买基金之前查阅基金概况和费用。|我同意以電子方式獲取基金詳情和費用，並確認我在購買基金前都有機會先查閱內容。 ";
+			mobileAction.verifyElementTextIsDisplayed(view_fundFacts, getTextInCurrentLocale(StringArray.ARRAY_MF_VIEW_FUND_FACT));			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.verifyElementTextIsDisplayed(consent_checkbox_description, expectedCheckBox);
+				mobileAction.verifyElementTextIsDisplayed(consent_checkbox_description, getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_RADIO));
 			} else {
-				mobileAction.verifyElementTextIsDisplayed(consent_checkbox, expectedCheckBox);
+				mobileAction.verifyElementTextIsDisplayed(consent_checkbox, getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_RADIO));
 			}
 			// String expectedLegalText
 			// ="您购买的基金有最短持有期要求。如果您在最短持有期到期之前赎回，则可能需向基金支付最高 2%
@@ -521,9 +501,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					mobileAction.FuncHideKeyboard();
 				} else {
-					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or @label='OK' or @label='"
-							+ mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 				}
 			} else {
 				System.out.println("Email populated:" + ori_email);
@@ -532,9 +510,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			if (!user_phone.isEmpty()) {
 				mobileAction.FuncSendKeys(phone_info, user_phone);
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or @label='OK' or @label='"
-							+ mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 				} else {
 					mobileAction.FuncHideKeyboard();
 				}
@@ -572,9 +548,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					mobileAction.FuncHideKeyboard();
 				} else {
-					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or @label='OK' or @label='"
-							+ mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 				}
 			} else {
 				System.out.println("Email populated:" + ori_email);
@@ -583,9 +557,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			if (ori_phone.isEmpty()) {
 				mobileAction.FuncSendKeys(phone_info, user_phone);
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					done = mobileAction.verifyElementUsingXPath("/*[@label='Done' or @label='OK' or @label='"
-							+ mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 				} else {
 					mobileAction.FuncHideKeyboard();
 				}
@@ -655,7 +627,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			clickpreview();
 
 			String pageTitle = mobileAction.getValue(page_title);
-			String expectedTitle = "Preview Purchase | Aperçu | 预览购买 | 預覽購買 ";
+			String expectedTitle = getTextInCurrentLocale(StringArray.ARRAY_MF_PREVIEW_PURCHASE_HEADER);
 
 			if (!expectedTitle.contains(pageTitle)) {
 				errorMessage = checkErrorMessageIsFound();
@@ -696,7 +668,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			enterAmount(MAX_AMOUNT);
 			clickpreview();
 			String pageTitle = mobileAction.getValue(page_title);
-			String expectedTitle = "Preview Purchase | Aperçu | 预览购买 | 預覽購買 ";
+			String expectedTitle = getTextInCurrentLocale(StringArray.ARRAY_MF_PREVIEW_PURCHASE_HEADER);
 			if (!expectedTitle.contains(pageTitle)) {
 				errorMessage = checkErrorMessageIsFound();
 				mobileAction.Report_Fail("Error message for Max amount " + MAX_AMOUNT);
@@ -988,18 +960,13 @@ public class PurchaseMutualFunds extends _CommonPage {
 		Decorator();
 		try {
 
-			String expectedErrorMsg = "Please Select a Fund | Veuillez sélectionner un fonds";
+			String expectedErrorMsg = getTextInCurrentLocale(StringArray.ARRAY_MF_ERROR_NO_FUND_SELECTED);
 
-			// mobileAction.verifyElementTextIsDisplayed(error_message,
-			// expectedErrorMsg);
 			String CapturedString = mobileAction.getValue(error_message);
 			System.out.println("Captured message:" + CapturedString);
-			String[] expectedErrorMsgArray = expectedErrorMsg.split("\\|");
-			for (int i = 0; i < expectedErrorMsgArray.length; i++) {
-				if (CapturedString.contains(expectedErrorMsgArray[i].trim())) {
-					mobileAction.Report_Pass_Verified(expectedErrorMsgArray[i].trim());
-					return;
-				}
+			if (CapturedString.contentEquals(expectedErrorMsg)) {
+				mobileAction.Report_Pass_Verified(expectedErrorMsg);
+				return;
 			}
 			mobileAction.Report_Fail("Error message is not expected:" + CapturedString);
 		} catch (NoSuchElementException e) {
@@ -1051,9 +1018,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					mobileAction.FuncHideKeyboard();
 				} else {
-					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or @label='OK' or @label='"
-							+ mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 				}
 
 				emialInfo = mobileAction.getValue(email_info);
@@ -1069,9 +1034,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					mobileAction.FuncHideKeyboard();
 				} else {
-					done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or @label='OK' or @label='"
-							+ mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 				}
 
 				emialInfo = mobileAction.getValue(email_info);

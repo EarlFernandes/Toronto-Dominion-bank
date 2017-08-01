@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
@@ -1662,17 +1663,18 @@ public class Investing extends _CommonPage {
 	public void VerifyMFChineseContent() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(investing_header, "投资 |投資  ");
-			mobileAction.verifyElementTextIsDisplayed(balance_tab, "结余 | 結餘  ");
-			mobileAction.verifyElementTextIsDisplayed(funds_tab, "基金 | 基金  ");
-			mobileAction.verifyElementTextIsDisplayed(activity_tab, "活动 | 活動 ");
-			mobileAction.verifyElementTextIsDisplayed(table_heading_left, "基金 | 基金 ");
-			mobileAction.verifyElementTextIsDisplayed(table_heading_middle, "市场价值 | 市價 ");
+			mobileAction.verifyElementTextIsDisplayed(investing_header, mobileAction.getAppString("str_Investing"));
+			mobileAction.verifyElementTextIsDisplayed(balance_tab, getTextInCurrentLocale(StringArray.ARRAY_TAB_BALANCE));
+			mobileAction.verifyElementTextIsDisplayed(funds_tab, getTextInCurrentLocale(StringArray.ARRAY_TAB_FUND));
+			mobileAction.verifyElementTextIsDisplayed(activity_tab, getTextInCurrentLocale(StringArray.ARRAY_TAB_ACTIVITY));
+			mobileAction.verifyElementTextIsDisplayed(table_heading_left, getTextInCurrentLocale(StringArray.ARRAY_TAB_FUND));
+			mobileAction.verifyElementTextIsDisplayed(table_heading_middle, getTextInCurrentLocale(StringArray.ARRAY_TABLE_MARKET_VALUE));
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				mobileAction.verifyElementTextIsDisplayed(table_heading_unit, "单位 单位价格  | 單位 單位價格");
+				mobileAction.verifyElementTextIsDisplayed(table_heading_unit,  
+						getTextInCurrentLocale(StringArray.ARRAY_TABLE_UNIT) +" "+getTextInCurrentLocale(StringArray.ARRAY_TABLE_PRICE_PER_UINT));//  "单位 单位价格  | 單位 單位價格");
 			} else {
-				mobileAction.verifyElementTextIsDisplayed(table_heading_unit, "单位  | 單位");
-				mobileAction.verifyElementTextIsDisplayed(table_heading_unit_price, "单位价格  | 單位價格");
+				mobileAction.verifyElementTextIsDisplayed(table_heading_unit, getTextInCurrentLocale(StringArray.ARRAY_TABLE_UNIT));
+				mobileAction.verifyElementTextIsDisplayed(table_heading_unit_price, getTextInCurrentLocale(StringArray.ARRAY_TABLE_PRICE_PER_UINT));
 			}
 
 		} catch (NoSuchElementException | IOException e) {
@@ -1685,7 +1687,7 @@ public class Investing extends _CommonPage {
 	public void VerifyMFActivityChineseContent() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(investing_header, "投资 |投資  ");
+			mobileAction.verifyElementTextIsDisplayed(investing_header, mobileAction.getAppString("str_Investing"));
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 				activity_tab = mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Activity") + "']",
@@ -1703,10 +1705,10 @@ public class Investing extends _CommonPage {
 								+ "']/following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[3]",
 						"Rifht head");
 			}
-			mobileAction.verifyElementTextIsDisplayed(activity_tab, "活动 | 活動 ");
-			mobileAction.verifyElementTextIsDisplayed(table_heading_left, "日期 | 日期");
-			mobileAction.verifyElementTextIsDisplayed(table_heading_middle, "交易 | 交易 ");
-			mobileAction.verifyElementTextIsDisplayed(table_heading_right, "金额  | 金額 ");
+			mobileAction.verifyElementTextIsDisplayed(activity_tab, getTextInCurrentLocale(StringArray.ARRAY_TAB_ACTIVITY));
+			mobileAction.verifyElementTextIsDisplayed(table_heading_left, getTextInCurrentLocale(StringArray.ARRAY_TABLE_TRANSACTION));
+			mobileAction.verifyElementTextIsDisplayed(table_heading_middle, getTextInCurrentLocale(StringArray.ARRAY_TABLE_DATE));
+			mobileAction.verifyElementTextIsDisplayed(table_heading_right, getTextInCurrentLocale(StringArray.ARRAY_TABLE_AMOUNT));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -1718,7 +1720,7 @@ public class Investing extends _CommonPage {
 	public void VerifyQuickLinkPurchaseChineseContent() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(purchase_MF_button, "购买互惠基金 | 購買互惠基金  ");
+			mobileAction.verifyElementTextIsDisplayed(purchase_MF_button, getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_BUTTON));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -1768,12 +1770,7 @@ public class Investing extends _CommonPage {
 			Decorator();
 			mobileAction.FuncSwipeWhileElementNotFound(usd_disclaimer_foot, false, 10, "up");
 			String usDisclaimerText = mobileAction.getValue(usd_disclaimer_foot);
-			String expectedText;
-			if (currentLocale.equalsIgnoreCase("fr")) {
-				expectedText = "Toutes les valeurs sont en dollars canadiens, sauf avis contraire.";
-			} else {
-				expectedText = "All values in Canadian Dollars unless otherwise stated.";
-			}
+			String expectedText = getTextInCurrentLocale(StringArray.ARRAY_MF_CANADIAN_DOLLAR_NOTE);
 
 			if (usDisclaimerText.contains(expectedText)) {
 				System.out.println(expectedText);

@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
@@ -229,16 +230,17 @@ public class Receipt extends _CommonPage {
 	public void VerifyReceiptDetailChineseContent() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(receiptHeader, "Receipt|Reçu|收据|收據");
-			mobileAction.verifyElementTextIsDisplayed(subheader_thanksyou, " 谢谢！| 謝謝您！");
-			mobileAction.verifyElementTextIsDisplayed(reply_message,
-					"我们已经开始处理您的购买。如有问题，我们将与您联系。|我們已開始處理您的購買。如有問題，我們將與您聯絡。");
+			mobileAction.verifyElementTextIsDisplayed(receiptHeader, getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
+			mobileAction.verifyElementTextIsDisplayed(subheader_thanksyou, getTextInCurrentLocale(StringArray.ARRAY_MF_THANKYOU));
+			mobileAction.verifyElementTextIsDisplayed(reply_message, getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_REPLY));
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				String[] detailInfomation = { "后续流程|後續流程", "下午 3 点之前的购买 |下午 3 時之前的購買",
-						"如果您在工作日东部时间下午 3 点之前购买，将按当天价格交易。 | 如果在工作日的東部時間下午 3 時之前購買，將按當天價格交易。", "下午 3 点之后的购买 |下午 3 時之後的購買",
-						"如果您在东部时间下午 3 点之后或在周末购买，将按照下一个工作日的收市价交易。|如果在東部時間下午 3 時之後或在週末購買，將按下一個工作日的收市價交易。", "购买确认|購買確認",
-						"我们处理完您的购买之后，您能够即刻在您的互惠基金账户结余中看到新的基金。|我們處理完您的購買之後，您便能在您的互惠基金賬戶結餘中看到新的基金。", "购买详情|購買詳情",
-						"购买详情|購買詳情", "参考编号|參考號碼", "基金|基金", "金额|金額", "发送请求时间|請求送出時間", "转出账户|轉出賬戶", "转入互惠基金账户|轉入互惠基金賬戶"
+				String[] detailInfomation = { getTextInCurrentLocale(StringArray.ARRAY_MF_NEXT_HAPPEN), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_BEFORE3),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_BEFORE3), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_AFTER3),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_AFTER3), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_CONFIRM),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_CONFIRM_DESCRIPTION), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_DETAILS),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_DETAILS), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REF_NUM), 
+						getTextInCurrentLocale(StringArray.ARRAY_MF_FUNDS), getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REQUEST_TIME), 
+						getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT), getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT)
 
 				};
 				List<MobileElement> detailList = ((MobileDriver) (CL.GetAppiumDriver())).findElementsByXPath(
@@ -274,15 +276,15 @@ public class Receipt extends _CommonPage {
 			} else {
 				List<MobileElement> detailList = ((MobileDriver) (CL.GetAppiumDriver()))
 						.findElementsByXPath("//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText");
-				String[] detailInfomation = { "后续流程|後續流程", "下午 3 点之前的购买 |下午 3 時之前的購買",
-						"如果您在工作日东部时间下午 3 点之前购买，将按当天价格交易。 | 如果在工作日的東部時間下午 3 時之前購買，將按當天價格交易。", "下午 3 点之后的购买 |下午 3 時之後的購買",
-						"如果您在东部时间下午 3 点之后或在周末购买，将按照下一个工作日的收市价交易。|如果在東部時間下午 3 時之後或在週末購買，將按下一個工作日的收市價交易。", "购买确认|購買確認",
-						"我们处理完您的购买之后，您能够即刻在您的互惠基金账户结余中看到新的基金|我們處理完您的購買之後，您便能在您的互惠基金賬戶結餘中看到新的基金。", "购买详情|購買詳情",
-						"参考编号|參考號碼", "ignore", "基金|基金", "ignore", "ignore", "金额|金額", "ignore", "发送请求时间|請求送出時間",
-						"ignore", "ignore", "ignore", "ignore", "转出账户|轉出賬戶", "ignore", "转入互惠基金账户|轉入互惠基金賬戶", "ignore",
-						"ignore",
-						"您的账户结余没有显示您购买的基金。我们处理完您的购买后，您的账户结余将会即刻更新。" + "|您的賬戶結餘沒有顯示您購買的基金。我們處理完您的購買後，您的賬戶結餘便會更新。"
-
+				String[] detailInfomation = { getTextInCurrentLocale(StringArray.ARRAY_MF_NEXT_HAPPEN), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_BEFORE3),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_BEFORE3), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_AFTER3),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_AFTER3), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_CONFIRM),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_CONFIRM_DESCRIPTION), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_DETAILS),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REF_NUM),  "ignore", getTextInCurrentLocale(StringArray.ARRAY_MF_FUNDS), "ignore", "ignore", 
+						getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT), "ignore", getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REQUEST_TIME),
+						"ignore", "ignore", "ignore", "ignore", getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT), "ignore", 
+						getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT), "ignore",
+						"ignore",getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_BALANCE_NOTE)
 				};
 				int size = detailList.size();
 				System.out.println("size of data:" + size);
@@ -303,12 +305,12 @@ public class Receipt extends _CommonPage {
 
 			// mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView",
 			// 3, "down");
-			String footnote = "您的账户结余没有显示您购买的基金。我们处理完您的购买后，您的账户结余将会即刻更新。 | 您的賬戶結餘沒有顯示您購買的基金。我們處理完您的購買後，您的賬戶結餘便會更新。 ";
+			String footnote = getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_BALANCE_NOTE);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementTextIsDisplayed(foot_note, footnote);
 			}
 			mobileAction.FuncSwipeUpTillScreenBottom(homeBtn);
-			String[] button_text = { "返回主页|返回首頁", "查看我的账户|查看我的賬戶" };
+			String[] button_text = { getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_GO_HOME_BTN), getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_VIEW_ACCOUNT_BTN) };
 			List<MobileElement> btnList = null;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				btnList = ((MobileDriver) (CL.GetAppiumDriver())).findElementsByXPath(
