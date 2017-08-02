@@ -1706,8 +1706,8 @@ public class Investing extends _CommonPage {
 						"Rifht head");
 			}
 			mobileAction.verifyElementTextIsDisplayed(activity_tab, getTextInCurrentLocale(StringArray.ARRAY_TAB_ACTIVITY));
-			mobileAction.verifyElementTextIsDisplayed(table_heading_left, getTextInCurrentLocale(StringArray.ARRAY_TABLE_TRANSACTION));
-			mobileAction.verifyElementTextIsDisplayed(table_heading_middle, getTextInCurrentLocale(StringArray.ARRAY_TABLE_DATE));
+			mobileAction.verifyElementTextIsDisplayed(table_heading_left, getTextInCurrentLocale(StringArray.ARRAY_TABLE_DATE));
+			mobileAction.verifyElementTextIsDisplayed(table_heading_middle, getTextInCurrentLocale(StringArray.ARRAY_TABLE_TRANSACTION));
 			mobileAction.verifyElementTextIsDisplayed(table_heading_right, getTextInCurrentLocale(StringArray.ARRAY_TABLE_AMOUNT));
 
 		} catch (NoSuchElementException | IOException e) {

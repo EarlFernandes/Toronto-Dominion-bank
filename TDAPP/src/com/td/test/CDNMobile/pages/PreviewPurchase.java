@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.td.EnglishStrings;
 import com.td.FrenchStrings;
 import com.td.StringArray;
+import com.td.StringLookup;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -66,7 +67,6 @@ public class PreviewPurchase extends _CommonPage {
 	private MobileElement alert_info;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[11]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/custom_text']")
 	private MobileElement disclaimer_info;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount']/../XCUIElementTypeStaticText[2]")
@@ -74,9 +74,9 @@ public class PreviewPurchase extends _CommonPage {
 	private MobileElement amount_value;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[7]/XCUIElementTypeStaticText[2]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='" + EnglishStrings.MF_ACCEPTED_FUND_DETAIL_FEE
-			+ "' or @text='" + FrenchStrings.MF_ACCEPTED_FUND_DETAIL_FEE
-			+ "']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
+//	@AndroidFindBy(xpath = "//android.widget.TextView[@text='" + EnglishStrings.MF_ACCEPTED_FUND_DETAIL_FEE
+//			+ "' or @text='" + FrenchStrings.MF_ACCEPTED_FUND_DETAIL_FEE
+//			+ "']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement fund_facts_acknowledgement;
 
 	String phoneReg = "\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
@@ -221,19 +221,19 @@ public class PreviewPurchase extends _CommonPage {
 				mobileAction.FuncSwipeOnce("up");
 				mobileAction.FuncSwipeOnce("up");
 				mobileAction.FuncSwipeOnce("up");
-
+				
 				contact_label = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("contact_information") + "']",
-						"Contact Information");
+						"Contact Information");				
 				email_label = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("contact_email") + "']",
+						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.FM_EMAIL) + "']",
 						"Email");
 				phone_label = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("label_phone_number") + "']",
+						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.FM_PHONE) + "']",
 						"Phone Number");
 				disclaimer_info = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[contains(@text, '"
-								+ mobileAction.getAppString("MF_use_of_information_disclaimer") + "')]",
+						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.FM_PHONE) + "']"
+								+ "/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer']/android.widget.TextView",
 						"Disclaimer Information");
 
 			} else {
@@ -362,6 +362,11 @@ public class PreviewPurchase extends _CommonPage {
 	public void VerifyFundfactsAcknowledgement() {
 		Decorator();
 		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {		
+				fund_facts_acknowledgement = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.MF_ACCEPTED_FUND_DETAIL) + "']",
+						"Accept_Fund_Detail_Fee");
+			}
 			if (!mobileAction.verifyElementIsPresent(fund_facts_acknowledgement)) {
 				mobileAction.FuncSwipeWhileElementNotFound(fund_facts_acknowledgement, false, 5, "up");
 			}

@@ -11,6 +11,7 @@ import com.td.ChineseStrings;
 import com.td.EnglishStrings;
 import com.td.FrenchStrings;
 import com.td.StringArray;
+import com.td.StringLookup;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -52,19 +53,12 @@ public class PurchaseMutualFunds extends _CommonPage {
 	private MobileElement cancel_button;
 
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='" + EnglishStrings.MF_FROM_ACCOUNT + "' or @text ='"
-			+ FrenchStrings.MF_FROM_ACCOUNT
-			+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']")
 	private MobileElement from_account_name;
 
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='" + EnglishStrings.MF_FROM_ACCOUNT + "' or @text ='"
-			+ FrenchStrings.MF_FROM_ACCOUNT + "']")
 	private MobileElement from_account_caption;
 
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeCell[3]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='" + EnglishStrings.MF_TO_MF_ACCOUNT + "' or @text ='"
-			+ FrenchStrings.MF_TO_MF_ACCOUNT + "']")
 	private MobileElement to_account_caption;
 
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeOther[6]/XCUIElementTypeStaticText[1]")
@@ -302,6 +296,12 @@ public class PurchaseMutualFunds extends _CommonPage {
 		try {
 			String selectedFund = CL.getTestDataInstance().TCParameters.get("Accounts");
 			SelectFund(selectedFund);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {		
+				from_account_name = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT) 
+						+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
+						"From Account name");
+			}
 
 			mobileAction.verifyElementIsDisplayed(from_account_name, "From Account name");
 			mobileAction.FuncClick(from_account_name, "From Account name");
@@ -370,10 +370,10 @@ public class PurchaseMutualFunds extends _CommonPage {
 		}
 	}
 
-	private String get_To_MF_Account_text() {
-		return getTextInCurrentLocale(EnglishStrings.MF_TO_MF_ACCOUNT, FrenchStrings.MF_TO_MF_ACCOUNT,
-				ChineseStrings.Simplified.MF_TO_MF_ACCOUNT, ChineseStrings.Traditional.MF_TO_MF_ACCOUNT );
-	}
+//	private String get_To_MF_Account_text() {
+//		return getTextInCurrentLocale(EnglishStrings.MF_TO_MF_ACCOUNT, FrenchStrings.MF_TO_MF_ACCOUNT,
+//				ChineseStrings.Simplified.MF_TO_MF_ACCOUNT, ChineseStrings.Traditional.MF_TO_MF_ACCOUNT );
+//	}
 
 	public void VerifyPurchaseMFPageInChinese() {
 		Decorator();
@@ -385,14 +385,14 @@ public class PurchaseMutualFunds extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(amount_caption, getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT));
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				from_account_caption = mobileAction
-						.verifyElementUsingXPath(
+				from_account_caption = mobileAction.verifyElementUsingXPath(
 								"//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='"
-										+ mobileAction.getAppString("str_transfers_from_account") + "']",
+										+ StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT) + "']",
 								"From Account");
+				
 				to_account_caption = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='"
-								+ get_To_MF_Account_text() + "']",
+								+ StringLookup.lookupString(currentLocale, StringLookup.FM_TO_ACCOUNT) + "']",
 						"To Account");
 				contact_caption = mobileAction
 						.verifyElementUsingXPath(
@@ -689,17 +689,13 @@ public class PurchaseMutualFunds extends _CommonPage {
 			String selectedFund = CL.getTestDataInstance().TCParameters.get("Accounts");
 			System.out.println("Fund configured:" + selectedFund);
 			SelectFund(selectedFund);
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				System.out.println("//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("str_transfers_from_account")
-						+ "']/../android.widget.RelativeLayout/android.widget.TextView[@resource-id='com.td:id/mf_account_name']");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {					
 				from_account_name = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_transfers_from_account")
-								+ "']/../android.widget.RelativeLayout/android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
-						"From Account");
-			} else {
-
-			}
+						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT) 
+						+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
+						"From Account name");
+				
+			} 
 			String fromAccount = mobileAction.getValue(from_account_name);
 			System.out.println("From account name:" + fromAccount);
 
@@ -730,13 +726,12 @@ public class PurchaseMutualFunds extends _CommonPage {
 			System.out.println("Fund configured:" + selectedFund);
 			SelectFund(selectedFund);
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {					
 				from_account_name = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_transfers_from_account")
-								+ "']/../android.widget.RelativeLayout/*[@resource-id='com.td:id/mf_account_name']",
-						"From Account");
-			} else {
-
+						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT) 
+						+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
+						"From Account name");
+				
 			}
 
 			String fromAccount = mobileAction.getValue(from_account_name);
@@ -903,6 +898,13 @@ public class PurchaseMutualFunds extends _CommonPage {
 	public void VerifyErrorMessageForIneligibleFund() {
 		Decorator();
 		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {					
+				from_account_name = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT) 
+						+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
+						"From Account name");
+				
+			}
 			if (mobileAction.verifyElementIsPresent(from_account_name)) {
 				mobileAction.Report_Fail("Failed:From Account is not blank");
 				return;
@@ -931,6 +933,13 @@ public class PurchaseMutualFunds extends _CommonPage {
 	public void VerifyErrorMessageForClosedFund() {
 		Decorator();
 		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {					
+				from_account_name = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT) 
+						+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
+						"From Account name");
+				
+			}
 			if (mobileAction.verifyElementIsPresent(from_account_name)) {
 				mobileAction.Report_Fail("Failed:From Account is not blank");
 				return;

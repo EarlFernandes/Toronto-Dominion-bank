@@ -220,7 +220,7 @@ public class Receipt extends _CommonPage {
 	public void VerifyConfirmationPageHeader() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(receiptHeader, "Receipt|Reçu|收据|收據");
+			mobileAction.verifyElementTextIsDisplayed(receiptHeader, getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

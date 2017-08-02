@@ -17,6 +17,12 @@ public class StringLookup {
 
 	public static final String OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE = "otp_challenge_unable_to_verify_code";
 	public static final String OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED = "otp_challenge_too_many_security_codes_requested";
+	
+	public static final String FM_TO_ACCOUNT = "MF_to_account";
+	public static final String FM_FROM_ACCOUNT = "MF_from_account";
+	public static final String FM_EMAIL = "MF_email";
+	public static final String FM_PHONE = "MF_phone_number";
+	public static final String MF_ACCEPTED_FUND_DETAIL="MF_Accepted_Fund_Details_Fees";
 
 	private static final Map<String, String> mapEN;
 	private static final Map<String, String> mapFR;
@@ -41,6 +47,11 @@ public class StringLookup {
 		aMap.put(ALLOW_CONTACTS_REFUSE, "Cancel");
 		aMap.put(OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE, EnglishStrings.OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE);
 		aMap.put(OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED, EnglishStrings.OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED);
+		aMap.put(FM_TO_ACCOUNT, StringArray.ARRAY_MF_TO_ACCOUNT[0]);
+		aMap.put(FM_FROM_ACCOUNT, StringArray.ARRAY_MF_FROM_ACCOUNT[0]);
+		aMap.put(FM_EMAIL, StringArray.ARRAY_MF_EMAIL[0]);
+		aMap.put(FM_PHONE, StringArray.ARRAY_MF_PHONE[0]);
+		aMap.put(MF_ACCEPTED_FUND_DETAIL, StringArray.MF_ACCEPTED_FUND_DETAIL_FEE[0]);
 		mapEN = Collections.unmodifiableMap(aMap);
 		bMap.put(INVESTING_ACCOUNTS, "Comptes Placements directs TD");
 		bMap.put(MOBILE_PAYMENT, "Paiement mobile TD");
@@ -49,6 +60,11 @@ public class StringLookup {
 		bMap.put(FORGOT_PASSWORD, "Mot de passe oublié?");
 		bMap.put(ALLOW_CONTACTS_OK, "Oui");
 		bMap.put(ALLOW_CONTACTS_REFUSE, "Non");
+		bMap.put(FM_TO_ACCOUNT, StringArray.ARRAY_MF_TO_ACCOUNT[1]);
+		bMap.put(FM_FROM_ACCOUNT, StringArray.ARRAY_MF_FROM_ACCOUNT[1]);
+		bMap.put(FM_EMAIL, StringArray.ARRAY_MF_EMAIL[1]);
+		bMap.put(FM_PHONE, StringArray.ARRAY_MF_PHONE[1]);
+		bMap.put(MF_ACCEPTED_FUND_DETAIL, StringArray.MF_ACCEPTED_FUND_DETAIL_FEE[1]);
 		mapFR = Collections.unmodifiableMap(bMap);
 		cMap.put(INVESTING_ACCOUNTS, "投资账户");
 		cMap.put(MOBILE_PAYMENT, "道明移动支付");
@@ -59,6 +75,11 @@ public class StringLookup {
 		cMap.put(ALLOW_CONTACTS_ACCCESS_BODY, "用于读取联系人信息以添加 Interac 电子转账收款人，以及添加道明服务代表为联系人。");
 		cMap.put(ALLOW_CONTACTS_OK, "好");
 		cMap.put(ALLOW_CONTACTS_REFUSE, "不允许");
+		cMap.put(FM_TO_ACCOUNT, StringArray.ARRAY_MF_TO_ACCOUNT[2]);
+		cMap.put(FM_FROM_ACCOUNT, StringArray.ARRAY_MF_FROM_ACCOUNT[2]);
+		cMap.put(FM_EMAIL, StringArray.ARRAY_MF_EMAIL[2]);
+		cMap.put(FM_PHONE, StringArray.ARRAY_MF_PHONE[2]);
+		cMap.put(MF_ACCEPTED_FUND_DETAIL, StringArray.MF_ACCEPTED_FUND_DETAIL_FEE[2]);
 		mapZHHANS = Collections.unmodifiableMap(cMap);
 		dMap.put(INVESTING_ACCOUNTS, "投資賬戶");
 		dMap.put(MOBILE_PAYMENT, "道明移動支付");
@@ -69,6 +90,11 @@ public class StringLookup {
 		dMap.put(ALLOW_CONTACTS_ACCCESS_BODY, "用於讀取聯繫人信息以添加 Interac 電子轉賬收款人，以及添加道明服務代表為聯繫人。");
 		dMap.put(ALLOW_CONTACTS_OK, "好");
 		dMap.put(ALLOW_CONTACTS_REFUSE, "不允許");
+		dMap.put(FM_TO_ACCOUNT, StringArray.ARRAY_MF_TO_ACCOUNT[3]);
+		dMap.put(FM_FROM_ACCOUNT, StringArray.ARRAY_MF_FROM_ACCOUNT[3]);
+		dMap.put(FM_EMAIL, StringArray.ARRAY_MF_EMAIL[3]);
+		dMap.put(FM_PHONE, StringArray.ARRAY_MF_PHONE[3]);
+		dMap.put(MF_ACCEPTED_FUND_DETAIL, StringArray.MF_ACCEPTED_FUND_DETAIL_FEE[3]);
 		mapZHHANT = Collections.unmodifiableMap(dMap);
 	}
 
