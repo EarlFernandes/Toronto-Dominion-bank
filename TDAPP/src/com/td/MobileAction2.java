@@ -3271,7 +3271,7 @@ public class MobileAction2 extends CommonLib {
 		try {
 			String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
 					+ getAppString("secureLoginEditButtonDone") + "']";
-			System.out.println("Donepath:" + donePath);
+			//System.out.println("Donepath:" + donePath);
 			MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
 			Done.click();
 			GetReporting().FuncReport("Pass", "The element <b>  Done </b> Clicked");

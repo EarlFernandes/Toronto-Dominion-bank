@@ -21,9 +21,8 @@ public class Profile_And_Settings extends _CommonPage {
 
 	String preferences = "Profile & Settings | Profil et paramètres";
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='" + EnglishStrings.LOADING_PROGRESS_BAR_IOS + "']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='"
-			+ EnglishStrings.LOADING_PROGRESS_BAR_AND + "']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
 	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres']")

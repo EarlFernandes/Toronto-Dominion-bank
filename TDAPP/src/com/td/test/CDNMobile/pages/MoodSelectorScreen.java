@@ -92,11 +92,7 @@ public class MoodSelectorScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
-	@iOSFindBy(xpath = "//*[@label='" + EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK + "' or @label ='"
-			+ FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK + "']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='"
-			+ EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK + "' or @text='" + FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK
-			+ "')]")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_FEEDBACK']/XCUIElementTypeStaticText")
 	private MobileElement give_feedback;
 
 	// and (@text='Rate this app' or @text='Notez cette application')
@@ -615,8 +611,9 @@ public class MoodSelectorScreen extends _CommonPage {
 				// mobileAction.FuncClick(give_feedback, "feed back");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout", 1, "down");
+					String xpath = "//android.widget.TextView[@text='" + mobileAction.getAppString("give_feedback") + "']";
+					give_feedback = mobileAction.verifyElementUsingXPath(xpath, "Give Feedback");
 				}
-				Decorator();
 				give_feedback.click();
 			} catch (Exception e) {
 				System.out.println("failed to click menu");

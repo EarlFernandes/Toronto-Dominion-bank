@@ -353,7 +353,11 @@ public class FundDetails extends _CommonPage {
 
 			String disclaimerReg;
 			if (currentLocale.equalsIgnoreCase("fr")) {
-				disclaimerReg = "Au .{3,5}\\s*\\d{2},\\s*\\d{4} à \\d{2}:\\d{2}:\\d{2}.*";
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+					disclaimerReg = "Au .{3,5}\\s*\\d{2},\\s*\\d{4} à \\d{2}:\\d{2}:\\d{2}.*";
+				}else{
+					disclaimerReg = "Au \\d{1,2} .{3,5}\\s*\\d{4} à \\d{2}:\\d{2}:\\d{2}.*";
+				}
 			} else {
 				disclaimerReg = "As of [A-Za-z]{3}\\s*\\d{2},\\s*\\d{4} at \\d{2}:\\d{2}:\\d{2}.*";
 			}

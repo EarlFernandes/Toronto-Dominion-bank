@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.td.ChineseStrings;
 import com.td.EnglishStrings;
 import com.td.FrenchStrings;
+import com.td.StringArray;
 import com.td.StringLookup;
 import com.td._CommonPage;
 
@@ -37,9 +38,10 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_CROSSBORDER']/XCUIElementTypeStaticText")
 	private MobileElement crossBorder;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label= '"
-			+ ChineseStrings.Simplified.FLYOUT_MENU_INVESTING_ACCOUNTS + "' or @label='"
-			+ ChineseStrings.Traditional.FLYOUT_MENU_INVESTING_ACCOUNTS + "']")
+//	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label= '"
+//			+ ChineseStrings.Simplified.FLYOUT_MENU_INVESTING_ACCOUNTS + "' or @label='"
+//			+ ChineseStrings.Traditional.FLYOUT_MENU_INVESTING_ACCOUNTS + "']")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_menu_icon_investing']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Investing Accounts' or @text='Comptes Placements directs TD')]")
 	private MobileElement investing;
 
@@ -100,17 +102,10 @@ public class MenuPage extends _CommonPage {
 
 	// Profile and preference
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_PREFERENCES']/XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='"
-			+ EnglishStrings.FLYOUT_MENU_PROFILE_AND_PREFERENCE + "' or @text='"
-			+ FrenchStrings.FLYOUT_MENU_PROFILE_AND_PREFERENCE + "')]")
 	private MobileElement profile_and_settings;
 
 	// customer feedback
-	@iOSFindBy(xpath = "//*[@label='" + EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK + "' or @label ='"
-			+ FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK + "']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='"
-			+ EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK + "' or @text='" + FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK
-			+ "')]")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_FEEDBACK']/XCUIElementTypeStaticText")
 	private MobileElement give_feedback;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText']")
@@ -639,6 +634,9 @@ public class MenuPage extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout", 2, "down");
+				profile_and_settings = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.PROFILE_AND_PREFERENCE) + "']",
+						"Profile & Setting");
 			} else {
 				mobileAction.FunctionSwipe("down", 200, 200);
 			}
@@ -678,20 +676,26 @@ public class MenuPage extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout", 2, "down");
-
+				profile_and_settings = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.PROFILE_AND_PREFERENCE) + "']",
+						"Profile & Setting");
 			}
-			// mobileAction.verifyElement(profile_and_settings, "Profile &
-			// Settings");
+
 			try {
 				mobileAction.verifyElementTextIsDisplayed(profile_and_settings,
-						"Profile & Settings | Profil et paramètres");
+						getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} catch (NoSuchElementException e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -704,14 +708,7 @@ public class MenuPage extends _CommonPage {
 				String xpath = "//android.widget.TextView[@text='" + mobileAction.getAppString("give_feedback") + "']";
 				System.out.println("xpath:" + xpath);
 				give_feedback = mobileAction.verifyElementUsingXPath(xpath, "Give Feedback");
-			} else {
-				// String xpath = "//*[@label='" +
-				// mobileAction.getAppString("nav_drawer_items_feedback") +
-				// "']";
-				// System.out.println("xpath:" + xpath);
-				// give_feedback = mobileAction.verifyElementUsingXPath(xpath,
-				// "Give Feedback");
-			}
+			} 
 		} catch (NoSuchElementException | IOException e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail",

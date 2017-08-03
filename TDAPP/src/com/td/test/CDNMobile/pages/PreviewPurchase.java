@@ -28,7 +28,7 @@ public class PreviewPurchase extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
-	private MobileElement previewPurchase_title;
+	private MobileElement page_title;
 
 	@iOSFindBy(xpath = "//*[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
@@ -104,7 +104,7 @@ public class PreviewPurchase extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(previewPurchase_title,
+			mobileAction.verifyElementTextIsDisplayed(page_title,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_PREVIEW_PURCHASE_HEADER));
 
 		} catch (NoSuchElementException | IOException e) {
@@ -193,7 +193,7 @@ public class PreviewPurchase extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(previewPurchase_title, getTextInCurrentLocale(StringArray.ARRAY_MF_PREVIEW_PURCHASE_HEADER));
+			mobileAction.verifyElementTextIsDisplayed(page_title, getTextInCurrentLocale(StringArray.ARRAY_MF_PREVIEW_PURCHASE_HEADER));
 			String banner_info = getTextInCurrentLocale(StringArray.ARRAY_MF_BANNER_INFO);					
 			mobileAction.verifyElementTextIsDisplayed(alert_info, banner_info);
 
@@ -387,8 +387,13 @@ public class PreviewPurchase extends _CommonPage {
 	public void GoBackToHomePage() {
 		Decorator();
 		int count = 10;
+		String homeText = getTextInCurrentLocale(StringArray.ARRAY_HOME_HEADER);
 		try {
 			while (mobileAction.verifyElementIsPresent(back_icon) && count != 0) {
+				String pageText = mobileAction.getValue(page_title);
+				if(pageText.equalsIgnoreCase(homeText)){
+					break;
+				}
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					mobileAction.FuncClickBackButton();
 				} else {

@@ -547,22 +547,6 @@ public class Accounts extends _CommonPage {
 			}
 			System.out.println("myAccountText:" + myAccountText);
 			mobileAction.verifyTextEquality(mobileAction.getValue(txtMy_Account_Header), myAccountText);
-			// if
-			// (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-			// {
-			// String myAccountText=
-			// mobileAction.getAppString("str_My_Accounts");
-			// System.out.println("myAccountText:"+myAccountText);
-			// txtMy_Account_Header =
-			// mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title'
-			// and @text='" + myAccountText + "']", "My Accounts");
-			// mobileAction.verifyElementTextIsDisplayed(txtMy_Account_Header,
-			// "My Accounts|Mes comptes|我的账户|我的賬戶");
-			// }else{
-			//
-			// mobileAction.verifyElementTextIsDisplayed(txtMy_Account_Header,
-			// "Accounts|Comptes|账户|賬戶");
-			// }
 
 		} catch (NoSuchElementException e) {
 

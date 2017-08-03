@@ -1376,20 +1376,7 @@ public class Profile extends _CommonPage {
 		Decorator();
 		String phoneNumber = CL.getTestDataInstance().TCParameters.get("PhoneProfile");
 		System.out.println("Phone from data table:" + phoneNumber);
-		// if(phoneNumber.length()==10){
-		// //this is a valid number, need to check this number is the same as
-		// the original one
-		// String last_4_digit =
-		// mobileAction.FuncGetValByRegx(ori_phone,extReg);
-		// if(!last_4_digit.isEmpty() && phoneNumber.contains(last_4_digit)){
-		// // possible the same phone
-		// String reverse_4_digit = new
-		// StringBuffer(last_4_digit).reverse().toString();
-		// phoneNumber = phoneNumber.replaceAll(last_4_digit, reverse_4_digit);
-		// System.out.println("Phone changed since last 4 digit is the same as
-		// original one:" + phoneNumber);
-		// }
-		// }
+
 		if (!isPersonalUser) {
 			System.out.println("Failed to find mobile phone");
 			mobileAction.Report_Fail("Failed to find mobile phone");

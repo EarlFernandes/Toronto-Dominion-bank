@@ -913,7 +913,11 @@ public class PurchaseMutualFunds extends _CommonPage {
 			// String capturedErrorMsg = mobileAction.getValue(error_message);
 			String expectedErrorMsg = "Looks like you're not set up to purchase mutual funds. Let us help you by calling \\d{1}-\\d{3}-\\d{3}-\\d{4}.";
 			if (currentLocale.equalsIgnoreCase("fr")) {
-				expectedErrorMsg = "Il semble que vous ne puissiez pas effectuer d’achats. Pour obtenir de l’aide, composez le \\d{1}–\\d{3}–\\d{3}–\\d{4}.";
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+					expectedErrorMsg = "Il semble que vous ne puissiez pas effectuer d’achats. Pour obtenir de l’aide, composez le \\d{1}–\\d{3}–\\d{3}–\\d{4}.";
+				}else{
+					expectedErrorMsg = "Il semble que vous ne puissiez pas effectuer d’achats. Pour obtenir de l’aide, composez le \\d{1}-\\d{3}-\\d{3}-\\d{4}.";
+				}
 			}
 
 			mobileAction.verifyElementTextIsDisplayed(error_message, expectedErrorMsg);
@@ -948,7 +952,11 @@ public class PurchaseMutualFunds extends _CommonPage {
 			// String capturedErrorMsg = mobileAction.getValue(error_message);
 			String expectedErrorMsg = "Looks like the account you are using is closed. Try another fund or let us help you by calling \\d{1}-\\d{3}-\\d{3}-\\d{4}.";
 			if (currentLocale.equalsIgnoreCase("fr")) {
-				expectedErrorMsg = "Il semble que le compte est fermé. Essayez avec un autre fonds, ou appelez-nous au \\d{1}–\\d{3}–\\d{3}–\\d{4} pour obtenir de l’aide.";
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {	
+					expectedErrorMsg = "Il semble que le compte est fermé. Essayez avec un autre fonds, ou appelez-nous au \\d{1}–\\d{3}–\\d{3}–\\d{4} pour obtenir de l’aide.";
+				}else{
+					expectedErrorMsg = "Il semble que le compte est fermé. Essayez avec un autre fonds, ou appelez-nous au \\d{1}-\\d{3}-\\d{3}-\\d{4} pour obtenir de l’aide.";
+				}
 			}
 
 			mobileAction.verifyElementTextIsDisplayed(error_message, expectedErrorMsg);
@@ -973,7 +981,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 
 			String CapturedString = mobileAction.getValue(error_message);
 			System.out.println("Captured message:" + CapturedString);
-			if (CapturedString.contentEquals(expectedErrorMsg)) {
+			if (CapturedString.contains(expectedErrorMsg)) {
 				mobileAction.Report_Pass_Verified(expectedErrorMsg);
 				return;
 			}

@@ -23,7 +23,11 @@ public class StringLookup {
 	public static final String FM_EMAIL = "MF_email";
 	public static final String FM_PHONE = "MF_phone_number";
 	public static final String MF_ACCEPTED_FUND_DETAIL="MF_Accepted_Fund_Details_Fees";
-
+	public static final String PROFILE_AND_PREFERENCE="Profile & Settings";
+	public static final String PREFERENCE_QUICK_ACCESS_SETTINGS="Quick Access Settings";
+	public static final String PREFERENCE_QUICK_ACCESS_SWITCH_AND="Quick Access Switch";
+	
+	
 	private static final Map<String, String> mapEN;
 	private static final Map<String, String> mapFR;
 	private static final Map<String, String> mapZHHANS;
@@ -45,13 +49,16 @@ public class StringLookup {
 		aMap.put(FORGOT_PASSWORD, "Forgot password?");
 		aMap.put(ALLOW_CONTACTS_OK, "OK");
 		aMap.put(ALLOW_CONTACTS_REFUSE, "Cancel");
-		aMap.put(OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE, EnglishStrings.OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE);
-		aMap.put(OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED, EnglishStrings.OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED);
+		aMap.put(OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE, StringArray.ARRAY_OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE[0]);
+		aMap.put(OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED, StringArray.ARRAY_OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED[0]);
 		aMap.put(FM_TO_ACCOUNT, StringArray.ARRAY_MF_TO_ACCOUNT[0]);
 		aMap.put(FM_FROM_ACCOUNT, StringArray.ARRAY_MF_FROM_ACCOUNT[0]);
 		aMap.put(FM_EMAIL, StringArray.ARRAY_MF_EMAIL[0]);
 		aMap.put(FM_PHONE, StringArray.ARRAY_MF_PHONE[0]);
 		aMap.put(MF_ACCEPTED_FUND_DETAIL, StringArray.MF_ACCEPTED_FUND_DETAIL_FEE[0]);
+		aMap.put(PROFILE_AND_PREFERENCE, StringArray.ARRAY_PROFILE_AND_PREFERENCE[0]);
+		aMap.put(PREFERENCE_QUICK_ACCESS_SETTINGS, StringArray.ARRAY_QUICK_ACCESS_SETTINGS[0]);
+		aMap.put(PREFERENCE_QUICK_ACCESS_SWITCH_AND, StringArray.ARRAY_QUICK_ACCESS_SWITCH_AND[0]);
 		mapEN = Collections.unmodifiableMap(aMap);
 		bMap.put(INVESTING_ACCOUNTS, "Comptes Placements directs TD");
 		bMap.put(MOBILE_PAYMENT, "Paiement mobile TD");
@@ -65,6 +72,9 @@ public class StringLookup {
 		bMap.put(FM_EMAIL, StringArray.ARRAY_MF_EMAIL[1]);
 		bMap.put(FM_PHONE, StringArray.ARRAY_MF_PHONE[1]);
 		bMap.put(MF_ACCEPTED_FUND_DETAIL, StringArray.MF_ACCEPTED_FUND_DETAIL_FEE[1]);
+		bMap.put(PROFILE_AND_PREFERENCE, StringArray.ARRAY_PROFILE_AND_PREFERENCE[1]);
+		bMap.put(PREFERENCE_QUICK_ACCESS_SETTINGS, StringArray.ARRAY_QUICK_ACCESS_SETTINGS[1]);
+		bMap.put(PREFERENCE_QUICK_ACCESS_SWITCH_AND, StringArray.ARRAY_QUICK_ACCESS_SWITCH_AND[1]);
 		mapFR = Collections.unmodifiableMap(bMap);
 		cMap.put(INVESTING_ACCOUNTS, "投资账户");
 		cMap.put(MOBILE_PAYMENT, "道明移动支付");
@@ -80,6 +90,9 @@ public class StringLookup {
 		cMap.put(FM_EMAIL, StringArray.ARRAY_MF_EMAIL[2]);
 		cMap.put(FM_PHONE, StringArray.ARRAY_MF_PHONE[2]);
 		cMap.put(MF_ACCEPTED_FUND_DETAIL, StringArray.MF_ACCEPTED_FUND_DETAIL_FEE[2]);
+		cMap.put(PROFILE_AND_PREFERENCE, StringArray.ARRAY_PROFILE_AND_PREFERENCE[2]);
+		cMap.put(PREFERENCE_QUICK_ACCESS_SETTINGS, StringArray.ARRAY_QUICK_ACCESS_SETTINGS[2]);
+		cMap.put(PREFERENCE_QUICK_ACCESS_SWITCH_AND, StringArray.ARRAY_QUICK_ACCESS_SWITCH_AND[2]);
 		mapZHHANS = Collections.unmodifiableMap(cMap);
 		dMap.put(INVESTING_ACCOUNTS, "投資賬戶");
 		dMap.put(MOBILE_PAYMENT, "道明移動支付");
@@ -95,6 +108,9 @@ public class StringLookup {
 		dMap.put(FM_EMAIL, StringArray.ARRAY_MF_EMAIL[3]);
 		dMap.put(FM_PHONE, StringArray.ARRAY_MF_PHONE[3]);
 		dMap.put(MF_ACCEPTED_FUND_DETAIL, StringArray.MF_ACCEPTED_FUND_DETAIL_FEE[3]);
+		dMap.put(PROFILE_AND_PREFERENCE, StringArray.ARRAY_PROFILE_AND_PREFERENCE[3]);
+		dMap.put(PREFERENCE_QUICK_ACCESS_SETTINGS, StringArray.ARRAY_QUICK_ACCESS_SETTINGS[3]);
+		dMap.put(PREFERENCE_QUICK_ACCESS_SWITCH_AND, StringArray.ARRAY_QUICK_ACCESS_SWITCH_AND[3]);
 		mapZHHANT = Collections.unmodifiableMap(dMap);
 	}
 

@@ -1,6 +1,7 @@
 package com.td;
 
 public final class StringArray {
+	public static final String[] ARRAY_HOME_HEADER = {"Home", "Accueil", "首页", "首頁"};
 	public static final String[] ARRAY_MF_FUNDS = {"Fund", "Fonds", "基金", "基金"};
 	public static final String[] ARRAY_MF_SELECT_FUNDS = {"Select Fund", "Sélectionner un fonds", "选择基金", "選擇基金"};
 	public static final String[] ARRAY_MF_PURCHASE_HEADER = {"Purchase Mutual Funds", "Achat de fonds", "购买互惠基金", "購買互惠基金"};
@@ -24,7 +25,7 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_PREVIEW_PURCHASE_HEADER = {"Preview Purchase", "Aperçu", "预览购买", "預覽購買"};
 	public static final String[] ARRAY_MF_ERROR_NO_FUND_SELECTED = {"Please Select a Fund", "Veuillez sélectionner un fonds", "请选择一支基金", "請選擇基金"};
 	public static final String[] ARRAY_MF_BANNER_INFO = {"You can make a purchase 24-hours a day, 7 days a week.Purchases made before 3:00PM EST on a business day will be processed at that day's rate.If you make a purchase after 3:00PM EST, or on the weekend, it will be processed at the next business day's closing price.All purchases usually take a few days to confirm.", 
-			"Vous pouvez effectuer un achat en tout temps.Les achats effectués avant 15 h (HE) un jour ouvrable seront traitées au prix en vigueur à cette date.Les achats effectués après 15 h (HE) ou la fin de semaine seront traités au prix de clôture du jour ouvrable suivant.La confirmation des achats prend normalement quelques jours.",
+			"Vous pouvez effectuer un achat en tout temps.Les achats effectués avant 15 h (HE) un jour ouvrable seront traitées au prix en vigueur à cette date.Les achats effectués après 15 h (HE) ou la fin de semaine seront traités au prix de clôture du jour ouvrable suivant.La confirmation des achats prend normalement quelques jours.",
 			"每周七天、每天 24 小时，您都可以进行购买。如果在工作日东部时间下午 3 点之前购买，将按当天价格交易。如果在东部时间下午 3 点之后或在周末购买，将按照下一个工作日的收市价交易。所有购买通常均需要数天的时间进行确认。", 
 			"每週七天、每天 24 小時，您都可以購買。如果在工作日的東部時間下午 3 時之前購買，將按當天價格交易。如果在東部時間下午 3 時之後或在週末購買，將按下一個工作日的收市價交易。所有購買通常均需要數天的時間進行確認。"
 	};
@@ -76,7 +77,15 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_RECEIPT_VIEW_ACCOUNT_BTN = {"VIEW MY ACCOUNTS", "CONSULTER MES COMPTES", "查看我的账户", "查看我的賬戶"};
 	public static final String[] MF_ACCEPTED_FUND_DETAIL_FEE ={"Accepted Fund Details & Fees","Infos sur le fonds et les frais acceptées",
 			"已接受的基金 详情与费用","已接受的基金 詳情與費用"};
+	public static final String[] MF_FUND_FACT ={"Fund Facts","Aperçu du fonds","基金概况","基金概況"};
+	public static final String[] MF_FUND_FACT_PDF ={"fund facts.pdf","Aperçu du fonds.pdf","基金概况.pdf","基金概況.pdf"};
 	
-	public static final String[] ARRAY_PROFILE_AND_PREFERENCE = {"Profile & Settings", "Profil et paramètres", "单位", "單位"};
+	public static final String[] ARRAY_PROFILE_AND_PREFERENCE = {"Profile & Settings", "Profil et paramètres", "个人资料和设置", "個人資料和設定"};
+	public static final String[] ARRAY_CUSTOMER_FEEDBACK = {"Give Feedback", "Fournir des commentaires", "发送意见反馈", "發送意見"};
+	public static final String[] ARRAY_QUICK_ACCESS_SETTINGS = {"Quick Access Settings", "Paramètres Accès rapide", "特快结余查询", "特快結餘查詢"};
+	public static final String[] ARRAY_QUICK_ACCESS_SWITCH_AND = {"Quick Access", "Accès rapide", "特快结余查询", "特快結餘查詢"};
+	public static final String[] ARRAY_OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE = {"we can't verify the security code entered.", "", "", ""};
+	public static final String[] ARRAY_OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED = {"you have requested too many passcodes without entering one", "", "", ""};
+	
 
 }
