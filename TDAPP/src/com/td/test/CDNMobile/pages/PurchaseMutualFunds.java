@@ -3,13 +3,8 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
-
-import com.td.ChineseStrings;
-import com.td.EnglishStrings;
-import com.td.FrenchStrings;
 import com.td.StringArray;
 import com.td.StringLookup;
 import com.td._CommonPage;
@@ -250,13 +245,13 @@ public class PurchaseMutualFunds extends _CommonPage {
 		}
 		return "";
 	}
-	
 
 	public void VerifyPurchaseMFPageHeader() {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(page_title, getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_HEADER));
+			mobileAction.verifyElementTextIsDisplayed(page_title,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_HEADER));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -296,10 +291,11 @@ public class PurchaseMutualFunds extends _CommonPage {
 		try {
 			String selectedFund = CL.getTestDataInstance().TCParameters.get("Accounts");
 			SelectFund(selectedFund);
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {		
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				from_account_name = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT) 
-						+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
+						"//android.widget.TextView[@text='"
+								+ StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT)
+								+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
 						"From Account name");
 			}
 
@@ -370,26 +366,32 @@ public class PurchaseMutualFunds extends _CommonPage {
 		}
 	}
 
-//	private String get_To_MF_Account_text() {
-//		return getTextInCurrentLocale(EnglishStrings.MF_TO_MF_ACCOUNT, FrenchStrings.MF_TO_MF_ACCOUNT,
-//				ChineseStrings.Simplified.MF_TO_MF_ACCOUNT, ChineseStrings.Traditional.MF_TO_MF_ACCOUNT );
-//	}
+	// private String get_To_MF_Account_text() {
+	// return getTextInCurrentLocale(EnglishStrings.MF_TO_MF_ACCOUNT,
+	// FrenchStrings.MF_TO_MF_ACCOUNT,
+	// ChineseStrings.Simplified.MF_TO_MF_ACCOUNT,
+	// ChineseStrings.Traditional.MF_TO_MF_ACCOUNT );
+	// }
 
 	public void VerifyPurchaseMFPageInChinese() {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(page_title, getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_HEADER));
-			mobileAction.verifyElementTextIsDisplayed(fund_dropdown_caption, getTextInCurrentLocale(StringArray.ARRAY_MF_FUNDS));
-			mobileAction.verifyElementTextIsDisplayed(fund_dropdown_list, getTextInCurrentLocale(StringArray.ARRAY_MF_SELECT_FUNDS));
-			mobileAction.verifyElementTextIsDisplayed(amount_caption, getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT));
+			mobileAction.verifyElementTextIsDisplayed(page_title,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_HEADER));
+			mobileAction.verifyElementTextIsDisplayed(fund_dropdown_caption,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_FUNDS));
+			mobileAction.verifyElementTextIsDisplayed(fund_dropdown_list,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_SELECT_FUNDS));
+			mobileAction.verifyElementTextIsDisplayed(amount_caption,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT));
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				from_account_caption = mobileAction.verifyElementUsingXPath(
-								"//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='"
-										+ StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT) + "']",
-								"From Account");
-				
+						"//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='"
+								+ StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT) + "']",
+						"From Account");
+
 				to_account_caption = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='"
 								+ StringLookup.lookupString(currentLocale, StringLookup.FM_TO_ACCOUNT) + "']",
@@ -403,25 +405,34 @@ public class PurchaseMutualFunds extends _CommonPage {
 			} else {
 
 			}
-			mobileAction.verifyElementTextIsDisplayed(from_account_caption, getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT));
-			mobileAction.verifyElementTextIsDisplayed(to_account_caption, getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT));
-			mobileAction.verifyElementTextIsDisplayed(contact_caption, getTextInCurrentLocale(StringArray.ARRAY_MF_CONTACT_INFO));
+			mobileAction.verifyElementTextIsDisplayed(from_account_caption,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT));
+			mobileAction.verifyElementTextIsDisplayed(to_account_caption,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT));
+			mobileAction.verifyElementTextIsDisplayed(contact_caption,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_CONTACT_INFO));
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView", 1, "down");
 			} else {
 				mobileAction.SwipeWithinElement("//XCUIElementTypeTable", 1, "down");
 			}
-			mobileAction.verifyElementTextIsDisplayed(email_caption, getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL) );
-			mobileAction.verifyElementTextIsDisplayed(phone_caption, getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE));
+			mobileAction.verifyElementTextIsDisplayed(email_caption,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL));
+			mobileAction.verifyElementTextIsDisplayed(phone_caption,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE));
 			if (mobileAction.verifyElementIsPresent(copy_text)) {
-				mobileAction.verifyElementTextIsDisplayed(copy_text, getTextInCurrentLocale(StringArray.ARRAY_MF_COPY_TEXT));
+				mobileAction.verifyElementTextIsDisplayed(copy_text,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_COPY_TEXT));
 			}
 
-			mobileAction.verifyElementTextIsDisplayed(view_fundFacts, getTextInCurrentLocale(StringArray.ARRAY_MF_VIEW_FUND_FACT));			
+			mobileAction.verifyElementTextIsDisplayed(view_fundFacts,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_VIEW_FUND_FACT));
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.verifyElementTextIsDisplayed(consent_checkbox_description, getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_RADIO));
+				mobileAction.verifyElementTextIsDisplayed(consent_checkbox_description,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_RADIO));
 			} else {
-				mobileAction.verifyElementTextIsDisplayed(consent_checkbox, getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_RADIO));
+				mobileAction.verifyElementTextIsDisplayed(consent_checkbox,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_RADIO));
 			}
 			// String expectedLegalText
 			// ="您购买的基金有最短持有期要求。如果您在最短持有期到期之前赎回，则可能需向基金支付最高 2%
@@ -689,13 +700,14 @@ public class PurchaseMutualFunds extends _CommonPage {
 			String selectedFund = CL.getTestDataInstance().TCParameters.get("Accounts");
 			System.out.println("Fund configured:" + selectedFund);
 			SelectFund(selectedFund);
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {					
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				from_account_name = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT) 
-						+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
+						"//android.widget.TextView[@text='"
+								+ StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT)
+								+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
 						"From Account name");
-				
-			} 
+
+			}
 			String fromAccount = mobileAction.getValue(from_account_name);
 			System.out.println("From account name:" + fromAccount);
 
@@ -726,12 +738,13 @@ public class PurchaseMutualFunds extends _CommonPage {
 			System.out.println("Fund configured:" + selectedFund);
 			SelectFund(selectedFund);
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {					
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				from_account_name = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT) 
-						+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
+						"//android.widget.TextView[@text='"
+								+ StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT)
+								+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
 						"From Account name");
-				
+
 			}
 
 			String fromAccount = mobileAction.getValue(from_account_name);
@@ -898,12 +911,13 @@ public class PurchaseMutualFunds extends _CommonPage {
 	public void VerifyErrorMessageForIneligibleFund() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {					
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				from_account_name = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT) 
-						+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
+						"//android.widget.TextView[@text='"
+								+ StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT)
+								+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
 						"From Account name");
-				
+
 			}
 			if (mobileAction.verifyElementIsPresent(from_account_name)) {
 				mobileAction.Report_Fail("Failed:From Account is not blank");
@@ -913,9 +927,9 @@ public class PurchaseMutualFunds extends _CommonPage {
 			// String capturedErrorMsg = mobileAction.getValue(error_message);
 			String expectedErrorMsg = "Looks like you're not set up to purchase mutual funds. Let us help you by calling \\d{1}-\\d{3}-\\d{3}-\\d{4}.";
 			if (currentLocale.equalsIgnoreCase("fr")) {
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					expectedErrorMsg = "Il semble que vous ne puissiez pas effectuer d’achats. Pour obtenir de l’aide, composez le \\d{1}–\\d{3}–\\d{3}–\\d{4}.";
-				}else{
+				} else {
 					expectedErrorMsg = "Il semble que vous ne puissiez pas effectuer d’achats. Pour obtenir de l’aide, composez le \\d{1}-\\d{3}-\\d{3}-\\d{4}.";
 				}
 			}
@@ -937,12 +951,13 @@ public class PurchaseMutualFunds extends _CommonPage {
 	public void VerifyErrorMessageForClosedFund() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {					
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				from_account_name = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT) 
-						+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
+						"//android.widget.TextView[@text='"
+								+ StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT)
+								+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
 						"From Account name");
-				
+
 			}
 			if (mobileAction.verifyElementIsPresent(from_account_name)) {
 				mobileAction.Report_Fail("Failed:From Account is not blank");
@@ -952,9 +967,9 @@ public class PurchaseMutualFunds extends _CommonPage {
 			// String capturedErrorMsg = mobileAction.getValue(error_message);
 			String expectedErrorMsg = "Looks like the account you are using is closed. Try another fund or let us help you by calling \\d{1}-\\d{3}-\\d{3}-\\d{4}.";
 			if (currentLocale.equalsIgnoreCase("fr")) {
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {	
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					expectedErrorMsg = "Il semble que le compte est fermé. Essayez avec un autre fonds, ou appelez-nous au \\d{1}–\\d{3}–\\d{3}–\\d{4} pour obtenir de l’aide.";
-				}else{
+				} else {
 					expectedErrorMsg = "Il semble que le compte est fermé. Essayez avec un autre fonds, ou appelez-nous au \\d{1}-\\d{3}-\\d{3}-\\d{4} pour obtenir de l’aide.";
 				}
 			}

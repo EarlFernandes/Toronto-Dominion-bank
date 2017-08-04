@@ -7,9 +7,6 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
-import com.td.ChineseStrings;
-import com.td.EnglishStrings;
-import com.td.FrenchStrings;
 import com.td.StringArray;
 import com.td.StringLookup;
 import com.td._CommonPage;
@@ -38,9 +35,12 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_CROSSBORDER']/XCUIElementTypeStaticText")
 	private MobileElement crossBorder;
 
-//	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label= '"
-//			+ ChineseStrings.Simplified.FLYOUT_MENU_INVESTING_ACCOUNTS + "' or @label='"
-//			+ ChineseStrings.Traditional.FLYOUT_MENU_INVESTING_ACCOUNTS + "']")
+	// @iOSFindBy(xpath =
+	// "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Investing
+	// Accounts' or @label='Comptes Placements directs TD' or @label= '"
+	// + ChineseStrings.Simplified.FLYOUT_MENU_INVESTING_ACCOUNTS + "' or
+	// @label='"
+	// + ChineseStrings.Traditional.FLYOUT_MENU_INVESTING_ACCOUNTS + "']")
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_menu_icon_investing']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Investing Accounts' or @text='Comptes Placements directs TD')]")
 	private MobileElement investing;
@@ -107,7 +107,7 @@ public class MenuPage extends _CommonPage {
 	// customer feedback
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_FEEDBACK']/XCUIElementTypeStaticText")
 	private MobileElement give_feedback;
-	
+
 	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_MAIL_TITLE']")
 	private MobileElement give_feedback_contact_us;
 
@@ -638,7 +638,8 @@ public class MenuPage extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout", 2, "down");
 				profile_and_settings = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.PROFILE_AND_PREFERENCE) + "']",
+						"//android.widget.TextView[@text='"
+								+ StringLookup.lookupString(currentLocale, StringLookup.PROFILE_AND_PREFERENCE) + "']",
 						"Profile & Setting");
 			} else {
 				mobileAction.FunctionSwipe("down", 200, 200);
@@ -680,7 +681,8 @@ public class MenuPage extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout", 2, "down");
 				profile_and_settings = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.PROFILE_AND_PREFERENCE) + "']",
+						"//android.widget.TextView[@text='"
+								+ StringLookup.lookupString(currentLocale, StringLookup.PROFILE_AND_PREFERENCE) + "']",
 						"Profile & Setting");
 			}
 
@@ -711,8 +713,8 @@ public class MenuPage extends _CommonPage {
 				String xpath = "//android.widget.TextView[@text='" + mobileAction.getAppString("give_feedback") + "']";
 				System.out.println("xpath:" + xpath);
 				give_feedback = mobileAction.verifyElementUsingXPath(xpath, "Give Feedback");
-				give_feedback_contact_us =  mobileAction.verifyElementUsingXPath(xpath, "Give Feedback_contact_us");
-			} 
+				give_feedback_contact_us = mobileAction.verifyElementUsingXPath(xpath, "Give Feedback_contact_us");
+			}
 		} catch (NoSuchElementException | IOException e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail",
@@ -730,12 +732,12 @@ public class MenuPage extends _CommonPage {
 			mobileAction.FuncClick(give_feedback, elementText);
 			mobileAction.waitForElementToVanish(progressBar);
 		} catch (Exception e) {
-			try{
+			try {
 				String elementText = mobileAction.getValue(give_feedback_contact_us);
 				System.out.println("elementText:" + elementText);
 				mobileAction.FuncClick(give_feedback_contact_us, elementText);
 				mobileAction.waitForElementToVanish(progressBar);
-			}catch (Exception e1){
+			} catch (Exception e1) {
 				System.err.println("TestCase has failed.");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			}
@@ -751,7 +753,7 @@ public class MenuPage extends _CommonPage {
 						+ mobileAction.getAppString("contact_str") + "']";
 				System.out.println("xpath:" + xpath);
 				contactUs = mobileAction.verifyElementUsingXPath(xpath, "Contact Us");
-			} 
+			}
 		} catch (NoSuchElementException | IOException e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail",

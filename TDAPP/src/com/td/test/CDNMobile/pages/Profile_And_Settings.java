@@ -5,8 +5,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
-
-import com.td.EnglishStrings;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;

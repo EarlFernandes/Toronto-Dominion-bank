@@ -4,12 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
-
-import com.td.EnglishStrings;
-import com.td.FrenchStrings;
 import com.td.StringArray;
 import com.td.StringLookup;
 import com.td._CommonPage;
@@ -74,9 +70,11 @@ public class PreviewPurchase extends _CommonPage {
 	private MobileElement amount_value;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[7]/XCUIElementTypeStaticText[2]")
-//	@AndroidFindBy(xpath = "//android.widget.TextView[@text='" + EnglishStrings.MF_ACCEPTED_FUND_DETAIL_FEE
-//			+ "' or @text='" + FrenchStrings.MF_ACCEPTED_FUND_DETAIL_FEE
-//			+ "']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
+	// @AndroidFindBy(xpath = "//android.widget.TextView[@text='" +
+	// EnglishStrings.MF_ACCEPTED_FUND_DETAIL_FEE
+	// + "' or @text='" + FrenchStrings.MF_ACCEPTED_FUND_DETAIL_FEE
+	// +
+	// "']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement fund_facts_acknowledgement;
 
 	String phoneReg = "\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
@@ -193,12 +191,15 @@ public class PreviewPurchase extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(page_title, getTextInCurrentLocale(StringArray.ARRAY_MF_PREVIEW_PURCHASE_HEADER));
-			String banner_info = getTextInCurrentLocale(StringArray.ARRAY_MF_BANNER_INFO);					
+			mobileAction.verifyElementTextIsDisplayed(page_title,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_PREVIEW_PURCHASE_HEADER));
+			String banner_info = getTextInCurrentLocale(StringArray.ARRAY_MF_BANNER_INFO);
 			mobileAction.verifyElementTextIsDisplayed(alert_info, banner_info);
 
-			String[] expectedList = { getTextInCurrentLocale(StringArray.ARRAY_MF_FUNDS), getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT), 
-					getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT),getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT) };
+			String[] expectedList = { getTextInCurrentLocale(StringArray.ARRAY_MF_FUNDS),
+					getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT),
+					getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT),
+					getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT) };
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncSwipeOnce("up");
 
@@ -221,18 +222,19 @@ public class PreviewPurchase extends _CommonPage {
 				mobileAction.FuncSwipeOnce("up");
 				mobileAction.FuncSwipeOnce("up");
 				mobileAction.FuncSwipeOnce("up");
-				
+
 				contact_label = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("contact_information") + "']",
-						"Contact Information");				
-				email_label = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.FM_EMAIL) + "']",
-						"Email");
+						"Contact Information");
+				email_label = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ StringLookup.lookupString(currentLocale, StringLookup.FM_EMAIL) + "']", "Email");
 				phone_label = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.FM_PHONE) + "']",
+						"//android.widget.TextView[@text='"
+								+ StringLookup.lookupString(currentLocale, StringLookup.FM_PHONE) + "']",
 						"Phone Number");
 				disclaimer_info = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.FM_PHONE) + "']"
+						"//android.widget.TextView[@text='"
+								+ StringLookup.lookupString(currentLocale, StringLookup.FM_PHONE) + "']"
 								+ "/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer']/android.widget.TextView",
 						"Disclaimer Information");
 
@@ -241,14 +243,16 @@ public class PreviewPurchase extends _CommonPage {
 				mobileAction.FuncSwipeOnce("up");
 				mobileAction.FuncSwipeOnce("up");
 			}
-			mobileAction.verifyElementTextIsDisplayed(contact_label, getTextInCurrentLocale(StringArray.ARRAY_MF_CONTACT_INFO));
+			mobileAction.verifyElementTextIsDisplayed(contact_label,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_CONTACT_INFO));
 			mobileAction.verifyElementTextIsDisplayed(email_label, getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL));
 			mobileAction.verifyElementTextIsDisplayed(phone_label, getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE));
-			String disclaimerInfo =getTextInCurrentLocale(StringArray.ARRAY_MF_DISCLAIMER_INFO);
+			String disclaimerInfo = getTextInCurrentLocale(StringArray.ARRAY_MF_DISCLAIMER_INFO);
 			String capturedText = mobileAction.getValue(disclaimer_info);
 			capturedText = capturedText.trim().replaceAll("\n", "");
 			capturedText = capturedText.replaceAll(" ", "");
-			capturedText = capturedText.replaceAll(" ", "");//empty space of Chinese char
+			capturedText = capturedText.replaceAll(" ", "");// empty space of
+															// Chinese char
 			System.out.println("Captured:" + capturedText);
 			mobileAction.verifyTextEquality(capturedText, disclaimerInfo);
 
@@ -362,9 +366,10 @@ public class PreviewPurchase extends _CommonPage {
 	public void VerifyFundfactsAcknowledgement() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {		
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				fund_facts_acknowledgement = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + StringLookup.lookupString(currentLocale, StringLookup.MF_ACCEPTED_FUND_DETAIL) + "']",
+						"//android.widget.TextView[@text='"
+								+ StringLookup.lookupString(currentLocale, StringLookup.MF_ACCEPTED_FUND_DETAIL) + "']",
 						"Accept_Fund_Detail_Fee");
 			}
 			if (!mobileAction.verifyElementIsPresent(fund_facts_acknowledgement)) {
@@ -391,7 +396,7 @@ public class PreviewPurchase extends _CommonPage {
 		try {
 			while (mobileAction.verifyElementIsPresent(back_icon) && count != 0) {
 				String pageText = mobileAction.getValue(page_title);
-				if(pageText.equalsIgnoreCase(homeText)){
+				if (pageText.equalsIgnoreCase(homeText)) {
 					break;
 				}
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {

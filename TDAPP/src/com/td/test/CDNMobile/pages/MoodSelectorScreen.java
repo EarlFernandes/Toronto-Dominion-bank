@@ -7,9 +7,6 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
-
-import com.td.EnglishStrings;
-import com.td.FrenchStrings;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -611,7 +608,8 @@ public class MoodSelectorScreen extends _CommonPage {
 				// mobileAction.FuncClick(give_feedback, "feed back");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout", 1, "down");
-					String xpath = "//android.widget.TextView[@text='" + mobileAction.getAppString("give_feedback") + "']";
+					String xpath = "//android.widget.TextView[@text='" + mobileAction.getAppString("give_feedback")
+							+ "']";
 					give_feedback = mobileAction.verifyElementUsingXPath(xpath, "Give Feedback");
 				}
 				give_feedback.click();

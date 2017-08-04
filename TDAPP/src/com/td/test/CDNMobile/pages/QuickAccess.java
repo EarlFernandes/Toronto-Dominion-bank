@@ -6,8 +6,6 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
-import com.td.EnglishStrings;
-import com.td.FrenchStrings;
 import com.td.StringArray;
 import com.td.StringLookup;
 import com.td._CommonPage;
@@ -74,13 +72,14 @@ public class QuickAccess extends _CommonPage {
 	public void VerifyQuickAccessSwitchWork() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				quickaccess_switch = mobileAction.verifyElementUsingXPath("//android.widget.Switch[@content-desc='"
+						+ StringLookup.lookupString(currentLocale, StringLookup.PREFERENCE_QUICK_ACCESS_SWITCH_AND)
+						+ "']", "Quick Access Switch");
+			} else {
 				quickaccess_switch = mobileAction.verifyElementUsingXPath(
-						"//android.widget.Switch[@content-desc='" + StringLookup.lookupString(currentLocale, StringLookup.PREFERENCE_QUICK_ACCESS_SWITCH_AND) + "']",
-						"Quick Access Switch");
-			}else{
-				quickaccess_switch = mobileAction.verifyElementUsingXPath(
-						"//*[@label='" + StringLookup.lookupString(currentLocale, StringLookup.PREFERENCE_QUICK_ACCESS_SETTINGS) + "']/../XCUIElementTypeSwitch",
+						"//*[@label='" + StringLookup.lookupString(currentLocale,
+								StringLookup.PREFERENCE_QUICK_ACCESS_SETTINGS) + "']/../XCUIElementTypeSwitch",
 						"Quick Access Switch");
 			}
 
@@ -128,13 +127,14 @@ public class QuickAccess extends _CommonPage {
 	public void VerifyAndEnableQuickAccess() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				quickaccess_switch = mobileAction.verifyElementUsingXPath("//android.widget.Switch[@content-desc='"
+						+ StringLookup.lookupString(currentLocale, StringLookup.PREFERENCE_QUICK_ACCESS_SWITCH_AND)
+						+ "']", "Quick Access Switch");
+			} else {
 				quickaccess_switch = mobileAction.verifyElementUsingXPath(
-						"//android.widget.Switch[@content-desc='" + StringLookup.lookupString(currentLocale, StringLookup.PREFERENCE_QUICK_ACCESS_SWITCH_AND) + "']",
-						"Quick Access Switch");
-			}else{
-				quickaccess_switch = mobileAction.verifyElementUsingXPath(
-						"//*[@label='" + StringLookup.lookupString(currentLocale, StringLookup.PREFERENCE_QUICK_ACCESS_SETTINGS) + "']/../XCUIElementTypeSwitch",
+						"//*[@label='" + StringLookup.lookupString(currentLocale,
+								StringLookup.PREFERENCE_QUICK_ACCESS_SETTINGS) + "']/../XCUIElementTypeSwitch",
 						"Quick Access Switch");
 			}
 			mobileAction.verifyElementIsDisplayed(quickaccess_switch, "Quick Access");
