@@ -107,6 +107,9 @@ public class MenuPage extends _CommonPage {
 	// customer feedback
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_FEEDBACK']/XCUIElementTypeStaticText")
 	private MobileElement give_feedback;
+	
+	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_MAIL_TITLE']")
+	private MobileElement give_feedback_contact_us;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText']")
 	private List<MobileElement> menuOpts;
@@ -708,6 +711,7 @@ public class MenuPage extends _CommonPage {
 				String xpath = "//android.widget.TextView[@text='" + mobileAction.getAppString("give_feedback") + "']";
 				System.out.println("xpath:" + xpath);
 				give_feedback = mobileAction.verifyElementUsingXPath(xpath, "Give Feedback");
+				give_feedback_contact_us =  mobileAction.verifyElementUsingXPath(xpath, "Give Feedback_contact_us");
 			} 
 		} catch (NoSuchElementException | IOException e) {
 			try {
@@ -726,8 +730,15 @@ public class MenuPage extends _CommonPage {
 			mobileAction.FuncClick(give_feedback, elementText);
 			mobileAction.waitForElementToVanish(progressBar);
 		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try{
+				String elementText = mobileAction.getValue(give_feedback_contact_us);
+				System.out.println("elementText:" + elementText);
+				mobileAction.FuncClick(give_feedback_contact_us, elementText);
+				mobileAction.waitForElementToVanish(progressBar);
+			}catch (Exception e1){
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
 		}
 	}
 
@@ -740,13 +751,7 @@ public class MenuPage extends _CommonPage {
 						+ mobileAction.getAppString("contact_str") + "']";
 				System.out.println("xpath:" + xpath);
 				contactUs = mobileAction.verifyElementUsingXPath(xpath, "Contact Us");
-			} else {
-				// String xpath = "//*[@label='" +
-				// mobileAction.getAppString("nav_drawer_items_contact") + "']";
-				// System.out.println("xpath:" + xpath);
-				// contactUs = mobileAction.verifyElementUsingXPath(xpath,
-				// "Contact Us");
-			}
+			} 
 		} catch (NoSuchElementException | IOException e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail",

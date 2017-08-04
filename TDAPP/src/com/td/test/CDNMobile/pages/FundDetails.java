@@ -52,7 +52,7 @@ public class FundDetails extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/fund_category']")
 	private MobileElement fund_category;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther[4]/XCUIElementTypeStaticText[@name='footnote_label']")
+	@iOSFindBy(xpath = "//*[@name='conversion_rate_label']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/conversion_rate_used']")
 	private MobileElement usd_conversion_rate;
 
