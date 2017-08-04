@@ -304,8 +304,8 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 			if (mobileAction.verifyElementIsPresent(errorText)) {
+				mobileAction.GetReporting().FuncReport("Fail", "System exception occured during login");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				CL.GetReporting().FuncReport("Fail", "System exception occured during login");
 			}
 		} catch (Exception e) {
 			System.out.println("Exception for no System Error ");
@@ -317,8 +317,8 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 			if (mobileAction.verifyElementIsPresent(sessionTimeout)) {
+				mobileAction.GetReporting().FuncReport("Fail", "Session Timeout during login");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				CL.GetReporting().FuncReport("Fail", "Session Timeout during login");
 			}
 		} catch (Exception e) {
 			System.out.println("No session timeout found");
