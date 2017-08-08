@@ -62,10 +62,10 @@ public class FundFacts extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementTextIsDisplayed(view_fundFacts_page_header,
-						getTextInCurrentLocale(StringArray.MF_FUND_FACT_PDF));
+						getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_FACT_PDF));
 			}else{
 				mobileAction.verifyElementTextIsDisplayed(view_fundFacts_page_header,
-						getTextInCurrentLocale(StringArray.MF_FUND_FACT));
+						getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_FACT));
 			}
 			
 		} catch (NoSuchElementException | IOException e) {

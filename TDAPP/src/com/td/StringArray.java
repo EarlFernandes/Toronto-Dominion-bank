@@ -75,17 +75,24 @@ public final class StringArray {
 	
 	public static final String[] ARRAY_MF_RECEIPT_GO_HOME_BTN = {"GO BACK HOME", "RETOURNER À L’ACCUEIL", "返回主页", "返回首頁"};
 	public static final String[] ARRAY_MF_RECEIPT_VIEW_ACCOUNT_BTN = {"VIEW MY ACCOUNTS", "CONSULTER MES COMPTES", "查看我的账户", "查看我的賬戶"};
-	public static final String[] MF_ACCEPTED_FUND_DETAIL_FEE ={"Accepted Fund Details & Fees","Infos sur le fonds et les frais acceptées",
+	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE ={"Accepted Fund Details & Fees","Infos sur le fonds et les frais acceptées",
 			"已接受的基金 详情与费用","已接受的基金 詳情與費用"};
-	public static final String[] MF_FUND_FACT ={"Fund Facts","Aperçu du fonds","基金概况","基金概況"};
-	public static final String[] MF_FUND_FACT_PDF ={"fund facts.pdf","Aperçu du fonds.pdf","基金概况.pdf","基金概況.pdf"};
+	public static final String[] ARRAY_MF_FUND_FACT ={"Fund Facts","Aperçu du fonds","基金概况","基金概況"};
+	public static final String[] ARRAY_MF_FUND_FACT_PDF ={"fund facts.pdf","Aperçu du fonds.pdf","基金概况.pdf","基金概況.pdf"};
 	
 	public static final String[] ARRAY_PROFILE_AND_PREFERENCE = {"Profile & Settings", "Profil et paramètres", "个人资料和设置", "個人資料和設定"};
-	public static final String[] ARRAY_CUSTOMER_FEEDBACK = {"Give Feedback", "Fournir des commentaires", "发送意见反馈", "發送意見"};
+	public static final String[] ARRAY_CUSTOMER_FEEDBACK = {"Give Feedback", "Fournir des commentaires", "发送意见回馈", "發送意見"};
 	public static final String[] ARRAY_QUICK_ACCESS_SETTINGS = {"Quick Access Settings", "Paramètres Accès rapide", "特快结余查询", "特快結餘查詢"};
 	public static final String[] ARRAY_QUICK_ACCESS_SWITCH_AND = {"Quick Access", "Accès rapide", "特快结余查询", "特快結餘查詢"};
 	public static final String[] ARRAY_OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE = {"we can't verify the security code entered.", "", "", ""};
 	public static final String[] ARRAY_OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED = {"you have requested too many passcodes without entering one", "", "", ""};
 	
-
+	public static final String[] ARRAY_INVESTING_ACCOUNTS ={"Investing Accounts","Comptes Placements directs TD","投资账户","投資賬戶"};
+	public static final String[] ARRAY_MOBILE_PAYMENT ={"TD Mobile Payment","Paiement mobile TD","道明移动支付","道明移動支付"};
+	public static final String[] ARRAY_PRIVACY_SECURITY_LEGAL ={"Privacy, Security & Legal","Confidentialité, sécurité et avis juridique","隐私、安全与法律声明","私隱、安全和法律聲明"};
+	public static final String[] ARRAY_FORGOT_PASSWORD = {"Forgot password?","Mot de passe oublié?","忘记密码？","忘記密碼？"};
+	public static final String[] ARRAY_ALLOW_CONTACTS_OK ={"OK","Oui","好","好"};
+	public static final String[] ARRAY_ALLOW_CONTACTS_REFUSE ={"Cancel","Non","不允许","不允許"};
+	public static final String[] ARRAY_ALLOW_CONTACTS_ACCESS_HEADER ={"","","“TD Canada”想访问您的通讯录","“TD Canada”想訪問您的通訊錄"};
+	public static final String[] ARRAY_ALLOW_CONTACTS_ACCCESS_BODY ={"","","用于读取联系人信息以添加 Interac 电子转账收款人，以及添加道明服务代表为联系人。","用於讀取聯繫人信息以添加 Interac 電子轉賬收款人，以及添加道明服務代表為聯繫人。"};
 }
