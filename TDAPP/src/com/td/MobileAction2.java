@@ -2404,7 +2404,8 @@ public void selectItemFromList(MobileElement defaultItem,String item) //throws E
 			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.visibilityOf(defaultItem));
 			FuncClick(defaultItem, "defaultItem");
-		if(GetDriver().findElement(By.xpath(xpathExpression)).isDisplayed())
+		//if(GetDriver().findElement(By.xpath(xpathExpression)).isDisplayed())
+			Thread.sleep(3000);
 			GetDriver().findElement(By.xpath(xpathExpression)).click();
 			}
 		catch(Exception e1)
