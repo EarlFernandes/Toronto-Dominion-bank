@@ -73,7 +73,7 @@ public class TradeMultiLeg extends _CommonPage{
 //	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*/*[@resource-id='com.td:id/amountEditText']") //Tablet 5.x
 	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[2]/*[1]") //Tablet 5.x
 //	@AndroidFindBy(xpath = 	"//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[@resource-id='com.td:id/amountEditText']")//@Author - Sushil 10-May-2017
-//	@AndroidFindBy(xpath = 	"//*[@resource-id='com.td:id/multi_leg1_quantity']/*/*/*[2]") //Phone
+///	@AndroidFindBy(xpath = 	"//*[@resource-id='com.td:id/multi_leg1_quantity']/*/*/*[2]") //Phone
 //	@AndroidFindBy(xpath = 	"//*[@resource-id='com.td:id/amountEditText']/parent::*[@resource-id='com.td:id/multi_leg1_quantity']") //Phone
 	private MobileElement leg1Quantity;
 	
@@ -83,7 +83,7 @@ public class TradeMultiLeg extends _CommonPage{
 //	@AndroidFindBy(xpath = 	"//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*/*/*[@resource-id='com.td:id/amountEditText']") //Tablet 5.x
 	@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[2]/*[1]") //Tablet 5.x
 //	@AndroidFindBy(xpath = 	"//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[@resource-id='com.td:id/amountEditText']")//@Author - Sushil 10-May-2017
-//	@AndroidFindBy(xpath = 	"//*[@resource-id='com.td:id/multi_leg2_quantity']/*/*/*[2]") //Phone
+///	@AndroidFindBy(xpath = 	"//*[@resource-id='com.td:id/multi_leg2_quantity']/*/*/*[2]") //Phone
 	private MobileElement leg2Quantity;
 	
 	//@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell/*") //@Author - Sushil 17-Feb-2017
@@ -113,7 +113,7 @@ public class TradeMultiLeg extends _CommonPage{
 	private MobileElement firstBidCALLS;
 	
 	@iOSFindBy(xpath = "(//XCUIElementTypeOther[contains(@label,'PUTS Bid') or contains(@label,'VENTE Acheteur')])[4]") //@Author - Sushil 17-Feb-2017
-	@AndroidFindBy(xpath="//*[@resource-id='com.td:id/textview_info' and @index=18]")
+	@AndroidFindBy(xpath="//*[@resource-id='com.td:id/textview_info' and @index=3]")
 	private MobileElement firstBidPUTS;
 	
 	@iOSFindBy(xpath = "(//XCUIElementTypeOther[contains(@label,'CALLS Ask') or contains(@label,'ACHAT Vendeur')])[1]") //@Author - Sushil 17-Feb-2017
@@ -121,7 +121,7 @@ public class TradeMultiLeg extends _CommonPage{
 	private MobileElement firstAskCALLS;
 	
 	@iOSFindBy(xpath = "(//XCUIElementTypeOther[contains(@label,'PUTS Ask') or contains(@label,'VENTE Vendeur')])[4]") //@Author - Sushil 17-Feb-2017
-	@AndroidFindBy(xpath="//*[@resource-id='com.td:id/textview_info' and @index=19]")
+	@AndroidFindBy(xpath="//*[@resource-id='com.td:id/textview_info' and @index=4]")
 	private MobileElement firstAskPUTS;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Continue')]") //@Author - Sushil 17-Feb-2017
@@ -251,7 +251,7 @@ public class TradeMultiLeg extends _CommonPage{
 	private MobileElement Quote_price;
 	
 	@iOSFindBy(xpath = "//*[contains(@label,'Limit Price') or contains(@label,'Cours limit')]/../*[2]") //@Author - Sushil 08-Feb-2017
-//	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/limit_price']/*/*/*[2]")
+///	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/limit_price']/*/*/*[2]")
 	@AndroidFindBy(xpath = "//*[contains(@text,'Limit Price') or contains(@text,'Cours limit')]/../*[2]/*[@resource-id='com.td:id/amountEditText']") //Tablet 5.x
 	private MobileElement LimitPrice;
 	
@@ -867,6 +867,7 @@ public class TradeMultiLeg extends _CommonPage{
 				mobileAction.FuncSendKeys(objEle,sQty);	
 				handleKeyboard();
 			}
+			Thread.sleep(5000);
 		}
 		catch(Exception e)
 		{
@@ -884,15 +885,18 @@ public class TradeMultiLeg extends _CommonPage{
 	{
 		try
 		{
-			//Thread.sleep(5000);
+			Thread.sleep(5000);
+			objEle.click();
+			Thread.sleep(2000);
 			mobileAction.FuncSendKeys(objEle,sText);
 			handleKeyboard();
-			//if(mobileAction.FuncGetText(objEle).length()<1)
-			if(mobileAction.FuncGetText(objEle).equals("") || mobileAction.FuncGetText(objEle)==null )
+			if(mobileAction.FuncGetText(objEle).length()<1)
+			//if(mobileAction.FuncGetText(objEle).equals("") || mobileAction.FuncGetText(objEle)==null )
 			{
 				mobileAction.FuncSendKeys(objEle,sText);	
 				handleKeyboard();
 			}
+			Thread.sleep(5000);
 		}
 		catch(Exception e)
 		{

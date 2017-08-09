@@ -180,13 +180,13 @@ public class MLCancelOrderReceipt extends _CommonPage{
 			if(mobileAction.isObjExists(editTextPassword, 2))
 				//TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
 			{
-				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+/*				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 					TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
 				else
-				{
+				{*/
 				mobileAction.FuncSendKeys(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
 				TradeMultiLeg.get().handleKeyboard();
-				}
+				//}
 			}
 			mobileAction.FuncClick(btnCancelOrder, "Cancel Button");
 			
@@ -277,10 +277,16 @@ public class MLCancelOrderReceipt extends _CommonPage{
 			mobileAction.FuncSwipeUpTillScreenBottom(labelTradingPassword);
 			
 			if(mobileAction.isObjExists(editTextPassword, 2))
-				TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
-/*			mobileAction.FuncSwipeWhileElementNotFound(editTextPassword, false, 5, "up");
-			mobileAction.FuncSwipeOnce("up");
-			TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));*/
+				//TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+			{
+/*				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+					TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+				else
+				{*/
+				mobileAction.FuncSendKeys(editTextPassword, getTestdata("TradingPassword",XLSheetUserIDs));
+				TradeMultiLeg.get().handleKeyboard();
+				//}
+			}
 
 			mobileAction.FuncClick(btnCancelOrder, "Cancel Button");
 			
