@@ -1163,8 +1163,6 @@ public class Interac_e_Transfer extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyTextEquality(Interac_Etransfer_Header.getText(),
-						mobileAction.getAppString("eTransferHeaderLabel").replaceAll("\\<.*?>", ""));
 				mobileAction.verifyTextEquality(selectSender.getText(), mobileAction.getAppString("str_sender"));
 				mobileAction.verifyTextEquality(fromAccount.getText(),
 						mobileAction.getAppString("str_transfers_from_account"));
