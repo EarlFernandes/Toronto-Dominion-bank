@@ -3193,5 +3193,8 @@ public class EventCase {
 
 	public void generateReport() {
 	}
+	
+	public void beforeTest() {
+	}
 
 }
