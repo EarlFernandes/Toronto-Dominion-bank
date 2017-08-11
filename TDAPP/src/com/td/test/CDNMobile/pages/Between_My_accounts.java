@@ -646,7 +646,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(txtAmount, "Amount");
 				String ValueofAmount = getTestdata("Amount");
 				mobileAction.FuncSendKeys(txtAmount, ValueofAmount);
-				mobileAction.FuncHideKeyboard();;
+				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 				mobileAction.FuncWaitForElement(ok_Button, 120, "Ok");
 				mobileAction.FuncClick(ok_Button, "OK");
