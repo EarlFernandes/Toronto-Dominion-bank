@@ -1944,7 +1944,6 @@ public class EventCase {
 
 		case NavigationBackToProfileandSettingPage:
 			Profile.get().NavigationBackToProfileandSettingPage();
-			// mobileAction.FuncClickBackButton();
 			break;
 
 		case EditEmailAddressWithNonAformat:
