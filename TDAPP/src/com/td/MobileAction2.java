@@ -769,8 +769,7 @@ public class MobileAction2 extends CommonLib {
 			(GetAppiumDriver()).hideKeyboard();
 			GetReporting().FuncReport("Pass", "Keyboard has been closed.");
 		} catch (WebDriverException e) {
-			GetReporting().FuncReport("Fail", "WebDriverException occured while while closing keyboard.");
-			throw e;
+			System.out.println("WebDriverException occured while while closing keyboard, but ignor it");
 		} catch (Exception e) {
 			GetReporting().FuncReport("Fail", "Exception '" + e.toString() + "' occurred while closing keyboard.");
 			throw e;
@@ -3271,7 +3270,6 @@ public class MobileAction2 extends CommonLib {
 		try {
 			String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
 					+ getAppString("secureLoginEditButtonDone") + "']";
-			//System.out.println("Donepath:" + donePath);
 			MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
 			Done.click();
 			GetReporting().FuncReport("Pass", "The element <b>  Done </b> Clicked");

@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -353,10 +354,10 @@ public class Between_My_accounts extends _CommonPage {
 						+ getTestdata("ToAccount") + "')]";
 
 				mobileAction.FuncClick(txtFrom_acnt, "From Account");
-				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_from_acnt, 25, "down", true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_from_acnt, true, 25, "up");
 				mobileAction.waitForElementToDisappear(select_from_acnt);
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
-				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_to_Acnt, 25, "down", true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_to_Acnt, true, 25, "up");
 				mobileAction.waitForElementToDisappear(select_to_Acnt);
 				mobileAction.verifyElementIsDisplayed(TDCT_TFSAMessage,
 						"When making deposits to this account, please ensure that you are");
@@ -579,8 +580,8 @@ public class Between_My_accounts extends _CommonPage {
 		String from_Accounts_table = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]";
 		String Firstpart = "//XCUIElementTypeCell[";
 		String Secondpart = "]/XCUIElementTypeStaticText[1]";
-		String accountsPage_Table = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/"
-				+ "XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
+//		String accountsPage_Table = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/"
+//				+ "XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
 
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -611,7 +612,9 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(btnMenu, "Menu");
 				mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
 				mobileAction.waitForElementToDisappear(progressBar);
-				mobileAction.FuncSelectElementInTable(accountsPage_Table, Firstpart, Secondpart, accountNo);
+				verify_from_acnt = "//*[@label='"+ accountNo + "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(verify_from_acnt, true, 20, "up");
+				//mobileAction.FuncSelectElementInTable(accountsPage_Table, Firstpart, Secondpart, accountNo);
 				mobileAction.verifyElementTextContains(activityConfText, confmVal[1].trim());
 				String amt_sent = lastTransacAmt.getAttribute("label");
 				System.out.println("amt_sent:" + amt_sent);
@@ -620,7 +623,9 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.verifyTextEquality(amount[1], ValueofAmount);
 				}
 				mobileAction.FuncClick(backBtn, "Back");
-				mobileAction.FuncSelectElementInTable(accountsPage_Table, Firstpart, Secondpart, to_accountNo);
+				//mobileAction.FuncSelectElementInTable(accountsPage_Table, Firstpart, Secondpart, to_accountNo);
+				select_to_Acnt = "//*[@label='"+ to_accountNo + "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_to_Acnt, true, 20, "up");
 				String amt_recvd = lastTransacAmt.getAttribute("label");
 				String amt_sent_after_exchange = mobileAction.getText(amountSent);
 				mobileAction.verifyTextEquality(amt_recvd, amt_sent_after_exchange);
@@ -641,7 +646,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(txtAmount, "Amount");
 				String ValueofAmount = getTestdata("Amount");
 				mobileAction.FuncSendKeys(txtAmount, ValueofAmount);
-				mobileAction.FuncClickBackButton();
+				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(btncontinue_Transfer, "Continue");
 				mobileAction.FuncWaitForElement(ok_Button, 120, "Ok");
 				mobileAction.FuncClick(ok_Button, "OK");
@@ -652,8 +657,9 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(btnMenu, "Menu");
 				mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
 				mobileAction.waitForElementToDisappear(progressBar);
-
-				mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList, verify_from_acnt, 1, "down", true);
+				
+				//mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList, verify_from_acnt, 1, "down", true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(verify_from_acnt, true, 5, "up");
 				mobileAction.verifyTextContains(last_Transaction_List.get(0), conf_val);
 
 				String amt_sent = mobileAction.getText(amt_Trnsfrd.get(0));
@@ -830,7 +836,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClickDone();
 			} else {
 
-				mobileAction.FuncClickBackButton();
+				mobileAction.FuncHideKeyboard();
 			}
 
 			mobileAction.FuncClick(btncontinue_Transfer, "Continue");
