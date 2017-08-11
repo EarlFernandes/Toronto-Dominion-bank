@@ -22,9 +22,9 @@ public class Interac_e_Transfer extends _CommonPage {
 	private static Interac_e_Transfer Interac_e_Transfer;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Add Recipient']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Recipient' or @text='Add Recipient']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Recipient'] | //android.widget.TextView[@content-desc='Add Recipient']")
 	private MobileElement addRecipient_Interac;
-
+	
 	@iOSFindBy(accessibility = "MESSAGE_INPUT_PLACEHOLDER")
 	private MobileElement optional;
 
@@ -40,6 +40,7 @@ public class Interac_e_Transfer extends _CommonPage {
 	private MobileElement interac_Header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progrees_Bar;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Interac e-Transfer']")
@@ -295,7 +296,7 @@ public class Interac_e_Transfer extends _CommonPage {
 
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Recipient, 0, "down", true);
 				mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
-				mobileAction.FuncClickBackButton();
+				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(transfer_Continue, "Continue");
 				mobileAction.FuncClick(sendMoney, "Send Money");
 				String conf_val = mobileAction.getText(confirmation_Val);
@@ -432,7 +433,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				// mobileAction.FuncSelectElementInTable(senderTable, firstPart,
 				// secondPart, sender_SelectSender);
 				mobileAction.FuncClick(fromAccount, "From Account");
-				String fromAcc = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'"
+				String fromAcc = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[contains(@label,'"
 						+ transfer_fromAccount + "')]";
 				System.out.println("From account xpath:" + fromAcc);
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(fromAcc, true, 5, "Up");
@@ -459,7 +460,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_Account, true, 5, "up");
 				mobileAction.FuncClick(etransfer_Amount, "Amount");
 				mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
-				mobileAction.FuncClickBackButton();
+				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(transfer_Continue, "Continue");
 				mobileAction.FuncClick(sendMoney, "Send Money");
 				mobileAction.verifyElementIsDisplayed(transferSent, "Interac e-Transfer Sent");
@@ -834,7 +835,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_Recipient, true, 2, "up");
 
 				mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
-				mobileAction.FuncClickBackButton();
+				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(transfer_Continue, "Continue");
 				mobileAction.FuncClick(cancel, "Cancel");
 			}
@@ -871,7 +872,13 @@ public class Interac_e_Transfer extends _CommonPage {
 
 			mobileAction.FuncClick(selectSender, "ClickSender");
 			mobileAction.waitForElementToVanish(progressBar);
-			mobileAction.FuncClick(senderCancel, "Click Cancel");
+			if(mobileAction.verifyElementIsPresent(senderCancel)){
+				mobileAction.FuncClick(senderCancel, "Click Cancel");
+			}else{
+				//For iPad, there is no Cancel button
+				mobileAction.FuncClickBackButton();
+			}
+			
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
