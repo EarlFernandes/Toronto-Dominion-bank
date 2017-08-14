@@ -66,6 +66,7 @@ public class SpendingHistory extends _CommonPage {
 	private MobileElement TDAppHomePage;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Preferences') or contains(@label,'Préférences') or contains(@label,'préférences')]")
+	@AndroidFindBy(xpath = "//*[contains(@content-desc,'Preferences') or contains(@content-desc,'Préférences.')]")
 	private MobileElement preferencesLink;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@name='Home']/../following-sibling::XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText")
@@ -95,7 +96,7 @@ public class SpendingHistory extends _CommonPage {
 	@FindBy(xpath = "//*[@id='homeButton']")
 	private WebElement homeBtnAndroid;
 
-	@FindBy(xpath = "//*[text()='Preferences' or text()='Préférences.']")
+	@FindBy(xpath = "//*[contains(text(),'Preferences') or text()='Préférences.']")
 	private WebElement preferencesLinkAndroid;
 
 	@FindBy(xpath = "//*[contains(@class='spend-history')]")
@@ -408,7 +409,9 @@ public class SpendingHistory extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.FuncClick(preferencesLinkAndroid, "Preferences Link");
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				mobileAction.FuncClick(preferencesLink, "Preferences Link");
+				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
 			} else {
 				mobileAction.FuncClick(preferencesLink, "Preferences Link");
 			}
