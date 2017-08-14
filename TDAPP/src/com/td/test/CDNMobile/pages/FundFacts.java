@@ -29,7 +29,7 @@ public class FundFacts extends _CommonPage {
 	private MobileElement progress_bar;
 	
 	//@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/alertTitle']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/alertTitle'] | //android.widget.Button[@resource-id='android:id/button1']")
 	private MobileElement popup_alert;
 
 	public synchronized static FundFacts get() {

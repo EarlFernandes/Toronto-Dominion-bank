@@ -881,7 +881,7 @@ public class Accounts extends _CommonPage {
 
 			System.out.println("Acnt_Description:" + Acnt_Description);
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, true, 30, "up");
-
+			mobileAction.waitForElementToVanish(progresssBar);
 		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

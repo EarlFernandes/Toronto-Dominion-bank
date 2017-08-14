@@ -22,7 +22,7 @@ public class PreviewPurchase extends _CommonPage {
 
 	private static PreviewPurchase previewPurchase;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText | //XCUIElementTypeNavigationBar/XCUIElementTypeOther")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement page_title;
 
@@ -80,7 +80,7 @@ public class PreviewPurchase extends _CommonPage {
 	String phoneReg = "\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
 	String phoneRegFR = "\\(\\d{3}\\)\\s*\\d{3}\\s*–\\s*\\d{4}";
 
-	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']")
+	@iOSFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement back_icon;
 
@@ -318,6 +318,7 @@ public class PreviewPurchase extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(purchase_now_button, "Purchase");
+			mobileAction.waitForElementToVanish(progress_bar);
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -365,16 +366,20 @@ public class PreviewPurchase extends _CommonPage {
 
 	public void VerifyFundfactsAcknowledgement() {
 		Decorator();
+
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				fund_facts_acknowledgement = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='"
-								+ StringLookup.lookupString(currentLocale, StringLookup.MF_ACCEPTED_FUND_DETAIL) + "']",
+
+				String acceptedXpath = "//android.widget.TextView[@text='"
+						+ StringLookup.lookupString(currentLocale, StringLookup.MF_ACCEPTED_FUND_DETAIL) + "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(acceptedXpath, false, 5, "up");
+				
+				fund_facts_acknowledgement = mobileAction.verifyElementUsingXPath(acceptedXpath,
 						"Accept_Fund_Detail_Fee");
-			}
-			if (!mobileAction.verifyElementIsPresent(fund_facts_acknowledgement)) {
+			}else{
 				mobileAction.FuncSwipeWhileElementNotFound(fund_facts_acknowledgement, false, 5, "up");
 			}
+
 			String acknowlegmentText = mobileAction.getValue(fund_facts_acknowledgement);
 			System.out.println("acknowlegmentText:" + acknowlegmentText);
 			if (acknowlegmentText.toLowerCase().contains("yes") || acknowlegmentText.toLowerCase().contains("oui")) {
@@ -405,6 +410,7 @@ public class PreviewPurchase extends _CommonPage {
 					mobileAction.FuncClick(back_icon, "<");
 				}
 				count--;
+				Decorator();
 			}
 			System.out.println("Go back to home already");
 		} catch (Exception e) {
