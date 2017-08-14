@@ -180,7 +180,7 @@ public class Login extends _CommonPage {
 	String login_password = getTestdata("Password");
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text'] | //android.widget.TextView[@resource-id='com.td:id/error_message']")
 	private MobileElement login_error;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Investing')]")
@@ -770,6 +770,8 @@ public class Login extends _CommonPage {
 					mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 					mobileAction.FuncClick(clearText, "Clear Text");
 					mobileAction.verifyElementIsDisplayed(password, "Password Field");
+				}else{
+					login_without_ID_remembered();
 				}
 
 			} else {
@@ -972,23 +974,12 @@ public class Login extends _CommonPage {
 						Thread.sleep(3000);
 						// mobileAction.waitForElementToVanish(progressBar);
 					}
+				}else{
+					login_without_ID_remembered();
 				}
 			} else {
 
-				mobileAction.FuncClick(username, "Username");
-				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-
-				mobileAction.FuncClick(password, "Password");
-				mobileAction.FuncSendKeys(password, passwordArray[count]);
-
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					mobileAction.FuncHideKeyboard();
-					mobileAction.FuncClick(login, "Login");
-					mobileAction.waitForElementToVanish(progressBar);
-				} else {
-					mobileAction.FuncClick(login, "Login");
-					mobileAction.waitForElementToVanish(progressBar);
-				}
+				login_without_ID_remembered();
 			}
 
 			try {
@@ -1116,23 +1107,12 @@ public class Login extends _CommonPage {
 						mobileAction.FuncClick(login, "Login");
 						mobileAction.waitForElementToVanish(progressBar);
 					}
+				}else{
+					login_without_ID_remembered();
 				}
 			} else {
 
-				mobileAction.FuncClick(username, "Username");
-				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-
-				mobileAction.FuncClick(password, "Password");
-				mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					mobileAction.FuncHideKeyboard();
-					mobileAction.FuncClick(login, "Login");
-					mobileAction.waitForElementToVanish(progressBar);
-				} else {
-					mobileAction.FuncClick(login, "Login");
-					mobileAction.waitForElementToVanish(progressBar);
-				}
+				login_without_ID_remembered();
 			}
 			try {
 				if (mobileAction.verifyElementIsPresent(errorText)) {

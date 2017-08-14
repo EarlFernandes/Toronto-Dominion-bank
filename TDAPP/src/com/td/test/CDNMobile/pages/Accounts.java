@@ -86,7 +86,7 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement back_button;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//*[@name='QUICKLINKS_TRANSFER']/../preceding-sibling::XCUIElementTypeOther[1]/XCUIElementTypeStaticText[3]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/account_desc']")
 	private MobileElement account;
 
