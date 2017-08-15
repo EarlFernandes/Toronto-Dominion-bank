@@ -218,6 +218,7 @@ public class LoginMIT extends _CommonPage {
 
 			if (mobileAction.isObjExists(select_accesscard)) {
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
+			}
 				if (mobileAction.isObjExists(addUser)) {
 
 					mobileAction.FuncClick(addUser, "AddUser");
@@ -231,7 +232,7 @@ public class LoginMIT extends _CommonPage {
 					enterPwdifError();
 				}
 
-			} else {
+			 else {
 
 				mobileAction.FuncClick(username, "Username");
 				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);

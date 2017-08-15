@@ -64,9 +64,7 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(xpath = "//*[contains(@text,'Action') or contains(@text,'Action')]")
 	private MobileElement action;
 	
-	
-	
-	
+		
 	//@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell[3]/*[2]") //@Author - Sushil 17-Feb-2017
 	@iOSFindBy(xpath = "//*[@name='ACTION_QTY_CELL_2']/*[2]")
 	//@AndroidFindBy(xpath = "//*[contains(@resource-id,'com.td:id/amountEditText')]")
@@ -74,7 +72,8 @@ public class TradeMultiLeg extends _CommonPage{
 	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[2]/*[1]") //Tablet 5.x
 //	@AndroidFindBy(xpath = 	"//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::*/*[@resource-id='com.td:id/amountField']/*/*[@resource-id='com.td:id/amountEditText']")//@Author - Sushil 10-May-2017
 ///	@AndroidFindBy(xpath = 	"//*[@resource-id='com.td:id/multi_leg1_quantity']/*/*/*[2]") //Phone
-//	@AndroidFindBy(xpath = 	"//*[@resource-id='com.td:id/amountEditText']/parent::*[@resource-id='com.td:id/multi_leg1_quantity']") //Phone
+//	@AndroidFindBy(xpath = 	"//*[@resource-id='com.td:id/amountEditText']/ancestor::*[@resource-id='com.td:id/multi_leg1_quantity']") //Phone
+//	@AndroidFindBy(xpath = 	"//*[@resource-id='com.td:id/amountEditText']/ancestor::*[contains(@text,'1st') or contains(@text,'1re')]") //Phone
 	private MobileElement leg1Quantity;
 	
 	//@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell[3]/*[2]") //@Author - Sushil 17-Feb-2017
@@ -844,10 +843,12 @@ public class TradeMultiLeg extends _CommonPage{
 	{
 		try
 		{
-			Thread.sleep(5000);
+			//Thread.sleep(5000);
 			objEle.click();
+			objEle.clear();
 			Thread.sleep(2000);
 			mobileAction.FuncSendKeys(objEle,sQty);
+			//objEle.setValue(sQty);
 			
 /*			final String command = "adb -s " + CL.getTestDataInstance().getDeviceUdid() + " input keyevent KEYCODE_1"; 
  			//final String command = "adb -s " + CL.getTestDataInstance().getDeviceUdid() + "input keyevent " + sQty; 
@@ -863,8 +864,11 @@ public class TradeMultiLeg extends _CommonPage{
 			if(mobileAction.FuncGetText(objEle).length()<1)
 			{
 				objEle.click();
+				
+				objEle.clear();
 				Thread.sleep(2000);
 				mobileAction.FuncSendKeys(objEle,sQty);	
+				//objEle.setValue(sQty);
 				handleKeyboard();
 			}
 			Thread.sleep(5000);

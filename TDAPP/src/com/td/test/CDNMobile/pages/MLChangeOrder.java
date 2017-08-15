@@ -226,6 +226,14 @@ public class MLChangeOrder extends _CommonPage {
 	@AndroidFindBy(id="com.td:id/orderEntryPreviewButton")
 	private MobileElement previewOrderButton;
 	
+	@iOSFindBy(xpath = "//*[@label='Do not agree' or contains(@label,'accepte pas')]") //@Author - Sushil 08-Feb-2017
+	@AndroidFindBy(id="com.td:id/negativeButton")
+	private MobileElement doNotAgreeButton;
+
+	@iOSFindBy(xpath = "//*[@label='Agree' or @label='Accepte']") //@Author - Sushil 08-Feb-2017
+	@AndroidFindBy(id="com.td:id/positiveButton")
+	private MobileElement agreeButton;
+	
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Confirm Order' or contains(@label,'Confirmer l')]") //@Author - Sushil 08-Feb-2017
 	@AndroidFindBy(xpath = "//*[(@text='Confirm Order' or contains(@text,'Confirmer l')) and @resource-id='android:id/action_bar_title']")
@@ -252,7 +260,8 @@ public void getStockOptionChangeOrderData()
 		sLeg2Qunatity1 = getTestdata("Leg2Qunatity",XLSheetUserIDs).split(";")[1];
 		sPrice1 = getTestdata("Price",XLSheetUserIDs).split(";")[1];
 		sGoodTill1 = getTestdata("Good'til",XLSheetUserIDs).split(";")[1];
-		sShareHolder1 = getTestdata("ShareHolder",XLSheetUserIDs).split(";")[1];
+//		sShareHolder1 = getTestdata("ShareHolder",XLSheetUserIDs).split(";")[1];
+		sShareHolder1 = getTestdata("ShareHolder",XLSheetUserIDs);
 	}
 	catch(Exception e)
 	{
@@ -284,7 +293,8 @@ public void getOptionOptionChangeOrderData()
 		sLeg2Qunatity1 = getTestdata("Leg2Qunatity",XLSheetUserIDs).split(";")[1];
 		sPrice1 = getTestdata("Price",XLSheetUserIDs).split(";")[1];
 		sGoodTill1 = getTestdata("Good'til",XLSheetUserIDs).split(";")[1];
-		sShareHolder1 = getTestdata("ShareHolder",XLSheetUserIDs).split(";")[1];
+//		sShareHolder1 = getTestdata("ShareHolder",XLSheetUserIDs).split(";")[1];
+		sShareHolder1 = getTestdata("ShareHolder",XLSheetUserIDs);
 	}
 	catch(Exception e)
 	{
@@ -393,13 +403,13 @@ public void verifyStockOptionChangeOrder()
 			if(!sShareHolder.contains("autre"))
 			{
 				mobileAction.verifyElement(shareholderType, sShareHolder);
-				mobileAction.selectItemFromList(shareholderType, sShareHolder1);
+				//mobileAction.selectItemFromList(shareholderType, sShareHolder1);
 			}
-			else
+/*			else
 			{
 				mobileAction.verifyElementTextContains(shareholderType, "autre");				
 				TradeMultiLeg.get().selectShareholderNeitherFR();
-			}
+			}*/
 			mobileAction.FuncSwipeOnce("up");
 		}
 		
@@ -423,6 +433,9 @@ public void verifyStockOptionChangeOrder()
 		mobileAction.verifyElementIsDisplayed(importantInfoLink, "importantInfoLink");
 		
 		mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
+		
+		if(mobileAction.isObjExists(agreeButton))
+		mobileAction.FuncClick(agreeButton, "agreeButton");
 		
 		mobileAction.verifyElementIsDisplayed(titleConfirmOrder, "titleConfirmOrder");
 	}
@@ -527,13 +540,13 @@ public void verifyOptionOptionChangeOrder()
 			if(!sShareHolder.contains("autre"))
 			{
 				mobileAction.verifyElement(shareholderType, sShareHolder);
-				mobileAction.selectItemFromList(shareholderType, sShareHolder1);
+				//mobileAction.selectItemFromList(shareholderType, sShareHolder1);
 			}
-			else
+/*			else
 			{
 				mobileAction.verifyElementTextContains(shareholderType, "autre");				
 				TradeMultiLeg.get().selectShareholderNeitherFR();
-			}
+			}*/
 			mobileAction.FuncSwipeOnce("up");
 		}
 		
@@ -557,6 +570,9 @@ public void verifyOptionOptionChangeOrder()
 		mobileAction.verifyElementIsDisplayed(importantInfoLink, "importantInfoLink");
 		
 		mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
+		
+		if(mobileAction.isObjExists(agreeButton))
+		mobileAction.FuncClick(agreeButton, "agreeButton");
 		
 		mobileAction.verifyElementIsDisplayed(titleConfirmOrder, "titleConfirmOrder");
 	}
