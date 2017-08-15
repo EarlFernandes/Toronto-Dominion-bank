@@ -244,11 +244,43 @@ public class Between_My_accounts extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[4]")
 	private MobileElement accountVal;
-
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='--From']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/myaccounts_from_account_bal']")
+	private MobileElement fromAccountValue_review;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='--To']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/myaccounts_to_account_bal']")
+	private MobileElement toAccountValue_review;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='-Amount']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/myaccounts_amount_value']")
+	private MobileElement amount_review_can;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='--Amount']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/myaccounts_amount_second_value']")
+	private MobileElement amount_review_us;
+	
+	
+	@iOSFindBy(xpath = "//*[@name='COMMON_RECEIPT_CELL_TITLE_0']/following-sibling::XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_account_bal']")
+	private MobileElement fromAccountValue_receipt;
+	
+	@iOSFindBy(xpath = "//*[@name='COMMON_RECEIPT_CELL_TITLE_1']/following-sibling::XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/to_account_bal']")
+	private MobileElement toAccountValue_receipt;
+	
 	private void Decorator() {
 		PageFactory.initElements(new AppiumFieldDecorator((CL.GetDriver()), new TimeOutDuration(10, TimeUnit.SECONDS)),
 				this);
 
+	}
+	
+	private double convertStringAmount(String amount){
+		String amount_no_char = amount.replaceAll("\\$", "");
+		amount_no_char = amount_no_char.replaceAll("USD", "");
+		amount_no_char = amount_no_char.replaceAll(",", "");
+		return Double.parseDouble(amount_no_char.trim());
 	}
 
 	public void perFormTransfer() {
@@ -1583,22 +1615,93 @@ public class Between_My_accounts extends _CommonPage {
 				+ getTestdata("FromAccount") + "']";
 		double fromAccountval = 0.00;
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				perFormTransfer();
-				fromAccountval = Double.parseDouble(accountVal.getAttribute("value"));
-				System.out.println("Account Value" + fromAccountval);
-				continueButton();
-				FinishButton();
-			} else {
-				perFormTransfer();
-				continueButton();
-				FinishButton();
+			perFormTransfer();
+			continueButton();
+			Decorator();
+			String fromAccountValueBefore = mobileAction.getValue(fromAccountValue_review);
+			String toAccountValueBefore = mobileAction.getValue(toAccountValue_review);	
+			String transferValueCAN = mobileAction.getValue(amount_review_can);
+			String transferValueUS=""; 
+			
+			boolean is_fromaccount_usd =false;
+			boolean is_toaccount_usd = false;
+			if(fromAccountValueBefore.contains("USD")){
+				is_fromaccount_usd = true;
+			}
+			
+			if(toAccountValueBefore.contains("USD")){
+				is_toaccount_usd = true;
+			}
+			
+			if(is_fromaccount_usd || is_toaccount_usd){
+				transferValueUS = mobileAction.getValue(amount_review_us);
+			}
+			
+			double fromAccountValueBefore_d, toAccountValueBefore_d, transferValueCAN_d, transferValueUS_d=0;
+			fromAccountValueBefore_d = convertStringAmount(fromAccountValueBefore);
+			System.out.println("From account value before transfer:" + fromAccountValueBefore_d);
+			toAccountValueBefore_d = convertStringAmount(toAccountValueBefore);
+			System.out.println("To account value before transfer:" + toAccountValueBefore_d);
+			transferValueCAN_d = convertStringAmount(transferValueCAN);
+			System.out.println("transfer amount CAN:" + transferValueCAN_d);
+			if(is_fromaccount_usd || is_toaccount_usd){
+				transferValueUS_d = convertStringAmount(transferValueUS);
+				System.out.println("transfer amount USA:" + transferValueUS_d);
+			}
+			
+			FinishButton();			
+			//Verify amount in Receipt
+			String fromAccountValueAfter = mobileAction.getValue(fromAccountValue_receipt);
+			String toAccountValueAfter = mobileAction.getValue(toAccountValue_receipt);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				fromAccountValueAfter = mobileAction.FuncGetValByRegx(fromAccountValueAfter, "\\$\\d+,*\\d+\\.\\d+");
+				toAccountValueAfter = mobileAction.FuncGetValByRegx(toAccountValueAfter, "\\$\\d+,*\\d+\\.\\d+");
+			}
+			double fromAccountValueAfter_d = convertStringAmount(fromAccountValueAfter);
+			double toAccountValueAfter_d = convertStringAmount(toAccountValueAfter);
+			System.out.println("From account value after transfer:" + fromAccountValueAfter_d);
+			System.out.println("To account value after transfer:" + toAccountValueAfter_d);
+			
+			if(is_fromaccount_usd){
+				System.out.println("From account is USD account");
+				if(fromAccountValueBefore_d == fromAccountValueAfter_d + transferValueUS_d){
+					mobileAction.Report_Pass_Verified("From account value");
+				}else{
+					mobileAction.Report_Fail("From account value not match after transfer");
+				}
+			}else{
+				System.out.println("From account is CAN account");
+				if(fromAccountValueBefore_d == fromAccountValueAfter_d + transferValueCAN_d){
+					mobileAction.Report_Pass_Verified("From account value");
+				}else{
+					mobileAction.Report_Fail("From account value not match after transfer");
+				}
+			}
+			
+			if(is_toaccount_usd){
+				System.out.println("To account is USD account");
+				if(toAccountValueBefore_d == toAccountValueAfter_d + transferValueUS_d){
+					mobileAction.Report_Pass_Verified("To account value");
+				}else{
+					mobileAction.Report_Fail("To account value does't match after transfer");
+				}
+			}else{
+				System.out.println("To account is CAN account");
+				if(toAccountValueBefore_d == toAccountValueAfter_d + transferValueCAN_d){
+					mobileAction.Report_Pass_Verified("To account value");
+				}else{
+					mobileAction.Report_Fail("To account value does't match after transfer");
+				}
+			}
+			
+			fromAccountval = fromAccountValueAfter_d;
+			if(!is_fromaccount_usd && !is_toaccount_usd){
 				mobileAction.FuncClick(btnMenu, "Menu");
 				mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
 				mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList, verify_from_acnt, 5, "down", true);
 				mobileAction.verifyElementIsDisplayed(verifyAmount, "Verify Amount");
 			}
-
+			
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
