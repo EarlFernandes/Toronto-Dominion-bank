@@ -36,7 +36,7 @@ public class MyspendPreferences extends com.td._CommonPage {
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'OFF')]")
 	private List<MobileElement> offButtons;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Account Preferences') or contains(@label,'Paramètres du compte')]")
+	@iOSFindBy(xpath = "//*[contains(@label,'Account Preferences') or contains(@label,'Paramètres du compte') or contains(@label,'Preferences')]")
 	private MobileElement pageHeader;
 
 	@FindBy(xpath = "//*[contains(@ng-model,'isFWMOn')]")
@@ -45,7 +45,7 @@ public class MyspendPreferences extends com.td._CommonPage {
 	@FindBy(xpath = "//*[contains(@ng-model,'isFWMOn')]")
 	private List<WebElement> offButtonsAndroid;
 
-	@FindBy(xpath = "//*[text()='Account Preferences' or text()='Paramètres du compte']")
+	@FindBy(xpath = "//*[text()='Account Preferences' or text()='Paramètres du compte' or text()='Preferences']")
 	private WebElement pageHeaderAndroid;
 
 	private void Decorator() {

@@ -82,9 +82,11 @@ public class SpendingByCategory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category')]")
 	private MobileElement transactionCategory;
 
+	@iOSFindBy(xpath = "//*[contains(@label,'All Categories Spending Details') or contains(@label,'Wants Spending Details') or contains(@label,'Needs Spending Details')]/following-sibling::XCUIElementTypeOther[3]")
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category')]/following-sibling::android.view.View")
 	private MobileElement transactionName;
 
+	@iOSFindBy(xpath = "//*[contains(@label,'All Categories Spending Details') or contains(@label,'Wants Spending Details') or contains(@label,'Needs Spending Details')]/following-sibling::XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category')]/following-sibling::android.view.View/android.view.View[contains(@content-desc,'$')]")
 	private MobileElement amount;
 

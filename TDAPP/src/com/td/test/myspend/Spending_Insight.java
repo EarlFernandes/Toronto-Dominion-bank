@@ -44,8 +44,8 @@ public class Spending_Insight extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Accounts Selected')]")
 	private MobileElement accountSelected;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'MONEY PATH') or contains(@label,'Trajectoire financière')]")
-	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'MONEY PATH') or contains(@content-desc,'Trajectoire financière')]")
+	@iOSFindBy(xpath = "//*[contains(@label,'MONEY PATH') or contains(@label,'Trajectoire financière') or contains(@label,'Money Path')]")
+	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'MONEY PATH') or contains(@content-desc,'Trajectoire financière') or contains(@content-desc,'Money Path')]")
 	private MobileElement moneyPathButton;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Logout') or contains(@label,'Fermer la session')]")
@@ -87,7 +87,7 @@ public class Spending_Insight extends _CommonPage {
 	@FindBy(xpath = "//*[contains(@class,'numberAccountsText')]")
 	private WebElement noAccountSelectedAndroid;
 
-	static int spendingMiddleY = 0;
+	int spendingMiddleY = 0;
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -422,7 +422,7 @@ public class Spending_Insight extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(spendingByCategoryBtn, "Spending by category button");
 				mobileAction.verifyElementIsDisplayed(transactionHistoryBtn, "Transaction history Button");
 				mobileAction.verifyElementIsDisplayed(moneyPathButton, "MoneyPath Button");
-				mobileAction.verifyElementIsDisplayed(spendingHistoryBtn, "Spending History button");
+				//mobileAction.verifyElementIsDisplayed(spendingHistoryBtn, "Spending History button");
 				mobileAction.FuncClick(homeBtn, "Home Button");
 			}
 

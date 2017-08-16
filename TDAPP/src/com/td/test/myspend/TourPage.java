@@ -57,7 +57,7 @@ public class TourPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'TD MySpend is ready to go')]")
 	private MobileElement MySpendReadyToGo;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'See the TD MySpend') or contains(@label,'Pour en savoir plus')]")
+	@iOSFindBy(xpath = "//*[contains(@label,'See the TD MySpend') or contains(@label,'Pour en savoir plus')]")
 	@AndroidFindBy(xpath = "//android.view.View[@resource-id='fxMsgHeader']")
 	private MobileElement fxMsgHeader;
 
@@ -137,19 +137,23 @@ public class TourPage extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(continueBtn, "Continue");
-			mobileAction.FuncClick(continueBtn, "Continue");
-			mobileAction.FuncClick(getStartedBtn, "Get Started");
-			mobileAction.waitForElementToVanish(progresssBar);
-			mobileAction.FuncClick(acceptBtn, "Accept");
-			mobileAction.waitForElementToVanish(progresssBar);
-			mobileAction.FuncClick(openTDMySpend, "Open TD My Spend");
+			if(mobileAction.verifyElementIsPresent(continueBtn)){
+				mobileAction.FuncClick(continueBtn, "Continue");
+				mobileAction.FuncClick(continueBtn, "Continue");
+				mobileAction.FuncClick(getStartedBtn, "Get Started");
+				mobileAction.waitForElementToVanish(progresssBar);
+				mobileAction.FuncClick(acceptBtn, "Accept");
+				mobileAction.waitForElementToVanish(progresssBar);
+				mobileAction.FuncClick(openTDMySpend, "Open TD My Spend");
+			}
 			mobileAction.FunctionSwipe("Left", 200, 200);
 			mobileAction.FunctionSwipe("Left", 200, 200);
 			mobileAction.FunctionSwipe("Left", 200, 200);
 			mobileAction.FunctionSwipe("Left", 200, 200);
-			mobileAction.FuncClick(MySpendReadyToGo, "TD My Spend is ready to go");
-			if (mobileAction.verifyElementIsPresent(fxMsgHeader)) {
+			if (mobileAction.verifyElementIsPresent(MySpendReadyToGo)) {
+				mobileAction.FuncClick(MySpendReadyToGo, "TD My Spend is ready to go");
+			}
+			else if (mobileAction.verifyElementIsPresent(fxMsgHeader)) {
 				mobileAction.FuncClick(okBtn, "OK");
 			}
 
