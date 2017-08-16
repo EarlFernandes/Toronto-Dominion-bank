@@ -220,7 +220,7 @@ public class MenuPage extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				home_button = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
-								+ mobileAction.getAppString("logoutSuccessQuickTaskHome") + "']",
+								+ mobileAction.getAppString("str_HOME") + "']",
 						"Home");
 			}
 			mobileAction.FuncClick(home_button, "Home");
@@ -820,7 +820,7 @@ public class MenuPage extends _CommonPage {
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
-								+ mobileAction.getAppString("logoutSuccessQuickTaskHome") + "']",
+								+ mobileAction.getAppString("str_HOME") + "']",
 						"Home");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
@@ -835,11 +835,14 @@ public class MenuPage extends _CommonPage {
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
 								+ mobileAction.getAppString("str_CrossBorder") + "']",
 						"Cross Border Banking");
-				mobileAction
-						.verifyElementUsingXPath(
-								"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
-										+ mobileAction.getAppString("logoutSuccessQuickTaskFindLocations") + "']",
-								"Locations");
+				// mobileAction
+				// .verifyElementUsingXPath(
+				// "//android.widget.TextView[@resource-id='com.td:id/navText'
+				// and @text='"
+				// +
+				// mobileAction.getAppString("logoutSuccessQuickTaskFindLocations")
+				// + "']",
+				// "Locations");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
 								+ mobileAction.getAppString("str_My_Accounts") + "']",

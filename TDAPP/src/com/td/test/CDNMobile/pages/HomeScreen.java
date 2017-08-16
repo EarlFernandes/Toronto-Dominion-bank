@@ -106,11 +106,13 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/your_location_text_view']")
 	private MobileElement nearByLoaction;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/viewing_text_view' and @text='Nearby']")
-	private MobileElement viewingDetail;
-
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/chevron_button_up']")
-	private MobileElement chevron_Button;
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/following-sibling::XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_location']")
+	private MobileElement searchLocation;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[2]")
+	@AndroidFindBy(xpath = "//*[@content-desc='Filter Locations']")
+	private MobileElement filter_locations_Button;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/zone_name'][1]")
 	private MobileElement zone_Name;
@@ -754,7 +756,7 @@ public class HomeScreen extends _CommonPage {
 		try {
 			mobileAction.FuncClick(dashboard_Location, "Locations");
 			mobileAction.waitForElementToVanish(progressBar);
-			mobileAction.verifyElementIsDisplayed(locationheader, "Locations header not present");
+			mobileAction.verifyElementIsDisplayed(locationheader, "Find Locations header present");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -786,29 +788,13 @@ public class HomeScreen extends _CommonPage {
 	public void verifyLocations() {
 		Decorator();
 		try {
-			if (mobileAction.verifyElementIsPresent(continueBtn)) {
-				mobileAction.FuncClick(continueBtn, "Continue Button");
-				mobileAction.FuncClick(get_Started, "Get Started");
-				mobileAction.FuncClick(accept, "Accept Button");
-				mobileAction.waitForElementToVanish(progressBar);
-			}
-			mobileAction.verifyElement(viewingDetail, "Nearby");
-			mobileAction.FuncClick(chevron_Button, "Chevron Button");
-			mobileAction.FunctionSwipe("Up", 100, 0);
-			String addr = mobileAction.getText(zone_Name);
-			mobileAction.FuncClick(zone_Name, "Zone Name");
-			mobileAction.waitForElementToVanish(progressBar);
-			mobileAction.verifyElement(zone_Header, addr);
+
+			mobileAction.verifyElementIsDisplayed(filter_locations_Button, "Filter Locations");
+			mobileAction.verifyElementIsDisplayed(searchLocation, "Search Location");
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
@@ -1400,7 +1386,7 @@ public class HomeScreen extends _CommonPage {
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("terms_of_use") + "']",
 						"Terms of Use");
 				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("dashboard_nearest_branch_lbl")
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("dashboard_nearest_branch_label")
 								+ "' or @text='" + mobileAction.getAppString("dashboard_find_locations") + "']",
 						"Nearest Branch");
 				mobileAction

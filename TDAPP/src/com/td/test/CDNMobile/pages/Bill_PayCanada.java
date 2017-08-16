@@ -91,8 +91,8 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement menu;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Pay Bill']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and contains(@text,'Pay Bill')]")
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement payBill_Header;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title'and @text='My Accounts']")
@@ -111,8 +111,8 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee'and @text='Add Canadian Payee']")
 	private MobileElement addCanada_Payee;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	private MobileElement progrees_bar;
+//	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+//	private MobileElement progrees_bar;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Search for Canadian payees']")
 	@AndroidFindBy(xpath = "//*[@text='Search for Canadian payees']")
@@ -160,19 +160,31 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtAccessCard']")
 	private MobileElement accesscard;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[3]")
+	@iOSFindBy(xpath = "//*[@name='PAYBILL_VIEW_FROM']/../XCUIElementTypeStaticText[3]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtFromAccount']")
 	private MobileElement AcntVal;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[3]")
+	@iOSFindBy(xpath = "//*[@name='PAYBILL_VIEW_PAYEE']/../XCUIElementTypeStaticText[3]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
 	private MobileElement PayeVal;
+	
+	@iOSFindBy(xpath = "//*[@name='PAYBILL_VIEW_PAYEE']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
+	private MobileElement PaySelection;
+	
+	@iOSFindBy(xpath = "//*[@label='PAYEE']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title']")
+	private MobileElement PayeePopUp;
+	
+	@iOSFindBy(xpath = "//*[@label='CANCEL']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/dialog_button']")
+	private MobileElement PayeePopUp_Cancel;
 
 	@iOSFindBy(xpath = " //XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeStaticText[@label='ACCESS CARD']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title' and @text='Access Card']")
 	private MobileElement accesscardTableHeader;
 
-	@iOSFindBy(xpath = " //XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//*[@label='ACCESS CARD']/../../XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
 	// @AndroidFindBy(xpath =
 	// "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard' and
 	// @index='1']/following::@index='0'[1]")
@@ -204,7 +216,7 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement PayBillQuickAccess;
 
 	@iOSFindBy(xpath = "//*[@label='Add Canadian Payee']")
-	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Add Canadian Payee')]")
+	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Add Canadian Payee')] | //android.widget.TextView[contains(@content-desc,'Add Canadian Payee')]")
 	private MobileElement addCanadianPayee;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay With Rewards']")
@@ -279,7 +291,7 @@ public class Bill_PayCanada extends _CommonPage {
 				Decorator();
 				Thread.sleep(2000);
 				amount.sendKeys(Amount);
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.FuncClick(pay_bill, "Pay Bill");
@@ -396,10 +408,10 @@ public class Bill_PayCanada extends _CommonPage {
 								+ mobileAction.getAppString("review_details_title") + "']",
 						"Confirm title");
 				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferConfirmFrom") + "']",
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("receipt_from") + "']",
 						"From");
 				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("eTransferConfirmTo") + "']",
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("payBillDropdownHeaderPayee") + "']",
 						"To");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("date") + "']", "Date");
@@ -443,7 +455,7 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 				} else {
 					mobileAction.FuncHideKeyboard();
 				}
@@ -567,21 +579,39 @@ public class Bill_PayCanada extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				for (int i = 0; i < accountValue.length; i++) {
 					String AccountVal = AcntVal.getAttribute("label");
+					System.out.println("AccountVal:"+AccountVal);
 					mobileAction.verifyTextEquality(accountValue[i], AccountVal);
-					String payeeValue = PayeVal.getAttribute("label");
-					mobileAction.verifyTextEquality(payee, payeeValue);
+					//Verify Payee dropdown
+					mobileAction.FuncClick(PaySelection, "Payee");
+					mobileAction.verifyElementIsDisplayed(PayeePopUp, "Payee drop Down");
+					if(mobileAction.verifyElementIsPresent(PayeePopUp_Cancel)){
+						mobileAction.FuncClick(PayeePopUp_Cancel, "Payee Popup Cancel");
+					}else{
+						//This is just for iPad
+						System.out.println("Click Back for iPAD to Cancel the Popup window");
+						mobileAction.FuncClickBackButton();
+					}
 					mobileAction.FuncClick(accesscard, "Access Card");
-					mobileAction.verifyElementUsingXPath("XCUIElementTypeStaticText[@value='ACCESS CARD']",
-							"ACCESS CARD TITLE");
+					mobileAction.FuncClick(selectSecondAccessCard, "Select Access Card from Access card table");
+
 				}
 
 			} else {
 
 				for (int i = 0; i < accountValue.length; i++) {
 					String AccountVal = AcntVal.getText();
+					System.out.println("AccountVal:"+AccountVal);
 					mobileAction.verifyElementTextContains(AcntVal, accountValue[i]);
-					String payeeValue = PayeVal.getText();
-					mobileAction.verifyElementTextContains(PayeVal, payeeValue);
+					//Verify Payee dropdown
+					mobileAction.FuncClick(PaySelection, "Payee");
+					mobileAction.verifyElementIsDisplayed(PayeePopUp, "Payee drop Down");
+					if(mobileAction.verifyElementIsPresent(PayeePopUp_Cancel)){
+						mobileAction.FuncClick(PayeePopUp_Cancel, "Payee Popup Cancel");
+					}else{
+						//This is just for tablet
+						System.out.println("Click Back for tablet to Cancel the Popup window");
+						mobileAction.FuncClickBackButton();
+					}
 					mobileAction.FuncClick(accesscard, "Access Card");
 					mobileAction.FuncClick(selectSecondAccessCard, "Select Access Card from Access card table");
 				}
@@ -606,25 +636,31 @@ public class Bill_PayCanada extends _CommonPage {
 
 		Decorator();
 		try {
+			mobileAction.FuncClick(from_account_post, "From Account");
+			String transfer_fromAccount = getTestdata("FromAccount");
+			System.out.println("From Account:" + transfer_fromAccount);
+			String account_value="";
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// mobileAction.FuncClick(from_account_post, "From Account");
-				// mobileAction.FuncClick(to_account_post, "Select Payee");
-				// mobileAction.FuncClick(done, "Done");
+				account_value= "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[contains(@label,'"
+						+ transfer_fromAccount + "')]";
 
+			}else{
+				account_value = "//*[contains(@text,'" + transfer_fromAccount
+				+ "') or contains(@content-desc,'" + transfer_fromAccount + "')]";
 			}
 
-			mobileAction.FuncClick(from_account_post, "From Account");
-
-			System.out.println("From Account:" + getTestdata("FromAccount"));
-			String account_value = "//*[contains(@text,'" + getTestdata("FromAccount")
-					+ "') or contains(@content-desc,'" + getTestdata("FromAccount") + "')]";
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 			// mobileAction.FuncClick(frm_acnt_post, "fromAccountPost");
 
 			mobileAction.FuncClick(to_account_post, "Select Payee");
-			account_value = "//*[contains(@text,'" + getTestdata("ToAccount") + "') or contains(@content-desc,'"
-					+ getTestdata("ToAccount") + "')]";
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				account_value = "//*[contains(@label, '" + getTestdata("ToAccount") + "')]";
+			} else {
+				account_value = "//*[contains(@text,'" + getTestdata("ToAccount") + "') or contains(@content-desc,'"
+						+ getTestdata("ToAccount") + "')]";
+			}
 
 			MobileElement toAccountval = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(account_value));
 
@@ -637,15 +673,16 @@ public class Bill_PayCanada extends _CommonPage {
 			String ValueofAmount = getTestdata("Amount");
 			mobileAction.FuncSendKeys(amount, ValueofAmount);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}
 
 			mobileAction.FuncClick(date, "Date");
-
+			
 			String date1 = String.valueOf(GetDate.get().getTomorrowsDate());
 			System.out.println("Tomorrow is:" + date1);
+
 			// String post_date = "//android.view.View[@content-desc='" + date +
 			// "']";
 			// mobileAction.findElementByXpathAndClick(post_date);
@@ -683,7 +720,7 @@ public class Bill_PayCanada extends _CommonPage {
 			Thread.sleep(5000);
 			mobileAction.FuncClick(to_account_post, "Select Payee");
 			mobileAction.FuncClick(addCanada_Payee, "Add CanadaPayee");
-			mobileAction.waitForElementToVanish(progrees_bar);
+			mobileAction.waitForElementToVanish(progressBar);
 			Thread.sleep(5000);
 			mobileAction.FuncClick(search_bar, "SearchforCanadianPayees");
 			String search_bar_value = getTestdata("Search");
@@ -691,14 +728,14 @@ public class Bill_PayCanada extends _CommonPage {
 
 			mobileAction.FuncSendKeys(search_bar, search_bar_value);
 
-			mobileAction.waitForElementToVanish(progrees_bar);
+			mobileAction.waitForElementToVanish(progressBar);
 
 			String merchant_value = getTestdata("MerchantName");
 			String merchant_name_value = merchant_name + merchant_value + "')]";
 			CL.GetDriver().findElement(By.xpath(merchant_name_value)).click();
 			Thread.sleep(5000);
 
-			mobileAction.waitForElementToVanish(progrees_bar);
+			mobileAction.waitForElementToVanish(progressBar);
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -744,7 +781,7 @@ public class Bill_PayCanada extends _CommonPage {
 			// clear why this doesn't work fro IOS at this case
 			amount.sendKeys(Amount);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}
@@ -796,7 +833,7 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.verifyTextEquality(amountVal, amtVal[0]);
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				mobileAction.FuncSendKeys(amount, amtVal[1]);
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 
 			}
 
@@ -848,7 +885,7 @@ public class Bill_PayCanada extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(backButton, "Back Button");
 			} else {
-				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClickBackButton();
 			}
 			Bills.get().verifyBillHeader();
 
@@ -952,7 +989,7 @@ public class Bill_PayCanada extends _CommonPage {
 				Decorator();
 				Thread.sleep(2000);
 				amount.sendKeys(Amount);
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.FuncClick(cancelBtn, "Cancel");
@@ -1024,7 +1061,7 @@ public class Bill_PayCanada extends _CommonPage {
 			amount.sendKeys(Amount);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}
@@ -1074,6 +1111,7 @@ public class Bill_PayCanada extends _CommonPage {
 			String payeeAccount = getTestdataOtherSheet("FromAccount", "Payment");
 
 			Decorator();
+			selectPayee();
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
@@ -1081,12 +1119,8 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				Thread.sleep(10000);
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
-				// mobileAction.FuncSendKeys(amount, Amount);
-				mobileAction.FuncClick(done, "Done");
-				// String PaybillDate = currDate.getAttribute("Date");
-				// boolean validateDate=!PaybillDate.isEmpty();
-				// String dateValue=validateDate?"Same":"Not Same";
-				// mobileAction.verifyTextEquality(dateValue, "Same");
+				mobileAction.FuncClickDone();
+
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.FuncClick(pay_bill, "Pay Bill");
@@ -1171,7 +1205,7 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				String Amount = getTestdata("Amount");
 				mobileAction.FuncSendKeys(amount, Amount);
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
 				Thread.sleep(3000);
 				mobileAction.FuncClick(pay_bill, "Pay Bill");

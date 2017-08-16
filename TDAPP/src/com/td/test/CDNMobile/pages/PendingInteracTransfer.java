@@ -41,7 +41,7 @@ public class PendingInteracTransfer extends _CommonPage {
 	private MobileElement pendingTransfer_Header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@value,'Select sender')]")
-	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/layout_etransfer_sender_layout']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_sender']")
 	private MobileElement selectSender;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='-Balance-' or @label='-Balance'][1]")
@@ -411,6 +411,7 @@ public class PendingInteracTransfer extends _CommonPage {
 		Decorator();
 
 		String sender_selectSender = getTestdata("Sender");
+		System.out.println("Sender:"+sender_selectSender);
 		String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]"; // changed
 																												// by
 																												// rashmi
@@ -909,6 +910,7 @@ public class PendingInteracTransfer extends _CommonPage {
 			} else {
 				mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
 				if (mobileAction.verifyElementIsPresent(selectSender)) {
+					System.out.println("Select sender:"+ sender_selectSender);
 					mobileAction.FuncClick(selectSender, "sender");
 					mobileAction.waitForElementToVanish(progressBar);
 					mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 2, "down", true);

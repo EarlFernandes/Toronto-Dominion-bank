@@ -360,7 +360,7 @@ public class TradeMIT extends _CommonPage {
 				mobileAction.FuncSelectElementInTable(action_table, Firstpart, Secondpart, actionToPerform);
 				mobileAction.FuncClick(selectQuantity, "quantity");
 				mobileAction.FuncSendKeys(selectQuantity, quantity);
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 
 				mobileAction.FuncClick(selectPrice, "Price selected");
 
@@ -375,7 +375,7 @@ public class TradeMIT extends _CommonPage {
 				mobileAction.FuncClick(trading_pwd, "Trading_Pwd");
 
 				mobileAction.FuncSendKeys(trading_pwd, trading_pwd_value);
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 
 				mobileAction.FuncClick(preview_order, "preview_Order");
 
@@ -429,7 +429,7 @@ public class TradeMIT extends _CommonPage {
 				mobileAction.FuncSelectElementInTable(action_table, Firstpart, Secondpart, actionToPerform);
 				mobileAction.FuncClick(selectQuantity, "quantity");
 				mobileAction.FuncSendKeys(selectQuantity, quantity);
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 
 				mobileAction.FuncClick(selectPrice, "Price selected");
 
@@ -437,7 +437,7 @@ public class TradeMIT extends _CommonPage {
 				mobileAction.FuncSelectElementInTable(price_table, Firstpart, Secondpart, price_value);
 				mobileAction.FuncClick(selectLimitPrice, "Limit price selected");
 				mobileAction.FuncSendKeys(selectLimitPrice, limitPrice);
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 
 				mobileAction.FuncClick(btngood, "Good 'til");
 				String goodtil_value = getTestdata("Good'til", "UserIDs");
@@ -447,7 +447,7 @@ public class TradeMIT extends _CommonPage {
 				mobileAction.FuncClick(trading_pwd, "Trading_Pwd");
 
 				mobileAction.FuncSendKeys(trading_pwd, trading_pwd_value);
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 
 				mobileAction.FuncClick(preview_order, "preview_Order");
 
@@ -555,7 +555,7 @@ public class TradeMIT extends _CommonPage {
 				mobileAction.FuncSelectElementInTable(action_table, Firstpart, Secondpart, actionToPerform);
 				mobileAction.FuncClick(selectQuantity, "quantity");
 				mobileAction.FuncSendKeys(selectQuantity, quantity);
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 
 				mobileAction.FuncClick(selectPrice, "Price selected");
 
@@ -574,7 +574,7 @@ public class TradeMIT extends _CommonPage {
 
 				String trading_pwd_value = getTestdata("Trading_Pwd", "UserIDs");
 				mobileAction.FuncSendKeys(trading_pwd, trading_pwd_value);
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 
 				mobileAction.FuncClick(preview_order, "preview_Order");
 
@@ -604,7 +604,7 @@ public class TradeMIT extends _CommonPage {
 				mobileAction.FuncSelectElementInTable(action_table, Firstpart, Secondpart, actionToPerform);
 				mobileAction.FuncClick(selectQuantity, "quantity");
 				mobileAction.FuncSendKeys(selectQuantity, quantity);
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 
 				mobileAction.FuncClick(selectPrice, "Price selected");
 
@@ -624,7 +624,7 @@ public class TradeMIT extends _CommonPage {
 
 				String trading_pwd_value = getTestdata("Trading_Pwd", "UserIDs");
 				mobileAction.FuncSendKeys(trading_pwd, trading_pwd_value);
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 
 				mobileAction.FuncClick(preview_order, "preview_Order");
 
@@ -735,7 +735,7 @@ public class TradeMIT extends _CommonPage {
 								.xpath("//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[7]/XCUIElementTypeTextField[1]"))
 						.sendKeys("10");
 
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				if (quantityType.equalsIgnoreCase("Units")) {
 					mobileAction.FuncClick(includesCommissionNo, "Include Commission No");
 				} else {
@@ -747,7 +747,7 @@ public class TradeMIT extends _CommonPage {
 				mobileAction.FuncSelectElementInTable(dividend_Table, Firstpart, Secondpart, dividendOption);
 				mobileAction.FuncClick(trading_pwd, "Trading Password");
 				mobileAction.FuncSendKeys(trading_pwd, trading_pwd_value);
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(preview_order, "preview_Order");
 				mobileAction.waitForElementToVanish(progresssBar);
 				mobileAction.FuncClick(AgreeButton, "Clicked on agree button");
