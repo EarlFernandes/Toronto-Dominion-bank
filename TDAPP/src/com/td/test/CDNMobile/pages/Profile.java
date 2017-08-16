@@ -22,8 +22,6 @@ public class Profile extends _CommonPage {
 
 	private static Profile Profile;
 
-//	String profileStr = "Profile | Profil";
-//	String contactInfo = "CONTACT INFORMATION | COORDONNÉES";
 	String profileScrollView = "//android.widget.ScrollView[@resource-id='com.td:id/scrollView']";
 	String emailReg = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
 	String androidphoneReg = "\\(\\•{3}\\)\\•{3}-\\d{4}";
@@ -88,7 +86,6 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/user']")
 	private MobileElement name_detail;
 
-//	@iOSFindBy(xpath = "//*[@label='Save' or @label='Enregistrer']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_primary']")
 	private MobileElement save_button;
 
@@ -96,7 +93,7 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
 	private MobileElement error_message;
 
-	@iOSFindBy(xpath = "//*[@id='Retour']")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement back_arrow;
 
@@ -1214,12 +1211,10 @@ public class Profile extends _CommonPage {
 		String back_xpath = "";
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				// back_xpath =
-				// "//android.widget.ImageView[@resource-id='android:id/up']";
 				mobileAction.FuncClickBackButton();
 			} else {
-				back_xpath = "//*[@label='Back' or @label='Retour']";
-				MobileElement back_arrow = (MobileElement) CL.GetDriver().findElement(By.xpath(back_xpath));
+//				back_xpath = "//*[@label='Back' or @label='Retour']";
+//				MobileElement back_arrow = (MobileElement) CL.GetDriver().findElement(By.xpath(back_xpath));
 				mobileAction.FuncClick(back_arrow, "<");
 			}
 
