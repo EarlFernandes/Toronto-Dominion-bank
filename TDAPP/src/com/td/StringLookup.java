@@ -26,7 +26,15 @@ public class StringLookup {
 	public static final String PROFILE_AND_PREFERENCE="Profile & Settings";
 	public static final String PREFERENCE_QUICK_ACCESS_SETTINGS="Quick Access Settings";
 	public static final String PREFERENCE_QUICK_ACCESS_SWITCH_AND="Quick Access Switch";
-	
+	public static final String CONTACT_INFORMATION = "Contact Information";
+	public static final String HOME_PHONE = "Home Phone";
+	public static final String WORK_PHONE = "WORK Phone";
+	public static final String MOBILE_PHONE = "Mobile Phone";
+	public static final String BUSINESS_PHONE = "Business Phone";
+	public static final String FAX_NUMBER = "Fax Number";
+	public static final String EXTENSION_NUMBER = "Extension Number";
+	public static final String SAVE_BUTTON = "Save Button";
+	public static final String CLEAR_PHONE_ICON ="Clear Phone Icon";
 	
 	private static final Map<String, String> mapEN;
 	private static final Map<String, String> mapFR;
@@ -59,6 +67,15 @@ public class StringLookup {
 		aMap.put(PROFILE_AND_PREFERENCE, StringArray.ARRAY_PROFILE_AND_PREFERENCE[0]);
 		aMap.put(PREFERENCE_QUICK_ACCESS_SETTINGS, StringArray.ARRAY_QUICK_ACCESS_SETTINGS[0]);
 		aMap.put(PREFERENCE_QUICK_ACCESS_SWITCH_AND, StringArray.ARRAY_QUICK_ACCESS_SWITCH_AND[0]);
+		aMap.put(CONTACT_INFORMATION, StringArray.ARRAY_MF_CONTACT_INFO[0]);
+		aMap.put(HOME_PHONE, StringArray.ARRAY_HOME_PHONE[0]);
+		aMap.put(WORK_PHONE, StringArray.ARRAY_WORK_PHONE[0]);
+		aMap.put(MOBILE_PHONE, StringArray.ARRAY_MOBILE_PHONE[0]);
+		aMap.put(BUSINESS_PHONE, StringArray.ARRAY_BUSINESS_PHONE[0]);
+		aMap.put(FAX_NUMBER, StringArray.ARRAY_FAX_NUMBER[0]);
+		aMap.put(EXTENSION_NUMBER, StringArray.ARRAY_EXTENSION_NUMBER[0]);
+		aMap.put(SAVE_BUTTON, StringArray.ARRAY_SAVE_BUTTON[0]);
+		aMap.put(CLEAR_PHONE_ICON, StringArray.ARRAY_CLEAR_PHONE_ICON[0]);
 		mapEN = Collections.unmodifiableMap(aMap);
 		bMap.put(INVESTING_ACCOUNTS, StringArray.ARRAY_INVESTING_ACCOUNTS[1]);
 		bMap.put(MOBILE_PAYMENT,StringArray.ARRAY_MOBILE_PAYMENT[1]);
@@ -75,6 +92,15 @@ public class StringLookup {
 		bMap.put(PROFILE_AND_PREFERENCE, StringArray.ARRAY_PROFILE_AND_PREFERENCE[1]);
 		bMap.put(PREFERENCE_QUICK_ACCESS_SETTINGS, StringArray.ARRAY_QUICK_ACCESS_SETTINGS[1]);
 		bMap.put(PREFERENCE_QUICK_ACCESS_SWITCH_AND, StringArray.ARRAY_QUICK_ACCESS_SWITCH_AND[1]);
+		bMap.put(CONTACT_INFORMATION, StringArray.ARRAY_MF_CONTACT_INFO[1]);
+		bMap.put(HOME_PHONE, StringArray.ARRAY_HOME_PHONE[1]);
+		bMap.put(WORK_PHONE, StringArray.ARRAY_WORK_PHONE[1]);
+		bMap.put(MOBILE_PHONE, StringArray.ARRAY_MOBILE_PHONE[1]);
+		bMap.put(BUSINESS_PHONE, StringArray.ARRAY_BUSINESS_PHONE[1]);
+		bMap.put(FAX_NUMBER, StringArray.ARRAY_FAX_NUMBER[1]);
+		bMap.put(EXTENSION_NUMBER, StringArray.ARRAY_EXTENSION_NUMBER[1]);
+		bMap.put(SAVE_BUTTON, StringArray.ARRAY_SAVE_BUTTON[1]);
+		bMap.put(CLEAR_PHONE_ICON, StringArray.ARRAY_CLEAR_PHONE_ICON[1]);
 		mapFR = Collections.unmodifiableMap(bMap);
 		cMap.put(INVESTING_ACCOUNTS, StringArray.ARRAY_INVESTING_ACCOUNTS[2]);
 		cMap.put(MOBILE_PAYMENT, StringArray.ARRAY_MOBILE_PAYMENT[2]);
@@ -93,6 +119,15 @@ public class StringLookup {
 		cMap.put(PROFILE_AND_PREFERENCE, StringArray.ARRAY_PROFILE_AND_PREFERENCE[2]);
 		cMap.put(PREFERENCE_QUICK_ACCESS_SETTINGS, StringArray.ARRAY_QUICK_ACCESS_SETTINGS[2]);
 		cMap.put(PREFERENCE_QUICK_ACCESS_SWITCH_AND, StringArray.ARRAY_QUICK_ACCESS_SWITCH_AND[2]);
+		cMap.put(CONTACT_INFORMATION, StringArray.ARRAY_MF_CONTACT_INFO[2]);
+		cMap.put(HOME_PHONE, StringArray.ARRAY_HOME_PHONE[2]);
+		cMap.put(WORK_PHONE, StringArray.ARRAY_WORK_PHONE[2]);
+		cMap.put(MOBILE_PHONE, StringArray.ARRAY_MOBILE_PHONE[2]);
+		cMap.put(BUSINESS_PHONE, StringArray.ARRAY_BUSINESS_PHONE[2]);
+		cMap.put(FAX_NUMBER, StringArray.ARRAY_FAX_NUMBER[2]);
+		cMap.put(EXTENSION_NUMBER, StringArray.ARRAY_EXTENSION_NUMBER[2]);
+		cMap.put(SAVE_BUTTON, StringArray.ARRAY_SAVE_BUTTON[2]);
+		cMap.put(CLEAR_PHONE_ICON, StringArray.ARRAY_CLEAR_PHONE_ICON[2]);
 		mapZHHANS = Collections.unmodifiableMap(cMap);
 		dMap.put(INVESTING_ACCOUNTS, StringArray.ARRAY_INVESTING_ACCOUNTS[3]);
 		dMap.put(MOBILE_PAYMENT,StringArray.ARRAY_MOBILE_PAYMENT[3] );
@@ -111,6 +146,15 @@ public class StringLookup {
 		dMap.put(PROFILE_AND_PREFERENCE, StringArray.ARRAY_PROFILE_AND_PREFERENCE[3]);
 		dMap.put(PREFERENCE_QUICK_ACCESS_SETTINGS, StringArray.ARRAY_QUICK_ACCESS_SETTINGS[3]);
 		dMap.put(PREFERENCE_QUICK_ACCESS_SWITCH_AND, StringArray.ARRAY_QUICK_ACCESS_SWITCH_AND[3]);
+		dMap.put(CONTACT_INFORMATION, StringArray.ARRAY_MF_CONTACT_INFO[3]);
+		dMap.put(HOME_PHONE, StringArray.ARRAY_HOME_PHONE[3]);
+		dMap.put(WORK_PHONE, StringArray.ARRAY_WORK_PHONE[3]);
+		dMap.put(MOBILE_PHONE, StringArray.ARRAY_MOBILE_PHONE[3]);
+		dMap.put(BUSINESS_PHONE, StringArray.ARRAY_BUSINESS_PHONE[3]);
+		dMap.put(FAX_NUMBER, StringArray.ARRAY_FAX_NUMBER[3]);
+		dMap.put(EXTENSION_NUMBER, StringArray.ARRAY_EXTENSION_NUMBER[3]);
+		dMap.put(SAVE_BUTTON, StringArray.ARRAY_SAVE_BUTTON[3]);
+		dMap.put(CLEAR_PHONE_ICON, StringArray.ARRAY_CLEAR_PHONE_ICON[3]);
 		mapZHHANT = Collections.unmodifiableMap(dMap);
 	}
 

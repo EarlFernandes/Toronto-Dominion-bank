@@ -95,4 +95,13 @@ public final class StringArray {
 	public static final String[] ARRAY_ALLOW_CONTACTS_REFUSE ={"Cancel","Non","不允许","不允許"};
 	public static final String[] ARRAY_ALLOW_CONTACTS_ACCESS_HEADER ={"","","“TD Canada”想访问您的通讯录","“TD Canada”想訪問您的通訊錄"};
 	public static final String[] ARRAY_ALLOW_CONTACTS_ACCCESS_BODY ={"","","用于读取联系人信息以添加 Interac 电子转账收款人，以及添加道明服务代表为联系人。","用於讀取聯繫人信息以添加 Interac 電子轉賬收款人，以及添加道明服務代表為聯繫人。"};
+	public static final String[] ARRAY_HOME_PHONE ={"Home Phone","N° de tél. (domicile)","好","好"};
+	public static final String[] ARRAY_WORK_PHONE ={"Work Phone","No de tél. (travail)","好","好"};
+	public static final String[] ARRAY_MOBILE_PHONE ={"Mobile Phone","N° de tél. (cell.)","好","好"};
+	public static final String[] ARRAY_BUSINESS_PHONE ={"Business Phone","N° de tél. (entreprise)","公司电话","好"};
+	public static final String[] ARRAY_FAX_NUMBER ={"Fax","Télécopieur","传真","好"};
+	public static final String[] ARRAY_EXTENSION_NUMBER ={"Ext. (optional)","Poste (facultatif)","好","好"};
+	public static final String[] ARRAY_SAVE_BUTTON ={"Save","Enregistrer","好","好"};
+	public static final String[] ARRAY_CLEAR_PHONE_ICON ={"Clear text","'Effacer le texte","好","好"};
+	public static final String[] ARRAY_PROFILE_HEADER ={"Profile","'Profil","好","好"};
 }
