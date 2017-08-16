@@ -1,6 +1,7 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
@@ -28,7 +29,7 @@ public class ManageContacts extends _CommonPage {
 	private MobileElement pageHeader;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='add recipient hdr']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/menu_item_add_contact']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/menu_item_add_contact']")
 	private MobileElement addContactSign;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Name']/following-sibling::XCUIElementTypeTextField")
@@ -58,7 +59,7 @@ public class ManageContacts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subHeader' or @text='Thank you!']")
 	private MobileElement thankYou;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'contact has been  added') or contains(@name,'contact has been  added') or contains(@value,'contact has been  added')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'contact has been  added') or contains(@name,'This contact has been added successfully') or contains(@value,'contact has been  added')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subSubHeader' or contains(@text,'The contact has been added successfully')]")
 	private MobileElement contactCreated;
 
@@ -90,10 +91,11 @@ public class ManageContacts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amend_contacts_security_question_text_field']") // updated
 	private MobileElement securityQuestion;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Answer']/following-sibling::XCUIElementTypeSecureTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Answer']/following-sibling::XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amend_contacts_security_answer_text_field']") // updated
 	private MobileElement securityAns;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Confirm Answer']/following-sibling::XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amend_contacts_security_answer_confirm_text_field']") // updated
 	private MobileElement confirmAnswer;
 
@@ -103,9 +105,9 @@ public class ManageContacts extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther/following-sibling::XCUIElementTypeButton[@label='Done']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_footer' or @text='Done']")
-	private MobileElement editDone;
+	private List <MobileElement> editDone;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'information has been updated successfully')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'information has been updated successfully')]")
 	private MobileElement editContactSuccessMsg;
 
@@ -498,24 +500,28 @@ public class ManageContacts extends _CommonPage {
 				MobileElement language = mobileAction.mobileElementUsingXPath(languageXL);
 				mobileAction.FuncClick(language, "Language " + getTestdata("Language"));
 				mobileAction.FuncClick(done, "Done Button");
-				mobileAction.FuncClick(editDone, "Done Button");
+				mobileAction.FuncClick(editDone.get(0), "Done Button");
 			} else {
 
 				mobileAction.FuncClick(editContact, "Edit Contact Button");
 				mobileAction.FuncClick(contactName, "Contact Name");
 				mobileAction.FuncSendKeys(contactName, getTestdata("Name"));
-				mobileAction.FuncClick(editDone, "Done");
+				mobileAction.FuncClick(editDone.get(1), "Done");
 				mobileAction.FuncClick(email, "Contact Email");
 				mobileAction.FuncSendKeys(email, getTestdata("Email"));
-				mobileAction.FuncClick(editDone, "Done");
+				mobileAction.FuncClick(editDone.get(1), "Done");
 
 				if (mobileAction.verifyElementIsPresent(securityQuestion)) {
 					mobileAction.FuncClick(securityQuestion, "SecurityQuestion");
 					mobileAction.FuncSendKeys(securityQuestion, getTestdata("SecurityQuestion"));
-					mobileAction.FuncClick(editDone, "Done");
+					mobileAction.FuncClick(editDone.get(1), "Done");
 					mobileAction.FuncClick(securityAns, "Security Answer");
 					mobileAction.FuncSendKeys(securityAns, getTestdata("SecurityAnswer"));
-					mobileAction.FuncClick(editDone, "Done");
+					mobileAction.FuncClick(editDone.get(1), "Done");
+					mobileAction.FuncClick(confirmAnswer, "Security Answer");
+					mobileAction.FuncSendKeys(confirmAnswer, getTestdata("SecurityAnswer"));
+					mobileAction.FuncClick(editDone.get(1), "Done");
+					
 				}
 
 				mobileAction.FuncClick(languageSpinner, "Language Drop Down");
@@ -551,7 +557,7 @@ public class ManageContacts extends _CommonPage {
 	public void verifyContactEditSuccessMsg() {
 		Decorator();
 		try {
-			// TODO::IOS xpath not taken due to app stability issue
+			
 			mobileAction.verifyElementIsDisplayed(editContactSuccessMsg, "Your Contact Has been Edited Successfully");
 
 		} catch (NoSuchElementException | IOException e) {

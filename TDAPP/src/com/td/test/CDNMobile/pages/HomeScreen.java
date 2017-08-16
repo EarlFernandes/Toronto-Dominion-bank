@@ -131,7 +131,7 @@ public class HomeScreen extends _CommonPage {
 	private MobileElement logout;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/send_money_dashboard']")
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@value='SEND MONEY']")
+	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeButton[@name='QUICKLINKS_SENDMONEY' or @label='SEND MONEY']")
 	private MobileElement send_money_button;
 
 	@iOSFindBy(accessibility = "QUICK_ACCESS_ITEM_QUOTE")
@@ -429,8 +429,10 @@ public class HomeScreen extends _CommonPage {
 	public void clickMenu() {
 		try {
 			Decorator();
+
 			// FIXED removed back button
-			mobileAction.FuncClick(menu, "Menu");
+			mobileAction.FuncClick(menu, "Menu");			
+			
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

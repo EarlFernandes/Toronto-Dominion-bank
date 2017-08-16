@@ -84,7 +84,7 @@ public class Transfers extends _CommonPage {
 
 	String confirm_transfer_value = "Thank you!";
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Manage Contacts']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Manage Contacts' or @label='Manage Recipients']") //updated
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Contacts']")
 	private MobileElement manageContacts;
 
@@ -463,6 +463,7 @@ public class Transfers extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer Header");
 			mobileAction.FuncClick(manageContacts, "Manage Contacts Link");
+			mobileAction.waitForElementToVanish(progressBar);
 
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -3194,5 +3194,21 @@ public class MobileAction2 extends CommonLib {
 				System.out.println("Failed to Write in report for element: " + string);
 			}
 		}
+		
+		
 	}
+	
+	
+	public void getPageSource(){
+		
+		try {
+			Thread.sleep(3000);
+			System.out.println(GetDriver().getPageSource());
+		} catch (InterruptedException e) {
+			System.err.println("Failed to get the page source");
+		}
+		
+		
+	}
+	
 }

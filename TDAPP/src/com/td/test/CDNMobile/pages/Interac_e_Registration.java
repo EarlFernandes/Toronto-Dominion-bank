@@ -49,7 +49,8 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Name']")
 	private MobileElement myName;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Name']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
+	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Name']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Name']/following-sibling::XCUIElementTypeStaticText")
 	private MobileElement myNameVal;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Name']/following-sibling::android.widget.TextView[1]")
@@ -77,7 +78,8 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Email Address for Interac e-Transfer']")
 	private MobileElement emailAddress;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Email Address')]/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
+	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Email Address')]/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Email Address')]/following-sibling::XCUIElementTypeStaticText")
 	private MobileElement emailAddressVal;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Email Address for Interac e-Transfer']/following-sibling::android.widget.TextView[3]")
