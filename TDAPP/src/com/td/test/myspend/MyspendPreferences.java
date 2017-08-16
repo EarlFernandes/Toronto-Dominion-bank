@@ -45,7 +45,7 @@ public class MyspendPreferences extends com.td._CommonPage {
 	@FindBy(xpath = "//*[contains(@ng-model,'isFWMOn')]")
 	private List<WebElement> offButtonsAndroid;
 
-	@FindBy(xpath = "//*[text()='Account Preferences' or text()='Paramètres du compte' or text()='Preferences']")
+	@FindBy(xpath = "//*[text()='Account Preferences' or text()='Paramètres du compte']")
 	private WebElement pageHeaderAndroid;
 
 	private void Decorator() {
@@ -94,7 +94,6 @@ public class MyspendPreferences extends com.td._CommonPage {
 	public void disableAllAccounts() {
 		Decorator();
 		int accSize = 0;
-
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				if (onButtonsAndroid.isEmpty()) {
@@ -112,11 +111,13 @@ public class MyspendPreferences extends com.td._CommonPage {
 					Spending_Insight.get().clickSideMenuButton();
 					SideMenu.get().clickPreferences();
 				}
-
-				while (onButtons.size() != 0) {
+				
+				while (onButtons.size()!=0) {
+					System.out.println(onButtons.size());
 					mobileAction.FuncClick(onButtons.get(0), "Clicked on toggle Button");
+					System.out.println(onButtons.size());
+					}
 				}
-			}
 
 			if (platform.equalsIgnoreCase("Android")) {
 				// mobileAction.FuncClickBackButton();

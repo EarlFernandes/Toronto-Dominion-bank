@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
+import com.td.test.CDNMobile.pages.GetDate;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -237,7 +238,7 @@ public class SpendingByCategory extends _CommonPage {
 		Decorator();
 		boolean flag = true;
 		try {
-
+			
 			boolean transactionpresent = mobileAction.verifyElementIsPresent(transactionCategory);
 			if (transactionpresent) {
 
@@ -605,6 +606,85 @@ public class SpendingByCategory extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+	
+	/**
+	 * This method will verify the spikes on the spending by category page
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void verifySpikes(){
+		Decorator();
+		String monthlySpending="";
+		boolean flag = true;
+		String currentMonth=GetDate.getCurrentMonth();
+		String spendingDetailsTransacName="";
+		String spendingDetailsTransacAmount="";
+		
+		try {
+			monthlySpending = "//*[contains(@label,'Monthly spending as of " + currentMonth + "') or contains(@label,'Dépenses mensuelles en date du')]";
+			MobileElement monthlySpendingofCurrentMonth = mobileAction.mobileElementUsingXPath(monthlySpending);
+			mobileAction.verifyElementIsDisplayed(monthlySpendingofCurrentMonth, "Monthly Spending of Current month");
+			System.out.println(CL.GetAppiumDriver().getPageSource());
+			
+			boolean transactionpresent = mobileAction.verifyElementIsPresent(transactionCategory);
+			if (transactionpresent) {
+
+				String category = transactionCategory.getAttribute("name");
+				System.out.println("verifyTransactions Text----> " + category);
+				String[] catArr = category.split(". ");
+
+				mobileAction.verifyElementIsDisplayed(transactionCategory, "Transaction Category: " + catArr[0]);
+				spendingDetailsTransacName="//*[contains(@label,'"+ catArr[0] +" Spending Details')]/following-sibling::XCUIElementTypeOther[3]";
+				MobileElement transacName=mobileAction.mobileElementUsingXPath(spendingDetailsTransacName);
+				
+				String TransName = transacName.getAttribute("name");
+
+				mobileAction.verifyElementIsDisplayed(transacName, "Transaction: " + TransName);
+
+				spendingDetailsTransacAmount="//*[contains(@label,'"+ catArr[0] +" Spending Details')]/following-sibling::XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeStaticText";
+				MobileElement transacAmount=mobileAction.mobileElementUsingXPath(spendingDetailsTransacAmount);
+				String amountText = transacAmount.getAttribute("name");
+
+				mobileAction.verifyElementIsDisplayed(transacAmount, "Amount: " + amountText);
+
+				flag = true;
+
+			} else {
+				mobileAction.stringToReport("Pass",
+						"No Transactions Found in spending by Category");
+
+				flag = false;
+			}
+			Spending_Insight.get().clickSideMenuButton();
+			Spending_Insight.get().clickSideMenuButton();
+
+		} catch (NoSuchElementException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
 			try {
 				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());

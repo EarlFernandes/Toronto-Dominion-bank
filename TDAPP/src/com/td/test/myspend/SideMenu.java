@@ -30,7 +30,7 @@ public class SideMenu extends com.td._CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@label,'Preferences') or contains(@label,'Préférences')]")
 	private MobileElement preferences;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@name,'Spending Spikes') or contains(@label,'Spending Spikes')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@name,'Spending Spikes') or contains(@label,'Pics de dépenses')]")
 	private MobileElement spendingSpikes;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@name,'Spending History') or contains(@name,'Historique de dépenses')]")
@@ -81,7 +81,7 @@ public class SideMenu extends com.td._CommonPage {
 	@FindBy(xpath = "(//*[contains(@href,'transactions')])[2]")
 	private WebElement transactionHistoryAndroid;
 
-	@FindBy(xpath = "(//*[contains(@href,'accountSettings') or contains(@href,'settings')])[2]")
+	@FindBy(xpath = "(//*[contains(@href,'accountSettings')])[2]")
 	private WebElement preferencesAndroid;
 
 	@FindBy(xpath = "//*[contains(@ng-click,'accounts')]")

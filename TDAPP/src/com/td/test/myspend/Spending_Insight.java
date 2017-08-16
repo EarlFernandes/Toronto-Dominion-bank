@@ -422,7 +422,6 @@ public class Spending_Insight extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(spendingByCategoryBtn, "Spending by category button");
 				mobileAction.verifyElementIsDisplayed(transactionHistoryBtn, "Transaction history Button");
 				mobileAction.verifyElementIsDisplayed(moneyPathButton, "MoneyPath Button");
-				//mobileAction.verifyElementIsDisplayed(spendingHistoryBtn, "Spending History button");
 				mobileAction.FuncClick(homeBtn, "Home Button");
 			}
 
