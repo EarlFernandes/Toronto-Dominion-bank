@@ -253,13 +253,13 @@ public class ManageContacts extends _CommonPage {
 
 				mobileAction.FuncClick(contactName, "Contact Name");
 				mobileAction.FuncSendKeys(contactName, contactNameTxt[contactCounter]);
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(email, "Email");
 				mobileAction.FuncSendKeys(email, getTestdata("Email"));
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(confirmEmail, "Confirm Email");
 				mobileAction.FuncSendKeys(confirmEmail, getTestdata("Email"));
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(languageSpinner, "Language Drop Down");
 
 				String languageXL = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='" + getTestdata("Language")
@@ -288,7 +288,7 @@ public class ManageContacts extends _CommonPage {
 
 				MobileElement language = mobileAction.mobileElementUsingXPath(languageXL);
 				mobileAction.FuncClick(language, "Language " + getTestdata("Language"));
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(continueButton, "Continue Button");
 			}
 
@@ -391,7 +391,7 @@ public class ManageContacts extends _CommonPage {
 
 				MobileElement language = mobileAction.mobileElementUsingXPath(languageXL);
 				mobileAction.FuncClick(language, "Language " + getTestdata("Language"));
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(continueButton, "Continue Button");
 			} else {
@@ -498,7 +498,7 @@ public class ManageContacts extends _CommonPage {
 
 				MobileElement language = mobileAction.mobileElementUsingXPath(languageXL);
 				mobileAction.FuncClick(language, "Language " + getTestdata("Language"));
-				mobileAction.FuncClick(done, "Done Button");
+				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(editDone, "Done Button");
 			} else {
 
@@ -526,7 +526,7 @@ public class ManageContacts extends _CommonPage {
 				MobileElement language = mobileAction.mobileElementUsingXPath(languageXL);
 				mobileAction.FuncClick(language, "Language " + getTestdata("Language"));
 
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			}
 
 		} catch (NoSuchElementException | IOException e) {

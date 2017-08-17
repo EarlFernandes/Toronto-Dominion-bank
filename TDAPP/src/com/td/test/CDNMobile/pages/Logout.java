@@ -26,7 +26,7 @@ public class Logout extends _CommonPage {
 	private MobileElement Menu_Button;
 
 	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_LOGOUT")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Logout' or @text='Fermer la session')]")
 	private MobileElement logout;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Fermer la session']")

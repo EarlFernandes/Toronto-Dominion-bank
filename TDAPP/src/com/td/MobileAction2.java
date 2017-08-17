@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.TimeoutException;
@@ -126,7 +127,7 @@ public class MobileAction2 extends CommonLib {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void FuncClick(MobileElement objElement, String text)
+	public void FuncClick(WebElement objElement, String text)
 			throws InterruptedException, IOException, NoSuchElementException {
 		try {
 
@@ -762,12 +763,13 @@ public class MobileAction2 extends CommonLib {
 	 * @throws IOException
 	 */
 	public void FuncHideKeyboard() throws IOException {
+
 		try {
-			((AppiumDriver) GetDriver()).navigate().back();
+			// ((AppiumDriver) GetDriver()).navigate().back();
+			(GetAppiumDriver()).hideKeyboard();
 			GetReporting().FuncReport("Pass", "Keyboard has been closed.");
 		} catch (WebDriverException e) {
-			GetReporting().FuncReport("Fail", "WebDriverException occured while while closing keyboard.");
-			throw e;
+			System.out.println("WebDriverException occured while while closing keyboard, but ignor it");
 		} catch (Exception e) {
 			GetReporting().FuncReport("Fail", "Exception '" + e.toString() + "' occurred while closing keyboard.");
 			throw e;
@@ -1401,14 +1403,13 @@ public class MobileAction2 extends CommonLib {
 			 * 
 			 * if (elementText.equalsIgnoreCase(text)) { try {
 			 * GetReporting().FuncReport("Pass", "The text '" + text +
-			 * "' is verified"); } catch (IOException e) {
-			 * System.out.print("IOException from Method " +
-			 * this.getClass().toString() + " " + e.getCause()); } return true;
-			 * } else { try { GetReporting().FuncReport("Fail", "The text '" +
-			 * text + "' is not verified"); } catch (IOException e) {
-			 * System.out.print("IOException from Method " +
-			 * this.getClass().toString() + " " + e.getCause()); } return false;
-			 * } }
+			 * "' is verified"); } catch (IOException e) { System.out.print(
+			 * "IOException from Method " + this.getClass().toString() + " " +
+			 * e.getCause()); } return true; } else { try {
+			 * GetReporting().FuncReport("Fail", "The text '" + text +
+			 * "' is not verified"); } catch (IOException e) { System.out.print(
+			 * "IOException from Method " + this.getClass().toString() + " " +
+			 * e.getCause()); } return false; } }
 			 */
 	public boolean verifyElement(MobileElement mobileElement, String text) { // @Author
 																				// -
@@ -1948,11 +1949,11 @@ public class MobileAction2 extends CommonLib {
 	 * public void FuncISDisplayed(MobileElement elementToFind, String value) {
 	 * 
 	 * try { if (elementToFind.isDisplayed() && !value.isEmpty()) {
-	 * GetReporting().FuncReport("Pass", "The text '" + value +
-	 * "' is Displayed"); } } catch (Exception e) { try {
-	 * GetReporting().FuncReport("Fail", "The text '" + value +
-	 * "' is not appeared"); } catch (IOException ie) { // TODO Auto-generated
-	 * catch block ie.printStackTrace(); } e.printStackTrace(); } }
+	 * GetReporting().FuncReport("Pass", "The text '" + value + "' is Displayed"
+	 * ); } } catch (Exception e) { try { GetReporting().FuncReport("Fail",
+	 * "The text '" + value + "' is not appeared"); } catch (IOException ie) {
+	 * // TODO Auto-generated catch block ie.printStackTrace(); }
+	 * e.printStackTrace(); } }
 	 */
 
 	public boolean FuncIsDisplayed(MobileElement elementToFind) {
@@ -2970,7 +2971,7 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
-	public boolean verifyElementIsPresent(MobileElement elementToFind) {
+	public boolean verifyElementIsPresent(WebElement elementToFind) {
 
 		try {
 			if (elementToFind.isDisplayed()) {
@@ -3314,6 +3315,140 @@ public class MobileAction2 extends CommonLib {
 				e1.printStackTrace();
 			}
 			throw e;
+		}
+	}
+
+	/**
+	 * This method will Click Done in IOS device Keyboard
+	 * 
+	 * @throws NoSuchElementException
+	 */
+	public void FuncClickDone() throws InterruptedException, IOException, NoSuchElementException {
+		// Generally, it's "Done" on keyboard screen;
+		// in French it's OK; For Chinese, use secureLoginEditButtonDone mapping
+		// but sometimes it's Go (The good thing is the Name is 'Go' no matter
+		// what language)
+
+		try {
+			String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
+					+ getAppString("secureLoginEditButtonDone") + "']";
+			MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
+			Done.click();
+			GetReporting().FuncReport("Pass", "The element <b>  Done </b> Clicked");
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "The element <b> Done </b> not present in current page");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			throw e;
+		}
+	}
+
+	/**
+	 * This method will look for an element on the screen to be tappable within
+	 * the given timeout and then click over the element.
+	 * 
+	 * @param objElement
+	 *            The MobileElement on which the click action has to be
+	 *            performed.
+	 * 
+	 * @param text
+	 *            The text of element objElement clicked.
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void TapCoOrdinates(int x, int y, String element)
+			throws InterruptedException, IOException, NoSuchElementException {
+		try {
+
+			TouchAction action = new TouchAction(((MobileDriver) GetDriver()));
+			action.tap(x, y).perform();
+
+			GetReporting().FuncReport("Pass", "The element <b>  " + element + " </b> Clicked");
+		} catch (IllegalArgumentException e) {
+			GetReporting().FuncReport("Fail", "IllegalArgumentException");
+
+		} catch (NoSuchElementException n) {
+			GetReporting().FuncReport("Fail", "Element not displayed" + element);
+
+		} catch (Exception e) {
+			GetReporting().FuncReport("Fail", "The element <b>- " + element + "</b> not present in current page");
+
+		}
+	}
+
+	/**
+	 * This method will look for an element on the screen to be tappable within
+	 * the given timeout and then click over the element based on the
+	 * coordinates.
+	 * 
+	 * @param objElement
+	 *            The MobileElement on which the click action has to be
+	 *            performed.
+	 * 
+	 * @param text
+	 *            The text of element objElement clicked.
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void FuncTapCord(MobileElement objElement, String text)
+			throws InterruptedException, IOException, NoSuchElementException {
+		try {
+			WebDriverWait wait = new WebDriverWait((AppiumDriver) GetDriver(), 10L);
+			wait.until(ExpectedConditions.elementToBeClickable(objElement));
+
+			int leftX = objElement.getLocation().getX();
+			int rightX = leftX + objElement.getSize().getWidth();
+			int middleX = (rightX + leftX) / 2;
+			int upperY = objElement.getLocation().getY();
+			int lowerY = upperY + objElement.getSize().getHeight();
+			int middleY = (upperY + lowerY) / 2;
+			int transMiddleY = middleY;
+			int transMiddleX = middleX;
+
+			TapCoOrdinates(transMiddleX, transMiddleY, text);
+
+			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
+		} catch (IllegalArgumentException e) {
+			GetReporting().FuncReport("Fail", "IllegalArgumentException");
+
+		} catch (NoSuchElementException n) {
+			GetReporting().FuncReport("Fail", "Element not displayed" + text);
+
+		} catch (Exception e) {
+			GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
+
+		}
+	}
+
+	public boolean verifyTextIsContained(WebElement mobileElement, String expectedText) {
+
+		String retrivedText = "";
+		try {
+			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				retrivedText = mobileElement.getText();
+			} else {
+				retrivedText = mobileElement.getAttribute("label");
+			}
+			if (retrivedText.contains(expectedText)) {
+				return true;
+			} else {
+
+				return false;
+
+			}
+		} catch (Exception e) {
+
+			return false;
 		}
 	}
 

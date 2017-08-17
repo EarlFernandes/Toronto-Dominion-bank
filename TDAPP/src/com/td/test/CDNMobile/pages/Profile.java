@@ -746,7 +746,7 @@ public class Profile extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 			} else {
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			}
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -785,7 +785,7 @@ public class Profile extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 			} else {
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -1308,7 +1308,7 @@ public class Profile extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 			} else {
-				mobileAction.FuncClick(done, "Done");
+				mobileAction.FuncClickDone();
 			}
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");

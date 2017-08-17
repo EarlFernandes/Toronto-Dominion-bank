@@ -457,6 +457,7 @@ public class MobileDeposit extends _CommonPage {
 	public void verifyOptionsTextElements() {
 		Decorator();
 		try {
+			Thread.sleep(10000);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.verifyTextEquality(dpstCheque_Btn.getText(),
 						mobileAction.getAppString("mobiledeposit_successfeature_str_depositacheque"));
@@ -488,7 +489,7 @@ public class MobileDeposit extends _CommonPage {
 						+ mobileAction.getAppString("MobileDeposit_Receipt_Description").replaceAll("\"", "") + "']",
 						"View a recent message");
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail",
 						"No such element was found on screen: " + e.getMessage());

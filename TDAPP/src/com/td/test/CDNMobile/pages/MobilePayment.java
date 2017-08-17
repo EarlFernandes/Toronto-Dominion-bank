@@ -513,7 +513,7 @@ public class MobilePayment extends _CommonPage {
 				mobileAction.FuncClick(enterAnswer, "Enter your Answer");
 				mobileAction.FuncSendKeys(enterAnswer, getTestdata("SecurityAnswer"));
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 
 				} else {
 					mobileAction.FuncHideKeyboard();

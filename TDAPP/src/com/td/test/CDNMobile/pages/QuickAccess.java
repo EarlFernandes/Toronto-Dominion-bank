@@ -189,7 +189,7 @@ public class QuickAccess extends _CommonPage {
 						"Tap the quick access message");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.Button[@resource-id='com.td:id/btn_easy_access_enroll' and @text='"
-								+ mobileAction.getAppString("easy_access_success_start") + "']",
+								+ mobileAction.getAppString("easy_access_enroll_start") + "']",
 						"Get Started");
 			}
 		} catch (NoSuchElementException | IOException e) {

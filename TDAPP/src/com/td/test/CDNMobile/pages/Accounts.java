@@ -86,7 +86,7 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement back_button;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//*[@name='QUICKLINKS_TRANSFER']/../preceding-sibling::XCUIElementTypeOther[1]/XCUIElementTypeStaticText[3]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/account_desc']")
 	private MobileElement account;
 
@@ -100,7 +100,7 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/current_balance']")
 	private MobileElement current_Balance;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(accessibility = "ACCOUNT_DETAIL_SUMMARY_ACCOUNT")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/account_desc']")
 	private MobileElement account_Desc;
 
@@ -116,7 +116,7 @@ public class Accounts extends _CommonPage {
 
 	// @iOSFindBy(xpath =
 	// "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Available Balance')]")
+	@iOSFindBy(accessibility = "ACCOUNT_DETAIL_SUMMARY_AVAILABLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/availableBalance']")
 	private MobileElement available_Balance;
 
@@ -850,10 +850,6 @@ public class Accounts extends _CommonPage {
 						"//android.widget.TextView[@text=\""
 								+ mobileAction.getAppString("str_banking_cross_sell_message_detail") + "\"]",
 						"Open a bank account msg body");
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.Button[@text='"
-								+ mobileAction.getAppString("securityQuestionMFASetupRequiredButtonGoToEW") + "']",
-						"Go to easyweb button");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.Button[contains(@text, '"
 								+ mobileAction.getAppString("str_call_phone").replace(" %1$s", "") + "')]",

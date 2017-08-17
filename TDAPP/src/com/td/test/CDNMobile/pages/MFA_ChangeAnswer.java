@@ -97,7 +97,7 @@ public class MFA_ChangeAnswer extends _CommonPage {
 
 					mobileAction.FuncClick(confirm_Security_Answer, "Confirm_Security_Answer");
 					mobileAction.FuncSendKeys(confirm_Security_Answer, secret_Answer_value);
-					mobileAction.FuncClick(done, "Done");
+					mobileAction.FuncClickDone();
 					mobileAction.FuncClick(save_Changes, "Save_Changes");
 
 				} else {
