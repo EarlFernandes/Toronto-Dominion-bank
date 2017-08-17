@@ -41,7 +41,7 @@ public class PendingInteracTransfer extends _CommonPage {
 	private MobileElement pendingTransfer_Header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@value,'Select sender')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_sender']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_sender'] | //android.widget.EditText[@resource-id='com.td:id/edt_etransfer_sender']/following-sibling::android.view.View")
 	private MobileElement selectSender;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='-Balance-' or @label='-Balance'][1]")

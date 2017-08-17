@@ -20,7 +20,7 @@ public class QuickAccessPage extends _CommonPage {
 	private static QuickAccessPage QuickAccessPage;
 
 	@iOSFindBy(xpath = "//*[contains(@label, 'Quick Access')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Welcome to Quick Access')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement Access_Header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Get Started']")
@@ -76,7 +76,7 @@ public class QuickAccessPage extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.verifyElementIsDisplayed(Access_Header, "Welcome to Quick Access");
+			mobileAction.verifyElementIsDisplayed(Access_Header, "Quick Access");
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
