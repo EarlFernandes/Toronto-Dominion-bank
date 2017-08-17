@@ -183,7 +183,7 @@ public class EventCase {
 		clickPostorderTrade,clickQuickLinkHome,clickQuickLinkTrade,clickQuickLinkOrder,verifyOptionOptionChainTableSubmit,
 		verifyStockOptionChainTableSubmit,verifyStockOptionChainTableCancel,verifyOptionOptionChainTableCancel,
 		verifyInvalidTradingPassword,verifyStockOptionChangeOrder,verifyOptionOptionChangeOrder,verifyStockOptionOrderDetails,verifyOptionOptionOrderDetails,verifyMLOrdersTabDetails,
-		Test,verifyBackButton,
+		Test,verifyBackButton,searchAndSelectAccountRapcodeWZXY,
 		
 		//P2P
 		
@@ -2397,6 +2397,10 @@ public class EventCase {
 		
 		case Test:
 			MLConfirmOrder.get().Test();
+		break;
+		
+		case searchAndSelectAccountRapcodeWZXY:
+			MLEnterOrderNegative.get().searchAndSelectAccountRapcodeWZXY();
 		break;
 		//MIT Multi-Leg Switch Cases END
 		
