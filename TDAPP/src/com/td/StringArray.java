@@ -102,6 +102,6 @@ public final class StringArray {
 	public static final String[] ARRAY_FAX_NUMBER ={"Fax","Télécopieur","传真","傳真"};
 	public static final String[] ARRAY_EXTENSION_NUMBER ={"Ext. (optional)","Poste (facultatif)","分机可选","分機(可選)"};
 	public static final String[] ARRAY_SAVE_BUTTON ={"Save","Enregistrer","保存","儲存"};
-	public static final String[] ARRAY_CLEAR_PHONE_ICON ={"Clear text","'Effacer le texte","清除文字","清除文字"};
+	public static final String[] ARRAY_CLEAR_PHONE_ICON ={"Clear text","Effacer le texte","清除文字","清除文字"};
 	public static final String[] ARRAY_PROFILE_HEADER ={"Profile","Profil","个人资料","個人資料"};
 }
