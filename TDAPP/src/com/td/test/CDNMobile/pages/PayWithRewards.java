@@ -29,8 +29,8 @@ public class PayWithRewards extends _CommonPage {
 	private MobileElement rewardBtn;
 
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amount_payment_value']")
-	
-	//com.td:id/amount_payment_value
+
+	// com.td:id/amount_payment_value
 	private MobileElement amountValue;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Other']")
@@ -48,12 +48,15 @@ public class PayWithRewards extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Done']")
 	private MobileElement doneBtn;
 
-	By rewardPayee = By.xpath("//XCUIElementTypeTable/preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[1]");
+	By rewardPayee = By
+			.xpath("//XCUIElementTypeTable/preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[1]");
 
-	By iosMaxBtn = By.xpath("//XCUIElementTypeStaticText[@label='Maximum']/preceding-sibling::XCUIElementTypeButton[1]");
+	By iosMaxBtn = By
+			.xpath("//XCUIElementTypeStaticText[@label='Maximum']/preceding-sibling::XCUIElementTypeButton[1]");
 	By androidMaxBtn = By.xpath("//android.widget.TextView[@resource-id='com.td:id/maximum_payment_value']");
 	By androidMinBtn = By.xpath("//android.widget.TextView[@resource-id='com.td:id/minimum_payment_value']");
-	By iosMinBtn = By.xpath("//XCUIElementTypeStaticText[@label='Minimum']/preceding-sibling::XCUIElementTypeButton[1]");
+	By iosMinBtn = By
+			.xpath("//XCUIElementTypeStaticText[@label='Minimum']/preceding-sibling::XCUIElementTypeButton[1]");
 	By iosamountXpath = By.xpath("//XCUIElementTypeCell[1]/XCUIElementTypeTextField[1]");
 	By androidAmountValue = By.xpath("//android.widget.EditText[@resource-id='com.td:id/amount_payment_value']");
 	By androidpayee = By.xpath("//android.widget.TextView[@resource-id='com.td:id/account_description']");
@@ -123,9 +126,9 @@ public class PayWithRewards extends _CommonPage {
 				value = mobileAction.verifyElementUsingBy(androidMaxBtn);
 			}
 
-			String replaceValue = value.replaceAll("[^0-9]", "");			
+			String replaceValue = value.replaceAll("[^0-9]", "");
 			int maxValue = Integer.parseInt(replaceValue);
-			System.out.println("maxValue:" +maxValue);
+			System.out.println("maxValue:" + maxValue);
 
 			if (i > ConstantClass.minimum_Value & i < maxValue) {
 				mobileAction.FuncClick(otherBtn, "Amount");
@@ -135,10 +138,7 @@ public class PayWithRewards extends _CommonPage {
 					CL.GetDriver().findElement(iosamountXpath).clear();
 					CL.GetDriver().findElement(iosamountXpath).sendKeys(amountXL);
 					CL.GetReporting().FuncReport("Pass", "<b>" + amountXL + "</b> is entered.");
-		
-					
-					
-					
+
 					mobileAction.FuncClick(doneBtn, "Done");
 					mobileAction.FuncClick(continueBtn, "Continue");
 
@@ -147,9 +147,9 @@ public class PayWithRewards extends _CommonPage {
 				else {
 					mobileAction.FuncClick(amountValue, "Amount");
 					mobileAction.FuncSendKeys(amountXL);
-//					CL.GetDriver().findElement(androidAmountValue).click();
-//					//CL.GetDriver().findElement(androidAmountValue).clear();
-//					CL.GetDriver().findElement(androidAmountValue).sendKeys("26");
+					// CL.GetDriver().findElement(androidAmountValue).click();
+					// //CL.GetDriver().findElement(androidAmountValue).clear();
+					// CL.GetDriver().findElement(androidAmountValue).sendKeys("26");
 					mobileAction.clickCoOrdinatesPercentage(0.90f, 0.95f, 1);
 
 					mobileAction.FuncClick(continueBtn, "Continue");
@@ -172,10 +172,10 @@ public class PayWithRewards extends _CommonPage {
 
 					mobileAction.FuncClick(amountValue, "Amount");
 
-//					CL.GetDriver()
-//							.findElement(By
-//									.xpath("//android.widget.EditText[@resource-id='com.td:id/amount_payment_value']"))
-//							.sendKeys(amountXL);
+					// CL.GetDriver()
+					// .findElement(By
+					// .xpath("//android.widget.EditText[@resource-id='com.td:id/amount_payment_value']"))
+					// .sendKeys(amountXL);
 					mobileAction.FuncSendKeys(amountXL);
 					mobileAction.clickCoOrdinatesPercentage(0.90f, 0.95f, 1);
 					mobileAction.verifyElementIsDisplayed(errortext, ConstantClass.error_msg + maxValue);

@@ -20,7 +20,6 @@ public class MobilePayment extends _CommonPage {
 
 	private static MobilePayment mobile_payment;
 
-	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Mobile Payment']")
 	private MobileElement mobilepayment_Header;
 
@@ -188,13 +187,12 @@ public class MobilePayment extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.view.View[@resource-id='android:id/action_bar']")
 	private MobileElement landingPageHeader;
-	
+
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button' and @text='Continue']")
 	private MobileElement continueBtn;
 
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/carousel_card_image' and @content-desc='Add a Card']")
 	private MobileElement addIcon;
-
 
 	String passcode = getTestdata("Passcode");
 
@@ -418,10 +416,10 @@ public class MobilePayment extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(pay_Button, "Pay Button");
-		mobileAction.waitForElementToVanish(cancel_Button);
-		mobileAction.verifyElementIsDisplayed(timer_Text, msg);
-		mobileAction.verifyElementIsDisplayed(timer_Time, time);
-		mobileAction.FuncClick(restart_Timer, "Restart timer");
+			mobileAction.waitForElementToVanish(cancel_Button);
+			mobileAction.verifyElementIsDisplayed(timer_Text, msg);
+			mobileAction.verifyElementIsDisplayed(timer_Time, time);
+			mobileAction.FuncClick(restart_Timer, "Restart timer");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -615,6 +613,7 @@ public class MobilePayment extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
+
 	/**
 	 * This method will add card
 	 * 
@@ -630,10 +629,10 @@ public class MobilePayment extends _CommonPage {
 	 */
 	public void addacard() {
 
-	try {
-	Decorator();
+		try {
+			Decorator();
 
-	mobileAction.FuncClick(addIcon, "Click Add Icon");
+			mobileAction.FuncClick(addIcon, "Click Add Icon");
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -649,8 +648,6 @@ public class MobilePayment extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
-
 
 	/**
 	 * This method will click manage settings
@@ -747,7 +744,7 @@ public class MobilePayment extends _CommonPage {
 
 		Decorator();
 		try {
-			MobileElement cardVal = mobileAction.verifyElementUsingXPath(selectcard,"Select Card");
+			MobileElement cardVal = mobileAction.verifyElementUsingXPath(selectcard, "Select Card");
 			mobileAction.FuncClick(cardVal, "Select the card");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

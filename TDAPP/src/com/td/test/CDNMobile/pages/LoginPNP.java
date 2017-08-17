@@ -21,7 +21,9 @@ public class LoginPNP extends _CommonPage {
 	private MobileElement rememberMe;
 
 	@iOSFindBy(xpath = "//*[@label='Username or Access Card']")
-	//@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @index='1']")
+	// @AndroidFindBy(xpath =
+	// "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and
+	// @index='1']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText']")
 	private MobileElement username;
 
@@ -37,7 +39,9 @@ public class LoginPNP extends _CommonPage {
 	private MobileElement install;
 
 	@iOSFindBy(xpath = "//*[@label='In progress']")
-	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	// @AndroidFindBy(xpath =
+	// "//android.widget.TextView[@resource-id='android:id/message' and
+	// @text='Loading']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 
@@ -46,17 +50,23 @@ public class LoginPNP extends _CommonPage {
 	private MobileElement french_progressBar;
 
 	@iOSFindBy(xpath = "//*[@label='Select AccessCard']")
-	//@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @content-desc='Username or Access Card']")
-	@AndroidFindBy(id="com.td:id/loginEditText")
+	// @AndroidFindBy(xpath =
+	// "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and
+	// @content-desc='Username or Access Card']")
+	@AndroidFindBy(id = "com.td:id/loginEditText")
 	private MobileElement select_accesscard;
-	
+
 	@iOSFindBy(xpath = "//*[@label='Username or Access Card']")
-	//@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @content-desc='Username or Access Card']")
-	@AndroidFindBy(id="com.td:id/loginEditText")
+	// @AndroidFindBy(xpath =
+	// "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and
+	// @content-desc='Username or Access Card']")
+	@AndroidFindBy(id = "com.td:id/loginEditText")
 	private MobileElement loginTextUsername;
 
 	@iOSFindBy(xpath = "//*[@label='Add Username or Access Card' or contains(@label,'Ajouter un nom')]")
-	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard' and @text='Add Username or Access Card']")
+	// @AndroidFindBy(xpath =
+	// "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard' and
+	// @text='Add Username or Access Card']")
 	@AndroidFindBy(xpath = "//*[contains(@text,'Add Username') or contains(@text,'Ajouter un nom')]")
 	private MobileElement addUser;
 
@@ -150,21 +160,21 @@ public class LoginPNP extends _CommonPage {
 	@iOSFindBy(xpath = "//*[contains(@label,'do this later on my computer')]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_launch_browser'and contains(@text,'do this later on my computer')]")
 	private MobileElement thanks_button;
-	
+
 	@iOSFindBy(xpath = "//*[@label='Clear text']")
 	@AndroidFindBy(xpath = " ")
 	private MobileElement clearText;
-	
+
 	@iOSFindBy(xpath = "//*[contains(@label,'Remember')]")
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id= 'com.td:id/remember_switch' and @text='YES']")
 	private MobileElement rememberMe_button_on;
-	
+
 	String verifyLogin_ios = "//*[contains(@label,'Your Login Info Please')]";
 	String verifyLogin_android = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
 	String login_password = getTestdata("Password", "UserIDs");
 	String[] passwordArray = login_password.split(",");
 	static int count = 0;
-	
+
 	@iOSFindBy(xpath = "//*[contains(@label,'OK')]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_launch_browser'and contains(@text,'do this later on my computer')]")
 	private MobileElement popup_ok_button;
@@ -172,38 +182,39 @@ public class LoginPNP extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Accounts']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Accounts']")
 	private MobileElement txtMy_Account_Header;
-	
+
 	String securityPassword = getTestdata("SecurityPassword", "UserIDs");
 
 	String passwords = getTestdata("Password", "Payment");
 	String platFormName = CL.getTestDataInstance().getMobilePlatForm();
 	String progressBarFrench = "//android.widget.ProgressBar[@resource-id='android:id/progress']";
-	
-	private static  LoginPNP LoginPNP;
+
+	private static LoginPNP LoginPNP;
+
 	public synchronized static LoginPNP get() {
 		if (LoginPNP == null) {
 			LoginPNP = new LoginPNP();
 		}
 		return LoginPNP;
 	}
-	private void Decorator(){
+
+	private void Decorator() {
 		{
-		PageFactory.initElements(new AppiumFieldDecorator(((AppiumDriver)CL.GetDriver()),new TimeOutDuration(15,TimeUnit.SECONDS)),this);	
-	}
-	
+			PageFactory.initElements(new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()),
+					new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+		}
+
 	}
 
-	public void PNPLogin()
-	{
+	public void PNPLogin() {
 		Decorator();
-		try
-		{
+		try {
 			String userName = CL.getTestDataInstance().TCParameters.get("UserID");
 			String passWord = CL.getTestDataInstance().TCParameters.get("Password");
-			System.out.println("UserName:"+ userName);
-			System.out.println("Password:"+passWord);
+			System.out.println("UserName:" + userName);
+			System.out.println("Password:" + passWord);
 			Thread.sleep(2000);
-			if (loginTextUsername.isDisplayed() == true && (loginTextUsername.getText().contains("***")) ){
+			if (loginTextUsername.isDisplayed() == true && (loginTextUsername.getText().contains("***"))) {
 				System.out.println("Click dropdown and enter username");
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				Thread.sleep(2000);
@@ -212,80 +223,77 @@ public class LoginPNP extends _CommonPage {
 				mobileAction.FuncSendKeys(username, userName);
 				mobileAction.FuncClick(password, "Password");
 				mobileAction.FuncSendKeys(password, passWord);
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					mobileAction.FuncHideKeyboard();
 				}
 				mobileAction.FuncClick(login, "Login");
 				mobileAction.waitForElementToVanish(progressBar);
-				
-			}else{
+
+			} else {
 				System.out.println("Enter user name");
 				mobileAction.FuncClick(username, "Username");
 				mobileAction.FuncSendKeys(username, userName);
 
 				mobileAction.FuncClick(password, "Password");
-				//mobileAction.FuncSendKeys(password, passwords);
+				// mobileAction.FuncSendKeys(password, passwords);
 				mobileAction.FuncSendKeys(password, passWord);
-				
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					mobileAction.FuncHideKeyboard();
 				}
 				mobileAction.FuncClick(login, "Login");
 				mobileAction.waitForElementToVanish(progressBar);
 			}
-			
 
 			Thread.sleep(5000);
-			try{
+			try {
 				String accountHeader = "";
-				if (!CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				if (!CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					accountHeader = "//*[@label='Accounts' or @label='Comptes' or @label='Bills' or @label='Transfers']";
-				}else{
+				} else {
 					accountHeader = "//android.widget.TextView[@text='My Accounts' or @text ='Mes comptes' or @text='Bills' or @text='Transfers']";
 				}
-				MobileElement accountHeaderitem =(MobileElement) CL.GetDriver().findElement(By.xpath(accountHeader));
-				if(accountHeaderitem.isDisplayed()){
+				MobileElement accountHeaderitem = (MobileElement) CL.GetDriver().findElement(By.xpath(accountHeader));
+				if (accountHeaderitem.isDisplayed()) {
 					System.out.println(mobileAction.getValue(accountHeaderitem));
-				}else{
-					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-						if(mobileAction.isObjExists(enterAnswer)){
+				} else {
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+						if (mobileAction.isObjExists(enterAnswer)) {
 							String securityAnswer = CL.getTestDataInstance().TCParameters.get("SecurityAnswer");
 							System.out.println("Security Answer:" + securityAnswer);
-							mobileAction.FuncSendKeys(enterAnswer,securityAnswer);
+							mobileAction.FuncSendKeys(enterAnswer, securityAnswer);
 							mobileAction.FuncClick(enterAnswer, "enterAnswer");
 							mobileAction.FuncHideKeyboard();
 							mobileAction.FuncClick(securityLogin, "Login");
-						}				
-					}else{
+						}
+					} else {
 						verifySystemError();
 						verifySecurityQuestion();
-						//verifyTandC();
-					}				
+						// verifyTandC();
+					}
 				}
-			}catch (Exception e){
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-					if(mobileAction.isObjExists(enterAnswer)){
+			} catch (Exception e) {
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+					if (mobileAction.isObjExists(enterAnswer)) {
 						String securityAnswer = CL.getTestDataInstance().TCParameters.get("SecurityAnswer");
 						System.out.println("Security Answer:" + securityAnswer);
-						mobileAction.FuncSendKeys(enterAnswer,securityAnswer);
+						mobileAction.FuncSendKeys(enterAnswer, securityAnswer);
 						mobileAction.FuncClick(enterAnswer, "enterAnswer");
 						mobileAction.FuncHideKeyboard();
 						mobileAction.FuncClick(securityLogin, "Login");
-					}				
-				}else{
+					}
+				} else {
 					verifySystemError();
 					verifySecurityQuestion();
-					//verifyTandC();
-				}								
+					// verifyTandC();
+				}
 			}
-				
-		}
-		catch(Exception e)
-		{
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void verifySystemError() {
 		try {
 			if (errorText.isDisplayed()) {
@@ -312,7 +320,7 @@ public class LoginPNP extends _CommonPage {
 				mobileAction.FuncClick(securityLogin, "Login");
 				Thread.sleep(20000);
 				mobileAction.waitForElementToVanish(progressBar);
-				
+
 			} else {
 
 			}
@@ -338,4 +346,3 @@ public class LoginPNP extends _CommonPage {
 		}
 	}
 }
-

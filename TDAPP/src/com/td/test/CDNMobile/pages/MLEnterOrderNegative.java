@@ -20,288 +20,247 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
 
-public class MLEnterOrderNegative extends _CommonPage{
-	
-    private static MLEnterOrderNegative MLEnterOrderNegative;
-    
+public class MLEnterOrderNegative extends _CommonPage {
+
+	private static MLEnterOrderNegative MLEnterOrderNegative;
+
 	public synchronized static MLEnterOrderNegative get() {
 		if (MLEnterOrderNegative == null) {
 			MLEnterOrderNegative = new MLEnterOrderNegative();
 		}
 		return MLEnterOrderNegative;
 	}
-	private void Decorator()
-		{
-		PageFactory.initElements(new AppiumFieldDecorator(((AppiumDriver)CL.GetDriver()),new TimeOutDuration(15,TimeUnit.SECONDS)),this);	
+
+	private void Decorator() {
+		PageFactory.initElements(
+				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
+				this);
 	}
 
-	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'is not eligible for') or contains(@label,'pas admissible à ce')]")//@Author - Sushil 03-Mar-2017
-	//@AndroidFindBy(id="android:id/message")
-	@AndroidFindBy(id="com.td:id/error_text")//@Author - Shahbaaz 17-Apr-2017
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'is not eligible for') or contains(@label,'pas admissible à ce')]") // @Author
+																																		// -
+																																		// Sushil
+																																		// 03-Mar-2017
+	// @AndroidFindBy(id="android:id/message")
+	@AndroidFindBy(id = "com.td:id/error_text") // @Author - Shahbaaz
+												// 17-Apr-2017
 	private MobileElement messageNegative;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Order') or contains(@label,'Type')]")
 	@AndroidFindBy(xpath = "//*[contains(@text,'Order') or contains(@text,'Type')]")
 	private MobileElement orderTypeSelected;
-	
 
-	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]")//@Author - Sushil 06-Feb-2017
-	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @index='0']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText2']/../*[@resource-id='com.td:id/selectedValue']")//@Author - Sushil 16-Jun-2017
+	@iOSFindBy(xpath = " //*[contains(@label,'Account') or contains(@label,'Compte')]") // @Author
+																						// -
+																						// Sushil
+																						// 06-Feb-2017
+	// @AndroidFindBy(xpath =
+	// "//android.widget.TextView[@resource-id='com.td:id/selectedText' and
+	// @index='0']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText2']/../*[@resource-id='com.td:id/selectedValue']") // @Author
+																																				// -
+																																				// Sushil
+																																				// 16-Jun-2017
 	private MobileElement defaultTradeAccount;
 
-	@iOSFindBy(xpath = "(//XCUIElementTypeOther[contains(@label,'CALLS Ask') or contains(@label,'ACHAT Vendeur')])[1]") //@Author - Sushil 17-Feb-2017
-	@AndroidFindBy(xpath="//*[@resource-id='com.td:id/textview_info' and @index=1]")
+	@iOSFindBy(xpath = "(//XCUIElementTypeOther[contains(@label,'CALLS Ask') or contains(@label,'ACHAT Vendeur')])[1]") // @Author
+																														// -
+																														// Sushil
+																														// 17-Feb-2017
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/textview_info' and @index=1]")
 	private MobileElement firstAskCALLS;
-	
-	@iOSFindBy(xpath = "//XCUIElementTypeImage[contains(@name,'error')]/../*[1]") //@Author - Sushil 29-Mar-2017
-	@AndroidFindBy(id="com.td:id/error_text")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeImage[contains(@name,'error')]/../*[1]") // @Author
+																					// -
+																					// Sushil
+																					// 29-Mar-2017
+	@AndroidFindBy(id = "com.td:id/error_text")
 	private MobileElement ErrTradingPwd;
-	
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'Aperçu de')]")//@Author - Sushil 03-Mar-2017
-	@AndroidFindBy(id="com.td:id/orderEntryPreviewButton")
+
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'Aperçu de')]") // @Author
+																													// -
+																													// Sushil
+																													// 03-Mar-2017
+	@AndroidFindBy(id = "com.td:id/orderEntryPreviewButton")
 	private MobileElement previewOrderButton;
 
-	
-	@iOSFindBy(xpath = " //*[contains(@label,'ACCOUNTS') or contains(@label,'COMPTES')]")//@Author - Sushil 06-Feb-2017
-	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @index='0']")
+	@iOSFindBy(xpath = " //*[contains(@label,'ACCOUNTS') or contains(@label,'COMPTES')]") // @Author
+																							// -
+																							// Sushil
+																							// 06-Feb-2017
+	// @AndroidFindBy(xpath =
+	// "//android.widget.TextView[@resource-id='com.td:id/selectedText' and
+	// @index='0']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView']")
 	private MobileElement lblACCOUNTS;
-	
-	String accNumber = getTestdata("Rapcode", "UserIDs").trim();// @Author - Sushil 06-Feb-2017
-	//String xpathAccount = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'" + accNumber + "']";
+
+	String accNumber = getTestdata("Rapcode", "UserIDs").trim();// @Author -
+																// Sushil
+																// 06-Feb-2017
+	// String xpathAccount =
+	// "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and
+	// contains(@text,'" + accNumber + "']";
 	String xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
-	
-	@iOSFindBy(xpath = "//*[@name='QUICKLINKS_TRADE' or @label='NÉGOCIATION']") //@Author - Sushil 23-Mar-2017
-	//@AndroidFindBy(id="com.td:id/btn_trade")
+
+	@iOSFindBy(xpath = "//*[@name='QUICKLINKS_TRADE' or @label='NÉGOCIATION']") // @Author
+																				// -
+																				// Sushil
+																				// 23-Mar-2017
+	// @AndroidFindBy(id="com.td:id/btn_trade")
 	@AndroidFindBy(xpath = "//*[contains(@text,'TRADE') or contains(@text,'NÉGOCIATION')]")
 	private MobileElement quickLink_trade;
-	
-	
-	
-	
-	public void searchAndSelectAccountRapcode()
-	{
+
+	public void searchAndSelectAccountRapcode() {
 		Decorator();
 		String[] aRapcode = getTestdata("Rapcode", XLSheetUserIDs).split(";");
 		String xpathAccount = "";
 		boolean flag = false;
-		String sAccount="";
+		String sAccount = "";
 		int sCount = 0;
 		int sSwipeCount = 0;
 		int sSwipes = 60;
 		String temp = "";
 		String sExpectedAccount = "";
-		
-		for(int iCnt=0;iCnt < aRapcode.length;iCnt++)
-		{
+
+		for (int iCnt = 0; iCnt < aRapcode.length; iCnt++) {
 			flag = false;
-		try
-			{
-			
-			String sRapcode = aRapcode[iCnt];
-			
-			mobileAction.waitForElement(defaultTradeAccount);
-			mobileAction.selectItemFromList(orderTypeSelected,getTestdata("OrderType",XLSheetUserIDs));
-			mobileAction.FuncClick(defaultTradeAccount, "defaultTradeAccount");
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-			{
-			xpathAccount = "//*[@resource-id='com.td:id/txtAccountNumber']";
-			while(!flag && sSwipeCount < sSwipes )
-			{
-		for(int i=0;i< CL.GetDriver().findElements(By.xpath(xpathAccount)).size();i++)
-		{
-			sAccount = CL.GetDriver().findElements(By.xpath(xpathAccount)).get(i).getText();
-			
-			if(getMatchedAccount(sAccount,sRapcode).length() > 0)
-			{
-				flag = true;
-				CL.GetDriver().findElements(By.xpath(xpathAccount)).get(i).click();
-				sExpectedAccount = sAccount;
-				break;
-			}
-			sCount = i;
+			try {
 
-		}
-				if(sCount+1 >= CL.GetDriver().findElements(By.xpath(xpathAccount)).size())
-				{
-					mobileAction.FuncSwipeOnce("up");
-					sSwipeCount++;
-				}
-			}
-			}
-		else
-		{
-		for(int iAcc=1;iAcc < 100;iAcc++)
-		{
-			try
-			{
-		
-						
-		xpathAccount = "//*[@label='ACCOUNT' or @label='COMPTE']/../../XCUIElementTypeCell[" + iAcc + "]/*[1]";
-		temp = getMatchedAccount(CL.GetDriver().findElement(By.xpath(xpathAccount)).getAttribute("label"),sRapcode);
-				if(temp.length() > 0)
-				{
-					String sFullAccount = CL.GetDriver().findElement(By.xpath(xpathAccount)).getAttribute("label");
-					String sAccNumber = sFullAccount.substring(sFullAccount.length()-7, sFullAccount.length());
-					String xpathAccNumber = "//*[contains(@label,'" + sAccNumber + "')]";
-					mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccNumber, true, 100, "up");
-					flag = true;
-					sExpectedAccount = sAccNumber;
-					break;
-				}
-			}
-						catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-		}
-		}
-		
-		if(flag){
-			CL.GetReporting().FuncReport("Pass", sExpectedAccount + " with rapcode <b>" + sRapcode + "</b> selected." );
-			mobileAction.verifyElement(messageNegative, getTestdata("WarningMessage",XLSheetUserIDs));
-		}
-		else
-			CL.GetReporting().FuncReport("Fail", "No account with rapcode <b>" + sRapcode + "</b> found." );
-		}
-		catch(Exception e)
-		{
-			try
-			{
-				CL.GetReporting().FuncReport("Fail", "Exception.No account with rapcode <b>" + aRapcode[iCnt] + "</b> found." );
-				e.printStackTrace();
-			}
-			catch(Exception e1)
-			{
-				
-			}
+				String sRapcode = aRapcode[iCnt];
 
-		   }
+				mobileAction.waitForElement(defaultTradeAccount);
+				mobileAction.selectItemFromList(orderTypeSelected, getTestdata("OrderType", XLSheetUserIDs));
+				mobileAction.FuncClick(defaultTradeAccount, "defaultTradeAccount");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+					xpathAccount = "//*[@resource-id='com.td:id/txtAccountNumber']";
+					while (!flag && sSwipeCount < sSwipes) {
+						for (int i = 0; i < CL.GetDriver().findElements(By.xpath(xpathAccount)).size(); i++) {
+							sAccount = CL.GetDriver().findElements(By.xpath(xpathAccount)).get(i).getText();
+
+							if (getMatchedAccount(sAccount, sRapcode).length() > 0) {
+								flag = true;
+								CL.GetDriver().findElements(By.xpath(xpathAccount)).get(i).click();
+								sExpectedAccount = sAccount;
+								break;
+							}
+							sCount = i;
+
+						}
+						if (sCount + 1 >= CL.GetDriver().findElements(By.xpath(xpathAccount)).size()) {
+							mobileAction.FuncSwipeOnce("up");
+							sSwipeCount++;
+						}
+					}
+				} else {
+					for (int iAcc = 1; iAcc < 100; iAcc++) {
+						try {
+
+							xpathAccount = "//*[@label='ACCOUNT' or @label='COMPTE']/../../XCUIElementTypeCell[" + iAcc
+									+ "]/*[1]";
+							temp = getMatchedAccount(
+									CL.GetDriver().findElement(By.xpath(xpathAccount)).getAttribute("label"), sRapcode);
+							if (temp.length() > 0) {
+								String sFullAccount = CL.GetDriver().findElement(By.xpath(xpathAccount))
+										.getAttribute("label");
+								String sAccNumber = sFullAccount.substring(sFullAccount.length() - 7,
+										sFullAccount.length());
+								String xpathAccNumber = "//*[contains(@label,'" + sAccNumber + "')]";
+								mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccNumber, true, 100, "up");
+								flag = true;
+								sExpectedAccount = sAccNumber;
+								break;
+							}
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				}
+
+				if (flag) {
+					CL.GetReporting().FuncReport("Pass",
+							sExpectedAccount + " with rapcode <b>" + sRapcode + "</b> selected.");
+					mobileAction.verifyElement(messageNegative, getTestdata("WarningMessage", XLSheetUserIDs));
+				} else
+					CL.GetReporting().FuncReport("Fail", "No account with rapcode <b>" + sRapcode + "</b> found.");
+			} catch (Exception e) {
+				try {
+					CL.GetReporting().FuncReport("Fail",
+							"Exception.No account with rapcode <b>" + aRapcode[iCnt] + "</b> found.");
+					e.printStackTrace();
+				} catch (Exception e1) {
+
+				}
+
+			}
 		}
 	}
-	
-	
-	
-	public void searchAndSelectAccountRapcodeWZXY()
-	{
+
+	public void searchAndSelectAccountRapcodeWZXY() {
 		Decorator();
-		try
-		{
-			
-			
+		try {
+
 			mobileAction.waitForElement(lblACCOUNTS);
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount,true,60,"up");
-			
-			if(!mobileAction.isObjExists(quickLink_trade, 2))
-			{
-				CL.GetReporting().FuncReport("Pass", "Trade Option is not available for account with Rapcode" + accNumber );
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount, true, 60, "up");
+
+			if (!mobileAction.isObjExists(quickLink_trade, 2)) {
+				CL.GetReporting().FuncReport("Pass",
+						"Trade Option is not available for account with Rapcode" + accNumber);
 			}
-			
-			else 
-			{
-				
-				CL.GetReporting().FuncReport("Fail", "Trade Option is available for account with Rapcode" + accNumber );
+
+			else {
+
+				CL.GetReporting().FuncReport("Fail", "Trade Option is available for account with Rapcode" + accNumber);
 			}
-			
-			
-					
-			
-		}
-		catch(Exception e)
-		{			e.printStackTrace();
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public String getMatchedAccount(String sAccountNum,String sRapCode)
-	{
+
+	public String getMatchedAccount(String sAccountNum, String sRapCode) {
 		String sReturnPrice = "";
 		String sPattern = "";
-		try
-		{
-				sPattern = sRapCode + "$";
-				Pattern p = Pattern.compile("(" + sPattern + ")");
-			    Matcher m = p.matcher(sAccountNum);
+		try {
+			sPattern = sRapCode + "$";
+			Pattern p = Pattern.compile("(" + sPattern + ")");
+			Matcher m = p.matcher(sAccountNum);
 
-			    // if an occurrence if a pattern was found in a given string...
-			    if (m.find()) {
-			        // ...then you can use group() methods.
-			        //System.out.println(m.group(0)); // whole matched expression
-/*					if(m.group(0).contains(","))
-						sReturnPrice = m.group(0).replaceAll(",", ".").trim();
-					else*/
-						sReturnPrice = m.group(0).trim();
-					}
-			    }
-		//}
-		catch(Exception e)
-		{
+			// if an occurrence if a pattern was found in a given string...
+			if (m.find()) {
+				// ...then you can use group() methods.
+				// System.out.println(m.group(0)); // whole matched expression
+				/*
+				 * if(m.group(0).contains(",")) sReturnPrice =
+				 * m.group(0).replaceAll(",", ".").trim(); else
+				 */
+				sReturnPrice = m.group(0).trim();
+			}
+		}
+		// }
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		return sReturnPrice;
 	}
 
-	public void verifyInvalidTradingPassword()
-	{
+	public void verifyInvalidTradingPassword() {
 		Decorator();
-		try
-		{
+		try {
 			TradeMultiLeg.get().fillStockOptionOrder(firstAskCALLS, "firstAskCALLS");
-		
+
 			mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
-			
-			mobileAction.verifyElement(ErrTradingPwd, getTestdata("WarningMessage",XLSheetUserIDs));
-			
-		}
-		catch(Exception e)
-		{			e.printStackTrace();
+
+			mobileAction.verifyElement(ErrTradingPwd, getTestdata("WarningMessage", XLSheetUserIDs));
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-/*public static void main(String args[]){
-	//MainScreenMIT.get().OpenApp();
-	Test();*/
-	
-//}
+
+	/*
+	 * public static void main(String args[]){ //MainScreenMIT.get().OpenApp();
+	 * Test();
+	 */
+
+	// }
 }
-
-
-
-
-

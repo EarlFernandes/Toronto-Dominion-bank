@@ -219,20 +219,20 @@ public class LoginMIT extends _CommonPage {
 			if (mobileAction.isObjExists(select_accesscard)) {
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 			}
-				if (mobileAction.isObjExists(addUser)) {
+			if (mobileAction.isObjExists(addUser)) {
 
-					mobileAction.FuncClick(addUser, "AddUser");
-					mobileAction.FuncClick(username, "Username");
-					mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-					mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-					TradeMultiLeg.get().handleKeyboard();
+				mobileAction.FuncClick(addUser, "AddUser");
+				mobileAction.FuncClick(username, "Username");
+				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
+				mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+				TradeMultiLeg.get().handleKeyboard();
 
-					mobileAction.FuncClick(login, "Login");
+				mobileAction.FuncClick(login, "Login");
 
-					enterPwdifError();
-				}
+				enterPwdifError();
+			}
 
-			 else {
+			else {
 
 				mobileAction.FuncClick(username, "Username");
 				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);

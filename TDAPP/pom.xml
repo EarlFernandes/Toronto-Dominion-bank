@@ -165,7 +165,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   	<dependency>
   		<groupId>org.apache.poi</groupId>
   		<artifactId>poi</artifactId>
-  		<version>3.12</version>
+  		<version>3.16</version>
   	</dependency>
   	<dependency>
   		<groupId>org.apache.pdfbox</groupId>
@@ -175,12 +175,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   	<dependency>
   		<groupId>com.td.test.alm</groupId>
   		<artifactId>ALM</artifactId>
-  		<version>0.0.2</version>
+  		<version>0.1.01</version>
   	</dependency>
   	<dependency>
   		<groupId>com.td.test.framework</groupId>
   		<artifactId>com.td.test.framework</artifactId>
-  		<version>0.0.3f</version>
+  		<version>0.0.3g</version>
   	</dependency>
   	  	<dependency>
   <groupId>io.appium</groupId>

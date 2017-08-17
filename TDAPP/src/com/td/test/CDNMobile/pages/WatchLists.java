@@ -166,7 +166,7 @@ public class WatchLists extends _CommonPage {
 				mobileAction.FuncClick(symbol, symbolXL);
 
 				String WishListXpath = "//android.widget.LinearLayout[@index='" + i + "']";
-				MobileElement wishList = mobileAction.verifyElementUsingXPath(WishListXpath,"WishList");
+				MobileElement wishList = mobileAction.verifyElementUsingXPath(WishListXpath, "WishList");
 
 				mobileAction.FuncClick(wishList, "WishList " + i);
 
@@ -263,10 +263,11 @@ public class WatchLists extends _CommonPage {
 			try {
 				// mobileAction.FuncClick(Symbol, symbolList[i]);
 				mobileAction.FuncElementSwipeWhileNotFound(listView, Symbol, 3, "up", true);
-			}  catch (NoSuchElementException e) {
+			} catch (NoSuchElementException e) {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-			}  catch (IOException e) {
+				System.out.println(
+						"NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (IOException e) {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			} catch (Exception e) {
@@ -306,10 +307,11 @@ public class WatchLists extends _CommonPage {
 
 			try {
 				mobileAction.verifyElementNotPresent(Symbol, symbolList[i]);
-			}  catch (NoSuchElementException e) {
+			} catch (NoSuchElementException e) {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-			}  catch (Exception e) {
+				System.out.println(
+						"NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			} catch (Exception e) {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}

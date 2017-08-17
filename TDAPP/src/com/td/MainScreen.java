@@ -13,14 +13,14 @@ public class MainScreen extends _CommonPage {
 	// ***** LOCAL EXECUTION PARAMETERS *****
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.104:4730/wd/hub/";
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.19.17.226:4762/wd/hub";
 
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
-	private static final String APP_ANDROID = "APP_ANDROID_ZH_TRAD";
+	private static final String APP_ANDROID = "APP_ANDROID";
 
 	// Change this parameter to point to the correct ipa in Setup.xls for ios
-	private static final String APP_IOS = "APP_IOS_ZH_TRAD";
+	private static final String APP_IOS = "APP_IOS";
 
 	public String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env",
 			"Amount", "Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount",
@@ -92,7 +92,7 @@ public class MainScreen extends _CommonPage {
 			}
 
 			CL.mobileApp(appiumPath);
-			
+
 			// If length is 2, then second token is the locale
 			if (targetEnvVars.length >= 2) {
 				currentLocale = targetEnvVars[1];
@@ -111,13 +111,13 @@ public class MainScreen extends _CommonPage {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_ANDROID));
-						currentLocale = CL.LoadData("Language",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_ANDROID);
+						currentLocale = CL.LoadData("Language", CL.getTestDataInstance().getSetupFile(), "AppURL",
+								"Name", APP_ANDROID);
 					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS));
-						currentLocale = CL.LoadData("Language",
-								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS);
+						currentLocale = CL.LoadData("Language", CL.getTestDataInstance().getSetupFile(), "AppURL",
+								"Name", APP_IOS);
 					}
 				}
 				CL.mobileApp(LOCAL_EXECUTION_APPIUM_SERVER);
