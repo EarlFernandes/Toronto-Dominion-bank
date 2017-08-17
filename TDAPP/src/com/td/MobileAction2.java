@@ -133,6 +133,7 @@ public class MobileAction2 extends CommonLib {
 
 			WebDriverWait wait = new WebDriverWait(GetDriver(), 15L);
 			wait.until(ExpectedConditions.visibilityOf(objElement));
+
 			objElement.click();
 
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
@@ -457,9 +458,7 @@ public class MobileAction2 extends CommonLib {
 				try {
 					elementFound = elementToFind.isDisplayed();
 				} catch (NoSuchElementException e) {
-					TouchAction t = new TouchAction(GetAppiumDriver());
-					GetAppiumDriver().performTouchAction(t.press(startx, starty).waitAction(3000)
-							.moveTo(endx - startx, endy - starty).release().perform());
+					((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
 					// ((MobileDriver) GetDriver()).swipe(startx, starty, endx,
 					// endy, 3000);
 				}
@@ -548,10 +547,7 @@ public class MobileAction2 extends CommonLib {
 					elementFound = elementToFind.isDisplayed();
 
 				} catch (NoSuchElementException e) {
-					TouchAction t = new TouchAction(GetAppiumDriver());
-					GetAppiumDriver().performTouchAction(t.press(startx, starty).waitAction(3000)
-							.moveTo(endx - startx, endy - starty).release().perform());
-
+					((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
 					// ((MobileDriver) GetDriver()).swipe(startx, starty, endx,
 					// endy, 3000);
 				}
@@ -636,10 +632,7 @@ public class MobileAction2 extends CommonLib {
 					elementFound = elementToFind.isDisplayed();
 
 				} catch (NoSuchElementException e) {
-					TouchAction t = new TouchAction(GetAppiumDriver());
-					GetAppiumDriver().performTouchAction(t.press(startx, starty).waitAction(3000)
-							.moveTo(endx - startx, endy - starty).release().perform());
-
+					((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
 					// ((MobileDriver) GetDriver()).swipe(startx, starty, endx,
 					// endy, 3000);
 				}
@@ -835,10 +828,8 @@ public class MobileAction2 extends CommonLib {
 
 						flag = false;
 					} else {
-						TouchAction t = new TouchAction(GetAppiumDriver());
-						(GetAppiumDriver()).performTouchAction(t.press(startx / 2, starty - starty / 4).waitAction(600)
-								.moveTo(0, starty / 4 - (starty - starty / 4)).release().perform());
-
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty - starty / 4,
+								startx / 2, starty / 4, 600);
 						// ((MobileDriver) GetDriver()).swipe(startx / 2, starty
 						// - starty / 4, startx / 2, starty / 4,
 						// 600);
@@ -846,10 +837,8 @@ public class MobileAction2 extends CommonLib {
 					}
 				} catch (Exception e) {
 					System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-					TouchAction t = new TouchAction(GetAppiumDriver());
-					GetAppiumDriver().performTouchAction(t.press(startx / 2, starty - starty / 4).waitAction(600)
-							.moveTo(0, starty / 4 - (starty - starty / 4)).release().perform());
-
+					((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty - starty / 4,
+							startx / 2, starty / 4, 600);
 					// ((MobileDriver) GetDriver()).swipe(startx / 2, starty -
 					// starty / 4, startx / 2, starty / 4, 600);
 					count++;
@@ -1167,10 +1156,8 @@ public class MobileAction2 extends CommonLib {
 			int starty = size.height;
 			int j = 0;
 			while (!elementToFind.isDisplayed() && j < 30) {
-				TouchAction t = new TouchAction(GetAppiumDriver());
-				GetAppiumDriver().performTouchAction(t.press(startx / 2, starty - starty / 4).waitAction(600)
-						.moveTo(0, starty / 4 - (starty - starty / 4)).release().perform());
-
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty - starty / 4,
+						startx / 2, starty / 4, 600);
 				// ((MobileDriver) GetDriver()).swipe(startx / 2, starty -
 				// starty / 4, startx / 2, starty / 4, 600);
 				j++;
@@ -1251,10 +1238,7 @@ public class MobileAction2 extends CommonLib {
 				try {
 					elementFound = elementToFind.isDisplayed();
 				} catch (NoSuchElementException e) {
-					TouchAction t = new TouchAction(GetAppiumDriver());
-					(GetAppiumDriver()).performTouchAction(t.press(startx, starty).waitAction(3000)
-							.moveTo(endx - startx, endy - starty).release().perform());
-
+					((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
 					// ((MobileDriver) GetDriver()).swipe(startx, starty, endx,
 					// endy, 3000);
 				}
@@ -1333,17 +1317,13 @@ public class MobileAction2 extends CommonLib {
 			int endy = (int) (size.height * 0.20);
 			int startx = size.width / 2;
 			if (Direction.equalsIgnoreCase("Up")) {
-				TouchAction t = new TouchAction(GetAppiumDriver());
-				(GetAppiumDriver()).performTouchAction(t.press(startx, starty - Offset).waitAction(swipeTime)
-						.moveTo(0, endy - (starty - Offset)).release().perform());
-
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty - Offset, startx, endy,
+						swipeTime);
 				// ((MobileDriver) GetDriver()).swipe(startx, starty - Offset,
 				// startx, endy, swipeTime);
 			} else if (Direction.equalsIgnoreCase("Down")) {
-				TouchAction t = new TouchAction(GetAppiumDriver());
-				(GetAppiumDriver()).performTouchAction(t.press(startx, endy + Offset).waitAction(swipeTime)
-						.moveTo(0, starty - (endy + Offset)).release().perform());
-
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, endy + Offset, startx, starty,
+						swipeTime);
 				// ((MobileDriver) GetDriver()).swipe(startx, endy + Offset,
 				// startx, starty, swipeTime);
 			} else if (Direction.equalsIgnoreCase("Right")) {
@@ -1351,10 +1331,8 @@ public class MobileAction2 extends CommonLib {
 				endy = size.height / 2;
 				startx = (int) (size.width * 0.10);
 				int endx = (int) (size.width * 0.90);
-				TouchAction t = new TouchAction(GetAppiumDriver());
-				GetAppiumDriver().performTouchAction(t.press(startx + Offset, starty).waitAction(swipeTime)
-						.moveTo(endx - (startx + Offset), endy - starty).release().perform());
-
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx + Offset, starty, endx, endy,
+						swipeTime);
 				// ((MobileDriver) GetDriver()).swipe(startx + Offset, starty,
 				// endx, endy, swipeTime);
 			} else if (Direction.equalsIgnoreCase("Left")) {
@@ -1362,10 +1340,8 @@ public class MobileAction2 extends CommonLib {
 				endy = size.height / 2;
 				startx = (int) (size.width * 0.90);
 				int endx = (int) (size.width * 0.10);
-				TouchAction t = new TouchAction(GetAppiumDriver());
-				GetAppiumDriver().performTouchAction(t.press(startx - Offset, starty).waitAction(swipeTime)
-						.moveTo(endx - (startx - Offset), endy - starty).release().perform());
-
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx - Offset, starty, endx, endy,
+						swipeTime);
 				// ((MobileDriver) GetDriver()).swipe(startx - Offset, starty,
 				// endx, endy, swipeTime);
 			}
@@ -2032,23 +2008,18 @@ public class MobileAction2 extends CommonLib {
 					sEleName = FuncGetElementText(elementToFind);
 
 				} catch (Exception e) {
-					if (direction.equalsIgnoreCase("up")) {
-						TouchAction t = new TouchAction(GetAppiumDriver());
-						(GetAppiumDriver()).performTouchAction(t.press(startx / 2, starty / 2).waitAction(2000)
-								.moveTo(0, (endy / 2 - heightPer) - starty / 2).release().perform());
-
-						// ((MobileDriver) GetDriver()).swipe(startx / 2, starty
-						// / 2, startx / 2, endy / 2 - heightPer,
-						// 2000);
-					} else if (direction.equalsIgnoreCase("down")) {
-						TouchAction t = new TouchAction(GetAppiumDriver());
-						(GetAppiumDriver()).performTouchAction(t.press(startx / 2, endy / 2).waitAction(2000)
-								.moveTo(0, (endy / 2 + heightPer) - endy / 2).release().perform());
-
-						// ((MobileDriver) GetDriver()).swipe(startx / 2, endy /
-						// 2, startx / 2, endy / 2 + heightPer,
-						// 2000);
-					}
+					if (direction.equalsIgnoreCase("up"))
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2,
+								startx / 2, endy / 2 - heightPer, 2000);
+					// ((MobileDriver) GetDriver()).swipe(startx / 2, starty /
+					// 2, startx / 2, endy / 2 - heightPer,
+					// 2000);
+					else if (direction.equalsIgnoreCase("down"))
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
+								startx / 2, endy / 2 + heightPer, 2000);
+					// ((MobileDriver) GetDriver()).swipe(startx / 2, endy / 2,
+					// startx / 2, endy / 2 + heightPer,
+					// 2000);
 					count++;
 				}
 
@@ -2113,18 +2084,15 @@ public class MobileAction2 extends CommonLib {
 
 				} catch (Exception e) {
 					if (direction.equalsIgnoreCase("up")) {
-						TouchAction t = new TouchAction(GetAppiumDriver());
-						GetAppiumDriver().performTouchAction(t.press(startx / 2, starty / 2).waitAction(2000)
-								.moveTo(0, -heightPer).release().perform());
-
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2,
+								startx / 2, endy / 2 - heightPer, 2000);
 						// ((MobileDriver) GetDriver()).swipe(startx / 2, starty
-						// / 2, startx / 2, endy / 2 - heightPer,
+						// /
+						// 2, startx / 2, endy / 2 - heightPer,
 						// 2000);
 					} else if (direction.equalsIgnoreCase("down")) {
-						TouchAction t = new TouchAction(GetAppiumDriver());
-						GetAppiumDriver().performTouchAction(t.press(startx / 2, endy / 2).waitAction(2000)
-								.moveTo(0, heightPer).release().perform());
-
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
+								startx / 2, endy / 2 + heightPer, 2000);
 						// ((MobileDriver) GetDriver()).swipe(startx / 2, endy /
 						// 2, startx / 2, endy / 2 + heightPer,
 						// 2000);
@@ -2189,18 +2157,14 @@ public class MobileAction2 extends CommonLib {
 
 				} catch (Exception e) {
 					if (direction.equalsIgnoreCase("up")) {
-						TouchAction t = new TouchAction(GetAppiumDriver());
-						GetAppiumDriver().performTouchAction(t.press(startx / 2, starty / 2).waitAction(2000)
-								.moveTo(0, (endy / 2 - heightPer) - starty / 2).release().perform());
-
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2,
+								startx / 2, endy / 2 - heightPer, 2000);
 						// ((MobileDriver) GetDriver()).swipe(startx / 2, starty
 						// / 2, startx / 2, endy / 2 - heightPer,
 						// 2000);
 					} else if (direction.equalsIgnoreCase("down")) {
-						TouchAction t = new TouchAction(GetAppiumDriver());
-						GetAppiumDriver().performTouchAction(t.press(startx / 2, endy / 2).waitAction(2000)
-								.moveTo(0, (endy / 2 + heightPer) - endy / 2).release().perform());
-
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2, startx / 2, endy / 2 + heightPer,
+								2000);
 						// ((MobileDriver) GetDriver()).swipe(startx / 2, endy /
 						// 2, startx / 2, endy / 2 + heightPer,
 						// 2000);
@@ -2267,9 +2231,9 @@ public class MobileAction2 extends CommonLib {
 	 * 
 	 * @param expectedText
 	 *            The expected text in this format like: "CONTACT INFORMATION |
-	 *            COORDONNÃ‰ES" if language is English then "CONTACT INFORMATION
-	 *            "to be printed in report if language is French then
-	 *            "COORDONNÃ‰ES" to be printed in report
+	 *            COORDONNÃƒâ€°ES" if language is English then "CONTACT
+	 *            INFORMATION "to be printed in report if language is French
+	 *            then "COORDONNÃƒâ€°ES" to be printed in report
 	 * 
 	 * @return nothing
 	 * 
@@ -2394,18 +2358,12 @@ public class MobileAction2 extends CommonLib {
 			int heightPer = (endy * 25 / 100);
 
 			if (sDirection.equalsIgnoreCase("up")) {
-				TouchAction t = new TouchAction(GetAppiumDriver());
-				GetAppiumDriver().performTouchAction(t.press(startx / 2, starty / 2).waitAction(2000)
-						.moveTo(0, (endy / 2 - heightPer) - starty / 2).release().perform());
-
-				// ((MobileDriver) GetDriver()).swipe(startx / 2, starty / 2,
-				// startx / 2, endy / 2 - heightPer, 2000);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2, startx / 2, endy / 2 + heightPer,
+						2000);
+//				((MobileDriver) GetDriver()).swipe(startx / 2, starty / 2, startx / 2, endy / 2 - heightPer, 2000);
 				GetReporting().FuncReport("Pass", "Swipe Up once.");
 			} else if (sDirection.equalsIgnoreCase("down")) {
-				TouchAction t = new TouchAction(GetAppiumDriver());
-				GetAppiumDriver().performTouchAction(t.press(startx / 2, endy / 2).waitAction(2000)
-						.moveTo(0, (endy / 2 + heightPer) - endy / 2).release().perform());
-
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2, startx / 2, endy / 2 + heightPer, 2000);
 				// ((MobileDriver) GetDriver()).swipe(startx / 2, endy / 2,
 				// startx / 2, endy / 2 + heightPer, 2000);
 				GetReporting().FuncReport("Pass", "Swipe Down once.");
@@ -3016,10 +2974,7 @@ public class MobileAction2 extends CommonLib {
 			int endy = (int) (size.height * 0.20);
 			int startx = (int) (size.width * 0.90);
 			int endx = (int) (size.width * 0.10);
-			TouchAction t = new TouchAction(GetAppiumDriver());
-			GetAppiumDriver().performTouchAction(t.press(startx - Offset, starty).waitAction(swipeTime)
-					.moveTo(endx - (startx - Offset), endy - starty).release().perform());
-
+			((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx - Offset, starty, endx, endy, swipeTime);
 			// ((MobileDriver) GetDriver()).swipe(startx - Offset, starty, endx,
 			// endy, swipeTime);
 
@@ -3090,12 +3045,12 @@ public class MobileAction2 extends CommonLib {
 	public static final int TYPE_YYYY_MM_DD_HOUR = 5;
 	public static final int TYPE_YYYY_MM_DD_RANGE = 6;
 
-	public static final String PATTERN_ZH_YYYY_MM_DD = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日|待处理|尚待處理";
-	public static final String PATTERN_ZH_YYYY_MM_DD_WEEKDATE = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\((星期|週)[一|二|三|四|五|六|日|天]\\)";
-	public static final String PATTERN_ZH_MM_YYYY = "\\d{4}年\\s?\\d{1,2}月";
-	public static final String PATTERN_ZH_YYYY_MM_DD_TODAY = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\((今天|今日)\\)";
-	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日.*";
-	public static final String PATTERN_ZH_YYYY_MM_DD_RANGE = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日 – (\\d{4}年)*\\d{1,2}月\\d{1,2}日";
+	public static final String PATTERN_ZH_YYYY_MM_DD = "\\d{4}å¹´\\s?\\d{1,2}æœˆ\\d{1,2}æ—¥|å¾…å¤„ç†|å°šå¾…è™•ç†";
+	public static final String PATTERN_ZH_YYYY_MM_DD_WEEKDATE = "\\d{4}å¹´\\s?\\d{1,2}æœˆ\\s?\\d{1,2}æ—¥ \\((æ˜ŸæœŸ|é€±)[ä¸€|äºŒ|ä¸‰|å››|äº”|å…­|æ—¥|å¤©]\\)";
+	public static final String PATTERN_ZH_MM_YYYY = "\\d{4}å¹´\\s?\\d{1,2}æœˆ";
+	public static final String PATTERN_ZH_YYYY_MM_DD_TODAY = "\\d{4}å¹´\\s?\\d{1,2}æœˆ\\s?\\d{1,2}æ—¥ \\((ä»Šå¤©|ä»Šæ—¥)\\)";
+	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}å¹´\\s?\\d{1,2}æœˆ\\d{1,2}æ—¥.*";
+	public static final String PATTERN_ZH_YYYY_MM_DD_RANGE = "\\d{4}å¹´\\s?\\d{1,2}æœˆ\\d{1,2}æ—¥ â€“ (\\d{4}å¹´)*\\d{1,2}æœˆ\\d{1,2}æ—¥";
 
 	public void verifyDateFormat(final String dateStr, final int type) {
 		if (_CommonPage.currentLocale.startsWith("zh")) {
