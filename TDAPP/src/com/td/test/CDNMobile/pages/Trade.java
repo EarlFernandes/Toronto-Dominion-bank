@@ -2,25 +2,19 @@ package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.PageFactory;
 
-import com.td.MainScreen;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
@@ -333,8 +327,7 @@ public class Trade extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(5, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(5, TimeUnit.SECONDS)), this);
 	}
 
 	/**
@@ -508,8 +501,7 @@ public class Trade extends _CommonPage {
 				// mobileAction.FunctionSwipe("up", 200, 50);
 				// mobileAction.FuncClick(actionElement, "Action");
 				mobileAction.FuncSwipeWhileElementNotFound(actionElement, true, 1, "up");
-				MobileElement actionList = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(txtAction));
+				MobileElement actionList = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(txtAction));
 				mobileAction.verifyElementIsDisplayed(actionList, actionList.getText());
 				mobileAction.FuncClick(actionList, "Action value clicked");
 
@@ -1515,8 +1507,8 @@ public class Trade extends _CommonPage {
 
 		}
 
-		MobileElement pricePath = (MobileElement) ((AppiumDriver) CL.GetDriver())
-				.findElement(By.xpath(currentPricePath));
+		MobileElement pricePath = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(currentPricePath));
+
 		System.out.println(pricePath.getText());
 		CL.getTestDataInstance().TCParameters.put("CurrentPrice", pricePath.getText());
 
@@ -1544,8 +1536,7 @@ public class Trade extends _CommonPage {
 			currentPricePath = "//android.widget.TextView[@resource-id='com.td:id/txt_price']";
 		}
 
-		MobileElement pricePath = (MobileElement) ((AppiumDriver) CL.GetDriver())
-				.findElement(By.xpath(currentPricePath));
+		MobileElement pricePath = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(currentPricePath));
 
 		CL.getTestDataInstance().TCParameters.put("CurrentPrice", pricePath.getText());
 
@@ -1558,8 +1549,7 @@ public class Trade extends _CommonPage {
 		} else {
 			currentPricePath = "//android.widget.TextView[@resource-id='com.td:id/bidPrice'] | android.widget.TextView[@resource-id='com.td:id/price']";
 		}
-		MobileElement pricePath = (MobileElement) ((AppiumDriver) CL.GetDriver())
-				.findElement(By.xpath(currentPricePath));
+		MobileElement pricePath = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(currentPricePath));
 
 		CL.getTestDataInstance().TCParameters.put("CurrentPrice", pricePath.getText());
 
@@ -1572,8 +1562,7 @@ public class Trade extends _CommonPage {
 			currentPricePath = "//android.widget.TextView[@resource-id='com.td:id/askPrice']";
 		}
 
-		MobileElement pricePath = (MobileElement) ((AppiumDriver) CL.GetDriver())
-				.findElement(By.xpath(currentPricePath));
+		MobileElement pricePath = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(currentPricePath));
 
 		CL.getTestDataInstance().TCParameters.put("CurrentPrice", pricePath.getText());
 
@@ -1586,8 +1575,7 @@ public class Trade extends _CommonPage {
 			currentPricePath = "//android.widget.TextView[@resource-id='com.td:id/bidPrice']";
 		}
 
-		MobileElement pricePath = (MobileElement) ((AppiumDriver) CL.GetDriver())
-				.findElement(By.xpath(currentPricePath));
+		MobileElement pricePath = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(currentPricePath));
 
 		CL.getTestDataInstance().TCParameters.put("CurrentPrice", pricePath.getText());
 
@@ -1606,8 +1594,7 @@ public class Trade extends _CommonPage {
 
 		}
 
-		MobileElement pricePath = (MobileElement) ((AppiumDriver) CL.GetDriver())
-				.findElement(By.xpath(currentPricePath));
+		MobileElement pricePath = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(currentPricePath));
 
 		CL.getTestDataInstance().TCParameters.put("CurrentPrice", pricePath.getText());
 

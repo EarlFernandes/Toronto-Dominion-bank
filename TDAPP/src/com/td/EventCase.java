@@ -23,12 +23,13 @@ import com.td.test.CDNMobile.pages.DepositCheque;
 import com.td.test.CDNMobile.pages.FindLocations;
 import com.td.test.CDNMobile.pages.HoldingDetails;
 import com.td.test.CDNMobile.pages.HomeScreen;
+import com.td.test.CDNMobile.pages.Interac_Send_Money;
+import com.td.test.CDNMobile.pages.Interac_e_Registration;
 import com.td.test.CDNMobile.pages.Interac_e_Transfer;
 import com.td.test.CDNMobile.pages.Investing;
 import com.td.test.CDNMobile.pages.InvestingAccountSummary;
 import com.td.test.CDNMobile.pages.Login;
 import com.td.test.CDNMobile.pages.LoginMIT;
-import com.td.test.CDNMobile.pages.LoginPNP;
 import com.td.test.CDNMobile.pages.Logout;
 import com.td.test.CDNMobile.pages.MFA_ChangeAnswer;
 import com.td.test.CDNMobile.pages.MLCancelOrderReceipt;
@@ -49,6 +50,7 @@ import com.td.test.CDNMobile.pages.MobilePayment;
 import com.td.test.CDNMobile.pages.Multitasking_System;
 import com.td.test.CDNMobile.pages.MutualFunds;
 import com.td.test.CDNMobile.pages.Notifications;
+import com.td.test.CDNMobile.pages.OTPChallenge;
 import com.td.test.CDNMobile.pages.Options;
 import com.td.test.CDNMobile.pages.OptionsReceiptPage;
 import com.td.test.CDNMobile.pages.OrderDetails;
@@ -113,7 +115,7 @@ public class EventCase {
 
 		Env_set, Env_EnableMobilePayment, EditEmailAddressWithNonAformat, EditEmailAddressWithlonger60Char, EditEmailAddressWithNolonger60Char, EditEmailAddressWithoutSave, EditPhoneNumber, Env_DeleteDefaultCard,
 
-		getProfileInformation, GetEmailAndPhoneNumber, ClickFeedback, ClickContactUs_CF, VerifyMoodSelectorScreen, VerifyEmotionsAnimateFromTopToBottom, ClickGreatLink, VerifyPostSurveyScreen, ClickCouldvebeenBetterLink, ClickItwasntWorkingLink, ClickBackFromMoodSelector, VerifyHomePageDashBoard, ClickContactUsFromHomePage, ClickSendFeedbackNow, ClickRateUsOnGooglePlay, VerifyGooglePlayRatePage, ClickBackFromPostSurvey, VerifyContactUsPageHeader,
+		getProfileInformation, GetEmailAndPhoneNumber, ClickFeedback, ClickContactUs_CF, VerifyMoodSelectorScreen, VerifyEmotionsAnimateFromTopToBottom, ClickGreatLink, VerifyPostSurveyScreen, ClickCouldvebeenBetterLink, ClickItwasntWorkingLink, ClickBackFromMoodSelector, VerifyHomePageDashBoard, ClickContactUsFromHomePage, ClickSendFeedbackNow, VerifyRateUsOnGooglePlayButton, VerifyGooglePlayRatePage, ClickBackFromPostSurvey, VerifyContactUsPageHeader,
 
 		FlyOut_HOME, Flyout_Location, Fill_OptionOrder, HoldingDetails_click_BuyButton, HoldingDetails_verify_Account_CADCash, HoldingDetails_verify_Account_US_MarginShort,
 
@@ -125,7 +127,7 @@ public class EventCase {
 
 		Investing_clickMarkets, Investing_clickOrderTab, Investing_clickPlacedorder, Investing_clickTrade, Investing_clickTrade_French, Investing_clickWatchLists, Investing_Header, Investing_verifyAdvanceorderdetails, Investingacc_verifySummary, InvestingHeader, IOS_Account_Home_Button,
 
-		Login, Login_and_Logout, Login_clearPasswordField, Login_Error, Login_Ntimes, Login_PasswordFieldDelete, Login_usernameFieldDelete, Login_verifyPasswordField, Login_verifyUsernameField, login_without_tandc, LoginFrench, Loginverify, LoginWithRemember, Logout, LogoutFrench, LoginPNP,
+		Login, Login_and_Logout, Login_clearPasswordField, Login_Error, Login_Ntimes, Login_PasswordFieldDelete, Login_usernameFieldDelete, Login_verifyPasswordField, Login_verifyUsernameField, login_without_tandc, LoginFrench, Loginverify, LoginWithRemember, Logout, LogoutFrench,
 
 		ManagePayee_AddCanadianPayee, ManagePayee_MutlipleAccesscard, ManagePayee_VerifyAddCanadianPayeeBtn, ManagePayees_Button, ManageRecipient_EditManageRecipient, ManageRecipient_ModifyRecipient, ManageRecipients_VerifyRegisterButton, mask_user,
 
@@ -135,7 +137,7 @@ public class EventCase {
 
 		NavigationBackToProfileandSettingPage, NavigationToHomePage,
 
-		OpenApp, OrderDetails_CancelOrder, OrderDetails_clickChangeorder, OrderDetailsLimitPrice, OrderDetailsPage_orderConfirmDetails, OrderDetailsPage_verifyStockChangeorderConfirmScreen, OrderDetailsTriggerPrice, OrderReciept_CancelOrderReceipt, OrderReciept_French, OrderReciept_orderdetailMutualfund, OrderReciept_orderDetails, OrderReciept_orders, OrderReciept_OrdersIcon, OrderReciept_ordertab, OrderReciept_updatemsg, OrderReciept_verifyOrderScreen, Ordertype_Cancel, OpenAppPNP, OptionOrderChangeQuantity, Options_verifyOptionsForNewOrder, Options_Changeprice, Options_ChangeGoodTil, Options_CancelOrder, Options_CancelOrderConfirmScreen, Options_VerifytradingPassword, Options_Verifybackbutton, Options_VerifyImportantInformation, Options_VerifyCancelReceipt,
+		OpenApp, OrderDetails_CancelOrder, OrderDetails_clickChangeorder, OrderDetailsLimitPrice, OrderDetailsPage_orderConfirmDetails, OrderDetailsPage_verifyStockChangeorderConfirmScreen, OrderDetailsTriggerPrice, OrderReciept_CancelOrderReceipt, OrderReciept_French, OrderReciept_orderdetailMutualfund, OrderReciept_orderDetails, OrderReciept_orders, OrderReciept_OrdersIcon, OrderReciept_ordertab, OrderReciept_updatemsg, OrderReciept_verifyOrderScreen, Ordertype_Cancel, OptionOrderChangeQuantity, Options_verifyOptionsForNewOrder, Options_Changeprice, Options_ChangeGoodTil, Options_CancelOrder, Options_CancelOrderConfirmScreen, Options_VerifytradingPassword, Options_Verifybackbutton, Options_VerifyImportantInformation, Options_VerifyCancelReceipt,
 
 		Pay_US_bill_From_US_Account, Pay_US_bill_FromCanada_Account, PayBill_Canada_Button, PayBill_US_Button, PayBill_VerifyAddCanadianPayeeBtn, PayBillCanada_Add_Canadian_Payee, PayCanada_NegativeTestingBillPayment, PayCanadaBill_Post_Dated, PayCanadaBillP_Pay_Candadian_Bill, PayCanadianBill_InvalidAmount,
 
@@ -151,7 +153,7 @@ public class EventCase {
 
 		USMarAccLongToShort, USMarginShort_Buy_Market,
 
-		verify_access_to_WB, Verify_account_activity_credit, Verify_Combined_Account, Verify_FP_Account, verify_login_5_times, Verify_PIA_Account, VerifyAccessCard, VerifyAccessCardDetails, VerifyActionFields, verifybill_landingpage, VerifyCombinedAccounts, verifyconfirm_order, VerifyDIAccounts, verifyErrorMessage, VerifyFPAccounts, VerifyIconDetails, VerifyInvestingScreen, VerifyNoEligibleAccounts, VerifyNoTradingAccounts, VerifyPIAAccounts, VerifyQuickIcons, VerifyReceipt, VerifySender, VerifySenderList, VerifyShareholderType, Verifytimestamp, VerifyTwoAccessCardDetails, VerifyUser, VerifyNickName, verifydefaultcard, View_profile, VerifyProfileHeader, VerifyContactInformationHeader, VerifyInitialNameforIndividual, VerifyInitialNameforBusinessUser, VerifyInitialNameInUpperCase, VerifyHomePhoneMasked, VerifyExtensionNotMasked, verifyProfileandSettingLandingPage, VerifyProfileNameLength, VerifyErrorMessage, VerifySecurityQuestionButton, VeirfySecuirtyQuestionPageheader, VerifyNotificationsButton, VeirfyNotificationsPageheader, VerifyQuickAccessSettings, VerifyQuickAccessSettingsHeader, VerifyTDForMeSettings, VerifyTDForMeSettingsHeader, VerifyWhatsNew, VerifyWhatsNewPageHeader, VerifyProfileAndSettingslink, VerifyEmailFormat, VerifyEmailIDLength, VerifyBlankEmailNotSuccesful, VerifyErrorMessageOrLength, VerifyEmailIDBlankorNot, VerifyEmailAddedSuccesful, VerifyPopUpWithCancelButton, VerifyClearTextIconDisplayed, VerifyPhoneNumberIsEmpty, VerififyTdforMeNotificationsHeader, VerifyEnableNotificationsSwitchFunction, VerifyQuickAccessSwitchWork, VerifyTDForMeDisableSwitchFunction, VerifyTDForMeEnableSwitchFunction, ClickCustomizeNotificationlinkFromTDforMe, VerifyTDForMeNotificationPageHeader,
+		verify_access_to_WB, Verify_account_activity_credit, Verify_Combined_Account, Verify_FP_Account, verify_login_5_times, Verify_PIA_Account, VerifyAccessCard, VerifyAccessCardDetails, VerifyActionFields, verifybill_landingpage, VerifyCombinedAccounts, verifyconfirm_order, VerifyDIAccounts, verifyErrorMessage, VerifyFPAccounts, VerifyIconDetails, VerifyInvestingScreen, VerifyNoEligibleAccounts, VerifyNoTradingAccounts, VerifyPIAAccounts, VerifyQuickIcons, VerifyReceipt, VerifySender, VerifySenderList, VerifyShareholderType, Verifytimestamp, VerifyTwoAccessCardDetails, VerifyUser, VerifyNickName, verifydefaultcard, View_profile, VerifyProfileHeader, VerifyContactInformationHeader, VerifyInitialNameforIndividual, VerifyInitialNameforBusinessUser, VerifyInitialNameInUpperCase, VerifyHomePhoneMasked, VerifyExtensionNotMasked, verifyProfileandSettingLandingPage, VerifyProfileNameLength, VerifyErrorMessage, VerifySecurityQuestionButton, VeirfySecuirtyQuestionPageheader, VerifyNotificationsButton, VeirfyNotificationsPageheader, VerifyQuickAccessSettings, VerifyQuickAccessSettingsHeader, VerifyTDForMeSettings, VerifyTDForMeSettingsHeader, VerifyWhatsNew, VerifyWhatsNewPageHeader, VerifyProfileAndSettingslink, VerifyEmailFormat, VerifyEmailIDLength, VerifyBlankEmailNotSuccesful, VerifyErrorMessageOrLength, VerifyEmailIDBlankorNot, VerifyEmailAddedSuccesful, VerifyPopUpWithCancelButton, VerifyClearTextIconDisplayed, VerifyPhoneNumberIsEmpty, VerifyTdforMeNotificationsHeader, VerifyEnableNotificationsSwitchFunction, VerifyQuickAccessSwitchWork, VerifyTDForMeDisableSwitchFunction, VerifyTDForMeEnableSwitchFunction, ClickCustomizeNotificationlinkFromTDforMe, VerifyTDForMeNotificationPageHeader,
 
 		VerifyPlaceHolderDisplayed, VerifyToastmessageDisplayed, VerifyPhoneEmailNotChanged, verifyQuickAccessBillPaidUpdate, ClickBackFromAppOrGooglePage, Verify_quick_link_go_back_home, Verify_quick_link_view_myaccounts, Verify_error_screen, VerifyFIFOLogic, VerifyEquityAndETFs, VerifyTradeOnLandingPage, Verify_flyoutMenu, VerfiyOptionConfirmOrderScreen, verifyOptionConfirmOrderReceipt,
 
@@ -165,6 +167,7 @@ public class EventCase {
 		, clickChangeorder_TSM_to_TSL, TradeTrailingStopMarket, TradeStopMarket, TradeStopMarketSell, TradeLimitDAYEXT, ClickWatchList, TradeStopLimit, OrderRecieptValidateBuy, Investing_ClickPlacedOrder, OrderDetails_Changeorder, TradeMarket, clickChangeorder_LimitToMarket, TradeLimit, TradeLimitAndTriggerDelta, TradeOrderType, TradeSymbol, TradeTrailingStopLimit, ConfirmOrderValidateBuy, verifyEmptyWatchList, ClickOrders, clickChangeorder_SM_to_SL, verifyShareHolder, confirmOrder_ClickBack, verifyBuyToCover, TradeStopLimitSell, ConfirmOrderDoNotCancel, ConfirmOrderImpInformation, ClickHoldingAndSymbol, changeOrderLimitDayToDayEXT,
 
 		// MIT Multi-Leg
+
 		OpenAppMIT, LoginMIT, tapInvesting, verifyDefaultStrategies, navigateToSearchScreen, selectTradeAccount_OrderType, verifySymbolUS, verifySymbolSearchResults, clickInvestingTrade, tapTradeSearchBar, clickFirstSymbol, verifyStockOptionContents, verifyOptionOptionContents, verifySelectOption, verifyStockMidNaturalPrice, verifyOptionMidNaturalPrice, verifyGoodTill, verifyGoodTillExpiryDate, verifySharehoderType, verifyStockOptionBackButton, verifyOptionOptionBackButton, verifyOptionOptionPreviewOrderButton, searchAndSelectAccount, submitStockOptionOrder, selectDateSpecify_Android, searchAndSelectAccountRapcode, verifyStockOptionFieldsReset, verifyOptionOptionFieldsReset, verifyOptionOptionFieldResetOrderTypeChanged, verifyStockOptionFieldResetOrderTypeChanged, verifyStockOptionConfirmOrder, verifyOptionOptionConfirmOrder, submitOptionOptionOrder, verifyStockOptionCancelOrderReceipt, verifyOptionOptionCancelOrderReceipt, verifyTradeOrderFormContent, verifyEntryOrderFormContent, verifyWarningMsgExchangeAgrNotSigned, verifyStockOptionConfirmOrderReceipt, verifyOptionOptionConfirmOrderReceipt, clickPostorderMyAccount, clickPostorderTrade, clickQuickLinkHome, clickQuickLinkTrade, clickQuickLinkOrder, verifyOptionOptionChainTableSubmit, verifyStockOptionChainTableSubmit, verifyStockOptionChainTableCancel, verifyOptionOptionChainTableCancel, verifyInvalidTradingPassword, verifyStockOptionChangeOrder, verifyOptionOptionChangeOrder, verifyStockOptionOrderDetails, verifyOptionOptionOrderDetails, verifyMLOrdersTabDetails, Test, verifyBackButton, searchAndSelectAccountRapcodeWZXY,
 
 		// P2P
@@ -175,7 +178,14 @@ public class EventCase {
 		CreditHeader, ClickAccount, VerifyPayWithRewards, ClickStatementTab, Env_ClearSavedCards, ClickReward, RewardHeader, ClickPayWithRewards, PayWithRewardsHeader, ClickStatement, VerifyStatementBalanceHeader, VerifyAndClickPayWithRewardsBtn, ValidateAmount, VerifyMinAndMaxPaymentBtn, PayWithRewardsNotVisible, ValidateMinPayment, VerifyReviewHeader, ClickPayNowButton, ClickCancelButton, VerifyReceiptHeader, VerifyAmountRedeem, ClickSummaryTab, ClickVisitRewards, VerifyURL, VerifyRedemptionText, VerifyNoRewards, VerifyRewardsText, VerifyCashbackText, VerifyRewardsBtn, VerifyTextcashBack, VerifyEarnedAndRedeemed, VerifyNoRewardsInQuickAccess, ClickQuickAccessSettings, DisableCardInQuickAccess, VerifyNoCardInQuickAccess, VerifyDollarRewardBalance, VerifyNoEarnedAndRedeemed, VerifyDollarDecimalValue, VerifyAmountAndContinueIsDisabled, VerifyPayWithRewardsText, VerifyRewardPointstxt, VerifyRewardPayee, VerifyRedemptionDetails, VerifyCashBack,
 
 		// Chinese on Mobile
-		AccountsCredit_VerifyActivityText, AccountsCredit_VerifyCreditText, AccountsCredit_VerifySummaryText, Accounts_VerifyTextOpenNewAccount, AccountsCredit_VerifyTabTextElements, AddPayee_VerifyTextReview, AddPayee_VerifyTextReviewUS, AddPayee_VerifyTextConfirmation, AddPayee_VerifyTextSuccess, AddPayee_VerifyTextSelectUSAddress, Between_My_accounts_VerifyTextElements, Between_My_accounts_performTransferToConfirmation, Between_My_accounts_performTransferToSuccess, Between_My_accounts_VerifyConfirmationText, Between_My_accounts_VerifySuccessText, Bills_ScheduledPayments_VerifyText, Bills_VerifyTextElements, Bills_VerifyTextConfirmCancelScheduledPayment, Bills_VerifyTextNoCanadianPayeesAdded, CrossBorderBanking_ClickLogin, CrossBorderBanking_VerifyTextLoginPopup, CrossBorderBanking_VerifyTextWelcomePage, ClickCrossBorderBanking, ClickTDForMe, ClickTDMySpend, ClickChequeDepositHistory, ClickAddRecipientFromContactsList, ContactUs_VerifyTextElements, HomeScreen_VerifyTextElements, HomeScreen_ClickOpenNewAccount, LoginScreen_VerifyTextElements, HomeScreenDashboardButtons_VerifyTextEelements, Interac_VerifyTextElements, Interac_e_Transfer_VerifyConfirmationText, PendingInterac_e_Transfer_cancel_confirmation_VerifyText, Interac_e_Transfer_VerifySuccessText, Investing_VerifyTextOpenNewAccount, Logout_VerifyTextElements, ManagePayee_AddUSPayee, ManagePayee_VerifyTextSearchPayee, ManagePayees_VerifySpecificPayeeTextElements, ManagePayees_VerifyTextElements, ManageRecipient_ClickAddRecipient, ManageRecipient_VerifyTextEditRecipientInfo, ManageRecipient_VerifyTextAddRecipientConfirmation, ManageRecipient_VerifyTextAddRecipientSuccess, ManageRecipient_ClickYesAddRecipientFromContacts, ManageRecipient_VerifyTextAddRecipientFromContactsList, ManageRecipients_VerifyTextElements, ManageRecipient_VerifyTextAddRecipient, ManageRecipient_VerifyTextRecipientInfo, ManageRecipient_VerifyTextContactsPopUp, Menu_VerifyTextElements, MobileDeposit_VerifyTextElements, MobileDeposit_VerifyTextElementsIneligible, MobileDeposit_VerifyTextDepositCheque, MobileDeposit_VerifyTextDepositChequeHistory, MobileDeposit_VerifyTextChequeDetails, PayBill_US_VerifyTextElements, PayBill_US_VerifyTextElementsNeverRegistered, PayBill_US_VerifyTextElementsSuccess, PayBill_Canada_VerifyTextElementsConfirmation, PayBill_US_VerifyTextElementsConfirmation, PayBill_Canada_VerifyTextElements, PendingInterac_e_Transfer_VerifyText, PendingInterac_e_Transfer_cancel_deposit_to_VerifyText, QuickAccess_VerifyActivateText, QuickAccess_VerifyFTEText, Transfer_VerifyTextElements, InvestingAccountSummary_verifyDetails, InvestingAccountSummary_verifyCreditCardSummaryDetails, InvestingAccountSummary_verifyCreditCardActivityDetails, InvestingAccountSummary_verifyCreditCardPaymentDetails, InvestingAccountSummary_verifyCreditCardPaymentPurchaseDetails, InvestingAccountSummary_verifyCreditCardStatementDetails, InvestingAccountSummary_verifyCreditCardStatementTabDetails, InvestingAccountSummary_verifyHoldingsDetails, InvestingAccountSummary_verifyListedHoldingsDetails, InvestingAccountSummary_verifyInvestingOrderDetails, InvestingAccountSummary_verifyOrdersDetails, InvestingAccountSummary_verifyActivityTabDetails, Investing_verifyPageDetails, Investing_clickAccount, MutualFunds_verifyMutualFundDetails, clickInvestingAccounts
+
+		AccountsCredit_VerifyActivityText, AccountsCredit_VerifyCreditText, AccountsCredit_VerifySummaryText, Accounts_VerifyTextOpenNewAccount, AccountsCredit_VerifyTabTextElements, AddPayee_VerifyTextReview, AddPayee_VerifyTextReviewUS, AddPayee_VerifyTextConfirmation, AddPayee_VerifyTextSuccess, AddPayee_VerifyTextSelectUSAddress, Between_My_accounts_VerifyTextElements, Between_My_accounts_performTransferToConfirmation, Between_My_accounts_performTransferToSuccess, Between_My_accounts_VerifyConfirmationText, Between_My_accounts_VerifySuccessText, Bills_ScheduledPayments_VerifyText, Bills_VerifyTextElements, Bills_VerifyTextConfirmCancelScheduledPayment, Bills_VerifyTextNoCanadianPayeesAdded, CrossBorderBanking_ClickLogin, CrossBorderBanking_VerifyTextLoginPopup, CrossBorderBanking_VerifyTextWelcomePage, ClickCrossBorderBanking, ClickTDForMe, ClickTDMySpend, ClickChequeDepositHistory, ClickAddRecipientFromContactsList, ContactUs_VerifyTextElements, HomeScreen_VerifyTextElements, HomeScreen_ClickOpenNewAccount, LoginScreen_VerifyTextElements, HomeScreenDashboardButtons_VerifyTextEelements, Interac_VerifyTextElements, Interac_e_Transfer_VerifyConfirmationText, PendingInterac_e_Transfer_cancel_confirmation_VerifyText, Interac_e_Transfer_VerifySuccessText, Investing_VerifyTextOpenNewAccount, Logout_VerifyTextElements, ManagePayee_AddUSPayee, ManagePayee_VerifyTextSearchPayee, ManagePayees_VerifySpecificPayeeTextElements, ManagePayees_VerifyTextElements, ManageRecipient_ClickAddRecipient, ManageRecipient_VerifyTextEditRecipientInfo, ManageRecipient_VerifyTextAddRecipientConfirmation, ManageRecipient_VerifyTextAddRecipientSuccess, ManageRecipient_ClickYesAddRecipientFromContacts, ManageRecipient_VerifyTextAddRecipientFromContactsList, ManageRecipients_VerifyTextElements, ManageRecipient_VerifyTextAddRecipient, ManageRecipient_VerifyTextRecipientInfo, ManageRecipient_VerifyTextContactsPopUp, Menu_VerifyTextElements, MobileDeposit_VerifyTextElements, MobileDeposit_VerifyTextElementsIneligible, MobileDeposit_VerifyTextDepositCheque, MobileDeposit_VerifyTextDepositChequeHistory, MobileDeposit_VerifyTextChequeDetails, PayBill_US_VerifyTextElements, PayBill_US_VerifyTextElementsNeverRegistered, PayBill_US_VerifyTextElementsSuccess, PayBill_Canada_VerifyTextElementsConfirmation, PayBill_US_VerifyTextElementsConfirmation, PayBill_Canada_VerifyTextElements, PendingInterac_e_Transfer_VerifyText, PendingInterac_e_Transfer_cancel_deposit_to_VerifyText, QuickAccess_VerifyActivateText, QuickAccess_VerifyFTEText, Transfer_VerifyTextElements, InvestingAccountSummary_verifyDetails, InvestingAccountSummary_verifyCreditCardSummaryDetails, InvestingAccountSummary_verifyCreditCardActivityDetails, InvestingAccountSummary_verifyCreditCardPaymentDetails, InvestingAccountSummary_verifyCreditCardPaymentPurchaseDetails, InvestingAccountSummary_verifyCreditCardStatementDetails, InvestingAccountSummary_verifyCreditCardStatementTabDetails, InvestingAccountSummary_verifyHoldingsDetails, InvestingAccountSummary_verifyListedHoldingsDetails, InvestingAccountSummary_verifyInvestingOrderDetails, InvestingAccountSummary_verifyOrdersDetails, InvestingAccountSummary_verifyActivityTabDetails, Investing_verifyPageDetails, Investing_clickAccount, MutualFunds_verifyMutualFundDetails, clickInvestingAccounts,
+
+		// P2P EUF
+		ManageContacts_verifyContactDeleteSuccessMsg, ManageContacts_noDeleteContact, ManageContacts_deleteContact, ManageContacts_clickContact, ManageContacts_AddContactfromPhone, ManageContacts_clickAddContactfromPhone, ManageContacts_MultiProfileDeleteContact, Interac_e_Registration_clickContinueButton, ManageContacts_verifySuccessMessage, ManageContacts_clickAddContactPlusSign, ManageContacts_clickAddContactButton, ManageContacts_editContact, ManageContacts_verifyContactEditSuccessMsg, ManageContacts_MultiProfileAddContact, ManageContacts_addContact, ManageContacts_MultiProfileEditContact, HomeScreen_clickSendMoney, Interac_Send_Money_sendMoneyVerifyDetails, Interac_Send_Money_sendMoney, Interac_Send_Money_sendMoneyVerifySuccessMsg, Interac_Send_Money_sendMoneyWithError, Interac_e_Registration_verifyDetails, Interac_e_Registration_verifyBusinessDetails, Interac_e_Registration_verifyRegSuccessMessage,
+
+		// OTP
+		OTP_Challenge_ClickTextOption, OTP_Challenge_ClickVoiceOption, OTP_Challenge_ClickFirstPhoneNumber, OTP_Challenge_ClickGetCodeButton, OTP_Challenge_ClickSubmitCodeButton, OTP_Challenge_EnterSecurityCode, OTP_Challenge_WaitForOTPProgressBarToVanish, OTP_Challenge_VerifyInvalidSecurityCode, OTP_Challenge_ResendCode, OTP_Challenge_VerifyTooManySecurityCodesRequested
 
 	}
 
@@ -401,8 +411,72 @@ public class EventCase {
 			ManageContacts.get().verifyPageHeader();
 			break;
 
+		case ManageContacts_verifyContactDeleteSuccessMsg:
+			ManageContacts.get().verifyContactDeleteSuccessMsg();
+			break;
+
+		case ManageContacts_noDeleteContact:
+			ManageContacts.get().noDeleteContact();
+			break;
+
+		case ManageContacts_deleteContact:
+			ManageContacts.get().deleteContact();
+			break;
+
+		case ManageContacts_clickAddContactPlusSign:
+			ManageContacts.get().clickAddContactPlusSign();
+			break;
+
+		case ManageContacts_clickAddContactButton:
+			ManageContacts.get().clickAddContactButton();
+			break;
+
+		case ManageContacts_addContact:
+			ManageContacts.get().addContact();
+			break;
+
+		case ManageContacts_clickAddContactfromPhone:
+			ManageContacts.get().clickAddContactfromPhone();
+			break;
+
+		case ManageContacts_AddContactfromPhone:
+			ManageContacts.get().AddContactfromPhone();
+			break;
+
+		case ManageContacts_clickContact:
+			ManageContacts.get().clickContact();
+			break;
+
+		case ManageContacts_editContact:
+			ManageContacts.get().editContact();
+			break;
+
+		case ManageContacts_verifyContactEditSuccessMsg:
+			ManageContacts.get().verifyContactEditSuccessMsg();
+			break;
+
+		case ManageContacts_MultiProfileEditContact:
+			ManageContacts.get().MultiProfileEditContact();
+			break;
+
+		case ManageContacts_MultiProfileDeleteContact:
+			ManageContacts.get().MultiProfileDeleteContact();
+			break;
+
+		case ManageContacts_MultiProfileAddContact:
+			ManageContacts.get().MultiProfileAddContact();
+			break;
+
+		case ManageContacts_verifySuccessMessage:
+			ManageContacts.get().verifySuccessMessage();
+			break;
+
+		case Interac_e_Registration_clickContinueButton:
+			Interac_e_Registration.get().clickContinueButton();
+
 		case Interac_e_Transfer_clickContinueButton:
 			Interac_e_Transfer.get().clickContinueButton();
+
 			break;
 
 		case Interac_e_Transfer_verifyErrorText:
@@ -417,8 +491,39 @@ public class EventCase {
 			Interac_e_Transfer.get().verifyDetails();
 			break;
 
+		case HomeScreen_clickSendMoney:
+			HomeScreen.get().sendMoney();
+			break;
+
+		case Interac_e_Registration_verifyDetails:
+			Interac_e_Registration.get().verifyDetails();
+			break;
+
+		case Interac_e_Registration_verifyBusinessDetails:
+			Interac_e_Registration.get().verifyBusinessDetails();
+			break;
+
+		case Interac_e_Registration_verifyRegSuccessMessage:
+			Interac_e_Registration.get().verifyRegSuccessMsg();
+
 		case Interac_e_Transfer_verifyRegSuccessMessage:
 			Interac_e_Transfer.get().verifyRegSuccessMsg();
+			break;
+
+		case Interac_Send_Money_sendMoneyWithError:
+			Interac_Send_Money.get().sendMoneyWithError();
+			break;
+
+		case Interac_Send_Money_sendMoney:
+			Interac_Send_Money.get().sendMoney();
+			break;
+
+		case Interac_Send_Money_sendMoneyVerifyDetails:
+			Interac_Send_Money.get().sendMoneyVerifyDetails();
+			break;
+
+		case Interac_Send_Money_sendMoneyVerifySuccessMsg:
+			Interac_Send_Money.get().sendMoneyVerifySuccessMsg();
 			break;
 
 		case HomeScreen_ClickBills:
@@ -1676,20 +1781,6 @@ public class EventCase {
 			Trade.get().selectAndEnterSymbol();
 			break;
 
-		// profile and preference
-
-		case OpenAppPNP:
-			MainScreenPNP.get().Splash_Conitnue();
-			break;
-
-		case LoginPNP:
-			LoginPNP.get().PNPLogin();
-			break;
-
-		case Menu_Profile_And_Settings:
-			MenuPage.get().clickProfileAndSettings();
-			break;
-
 		case Profile_And_Settings_clickPaymentsAndTransfers:
 			Profile_And_Settings.get().clickPaymentsAndTransfers();
 			break;
@@ -1766,8 +1857,8 @@ public class EventCase {
 			Notifications.get().ClickCustomizeNotificationsLink();
 			break;
 
-		case VerififyTdforMeNotificationsHeader:
-			Notifications.get().VerififyTdforMeNotificationsHeader();
+		case VerifyTdforMeNotificationsHeader:
+			Notifications.get().VerifyTdforMeNotificationsHeader();
 			break;
 
 		case VerifyEnableNotificationsSwitchFunction:
@@ -1975,8 +2066,9 @@ public class EventCase {
 			MoodSelectorScreen.get().ClickSendFeedbackNow();
 			break;
 
-		case ClickRateUsOnGooglePlay:
-			MoodSelectorScreen.get().ClickRateUsOnGooglePlayOrAppStore();
+		case VerifyRateUsOnGooglePlayButton:
+			MoodSelectorScreen.get().VerifyRateUsOnGooglePlayButton();
+
 			break;
 
 		case VerifyGooglePlayRatePage:
@@ -2088,9 +2180,6 @@ public class EventCase {
 			TradeMultiLeg.get().verifyBackButton();
 			break;
 
-		case verifyGoodTillExpiryDate:
-			TradeMultiLeg.get().verifyGoodTillExpiryDate();
-			break;
 		case verifySharehoderType:
 			TradeMultiLeg.get().verifySharehoderType();
 			break;
@@ -2236,6 +2325,7 @@ public class EventCase {
 		case searchAndSelectAccountRapcodeWZXY:
 			MLEnterOrderNegative.get().searchAndSelectAccountRapcodeWZXY();
 			break;
+
 		// MIT Multi-Leg Switch Cases END
 
 		case Env_DeleteDefaultCard:
@@ -2865,6 +2955,47 @@ public class EventCase {
 		case Investing_clickAccount:
 			Investing.get().clickAccount();
 			break;
+
+		case OTP_Challenge_ClickTextOption:
+			OTPChallenge.get().clickTextOption();
+			break;
+
+		case OTP_Challenge_ClickVoiceOption:
+			OTPChallenge.get().clickTextVoice();
+			break;
+
+		case OTP_Challenge_ClickFirstPhoneNumber:
+			OTPChallenge.get().clickFirstPhoneNumber();
+			break;
+
+		case OTP_Challenge_EnterSecurityCode:
+			OTPChallenge.get().enterSecurityCode();
+			break;
+
+		case OTP_Challenge_ClickGetCodeButton:
+			OTPChallenge.get().clickGetCodeButton();
+			break;
+
+		case OTP_Challenge_ClickSubmitCodeButton:
+			OTPChallenge.get().clickSubmitCodeButton();
+			break;
+
+		case OTP_Challenge_VerifyInvalidSecurityCode:
+			OTPChallenge.get().verifyInvalidSecurityCodeMsg();
+			break;
+
+		case OTP_Challenge_WaitForOTPProgressBarToVanish:
+			OTPChallenge.get().waitForOTPProgressBarToVanish();
+			break;
+
+		case OTP_Challenge_ResendCode:
+			OTPChallenge.get().clickResendCode();
+			break;
+
+		case OTP_Challenge_VerifyTooManySecurityCodesRequested:
+			OTPChallenge.get().verifyTooManySecurityCodesRequestedMsg();
+			break;
+
 		}
 	}
 

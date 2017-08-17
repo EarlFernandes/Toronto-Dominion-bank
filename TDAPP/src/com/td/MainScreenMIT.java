@@ -1,20 +1,12 @@
 package com.td;
 
-import java.io.IOException;
-import java.util.List;
-
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidKeyCode;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSFindBy;
 import io.appium.java_client.pagefactory.*;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import java.util.concurrent.TimeUnit;
-import com.td.test.*;
 
 public class MainScreenMIT extends _CommonPage {
 
@@ -97,8 +89,9 @@ public class MainScreenMIT extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(60, TimeUnit.SECONDS)),
-				this);
+
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(60, TimeUnit.SECONDS)), this);
+
 	}
 
 	public void OpenApp() {

@@ -6,14 +6,10 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -33,8 +29,9 @@ public class MLChangeOrder extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+
 	}
 
 	@iOSFindBy(xpath = "//*[@label='Send Order' or contains(@label,'Envoyer l')]") // @Author
@@ -379,6 +376,7 @@ public class MLChangeOrder extends _CommonPage {
 			sLeg2Qunatity1 = getTestdata("Leg2Qunatity", XLSheetUserIDs).split(";")[1];
 			sPrice1 = getTestdata("Price", XLSheetUserIDs).split(";")[1];
 			sGoodTill1 = getTestdata("Good'til", XLSheetUserIDs).split(";")[1];
+
 			// sShareHolder1 =
 			// getTestdata("ShareHolder",XLSheetUserIDs).split(";")[1];
 			sShareHolder1 = getTestdata("ShareHolder", XLSheetUserIDs);
@@ -387,6 +385,7 @@ public class MLChangeOrder extends _CommonPage {
 				CL.GetReporting().FuncReport("Fail", "Exception in getStockOptionChangeOrderData().");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
@@ -411,6 +410,7 @@ public class MLChangeOrder extends _CommonPage {
 			sLeg2Qunatity1 = getTestdata("Leg2Qunatity", XLSheetUserIDs).split(";")[1];
 			sPrice1 = getTestdata("Price", XLSheetUserIDs).split(";")[1];
 			sGoodTill1 = getTestdata("Good'til", XLSheetUserIDs).split(";")[1];
+
 			// sShareHolder1 =
 			// getTestdata("ShareHolder",XLSheetUserIDs).split(";")[1];
 			sShareHolder1 = getTestdata("ShareHolder", XLSheetUserIDs);
@@ -419,6 +419,7 @@ public class MLChangeOrder extends _CommonPage {
 				CL.GetReporting().FuncReport("Fail", "Exception in getOptionOptionChangeOrderData().");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
@@ -515,6 +516,7 @@ public class MLChangeOrder extends _CommonPage {
 			if (mobileAction.isObjExists(shareholderType, 2) && sShareHolder != "") {
 				if (!sShareHolder.contains("autre")) {
 					mobileAction.verifyElement(shareholderType, sShareHolder);
+
 					// mobileAction.selectItemFromList(shareholderType,
 					// sShareHolder1);
 				}

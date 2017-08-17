@@ -3,26 +3,19 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
-import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class ManageTDMobilePayment extends _CommonPage {
 
 	private static ManageTDMobilePayment ManageTDMobilePayment;
-
-	String cardname = getTestdata("CardName");
-	String selectcard = "//android.widget.TextView[@resource-id='com.td:id/card_type_text_view' and @text='" + cardname
-			+ "')]";
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/manage_settings_text_view' and @text='Manage Settings']")
 	private MobileElement manageSettingIcon;
@@ -39,8 +32,7 @@ public class ManageTDMobilePayment extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -131,6 +123,9 @@ public class ManageTDMobilePayment extends _CommonPage {
 	 *
 	 */
 	public void selectcard() {
+		String cardname = getTestdata("CardName");
+		String selectcard = "//android.widget.TextView[@resource-id='com.td:id/card_type_text_view' and @text='"
+				+ cardname + "')]";
 
 		Decorator();
 		try {

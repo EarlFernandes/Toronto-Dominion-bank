@@ -30,11 +30,8 @@ public class _CommonPage {
 
 	// public Reporting report;// = CL.GetReporting();
 	// calculated or discovered values
+
 	protected By foundElement = null;
-	// public com.td.test.framework.GlobalVariables GV;// =
-	// com.td.test.framework.GlobalVariables;
-	// public static com.td.test.framework.DriverScript DriverScript;
-	// Language map
 
 	public HashMap<String, String> languageMap = new HashMap<String, String>();
 

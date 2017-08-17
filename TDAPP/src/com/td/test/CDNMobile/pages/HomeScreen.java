@@ -12,7 +12,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -52,7 +51,12 @@ public class HomeScreen extends _CommonPage {
 	private MobileElement transfer_button_dashboard;
 
 	@iOSFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access']")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access']") // This
+																		// is
+																		// sometimes
+																		// TextView
+																		// or
+																		// Button
 	private MobileElement quickAccess;
 
 	/*
@@ -126,6 +130,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/send_money_dashboard']")
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@value='SEND MONEY']")
 	private MobileElement send_money_button;
 
@@ -143,7 +148,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
 	private MobileElement location;
 
-	@iOSFindBy(xpath = "//*[@value='Find Locations']")
+	@iOSFindBy(xpath = "//*[@label='Find Locations']")
 	@AndroidFindBy(xpath = "//*[@text='Find Locations']")
 	private MobileElement locationheader;
 
@@ -206,8 +211,7 @@ public class HomeScreen extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -427,7 +431,6 @@ public class HomeScreen extends _CommonPage {
 			Decorator();
 			// FIXED removed back button
 			mobileAction.FuncClick(menu, "Menu");
-
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -674,9 +677,6 @@ public class HomeScreen extends _CommonPage {
 	public void sendMoney() {
 		try {
 			Decorator();
-			WebDriverWait wait = new WebDriverWait(CL.GetDriver(), 100);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("//*[contains(@label,'The right mortgage can save you money')]")));
 			mobileAction.FuncClick(send_money_button, "sendMoney");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -790,7 +790,6 @@ public class HomeScreen extends _CommonPage {
 				mobileAction.FuncClick(accept, "Accept Button");
 				mobileAction.waitForElementToVanish(progressBar);
 			}
-			String location = mobileAction.getText(nearByLoaction);
 			mobileAction.verifyElement(viewingDetail, "Nearby");
 			mobileAction.FuncClick(chevron_Button, "Chevron Button");
 			mobileAction.FunctionSwipe("Up", 100, 0);
@@ -953,7 +952,7 @@ public class HomeScreen extends _CommonPage {
 
 		try {
 
-			boolean flag = mobileAction.verifyElementNotPresent(logout, "Logout");
+			mobileAction.verifyElementNotPresent(logout, "Logout");
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1265,8 +1264,7 @@ public class HomeScreen extends _CommonPage {
 
 	public void ClickContactUsFromHomePage() {
 		Decorator();
-		// MobileElement contactUs = null;
-		String homeTable = "";
+
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 
@@ -1355,19 +1353,22 @@ public class HomeScreen extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("bills_str") + "']",
 						"Bills");
-				mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeStaticText[@value='"
-								+ StringLookup.lookupString(currentLocale, StringLookup.INVESTING_ACCOUNTS) + "']",
-						"Investing Accounts");
+
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
+				// + StringLookup.lookupString(currentLocale,
+				// StringLookup.INVESTING_ACCOUNTS) + "']", "Investing
+				// Accounts");
+
 				final String xPathFooter = "//XCUIElementTypeStaticText[@value='"
 						+ mobileAction.getAppString("contact_str") + "']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
 						+ mobileAction.getAppString("dashboard_nearest_branch_lbl") + "' or @value='"
 						+ mobileAction.getAppString("dashboard_branch_lbl") + "']", "Nearest Branch");
-				mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("markets_str") + "']",
-						"Markets");
+
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
+				// + mobileAction.getAppString("markets_str") + "']",
+				// "Markets");
 
 			} else {
 				final String accounts = mobileAction.getAppString("easy_access_accounts").toLowerCase().substring(0, 1)
@@ -1442,10 +1443,7 @@ public class HomeScreen extends _CommonPage {
 				// mobileAction.verifyTextEquality(deposit.getText(),
 				// mobileAction.getAppString("str_DEPOSIT"));
 				mobileAction.SwipeWithinElement("//XCUIElementTypeCell[1]", 2, "left");
-				// FIXME: Watchlists is not an accessibility identifier, Ask May
-				// FIXME: Quote is not an accessibility id, ask may
-				// mobileAction.verifyTextEquality(quote.getText(),
-				// mobileAction.getAppString("str_QUOTE"));
+
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/send_money_dashboard' and @text='"

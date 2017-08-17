@@ -8,7 +8,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
-import com.td.MainScreen;
 import com.td.MobileAction2;
 import com.td._CommonPage;
 
@@ -54,6 +53,10 @@ public class Interac_e_Transfer extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/sender_title']")
 	private MobileElement selectSender;
 
+	// for android only
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtSpecialAction']")
+	private MobileElement cancelSender;
+
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='INTERACSEND_VIEW_AMOUNT']/following-sibling::XCUIElementTypeTextField[1]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_amount']")
 	private MobileElement etransfer_Amount;
@@ -62,7 +65,9 @@ public class Interac_e_Transfer extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Interac e-Transfer']")
 	private MobileElement amountLbl;
 
-	@iOSFindBy(accessibility = "INTERACSEND_VIEW_CONTINUE")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label = '继续' or @label = 'Continue' or @label = '繼續']")
+	// FIXME: This is a bug, not seen in 17.5.1+ builds
+	// @iOSFindBy(accessibility = "INTERACSEND_VIEW_CONTINUE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/button_footer']")
 	private MobileElement transfer_Continue;
 
@@ -198,14 +203,15 @@ public class Interac_e_Transfer extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
 	public void verify_interacTransfer() {
 		double accVal = 0.00;
-		String sender_SelectSender = getTestdata("FromAccount");
+		String sender_SelectSender = getTestdata("Sender");
+
 		String select_SenderValue = "//android.widget.TextView[contains(@text,'" + sender_SelectSender + "')]";
 		String t_interacHeader = "Interac e-Transfer";
 
@@ -224,8 +230,9 @@ public class Interac_e_Transfer extends _CommonPage {
 				String sendermail = getTestdata("Sender");
 				System.out.println("Sender:" + sendermail);
 				String senderXpath = "//XCUIElementTypeStaticText[contains(@label,'" + sendermail + "')]";
-				MobileElement senderval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(senderXpath));
+
+				MobileElement senderval = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(senderXpath));
+
 				if (!mobileAction.verifyElementIsPresent(senderval)) {
 					mobileAction.FuncClick(selectSender, "Sender");
 					mobileAction.FunCSwipeandScroll(senderval, true);
@@ -235,8 +242,9 @@ public class Interac_e_Transfer extends _CommonPage {
 				System.out.println("From account:" + fromacc);
 
 				String fromAccXpath = "//XCUIElementTypeStaticText[contains(@label,'" + fromacc + "')]";
-				MobileElement fromAccval = (MobileElement) ((AppiumDriver) CL.GetDriver())
-						.findElement(By.xpath(fromAccXpath));
+
+				MobileElement fromAccval = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(fromAccXpath));
+
 				if (!mobileAction.verifyElementIsPresent(fromAccval)) {
 					mobileAction.FuncClick(fromAccount, "From Account");
 					mobileAction.FunCSwipeandScroll(fromAccval, true);
@@ -268,7 +276,19 @@ public class Interac_e_Transfer extends _CommonPage {
 			} else {
 				mobileAction.verifyElement(interac_Etransfer_Header, "Interac e-Transfer");
 				mobileAction.FuncClick(selectSender, "Sender");
-				mobileAction.FuncElementSwipeWhileNotFound(acntsListSender, select_SenderValue, 0, "down", true);
+
+				mobileAction.waitForElementToVanish(progressBar);
+
+				// mobileAction.FuncElementSwipeWhileNotFound(acntsListSender,
+				// select_SenderValue, 0, "up", true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_SenderValue, true, 5, "up");
+				// add click cancel when cancel is still present, this is an
+				// issue for android
+				if (mobileAction.verifyElementIsPresent(cancelSender)) {
+					mobileAction.FuncClick(cancelSender, "Cancel");
+				}
+
+				mobileAction.waitForElementToVanish(progressBar);
 
 				mobileAction.FuncClick(fromAccount, "From Account");
 				accVal = Double.parseDouble(mobileAction.getText(fromAccountVal));
@@ -392,13 +412,16 @@ public class Interac_e_Transfer extends _CommonPage {
 	public void interacTransfer() {
 		double accVal = 0.00;
 		Decorator();
-		String sender_SelectSender = getTestdata("FromAccount");
+
+		String sender_SelectSender = getTestdata("Sender");
+
 		String select_SenderValue = "//android.widget.TextView[contains(@text,'" + sender_SelectSender + "')]";
 		String t_interacHeader = "Interac e-Transfer";
 
 		String transfer_fromAccount = getTestdata("FromAccount");
-		String select_Account = "//android.widget.EditText[@resource-id='com.td:id/edt_etransfer_from_account' and @text='"
-				+ transfer_fromAccount + "')]";
+
+		String select_Account = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
+				+ transfer_fromAccount + "']";
 
 		String transferRecipient = getTestdata("RecipientName");
 		String select_Recipient = "//android.widget.TextView[@resource-id='com.td:id/txt_recipient_email' and contains(@text,'"
@@ -413,8 +436,10 @@ public class Interac_e_Transfer extends _CommonPage {
 				// mobileAction.FuncSelectElementInTable(senderTable, firstPart,
 				// secondPart, sender_SelectSender);
 				mobileAction.FuncClick(fromAccount, "From Account");
-				String fromAcc = "//XCUIElementTypeStaticText[contains(@label,'" + sender_SelectSender + "')]";
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(fromAcc, true, 25, "Up");
+				String fromAcc = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'"
+						+ transfer_fromAccount + "')]";
+				System.out.println("From account xpath:" + fromAcc);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(fromAcc, true, 5, "Up");
 
 				mobileAction.FuncClick(recipient, "Recipient");
 				String selectRecipient = "//XCUIElementTypeStaticText[contains(@label,'" + transferRecipient + "')]";
@@ -435,7 +460,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				mobileAction.waitForElementToDisappear(select_Recipient);
 
 				mobileAction.FuncClick(fromAccount, "From Account");
-				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_SenderValue, 5, "down", true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_Account, true, 5, "up");
 
 				mobileAction.FuncClick(etransfer_Amount, "Amount");
 				mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
@@ -545,7 +570,9 @@ public class Interac_e_Transfer extends _CommonPage {
 				mobileAction.FuncClick(fromAccount, "From Account");
 				String from_accountNo = "//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("FromAccount")
 						+ "')]";
-				MobileElement fromAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
+
+				MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())
+
 						.findElement(By.xpath(from_accountNo));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 				mobileAction.FuncClick(recipient, "recipient");
@@ -754,7 +781,9 @@ public class Interac_e_Transfer extends _CommonPage {
 	public void interacTransfer_cancel() {
 		double accVal = 0.00;
 		Decorator();
-		String sender_SelectSender = getTestdata("FromAccount");
+
+		String sender_SelectSender = getTestdata("Sender");
+
 		String select_SenderValue = "//android.widget.TextView[contains(@text,'" + sender_SelectSender + "')]";
 		String t_interacHeader = "Interac e-Transfer";
 
@@ -789,17 +818,30 @@ public class Interac_e_Transfer extends _CommonPage {
 
 				mobileAction.verifyElement(interac_Etransfer_Header, "Interac e-Transfer");
 				mobileAction.FuncClick(selectSender, "Sender");
-				mobileAction.FuncElementSwipeWhileNotFound(acntsListSender, select_SenderValue, 1, "down", true);
 
+				mobileAction.waitForElementToVanish(progressBar);
+
+				// mobileAction.FuncElementSwipeWhileNotFound(acntsListSender,
+				// select_SenderValue, 1, "up", true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_SenderValue, true, 5, "up");
+				// add click cancel when cancel is still present, this is an
+				// issue for android
+				if (mobileAction.verifyElementIsPresent(cancelSender)) {
+					mobileAction.FuncClick(cancelSender, "Cancel");
+				}
+
+				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.FuncClick(recipient, "Recipient");
 
-				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Recipient, 2, "down", true);
+				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_Recipient, 2, "up", true);
+
 				mobileAction.FuncSendKeys(etransfer_Amount, ValueofAmount);
 				mobileAction.FuncClickBackButton();
 				mobileAction.FuncClick(transfer_Continue, "Continue");
 				mobileAction.FuncClick(cancel, "Cancel");
 			}
 		} catch (NoSuchElementException e) {
+
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
@@ -830,6 +872,9 @@ public class Interac_e_Transfer extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(selectSender, "ClickSender");
+
+			mobileAction.waitForElementToVanish(progressBar);
+
 			mobileAction.FuncClick(senderCancel, "Click Cancel");
 
 		} catch (NoSuchElementException e) {
@@ -902,7 +947,9 @@ public class Interac_e_Transfer extends _CommonPage {
 	 */
 	public void verifyaccountdetails() {
 		Decorator();
-		String sender_SelectSender = getTestdata("FromAccount");
+
+		String sender_SelectSender = getTestdata("Sender");
+
 		String select_SenderValue = "//android.widget.TextView[contains(@text,'" + sender_SelectSender + "')]";
 
 		try {
@@ -1255,8 +1302,9 @@ public class Interac_e_Transfer extends _CommonPage {
 				// Get to cancel e-transfer screen, choose first interac
 				// e-transfer to cancel
 				mobileAction.FuncClick(
-						mobileAction.verifyElementUsingXPath(
-								"//android.widget.TextView[@text='" + getTestdata("RecipientName") + "']", ""),
+
+						mobileAction.verifyElementUsingXPath("//android.widget.RelativeLayout[@index='1']", ""),
+
 						"Recipient to cancel");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 				// mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='android:id/action_bar_title'
@@ -1328,8 +1376,9 @@ public class Interac_e_Transfer extends _CommonPage {
 				// Get to cancel e-transfer screen, choose first interac
 				// e-transfer to cancel
 				mobileAction.FuncClick(
-						mobileAction.verifyElementUsingXPath(
-								"//android.widget.TextView[@text='" + getTestdata("RecipientName") + "']", ""),
+
+						mobileAction.verifyElementUsingXPath("//android.widget.RelativeLayout[@index='1']", ""),
+
 						"Recipient to cancel");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
@@ -1384,14 +1433,9 @@ public class Interac_e_Transfer extends _CommonPage {
 	public void verifyPendingETransfersTextElements() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyTextEquality(interac_Header.getText(),
-						mobileAction.getAppString("str_pending_interact_etransfer").replaceAll("\\<.*?>", ""));
-				// for(MobileElement m : dateHeaders) {
-				// mobileAction.verifyDateFormat(m.getText(),
-				// MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
-				// }
-			} else {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
 								+ mobileAction.getAppString("transfersTransfersNavRowHeaderPendingInteracETransfer")

@@ -14,6 +14,9 @@ public class StringLookup {
 	public static final String ALLOW_CONTACTS_ACCCESS_BODY = "allow_contacts_access_body";
 	public static final String ALLOW_CONTACTS_OK = "allow_contacts_ok";
 	public static final String ALLOW_CONTACTS_REFUSE = "allow_contacts_refuse";
+	public static final String OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE = "otp_challenge_unable_to_verify_code";
+	public static final String OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED = "otp_challenge_too_many_security_codes_requested";
+
 	private static final Map<String, String> mapEN;
 	private static final Map<String, String> mapFR;
 	private static final Map<String, String> mapZHHANS;
@@ -33,16 +36,20 @@ public class StringLookup {
 		aMap.put(PRIVACY_SECURITY_LEGAL, "Privacy, Security & Legal");
 		aMap.put(SEND_FEEDBACK, "Give Feedback");
 		aMap.put(FORGOT_PASSWORD, "Forgot password?");
-		cMap.put(ALLOW_CONTACTS_OK, "OK");
-		cMap.put(ALLOW_CONTACTS_REFUSE, "Cancel");
+		aMap.put(ALLOW_CONTACTS_OK, "OK");
+		aMap.put(ALLOW_CONTACTS_REFUSE, "Cancel");
+		aMap.put(OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE, EnglishStrings.OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE);
+		aMap.put(OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED,
+				EnglishStrings.OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED);
 		mapEN = Collections.unmodifiableMap(aMap);
 		bMap.put(INVESTING_ACCOUNTS, "Comptes Placements directs TD");
 		bMap.put(MOBILE_PAYMENT, "Paiement mobile TD");
 		bMap.put(PRIVACY_SECURITY_LEGAL, "Confidentialité, sécurité et avis juridique");
 		bMap.put(SEND_FEEDBACK, "Fournir des commentaires");
 		bMap.put(FORGOT_PASSWORD, "Mot de passe oublié?");
-		cMap.put(ALLOW_CONTACTS_OK, "Oui");
-		cMap.put(ALLOW_CONTACTS_REFUSE, "Non");
+		bMap.put(ALLOW_CONTACTS_OK, "Oui");
+		bMap.put(ALLOW_CONTACTS_REFUSE, "Non");
+
 		mapFR = Collections.unmodifiableMap(bMap);
 		cMap.put(INVESTING_ACCOUNTS, "投资账户");
 		cMap.put(MOBILE_PAYMENT, "道明移动支付");

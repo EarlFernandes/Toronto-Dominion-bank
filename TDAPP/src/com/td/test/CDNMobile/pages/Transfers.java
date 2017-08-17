@@ -36,14 +36,10 @@ public class Transfers extends _CommonPage {
 	}
 
 	@iOSFindBy(accessibility = "TRANSFERVIEW_PENDING")
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'View pending and cancelled Interac e-Transfers')]") // changed
-																															// by
-																															// rashmi
-	private MobileElement pending_Transfer;
 
-	// FIXME: Ask may to add this (footer)
-	@iOSFindBy(accessibility = "UNKNOWN_ID")
-	private MobileElement footer;
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'View pending and cancelled Interac e-Transfers')]")
+
+	private MobileElement pending_Transfer;
 
 	@iOSFindBy(accessibility = "TRANSFERVIEW_PENDING_DES")
 	private MobileElement pending_transfer_desc;
@@ -160,6 +156,7 @@ public class Transfers extends _CommonPage {
 																						// by
 																						// Ashraf
 			mobileAction.FuncClick(Interac_e_Transfer_button, "Interac e_Transfer");
+
 			// mobileAction.waitForElementToVanish(progrees_Bar);
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -255,9 +252,9 @@ public class Transfers extends _CommonPage {
 
 	private void initElementPendingTransfer() {
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
 				pending_Transfer = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("transfersTransfersHintTextPendingInteracETransfer")
 								.replaceAll("\\<.*?>", "")
@@ -277,9 +274,10 @@ public class Transfers extends _CommonPage {
 
 	private void initElementInteracETransfer() {
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				System.out.println(mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer"));
+
 				Interac_e_Transfer_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer")
 								.replaceAll("\\<.*?>", "")
@@ -317,9 +315,9 @@ public class Transfers extends _CommonPage {
 
 	private void initElementBetweenMyAccounts() {
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// TODO: iOS elements
-			} else {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
 				btw_my_accnts = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='"
 								+ mobileAction.getAppString("transfersTransfersNavRowHeaderBetweenMyAccounts") + "']",
@@ -405,9 +403,7 @@ public class Transfers extends _CommonPage {
 						mobileAction.getAppString("imtNavRowManageRecipients"));
 				mobileAction.verifyTextEquality(manageRecipientDesc.getText(),
 						mobileAction.getAppString("imtHintTextManageRecipients").replaceAll("\\<.*?>", ""));
-				// FIXME: Uncomment when may adds the id
-				// mobileAction.verifyTextEquality(footer.getText(),
-				// mobileAction.getAppString("transfer_faq_question"));
+
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"

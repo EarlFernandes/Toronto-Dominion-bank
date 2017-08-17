@@ -4,14 +4,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.MobileAction2;
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -101,8 +99,7 @@ public class Accounts_Credit extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -396,12 +393,16 @@ public class Accounts_Credit extends _CommonPage {
 				// mobileAction.FuncSwipeWhileElementNotFoundByxpath(lastStatement,
 				// false, 2, "up");
 				// // Scroll down here
-				final String xPathFooter = "//XCUIElementTypeStaticText[@name='RVB_DETAIL_FOOTER_DES']";
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 6, "up");
-				// Verify select date headers at the bottom
-				for (MobileElement m : dateHeaders) {
-					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
-				}
+
+				// final String xPathFooter =
+				// "//XCUIElementTypeStaticText[@name='RVB_DETAIL_FOOTER_DES']";
+				// mobileAction.FuncSw(xPathFooter, false, 6, "up");
+				// // Verify select date headers at the bottom
+				// for(MobileElement m : dateHeaders) {
+				// mobileAction.verifyDateFormat(m.getText(),
+				// MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
+				// }
+
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/activityTab' and @text='"
@@ -456,23 +457,7 @@ public class Accounts_Credit extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("credit_str") + "']",
 						"Credit title");
-				// FIXME: Get proper app strings here
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='"
-				// + mobileAction.getAppString("str_PayBillsMakePayment") + " or
-				// @text='" + mobileAction.getAppString("str_PAY_BILL") + "']",
-				// "Pay button");
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[@label='"
-				// + mobileAction.getAppString("str_TRANSFER") + "']", "transfer
-				// button");
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
-				// + mobileAction.getAppString("str_Activity") + "']", "activity
-				// tab");
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
-				// + mobileAction.getAppString("str_summary") + "']", "summary
-				// tab");
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
-				// + mobileAction.getAppString("rtb_statements") + "']",
-				// "statements tab");
+
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
@@ -564,17 +549,10 @@ public class Accounts_Credit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
-				// + mobileAction.getAppString("str_summary") + "']", "Summary
-				// Tab");
+
 				mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("str_Activity") + "']",
 						"Activity Tab");
-				// FIXME: Where is the string for this?
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
-				// + mobileAction.getAppString("rtb_statements") + "']",
-				// "Statements Tab");
-
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/summaryTab' and @text='"

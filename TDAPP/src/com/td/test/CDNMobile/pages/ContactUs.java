@@ -8,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -28,11 +27,9 @@ public class ContactUs extends _CommonPage {
 	private MobileElement tdDirectInvesting;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'TD Direct Investing')]/../XCUIElementTypeButton")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.ImageView[@resource-id='com.td:id/ivTDWealthDINumberPhone']")
-	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/rlTDMainNumber']") // changed
-																										// by
-																										// rashmi
+
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/rlTDMainNumber']")
+
 	private MobileElement call_Button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Call' or @label='Continue Call']")
@@ -77,8 +74,8 @@ public class ContactUs extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -104,16 +101,20 @@ public class ContactUs extends _CommonPage {
 			if (mobileAction.verifyElementIsPresent(contactUs)) {
 
 				mobileAction.verifyElementIsDisplayed(call_Button, t_call);
-				mobileAction.FuncClick(call_Button, "Call Button");
-				mobileAction.FuncClick(callNow, "Call");
+
+				// mobileAction.FuncClick(call_Button, "Call Button");
+				// mobileAction.FuncClick(callNow, "Call");
 			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
+		} /*
+			 * catch (InterruptedException e) {
+			 * CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			 * System.out.println("InterruptedException from Method " +
+			 * this.getClass().toString() + " " + e.getCause()); }
+			 */ catch (IOException e) {
+
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
@@ -157,11 +158,7 @@ public class ContactUs extends _CommonPage {
 						mobileAction.getAppString("direct_investment_str"));
 				mobileAction.verifyTextEquality(tdWealthFinancial.getText().trim(),
 						mobileAction.getAppString("contact_us_TD_Wealth_Financial_Planning"));
-				// mobileAction.verifyTextEquality(tdWealthPrivate.getText().trim(),
-				// mobileAction.getAppString("contact_us_TD_Wealth_Private_Investment_Advice"));
-				// FIXME: Get correct map string here
-				// mobileAction.verifyTextEquality(giveFeedback.getText().trim(),
-				// mobileAction.getAppString("give_feedback"));
+
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
@@ -187,10 +184,7 @@ public class ContactUs extends _CommonPage {
 						"//android.widget.TextView[@text='"
 								+ mobileAction.getAppString("str_TDWealth_FP").replaceAll("\\<.*?>", "") + "']",
 						"Wealth financial");
-				// mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-				// + mobileAction.getAppString("str_TDWealth_PIA") + "']",
-				// "Wealth private");
-				// FIXME: What is the correct string here?
+
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("give_feedback") + "']",
 						"Give feedback");

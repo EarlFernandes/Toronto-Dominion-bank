@@ -8,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -56,8 +55,7 @@ public class TDForMe extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -112,14 +110,17 @@ public class TDForMe extends _CommonPage {
 
 				// verify page collapses for displaying french Switch and
 				// battary saver Switch
-				if (mobileAction.isObjExists(tdforme_displayfrench_switch)) {
+
+				if (mobileAction.verifyElementIsPresent(tdforme_displayfrench_switch)) {
+
 					mobileAction.Report_Fail_Not_Verified("Collapses french display switch ");
 					return;
 				} else {
 					System.out.println("French display switch not diaplayed");
 				}
 
-				if (mobileAction.isObjExists(tdforme_batterysave_switch)) {
+				if (mobileAction.verifyElementIsPresent(tdforme_batterysave_switch)) {
+
 					mobileAction.Report_Fail_Not_Verified("Collapses battary saver switch ");
 					return;
 				} else {
@@ -131,7 +132,9 @@ public class TDForMe extends _CommonPage {
 			} else {// disabled:
 					// verify page collapses for displaying french Switch and
 					// battary saver Switch
-				if (mobileAction.isObjExists(tdforme_displayfrench_switch)) {
+
+				if (mobileAction.verifyElementIsPresent(tdforme_displayfrench_switch)) {
+
 					mobileAction.Report_Fail_Not_Verified("Collapses french display switch ");
 					return;
 				} else {
@@ -189,14 +192,17 @@ public class TDForMe extends _CommonPage {
 
 				// verify page expands for displaying french Switch and battary
 				// saver Switch
-				if (!mobileAction.isObjExists(tdforme_displayfrench_switch)) {
+
+				if (!mobileAction.verifyElementIsPresent(tdforme_displayfrench_switch)) {
+
 					mobileAction.Report_Fail_Not_Verified("Expands french display switch ");
 					return;
 				} else {
 					System.out.println("French display switch displayed");
 				}
 
-				if (!mobileAction.isObjExists(tdforme_batterysave_switch)) {
+				if (!mobileAction.verifyElementIsPresent(tdforme_batterysave_switch)) {
+
 					mobileAction.Report_Fail_Not_Verified("Expends Battary saver switch ");
 					return;
 				} else {

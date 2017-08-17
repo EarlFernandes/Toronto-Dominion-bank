@@ -4,10 +4,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.support.PageFactory;
 
-import com.td.MainScreenMIT;
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -26,8 +24,11 @@ public class MLOptionChainTable extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+
+
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+
+
 	}
 
 	@iOSFindBy(xpath = "(//XCUIElementTypeOther[contains(@label,'CALLS Bid') or contains(@label,'ACHAT Acheteur')])[1]") // @Author
@@ -213,7 +214,9 @@ public class MLOptionChainTable extends _CommonPage {
 			}
 
 			// Leg2 Option Table Display
+
 			Decorator();
+
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, true, 5, "down");
 
 			/*
@@ -262,7 +265,9 @@ public class MLOptionChainTable extends _CommonPage {
 			TradeMIT.get().selectTradeAccount_OrderType();
 			TradeMIT.get().tapTradeSearchBar();
 			SearchPageMIT.get().clickFirstSymbol();
+
 			Decorator();
+
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, true, 5, "up");
 			mobileAction.FuncVerifyNonBlankValue(defaultExpiryType, "Leg2 defaultExpiryType");
 			mobileAction.FuncVerifyNonBlankValue(defaultOptionType, "Leg2 defaultOptionType");

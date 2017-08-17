@@ -7,9 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-//import com.td.test.CMOB.MainScreenMIT;
-
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -206,8 +203,10 @@ public class LoginMIT extends _CommonPage {
 
 	private void Decorator() {
 		{
-			PageFactory.initElements(new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()),
-					new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+
+			PageFactory.initElements(
+					new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+
 		}
 
 	}
@@ -224,19 +223,23 @@ public class LoginMIT extends _CommonPage {
 				mobileAction.FuncClick(addUser, "AddUser");
 				mobileAction.FuncClick(username, "Username");
 				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
+
 				mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 				TradeMultiLeg.get().handleKeyboard();
 
 				mobileAction.FuncClick(login, "Login");
 
 				enterPwdifError();
+
 			}
 
 			else {
 
 				mobileAction.FuncClick(username, "Username");
 				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
+
 				mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+
 				TradeMultiLeg.get().handleKeyboard();
 				mobileAction.FuncClick(login, "Login");
 
@@ -244,10 +247,12 @@ public class LoginMIT extends _CommonPage {
 					enterPwdifError();
 
 			}
+
 			if (!mobileAction.isObjExists(Investing_Trade)) {
 				if (mobileAction.isObjExists(enterAnswer)) {
 					mobileAction.FuncSendKeys(enterAnswer, getTestdata("SecurityPassword", XLSheetUserIDs));
 					TradeMultiLeg.get().handleKeyboard();
+
 					mobileAction.FuncClick(securityLogin, "Login");
 				}
 			}
@@ -265,7 +270,9 @@ public class LoginMIT extends _CommonPage {
 			// mobileAction.isObjExists(errorText))
 			if (mobileAction.isObjExists(errorText)) {
 				do {
+
 					mobileAction.FuncClick(errorText, "errorText");
+
 					mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 					TradeMultiLeg.get().handleKeyboard();
 					mobileAction.FuncClick(login, "Login");
@@ -289,64 +296,5 @@ public class LoginMIT extends _CommonPage {
 			}
 		}
 	}
-	/*
-	 * public void MITLogin(){ try{ Decorator();
-	 * 
-	 * 
-	 * 
-	 * MobileAction.FuncClick(btnContinue);
-	 * 
-	 * btnLater.click();
-	 * 
-	 * 
-	 * //Decorator wv = new Decorator();
-	 * //System.out.println(CL.GetDriver().getPageSource());
-	 * 
-	 * mobileAction.FuncClick(InvestingAccount,"InvestingAccount"); //
-	 * wv.MyAccount.click();
-	 * 
-	 * mobileAction.FuncClick(select_accesscard,"select_accesscard");
-	 * CL.GetReporting().FuncReport(PASS,String.
-	 * format("TD Customer 'select_accesscard' button clicked."));
-	 * mobileAction.FuncClick(addUser,"addUser");
-	 * CL.GetReporting().FuncReport(PASS,String.
-	 * format("TD Customer 'addUser' button clicked."));
-	 * mobileAction.FuncClick(username,"username");
-	 * CL.GetReporting().FuncReport(PASS,String.
-	 * format("TD Customer 'username' button clicked."));
-	 * mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-	 * CL.GetReporting().FuncReport(PASS,
-	 * String.format("Entered RIBUsername '%s'",
-	 * CL.getTestDataInstance().Userid));
-	 * mobileAction.FuncClick(password,"password");
-	 * CL.GetReporting().FuncReport(PASS,String.
-	 * format("TD Customer 'password' button clicked."));
-	 * mobileAction.FuncSendKeys(password,
-	 * CL.getTestDataInstance().UserPassword);
-	 * CL.GetReporting().FuncReport(PASS,
-	 * String.format("Entered RIBUsername '%s'",
-	 * CL.getTestDataInstance().UserPassword));
-	 * 
-	 * MobileAction.FuncSendKeys(EditUser,CL.getTestDataInstance().Userid);
-	 * MobileAction.FuncSendKeys(Password,CL.getTestDataInstance().UserPassword+
-	 * "\n");
-	 * 
-	 * RememberME.click(); ((AppiumDriver) CL.GetDriver()).hideKeyboard();
-	 * 
-	 * 
-	 * btnLogin.click();
-	 * 
-	 * CL.GetReporting().FuncReport("Pass"," Login Entered");
-	 * Thread.sleep(5000); MenuUp.click();
-	 * 
-	 * 
-	 * 
-	 * CL.GetReporting().FuncReport("Pass"," User Login");
-	 * 
-	 * 
-	 * ((AppiumDriver) CL.GetDriver()).closeApp();
-	 * 
-	 * } catch (IOException | InterruptedException e) { // TODO Auto-generated
-	 * catch block e.printStackTrace(); } }
-	 */
+
 }

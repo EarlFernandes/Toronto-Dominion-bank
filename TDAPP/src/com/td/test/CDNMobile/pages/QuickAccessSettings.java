@@ -9,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -46,8 +45,7 @@ public class QuickAccessSettings extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 	}
 
 	/**
@@ -157,8 +155,7 @@ public class QuickAccessSettings extends _CommonPage {
 				// CL.GetDriver().findElement(By.xpath(rewardValue)).click();
 			}
 
-			MobileElement cardToggleBtn = (MobileElement) ((AppiumDriver) CL.GetDriver())
-					.findElement(By.xpath(rewardValue));
+			MobileElement cardToggleBtn = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(rewardValue));
 
 			if (mobileAction.getSwitchStatus(cardToggleBtn).equalsIgnoreCase("true")) {
 				mobileAction.FuncClick(cardToggleBtn, "Switch toggle to disable");
@@ -197,8 +194,9 @@ public class QuickAccessSettings extends _CommonPage {
 
 			String accountXL = "//*[contains(@text,'" + CL.getTestDataInstance().getPrimaryAccount()
 					+ "') or contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "')  ]";
-			MobileElement accountValue = (MobileElement) ((AppiumDriver) CL.GetDriver())
-					.findElement(By.xpath(accountXL));
+
+			MobileElement accountValue = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(accountXL));
+
 			if (mobileAction.verifyElementIsPresent(accountValue))
 				;
 
@@ -207,7 +205,6 @@ public class QuickAccessSettings extends _CommonPage {
 				CL.GetReporting().FuncReport("PASS", "The '" + "REWARDS value" + "' is not displayed");
 			} catch (IOException e1) {
 				System.out.println("IOException from Method" + this.getClass().toString() + " " + e.getCause());
-				// TODO Auto-generated catch block
 
 			}
 		}
