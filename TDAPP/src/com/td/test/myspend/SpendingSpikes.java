@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
@@ -36,11 +38,9 @@ public class SpendingSpikes extends _CommonPage {
 	}
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@name,'Spending Spikes') or contains(@label,'Pics de dépenses')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Spending Spikes')]")
 	private MobileElement pageHeader;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Current Month') or contains(@label,'Mois en cours')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Spending Spikes')]")
 	private MobileElement currentMonth;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Previous Months') or contains(@label,'Mois précédents')]")
@@ -51,9 +51,21 @@ public class SpendingSpikes extends _CommonPage {
 	private MobileElement homeButton;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Current Month') or contains(@label,'Mois en cours')]/following-sibling::XCUIElementTypeOther[4]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Current Month')]/../following-sibling::android.view.View[2]")
+	@AndroidFindBy(xpath = "//*[contains(@content-desc,'Current Month') or contains(@content-desc,'Mois en cours')]/../following-sibling::android.view.View[4]")
 	private MobileElement currentMonthSpending;
+	
+	@FindBy(xpath="//*[text()='Spending Spikes' or text()='Pics de dépenses']")
+	private WebElement pageHeaderAndroid;
 
+	@FindBy(xpath="//*[text()='Current Month' or text()='Mois en cours']")
+	private WebElement currentMonthAndroid;
+	
+	@FindBy(xpath="//*[text()='Previous Months' or text()='Mois précédents']")
+	private WebElement previousMonthAndroid;
+	
+	@FindBy(xpath="(//*[@class='col listItemTextBigWrap ng-binding'])[2]")
+	private WebElement currentMonthSpendingAndroid;
+	
 	/**
 	 * This method will verify the Spending Spike page header.
 	 * 
@@ -70,7 +82,12 @@ public class SpendingSpikes extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.verifyElementIsDisplayed(pageHeader, "Spending Spike Page Header");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.verifyElementIsDisplayed(pageHeaderAndroid, "Spending Spike Page Header");
+			} else {
+				mobileAction.verifyElementIsDisplayed(pageHeader, "Spending Spike Page Header");
+			}
+			
 
 		} catch (NoSuchElementException e) {
 			try {
@@ -205,14 +222,31 @@ public class SpendingSpikes extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.verifyElementIsDisplayed(currentMonth, "Current Month");
-			mobileAction.verifyElementIsDisplayed(previousMonth, "Previous Month");
-			String currentMonthCategory = mobileAction.FuncGetElementText(currentMonthSpending);
-			System.out.println("Current month category :"+currentMonthCategory);
-			String[] arrText = currentMonthCategory.split("-");
-			System.out.println("Category :"+arrText[0]);
-			mobileAction.verifyElementIsDisplayed(currentMonthSpending,currentMonthCategory);
-			mobileAction.FuncClick(currentMonthSpending, "Spending with spike");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				
+				mobileAction.verifyElementIsDisplayed(currentMonthAndroid, "Current Month");
+				mobileAction.verifyElementIsDisplayed(previousMonthAndroid, "Previous Month");
+				String currentMonthCategory = mobileAction.FuncGetElementText(currentMonthSpendingAndroid);
+				System.out.println("Current month category :"+currentMonthCategory);
+				String[] arrText = currentMonthCategory.split("-");
+				for(int i=0;i<arrText.length;i++){
+					System.out.println("Category :"+arrText[i]);
+				}
+				//mobileAction.verifyElementTextContains(currentMonthSpending, message);
+				mobileAction.verifyElementIsDisplayed(currentMonthSpendingAndroid,currentMonthCategory);
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				mobileAction.FuncClick(currentMonthSpending, "Spending with spike");
+				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
+			}else{
+				mobileAction.verifyElementIsDisplayed(currentMonth, "Current Month");
+				mobileAction.verifyElementIsDisplayed(previousMonth, "Previous Month");
+				String currentMonthCategory = mobileAction.FuncGetElementText(currentMonthSpending);
+				System.out.println("Current month category :"+currentMonthCategory);
+				String[] arrText = currentMonthCategory.split("-");
+				System.out.println("Category :"+arrText[0]);
+				mobileAction.verifyElementIsDisplayed(currentMonthSpending,currentMonthCategory);
+				mobileAction.FuncClick(currentMonthSpending, "Spending with spike");
+			}
 
 		} catch (NoSuchElementException e) {
 			try {
@@ -260,25 +294,42 @@ public class SpendingSpikes extends _CommonPage {
 		int currDate=GetDate.get().getTodaysDate();
 		int currYear=GetDate.currentYear();
 		String currMonth=GetDate.getCurrentMonth();
-// Entertainment - well over your typical spend. August 4, 2017 . Double tap to open spending by Category
-// Loisirs - Dépenses beaucoup plus élevées que d’habitude.
+		// Entertainment - well over your typical spend. August 4, 2017 . Double tap to open spending by Category
+		// Loisirs - Dépenses beaucoup plus élevées que d’habitude.
 		try {
 			System.out.println(currDate);
-			mobileAction.verifyElementIsDisplayed(currentMonth, "Current Month");
-			mobileAction.verifyElementIsDisplayed(previousMonth, "Previous Month");
-			String currentMonthCategory = mobileAction.FuncGetElementText(currentMonthSpending);
-			System.out.println("Current month category :"+currentMonthCategory);
-			String[] arrText = currentMonthCategory.split("-");
-			for(int i=0;i<arrText.length;i++){
-				System.out.println("Category :"+arrText[i]);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.verifyElementIsDisplayed(currentMonthAndroid, "Current Month");
+				mobileAction.verifyElementIsDisplayed(previousMonthAndroid, "Previous Month");
+				String currentMonthCategory = mobileAction.FuncGetElementText(currentMonthSpendingAndroid);
+				System.out.println("Current month category :"+currentMonthCategory);
+				String[] arrText = currentMonthCategory.split("-");
+				for(int i=0;i<arrText.length;i++){
+					System.out.println("Category :"+arrText[i]);
+				}
+				String message=arrText[0] +"- well over your typical spend. "+currMonth;
+				System.out.println(message);
+				
+				
+				//mobileAction.verifyElementTextContains(currentMonthSpending, message);
+				mobileAction.verifyElementIsDisplayed(currentMonthSpendingAndroid,currentMonthCategory);
+				CL.GetAppiumDriver().context("NATIVE_APP");
+			}else{
+				mobileAction.verifyElementIsDisplayed(currentMonth, "Current Month");
+				mobileAction.verifyElementIsDisplayed(previousMonth, "Previous Month");
+				String currentMonthCategory = mobileAction.FuncGetElementText(currentMonthSpending);
+				System.out.println("Current month category :"+currentMonthCategory);
+				String[] arrText = currentMonthCategory.split("-");
+				for(int i=0;i<arrText.length;i++){
+					System.out.println("Category :"+arrText[i]);
+				}
+				String message=arrText[0] +"- well over your typical spend. "+currMonth;
+				System.out.println(message);
+				
+				
+				//mobileAction.verifyElementTextContains(currentMonthSpending, message);
+				mobileAction.verifyElementIsDisplayed(currentMonthSpending,currentMonthCategory);
 			}
-			String message=arrText[0] +"- well over your typical spend. "+currMonth;
-			System.out.println(message);
-			
-			
-			//mobileAction.verifyElementTextContains(currentMonthSpending, message);
-			mobileAction.verifyElementIsDisplayed(currentMonthSpending,currentMonthCategory);
-
 		} catch (NoSuchElementException e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",

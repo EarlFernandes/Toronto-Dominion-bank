@@ -20,7 +20,7 @@ public class MoneyPath extends _CommonPage {
 
 	private static MoneyPath MoneyPath;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'As of today') or contains(@label,'vos dépenses moyennes')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'typical spending') or contains(@label,'vos dépenses moyennes')]")
 	private MobileElement spendingDetailsFromGraph;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Spending Details') or contains(@label,'Détail des dépenses')]")
@@ -113,7 +113,6 @@ public class MoneyPath extends _CommonPage {
 								// end of the month is $2,046
 		try {
 			verifyPageHeader();
-			System.out.println(CL.GetAppiumDriver().getContextHandles());
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementIsDisplayed(spendingDetailsHeaderAndroid, "Spending Details Header");
 				if (mobileAction.verifyElementIsPresent(noTransactionsAndroid)) {
@@ -124,13 +123,12 @@ public class MoneyPath extends _CommonPage {
 				Spending_Insight.get().clickSideMenuButton();
 				CL.GetAppiumDriver().context("NATIVE_APP");
 			} else {
-				
-				/*details = mobileAction.FuncGetElementText(spendingDetailsFromGraph);
+				details = mobileAction.FuncGetElementText(spendingDetailsFromGraph);
 				System.out.println(details);
 				String[] value = details.split(",");
 				for (int i = 0; i < value.length; i++) {
 					System.out.println("Split value: " + value[i]);
-				}*/
+				}
 				// mobileAction.verifyElementIsDisplayed(spendingDetailsFromGraph,
 				// "Spending Details from graph");
 				mobileAction.verifyElementIsDisplayed(spendingDetailsHeader, "Spending Details Header");

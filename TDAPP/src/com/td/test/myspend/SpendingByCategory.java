@@ -79,16 +79,16 @@ public class SpendingByCategory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'You have spent') or contains(@content-desc,'Vous avez dépensé')]")
 	private MobileElement YouHaveSpent;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'change category') or contains(@name,'change category')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category')]")
+	@iOSFindBy(xpath = "//*[contains(@label,'change category') or contains(@label,'changer de catégorie')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie')]")
 	private MobileElement transactionCategory;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'All Categories Spending Details') or contains(@label,'Wants Spending Details') or contains(@label,'Needs Spending Details')]/following-sibling::XCUIElementTypeOther[3]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category')]/following-sibling::android.view.View")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie')]/following-sibling::android.view.View")
 	private MobileElement transactionName;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'All Categories Spending Details') or contains(@label,'Wants Spending Details') or contains(@label,'Needs Spending Details')]/following-sibling::XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category')]/following-sibling::android.view.View/android.view.View[contains(@content-desc,'$')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie')]/following-sibling::android.view.View/android.view.View[contains(@content-desc,'$')]")
 	private MobileElement amount;
 
 	@AndroidFindBy(xpath = "//android.view.View[@resource-id='changeCategoryHeader' or contains(@content-desc,'Change Category')]")
@@ -102,6 +102,9 @@ public class SpendingByCategory extends _CommonPage {
 
 	@FindBy(id = "categoriesHeader")
 	private WebElement pageHeaderAndroid;
+	
+	@FindBy(id = "categoryMonthTitle")
+	private WebElement monthlySpendingofCurrentMonthAndroid;
 
 	@FindBy(id = "allFilter")
 	private WebElement allAndroid;
@@ -238,7 +241,7 @@ public class SpendingByCategory extends _CommonPage {
 		Decorator();
 		boolean flag = true;
 		try {
-			
+
 			boolean transactionpresent = mobileAction.verifyElementIsPresent(transactionCategory);
 			if (transactionpresent) {
 
@@ -639,43 +642,75 @@ public class SpendingByCategory extends _CommonPage {
 		String spendingDetailsTransacAmount="";
 		
 		try {
-			monthlySpending = "//*[contains(@label,'Monthly spending as of " + currentMonth + "') or contains(@label,'Dépenses mensuelles en date du')]";
-			MobileElement monthlySpendingofCurrentMonth = mobileAction.mobileElementUsingXPath(monthlySpending);
-			mobileAction.verifyElementIsDisplayed(monthlySpendingofCurrentMonth, "Monthly Spending of Current month");
-			System.out.println(CL.GetAppiumDriver().getPageSource());
 			
-			boolean transactionpresent = mobileAction.verifyElementIsPresent(transactionCategory);
-			if (transactionpresent) {
-
-				String category = transactionCategory.getAttribute("name");
-				System.out.println("verifyTransactions Text----> " + category);
-				String[] catArr = category.split(". ");
-
-				mobileAction.verifyElementIsDisplayed(transactionCategory, "Transaction Category: " + catArr[0]);
-				spendingDetailsTransacName="//*[contains(@label,'"+ catArr[0] +" Spending Details')]/following-sibling::XCUIElementTypeOther[3]";
-				MobileElement transacName=mobileAction.mobileElementUsingXPath(spendingDetailsTransacName);
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				
-				String TransName = transacName.getAttribute("name");
+				String spendingDetails=mobileAction.FuncGetElementText(monthlySpendingofCurrentMonthAndroid);
+				mobileAction.verifyElementIsDisplayed(monthlySpendingofCurrentMonthAndroid, spendingDetails);
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				boolean transactionpresent = mobileAction.verifyElementIsPresent(transactionCategory);
+				if (transactionpresent) {
+					
+					String category = transactionCategory.getAttribute("name");
+					System.out.println("verifyTransactions Text----> " + category);
+					String[] catArr = category.split(". ");
+					mobileAction.verifyElementIsDisplayed(transactionCategory, "Transaction Category: " + catArr[0]);
+					
+					spendingDetailsTransacName="//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie')]/following-sibling::android.view.View[1]";
+					MobileElement transacName=mobileAction.mobileElementUsingXPath(spendingDetailsTransacName);
+					String TransName = transacName.getAttribute("name");
+					mobileAction.verifyElementIsDisplayed(transacName, "Transaction: " + TransName);
 
-				mobileAction.verifyElementIsDisplayed(transacName, "Transaction: " + TransName);
+					spendingDetailsTransacAmount="//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie')]/following-sibling::android.view.View[2]/android.view.View";
+					MobileElement transacAmount=mobileAction.mobileElementUsingXPath(spendingDetailsTransacAmount);
+					String amountText = transacAmount.getAttribute("name");
+					mobileAction.verifyElementIsDisplayed(transacAmount, "Amount: " + amountText);
 
-				spendingDetailsTransacAmount="//*[contains(@label,'"+ catArr[0] +" Spending Details')]/following-sibling::XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeStaticText";
-				MobileElement transacAmount=mobileAction.mobileElementUsingXPath(spendingDetailsTransacAmount);
-				String amountText = transacAmount.getAttribute("name");
+					flag = true;
 
-				mobileAction.verifyElementIsDisplayed(transacAmount, "Amount: " + amountText);
+				} else {
+					mobileAction.stringToReport("Pass",
+							"No Transactions Found in spending by Category");
 
-				flag = true;
-
-			} else {
-				mobileAction.stringToReport("Pass",
-						"No Transactions Found in spending by Category");
-
-				flag = false;
+					flag = false;
+				}
+				Spending_Insight.get().clickSideMenuButton();
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickSideMenuButton();
+			}else{
+				
+				monthlySpending = "//*[contains(@label,'Monthly spending as of " + currentMonth + "') or contains(@label,'Dépenses mensuelles en date du')]";
+				MobileElement monthlySpendingofCurrentMonth = mobileAction.mobileElementUsingXPath(monthlySpending);
+				mobileAction.verifyElementIsDisplayed(monthlySpendingofCurrentMonth, "Monthly Spending of Current month");
+				boolean transactionpresent = mobileAction.verifyElementIsPresent(transactionCategory);
+				if (transactionpresent) {
+	
+					String category = transactionCategory.getAttribute("name");
+					System.out.println("verifyTransactions Text----> " + category);
+					String[] catArr = category.split(". ");
+					mobileAction.verifyElementIsDisplayed(transactionCategory, "Transaction Category: " + catArr[0]);
+					
+					spendingDetailsTransacName="//*[contains(@label,'"+ catArr[0] +" Spending Details') or contains(@label,'Détail des dépenses "+ catArr[0] +"')]/following-sibling::XCUIElementTypeOther[3]";
+					MobileElement transacName=mobileAction.mobileElementUsingXPath(spendingDetailsTransacName);
+					String TransName = transacName.getAttribute("name");
+					mobileAction.verifyElementIsDisplayed(transacName, "Transaction: " + TransName);
+	
+					spendingDetailsTransacAmount="//*[contains(@label,'"+ catArr[0] +" Spending Details') or contains(@label,'Détail des dépenses "+ catArr[0] +"')]/following-sibling::XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeStaticText";
+					MobileElement transacAmount=mobileAction.mobileElementUsingXPath(spendingDetailsTransacAmount);
+					String amountText = transacAmount.getAttribute("name");
+					mobileAction.verifyElementIsDisplayed(transacAmount, "Amount: " + amountText);
+	
+					flag = true;
+	
+				} else {
+					mobileAction.stringToReport("Pass",
+							"No Transactions Found in spending by Category");
+	
+					flag = false;
+				}
+				Spending_Insight.get().clickSideMenuButton();
+				Spending_Insight.get().clickSideMenuButton();
 			}
-			Spending_Insight.get().clickSideMenuButton();
-			Spending_Insight.get().clickSideMenuButton();
-
 		} catch (NoSuchElementException e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
@@ -693,7 +728,7 @@ public class SpendingByCategory extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		}
+		} 
 
 	}
 

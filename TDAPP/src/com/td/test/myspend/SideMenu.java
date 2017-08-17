@@ -81,7 +81,7 @@ public class SideMenu extends com.td._CommonPage {
 	@FindBy(xpath = "(//*[contains(@href,'transactions')])[2]")
 	private WebElement transactionHistoryAndroid;
 
-	@FindBy(xpath = "(//*[contains(@href,'accountSettings')])[2]")
+	@FindBy(xpath = "(//*[contains(@href,'accountSettings') or contains(@href,'settings')])[2]")
 	private WebElement preferencesAndroid;
 
 	@FindBy(xpath = "//*[contains(@ng-click,'accounts')]")

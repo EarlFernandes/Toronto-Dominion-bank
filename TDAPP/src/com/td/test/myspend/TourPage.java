@@ -153,7 +153,6 @@ public class TourPage extends _CommonPage {
 			if (mobileAction.verifyElementIsPresent(MySpendReadyToGo)) {
 				mobileAction.FuncClick(MySpendReadyToGo, "TD My Spend is ready to go");
 			}
-			
 			else if (mobileAction.verifyElementIsPresent(fxMsgHeader)) {
 				mobileAction.FuncClick(okBtn, "OK");
 			}
