@@ -1680,14 +1680,14 @@ public class Between_My_accounts extends _CommonPage {
 			
 			if(is_toaccount_usd){
 				System.out.println("To account is USD account");
-				if(toAccountValueBefore_d == toAccountValueAfter_d + transferValueUS_d){
+				if(toAccountValueBefore_d == toAccountValueAfter_d - transferValueUS_d){
 					mobileAction.Report_Pass_Verified("To account value");
 				}else{
 					mobileAction.Report_Fail("To account value does't match after transfer");
 				}
 			}else{
 				System.out.println("To account is CAN account");
-				if(toAccountValueBefore_d == toAccountValueAfter_d + transferValueCAN_d){
+				if(toAccountValueBefore_d == toAccountValueAfter_d - transferValueCAN_d){
 					mobileAction.Report_Pass_Verified("To account value");
 				}else{
 					mobileAction.Report_Fail("To account value does't match after transfer");
