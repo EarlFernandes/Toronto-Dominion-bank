@@ -833,7 +833,9 @@ public class PendingInteracTransfer extends _CommonPage {
 				mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
 				if (mobileAction.verifyElementIsPresent(selectSender)) {
 					mobileAction.FuncClick(selectSender, "sender");
-					mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
+					MobileElement sender = mobileAction.verifyElementUsingXPath(select_senderValue, "Sender");
+					mobileAction.FuncClick(sender, "Sender");
+					mobileAction.waitForElementToDisappear(select_senderValue);
 				}
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
