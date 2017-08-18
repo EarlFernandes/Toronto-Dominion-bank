@@ -118,10 +118,8 @@ public class AddPayee extends _CommonPage {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 
-
 				final WebElement msg = mobileAction.verifyWebElementUsingXPath("//div[@class='placeholder ng-binding']",
 						"Select the payee address");
-
 
 				final WebElement tapHere = mobileAction
 						.verifyWebElementUsingXPath("//div[@class='custom_action ng-binding']", "Tap here");
@@ -199,9 +197,7 @@ public class AddPayee extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
 						+ mobileAction.getAppString("str_payee_account_info") + "']", "payee account info");
 
-
 				MobileElement desc = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(
-
 
 						"//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_description") + "']"));
 				mobileAction.FunCSwipeandScroll(desc, false);
@@ -250,8 +246,6 @@ public class AddPayee extends _CommonPage {
 				final WebElement desc = mobileAction.verifyWebElementUsingXPath("//label[@id='description_label']",
 						"description");
 
-
-
 				final WebElement payeeAccountInfo = mobileAction
 						.verifyWebElementUsingXPath("(//span[@class='ng-binding'])[2]", "payee account info header");
 				final WebElement enterAccNumber = mobileAction.verifyWebElementUsingXPath(
@@ -259,7 +253,6 @@ public class AddPayee extends _CommonPage {
 
 				final WebElement continueButton = mobileAction.verifyWebElementUsingXPath("//button[@id='btn']",
 						"Continue button");
-
 
 				if (!mobileAction.verifyTextEquality(payeeMailing.getText().trim(),
 						mobileAction.getAppString("str_payee_mailing_address"))
@@ -533,9 +526,7 @@ public class AddPayee extends _CommonPage {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 
-
 				final WebElement continueButton = (WebElement) (CL.GetAppiumDriver()).findElement(By.id("btn"));
-
 
 				mobileAction.verifyElementIsDisplayed(continueButton, "Continue");
 				continueButton.click();
@@ -629,7 +620,6 @@ public class AddPayee extends _CommonPage {
 				// System.err.println("TestCase has failed.");
 				// CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				// }
-
 
 				// Switch back to native to get proper screenshots
 				mobileAction.switchAppiumContext("NATIVE_APP");

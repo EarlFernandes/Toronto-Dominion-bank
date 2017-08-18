@@ -226,7 +226,6 @@ public class Accounts extends _CommonPage {
 
 			CL.GetReporting().FuncReport("PASS", "Account Desc, Available Balance is verified");
 
-
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -415,8 +414,6 @@ public class Accounts extends _CommonPage {
 		String from_Account = getTestdata("FromAccount");
 		String verify_Acnt = "//android.widget.TextView[contains(@text,'" + from_Account + "')]";
 
-
-
 		try {
 			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, "Accounts");
 
@@ -493,7 +490,6 @@ public class Accounts extends _CommonPage {
 
 		String from_Account = getTestdata("FromAccount");
 		String verify_Acnt = "//android.widget.TextView[contains(@text,'" + from_Account + "')]";
-
 
 		try {
 
@@ -756,11 +752,9 @@ public class Accounts extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-
 				if (mobileAction.verifyElementIsPresent(back_button)) {
 					mobileAction.FuncClick(back_button, "<");
 				}
-
 
 			} else {
 				// For android doing nothing
@@ -801,12 +795,9 @@ public class Accounts extends _CommonPage {
 		Decorator();
 		try {
 
-
-
 			System.out.println("Account selected:" + CL.getTestDataInstance().getPrimaryAccount());
 			String accountXL = "//*[contains(@text,'" + CL.getTestDataInstance().getPrimaryAccount()
 					+ "') or contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "')  ]";
-
 
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountXL, true, 40, "up");
 			mobileAction.waitForElementToVanished(progresssBar);

@@ -121,7 +121,6 @@ public class Executor extends _CommonPage {
 			/***** Multiple Application Interface Selection Menu ******/
 
 			sr.hitTab(2);
-
 			sr.sendKeys("S");
 			sr.hitEnter();
 
@@ -403,155 +402,13 @@ public class Executor extends _CommonPage {
 
 			/***** Multiple Application Interface Selection Menu ******/
 
-			sr.hitTab(3);
+			sr.hitTab(2);
 			sr.sendKeys("S");
 			sr.hitEnter();
 
 			/*****
 			 * T O R O N T O D O M I N I O N B A N K B A N Q U E T O R O N T O D
 			 * O M I N I O N
-			 ******/
-
-			sr.sendKeys(groupUser);
-			sr.hitTab(1);
-			sr.sendKeys(groupPassword);
-			sr.hitEnter();
-			sr.hitPauseBreak();
-
-			/***** blank screen ******/
-
-			sr.sendKeys("/for tstmai");
-			sr.hitEnter();
-
-			/***** MAI LINK TRANSACTION ******/
-
-			sr.sendKeys(testSet);
-			sr.hitEnter();
-			sr.hitPauseBreak();
-
-			/***** Blank screen ******/
-
-			sr.sendKeys("/test mfs");
-			sr.hitEnter();
-			sr.sendKeys("/for moc001aa");
-			sr.hitEnter();
-
-			/***** APPL_TRAN_SCREEN ******/
-
-			sr.hitTab(4);
-			sr.sendKeys(IMSTX);
-			sr.hitTab(1);
-			sr.sendKeys("CPA");
-			sr.hitTab(1);
-			sr.sendKeys("OPEN");
-			sr.hitEnter();
-
-			/***** CPA ACCOUNT OPEN ******/
-
-			sr.sendKeys("32");
-			sr.hitTab(1);
-			sr.sendKeys("10");
-			sr.hitTab(2);
-			sr.sendKeys("n");
-			sr.hitTab(3);
-			sr.sendKeys("99");
-			sr.hitTab(1);
-			sr.sendKeys("other");
-			sr.hitTab(4);
-			sr.sendKeys(accountHolderName);
-			sr.hitEnter();
-			Thread.sleep(4000);
-
-			sr.hitLeftKey();
-			sr.hitRightKey(1);
-
-			if (sr.isTextPresent("EXACT MATCH")) {
-				sr.sendKeys("0");
-				sr.hitEnter();
-			}
-
-			/***** MAINTAIN CUSTOMER INFORMATION ******/
-
-			sr.hitTab(6);
-			sr.sendKeys("56 wellington st");
-			sr.hitTab(1);
-			sr.sendKeys("toronto");
-			sr.hitTab(1);
-			sr.sendKeys("on");
-			sr.hitTab(1);
-			sr.sendKeys("m5k1a2");
-			sr.hitTab(1);
-			sr.sendKeys("can");
-			sr.hitTab(1);
-			sr.sendKeys("516");
-			sr.hitTab(1);
-			sr.sendKeys("918");
-			sr.hitTab(1);
-			sr.sendKeys("4256");
-			sr.hitTab(2);
-			sr.sendKeys("425");
-			sr.hitTab(1);
-			sr.sendKeys("846");
-			sr.hitTab(1);
-			sr.sendKeys("1256");
-			sr.hitEnter();
-
-			/***** ACCOUNT OPEN - CUSTOMER LIST ******/
-
-			screenText = null;
-			screenText = sr.copyScreen();
-			accountNo = screenText.substring(1569, 1577);
-			branchNo = screenText.substring(88, 92);
-			accountNo = accountNo.replaceAll("\\s", "");
-			branchNo = branchNo.replaceAll("\\s", "");
-
-			System.out.println("Account No: " + accountNo);
-			System.out.println("Branch No: " + branchNo);
-
-			sr.hitF9();
-
-			/***** MAINTAIN OTHER CUSTOMER INFORMATION ******/
-
-			sr.hitUpKey();
-			sr.hitUpKey();
-			sr.hitRightKey(8);
-			sr.sendKeys("500");
-			sr.hitTab(1);
-			sr.sendKeys("9999");
-			sr.hitTab(1);
-			sr.sendKeys("P");
-			sr.hitTab(1);
-			sr.sendKeys("CR");
-			sr.hitTab(1);
-			sr.sendKeys("11111111111118");
-			sr.hitTab(1);
-			sr.sendKeys("ON");
-			sr.hitTab(1);
-			sr.sendKeys("CAN");
-			sr.hitTab(1);
-			sr.sendKeys("111111118");
-			sr.hitTab(5);
-			sr.sendKeys("M$B");
-			sr.hitTab(4);
-			sr.sendKeys("NO");
-			sr.hitEnter();
-
-			/***** ACCOUNT OPEN - DETAIL ******/
-
-			sr.hitTab(5);
-			sr.sendKeys(accountHolderName);
-			sr.hitEnter();
-
-			/***** ACCOUNT OPEN - DETAIL ******/
-
-			sr.hitF9();
-
-			/*****
-			 * CPA ACCOUNT MAINTENANCE OPTIONS/FE sr.hitTab(2);
-			 * sr.sendKeys("S"); sr.hitEnter();
-			 * 
-			 * /***** T O R O N T O D O M I N I O N B A N K B A N Q U E T O R O
-			 * N T O D O M I N I O N
 			 ******/
 
 			sr.sendKeys(groupUser);
@@ -884,7 +741,6 @@ public class Executor extends _CommonPage {
 			/***** Multiple Application Interface Selection Menu ******/
 
 			sr.hitTab(2);
-
 			sr.sendKeys("S");
 			sr.hitEnter();
 
@@ -1004,7 +860,6 @@ public class Executor extends _CommonPage {
 			/***** Multiple Application Interface Selection Menu ******/
 
 			sr.hitTab(2);
-
 			sr.sendKeys("S");
 			sr.hitEnter();
 
@@ -1116,7 +971,6 @@ public class Executor extends _CommonPage {
 			/***** Multiple Application Interface Selection Menu ******/
 
 			sr.hitTab(2);
-
 			sr.sendKeys("S");
 			sr.hitEnter();
 
@@ -1181,6 +1035,10 @@ public class Executor extends _CommonPage {
 			multiConnectID = screenText.substring(1507, 1515);
 			System.out.println("Connect ID: " + multiConnectID);
 			sr.hitF12();
+
+			/*********************
+			 * Adding second Business ID
+			 ********************************/
 
 			/***** Multiple Application Interface Selection Menu ******/
 
@@ -1338,6 +1196,7 @@ public class Executor extends _CommonPage {
 			sr.sendKeys(PersonalAccountACS);
 			sr.hitEnter();
 			sr.sendKeys("c");
+			sr.hitEnter();
 
 			/***** WEB BANKING UPDATE CLIENT SERVICES ******/
 
