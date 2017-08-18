@@ -215,75 +215,44 @@ public class LoginMIT extends _CommonPage {
 		Decorator();
 		try {
 
-			// System.out.println(CL.GetDriver().getPageSource());
-			// mobileAction.FuncClick(username, "Username");
-			// if (select_accesscard.isDisplayed() == true) {
-			mobileAction.FuncClick(select_accesscard, "Select Accesscard");
-			// if (mobileAction.isObjExists(select_accesscard)) {
+			if (mobileAction.isObjExists(select_accesscard)) {
+				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
+			}
 			if (mobileAction.isObjExists(addUser)) {
 
-				// mobileAction.FuncClick(select_accesscard, "Select
-				// Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");
 				mobileAction.FuncClick(username, "Username");
 				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-				// mobileAction.FuncClick(password, "Password");
-				// mobileAction.FuncSendKeys(password,
-				// CL.getTestDataInstance().UserPassword);
-				// TradeMultiLeg.get().FuncEnterText(password,
-				// CL.getTestDataInstance().UserPassword);
+
 				mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 				TradeMultiLeg.get().handleKeyboard();
 
 				mobileAction.FuncClick(login, "Login");
 
 				enterPwdifError();
-				/*
-				 * if (CL.getTestDataInstance().getMobilePlatForm().
-				 * equalsIgnoreCase("Android")) {
-				 * mobileAction.FuncHideKeyboard();
-				 * mobileAction.FuncClick(login, "Login");
-				 * mobileAction.waitForElementToVanished(progressBar);
-				 * if(mobileAction.isObjExists(login_error)) {
-				 * 
-				 * } } else { mobileAction.FuncClick(login, "Login");
-				 * mobileAction.waitForElementToVanished(progressBar); }
-				 */
 
-			} else {
+			}
+
+			else {
 
 				mobileAction.FuncClick(username, "Username");
 				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
 
-				// mobileAction.FuncClick(password, "Password");
 				mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-				// TradeMultiLeg.get().FuncEnterText(password,
-				// CL.getTestDataInstance().UserPassword);
+
 				TradeMultiLeg.get().handleKeyboard();
 				mobileAction.FuncClick(login, "Login");
 
 				if (!mobileAction.isObjExists(Investing_Trade))
 					enterPwdifError();
 
-				/*
-				 * if (CL.getTestDataInstance().getMobilePlatForm().
-				 * equalsIgnoreCase("Android")) {
-				 * mobileAction.FuncHideKeyboard();
-				 * mobileAction.FuncClick(login, "Login");
-				 * mobileAction.waitForElementToVanish(progressBar); } else {
-				 * mobileAction.FuncClick(login, "Login");
-				 * mobileAction.waitForElementToVanish(progressBar); }
-				 */
 			}
-			// mobileAction.waitForElement(enterAnswer);
+
 			if (!mobileAction.isObjExists(Investing_Trade)) {
 				if (mobileAction.isObjExists(enterAnswer)) {
-					/*
-					 * mobileAction.FuncSendKeys(enterAnswer,getTestdata(
-					 * "SecurityPassword",XLSheetUserIDs));
-					 * mobileAction.FuncClick(enterAnswer, "enterAnswer");
-					 */
-					TradeMultiLeg.get().FuncEnterText(enterAnswer, getTestdata("SecurityPassword", XLSheetUserIDs));
+					mobileAction.FuncSendKeys(enterAnswer, getTestdata("SecurityPassword", XLSheetUserIDs));
+					TradeMultiLeg.get().handleKeyboard();
+
 					mobileAction.FuncClick(securityLogin, "Login");
 				}
 			}
@@ -301,7 +270,9 @@ public class LoginMIT extends _CommonPage {
 			// mobileAction.isObjExists(errorText))
 			if (mobileAction.isObjExists(errorText)) {
 				do {
-					// mobileAction.FuncClick(password, "Password");
+
+					mobileAction.FuncClick(errorText, "errorText");
+
 					mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 					TradeMultiLeg.get().handleKeyboard();
 					mobileAction.FuncClick(login, "Login");
@@ -325,64 +296,5 @@ public class LoginMIT extends _CommonPage {
 			}
 		}
 	}
-	/*
-	 * public void MITLogin(){ try{ Decorator();
-	 * 
-	 * 
-	 * 
-	 * MobileAction.FuncClick(btnContinue);
-	 * 
-	 * btnLater.click();
-	 * 
-	 * 
-	 * //Decorator wv = new Decorator();
-	 * //System.out.println(CL.GetDriver().getPageSource());
-	 * 
-	 * mobileAction.FuncClick(InvestingAccount,"InvestingAccount"); //
-	 * wv.MyAccount.click();
-	 * 
-	 * mobileAction.FuncClick(select_accesscard,"select_accesscard");
-	 * CL.GetReporting().FuncReport(PASS,String.
-	 * format("TD Customer 'select_accesscard' button clicked."));
-	 * mobileAction.FuncClick(addUser,"addUser");
-	 * CL.GetReporting().FuncReport(PASS,String.
-	 * format("TD Customer 'addUser' button clicked."));
-	 * mobileAction.FuncClick(username,"username");
-	 * CL.GetReporting().FuncReport(PASS,String.
-	 * format("TD Customer 'username' button clicked."));
-	 * mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-	 * CL.GetReporting().FuncReport(PASS,
-	 * String.format("Entered RIBUsername '%s'",
-	 * CL.getTestDataInstance().Userid));
-	 * mobileAction.FuncClick(password,"password");
-	 * CL.GetReporting().FuncReport(PASS,String.
-	 * format("TD Customer 'password' button clicked."));
-	 * mobileAction.FuncSendKeys(password,
-	 * CL.getTestDataInstance().UserPassword);
-	 * CL.GetReporting().FuncReport(PASS,
-	 * String.format("Entered RIBUsername '%s'",
-	 * CL.getTestDataInstance().UserPassword));
-	 * 
-	 * MobileAction.FuncSendKeys(EditUser,CL.getTestDataInstance().Userid);
-	 * MobileAction.FuncSendKeys(Password,CL.getTestDataInstance().UserPassword+
-	 * "\n");
-	 * 
-	 * RememberME.click(); ((AppiumDriver) CL.GetDriver()).hideKeyboard();
-	 * 
-	 * 
-	 * btnLogin.click();
-	 * 
-	 * CL.GetReporting().FuncReport("Pass"," Login Entered");
-	 * Thread.sleep(5000); MenuUp.click();
-	 * 
-	 * 
-	 * 
-	 * CL.GetReporting().FuncReport("Pass"," User Login");
-	 * 
-	 * 
-	 * ((AppiumDriver) CL.GetDriver()).closeApp();
-	 * 
-	 * } catch (IOException | InterruptedException e) { // TODO Auto-generated
-	 * catch block e.printStackTrace(); } }
-	 */
+
 }

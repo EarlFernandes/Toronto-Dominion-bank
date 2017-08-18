@@ -25,7 +25,9 @@ public class MLOptionChainTable extends _CommonPage {
 	private void Decorator() {
 		PageFactory.initElements(
 
+
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+
 
 	}
 
@@ -212,6 +214,9 @@ public class MLOptionChainTable extends _CommonPage {
 			}
 
 			// Leg2 Option Table Display
+
+			Decorator();
+
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, true, 5, "down");
 
 			/*
@@ -260,6 +265,8 @@ public class MLOptionChainTable extends _CommonPage {
 			TradeMIT.get().selectTradeAccount_OrderType();
 			TradeMIT.get().tapTradeSearchBar();
 			SearchPageMIT.get().clickFirstSymbol();
+
+			Decorator();
 
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, true, 5, "up");
 			mobileAction.FuncVerifyNonBlankValue(defaultExpiryType, "Leg2 defaultExpiryType");

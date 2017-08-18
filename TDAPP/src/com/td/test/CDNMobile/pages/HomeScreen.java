@@ -1339,16 +1339,19 @@ public class HomeScreen extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("bills_str") + "']",
 						"Bills");
+
 				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
 				// + StringLookup.lookupString(currentLocale,
 				// StringLookup.INVESTING_ACCOUNTS) + "']", "Investing
 				// Accounts");
+
 				final String xPathFooter = "//XCUIElementTypeStaticText[@value='"
 						+ mobileAction.getAppString("contact_str") + "']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
 						+ mobileAction.getAppString("dashboard_nearest_branch_lbl") + "' or @value='"
 						+ mobileAction.getAppString("dashboard_branch_lbl") + "']", "Nearest Branch");
+
 				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
 				// + mobileAction.getAppString("markets_str") + "']",
 				// "Markets");

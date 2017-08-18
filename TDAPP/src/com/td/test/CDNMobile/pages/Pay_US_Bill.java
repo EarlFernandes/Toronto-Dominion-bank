@@ -308,7 +308,7 @@ public class Pay_US_Bill extends _CommonPage {
 				final WebElement button = mobileAction.verifyWebElementUsingXPath(
 						"//button[@class='primary-button ng-binding']", "Get Started button");
 				if (!mobileAction.verifyTextEquality(msg1.getText().trim(),
-								mobileAction.getAppString("USBillPayCustomerNotRegisteredDescription1"))
+						mobileAction.getAppString("USBillPayCustomerNotRegisteredDescription1"))
 						|| !mobileAction.verifyTextEquality(button.getText().trim(),
 								mobileAction.getAppString("btn_get_started"))
 						|| !mobileAction.verifyTextEquality(msg2.getText().trim(),
@@ -440,13 +440,16 @@ public class Pay_US_Bill extends _CommonPage {
 						"Total Amount");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("reason_for_payment_label") + "']", "Reason for payment");
-//				mobileAction.verifyElementUsingXPath(
-//						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_HOME") + "']", "HOME");
-//				mobileAction.verifyElementUsingXPath(
-//						"//android.widget.TextView[@text='" + mobileAction.getAppString("pay_another_bill") + "']",
-//						"PAY ANOTHER BILL");
-//				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-//						+ mobileAction.getAppString("receipt_scheduledpayments") + "']", "SCHEDULED PAYMENTS");
+				// mobileAction.verifyElementUsingXPath(
+				// "//android.widget.TextView[@text='" +
+				// mobileAction.getAppString("str_HOME") + "']", "HOME");
+				// mobileAction.verifyElementUsingXPath(
+				// "//android.widget.TextView[@text='" +
+				// mobileAction.getAppString("pay_another_bill") + "']",
+				// "PAY ANOTHER BILL");
+				// mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+				// + mobileAction.getAppString("receipt_scheduledpayments") +
+				// "']", "SCHEDULED PAYMENTS");
 				mobileAction.verifyDateFormat(estDate.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -571,7 +574,8 @@ public class Pay_US_Bill extends _CommonPage {
 				String to_accountNo = "//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("Payee") + "')]";
 
 				MobileElement toAccountval = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(to_accountNo));
-				MobileElement memo = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath("//XCUIElementTypeTextField"));
+				MobileElement memo = (MobileElement) (CL.GetAppiumDriver())
+						.findElement(By.xpath("//XCUIElementTypeTextField"));
 				mobileAction.FunCSwipeandScroll(toAccountval, true);
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));

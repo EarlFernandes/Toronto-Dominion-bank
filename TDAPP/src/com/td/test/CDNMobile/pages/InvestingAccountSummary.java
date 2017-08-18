@@ -939,6 +939,7 @@ public class InvestingAccountSummary extends _CommonPage {
 				text = holdingTimeStamp.getText();
 				mobileAction.verifyElementIsDisplayed(holdingTimeStamp, text);
 				mobileAction.verifyDateFormat(holdingTimeStamp.getText(), MobileAction2.TYPE_YYYY_MM_DD_HOUR);
+
 				// mobileAction.verifyElementIsDisplayed(holdingGainLoss,
 				// "GAIN/LOSS");
 				// mobileAction.verifyTextEquality(holdingGainLoss.getText(),

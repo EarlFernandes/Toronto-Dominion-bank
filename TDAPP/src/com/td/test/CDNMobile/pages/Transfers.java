@@ -36,7 +36,9 @@ public class Transfers extends _CommonPage {
 	}
 
 	@iOSFindBy(accessibility = "TRANSFERVIEW_PENDING")
+
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'View pending and cancelled Interac e-Transfers')]")
+
 	private MobileElement pending_Transfer;
 
 	@iOSFindBy(accessibility = "TRANSFERVIEW_PENDING_DES")

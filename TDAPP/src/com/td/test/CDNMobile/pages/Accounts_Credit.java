@@ -457,6 +457,7 @@ public class Accounts_Credit extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("credit_str") + "']",
 						"Credit title");
+
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
@@ -474,9 +475,8 @@ public class Accounts_Credit extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_summary") + "']",
 						"summary tab");
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_last_statements_header") + "']",
-						"statements tab");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ mobileAction.getAppString("rtb_last_statements_header") + "']", "statements tab");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {
