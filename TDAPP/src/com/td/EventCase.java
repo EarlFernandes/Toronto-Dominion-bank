@@ -32,6 +32,10 @@ import com.td.test.CDNMobile.pages.Login;
 import com.td.test.CDNMobile.pages.LoginMIT;
 import com.td.test.CDNMobile.pages.Logout;
 import com.td.test.CDNMobile.pages.MFA_ChangeAnswer;
+import com.td.test.CDNMobile.pages.MIT_PNSAccessAlerts;
+import com.td.test.CDNMobile.pages.MIT_PNSCreateNewAlert;
+import com.td.test.CDNMobile.pages.MIT_PNSManageAlerts;
+import com.td.test.CDNMobile.pages.MIT_PNSViewAlertsLandingPage;
 import com.td.test.CDNMobile.pages.MLCancelOrderReceipt;
 import com.td.test.CDNMobile.pages.MLChangeOrder;
 import com.td.test.CDNMobile.pages.MLConfirmOrder;
@@ -180,6 +184,10 @@ public class EventCase {
 		// MIT Multi-Leg
 
 		OpenAppMIT, LoginMIT, tapInvesting, verifyDefaultStrategies, navigateToSearchScreen, selectTradeAccount_OrderType, verifySymbolUS, verifySymbolSearchResults, clickInvestingTrade, tapTradeSearchBar, clickFirstSymbol, verifyStockOptionContents, verifyOptionOptionContents, verifySelectOption, verifyStockMidNaturalPrice, verifyOptionMidNaturalPrice, verifyGoodTill, verifyGoodTillExpiryDate, verifySharehoderType, verifyStockOptionBackButton, verifyOptionOptionBackButton, verifyOptionOptionPreviewOrderButton, searchAndSelectAccount, submitStockOptionOrder, selectDateSpecify_Android, searchAndSelectAccountRapcode, verifyStockOptionFieldsReset, verifyOptionOptionFieldsReset, verifyOptionOptionFieldResetOrderTypeChanged, verifyStockOptionFieldResetOrderTypeChanged, verifyStockOptionConfirmOrder, verifyOptionOptionConfirmOrder, submitOptionOptionOrder, verifyStockOptionCancelOrderReceipt, verifyOptionOptionCancelOrderReceipt, verifyTradeOrderFormContent, verifyEntryOrderFormContent, verifyWarningMsgExchangeAgrNotSigned, verifyStockOptionConfirmOrderReceipt, verifyOptionOptionConfirmOrderReceipt, clickPostorderMyAccount, clickPostorderTrade, clickQuickLinkHome, clickQuickLinkTrade, clickQuickLinkOrder, verifyOptionOptionChainTableSubmit, verifyStockOptionChainTableSubmit, verifyStockOptionChainTableCancel, verifyOptionOptionChainTableCancel, verifyInvalidTradingPassword, verifyStockOptionChangeOrder, verifyOptionOptionChangeOrder, verifyStockOptionOrderDetails, verifyOptionOptionOrderDetails, verifyMLOrdersTabDetails, Test, verifyBackButton, searchAndSelectAccountRapcodeWZXY,
+
+		// MIT PNS Alerts
+
+		verifyPreLoginDashboardAlerts, verifyAlertUI, tapAlerts, verifyBackandGearIcon, verifyxCancelbutton, verifycreateAlertConditionPriceRises, verifyCreateAlertConditionPricehit52Week, verifyQuoteInformation, VerifyPriceChangesOnHeavyVolume, VerifyPrimaryEmailDeliveryPreferences, VerifySecondaryEmailDeliveryPreferences, VerifyEnablingAllDeliveryPreferences, VerifyCreateSimilarAlertConditionPriceRisesFasterThanIndex, VerifyAlertConditionPriceGapAtOpeningTrade, verifyAlertIconMODQuotesPage, verifyNotificationPrefMOD, verifyNotificationPrefFlyMenu, verifyPriceDropsBelow, verifyPriceRisesAbove, verifyEditAlertUI, verifyDefaultWhenAlertConditionChange, verifyPriceChangesFromPreviousClose, verifyPriceEarningRatioDropsBelow, verifyModPagesLoaded, verifyExceedDailyVolume, navigateToQuotePage, navigateToOrderForm,
 
 		// P2P
 
@@ -1801,6 +1809,7 @@ public class EventCase {
 		case Menu_Profile_And_Settings:
 			MenuPage.get().clickProfileAndSettings();
 			break;
+
 		case Profile_And_Settings_clickPaymentsAndTransfers:
 			Profile_And_Settings.get().clickPaymentsAndTransfers();
 			break;
@@ -2346,6 +2355,117 @@ public class EventCase {
 			break;
 
 		// MIT Multi-Leg Switch Cases END
+
+		// MIT PNS Alerts START
+		case verifyPreLoginDashboardAlerts:
+			MIT_PNSAccessAlerts.get().verifyPreLoginDashboardAlerts();
+			break;
+
+		case verifyAlertUI:
+			MIT_PNSAccessAlerts.get().verifyAlertUI();
+			break;
+
+		case verifyModPagesLoaded:
+			MIT_PNSAccessAlerts.get().verifyModPagesLoaded();
+			break;
+
+		case verifyAlertIconMODQuotesPage:
+			MIT_PNSAccessAlerts.get().verifyAlertIconMODQuotesPage();
+			break;
+
+		case verifyNotificationPrefMOD:
+			MIT_PNSAccessAlerts.get().verifyNotificationPrefMOD();
+			break;
+
+		case verifyNotificationPrefFlyMenu:
+			MIT_PNSAccessAlerts.get().verifyNotificationPrefFlyMenu();
+			break;
+
+		case verifyPriceDropsBelow:
+			MIT_PNSViewAlertsLandingPage.get().verifyPriceDropsBelow();
+			break;
+
+		case verifyPriceRisesAbove:
+			MIT_PNSViewAlertsLandingPage.get().verifyPriceRisesAbove();
+			break;
+
+		case verifyEditAlertUI:
+			MIT_PNSManageAlerts.get().verifyEditAlertUI();
+			break;
+
+		case verifyDefaultWhenAlertConditionChange:
+			MIT_PNSManageAlerts.get().verifyDefaultWhenAlertConditionChange();
+			break;
+
+		case verifyPriceChangesFromPreviousClose:
+			MIT_PNSManageAlerts.get().verifyPriceChangesFromPreviousClose();
+			break;
+
+		case verifyPriceEarningRatioDropsBelow:
+			MIT_PNSManageAlerts.get().verifyPriceEarningRatioDropsBelow();
+			break;
+
+		case verifyExceedDailyVolume:
+			MIT_PNSManageAlerts.get().verifyExceedDailyVolume();
+			break;
+
+		case navigateToQuotePage:
+			MIT_PNSManageAlerts.get().navigateToQuotePage();
+			break;
+
+		case navigateToOrderForm:
+			MIT_PNSManageAlerts.get().navigateToOrderForm();
+			break;
+
+		case tapAlerts:
+			MIT_PNSCreateNewAlert.get().tapAlerts();
+			break;
+
+		case verifyBackandGearIcon:
+			MIT_PNSCreateNewAlert.get().verifyBackandGearIcon();
+			break;
+
+		case verifyxCancelbutton:
+			MIT_PNSCreateNewAlert.get().verifyxCancelbutton();
+			break;
+
+		case verifycreateAlertConditionPriceRises:
+			MIT_PNSCreateNewAlert.get().verifycreateAlertConditionPriceRises();
+			break;
+
+		case verifyCreateAlertConditionPricehit52Week:
+			MIT_PNSCreateNewAlert.get().verifyCreateAlertConditionPricehit52Week();
+			break;
+
+		case verifyQuoteInformation:
+			MIT_PNSCreateNewAlert.get().verifyQuoteInformation();
+			break;
+
+		case VerifyPriceChangesOnHeavyVolume:
+			MIT_PNSCreateNewAlert.get().VerifyPriceChangesOnHeavyVolume();
+			break;
+
+		case VerifyPrimaryEmailDeliveryPreferences:
+			MIT_PNSCreateNewAlert.get().VerifyPrimaryEmailDeliveryPreferences();
+			break;
+
+		case VerifySecondaryEmailDeliveryPreferences:
+			MIT_PNSCreateNewAlert.get().VerifySecondaryEmailDeliveryPreferences();
+			break;
+
+		case VerifyEnablingAllDeliveryPreferences:
+			MIT_PNSCreateNewAlert.get().VerifyEnablingAllDeliveryPreferences();
+			break;
+
+		case VerifyAlertConditionPriceGapAtOpeningTrade:
+			MIT_PNSCreateNewAlert.get().VerifyAlertConditionPriceGapAtOpeningTrade();
+			break;
+
+		case VerifyCreateSimilarAlertConditionPriceRisesFasterThanIndex:
+			MIT_PNSCreateNewAlert.get().VerifyCreateSimilarAlertConditionPriceRisesFasterThanIndex();
+			break;
+
+		// MIT PNS Alerts END
 
 		case Env_DeleteDefaultCard:
 			Env_Settings.get().deleteDefaultCard();
