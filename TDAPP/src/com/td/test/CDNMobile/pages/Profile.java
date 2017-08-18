@@ -524,6 +524,7 @@ public class Profile extends _CommonPage {
 			String emailInfo = mobileAction.getValue(personal_email_info);
 
 			// Remove placeholder
+
 			emailInfo = replacePlaceholderToNothing(emailInfo, emailPlaceHolder);
 			if (emailInfo.isEmpty()) {
 				System.out.println("Personal email is empty");

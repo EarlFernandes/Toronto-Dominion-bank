@@ -569,6 +569,7 @@ public class AddPayee extends _CommonPage {
 				searchForPayee();
 				clickOnFirstCanadianPayeeFound();
 				addPayeeReview();
+
 				// addPayeeConfirm();
 				// // Switching to webview
 				// mobileAction.switchAppiumContext("WEBVIEW_com.td");

@@ -41,6 +41,7 @@ public class MenuPage extends _CommonPage {
 			+ ChineseStrings.Simplified.FLYOUT_MENU_INVESTING_ACCOUNTS + "' or @label='"
 			+ ChineseStrings.Traditional.FLYOUT_MENU_INVESTING_ACCOUNTS + "']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Investing Accounts' or @text='Comptes Placements directs TD')]")
+
 	private MobileElement investing;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Comptes Placements directs TD']")
@@ -104,9 +105,11 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='"
 			+ EnglishStrings.FLYOUT_MENU_PROFILE_AND_PREFERENCE + "' or @text='"
 			+ FrenchStrings.FLYOUT_MENU_PROFILE_AND_PREFERENCE + "')]")
+
 	private MobileElement profile_and_settings;
 
 	// customer feedback
+
 	@iOSFindBy(xpath = "//*[@label='" + EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK + "' or @label ='"
 			+ FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK + "']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='"
@@ -342,6 +345,7 @@ public class MenuPage extends _CommonPage {
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
 								+ StringLookup.lookupString(currentLocale, StringLookup.INVESTING_ACCOUNTS) + "']",
 						"Investing menu element");
+
 			}
 			boolean isLanguageFrench = getTestdata("Language").equals("FRE");
 			MobileElement investingElement = isLanguageFrench ? investingFRE : investing;

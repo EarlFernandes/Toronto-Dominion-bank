@@ -162,7 +162,9 @@ public class Login extends _CommonPage {
 	private MobileElement TermsAndCondition_header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'do this later on my computer')]")
+
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@text,'do this later on my computer')]")
+
 	private MobileElement thanks_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Clear text']")
@@ -423,8 +425,10 @@ public class Login extends _CommonPage {
 			}
 			verifySystemError();
 			verifySecurityQuestion();
+
 			verifySessionTimeout();
 			// verifyTandC();
+
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -770,7 +774,7 @@ public class Login extends _CommonPage {
 					mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 					mobileAction.FuncClick(clearText, "Clear Text");
 					mobileAction.verifyElementIsDisplayed(password, "Password Field");
-				}else{
+				} else {
 					login_without_ID_remembered();
 				}
 
@@ -974,7 +978,7 @@ public class Login extends _CommonPage {
 						Thread.sleep(3000);
 						// mobileAction.waitForElementToVanish(progressBar);
 					}
-				}else{
+				} else {
 					login_without_ID_remembered();
 				}
 			} else {
@@ -1107,7 +1111,7 @@ public class Login extends _CommonPage {
 						mobileAction.FuncClick(login, "Login");
 						mobileAction.waitForElementToVanish(progressBar);
 					}
-				}else{
+				} else {
 					login_without_ID_remembered();
 				}
 			} else {
@@ -1359,15 +1363,15 @@ public class Login extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
-	private void login_without_ID_remembered(){
-		try{
+
+	private void login_without_ID_remembered() {
+		try {
 			mobileAction.FuncClick(username, "Username");
 			mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-	
+
 			mobileAction.FuncClick(password, "Password");
 			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-	
+
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(login, "Login");
@@ -1375,9 +1379,9 @@ public class Login extends _CommonPage {
 			} else {
 				mobileAction.FuncClick(login, "Login");
 				mobileAction.waitForElementToVanish(progressBar);
-	
+
 			}
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
@@ -1390,7 +1394,7 @@ public class Login extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-		
+
 	}
 
 	public void login_errorMsg() {
@@ -1418,7 +1422,7 @@ public class Login extends _CommonPage {
 						mobileAction.FuncClick(login, "Login");
 						mobileAction.waitForElementToVanish(progressBar);
 					}
-				}else{
+				} else {
 					login_without_ID_remembered();
 				}
 			} else {

@@ -205,10 +205,12 @@ public class SearchPageMIT extends _CommonPage {
 			} else {
 				xpathFlag = xpathSymbolFlag_ios;
 				temp = 0;
-				property = "name";
+
+				// property = "name";
+				property = "label";
+
 			}
 			// US_Symbol.click();
-
 			List<MobileElement> listItem = (List<MobileElement>) (CL.GetAppiumDriver())
 
 					.findElements(By.xpath(xpathFlag));
@@ -223,6 +225,7 @@ public class SearchPageMIT extends _CommonPage {
 							.get(i).getText();
 					CL.GetReporting().FuncReport("Pass", "US option found in search list. Item :" + sSymbolName);
 				} else if (listItem.get(i).getAttribute("name").contains("US")) {
+
 					CL.GetReporting().FuncReport("Pass",
 							"US option found in search list. Item :" + listItem.get(i).getAttribute("name"));
 				} else

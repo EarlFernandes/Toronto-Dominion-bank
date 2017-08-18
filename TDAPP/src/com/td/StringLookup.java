@@ -39,7 +39,8 @@ public class StringLookup {
 		aMap.put(ALLOW_CONTACTS_OK, "OK");
 		aMap.put(ALLOW_CONTACTS_REFUSE, "Cancel");
 		aMap.put(OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE, EnglishStrings.OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE);
-		aMap.put(OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED, EnglishStrings.OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED);
+		aMap.put(OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED,
+				EnglishStrings.OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED);
 		mapEN = Collections.unmodifiableMap(aMap);
 		bMap.put(INVESTING_ACCOUNTS, "Comptes Placements directs TD");
 		bMap.put(MOBILE_PAYMENT, "Paiement mobile TD");
@@ -48,6 +49,7 @@ public class StringLookup {
 		bMap.put(FORGOT_PASSWORD, "Mot de passe oublié?");
 		bMap.put(ALLOW_CONTACTS_OK, "Oui");
 		bMap.put(ALLOW_CONTACTS_REFUSE, "Non");
+
 		mapFR = Collections.unmodifiableMap(bMap);
 		cMap.put(INVESTING_ACCOUNTS, "投资账户");
 		cMap.put(MOBILE_PAYMENT, "道明移动支付");

@@ -223,6 +223,7 @@ public class Accounts extends _CommonPage {
 			// balance");
 			mobileAction.verifyElementIsDisplayed(account_Desc, "Account Description");
 			mobileAction.verifyElementIsDisplayed(available_Balance, "Available balance");
+
 			CL.GetReporting().FuncReport("PASS", "Account Desc, Available Balance is verified");
 
 		} catch (NoSuchElementException e) {

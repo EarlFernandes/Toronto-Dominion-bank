@@ -111,8 +111,9 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee'and @text='Add Canadian Payee']")
 	private MobileElement addCanada_Payee;
 
-//	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-//	private MobileElement progrees_bar;
+	// @iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In
+	// progress']")
+	// private MobileElement progrees_bar;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Search for Canadian payees']")
 	@AndroidFindBy(xpath = "//*[@text='Search for Canadian payees']")
@@ -167,15 +168,15 @@ public class Bill_PayCanada extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='PAYBILL_VIEW_PAYEE']/../XCUIElementTypeStaticText[3]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
 	private MobileElement PayeVal;
-	
+
 	@iOSFindBy(xpath = "//*[@name='PAYBILL_VIEW_PAYEE']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
 	private MobileElement PaySelection;
-	
+
 	@iOSFindBy(xpath = "//*[@label='PAYEE']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title']")
 	private MobileElement PayeePopUp;
-	
+
 	@iOSFindBy(xpath = "//*[@label='CANCEL']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/dialog_button']")
 	private MobileElement PayeePopUp_Cancel;
@@ -408,11 +409,9 @@ public class Bill_PayCanada extends _CommonPage {
 								+ mobileAction.getAppString("review_details_title") + "']",
 						"Confirm title");
 				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("receipt_from") + "']",
-						"From");
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("payBillDropdownHeaderPayee") + "']",
-						"To");
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("receipt_from") + "']", "From");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ mobileAction.getAppString("payBillDropdownHeaderPayee") + "']", "To");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("date") + "']", "Date");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
@@ -579,15 +578,15 @@ public class Bill_PayCanada extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				for (int i = 0; i < accountValue.length; i++) {
 					String AccountVal = AcntVal.getAttribute("label");
-					System.out.println("AccountVal:"+AccountVal);
+					System.out.println("AccountVal:" + AccountVal);
 					mobileAction.verifyTextEquality(accountValue[i], AccountVal);
-					//Verify Payee dropdown
+					// Verify Payee dropdown
 					mobileAction.FuncClick(PaySelection, "Payee");
 					mobileAction.verifyElementIsDisplayed(PayeePopUp, "Payee drop Down");
-					if(mobileAction.verifyElementIsPresent(PayeePopUp_Cancel)){
+					if (mobileAction.verifyElementIsPresent(PayeePopUp_Cancel)) {
 						mobileAction.FuncClick(PayeePopUp_Cancel, "Payee Popup Cancel");
-					}else{
-						//This is just for iPad
+					} else {
+						// This is just for iPad
 						System.out.println("Click Back for iPAD to Cancel the Popup window");
 						mobileAction.FuncClickBackButton();
 					}
@@ -600,15 +599,15 @@ public class Bill_PayCanada extends _CommonPage {
 
 				for (int i = 0; i < accountValue.length; i++) {
 					String AccountVal = AcntVal.getText();
-					System.out.println("AccountVal:"+AccountVal);
+					System.out.println("AccountVal:" + AccountVal);
 					mobileAction.verifyElementTextContains(AcntVal, accountValue[i]);
-					//Verify Payee dropdown
+					// Verify Payee dropdown
 					mobileAction.FuncClick(PaySelection, "Payee");
 					mobileAction.verifyElementIsDisplayed(PayeePopUp, "Payee drop Down");
-					if(mobileAction.verifyElementIsPresent(PayeePopUp_Cancel)){
+					if (mobileAction.verifyElementIsPresent(PayeePopUp_Cancel)) {
 						mobileAction.FuncClick(PayeePopUp_Cancel, "Payee Popup Cancel");
-					}else{
-						//This is just for tablet
+					} else {
+						// This is just for tablet
 						System.out.println("Click Back for tablet to Cancel the Popup window");
 						mobileAction.FuncClickBackButton();
 					}
@@ -639,22 +638,22 @@ public class Bill_PayCanada extends _CommonPage {
 			mobileAction.FuncClick(from_account_post, "From Account");
 			String transfer_fromAccount = getTestdata("FromAccount");
 			System.out.println("From Account:" + transfer_fromAccount);
-			String account_value="";
+			String account_value = "";
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				account_value= "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[contains(@label,'"
+				account_value = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[contains(@label,'"
 						+ transfer_fromAccount + "')]";
 
-			}else{
-				account_value = "//*[contains(@text,'" + transfer_fromAccount
-				+ "') or contains(@content-desc,'" + transfer_fromAccount + "')]";
+			} else {
+				account_value = "//*[contains(@text,'" + transfer_fromAccount + "') or contains(@content-desc,'"
+						+ transfer_fromAccount + "')]";
 			}
 
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 			// mobileAction.FuncClick(frm_acnt_post, "fromAccountPost");
 
 			mobileAction.FuncClick(to_account_post, "Select Payee");
-			
+
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				account_value = "//*[contains(@label, '" + getTestdata("ToAccount") + "')]";
 			} else {
@@ -679,7 +678,7 @@ public class Bill_PayCanada extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(date, "Date");
-			
+
 			String date1 = String.valueOf(GetDate.get().getTomorrowsDate());
 			System.out.println("Tomorrow is:" + date1);
 

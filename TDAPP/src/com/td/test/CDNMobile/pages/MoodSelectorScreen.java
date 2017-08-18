@@ -447,6 +447,7 @@ public class MoodSelectorScreen extends _CommonPage {
 				// check_box_container.findElements(By.xpath("//android.widget.CheckBox"));
 
 				checkboxList = (CL.GetAppiumDriver()).findElements(By.xpath(
+
 						"//android.widget.LinearLayout[@resource-id='com.td:id/checkbox_form_container']//android.widget.CheckBox"));
 				for (int i = 0; i < checkboxList.size(); i++) {
 					mobileAction.FuncClick(checkboxList.get(i), "Check box " + (i + 1));
@@ -472,6 +473,7 @@ public class MoodSelectorScreen extends _CommonPage {
 	}
 
 	public void VerifyRateUsOnGooglePlayButton() {
+
 		Decorator();
 
 		try {
