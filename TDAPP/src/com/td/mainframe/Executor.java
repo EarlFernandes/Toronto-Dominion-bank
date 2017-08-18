@@ -96,12 +96,6 @@ public class Executor extends _CommonPage {
 	 */
 	public void createPersonalProfile() {
 
-		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
-		MainScreen.get().readSheet();
-		MainScreen.get().readP2PSheet();
-
-		System.out.println("FilePath: " + getTestdata("UserType"));
-
 		acsNo = null;
 		easyWebTempPass = null;
 		branchNo = null;

@@ -1796,6 +1796,11 @@ public class EventCase {
 			Trade.get().selectAndEnterSymbol();
 			break;
 
+		// profile and preference
+
+		case Menu_Profile_And_Settings:
+			MenuPage.get().clickProfileAndSettings();
+			break;
 		case Profile_And_Settings_clickPaymentsAndTransfers:
 			Profile_And_Settings.get().clickPaymentsAndTransfers();
 			break;
