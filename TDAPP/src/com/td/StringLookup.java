@@ -50,6 +50,7 @@ public class StringLookup {
 		Map<String, String> bMap = new HashMap<>();
 		Map<String, String> cMap = new HashMap<>();
 		Map<String, String> dMap = new HashMap<>();
+
 		aMap.put(INVESTING_ACCOUNTS, StringArray.ARRAY_INVESTING_ACCOUNTS[0]);
 		aMap.put(MOBILE_PAYMENT, StringArray.ARRAY_MOBILE_PAYMENT[0]);
 		aMap.put(PRIVACY_SECURITY_LEGAL, StringArray.ARRAY_PRIVACY_SECURITY_LEGAL[0]);

@@ -79,6 +79,32 @@ public class MLEnterOrderNegative extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/orderEntryPreviewButton")
 	private MobileElement previewOrderButton;
 
+	@iOSFindBy(xpath = " //*[contains(@label,'ACCOUNTS') or contains(@label,'COMPTES')]") // @Author
+																							// -
+																							// Sushil
+																							// 06-Feb-2017
+	// @AndroidFindBy(xpath =
+	// "//android.widget.TextView[@resource-id='com.td:id/selectedText' and
+	// @index='0']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView']")
+	private MobileElement lblACCOUNTS;
+
+	String accNumber = getTestdata("Rapcode", "UserIDs").trim();// @Author -
+																// Sushil
+																// 06-Feb-2017
+	// String xpathAccount =
+	// "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and
+	// contains(@text,'" + accNumber + "']";
+	String xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
+
+	@iOSFindBy(xpath = "//*[@name='QUICKLINKS_TRADE' or @label='NÉGOCIATION']") // @Author
+																				// -
+																				// Sushil
+																				// 23-Mar-2017
+	// @AndroidFindBy(id="com.td:id/btn_trade")
+	@AndroidFindBy(xpath = "//*[contains(@text,'TRADE') or contains(@text,'NÉGOCIATION')]")
+	private MobileElement quickLink_trade;
+
 	public void searchAndSelectAccountRapcode() {
 		Decorator();
 		String[] aRapcode = getTestdata("Rapcode", XLSheetUserIDs).split(";");
@@ -164,6 +190,28 @@ public class MLEnterOrderNegative extends _CommonPage {
 		}
 	}
 
+	public void searchAndSelectAccountRapcodeWZXY() {
+		Decorator();
+		try {
+
+			mobileAction.waitForElement(lblACCOUNTS);
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount, true, 60, "up");
+
+			if (!mobileAction.isObjExists(quickLink_trade, 2)) {
+				CL.GetReporting().FuncReport("Pass",
+						"Trade Option is not available for account with Rapcode" + accNumber);
+			}
+
+			else {
+
+				CL.GetReporting().FuncReport("Fail", "Trade Option is available for account with Rapcode" + accNumber);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public String getMatchedAccount(String sAccountNum, String sRapCode) {
 		String sReturnPrice = "";
 		String sPattern = "";
@@ -203,6 +251,7 @@ public class MLEnterOrderNegative extends _CommonPage {
 			e.printStackTrace();
 		}
 	}
+
 	/*
 	 * public static void main(String args[]){ //MainScreenMIT.get().OpenApp();
 	 * Test();

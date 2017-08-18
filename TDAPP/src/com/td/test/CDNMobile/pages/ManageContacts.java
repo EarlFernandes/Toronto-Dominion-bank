@@ -20,6 +20,7 @@ public class ManageContacts extends _CommonPage {
 	private static ManageContacts ManageContacts;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeSearchField[contains(@name,'Search')]")
+
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/manage_contacts_search_field' and @text='Search']")
 	private MobileElement searchTextFiled;
 

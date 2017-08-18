@@ -417,6 +417,8 @@ public class MLOrderDetails extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(lblleg1QuantityFilled, "lblleg1QuantityFilled");
 			mobileAction.FuncVerifyNonBlankValue(leg1QuantityFilled, "leg1QuantityFilled");
 
+			mobileAction.FuncSwipeWhileElementNotFound(lblleg1ConfirmationNumber, false, 5, "up");
+
 			mobileAction.verifyElementIsDisplayed(lblleg1ConfirmationNumber, "lblleg1ConfirmationNumber");
 
 			mobileAction.FuncGetValByRegx(mobileAction.FuncGetText(leg1ConfirmationNumberDeatils),
@@ -544,6 +546,8 @@ public class MLOrderDetails extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(lblleg1QuantityFilled, "lblleg1QuantityFilled");
 			mobileAction.FuncVerifyNonBlankValue(leg1QuantityFilled, "leg1QuantityFilled");
+
+			mobileAction.FuncSwipeWhileElementNotFound(lblleg1ConfirmationNumber, false, 5, "up");
 
 			mobileAction.verifyElementIsDisplayed(lblleg1ConfirmationNumber, "lblleg1ConfirmationNumber");
 

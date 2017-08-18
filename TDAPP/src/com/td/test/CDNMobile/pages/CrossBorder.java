@@ -55,8 +55,10 @@ public class CrossBorder extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+
 				final WebElement loginButton = (WebElement) (CL.GetAppiumDriver()).findElement(By.id("callLoginpopup"));
 				loginButton.click();
 			}

@@ -130,6 +130,7 @@ public class ManageRecipients extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
 				mobileAction.FuncClick(yesButtonContacts, "Yes to Add contacts");
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -927,7 +928,9 @@ public class ManageRecipients extends _CommonPage {
 				final WebElement name = mobileAction.verifyWebElementUsingXPath("//input[@name='name']", "Name");
 				name.sendKeys(getTestdata("RecipientName"));
 				final WebElement email = mobileAction.verifyWebElementUsingXPath("//input[@name='email']", "Email");
+
 				email.sendKeys(UUID.randomUUID().toString().replace("-", "") + "@test.zz");
+
 				final WebElement securityQ = mobileAction.verifyWebElementUsingXPath("//input[@name='question']",
 						"Security Questions");
 				securityQ.sendKeys(getTestdata("Security_Question"));

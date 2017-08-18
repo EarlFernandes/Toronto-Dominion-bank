@@ -9,7 +9,6 @@ import com.td.mainframe.Executor;
 public class MainScreen extends _CommonPage {
 
 	// ***** LOCAL EXECUTION PARAMETERS *****
-
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
 
@@ -17,7 +16,6 @@ public class MainScreen extends _CommonPage {
 
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
-
 	private static final String APP_ANDROID = "APP_ANDROID";
 
 	// Change this parameter to point to the correct ipa in Setup.xls for ios
@@ -130,7 +128,7 @@ public class MainScreen extends _CommonPage {
 				} else {
 					appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
 				}
-				// System.out.println(appStringMap.toString());
+
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -159,3 +157,4 @@ public class MainScreen extends _CommonPage {
 	}
 
 }
+

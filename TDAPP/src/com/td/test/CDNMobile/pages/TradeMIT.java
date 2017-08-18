@@ -880,6 +880,7 @@ public class TradeMIT extends _CommonPage {
 			// String xpathAccount =
 			// "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber'
 			// and contains(@text,'" + accNumber + "']";
+
 			xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
 
 			mobileAction.waitForElement(defaultTradeAccount);

@@ -183,8 +183,10 @@ public class QuickAccess extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
 				mobileAction.verifyTextEquality(title.getText().trim(),
 						mobileAction.getAppString("easy_access_enroll_text1").trim());
+
 				mobileAction.verifyTextEquality(getStartedButton.getText(),
 						mobileAction.getAppString("btn_get_started"));
 			} else {

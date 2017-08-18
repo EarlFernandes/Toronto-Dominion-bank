@@ -108,8 +108,8 @@ public class EventCase {
 
 		Add_Recipient_ErrorPage, AddCanadianPayee, AddPayee_SearchPayee, AddCard_MobilePayment, AddToTDMobilePayment, ApplePay_AddCard, ApplePay_SelectACard, ApplePay_CheckEligibleCard, ApplePay_ChangeDefaultCard, ApplePay_CheckPersonalCard, ApplePay_CheckBusinessCard, ApplePay_CheckDefaultCard, ApplePay_AddAllCards, ApplePay_OtherEligibleCards, Accounts_Credit_clickTransfer,
 
-		Banking_Header, Bill_PayCanada_Pay_Bill, Between_My_Accounts_RTB_permissible_transfer,
-
+		Banking_Header, Bill_PayCanada_Pay_Bill, Between_My_Accounts_RTB_permissible_transfer, 
+		
 		Between_My_accounts, Between_My_accounts_CanadianToUS, Between_My_accounts_exchange_rate_expired, Between_My_accounts_Exchange_Rate_Expired, Between_My_Accounts_LIRA, Between_My_accounts_Mobile_Rate_Expiry, Between_My_Accounts_Permissible_Transfer, Between_My_accounts_transfer, Between_My_Accounts_Transfer_less, Between_My_accounts_transfer_verify_receipt, Between_My_accounts_VerifyFromAccounts,
 
 		BetweenMyAccounts_CADTFSA_TDCTTFSA, BetweenMyAccounts_MobileRateExpiryOnSmartphones, BetweenMyAccounts_NegativeTestingTransferFunds, BetweenMyAccounts_permissible_transfer_on_mobile, BetweenMyAccounts_TDCTTFSA_CADTFSA, BetweenMyAccounts_TDCTTFSAMessage, BetweenMyAccounts_TransferNotSupported, BetweenMyAccounts_TransferTDCTCADUSDVISA,
@@ -172,13 +172,15 @@ public class EventCase {
 
 		verify_access_to_WB, Verify_account_activity_credit, Verify_Combined_Account, Verify_FP_Account, verify_login_5_times, Verify_PIA_Account, VerifyAccessCard, VerifyAccessCardDetails, VerifyActionFields, verifybill_landingpage, VerifyCombinedAccounts, verifyconfirm_order, VerifyDIAccounts, verifyErrorMessage, VerifyFPAccounts, VerifyIconDetails, VerifyInvestingScreen, VerifyNoEligibleAccounts, VerifyNoTradingAccounts, VerifyPIAAccounts, VerifyQuickIcons, VerifyReceipt, VerifySender, VerifySenderList, VerifyShareholderType, Verifytimestamp, VerifyTwoAccessCardDetails, VerifyUser, VerifyNickName, verifydefaultcard, View_profile, VerifyProfileHeader, VerifyContactInformationHeader, VerifyInitialNameforIndividual, VerifyInitialNameforBusinessUser, VerifyInitialNameInUpperCase, VerifyHomePhoneMasked, VerifyExtensionNotMasked, verifyProfileandSettingLandingPage, VerifyProfileNameLength, VerifyErrorMessage, VerifySecurityQuestionButton, VeirfySecuirtyQuestionPageheader, VerifyNotificationsButton, VeirfyNotificationsPageheader, VerifyQuickAccessSettings, VerifyQuickAccessSettingsHeader, VerifyTDForMeSettings, VerifyTDForMeSettingsHeader, VerifyWhatsNew, VerifyWhatsNewPageHeader, VerifyProfileAndSettingslink, VerifyEmailFormat, VerifyEmailIDLength, VerifyBlankEmailNotSuccesful, VerifyErrorMessageOrLength, VerifyEmailIDBlankorNot, VerifyEmailAddedSuccesful, VerifyPopUpWithCancelButton, VerifyClearTextIconDisplayed, VerifyPhoneNumberIsEmpty, VerifyTDForMeDisableSwitchFunction, VerifyTDForMeEnableSwitchFunction, ClickCustomizeNotificationlinkFromTDforMe, VerifyTDForMeNotificationPageHeader, VerifyQuickAccessSwitchWork,
 
-		VerifyPlaceHolderDisplayed, VerifyToastmessageDisplayed, VerifyPhoneEmailNotChanged, verifyQuickAccessBillPaidUpdate, ClickBackFromAppOrGooglePage, Verify_quick_link_go_back_home, Verify_quick_link_view_myaccounts, Verify_error_screen, ClickCustomizeNotificationsLinkFromNotifications, VerifyTdforMeNotificationsHeader, VerifyEnableNotificationsSwitchFunction, ClickPurchaseMF, VerifyPurchaseMFPageHeader, SelectAccountUsingAccountName, VerifyFundDropdownList, VerifyFromAccountBeStaticAndLinked, ClickFundsTab, SelectFirstFund, VerifyFundDetailsPageHeader, ClickPurchaseButton, ClickfundFacts, ClickViewfundFacts, VerifyFundfactsPageheader, VerifyQuickLinkDisplayed, randomlySelectOneFund, VerifyFundCategory, VerifyUSDConversionRatePresent, VerifyCancelPopUpMessage, ClickCancelMFpurchase, SelectUSDFunds, VerifyNoMutualFundAccounts, VerifyErrorMessageForIneligibleFund, SelectIneligibleFund, EditMobilePhoneNumber, VerifyWarningMessageContent, VerifyFromCADAccountToUSDMFAccountIsNotAllowed, VerifyFromUSDAccountToCADMFAccountIsNotAllowed, VerifyEmailAddressIsEditable, GoBackToHomePage, ClickBalanceTab, ClickPopupCancelOrderButton,
+		VerifyPlaceHolderDisplayed, VerifyToastmessageDisplayed, VerifyPhoneEmailNotChanged, verifyQuickAccessBillPaidUpdate, ClickBackFromAppOrGooglePage, Verify_quick_link_go_back_home, Verify_quick_link_view_myaccounts, Verify_error_screen, VerifyFIFOLogic, VerifyEquityAndETFs, VerifyTradeOnLandingPage, Verify_flyoutMenu, VerfiyOptionConfirmOrderScreen, verifyOptionConfirmOrderReceipt,ClickCustomizeNotificationsLinkFromNotifications,VerifyTdforMeNotificationsHeader,VerifyEnableNotificationsSwitchFunction,
 
 		ClickActivityTab, SelectFirstTransaction, VerifyTransactionDetailHeader, VerifyTransactionDetails, SelectPreviousTransaction, VerifyMFChineseContent, VerifyPurchaseMFPageInChinese, VerifyMFActivityChineseContent, VerifyFundDetailsInformationInChinese, verifyTransactionDetailsInChinese, ClickPreviewPurchase, VerifyPreviewPurchasePageHeader, VerifyPreviewPurchasePhoneFormat, VerifyPreviewPurchasePhoneNotMasked, VerifyPreviewPurchaseContentInChinese, VerifyMinimumAmount, VerifyMaximumAmount, savePhoneInforForMFVerification, saveEmailInforForMFVerification, VerifyPhoneIsPopulatedWithProfilePhone, VerifyEmailIsPopulatedWithProfileEmail, SelectLastTransaction, VerifyZeroBalance, VerifyPurchaseButtonNotpresent, VerifyUSDDisclaimer, VerifyPrepopulatedInformatiom, ClickTDForMe_Flyout, VerifyCADValueForMarketAndBookValue, VerifyUSDAmount, ClickMobilePhoneNumber, VerifyBorrowMoneyYesButton, VerifyClosingDayDisclaimer, VerifyFundfactsAcknowledgement, clickpreviewButtonWithNoForm, VerifyErrorMessageForClosedFund, VerifyErrorMessageWithoutFundSelected,
+		
+		ClickPopupCancelOrderButton,VerifyFromCADAccountToUSDMFAccountIsNotAllowed,VerifyFromUSDAccountToCADMFAccountIsNotAllowed,ClickViewfundFacts,VerifyFundfactsPageheader,GoBackToHomePage,SelectIneligibleFund,VerifyErrorMessageForIneligibleFund,ClickfundFacts,ClickBalanceTab,VerifyUSDConversionRatePresent,ClickCancelMFpurchase,VerifyCancelPopUpMessage,VerifyWarningMessageContent,
+		
+		EditMobilePhoneNumber, VerifyPurchaseMFPageHeader,VerifyEmailAddressIsEditable,SelectAccountUsingAccountName,VerifyFundDropdownList,VerifyFromAccountBeStaticAndLinked, ClickFundsTab,SelectFirstFund,SelectUSDFunds,VerifyNoMutualFundAccounts,VerifyQuickLinkDisplayed,randomlySelectOneFund,VerifyFundDetailsPageHeader,VerifyFundCategory,ClickPurchaseButton,
 
-		VerifyFIFOLogic, VerifyEquityAndETFs, VerifyTradeOnLandingPage, Verify_flyoutMenu, VerfiyOptionConfirmOrderScreen, verifyOptionConfirmOrderReceipt,
-
-		savePhoneInforForPFVerification, VerifyPhoneIsNotUpdatedAsMFChanges, VerifyConfirmationPageHeader, ClickPurchaseNowBtn, ClickGoBackHomeBtn, ClickViewMyAccountsBtn, VerifyQuickLinkPurchaseChineseContent, VerifyReceiptDetailChineseContent, VerifyFeedBackNTimes, VerifyCallFuntionality,
+		savePhoneInforForPFVerification, VerifyPhoneIsNotUpdatedAsMFChanges, VerifyConfirmationPageHeader, ClickPurchaseNowBtn, ClickGoBackHomeBtn, ClickViewMyAccountsBtn, VerifyQuickLinkPurchaseChineseContent, VerifyReceiptDetailChineseContent, VerifyFeedBackNTimes, VerifyCallFuntionality,ClickPurchaseMF,
 
 		WatchLists_addSymbolToWatchLists, WatchLists_clickSearchBar, WatchLists_Header, Watchlists_verify_newOrderFlow_Watchlists, WatchLists_verifyRecentSearches, WatchLists_verifySymbol, WatchLists_verifySymbolAdded,
 
@@ -190,7 +192,8 @@ public class EventCase {
 		, clickChangeorder_TSM_to_TSL, TradeTrailingStopMarket, TradeStopMarket, TradeStopMarketSell, TradeLimitDAYEXT, ClickWatchList, TradeStopLimit, OrderRecieptValidateBuy, Investing_ClickPlacedOrder, OrderDetails_Changeorder, TradeMarket, clickChangeorder_LimitToMarket, TradeLimit, TradeLimitAndTriggerDelta, TradeOrderType, TradeSymbol, TradeTrailingStopLimit, ConfirmOrderValidateBuy, verifyEmptyWatchList, ClickOrders, clickChangeorder_SM_to_SL, verifyShareHolder, confirmOrder_ClickBack, verifyBuyToCover, TradeStopLimitSell, ConfirmOrderDoNotCancel, ConfirmOrderImpInformation, ClickHoldingAndSymbol, changeOrderLimitDayToDayEXT,
 
 		// MIT Multi-Leg
-		OpenAppMIT, LoginMIT, tapInvesting, verifyDefaultStrategies, navigateToSearchScreen, selectTradeAccount_OrderType, verifySymbolUS, verifySymbolSearchResults, clickInvestingTrade, tapTradeSearchBar, clickFirstSymbol, verifyStockOptionContents, verifyOptionOptionContents, verifySelectOption, verifyStockMidNaturalPrice, verifyOptionMidNaturalPrice, verifyGoodTill, verifyGoodTillExpiryDate, verifySharehoderType, verifyStockOptionBackButton, verifyOptionOptionBackButton, verifyOptionOptionPreviewOrderButton, searchAndSelectAccount, submitStockOptionOrder, selectDateSpecify_Android, searchAndSelectAccountRapcode, verifyStockOptionFieldsReset, verifyOptionOptionFieldsReset, verifyOptionOptionFieldResetOrderTypeChanged, verifyStockOptionFieldResetOrderTypeChanged, verifyStockOptionConfirmOrder, verifyOptionOptionConfirmOrder, submitOptionOptionOrder, verifyStockOptionCancelOrderReceipt, verifyOptionOptionCancelOrderReceipt, verifyTradeOrderFormContent, verifyEntryOrderFormContent, verifyWarningMsgExchangeAgrNotSigned, verifyStockOptionConfirmOrderReceipt, verifyOptionOptionConfirmOrderReceipt, clickPostorderMyAccount, clickPostorderTrade, clickQuickLinkHome, clickQuickLinkTrade, clickQuickLinkOrder, verifyOptionOptionChainTableSubmit, verifyStockOptionChainTableSubmit, verifyStockOptionChainTableCancel, verifyOptionOptionChainTableCancel, verifyInvalidTradingPassword, verifyStockOptionChangeOrder, verifyOptionOptionChangeOrder, verifyStockOptionOrderDetails, verifyOptionOptionOrderDetails, verifyMLOrdersTabDetails, Test,
+
+		OpenAppMIT, LoginMIT, tapInvesting, verifyDefaultStrategies, navigateToSearchScreen, selectTradeAccount_OrderType, verifySymbolUS, verifySymbolSearchResults, clickInvestingTrade, tapTradeSearchBar, clickFirstSymbol, verifyStockOptionContents, verifyOptionOptionContents, verifySelectOption, verifyStockMidNaturalPrice, verifyOptionMidNaturalPrice, verifyGoodTill, verifyGoodTillExpiryDate, verifySharehoderType, verifyStockOptionBackButton, verifyOptionOptionBackButton, verifyOptionOptionPreviewOrderButton, searchAndSelectAccount, submitStockOptionOrder, selectDateSpecify_Android, searchAndSelectAccountRapcode, verifyStockOptionFieldsReset, verifyOptionOptionFieldsReset, verifyOptionOptionFieldResetOrderTypeChanged, verifyStockOptionFieldResetOrderTypeChanged, verifyStockOptionConfirmOrder, verifyOptionOptionConfirmOrder, submitOptionOptionOrder, verifyStockOptionCancelOrderReceipt, verifyOptionOptionCancelOrderReceipt, verifyTradeOrderFormContent, verifyEntryOrderFormContent, verifyWarningMsgExchangeAgrNotSigned, verifyStockOptionConfirmOrderReceipt, verifyOptionOptionConfirmOrderReceipt, clickPostorderMyAccount, clickPostorderTrade, clickQuickLinkHome, clickQuickLinkTrade, clickQuickLinkOrder, verifyOptionOptionChainTableSubmit, verifyStockOptionChainTableSubmit, verifyStockOptionChainTableCancel, verifyOptionOptionChainTableCancel, verifyInvalidTradingPassword, verifyStockOptionChangeOrder, verifyOptionOptionChangeOrder, verifyStockOptionOrderDetails, verifyOptionOptionOrderDetails, verifyMLOrdersTabDetails, Test, verifyBackButton, searchAndSelectAccountRapcodeWZXY,
 
 		// P2P
 
@@ -207,10 +210,12 @@ public class EventCase {
 		ManageContacts_verifyContactDeleteSuccessMsg, ManageContacts_noDeleteContact, ManageContacts_deleteContact, ManageContacts_clickContact, ManageContacts_AddContactfromPhone, ManageContacts_clickAddContactfromPhone, ManageContacts_MultiProfileDeleteContact, Interac_e_Registration_clickContinueButton, ManageContacts_verifySuccessMessage, ManageContacts_clickAddContactPlusSign, ManageContacts_clickAddContactButton, ManageContacts_editContact, ManageContacts_verifyContactEditSuccessMsg, ManageContacts_MultiProfileAddContact, ManageContacts_addContact, ManageContacts_MultiProfileEditContact, HomeScreen_clickSendMoney, Interac_Send_Money_sendMoneyVerifyDetails, Interac_Send_Money_sendMoney, Interac_Send_Money_sendMoneyVerifySuccessMsg, Interac_Send_Money_sendMoneyWithError, Interac_e_Registration_verifyDetails, Interac_e_Registration_verifyBusinessDetails, Interac_e_Registration_verifyRegSuccessMessage,
 
 		// OTP
+
 		OTP_Challenge_ClickTextOption, OTP_Challenge_ClickVoiceOption, OTP_Challenge_ClickFirstPhoneNumber, OTP_Challenge_ClickGetCodeButton, OTP_Challenge_ClickSubmitCodeButton, OTP_Challenge_EnterSecurityCode, OTP_Challenge_WaitForOTPProgressBarToVanish, OTP_Challenge_VerifyInvalidSecurityCode, OTP_Challenge_ResendCode, OTP_Challenge_VerifyTooManySecurityCodesRequested,
 
 		// myspend
-		Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, TourPage_clickConnectTDApp, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks,SpendingSpike_verifySpikesCategories,SpendingByCategory_verifySpikes,SpendingSpike_pageMessages, Preferences_verifyPageHeader,Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage,SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickGetTDAppButton, click_PreferencesLink
+		Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, TourPage_clickConnectTDApp, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickGetTDAppButton, click_PreferencesLink
+
 	}
 
 	public void FuncCOREEventCase(String sFunctionname)
@@ -505,6 +510,7 @@ public class EventCase {
 
 		case Interac_e_Transfer_clickContinueButton:
 			Interac_e_Transfer.get().clickContinueButton();
+
 			break;
 
 		case Interac_e_Transfer_verifyErrorText:
@@ -1815,7 +1821,6 @@ public class EventCase {
 		case Menu_Profile_And_Settings:
 			MenuPage.get().clickProfileAndSettings();
 			break;
-
 		case Profile_And_Settings_clickPaymentsAndTransfers:
 			Profile_And_Settings.get().clickPaymentsAndTransfers();
 			break;
@@ -1962,7 +1967,6 @@ public class EventCase {
 
 		case NavigationBackToProfileandSettingPage:
 			Profile.get().NavigationBackToProfileandSettingPage();
-			// mobileAction.FuncClickBackButton();
 			break;
 
 		case EditEmailAddressWithNonAformat:
@@ -2099,6 +2103,7 @@ public class EventCase {
 
 		case VerifyRateUsOnGooglePlayButton:
 			MoodSelectorScreen.get().VerifyRateUsOnGooglePlayButton();
+
 			break;
 
 		case VerifyGooglePlayRatePage:
@@ -2206,9 +2211,10 @@ public class EventCase {
 			TradeMultiLeg.get().verifyGoodTill();
 			break;
 
-		case verifyGoodTillExpiryDate:
-			TradeMultiLeg.get().verifyGoodTillExpiryDate();
+		case verifyBackButton:
+			TradeMultiLeg.get().verifyBackButton();
 			break;
+
 		case verifySharehoderType:
 			TradeMultiLeg.get().verifySharehoderType();
 			break;
@@ -2350,6 +2356,11 @@ public class EventCase {
 		case Test:
 			MLConfirmOrder.get().Test();
 			break;
+
+		case searchAndSelectAccountRapcodeWZXY:
+			MLEnterOrderNegative.get().searchAndSelectAccountRapcodeWZXY();
+			break;
+
 		// MIT Multi-Leg Switch Cases END
 
 		case Env_DeleteDefaultCard:
@@ -2375,7 +2386,11 @@ public class EventCase {
 		case Accounts_Credit_clickTransfer:
 			Accounts_Credit.get().clickTransfer();
 			break;
-			
+
+		case Between_My_Accounts_RTB_permissible_transfer:
+			Between_My_accounts.get().RTB_permissible_transfer();
+			break;
+
 		case verifyQuickAccessBillPaidUpdate:
 			QuickAccessPage.get().verifyQuickAccessBillPaidUpdate();
 			break;
@@ -2387,7 +2402,11 @@ public class EventCase {
 		case OrderDetails_clickChangeorder:
 			// OrderDetails.get().clickChangeorder();
 			break;
-		
+
+		case TradeHeader:
+			Trade.get().verifyTradeHeader();
+			break;
+
 		case Trade_Trigger:
 			// Trade.get().tradeDetails_TriggerDelta();
 			break;
@@ -2464,7 +2483,7 @@ public class EventCase {
 		case VerifyErrorMessageWithoutFundSelected:
 			PurchaseMutualFunds.get().VerifyErrorMessageWithoutFundSelected();
 			break;
-
+					
 		case VerifyEmailAddressIsEditable:
 			PurchaseMutualFunds.get().VerifyEmailAddressIsEditable();
 			break;
@@ -2564,7 +2583,7 @@ public class EventCase {
 		case ClickViewfundFacts:
 			PurchaseMutualFunds.get().ClickViewfundFacts();
 			break;
-
+			
 		case VerifyBorrowMoneyYesButton:
 			PurchaseMutualFunds.get().VerifyBorrowMoneyYesButton();
 			break;
@@ -2692,7 +2711,7 @@ public class EventCase {
 		case VerifyUSDConversionRatePresent:
 			FundDetails.get().VerifyUSDConversionRatePresent();
 			break;
-
+			
 		case VerifyCADValueForMarketAndBookValue:
 			FundDetails.get().VerifyCADValueForMarketAndBookValue();
 			break;
@@ -2733,15 +2752,6 @@ public class EventCase {
 			break;
 
 		// End of Purchase Mutual funds
-
-
-		case Between_My_Accounts_RTB_permissible_transfer:
-			Between_My_accounts.get().RTB_permissible_transfer();
-			break;
-
-		case TradeHeader:
-			Trade.get().verifyTradeHeader();
-			break;
 
 		case VerifyStatementBalanceHeader:
 			StatementBalance.get().verifyStatementBalanceHeader();
@@ -3327,7 +3337,6 @@ public class EventCase {
 
 		// MySpend
 
-
 		case TourPage_clickConnectTDApp:
 			TourPage.get().clickConnectTDApp();
 			break;
@@ -3343,11 +3352,11 @@ public class EventCase {
 		case SideMenu_clickPreferences:
 			SideMenu.get().clickPreferences();
 			break;
-			
+
 		case SideMenu_clickSpendingByCategory:
 			SideMenu.get().clickSpendingByCategory();
 			break;
-			
+
 		case SideMenu_verifyDeepLinks:
 			SideMenu.get().verifyDeepLinks();
 			break;
@@ -3355,7 +3364,7 @@ public class EventCase {
 		case Preferences_verifyPageHeader:
 			MyspendPreferences.get().verifyPageHeader();
 			break;
-			
+
 		case Preferences_EnableAllAccounts:
 			MyspendPreferences.get().enableAllAccounts();
 			break;
@@ -3367,11 +3376,11 @@ public class EventCase {
 		case Spending_Insight_verifyPreferencesDisabled:
 			Spending_Insight.get().verifyPreferencesDisabled();
 			break;
-			
+
 		case Spending_Insight_logoutTDMySpend:
 			Spending_Insight.get().logoutApplication();
 			break;
-			
+
 		case Spending_Insight_verifyPreferencesEnabled:
 			Spending_Insight.get().verifyPreferencesEnabled();
 			break;
@@ -3379,11 +3388,11 @@ public class EventCase {
 		case SideMenu_clickSpendingHistory:
 			SideMenu.get().clickSpendingHistory();
 			break;
-			
+
 		case SideMenu_clickSpendingSpikes:
 			SideMenu.get().clickSpendingSpikes();
 			break;
-			
+
 		case SideMenu_clickSpendingInsights:
 			SideMenu.get().clickSpendingInsights();
 			break;
@@ -3391,143 +3400,143 @@ public class EventCase {
 		case SideMenu_clickTransactionHistory:
 			SideMenu.get().clickTransactionHistory();
 			break;
-			
+
 		case SpendingHistory_verifyNoSpendingHistory:
 			SpendingHistory.get().verifyNoSpendingHistory();
 			break;
-			
+
 		case click_PreferencesLink:
 			SpendingHistory.get().clickPreferencesLink();
 			break;
-			
+
 		case SpendingHistory_verifySpendingHistory:
 			SpendingHistory.get().verifySpendingHistory();
 			break;
-			
+
 		case spendingByCategory_verifyPageHeader:
 			SpendingByCategory.get().verifyPageHeader();
 			break;
-			
+
 		case spendingByCategory_verifyCategories:
 			SpendingByCategory.get().verifySpendingByCategories();
 			break;
-			
+
 		case spendingByCategory_changeCategoryForAllTabs:
 			SpendingByCategory.get().changeCategoryForAllTabs();
 			break;
-			
+
 		case spendingByCategory_changeCategory:
 			SpendingByCategory.get().changeCategory();
 			break;
-			
+
 		case SpendingSpike_verifyCurrentMonthSpending:
 			SpendingSpikes.get().clickCurrentMonthSpending();
 			break;
-			
+
 		case TransactionHistory_verifyNoTransactionsFound:
 			TransactionHistory.get().verifyNoTransactionsFound();
 			break;
-			
+
 		case TransactionHistory_verifyTransactions:
 			TransactionHistory.get().verifyTransactions();
 			break;
-			
+
 		case TransactionHistory_verifyPageHeader:
 			TransactionHistory.get().verifyPageHeader();
 			break;
-			
+
 		case TDAppHomePage_verifyPageHeader:
 			TDAppHomePage.get().verifyPageHeader();
 			break;
-			
+
 		case TDAppHomePage_clickTDMySpend:
 			TDAppHomePage.get().clickTDMySpend();
 			break;
-			
+
 		case SideMenu_clickMyAccounts:
 			SideMenu.get().clickMyAccounts();
 			break;
-			
+
 		case SideMenu_clickGetTDAppButton:
 			SideMenu.get().clickGetTDAppButton();
 			break;
-			
+
 		case SpendingHistory_clickMonthIcon:
 			SpendingHistory.get().clickMonthIcon();
 			break;
-			
+
 		case SpendingHistory_verifyTabs:
 			SpendingHistory.get().verifyTabs();
 			break;
-			
+
 		case SpendingHistory_clickHomeButton:
 			SpendingHistory.get().clickHomeButton();
 			break;
-			
+
 		case Spending_Insight_clickAndVerifyLogout:
 			LogoutMySpend.get().logoutMySpend();
 			break;
-			
+
 		case Spending_Insight_clickMoneyPathButton:
 			Spending_Insight.get().clickMoneyPathButton();
 			break;
-			
+
 		case MySpend_RegistrationFlow:
 			TourPage.get().registrationFlow();
 			break;
-			
+
 		case SpendingByCategory_clickHistoricalInsightBtn:
 			SpendingByCategory.get().clickHistoricalInsightsBtn();
 			break;
-			
+
 		case SpendingHistory_verifySpendingHistoryHeader:
 			SpendingHistory.get().verifySpendingHistoryHeader();
 			break;
-			
+
 		case TransactionHistory_transacHistoryFunctionality:
 			TransactionHistory.get().transactionHistoryPageFunctionality();
 			break;
-			
+
 		case MoneyPath_moneyPathFunctionality:
 			MoneyPath.get().moneyPathFunctionality();
 			break;
-			
+
 		case SpendingInsights_verifySpendingInsightsPage:
 			Spending_Insight.get().verifySpendingInsightsPage();
 			break;
-			
-			
+
 		case Logout_logout:
 			Logout.get().logout();
 			break;
-			
+
 		case SpendingHistory_clickSpendingHistory:
 			SpendingHistory.get().clickSpendingHistory();
 			break;
-			
+
 		case Preferences_enableAccounts:
 			MyspendPreferences.get().enableAccountsInPreferencePage();
 			break;
-			
+
 		case SpendingSpike_verifySpikesCategories:
 			SpendingSpikes.get().verifySpikesCategories();
 			break;
-			
+
 		case SpendingByCategory_verifySpikes:
 			SpendingByCategory.get().verifySpikes();
 			break;
-			
+
 		case SpendingSpike_pageMessages:
 			SpendingSpikes.get().spendingSpikePageMessages();
 			break;
+
 		}
 	}
 
 	public void generateReport() {
 	}
-	
+
 	public void beforeTest() {
 	}
 
-	
 }
+

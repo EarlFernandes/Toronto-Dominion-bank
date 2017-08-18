@@ -188,16 +188,8 @@ public class MobileDeposit extends _CommonPage {
 		try {
 			mobileAction.waitForElementToDisappear(progressBar);
 			mobileAction.verifyElementIsDisplayed(mobile_Deposit_Header, mobile_Header_value);
+
 			mobileAction.verifyElementIsPresent(validation_FirstLine);
-			// mobileAction.verifyElementIsDisplayed(validation_SecondLine,ConstantClass.secondLine_Value);
-			// mobileAction.verifyElementIsDisplayed(validation_ThirdLine,
-			// ConstantClass.t_thirdLine_Value);
-			// //mobileAction.verifyElementIsDisplayed(validationfourthLine,
-			// ConstantClass.t_fourthLine_Value);
-			// mobileAction.verifyElementIsDisplayed(validation_FifthLine,
-			// ConstantClass.t_fifthLine_Value);
-			// mobileAction.verifyElementIsDisplayed(validation_SixthLine,
-			// ConstantClass.t_sixthLine_Value);
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

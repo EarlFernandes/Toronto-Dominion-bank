@@ -1420,6 +1420,8 @@ public class MobileAction2 extends CommonLib {
 		try {
 			String elementText = "";
 
+			boolean verifyFlag = true;
+
 			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
 			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
 
@@ -2392,8 +2394,11 @@ public class MobileAction2 extends CommonLib {
 			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.visibilityOf(defaultItem));
 			FuncClick(defaultItem, "defaultItem");
-			if (GetDriver().findElement(By.xpath(xpathExpression)).isDisplayed())
-				GetDriver().findElement(By.xpath(xpathExpression)).click();
+
+			// if(GetDriver().findElement(By.xpath(xpathExpression)).isDisplayed())
+			Thread.sleep(3000);
+			GetDriver().findElement(By.xpath(xpathExpression)).click();
+
 		} catch (Exception e1) {
 			Err = true;
 		}
@@ -2613,6 +2618,57 @@ public class MobileAction2 extends CommonLib {
 				e1.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * This method will return the text of the element which has been specified
+	 * and print it in the report as well.
+	 * 
+	 * @param objElement
+	 *            The element for which the text is to be printed in the report.
+	 * @return The String value of the Text in the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 */
+	public String FuncGetElementText(MobileElement objElement) { // @Author -
+																	// Sushil
+																	// 13-Apr-2017
+		String textToReturn = null;
+		try {
+
+			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+			wait.until(ExpectedConditions.visibilityOf(objElement));
+
+			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				try {
+					textToReturn = objElement.getText();
+				} catch (Exception e) {
+					GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
+				}
+			} else {
+				try {
+					textToReturn = objElement.getAttribute("label");
+				} catch (Exception e) {
+					try {
+						textToReturn = objElement.getAttribute("value");
+					} catch (Exception e1) {
+						try {
+							textToReturn = objElement.getAttribute("name");
+						} catch (Exception e2) {
+							GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+		return textToReturn;
+
 	}
 
 	public String FuncGetTextByxpath(String xpathEle)// @Author - Sushil
@@ -3389,5 +3445,6 @@ public class MobileAction2 extends CommonLib {
 			return false;
 		}
 	}
+
 }
 

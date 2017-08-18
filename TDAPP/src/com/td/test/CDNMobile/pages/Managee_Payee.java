@@ -52,6 +52,7 @@ public class Managee_Payee extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+
 	private MobileElement progressBar;
 
 	public synchronized static Managee_Payee get() {
@@ -81,15 +82,7 @@ public class Managee_Payee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
 						+ mobileAction.getAppString("billsNavRowManagePayee") + "']", "Manage Payees title");
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
-				// + mobileAction.getAppString("country_all") + "']", "All");
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
-				// + mobileAction.getAppString("canada") + "']", "Canada");
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
-				// + mobileAction.getAppString("us") + "']", "US");
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeLink[@label='"
-				// + mobileAction.getAppString("str_my_payees") + "']", "My
-				// Payees");
+
 			} else {
 				mobileAction
 						.verifyElementUsingXPath(
@@ -103,29 +96,7 @@ public class Managee_Payee extends _CommonPage {
 				mobileAction.verifyWebElementUsingXPath(
 						"//input[@placeholder='" + mobileAction.getAppString("manage_payees_search_hint") + "']",
 						"Search for payee");
-				// final WebElement all =
-				// mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label
-				// in labels'])[1]", "All");
-				// final WebElement canada =
-				// mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label
-				// in labels'])[2]", "Canada");
-				// final WebElement us =
-				// mobileAction.verifyWebElementUsingXPath("(//li[@ng-repeat='label
-				// in labels'])[3]", "US");
-				// final WebElement myPayees =
-				// mobileAction.verifyWebElementUsingXPath("//a[@id='myPayees']",
-				// "My payees");
-				// if (!mobileAction.verifyTextEquality(all.getText().trim(),
-				// mobileAction.getAppString("str_all")) ||
-				// !mobileAction.verifyTextEquality(canada.getText().trim(),
-				// mobileAction.getAppString("ca")) ||
-				// !mobileAction.verifyTextEquality(us.getText().trim(),
-				// mobileAction.getAppString("us")) ||
-				// !mobileAction.verifyTextEquality(myPayees.getText().trim(),
-				// mobileAction.getAppString("str_my_payees"))) {
-				// System.err.println("TestCase has failed.");
-				// CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				// }
+
 				// Switch back to native to get proper screenshots
 				mobileAction.switchAppiumContext("NATIVE_APP");
 			}
@@ -214,6 +185,7 @@ public class Managee_Payee extends _CommonPage {
 				String from_accountNo = "//XCUIElementTypeLink[@label='" + getTestdata("Payee") + "']";
 
 				MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())
+
 						.findElement(By.xpath(from_accountNo));
 				fromAccountval.click();
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"

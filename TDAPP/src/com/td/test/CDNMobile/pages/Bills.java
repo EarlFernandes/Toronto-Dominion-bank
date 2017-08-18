@@ -424,8 +424,10 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(scheduled_Payments_Header,
 						"Scheduled Payments Functionality Page Displayed");
 			}
+
 			// mobileAction.FuncClick(menu, "Click Menu");
 			// mobileAction.FuncClick(logout,"Logout");
+
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -544,9 +546,8 @@ public class Bills extends _CommonPage {
 						"Pending");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("order_receipt_confirmation") + "']", "Confirmation #");
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction
-								.getAppString("payBillDropdownHeaderFromAccount").replaceAll(" ", "\n") + "']",
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ mobileAction.getAppString("payBillDropdownHeaderFromAccount").replaceAll(" ", "\n") + "']",
 						"From Account");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("payBillDropdownHeaderPayee") + "']", "Payee");
@@ -774,10 +775,11 @@ public class Bills extends _CommonPage {
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
 								+ mobileAction.getAppString("payBillPageHeader") + "']",
 						"Pay Bills title");
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/lblAmount' and @text='"
-								+ mobileAction.getAppString("payBillDropdownHeaderFromAccount") + "']",
-						"From Account");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.TextView[@resource-id='com.td:id/lblAmount' and @text='"
+										+ mobileAction.getAppString("payBillDropdownHeaderFromAccount") + "']",
+								"From Account");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/payeeLabel' and @text='"
 								+ mobileAction.getAppString("payBillDropdownHeaderPayee") + "']",
