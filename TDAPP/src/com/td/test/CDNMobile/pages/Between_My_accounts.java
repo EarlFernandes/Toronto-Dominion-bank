@@ -141,7 +141,7 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Transfers']")
 	private MobileElement txtTransfers_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@value, 'Quick Access')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@value, 'Quick Access') or contains(@label,'Quick Access')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Home']")
 	private MobileElement quickAccess;
 
@@ -269,6 +269,10 @@ public class Between_My_accounts extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='COMMON_RECEIPT_CELL_TITLE_1']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/to_account_bal']")
 	private MobileElement toAccountValue_receipt;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Activity']")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/to_account_bal']")
+	private MobileElement activity_tab;
 	
 	private void Decorator() {
 		PageFactory.initElements(new AppiumFieldDecorator((CL.GetDriver()), new TimeOutDuration(10, TimeUnit.SECONDS)),
@@ -434,11 +438,13 @@ public class Between_My_accounts extends _CommonPage {
 
 				mobileAction.FuncClick(txtFrom_acnt, "From Account");
 				String from_AccountNo = getTestdata("FromAccount");
+				System.out.println("From account:"+from_AccountNo);
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
 				String to_accountNo = getTestdata("ToAccount");
-				String toAccount_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
+				System.out.println("To account:"+to_accountNo);
+				String toAccount_value = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(toAccount_value, true, 25, "Up");
 
 			} else {
@@ -1077,8 +1083,11 @@ public class Between_My_accounts extends _CommonPage {
 
 				String account_value = "//XCUIElementTypeStaticText[contains(@value,'" + from_AccountNo + "')]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
-
-				mobileAction.verifyElementTextContains(activityConfText, confirmationValue[1].trim());
+				
+				mobileAction.FuncClick(activity_tab, "Activity Tab");
+				String confirmationXpath ="//XCUIElementTypeStaticText[contains(@label,'" + confirmationValue[1].trim() + "')]";
+				mobileAction.verifyElementUsingXPath(confirmationXpath, confirmationValue[1].trim());
+				//mobileAction.verifyElementTextContains(activityConfText, confirmationValue[1].trim());
 
 			} else {
 				mobileAction.verifyElementIsDisplayed(txtTrnsfrSucssfl, "Transfer Successful");
