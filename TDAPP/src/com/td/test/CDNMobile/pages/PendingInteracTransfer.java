@@ -41,7 +41,7 @@ public class PendingInteracTransfer extends _CommonPage {
 	private MobileElement pendingTransfer_Header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@value,'Select sender')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_sender']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_sender'] | //android.widget.EditText[@resource-id='com.td:id/edt_etransfer_sender']/following-sibling::android.view.View")
 	private MobileElement selectSender;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='-Balance-' or @label='-Balance'][1]")
@@ -843,7 +843,9 @@ public class PendingInteracTransfer extends _CommonPage {
 				mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
 				if (mobileAction.verifyElementIsPresent(selectSender)) {
 					mobileAction.FuncClick(selectSender, "sender");
-					mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
+					MobileElement sender = mobileAction.verifyElementUsingXPath(select_senderValue, "Sender");
+					mobileAction.FuncClick(sender, "Sender");
+					mobileAction.waitForElementToDisappear(select_senderValue);
 				}
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");

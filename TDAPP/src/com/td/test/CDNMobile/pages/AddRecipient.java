@@ -18,7 +18,7 @@ public class AddRecipient extends _CommonPage {
 
 	private static AddRecipient AddRecipient;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Add Recipient']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Add Recipient'] | //*[@name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement addRecipient_Interac_Header;
 

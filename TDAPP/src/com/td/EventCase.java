@@ -488,10 +488,10 @@ public class EventCase {
 
 		case Interac_e_Registration_clickContinueButton:
 			Interac_e_Registration.get().clickContinueButton();
+			break;
 
 		case Interac_e_Transfer_clickContinueButton:
 			Interac_e_Transfer.get().clickContinueButton();
-
 			break;
 
 		case Interac_e_Transfer_verifyErrorText:
@@ -520,6 +520,7 @@ public class EventCase {
 
 		case Interac_e_Registration_verifyRegSuccessMessage:
 			Interac_e_Registration.get().verifyRegSuccessMsg();
+			break;
 
 		case Interac_e_Transfer_verifyRegSuccessMessage:
 			Interac_e_Transfer.get().verifyRegSuccessMsg();
