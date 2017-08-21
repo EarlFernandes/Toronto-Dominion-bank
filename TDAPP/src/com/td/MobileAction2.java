@@ -3446,5 +3446,34 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
+	public void FuncIsElementNotEnabled(MobileElement objMobileElement, String sDesc)// @Author
+																						// -
+																						// Sushil
+																						// 06-Mar-2017
+	{
+		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+		wait.until(ExpectedConditions.visibilityOf(objMobileElement));
+
+		try {
+			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				if (!objMobileElement.isEnabled())
+					GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is not enabled.");
+				else
+					GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is enabled.");
+			} else {
+				if (!objMobileElement.isDisplayed())
+					GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is not enabled.");
+				else
+					GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is enabled.");
+			}
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+				e.printStackTrace();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
 }
 
