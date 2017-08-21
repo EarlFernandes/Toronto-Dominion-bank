@@ -187,7 +187,7 @@ public class EventCase {
 
 		// MIT PNS Alerts
 
-		verifyPreLoginDashboardAlerts, verifyAlertUI, tapAlerts, verifyBackandGearIcon, verifyxCancelbutton, verifycreateAlertConditionPriceRises, verifyCreateAlertConditionPricehit52Week, verifyQuoteInformation, VerifyPriceChangesOnHeavyVolume, VerifyPrimaryEmailDeliveryPreferences, VerifySecondaryEmailDeliveryPreferences, VerifyEnablingAllDeliveryPreferences, VerifyCreateSimilarAlertConditionPriceRisesFasterThanIndex, VerifyAlertConditionPriceGapAtOpeningTrade, verifyAlertIconMODQuotesPage, verifyNotificationPrefMOD, verifyNotificationPrefFlyMenu, verifyPriceDropsBelow, verifyPriceRisesAbove, verifyEditAlertUI, verifyDefaultWhenAlertConditionChange, verifyPriceChangesFromPreviousClose, verifyPriceEarningRatioDropsBelow, verifyModPagesLoaded, verifyExceedDailyVolume, navigateToQuotePage, navigateToOrderForm,
+		verifyPreLoginDashboardAlerts, verifyAlertUI, tapAlerts, verifyBackandGearIcon, verifyxCancelbutton, verifycreateAlertConditionPriceRises, verifyCreateAlertConditionPricehit52Week, verifyQuoteInformation, VerifyPriceChangesOnHeavyVolume, VerifyPrimaryEmailDeliveryPreferences, VerifySecondaryEmailDeliveryPreferences, VerifyEnablingAllDeliveryPreferences, VerifyCreateSimilarAlertConditionPriceRisesFasterThanIndex, VerifyAlertConditionPriceGapAtOpeningTrade, verifyAlertIconMODQuotesPage, verifyNotificationPrefMOD, verifyNotificationPrefFlyMenu, verifyPriceDropsBelow, verifyPriceRisesAbove, verifyEditAlertUI, verifyDefaultWhenAlertConditionChange, verifyPriceChangesFromPreviousClose, verifyPriceEarningRatioDropsBelow, verifyModPagesLoaded, verifyExceedDailyVolume, navigateToQuotePage, navigateToOrderForm, VerifyDoneConditionPriceChangesFromPreviousClose, VerifyErrorConditionPriceDropsBelowStocks, CreateAlertConditionPriceChangesFromPrevious, VerifyBackButtonOnCreateNewAlertpage, VerifyChangeConditionCreateNewAlertPage, VerifyRefreshButtonOnCreateNewAlertPage, verifyFuncFlow, VerifyClientNavigateInvestingAlertsNotifcationOFF, VerifyClientNavigateInvestingPNSAndAlertsNotifcationON, VerifyClientNavigateInvestingAlertsNotifcationSuspended,
 
 		// P2P
 
@@ -1885,7 +1885,6 @@ public class EventCase {
 		case ClickCustomizeNotificationsLinkFromNotifications:
 			Notifications.get().ClickCustomizeNotificationsLink();
 			break;
-
 		case VerifyTdforMeNotificationsHeader:
 			Notifications.get().VerifyTdforMeNotificationsHeader();
 			break;
@@ -2463,6 +2462,44 @@ public class EventCase {
 
 		case VerifyCreateSimilarAlertConditionPriceRisesFasterThanIndex:
 			MIT_PNSCreateNewAlert.get().VerifyCreateSimilarAlertConditionPriceRisesFasterThanIndex();
+			break;
+
+		case VerifyDoneConditionPriceChangesFromPreviousClose:
+			MIT_PNSCreateNewAlert.get().VerifyDoneConditionPriceChangesFromPreviousClose();
+			break;
+
+		case VerifyErrorConditionPriceDropsBelowStocks:
+			MIT_PNSCreateNewAlert.get().VerifyErrorConditionPriceDropsBelowStocks();
+			break;
+		case CreateAlertConditionPriceChangesFromPrevious:
+			MIT_PNSCreateNewAlert.get().CreateAlertConditionPriceChangesFromPrevious();
+			break;
+
+		case VerifyBackButtonOnCreateNewAlertpage:
+			MIT_PNSCreateNewAlert.get().VerifyBackButtonOnCreateNewAlertpage();
+			break;
+		case VerifyChangeConditionCreateNewAlertPage:
+			MIT_PNSCreateNewAlert.get().VerifyChangeConditionCreateNewAlertPage();
+			break;
+
+		case VerifyRefreshButtonOnCreateNewAlertPage:
+			MIT_PNSCreateNewAlert.get().VerifyRefreshButtonOnCreateNewAlertPage();
+			break;
+
+		case verifyFuncFlow:
+			MIT_PNSCreateNewAlert.get().verifyFuncFlow();
+			break;
+
+		case VerifyClientNavigateInvestingAlertsNotifcationOFF:
+			MIT_PNSCreateNewAlert.get().VerifyClientNavigateInvestingAlertsNotifcationOFF();
+			break;
+
+		case VerifyClientNavigateInvestingPNSAndAlertsNotifcationON:
+			MIT_PNSCreateNewAlert.get().VerifyClientNavigateInvestingPNSAndAlertsNotifcationON();
+			break;
+
+		case VerifyClientNavigateInvestingAlertsNotifcationSuspended:
+			MIT_PNSCreateNewAlert.get().VerifyClientNavigateInvestingAlertsNotifcationSuspended();
 			break;
 
 		// MIT PNS Alerts END
