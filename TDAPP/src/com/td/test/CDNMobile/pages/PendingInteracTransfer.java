@@ -476,8 +476,6 @@ public class PendingInteracTransfer extends _CommonPage {
 	}
 
 	/**
-<<<<<<< HEAD
-=======
 	 * This method will verify the cancelled pending interac e transfer list not
 	 * displayed on Pending Interac e transfer page
 	 * 
