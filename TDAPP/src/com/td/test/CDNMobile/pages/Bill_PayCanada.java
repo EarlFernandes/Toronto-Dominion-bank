@@ -410,8 +410,9 @@ public class Bill_PayCanada extends _CommonPage {
 						"Confirm title");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("receipt_from") + "']", "From");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("payBillDropdownHeaderPayee") + "']", "To");
+				// mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+				// + mobileAction.getAppString("payBillDropdownHeaderPayee") +
+				// "']", "To");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("date") + "']", "Date");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"

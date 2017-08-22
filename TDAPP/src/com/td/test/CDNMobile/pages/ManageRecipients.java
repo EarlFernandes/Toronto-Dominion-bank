@@ -38,7 +38,7 @@ public class ManageRecipients extends _CommonPage {
 	private MobileElement yesButtonContacts;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Edit']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Edit']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='1']")
 	private MobileElement editRecipient;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[7]/XCUIElementTypeTextField")
