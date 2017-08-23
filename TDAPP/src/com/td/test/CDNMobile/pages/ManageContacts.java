@@ -249,6 +249,10 @@ public class ManageContacts extends _CommonPage {
 		String contactNameXL = getTestdata("Name");
 		String[] contactNameTxt = contactNameXL.split(": ");
 
+		if(contactNameTxt.length==1){
+			contactCounter=0;
+		}
+		
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 
@@ -760,7 +764,9 @@ public class ManageContacts extends _CommonPage {
 				clickAddContactPlusSign();
 				addContact();
 				verifySuccessMessage();
-				Interac_e_Registration.get().clickGoBackHome();
+				//Interac_e_Registration.get().clickGoBackHome();
+				HomeScreen.get().clickMenu();
+				MenuPage.get().clickMenuTransfer();
 				Transfers.get().clickManageContactsLink();
 
 				mobileAction.waitForElementToVanish(progressBar);

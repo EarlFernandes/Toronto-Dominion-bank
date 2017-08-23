@@ -589,7 +589,8 @@ public class Interac_e_Registration extends _CommonPage {
 	public void clickGoBackHome() {
 		Decorator();
 		try {
-
+			
+			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(goBackHome, "Go Back Home");
 
 		} catch (NoSuchElementException | IOException | InterruptedException e) {

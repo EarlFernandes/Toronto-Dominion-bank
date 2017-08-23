@@ -88,6 +88,12 @@ public class Transfers extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Contacts']")
 	private MobileElement manageContacts;
 
+	@iOSFindBy(accessibility = "TRANSFERVIEW_PENDING") //updated
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='History']")
+	private MobileElement transferHistory;
+	
+	
+	
 	/**
 	 * This method will click on Between my accounts button
 	 * 
@@ -153,7 +159,7 @@ public class Transfers extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer Header"); // added
 																						// by
 																						// Ashraf
-			mobileAction.FuncClick(Interac_e_Transfer_button, "Interac e_Transfer");
+			mobileAction.FuncClick(Interac_e_Transfer_button, "Interac e_Transfer");	//TODO::Android xpath
 
 			// mobileAction.waitForElementToVanish(progrees_Bar);
 		} catch (NoSuchElementException e) {
@@ -334,10 +340,11 @@ public class Transfers extends _CommonPage {
 	}
 
 	private void Decorator() {
-		PageFactory.initElements(new AppiumFieldDecorator((CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+		PageFactory.initElements(
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
+	
 
 	/**
 	 * This method will click on verify the Transfer Header
@@ -474,4 +481,28 @@ public class Transfers extends _CommonPage {
 		}
 	}
 
+	/**
+	 * @author Ashraf This method will click on Transfer History Link.
+	 * 
+	 * 
+	 * @return NoSuchElementException
+	 * @return IOException
+	 */
+	public void clickTransferHistoryLink() {					//new Updated
+
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(transferHistory, "Transfer History Link");
+			mobileAction.waitForElementToVanish(progressBar);
+		} catch (NoSuchElementException | IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	
 }

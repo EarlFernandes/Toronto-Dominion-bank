@@ -1728,7 +1728,7 @@ public class MobileAction2 extends CommonLib {
 			return true;
 		} else {
 			try {
-				GetReporting().FuncReport("Fail", "The text is not verified");
+				GetReporting().FuncReport("Fail", "The text "+text1+" is not verified");
 			} catch (IOException e) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}

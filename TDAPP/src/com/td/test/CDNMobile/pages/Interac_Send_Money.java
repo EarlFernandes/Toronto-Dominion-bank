@@ -349,8 +349,6 @@ public class Interac_Send_Money extends _CommonPage {
 		Decorator();
 		try {
 
-			// TODO::IOS
-
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.verifyElementIsDisplayed(thankYou, "Thank You!");
 			mobileAction.verifyElementIsDisplayed(successMessage,

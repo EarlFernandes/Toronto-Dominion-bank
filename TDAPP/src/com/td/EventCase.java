@@ -78,6 +78,7 @@ import com.td.test.CDNMobile.pages.TradeMIT;
 import com.td.test.CDNMobile.pages.TradeMultiLeg;
 import com.td.test.CDNMobile.pages.Transaction;
 import com.td.test.CDNMobile.pages.Transfers;
+import com.td.test.CDNMobile.pages.TransfersHistory;
 import com.td.test.CDNMobile.pages.WatchLists;
 import com.td.test.CDNMobile.pages.WhatsNew;
 import com.td.test.myspend.LogoutMySpend;
@@ -192,7 +193,7 @@ public class EventCase {
 
 		// P2P EUF
 
-		ManageContacts_verifyContactDeleteSuccessMsg, ManageContacts_noDeleteContact, ManageContacts_deleteContact, ManageContacts_clickContact, ManageContacts_AddContactfromPhone, ManageContacts_clickAddContactfromPhone, ManageContacts_MultiProfileDeleteContact, Interac_e_Registration_registerPersonalUser,Interac_e_Registration_clickContinueButton, ManageContacts_verifySuccessMessage, ManageContacts_clickAddContactPlusSign, ManageContacts_clickAddContactButton, ManageContacts_editContact, ManageContacts_verifyContactEditSuccessMsg, ManageContacts_MultiProfileAddContact, ManageContacts_addContact, ManageContacts_MultiProfileEditContact, HomeScreen_clickSendMoney, Interac_Send_Money_sendMoneyVerifyDetails, Interac_Send_Money_sendMoney, Interac_Send_Money_sendMoneyVerifySuccessMsg, Interac_Send_Money_sendMoneyWithError, Interac_e_Registration_verifyDetails, Interac_e_Registration_verifyBusinessDetails, Interac_e_Registration_verifyRegSuccessMessage,
+		Transfers_clickTransferHistoryLink,Interac_e_Registration_clickGoBackHome,TransfersHistory_verifySentMoneyCard,TransfersHistory_clickMoneySentSeeAll,TransfersHistory_verifyPendingTransaction,TransfersHistory_verifyTransactionDetails,TransfersHistory_clickTransaction,TransfersHistory_verifyActivityPage,TransfersHistory_clickReceivedTransaction,TransfersHistory_verifyReceivedTransDetails,TransfersHistory_clickCancelTransferBtn,TransfersHistory_cancelTransfer,TransfersHistory_verifyCancelDetails,TransfersHistory_verifyCancelConfirmation,TransfersHistory_verifyTransactionOnActivity,ManageContacts_verifyContactDeleteSuccessMsg, ManageContacts_noDeleteContact, ManageContacts_deleteContact, ManageContacts_clickContact, ManageContacts_AddContactfromPhone, ManageContacts_clickAddContactfromPhone, ManageContacts_MultiProfileDeleteContact, Interac_e_Registration_registerPersonalUser,Interac_e_Registration_clickContinueButton, ManageContacts_verifySuccessMessage, ManageContacts_clickAddContactPlusSign, ManageContacts_clickAddContactButton, ManageContacts_editContact, ManageContacts_verifyContactEditSuccessMsg, ManageContacts_MultiProfileAddContact, ManageContacts_addContact, ManageContacts_MultiProfileEditContact, HomeScreen_clickSendMoney, Interac_Send_Money_sendMoneyVerifyDetails, Interac_Send_Money_sendMoney, Interac_Send_Money_sendMoneyVerifySuccessMsg, Interac_Send_Money_sendMoneyWithError, Interac_e_Registration_verifyDetails, Interac_e_Registration_verifyBusinessDetails, Interac_e_Registration_verifyRegSuccessMessage,
 
 
 		// OTP
@@ -222,6 +223,68 @@ public class EventCase {
 		//// Trade.get().verifyActionShortSellandBuyToCover();
 		//// break;
 		//
+		
+		case TransfersHistory_verifyTransactionOnActivity:
+			TransfersHistory.get().verifyTransactionOnActivity();
+			break;
+			
+		case TransfersHistory_verifyCancelConfirmation:
+			TransfersHistory.get().verifyCancelConfirmation();
+			break;
+			
+		case TransfersHistory_verifyCancelDetails:
+			TransfersHistory.get().verifyCancelDetails();
+			break;
+			
+		case TransfersHistory_cancelTransfer:
+			TransfersHistory.get().cancelTransfer();
+			break;
+			
+		case TransfersHistory_clickCancelTransferBtn:
+			TransfersHistory.get().clickCancelTransferBtn();
+			break;
+			
+		case TransfersHistory_verifyReceivedTransDetails:
+			TransfersHistory.get().verifyReceivedTransDetails();
+			break;
+			
+		case TransfersHistory_clickReceivedTransaction:
+			TransfersHistory.get().clickReceivedTransaction();
+			break;
+			
+		case TransfersHistory_verifyActivityPage:
+			TransfersHistory.get().verifyActivityPage();
+			break;
+			
+		case TransfersHistory_clickTransaction:
+			TransfersHistory.get().clickTransaction();
+			break;
+			
+		case TransfersHistory_verifyTransactionDetails:
+			TransfersHistory.get().verifyTransactionDetails();
+			break;
+			
+		case TransfersHistory_verifyPendingTransaction:
+			TransfersHistory.get().verifyPendingTransaction();
+			break;
+			
+		case TransfersHistory_clickMoneySentSeeAll:
+			TransfersHistory.get().clickMoneySentSeeAll();
+			break;
+			
+		case TransfersHistory_verifySentMoneyCard:
+			TransfersHistory.get().verifySentMoneyCard();
+			break;
+			
+		case Transfers_clickTransferHistoryLink:
+			Transfers.get().clickTransferHistoryLink();
+			break;
+			
+		case Interac_e_Registration_clickGoBackHome:
+			Interac_e_Registration.get().clickGoBackHome();
+			break;
+			
+			
 		case CDNCash_Sell_StopMarket:
 			ConfirmOrder.get().cdncash_sell_stopmarket();
 			break;
