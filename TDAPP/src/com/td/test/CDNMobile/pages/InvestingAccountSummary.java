@@ -1171,7 +1171,7 @@ public class InvestingAccountSummary extends _CommonPage {
 		int count = 0;
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
 								+ mobileAction.getAppString("str_Investing") + "']",
@@ -1220,9 +1220,7 @@ public class InvestingAccountSummary extends _CommonPage {
 
 			}
 
-		}
-
-		catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail",
 						"No such element was found on screen: " + e.getMessage());

@@ -591,9 +591,12 @@ public class MobileDeposit extends _CommonPage {
 				MobileElement chequeToSelect = mobileAction.verifyElementUsingXPath("//XCUIElementTypeCell[1]",
 						"Cheque to Select");
 				chequeToSelect.click();
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
-						+ mobileAction.getAppString("mobiledeposit_introfeature_str_mobileDepositHistory") + "']",
-						"Mobile Deposit History");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE'
+				// and @label='"
+				// +
+				// mobileAction.getAppString("mobiledeposit_introfeature_str_mobileDepositHistory")
+				// + "']",
+				// "Mobile Deposit History");
 				mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[@name='DEPOSIT_RECEIPTS_DETAIL_ACCOUNT' and @label='"
 								+ mobileAction.getAppString("mobiledeposit_depositcheque_str_history_toaccount") + "']",
