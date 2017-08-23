@@ -67,13 +67,13 @@ public class MIT_PNSManageAlerts extends _CommonPage {
 	private By BTN_SaveChanges = By.xpath("(//*[@type='submit'])[1]");
 	private By LBL_PriceRisesAbove = By.xpath("(//*[@class='symbol'])[3]");
 	private By LBL_PriceAbove = By.xpath("(//*[contains(text(),'rises above') or contains(text(),'Hausse de')])[1]");
-	private By TAB_TriggeredAlerts = By.xpath("//*[text()='Triggered Alerts' or text()='Alertes déclenchées']");
+	private By TAB_TriggeredAlerts = By.xpath("//*[text()='Triggered Alerts' or text()='Alertes dÃ©clenchÃ©es']");
 
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") // @Author
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='NÃ©gociation']") // @Author
 																		// -
 																		// Sushil
 																		// 08-Feb-2017
-	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation']")
+	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='NÃ©gociation']")
 	private MobileElement titleTrade;
 
 	public void verifyEditAlertUI() {

@@ -517,7 +517,7 @@ public class Pay_US_Bill extends _CommonPage {
 //						"Exchange Rate");
 //				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
 //						+ mobileAction.getAppString("payBillConfirmButtonPayBill") + "']", "Pay Bill");
-				mobileAction.verifyElementUsingXPath(
+//				mobileAction.verifyElementUsingXPath(
 //						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("service_fee") + "']",
 //						"Service Fee");
 //				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
