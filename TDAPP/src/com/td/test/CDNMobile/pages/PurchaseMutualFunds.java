@@ -292,7 +292,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			SelectFund(selectedFund);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				from_account_name = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + getTextInCurrentLocale(StringArray.ARRAY_HOME_PHONE)
+						"//android.widget.TextView[@text='" + getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT)
 								+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
 						"From Account name");
 			}
