@@ -122,7 +122,6 @@ public class MobileDeposit extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(10, TimeUnit.SECONDS)), this);
 
 	}
@@ -310,7 +309,6 @@ public class MobileDeposit extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				dateHeaders = (CL.GetAppiumDriver()).findElements(
-
 						By.xpath("//XCUIElementTypeStaticText[contains(@name, 'DEPOSIT_RECEIPT_VIEW_DATE')]"));
 				for (MobileElement m : dateHeaders) {
 					mobileAction.verifyDateFormat(m.getText(), MobileAction2.TYPE_YYYY_MM_DD);
@@ -419,9 +417,11 @@ public class MobileDeposit extends _CommonPage {
 						"30 day limit");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("MobileDepositCheque_Memo_Label") + "']", "Memo");
-				mobileAction.verifyElementUsingXPath("//android.widget.EditText[@text='"
-						+ mobileAction.getAppString("MobileDepositCheque_Memo_Hint").replace("&amp;", "&") + "']",
-						"Memo hint");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.EditText[@text='" + mobileAction
+										.getAppString("MobileDepositCheque_Memo_Hint").replace("&amp;", "&") + "']",
+								"Memo hint");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='"
 								+ mobileAction.getAppString("MobileDepositCheque_Cheque_Front_Label") + "']",
@@ -485,9 +485,12 @@ public class MobileDeposit extends _CommonPage {
 						"//android.widget.TextView[@text='"
 								+ mobileAction.getAppString("ActionBar_MobileDepositReceipt") + "']",
 						"Mobile Deposit History");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("MobileDeposit_Receipt_Description").replaceAll("\"", "") + "']",
-						"View a recent message");
+
+				mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.TextView[@text='" + mobileAction
+										.getAppString("MobileDeposit_Receipt_Description").replaceAll("\"", "") + "']",
+								"View a recent message");
 			}
 		} catch (Exception e) {
 			try {

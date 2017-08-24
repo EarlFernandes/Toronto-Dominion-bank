@@ -289,9 +289,7 @@ public class Pay_US_Bill extends _CommonPage {
 	public void verifyPayUSBillWelcomeTextElements() {
 		Decorator();
 		try {
-
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-
 				mobileAction
 						.verifyElementUsingXPath(
 								"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
@@ -434,6 +432,7 @@ public class Pay_US_Bill extends _CommonPage {
 						"//android.widget.TextView[starts-with(@text, '"
 								+ mobileAction.getAppString("confirmation_no").replace("%1$s", "") + "')]",
 						"Confirmation #");
+
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("payBillDropdownHeaderFromAccount").replace(" ", "\n") + "']",
 						"From Account");
@@ -586,7 +585,6 @@ public class Pay_US_Bill extends _CommonPage {
 						+ "')]";
 
 				MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())
-
 						.findElement(By.xpath(from_accountNo));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 				mobileAction.FuncClick(select_payee_account, "Select Payee");

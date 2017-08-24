@@ -70,7 +70,6 @@ public class Logout extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
@@ -170,7 +169,6 @@ public class Logout extends _CommonPage {
 
 		Decorator();
 		try {
-
 			mobileAction.FuncClick(logout, "Logout");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

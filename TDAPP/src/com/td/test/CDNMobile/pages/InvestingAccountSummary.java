@@ -383,9 +383,11 @@ public class InvestingAccountSummary extends _CommonPage {
 						"//android.widget.TextView[contains(@text, '"
 								+ mobileAction.getAppString("str_Cash_Balance_Footnote") + "')]",
 						"Cash balance footnote");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[contains(@text, '"
-						+ mobileAction.getAppString("common_str_Time_Stamp_substition").replace(" %1$s", "") + "')]",
-						"time stamp substituion");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.TextView[contains(@text, '" + mobileAction
+										.getAppString("common_str_Time_Stamp_substition").replace(" %1$s", "") + "')]",
+								"time stamp substituion");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[contains(@text, '"
 						+ mobileAction.getAppString("str_Insufficient_Information") + "')]", "Insufficient");
 
@@ -1044,7 +1046,6 @@ public class InvestingAccountSummary extends _CommonPage {
 									+ mobileAction.getAppString("open_string") + "')]";
 
 							MobileElement openStatus = (MobileElement) (CL.GetAppiumDriver())
-
 									.findElement(By.xpath(openXpath));
 
 							if (openStatus.isDisplayed()) {
@@ -1058,7 +1059,6 @@ public class InvestingAccountSummary extends _CommonPage {
 									+ mobileAction.getAppString("mutual_funds_pricing") + "')]";
 
 							MobileElement pricedMarket = (MobileElement) (CL.GetAppiumDriver())
-
 									.findElement(By.xpath(pricedMarketXpath));
 
 							if (pricedMarket.isDisplayed()) {
@@ -1072,7 +1072,6 @@ public class InvestingAccountSummary extends _CommonPage {
 									+ mobileAction.getAppString("str_Switch") + "')]";
 
 							MobileElement switchOpt = (MobileElement) (CL.GetAppiumDriver())
-
 									.findElement(By.xpath(switchOptXpath));
 
 							if (switchOpt.isDisplayed()) {
@@ -1125,7 +1124,6 @@ public class InvestingAccountSummary extends _CommonPage {
 	public void verifyOrderDetails() {
 
 		Decorator();
-
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementUsingXPath(

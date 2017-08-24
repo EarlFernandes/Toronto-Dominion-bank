@@ -7,9 +7,6 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
-
-import com.td.EnglishStrings;
-import com.td.FrenchStrings;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -92,11 +89,7 @@ public class MoodSelectorScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
 	private MobileElement menu;
 
-	@iOSFindBy(xpath = "//*[@label='" + EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK + "' or @label ='"
-			+ FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK + "']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='"
-			+ EnglishStrings.FLYOUT_MENU_GIVE_FEEDBACK + "' or @text='" + FrenchStrings.FLYOUT_MENU_GIVE_FEEDBACK
-			+ "')]")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_FEEDBACK']/XCUIElementTypeStaticText")
 	private MobileElement give_feedback;
 
 	// and (@text='Rate this app' or @text='Notez cette application')
@@ -109,9 +102,6 @@ public class MoodSelectorScreen extends _CommonPage {
 
 	private void Decorator() {
 
-		// System.out.println("Print Map table");
-		// System.out.println(((AppiumDriver)
-		// CL.GetDriver()).getAppStringMap().toString());
 		PageFactory.initElements(
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
@@ -119,37 +109,10 @@ public class MoodSelectorScreen extends _CommonPage {
 
 	public void VerifyMoodSelectorScreen() {
 		Decorator();
-		// try{
-		// if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-		// String xpath = "//android.widget.TextView[@text='" +
-		// mobileAction.getAppString("feedback_default_title") + "']";
-		// System.out.println("xpath:" + xpath);
-		// feedback_title = mobileAction.verifyElementUsingXPath(xpath,
-		// "Feedback Title");
-		// }else{
-		// String xpath = "//*[@label='" +
-		// mobileAction.getAppString("nav_drawer_items_feedback") + "']";
-		// System.out.println("xpath:" + xpath);
-		// feedback_title = mobileAction.verifyElementUsingXPath(xpath,
-		// "Feedback Title");
-		// }
-		// }catch (NoSuchElementException | IOException e) {
-		// try {
-		// mobileAction.GetReporting().FuncReport("Fail", "No such element was
-		// found on screen: " + e.getMessage());
-		// } catch (IOException ex) {
-		// System.out.print("IOException from Method " +
-		// this.getClass().toString() + " " + e.getCause());
-		// }
-		// System.err.println("TestCase has failed.");
-		// CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		// return;
-		// }
 
 		try {
 
 			Thread.sleep(2000);
-
 			String title = mobileAction.getValue(feedback_title);
 			System.out.println("Mood Selector title:" + title);
 			mobileAction.verifyElementTextIsDisplayed(feedback_title,
@@ -179,11 +142,9 @@ public class MoodSelectorScreen extends _CommonPage {
 		}
 
 		String moodSequence = "";
-
 		int size = moodList.size();
 		for (int i = 0; i < size; i++) {
 			String idText = moodList.get(i).getText();
-
 			moodSequence = moodSequence + idText;
 			if (i < size - 1) {
 				moodSequence = moodSequence + "/";
@@ -439,7 +400,6 @@ public class MoodSelectorScreen extends _CommonPage {
 
 	public void ClickSendFeedbackNow() {
 		Decorator();
-
 		try {
 			List<MobileElement> checkboxList = null;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -479,7 +439,6 @@ public class MoodSelectorScreen extends _CommonPage {
 		try {
 			String elementText = mobileAction.getValue(rate_us_on_google_Or_App_Store);
 			System.out.println("ElementText:" + elementText);
-
 			mobileAction.verifyElementIsDisplayed(rate_us_on_google_Or_App_Store, elementText);
 
 		} catch (Exception e) {
@@ -651,8 +610,10 @@ public class MoodSelectorScreen extends _CommonPage {
 				// mobileAction.FuncClick(give_feedback, "feed back");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout", 1, "down");
+					String xpath = "//android.widget.TextView[@text='" + mobileAction.getAppString("give_feedback")
+							+ "']";
+					give_feedback = mobileAction.verifyElementUsingXPath(xpath, "Give Feedback");
 				}
-				Decorator();
 				give_feedback.click();
 			} catch (Exception e) {
 				System.out.println("failed to click menu");

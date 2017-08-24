@@ -443,7 +443,6 @@ public class Bill_PayCanada extends _CommonPage {
 						+ "')]";
 
 				MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())
-
 						.findElement(By.xpath(from_accountNo));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 				mobileAction.FuncClick(to_account_post, "To Payee");

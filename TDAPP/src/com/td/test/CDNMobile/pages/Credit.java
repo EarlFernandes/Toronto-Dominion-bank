@@ -199,15 +199,12 @@ public class Credit extends _CommonPage {
 	public void rewardsNotVisible() {
 		Decorator();
 		try {
-
 			rewardBtn.isDisplayed();
-
 		} catch (NoSuchElementException e) {
 			try {
 				CL.GetReporting().FuncReport("PASS", "The '" + "REWARDS button" + "' is not displayed");
 			} catch (IOException e1) {
 				System.out.println("IOException from Method" + this.getClass().toString() + " " + e.getCause());
-
 			}
 		}
 	}

@@ -393,7 +393,6 @@ public class Accounts_Credit extends _CommonPage {
 				// mobileAction.FuncSwipeWhileElementNotFoundByxpath(lastStatement,
 				// false, 2, "up");
 				// // Scroll down here
-
 				// final String xPathFooter =
 				// "//XCUIElementTypeStaticText[@name='RVB_DETAIL_FOOTER_DES']";
 				// mobileAction.FuncSw(xPathFooter, false, 6, "up");
@@ -402,7 +401,6 @@ public class Accounts_Credit extends _CommonPage {
 				// mobileAction.verifyDateFormat(m.getText(),
 				// MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
 				// }
-
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/activityTab' and @text='"

@@ -831,9 +831,13 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("disclaimer") + "']",
 						"Disclaimer");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
-						+ mobileAction.getAppString("payBillDropdownHeaderFromAccount").replace(" ", "\n") + "']",
-						"From Account");
+
+				mobileAction
+						.verifyElementUsingXPath(
+								"//XCUIElementTypeStaticText[@value='" + mobileAction
+										.getAppString("payBillDropdownHeaderFromAccount").replace(" ", "\n") + "']",
+								"From Account");
+
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
 						+ mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");
 				mobileAction.verifyElementUsingXPath(

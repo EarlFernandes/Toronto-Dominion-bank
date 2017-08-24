@@ -1611,46 +1611,6 @@ public class MobileAction2 extends CommonLib {
 	 *             In case an exception occurs while clicking over the element.
 	 *             In case the element is not found over the screen.
 	 */
-
-	public void verifyElementTextContains(MobileElement objElement, String text) {// throws
-
-		try {
-			String sEleText = FuncGetElementText(objElement);
-			if (sEleText != null) {
-				if (sEleText.contains(text))
-					GetReporting().FuncReport("Pass",
-							"Element contains text<b> " + text + "</b> .Element text:" + sEleText);
-				else
-					GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
-			} else {
-				sEleText = "";
-				if (sEleText.contains(text))
-					GetReporting().FuncReport("Pass",
-							"Element contains text<b> " + text + "</b> .Element text:" + sEleText);
-				else
-					GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
-			}
-		} catch (IOException e) {
-			try {
-				GetReporting().FuncReport("Fail", "Element does not contain expected text:" + text);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			// throw e;
-		}
-	}
-
-	/**
-	 * This method will verify the text contained in another String.
-	 * 
-	 *
-	 * @param objElement
-	 *            The MobileElement on which the click action has to be
-	 *            performed.
-	 * @throws Exception
-	 *             In case an exception occurs while clicking over the element.
-	 *             In case the element is not found over the screen.
-	 */
 	public void verifyElementTextContains(WebElement objElement, String text) {// throws
 																				// IOException
 																				// {
@@ -2240,17 +2200,24 @@ public class MobileAction2 extends CommonLib {
 			boolean verified = false;
 			WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
 			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
-			String capturedText = "";
-			capturedText = getValue(mobileElement);
+			String capturedText = getValue(mobileElement);
+			capturedText = capturedText.trim().replaceAll("\n", "");
 			for (int i = 0; i < expectedHeadertext.length; i++) {
 				if (capturedText.equalsIgnoreCase(expectedHeadertext[i].trim())) {
+					System.out.println("Expected matched:" + capturedText);
+					GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
+					verified = true;
+					break;
+				} else if (capturedText.matches(expectedHeadertext[i].trim())) {
+					System.out.println("Expected matched:" + capturedText);
 					GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
 					verified = true;
 					break;
 				}
 			}
 			if (!verified) {
-				GetReporting().FuncReport("Fail", "expected header not displayed:" + expectedText);
+				System.out.println("Not matched, Captured:" + capturedText + ", but expected is " + expectedText);
+				GetReporting().FuncReport("Fail", "expected text not matched:" + expectedText);
 
 			}
 		} catch (IllegalArgumentException e) {
@@ -2641,6 +2608,7 @@ public class MobileAction2 extends CommonLib {
 					GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is enabled.");
 				else
 					GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+
 			}
 		} catch (Exception e) {
 			try {
@@ -2968,6 +2936,32 @@ public class MobileAction2 extends CommonLib {
 			} catch (Exception e1) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	// Add a common function here, we may need to click back button from any
+	// page, but the function is the same
+	public void ClickBackButton() {
+
+		String back_xpath = "";
+
+		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			try {
+				FuncClickBackButton();
+				return;
+			} catch (Exception e) {
+				back_xpath = "//android.widget.ImageView[@resource-id='android:id/up']";
+			}
+
+		} else {
+			back_xpath = "//*[@label='Back' or @label='Retour']";
+		}
+		try {
+			MobileElement back_arrow = (MobileElement) GetDriver().findElement(By.xpath(back_xpath));
+			FuncClick(back_arrow, "<");
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -3482,3 +3476,4 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 }
+

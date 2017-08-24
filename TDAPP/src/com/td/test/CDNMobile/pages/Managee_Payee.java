@@ -476,7 +476,6 @@ public class Managee_Payee extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees Header");
 			mobileAction.FuncClick(addCanadianPayee, "Add Canadian Payee");
-
 			mobileAction.waitForElementToVanish(progressBar);
 
 			Thread.sleep(10000);

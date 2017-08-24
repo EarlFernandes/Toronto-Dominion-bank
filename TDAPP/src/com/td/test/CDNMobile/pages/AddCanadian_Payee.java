@@ -82,7 +82,6 @@ public class AddCanadian_Payee extends _CommonPage {
 
 			// String payee_value=getTestdata("Payee");
 			String payee_value = getTestdata("Payee");
-
 			String payee_number = mobileAction.FuncGetValByRegx(payee_value, "\\d+");
 			String payee_name = payee_value.replaceAll(payee_number, "").trim();
 
@@ -152,7 +151,6 @@ public class AddCanadian_Payee extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-
 	}
 
 }

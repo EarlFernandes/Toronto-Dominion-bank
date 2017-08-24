@@ -1508,7 +1508,6 @@ public class Trade extends _CommonPage {
 		}
 
 		MobileElement pricePath = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(currentPricePath));
-
 		System.out.println(pricePath.getText());
 		CL.getTestDataInstance().TCParameters.put("CurrentPrice", pricePath.getText());
 
@@ -1981,7 +1980,6 @@ public class Trade extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-
 	}
 
 	public void placeHolderText() {

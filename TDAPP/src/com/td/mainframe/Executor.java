@@ -18,8 +18,8 @@ import com.td._CommonPage;
  *         Multiprofile connect IDs followed by 'loginEasyWeb' method to reset
  *         the passsword.
  * 
- *         Methods:
- *         selector,createPersonalProfile,createBusinessProfile,createMultiProfile,loginEasyWeb.
+ *         Methods: selector,createPersonalProfile,createBusinessProfile,
+ *         createMultiProfile,loginEasyWeb.
  */
 
 public class Executor extends _CommonPage {
