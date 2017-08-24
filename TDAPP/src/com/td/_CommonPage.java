@@ -146,13 +146,8 @@ public class _CommonPage {
 		return CL.LoadData(aColumn, CL.getTestDataInstance().getMasterTestData(), aSheetName, "UserType",
 				CL.getTestDataInstance().TestCaseID);
 	}
-	
-	public String getTextInCurrentLocale(String[] textArray){
-		
-		if(textArray.length != 4){
-			System.out.println("Failed to get text in currenLocale");
-			return "";
-		}
+
+	public String getTextInCurrentLocale(String[] textArray) {
 		String text = textArray[0].trim();
 		switch (currentLocale) {
 		case "EN":
@@ -173,8 +168,8 @@ public class _CommonPage {
 			text = textArray[3].trim();
 			break;
 		}
-		
-		return text;	
+
+		return text;
 	}
 
 }

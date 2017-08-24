@@ -9,7 +9,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.PageFactory;
 
-import com.td.StringLookup;
+import com.td.StringArray;
 import com.td._CommonPage;
 import com.td.mainframe.Executor;
 
@@ -1505,7 +1505,7 @@ public class Login extends _CommonPage {
 				// mobileAction.getAppString("remember_str"));
 				mobileAction.verifyTextEquality(login.getText(), mobileAction.getAppString("secureLoginButton"));
 				mobileAction.verifyTextEquality(forgotPassword.getText().trim(),
-						StringLookup.lookupString(currentLocale, StringLookup.FORGOT_PASSWORD));
+						getTextInCurrentLocale(StringArray.ARRAY_FORGOT_PASSWORD));
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @text='"
@@ -1557,4 +1557,3 @@ public class Login extends _CommonPage {
 	}
 
 }
-

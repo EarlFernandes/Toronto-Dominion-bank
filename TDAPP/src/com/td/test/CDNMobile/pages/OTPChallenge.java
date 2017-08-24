@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.td.StringLookup;
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -226,7 +226,7 @@ public class OTPChallenge extends _CommonPage {
 			mobileAction.switchAppiumContext("WEBVIEW_com.td");
 			mobileAction.verifyElementIsDisplayed(cannotVerifySecurityCodeMsg, "Cannot verify security message");
 			mobileAction.verifyElementTextContains(cannotVerifySecurityCodeMsg,
-					StringLookup.lookupString(currentLocale, StringLookup.OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE));
+					getTextInCurrentLocale(StringArray.ARRAY_OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE));
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -246,8 +246,8 @@ public class OTPChallenge extends _CommonPage {
 			mobileAction.switchAppiumContext("WEBVIEW_com.td");
 			mobileAction.verifyElementIsDisplayed(tooManySecurityCodesRequestedMsg,
 					"Too many security codes requested dialog");
-			mobileAction.verifyElementTextContains(tooManySecurityCodesRequestedMsg, StringLookup
-					.lookupString(currentLocale, StringLookup.OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED));
+			mobileAction.verifyElementTextContains(tooManySecurityCodesRequestedMsg,
+					getTextInCurrentLocale(StringArray.ARRAY_OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED));
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {

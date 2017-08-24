@@ -8,7 +8,6 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.StringArray;
-import com.td.StringLookup;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -336,7 +335,7 @@ public class MenuPage extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				investing = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
-								+ StringLookup.lookupString(currentLocale, StringLookup.INVESTING_ACCOUNTS) + "']",
+								+ getTextInCurrentLocale(StringArray.ARRAY_INVESTING_ACCOUNTS) + "']",
 						"Investing menu element");
 
 			}
@@ -641,7 +640,7 @@ public class MenuPage extends _CommonPage {
 				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout", 2, "down");
 				profile_and_settings = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='"
-								+ StringLookup.lookupString(currentLocale, StringLookup.PROFILE_AND_PREFERENCE) + "']",
+								+ getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE) + "']",
 						"Profile & Setting");
 			} else {
 				mobileAction.FunctionSwipe("down", 200, 200);
@@ -684,7 +683,7 @@ public class MenuPage extends _CommonPage {
 				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout", 2, "down");
 				profile_and_settings = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='"
-								+ StringLookup.lookupString(currentLocale, StringLookup.PROFILE_AND_PREFERENCE) + "']",
+								+ getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE) + "']",
 						"Profile & Setting");
 			}
 
@@ -802,24 +801,6 @@ public class MenuPage extends _CommonPage {
 						mobileAction.getAppString("nav_drawer_items_moven"));
 				mobileAction.verifyTextEquality(mobile_Deposit_button.getText(),
 						mobileAction.getAppString("flyoutNavigationLinkMobileDeposit"));
-				// mobileAction.verifyTextEquality(investing.getText(),
-				// mobileAction.getAppString("investing_accounts_str"));
-				// mobileAction.SwipeWithinElement("//XCUIElementTypeTable", 3,
-				// "up");
-				// mobileAction.verifyTextEquality(tdForMe.getText(),
-				// mobileAction.getAppString("str_dashboard_navigation_row_zones"));
-				// mobileAction.verifyTextEquality(crossBorder.getText(),
-				// mobileAction.getAppString("nav_drawer_items_crossborder"));
-				// mobileAction.verifyTextEquality(locations.getText(),
-				// mobileAction.getAppString("flyoutNavigationLinkFindLocations"));
-				// mobileAction.verifyTextEquality(feedback.getText(),
-				// mobileAction.getAppString("nav_drawer_items_feedback"));
-				// mobileAction.verifyTextEquality(contactUs.getText(),
-				// mobileAction.getAppString("nav_drawer_items_contact"));
-				// mobileAction.verifyTextEquality(faq.getText(),
-				// mobileAction.getAppString("nav_drawer_items_questions"));
-				// mobileAction.verifyTextEquality(privacy.getText(),
-				// mobileAction.getAppString("nav_drawer_items_privacy"));
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
@@ -838,14 +819,6 @@ public class MenuPage extends _CommonPage {
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
 								+ mobileAction.getAppString("str_CrossBorder") + "']",
 						"Cross Border Banking");
-				// mobileAction
-				// .verifyElementUsingXPath(
-				// "//android.widget.TextView[@resource-id='com.td:id/navText'
-				// and @text='"
-				// +
-				// mobileAction.getAppString("logoutSuccessQuickTaskFindLocations")
-				// + "']",
-				// "Locations");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
 								+ mobileAction.getAppString("str_My_Accounts") + "']",
@@ -858,36 +831,6 @@ public class MenuPage extends _CommonPage {
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
 								+ mobileAction.getAppString("transfers_str") + "']",
 						"Transfers");
-				// mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText'
-				// and (contains(@text, '" +
-				// StringLookup.lookupString(currentLocale,
-				// StringLookup.MOBILE_PAYMENT) + "') or @text='" +
-				// mobileAction.getAppString("mobile_wallet_widget_label") +
-				// "')]", "Mobile Pay");
-				// mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText'
-				// and @text='" + mobileAction.getAppString("tts_td_zones") +
-				// "']", "TD for me");
-				// mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText'
-				// and @text='" +
-				// mobileAction.getAppString("td_moneyfit_header") + "']", "TD
-				// MySpend");
-				// mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText'
-				// and @text='" + StringLookup.lookupString(currentLocale,
-				// StringLookup.INVESTING_ACCOUNTS) + "']", "Investing
-				// Accounts");
-				// mobileAction.SwipeWithinElement("//android.widget.ListView[@resource-id='com.td:id/list_slidermenu']",
-				// 3, "up");
-				// mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText'
-				// and @text='" +
-				// mobileAction.getAppString("flyoutNavigationLinkFAQ") + "']",
-				// "FAQ");
-				// mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText'
-				// and @text='" + StringLookup.lookupString(currentLocale,
-				// StringLookup.PRIVACY_SECURITY_LEGAL) + "']", "Privacy
-				// security and legal");
-				// mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/navText'
-				// and @text='" + StringLookup.lookupString(currentLocale,
-				// StringLookup.SEND_FEEDBACK) + "']", "Send feedback");
 			}
 		} catch (IOException | NoSuchElementException e) {
 			try {

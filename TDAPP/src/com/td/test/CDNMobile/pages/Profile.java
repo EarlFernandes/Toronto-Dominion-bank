@@ -9,7 +9,6 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.StringArray;
-import com.td.StringLookup;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -147,7 +146,8 @@ public class Profile extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(profile_Header, getTextInCurrentLocale(StringArray.ARRAY_PROFILE_HEADER));
+			mobileAction.verifyElementTextIsDisplayed(profile_Header,
+					getTextInCurrentLocale(StringArray.ARRAY_PROFILE_HEADER));
 
 			String initial_name = get_name_initial_info();
 			if (initial_name.length() == 1) {
@@ -188,12 +188,14 @@ public class Profile extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				profile_contact_info_header = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ StringLookup.lookupString(currentLocale, StringLookup.CONTACT_INFORMATION) + "']", "Contact Infromation");
-			}else{
-				profile_contact_info_header = mobileAction.verifyElementUsingXPath("//*[@label='"
-						+ StringLookup.lookupString(currentLocale, StringLookup.CONTACT_INFORMATION) + "']", "Contact Infromation");
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_CONTACT_INFO) + "']", "Contact Infromation");
+			} else {
+				profile_contact_info_header = mobileAction.verifyElementUsingXPath(
+						"//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_MF_CONTACT_INFO) + "']",
+						"Contact Infromation");
 			}
-			mobileAction.verifyElementTextIsDisplayed(profile_contact_info_header, getTextInCurrentLocale(StringArray.ARRAY_MF_CONTACT_INFO));
+			mobileAction.verifyElementTextIsDisplayed(profile_contact_info_header,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_CONTACT_INFO));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -315,10 +317,10 @@ public class Profile extends _CommonPage {
 	public String get_home_phone_info() {
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				home_phone_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-						+StringLookup.lookupString(currentLocale, StringLookup.HOME_PHONE)+ "']/../XCUIElementTypeTextField",
-						 "home_phone");
+						+ getTextInCurrentLocale(StringArray.ARRAY_HOME_PHONE) + "']/../XCUIElementTypeTextField",
+						"home_phone");
 			}
 
 			String homePhome = mobileAction.getValue(home_phone_info);
@@ -347,10 +349,10 @@ public class Profile extends _CommonPage {
 	public String get_mobile_phone_info() {
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobile_phone_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-						+StringLookup.lookupString(currentLocale, StringLookup.MOBILE_PHONE)+ "']/../XCUIElementTypeTextField",
-						 "Mobile_phone");
+						+ getTextInCurrentLocale(StringArray.ARRAY_MOBILE_PHONE) + "']/../XCUIElementTypeTextField",
+						"Mobile_phone");
 			}
 
 			String mobilePhone = mobileAction.getValue(mobile_phone_info);
@@ -377,10 +379,10 @@ public class Profile extends _CommonPage {
 	public String get_work_phone_info() {
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				work_phone_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-						+StringLookup.lookupString(currentLocale, StringLookup.WORK_PHONE)+ "']/../XCUIElementTypeTextField",
-						 "work_phone");
+						+ getTextInCurrentLocale(StringArray.ARRAY_WORK_PHONE) + "']/../XCUIElementTypeTextField",
+						"work_phone");
 			}
 
 			String workPhone = mobileAction.getValue(work_phone_info);
@@ -408,10 +410,10 @@ public class Profile extends _CommonPage {
 	public String get_work_extension_info() {
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				work_extension_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-						+StringLookup.lookupString(currentLocale, StringLookup.EXTENSION_NUMBER)+ "']/../XCUIElementTypeTextField[2]",
-						 "Work_ext");
+						+ getTextInCurrentLocale(StringArray.ARRAY_EXTENSION_NUMBER)
+						+ "']/../XCUIElementTypeTextField[2]", "Work_ext");
 			}
 			String extension = mobileAction.getValue(work_extension_info);
 			if (!extension.isEmpty()) {
@@ -428,10 +430,10 @@ public class Profile extends _CommonPage {
 	public String get_business_extension_info() {
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				business_extension_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-						+StringLookup.lookupString(currentLocale, StringLookup.EXTENSION_NUMBER)+ "']/../XCUIElementTypeTextField[2]",
-						 "Business_ext");
+						+ getTextInCurrentLocale(StringArray.ARRAY_EXTENSION_NUMBER)
+						+ "']/../XCUIElementTypeTextField[2]", "Business_ext");
 			}
 			String extension = mobileAction.getValue(business_extension_info);
 
@@ -449,10 +451,10 @@ public class Profile extends _CommonPage {
 	public String get_business_info() {
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				business_phone_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-						+StringLookup.lookupString(currentLocale, StringLookup.BUSINESS_PHONE)+ "']/../XCUIElementTypeTextField[1]",
-						 "Business_phone");
+						+ getTextInCurrentLocale(StringArray.ARRAY_BUSINESS_PHONE)
+						+ "']/../XCUIElementTypeTextField[1]", "Business_phone");
 			}
 			String business = mobileAction.getValue(business_phone_info);
 			// business = business.replaceAll(phonePlaceHolder, "");
@@ -478,10 +480,9 @@ public class Profile extends _CommonPage {
 	public String get_fax_info() {
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				fax_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-						+StringLookup.lookupString(currentLocale, StringLookup.FAX_NUMBER)+ "']",
-						 "Fax_phone");
+						+ getTextInCurrentLocale(StringArray.ARRAY_FAX_NUMBER) + "']", "Fax_phone");
 			}
 			String fax = mobileAction.getValue(fax_info);
 			if (!fax.isEmpty()) {
@@ -506,12 +507,12 @@ public class Profile extends _CommonPage {
 				// mobileAction.FunctionSwipe("down", 2, 500);
 				System.out.println("Swipe");
 
-			}else{
-				
+			} else {
+
 				business_email_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-						+StringLookup.lookupString(currentLocale, StringLookup.FM_EMAIL)+ "']/../XCUIElementTypeTextField",
-						 "Business Email");
-				
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL) + "']/../XCUIElementTypeTextField",
+						"Business Email");
+
 			}
 			String emailInfo = mobileAction.getValue(business_email_info);
 
@@ -538,12 +539,11 @@ public class Profile extends _CommonPage {
 				mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
 				// mobileAction.FunctionSwipe("down", 2, 500);
 				System.out.println("Swipe");
-			}else{
+			} else {
 				personal_email_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-						+StringLookup.lookupString(currentLocale, StringLookup.FM_EMAIL)+ "']/../XCUIElementTypeTextField",
-						 "Personal Email");
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL) + "']/../XCUIElementTypeTextField",
+						"Personal Email");
 			}
-			
 
 			String emailInfo = mobileAction.getValue(personal_email_info);
 
@@ -579,7 +579,7 @@ public class Profile extends _CommonPage {
 
 	private String get_email_info() {
 
-		try {		
+		try {
 			if (isBusinessUser) {
 				return get_business_email_info();
 
@@ -774,10 +774,10 @@ public class Profile extends _CommonPage {
 	public void EditBusinessEmailAddress(String email) {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				business_email_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-						+StringLookup.lookupString(currentLocale, StringLookup.FM_EMAIL)+ "']/../XCUIElementTypeTextField",
-						 "Business Email");
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL) + "']/../XCUIElementTypeTextField",
+						"Business Email");
 			}
 			mobileAction.FuncClick(business_email_info, "Email");
 
@@ -796,10 +796,9 @@ public class Profile extends _CommonPage {
 
 	public void pressSaveButton() {
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-				save_button = mobileAction.verifyElementUsingXPath("//*[@label='"
-						+StringLookup.lookupString(currentLocale, StringLookup.SAVE_BUTTON)+ "']",
-						 "Save Button");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				save_button = mobileAction.verifyElementUsingXPath(
+						"//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_SAVE_BUTTON) + "']", "Save Button");
 			}
 			mobileAction.FuncClick(save_button, "Save");
 			mobileAction.waitForElementToVanish(progressBar);
@@ -822,10 +821,10 @@ public class Profile extends _CommonPage {
 	public void EditPersonalEmailAddress(String email) {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				personal_email_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-						+StringLookup.lookupString(currentLocale, StringLookup.FM_EMAIL)+ "']/../XCUIElementTypeTextField",
-						 "Personal Email");
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL) + "']/../XCUIElementTypeTextField",
+						"Personal Email");
 			}
 			mobileAction.FuncClick(personal_email_info, "Email");
 
@@ -1069,17 +1068,17 @@ public class Profile extends _CommonPage {
 		String email_address = "";
 		try {
 			if (isPersonalUser) {
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					personal_email_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-							+StringLookup.lookupString(currentLocale, StringLookup.FM_EMAIL)+ "']/../XCUIElementTypeTextField",
-							 "Personal Email");
+							+ getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL) + "']/../XCUIElementTypeTextField",
+							"Personal Email");
 				}
 				email_address = mobileAction.getValue(personal_email_info);
 			} else {
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					business_email_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-							+StringLookup.lookupString(currentLocale, StringLookup.FM_EMAIL)+ "']/../XCUIElementTypeTextField",
-							 "Business Email");
+							+ getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL) + "']/../XCUIElementTypeTextField",
+							"Business Email");
 				}
 				email_address = mobileAction.getValue(business_email_info);
 			}
@@ -1116,26 +1115,26 @@ public class Profile extends _CommonPage {
 			mobileAction.SwipeWithinElement(profileScrollView, 1, "down");
 			// mobileAction.FuncSwipeOnce("down");
 		}
-		
+
 		String email_address = "";
 		try {
 			if (isPersonalUser) {
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					personal_email_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-							+StringLookup.lookupString(currentLocale, StringLookup.FM_EMAIL)+ "']/../XCUIElementTypeTextField",
-							 "Personal Email");
+							+ getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL) + "']/../XCUIElementTypeTextField",
+							"Personal Email");
 				}
 				email_address = mobileAction.getValue(personal_email_info);
 			} else {
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					business_email_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-							+StringLookup.lookupString(currentLocale, StringLookup.FM_EMAIL)+ "']/../XCUIElementTypeTextField",
-							 "Business Email");
+							+ getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL) + "']/../XCUIElementTypeTextField",
+							"Business Email");
 				}
 				email_address = mobileAction.getValue(business_email_info);
 			}
 		} catch (Exception e) {
-			
+
 		}
 
 		if (!email_address.isEmpty()) {
@@ -1172,22 +1171,22 @@ public class Profile extends _CommonPage {
 		String email_address = null;
 		try {
 			if (isPersonalUser) {
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					personal_email_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-							+StringLookup.lookupString(currentLocale, StringLookup.FM_EMAIL)+ "']/../XCUIElementTypeTextField",
-							 "Personal Email");
+							+ getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL) + "']/../XCUIElementTypeTextField",
+							"Personal Email");
 				}
 				email_address = mobileAction.getValue(personal_email_info);
 			} else {
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					business_email_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-							+StringLookup.lookupString(currentLocale, StringLookup.FM_EMAIL)+ "']/../XCUIElementTypeTextField",
-							 "Business Email");
+							+ getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL) + "']/../XCUIElementTypeTextField",
+							"Business Email");
 				}
 				email_address = mobileAction.getValue(business_email_info);
 			}
 		} catch (Exception e) {
-			
+
 		}
 
 		if (email_address != null && !email_address.isEmpty()) {
@@ -1214,8 +1213,9 @@ public class Profile extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClickBackButton();
 			} else {
-//				back_xpath = "//*[@label='Back' or @label='Retour']";
-//				MobileElement back_arrow = (MobileElement) CL.GetDriver().findElement(By.xpath(back_xpath));
+				// back_xpath = "//*[@label='Back' or @label='Retour']";
+				// MobileElement back_arrow = (MobileElement)
+				// CL.GetDriver().findElement(By.xpath(back_xpath));
 				mobileAction.FuncClick(back_arrow, "<");
 			}
 
@@ -1264,26 +1264,26 @@ public class Profile extends _CommonPage {
 		try {
 			if (isPersonalUser) {
 				ori_phone = get_home_phone_info();
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					home_phone_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-							+StringLookup.lookupString(currentLocale, StringLookup.HOME_PHONE)+ "']/../XCUIElementTypeTextField",
-							 "home_phone");
+							+ getTextInCurrentLocale(StringArray.ARRAY_HOME_PHONE) + "']/../XCUIElementTypeTextField",
+							"home_phone");
 				}
 				mobileAction.FuncClick(home_phone_info, "Home Phone");
 			} else {
 				ori_phone = get_business_info();
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					business_phone_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-							+StringLookup.lookupString(currentLocale, StringLookup.BUSINESS_PHONE)+ "']/../XCUIElementTypeTextField[1]",
-							 "Business_phone");
+							+ getTextInCurrentLocale(StringArray.ARRAY_BUSINESS_PHONE)
+							+ "']/../XCUIElementTypeTextField[1]", "Business_phone");
 				}
-				
+
 				mobileAction.FuncClick(business_phone_info, "Business Phone");
 			}
 		} catch (Exception e) {
-			
+
 			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;		
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
 
@@ -1296,10 +1296,10 @@ public class Profile extends _CommonPage {
 		}
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobile_phone_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-						+StringLookup.lookupString(currentLocale, StringLookup.MOBILE_PHONE)+ "']/../XCUIElementTypeTextField",
-						 "Mobile_phone");
+						+ getTextInCurrentLocale(StringArray.ARRAY_MOBILE_PHONE) + "']/../XCUIElementTypeTextField",
+						"Mobile_phone");
 			}
 			mobileAction.FuncClick(mobile_phone_info, "Mobile Phone");
 		} catch (Exception e) {
@@ -1312,10 +1312,10 @@ public class Profile extends _CommonPage {
 	public void VerifyClearTextIconDisplayed() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-				clearText_button = mobileAction.verifyElementUsingXPath("//*[@label='"
-						+StringLookup.lookupString(currentLocale, StringLookup.CLEAR_PHONE_ICON)+ "']",
-						 "Clear Icon");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				clearText_button = mobileAction.verifyElementUsingXPath(
+						"//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_CLEAR_PHONE_ICON) + "']",
+						"Clear Icon");
 			}
 			if (clearText_button.isDisplayed()) {
 				mobileAction.Report_Pass_Verified("Clear Text Button");
@@ -1343,10 +1343,10 @@ public class Profile extends _CommonPage {
 
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-				clearText_button = mobileAction.verifyElementUsingXPath("//*[@label='"
-						+StringLookup.lookupString(currentLocale, StringLookup.CLEAR_PHONE_ICON)+ "']",
-						 "Clear Icon");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				clearText_button = mobileAction.verifyElementUsingXPath(
+						"//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_CLEAR_PHONE_ICON) + "']",
+						"Clear Icon");
 			}
 			mobileAction.FuncClick(clearText_button, "Clear Text Button");
 		} catch (Exception e) {
@@ -1361,26 +1361,26 @@ public class Profile extends _CommonPage {
 		String phoneNumber = "";
 		try {
 			if (isPersonalUser) {
-				
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					home_phone_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-							+StringLookup.lookupString(currentLocale, StringLookup.HOME_PHONE)+ "']/../XCUIElementTypeTextField",
-							 "home_phone");
+							+ getTextInCurrentLocale(StringArray.ARRAY_HOME_PHONE) + "']/../XCUIElementTypeTextField",
+							"home_phone");
 				}
 				phoneNumber = mobileAction.getValue(home_phone_info);
 			} else {
-				
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					business_phone_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-							+StringLookup.lookupString(currentLocale, StringLookup.BUSINESS_PHONE)+ "']/../XCUIElementTypeTextField[1]",
-							 "Business_phone");
+							+ getTextInCurrentLocale(StringArray.ARRAY_BUSINESS_PHONE)
+							+ "']/../XCUIElementTypeTextField[1]", "Business_phone");
 				}
 				phoneNumber = mobileAction.getValue(business_phone_info);
 			}
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			return;			
+			return;
 		}
 
 		if (phonePlaceHolder.contains(phoneNumber)) {
@@ -1410,22 +1410,22 @@ public class Profile extends _CommonPage {
 
 		try {
 			if (isPersonalUser) {
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					home_phone_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-							+StringLookup.lookupString(currentLocale, StringLookup.HOME_PHONE)+ "']/../XCUIElementTypeTextField",
-							 "home_phone");
+							+ getTextInCurrentLocale(StringArray.ARRAY_HOME_PHONE) + "']/../XCUIElementTypeTextField",
+							"home_phone");
 				}
 				mobileAction.FuncSendKeys(home_phone_info, phoneNumber);
 			} else {
-				
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					business_phone_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-							+StringLookup.lookupString(currentLocale, StringLookup.BUSINESS_PHONE)+ "']/../XCUIElementTypeTextField[1]",
-							 "Business_phone");
+							+ getTextInCurrentLocale(StringArray.ARRAY_BUSINESS_PHONE)
+							+ "']/../XCUIElementTypeTextField[1]", "Business_phone");
 				}
 				mobileAction.FuncSendKeys(business_phone_info, phoneNumber);
 			}
-		} catch (Exception e) {		
+		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			return;
@@ -1464,10 +1464,10 @@ public class Profile extends _CommonPage {
 			System.out.println("Phone changed since last 4 digit is the same as original one:" + phoneNumber);
 		}
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobile_phone_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
-						+StringLookup.lookupString(currentLocale, StringLookup.MOBILE_PHONE)+ "']/../XCUIElementTypeTextField",
-						 "Mobile_phone");
+						+ getTextInCurrentLocale(StringArray.ARRAY_MOBILE_PHONE) + "']/../XCUIElementTypeTextField",
+						"Mobile_phone");
 			}
 			mobileAction.FuncSendKeys(mobile_phone_info, phoneNumber);
 		} catch (Exception e1) {

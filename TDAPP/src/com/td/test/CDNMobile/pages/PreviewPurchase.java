@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 import com.td.StringArray;
-import com.td.StringLookup;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -226,15 +225,14 @@ public class PreviewPurchase extends _CommonPage {
 				contact_label = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("contact_information") + "']",
 						"Contact Information");
-				email_label = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ StringLookup.lookupString(currentLocale, StringLookup.FM_EMAIL) + "']", "Email");
+				email_label = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL) + "']",
+						"Email");
 				phone_label = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='"
-								+ StringLookup.lookupString(currentLocale, StringLookup.FM_PHONE) + "']",
+						"//android.widget.TextView[@text='" + getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE) + "']",
 						"Phone Number");
 				disclaimer_info = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='"
-								+ StringLookup.lookupString(currentLocale, StringLookup.FM_PHONE) + "']"
+						"//android.widget.TextView[@text='" + getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE) + "']"
 								+ "/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer']/android.widget.TextView",
 						"Disclaimer Information");
 
@@ -371,12 +369,12 @@ public class PreviewPurchase extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 
 				String acceptedXpath = "//android.widget.TextView[@text='"
-						+ StringLookup.lookupString(currentLocale, StringLookup.MF_ACCEPTED_FUND_DETAIL) + "']";
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE) + "']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(acceptedXpath, false, 5, "up");
-				
+
 				fund_facts_acknowledgement = mobileAction.verifyElementUsingXPath(acceptedXpath,
 						"Accept_Fund_Detail_Fee");
-			}else{
+			} else {
 				mobileAction.FuncSwipeWhileElementNotFound(fund_facts_acknowledgement, false, 5, "up");
 			}
 
