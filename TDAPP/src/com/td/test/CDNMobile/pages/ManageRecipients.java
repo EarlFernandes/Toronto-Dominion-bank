@@ -328,14 +328,6 @@ public class ManageRecipients extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
-				// +
-				// StringLookup.lookupString(StringLookup.ALLOW_CONTACTS_ACCESS_HEADER,
-				// currentLocale) + "']", "dialog title");
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
-				// +
-				// StringLookup.lookupString(StringLookup.ALLOW_CONTACTS_ACCCESS_BODY,
-				// currentLocale) + "']", "dialog msg");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("add_contact_alert_title") + "']", "dialog title");

@@ -6,7 +6,6 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 import com.td.StringArray;
-import com.td.StringLookup;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -293,8 +292,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			SelectFund(selectedFund);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				from_account_name = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='"
-								+ StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT)
+						"//android.widget.TextView[@text='" + getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT)
 								+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
 						"From Account name");
 			}
@@ -387,14 +385,15 @@ public class PurchaseMutualFunds extends _CommonPage {
 					getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT));
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				from_account_caption = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='"
-								+ StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT) + "']",
-						"From Account");
+				from_account_caption = mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='"
+										+ getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT) + "']",
+								"From Account");
 
 				to_account_caption = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/mf_label' and @text='"
-								+ StringLookup.lookupString(currentLocale, StringLookup.FM_TO_ACCOUNT) + "']",
+								+ getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT) + "']",
 						"To Account");
 				contact_caption = mobileAction
 						.verifyElementUsingXPath(
@@ -576,7 +575,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			} else {
 				System.out.println("Phone populated:" + ori_phone);
 			}
-			
+
 			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncClick(consent_checkbox, "consent check box");
 
@@ -704,8 +703,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			SelectFund(selectedFund);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				from_account_name = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='"
-								+ StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT)
+						"//android.widget.TextView[@text='" + getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT)
 								+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
 						"From Account name");
 
@@ -742,8 +740,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				from_account_name = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='"
-								+ StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT)
+						"//android.widget.TextView[@text='" + getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT)
 								+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
 						"From Account name");
 
@@ -915,8 +912,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				from_account_name = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='"
-								+ StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT)
+						"//android.widget.TextView[@text='" + getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT)
 								+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
 						"From Account name");
 
@@ -955,8 +951,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				from_account_name = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='"
-								+ StringLookup.lookupString(currentLocale, StringLookup.FM_FROM_ACCOUNT)
+						"//android.widget.TextView[@text='" + getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT)
 								+ "']/..//android.widget.TextView[@resource-id='com.td:id/mf_account_name']",
 						"From Account name");
 

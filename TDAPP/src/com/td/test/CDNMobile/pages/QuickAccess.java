@@ -7,7 +7,6 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.StringArray;
-import com.td.StringLookup;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -73,13 +72,14 @@ public class QuickAccess extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				quickaccess_switch = mobileAction.verifyElementUsingXPath("//android.widget.Switch[@content-desc='"
-						+ StringLookup.lookupString(currentLocale, StringLookup.PREFERENCE_QUICK_ACCESS_SWITCH_AND)
-						+ "']", "Quick Access Switch");
+				quickaccess_switch = mobileAction.verifyElementUsingXPath(
+						"//android.widget.Switch[@content-desc='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_SWITCH_AND) + "']",
+						"Quick Access Switch");
 			} else {
 				quickaccess_switch = mobileAction.verifyElementUsingXPath(
-						"//*[@label='" + StringLookup.lookupString(currentLocale,
-								StringLookup.PREFERENCE_QUICK_ACCESS_SETTINGS) + "']/../XCUIElementTypeSwitch",
+						"//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_SETTINGS)
+								+ "']/../XCUIElementTypeSwitch",
 						"Quick Access Switch");
 			}
 
@@ -128,13 +128,14 @@ public class QuickAccess extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				quickaccess_switch = mobileAction.verifyElementUsingXPath("//android.widget.Switch[@content-desc='"
-						+ StringLookup.lookupString(currentLocale, StringLookup.PREFERENCE_QUICK_ACCESS_SWITCH_AND)
-						+ "']", "Quick Access Switch");
+				quickaccess_switch = mobileAction.verifyElementUsingXPath(
+						"//android.widget.Switch[@content-desc='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_SWITCH_AND) + "']",
+						"Quick Access Switch");
 			} else {
 				quickaccess_switch = mobileAction.verifyElementUsingXPath(
-						"//*[@label='" + StringLookup.lookupString(currentLocale,
-								StringLookup.PREFERENCE_QUICK_ACCESS_SETTINGS) + "']/../XCUIElementTypeSwitch",
+						"//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_SETTINGS)
+								+ "']/../XCUIElementTypeSwitch",
 						"Quick Access Switch");
 			}
 			mobileAction.verifyElementIsDisplayed(quickaccess_switch, "Quick Access");
