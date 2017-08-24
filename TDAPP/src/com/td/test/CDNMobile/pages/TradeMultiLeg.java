@@ -31,7 +31,6 @@ public class TradeMultiLeg extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
@@ -1076,9 +1075,7 @@ public class TradeMultiLeg extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				// mobileAction.FuncHideKeyboard();
-
 				(CL.GetAppiumDriver()).hideKeyboard();
-
 				// if(mobileAction.isObjExists(cancelButton,2))
 				// mobileAction.FuncClick(cancelButton, "cancelButton");
 			} else if (mobileAction.isObjExists(iOSKybdOKButton))

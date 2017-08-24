@@ -459,8 +459,6 @@ public class MobileAction2 extends CommonLib {
 					elementFound = elementToFind.isDisplayed();
 				} catch (NoSuchElementException e) {
 					((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
-					// ((MobileDriver) GetDriver()).swipe(startx, starty, endx,
-					// endy, 3000);
 				}
 				if (elementFound) {
 					if (clickOnElement)
@@ -548,8 +546,6 @@ public class MobileAction2 extends CommonLib {
 
 				} catch (NoSuchElementException e) {
 					((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
-					// ((MobileDriver) GetDriver()).swipe(startx, starty, endx,
-					// endy, 3000);
 				}
 				if (elementFound) {
 					if (clickOnElement)
@@ -633,8 +629,6 @@ public class MobileAction2 extends CommonLib {
 
 				} catch (NoSuchElementException e) {
 					((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
-					// ((MobileDriver) GetDriver()).swipe(startx, starty, endx,
-					// endy, 3000);
 				}
 				if (elementFound) {
 					GetReporting().FuncReport("Fail", "Element was found when it should not be in list! \n");
@@ -828,19 +822,16 @@ public class MobileAction2 extends CommonLib {
 
 						flag = false;
 					} else {
+
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty - starty / 4,
 								startx / 2, starty / 4, 600);
-						// ((MobileDriver) GetDriver()).swipe(startx / 2, starty
-						// - starty / 4, startx / 2, starty / 4,
-						// 600);
 						count++;
 					}
 				} catch (Exception e) {
 					System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
 					((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty - starty / 4,
 							startx / 2, starty / 4, 600);
-					// ((MobileDriver) GetDriver()).swipe(startx / 2, starty -
-					// starty / 4, startx / 2, starty / 4, 600);
 					count++;
 				}
 
@@ -1158,8 +1149,6 @@ public class MobileAction2 extends CommonLib {
 			while (!elementToFind.isDisplayed() && j < 30) {
 				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty - starty / 4,
 						startx / 2, starty / 4, 600);
-				// ((MobileDriver) GetDriver()).swipe(startx / 2, starty -
-				// starty / 4, startx / 2, starty / 4, 600);
 				j++;
 			}
 			if (j == 30) {
@@ -1239,8 +1228,6 @@ public class MobileAction2 extends CommonLib {
 					elementFound = elementToFind.isDisplayed();
 				} catch (NoSuchElementException e) {
 					((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
-					// ((MobileDriver) GetDriver()).swipe(startx, starty, endx,
-					// endy, 3000);
 				}
 				if (elementFound) {
 					if (clickOnElement)
@@ -1319,13 +1306,9 @@ public class MobileAction2 extends CommonLib {
 			if (Direction.equalsIgnoreCase("Up")) {
 				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty - Offset, startx, endy,
 						swipeTime);
-				// ((MobileDriver) GetDriver()).swipe(startx, starty - Offset,
-				// startx, endy, swipeTime);
 			} else if (Direction.equalsIgnoreCase("Down")) {
 				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, endy + Offset, startx, starty,
 						swipeTime);
-				// ((MobileDriver) GetDriver()).swipe(startx, endy + Offset,
-				// startx, starty, swipeTime);
 			} else if (Direction.equalsIgnoreCase("Right")) {
 				starty = size.height / 2;
 				endy = size.height / 2;
@@ -1333,8 +1316,6 @@ public class MobileAction2 extends CommonLib {
 				int endx = (int) (size.width * 0.90);
 				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx + Offset, starty, endx, endy,
 						swipeTime);
-				// ((MobileDriver) GetDriver()).swipe(startx + Offset, starty,
-				// endx, endy, swipeTime);
 			} else if (Direction.equalsIgnoreCase("Left")) {
 				starty = size.height / 2;
 				endy = size.height / 2;
@@ -1342,8 +1323,6 @@ public class MobileAction2 extends CommonLib {
 				int endx = (int) (size.width * 0.10);
 				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx - Offset, starty, endx, endy,
 						swipeTime);
-				// ((MobileDriver) GetDriver()).swipe(startx - Offset, starty,
-				// endx, endy, swipeTime);
 			}
 			GetReporting().FuncReport("Pass", "Swipe <b> " + Direction + " </b> Successful");
 
@@ -1626,46 +1605,6 @@ public class MobileAction2 extends CommonLib {
 			 * } catch (IOException e) { GetReporting().FuncReport("Fail",
 			 * "IOException Exception occurred"); throw e; } }
 			 */
-
-	/**
-	 * This method will verify the text contained in another String.
-	 * 
-	 *
-	 * @param objElement
-	 *            The MobileElement on which the click action has to be
-	 *            performed.
-	 * @throws Exception
-	 *             In case an exception occurs while clicking over the element.
-	 *             In case the element is not found over the screen.
-	 */
-
-	public void verifyElementTextContains(MobileElement objElement, String text) {// throws
-
-		try {
-			String sEleText = FuncGetElementText(objElement);
-			if (sEleText != null) {
-				if (sEleText.contains(text))
-					GetReporting().FuncReport("Pass",
-							"Element contains text<b> " + text + "</b> .Element text:" + sEleText);
-				else
-					GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
-			} else {
-				sEleText = "";
-				if (sEleText.contains(text))
-					GetReporting().FuncReport("Pass",
-							"Element contains text<b> " + text + "</b> .Element text:" + sEleText);
-				else
-					GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
-			}
-		} catch (IOException e) {
-			try {
-				GetReporting().FuncReport("Fail", "Element does not contain expected text:" + text);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			// throw e;
-		}
-	}
 
 	/**
 	 * This method will verify the text contained in another String.
@@ -2053,15 +1992,9 @@ public class MobileAction2 extends CommonLib {
 					if (direction.equalsIgnoreCase("up"))
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2,
 								startx / 2, endy / 2 - heightPer, 2000);
-					// ((MobileDriver) GetDriver()).swipe(startx / 2, starty /
-					// 2, startx / 2, endy / 2 - heightPer,
-					// 2000);
 					else if (direction.equalsIgnoreCase("down"))
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
 								startx / 2, endy / 2 + heightPer, 2000);
-					// ((MobileDriver) GetDriver()).swipe(startx / 2, endy / 2,
-					// startx / 2, endy / 2 + heightPer,
-					// 2000);
 					count++;
 				}
 
@@ -2125,20 +2058,12 @@ public class MobileAction2 extends CommonLib {
 					sEleName = FuncGetTextByxpath(xpathEle);
 
 				} catch (Exception e) {
-					if (direction.equalsIgnoreCase("up")) {
+					if (direction.equalsIgnoreCase("up"))
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2,
 								startx / 2, endy / 2 - heightPer, 2000);
-						// ((MobileDriver) GetDriver()).swipe(startx / 2, starty
-						// /
-						// 2, startx / 2, endy / 2 - heightPer,
-						// 2000);
-					} else if (direction.equalsIgnoreCase("down")) {
+					else if (direction.equalsIgnoreCase("down"))
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
 								startx / 2, endy / 2 + heightPer, 2000);
-						// ((MobileDriver) GetDriver()).swipe(startx / 2, endy /
-						// 2, startx / 2, endy / 2 + heightPer,
-						// 2000);
-					}
 					count++;
 				}
 
@@ -2198,19 +2123,12 @@ public class MobileAction2 extends CommonLib {
 					sEleName = FuncGetTextByxpath(xpathEle);
 
 				} catch (Exception e) {
-					if (direction.equalsIgnoreCase("up")) {
+					if (direction.equalsIgnoreCase("up"))
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2,
 								startx / 2, endy / 2 - heightPer, 2000);
-						// ((MobileDriver) GetDriver()).swipe(startx / 2, starty
-						// / 2, startx / 2, endy / 2 - heightPer,
-						// 2000);
-					} else if (direction.equalsIgnoreCase("down")) {
+					else if (direction.equalsIgnoreCase("down"))
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
 								startx / 2, endy / 2 + heightPer, 2000);
-						// ((MobileDriver) GetDriver()).swipe(startx / 2, endy /
-						// 2, startx / 2, endy / 2 + heightPer,
-						// 2000);
-					}
 					count++;
 				}
 
@@ -2273,9 +2191,9 @@ public class MobileAction2 extends CommonLib {
 	 * 
 	 * @param expectedText
 	 *            The expected text in this format like: "CONTACT INFORMATION |
-	 *            COORDONNÃƒâ€°ES" if language is English then "CONTACT
-	 *            INFORMATION "to be printed in report if language is French
-	 *            then "COORDONNÃƒâ€°ES" to be printed in report
+	 *            COORDONNÃ‰ES" if language is English then "CONTACT INFORMATION
+	 *            "to be printed in report if language is French then
+	 *            "COORDONNÃ‰ES" to be printed in report
 	 * 
 	 * @return nothing
 	 * 
@@ -2288,17 +2206,24 @@ public class MobileAction2 extends CommonLib {
 			boolean verified = false;
 			WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
 			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
-			String capturedText = "";
-			capturedText = getValue(mobileElement);
+			String capturedText = getValue(mobileElement);
+			capturedText = capturedText.trim().replaceAll("\n", "");
 			for (int i = 0; i < expectedHeadertext.length; i++) {
 				if (capturedText.equalsIgnoreCase(expectedHeadertext[i].trim())) {
+					System.out.println("Expected matched:" + capturedText);
+					GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
+					verified = true;
+					break;
+				} else if (capturedText.matches(expectedHeadertext[i].trim())) {
+					System.out.println("Expected matched:" + capturedText);
 					GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
 					verified = true;
 					break;
 				}
 			}
 			if (!verified) {
-				GetReporting().FuncReport("Fail", "expected header not displayed:" + expectedText);
+				System.out.println("Not matched, Captured:" + capturedText + ", but expected is " + expectedText);
+				GetReporting().FuncReport("Fail", "expected text not matched:" + expectedText);
 
 			}
 		} catch (IllegalArgumentException e) {
@@ -2400,16 +2325,12 @@ public class MobileAction2 extends CommonLib {
 			int heightPer = (endy * 25 / 100);
 
 			if (sDirection.equalsIgnoreCase("up")) {
-				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2, startx / 2,
-						endy / 2 + heightPer, 2000);
-				// ((MobileDriver) GetDriver()).swipe(startx / 2, starty / 2,
-				// startx / 2, endy / 2 - heightPer, 2000);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2, startx / 2,
+						endy / 2 - heightPer, 2000);
 				GetReporting().FuncReport("Pass", "Swipe Up once.");
 			} else if (sDirection.equalsIgnoreCase("down")) {
 				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2, startx / 2,
 						endy / 2 + heightPer, 2000);
-				// ((MobileDriver) GetDriver()).swipe(startx / 2, endy / 2,
-				// startx / 2, endy / 2 + heightPer, 2000);
 				GetReporting().FuncReport("Pass", "Swipe Down once.");
 			} else
 				GetReporting().FuncReport("Fail", "Invalid direction given.");
@@ -2695,6 +2616,7 @@ public class MobileAction2 extends CommonLib {
 					GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is enabled.");
 				else
 					GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+
 			}
 		} catch (Exception e) {
 			try {
@@ -3025,6 +2947,32 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
+	// Add a common function here, we may need to click back button from any
+	// page, but the function is the same
+	public void ClickBackButton() {
+
+		String back_xpath = "";
+
+		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			try {
+				FuncClickBackButton();
+				return;
+			} catch (Exception e) {
+				back_xpath = "//android.widget.ImageView[@resource-id='android:id/up']";
+			}
+
+		} else {
+			back_xpath = "//*[@label='Back' or @label='Retour']";
+		}
+		try {
+			MobileElement back_arrow = (MobileElement) GetDriver().findElement(By.xpath(back_xpath));
+			FuncClick(back_arrow, "<");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public boolean verifyElementIsPresent(WebElement elementToFind) {
 
 		try {
@@ -3073,8 +3021,6 @@ public class MobileAction2 extends CommonLib {
 			int endx = (int) (size.width * 0.10);
 			((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx - Offset, starty, endx, endy,
 					swipeTime);
-			// ((MobileDriver) GetDriver()).swipe(startx - Offset, starty, endx,
-			// endy, swipeTime);
 
 			GetReporting().FuncReport("Pass", "Swipe <b> left </b> Successful");
 
@@ -3506,6 +3452,36 @@ public class MobileAction2 extends CommonLib {
 		} catch (Exception e) {
 
 			return false;
+		}
+	}
+
+	public void FuncIsElementNotEnabled(MobileElement objMobileElement, String sDesc)// @Author
+																						// -
+																						// Sushil
+																						// 06-Mar-2017
+	{
+		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+		wait.until(ExpectedConditions.visibilityOf(objMobileElement));
+
+		try {
+			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				if (!objMobileElement.isEnabled())
+					GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is not enabled.");
+				else
+					GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is enabled.");
+			} else {
+				if (!objMobileElement.isDisplayed())
+					GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> is not enabled.");
+				else
+					GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is enabled.");
+			}
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> is not enabled.");
+				e.printStackTrace();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 }

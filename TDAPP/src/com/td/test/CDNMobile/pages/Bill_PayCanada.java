@@ -410,8 +410,9 @@ public class Bill_PayCanada extends _CommonPage {
 						"Confirm title");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("receipt_from") + "']", "From");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("payBillDropdownHeaderPayee") + "']", "To");
+				// mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+				// + mobileAction.getAppString("payBillDropdownHeaderPayee") +
+				// "']", "To");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("date") + "']", "Date");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
@@ -442,7 +443,6 @@ public class Bill_PayCanada extends _CommonPage {
 						+ "')]";
 
 				MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())
-
 						.findElement(By.xpath(from_accountNo));
 				mobileAction.FunCSwipeandScroll(fromAccountval, true);
 				mobileAction.FuncClick(to_account_post, "To Payee");

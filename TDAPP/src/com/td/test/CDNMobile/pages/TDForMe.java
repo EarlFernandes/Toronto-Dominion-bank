@@ -112,7 +112,6 @@ public class TDForMe extends _CommonPage {
 				// battary saver Switch
 
 				if (mobileAction.verifyElementIsPresent(tdforme_displayfrench_switch)) {
-
 					mobileAction.Report_Fail_Not_Verified("Collapses french display switch ");
 					return;
 				} else {
@@ -120,7 +119,6 @@ public class TDForMe extends _CommonPage {
 				}
 
 				if (mobileAction.verifyElementIsPresent(tdforme_batterysave_switch)) {
-
 					mobileAction.Report_Fail_Not_Verified("Collapses battary saver switch ");
 					return;
 				} else {
@@ -132,16 +130,14 @@ public class TDForMe extends _CommonPage {
 			} else {// disabled:
 					// verify page collapses for displaying french Switch and
 					// battary saver Switch
-
 				if (mobileAction.verifyElementIsPresent(tdforme_displayfrench_switch)) {
-
 					mobileAction.Report_Fail_Not_Verified("Collapses french display switch ");
 					return;
 				} else {
 					System.out.println("French display switch not diaplayed");
 				}
 
-				if (mobileAction.isObjExists(tdforme_batterysave_switch)) {
+				if (mobileAction.verifyElementIsPresent(tdforme_batterysave_switch)) {
 					mobileAction.Report_Fail_Not_Verified("Collapses battery saver switch ");
 					return;
 				} else {
@@ -151,6 +147,9 @@ public class TDForMe extends _CommonPage {
 				mobileAction.Report_Pass_Verified("Page Collapsed ");
 
 			}
+			System.out.println("Toggle to Enable");
+			mobileAction.FuncClick(tdforme_enable_switch, "TD for Me Enable-Disable Switch");
+
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -192,9 +191,7 @@ public class TDForMe extends _CommonPage {
 
 				// verify page expands for displaying french Switch and battary
 				// saver Switch
-
 				if (!mobileAction.verifyElementIsPresent(tdforme_displayfrench_switch)) {
-
 					mobileAction.Report_Fail_Not_Verified("Expands french display switch ");
 					return;
 				} else {
@@ -202,7 +199,6 @@ public class TDForMe extends _CommonPage {
 				}
 
 				if (!mobileAction.verifyElementIsPresent(tdforme_batterysave_switch)) {
-
 					mobileAction.Report_Fail_Not_Verified("Expends Battary saver switch ");
 					return;
 				} else {
@@ -241,4 +237,5 @@ public class TDForMe extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+
 }

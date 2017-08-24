@@ -35,8 +35,8 @@ public class Managee_Payee extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/listView']/android.widget.LinearLayout[3]/android.widget.LinearLayout/android.widget.TextView")
 	private MobileElement thirdAccessCard;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label='Add Canadian')]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Canadian Payee']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Add Canadian')]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Canadian Payee'] | //android.widget.TextView[@content-desc='Add Canadian Payee']")
 	private MobileElement addCanadianPayee;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Manage Payees']")
@@ -475,8 +475,7 @@ public class Managee_Payee extends _CommonPage {
 		try {
 
 			mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees Header");
-			mobileAction.FuncClick(addPayee, "Add Canadian Payee");
-
+			mobileAction.FuncClick(addCanadianPayee, "Add Canadian Payee");
 			mobileAction.waitForElementToVanish(progressBar);
 
 			Thread.sleep(10000);

@@ -512,17 +512,21 @@ public class Bills extends _CommonPage {
 				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value,
 				// '" + mobileAction.getAppString("receipt_confirmation") +
 				// "')]", "Confirmation #");
-				mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeStaticText[@value='" + mobileAction
-								.getAppString("payBillConfirmFieldHeaderFromAccount").replaceAll(" ", "\n") + "']",
-						"From Account");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
-						+ mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
-						+ mobileAction.getAppString("payBillConfirmFieldHeaderDate") + "']", "Date");
-				mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_Amount") + "']",
-						"Amount");
+				// mobileAction.verifyElementUsingXPath(
+				// "//XCUIElementTypeStaticText[@label='" + mobileAction
+				// .getAppString("payBillConfirmFieldHeaderFromAccount").replaceAll("
+				// ", "\n") + "']",
+				// "From Account");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
+				// + mobileAction.getAppString("payBillConfirmFieldHeaderPayee")
+				// + "']", "Payee");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
+				// + mobileAction.getAppString("payBillConfirmFieldHeaderDate")
+				// + "']", "Date");
+				// mobileAction.verifyElementUsingXPath(
+				// "//XCUIElementTypeStaticText[@value='" +
+				// mobileAction.getAppString("str_Amount") + "']",
+				// "Amount");
 				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
 				// +
 				// mobileAction.getAppString("upcomingBillDetailsButtonCancelBillPayment")
@@ -827,9 +831,13 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("disclaimer") + "']",
 						"Disclaimer");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
-						+ mobileAction.getAppString("payBillDropdownHeaderFromAccount").replace(" ", "\n") + "']",
-						"From Account");
+
+				mobileAction
+						.verifyElementUsingXPath(
+								"//XCUIElementTypeStaticText[@value='" + mobileAction
+										.getAppString("payBillDropdownHeaderFromAccount").replace(" ", "\n") + "']",
+								"From Account");
+
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
 						+ mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");
 				mobileAction.verifyElementUsingXPath(

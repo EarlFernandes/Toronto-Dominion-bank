@@ -27,7 +27,6 @@ public class ContactUs extends _CommonPage {
 	private MobileElement tdDirectInvesting;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'TD Direct Investing')]/../XCUIElementTypeButton")
-
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/rlTDMainNumber']")
 
 	private MobileElement call_Button;
@@ -74,9 +73,7 @@ public class ContactUs extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
-
 	}
 
 	/**
@@ -158,7 +155,6 @@ public class ContactUs extends _CommonPage {
 						mobileAction.getAppString("direct_investment_str"));
 				mobileAction.verifyTextEquality(tdWealthFinancial.getText().trim(),
 						mobileAction.getAppString("contact_us_TD_Wealth_Financial_Planning"));
-
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"

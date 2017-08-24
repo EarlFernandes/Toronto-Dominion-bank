@@ -32,6 +32,10 @@ import com.td.test.CDNMobile.pages.Login;
 import com.td.test.CDNMobile.pages.LoginMIT;
 import com.td.test.CDNMobile.pages.Logout;
 import com.td.test.CDNMobile.pages.MFA_ChangeAnswer;
+import com.td.test.CDNMobile.pages.MIT_PNSAccessAlerts;
+import com.td.test.CDNMobile.pages.MIT_PNSCreateNewAlert;
+import com.td.test.CDNMobile.pages.MIT_PNSManageAlerts;
+import com.td.test.CDNMobile.pages.MIT_PNSViewAlertsLandingPage;
 import com.td.test.CDNMobile.pages.MLCancelOrderReceipt;
 import com.td.test.CDNMobile.pages.MLChangeOrder;
 import com.td.test.CDNMobile.pages.MLConfirmOrder;
@@ -80,6 +84,12 @@ import com.td.test.CDNMobile.pages.Transaction;
 import com.td.test.CDNMobile.pages.Transfers;
 import com.td.test.CDNMobile.pages.WatchLists;
 import com.td.test.CDNMobile.pages.WhatsNew;
+import com.td.test.CDNMobile.pages.PurchaseMutualFunds;
+import com.td.test.CDNMobile.pages.FundDetails;
+import com.td.test.CDNMobile.pages.TransactionDetails;
+import com.td.test.CDNMobile.pages.PreviewPurchase;
+import com.td.test.CDNMobile.pages.Popupwindow;
+import com.td.test.CDNMobile.pages.FundFacts;
 import com.td.test.myspend.LogoutMySpend;
 import com.td.test.myspend.MoneyPath;
 import com.td.test.myspend.MyspendPreferences;
@@ -102,8 +112,8 @@ public class EventCase {
 
 		Add_Recipient_ErrorPage, AddCanadianPayee, AddPayee_SearchPayee, AddCard_MobilePayment, AddToTDMobilePayment, ApplePay_AddCard, ApplePay_SelectACard, ApplePay_CheckEligibleCard, ApplePay_ChangeDefaultCard, ApplePay_CheckPersonalCard, ApplePay_CheckBusinessCard, ApplePay_CheckDefaultCard, ApplePay_AddAllCards, ApplePay_OtherEligibleCards, Accounts_Credit_clickTransfer,
 
-		Banking_Header, Bill_PayCanada_Pay_Bill, Between_My_Accounts_RTB_permissible_transfer,
-
+		Banking_Header, Bill_PayCanada_Pay_Bill, Between_My_Accounts_RTB_permissible_transfer, 
+		
 		Between_My_accounts, Between_My_accounts_CanadianToUS, Between_My_accounts_exchange_rate_expired, Between_My_accounts_Exchange_Rate_Expired, Between_My_Accounts_LIRA, Between_My_accounts_Mobile_Rate_Expiry, Between_My_Accounts_Permissible_Transfer, Between_My_accounts_transfer, Between_My_Accounts_Transfer_less, Between_My_accounts_transfer_verify_receipt, Between_My_accounts_VerifyFromAccounts,
 
 		BetweenMyAccounts_CADTFSA_TDCTTFSA, BetweenMyAccounts_MobileRateExpiryOnSmartphones, BetweenMyAccounts_NegativeTestingTransferFunds, BetweenMyAccounts_permissible_transfer_on_mobile, BetweenMyAccounts_TDCTTFSA_CADTFSA, BetweenMyAccounts_TDCTTFSAMessage, BetweenMyAccounts_TransferNotSupported, BetweenMyAccounts_TransferTDCTCADUSDVISA,
@@ -126,7 +136,7 @@ public class EventCase {
 
 		Env_set, Env_EnableMobilePayment, EditEmailAddressWithNonAformat, EditEmailAddressWithlonger60Char, EditEmailAddressWithNolonger60Char, EditEmailAddressWithoutSave, EditPhoneNumber, Env_DeleteDefaultCard,
 
-		getProfileInformation, GetEmailAndPhoneNumber, ClickFeedback, ClickContactUs_CF, VerifyMoodSelectorScreen, VerifyEmotionsAnimateFromTopToBottom, ClickGreatLink, VerifyPostSurveyScreen, ClickCouldvebeenBetterLink, ClickItwasntWorkingLink, ClickBackFromMoodSelector, VerifyHomePageDashBoard, ClickContactUsFromHomePage, ClickSendFeedbackNow, VerifyRateUsOnGooglePlayButton, VerifyGooglePlayRatePage, ClickBackFromPostSurvey, VerifyContactUsPageHeader,
+		getProfileInformation, GetEmailAndPhoneNumber, ClickFeedback, ClickContactUs_CF, VerifyMoodSelectorScreen, VerifyEmotionsAnimateFromTopToBottom, ClickGreatLink, VerifyPostSurveyScreen, ClickCouldvebeenBetterLink, ClickItwasntWorkingLink, ClickBackButton, VerifyHomePageDashBoard, ClickContactUsFromHomePage, ClickSendFeedbackNow, VerifyRateUsOnGooglePlayButton, VerifyGooglePlayRatePage, ClickBackFromPostSurvey, VerifyContactUsPageHeader,
 
 		FlyOut_HOME, Flyout_Location, Fill_OptionOrder, HoldingDetails_click_BuyButton, HoldingDetails_verify_Account_CADCash, HoldingDetails_verify_Account_US_MarginShort,
 
@@ -164,13 +174,21 @@ public class EventCase {
 
 		USMarAccLongToShort, USMarginShort_Buy_Market,
 
-		verify_access_to_WB, Verify_account_activity_credit, Verify_Combined_Account, Verify_FP_Account, verify_login_5_times, Verify_PIA_Account, VerifyAccessCard, VerifyAccessCardDetails, VerifyActionFields, verifybill_landingpage, VerifyCombinedAccounts, verifyconfirm_order, VerifyDIAccounts, verifyErrorMessage, VerifyFPAccounts, VerifyIconDetails, VerifyInvestingScreen, VerifyNoEligibleAccounts, VerifyNoTradingAccounts, VerifyPIAAccounts, VerifyQuickIcons, VerifyReceipt, VerifySender, VerifySenderList, VerifyShareholderType, Verifytimestamp, VerifyTwoAccessCardDetails, VerifyUser, VerifyNickName, verifydefaultcard, View_profile, VerifyProfileHeader, VerifyContactInformationHeader, VerifyInitialNameforIndividual, VerifyInitialNameforBusinessUser, VerifyInitialNameInUpperCase, VerifyHomePhoneMasked, VerifyExtensionNotMasked, verifyProfileandSettingLandingPage, VerifyProfileNameLength, VerifyErrorMessage, VerifySecurityQuestionButton, VeirfySecuirtyQuestionPageheader, VerifyNotificationsButton, VeirfyNotificationsPageheader, VerifyQuickAccessSettings, VerifyQuickAccessSettingsHeader, VerifyTDForMeSettings, VerifyTDForMeSettingsHeader, VerifyWhatsNew, VerifyWhatsNewPageHeader, VerifyProfileAndSettingslink, VerifyEmailFormat, VerifyEmailIDLength, VerifyBlankEmailNotSuccesful, VerifyErrorMessageOrLength, VerifyEmailIDBlankorNot, VerifyEmailAddedSuccesful, VerifyPopUpWithCancelButton, VerifyClearTextIconDisplayed, VerifyPhoneNumberIsEmpty, VerifyTdforMeNotificationsHeader, VerifyEnableNotificationsSwitchFunction, VerifyQuickAccessSwitchWork, VerifyTDForMeDisableSwitchFunction, VerifyTDForMeEnableSwitchFunction, ClickCustomizeNotificationlinkFromTDforMe, VerifyTDForMeNotificationPageHeader,
+		verify_access_to_WB, Verify_account_activity_credit, Verify_Combined_Account, Verify_FP_Account, verify_login_5_times, Verify_PIA_Account, VerifyAccessCard, VerifyAccessCardDetails, VerifyActionFields, verifybill_landingpage, VerifyCombinedAccounts, verifyconfirm_order, VerifyDIAccounts, verifyErrorMessage, VerifyFPAccounts, VerifyIconDetails, VerifyInvestingScreen, VerifyNoEligibleAccounts, VerifyNoTradingAccounts, VerifyPIAAccounts, VerifyQuickIcons, VerifyReceipt, VerifySender, VerifySenderList, VerifyShareholderType, Verifytimestamp, VerifyTwoAccessCardDetails, VerifyUser, VerifyNickName, verifydefaultcard, View_profile, VerifyProfileHeader, VerifyContactInformationHeader, VerifyInitialNameforIndividual, VerifyInitialNameforBusinessUser, VerifyInitialNameInUpperCase, VerifyHomePhoneMasked, VerifyExtensionNotMasked, verifyProfileandSettingLandingPage, VerifyProfileNameLength, VerifyErrorMessage, VerifySecurityQuestionButton, VeirfySecuirtyQuestionPageheader, VerifyNotificationsButton, VeirfyNotificationsPageheader, VerifyQuickAccessSettings, VerifyQuickAccessSettingsHeader, VerifyTDForMeSettings, VerifyTDForMeSettingsHeader, VerifyWhatsNew, VerifyWhatsNewPageHeader, VerifyProfileAndSettingslink, VerifyEmailFormat, VerifyEmailIDLength, VerifyBlankEmailNotSuccesful, VerifyErrorMessageOrLength, VerifyEmailIDBlankorNot, VerifyEmailAddedSuccesful, VerifyPopUpWithCancelButton, VerifyClearTextIconDisplayed, VerifyPhoneNumberIsEmpty, VerifyTDForMeDisableSwitchFunction, VerifyTDForMeEnableSwitchFunction, ClickCustomizeNotificationlinkFromTDforMe, VerifyTDForMeNotificationPageHeader, VerifyQuickAccessSwitchWork,
 
-		VerifyPlaceHolderDisplayed, VerifyToastmessageDisplayed, VerifyPhoneEmailNotChanged, verifyQuickAccessBillPaidUpdate, ClickBackFromAppOrGooglePage, Verify_quick_link_go_back_home, Verify_quick_link_view_myaccounts, Verify_error_screen, VerifyFIFOLogic, VerifyEquityAndETFs, VerifyTradeOnLandingPage, Verify_flyoutMenu, VerfiyOptionConfirmOrderScreen, verifyOptionConfirmOrderReceipt,
+		VerifyPlaceHolderDisplayed, VerifyToastmessageDisplayed, VerifyPhoneEmailNotChanged, verifyQuickAccessBillPaidUpdate, ClickBackFromAppOrGooglePage, Verify_quick_link_go_back_home, Verify_quick_link_view_myaccounts, Verify_error_screen, VerifyFIFOLogic, VerifyEquityAndETFs, VerifyTradeOnLandingPage, Verify_flyoutMenu, VerfiyOptionConfirmOrderScreen, verifyOptionConfirmOrderReceipt,ClickCustomizeNotificationsLinkFromNotifications,VerifyTdforMeNotificationsHeader,VerifyEnableNotificationsSwitchFunction,
+
+		ClickActivityTab, SelectFirstTransaction, VerifyTransactionDetailHeader, VerifyTransactionDetails, SelectPreviousTransaction, VerifyMFChineseContent, VerifyPurchaseMFPageInChinese, VerifyMFActivityChineseContent, VerifyFundDetailsInformationInChinese, verifyTransactionDetailsInChinese, ClickPreviewPurchase, VerifyPreviewPurchasePageHeader, VerifyPreviewPurchasePhoneFormat, VerifyPreviewPurchasePhoneNotMasked, VerifyPreviewPurchaseContentInChinese, VerifyMinimumAmount, VerifyMaximumAmount, savePhoneInforForMFVerification, saveEmailInforForMFVerification, VerifyPhoneIsPopulatedWithProfilePhone, VerifyEmailIsPopulatedWithProfileEmail, SelectLastTransaction, VerifyZeroBalance, VerifyPurchaseButtonNotpresent, VerifyUSDDisclaimer, VerifyPrepopulatedInformatiom, ClickTDForMe_Flyout, VerifyCADValueForMarketAndBookValue, VerifyUSDAmount, ClickMobilePhoneNumber, VerifyBorrowMoneyYesButton, VerifyClosingDayDisclaimer, VerifyFundfactsAcknowledgement, clickpreviewButtonWithNoForm, VerifyErrorMessageForClosedFund, VerifyErrorMessageWithoutFundSelected,
+		
+		ClickPopupCancelOrderButton,VerifyFromCADAccountToUSDMFAccountIsNotAllowed,VerifyFromUSDAccountToCADMFAccountIsNotAllowed,ClickViewfundFacts,VerifyFundfactsPageheader,GoBackToHomePage,SelectIneligibleFund,VerifyErrorMessageForIneligibleFund,ClickfundFacts,ClickBalanceTab,VerifyUSDConversionRatePresent,ClickCancelMFpurchase,VerifyCancelPopUpMessage,VerifyWarningMessageContent,
+		
+		EditMobilePhoneNumber, VerifyPurchaseMFPageHeader,VerifyEmailAddressIsEditable,SelectAccountUsingAccountName,VerifyFundDropdownList,VerifyFromAccountBeStaticAndLinked, ClickFundsTab,SelectFirstFund,SelectUSDFunds,VerifyNoMutualFundAccounts,VerifyQuickLinkDisplayed,randomlySelectOneFund,VerifyFundDetailsPageHeader,VerifyFundCategory,ClickPurchaseButton,
+
+		savePhoneInforForPFVerification, VerifyPhoneIsNotUpdatedAsMFChanges, VerifyConfirmationPageHeader, ClickPurchaseNowBtn, ClickGoBackHomeBtn, ClickViewMyAccountsBtn, VerifyQuickLinkPurchaseChineseContent, VerifyReceiptDetailChineseContent, VerifyFeedBackNTimes, VerifyCallFuntionality,ClickPurchaseMF,
 
 		WatchLists_addSymbolToWatchLists, WatchLists_clickSearchBar, WatchLists_Header, Watchlists_verify_newOrderFlow_Watchlists, WatchLists_verifyRecentSearches, WatchLists_verifySymbol, WatchLists_verifySymbolAdded,
 
-		FindLoactions_VerifyFindlocations, BetweenMyAccounts_TransferChequeAccount, TradeLimitAndTriggerPrice, ClickCustomizeNotificationsLinkFromNotifications,
+		FindLoactions_VerifyFindlocations, BetweenMyAccounts_TransferChequeAccount, TradeLimitAndTriggerPrice,
 
 		Accounts_SelectAccount, AccountsCredit_ClickPayBill, AccountsCredit_verifyLastTranaction, AccountsCredit_clickLastTranaction, Transaction_VerifyTransac, AccountsCredit_clickSummaryTab, AccountsCredit_VerifySummaryDetails, AccountsCredit_clickStatementTab, AccountsCredit_VeifyStatementDetails, StatementBalance_VerifyBalanceDetails, Bill_PayCanada_verifyCurrentBalance, Bill_PayCanada_PayBill, AccountsCredit_ClickTransfers
 
@@ -180,6 +198,10 @@ public class EventCase {
 		// MIT Multi-Leg
 
 		OpenAppMIT, LoginMIT, tapInvesting, verifyDefaultStrategies, navigateToSearchScreen, selectTradeAccount_OrderType, verifySymbolUS, verifySymbolSearchResults, clickInvestingTrade, tapTradeSearchBar, clickFirstSymbol, verifyStockOptionContents, verifyOptionOptionContents, verifySelectOption, verifyStockMidNaturalPrice, verifyOptionMidNaturalPrice, verifyGoodTill, verifyGoodTillExpiryDate, verifySharehoderType, verifyStockOptionBackButton, verifyOptionOptionBackButton, verifyOptionOptionPreviewOrderButton, searchAndSelectAccount, submitStockOptionOrder, selectDateSpecify_Android, searchAndSelectAccountRapcode, verifyStockOptionFieldsReset, verifyOptionOptionFieldsReset, verifyOptionOptionFieldResetOrderTypeChanged, verifyStockOptionFieldResetOrderTypeChanged, verifyStockOptionConfirmOrder, verifyOptionOptionConfirmOrder, submitOptionOptionOrder, verifyStockOptionCancelOrderReceipt, verifyOptionOptionCancelOrderReceipt, verifyTradeOrderFormContent, verifyEntryOrderFormContent, verifyWarningMsgExchangeAgrNotSigned, verifyStockOptionConfirmOrderReceipt, verifyOptionOptionConfirmOrderReceipt, clickPostorderMyAccount, clickPostorderTrade, clickQuickLinkHome, clickQuickLinkTrade, clickQuickLinkOrder, verifyOptionOptionChainTableSubmit, verifyStockOptionChainTableSubmit, verifyStockOptionChainTableCancel, verifyOptionOptionChainTableCancel, verifyInvalidTradingPassword, verifyStockOptionChangeOrder, verifyOptionOptionChangeOrder, verifyStockOptionOrderDetails, verifyOptionOptionOrderDetails, verifyMLOrdersTabDetails, Test, verifyBackButton, searchAndSelectAccountRapcodeWZXY,
+
+		// MIT PNS Alerts
+
+		verifyPreLoginDashboardAlerts, verifyAlertUI, tapAlerts, verifyBackandGearIcon, verifyxCancelbutton, verifycreateAlertConditionPriceRises, verifyCreateAlertConditionPricehit52Week, verifyQuoteInformation, VerifyPriceChangesOnHeavyVolume, VerifyPrimaryEmailDeliveryPreferences, VerifySecondaryEmailDeliveryPreferences, VerifyEnablingAllDeliveryPreferences, VerifyCreateSimilarAlertConditionPriceRisesFasterThanIndex, VerifyAlertConditionPriceGapAtOpeningTrade, verifyAlertIconMODQuotesPage, verifyNotificationPrefMOD, verifyNotificationPrefFlyMenu, verifyPriceDropsBelow, verifyPriceRisesAbove, verifyEditAlertUI, verifyDefaultWhenAlertConditionChange, verifyPriceChangesFromPreviousClose, verifyPriceEarningRatioDropsBelow, verifyModPagesLoaded, verifyExceedDailyVolume, navigateToQuotePage, navigateToOrderForm, VerifyDoneConditionPriceChangesFromPreviousClose, VerifyErrorConditionPriceDropsBelowStocks, CreateAlertConditionPriceChangesFromPrevious, VerifyBackButtonOnCreateNewAlertpage, VerifyChangeConditionCreateNewAlertPage, VerifyRefreshButtonOnCreateNewAlertPage, verifyFuncFlow, VerifyClientNavigateInvestingAlertsNotifcationOFF, VerifyClientNavigateInvestingPNSAndAlertsNotifcationON, VerifyClientNavigateInvestingAlertsNotifcationSuspended,
 
 		// P2P
 
@@ -342,6 +364,10 @@ public class EventCase {
 		case InvestingHeader:
 			Investing.get().verifyInvestingHeader();
 			break;
+
+		case ClickPurchaseMF:
+			Investing.get().ClickPurchaseMF();
+			break;
 		//
 		//// case TradeHeader:
 		//// Trade.get().verifyTrade();
@@ -488,10 +514,10 @@ public class EventCase {
 
 		case Interac_e_Registration_clickContinueButton:
 			Interac_e_Registration.get().clickContinueButton();
+			break;
 
 		case Interac_e_Transfer_clickContinueButton:
 			Interac_e_Transfer.get().clickContinueButton();
-
 			break;
 
 		case Interac_e_Transfer_verifyErrorText:
@@ -520,6 +546,7 @@ public class EventCase {
 
 		case Interac_e_Registration_verifyRegSuccessMessage:
 			Interac_e_Registration.get().verifyRegSuccessMsg();
+			break;
 
 		case Interac_e_Transfer_verifyRegSuccessMessage:
 			Interac_e_Transfer.get().verifyRegSuccessMsg();
@@ -1801,6 +1828,7 @@ public class EventCase {
 		case Menu_Profile_And_Settings:
 			MenuPage.get().clickProfileAndSettings();
 			break;
+
 		case Profile_And_Settings_clickPaymentsAndTransfers:
 			Profile_And_Settings.get().clickPaymentsAndTransfers();
 			break;
@@ -2067,10 +2095,6 @@ public class EventCase {
 
 		case ClickItwasntWorkingLink:
 			MoodSelectorScreen.get().ClickItwasntWorkingLink();
-			break;
-
-		case ClickBackFromMoodSelector:
-			MoodSelectorScreen.get().ClickBackFromMoodSelector();
 			break;
 
 		case VerifyHomePageDashBoard:
@@ -2347,6 +2371,155 @@ public class EventCase {
 
 		// MIT Multi-Leg Switch Cases END
 
+		// MIT PNS Alerts START
+		case verifyPreLoginDashboardAlerts:
+			MIT_PNSAccessAlerts.get().verifyPreLoginDashboardAlerts();
+			break;
+
+		case verifyAlertUI:
+			MIT_PNSAccessAlerts.get().verifyAlertUI();
+			break;
+
+		case verifyModPagesLoaded:
+			MIT_PNSAccessAlerts.get().verifyModPagesLoaded();
+			break;
+
+		case verifyAlertIconMODQuotesPage:
+			MIT_PNSAccessAlerts.get().verifyAlertIconMODQuotesPage();
+			break;
+
+		case verifyNotificationPrefMOD:
+			MIT_PNSAccessAlerts.get().verifyNotificationPrefMOD();
+			break;
+
+		case verifyNotificationPrefFlyMenu:
+			MIT_PNSAccessAlerts.get().verifyNotificationPrefFlyMenu();
+			break;
+
+		case verifyPriceDropsBelow:
+			MIT_PNSViewAlertsLandingPage.get().verifyPriceDropsBelow();
+			break;
+
+		case verifyPriceRisesAbove:
+			MIT_PNSViewAlertsLandingPage.get().verifyPriceRisesAbove();
+			break;
+
+		case verifyEditAlertUI:
+			MIT_PNSManageAlerts.get().verifyEditAlertUI();
+			break;
+
+		case verifyDefaultWhenAlertConditionChange:
+			MIT_PNSManageAlerts.get().verifyDefaultWhenAlertConditionChange();
+			break;
+
+		case verifyPriceChangesFromPreviousClose:
+			MIT_PNSManageAlerts.get().verifyPriceChangesFromPreviousClose();
+			break;
+
+		case verifyPriceEarningRatioDropsBelow:
+			MIT_PNSManageAlerts.get().verifyPriceEarningRatioDropsBelow();
+			break;
+
+		case verifyExceedDailyVolume:
+			MIT_PNSManageAlerts.get().verifyExceedDailyVolume();
+			break;
+
+		case navigateToQuotePage:
+			MIT_PNSManageAlerts.get().navigateToQuotePage();
+			break;
+
+		case navigateToOrderForm:
+			MIT_PNSManageAlerts.get().navigateToOrderForm();
+			break;
+
+		case tapAlerts:
+			MIT_PNSCreateNewAlert.get().tapAlerts();
+			break;
+
+		case verifyBackandGearIcon:
+			MIT_PNSCreateNewAlert.get().verifyBackandGearIcon();
+			break;
+
+		case verifyxCancelbutton:
+			MIT_PNSCreateNewAlert.get().verifyxCancelbutton();
+			break;
+
+		case verifycreateAlertConditionPriceRises:
+			MIT_PNSCreateNewAlert.get().verifycreateAlertConditionPriceRises();
+			break;
+
+		case verifyCreateAlertConditionPricehit52Week:
+			MIT_PNSCreateNewAlert.get().verifyCreateAlertConditionPricehit52Week();
+			break;
+
+		case verifyQuoteInformation:
+			MIT_PNSCreateNewAlert.get().verifyQuoteInformation();
+			break;
+
+		case VerifyPriceChangesOnHeavyVolume:
+			MIT_PNSCreateNewAlert.get().VerifyPriceChangesOnHeavyVolume();
+			break;
+
+		case VerifyPrimaryEmailDeliveryPreferences:
+			MIT_PNSCreateNewAlert.get().VerifyPrimaryEmailDeliveryPreferences();
+			break;
+
+		case VerifySecondaryEmailDeliveryPreferences:
+			MIT_PNSCreateNewAlert.get().VerifySecondaryEmailDeliveryPreferences();
+			break;
+
+		case VerifyEnablingAllDeliveryPreferences:
+			MIT_PNSCreateNewAlert.get().VerifyEnablingAllDeliveryPreferences();
+			break;
+
+		case VerifyAlertConditionPriceGapAtOpeningTrade:
+			MIT_PNSCreateNewAlert.get().VerifyAlertConditionPriceGapAtOpeningTrade();
+			break;
+
+		case VerifyCreateSimilarAlertConditionPriceRisesFasterThanIndex:
+			MIT_PNSCreateNewAlert.get().VerifyCreateSimilarAlertConditionPriceRisesFasterThanIndex();
+			break;
+
+		case VerifyDoneConditionPriceChangesFromPreviousClose:
+			MIT_PNSCreateNewAlert.get().VerifyDoneConditionPriceChangesFromPreviousClose();
+			break;
+
+		case VerifyErrorConditionPriceDropsBelowStocks:
+			MIT_PNSCreateNewAlert.get().VerifyErrorConditionPriceDropsBelowStocks();
+			break;
+		case CreateAlertConditionPriceChangesFromPrevious:
+			MIT_PNSCreateNewAlert.get().CreateAlertConditionPriceChangesFromPrevious();
+			break;
+
+		case VerifyBackButtonOnCreateNewAlertpage:
+			MIT_PNSCreateNewAlert.get().VerifyBackButtonOnCreateNewAlertpage();
+			break;
+		case VerifyChangeConditionCreateNewAlertPage:
+			MIT_PNSCreateNewAlert.get().VerifyChangeConditionCreateNewAlertPage();
+			break;
+
+		case VerifyRefreshButtonOnCreateNewAlertPage:
+			MIT_PNSCreateNewAlert.get().VerifyRefreshButtonOnCreateNewAlertPage();
+			break;
+
+		case verifyFuncFlow:
+			MIT_PNSCreateNewAlert.get().verifyFuncFlow();
+			break;
+
+		case VerifyClientNavigateInvestingAlertsNotifcationOFF:
+			MIT_PNSCreateNewAlert.get().VerifyClientNavigateInvestingAlertsNotifcationOFF();
+			break;
+
+		case VerifyClientNavigateInvestingPNSAndAlertsNotifcationON:
+			MIT_PNSCreateNewAlert.get().VerifyClientNavigateInvestingPNSAndAlertsNotifcationON();
+			break;
+
+		case VerifyClientNavigateInvestingAlertsNotifcationSuspended:
+			MIT_PNSCreateNewAlert.get().VerifyClientNavigateInvestingAlertsNotifcationSuspended();
+			break;
+
+		// MIT PNS Alerts END
+
 		case Env_DeleteDefaultCard:
 			Env_Settings.get().deleteDefaultCard();
 			break;
@@ -2432,6 +2605,310 @@ public class EventCase {
 		case ClickStatement:
 			Credit.get().clickStatment();
 			break;
+
+		case ClickMobilePhoneNumber:
+			Profile.get().ClickMobilePhoneNumber();
+			break;
+
+		case EditMobilePhoneNumber:
+			Profile.get().EditMobilePhoneNumber();
+			break;
+
+		case ClickBackButton:
+			(new com.td.MobileAction2()).ClickBackButton();
+			break;
+
+		case VerifyFeedBackNTimes:
+			MoodSelectorScreen.get().VerifyFeedBackNTimes();
+			break;
+
+		// end of profile and preference
+
+		// Start of Purchase Mutual funds
+		case VerifyPurchaseMFPageHeader:
+			PurchaseMutualFunds.get().VerifyPurchaseMFPageHeader();
+			break;
+
+		case clickpreviewButtonWithNoForm:
+			PurchaseMutualFunds.get().clickpreviewButtonWithNoForm();
+			break;
+
+		case VerifyErrorMessageForClosedFund:
+			PurchaseMutualFunds.get().VerifyErrorMessageForClosedFund();
+			break;
+
+		case VerifyErrorMessageWithoutFundSelected:
+			PurchaseMutualFunds.get().VerifyErrorMessageWithoutFundSelected();
+			break;
+					
+		case VerifyEmailAddressIsEditable:
+			PurchaseMutualFunds.get().VerifyEmailAddressIsEditable();
+			break;
+
+		case SelectAccountUsingAccountName:
+			Accounts.get().SelectAccountUsingAccountNameAndAccountNum();
+			break;
+
+		case VerifyFundDropdownList:
+			PurchaseMutualFunds.get().VerifyFundDropdownList();
+			break;
+
+		case VerifyFromAccountBeStaticAndLinked:
+			PurchaseMutualFunds.get().VerifyFromAccountBeStaticAndLinked();
+			break;
+
+		case ClickFundsTab:
+			Investing.get().ClickFundsTab();
+			break;
+
+		case SelectFirstFund:
+			Investing.get().SelectFirstFund();
+			break;
+
+		case SelectUSDFunds:
+			Investing.get().SelectUSDFunds();
+			break;
+
+		case VerifyNoMutualFundAccounts:
+			Accounts.get().VerifyNoMutualFundAccounts();
+			break;
+
+		case VerifyQuickLinkDisplayed:
+			Investing.get().VerifyQuickLinkDisplayed();
+			break;
+
+		case randomlySelectOneFund:
+			Investing.get().randomlySelectOneFund();
+			break;
+
+		case VerifyFundDetailsPageHeader:
+			FundDetails.get().VerifyFundDetailsPageHeader();
+			break;
+
+		case VerifyFundCategory:
+			FundDetails.get().VerifyFundCategory();
+			break;
+
+		case ClickPurchaseButton:
+			FundDetails.get().click_PurchaseButton();
+			break;
+
+		case ClickActivityTab:
+			Investing.get().ClickActivityTab();
+			break;
+
+		case SelectLastTransaction:
+			Investing.get().SelectLastTransaction();
+			break;
+
+		case SelectFirstTransaction:
+			Investing.get().SelectFirstTransaction();
+			break;
+
+		case VerifyTransactionDetailHeader:
+			TransactionDetails.get().verifyTransactionHeader();
+			break;
+
+		case VerifyTransactionDetails:
+			TransactionDetails.get().verifyTransactionDetails();
+			break;
+
+		case SelectPreviousTransaction:
+			Investing.get().SelectPreviousTransaction();
+			break;
+
+		case VerifyMFChineseContent:
+			Investing.get().VerifyMFChineseContent();
+			break;
+
+		case ClickPopupCancelOrderButton:
+			Popupwindow.get().ClickPopupCancelOrderButton();
+			break;
+
+		case VerifyPurchaseMFPageInChinese:
+			PurchaseMutualFunds.get().VerifyPurchaseMFPageInChinese();
+			break;
+
+		case VerifyFromCADAccountToUSDMFAccountIsNotAllowed:
+			PurchaseMutualFunds.get().VerifyFromCADAccountToUSDMFAccountIsNotAllowed();
+			break;
+
+		case VerifyFromUSDAccountToCADMFAccountIsNotAllowed:
+			PurchaseMutualFunds.get().VerifyFromUSDAccountToCADMFAccountIsNotAllowed();
+			break;
+
+		case ClickViewfundFacts:
+			PurchaseMutualFunds.get().ClickViewfundFacts();
+			break;
+			
+		case VerifyBorrowMoneyYesButton:
+			PurchaseMutualFunds.get().VerifyBorrowMoneyYesButton();
+			break;
+
+		case VerifyFundfactsPageheader:
+			FundFacts.get().VerifyFundfactsPageheader();
+			break;
+
+		case VerifyMFActivityChineseContent:
+			Investing.get().VerifyMFActivityChineseContent();
+			break;
+
+		case VerifyFundDetailsInformationInChinese:
+			FundDetails.get().VerifyFundDetailsInformationInChinese();
+			break;
+
+		case verifyTransactionDetailsInChinese:
+			TransactionDetails.get().verifyTransactionDetailsInChinese();
+			break;
+
+		case ClickPreviewPurchase:
+			PurchaseMutualFunds.get().ClickPreviewPurchase();
+			break;
+
+		case VerifyPreviewPurchasePageHeader:
+			PreviewPurchase.get().VerifyPreviewPurchasePageHeader();
+			break;
+
+		case VerifyPreviewPurchasePhoneFormat:
+			PreviewPurchase.get().VerifyPreviewPurchasePhoneFormat();
+			break;
+
+		case GoBackToHomePage:
+			PreviewPurchase.get().GoBackToHomePage();
+			break;
+
+		case VerifyPreviewPurchasePhoneNotMasked:
+			PreviewPurchase.get().VerifyPreviewPurchasePhoneNotMasked();
+			break;
+
+		case VerifyPreviewPurchaseContentInChinese:
+			PreviewPurchase.get().VerifyPreviewPurchaseContentInChinese();
+			break;
+
+		case VerifyMinimumAmount:
+			PurchaseMutualFunds.get().VerifyMinimumAmount();
+			break;
+
+		case VerifyMaximumAmount:
+			PurchaseMutualFunds.get().VerifyMaximumAmount();
+			break;
+
+		case savePhoneInforForMFVerification:
+			Profile.get().savePhoneInforForMFVerification();
+			break;
+
+		case saveEmailInforForMFVerification:
+			Profile.get().saveEmailInforForMFVerification();
+			break;
+
+		case VerifyPhoneIsPopulatedWithProfilePhone:
+			PurchaseMutualFunds.get().VerifyPhoneIsPopulatedWithProfilePhone();
+			break;
+
+		case SelectIneligibleFund:
+			PurchaseMutualFunds.get().SelectIneligibleFund();
+			break;
+
+		case VerifyErrorMessageForIneligibleFund:
+			PurchaseMutualFunds.get().VerifyErrorMessageForIneligibleFund();
+			break;
+
+		case VerifyEmailIsPopulatedWithProfileEmail:
+			PurchaseMutualFunds.get().VerifyEmailIsPopulatedWithProfileEmail();
+			break;
+
+		case savePhoneInforForPFVerification:
+			PreviewPurchase.get().savePhoneInforForPFVerification();
+			break;
+
+		case VerifyPhoneIsNotUpdatedAsMFChanges:
+			Profile.get().VerifyPhoneIsNotUpdatedAsMFChanges();
+			break;
+
+		case VerifyConfirmationPageHeader:
+			Receipt.get().VerifyConfirmationPageHeader();
+			break;
+
+		case ClickPurchaseNowBtn:
+			PreviewPurchase.get().ClickPurchaseNowBtn();
+			break;
+
+		case ClickGoBackHomeBtn:
+			Receipt.get().ClickGoBackHomeBtn();
+			break;
+
+		case ClickViewMyAccountsBtn:
+			Receipt.get().ClickViewMyAccountsBtn();
+			break;
+
+		case VerifyQuickLinkPurchaseChineseContent:
+			Investing.get().VerifyQuickLinkPurchaseChineseContent();
+			break;
+
+		case VerifyReceiptDetailChineseContent:
+			Receipt.get().VerifyReceiptDetailChineseContent();
+			break;
+
+		case ClickfundFacts:
+			FundDetails.get().ClickfundFacts();
+			break;
+
+		case VerifyCallFuntionality:
+			FundDetails.get().VerifyCallFuntionality();
+			break;
+
+		case VerifyZeroBalance:
+			Investing.get().VerifyZeroBalance();
+			break;
+
+		case ClickBalanceTab:
+			Investing.get().ClickBalanceTab();
+			break;
+
+		case VerifyUSDConversionRatePresent:
+			FundDetails.get().VerifyUSDConversionRatePresent();
+			break;
+			
+		case VerifyCADValueForMarketAndBookValue:
+			FundDetails.get().VerifyCADValueForMarketAndBookValue();
+			break;
+		case VerifyUSDDisclaimer:
+			Investing.get().VerifyUSDDisclaimer();
+			break;
+
+		case VerifyPurchaseButtonNotpresent:
+			FundDetails.get().VerifyPurchaseButtonNotpresent();
+			break;
+
+		case ClickCancelMFpurchase:
+			PreviewPurchase.get().ClickCancelMFpurchase();
+			break;
+
+		case VerifyUSDAmount:
+			PreviewPurchase.get().VerifyUSDAmount();
+			break;
+
+		case VerifyCancelPopUpMessage:
+			Popupwindow.get().VerifyCancelPopUpMessage();
+			break;
+
+		case VerifyPrepopulatedInformatiom:
+			PurchaseMutualFunds.get().VerifyPrepopulatedInformatiom();
+			break;
+
+		case VerifyWarningMessageContent:
+			PreviewPurchase.get().VerifyWarningMessageContent();
+			break;
+
+		case VerifyClosingDayDisclaimer:
+			FundDetails.get().VerifyClosingDayDisclaimer();
+			break;
+
+		case VerifyFundfactsAcknowledgement:
+			PreviewPurchase.get().VerifyFundfactsAcknowledgement();
+			break;
+
+		// End of Purchase Mutual funds
 
 		case VerifyStatementBalanceHeader:
 			StatementBalance.get().verifyStatementBalanceHeader();
@@ -3219,3 +3696,4 @@ public class EventCase {
 	}
 
 }
+

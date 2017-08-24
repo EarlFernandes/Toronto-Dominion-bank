@@ -750,7 +750,6 @@ public class MutualFunds extends _CommonPage {
 					mobileAction.waitForElementToVanish(progressBar);
 
 					MobileElement selectSymbolValue1 = (MobileElement) (CL.GetAppiumDriver())
-
 							.findElement(By.xpath(selectSymbolVal1));
 
 					mobileAction.FuncClick(selectSymbolValue1, "Symbol");
@@ -764,7 +763,6 @@ public class MutualFunds extends _CommonPage {
 					mobileAction.waitForElementToVanish(progressBar);
 
 					MobileElement selectSymbolValue1 = (MobileElement) (CL.GetAppiumDriver())
-
 							.findElement(By.xpath(selectSymbolVal1));
 
 					mobileAction.FuncClick(selectSymbolValue1, "Symbol");
@@ -779,7 +777,6 @@ public class MutualFunds extends _CommonPage {
 					mobileAction.waitForElementToVanish(progressBar);
 
 					MobileElement selectSymbolValue = (MobileElement) (CL.GetAppiumDriver())
-
 							.findElement(By.xpath(selectSymbolVal2));
 
 					mobileAction.FuncClick(selectSymbolValue, "Symbol");

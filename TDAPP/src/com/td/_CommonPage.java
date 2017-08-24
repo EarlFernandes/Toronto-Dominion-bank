@@ -147,4 +147,29 @@ public class _CommonPage {
 				CL.getTestDataInstance().TestCaseID);
 	}
 
+	public String getTextInCurrentLocale(String[] textArray) {
+		String text = textArray[0].trim();
+		switch (currentLocale) {
+		case "EN":
+		case "en":
+			text = textArray[0].trim();
+			break;
+		case "FR":
+		case "fr":
+			text = textArray[1].trim();
+			break;
+		case "zh":
+		case "zh-Hans":
+			text = textArray[2].trim();
+			break;
+		case "zh-rHK":
+		case "zh-rTW":
+		case "zh-Hant":
+			text = textArray[3].trim();
+			break;
+		}
+
+		return text;
+	}
+
 }

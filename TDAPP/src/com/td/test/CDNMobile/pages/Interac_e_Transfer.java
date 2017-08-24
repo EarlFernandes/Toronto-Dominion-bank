@@ -700,9 +700,7 @@ public class Interac_e_Transfer extends _CommonPage {
 								"//android.widget.TextView[@resource-id='com.td:id/security_question' and @text='"
 										+ mobileAction.getAppString("eTransferReceiptQuestion") + "']",
 								"Security Question");
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/message' and @text='"
-								+ mobileAction.getAppString("eTransferMessageLabel") + "']",
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/message']",
 						"Message");
 				// mobileAction
 				// .verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/home'

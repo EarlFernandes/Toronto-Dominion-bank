@@ -30,7 +30,6 @@ public class OptionsReceiptPage extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(7, TimeUnit.SECONDS)), this);
 
 	}

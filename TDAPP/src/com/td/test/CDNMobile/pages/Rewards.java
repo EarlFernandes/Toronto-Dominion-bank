@@ -199,7 +199,6 @@ public class Rewards extends _CommonPage {
 		Decorator();
 		try {
 			String value = mobileAction.verifyElementUsingBy(iosRewardValue);
-
 			value.contains(ConstantClass.t_cashBack);
 			CL.GetReporting().FuncReport("Pass", "The element <b>- " + ConstantClass.t_cashBack + "</b> is displayed");
 		} catch (Exception e) {

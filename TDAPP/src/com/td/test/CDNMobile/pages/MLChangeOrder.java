@@ -29,7 +29,6 @@ public class MLChangeOrder extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
@@ -384,8 +383,8 @@ public class MLChangeOrder extends _CommonPage {
 			try {
 				CL.GetReporting().FuncReport("Fail", "Exception in getStockOptionChangeOrderData().");
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 
+				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
