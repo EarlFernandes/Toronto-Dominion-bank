@@ -137,6 +137,8 @@ public class MobileAction2 extends CommonLib {
 			objElement.click();
 
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
+		} catch (WebDriverException e) {
+			System.out.println("WebDriverException, ignor it");		
 		} catch (Exception e) {
 			try {
 				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
@@ -2954,7 +2956,7 @@ public class MobileAction2 extends CommonLib {
 			}
 
 		} else {
-			back_xpath = "//*[@label='Back' or @label='Retour']";
+			back_xpath = "//*[@name='NAVIGATION_ITEM_BACK']";
 		}
 		try {
 			MobileElement back_arrow = (MobileElement) GetDriver().findElement(By.xpath(back_xpath));

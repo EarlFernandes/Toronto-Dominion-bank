@@ -286,6 +286,7 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
 				selectPayee();
 				Decorator();
+				Thread.sleep(2000);
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				String Amount = getTestdata("Amount");
 				// mobileAction.FuncSendKeys(amount, Amount);
