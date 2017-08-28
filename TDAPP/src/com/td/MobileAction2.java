@@ -3484,4 +3484,31 @@ public class MobileAction2 extends CommonLib {
 			}
 		}
 	}
+
+	public void FuncVerifyTextEquals(MobileElement mElement,String sExpected) // Author
+																				// -
+																				// Sushil
+																				// 28-Aug-2017
+	{
+		String sActual = "";
+
+		try {
+			sActual = FuncGetText(mElement);
+			if (sActual.equals(sExpected))
+				GetReporting().FuncReport("Pass", "Expected : " + sExpected + " Actual : " + sActual);
+			else
+				GetReporting().FuncReport("Fail", "Expected : " + sExpected + " Actual : " + sActual);
+
+		} catch (Exception e) {
+			try
+			{
+				GetReporting().FuncReport("Fail", "<b> Exception in FuncVerifyTextEquals()" + "</b>");
+				e.printStackTrace();
+			}
+			catch(Exception e1)
+			{
+			e1.printStackTrace();
+			}
+		}
+	}
 }
