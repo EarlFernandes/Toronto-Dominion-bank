@@ -107,4 +107,6 @@ public final class StringArray {
 	
 	public static final String[] ARRAY_BRABCH_HEADER ={"Branch","Succursale","分行","分行"};
 	public static final String[] ARRAY_FIND_LOCATION ={"Find Locations","Trouver une succursale","查找分行","查找分行"};
+	public static final String[] ARRAY_CONFIRM ={"Confirm","Confirm","确认", "確認"};
+	
 }

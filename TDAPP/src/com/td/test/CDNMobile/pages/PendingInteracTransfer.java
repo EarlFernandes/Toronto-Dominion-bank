@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -189,6 +190,31 @@ public class PendingInteracTransfer extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/home']")
 	private MobileElement gobackhomeButton;
 
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
+	private MobileElement cancel_Interac_e_transfer_header;
+
+	@iOSFindBy(accessibility = "INTERAC_RECLAIM_CONTINUE")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue']")
+	private MobileElement continue_btn_cancel_e_transfer;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='--Deposit To']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/entransfer_deposit_account_bal']")
+	private MobileElement account_balance_confirmation;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='-Amount']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/etransfer_confirm_amount']")
+	private MobileElement amount_confirmation;
+
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/entransfer_btn_finish']")
+	private MobileElement confirm_cancellation;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='-Deposit To']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/entransfer_deposit_account_bal']")
+	private MobileElement account_balance_receipt;
+
+	double cancel_fee = 0.00;
+
 	public synchronized static PendingInteracTransfer get() {
 		if (PendingInteracTransfer == null) {
 			PendingInteracTransfer = new PendingInteracTransfer();
@@ -200,6 +226,7 @@ public class PendingInteracTransfer extends _CommonPage {
 		PageFactory.initElements(
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 	}
+
 
 	/**
 	 * This method will click on Pending Interac_e transfer in Transfer Screen
@@ -973,65 +1000,45 @@ public class PendingInteracTransfer extends _CommonPage {
 
 		Decorator();
 		try {
+			mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
+			mobileAction.FuncClick(selectTransaction, "Select Transaction");
+			mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
+			mobileAction.verifyElementTextIsDisplayed(cancel_Interac_e_transfer_header, "Cancel Interac e-Transfer");
+			mobileAction.FuncClick(continue_btn_cancel_e_transfer, "Continue");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
-				mobileAction.FuncClick(selectTransaction, "Select Transaction");
-				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
-				// mobileAction.verifyElementIsDisplayed(depositToAccount,transfer_fromAccount);
-				// //get deposit to account
-				// String deposit_account_Info =
-				// mobileAction.getValue(depositToAccount);
-				// String deposit_to_account =
-				// mobileAction.FuncGetValByRegx(deposit_account_Info, "\\d+");
-				// String balance = Balance.getAttribute("value");
-				// System.out.println("Old Balance:" + balance);
-				// mobileAction.FuncClick(depositToContinue,"Continue");
-				// mobileAction.FuncClick(cnfrmCancellation, "Confirm");
-				// mobileAction.verifyElementIsDisplayed(cancelSuccessMsg,
-				// "Interac e-Transfer reclaimed and deposited successfully");
-				// String conf_val = mobileAction.getText(cancelCnfrmnVal);
-				// mobileAction.FuncClick(menu, "Menu");
-				// mobileAction.FuncClick(my_Accounts, "My Accounts");
-				// System.out.println("From account:" + from_account);
-				// mobileAction.FuncSelectElementInTable(accountsPage_Table,firstPart,accountssecondPart,deposit_to_account);
-				// String balancenew = balanceNew.getAttribute("value");
-				// System.out.println("New Balance:" + balancenew);
-				//
-				// if(balance.equalsIgnoreCase(balancenew)){
-				// System.err.println("TestCase has failed.");
-				// }
-				// else{
-				// //no home button can be found at this page
-				// //mobileAction.FuncClick(home, "home button");
-				// }
-
-			} else {
-
-				mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
-				mobileAction.FuncClick(selectTransaction, "Select Transaction");
-				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
-				// Thread.sleep(2000);
-				// String balance = Balance.getAttribute("value");
-				// mobileAction.FuncClick(depositToContinue,"Continue");
-				// mobileAction.FuncClick(cnfrmCancellation, "Confirm");
-				// mobileAction.verifyElementIsDisplayed(cancelSuccessMsg,
-				// "Interac e-Transfer reclaimed and deposited successfully");
-				// String conf_val = mobileAction.getText(cancelCnfrmnVal);
-				// mobileAction.FuncClick(menu, "Menu");
-				// mobileAction.FuncClick(my_Accounts, "My Accounts");
-				// mobileAction.FuncSelectElementInTable(accountsPage_Table,firstPart,accountssecondPart,from_account);
-				// String balancenew = balanceNew.getAttribute("value");
-				//
-				// if(balance.equalsIgnoreCase(balancenew)){
-				// System.err.println("TestCase has failed.");
-				// }
-				// else{
-				// //no home button can be found at this page
-				// //mobileAction.FuncClick(home, "home button");
-				// }
-
+				confirm_cancellation = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeButton[@label='" + getTextInCurrentLocale(StringArray.ARRAY_CONFIRM) + "']",
+						"Confirm Button");
 			}
+			String amountCancelled = mobileAction.getValue(amount_confirmation);
+			double amountCancelled_d = mobileAction.convertStringAmountTodouble(amountCancelled);
+
+			System.out.println("amountCancelled:" + amountCancelled_d);
+			String balance_before_Cancelled = mobileAction.getValue(account_balance_confirmation);
+			double balance_before_Cancelled_d = mobileAction.convertStringAmountTodouble(balance_before_Cancelled);
+			System.out.println("balance_before_Cancelled:" + balance_before_Cancelled_d);
+			mobileAction.FuncClick(confirm_cancellation, "Confirm");
+
+			mobileAction.verifyElementIsDisplayed(cancelSuccessMsg,
+					"Interac e-Transfer reclaimed and deposited successfully");
+
+			String balance_after_Cancelled = mobileAction.getValue(account_balance_receipt);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				balance_after_Cancelled = mobileAction.FuncGetValByRegx(balance_after_Cancelled,
+						"\\$\\d+,*\\d{0,3}\\.\\d+");
+			}
+
+			double balance_after_Cancelled_d = mobileAction.convertStringAmountTodouble(balance_after_Cancelled);
+			System.out.println("balance_after_Cancelled:" + balance_after_Cancelled_d);
+
+			if (balance_after_Cancelled_d == balance_before_Cancelled_d + amountCancelled_d - cancel_fee) {
+				mobileAction.Report_Pass_Verified("Pending IET Cannceled");
+			} else {
+				mobileAction.Report_Fail("Pending IET Cannceled");
+			}
+
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
