@@ -101,6 +101,7 @@ import com.td.test.myspend.Spending_Insight;
 import com.td.test.myspend.TDAppHomePage;
 import com.td.test.myspend.TourPage;
 import com.td.test.myspend.TransactionHistory;
+import com.td.test.CDNMobile.pages.Branch;
 
 public class EventCase {
 
@@ -130,7 +131,7 @@ public class EventCase {
 
 		ConfirmOrderCancel, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, ChangeDefaultCard, CardDetails_deleteicon, ConfirmPayee_InvalidAmount, EditEmailAddressWithInvalidChar,
 
-		Dashboard_Authentication, Dashboard_UnAuthentication,
+		Dashboard_Authentication, Dashboard_UnAuthentication, selectFirstLocation,
 
 		Delete_usr, Deposit_Header, DepositChequeHeader, END,
 
@@ -412,6 +413,11 @@ public class EventCase {
 		case HomeScreen_WatchLists:
 			HomeScreen.get().clickWatchLists();
 			break;
+						
+		case selectFirstLocation:
+			FindLocations.get().selectFirstLocation();
+			break;
+			
 		case Env_set:
 			Env_Settings.get().set_environment();
 			break;
@@ -879,7 +885,7 @@ public class EventCase {
 			break;
 
 		case HomeScreen_Location_Details:
-			HomeScreen.get().verifyLocations();
+			Branch.get().verifyLocationDetails();
 			break;
 
 		case Login_Ntimes:
