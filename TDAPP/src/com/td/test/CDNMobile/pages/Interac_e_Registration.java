@@ -590,10 +590,10 @@ public class Interac_e_Registration extends _CommonPage {
 		Decorator();
 		try {
 			
-			mobileAction.FunctionSwipe("up", 200, 200);
-			mobileAction.FuncClick(goBackHome, "Go Back Home");
+			HomeScreen.get().clickMenu();
+			MenuPage.get().clickMenuTransfer();
 
-		} catch (NoSuchElementException | IOException | InterruptedException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		}

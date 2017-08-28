@@ -249,11 +249,14 @@ public class Interac_Send_Money extends _CommonPage {
 
 			
 			if(platformName.equalsIgnoreCase("Android")){
+			/*String recipientXpath = "//android.widget.TextView[@text='" + getTestdata("ToAccount")
+					+ "']/preceding-sibling::android.widget.RadioButton";*/
+			
 			String recipientXpath = "//android.widget.TextView[@text='" + getTestdata("ToAccount")
-					+ "']/preceding-sibling::android.widget.RadioButton";
+			+ "']";
 			MobileElement recipient = mobileAction.mobileElementUsingXPath(recipientXpath);
 			mobileAction.FuncClick(recipient, "Recipient " + recipient.getText());
-			mobileAction.FuncClickDone();
+			//mobileAction.FuncClickDone();
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(securityQuestion, "Security Question");
 			mobileAction.FuncSendKeys(securityQuestion, getTestdata("SecurityQuestion"));
@@ -361,6 +364,43 @@ public class Interac_Send_Money extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+	}
+	
+	
+	/**
+	 * @author Ashraf This method will check if the error message is displayed
+	 *         then will transfer the money on Send Money Page.
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen
+	 * @throws IOException
+	 *             If there is problem while reporting
+	 * @return void
+	 * 
+	 */
+	public void quickSendMoney(){
+		
+		Decorator();
+		
+		try {
+			Transfers.get().clickInterac_e_Transfer();
+			sendMoney();
+			mobileAction.FunctionSwipe("up", 200, 200);
+			mobileAction.FuncClick(continueButton, "Continue Button");
+			mobileAction.waitForElementToVanish(progressBar);
+			Interac_e_Registration.get().clickGoBackHome();
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+		
+		
 	}
 
 }

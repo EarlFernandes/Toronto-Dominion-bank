@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
@@ -52,7 +53,8 @@ public class TransfersHistory extends _CommonPage {
 	private MobileElement moneySentStatus;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='PENDING']/../following-sibling::XCUIElementTypeCell")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='PENDING']/../following-sibling::android.widget.LinearLayout/android.widget.TextView[@resource-id='com.td:id/historyTransferItemName']")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@text='PENDING']/../following-sibling::android.widget.LinearLayout/android.widget.TextView[@resource-id='com.td:id/historyTransferItemName']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Sent']")
 	private List<MobileElement> pendingTransactions;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='COMPLETED']")
@@ -60,7 +62,7 @@ public class TransfersHistory extends _CommonPage {
 	private MobileElement completedCategory;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='COMPLETED']/../following-sibling::XCUIElementTypeCell")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='COMPLETED']/../following-sibling::android.widget.LinearLayout/android.widget.TextView[@resource-id='com.td:id/historyTransferItemName']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Cancelled' or @text='Deposited']")
 	private List<MobileElement> completedTransactions;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[2]")
@@ -84,10 +86,10 @@ public class TransfersHistory extends _CommonPage {
 	private MobileElement depositToDropDown;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='DEPOSIT TO']/../following-sibling::XCUIElementTypeCell/XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.RadioButton[@resource-id='com.td:id/rd_action_sheet_selection']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Choose an account']/following-sibling::android.widget.ListView/android.widget.RelativeLayout")
 	private MobileElement depositToAccount;
 
-	@AndroidFindBy(xpath = "//android.widget.RadioButton[@resource-id='com.td:id/rd_action_sheet_selection']/following-sibling::android.widget.TextView[@resource-id='com.td:id/txt_sub_heading']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_sub_heading']")
 	private MobileElement depositToAccountNumber;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
@@ -111,7 +113,7 @@ public class TransfersHistory extends _CommonPage {
 	private MobileElement dateSent;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Date Sent']/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Date Sent']/following-sibling::android.widget.TextView")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Date Sent']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement dateSentVal;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Date of Transfer']")
@@ -119,7 +121,7 @@ public class TransfersHistory extends _CommonPage {
 	private MobileElement dateDeposited;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Date of Transfer']/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Date Deposited']/following-sibling::android.widget.TextView")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Date Deposited']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement dateDepositedVal;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account']")
@@ -127,7 +129,7 @@ public class TransfersHistory extends _CommonPage {
 	private MobileElement fromAccount;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account']/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='From Account']/following-sibling::android.widget.TextView")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='From Account']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement fromAccountVal;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount']")
@@ -135,7 +137,7 @@ public class TransfersHistory extends _CommonPage {
 	private MobileElement amount;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount']/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Amount']/following-sibling::android.widget.TextView")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Amount']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement amountVal;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Deposited To']")
@@ -143,7 +145,7 @@ public class TransfersHistory extends _CommonPage {
 	private MobileElement depositedTo;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Deposited To']/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Deposited To']/following-sibling::android.widget.TextView")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Deposited To']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement depositedToVal;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Confirmation #']")
@@ -151,7 +153,7 @@ public class TransfersHistory extends _CommonPage {
 	private MobileElement confirmationNumber;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Confirmation #']/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Confirmation #']/following-sibling::android.widget.TextView")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Confirmation #']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement confirmationNumberVal;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient']")
@@ -159,15 +161,25 @@ public class TransfersHistory extends _CommonPage {
 	private MobileElement recipient;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient']/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Recipient']/following-sibling::android.widget.TextView")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Recipient']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement recipientVal;
+	
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Sender']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Sender']")
+	private MobileElement sender;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Sender']/following-sibling::XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Sender']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
+	private MobileElement senderVal;
+	
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Amount']")
 	private MobileElement amountRecip;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount']/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Amount']/following-sibling::android.widget.TextView")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Amount']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement amountRecipVal;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Deposit To']")
@@ -175,7 +187,7 @@ public class TransfersHistory extends _CommonPage {
 	private MobileElement depositTo;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Deposit To']/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Deposit To']/following-sibling::android.widget.TextView")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Deposit To']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement depositToVal;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Message']")
@@ -183,17 +195,21 @@ public class TransfersHistory extends _CommonPage {
 	private MobileElement message;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Message']/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Message']/following-sibling::android.widget.TextView")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Message']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement messageVal;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfer Cancelled']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subHeader' and contains(@text,'Your transfer has been cancelled successfully')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header' and contains(@text,'Transfer Cancelled')]")
 	private MobileElement cancelConfirmationMsg;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Confirmation #')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subSubHeader' and contains(@text,'Confirmation')]")
 	private MobileElement confirmationCode;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
+	private MobileElement progressBar;
+	
 	MobileElement initialsCircle = null;
 	MobileElement receiverName = null;
 	MobileElement amountSent = null;
@@ -215,7 +231,7 @@ public class TransfersHistory extends _CommonPage {
 	 * @return NoSuchElementException
 	 * @return IOException
 	 */
-	public void verifyPageHeader() { // new Updated
+	public void verifyPageHeader() { 
 
 		Decorator();
 		try {
@@ -238,7 +254,7 @@ public class TransfersHistory extends _CommonPage {
 	 * @return NoSuchElementException
 	 * @return IOException
 	 */
-	public void verifySentMoneyCard() { // new Updated
+	public void verifySentMoneyCard() {
 
 		Decorator();
 		try {
@@ -263,7 +279,7 @@ public class TransfersHistory extends _CommonPage {
 								+ "']/following-sibling::android.widget.TextView[2]");
 				transacStatus = mobileAction.mobileElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/contactName' and @text='" + receiver
-								+ "']/following-sibling::android.widget.TextView[1]");
+								+ "']/following-sibling::android.widget.TextView[@text='"+getTestdata("TransactionStatus")+"']");
 			} else {
 				initialsCircle = mobileAction
 						.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + initials + "']");
@@ -272,12 +288,15 @@ public class TransfersHistory extends _CommonPage {
 				amountSent = mobileAction.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + receiver
 						+ "']/following-sibling::XCUIElementTypeStaticText[2]");
 				transacStatus = mobileAction.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + receiver
-						+ "']/following-sibling::XCUIElementTypeStaticText");
+						+ "']/following-sibling::XCUIElementTypeStaticText[@label='"+getTestdata("TransactionStatus")+"']");
 			}
 			mobileAction.verifyElementIsDisplayed(initialsCircle, "Initials: " + initials);
 			mobileAction.verifyElementIsDisplayed(receiverName, "Receiver Name: " + receiver);
 			mobileAction.verifyTextEquality(receiver, receiverName.getText());
 			mobileAction.verifyElementIsDisplayed(amountSent, "Amount sent: " + amountSent.getText());
+			
+			System.out.println(transacStatus.getText()+"  "+getTestdata("TransactionStatus"));
+			
 			mobileAction.verifyTextEquality(transacStatus.getText(), getTestdata("TransactionStatus"));
 
 		} catch (NoSuchElementException | IOException e) {
@@ -316,7 +335,7 @@ public class TransfersHistory extends _CommonPage {
 	 * @return NoSuchElementException
 	 * @return IOException
 	 */
-	public void verifyPendingTransaction() { // new Updated
+	public void verifyPendingTransaction() { 
 
 		Decorator();
 		try {
@@ -356,7 +375,7 @@ public class TransfersHistory extends _CommonPage {
 	 * @return NoSuchElementException
 	 * @return IOException
 	 */
-	public void verifyTransactionDetails() { // new Updated
+	public void verifyTransactionDetails() { 
 
 		Decorator();
 		try {
@@ -364,9 +383,9 @@ public class TransfersHistory extends _CommonPage {
 			String transactionStatusXL=getTestdata("TransactionStatus");
 			
 			mobileAction.verifyElementIsDisplayed(viewDetailsHeader, "View Details page header");
-			//mobileAction.verifyElementIsDisplayed(transactionStatus, transactionStatus.getText());
-
-			mobileAction.verifyTextEquality(transactionStatus.getText(), getTestdata("TransactionStatus"));
+			mobileAction.verifyElementIsDisplayed(transactionStatus, transactionStatus.getText());
+			
+			//mobileAction.verifyTextEquality(transactionStatus.getText(), getTestdata("TransactionStatus"));
 			
 			mobileAction.verifyElementIsDisplayed(dateSent, "Date sent");
 			mobileAction.verifyElementIsDisplayed(dateSentVal, "Date value " + dateSentVal.getText());
@@ -380,11 +399,13 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(recipient, "Recipient");
 			mobileAction.verifyElementIsDisplayed(recipientVal, "Recipient value " + recipientVal.getText());
 
+			mobileAction.FunctionSwipe("up", 200, 200);
+			
 			mobileAction.verifyElementIsDisplayed(confirmationNumber, "Confirmation #");
 			mobileAction.verifyElementIsDisplayed(confirmationNumberVal,
 					"Confirmation number value " + confirmationNumberVal.getText());
 
-			if (!transactionStatusXL.equalsIgnoreCase("Deposited")) {
+			if (!(transactionStatusXL.equalsIgnoreCase("Deposited") || transactionStatusXL.equalsIgnoreCase("Cancelled"))) {
 				mobileAction.verifyElementIsDisplayed(cancelTransferBtn, "Cancel Transfer Button");
 			}
 
@@ -407,15 +428,14 @@ public class TransfersHistory extends _CommonPage {
 		try {
 
 			String receiver = getTestdata("ToAccount");
+			String transactionStatus=getTestdata("TransactionStatus");
 
-			if (receiver.equalsIgnoreCase(null)) {
+			if (StringUtils.isEmpty(receiver)) {
 				mobileAction.FuncClick(transaction, "Transaction");
 			} else {
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					receiverName = mobileAction.mobileElementUsingXPath(
-							"//android.widget.TextView[(@resource-id='com.td:id/historyTransferItemName' or contains(@resource-id,'sendMoneyCard')) and @text='"
-									+ receiver + "']");
+					receiverName = mobileAction.mobileElementUsingXPath("//android.widget.TextView[@text='"+transactionStatus+"']/preceding-sibling::android.widget.TextView[@text='"+receiver+"']");
 				} else {
 					receiverName = mobileAction
 							.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + receiver + "']");
@@ -451,7 +471,10 @@ public class TransfersHistory extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(pendingTransactions.get(i), "Pending Transaction " + i);
 			}
 
+			
 			mobileAction.FunCnewSwipe(completedCategory, false, 6);
+			
+			if(mobileAction.verifyElementIsPresent(completedCategory)){
 			mobileAction.verifyElementIsDisplayed(completedCategory, "COMPLETE");
 
 			mobileAction.FunctionSwipe("up", 2000, 200);
@@ -459,8 +482,7 @@ public class TransfersHistory extends _CommonPage {
 			for (int i = 0; i < completedTransactions.size(); i++) {
 				mobileAction.verifyElementIsDisplayed(completedTransactions.get(i), "Completed Transaction " + i);
 			}
-
-			mobileAction.FuncClick(completedTransactions.get(0), "Completed Transaction");
+			}
 
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -487,15 +509,16 @@ public class TransfersHistory extends _CommonPage {
 		try {
 
 			String sender = getTestdata("FromAccount");
-
-			if (sender.equalsIgnoreCase(null)) {
+			String transactionStatus=getTestdata("TransactionStatus");
+			mobileAction.FunctionSwipe("up", 200, 200);
+			
+			if (StringUtils.isEmpty(sender)) {
 				mobileAction.FuncClick(receivedTransaction, "Received Transaction");
 			} else {
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					senderName = mobileAction.mobileElementUsingXPath(
-							"//android.widget.TextView[(@resource-id='com.td:id/historyTransferItemName' or contains(@resource-id,'transfersReceivedCard')) and @text='"
-									+ sender + "']");
+							"//android.widget.TextView[@text='"+transactionStatus+"']/preceding-sibling::android.widget.TextView[@text='"+sender+"']");
 				} else {
 					senderName = mobileAction
 							.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + sender + "']");
@@ -531,8 +554,8 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(dateDeposited, "Date Deposited");
 			mobileAction.verifyElementIsDisplayed(dateDepositedVal, "Date value " + dateDepositedVal.getText());
 
-			mobileAction.verifyElementIsDisplayed(recipient, "Recipient");
-			mobileAction.verifyElementIsDisplayed(recipientVal, "Recipient value " + recipientVal.getText());
+			mobileAction.verifyElementIsDisplayed(sender, "Sender");
+			mobileAction.verifyElementIsDisplayed(senderVal, "Sender value " + senderVal.getText());
 
 			mobileAction.verifyElementIsDisplayed(amount, "Amount");
 			mobileAction.verifyElementIsDisplayed(amountVal, "Amount value " + amountVal.getText());
@@ -540,6 +563,8 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(depositedTo, "Deposited To");
 			mobileAction.verifyElementIsDisplayed(depositedToVal, "Recipient value " + depositedToVal.getText());
 
+			mobileAction.FunctionSwipe("up", 200, 200);
+			
 			mobileAction.verifyElementIsDisplayed(confirmationNumber, "Confirmation #");
 			mobileAction.verifyElementIsDisplayed(confirmationNumberVal,
 					"Confirmation number value " + confirmationNumberVal.getText());
@@ -591,7 +616,7 @@ public class TransfersHistory extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 
-				mobileAction.FuncClick(done, "Done");
+				//mobileAction.FuncClick(done, "Done");
 				mobileAction.FuncClick(messageField, "Message");
 				mobileAction.FuncSendKeys(messageField, getTestdata("Message"));
 				mobileAction.FuncHideKeyboard();
@@ -628,10 +653,11 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(recipient, "Recipient");
 			mobileAction.verifyElementIsDisplayed(recipientVal, recipientVal.getText());
+		
 			mobileAction.verifyElementIsDisplayed(amountRecip, "Amount");
 			mobileAction.verifyElementIsDisplayed(amountRecipVal, amountRecipVal.getText());
 			mobileAction.verifyElementIsDisplayed(depositTo, "Deposit To");
-			mobileAction.verifyElementIsDisplayed(depositToVal, depositedToVal.getText());
+			mobileAction.verifyElementIsDisplayed(depositToVal, depositToVal.getText());
 
 			if (mobileAction.verifyElementIsPresent(message)) {
 				mobileAction.verifyElementIsDisplayed(message, "Message");
@@ -640,6 +666,8 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 
+			mobileAction.waitForElementToVanish(progressBar);
+			
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -662,14 +690,20 @@ public class TransfersHistory extends _CommonPage {
 		try {
 
 			mobileAction.verifyElementIsDisplayed(cancelConfirmationMsg,
-					"Your transfer has been cancelled successfully");
+					"Transfer Cancelled");
 			mobileAction.verifyElementIsDisplayed(confirmationCode, confirmationCode.getText());
 			mobileAction.verifyElementIsDisplayed(recipient, "Recipient");
 			mobileAction.verifyElementIsDisplayed(recipientVal, recipientVal.getText());
 			mobileAction.verifyElementIsDisplayed(amountRecip, "Amount");
 			mobileAction.verifyElementIsDisplayed(amountRecipVal, amountRecipVal.getText());
 			mobileAction.verifyElementIsDisplayed(depositTo, "Deposit To");
-			mobileAction.verifyElementIsDisplayed(depositToVal, depositedToVal.getText());
+			mobileAction.verifyElementIsDisplayed(depositToVal, depositToVal.getText());
+			
+			if(mobileAction.verifyElementIsPresent(message)){
+				mobileAction.verifyElementIsDisplayed(message, "Message");
+				mobileAction.verifyElementIsDisplayed(messageVal, "Message: "+messageVal.getText());
+			}
+			
 
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -700,14 +734,16 @@ public class TransfersHistory extends _CommonPage {
 			}
 			
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				//TODO::Android xpath
+				receiverName = mobileAction
+						.mobileElementUsingXPath("//android.widget.TextView[@text='" + receiver + "']");
+				transacStatus = mobileAction.mobileElementUsingXPath("//android.widget.TextView[@text='"+receiver+"']/following-sibling::android.widget.TextView[@text='"+transactionStatus+"']");
+				transacCategory=mobileAction.mobileElementUsingXPath("//android.widget.TextView[@text='" + transactionCategory
+						+ "']");
 			}else{
 			receiverName = mobileAction
 					.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + receiver + "']");
-			mobileAction.verifyElementIsDisplayed(receiverName, "Receiver Name");
 			transacStatus = mobileAction.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + receiver
 					+ "']/following-sibling::XCUIElementTypeStaticText");
-			
 			transacCategory=mobileAction.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + transactionCategory
 					+ "']");
 			}

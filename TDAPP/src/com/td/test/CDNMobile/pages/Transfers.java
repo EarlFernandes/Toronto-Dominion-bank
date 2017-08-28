@@ -282,10 +282,17 @@ public class Transfers extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				System.out.println(mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer"));
 
-				Interac_e_Transfer_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+				/*Interac_e_Transfer_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer")
 								.replaceAll("\\<.*?>", "")
+						+ "']", "Send Money");*/
+				
+				Interac_e_Transfer_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ mobileAction.getAppString("transfersTransfersNavRowHeaderSendMoney")
+								.replaceAll("\\<.*?>", "")
 						+ "']", "Send Money");
+				
+				
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {

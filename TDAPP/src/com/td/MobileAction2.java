@@ -1721,7 +1721,7 @@ public class MobileAction2 extends CommonLib {
 	public boolean verifyTextEquality(String text1, String text2) {
 		if (text1.equalsIgnoreCase(text2)) {
 			try {
-				GetReporting().FuncReport("Pass", "The text is verified");
+				GetReporting().FuncReport("Pass", "The text "+text1+" is verified");
 			} catch (IOException e) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
