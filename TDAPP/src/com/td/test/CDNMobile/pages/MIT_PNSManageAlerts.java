@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -294,10 +295,12 @@ public class MIT_PNSManageAlerts extends _CommonPage {
 			int heightPer = (endy * 25 / 100);
 
 			if (sDirection.equalsIgnoreCase("up")) {
-				((MobileDriver) CL.GetDriver()).swipe(startx / 2, starty / 2, startx / 2, endy / 2 - heightPer, 2000);
+				((AppiumDriver<WebElement>) (CL.GetDriver())).swipe(startx / 2, starty / 2, startx / 2,
+						endy / 2 - heightPer, 2000);
 				CL.GetReporting().FuncReport("Pass", "Swipe Up once.");
 			} else if (sDirection.equalsIgnoreCase("down")) {
-				((MobileDriver) CL.GetDriver()).swipe(startx / 2, endy / 2, startx / 2, endy / 2 + heightPer, 2000);
+				((AppiumDriver<WebElement>) (CL.GetDriver())).swipe(startx / 2, endy / 2, startx / 2,
+						endy / 2 + heightPer, 2000);
 				CL.GetReporting().FuncReport("Pass", "Swipe Down once.");
 			} else
 				CL.GetReporting().FuncReport("Fail", "Invalid direction given.");

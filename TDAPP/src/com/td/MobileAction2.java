@@ -458,7 +458,7 @@ public class MobileAction2 extends CommonLib {
 				try {
 					elementFound = elementToFind.isDisplayed();
 				} catch (NoSuchElementException e) {
-					((MobileDriver) GetDriver()).swipe(startx, starty, endx, endy, 3000);
+					((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
 				}
 				if (elementFound) {
 					if (clickOnElement)
@@ -545,7 +545,7 @@ public class MobileAction2 extends CommonLib {
 					elementFound = elementToFind.isDisplayed();
 
 				} catch (NoSuchElementException e) {
-					((MobileDriver) GetDriver()).swipe(startx, starty, endx, endy, 3000);
+					((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
 				}
 				if (elementFound) {
 					if (clickOnElement)
@@ -628,7 +628,7 @@ public class MobileAction2 extends CommonLib {
 					elementFound = elementToFind.isDisplayed();
 
 				} catch (NoSuchElementException e) {
-					((MobileDriver) GetDriver()).swipe(startx, starty, endx, endy, 3000);
+					((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
 				}
 				if (elementFound) {
 					GetReporting().FuncReport("Fail", "Element was found when it should not be in list! \n");
@@ -823,14 +823,15 @@ public class MobileAction2 extends CommonLib {
 						flag = false;
 					} else {
 
-						((MobileDriver) GetDriver()).swipe(startx / 2, starty - starty / 4, startx / 2, starty / 4,
-								600);
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty - starty / 4,
+								startx / 2, starty / 4, 600);
 						count++;
 					}
 				} catch (Exception e) {
 					System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 
-					((MobileDriver) GetDriver()).swipe(startx / 2, starty - starty / 4, startx / 2, starty / 4, 600);
+					((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty - starty / 4,
+							startx / 2, starty / 4, 600);
 					count++;
 				}
 
@@ -1146,7 +1147,8 @@ public class MobileAction2 extends CommonLib {
 			int starty = size.height;
 			int j = 0;
 			while (!elementToFind.isDisplayed() && j < 30) {
-				((MobileDriver) GetDriver()).swipe(startx / 2, starty - starty / 4, startx / 2, starty / 4, 600);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty - starty / 4,
+						startx / 2, starty / 4, 600);
 				j++;
 			}
 			if (j == 30) {
@@ -1225,7 +1227,7 @@ public class MobileAction2 extends CommonLib {
 				try {
 					elementFound = elementToFind.isDisplayed();
 				} catch (NoSuchElementException e) {
-					((MobileDriver) GetDriver()).swipe(startx, starty, endx, endy, 3000);
+					((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
 				}
 				if (elementFound) {
 					if (clickOnElement)
@@ -1302,21 +1304,25 @@ public class MobileAction2 extends CommonLib {
 			int endy = (int) (size.height * 0.20);
 			int startx = size.width / 2;
 			if (Direction.equalsIgnoreCase("Up")) {
-				((MobileDriver) GetDriver()).swipe(startx, starty - Offset, startx, endy, swipeTime);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty - Offset, startx, endy,
+						swipeTime);
 			} else if (Direction.equalsIgnoreCase("Down")) {
-				((MobileDriver) GetDriver()).swipe(startx, endy + Offset, startx, starty, swipeTime);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, endy + Offset, startx, starty,
+						swipeTime);
 			} else if (Direction.equalsIgnoreCase("Right")) {
 				starty = size.height / 2;
 				endy = size.height / 2;
 				startx = (int) (size.width * 0.10);
 				int endx = (int) (size.width * 0.90);
-				((MobileDriver) GetDriver()).swipe(startx + Offset, starty, endx, endy, swipeTime);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx + Offset, starty, endx, endy,
+						swipeTime);
 			} else if (Direction.equalsIgnoreCase("Left")) {
 				starty = size.height / 2;
 				endy = size.height / 2;
 				startx = (int) (size.width * 0.90);
 				int endx = (int) (size.width * 0.10);
-				((MobileDriver) GetDriver()).swipe(startx - Offset, starty, endx, endy, swipeTime);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx - Offset, starty, endx, endy,
+						swipeTime);
 			}
 			GetReporting().FuncReport("Pass", "Swipe <b> " + Direction + " </b> Successful");
 
@@ -1984,11 +1990,11 @@ public class MobileAction2 extends CommonLib {
 
 				} catch (Exception e) {
 					if (direction.equalsIgnoreCase("up"))
-						((MobileDriver) GetDriver()).swipe(startx / 2, starty / 2, startx / 2, endy / 2 - heightPer,
-								2000);
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2,
+								startx / 2, endy / 2 - heightPer, 2000);
 					else if (direction.equalsIgnoreCase("down"))
-						((MobileDriver) GetDriver()).swipe(startx / 2, endy / 2, startx / 2, endy / 2 + heightPer,
-								2000);
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
+								startx / 2, endy / 2 + heightPer, 2000);
 					count++;
 				}
 
@@ -2053,11 +2059,11 @@ public class MobileAction2 extends CommonLib {
 
 				} catch (Exception e) {
 					if (direction.equalsIgnoreCase("up"))
-						((MobileDriver) GetDriver()).swipe(startx / 2, starty / 2, startx / 2, endy / 2 - heightPer,
-								2000);
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2,
+								startx / 2, endy / 2 - heightPer, 2000);
 					else if (direction.equalsIgnoreCase("down"))
-						((MobileDriver) GetDriver()).swipe(startx / 2, endy / 2, startx / 2, endy / 2 + heightPer,
-								2000);
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
+								startx / 2, endy / 2 + heightPer, 2000);
 					count++;
 				}
 
@@ -2118,11 +2124,11 @@ public class MobileAction2 extends CommonLib {
 
 				} catch (Exception e) {
 					if (direction.equalsIgnoreCase("up"))
-						((MobileDriver) GetDriver()).swipe(startx / 2, starty / 2, startx / 2, endy / 2 - heightPer,
-								2000);
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2,
+								startx / 2, endy / 2 - heightPer, 2000);
 					else if (direction.equalsIgnoreCase("down"))
-						((MobileDriver) GetDriver()).swipe(startx / 2, endy / 2, startx / 2, endy / 2 + heightPer,
-								2000);
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
+								startx / 2, endy / 2 + heightPer, 2000);
 					count++;
 				}
 
@@ -2319,10 +2325,12 @@ public class MobileAction2 extends CommonLib {
 			int heightPer = (endy * 25 / 100);
 
 			if (sDirection.equalsIgnoreCase("up")) {
-				((MobileDriver) GetDriver()).swipe(startx / 2, starty / 2, startx / 2, endy / 2 - heightPer, 2000);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2, startx / 2,
+						endy / 2 - heightPer, 2000);
 				GetReporting().FuncReport("Pass", "Swipe Up once.");
 			} else if (sDirection.equalsIgnoreCase("down")) {
-				((MobileDriver) GetDriver()).swipe(startx / 2, endy / 2, startx / 2, endy / 2 + heightPer, 2000);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2, startx / 2,
+						endy / 2 + heightPer, 2000);
 				GetReporting().FuncReport("Pass", "Swipe Down once.");
 			} else
 				GetReporting().FuncReport("Fail", "Invalid direction given.");
@@ -3011,7 +3019,8 @@ public class MobileAction2 extends CommonLib {
 			int endy = (int) (size.height * 0.20);
 			int startx = (int) (size.width * 0.90);
 			int endx = (int) (size.width * 0.10);
-			((MobileDriver) GetDriver()).swipe(startx - Offset, starty, endx, endy, swipeTime);
+			((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx - Offset, starty, endx, endy,
+					swipeTime);
 
 			GetReporting().FuncReport("Pass", "Swipe <b> left </b> Successful");
 
@@ -3476,4 +3485,3 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 }
-
