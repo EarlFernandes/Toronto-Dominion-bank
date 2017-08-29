@@ -41,10 +41,11 @@ public class PendingInteracTransfer extends _CommonPage {
 	private MobileElement pendingTransfer_Header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@value,'Select sender')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_sender']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_sender'] | //android.widget.EditText[@resource-id='com.td:id/edt_etransfer_sender']/following-sibling::android.view.View")
 	private MobileElement selectSender;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='-Balance-' or @label='-Balance'][1]")
+
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index='1']")
 	private MobileElement selectTransaction;
 
@@ -284,7 +285,6 @@ public class PendingInteracTransfer extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-
 				WebDriverWait wait = new WebDriverWait(CL.GetAppiumDriver(), 60);
 
 				wait.until(ExpectedConditions
@@ -344,10 +344,12 @@ public class PendingInteracTransfer extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
 				if (mobileAction.verifyElementIsPresent(selectSender)) {
 					mobileAction.FuncClick(selectSender, "sender");
 					mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart, sender_selectSender);
 				}
+
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 				mobileAction.verifyElementIsDisplayed(depositToAccount, transfer_fromAccount);
@@ -370,7 +372,9 @@ public class PendingInteracTransfer extends _CommonPage {
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 				mobileAction.FuncClick(depositToContinue, "Continue");
 				mobileAction.FuncClick(cnfrmCancellation, "Confirm");
+
 				mobileAction.waitForElementToVanish(progressBar);
+
 				mobileAction.verifyElementIsDisplayed(cancelSuccessMsg,
 						"Interac e-Transfer reclaimed and deposited successfully");
 				String conf_val = mobileAction.getText(cancelCnfrmnVal);
@@ -411,7 +415,7 @@ public class PendingInteracTransfer extends _CommonPage {
 		Decorator();
 
 		String sender_selectSender = getTestdata("Sender");
-		System.out.println("Sender:"+sender_selectSender);
+		System.out.println("Sender:" + sender_selectSender);
 		String select_senderValue = "//android.widget.TextView[contains(@text,'" + sender_selectSender + "')]"; // changed
 																												// by
 																												// rashmi
@@ -426,6 +430,7 @@ public class PendingInteracTransfer extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
 				if (mobileAction.verifyElementIsPresent(selectSender)) {
 					mobileAction.FuncClick(selectSender, "sender");
 					mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart, sender_selectSender);
@@ -447,13 +452,13 @@ public class PendingInteracTransfer extends _CommonPage {
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_senderValue, true, 2, "Up");
 					mobileAction.waitForElementToVanish(progressBar);
 				}
+
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 				mobileAction.FuncClick(depositToContinue, "Continue");
 				mobileAction.FuncClick(close, "Click Close");
 				mobileAction.verifyElementIsDisplayed(cancel, "Popup is displayed with cancel option");
 				mobileAction.verifyElementIsDisplayed(dontCancel, "Popup is displayed with Don't cancel option");
-
 			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -514,6 +519,7 @@ public class PendingInteracTransfer extends _CommonPage {
 
 				mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
 				mobileAction.FuncClick(selectSender, "sender");
+
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 5, "down", true);
 				mobileAction.waitForElementToVanish(progressBar);
@@ -522,6 +528,7 @@ public class PendingInteracTransfer extends _CommonPage {
 				mobileAction.FuncClick(depositToContinue, "Continue");
 				mobileAction.FuncClick(cnfrmCancellation, "Confirm");
 				mobileAction.waitForElementToVanish(progressBar);
+
 				mobileAction.verifyElementIsDisplayed(receiptHeader, "Receipt Page Opens");
 				mobileAction.FuncClick(clickPendingIcon, "Click Pending Interac e-Transfer Icon");
 				mobileAction.FuncClick(selectSender, "sender");
@@ -818,7 +825,6 @@ public class PendingInteracTransfer extends _CommonPage {
 				if (mobileAction.verifyElementIsPresent(selectSender)) {
 					mobileAction.FuncClick(selectSender, "sender");
 					mobileAction.FuncSelectElementInTable(senderTable, firstPart, secondPart, sender_selectSender);
-
 				}
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
@@ -834,11 +840,12 @@ public class PendingInteracTransfer extends _CommonPage {
 				mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
 				if (mobileAction.verifyElementIsPresent(selectSender)) {
 					mobileAction.FuncClick(selectSender, "sender");
-					mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 0, "down", true);
+					MobileElement sender = mobileAction.verifyElementUsingXPath(select_senderValue, "Sender");
+					mobileAction.FuncClick(sender, "Sender");
+					mobileAction.waitForElementToDisappear(select_senderValue);
 				}
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
-
 				mobileAction.FuncClick(depositToContinue, "Continue");
 				mobileAction.FuncClick(cnfrmCancellation, "Confirm");
 				mobileAction.verifyElementIsDisplayed(receiptHeader, "Receipt Page Opens");
@@ -858,6 +865,7 @@ public class PendingInteracTransfer extends _CommonPage {
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
 		}
 	}
 
@@ -869,7 +877,9 @@ public class PendingInteracTransfer extends _CommonPage {
 	 * @return void
 	 * 
 	 */
+
 	public void verifyconfirmation() {
+
 		Decorator();
 
 		String sender_selectSender = getTestdata("Sender");
@@ -910,7 +920,7 @@ public class PendingInteracTransfer extends _CommonPage {
 			} else {
 				mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
 				if (mobileAction.verifyElementIsPresent(selectSender)) {
-					System.out.println("Select sender:"+ sender_selectSender);
+					System.out.println("Select sender:" + sender_selectSender);
 					mobileAction.FuncClick(selectSender, "sender");
 					mobileAction.waitForElementToVanish(progressBar);
 					mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 2, "down", true);
@@ -951,6 +961,7 @@ public class PendingInteracTransfer extends _CommonPage {
 	}
 
 	/**
+	 * 
 	 * This method will cancel the interac e transfer and deposit the the amount
 	 * to the account
 	 * 
@@ -964,7 +975,6 @@ public class PendingInteracTransfer extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-
 				mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
@@ -1020,6 +1030,7 @@ public class PendingInteracTransfer extends _CommonPage {
 				// //no home button can be found at this page
 				// //mobileAction.FuncClick(home, "home button");
 				// }
+
 			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1034,5 +1045,6 @@ public class PendingInteracTransfer extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+
 	}
 }

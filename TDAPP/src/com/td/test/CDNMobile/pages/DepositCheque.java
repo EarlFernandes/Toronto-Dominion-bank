@@ -32,7 +32,6 @@ public class DepositCheque extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(10, TimeUnit.SECONDS)), this);
 
 	}

@@ -45,7 +45,6 @@ public class QuickAccessSettings extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 	}
 
@@ -128,6 +127,7 @@ public class QuickAccessSettings extends _CommonPage {
 		}
 	}
 
+
 	/**
 	 * This method will verify that TD Classic Travel Card Toggle is turned on
 	 * in Quick Access Settings Page
@@ -172,7 +172,6 @@ public class QuickAccessSettings extends _CommonPage {
 
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
 		}
 	}
 

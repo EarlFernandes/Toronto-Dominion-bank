@@ -9,7 +9,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.PageFactory;
 
-import com.td.StringLookup;
+import com.td.StringArray;
 import com.td._CommonPage;
 import com.td.mainframe.Executor;
 
@@ -27,7 +27,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/remember_switch' and @index='1']")
 	private MobileElement rememberMe;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Username or Access Card') or contains(@value,'Username or Access Card') or contains(@label,'Access Card or Username')]")
+	@iOSFindBy(xpath = "//*[contains(@label,'Username or Access Card') or contains(@value,'Username or Access Card') or contains(@label,'Access Card or Username') or @name='LOGIN_USERNAME']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @index='1']")
 	private MobileElement username;
 
@@ -74,7 +74,7 @@ public class Login extends _CommonPage {
 	private MobileElement select_accesscard;
 
 	@iOSFindBy(accessibility = "ACTION_SHEET_LOGIN_DATA_CELL_0")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard' or contains(@text,'Ajouter un nom')]")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/commandButton']/android.widget.TextView[@resource-id='com.td:id/txtAccessCard']")
 	private MobileElement addUser;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Ajouter un nom d’utilisateur ou un numéro de carte Accès']")
@@ -329,7 +329,6 @@ public class Login extends _CommonPage {
 	public void verifySecurityQuestion() {
 		Decorator();
 		try {
-
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				securityQuestionHeader = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
@@ -346,11 +345,21 @@ public class Login extends _CommonPage {
 			}
 
 			if (mobileAction.FuncIsDisplayed(securityQuestionHeader)) {
+
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+					enterAnswer = mobileAction.verifyElementUsingXPath("//XCUIElementTypeSecureTextField[@value='"
+							+ mobileAction.getAppString("mfa_enter_answer") + "']", "Enter your answer");
+				}
 				mobileAction.FuncSendKeys(enterAnswer, getTestdata("SecurityAnswer"));
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					mobileAction.FuncClickDone();
 				} else {
 					mobileAction.FuncHideKeyboard();
+				}
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+					securityLogin = mobileAction.verifyElementUsingXPath(
+							"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("secureLoginButton") + "']",
+							"Login");
 				}
 				mobileAction.FuncClick(securityLogin, "Login");
 				mobileAction.waitForElementToVanish(progressBar);
@@ -423,8 +432,10 @@ public class Login extends _CommonPage {
 			}
 			verifySystemError();
 			verifySecurityQuestion();
+
 			verifySessionTimeout();
 			// verifyTandC();
+
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -770,7 +781,7 @@ public class Login extends _CommonPage {
 					mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 					mobileAction.FuncClick(clearText, "Clear Text");
 					mobileAction.verifyElementIsDisplayed(password, "Password Field");
-				}else{
+				} else {
 					login_without_ID_remembered();
 				}
 
@@ -974,7 +985,7 @@ public class Login extends _CommonPage {
 						Thread.sleep(3000);
 						// mobileAction.waitForElementToVanish(progressBar);
 					}
-				}else{
+				} else {
 					login_without_ID_remembered();
 				}
 			} else {
@@ -1107,7 +1118,7 @@ public class Login extends _CommonPage {
 						mobileAction.FuncClick(login, "Login");
 						mobileAction.waitForElementToVanish(progressBar);
 					}
-				}else{
+				} else {
 					login_without_ID_remembered();
 				}
 			} else {
@@ -1359,15 +1370,15 @@ public class Login extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
-	private void login_without_ID_remembered(){
-		try{
+
+	private void login_without_ID_remembered() {
+		try {
 			mobileAction.FuncClick(username, "Username");
 			mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-	
+
 			mobileAction.FuncClick(password, "Password");
 			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-	
+
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(login, "Login");
@@ -1375,9 +1386,9 @@ public class Login extends _CommonPage {
 			} else {
 				mobileAction.FuncClick(login, "Login");
 				mobileAction.waitForElementToVanish(progressBar);
-	
+
 			}
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
@@ -1390,7 +1401,7 @@ public class Login extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-		
+
 	}
 
 	public void login_errorMsg() {
@@ -1418,7 +1429,7 @@ public class Login extends _CommonPage {
 						mobileAction.FuncClick(login, "Login");
 						mobileAction.waitForElementToVanish(progressBar);
 					}
-				}else{
+				} else {
 					login_without_ID_remembered();
 				}
 			} else {
@@ -1494,7 +1505,7 @@ public class Login extends _CommonPage {
 				// mobileAction.getAppString("remember_str"));
 				mobileAction.verifyTextEquality(login.getText(), mobileAction.getAppString("secureLoginButton"));
 				mobileAction.verifyTextEquality(forgotPassword.getText().trim(),
-						StringLookup.lookupString(currentLocale, StringLookup.FORGOT_PASSWORD));
+						getTextInCurrentLocale(StringArray.ARRAY_FORGOT_PASSWORD));
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @text='"

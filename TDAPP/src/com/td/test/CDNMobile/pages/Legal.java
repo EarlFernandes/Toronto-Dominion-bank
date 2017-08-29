@@ -54,9 +54,7 @@ public class Legal extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
-
 	}
 
 	/**

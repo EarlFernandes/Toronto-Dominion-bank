@@ -89,9 +89,7 @@ public class MainScreenMIT extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(60, TimeUnit.SECONDS)), this);
-
 	}
 
 	public void OpenApp() {

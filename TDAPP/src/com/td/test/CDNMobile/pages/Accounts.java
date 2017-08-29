@@ -1,13 +1,14 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
-
+import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -21,8 +22,8 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/accntBalanceSum']")
 	private MobileElement txtBalance;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Accounts' or @label='Comptes']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Accounts' or @text='Mes comptes']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Accounts' or @label='Comptes' or @name='TDVIEW_TITLE']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement txtMy_Account_Header;
 
 	@iOSFindBy(xpath = "//*[@label='INVESTING' or @label='Investing']")
@@ -65,6 +66,7 @@ public class Accounts extends _CommonPage {
 	private MobileElement txtWebBroker;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progresssBar;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Activity']")
@@ -82,7 +84,7 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/summaryContent']")
 	private MobileElement acntsListnew;
 
-	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement back_button;
 
@@ -140,6 +142,14 @@ public class Accounts extends _CommonPage {
 
 	@iOSFindBy(xpath = "//*[@label='Retour' or @label='Back']")
 	private MobileElement back_Btn;
+
+	@iOSFindBy(xpath = "//*[@name='ACCOUNT_SUMMARY_BALANCE_FOOTER_TITLE']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/footer_text']")
+	private MobileElement foot_text;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	private MobileElement progressBar;
 
 	int i = 1;
 
@@ -223,6 +233,7 @@ public class Accounts extends _CommonPage {
 			// balance");
 			mobileAction.verifyElementIsDisplayed(account_Desc, "Account Description");
 			mobileAction.verifyElementIsDisplayed(available_Balance, "Available balance");
+
 			CL.GetReporting().FuncReport("PASS", "Account Desc, Available Balance is verified");
 
 		} catch (NoSuchElementException e) {
@@ -527,13 +538,21 @@ public class Accounts extends _CommonPage {
 	public void verify_accounts_Header() {
 		Decorator();
 		try {
-			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, account_Header);
+
+			mobileAction.waitForElementToVanish(progresssBar);
+			String myAccountText;
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				myAccountText = mobileAction.getAppString("str_My_Accounts");
+			} else {
+				myAccountText = mobileAction.getAppString("accountsPageHeader");
+			}
+			System.out.println("myAccountText:" + myAccountText);
+			mobileAction.verifyTextEquality(mobileAction.getValue(txtMy_Account_Header), myAccountText);
+
 		} catch (NoSuchElementException e) {
+
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
@@ -748,7 +767,7 @@ public class Accounts extends _CommonPage {
 	public void NavigationToHomePage() {
 		Decorator();
 		try {
-
+			// mobileAction.waitForElementToVanish(progressBar);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				if (mobileAction.verifyElementIsPresent(back_button)) {
@@ -804,6 +823,121 @@ public class Accounts extends _CommonPage {
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void SelectAccountUsingAccountNameAndAccountNum() {
+		Decorator();
+		try {
+			String from_Account = getTestdata("FromAccount");
+
+			String Acnt_Description = "";
+			System.out.println("From Account:" + from_Account);
+			String from_Account_des, from_Account_num;
+			from_Account_num = mobileAction.FuncGetValByRegx(from_Account, "\\d+");
+			from_Account_des = from_Account.replaceAll(from_Account_num, "").trim();
+
+			if (from_Account_num.isEmpty()) {
+				System.out.println("Failed:Account number is NOT configured, account cannot be selected");
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				return;
+			}
+
+			String[] from_Account_des_option = from_Account_des.split("\\|");
+
+			int lengthOfArray = from_Account_des_option.length;
+
+			if (lengthOfArray == 0) {
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+					Acnt_Description = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
+							+ from_Account_num + "']";
+				} else {
+					Acnt_Description = "//*[@label='" + from_Account_num + "']";
+				}
+			} else {
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+					Acnt_Description = "//android.widget.TextView[@text='";
+					for (int i = 0; i < lengthOfArray; i++) {
+						Acnt_Description = Acnt_Description + from_Account_des_option[i].trim() + "'";
+						if (i < lengthOfArray - 1) {
+							Acnt_Description = Acnt_Description + " or @text='";
+						}
+					}
+					Acnt_Description = Acnt_Description + "]/../../android.widget.TextView[@text='" + from_Account_num
+							+ "']";
+				} else {
+					Acnt_Description = "//XCUIElementTypeStaticText[@label='";
+					for (int i = 0; i < lengthOfArray; i++) {
+						Acnt_Description = Acnt_Description + from_Account_des_option[i].trim() + "'";
+						if (i < lengthOfArray - 1) {
+							Acnt_Description = Acnt_Description + " or @label='";
+						}
+					}
+					Acnt_Description = Acnt_Description + "]/../XCUIElementTypeStaticText[@label='" + from_Account_num
+							+ "']";
+				}
+			}
+
+			System.out.println("Acnt_Description:" + Acnt_Description);
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, true, 30, "up");
+			mobileAction.waitForElementToVanish(progresssBar);
+		} catch (NoSuchElementException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void VerifyNoMutualFundAccounts() {
+		Decorator();
+		try {
+
+			List<MobileElement> accountList = null;
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				accountList = ((MobileDriver) CL.GetDriver())
+						.findElementsByXPath("//android.widget.TextView[@resource-id='com.td:id/accntDescrSum']");
+			} else {
+				accountList = ((MobileDriver) CL.GetDriver())
+						.findElementsByXPath("//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
+			}
+			int count = 20;
+			while (true) {
+				int size = accountList.size();
+				System.out.println("Account size:" + size);
+				for (int i = 0; i < size; i++) {
+					String accounttext = mobileAction.getValue(accountList.get(i));
+					System.out.println("Account " + (i + 1) + ":" + accounttext);
+					if (accounttext.toLowerCase().contains("mutual fund") || accounttext.contains("FONDS COMM.")) {
+						mobileAction.Report_Fail("Mutual fund account found");
+						return;
+					}
+				}
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+					if (!mobileAction.verifyElementIsPresent(foot_text)) {
+						mobileAction.FuncSwipeOnce("up");
+						count--;
+						accountList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
+								"//android.widget.TextView[@resource-id='com.td:id/accntDescrSum']");
+					} else {
+						break;
+					}
+				} else {
+					// For ios, accountlist will list all of the account, don't
+					// need to swipe to the bottom
+					break;
+				}
+				if (count == 0) {
+					break;
+				}
+			}
+			mobileAction.Report_Pass_Verified("No mutual funds found for closed account");
+
+		} catch (NoSuchElementException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

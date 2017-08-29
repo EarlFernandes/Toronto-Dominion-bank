@@ -717,7 +717,6 @@ public class TradeMIT extends _CommonPage {
 				mobileAction.FuncClick(symbol, "Enter name or symbol");
 				mobileAction.FuncClick(symbol1, "Enter name or symbol");
 				mobileAction.FuncSendKeys(symbol1, searchKeyword);
-
 				MobileElement lstAction = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(selectSymbol));
 
 				lstAction.click();
@@ -881,6 +880,7 @@ public class TradeMIT extends _CommonPage {
 			// String xpathAccount =
 			// "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber'
 			// and contains(@text,'" + accNumber + "']";
+
 			xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
 
 			mobileAction.waitForElement(defaultTradeAccount);

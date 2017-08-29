@@ -21,6 +21,7 @@ public class ManageContacts extends _CommonPage {
 	private static ManageContacts ManageContacts;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeSearchField[contains(@name,'Search')]")
+
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/manage_contacts_search_field' and @text='Search']")
 	private MobileElement searchTextFiled;
 
@@ -154,6 +155,7 @@ public class ManageContacts extends _CommonPage {
 	private void Decorator() {
 		PageFactory.initElements(
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+
 	}
 
 	/**
@@ -787,5 +789,4 @@ public class ManageContacts extends _CommonPage {
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-
 }

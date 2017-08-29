@@ -29,9 +29,7 @@ public class Confirm_Payee extends _CommonPage {
 	private MobileElement access_Card;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Add Payee']")
-
 	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Payee']")
-
 	private MobileElement addPayee_Btn;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
@@ -61,6 +59,7 @@ public class Confirm_Payee extends _CommonPage {
 	private MobileElement errorMsg;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
+
 	private MobileElement payee_Table;
 
 	@iOSFindBy(xpath = "//*[@name='PAYBILL_VIEW_PAYEE']/../XCUIElementTypeStaticText[2]")

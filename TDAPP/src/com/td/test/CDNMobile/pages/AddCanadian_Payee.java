@@ -23,10 +23,12 @@ public class AddCanadian_Payee extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Payee Account']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='accountNumber']")
+
 	private MobileElement payee_AccountNum;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Description']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@text='Description']")
+
 	private MobileElement description;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
@@ -34,6 +36,7 @@ public class AddCanadian_Payee extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='btn']")
+
 	private MobileElement continue_Button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
@@ -79,7 +82,6 @@ public class AddCanadian_Payee extends _CommonPage {
 
 			// String payee_value=getTestdata("Payee");
 			String payee_value = getTestdata("Payee");
-
 			String payee_number = mobileAction.FuncGetValByRegx(payee_value, "\\d+");
 			String payee_name = payee_value.replaceAll(payee_number, "").trim();
 
@@ -113,6 +115,7 @@ public class AddCanadian_Payee extends _CommonPage {
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(selectedPayee, true, 10, "up");
 
 			mobileAction.FuncClick(payee_AccountNum, "PayeeAccount");
+
 			mobileAction.FuncSendKeys(payee_AccountNum, newPayeeNumber);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClickDone();
@@ -148,7 +151,6 @@ public class AddCanadian_Payee extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-
 	}
 
 }

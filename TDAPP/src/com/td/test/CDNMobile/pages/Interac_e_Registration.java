@@ -98,6 +98,7 @@ public class Interac_e_Registration extends _CommonPage {
 	private MobileElement progressBar;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@value,'Please choose which profile')]")
+
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_multi_profile']")
 	private MobileElement chooseProfile;
 

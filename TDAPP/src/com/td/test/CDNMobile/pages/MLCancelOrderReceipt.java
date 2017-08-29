@@ -5,10 +5,12 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -28,9 +30,7 @@ public class MLCancelOrderReceipt extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
-
 	}
 
 	@iOSFindBy(xpath = "//*[@label='Orders' or @label='Ordres']") // @Author -
@@ -264,12 +264,15 @@ public class MLCancelOrderReceipt extends _CommonPage {
 			// TradeMultiLeg.get().FuncEnterText(editTextPassword,
 			// getTestdata("TradingPassword",XLSheetUserIDs));
 			{
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-					TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword", XLSheetUserIDs));
-				else {
-					mobileAction.FuncSendKeys(editTextPassword, getTestdata("TradingPassword", XLSheetUserIDs));
-					TradeMultiLeg.get().handleKeyboard();
-				}
+				/*
+				 * if(CL.getTestDataInstance().getMobilePlatForm().
+				 * equalsIgnoreCase("Android"))
+				 * TradeMultiLeg.get().FuncEnterText(editTextPassword,
+				 * getTestdata("TradingPassword",XLSheetUserIDs)); else {
+				 */
+				mobileAction.FuncSendKeys(editTextPassword, getTestdata("TradingPassword", XLSheetUserIDs));
+				TradeMultiLeg.get().handleKeyboard();
+				// }
 			}
 			mobileAction.FuncClick(btnCancelOrder, "Cancel Button");
 
@@ -361,13 +364,19 @@ public class MLCancelOrderReceipt extends _CommonPage {
 			mobileAction.FuncSwipeUpTillScreenBottom(labelTradingPassword);
 
 			if (mobileAction.isObjExists(editTextPassword, 2))
-				TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("TradingPassword", XLSheetUserIDs));
-			/*
-			 * mobileAction.FuncSwipeWhileElementNotFound(editTextPassword,
-			 * false, 5, "up"); mobileAction.FuncSwipeOnce("up");
-			 * TradeMultiLeg.get().FuncEnterText(editTextPassword,
-			 * getTestdata("TradingPassword",XLSheetUserIDs));
-			 */
+			// TradeMultiLeg.get().FuncEnterText(editTextPassword,
+			// getTestdata("TradingPassword",XLSheetUserIDs));
+			{
+				/*
+				 * if(CL.getTestDataInstance().getMobilePlatForm().
+				 * equalsIgnoreCase("Android"))
+				 * TradeMultiLeg.get().FuncEnterText(editTextPassword,
+				 * getTestdata("TradingPassword",XLSheetUserIDs)); else {
+				 */
+				mobileAction.FuncSendKeys(editTextPassword, getTestdata("TradingPassword", XLSheetUserIDs));
+				TradeMultiLeg.get().handleKeyboard();
+				// }
+			}
 
 			mobileAction.FuncClick(btnCancelOrder, "Cancel Button");
 

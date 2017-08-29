@@ -27,8 +27,8 @@ public class ContactUs extends _CommonPage {
 	private MobileElement tdDirectInvesting;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'TD Direct Investing')]/../XCUIElementTypeButton")
-
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/rlTDMainNumber']")
+
 	private MobileElement call_Button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Call' or @label='Continue Call']")
@@ -73,9 +73,7 @@ public class ContactUs extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
-
 	}
 
 	/**
@@ -100,6 +98,7 @@ public class ContactUs extends _CommonPage {
 			if (mobileAction.verifyElementIsPresent(contactUs)) {
 
 				mobileAction.verifyElementIsDisplayed(call_Button, t_call);
+
 				// mobileAction.FuncClick(call_Button, "Call Button");
 				// mobileAction.FuncClick(callNow, "Call");
 			}
@@ -112,6 +111,7 @@ public class ContactUs extends _CommonPage {
 			 * System.out.println("InterruptedException from Method " +
 			 * this.getClass().toString() + " " + e.getCause()); }
 			 */ catch (IOException e) {
+
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
@@ -155,7 +155,6 @@ public class ContactUs extends _CommonPage {
 						mobileAction.getAppString("direct_investment_str"));
 				mobileAction.verifyTextEquality(tdWealthFinancial.getText().trim(),
 						mobileAction.getAppString("contact_us_TD_Wealth_Financial_Planning"));
-
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
@@ -170,10 +169,12 @@ public class ContactUs extends _CommonPage {
 						+ mobileAction.getAppString("td_contact_credit_card_str") + "']", "TD Credit Card");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("td_contact_small_business_str") + "']", "TD Small business");
-//				mobileAction.verifyElementUsingXPath(
-//						"//android.widget.TextView[@text='"
-//								+ mobileAction.getAppString("homeDashboardContactTDDirectInvestingTitle") + "']",
-//						"TD Direct Investing");
+				// mobileAction.verifyElementUsingXPath(
+				// "//android.widget.TextView[@text='"
+				// +
+				// mobileAction.getAppString("homeDashboardContactTDDirectInvestingTitle")
+				// + "']",
+				// "TD Direct Investing");
 				// Scroll down here
 				final String xPathFooter = "//android.widget.RelativeLayout[@resource-id='com.td:id/rlLinks']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 3, "up");
@@ -182,9 +183,10 @@ public class ContactUs extends _CommonPage {
 								+ mobileAction.getAppString("str_TDWealth_FP").replaceAll("\\<.*?>", "") + "']",
 						"Wealth financial");
 
-//				mobileAction.verifyElementUsingXPath(
-//						"//android.widget.TextView[@text='" + mobileAction.getAppString("give_feedback") + "']",
-//						"Give feedback");
+				// mobileAction.verifyElementUsingXPath(
+				// "//android.widget.TextView[@text='" +
+				// mobileAction.getAppString("give_feedback") + "']",
+				// "Give feedback");
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {

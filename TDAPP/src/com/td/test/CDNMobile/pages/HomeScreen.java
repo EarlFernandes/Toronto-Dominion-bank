@@ -3,7 +3,7 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import com.td.StringLookup;
+import com.td.StringArray;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
@@ -109,7 +109,7 @@ public class HomeScreen extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/following-sibling::XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_location']")
 	private MobileElement searchLocation;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[2]")
 	@AndroidFindBy(xpath = "//*[@content-desc='Filter Locations']")
 	private MobileElement filter_locations_Button;
@@ -1341,16 +1341,14 @@ public class HomeScreen extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("bills_str") + "']",
 						"Bills");
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
-				// + StringLookup.lookupString(currentLocale,
-				// StringLookup.INVESTING_ACCOUNTS) + "']", "Investing
-				// Accounts");
+
 				final String xPathFooter = "//XCUIElementTypeStaticText[@value='"
 						+ mobileAction.getAppString("contact_str") + "']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
 						+ mobileAction.getAppString("dashboard_nearest_branch_lbl") + "' or @value='"
 						+ mobileAction.getAppString("dashboard_branch_lbl") + "']", "Nearest Branch");
+
 				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
 				// + mobileAction.getAppString("markets_str") + "']",
 				// "Markets");
@@ -1375,7 +1373,7 @@ public class HomeScreen extends _CommonPage {
 								+ mobileAction.getAppString("TDZonesNavRowHeader") + "']", "TD For Me");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/title' and @text='"
-								+ StringLookup.lookupString(currentLocale, StringLookup.INVESTING_ACCOUNTS) + "']",
+								+ getTextInCurrentLocale(StringArray.ARRAY_INVESTING_ACCOUNTS) + "']",
 						"Investing Accounts");
 				final String xPathFooter = "//android.widget.TextView[@resource-id='com.td:id/dashboard_terms']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
@@ -1385,10 +1383,9 @@ public class HomeScreen extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("terms_of_use") + "']",
 						"Terms of Use");
-				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("dashboard_nearest_branch_label")
-								+ "' or @text='" + mobileAction.getAppString("dashboard_find_locations") + "']",
-						"Nearest Branch");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ mobileAction.getAppString("dashboard_nearest_branch_label") + "' or @text='"
+						+ mobileAction.getAppString("dashboard_find_locations") + "']", "Nearest Branch");
 				mobileAction
 						.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/title' and @text='"
 								+ mobileAction.getAppString("markets_str") + "']", "Markets");

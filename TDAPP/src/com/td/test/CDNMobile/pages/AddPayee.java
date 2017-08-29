@@ -97,20 +97,24 @@ public class AddPayee extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				searchForPayee();
-				clickOnFirstUSPayeeFound();
-				mobileAction.verifyWebElementUsingXPath(
-						"//XCUIElementTypeTextField[@label='" + mobileAction.getAppString("search_address_hint") + "']",
-						"Search address hint");
-				mobileAction.verifyWebElementUsingXPath(
-						"//XCUIElementTypeStaticText[@label='"
-								+ mobileAction.getAppString("please_select_payee_address") + "']",
-						"Search address hint");
-				mobileAction.verifyWebElementUsingXPath(
-						"//XCUIElementTypeStaticText[@label='" + mobileAction.getAppString("str_add_address") + "']",
-						"Search address hint");
-				mobileAction.verifyWebElementUsingXPath(
-						"//XCUIElementTypeLink[@label='" + mobileAction.getAppString("tap_here_to_add_address") + "']",
-						"Search address hint");
+				// clickOnFirstUSPayeeFound();
+				// mobileAction.verifyWebElementUsingXPath(
+				// "//XCUIElementTypeTextField[@label='" +
+				// mobileAction.getAppString("search_address_hint") + "']",
+				// "Search address hint");
+				// mobileAction.verifyWebElementUsingXPath(
+				// "//XCUIElementTypeStaticText[@label='"
+				// + mobileAction.getAppString("please_select_payee_address") +
+				// "']",
+				// "Search address hint");
+				// mobileAction.verifyWebElementUsingXPath(
+				// "//XCUIElementTypeStaticText[@label='" +
+				// mobileAction.getAppString("str_add_address") + "']",
+				// "Search address hint");
+				// mobileAction.verifyWebElementUsingXPath(
+				// "//XCUIElementTypeLink[@label='" +
+				// mobileAction.getAppString("tap_here_to_add_address") + "']",
+				// "Search address hint");
 
 			} else {
 				searchForPayee();
@@ -311,26 +315,33 @@ public class AddPayee extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				searchForPayee();
-				clickOnFirstCanadianPayeeFound();
-				mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_payee_name") + "']",
-						"Payee Name");
-				mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_payee_account") + "']",
-						"Payee account");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeTextField[@value='"
-						+ mobileAction.getAppString("add_cdn_payee_dtl_hint") + "']", "Payee account hint");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
-						+ mobileAction.getAppString("add_cdn_payee_dtl_copy") + "']", "warning msg");
-				mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("str_Description") + "']",
-						"Description");
-				mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeTextField[@value='" + mobileAction.getAppString("str_optional") + "']",
-						"Description hint");
-				mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("btn_continue") + "']",
-						"Continue button");
+				// clickOnFirstCanadianPayeeFound();
+				// mobileAction.verifyElementUsingXPath(
+				// "//XCUIElementTypeStaticText[@value='" +
+				// mobileAction.getAppString("str_payee_name") + "']",
+				// "Payee Name");
+				// mobileAction.verifyElementUsingXPath(
+				// "//XCUIElementTypeStaticText[@value='" +
+				// mobileAction.getAppString("str_payee_account") + "']",
+				// "Payee account");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeTextField[@value='"
+				// + mobileAction.getAppString("add_cdn_payee_dtl_hint") + "']",
+				// "Payee account hint");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
+				// + mobileAction.getAppString("add_cdn_payee_dtl_copy") + "']",
+				// "warning msg");
+				// mobileAction.verifyElementUsingXPath(
+				// "//XCUIElementTypeStaticText[@value='" +
+				// mobileAction.getAppString("str_Description") + "']",
+				// "Description");
+				// mobileAction.verifyElementUsingXPath(
+				// "//XCUIElementTypeTextField[@value='" +
+				// mobileAction.getAppString("str_optional") + "']",
+				// "Description hint");
+				// mobileAction.verifyElementUsingXPath(
+				// "//XCUIElementTypeButton[@label='" +
+				// mobileAction.getAppString("btn_continue") + "']",
+				// "Continue button");
 			} else {
 				searchForPayee();
 				clickOnFirstCanadianPayeeFound();
@@ -569,6 +580,7 @@ public class AddPayee extends _CommonPage {
 				searchForPayee();
 				clickOnFirstCanadianPayeeFound();
 				addPayeeReview();
+
 				// addPayeeConfirm();
 				// // Switching to webview
 				// mobileAction.switchAppiumContext("WEBVIEW_com.td");

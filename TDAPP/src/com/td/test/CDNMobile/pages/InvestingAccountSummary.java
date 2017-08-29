@@ -383,9 +383,11 @@ public class InvestingAccountSummary extends _CommonPage {
 						"//android.widget.TextView[contains(@text, '"
 								+ mobileAction.getAppString("str_Cash_Balance_Footnote") + "')]",
 						"Cash balance footnote");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[contains(@text, '"
-						+ mobileAction.getAppString("common_str_Time_Stamp_substition").replace(" %1$s", "") + "')]",
-						"time stamp substituion");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.TextView[contains(@text, '" + mobileAction
+										.getAppString("common_str_Time_Stamp_substition").replace(" %1$s", "") + "')]",
+								"time stamp substituion");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[contains(@text, '"
 						+ mobileAction.getAppString("str_Insufficient_Information") + "')]", "Insufficient");
 
@@ -939,6 +941,7 @@ public class InvestingAccountSummary extends _CommonPage {
 				text = holdingTimeStamp.getText();
 				mobileAction.verifyElementIsDisplayed(holdingTimeStamp, text);
 				mobileAction.verifyDateFormat(holdingTimeStamp.getText(), MobileAction2.TYPE_YYYY_MM_DD_HOUR);
+
 				// mobileAction.verifyElementIsDisplayed(holdingGainLoss,
 				// "GAIN/LOSS");
 				// mobileAction.verifyTextEquality(holdingGainLoss.getText(),
@@ -1043,7 +1046,6 @@ public class InvestingAccountSummary extends _CommonPage {
 									+ mobileAction.getAppString("open_string") + "')]";
 
 							MobileElement openStatus = (MobileElement) (CL.GetAppiumDriver())
-
 									.findElement(By.xpath(openXpath));
 
 							if (openStatus.isDisplayed()) {
@@ -1057,7 +1059,6 @@ public class InvestingAccountSummary extends _CommonPage {
 									+ mobileAction.getAppString("mutual_funds_pricing") + "')]";
 
 							MobileElement pricedMarket = (MobileElement) (CL.GetAppiumDriver())
-
 									.findElement(By.xpath(pricedMarketXpath));
 
 							if (pricedMarket.isDisplayed()) {
@@ -1071,7 +1072,6 @@ public class InvestingAccountSummary extends _CommonPage {
 									+ mobileAction.getAppString("str_Switch") + "')]";
 
 							MobileElement switchOpt = (MobileElement) (CL.GetAppiumDriver())
-
 									.findElement(By.xpath(switchOptXpath));
 
 							if (switchOpt.isDisplayed()) {
@@ -1124,7 +1124,6 @@ public class InvestingAccountSummary extends _CommonPage {
 	public void verifyOrderDetails() {
 
 		Decorator();
-
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementUsingXPath(
@@ -1170,7 +1169,7 @@ public class InvestingAccountSummary extends _CommonPage {
 		int count = 0;
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
 								+ mobileAction.getAppString("str_Investing") + "']",
@@ -1219,9 +1218,7 @@ public class InvestingAccountSummary extends _CommonPage {
 
 			}
 
-		}
-
-		catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail",
 						"No such element was found on screen: " + e.getMessage());

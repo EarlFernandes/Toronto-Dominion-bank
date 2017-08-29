@@ -38,7 +38,7 @@ public class ManageRecipients extends _CommonPage {
 	private MobileElement yesButtonContacts;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Edit']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Edit']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='1']")
 	private MobileElement editRecipient;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[7]/XCUIElementTypeTextField")
@@ -84,7 +84,6 @@ public class ManageRecipients extends _CommonPage {
 		PageFactory.initElements(
 
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
-
 	}
 
 	public void clickAddRecipient() {
@@ -130,8 +129,8 @@ public class ManageRecipients extends _CommonPage {
 	public void addRecipientFromContactList() {
 		Decorator();
 		try {
-
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
 				mobileAction.FuncClick(yesButtonContacts, "Yes to Add contacts");
 			}
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -329,14 +328,6 @@ public class ManageRecipients extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
-				// +
-				// StringLookup.lookupString(StringLookup.ALLOW_CONTACTS_ACCESS_HEADER,
-				// currentLocale) + "']", "dialog title");
-				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
-				// +
-				// StringLookup.lookupString(StringLookup.ALLOW_CONTACTS_ACCCESS_BODY,
-				// currentLocale) + "']", "dialog msg");
 			} else {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("add_contact_alert_title") + "']", "dialog title");
@@ -929,7 +920,9 @@ public class ManageRecipients extends _CommonPage {
 				final WebElement name = mobileAction.verifyWebElementUsingXPath("//input[@name='name']", "Name");
 				name.sendKeys(getTestdata("RecipientName"));
 				final WebElement email = mobileAction.verifyWebElementUsingXPath("//input[@name='email']", "Email");
+
 				email.sendKeys(UUID.randomUUID().toString().replace("-", "") + "@test.zz");
+
 				final WebElement securityQ = mobileAction.verifyWebElementUsingXPath("//input[@name='question']",
 						"Security Questions");
 				securityQ.sendKeys(getTestdata("Security_Question"));

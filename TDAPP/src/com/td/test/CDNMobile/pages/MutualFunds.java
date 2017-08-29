@@ -750,7 +750,6 @@ public class MutualFunds extends _CommonPage {
 					mobileAction.waitForElementToVanish(progressBar);
 
 					MobileElement selectSymbolValue1 = (MobileElement) (CL.GetAppiumDriver())
-
 							.findElement(By.xpath(selectSymbolVal1));
 
 					mobileAction.FuncClick(selectSymbolValue1, "Symbol");
@@ -764,7 +763,6 @@ public class MutualFunds extends _CommonPage {
 					mobileAction.waitForElementToVanish(progressBar);
 
 					MobileElement selectSymbolValue1 = (MobileElement) (CL.GetAppiumDriver())
-
 							.findElement(By.xpath(selectSymbolVal1));
 
 					mobileAction.FuncClick(selectSymbolValue1, "Symbol");
@@ -779,7 +777,6 @@ public class MutualFunds extends _CommonPage {
 					mobileAction.waitForElementToVanish(progressBar);
 
 					MobileElement selectSymbolValue = (MobileElement) (CL.GetAppiumDriver())
-
 							.findElement(By.xpath(selectSymbolVal2));
 
 					mobileAction.FuncClick(selectSymbolValue, "Symbol");
@@ -867,57 +864,7 @@ public class MutualFunds extends _CommonPage {
 
 		} else {
 
-			// mobileAction.FuncClick(back, "Back button");
-			//
-			//
-			// MobileElement dividendoption = (MobileElement) ((AppiumDriver)
-			// CL.GetDriver())
-			// .findElement(By.xpath(dividendiOSXpath));
-			//
-			// mobileAction.verifyElementIsDisplayed(dividendoption,
-			// dividendOption);
-			//
-			// MobileElement quanty = (MobileElement) ((AppiumDriver)
-			// CL.GetDriver())
-			// .findElement(By.xpath(quantityiOSxpath));
-			//
-			// mobileAction.verifyElementIsDisplayed(quanty, quantity);
-			//
-			// MobileElement amount = (MobileElement) ((AppiumDriver)
-			// CL.GetDriver())
-			// .findElement(By.xpath(amountiOSXpath));
-			//
-			// mobileAction.verifyElementIsDisplayed(amount, amountXL);
-			//
-			//
-			// mobileAction.FunctionSwipe("down", 200, 200);
-			//
-			// MobileElement action = (MobileElement) ((AppiumDriver)
-			// CL.GetDriver())
-			// .findElement(By.xpath(actioniOSXpath));
-			//
-			// mobileAction.verifyElementIsDisplayed(action, actionToPerform);
-			//
-			// MobileElement accountNumber = (MobileElement) ((AppiumDriver)
-			// CL.GetDriver())
-			// .findElement(By.xpath(accountNumberiOSXpath));
-			//
-			// mobileAction.verifyElementIsDisplayed(accountNumber,
-			// trade_account_no);
-
 		}
-		//
-		// }
-		//
-		// catch (NoSuchElementException e) {
-		//
-		// CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		// } catch (IOException e) {
-		//
-		// e.printStackTrace();
-		// } catch (InterruptedException e) {
-		//
-		// }
 
 	}
 

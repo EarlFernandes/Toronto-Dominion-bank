@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
+import com.td.test.CDNMobile.pages.GetDate;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -78,16 +79,16 @@ public class SpendingByCategory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'You have spent') or contains(@content-desc,'Vous avez dépensé')]")
 	private MobileElement YouHaveSpent;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'change category') or contains(@name,'change category')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category')]")
+	@iOSFindBy(xpath = "//*[contains(@label,'change category') or contains(@label,'changer de catégorie')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie')]")
 	private MobileElement transactionCategory;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'All Categories Spending Details') or contains(@label,'Wants Spending Details') or contains(@label,'Needs Spending Details')]/following-sibling::XCUIElementTypeOther[3]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category')]/following-sibling::android.view.View")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie')]/following-sibling::android.view.View")
 	private MobileElement transactionName;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'All Categories Spending Details') or contains(@label,'Wants Spending Details') or contains(@label,'Needs Spending Details')]/following-sibling::XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category')]/following-sibling::android.view.View/android.view.View[contains(@content-desc,'$')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie')]/following-sibling::android.view.View/android.view.View[contains(@content-desc,'$')]")
 	private MobileElement amount;
 
 	@AndroidFindBy(xpath = "//android.view.View[@resource-id='changeCategoryHeader' or contains(@content-desc,'Change Category')]")
@@ -101,6 +102,9 @@ public class SpendingByCategory extends _CommonPage {
 
 	@FindBy(id = "categoriesHeader")
 	private WebElement pageHeaderAndroid;
+	
+	@FindBy(id = "categoryMonthTitle")
+	private WebElement monthlySpendingofCurrentMonthAndroid;
 
 	@FindBy(id = "allFilter")
 	private WebElement allAndroid;
@@ -614,6 +618,117 @@ public class SpendingByCategory extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+
+	}
+	
+	/**
+	 * This method will verify the spikes on the spending by category page
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void verifySpikes(){
+		Decorator();
+		String monthlySpending="";
+		boolean flag = true;
+		String currentMonth=GetDate.getCurrentMonth();
+		String spendingDetailsTransacName="";
+		String spendingDetailsTransacAmount="";
+		
+		try {
+			
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				
+				String spendingDetails=mobileAction.FuncGetElementText(monthlySpendingofCurrentMonthAndroid);
+				mobileAction.verifyElementIsDisplayed(monthlySpendingofCurrentMonthAndroid, spendingDetails);
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				boolean transactionpresent = mobileAction.verifyElementIsPresent(transactionCategory);
+				if (transactionpresent) {
+					
+					String category = transactionCategory.getAttribute("name");
+					System.out.println("verifyTransactions Text----> " + category);
+					String[] catArr = category.split(". ");
+					mobileAction.verifyElementIsDisplayed(transactionCategory, "Transaction Category: " + catArr[0]);
+					
+					spendingDetailsTransacName="//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie')]/following-sibling::android.view.View[1]";
+					MobileElement transacName=mobileAction.mobileElementUsingXPath(spendingDetailsTransacName);
+					String TransName = transacName.getAttribute("name");
+					mobileAction.verifyElementIsDisplayed(transacName, "Transaction: " + TransName);
+
+					spendingDetailsTransacAmount="//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie')]/following-sibling::android.view.View[2]/android.view.View";
+					MobileElement transacAmount=mobileAction.mobileElementUsingXPath(spendingDetailsTransacAmount);
+					String amountText = transacAmount.getAttribute("name");
+					mobileAction.verifyElementIsDisplayed(transacAmount, "Amount: " + amountText);
+
+					flag = true;
+
+				} else {
+					mobileAction.stringToReport("Pass",
+							"No Transactions Found in spending by Category");
+
+					flag = false;
+				}
+				Spending_Insight.get().clickSideMenuButton();
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickSideMenuButton();
+			}else{
+				
+				monthlySpending = "//*[contains(@label,'Monthly spending as of " + currentMonth + "') or contains(@label,'Dépenses mensuelles en date du')]";
+				MobileElement monthlySpendingofCurrentMonth = mobileAction.mobileElementUsingXPath(monthlySpending);
+				mobileAction.verifyElementIsDisplayed(monthlySpendingofCurrentMonth, "Monthly Spending of Current month");
+				boolean transactionpresent = mobileAction.verifyElementIsPresent(transactionCategory);
+				if (transactionpresent) {
+	
+					String category = transactionCategory.getAttribute("name");
+					System.out.println("verifyTransactions Text----> " + category);
+					String[] catArr = category.split(". ");
+					mobileAction.verifyElementIsDisplayed(transactionCategory, "Transaction Category: " + catArr[0]);
+					
+					spendingDetailsTransacName="//*[contains(@label,'"+ catArr[0] +" Spending Details') or contains(@label,'Détail des dépenses "+ catArr[0] +"')]/following-sibling::XCUIElementTypeOther[3]";
+					MobileElement transacName=mobileAction.mobileElementUsingXPath(spendingDetailsTransacName);
+					String TransName = transacName.getAttribute("name");
+					mobileAction.verifyElementIsDisplayed(transacName, "Transaction: " + TransName);
+	
+					spendingDetailsTransacAmount="//*[contains(@label,'"+ catArr[0] +" Spending Details') or contains(@label,'Détail des dépenses "+ catArr[0] +"')]/following-sibling::XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeStaticText";
+					MobileElement transacAmount=mobileAction.mobileElementUsingXPath(spendingDetailsTransacAmount);
+					String amountText = transacAmount.getAttribute("name");
+					mobileAction.verifyElementIsDisplayed(transacAmount, "Amount: " + amountText);
+	
+					flag = true;
+	
+				} else {
+					mobileAction.stringToReport("Pass",
+							"No Transactions Found in spending by Category");
+	
+					flag = false;
+				}
+				Spending_Insight.get().clickSideMenuButton();
+				Spending_Insight.get().clickSideMenuButton();
+			}
+		} catch (NoSuchElementException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} 
 
 	}
 

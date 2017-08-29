@@ -6,8 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
-import com.td.EnglishStrings;
-import com.td.FrenchStrings;
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -20,8 +19,7 @@ public class QuickAccess extends _CommonPage {
 
 	private static QuickAccess Quickaccess;
 
-	@iOSFindBy(xpath = "//*[@label='" + EnglishStrings.QUICK_ACCESS_HEADER + "' or @label='"
-			+ FrenchStrings.QUICK_ACCESS_HEADER + "']")
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement quickaccess_title;
 
@@ -37,11 +35,6 @@ public class QuickAccess extends _CommonPage {
 
 	@iOSFindBy(accessibility = "QUICKBALANCE_ONBOARDING_START_BUTTON")
 	private MobileElement getStartedButton;
-
-	@iOSFindBy(xpath = "//*[@label='" + EnglishStrings.QUICK_ACCESS_SWITCH_IOS + "' or @label='"
-			+ FrenchStrings.QUICK_ACCESS_SWITCH_IOS + "']/../XCUIElementTypeSwitch")
-	@AndroidFindBy(xpath = "//android.widget.Switch[@content-desc='" + EnglishStrings.QUICK_ACCESS_SWITCH_AND
-			+ "' or @content-desc='" + FrenchStrings.QUICK_ACCESS_SWITCH_AND + "']")
 
 	private MobileElement quickaccess_switch;
 
@@ -67,7 +60,7 @@ public class QuickAccess extends _CommonPage {
 		try {
 			mobileAction.verifyElementTextIsDisplayed(quickaccess_title,
 
-					EnglishStrings.QUICK_ACCESS_HEADER + " | " + FrenchStrings.QUICK_ACCESS_HEADER);
+					getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_SETTINGS));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -78,9 +71,19 @@ public class QuickAccess extends _CommonPage {
 	public void VerifyQuickAccessSwitchWork() {
 		Decorator();
 		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				quickaccess_switch = mobileAction.verifyElementUsingXPath(
+						"//android.widget.Switch[@content-desc='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_SWITCH_AND) + "']",
+						"Quick Access Switch");
+			} else {
+				quickaccess_switch = mobileAction.verifyElementUsingXPath(
+						"//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_SETTINGS)
+								+ "']/../XCUIElementTypeSwitch",
+						"Quick Access Switch");
+			}
 
 			mobileAction.verifyElementIsDisplayed(quickaccess_switch, "Quick Access Switch");
-
 			String switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
 			System.out.println("Checked Status :" + switchCheckStatus);
 			if (switchCheckStatus.equalsIgnoreCase("true")) {
@@ -124,6 +127,17 @@ public class QuickAccess extends _CommonPage {
 	public void VerifyAndEnableQuickAccess() {
 		Decorator();
 		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				quickaccess_switch = mobileAction.verifyElementUsingXPath(
+						"//android.widget.Switch[@content-desc='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_SWITCH_AND) + "']",
+						"Quick Access Switch");
+			} else {
+				quickaccess_switch = mobileAction.verifyElementUsingXPath(
+						"//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_SETTINGS)
+								+ "']/../XCUIElementTypeSwitch",
+						"Quick Access Switch");
+			}
 			mobileAction.verifyElementIsDisplayed(quickaccess_switch, "Quick Access");
 			String switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
 			System.out.println("Checked Status :" + switchCheckStatus);
@@ -170,8 +184,10 @@ public class QuickAccess extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
 				mobileAction.verifyTextEquality(title.getText().trim(),
 						mobileAction.getAppString("easy_access_enroll_text1").trim());
+
 				mobileAction.verifyTextEquality(getStartedButton.getText(),
 						mobileAction.getAppString("btn_get_started"));
 			} else {

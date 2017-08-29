@@ -36,9 +36,7 @@ public class CrossBorder extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
-
 	}
 
 	/**
@@ -56,12 +54,12 @@ public class CrossBorder extends _CommonPage {
 	public void clickLogin() {
 		Decorator();
 		try {
-
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement loginButton = (WebElement) (CL.GetAppiumDriver()).findElement(By.id("callLoginpopup"));
 
+				final WebElement loginButton = (WebElement) (CL.GetAppiumDriver()).findElement(By.id("callLoginpopup"));
 				loginButton.click();
 			}
 
@@ -95,7 +93,6 @@ public class CrossBorder extends _CommonPage {
 
 	public void verifyCrossBorderWelcomeTextElements() {
 		Decorator();
-
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				String expectedText = "";
@@ -133,7 +130,6 @@ public class CrossBorder extends _CommonPage {
 			} else {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-
 				final String text = (CL.GetAppiumDriver()).findElement(By.cssSelector("body")).getText();
 
 				String expectedText = "";
@@ -149,7 +145,6 @@ public class CrossBorder extends _CommonPage {
 					expectedText = WELCOME_EXPECTED_TEXT_ZH_TRAD;
 					break;
 				}
-
 				if (!text.trim().equals(expectedText)) {
 					throw new NoSuchElementException(
 							"Text were not equal, expected: " + expectedText + " was: " + text);
@@ -213,7 +208,6 @@ public class CrossBorder extends _CommonPage {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 
 				final String text = (CL.GetAppiumDriver()).findElement(By.cssSelector("body")).getText();
-
 				String expectedText = "";
 				switch (currentLocale) {
 				case "EN":
@@ -227,7 +221,6 @@ public class CrossBorder extends _CommonPage {
 					expectedText = POPUP_EXPECTED_TEXT_ZH_TRAD;
 					break;
 				}
-
 				if (!text.trim().equals(expectedText)) {
 					throw new NoSuchElementException(
 							"Text were not equal, expected: " + expectedText + " was: " + text);
