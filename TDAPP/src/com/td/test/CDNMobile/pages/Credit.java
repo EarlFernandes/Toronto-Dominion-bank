@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -65,6 +66,8 @@ public class Credit extends _CommonPage {
 	By iosActivityDetails = By.xpath("//XCUIElementTypeOther[@label='Activity']");
 
 	By iosVerifyLang = By.xpath("//XCUIElementTypeStaticText[contains(@label,'Dollars')]");
+	
+	private MobileElement more_link;
 
 	public synchronized static Credit get() {
 		if (Credit == null) {
@@ -330,5 +333,47 @@ public class Credit extends _CommonPage {
 
 		}
 	}
+	
+	public void VerifyMoreLinkPresent(){
+		Decorator();
+		String moreText = getTextInCurrentLocale(StringArray.ARRAY_MORE_LINK);
+		String moreXpath ="";
+		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			moreXpath ="//*[@label='"+ moreText +"']";
+		}else{
+			moreXpath ="//android.widget.Button[@text='"+ moreText +"']";
+		}
+		
+		try{
+			more_link = mobileAction.verifyElementUsingXPath(moreXpath, moreText);
+		}catch (NoSuchElementException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+	}
+	
+	public void ClickMoreLink(){
+		Decorator();
+		String moreText = "MORE";
+		String moreXpath ="";
+		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+			moreXpath ="//*[@label='"+ moreText +"']";
+			
+		}else{
+			moreXpath ="//android.widget.Button[@text='"+ moreText +"']";
+		}
+		
+		try{
+			more_link = mobileAction.verifyElementUsingXPath(moreXpath, moreText);
+			mobileAction.FuncClick(more_link, moreText);
+		}catch (NoSuchElementException | IOException | InterruptedException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+	}
+	
+	
 
 }

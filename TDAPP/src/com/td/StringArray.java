@@ -104,4 +104,38 @@ public final class StringArray {
 	public static final String[] ARRAY_SAVE_BUTTON ={"Save","Enregistrer","保存","儲存"};
 	public static final String[] ARRAY_CLEAR_PHONE_ICON ={"Clear text","Effacer le texte","清除文字","清除文字"};
 	public static final String[] ARRAY_PROFILE_HEADER ={"Profile","Profil","个人资料","個人資料"};
+	public static final String[] ARRAY_CONTACT_US_HEADER ={"Contact Us","Contactez-nous","联系我们","聯絡我們"};
+	//CLIP
+	public static final String[] ARRAY_MORE_LINK ={"MORE","PLUS","更多","更多"};
+	public static final String[] ARRAY_MORE_OPTION_HEADER ={"More Options","Plus d’options","更多选项","更多選項"};
+	public static final String[] ARRAY_CREDIT_LIMIT_INCREASE_REQ ={"Request a Credit Limit Increase","Demander une augmentation de limite de crédit","申请提高信用额度","申請增加信用限額"};
+	public static final String[] ARRAY_CREDIT_LIMIT_INCREASE_DIR ={"You must be the Primary cardholder on the card to make a credit limit increase request. Requests take only a few minutes to complete.",
+			        "Vous n’aurez besoin que de quelques minutes pour remplir une demande et vous recevrez une réponse peu de temps après.",
+			        "申请只需几分钟即可完成，很快您将收到答复。","申請只需幾分鐘即可完成，您很快會收到回覆。"};
+	//MAB
+	public static final String[] ARRAY_APPOINTMENT_BOOKING ={"Appointment Booking","Prise de rendez-vous","分行预约","分行預約"};
+	public static final String[] ARRAY_BRABCH_HEADER ={"Branch","Succursale","分行","分行"};
+	public static final String[] ARRAY_BOOKING_APPOINTMENT_AND ={"BOOK AN APPOINTMENT","PRENDRE RENDEZ-VOUS","分行预约","分行預約"};
+	public static final String[] ARRAY_BOOKING_APPOINTMENT_IOS ={"BOOK A VISIT","PRENDRE RENDEZ-VOUS","分行预约","分行預約"};
+	public static final String[] ARRAY_MAB_COPY_TEXT ={"Come in and ask us all your banking, credit card, borrowing and investing questions.To complete your appointment booking, you'll leave the TD app and go to the TD website.",
+			        "Venez nous rencontrer pour obtenir des réponses à vos questions sur les opérations bancaires, les cartes de crédit, les emprunts et les placements. Pour effectuer votre prise de rendez-vous, vous serez dirigé hors de l’appli TD vers le site Web de la TD.",
+			        "欢迎亲临分行了解更多有关理财、信用卡、贷款和投资的详情。 要完成预约，您要退出道明应用程序并前往道明网站。",
+			        "歡迎親臨分行了解更多有關理財、信用卡、借貸和投資的詳情。 要完成預約，您要退出道明應用程式並前往道明網站。"};
+	public static final String[] ARRAY_BOOKING_APPOINTMENT_BTN ={"Book Appointment Now","Prendre rendez-vous maintenant","立即预约会面","立即預約會面"};
+	public static final String[] ARRAY_CHANGE_CANCEl_LINK ={"Change or cancel an appointment","Modifier ou annuler un rendez-vous","更改或取消预约","更改或取消預約"};
+	public static final String[] ARRAY_MAB_FAQ ={"What are the benefits of scheduling an appointment online?How can I change or cancel a scheduled appointment?",
+			        "Quels sont les avantages de prendre rendez-vous en ligne?Comment puis-je modifier ou annuler un rendez-vous?",
+			        "在线预约有什么好处？如何更改或取消预约？","網上預約有什麼好處？如何更改或取消預約？"};
+	
+	public static final String[] ARRAY_MAB_FAQ_LINK ={"Still have questions? Check our FAQs list.","Vous avez d’autres questions? Consultez notre FAQ.","想知道更多？看看我们的常见问题。","想知道更多？看看我們的常見問題。"};
+	public static final String[] ARRAY_MAB_URL_LINK ={"https://www1.new.sys.td.com/ca/en/personal-banking/branch-locator/#/",
+					"https://www1.new.sys.td.com/ca/fr/services-bancaires-personnels/rendez-vous/#/",
+					"https://www1.new.sys.td.com/ca/en/personal-banking/branch-locator/#/",
+					"https://www1.new.sys.td.com/ca/en/personal-banking/branch-locator/#/"};
+	
+	public static final String[] ARRAY_MENU_LOCATION ={"Locations","Succursales","分行网点","分行地點"};
+	public static final String[] ARRAY_FIND_LOCATION ={"Find Locations","Trouver une succursale","查找分行","查找分行"};
+	
+	
+	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.StringArray;
@@ -97,7 +98,7 @@ public class MenuPage extends _CommonPage {
 	private MobileElement applePay;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_LOCATIONS']/XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
 	private MobileElement locations;
 
 	// Profile and preference
@@ -601,6 +602,12 @@ public class MenuPage extends _CommonPage {
 
 		Decorator();
 		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				locations = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='"
+								+getTextInCurrentLocale(StringArray.ARRAY_MENU_LOCATION) + "']",
+						"Locations");
+			}
 			mobileAction.FuncClick(locations, "Locations");
 			Thread.sleep(2000);
 		} catch (NoSuchElementException e) {

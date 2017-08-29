@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.MobileAction2;
@@ -99,7 +100,7 @@ public class Accounts_Credit extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);	
 
 	}
 

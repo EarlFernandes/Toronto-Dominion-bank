@@ -101,6 +101,10 @@ import com.td.test.myspend.Spending_Insight;
 import com.td.test.myspend.TDAppHomePage;
 import com.td.test.myspend.TourPage;
 import com.td.test.myspend.TransactionHistory;
+import com.td.test.CDNMobile.pages.MoreOptions;
+import com.td.test.CDNMobile.pages.CreditLimitIncreaseForm;
+import com.td.test.CDNMobile.pages.AppointmentBooking;
+import com.td.test.CDNMobile.pages.Branch;
 
 public class EventCase {
 
@@ -222,7 +226,13 @@ public class EventCase {
 		OTP_Challenge_ClickTextOption, OTP_Challenge_ClickVoiceOption, OTP_Challenge_ClickFirstPhoneNumber, OTP_Challenge_ClickGetCodeButton, OTP_Challenge_ClickSubmitCodeButton, OTP_Challenge_EnterSecurityCode, OTP_Challenge_WaitForOTPProgressBarToVanish, OTP_Challenge_VerifyInvalidSecurityCode, OTP_Challenge_ResendCode, OTP_Challenge_VerifyTooManySecurityCodesRequested,
 
 		// myspend
-		Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, TourPage_clickConnectTDApp, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickGetTDAppButton, click_PreferencesLink
+		Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, TourPage_clickConnectTDApp, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickGetTDAppButton, click_PreferencesLink,
+		
+		//CLIP
+		VerifyMoreLinkPresent, ClickMoreLink, verifyMoreOptionHeader,ClickCardlimitIncreaseBtn, verifyCreditLimitIncreaseHeader, verifyMoreOptionsDirectionalCopy,verifyCreditCardContent,
+		
+		//MAB
+		VerifyContactUsMABContent,verifyAppointmentBookingHeader,ClickAppointmentBooking, SelectBranchLocation,verifyBranchHeader,verifyBranchBookAppointmentContent,clickBranchBookAppointmentIcon,verifyMABLandingPageContent,clickBookAppointmentNowbtn,verifyAppointmentURLLink,
 
 	}
 
@@ -2909,6 +2919,79 @@ public class EventCase {
 			break;
 
 		// End of Purchase Mutual funds
+			
+		//CLIP
+		case VerifyMoreLinkPresent:
+			Credit.get().VerifyMoreLinkPresent();
+			break;
+
+		case ClickMoreLink:
+			Credit.get().ClickMoreLink();
+			break;
+
+		case verifyMoreOptionHeader:
+			MoreOptions.get().verifyMoreOptionHeader();
+			break;
+			
+		case ClickCardlimitIncreaseBtn:
+			MoreOptions.get().ClickCardlimitIncreaseBtn();
+			break;
+			
+		case verifyCreditLimitIncreaseHeader:
+			CreditLimitIncreaseForm.get().verifyCreditLimitIncreaseHeader();
+			break;	
+	
+		case verifyMoreOptionsDirectionalCopy:
+			MoreOptions.get().verifyMoreOptionsDirectionalCopy();
+			break;
+			
+		case verifyCreditCardContent:
+			MoreOptions.get().verifyCreditCardContent();
+			break;				
+
+		//End of CLIP	
+			
+		//MAB
+		case VerifyContactUsMABContent:
+			ContactUs.get().VerifyContactUsMABContent();
+			break;
+			
+		case ClickAppointmentBooking:
+			ContactUs.get().ClickAppointmentBooking();
+			break;
+			
+		case verifyAppointmentBookingHeader:
+			AppointmentBooking.get().verifyAppointmentBookingHeader();
+			break;
+
+		case SelectBranchLocation:
+			FindLocations.get().SelectBranchLocation();
+			break;
+			
+		case verifyBranchHeader:
+			Branch.get().verifyBranchHeader();
+			break;
+			
+		case verifyBranchBookAppointmentContent:
+			Branch.get().verifyBranchBookAppointmentContent();
+			break;			
+
+		case clickBranchBookAppointmentIcon:
+			Branch.get().clickBranchBookAppointmentIcon();
+			break;
+
+		case verifyMABLandingPageContent:
+			AppointmentBooking.get().verifyMABLandingPageContent();
+			break;
+
+		case clickBookAppointmentNowbtn:
+			AppointmentBooking.get().clickBookAppointmentNowbtn();
+			break;
+			
+		case verifyAppointmentURLLink:
+			AppointmentBooking.get().verifyAppointmentURLLink();
+			break;			
+		//End of MAB
 
 		case VerifyStatementBalanceHeader:
 			StatementBalance.get().verifyStatementBalanceHeader();
