@@ -46,39 +46,45 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	private MobileElement password;
 
 	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
-	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/navText' and (contains(@text,'Home') or contains(@text,'Action'))]")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/navText' and (@text='Home' or @text='Accueil' or @text='主页' or @text='首頁')]")
 	private MobileElement FLY_Home;
 
 	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
-	@AndroidFindBy(xpath = "//*[contains(@text,'SEND MONEY') or contains(@text,'汇款')]")
+	@AndroidFindBy(xpath = "//*[@text='SEND MONEY' or @text='ENVOI DE FONDS' or @text='汇款' or @text='匯款']")
 	private MobileElement QL_SENDMONEY;
 
 	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
-	@AndroidFindBy(xpath = "//*[contains(@text,'TRANSFER') or contains(@text,'转账')]")
+	@AndroidFindBy(xpath = "//*[@text='TRANSFER' or @text='VIREMENTS' or @text='转账' or @text='轉賬']")
 	private MobileElement QL_TRANSFER;
 
-	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
-	@AndroidFindBy(xpath = "//*[contains(@text,'PAY NOW') or contains(@text,'Action')]")
+	@AndroidFindBy(xpath = "//*[@text='PAY NOW' or @text='Action']") // FIX
 	private MobileElement QL_PAYNOW;
 
+	@iOSFindBy(xpath = "//*[@label='Apple Pay' or @label='APPLE PAY']") // French/CH_SM/CH_TD
+																		// APPLE
+																		// PAY
+																		// ??
+																		// Verify
+	private MobileElement QL_APPLEPAY;
+
 	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
-	@AndroidFindBy(xpath = "//*[contains(@text,'DEPOSIT') or contains(@text,'存款')]")
+	@AndroidFindBy(xpath = "//*[@text='DEPOSIT' or @text='DÉPÔT' or @text='存款' or @text='存款']")
 	private MobileElement QL_DEPOSIT;
 
 	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
-	@AndroidFindBy(xpath = "//*[contains(@text,'WATCHLISTS') or contains(@text,'自选股观察名单')]")
+	@AndroidFindBy(xpath = "//*[@text='WATCHLISTS' or @text='LISTES DE SURVEILLANCE' or @text='自选股观察名单' or @text='自選股觀察名單']")
 	private MobileElement QL_WATCHLISTS;
 
 	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
-	@AndroidFindBy(xpath = "//*[contains(@text,'QUOTE') or contains(@text,'报价')]")
+	@AndroidFindBy(xpath = "//*[@text='QUOTE' or @text='Cote' or @text='报价' or @text='報價']")
 	private MobileElement QL_QUOTE;
 
 	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
-	@AndroidFindBy(xpath = "//*[contains(@text,'Mobile Payment') or contains(@text,'Action')]")
+	@AndroidFindBy(xpath = "//*[@text='Mobile Payment' or @text='Action']") // FIX
 	private MobileElement HDR_MobilePayment;
-	
+
 	private By ED_Quote_Search_Symbol = By.id("symbol-search");
-	
+
 	private By BTN_Back = By.xpath("//*[@class='sprite sprite-back']");
 
 	public void verifyQuickLinksUnAuthenicatedUser() {
@@ -93,20 +99,20 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 					 * CL.GetDriver()).getCapabilities().getCapability(
 					 * "language");
 					 */
-					if(verifyQuickLinkExists(QL_SENDMONEY))
-					mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
-					
+					if (verifyQuickLinkExists(QL_SENDMONEY))
+						mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
+								getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+
 					clickQuickLink(QL_SENDMONEY, "SEND MONEY");
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
 					mobileAction.FuncClick(BT_Back, "< Button");
 					break;
 
 				case "TRANSFER":
-					if(verifyQuickLinkExists(QL_TRANSFER))
-					mobileAction.FuncVerifyTextEquals(QL_TRANSFER,
-							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_TRANSFER));
-					
+					if (verifyQuickLinkExists(QL_TRANSFER))
+						mobileAction.FuncVerifyTextEquals(QL_TRANSFER,
+								getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_TRANSFER));
+
 					clickQuickLink(QL_TRANSFER, "TRANSFER");
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
 					mobileAction.FuncClick(BT_Back, "< Button");
@@ -114,10 +120,10 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 				case "PAY NOW":
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-						if(verifyQuickLinkExists(QL_PAYNOW))
-						mobileAction.FuncVerifyTextEquals(QL_PAYNOW,
-								getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_PAYNOW));
-						
+						if (verifyQuickLinkExists(QL_PAYNOW))
+							mobileAction.FuncVerifyTextEquals(QL_PAYNOW,
+									getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_PAYNOW));
+
 						clickQuickLink(QL_PAYNOW, "PAY NOW");
 						mobileAction.verifyElementIsDisplayed(HDR_MobilePayment, "Header:Mobile Payment");
 						mobileAction.FuncClick(MenuUp, "Hamburger Menu");
@@ -125,38 +131,52 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 					}
 					break;
 
+				case "APPLE PAY":
+					if (!CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
+						if (verifyQuickLinkExists(QL_APPLEPAY))
+							mobileAction.FuncVerifyTextEquals(QL_APPLEPAY,
+									getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_APPLEPAY));
+
+						clickQuickLink(QL_APPLEPAY, "APPLE PAY");
+						mobileAction.verifyElementIsDisplayed(password, "Login Screen");
+						mobileAction.FuncClick(BT_Back, "< Button");
+					}
+					break;
+
 				case "DEPOSIT":
-					if(verifyQuickLinkExists(QL_DEPOSIT))
-					mobileAction.FuncVerifyTextEquals(QL_DEPOSIT,
-							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_DEPOSIT));
-					
+					if (verifyQuickLinkExists(QL_DEPOSIT))
+						mobileAction.FuncVerifyTextEquals(QL_DEPOSIT,
+								getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_DEPOSIT));
+
 					clickQuickLink(QL_DEPOSIT, "DEPOSIT");
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
 					mobileAction.FuncClick(BT_Back, "< Button");
 					break;
 
 				case "WATCHLISTS":
-					if(verifyQuickLinkExists(QL_WATCHLISTS))
-					mobileAction.FuncVerifyTextEquals(QL_WATCHLISTS,
-							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_WATCHLISTS));
-					
+					if (verifyQuickLinkExists(QL_WATCHLISTS))
+						mobileAction.FuncVerifyTextEquals(QL_WATCHLISTS,
+								getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_WATCHLISTS));
+
 					clickQuickLink(QL_WATCHLISTS, "WATCHLISTS");
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
 					mobileAction.FuncClick(BT_Back, "< Button");
 					break;
 
 				case "QUOTE":
-					if(verifyQuickLinkExists(QL_QUOTE))
-					mobileAction.FuncVerifyTextEquals(QL_QUOTE,
-							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUOTE));
-					
+					if (verifyQuickLinkExists(QL_QUOTE))
+						mobileAction.FuncVerifyTextEquals(QL_QUOTE,
+								getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUOTE));
+
 					clickQuickLink(QL_QUOTE, "QUOTE");
-					
+
 					Thread.sleep(10000);
-					
-					//Quote page WEBVIEW
+
+					// Quote page WEBVIEW
 					MIT_PNSAccessAlerts.get().FuncSwitchContext(MIT_PNSAccessAlerts.get().getWebViewContextString());
-					mobileAction.verifyElementIsDisplayed(getMobileElement(ED_Quote_Search_Symbol), "ED_Quote_Search_Symbol");
+					mobileAction.verifyElementIsDisplayed(getMobileElement(ED_Quote_Search_Symbol),
+							"ED_Quote_Search_Symbol");
 					Thread.sleep(10000);
 					mobileAction.FuncClick(getMobileElement(BTN_Back), "BTN_Back");
 					MIT_PNSAccessAlerts.get().FuncSwitchContext("NATIVE_APP");
@@ -172,6 +192,8 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		}
 	}
 
+
+
 	public void clickQuickLink(MobileElement mElement, String sDesc) {
 		Decorator();
 		try {
@@ -185,21 +207,19 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		}
 
 	}
-	
+
 	public boolean verifyQuickLinkExists(MobileElement mElement) {
 		Decorator();
 		boolean bFlag = false;
 		try {
 			// CL.getTestDataInstance().getMobileDeviceType();
-			if (!mobileAction.isObjExists(mElement)) 
-			{
+			if (!mobileAction.isObjExists(mElement)) {
 				mobileAction.FunctionSwipe("Left", 200, 100);
-				if(mobileAction.isObjExists(mElement))
+				if (mobileAction.isObjExists(mElement))
 					bFlag = true;
-			}
-			else
+			} else
 				bFlag = true;
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -210,6 +230,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	public void clickBackButton(MobileElement mElement) {
 
 	}
+
 	public MobileElement getMobileElement(By element) {
 		try {
 			return (MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(element);
