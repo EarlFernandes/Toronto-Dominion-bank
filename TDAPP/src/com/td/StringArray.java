@@ -77,6 +77,7 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_RECEIPT_VIEW_ACCOUNT_BTN = {"VIEW MY ACCOUNTS", "CONSULTER MES COMPTES", "查看我的账户", "查看我的賬戶"};
 	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE ={"Accepted Fund Details & Fees","Infos sur le fonds et les frais acceptées",
 			"已接受的基金 详情与费用","已接受的基金 詳情與費用"};
+	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE_ANSWER ={"Yes","Oui","是","是"};
 	public static final String[] ARRAY_MF_FUND_FACT ={"Fund Facts","Aperçu du fonds","基金概况","基金概況"};
 	public static final String[] ARRAY_MF_FUND_FACT_PDF ={"fund facts.pdf","Aperçu du fonds.pdf","基金概况.pdf","基金概況.pdf"};
 	
@@ -114,7 +115,6 @@ public final class StringArray {
 			        "申请只需几分钟即可完成，很快您将收到答复。","申請只需幾分鐘即可完成，您很快會收到回覆。"};
 	//MAB
 	public static final String[] ARRAY_APPOINTMENT_BOOKING ={"Appointment Booking","Prise de rendez-vous","分行预约","分行預約"};
-	public static final String[] ARRAY_BRABCH_HEADER ={"Branch","Succursale","分行","分行"};
 	public static final String[] ARRAY_BOOKING_APPOINTMENT_AND ={"BOOK AN APPOINTMENT","PRENDRE RENDEZ-VOUS","分行预约","分行預約"};
 	public static final String[] ARRAY_BOOKING_APPOINTMENT_IOS ={"BOOK A VISIT","PRENDRE RENDEZ-VOUS","分行预约","分行預約"};
 	public static final String[] ARRAY_MAB_COPY_TEXT ={"Come in and ask us all your banking, credit card, borrowing and investing questions.To complete your appointment booking, you'll leave the TD app and go to the TD website.",
@@ -134,8 +134,8 @@ public final class StringArray {
 					"https://www1.new.sys.td.com/ca/en/personal-banking/branch-locator/#/"};
 	
 	public static final String[] ARRAY_MENU_LOCATION ={"Locations","Succursales","分行网点","分行地點"};
+	public static final String[] ARRAY_BRABCH_HEADER ={"Branch","Succursale","分行","分行"};
 	public static final String[] ARRAY_FIND_LOCATION ={"Find Locations","Trouver une succursale","查找分行","查找分行"};
-	
-	
-	
+	public static final String[] ARRAY_CONFIRM ={"Confirm","Confirm","确认", "確認"};
+
 }

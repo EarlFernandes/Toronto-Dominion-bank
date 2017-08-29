@@ -106,14 +106,6 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/your_location_text_view']")
 	private MobileElement nearByLoaction;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/following-sibling::XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_location']")
-	private MobileElement searchLocation;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[2]")
-	@AndroidFindBy(xpath = "//*[@content-desc='Filter Locations']")
-	private MobileElement filter_locations_Button;
-
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/zone_name'][1]")
 	private MobileElement zone_Name;
 
@@ -771,34 +763,7 @@ public class HomeScreen extends _CommonPage {
 
 	}
 
-	/**
-	 * This method will click on the locations and verify the nearby locations
-	 * 
-	 * @return void
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 */
-	public void verifyLocations() {
-		Decorator();
-		try {
 
-			mobileAction.verifyElementIsDisplayed(filter_locations_Button, "Filter Locations");
-			mobileAction.verifyElementIsDisplayed(searchLocation, "Search Location");
-
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		}
-
-	}
 
 	/**
 	 * This method will click investing button from the hamburger menu. language
