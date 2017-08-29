@@ -77,6 +77,7 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_RECEIPT_VIEW_ACCOUNT_BTN = {"VIEW MY ACCOUNTS", "CONSULTER MES COMPTES", "查看我的账户", "查看我的賬戶"};
 	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE ={"Accepted Fund Details & Fees","Infos sur le fonds et les frais acceptées",
 			"已接受的基金 详情与费用","已接受的基金 詳情與費用"};
+	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE_ANSWER ={"Yes","Oui","是","是"};
 	public static final String[] ARRAY_MF_FUND_FACT ={"Fund Facts","Aperçu du fonds","基金概况","基金概況"};
 	public static final String[] ARRAY_MF_FUND_FACT_PDF ={"fund facts.pdf","Aperçu du fonds.pdf","基金概况.pdf","基金概況.pdf"};
 	
