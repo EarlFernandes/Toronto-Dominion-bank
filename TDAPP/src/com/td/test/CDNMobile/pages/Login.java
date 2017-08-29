@@ -427,6 +427,8 @@ public class Login extends _CommonPage {
 				mobileAction.waitForElementToVanish(progressBar);
 
 			} else {
+				//for landscape, need to hide keyboard
+				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(login, "Login");
 				mobileAction.waitForElementToVanish(progressBar);
 			}
