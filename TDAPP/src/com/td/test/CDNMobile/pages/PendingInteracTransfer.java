@@ -213,7 +213,7 @@ public class PendingInteracTransfer extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/entransfer_deposit_account_bal']")
 	private MobileElement account_balance_receipt;
 
-	double cancel_fee = 0.00;
+	double cancel_fee = 5.00;
 
 	public synchronized static PendingInteracTransfer get() {
 		if (PendingInteracTransfer == null) {
@@ -1032,11 +1032,12 @@ public class PendingInteracTransfer extends _CommonPage {
 
 			double balance_after_Cancelled_d = mobileAction.convertStringAmountTodouble(balance_after_Cancelled);
 			System.out.println("balance_after_Cancelled:" + balance_after_Cancelled_d);
-
-			if (balance_after_Cancelled_d == balance_before_Cancelled_d + amountCancelled_d - cancel_fee) {
+			
+			double balance_diff = balance_after_Cancelled_d - balance_before_Cancelled_d;
+			if (balance_diff == amountCancelled_d || balance_diff == amountCancelled_d - cancel_fee) {
 				mobileAction.Report_Pass_Verified("Pending IET Cannceled");
 			} else {
-				mobileAction.Report_Fail("Pending IET Cannceled");
+				mobileAction.Report_Fail("Failed Pending IET Cannceled");
 			}
 
 		} catch (NoSuchElementException e) {
