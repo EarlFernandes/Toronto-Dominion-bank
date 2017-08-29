@@ -3484,4 +3484,11 @@ public class MobileAction2 extends CommonLib {
 			}
 		}
 	}
+	
+	public double convertStringAmountTodouble(String amount) {
+		String amount_no_char = amount.replaceAll("\\$", "");
+		amount_no_char = amount_no_char.replaceAll("USD", "");
+		amount_no_char = amount_no_char.replaceAll(",", "");
+		return Double.parseDouble(amount_no_char.trim());
+	}
 }

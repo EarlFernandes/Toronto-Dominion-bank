@@ -104,4 +104,9 @@ public final class StringArray {
 	public static final String[] ARRAY_SAVE_BUTTON ={"Save","Enregistrer","保存","儲存"};
 	public static final String[] ARRAY_CLEAR_PHONE_ICON ={"Clear text","Effacer le texte","清除文字","清除文字"};
 	public static final String[] ARRAY_PROFILE_HEADER ={"Profile","Profil","个人资料","個人資料"};
+	
+	public static final String[] ARRAY_BRABCH_HEADER ={"Branch","Succursale","分行","分行"};
+	public static final String[] ARRAY_FIND_LOCATION ={"Find Locations","Trouver une succursale","查找分行","查找分行"};
+	public static final String[] ARRAY_CONFIRM ={"Confirm","Confirm","确认", "確認"};
+	
 }
