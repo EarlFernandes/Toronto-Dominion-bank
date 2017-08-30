@@ -137,11 +137,25 @@ public final class StringArray {
 	// MIT Dashboard START
 	public static final String[] ARRAY_DASHBOARD_SENDMONEY = { "SEND MONEY", "ENVOI DE FONDS", "汇款", "匯款" };
 	public static final String[] ARRAY_DASHBOARD_TRANSFER = { "TRANSFER", "VIREMENTS", "转账", "轉賬" };
-	public static final String[] ARRAY_DASHBOARD_PAYNOW = { "PAY NOW", "Profil", "个人资料", "個人資料" };//FIX
+	public static final String[] ARRAY_DASHBOARD_PAYNOW = { "PAY NOW", "PAYER MAINTENANT", "马上付款", "即刻付款" };
 	public static final String[] ARRAY_DASHBOARD_DEPOSIT = { "DEPOSIT", "DÉPÔT", "存款", "存款" };
-	public static final String[] ARRAY_DASHBOARD_WATCHLISTS = { "WATCHLISTS", "LISTES DE SURVEILLANCE", "自选股观察名单", "自選股觀察名單" };
+	public static final String[] ARRAY_DASHBOARD_WATCHLISTS = { "WATCHLISTS", "LISTES DE SURVEILLANCE", "自选股观察名单",
+			"自選股觀察名單" };
 	public static final String[] ARRAY_DASHBOARD_QUOTE = { "QUOTE", "Cote", "报价", "報價" };
-	public static final String[] ARRAY_DASHBOARD_APPLEPAY = { "APPLE PAY", "APPLE PAY", "APPLE PAY", "APPLE PAY" }; //EN,FR,CH_SM & CH_TD same label //Verify
-	
+	public static final String[] ARRAY_DASHBOARD_APPLEPAY = { "APPLE PAY", "APPLE PAY", "APPLE PAY", "APPLE PAY" }; // EN,FR,CH_SM
+																													// &
+																													// CH_TD
+																													// same
+																													// label
+																													// //Verify>>
+																													// APPLE
+																													// PAY
+																													// is
+																													// same
+																													// for
+																													// all
+																													// <<
+	public static final String[] ARRAY_DASHBOARD_PAYBILL = { "PAY BILL", "PAIEMENT DE FACTURES", "支付账单", "支付賬單" };
+	public static final String[] ARRAY_DASHBOARD_TRADE = { "TRADE", "NÉGOCIATION", "交易", "交易" };
 	// MIT Dashboard END
 }
