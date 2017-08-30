@@ -137,7 +137,7 @@ public class MainScreen extends _CommonPage {
 			}
 
 		}
-		(CL.GetAppiumDriver()).rotate(ScreenOrientation.LANDSCAPE);
+
 	}
 
 	// Singleton object of self

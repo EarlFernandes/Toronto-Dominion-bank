@@ -421,9 +421,15 @@ public class Login extends _CommonPage {
 			}
 			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 			
-			mobileAction.FuncHideKeyboard();
-			mobileAction.FuncClick(login, "Login");
-			mobileAction.waitForElementToVanish(progressBar);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClick(login, "Login");
+				mobileAction.waitForElementToVanish(progressBar);
+			}else{
+				mobileAction.FuncClickBackButton();
+				mobileAction.FuncClick(login, "Login");
+				mobileAction.waitForElementToVanish(progressBar);
+			}
 			
 			verifySystemError();
 			verifySecurityQuestion();
