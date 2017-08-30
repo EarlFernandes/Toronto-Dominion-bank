@@ -279,7 +279,7 @@ public class TransfersHistory extends _CommonPage {
 								+ "']/following-sibling::android.widget.TextView[2]");
 				transacStatus = mobileAction.mobileElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/contactName' and @text='" + receiver
-								+ "']/following-sibling::android.widget.TextView[@text='"+getTestdata("TransactionStatus")+"']");
+								+ "']/following-sibling::android.widget.TextView[@text='"+getTestdata("TransactionStatus")+"' or @text='"+getTestdata("TransactionStatus").toUpperCase()+"']");
 			} else {
 				initialsCircle = mobileAction
 						.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + initials + "']");
@@ -288,15 +288,13 @@ public class TransfersHistory extends _CommonPage {
 				amountSent = mobileAction.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + receiver
 						+ "']/following-sibling::XCUIElementTypeStaticText[2]");
 				transacStatus = mobileAction.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + receiver
-						+ "']/following-sibling::XCUIElementTypeStaticText[@label='"+getTestdata("TransactionStatus")+"']");
+						+ "']/following-sibling::XCUIElementTypeStaticText[@label='"+getTestdata("TransactionStatus")+"' or @label='"+getTestdata("TransactionStatus").toUpperCase()+"']");
 			}
 			mobileAction.verifyElementIsDisplayed(initialsCircle, "Initials: " + initials);
 			mobileAction.verifyElementIsDisplayed(receiverName, "Receiver Name: " + receiver);
 			mobileAction.verifyTextEquality(receiver, receiverName.getText());
 			mobileAction.verifyElementIsDisplayed(amountSent, "Amount sent: " + amountSent.getText());
-			
-			System.out.println(transacStatus.getText()+"  "+getTestdata("TransactionStatus"));
-			
+		
 			mobileAction.verifyTextEquality(transacStatus.getText(), getTestdata("TransactionStatus"));
 
 		} catch (NoSuchElementException | IOException e) {
@@ -435,10 +433,10 @@ public class TransfersHistory extends _CommonPage {
 			} else {
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					receiverName = mobileAction.mobileElementUsingXPath("//android.widget.TextView[@text='"+transactionStatus+"']/preceding-sibling::android.widget.TextView[@text='"+receiver+"']");
+					receiverName = mobileAction.mobileElementUsingXPath("//android.widget.TextView[@text='"+transactionStatus+"' or @text='"+transactionStatus.toUpperCase()+"']/preceding-sibling::android.widget.TextView[@text='"+receiver+"' or @text='"+receiver.toUpperCase()+"']");
 				} else {
 					receiverName = mobileAction
-							.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + receiver + "']");
+							.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + receiver + "' or @label='" + receiver.toUpperCase() + "']");
 
 				}
 				mobileAction.FuncClick(receiverName, "Receiver: " + receiver);
@@ -518,10 +516,10 @@ public class TransfersHistory extends _CommonPage {
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					senderName = mobileAction.mobileElementUsingXPath(
-							"//android.widget.TextView[@text='"+transactionStatus+"']/preceding-sibling::android.widget.TextView[@text='"+sender+"']");
+							"//android.widget.TextView[@text='"+transactionStatus+"' or @text='"+transactionStatus.toUpperCase()+"']/preceding-sibling::android.widget.TextView[@text='"+sender+"' or @text='"+sender.toUpperCase()+"']");
 				} else {
 					senderName = mobileAction
-							.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + sender + "']");
+							.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + sender + "' or @label='" + sender.toUpperCase() + "']");
 				}
 
 				mobileAction.FuncClick(senderName, "Sender: " + sender);
@@ -735,15 +733,15 @@ public class TransfersHistory extends _CommonPage {
 			
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
 				receiverName = mobileAction
-						.mobileElementUsingXPath("//android.widget.TextView[@text='" + receiver + "']");
-				transacStatus = mobileAction.mobileElementUsingXPath("//android.widget.TextView[@text='"+receiver+"']/following-sibling::android.widget.TextView[@text='"+transactionStatus+"']");
+						.mobileElementUsingXPath("//android.widget.TextView[@text='" + receiver + "' or @text='" + receiver.toUpperCase() + "']");
+				transacStatus = mobileAction.mobileElementUsingXPath("//android.widget.TextView[@text='"+receiver+"' or @text='" + receiver.toUpperCase() + "']/following-sibling::android.widget.TextView[@text='"+transactionStatus+"' or @text='"+transactionStatus.toUpperCase()+"']");
 				transacCategory=mobileAction.mobileElementUsingXPath("//android.widget.TextView[@text='" + transactionCategory
 						+ "']");
 			}else{
 			receiverName = mobileAction
-					.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + receiver + "']");
+					.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + receiver + "' or @label='" + receiver.toUpperCase() + "']");
 			transacStatus = mobileAction.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + receiver
-					+ "']/following-sibling::XCUIElementTypeStaticText");
+					+ "' or @label='" + receiver.toUpperCase() + "']/following-sibling::XCUIElementTypeStaticText");
 			transacCategory=mobileAction.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='" + transactionCategory
 					+ "']");
 			}
