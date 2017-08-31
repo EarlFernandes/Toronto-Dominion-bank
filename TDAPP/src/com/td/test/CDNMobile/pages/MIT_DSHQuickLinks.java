@@ -33,31 +33,39 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				this);
 	}
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Menu')]")
+	@iOSFindBy(xpath = "//*[@name='QuickLinkLeftNavButton']")
 	@AndroidFindBy(id = "android:id/up")
-	MobileElement MenuUp;
+	MobileElement BT_Home_HamburgerMenu;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Menu')]")
+	@iOSFindBy(xpath = "//*[@name='NAVIGATION_ITEM_BACK']")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
+
+	@iOSFindBy(xpath = "//*[@name='NAVIGATION_ITEM_MENU']")
+	@AndroidFindBy(id = "android:id/up")
+	MobileElement BT_HamburgerMenu;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@label='Password']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement password;
 
-	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
+	@iOSFindBy(xpath = "//*[@label='Home' or @label='Accueil' or @label='主页' or @label='首頁']")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/navText' and (@text='Home' or @text='Accueil' or @text='主页' or @text='首頁')]")
 	private MobileElement FLY_Home;
 
-	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
+	@iOSFindBy(xpath = "//*[@label='My Accounts' or @label='Mes comptes' or @label='我的账户' or @label='我的賬戶']")
+	@AndroidFindBy(xpath = "//*[@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶']")
+	private MobileElement flyoutMyAccountLink;
+
+	@iOSFindBy(xpath = "//*[@label='SEND MONEY' or @label='ENVOI DE FONDS' or @label='汇款' or @label='匯款']")
 	@AndroidFindBy(xpath = "//*[@text='SEND MONEY' or @text='ENVOI DE FONDS' or @text='汇款' or @text='匯款']")
 	private MobileElement QL_SENDMONEY;
 
-	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
+	@iOSFindBy(xpath = "//*[@label='TRANSFER' or @label='VIREMENTS' or @label='转账' or @label='轉賬']")
 	@AndroidFindBy(xpath = "//*[@text='TRANSFER' or @text='VIREMENTS' or @text='转账' or @text='轉賬']")
 	private MobileElement QL_TRANSFER;
 
-	@AndroidFindBy(xpath = "//*[@text='PAY NOW' or @text='PAYER MAINTENANT' or @text='马上付款' or @text='即刻付款']") // FIX
+	@AndroidFindBy(xpath = "//*[@text='PAY NOW' or @text='PAYER MAINTENANT' or @text='马上付款' or @text='即刻付款']")
 	private MobileElement QL_PAYNOW;
 
 	@iOSFindBy(xpath = "//*[@label='Apple Pay' or @label='APPLE PAY']") // French/CH_SM/CH_TD
@@ -75,97 +83,85 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 																		// <<
 	private MobileElement QL_APPLEPAY;
 
-	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
+	@iOSFindBy(xpath = "//*[@label='DEPOSIT' or @label='DÉPÔT' or @label='存款' or @label='存款']")
 	@AndroidFindBy(xpath = "//*[@text='DEPOSIT' or @text='DÉPÔT' or @text='存款' or @text='存款']")
 	private MobileElement QL_DEPOSIT;
 
-	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
+	@iOSFindBy(xpath = "//*[@label='WATCHLISTS' or @label='LISTES DE SURVEILLANCE' or @label='自选股观察名单' or @label='自選股觀察名單']")
 	@AndroidFindBy(xpath = "//*[@text='WATCHLISTS' or @text='LISTES DE SURVEILLANCE' or @text='自选股观察名单' or @text='自選股觀察名單']")
 	private MobileElement QL_WATCHLISTS;
 
-	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
+	@iOSFindBy(xpath = "//*[@label='QUOTE' or @label='Cote' or @label='报价' or @label='報價']")
 	@AndroidFindBy(xpath = "//*[@text='QUOTE' or @text='Cote' or @text='报价' or @text='報價']")
 	private MobileElement QL_QUOTE;
 
-	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
+	@iOSFindBy(xpath = "//*[@label='PAY BILL' or @label='PAIEMENT DE FACTURES' or @label='支付账单' or @label='支付賬單']")
 	@AndroidFindBy(xpath = "//*[@text='PAY BILL' or @text='PAIEMENT DE FACTURES' or @text='支付账单' or @text='支付賬單']")
 	private MobileElement QL_PAY_BILL;
 
-	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
+	@iOSFindBy(xpath = "//*[@label='TRADE' or @label='NÉGOCIATION' or @label='交易' or @label='交易']")
 	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation' or @text='交易' or @text='交易']")
 	private MobileElement QL_TRADE;
 
-	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
+	@iOSFindBy(xpath = "//*[@label='Mobile Payment' or @label='Paiement mobile' or @label='移动支付' or @label='流動付款']")
 	@AndroidFindBy(xpath = "//*[@text='Mobile Payment' or @text='Paiement mobile' or @text='移动支付' or @text='流動付款']")
 	private MobileElement HDR_MobilePayment;
 
-	@iOSFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[2]")
-	@AndroidFindBy(xpath = "//*[@text='Pay Bills' or @text='Payer les factures' or @text='支付帐单' or @text='支付帳單']")
+	@iOSFindBy(xpath = "//*[@label='Pay Bills' or @label='Paiement de factures' or @label='支付账单' or @label='支付賬單']")
+	@AndroidFindBy(xpath = "//*[@text='Pay Bills' or @text='Paiement de factures' or @text='支付账单' or @text='支付賬單']")
 	private MobileElement HDR_PayBills;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='Négociation']")
-	@AndroidFindBy(xpath = "//*[(@text='Trade' or @text='Négociation') and @resource-id='android:id/action_bar_title']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='Négociation' or @label='交易' or @label='交易']")
+	@AndroidFindBy(xpath = "//*[(@text='Trade' or @text='Négociation' or @text='Négociation' or @text='交易' or @label='交易') and @resource-id='android:id/action_bar_title']")
 	private MobileElement hdrTrade;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='Négociation']")
-	@AndroidFindBy(xpath = "//*[@text='Interac e-Transfer' or @text='Virement Interac' or @text='互联电子转帐' or @text='互聯電子轉帳']")
+	@iOSFindBy(xpath = "//*[@label='Interac e-Transfer' or @label='Virement Interac' or @label='Interac e-Transfer' or @label='Interac e-Transfer']")
+	@AndroidFindBy(xpath = "//*[@text='Interac e-Transfer' or @text='Virement Interac' or @text='Interac e-Transfer' or @text='Interac e-Transfer']")
 	private MobileElement HDR_Interac_e_Transfer;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='Négociation']")
-	@AndroidFindBy(xpath = "//*[@text='Between My Accounts' or @text='Entre mes comptes' or @text='互联电子转帐' or @text='互聯電子轉帳']")
+	@iOSFindBy(xpath = "//*[@label='Between My Accounts' or @label='Entre mes comptes' or @label='在我的账户间转账' or @label='我的賬戶之間']")
+	@AndroidFindBy(xpath = "//*[@text='Between My Accounts' or @text='Entre mes comptes' or @text='在我的账户间转账' or @text='我的賬戶之間']")
 	private MobileElement HDR_Between_My_Accounts;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='Négociation']")
-	@AndroidFindBy(xpath = "//*[@text='Mobile Deposit' or @text='Dépôt mobile' or @text='移动存款' or @text='移動存款']")
+	@iOSFindBy(xpath = "//*[@label='Mobile Deposit' or @label='Dépôt mobile' or @label='移动存款服务' or @label='流動存款']")
+	@AndroidFindBy(xpath = "//*[@text='Mobile Deposit' or @text='Dépôt mobile' or @text='移动存款服务' or @text='流動存款']")
 	private MobileElement HDR_Mobile_Deposit;
+
+	@iOSFindBy(xpath = "//*[@label='Watchlists' or @label='Listes' or @label='自选股观察名单' or @label='自選股觀察名單']")
+	@AndroidFindBy(xpath = "//*[@text='Watchlists' or @text='Listes' or @text='自选股观察名单' or @text='自選股觀察名單']")
+	private MobileElement HDR_Watchlists;
 
 	private By ED_Quote_Search_Symbol = By.id("symbol-search");
 
 	private By BTN_Back = By.xpath("//*[@class='sprite sprite-back']");
 
+	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@Value='Enter name or symbol' or @Value='Entrez le nom ou le symbole' or @Value='输入名称或代号' or @Value='輸入名稱或代號']")
+	private MobileElement ED_Quote_Search_Symbol_iOS;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeLink[@label='Back' or @label='Listes' or @label='自选股观察名单' or @label='自選股觀察名單']")
+	private MobileElement LK_Back_QuoteSearchSymbolScreen;
+
 	public void verifyQuickLinksUnAuthenicatedUser() {
 		Decorator();
 		try {
-			String[] arrQuickLinks = getTestdata("QuickLinks", XLSheetUserIDs).split(";");
-			for (String sQuickLink : arrQuickLinks) {
-				switch (sQuickLink) {
-				case "SEND MONEY":
-					/*
-					 * String lang = (String) ((AppiumDriver)
-					 * CL.GetDriver()).getCapabilities().getCapability(
-					 * "language");
-					 */
-					verifyQL_SENDMONEY(false);
-					break;
 
-				case "TRANSFER":
-					verifyQL_TRANSFER(false);
-					break;
+			/*
+			 * String lang = (String) ((AppiumDriver)
+			 * CL.GetDriver()).getCapabilities().getCapability( "language");
+			 */
+			verifyQL_SENDMONEY(false);
 
-				case "PAY NOW":
-					verifyQL_PAYNOW(false);
-					break;
+			verifyQL_TRANSFER(false);
 
-				case "APPLE PAY":
-					verifyQL_APPLEPAY(false);
-					break;
+			verifyQL_PAYNOW(false);
 
-				case "DEPOSIT":
-					verifyQL_DEPOSIT(false);
-					break;
+			verifyQL_APPLEPAY(false);
 
-				case "WATCHLISTS":
-					verifyQL_WATCHLISTS(false);
-					break;
+			verifyQL_DEPOSIT(false);
 
-				case "QUOTE":
-					verifyQL_QUOTE(false);
-					break;
+			verifyQL_WATCHLISTS(false);
 
-				default:
-					break;
-				}
-			}
+			verifyQL_QUOTE(false);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -176,37 +172,17 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		Decorator();
 		try {
 
-			String[] arrQuickLinks = getTestdata("QuickLinks", XLSheetUserIDs).split(";");
-			for (String sQuickLink : arrQuickLinks) {
-				switch (sQuickLink) {
-				case "SEND MONEY":
-					verifyQL_SENDMONEY(false);
-					break;
+			verifyQL_SENDMONEY(true);
 
-				case "TRANSFER":
-					verifyQL_TRANSFER(true);
-					break;
+			verifyQL_TRANSFER(true);
 
-				case "PAY NOW":
-					verifyQL_PAYNOW(true);
-					break;
+			verifyQL_PAYNOW(true);
 
-				case "APPLE PAY":
-					verifyQL_APPLEPAY(true);
-					break;
+			verifyQL_APPLEPAY(true);
 
-				case "DEPOSIT":
-					verifyQL_DEPOSIT(true);
-					break;
+			verifyQL_DEPOSIT(true);
 
-				case "PAY BILL":
-					verifyQL_PAY_BILL(true);
-					break;
-
-				default:
-					break;
-				}
-			}
+			verifyQL_PAY_BILL(true);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -217,29 +193,40 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		Decorator();
 		try {
 
-			String[] arrQuickLinks = getTestdata("QuickLinks", XLSheetUserIDs).split(";");
-			for (String sQuickLink : arrQuickLinks) {
-				switch (sQuickLink) {
+			verifyQL_TRANSFER(true);
 
-				case "TRANSFER":
-					verifyQL_TRANSFER(true);
-					break;
+			verifyQL_TRADE(true);
 
-				case "TRADE":
-					verifyQL_TRADE(true);
-					break;
+			verifyQL_WATCHLISTS(true);
 
-				case "WATCHLISTS":
-					verifyQL_WATCHLISTS(true);
-					break;
+			verifyQL_QUOTE(true);
 
-				case "QUOTE":
-					verifyQL_QUOTE(true);
-					break;
-				default:
-					break;
-				}
-			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void verifyQuickLinksBlendedUser() {
+		Decorator();
+		try {
+
+			verifyQL_SENDMONEY(true);
+
+			verifyQL_TRANSFER(true);
+
+			verifyQL_PAYNOW(true);
+
+			verifyQL_APPLEPAY(true);
+
+			verifyQL_DEPOSIT(true);
+
+			verifyQL_PAY_BILL(true);
+
+			verifyQL_TRADE(true);
+
+			verifyQL_WATCHLISTS(true);
+
+			verifyQL_QUOTE(true);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -284,23 +271,24 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	public void goToDashboardHome() {
 		Decorator();
 		try {
-			mobileAction.FuncClick(BT_Back, "< Button");
-			mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
+			mobileAction.FuncClick(flyoutMyAccountLink, "My Account Flyout Menu");
+			// mobileAction.FuncClick(BT_Back, "< Button");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	public void verifyQL_SENDMONEY(boolean bIsAuthenticated) {
+	public void verifyQL_SENDMONEY(boolean bIsAuthenticatedUser) {
 		Decorator();
 		try {
 			if (verifyQuickLinkExists(QL_SENDMONEY)) {
 				mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_SENDMONEY));
 
 				clickQuickLink(QL_SENDMONEY, "SEND MONEY");
-				if (!bIsAuthenticated) {
+				if (!bIsAuthenticatedUser) {
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
 					mobileAction.FuncClick(BT_Back, "< Button");
 				} else {
@@ -313,15 +301,15 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		}
 	}
 
-	public void verifyQL_TRANSFER(boolean bIsAuthenticated) {
+	public void verifyQL_TRANSFER(boolean bIsAuthenticatedUser) {
 		Decorator();
 		try {
 			if (verifyQuickLinkExists(QL_TRANSFER)) {
 				mobileAction.FuncVerifyTextEquals(QL_TRANSFER,
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_TRANSFER));
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRANSFER));
 
 				clickQuickLink(QL_TRANSFER, "TRANSFER");
-				if (!bIsAuthenticated) {
+				if (!bIsAuthenticatedUser) {
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
 					mobileAction.FuncClick(BT_Back, "< Button");
 				} else {
@@ -334,17 +322,17 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		}
 	}
 
-	public void verifyQL_PAYNOW(boolean bIsAuthenticated) {
+	public void verifyQL_PAYNOW(boolean bIsAuthenticatedUser) {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				if (verifyQuickLinkExists(QL_PAYNOW)) {
 					mobileAction.FuncVerifyTextEquals(QL_PAYNOW,
-							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_PAYNOW));
+							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_PAYNOW));
 
 					clickQuickLink(QL_PAYNOW, "PAY NOW");
 					mobileAction.verifyElementIsDisplayed(HDR_MobilePayment, "Header:Mobile Payment");
-					mobileAction.FuncClick(MenuUp, "Hamburger Menu");
+					mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
 					mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
 				}
 			}
@@ -353,17 +341,17 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		}
 	}
 
-	public void verifyQL_APPLEPAY(boolean bIsAuthenticated) { // FIX
+	public void verifyQL_APPLEPAY(boolean bIsAuthenticatedUser) {// FIX
 		Decorator();
 		try {
-			if (!CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if (!CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
+					&& CL.getTestDataInstance().getMobileDeviceType().equalsIgnoreCase("Smartphone")) {
 
 				if (verifyQuickLinkExists(QL_APPLEPAY)) {
 					mobileAction.FuncVerifyTextEquals(QL_APPLEPAY,
-							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_APPLEPAY));
+							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_APPLEPAY));
 
 					clickQuickLink(QL_APPLEPAY, "APPLE PAY");
-					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
 					mobileAction.FuncClick(BT_Back, "< Button");
 				}
 			}
@@ -372,20 +360,20 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		}
 	}
 
-	public void verifyQL_DEPOSIT(boolean bIsAuthenticated) {
+	public void verifyQL_DEPOSIT(boolean bIsAuthenticatedUser) {
 		Decorator();
 		try {
 			if (verifyQuickLinkExists(QL_DEPOSIT)) {
 				mobileAction.FuncVerifyTextEquals(QL_DEPOSIT,
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_DEPOSIT));
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_DEPOSIT));
 
 				clickQuickLink(QL_DEPOSIT, "DEPOSIT");
-				if (!bIsAuthenticated) {
+				if (!bIsAuthenticatedUser) {
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
 					mobileAction.FuncClick(BT_Back, "< Button");
 				} else {
 					mobileAction.verifyElementIsDisplayed(HDR_Mobile_Deposit, "HDR_Mobile_Deposit");
-					mobileAction.FuncClick(MenuUp, "Hamburger Menu");
+					mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
 					mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
 				}
 			}
@@ -394,54 +382,74 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		}
 	}
 
-	public void verifyQL_WATCHLISTS(boolean bIsAuthenticated) {
+	public void verifyQL_WATCHLISTS(boolean bIsAuthenticatedUser) {
 		Decorator();
 		try {
 			if (verifyQuickLinkExists(QL_WATCHLISTS)) {
 				mobileAction.FuncVerifyTextEquals(QL_WATCHLISTS,
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_WATCHLISTS));
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_WATCHLISTS));
 
 				clickQuickLink(QL_WATCHLISTS, "WATCHLISTS");
-				mobileAction.verifyElementIsDisplayed(password, "Login Screen");
-				mobileAction.FuncClick(BT_Back, "< Button");
+				if (!bIsAuthenticatedUser) {
+					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
+					mobileAction.FuncClick(BT_Back, "< Button");
+				} else {
+					mobileAction.verifyElementIsDisplayed(HDR_Watchlists, "HDR_Watchlists");
+					mobileAction.FuncClick(BT_Back, "< Button");
+				}
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void verifyQL_QUOTE(boolean bIsAuthenticated) {
+	public void verifyQL_QUOTE(boolean bIsAuthenticatedUser) {
 		Decorator();
 		try {
 			if (verifyQuickLinkExists(QL_QUOTE)) {
-				mobileAction.FuncVerifyTextEquals(QL_QUOTE, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUOTE));
+				mobileAction.FuncVerifyTextEquals(QL_QUOTE,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_QUOTE));
 
 				clickQuickLink(QL_QUOTE, "QUOTE");
 
 				Thread.sleep(10000);
 
-				// Quote page WEBVIEW
-				MIT_PNSAccessAlerts.get().FuncSwitchContext(MIT_PNSAccessAlerts.get().getWebViewContextString());
-				mobileAction.verifyElementIsDisplayed(getMobileElement(ED_Quote_Search_Symbol),
-						"ED_Quote_Search_Symbol");
-				Thread.sleep(10000);
-				mobileAction.FuncClick(getMobileElement(BTN_Back), "BTN_Back");
-				MIT_PNSAccessAlerts.get().FuncSwitchContext("NATIVE_APP");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+					// Quote page WEBVIEW
+					MIT_PNSAccessAlerts.get().FuncSwitchContext(MIT_PNSAccessAlerts.get().getWebViewContextString());
+					mobileAction.verifyElementIsDisplayed(getMobileElement(ED_Quote_Search_Symbol),
+							"ED_Quote_Search_Symbol");
+					Thread.sleep(10000);
+					mobileAction.FuncClick(getMobileElement(BTN_Back), "BTN_Back");
+					MIT_PNSAccessAlerts.get().FuncSwitchContext("NATIVE_APP");
+				} else {
+					mobileAction.verifyElementIsDisplayed(ED_Quote_Search_Symbol_iOS, "ED_Quote_Search_Symbol_iOS");
+					mobileAction.FuncClick(LK_Back_QuoteSearchSymbolScreen, "LK_Back_QuoteSearchSymbolScreen");
+
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void verifyQL_PAY_BILL(boolean bIsAuthenticated) {
+	public void verifyQL_PAY_BILL(boolean bIsAuthenticatedUser) {
 		Decorator();
 		try {
 			if (verifyQuickLinkExists(QL_PAY_BILL)) {
 				mobileAction.FuncVerifyTextEquals(QL_PAY_BILL,
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_PAYBILL));
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_PAYBILL));
 
 				clickQuickLink(QL_PAY_BILL, "PAY BILL");
-				mobileAction.verifyElementIsDisplayed(HDR_PayBills, "Header: Pay Bills");
+				mobileAction.verifyElementIsDisplayed(HDR_PayBills, "Header: Pay Bills"); // FIX
+																							// -
+																							// Android
+																							// &
+																							// iOS
+																							// has
+																							// different
+																							// header
 				mobileAction.FuncClick(BT_Back, "< Button");
 			}
 		} catch (Exception e) {
@@ -449,14 +457,16 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		}
 	}
 
-	public void verifyQL_TRADE(boolean bIsAuthenticated) {
+	public void verifyQL_TRADE(boolean bIsAuthenticatedUser) {
 		Decorator();
 		try {
 			if (verifyQuickLinkExists(QL_TRADE)) {
-				mobileAction.FuncVerifyTextEquals(QL_TRADE, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_TRADE));
+				mobileAction.FuncVerifyTextEquals(QL_TRADE,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE));
 
 				clickQuickLink(QL_TRADE, "TRADE");
 				mobileAction.verifyElementIsDisplayed(hdrTrade, "Header: Trade");
+				mobileAction.FuncClick(BT_Back, "< Button");
 				mobileAction.FuncClick(BT_Back, "< Button");
 			}
 		} catch (Exception e) {
