@@ -3493,4 +3493,10 @@ public class MobileAction2 extends CommonLib {
 		amount_no_char = amount_no_char.replaceAll(",", "");
 		return Double.parseDouble(amount_no_char.trim());
 	}
+	
+	public void HideKeyBoard_IOS(){
+		IOSDriver< WebElement> ios_driver= (IOSDriver) (GetAppiumDriver());
+		ios_driver.getKeyboard().sendKeys(Keys.RETURN);
+		System.out.println("Hide IOS key Board");
+	}
 }
