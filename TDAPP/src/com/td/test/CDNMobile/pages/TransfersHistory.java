@@ -36,6 +36,10 @@ public class TransfersHistory extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Money Sent']/following-sibling::XCUIElementTypeStaticText[@label='See all']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Money Sent']/following-sibling::android.widget.TextView[@text='See all']")
 	private MobileElement moneySentSeeAll;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Money Received']/following-sibling::XCUIElementTypeStaticText[@label='See all']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Money Received']/following-sibling::android.widget.TextView[@text='See all']")
+	private MobileElement moneyReceivedSeeAll;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='PENDING']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/historyHeadingTextView' and @text='PENDING']")
@@ -325,6 +329,30 @@ public class TransfersHistory extends _CommonPage {
 			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
+	
+	
+	/**
+	 * @author Ashraf This method will verify the page header.
+	 * 
+	 * 
+	 * @return NoSuchElementException
+	 * @return IOException
+	 */
+	public void clickMoneyReceivedSeeAll() { // new Updated
+
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(moneyReceivedSeeAll, "See All");
+
+		} catch (NoSuchElementException | IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
 
 	/**
 	 * @author Ashraf This method will verify the page header.
@@ -470,7 +498,7 @@ public class TransfersHistory extends _CommonPage {
 			}
 
 			
-			mobileAction.FunCnewSwipe(completedCategory, false, 6);
+			mobileAction.FunCnewSwipe(completedCategory, false, 4);
 			
 			if(mobileAction.verifyElementIsPresent(completedCategory)){
 			mobileAction.verifyElementIsDisplayed(completedCategory, "COMPLETE");
@@ -480,6 +508,10 @@ public class TransfersHistory extends _CommonPage {
 			for (int i = 0; i < completedTransactions.size(); i++) {
 				mobileAction.verifyElementIsDisplayed(completedTransactions.get(i), "Completed Transaction " + i);
 			}
+			}else{
+
+				for(int i=0;i<4;i++)
+				mobileAction.FunctionSwipe("down", 200, 200);
 			}
 
 		} catch (NoSuchElementException | IOException e) {
