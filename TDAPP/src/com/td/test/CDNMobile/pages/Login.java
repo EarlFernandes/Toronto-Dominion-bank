@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.StringArray;
@@ -14,6 +16,7 @@ import com.td._CommonPage;
 import com.td.mainframe.Executor;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
@@ -211,6 +214,9 @@ public class Login extends _CommonPage {
 	String session = "//XCUIElementTypeStaticText[@label='Session Expired']";
 	String session1 = "//android.widget.TextView[contains(@text,'Session Expired')]";
 	String message = "Session Expired";
+	
+	@iOSFindBy(xpath = "//*[@label='Masquer le clavier' or @label='Hide keyboard']")
+	private MobileElement hide_keyboard;
 
 	public synchronized static Login get() {
 		if (Login == null) {
@@ -426,7 +432,9 @@ public class Login extends _CommonPage {
 				mobileAction.FuncClick(login, "Login");
 				mobileAction.waitForElementToVanish(progressBar);
 			}else{
-				mobileAction.FuncClickBackButton();
+				//mobileAction.FuncClick(hide_keyboard, "Hide Keyboard");
+				IOSDriver< WebElement> AD= (IOSDriver) (CL.GetDriver());
+				AD.getKeyboard().sendKeys(Keys.RETURN);
 				mobileAction.FuncClick(login, "Login");
 				mobileAction.waitForElementToVanish(progressBar);
 			}
