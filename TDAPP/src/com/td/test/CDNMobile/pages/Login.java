@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -432,10 +433,12 @@ public class Login extends _CommonPage {
 				mobileAction.FuncClick(login, "Login");
 				mobileAction.waitForElementToVanish(progressBar);
 			}else{
-				//mobileAction.FuncClick(hide_keyboard, "Hide Keyboard");
-				IOSDriver< WebElement> AD= (IOSDriver) (CL.GetDriver());
-				AD.getKeyboard().sendKeys(Keys.RETURN);
-				mobileAction.FuncClick(login, "Login");
+				//For Landscape, need to hide key board
+				if(CL.GetAppiumDriver().getOrientation() == ScreenOrientation.LANDSCAPE){
+					mobileAction.HideKeyBoard_IOS();				
+				}else{
+					mobileAction.FuncClick(login, "Login");
+				}
 				mobileAction.waitForElementToVanish(progressBar);
 			}
 			

@@ -13,7 +13,7 @@ public class MainScreen extends _CommonPage {
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
 
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.140.135:4762/wd/hub/";
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.140.61:4762/wd/hub/";
 
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
@@ -137,7 +137,7 @@ public class MainScreen extends _CommonPage {
 			}
 
 		}
-
+		//(CL.GetAppiumDriver()).rotate(ScreenOrientation.LANDSCAPE);
 	}
 
 	// Singleton object of self
