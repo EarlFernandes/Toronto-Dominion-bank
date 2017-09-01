@@ -57,6 +57,10 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶']")
 	private MobileElement flyoutMyAccountLink;
 
+	@iOSFindBy(xpath = "//*[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶']")
+	@AndroidFindBy(xpath = "//*[(@text='Investing Accounts' or @text='Comptes Placements directs TD' or @text='投资账户' or @text='投資賬戶') and @resource-id='com.td:id/navText']")
+	MobileElement InvestingAccount;
+
 	@iOSFindBy(xpath = "//*[@label='SEND MONEY' or @label='ENVOI DE FONDS' or @label='汇款' or @label='匯款']")
 	@AndroidFindBy(xpath = "//*[@text='SEND MONEY' or @text='ENVOI DE FONDS' or @text='汇款' or @text='匯款']")
 	private MobileElement QL_SENDMONEY;
@@ -130,6 +134,10 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Watchlists' or @label='Listes' or @label='自选股观察名单' or @label='自選股觀察名單']")
 	@AndroidFindBy(xpath = "//*[@text='Watchlists' or @text='Listes' or @text='自选股观察名单' or @text='自選股觀察名單']")
 	private MobileElement HDR_Watchlists;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeSearchField[@label='Add symbol to watchlist' or @label='Ajouter un symbole à la liste' or @label='将代号添加至自选股观察名单' or @label='新增代號至自選股觀察名單']")
+	@AndroidFindBy(xpath = "//*[@text='Add symbol to watchlist' or @text='Ajouter un symbole à la liste' or @text='将代号添加至自选股观察名单' or @text='新增代號至自選股觀察名單']")
+	private MobileElement ED_AddSymbolToWatchlist;
 
 	private By ED_Quote_Search_Symbol = By.id("symbol-search");
 
@@ -272,8 +280,9 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
-			mobileAction.FuncClick(flyoutMyAccountLink, "My Account Flyout Menu");
-			// mobileAction.FuncClick(BT_Back, "< Button");
+			mobileAction.FuncClick(InvestingAccount, "Investing Accounts Flyout Menu");
+			LoginMIT.get().MITLogin();
+			mobileAction.FuncClick(BT_Back, "< Button");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -394,8 +403,13 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
 					mobileAction.FuncClick(BT_Back, "< Button");
 				} else {
-					mobileAction.verifyElementIsDisplayed(HDR_Watchlists, "HDR_Watchlists");
-					mobileAction.FuncClick(BT_Back, "< Button");
+					if (mobileAction.isObjExists(HDR_Watchlists)) {
+						mobileAction.verifyElementIsDisplayed(HDR_Watchlists, "HDR_Watchlists");
+						mobileAction.FuncClick(BT_Back, "< Button");
+					} else {
+						mobileAction.verifyElementIsDisplayed(ED_AddSymbolToWatchlist, "ED_AddSymbolToWatchlist");
+						mobileAction.FuncClick(BT_Back, "< Button");
+					}
 				}
 
 			}

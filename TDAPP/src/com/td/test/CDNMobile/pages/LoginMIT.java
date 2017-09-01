@@ -165,11 +165,19 @@ public class LoginMIT extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id= 'com.td:id/remember_switch' and @text='YES']")
 	private MobileElement rememberMe_button_on;
 
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") // @Author
-																		// -
-																		// Sushil
-																		// 02-Feb-2017
-	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation']")
+	/*
+	 * @iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']")
+	 * // @Author // - // Sushil // 02-Feb-2017
+	 * 
+	 * @AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation']")
+	 * private MobileElement Investing_Trade;
+	 */
+
+	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Investir' or @label='投资' or @label='投資']") // @Author
+	// -
+	// Sushil
+	// 01-Sep-2017
+	@AndroidFindBy(xpath = "//*[@text='Investing' or @text='Investir' or @text='投资' or @text='投資']")
 	private MobileElement Investing_Trade;
 
 	String verifyLogin_ios = "//*[contains(@label,'Your Login Info Please')]";
