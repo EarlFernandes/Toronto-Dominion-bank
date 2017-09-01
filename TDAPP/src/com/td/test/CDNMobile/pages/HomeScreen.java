@@ -706,7 +706,9 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Thread.sleep(2500);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-
+				mobileAction.FuncClick(back_button, "Back Button");
+			}else{
+	
 				mobileAction.FuncClickBackButton();
 			}
 
