@@ -1560,25 +1560,37 @@ public class MobileAction2 extends CommonLib {
 		 */
 	}
 
-	public boolean verifyElementNotPresent(MobileElement mobileElement, String expectedText) {
-		WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
-		wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
+	public boolean verifyElementNotPresent(WebElement mobileElement, String expectedText) {
+		
+		try {
+			WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
+			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
 
-		if (mobileElement.isDisplayed() == true) {
-			try {
-				GetReporting().FuncReport("Fail", "The '" + expectedText + "' is verified");
-			} catch (IOException e) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			if (mobileElement.isDisplayed() == true) {
+				try {
+					GetReporting().FuncReport("Fail", "The '" + expectedText + "' is verified");
+				} catch (IOException e) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				return true;
+			} else {
+				try {
+					GetReporting().FuncReport("Pass", "The '" + expectedText + "' is not verified");
+				} catch (IOException e) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				return false;
 			}
-			return true;
-		} else {
+
+		}catch(Exception ex) {
 			try {
-				GetReporting().FuncReport("Pass", "The '" + expectedText + "' is not verified");
+				GetReporting().FuncReport("Pass", "The '" + expectedText + "' is not present");
 			} catch (IOException e) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			return false;
 		}
+		
 
 	}
 

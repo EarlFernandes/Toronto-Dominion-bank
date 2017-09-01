@@ -55,6 +55,7 @@ import com.td.test.CDNMobile.pages.Multitasking_System;
 import com.td.test.CDNMobile.pages.MutualFunds;
 import com.td.test.CDNMobile.pages.Notifications;
 import com.td.test.CDNMobile.pages.OTPChallenge;
+import com.td.test.CDNMobile.pages.OTPSetup;
 import com.td.test.CDNMobile.pages.Options;
 import com.td.test.CDNMobile.pages.OptionsReceiptPage;
 import com.td.test.CDNMobile.pages.OrderDetails;
@@ -221,6 +222,10 @@ public class EventCase {
 		// OTP
 
 		OTP_Challenge_ClickTextOption, OTP_Challenge_ClickVoiceOption, OTP_Challenge_ClickFirstPhoneNumber, OTP_Challenge_ClickGetCodeButton, OTP_Challenge_ClickSubmitCodeButton, OTP_Challenge_EnterSecurityCode, OTP_Challenge_WaitForOTPProgressBarToVanish, OTP_Challenge_VerifyInvalidSecurityCode, OTP_Challenge_ResendCode, OTP_Challenge_VerifyTooManySecurityCodesRequested,
+
+		// OTP Setup
+		
+		OTP_Setup_AcceptWelcomeTCScreens, OTP_Setup_VerifyGetStartedOptionOnly, OTP_Setup_AddPhoneNumber, OTP_Setup_VerifyAddedPhoneNumber, OTP_Setup_AddPhoneContinue, OTP_Setup_VerifyAddAnotherPhoneNumberDialog, OTP_Setup_DeleteFirstPhoneNumber, OTP_Setup_VerifyDeletePhoneNumberFail, OTP_Setup_VerifyMaxPhoneNumbers, OTP_Setup_VerifyInvalidSecurityCodeFormatMsg, OTP_Setup_ClickTextOption, OTP_Setup_ClickVoiceOption, OTP_Setup_ClickFirstPhoneNumber, OTP_Setup_ClickGetCodeButton, OTP_Setup_ClickSubmitCodeButton, OTP_Setup_EnterSecurityCode, OTP_Setup_WaitForOTPProgressBarToVanish, OTP_Setup_VerifyInvalidSecurityCode, OTP_Setup_ClickAnotherPhoneNo, OTP_Setup_VerifySecurityCodeSent,OTP_Setup_TestPhonesContinue, OTP_Setup_VerifySecurityEmailScreen, OTP_Setup_EnterSecurityEmail, OTP_Setup_VerifySecurityCodeFrequencyScreen, OTP_Setup_RetrievePasscodeTest,    
 
 		// myspend
 		Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, TourPage_clickConnectTDApp, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickGetTDAppButton, click_PreferencesLink
@@ -3496,6 +3501,108 @@ public class EventCase {
 
 		case OTP_Challenge_VerifyTooManySecurityCodesRequested:
 			OTPChallenge.get().verifyTooManySecurityCodesRequestedMsg();
+			break;
+
+		//OTP Setup
+		case OTP_Setup_VerifyGetStartedOptionOnly:
+			OTPSetup.get().verifyGetStartedOptionOnly();
+			break;
+		
+		case OTP_Setup_AcceptWelcomeTCScreens:
+			OTPSetup.get().acceptWelcomeTCScreens();
+			break;
+			
+		case OTP_Setup_AddPhoneNumber:
+			OTPSetup.get().addPhoneNumber();
+			break;
+	
+		case OTP_Setup_VerifyAddedPhoneNumber:
+			OTPSetup.get().verifyAddedPhoneNumber();
+			break;
+
+		case OTP_Setup_AddPhoneContinue:
+			OTPSetup.get().addPhoneContinue();
+			break;
+			
+		case OTP_Setup_VerifyAddAnotherPhoneNumberDialog:
+			OTPSetup.get().verifyAddAnotherPhoneNumberDialog();
+			break;
+			
+		case OTP_Setup_ClickAnotherPhoneNo:
+			OTPSetup.get().clickAnotherPhoneNo();
+			break;
+			
+		case OTP_Setup_DeleteFirstPhoneNumber:
+			OTPSetup.get().deleteFirstPhoneNumber();
+			break;
+			
+		case OTP_Setup_VerifyDeletePhoneNumberFail:
+			OTPSetup.get().verifyDeletePhoneNumberFail();
+			break;
+			
+		case OTP_Setup_VerifyMaxPhoneNumbers:
+			OTPSetup.get().verifyMaxPhoneNumbers();
+			break;
+
+		case OTP_Setup_VerifyInvalidSecurityCodeFormatMsg:
+			OTPSetup.get().verifyInvalidSecurityCodeFormatMsg();
+			break;
+			
+		case OTP_Setup_ClickTextOption:
+			OTPSetup.get().clickTextOption();
+			break;
+
+		case OTP_Setup_ClickVoiceOption:
+			OTPSetup.get().clickTextVoice();
+			break;
+
+		case OTP_Setup_ClickFirstPhoneNumber:
+			OTPSetup.get().clickFirstPhoneNumber();
+			break;
+
+		case OTP_Setup_EnterSecurityCode:
+			OTPSetup.get().enterSecurityCode();
+			break;
+
+		case OTP_Setup_ClickGetCodeButton:
+			OTPSetup.get().clickGetCodeButton();
+			break;
+		
+		case OTP_Setup_VerifySecurityCodeSent:
+			OTPSetup.get().verifySecurityCodeSent();
+			break;
+			
+
+		case OTP_Setup_ClickSubmitCodeButton:
+			OTPSetup.get().clickSubmitCodeButton();
+			break;
+
+		case OTP_Setup_VerifyInvalidSecurityCode:
+			OTPSetup.get().verifyInvalidSecurityCodeMsg();
+			break;
+
+		case OTP_Setup_WaitForOTPProgressBarToVanish:
+			OTPSetup.get().waitForOTPProgressBarToVanish();
+			break;
+			
+		case OTP_Setup_TestPhonesContinue:
+			OTPSetup.get().testPhonesContinue();
+			break;
+		
+		case OTP_Setup_VerifySecurityEmailScreen:
+			OTPSetup.get().verifySecurityEmailScreen();
+			break;
+			
+		case OTP_Setup_EnterSecurityEmail:
+			OTPSetup.get().enterSecurityEmail();
+			break;
+		
+		case OTP_Setup_VerifySecurityCodeFrequencyScreen:
+			OTPSetup.get().verifySecurityCodeFrequencyScreen();
+			break;
+			
+		case OTP_Setup_RetrievePasscodeTest:
+			OTPSetup.get().retrievePasscode();
 			break;
 
 		// MySpend

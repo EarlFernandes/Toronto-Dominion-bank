@@ -27,10 +27,12 @@ public class OTPChallenge extends _CommonPage {
 
 	private static OTPChallenge OneTimePasswordChallenge;
 
-	@FindBy(id = "method-sms")
+	//@FindBy(id = "method-sms")
+	@FindBy(xpath = "//button[@ng-click=\"sp.changeOptions('text')\"]")
 	private WebElement textOption;
 
-	@FindBy(id = "method-voice")
+	//@FindBy(id = "method-voice")
+	@FindBy(xpath = "//button[@ng-click=\"sp.changeOptions('voice')\"]")
 	private WebElement voiceOption;
 
 	@FindBy(id = "getCode")
