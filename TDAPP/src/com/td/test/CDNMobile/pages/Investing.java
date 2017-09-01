@@ -22,11 +22,12 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class Investing extends _CommonPage {
 	private static Investing Investing;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TRADE']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='TRADE']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='TRADE'] | //XCUIElementTypeButton[@label='Trade']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='TRADE'] | //android.widget.Button[@text='TRADE']")
 	private MobileElement tradeicon;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
+	//@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Investing']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement investing_header;
 
@@ -41,10 +42,10 @@ public class Investing extends _CommonPage {
 	private MobileElement trade;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Markets']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trade' and @index='0']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Markets' and @index='0']")
 	private MobileElement markets;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Orders']")
+	@iOSFindBy(xpath = "//*[@label='Orders']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trade' and @index='0']")
 	private MobileElement order;
 
@@ -77,8 +78,8 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_launch_browser'and @text='Go to WebBroker']")
 	private MobileElement webBroker;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Open an account today for fast and convenient access to cash')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Open an account today for fast and convenient access to cash')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Open a TD Direct Investing Account')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Open a TD Direct Investing Account')]")
 	private MobileElement errorMsg;
 
 	/*
@@ -93,7 +94,7 @@ public class Investing extends _CommonPage {
 	private MobileElement backButton;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Accounts']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='My Accounts]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='My Accounts']")
 	private MobileElement my_accounts;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu' or @label='Menu en en-tête']")
@@ -108,25 +109,26 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
 	private MobileElement trade_header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Watchlists']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Watchlists']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Watchlists']")
 	private MobileElement watchlists_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Markets']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Markets']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Markets'] | //XCUIElementTypeStaticText[@label='Markets']")
+	@AndroidFindBy(xpath = "//android.view.View[@content-desc='Markets']")
 	private MobileElement markets_Header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Accounts']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='My Accounts']")
 	private MobileElement accounts_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
+	@iOSFindBy(xpath = "//*[@label='Back']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement Backbtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Open an account today for fast and convenient access to cash whe')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Open a TD Direct Investing Account')]")
 	// @AndroidFindBy(xpath =
 	// "//android.widget.TableRow[@resource-id='com.td:id/watchlistRow']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_main_text']")
 	private MobileElement ErrorMessage;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Watchlists')]")
@@ -137,7 +139,7 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/first_line' and @text='Your Watchlist is empty.']")
 	private MobileElement watchListsEmpty;
 
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") // @Author
+	@iOSFindBy(xpath = "//*[@label='TRADE' or @label='Négociation']") // @Author
 																		// -
 																		// Sushil
 																		// 20-Apr-2017
@@ -158,7 +160,7 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(contains(@text,'Home') or contains(@text,'Accueil')) and @resource-id='android:id/action_bar_title']")
 	private MobileElement hdrHome;
 
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") // @Author
+	@iOSFindBy(xpath = "//*[@label='TRADE' or @label='Négociation']") // @Author
 																		// -
 																		// Sushil
 																		// 20-Apr-2017
@@ -167,6 +169,7 @@ public class Investing extends _CommonPage {
 
 	String Investing_Table = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
 	String order_value = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/ XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]";
+	String order_value_Android="//android.widget.LinearLayout[@index='2' and contains(@text,'Awaiting Review')]";
 	String Firstpart = "//XCUIElementTypeCell[";
 	String Secondpart = "]/XCUIElementTypeStaticText[1]";
 	String Finalpart = Firstpart + 1 + Secondpart;
@@ -443,7 +446,10 @@ public class Investing extends _CommonPage {
 			if (platformName.equalsIgnoreCase("ios")) {
 
 				String investingacc_value = "//*[contains(@label,'" + InvestingAccountsXL + "')]";
-				CL.GetDriver().findElement(By.xpath(investingacc_value)).click();
+				//MobileElement investingAccountVal=mobileAction.mobileElementUsingXPath(investingacc_value);
+				//CL.GetDriver().findElement(By.xpath(investingacc_value)).click();
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(investingacc_value, true, 25, "Up");
+				//mobileAction.FuncClick(investingAccountVal, "Investing Account value");
 				mobileAction.waitForElementToVanish(progressBar);
 
 			} else {
@@ -486,9 +492,15 @@ public class Investing extends _CommonPage {
 		Decorator();
 		try {
 
+			MobileElement OrderVal=null;
+			
 			mobileAction.FuncClick(order, "order");
 			mobileAction.waitForElementToVanish(progressBar);
-			MobileElement OrderVal = mobileAction.verifyElementUsingXPath(order_value, "Order");
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
+			OrderVal = mobileAction.verifyElementUsingXPath(order_value, "Order");
+			}else{
+			OrderVal = mobileAction.verifyElementUsingXPath(order_value_Android, "Order");
+			}
 			mobileAction.FuncClick(OrderVal, "ordervalue");
 			mobileAction.waitForElementToVanish(progressBar);
 
@@ -680,12 +692,15 @@ public class Investing extends _CommonPage {
 				diAccountXL = "//*[contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "')]";
 				diAccountXL2 = "//*[contains(@label,'" + CL.getTestDataInstance().getSecondryAccount() + "')]";
 			} else {
-				diAccountXL = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-						+ CL.getTestDataInstance().getPrimaryAccount() + "']";
-				diAccountXL2 = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-						+ CL.getTestDataInstance().getSecondryAccount() + "']";
+				diAccountXL = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
+						+ CL.getTestDataInstance().getPrimaryAccount() + "')]";
+				
+								
+				diAccountXL2 = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
+						+ CL.getTestDataInstance().getSecondryAccount() + "')]";
 			}
 			mobileAction.verifyElementUsingXPath(diAccountXL, "The first DI Account");
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(diAccountXL2, false, 30, "Up");
 			mobileAction.verifyElementUsingXPath(diAccountXL2, "The Second DI Account");
 
 		} catch (NoSuchElementException e) {
@@ -722,8 +737,8 @@ public class Investing extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				diAccountXL = "//*[contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "')]";
 			} else {
-				diAccountXL = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-						+ CL.getTestDataInstance().getPrimaryAccount() + "']";
+				diAccountXL = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
+						+ CL.getTestDataInstance().getPrimaryAccount() + "')]";
 			}
 			mobileAction.verifyElementUsingXPath(diAccountXL, "The PIA Account");
 
@@ -767,19 +782,21 @@ public class Investing extends _CommonPage {
 				diAccountXL2 = "//*[contains(@label,'" + CL.getTestDataInstance().getSecondryAccount() + "')]";
 				diAccountXL3 = "//*[contains(@label,'" + getTestdata("FromAccount") + "')]";
 			} else {
-				diAccountXL = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-						+ CL.getTestDataInstance().getPrimaryAccount() + "']";
-				diAccountXL2 = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-						+ CL.getTestDataInstance().getSecondryAccount() + "']";
-				diAccountXL3 = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-						+ getTestdata("FromAccount") + "']";
+				diAccountXL = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
+						+ CL.getTestDataInstance().getPrimaryAccount() + "')]";
+				diAccountXL2 = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
+						+ CL.getTestDataInstance().getSecondryAccount() + "')]";
+				diAccountXL3 = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
+						+ getTestdata("FromAccount") + "')]";
 			}
 
 			mobileAction.verifyElementUsingXPath(diAccountXL, "The DI Account");
-			mobileAction.changeToMobileElementAndSwipe(diAccountXL2, false);
+			//mobileAction.changeToMobileElementAndSwipe(diAccountXL2, false);
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(diAccountXL2, false, 50, "Up");
 			mobileAction.verifyElementUsingXPath(diAccountXL2, "The PIA Account");
-			mobileAction.changeToMobileElementAndSwipe(diAccountXL3, false);
-			mobileAction.verifyElementUsingXPath(diAccountXL2, "The FP Account");
+			//mobileAction.changeToMobileElementAndSwipe(diAccountXL3, false);
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(diAccountXL3, false, 30, "Up");
+			mobileAction.verifyElementUsingXPath(diAccountXL3, "The FP Account");
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -818,7 +835,8 @@ public class Investing extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(backButton, "BackButton");
 			} else {
-				mobileAction.FuncHideKeyboard();
+				//mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClickBackButton();
 			}
 			mobileAction.FuncClick(menu, "Menu");
 			mobileAction.FuncClick(my_accounts, "My Accounts");
@@ -864,7 +882,8 @@ public class Investing extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(backButton, "BackButton");
 			} else {
-				mobileAction.FuncHideKeyboard();
+				//mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClickBackButton();
 			}
 			mobileAction.FuncClick(menu, "Menu");
 			mobileAction.FuncClick(my_accounts, "My Accounts");
@@ -906,14 +925,14 @@ public class Investing extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(backButton, "BackButton");
 			} else {
-				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClickBackButton();
 			}
 			mobileAction.FuncClick(watchLists, "WatchLists");
 			mobileAction.verifyElementIsDisplayed(watchlists_Header, "WatchList");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(backButton, "BackButton");
 			} else {
-				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClickBackButton();
 			}
 			mobileAction.FuncClick(markets, "Markets");
 			mobileAction.verifyElementIsDisplayed(markets_Header, "Markets");
@@ -960,10 +979,10 @@ public class Investing extends _CommonPage {
 				diAccountXL = "//*[contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "')]";
 				diAccountXL2 = "//*[contains(@label,'" + CL.getTestDataInstance().getSecondryAccount() + "')]";
 			} else {
-				diAccountXL = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-						+ CL.getTestDataInstance().getPrimaryAccount() + "']";
-				diAccountXL2 = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-						+ CL.getTestDataInstance().getSecondryAccount() + "']";
+				diAccountXL = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
+						+ CL.getTestDataInstance().getPrimaryAccount() + "')]";
+				diAccountXL2 = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
+						+ CL.getTestDataInstance().getSecondryAccount() + "')]";
 			}
 			mobileAction.verifyElementUsingXPath(diAccountXL, "The first FP Account");
 			mobileAction.verifyElementUsingXPath(diAccountXL2, "The Second FP Account");
@@ -1015,6 +1034,7 @@ public class Investing extends _CommonPage {
 						+ fromAccountArr[1] + "')]";
 			}
 			mobileAction.verifyElementUsingXPath(diAccountXL, "The first PIA/FP Account");
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(diAccountXL2, false, 25, "Up");
 			mobileAction.verifyElementUsingXPath(diAccountXL2, "The Second PIA/FP Account");
 			MobileElement accountVal = mobileAction.verifyElementUsingXPath(diAccountXL2, "DI Account");
 			mobileAction.FuncClick(accountVal, "PIA/FP");
@@ -1096,7 +1116,7 @@ public class Investing extends _CommonPage {
 	public void verifyErrorMessage() {
 		try {
 			Decorator();
-			mobileAction.verifyElementTextContains(ErrorMessage, "error message");
+			mobileAction.verifyElementIsDisplayed(ErrorMessage, "Error Message");
 			mobileAction.FuncClick(backButton, "Back");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -203,7 +203,7 @@ public class InvestingAccountSummary extends _CommonPage {
 	 */
 	public void verifySummaryScenario() {
 		Decorator();
-		String strAccount = getTestdata("Account");
+		String strAccount = getTestdata("Accounts");
 		String strAcc[] = strAccount.split(":");
 		boolean flag = true;
 		try {

@@ -717,7 +717,8 @@ public class ConfirmOrder extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='En cours']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='En cours']")
 	private MobileElement progressBarFRE;
-
+	
+	@iOSFindBy(xpath = "//*[@label='Back']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement backButton;
 
