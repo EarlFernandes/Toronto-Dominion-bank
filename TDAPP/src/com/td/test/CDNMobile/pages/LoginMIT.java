@@ -173,7 +173,7 @@ public class LoginMIT extends _CommonPage {
 	 * private MobileElement Investing_Trade;
 	 */
 
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Investir' or @label='投资' or @label='投資']") // @Author
+	@iOSFindBy(xpath = "//*[@label='Investing' or @label='Investir' or @label='投资' or @label='投資']") // @Author
 	// -
 	// Sushil
 	// 01-Sep-2017

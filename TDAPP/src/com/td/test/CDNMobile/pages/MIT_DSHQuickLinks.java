@@ -34,7 +34,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	}
 
 	@iOSFindBy(xpath = "//*[@name='QuickLinkLeftNavButton']")
-	@AndroidFindBy(id = "android:id/up")
+	@AndroidFindBy(id = "com.td:id/hamburger")
 	MobileElement BT_Home_HamburgerMenu;
 
 	@iOSFindBy(xpath = "//*[@name='NAVIGATION_ITEM_BACK']")
@@ -50,7 +50,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	private MobileElement password;
 
 	@iOSFindBy(xpath = "//*[@label='Home' or @label='Accueil' or @label='主页' or @label='首頁']")
-	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/navText' and (@text='Home' or @text='Accueil' or @text='主页' or @text='首頁')]")
+	@AndroidFindBy(xpath = "//*[@text='Home' or @text='Accueil' or @text='主页' or @text='首頁']")
 	private MobileElement FLY_Home;
 
 	@iOSFindBy(xpath = "//*[@label='My Accounts' or @label='Mes comptes' or @label='我的账户' or @label='我的賬戶']")
@@ -58,7 +58,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	private MobileElement flyoutMyAccountLink;
 
 	@iOSFindBy(xpath = "//*[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶']")
-	@AndroidFindBy(xpath = "//*[(@text='Investing Accounts' or @text='Comptes Placements directs TD' or @text='投资账户' or @text='投資賬戶') and @resource-id='com.td:id/navText']")
+	@AndroidFindBy(xpath = "//*[(@text='Investing Accounts' or @text='Comptes Placements directs TD' or @text='投资账户' or @text='投資賬戶') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	MobileElement InvestingAccount;
 
 	@iOSFindBy(xpath = "//*[@label='SEND MONEY' or @label='ENVOI DE FONDS' or @label='汇款' or @label='匯款']")
@@ -248,7 +248,8 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 			if (mobileAction.isObjExists(mElement)) {
 				mobileAction.FuncClick(mElement, sDesc);
 			} else {
-				mobileAction.FunctionSwipe("Left", 200, 100);
+				//mobileAction.FunctionSwipe("Left", 200, 100);
+				mobileAction.SwipeQuickLinks(200,100);
 				mobileAction.FuncClick(mElement, sDesc);
 			}
 		} catch (Exception e) {
@@ -263,7 +264,8 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		try {
 			// CL.getTestDataInstance().getMobileDeviceType();
 			if (!mobileAction.isObjExists(mElement)) {
-				mobileAction.FunctionSwipe("Left", 200, 100);
+				//mobileAction.FunctionSwipe("Left", 200, 100);
+				mobileAction.SwipeQuickLinks(200,100);
 				if (mobileAction.isObjExists(mElement))
 					bFlag = true;
 			} else
@@ -283,6 +285,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 			mobileAction.FuncClick(InvestingAccount, "Investing Accounts Flyout Menu");
 			LoginMIT.get().MITLogin();
 			mobileAction.FuncClick(BT_Back, "< Button");
+			mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
