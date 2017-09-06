@@ -323,7 +323,7 @@ public class Managee_Payee extends _CommonPage {
 					mobileAction.FuncClick(accesscard, "Accesscard");
 					mobileAction.FuncClick(thirdAccessCard, "Second Access Card");
 					Thread.sleep(2000);
-					mobileAction.verifyElementIsDisplayed(addCanadianPayee, "Add Canadian Payee");
+					mobileAction.verifyElementIsDisplayed(addPayee, "Add Payee");
 				}
 			} else {
 				// For android, using webview to handle
@@ -345,9 +345,9 @@ public class Managee_Payee extends _CommonPage {
 				mobileAction.FuncClick(thirdAccessCard, "Second Access Card");
 				Thread.sleep(2000);
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				WebElement addCanadianPayeeButton = CL.GetDriver()
+				WebElement addPayeeButton = CL.GetDriver()
 						.findElement(By.cssSelector("button.primary-button.ng-binding.ng-scope"));
-				mobileAction.verifyElementIsDisplayed((MobileElement) addCanadianPayeeButton, "Add Canadian Payee");
+				mobileAction.verifyElementIsDisplayed((MobileElement) addPayeeButton, "Add Payee");
 				mobileAction.switchAppiumContext("NATIVE_APP");
 
 			}
@@ -386,7 +386,7 @@ public class Managee_Payee extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees Header");
-			mobileAction.verifyElementIsDisplayed(addCanadianPayee, "Add Canadian Payee");
+			mobileAction.verifyElementIsDisplayed(addPayee, "Add Payee");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -475,7 +475,7 @@ public class Managee_Payee extends _CommonPage {
 		try {
 
 			mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees Header");
-			mobileAction.FuncClick(addCanadianPayee, "Add Canadian Payee");
+			mobileAction.FuncClick(addPayee, "Add Payee");
 			mobileAction.waitForElementToVanish(progressBar);
 
 			Thread.sleep(10000);
