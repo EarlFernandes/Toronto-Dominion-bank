@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -18,7 +19,7 @@ public class Notifications extends _CommonPage {
 
 	private static Notifications Notifications;
 
-	@iOSFindBy(xpath = "//*[@label='Notifications' or @label='Avis']")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement notification_title;
 
@@ -26,15 +27,17 @@ public class Notifications extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progress_bar;
 
-	@iOSFindBy(xpath = "//*[@label='Customize Notifications' or @label='Personnaliser les avis']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Customize Notifications' or @text='Personnaliser les avis']")
-	private MobileElement customize_notification_link;
+	// @iOSFindBy(xpath = "//*[@label='Customize Notifications' or
+	// @label='Personnaliser les avis']")
+	// @AndroidFindBy(xpath = "//android.widget.TextView[@text='Customize
+	// Notifications' or @text='Personnaliser les avis']")
+	// private MobileElement customize_notification_link;
 
 	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement TDforme_notification_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Enable Notifications' or @label='Activer les notifications']/../XCUIElementTypeSwitch")
+//	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Enable Notifications' or @label='Activer les notifications']/../XCUIElementTypeSwitch")
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/nav_row_switch']")
 	private MobileElement enable_notification_switch;
 
@@ -55,7 +58,8 @@ public class Notifications extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(notification_title, "Notifications | Avis");
+			String titleText = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_NOTIFICATIONS);
+			mobileAction.verifyElementTextIsDisplayed(notification_title, titleText);
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -67,8 +71,15 @@ public class Notifications extends _CommonPage {
 		Decorator();
 		try {
 
-			String elementText = mobileAction.getValue(customize_notification_link);
-			mobileAction.FuncClick(customize_notification_link, elementText);
+			String elementText = getTextInCurrentLocale(StringArray.ARRAY_CUSTOMIZE_NOTIFICATIONS);
+			String notification_link_xpath;
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				notification_link_xpath = "//*[@label='" + elementText + "']";
+			} else {
+				notification_link_xpath = "//android.widget.TextView[@text='" + elementText + "']";
+			}
+
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(notification_link_xpath, true, 5, "up");
 			mobileAction.waitForElementToVanish(progress_bar);
 
 		} catch (Exception e) {
@@ -77,15 +88,17 @@ public class Notifications extends _CommonPage {
 		}
 	}
 
-
 	public void VerifyTdforMeNotificationsHeader() {
-
 
 		Decorator();
 		try {
-
-			mobileAction.verifyElementTextIsDisplayed(TDforme_notification_Header,
-					"TD for Me Notifications | Avis TD et moi |TD for Me | TD et moi");
+			String titleText;
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				titleText = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_TD_FOR_ME_SETTINGS);
+			}else{
+				titleText = getTextInCurrentLocale(StringArray.ARRAY_TD_FOR_ME_NOTIFICATIONS);
+			}			
+			mobileAction.verifyElementTextIsDisplayed(TDforme_notification_Header, titleText);
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed to VerififyTdforMeNotificationsHeader.");
@@ -97,6 +110,11 @@ public class Notifications extends _CommonPage {
 		Decorator();
 		try {
 
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				enable_notification_switch = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_ENABLE_NOTIFICATIONS)
+						+ "']/../XCUIElementTypeSwitch", "Enable Notifications Switch");
+			}
 			mobileAction.verifyElementIsDisplayed(enable_notification_switch, "Notifications Enable-Disable Switch");
 			// Check the switch status
 

@@ -434,10 +434,18 @@ public class Login extends _CommonPage {
 				mobileAction.waitForElementToVanish(progressBar);
 			}else{
 				//For Landscape, need to hide key board
-				if(CL.GetAppiumDriver().getOrientation() == ScreenOrientation.LANDSCAPE){
-					mobileAction.HideKeyBoard_IOS();				
-				}else{
-					mobileAction.FuncClick(login, "Login");
+				try{
+					ScreenOrientation currentOrientation = CL.GetAppiumDriver().getOrientation();
+					System.out.println("Orientation:"+currentOrientation);
+					if(currentOrientation == ScreenOrientation.LANDSCAPE) {
+						mobileAction.HideKeyBoard_IOS();
+					}else{
+						mobileAction.FuncClick(login, "Login");
+					}
+				}catch (Exception e1){
+					//Rotating screen to left may get exception here 
+					System.out.println("Failed to get current orientation, hide keyboard anywhere");
+					mobileAction.HideKeyBoard_IOS();
 				}
 				mobileAction.waitForElementToVanish(progressBar);
 			}
