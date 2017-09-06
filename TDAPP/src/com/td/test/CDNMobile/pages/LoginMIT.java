@@ -56,10 +56,9 @@ public class LoginMIT extends _CommonPage {
 	private MobileElement select_accesscard;
 
 	@iOSFindBy(xpath = "//*[@label='Add Username or Access Card' or contains(@label,'Ajouter un nom')]")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard' and
-	// @text='Add Username or Access Card']")
-	@AndroidFindBy(xpath = "//*[contains(@text,'Add Username') or contains(@text,'Ajouter un nom')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard']")
+	// @AndroidFindBy(xpath = "//*[contains(@text,'Add Username') or
+	// contains(@text,'Ajouter un nom')]")
 	private MobileElement addUser;
 
 	@iOSFindBy(xpath = "//*[@label='Username or Access Card']")
@@ -173,11 +172,11 @@ public class LoginMIT extends _CommonPage {
 	 * private MobileElement Investing_Trade;
 	 */
 
-	@iOSFindBy(xpath = "//*[@label='Investing' or @label='Investir' or @label='投资' or @label='投資']") // @Author
+	@iOSFindBy(xpath = "//*[@label='Investing' or @label='Placements' or @label='投资' or @label='投資']") // @Author
 	// -
 	// Sushil
 	// 01-Sep-2017
-	@AndroidFindBy(xpath = "//*[@text='Investing' or @text='Investir' or @text='投资' or @text='投資']")
+	@AndroidFindBy(xpath = "//*[@text='Investing' or @text='Placements' or @text='投资' or @text='投資']")
 	private MobileElement Investing_Trade;
 
 	String verifyLogin_ios = "//*[contains(@label,'Your Login Info Please')]";
