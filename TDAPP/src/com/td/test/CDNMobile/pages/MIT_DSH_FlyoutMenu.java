@@ -52,9 +52,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
     @AndroidFindBy(id = "com.td:id/hamburger")
     MobileElement BT_Home_HamburgerMenu;
 
-@iOSFindBy(xpath = "//*[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶']")
-    @AndroidFindBy(xpath = "//*[(@text='Investing Accounts' or @text='Comptes Placements directs TD' or @text='投资账户' or @text='投資賬戶') and @resource-id='com.td:id/navText']")
-    MobileElement InvestingAccount;
+
 
     @iOSFindBy(xpath = "//*[@name='NAVIGATION_ITEM_BACK']")
     @AndroidFindBy(id = "android:id/up")
@@ -94,7 +92,8 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	private MobileElement MenuUp1;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeImage[@name='logo_home.png']")
-	@AndroidFindBy(xpath = "//*[(@text='Home' or @text='Accueil') and @resource-id='android:id/action_bar_title']")
+//	@AndroidFindBy(xpath = "//*[(@text='Home' or @text='Accueil') and @resource-id=com.td:id/logo']")
+	@AndroidFindBy(id = "com.td:id/logo")
 	private MobileElement hdrHome;
 
 	@iOSFindBy(xpath = "//*[@label='Login' or contains(@label,'Ouvrir')]")
@@ -126,7 +125,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	By Text_Condition = By.xpath("//*[@class='module enter-condition-module']/*[1]");
 
 	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']")
-	@AndroidFindBy(xpath = "//*[@text='Find Locations' or @text='']")
+	@AndroidFindBy(xpath = "//*[@text='Find Locations' or @text='Find Locations']")
 	private MobileElement lblFindLocation;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='How was your TD app experience today?' or @label='Services bancaires transfrontaliers']")
@@ -157,14 +156,14 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	
 	
 	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']")
-	@AndroidFindBy(id = "android:id/action_bar_title")
+	@AndroidFindBy(id = "android:id/up")
 	private MobileElement backButton;
 
 	// @iOSFindBy(xpath = "//*[contains(@label,Home') or
 	// contains(@label,Accueil')]")
 	// @iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']/*[1]")
-	@iOSFindBy(xpath = "//*[@label='Logout' or @label='Accueil']")
-	@AndroidFindBy(xpath = "//*[@text='Logout' or contains(@text,'Accueil')]")
+	@iOSFindBy(xpath = "//*[@label='Logout' or@label='Fermer la session' or @label='退出' or @label='登出']")
+	@AndroidFindBy(xpath = "//*[@text='Logout' or @text='Fermer la session' or @text='退出' or @text='登出']")
 	// @AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement flyoutLogOut;
 
@@ -182,7 +181,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	// contains(@label,Accueil')]")
 	// @iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']/*[1]")
 	@iOSFindBy(xpath = "//*[@label='Home' or @label='Accueil' or @label='主页' or @label='首頁']")
-	@AndroidFindBy(xpath = "//*[@text='Home' or contains(@text,'Accueil')]")
+	@AndroidFindBy(xpath = "//*[@text='Home' or @text='Accueil' or @text='主页' or @text='首頁']")
 	// @AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement flyoutHomeLink;
 
@@ -231,7 +230,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	
 	
 	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']")
-	@AndroidFindBy(xpath = "//*[(@text='TD for Me' or @text='TD et moi' @text='TD for Me' or @text='TD et moi') and @resource-id='android:id/action_bar_title']")
+	@AndroidFindBy(xpath = "//*[(@text='TD for Me' or @text='TD et moi' or @text='TD for Me' or @text='TD et moi') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblTDforMe;
 
 	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']")
@@ -239,11 +238,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	private MobileElement lblInvestingAccounts;
 
 	@iOSFindBy(xpath = "//*[@name='Transfers']/*[1]")
-	@AndroidFindBy(xpath = "//*[@text='Transfers' or contains(@text,'Virements') or contains(@text,'转账') or contains(@text,'轉賬')]")
+	@AndroidFindBy(xpath = "//*[(@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutTransfersLink;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_BILLS']/*[1]")
-	@AndroidFindBy(xpath = "//*[@text='Bills' or @text='Factures' or @text='账单' or @text,'賬單']")
+	@AndroidFindBy(xpath = "//*[(@text='Bills' or @text='Factures' or @text='账单' or @text='賬單') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutBillsLink;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_BILLS']/*[1]")
@@ -251,35 +250,40 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	private MobileElement flyoutApplePay;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_BILLS']/*[1]")
-	@AndroidFindBy(xpath = "//*[@text='TD MySpend' or @text='Dépense TD']")
+	@AndroidFindBy(xpath = "//*[(@text='TD MySpend' or @text='Dépense TD') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutTDMySpend;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_BILLS']/*[1]")
-	@AndroidFindBy(xpath = "//*[conatins(@text,'Mobile Payment') or contains(@text,'Factures')]")
+	@AndroidFindBy(xpath = "//*[(@text='Mobile Payment' or @text='Factures') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutMobilePayment;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_MOVEN']/*[1]")
-	@AndroidFindBy(xpath = "//*[@text='TD MySpend' or contains(@text,'Dépense TD')]")
+	@AndroidFindBy(xpath = "//*[(@text='TD MySpend' or @text='Dépense TD') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutTDMySpendLink;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_DEPOSIT']/*[1]")
-	@AndroidFindBy(xpath = "//*[@text='TD Mobile Deposit' or contains(@text,'Dépôt mobile') or contains(@text,'移动存款服务') or contains(@text,'流動存款')]")
+	@AndroidFindBy(xpath = "//*[(@text='Mobile Deposit' or @text='Dépôt mobile' or @text='移动存款服务' or @text='流動存款') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutMobileDepositLink;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_menu_icon_locations']/*[1]")
-	@AndroidFindBy(xpath = "//*[@text='TD for Me' or contains(@text,'TD et moi')]")
+	@AndroidFindBy(xpath = "//*[(@text='TD for Me' or @text='TD et moi') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutTDforMeLink;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_menu_icon_investing']/*[1]")
-	@AndroidFindBy(xpath = "//*[@text='Investing Accounts' or contains(@text,'Comptes Placements directs TD') or contains(@text,'投资账户') or contains(@text,'投資賬戶')]")
+	@AndroidFindBy(xpath = "//*[(@text='Investing Accounts' or @text='Comptes Placements directs TD' or @text='投资账户' or @text='投資賬戶') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutInvestingAccountsLink;
+	
+	 @iOSFindBy(xpath = "//*[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶']")
+     @AndroidFindBy(xpath = "//*[(@text='Investing Accounts' or @text='Comptes Placements directs TD' or @text='投资账户' or @text='投資賬戶') and @resource-id='com.td:id/textview_flyout_menu_item']")
+     MobileElement InvestingAccount;
 
+	
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_CROSSBORDER']/*[1]")
-	@AndroidFindBy(xpath = "//*[@text='Cross-Border Banking' or contains(@text,'Services bancaires transfrontaliers') or contains(@text,'跨境理财服务') or contains(@text,'跨國理財服務')]")
+	@AndroidFindBy(xpath = "//*[@text='Cross-Border Banking' or @text='Services bancaires transfrontaliers' or @text='跨境理财服务' or @text='跨國理財服務']")
 	private MobileElement flyoutCrossBorderBankingLink;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_CROSSBORDER']/*[1]")
-	@AndroidFindBy(xpath = "//*[@text='Settings' or contains(@text,'Profil et paramètres') or contains(@text,'个人资料和设置') or contains(@text,'個人資料和設定')]")
+	@AndroidFindBy(xpath = "//*[@text='Settings' or @text='Profil et paramètres' or @text='个人资料和设置' or @text='個人資料和設定']")
 	private MobileElement flyoutProfileSettings;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_CROSSBORDER']/*[1]")
@@ -287,15 +291,15 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	private MobileElement flyoutAppleWatch;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_LOCATIONS']/*[1]")
-	@AndroidFindBy(xpath = "//*[@text='Locations' or contains(@text,'Succursales') or contains(@text,'分行网点') or contains(@text,'分行')]")
+	@AndroidFindBy(xpath = "//*[@text='Locations' or @text='Succursales' or @text='分行网点' or @text='分行']")
 	private MobileElement flyoutLocationsLink;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_FEEDBACK']/*[1]")
-	@AndroidFindBy(xpath = "//*[@text='Give Feedback' or contains(@text,'Fournir des commentaires') contains(@text,'发送意见反馈') contains(@text,'發送意見')]")
+	@AndroidFindBy(xpath = "//*[@text='Give Feedback' or @text='Fournir des commentaires' or @text='发送意见反馈' or @text='發送意見']")
 	private MobileElement flyoutGiveFeedbackLink;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_CONTACT']/*[1]")
-	@AndroidFindBy(xpath = "//*[@text='Contact Us' or contains(@text,'Contactez-nous') or contains(@text,'联系我们') or contains(@text,'聯絡我們')]")
+	@AndroidFindBy(xpath = "//*[@text='Contact Us' or @text='Contactez-nous' or @text='联系我们' or @text='聯絡我們']")
 	private MobileElement flyoutContactUsLink;
 
 	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
@@ -351,22 +355,33 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	private MobileElement terms;
 
 	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']")
-	@AndroidFindBy(xpath = "//*[@text='Legal' or (contains@text,'juridique') and @resource-id='android:id/action_bar_title']")
+	@AndroidFindBy(xpath = "//*[(@text='Legal' or @text='juridique') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblLegal;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_QUESTIONS']/*[1]")
-	@AndroidFindBy(xpath = "//*[@text='Frequently Asked Questions' or contains(@text,'Foire aux questions') or contains(@text,'常见问答') or contains(@text,'常見問題')]")
+	@AndroidFindBy(xpath = "//*[@text='Frequently Asked Questions' or @text='Foire aux questions' or @text='常见问答' or @text='常見問題']")
 	private MobileElement flyoutFAQLink;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_PRIVACY']/*[1]")
-	@AndroidFindBy(xpath = "//*[@text='Privacy, Security & Legal' or contains(@text,'Confidentialité, sécurité et avis juridique') or contains(@text,'隐私、安全与法律声明') or contains(@text,'私隱政策、安全性和法律聲明')]")
+	@AndroidFindBy(xpath = "//*[@text='Privacy, Security & Legal' or @text='Confidentialité, sécurité et avis juridique' or @text='隐私、安全与法律声明' or @text='私隱政策、安全性和法律聲明']")
 	private MobileElement flyoutPrivacySecurityLink;
 
+	
+	
+	private By BTN_Back = By.xpath("//*[@class='sprite sprite-back']");
+
+	
+	
+	
+	
+	
+	
+	
 	public void verifyFlyoutUnauthenticated() {
 		Decorator();
 
 		try {
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 
 			// Thread.sleep(1000);
 			// Set<String> contextNames = ((AppiumDriver)
@@ -387,7 +402,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 			 * //commented throw e; }
 			 */
 
-			mobileAction.verifyElementIsDisplayed(MenuUp, "Flyout Menu displayed at the Top left corner");
+			mobileAction.verifyElementIsDisplayed(BT_Home_HamburgerMenu, "Flyout Menu displayed at the Top left corner");
 
 			// mobileAction.FuncClick(MenuUp,"MenuUp");
 
@@ -395,33 +410,42 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 			// CL.getTestDataInstance().setMobileDeviceType(id);
 
-			verifyHome();
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		//	verifyHome();
 
-			verifyMyAccounts(false);
+		//	verifyMyAccounts(false);
 
-			verifyTransfers(false);
+		//	verifyTransfers(false);
 
-			verifyBills(false);
+		//	verifyBills(false);
 
-			verifyTDMySpend(false);
+			//verifyTDMySpend(false);
 
-			verifyMobileDeposit(false);
+		//	verifyMobileDeposit(false);
 
-			verifyTDforMe(false);
+			//verifyTDforMe(false);
 
-			verifyInvestingAccounts(false);
+		//	verifyInvestingAccounts(false);
 
 			verifyCrossBorderBanking(false);
 
-			verifyLocations(false);
+			//verifyLocations(false);
 
-			verifyGiveFeedback(false);
+			//verifyGiveFeedback(false);
 
-			verifyContactUs(false);
+			//verifyContactUs(false);
 
-			verifyFAQ(false);
+			//verifyFAQ(false);
 
-			verifyPrivacySecurity(false);
+			//verifyPrivacySecurity(false);
 
 		}
 
@@ -680,11 +704,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, false, 10, "up");
 
 			mobileAction.FuncVerifyTextEquals(flyoutHomeLink,
-					getTextInCurrentLocale(StringArray.ARRAY_HOME_HEADER));
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME));
 
 			clickFlyout(flyoutHomeLink, "homeLink");
 
@@ -703,11 +727,12 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
+			//Thread.sleep(1000);
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutMyAccountLink, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutMyAccountLink,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS));
 
 			if (!bIsAuthenticated) {
 
@@ -747,11 +772,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutTransfersLink, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutTransfersLink,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRANSFERS));
 
 			if (!bIsAuthenticated) {
 
@@ -787,11 +812,12 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
+			Thread.sleep(1000);
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutBillsLink, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutBillsLink,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_BILLS));
 
 			if (!bIsAuthenticated) {
 
@@ -824,11 +850,12 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
+			Thread.sleep(1000);
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutTDMySpendLink, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutTDMySpendLink,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDMYSPEND));
 
 			if (!bIsAuthenticated) {
 
@@ -861,11 +888,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutMobileDepositLink, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutMobileDepositLink,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDMOBILEDEPOSIT));
 
 			if (!bIsAuthenticated) {
 
@@ -936,21 +963,24 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
+			Thread.sleep(1000);
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutTDforMeLink, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutTDforMeLink,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDFORME));
 
 			if (!bIsAuthenticated) {
 
 				clickFlyout(flyoutTDforMeLink, "flyoutTDforMeLink");
 
-				mobileAction.verifyElementIsDisplayed(password, "password");
+			//	mobileAction.verifyElementIsDisplayed(password, "password");
+				
+				Thread.sleep(5000);
 
-				mobileAction.FuncClick(backButton, "backButton");
+				mobileAction.FuncClick(lblTDforMe, "backButton");
 
-				mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
+				//mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 			} else {
 				clickFlyout(flyoutTDforMeLink, "flyoutTDforMeLink");
 
@@ -971,11 +1001,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutInvestingAccountsLink, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutInvestingAccountsLink,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_INVESTINGACCOUNTS));
 
 			if (!bIsAuthenticated) {
 
@@ -1006,11 +1036,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
-			mobileAction.FuncSwipeWhileElementNotFound(flyoutInvestingAccountsLink, false, 10, "up");
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
+			mobileAction.FuncSwipeWhileElementNotFound(flyoutCrossBorderBankingLink, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutCrossBorderBankingLink,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_CROSSBORDERBANKING));
 
 			if (!bIsAuthenticated) {
 
@@ -1021,9 +1051,32 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				{
 					((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
 
+					
+					
+					
+					 mobileAction.FuncClick(getMobileElement(BTN_Back), "BTN_Back");
+				        
+
+
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					// Fix needed for lblCrossBorder mod page android object
-					mobileAction.verifyElementIsDisplayed((MobileElement) CL.GetDriver().findElement(Text_Condition),
-							"Text_Condition");
+					//mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(BTN_Back),
+							//"BTN_Back");
 
 					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
 
@@ -1038,7 +1091,10 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 				
-			} else 
+			} 
+			
+			
+			else 
 			{
 				clickFlyout(flyoutCrossBorderBankingLink, "flyoutCrossBorderBankingLink");
 
@@ -1074,11 +1130,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutLocationsLink, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutLocationsLink,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOCATIONS));
 
 			if (!bIsAuthenticated) {
 
@@ -1109,11 +1165,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
-			mobileAction.FuncSwipeWhileElementNotFound(flyoutLocationsLink, false, 10, "up");
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
+			mobileAction.FuncSwipeWhileElementNotFound(flyoutGiveFeedbackLink, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutGiveFeedbackLink,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_GIVEFEEDBACK));
 
 			if (!bIsAuthenticated) {
 
@@ -1142,11 +1198,13 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
+			
+			Thread.sleep(1000);
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutContactUsLink, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutContactUsLink,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_CONTACTUS));
 
 			if (!bIsAuthenticated) {
 
@@ -1197,11 +1255,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutFAQLink, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutFAQLink,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_FAQ));
 
 			if (!bIsAuthenticated) {
 
@@ -1223,7 +1281,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				mobileAction.FuncClick(MenuUp, "MenuUp");
 
-				mobileAction.FuncClick(flyoutHomeLink, "flyoutHomeLink");
+				mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 			} else {
 				clickFlyout(flyoutFAQLink, "flyoutFAQLink");
 
@@ -1253,11 +1311,13 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
+			Thread.sleep(1000);
+			
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutPrivacySecurityLink, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutPrivacySecurityLink,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PRIVACYSECURITY));
 
 			if (!bIsAuthenticated) {
 
@@ -1277,7 +1337,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				mobileAction.FuncClick(MenuUp, "MenuUp");
 
-				mobileAction.FuncClick(flyoutHomeLink, "flyoutHomeLink");
+				mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 			} else {
 				clickFlyout(flyoutPrivacySecurityLink, "flyoutPrivacySecurityLink");
 
@@ -1306,18 +1366,18 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutApplePay, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutApplePay,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_APPLEPAY));
 
 			if (!bIsAuthenticated) {
 
 				// do nothing
 			} else {
 
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				if(!CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android") && (CL.getTestDataInstance().getMobileDeviceType().equalsIgnoreCase("smartphone"))){
 					{
 						clickFlyout(flyoutApplePay, "flyoutApplePay");
 
@@ -1340,11 +1400,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutMobilePayment, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutMobilePayment,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT));
 
 			if (!bIsAuthenticated) {
 
@@ -1375,11 +1435,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutProfileSettings,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PROFILESETTINGS));
 
 			if (!bIsAuthenticated) {
 
@@ -1405,17 +1465,17 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutAppleWatch, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutAppleWatch,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_APPLEWATCH));
 
 			if (!bIsAuthenticated) {
 
 				// do nothing
 			} else {
-
+				if(!CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android") && (CL.getTestDataInstance().getMobileDeviceType().equalsIgnoreCase("Smartphone")))
 				clickFlyout(flyoutAppleWatch, "flyoutAppleWatch");
 
 				mobileAction.verifyElementIsDisplayed(lblAppleWatch, "lblAppleWatch");
@@ -1435,11 +1495,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
-			mobileAction.FuncSwipeWhileElementNotFound(flyoutLogOut, false, 10, "up");
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
+			mobileAction.FuncSwipeWhileElementNotFound(flyoutTrade, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutTrade,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRADE));
 
 			if (!bIsAuthenticated) {
 
@@ -1483,11 +1543,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(MenuUp, "MenuUp");
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutLogOut, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SENDMONEY));
+			mobileAction.FuncVerifyTextEquals(flyoutLogOut,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOGOUT));
 
 			if (!bIsAuthenticated) {
 
@@ -1513,10 +1573,10 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			// mobileAction.FuncClick(MenuUp, "MenuUp");
 
-			CL.getTestDataInstance().getMobileDeviceType();
+			//CL.getTestDataInstance().getMobileDeviceType();
 
 			for (int i = 0; i < 5; i++) {
 				if (mobileAction.isObjExists(objElement, 2)) {
@@ -1537,5 +1597,35 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		}
 
 	}
+	
+	
+	public MobileElement getMobileElement(By element) {
+
+        try {
+
+                return (MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(element);
+
+        } catch (Exception e) {
+
+                return null;
+
+        }
+
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
