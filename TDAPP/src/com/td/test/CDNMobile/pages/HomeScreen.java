@@ -132,8 +132,8 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeButton[@name='QUICKLINKS_SENDMONEY']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/send_money_dashboard']")
-	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeButton[@name='QUICKLINKS_SENDMONEY' or @label='SEND MONEY']")
 	private MobileElement send_money_button;
 
 	@iOSFindBy(accessibility = "QUICK_ACCESS_ITEM_QUOTE")
@@ -143,7 +143,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Privacy, Security & Legal']")
 	private MobileElement privacy;
 
-	@iOSFindBy(xpath = "//*[@label='背面' or @label='返回' or @label='Back']")
+	@iOSFindBy(xpath = "//*[@label='背面' or @label='返回' or @label='Back' or @label='p2p header caret']")
 	private MobileElement back_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Locations']")

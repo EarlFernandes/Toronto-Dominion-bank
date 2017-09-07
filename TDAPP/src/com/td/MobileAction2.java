@@ -26,6 +26,7 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -2786,8 +2787,13 @@ public class MobileAction2 extends CommonLib {
 	 */
 	public MobileElement mobileElementUsingXPath(String objElement) throws IOException {
 
-		MobileElement objMobileElement = (MobileElement) ((AppiumDriver) GetDriver()).findElement(By.xpath(objElement));
-
+		MobileElement objMobileElement = null;
+		
+		try{
+		objMobileElement = (MobileElement) ((AppiumDriver) GetDriver()).findElement(By.xpath(objElement));
+		}catch(Exception e){
+			System.err.println("Element not found");
+		}
 		return objMobileElement;
 
 	}
@@ -3334,7 +3340,7 @@ public class MobileAction2 extends CommonLib {
 
 		try {
 			String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
-					+ getAppString("secureLoginEditButtonDone") + "']";
+					+ getAppString("secureLoginEditButtonDone") + "' or @text='Done' or @text='Annuler']";
 			MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
 			Done.click();
 			GetReporting().FuncReport("Pass", "The element <b>  Done </b> Clicked");
@@ -3485,6 +3491,7 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 	
+	
 	public void getPageSource(){
 		
 		try {
@@ -3494,5 +3501,18 @@ public class MobileAction2 extends CommonLib {
 			System.err.println("Failed to fetch the page source");
 		}
 		
+	}
+	
+	/**
+	 * @Author Ashraf
+	 * This method will print all the developer keys and values present in 'appStringMap' Map.
+	 */
+	public void dumpAppKeys(){
+		Iterator<String> itr=_CommonPage.appStringMap.keySet().iterator();
+		Iterator<String> itr1=_CommonPage.appStringMap.values().iterator();
+		while(itr.hasNext() && itr1.hasNext()){
+			System.out.println(itr.next()+" = "+itr1.next());
+		}
+
 	}
 }

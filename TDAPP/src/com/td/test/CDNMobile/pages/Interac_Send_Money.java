@@ -32,111 +32,111 @@ public class Interac_Send_Money extends _CommonPage {
 	// TODO::use mobileAction.mobileElementUsingXPath(element); method for
 	// converting all xpaths to elements
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Send Money')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Send Money']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Send Money') or contains(@label,'Virer des fonds')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement sendMoneyHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Select Recipient']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/middle_textview' and @text='Select Recipient']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Select Recipient' or @label='Sélectionnez le destinataire']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/middle_textview' and (@text='Select Recipient' or @text='Sélectionnez le destinataire')]")
 	private MobileElement selectRecipient;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_done' or @text='Done']")
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done' or @label='OK' or @label='Ok']")
 	private MobileElement done;
 
 	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeTextField")
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount']/following-sibling::XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount' or @label='Montant']/following-sibling::XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/send_money_amount_value_view']")
 	private MobileElement amount;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue' or @label='Send Money']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button' or @resource-id='com.td:id/btn_footer' or @text='Continue']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue' or @label='Send Money' or @label='Continuer']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button' or @resource-id='com.td:id/btn_footer' or @text='Continue' or @text='Continuer']")
 	private MobileElement continueButton;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info' and @text='Please enter a security question.']")
 	private MobileElement errorMessage;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Question']/following-sibling::XCUIElementTypeTextField")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/send_money_security_question_edit_text' or @text='Enter a security question']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Question' or @label='Question de sécurité']/following-sibling::XCUIElementTypeTextField")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/send_money_security_question_edit_text']")
 	private MobileElement securityQuestion;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Answer']/following-sibling::XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Answer' or @label='Réponse']/following-sibling::XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/send_money_security_answer_edit_text']")
 	private MobileElement securityAnswer;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Confirm Answer']/following-sibling::XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Confirm Answer' or @label='Confirmation de la réponser']/following-sibling::XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/send_money_security_confirm_answer_edit_text']")
 	private MobileElement confirmAnswer;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Sender']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and @text='Sender']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Sender' or @label='Expéditeur']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Sender' or @text='Expéditeur')]")
 	private MobileElement sender;
 
 	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Sender']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Sender']/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and @text='Sender']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Sender' or @label='Expéditeur']/following-sibling::XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Sender' or @text='Expéditeur')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement senderName;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and @text='From Account']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account' or @label='Compte de provenance']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='From Account' or @text='Compte de provenance')]")
 	private MobileElement fromAccount;
 
 	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account']/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and @text='From Account']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account' or @label='Compte de provenance']/following-sibling::XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='From Account' or @text='Compte de provenance')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement fromAccountName;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and @text='Recipient']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient' or @label='Destinataire']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Recipient' or @text='Destinataire')]")
 	private MobileElement recipient;
 
 	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient']/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and @text='Recipient']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient' or @label='Destinataire']/following-sibling::XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Recipient' or @text='Destinataire')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement recipientVal;
 
 	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[2]")
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient']/following-sibling::XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and @text='Recipient']/following-sibling::android.widget.RelativeLayout/android.widget.TextView[2]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient' or @label='Destinataire']/following-sibling::XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Recipient' or @text='Destinataire')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView[2]")
 	private MobileElement recipientEmail;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Question']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and @text='Security Question']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Question' or @label='Question de sécurité']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Security Question' or @text='Question de sécurité')]")
 	private MobileElement securityQuestionLbl;
 
 	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Question']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Question']/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and @text='Security Question']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Question' or @label='Question de sécurité']/following-sibling::XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Security Question' or @text='Question de sécurité')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement securityQuestionVal;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Answer']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and @text='Answer']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Answer' or @label='Réponse']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Answer' or @text='Réponse')]")
 	private MobileElement securityAnswerLbl;
 
 	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Answer']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Answer']/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and @text='Answer']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Answer' or @label='Réponse']/following-sibling::XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Answer' or @text='Réponse')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement securityAnswerVal;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and @text='Amount']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount' or @label='Montant']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Amount' or @text='Montant')]")
 	private MobileElement amountLbl;
 
 	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount']/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and @text='Amount']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount' or @label='Montant']/following-sibling::XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Amount' or @text='Montant')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement amountVal;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In Progress']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In Progress' or @label='en cours']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and (@text='Loading' or @text='Chargement')]")
 	private MobileElement progressBar;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Thank you')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header' and @text='Thank You!']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Thank you') or contains(@label,'Merci!')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header' and (@text='Thank You!' or @text='Merci!')]")
 	private MobileElement thankYou;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'The money has been sent')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subHeader' and contains(@text,'The money has been sent')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'The money has been sent') or contains(@label,'Les fonds ont été virés')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subHeader' and (contains(@text,'The money has been sent') or contains(@text,'Les fonds ont été virés'))]")
 	private MobileElement successMessage;
 
 	private void Decorator() {

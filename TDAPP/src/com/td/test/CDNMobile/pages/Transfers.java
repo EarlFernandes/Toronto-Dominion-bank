@@ -86,12 +86,12 @@ public class Transfers extends _CommonPage {
 
 	String confirm_transfer_value = "Thank you!";
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Manage Contacts' or @label='Manage Recipients']") //updated
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Contacts']")
+	@iOSFindBy(accessibility = "TRANSFERVIEW_RECIPIENTS") //updated
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Contacts' or @text='Gérer les destinataires']")
 	private MobileElement manageContacts;
 
 	@iOSFindBy(accessibility = "TRANSFERVIEW_PENDING") //updated
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='History']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='History' or @text='Historique']")
 	private MobileElement transferHistory;
 	
 	
