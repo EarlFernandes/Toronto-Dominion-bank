@@ -55,7 +55,7 @@ public final class StringArray {
 			"我们已经开始处理您的购买。如有问题，我们将与您联系。", "我們已開始處理您的購買。如有問題，我們將與您聯絡。"};
 	public static final String[] ARRAY_MF_NEXT_HAPPEN = {"WHAT HAPPENS NEXT", "PROCHAINES ÉTAPES", "后续流程", "後續流程"};
 	public static final String[] ARRAY_MF_PURCHASE_BEFORE3 = {"Purchases made before 3:00PM", "Achats effectués avant 15 h", "下午 3 点之前的购买 ", "下午 3 時之前的購買"};
-	public static final String[] ARRAY_MF_CONTENT_BEFORE3 = {"If you made your purchase before 3:00PM EST on a business day, it will be processed at that day's rate", 
+	public static final String[] ARRAY_MF_CONTENT_BEFORE3 = {"If you made your purchase before 3:00PM EST on a business day, it will be processed at that day's rate.", 
 			"Si vous avez effectué votre achat avant 15 h (HE) un jour ouvrable, il sera traité au prix en vigueur à cette date.",
 			"如果您在工作日东部时间下午 3 点之前购买，将按当天价格交易。", "如果在工作日的東部時間下午 3 時之前購買，將按當天價格交易。"};
 	

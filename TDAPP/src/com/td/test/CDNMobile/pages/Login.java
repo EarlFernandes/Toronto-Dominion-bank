@@ -5,19 +5,14 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-
 import com.td.StringArray;
 import com.td._CommonPage;
 import com.td.mainframe.Executor;
 
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
@@ -434,18 +429,11 @@ public class Login extends _CommonPage {
 				mobileAction.waitForElementToVanish(progressBar);
 			}else{
 				//For Landscape, need to hide key board
-				try{
-					ScreenOrientation currentOrientation = CL.GetAppiumDriver().getOrientation();
-					System.out.println("Orientation:"+currentOrientation);
-					if(currentOrientation == ScreenOrientation.LANDSCAPE) {
-						mobileAction.HideKeyBoard_IOS();
-					}else{
-						mobileAction.FuncClick(login, "Login");
-					}
-				}catch (Exception e1){
-					//Rotating screen to left may get exception here 
-					System.out.println("Failed to get current orientation, hide keyboard anywhere");
+				
+				if(mobileAction.isOrientationLandscape()) {
 					mobileAction.HideKeyBoard_IOS();
+				}else{
+					mobileAction.FuncClick(login, "Login");
 				}
 				mobileAction.waitForElementToVanish(progressBar);
 			}

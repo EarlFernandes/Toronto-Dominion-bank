@@ -57,11 +57,11 @@ public class Receipt extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='VIEW MY ACCOUNTS']")
 	private MobileElement viewMyAccounts_Btn;
 
-	@iOSFindBy(xpath = "//*[@name='bg_receipt_success']/following-sibling::XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/thank_you']")
 	private MobileElement subheader_thanksyou;
 
-	@iOSFindBy(xpath = "//*[@name='bg_receipt_success']/following-sibling::XCUIElementTypeStaticText[2]")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/message']")
 	private MobileElement reply_message;
 
@@ -220,7 +220,8 @@ public class Receipt extends _CommonPage {
 	public void VerifyConfirmationPageHeader() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(receiptHeader, getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
+			mobileAction.verifyElementTextIsDisplayed(receiptHeader,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -230,17 +231,28 @@ public class Receipt extends _CommonPage {
 	public void VerifyReceiptDetailChineseContent() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(receiptHeader, getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
-			mobileAction.verifyElementTextIsDisplayed(subheader_thanksyou, getTextInCurrentLocale(StringArray.ARRAY_MF_THANKYOU));
-			mobileAction.verifyElementTextIsDisplayed(reply_message, getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_REPLY));
+			mobileAction.verifyElementTextIsDisplayed(receiptHeader,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
+			mobileAction.verifyElementTextIsDisplayed(subheader_thanksyou,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_THANKYOU));
+			mobileAction.verifyElementTextIsDisplayed(reply_message,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_REPLY));
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				String[] detailInfomation = { getTextInCurrentLocale(StringArray.ARRAY_MF_NEXT_HAPPEN), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_BEFORE3),
-						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_BEFORE3), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_AFTER3),
-						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_AFTER3), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_CONFIRM),
-						getTextInCurrentLocale(StringArray.ARRAY_MF_CONFIRM_DESCRIPTION), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_DETAILS),
-						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_DETAILS), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REF_NUM), 
-						getTextInCurrentLocale(StringArray.ARRAY_MF_FUNDS), getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REQUEST_TIME), 
-						getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT), getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT)
+				String[] detailInfomation = { getTextInCurrentLocale(StringArray.ARRAY_MF_NEXT_HAPPEN),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_BEFORE3),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_BEFORE3),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_AFTER3),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_AFTER3),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_CONFIRM),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_CONFIRM_DESCRIPTION),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_DETAILS),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_DETAILS),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REF_NUM),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_FUNDS),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REQUEST_TIME),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT)
 
 				};
 				List<MobileElement> detailList = ((MobileDriver) (CL.GetAppiumDriver())).findElementsByXPath(
@@ -276,16 +288,21 @@ public class Receipt extends _CommonPage {
 			} else {
 				List<MobileElement> detailList = ((MobileDriver) (CL.GetAppiumDriver()))
 						.findElementsByXPath("//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText");
-				String[] detailInfomation = { getTextInCurrentLocale(StringArray.ARRAY_MF_NEXT_HAPPEN), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_BEFORE3),
-						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_BEFORE3), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_AFTER3),
-						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_AFTER3), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_CONFIRM),
-						getTextInCurrentLocale(StringArray.ARRAY_MF_CONFIRM_DESCRIPTION), getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_DETAILS),
-						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REF_NUM),  "ignore", getTextInCurrentLocale(StringArray.ARRAY_MF_FUNDS), "ignore", "ignore", 
-						getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT), "ignore", getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REQUEST_TIME),
-						"ignore", "ignore", "ignore", "ignore", getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT), "ignore", 
-						getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT), "ignore",
-						"ignore",getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_BALANCE_NOTE)
-				};
+				String[] detailInfomation = { getTextInCurrentLocale(StringArray.ARRAY_MF_NEXT_HAPPEN),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_BEFORE3),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_BEFORE3),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_AFTER3),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_AFTER3),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_CONFIRM),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_CONFIRM_DESCRIPTION),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_DETAILS),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REF_NUM), "ignore",
+						getTextInCurrentLocale(StringArray.ARRAY_MF_FUNDS), "ignore", "ignore",
+						getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT), "ignore",
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REQUEST_TIME), "ignore", "ignore",
+						getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT), "ignore", "ignore", "ignore",
+						getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT), "ignore", "ignore", "ignore",
+						getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_BALANCE_NOTE) };
 				int size = detailList.size();
 				System.out.println("size of data:" + size);
 				for (int i = 0; i < size; i++) {
@@ -310,7 +327,8 @@ public class Receipt extends _CommonPage {
 				mobileAction.verifyElementTextIsDisplayed(foot_note, footnote);
 			}
 			mobileAction.FuncSwipeUpTillScreenBottom(homeBtn);
-			String[] button_text = { getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_GO_HOME_BTN), getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_VIEW_ACCOUNT_BTN) };
+			String[] button_text = { getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_GO_HOME_BTN),
+					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_VIEW_ACCOUNT_BTN) };
 			List<MobileElement> btnList = null;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				btnList = ((MobileDriver) (CL.GetAppiumDriver())).findElementsByXPath(

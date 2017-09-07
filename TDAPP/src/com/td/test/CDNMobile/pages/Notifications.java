@@ -91,13 +91,8 @@ public class Notifications extends _CommonPage {
 	public void VerifyTdforMeNotificationsHeader() {
 
 		Decorator();
-		try {
-			String titleText;
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				titleText = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_TD_FOR_ME_SETTINGS);
-			}else{
-				titleText = getTextInCurrentLocale(StringArray.ARRAY_TD_FOR_ME_NOTIFICATIONS);
-			}			
+		try {		
+			String titleText = getTextInCurrentLocale(StringArray.ARRAY_TD_FOR_ME_NOTIFICATIONS);					
 			mobileAction.verifyElementTextIsDisplayed(TDforme_notification_Header, titleText);
 
 		} catch (NoSuchElementException | IOException e) {

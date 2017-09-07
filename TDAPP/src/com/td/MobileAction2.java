@@ -7,6 +7,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -3335,11 +3336,16 @@ public class MobileAction2 extends CommonLib {
 		// what language)
 
 		try {
-			String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
-					+ getAppString("secureLoginEditButtonDone") + "']";
-			MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
-			Done.click();
-			GetReporting().FuncReport("Pass", "The element <b>  Done </b> Clicked");
+			if(isOrientationLandscape()){
+				HideKeyBoard_IOS();
+				GetReporting().FuncReport("Pass", "Key board is hidden");
+			}else{
+				String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
+						+ getAppString("secureLoginEditButtonDone") + "']";
+				MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
+				Done.click();
+				GetReporting().FuncReport("Pass", "The element <b>  Done </b> Clicked");
+			}
 		} catch (Exception e) {
 			try {
 				GetReporting().FuncReport("Fail", "The element <b> Done </b> not present in current page");
@@ -3498,5 +3504,23 @@ public class MobileAction2 extends CommonLib {
 		IOSDriver< WebElement> ios_driver= (IOSDriver) (GetAppiumDriver());
 		ios_driver.getKeyboard().sendKeys(Keys.RETURN);
 		System.out.println("Hide IOS key Board");
+	}
+	
+	public boolean isOrientationLandscape(){
+		try{
+			ScreenOrientation currentOrientation = GetAppiumDriver().getOrientation();
+			System.out.println("Orientation:"+currentOrientation);
+			if(currentOrientation == ScreenOrientation.LANDSCAPE) {
+				return true;
+			}else{
+				return false;
+			}
+		}catch (WebDriverException e){
+			//Rotating screen to right may get exception here 
+			System.out.println("Orientation:landscaperight");
+			return true;
+		}catch (Exception e){
+			return false;
+		}
 	}
 }
