@@ -19,18 +19,21 @@ public class LoginMIT extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/remember_switch' and @index='1']")
 	private MobileElement rememberMe;
 
-	@iOSFindBy(xpath = "//*[@label='Username or Access Card']")
+	// @iOSFindBy(xpath = "//*[@label='Username or Access Card']")
+	@iOSFindBy(xpath = "//*[@name='LOGIN_USERNAME']")
 	// @AndroidFindBy(xpath =
 	// "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and
 	// @index='1']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText']")
 	private MobileElement username;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@label='Password']")
+	// @iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@label='Password']")
+	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@name='LOGIN_PASSWORD']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement password;
 
-	@iOSFindBy(xpath = "//*[@label='Login' or contains(@label,'Ouvrir')]")
+	// @iOSFindBy(xpath = "//*[@label='Login' or contains(@label,'Ouvrir')]")
+	@iOSFindBy(xpath = "//*[@name='LOGIN_LOGINBUTTON']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/loginBtnText']")
 	private MobileElement login;
 
@@ -55,7 +58,9 @@ public class LoginMIT extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/loginEditText")
 	private MobileElement select_accesscard;
 
-	@iOSFindBy(xpath = "//*[@label='Add Username or Access Card' or contains(@label,'Ajouter un nom')]")
+	// @iOSFindBy(xpath = "//*[@label='Add Username or Access Card' or
+	// contains(@label,'Ajouter un nom')]")
+	@iOSFindBy(xpath = "//*[@name='ACTION_SHEET_LOGIN_DATA_CELL_0']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard']")
 	// @AndroidFindBy(xpath = "//*[contains(@text,'Add Username') or
 	// contains(@text,'Ajouter un nom')]")

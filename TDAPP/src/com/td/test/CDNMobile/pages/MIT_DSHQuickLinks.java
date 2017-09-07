@@ -109,12 +109,14 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation' or @text='交易' or @text='交易']")
 	private MobileElement QL_TRADE;
 
-	@iOSFindBy(xpath = "//*[@label='Mobile Payment' or @label='Paiement mobile' or @label='移动支付' or @label='流動付款']")
 	@AndroidFindBy(xpath = "//*[@text='Mobile Payment' or @text='Paiement mobile' or @text='移动支付' or @text='流動付款']")
 	private MobileElement HDR_MobilePayment;
 
-	@iOSFindBy(xpath = "//*[@label='Pay Bills' or @label='Payer des factures' or @label='支付账单' or @label='支付賬單']")
-	@AndroidFindBy(xpath = "//*[@text='Pay Bills' or @text='Payer des factures' or @text='支付账单' or @text='支付賬單']")
+	@iOSFindBy(xpath = "//*[@label='Apple Pay' or @label='Paiement mobile' or @label='移动支付' or @label='流動付款']")
+	private MobileElement HDR_ApplePay;
+
+	@iOSFindBy(xpath = "//*[@label='Pay Bill' or @label='Payer une facture' or @label='支付账单' or @label='支付賬單']")
+	@AndroidFindBy(xpath = "//*[@text='Pay Bill' or @text='Payer une facture' or @text='支付账单' or @text='支付賬單']")
 	private MobileElement HDR_PayBills;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='Négociation' or @label='交易' or @label='交易']")
@@ -141,7 +143,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Watchlists' or @text='Listes de surveillance' or @text='自选股观察名单' or @text='自選股觀察名單']")
 	private MobileElement HDR_Watchlists;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeSearchField[@label='Add symbol to watchlist' or @label='Ajouter un symbole à la liste' or @label='将代号添加至自选股观察名单' or @label='新增代號至自選股觀察名單']")
+	@iOSFindBy(xpath = "//XCUIElementTypeSearchField[contains(@label,'Add symbol') or @label='Ajouter un symbole à la liste' or @label='将代号添加至自选股观察名单' or @label='新增代號至自選股觀察名單']")
 	@AndroidFindBy(xpath = "//*[@text='Add symbol to watchlist' or @text='Ajouter un symbole à la liste' or @text='将代号添加至自选股观察名单' or @text='新增代號至自選股觀察名單']")
 	private MobileElement ED_AddSymbolToWatchlist;
 
@@ -149,11 +151,14 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 	private By BTN_Back = By.xpath("//*[@class='sprite sprite-back']");
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@Value='Enter name or symbol' or @Value='Entrez le nom ou le symbole' or @Value='输入名称或代号' or @Value='輸入名稱或代號']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter name or symbol' or @value='Entrez le nom ou le symbole' or @value='输入名称或代号' or @value='輸入名稱或代號']")
 	private MobileElement ED_Quote_Search_Symbol_iOS;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeLink[@label='Back' or @label='Listes' or @label='自选股观察名单' or @label='自選股觀察名單']")
 	private MobileElement LK_Back_QuoteSearchSymbolScreen;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel' or @label='Listes' or @label='自选股观察名单' or @label='自選股觀察名單']")
+	private MobileElement BT_Cancel_QuoteSearchSymbolScreen;
 
 	public void verifyQuickLinksUnAuthenicatedUser() {
 		Decorator();
@@ -313,7 +318,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	public void verifyQL_SENDMONEY(boolean bIsAuthenticatedUser) {
 		Decorator();
 		try {
-			System.out.println("hi");
+			// System.out.println("hi");
 			if (verifyQuickLinkExists(QL_SENDMONEY, "SEND MONEY")) {
 				mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_SENDMONEY));
@@ -389,6 +394,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_APPLEPAY));
 
 					clickQuickLink(QL_APPLEPAY, "APPLE PAY");
+					mobileAction.verifyElementIsDisplayed(HDR_ApplePay, "HDR_Apple Pay");
 					mobileAction.FuncClick(BT_Back, "< Button");
 				}
 			}
@@ -467,7 +473,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 					MIT_PNSAccessAlerts.get().FuncSwitchContext("NATIVE_APP");
 				} else {
 					mobileAction.verifyElementIsDisplayed(ED_Quote_Search_Symbol_iOS, "ED_Quote_Search_Symbol_iOS");
-					mobileAction.FuncClick(LK_Back_QuoteSearchSymbolScreen, "LK_Back_QuoteSearchSymbolScreen");
+					mobileAction.FuncClick(BT_Cancel_QuoteSearchSymbolScreen, "BT_Cancel_QuoteSearchSymbolScreen");
 
 				}
 			}
