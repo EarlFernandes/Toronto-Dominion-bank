@@ -433,8 +433,6 @@ public class HomeScreen extends _CommonPage {
 			Decorator();
 
 			// FIXED removed back button
-			mobileAction.getPageSource();
-			mobileAction.verifyElementIsDisplayed(menu, "Menu");
 			mobileAction.FuncClick(menu, "Menu");			
 			
 		} catch (NoSuchElementException e) {
