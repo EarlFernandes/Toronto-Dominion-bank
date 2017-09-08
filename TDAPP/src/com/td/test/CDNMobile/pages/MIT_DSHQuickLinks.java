@@ -123,16 +123,16 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Trade' or @text='Négociation' or @text='Négociation' or @text='交易' or @label='交易') and @resource-id='android:id/action_bar_title']")
 	private MobileElement hdrTrade;
 
-	@iOSFindBy(xpath = "//*[@label='Interac e-Transfer' or @label='Virement Interac' or @label='Interac e-Transfer' or @label='Interac e-Transfer']")
+	@iOSFindBy(xpath = "//*[@label='Interac e-Transfer' or @label='Virement Interac' or @label='Interac E-TRANSFER' or @label='Interac e-Transfer']")
 	@AndroidFindBy(xpath = "//*[@text='Interac e-Transfer' or @text='Virement Interac' or @text='Interac e-Transfer' or @text='Interac e-Transfer']")
 	private MobileElement HDR_Interac_e_Transfer;
 
-	@iOSFindBy(xpath = "//*[@label='Between My Accounts' or @label='Entre mes comptes' or @label='在我的账户间转账' or @label='我的賬戶之間']")
+	@iOSFindBy(xpath = "//*[@label='Between My Accounts' or @label='Entre mes comptes' or @label='在我的账户间转账' or @label='在賬戶之間轉賬']")
 	@AndroidFindBy(xpath = "//*[@text='Between My Accounts' or @text='Entre mes comptes' or @text='在我的账户间转账' or @text='我的賬戶之間']")
 	private MobileElement HDR_Between_My_Accounts;
 
-	@iOSFindBy(xpath = "//*[@label='Banking' or @label='Services bancaires' or @label='银行业' or @label='銀行業']")
-	@AndroidFindBy(xpath = "//*[@text='Banking' or @text='Services bancaires' or @text='银行业' or @text='銀行業']")
+	@iOSFindBy(xpath = "//*[@label='Banking' or @label='Services bancaires' or @label='理财' or @label='理財']")
+	@AndroidFindBy(xpath = "//*[@text='Banking' or @text='Services bancaires' or @text='理财' or @text='理財']")
 	private MobileElement HDR_Banking;
 
 	@iOSFindBy(xpath = "//*[@label='Mobile Deposit' or @label='Dépôt mobile' or @label='移动存款服务' or @label='流動存款']")
@@ -151,7 +151,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 	private By BTN_Back = By.xpath("//*[@class='sprite sprite-back']");
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter name or symbol' or @value='Entrez le nom ou le symbole' or @value='输入名称或代号' or @value='輸入名稱或代號']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter name or symbol' or @value='Entrez un nom ou un symbole' or @value='输入名称或代号' or @value='輸入名稱或代號']")
 	private MobileElement ED_Quote_Search_Symbol_iOS;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeLink[@label='Back' or @label='Listes' or @label='自选股观察名单' or @label='自選股觀察名單']")

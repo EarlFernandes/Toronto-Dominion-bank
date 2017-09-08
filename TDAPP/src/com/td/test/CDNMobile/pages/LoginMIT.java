@@ -149,7 +149,7 @@ public class LoginMIT extends _CommonPage {
 	private MobileElement securityLogin;
 
 	// @iOSFindBy(xpath = "//*[contains(@label,'System Error')]")
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='OK']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='OK' or @label='确定' or @label='確定']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
 	private MobileElement errorText;
 
@@ -240,7 +240,8 @@ public class LoginMIT extends _CommonPage {
 
 				mobileAction.FuncClick(login, "Login");
 
-				enterPwdifError();
+				if (!mobileAction.isObjExists(Investing_Trade))
+					enterPwdifError();
 
 			}
 
