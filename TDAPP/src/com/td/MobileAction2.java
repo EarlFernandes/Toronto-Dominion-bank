@@ -1745,6 +1745,33 @@ public class MobileAction2 extends CommonLib {
 		}
 
 	}
+	
+	
+	/**
+	 * @author Ashraf
+	 * This method will verify if the text1 contains the value present in text2.
+	 * @param text1
+	 * @param text2
+	 * @return
+	 */
+	public boolean verifyTextContains(String text1, String text2) {
+		if (text1.contains(text2) || text1.contains(text2.toUpperCase()) || text1.contains(text2.toLowerCase())) {
+			try {
+				GetReporting().FuncReport("Pass", "The text "+text1+" is verified");
+			} catch (IOException e) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			return true;
+		} else {
+			try {
+				GetReporting().FuncReport("Fail", "The text "+text1+" is not verified");
+			} catch (IOException e) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			return false;
+		}
+
+	}
 
 	/**
 	 * This method will wait for the element to appear on the screen.
@@ -3503,10 +3530,7 @@ public class MobileAction2 extends CommonLib {
 		
 	}
 	
-	/**
-	 * @Author Ashraf
-	 * This method will print all the developer keys and values present in 'appStringMap' Map.
-	 */
+	
 	public void dumpAppKeys(){
 		Iterator<String> itr=_CommonPage.appStringMap.keySet().iterator();
 		Iterator<String> itr1=_CommonPage.appStringMap.values().iterator();
