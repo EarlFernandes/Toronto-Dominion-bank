@@ -3336,10 +3336,10 @@ public class MobileAction2 extends CommonLib {
 		// what language)
 
 		try {
-			if(isOrientationLandscape()){
+			if(isOrientationLandscape() && isGoOnKeyBoard()) {
 				HideKeyBoard_IOS();
-				GetReporting().FuncReport("Pass", "Key board is hidden");
-			}else{
+				GetReporting().FuncReport("Pass", "The Key board was hidden");
+			} else {
 				String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
 						+ getAppString("secureLoginEditButtonDone") + "']";
 				MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
@@ -3520,6 +3520,19 @@ public class MobileAction2 extends CommonLib {
 			System.out.println("Orientation:landscaperight");
 			return true;
 		}catch (Exception e){
+			System.out.println("Unknown exception");
+			return true;
+		}
+	}
+	
+	public boolean isGoOnKeyBoard(){
+		try{
+			String goePath = "//*[@name='Go']";
+			MobileElement GoOnKeyBoard = (MobileElement) GetAppiumDriver().findElement(By.xpath(goePath));
+			System.out.println("Go is found on keyboard");
+			return true;
+		}catch (Exception e){
+			System.out.println("Done is found on keyboard");
 			return false;
 		}
 	}
