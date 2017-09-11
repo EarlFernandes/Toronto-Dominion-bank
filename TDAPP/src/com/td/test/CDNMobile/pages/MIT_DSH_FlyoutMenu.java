@@ -359,33 +359,8 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		try {
 			Thread.sleep(1000);
 
-			// Thread.sleep(1000);
-			// Set<String> contextNames = ((AppiumDriver)
-			// CL.GetDriver()).getContextHandles();
-			// for (String contextName : contextNames) {
-			// System.out.println(contextNames);
-			// }
-
-			/*
-			 * try {
-			 * 
-			 * if (MenuUp.isDisplayed()) CL.GetReporting().FuncReport("Pass",
-			 * "The element MenuUp  is displayed."); else
-			 * CL.GetReporting().FuncReport("Fail",
-			 * "The element MenuUp is not displayed"); } catch (Exception e) {
-			 * CL.GetReporting().FuncReport("Fail",
-			 * "The element MenuUp is not displayed"); // e.printStackTrace();
-			 * //commented throw e; }
-			 */
-
 			mobileAction.verifyElementIsDisplayed(BT_Home_HamburgerMenu,
 					"Flyout Menu displayed at the Top left corner");
-
-			// mobileAction.FuncClick(MenuUp,"MenuUp");
-
-			// CL.getTestDataInstance().getDeviceName()
-
-			// CL.getTestDataInstance().setMobileDeviceType(id);
 
 			verifyHome();
 
@@ -405,89 +380,17 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 			// verifyCrossBorderBanking(false);
 
-			// verifyLocations(false);
+			verifyLocations(false);
 
 			verifyGiveFeedback(false);
 
-			// verifyContactUs(false);
+			verifyContactUs(false);
 
 			verifyFAQ(false);
 
 			verifyPrivacySecurity(false);
 
 		}
-
-		// clickFlyout(CL.GetAppiumDriver().findElement(By.xpath(xpathFlyoutLink3)),
-		// xpathFlyoutLink3);
-
-		/*
-		 * String[] flyoutLinksList = getTestdata("FlyoutLinksList",
-		 * XLSheetUserIDs).split(";");
-		 * 
-		 * for (int i = 0; i < flyoutLinksList.length; i++)
-		 * 
-		 * {
-		 * 
-		 * String xpathFlyoutLink = "//*[contains(@text,'" + flyoutLinksList[i]
-		 * + "') or contains(@label,'" + flyoutLinksList[i] + "')]";
-		 * mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathFlyoutLink,
-		 * false, 5, "up");
-		 * 
-		 * mobileAction.verifyItemInList(flyoutLinksList[i]);
-		 * 
-		 * }
-		 * 
-		 * int iLen = flyoutLinksList.length;
-		 * 
-		 * String xpathFlyoutLink1 = "//*[contains(@text,'" +
-		 * flyoutLinksList[iLen - (iLen)] + "') or contains(@label,'" +
-		 * flyoutLinksList[iLen - (iLen)] + "') ]";
-		 * mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathFlyoutLink1,
-		 * true, 5, "up");
-		 * 
-		 * mobileAction.verifyElementIsDisplayed(hdrHome, "hdrHome");
-		 * 
-		 * mobileAction.FuncClick(MenuUp, "MenuUp");
-		 * 
-		 * String xpathFlyoutLink2 = "//*[contains(@text,'" +
-		 * flyoutLinksList[iLen - (iLen - 1)] + "') or contains(@label,'" +
-		 * flyoutLinksList[iLen - (iLen - 1)] + "') ]";
-		 * 
-		 * mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathFlyoutLink2,
-		 * true, 5, "up");
-		 * 
-		 * mobileAction.verifyElementIsDisplayed(login, "login");
-		 * 
-		 * mobileAction.FuncClick(backButton, "backButton");
-		 * 
-		 * mobileAction.FuncClick(MenuUp, "MenuUp");
-		 */
-
-		/*
-		 * for(int j=0; j<flyoutLinksList.length; j++)
-		 * 
-		 * { if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
-		 * "Android")) { String xpathFlyoutLinksList = "//*[contains(@text,'" +
-		 * flyoutLinksList[j] + "')]";
-		 * 
-		 * mobileAction.FuncSwipeWhileElementNotFoundByxpath(
-		 * xpathFlyoutLinksList, true, 5, "up");
-		 * 
-		 * mobileAction.verifyElementIsDisplayed(hdrHome, "hdrHome");
-		 * 
-		 * mobileAction.FuncClick(MenuUp,"MenuUp");
-		 * 
-		 * 
-		 * } else {
-		 * 
-		 * String xpathFlyoutLinksList = "//*[contains(@label,'" +
-		 * flyoutLinksList[j] + "')]";
-		 * 
-		 * mobileAction.FuncSwipeWhileElementNotFoundByxpath(
-		 * xpathFlyoutLinksList, true, 5, "up"); }
-		 * 
-		 * }
-		 */
 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -555,21 +458,19 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(BT_Home_HamburgerMenu,
 					"Flyout Menu displayed at the Top left corner");
 
-			/*
-			 * verifyHome();
-			 * 
-			 * verifyMyAccounts(true);
-			 * 
-			 * verifyTransfers(true);
-			 * 
-			 * verifyBills(true);
-			 * 
-			 * verifyTDMySpend(true);
-			 * 
-			 * verifyMobileDeposit(true);
-			 * 
-			 * verifyTDforMe(true);
-			 */
+			verifyHome();
+
+			verifyMyAccounts(true);
+
+			verifyTransfers(true);
+
+			verifyBills(true);
+
+			verifyTDMySpend(true);
+
+			verifyMobileDeposit(true);
+
+			verifyTDforMe(true);
 
 			verifyInvestingAccounts(true);
 
