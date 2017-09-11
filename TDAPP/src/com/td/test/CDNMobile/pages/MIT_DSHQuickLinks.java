@@ -17,6 +17,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class MIT_DSHQuickLinks extends _CommonPage {
 
@@ -35,15 +36,15 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				this);
 	}
 
-	@iOSFindBy(xpath = "//*[@name='QuickLinkLeftNavButton']")
+	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
 	@AndroidFindBy(id = "com.td:id/hamburger")
 	MobileElement BT_Home_HamburgerMenu;
 
-	@iOSFindBy(xpath = "//*[@name='NAVIGATION_ITEM_BACK']")
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 
-	@iOSFindBy(xpath = "//*[@name='NAVIGATION_ITEM_MENU']")
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_HamburgerMenu;
 
