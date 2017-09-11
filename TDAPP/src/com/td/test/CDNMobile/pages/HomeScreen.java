@@ -38,8 +38,8 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Accounts']")
 	private MobileElement my_accounts;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfers']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Transfers' or @text='Virments']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfers' or @label='Virements']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Transfers' or @text='Virements']")
 	private MobileElement transfers;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Markets']")

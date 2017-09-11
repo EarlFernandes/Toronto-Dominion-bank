@@ -211,8 +211,8 @@ public class Login extends _CommonPage {
 	String session1 = "//android.widget.TextView[contains(@text,'Session Expired')]";
 	String message = "Session Expired";
 
-	@iOSFindBy(xpath = "//*[@label='Masquer le clavier' or @label='Hide keyboard']")
-	private MobileElement hide_keyboard;
+	@iOSFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeImage")
+	private MobileElement TD_Image;
 
 	public synchronized static Login get() {
 		if (Login == null) {
@@ -948,7 +948,13 @@ public class Login extends _CommonPage {
 
 						if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")
 								&& mobileAction.isOrientationLandscape()) {
-							mobileAction.HideKeyBoard_IOS();
+							//Freddy: This is a workaround to hide keyboard to verify "Remember me" button in Landscape
+							//driver.hideKeyboard(HideKeyboardStrategy.TAP_OUTSIDE)  and
+							//driver.hideKeyboard(HideKeyboardStrategy.PRESS_KEY, "Hide keyboard")
+							//only works for English not for FR, Chinese
+
+							System.out.println("Hide keyboard by clicking TD Image");
+							mobileAction.FuncClick(TD_Image, "TD");
 						}
 						mobileAction.verifyElementIsDisplayed(rememberMe_button_on, "Remember is ON");
 
