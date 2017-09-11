@@ -203,7 +203,7 @@ public class InvestingAccountSummary extends _CommonPage {
 	 */
 	public void verifySummaryScenario() {
 		Decorator();
-		String strAccount = getTestdata("Account");
+		String strAccount = getTestdata("Accounts");
 		String strAcc[] = strAccount.split(":");
 		boolean flag = true;
 		try {
@@ -1193,7 +1193,6 @@ public class InvestingAccountSummary extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(details, "DETAILS");
 				mobileAction.verifyTextEquality(details.getText(), mobileAction.getAppString("details"));
 				mobileAction.verifyElementIsDisplayed(activityAmount, "AMOUNT");
-				mobileAction.verifyTextEquality(activityAmount.getText(), mobileAction.getAppString("str_AMOUNT"));
 
 				while (flag && count < 6) {
 

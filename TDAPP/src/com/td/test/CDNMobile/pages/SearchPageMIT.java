@@ -34,13 +34,16 @@ public class SearchPageMIT extends _CommonPage {
 
 	// @iOSFindBy(xpath = "//XCUIElementTypeSearchField[@label='Enter name or
 	// symbol' or contains(@label,'Entrez le')]") //@Author - Sushil 03-Feb-2017
-	// @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Enter name or
-	// symbol' or contains(@label,'Entrez le')]") //@Author - Sushil 03-Feb-2017
-	@iOSFindBy(xpath = "//*[@name='TextField_0']") // @Author - Sushil
+	@iOSFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]") //@Author - Sushil 03-Feb-2017
+	//@iOSFindBy(xpath = "//*[@name='TextField_0']") // @Author - Sushil
 													// 03-Feb-2017
 	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
 	private MobileElement search_symbol;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeSearchField[@label='Enter name or symbol' or contains(@label,'Entrez le')]")
+	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
+	private MobileElement enter_symbol;
+	
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1][@label='Toronto Dominion Bank']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tdticker' and @text='	TORONTO DOMINION BANK']")
 	private MobileElement selectTD;
@@ -441,7 +444,7 @@ public class SearchPageMIT extends _CommonPage {
 			boolean bSymbolText = false;
 
 			mobileAction.FuncClick(search_symbol, "search_symbol");
-			enterSymbol(search_symbol, sSymbolName);
+			enterSymbol(enter_symbol, sSymbolName);
 			// mobileAction.verifyElement(txt_results,getTestdata("RESULTS",
 			// XLSheetUserIDs));
 			TradeMultiLeg.get().handleKeyboard();

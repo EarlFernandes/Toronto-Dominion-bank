@@ -102,6 +102,7 @@ import com.td.test.myspend.Spending_Insight;
 import com.td.test.myspend.TDAppHomePage;
 import com.td.test.myspend.TourPage;
 import com.td.test.myspend.TransactionHistory;
+import com.td.test.CDNMobile.pages.Branch;
 
 public class EventCase {
 
@@ -125,13 +126,13 @@ public class EventCase {
 
 		CDNCash, CDNCash_Sell_StopMarket, CDNMargin_Buy, CDNMargin_Buy_TriggerDelta, CDNMargin_Sell_TrailingStopLimit, CDNMargin_Sell_TrailingStopMarket, CDNMarginLimit, CDNMarginLimitTradePreviewOrder,
 
-		Check_Remember_Me_Default, ClickBack, clickChangeOrder, clickChangeorder_MarketToLimit, ClickContact, ClickDepositCheque, CardDetails_save,
+		Check_Remember_Me_Default, ClickBack,ClickBackBtn_Lnk, clickChangeOrder, clickChangeorder_MarketToLimit, ClickContact, ClickDepositCheque, CardDetails_save,
 
 		ClickMenu, ClickMenu_French, ClickMenuHome, clickMenuTrade, Confirm_order, Confirm_order_French, ClickPrivacy, ClickSave, ClickPhoneNumber, ClickClearText, ClickAddressDetail, ClickPopupGoBackButton,
 
 		ConfirmOrderCancel, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, ChangeDefaultCard, CardDetails_deleteicon, ConfirmPayee_InvalidAmount, EditEmailAddressWithInvalidChar,
 
-		Dashboard_Authentication, Dashboard_UnAuthentication,
+		Dashboard_Authentication, Dashboard_UnAuthentication, selectFirstLocation,
 
 		Delete_usr, Deposit_Header, DepositChequeHeader, END,
 
@@ -194,7 +195,7 @@ public class EventCase {
 		Accounts_SelectAccount, AccountsCredit_ClickPayBill, AccountsCredit_verifyLastTranaction, AccountsCredit_clickLastTranaction, Transaction_VerifyTransac, AccountsCredit_clickSummaryTab, AccountsCredit_VerifySummaryDetails, AccountsCredit_clickStatementTab, AccountsCredit_VeifyStatementDetails, StatementBalance_VerifyBalanceDetails, Bill_PayCanada_verifyCurrentBalance, Bill_PayCanada_PayBill, AccountsCredit_ClickTransfers
 
 		// trade,
-		, clickChangeorder_TSM_to_TSL, TradeTrailingStopMarket, TradeStopMarket, TradeStopMarketSell, TradeLimitDAYEXT, ClickWatchList, TradeStopLimit, OrderRecieptValidateBuy, Investing_ClickPlacedOrder, OrderDetails_Changeorder, TradeMarket, clickChangeorder_LimitToMarket, TradeLimit, TradeLimitAndTriggerDelta, TradeOrderType, TradeSymbol, TradeTrailingStopLimit, ConfirmOrderValidateBuy, verifyEmptyWatchList, ClickOrders, clickChangeorder_SM_to_SL, verifyShareHolder, confirmOrder_ClickBack, verifyBuyToCover, TradeStopLimitSell, ConfirmOrderDoNotCancel, ConfirmOrderImpInformation, ClickHoldingAndSymbol, changeOrderLimitDayToDayEXT,
+		, clickChangeorder_TSM_to_TSL, TradeTrailingStopMarket, TradeStopMarket,MenumenuTradePresent, TradeStopMarketSell, TradeLimitDAYEXT, ClickWatchList, TradeStopLimit, OrderRecieptValidateBuy, Investing_ClickPlacedOrder, OrderDetails_Changeorder, TradeMarket, clickChangeorder_LimitToMarket, TradeLimit, TradeLimitAndTriggerDelta, TradeOrderType, TradeSymbol, TradeTrailingStopLimit, ConfirmOrderValidateBuy, verifyEmptyWatchList, ClickOrders, clickChangeorder_SM_to_SL, verifyShareHolder, confirmOrder_ClickBack, verifyBuyToCover, TradeStopLimitSell, ConfirmOrderDoNotCancel, ConfirmOrderImpInformation, ClickHoldingAndSymbol, changeOrderLimitDayToDayEXT,
 
 		// MIT Multi-Leg
 
@@ -417,6 +418,11 @@ public class EventCase {
 		case HomeScreen_WatchLists:
 			HomeScreen.get().clickWatchLists();
 			break;
+						
+		case selectFirstLocation:
+			FindLocations.get().selectFirstLocation();
+			break;
+			
 		case Env_set:
 			Env_Settings.get().set_environment();
 			break;
@@ -697,6 +703,10 @@ public class EventCase {
 		case ClickBack:
 			HomeScreen.get().back_button();
 			break;
+			
+		case ClickBackBtn_Lnk:
+			HomeScreen.get().clickbackBtnLnk();
+			break;
 
 		case OrderReciept_ordertab:
 			OrderReciept.get().ordertab();
@@ -884,7 +894,7 @@ public class EventCase {
 			break;
 
 		case HomeScreen_Location_Details:
-			HomeScreen.get().verifyLocations();
+			Branch.get().verifyLocationDetails();
 			break;
 
 		case Login_Ntimes:
@@ -1668,6 +1678,10 @@ public class EventCase {
 			break;
 		case TradeMarket:
 			Trade.get().market();
+			break;
+			
+		case MenumenuTradePresent:
+			HomeScreen.get().menuTradePresent();
 			break;
 
 		case TradeLimit:

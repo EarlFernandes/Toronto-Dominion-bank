@@ -137,6 +137,8 @@ public class MobileAction2 extends CommonLib {
 			objElement.click();
 
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
+		} catch (WebDriverException e) {
+			System.out.println("WebDriverException, ignor it");
 		} catch (Exception e) {
 			try {
 				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
@@ -2962,7 +2964,7 @@ public class MobileAction2 extends CommonLib {
 			}
 
 		} else {
-			back_xpath = "//*[@label='Back' or @label='Retour']";
+			back_xpath = "//*[@name='NAVIGATION_ITEM_BACK']";
 		}
 		try {
 			MobileElement back_arrow = (MobileElement) GetDriver().findElement(By.xpath(back_xpath));
@@ -3485,7 +3487,7 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
-	public void FuncVerifyTextEquals(MobileElement mElement,String sExpected) // Author
+	public void FuncVerifyTextEquals(MobileElement mElement, String sExpected) // Author
 																				// -
 																				// Sushil
 																				// 28-Aug-2017
@@ -3500,15 +3502,20 @@ public class MobileAction2 extends CommonLib {
 				GetReporting().FuncReport("Fail", "Expected : " + sExpected + " Actual : " + sActual);
 
 		} catch (Exception e) {
-			try
-			{
+			try {
 				GetReporting().FuncReport("Fail", "<b> Exception in FuncVerifyTextEquals()" + "</b>");
 				e.printStackTrace();
-			}
-			catch(Exception e1)
-			{
-			e1.printStackTrace();
+			} catch (Exception e1) {
+				e1.printStackTrace();
 			}
 		}
+	}
+
+	public double convertStringAmountTodouble(String amount) {
+		String amount_no_char = amount.replaceAll("\\$", "");
+		amount_no_char = amount_no_char.replaceAll("USD", "");
+		amount_no_char = amount_no_char.replaceAll(",", "");
+		return Double.parseDouble(amount_no_char.trim());
+
 	}
 }

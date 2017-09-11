@@ -70,6 +70,7 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_CONTENT_AFTER3 = {
 			"If you made your purchase after 3:00PM EST, or on the weekend, it will be processed at the next business day's closing price.",
 			"Si vous avez effectué votre achat après 15 h (HE) ou la fin de semaine, il sera traité au prix de clôture du jour ouvrable suivant.",
+
 			"如果您在东部时间下午 3 点之后或在周末购买，将按照下一个工作日的收市价交易。", "如果在東部時間下午 3 時之後或在週末購買，將按下一個工作日的收市價交易。" };
 	public static final String[] ARRAY_MF_PURCHASE_CONFIRM = { "Purchase confirmation", "Confirmation d’achat", "购买确认",
 			"購買確認" };
@@ -160,4 +161,10 @@ public final class StringArray {
 			"支付賬單" };
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_TRADE = { "TRADE", "NÉGOCIATION", "交易", "交易" };
 	// MIT Dashboard END
+
+	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE_ANSWER = { "Yes", "Oui", "是", "是" };
+	public static final String[] ARRAY_BRABCH_HEADER = { "Branch", "Succursale", "分行", "分行" };
+	public static final String[] ARRAY_FIND_LOCATION = { "Find Locations", "Trouver une succursale", "查找分行", "查找分行" };
+	public static final String[] ARRAY_CONFIRM = { "Confirm", "Confirm", "确认", "確認" };
+
 }
