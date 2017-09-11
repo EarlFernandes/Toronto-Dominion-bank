@@ -12,6 +12,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class LoginMIT extends _CommonPage {
 
@@ -19,21 +20,17 @@ public class LoginMIT extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/remember_switch' and @index='1']")
 	private MobileElement rememberMe;
 
-	// @iOSFindBy(xpath = "//*[@label='Username or Access Card']")
-	@iOSFindBy(xpath = "//*[@name='LOGIN_USERNAME']")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and
-	// @index='1']")
+	@iOSXCUITFindBy(accessibility = "LOGIN_USERNAME")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText']")
 	private MobileElement username;
 
-	// @iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@label='Password']")
-	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@name='LOGIN_PASSWORD']")
+	// @iOSFindBy(xpath =
+	// "//XCUIElementTypeSecureTextField[@name='LOGIN_PASSWORD']")
+	@iOSXCUITFindBy(accessibility = "LOGIN_PASSWORD")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement password;
 
-	// @iOSFindBy(xpath = "//*[@label='Login' or contains(@label,'Ouvrir')]")
-	@iOSFindBy(xpath = "//*[@name='LOGIN_LOGINBUTTON']")
+	@iOSXCUITFindBy(accessibility = "LOGIN_LOGINBUTTON")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/loginBtnText']")
 	private MobileElement login;
 
@@ -41,9 +38,6 @@ public class LoginMIT extends _CommonPage {
 	private MobileElement install;
 
 	@iOSFindBy(xpath = "//*[@label='In progress']")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.TextView[@resource-id='android:id/message' and
-	// @text='Loading']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 
@@ -52,27 +46,17 @@ public class LoginMIT extends _CommonPage {
 	private MobileElement french_progressBar;
 
 	@iOSFindBy(xpath = "//*[@label='Select AccessCard']")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and
-	// @content-desc='Username or Access Card']")
 	@AndroidFindBy(id = "com.td:id/loginEditText")
 	private MobileElement select_accesscard;
 
-	// @iOSFindBy(xpath = "//*[@label='Add Username or Access Card' or
-	// contains(@label,'Ajouter un nom')]")
-	@iOSFindBy(xpath = "//*[@name='ACTION_SHEET_LOGIN_DATA_CELL_0']")
+	@iOSXCUITFindBy(accessibility = "ACTION_SHEET_LOGIN_DATA_CELL_0")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard']")
-	// @AndroidFindBy(xpath = "//*[contains(@text,'Add Username') or
-	// contains(@text,'Ajouter un nom')]")
 	private MobileElement addUser;
 
 	@iOSFindBy(xpath = "//*[@label='Username or Access Card']")
-	// @iOSFindBy(xpath = "//*[@value='Nom d’utilisateur ou numéro de carte
-	// Accès']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @index='1']")
 	private MobileElement username_InFrench;
 
-	// @iOSFindBy(xpath = "//*[@value='Mot de passe']")
 	@iOSFindBy(xpath = "//*[@label='Password']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement password_InFrench;
@@ -134,7 +118,7 @@ public class LoginMIT extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Security Question']")
 	private MobileElement securityQuestionHeader;
 
-	@iOSFindBy(xpath = "//*[@value='Enter your answer' or contains(@value,'Entrez votre')]")
+	@iOSFindBy(xpath = "//*[@value='Enter your answer' or contains(@value,'Entrez votre') or @value='输入您的答案' or @value='輸入您的答案']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/mfa_answer']")
 	private MobileElement enterAnswer;
 
