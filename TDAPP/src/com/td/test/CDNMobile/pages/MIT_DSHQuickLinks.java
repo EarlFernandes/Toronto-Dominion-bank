@@ -48,7 +48,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_HamburgerMenu;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@label='Password']")
+	@iOSXCUITFindBy(accessibility = "LOGIN_PASSWORD")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement password;
 
@@ -288,13 +288,13 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		}
 		if (bFlag) {
 			try {
-				CL.GetReporting().FuncReport("Pass", sDesc + " Quick Link is present.");
+				CL.GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> Quick Link is present.");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else {
 			try {
-				CL.GetReporting().FuncReport("Fail", sDesc + " Quick Link does not exist.");
+				CL.GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> Quick Link does not exist.");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -319,7 +319,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	public void verifyQL_SENDMONEY(boolean bIsAuthenticatedUser) {
 		Decorator();
 		try {
-			// System.out.println("hi");
+
 			if (verifyQuickLinkExists(QL_SENDMONEY, "SEND MONEY")) {
 				mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_SENDMONEY));
@@ -467,10 +467,10 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					// Quote page WEBVIEW
 					MIT_PNSAccessAlerts.get().FuncSwitchContext(MIT_PNSAccessAlerts.get().getWebViewContextString());
-					mobileAction.verifyElementIsDisplayed(getMobileElement(ED_Quote_Search_Symbol),
+					mobileAction.verifyElementIsDisplayed(mobileAction.getMobileElement(ED_Quote_Search_Symbol),
 							"ED_Quote_Search_Symbol");
-					// Thread.sleep(10000);
-					mobileAction.FuncClick(getMobileElement(BTN_Back), "BTN_Back");
+
+					mobileAction.FuncClick(mobileAction.getMobileElement(BTN_Back), "BTN_Back");
 					MIT_PNSAccessAlerts.get().FuncSwitchContext("NATIVE_APP");
 				} else {
 					mobileAction.verifyElementIsDisplayed(ED_Quote_Search_Symbol_iOS, "ED_Quote_Search_Symbol_iOS");
@@ -519,14 +519,6 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-	}
-
-	public MobileElement getMobileElement(By element) {
-		try {
-			return (MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(element);
-		} catch (Exception e) {
-			return null;
 		}
 	}
 

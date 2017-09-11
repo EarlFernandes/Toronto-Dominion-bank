@@ -3518,4 +3518,12 @@ public class MobileAction2 extends CommonLib {
 		return Double.parseDouble(amount_no_char.trim());
 
 	}
+
+	public MobileElement getMobileElement(By element) {
+		try {
+			return (MobileElement) ((AppiumDriver) GetDriver()).findElement(element);
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

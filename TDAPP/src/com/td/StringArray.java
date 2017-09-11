@@ -160,6 +160,12 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_PAYBILL = { "PAY BILL", "PAIEMENT DE FACTURES", "支付账单",
 			"支付賬單" };
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_TRADE = { "TRADE", "NÉGOCIATION", "交易", "交易" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_ACCOUNTS = { "Accounts", "NÉGOCIATION", "交易", "交易" }; // FIX
+	public static final String[] ARRAY_DASHBOARD_NAVROW_TRANSFERES = { "Transfers", "Virements", "账单", "轉賬" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_BILLS = { "Bills", "Factures", "账单", "賬單" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_TRADE = { "Trade", "Négociation", "交易", "交易" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_MARKETS = { "Markets", "Marchés", "市场", "市場" };
+
 	// MIT Dashboard END
 
 	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE_ANSWER = { "Yes", "Oui", "是", "是" };
