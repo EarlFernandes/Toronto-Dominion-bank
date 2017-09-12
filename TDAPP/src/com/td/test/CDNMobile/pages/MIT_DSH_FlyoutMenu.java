@@ -50,11 +50,10 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	}
 
 	@iOSFindBy(xpath = "//*[@name='QuickLinkLeftNavButton' or @name='NAVIGATION_ITEM_MENU']")
-	// @iOSFindBy(xpath = "//*[@name='QuickLinkLeftNavButton']")
 	@AndroidFindBy(id = "com.td:id/hamburger")
 	MobileElement BT_Home_HamburgerMenu;
 
-	@iOSFindBy(xpath = "//*[@name='NAVIGATION_ITEM_BACK']")
+	@iOSFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 
@@ -63,30 +62,14 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	private MobileElement Alerts;
 
 	@iOSFindBy(xpath = "//*[@name='QuickLinkLeftNavButton' or @name='NAVIGATION_ITEM_MENU' or @name='Home']")
-	// @iOSFindBy(xpath = "//*[contains(@label,'Home')]")
-	// @iOSFindBy(xpath = "//*[contains(@label,'Menu')]")
 	@AndroidFindBy(id = "android:id/up")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.ImageView[@resource-id=com.td:id/hamburger']")
-	// @iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Menu' OR value
-	// CONTAINS[cd] 'Username or Access Card' OR value CONTAINS[cd] 'Access Card
-	// or Username'`]")
 	private MobileElement MenuUp;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Home')]")
-	// @iOSFindBy(xpath = "//*[contains(@label,'Menu')]")
-	// @AndroidFindBy(id = "android:id/up")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id=com.td:id/hamburger']")
-	// @iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Menu' OR value
-	// CONTAINS[cd] 'Username or Access Card' OR value CONTAINS[cd] 'Access Card
-	// or Username'`]")
 	private MobileElement MenuUp1;
 
 	@iOSFindBy(xpath = "//*[@name='QuickLinkLeftNavButton']/following-sibling::XCUIElementTypeImage[1]")
-	// @iOSFindBy(xpath = "(//XCUIElementTypeImage)[2]")
-	// @iOSFindBy(xpath = "//XCUIElementTypeImage[@name='logo_home.png']")
-	// @AndroidFindBy(xpath = "//*[(@text='Home' or @text='Accueil') and
-	// @resource-id=com.td:id/logo']")
 	@AndroidFindBy(id = "com.td:id/logo")
 	private MobileElement hdrHome;
 
@@ -98,21 +81,17 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement password;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Cross-Border Banking' or @label='Services bancaires transfrontaliers']")
-	// @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=
-	// 'com.td:id/loginBtnText']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Cross-Border Banking' or @label='Services bancaires transfrontaliers' or @label='跨境理财服务' or @label='跨國理財服務']")
+
 	@AndroidFindBy(xpath = "//*[@text='Cross-Border Banking' or @text='Services bancaires transfrontaliers' or @text='跨境理财服务' or @text='跨國理財服務']")
 	private MobileElement lblCrossBorder;
 
 	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres' or @label='个人资料和设置' or @label='個人資料和設定']")
-	// @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=
-	// 'com.td:id/loginBtnText']")
+
 	@AndroidFindBy(xpath = "//*[@text='Profile & Settings' or @text='Profil et paramètres' or @text='个人资料和设置' or @text='個人資料和設定']")
 	private MobileElement lblProfileSettings;
 
 	@iOSFindBy(xpath = "//*[@label='Apple Watch' or @label='Services bancaires transfrontaliers'']")
-	// @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=
-	// 'com.td:id/loginBtnText']")
 	@AndroidFindBy(xpath = "//*[@text='Apple Watch' or @text='Services bancaires transfrontaliers']")
 	private MobileElement lblAppleWatch;
 
@@ -123,8 +102,6 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	private MobileElement lblFindLocation;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='How was your TD app experience today?' or @label='Services bancaires transfrontaliers']")
-	// @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=
-	// 'com.td:id/loginBtnText']")
 	@AndroidFindBy(xpath = "//*[@text='How was your TD app experience today?' or @text='']")
 	private MobileElement lblExperience;
 
@@ -145,24 +122,16 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	private MobileElement lblTrade;
 
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
-	// @iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']")
 	@AndroidFindBy(id = "android:id/up")
 	private MobileElement backButton;
 
-	// @iOSFindBy(xpath = "//*[contains(@label,Home') or
-	// contains(@label,Accueil')]")
-	// @iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']/*[1]")
 	@iOSFindBy(xpath = "//*[@label='Logout' or@label='Fermer la session' or @label='退出' or @label='登出']")
 	@AndroidFindBy(xpath = "//*[@text='Logout' or @text='Fermer la session' or @text='退出' or @text='登出']")
 	// @AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement flyoutLogOut;
 
-	// @iOSFindBy(xpath = "//*[contains(@label,Home') or
-	// contains(@label,Accueil')]")
-	// @iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']/*[1]")
 	@iOSFindBy(xpath = "//*[@label='Home' or @label='Accueil' or @label='主页' or @label='首頁']")
 	@AndroidFindBy(xpath = "//*[@text='Home' or @text='Accueil' or @text='主页' or @text='首頁']")
-	// @AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement flyoutHomeLink;
 
 	@iOSFindBy(xpath = "//*[@label='My Accounts' or @label='Mes comptes' or @label='我的账户' or @label='我的賬戶']")
@@ -251,12 +220,8 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Investing Accounts' or @text='Comptes Placements directs TD' or @text='投资账户' or @text='投資賬戶') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutInvestingAccountsLink;
 
-	// @iOSFindBy(xpath = "//*[contains(@label,Home') or
-	// contains(@label,Accueil')]")
-	// @iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']/*[1]")
 	@iOSFindBy(xpath = "//*[@label='Trade' or contains(@label,'Négociation') or @label='交易' or @label='交易']")
 	@AndroidFindBy(xpath = "//*[(@text='Trade' or contains(@text,'Négociation') or @text='交易' or @text='交易') and @resource-id='com.td:id/textview_flyout_menu_item']")
-	// @AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement flyoutTrade;
 
 	@iOSFindBy(xpath = "//*[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶']")
@@ -271,7 +236,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Profile & Settings' or @text='Profil et paramètres' or @text='个人资料和设置' or @text='個人資料和設定']")
 	private MobileElement flyoutProfileSettings;
 
-	@iOSFindBy(xpath = "//*[@label='Apple Watch' or contains(@label,'Services bancaires transfrontaliers')]")
+	@iOSFindBy(xpath = "//*[@label='Apple Watch')]")
 	@AndroidFindBy(xpath = "//*[@text='Apple Watch' or contains(@text,'Services bancaires transfrontaliers')]")
 	private MobileElement flyoutAppleWatch;
 
@@ -287,55 +252,55 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Contact Us' or @text='Contactez-nous' or @text='联系我们' or @text='聯絡我們']")
 	private MobileElement flyoutContactUsLink;
 
-	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='TD Canada Trust' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/tvTDWealthFPNumberLabele']")
 	private MobileElement contactusTD;
 
-	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_1_PHONE_TITLE']")
+	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_1_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='TD Credit Card' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/tvTDCreditNumberLabel']")
 	private MobileElement contactusCC;
 
-	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_2_PHONE_TITLE']")
+	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_2_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='TD Small Business Banking' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/tvTDSmallBusinessNumberLabel']")
 	private MobileElement contactusBB;
 
-	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_3_PHONE_TITLE']")
+	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_3_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='TD Direct Investing' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/tvTDWealthDINumberLabel']")
 	private MobileElement contactusDI;
 
-	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_4_PHONE_TITLE']")
+	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_4_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='TD Wealth Financial Planning' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/tvTDWealthFPNumberLabele']")
 	private MobileElement contactusFP;
 
-	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='Using TD Mobile Payment' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/faq_category_item_name']")
 	private MobileElement TDMobilePayment;
 
-	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='Miscellaneous' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/faq_category_item_name']")
 	private MobileElement Miscellaneous;
 
-	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='Getting Started' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/faq_category_item_name']")
 	private MobileElement GettingStarted;
 
-	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='TD MySpend' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/faq_category_item_name']")
 	private MobileElement TDMySpend;
 
-	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='Mobile Privacy' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/tvPrivacy']")
 	private MobileElement mobilePrivacy;
 
-	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='Privacy & Security' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/tvSecurity']")
 	private MobileElement privacySecurity;
 
-	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='Legal' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/tvLegal']")
 	private MobileElement legal;
 
-	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='Terms of Use' or contains(@text,'Communiquez avec nous')]")
 	private MobileElement terms;
 
@@ -357,8 +322,6 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			Thread.sleep(1000);
-
 			mobileAction.verifyElementIsDisplayed(BT_Home_HamburgerMenu,
 					"Flyout Menu displayed at the Top left corner");
 
@@ -378,7 +341,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 			verifyInvestingAccounts(false);
 
-			// verifyCrossBorderBanking(false);
+			verifyCrossBorderBanking(false);
 
 			verifyLocations(false);
 
@@ -425,7 +388,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 			verifyInvestingAccounts(true);
 
-			// verifyCrossBorderBanking(true);
+			verifyCrossBorderBanking(true);
 
 			verifyProfileSettings(true);
 
@@ -476,7 +439,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 			verifyTrade(true);
 
-			// verifyCrossBorderBanking(true);
+			verifyCrossBorderBanking(true);
 
 			verifyProfileSettings(true);
 
@@ -531,7 +494,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 			verifyTrade(true);
 
-			// verifyCrossBorderBanking(true);
+			verifyCrossBorderBanking(true);
 
 			verifyProfileSettings(true);
 
@@ -599,7 +562,6 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			// Thread.sleep(1000);
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutMyAccountLink, false, 10, "up");
 
@@ -644,7 +606,6 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			// Thread.sleep(1000);
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutTransfersLink, false, 10, "up");
 
@@ -685,7 +646,6 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			Thread.sleep(1000);
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutBillsLink, false, 10, "up");
 
@@ -723,7 +683,6 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			Thread.sleep(1000);
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutTDMySpendLink, false, 10, "up");
 
@@ -824,7 +783,6 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			Thread.sleep(1000);
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutTDforMeLink, false, 10, "up");
 
@@ -846,8 +804,6 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				}
 
-				// mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink,
-				// true, 10, "down");
 			} else {
 				clickFlyout(flyoutTDforMeLink, "flyoutTDforMeLink");
 
@@ -943,16 +899,17 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
 
+					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
+
 				}
 
 				else
 
 				{
 					mobileAction.verifyElementIsDisplayed(lblCrossBorder, "lblCrossBorder");
-				}
-				mobileAction.FuncClick(backButton, "backButton");
+					mobileAction.FuncClick(backButton, "backButton");
 
-				mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
+				}
 
 			}
 
@@ -965,10 +922,14 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 					((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
 
 					// Fix needed for lblCrossBorder mod page android object
-					mobileAction.verifyElementIsDisplayed((MobileElement) CL.GetDriver().findElement(Text_Condition),
-							"Text_Condition");
+					// mobileAction.verifyElementIsDisplayed((MobileElement)
+					// CL.GetDriver().findElement(Text_Condition),
+					// "Text_Condition");
+
+					mobileAction.FuncClick(getMobileElement(BTN_Back), "BTN_Back");
 
 					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 
 				}
 
@@ -976,9 +937,8 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				{
 					mobileAction.verifyElementIsDisplayed(lblCrossBorder, "lblCrossBorder");
+					mobileAction.FuncClick(backButton, "backButton");
 				}
-				mobileAction.FuncClick(backButton, "backButton");
-				mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 
 			}
 		} catch (Exception e) {
@@ -1087,8 +1047,6 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-
-			Thread.sleep(1000);
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutContactUsLink, false, 10, "up");
 
@@ -1395,8 +1353,6 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-
-			Thread.sleep(1000);
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutMobilePayment, false, 10, "up");
 
@@ -1432,8 +1388,6 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-
-			Thread.sleep(1000);
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings, false, 10, "up");
 
@@ -1570,9 +1524,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					mobileAction.FuncClick(lblLoggedOut, "lblLoggedOut");
-
 					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
-
 				}
 
 				else {
@@ -1592,10 +1544,6 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			// Thread.sleep(1000);
-			// mobileAction.FuncClick(MenuUp, "MenuUp");
-
-			// CL.getTestDataInstance().getMobileDeviceType();
 
 			for (int i = 0; i < 5; i++) {
 				if (mobileAction.isObjExists(objElement, 2)) {
