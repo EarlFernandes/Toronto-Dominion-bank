@@ -4,6 +4,7 @@ import java.io.IOException;
 import com.td._CommonPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
@@ -16,6 +17,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.td.test.framework.CommonLib;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.InteractsWithApps;
 import io.appium.java_client.MobileDriver;
@@ -64,8 +66,7 @@ public class MobileAction2 extends CommonLib {
 	 * This method will clear the username field text area.
 	 * 
 	 * @param objElement
-	 *            The MobileElement on which the click action has to be
-	 *            performed.
+	 *            The MobileElement on which the click action has to be performed.
 	 * @param text
 	 *            The text to be updated in report.
 	 * 
@@ -113,12 +114,11 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This method will look for an element on the screen to be clickable within
-	 * the given timeout and then click over the element.
+	 * This method will look for an element on the screen to be clickable within the
+	 * given timeout and then click over the element.
 	 * 
 	 * @param objElement
-	 *            The MobileElement on which the click action has to be
-	 *            performed.
+	 *            The MobileElement on which the click action has to be performed.
 	 * @throws Exception
 	 *             In case an exception occurs while clicking over the element.
 	 * @throws IllegalArgumentException
@@ -205,8 +205,8 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This method will click over a particular coordinate the number of times
-	 * it has been specified with a delay of 80 ms between each click.
+	 * This method will click over a particular coordinate the number of times it
+	 * has been specified with a delay of 80 ms between each click.
 	 * 
 	 * @param x
 	 *            The abscissa of the click coordinates.
@@ -244,12 +244,11 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This method will look for an element on the screen to be clickable within
-	 * the given timeout and then click over the element.
+	 * This method will look for an element on the screen to be clickable within the
+	 * given timeout and then click over the element.
 	 * 
 	 * @param objElement
-	 *            The MobileElement on which the click action has to be
-	 *            performed.
+	 *            The MobileElement on which the click action has to be performed.
 	 * @throws Exception
 	 *             In case an exception occurs while clicking over the element.
 	 * @throws IllegalArgumentException
@@ -299,8 +298,8 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This method will long press over the fromElement and then drag and drop
-	 * it to the toElement.
+	 * This method will long press over the fromElement and then drag and drop it to
+	 * the toElement.
 	 * 
 	 * @param fromElement
 	 *            The element that has to be dragged.
@@ -398,19 +397,19 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This function will swipe within a given element to find the element that
-	 * has bee specified. It will swipe only within the particular element you
-	 * have specified.
+	 * This function will swipe within a given element to find the element that has
+	 * bee specified. It will swipe only within the particular element you have
+	 * specified.
 	 * 
 	 * @param swipeWithinElement
 	 *            The element within which elementToFind is located. We need to
-	 *            swipe within this element. Please also make sure that the
-	 *            element is swipeable, otherwise it will throw an error.
+	 *            swipe within this element. Please also make sure that the element
+	 *            is swipeable, otherwise it will throw an error.
 	 * @param elementToFind
 	 *            The element that has to be found with the swipes.
 	 * @param maxSwipes
-	 *            The maximum number of times you want to swipe until the
-	 *            element has been found.
+	 *            The maximum number of times you want to swipe until the element
+	 *            has been found.
 	 * @param direction
 	 *            The direction of swipe. It is either 'up', 'down', 'left' or
 	 *            'right'. If the direction is something else, an
@@ -482,19 +481,19 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This function will swipe within a given element to find the text that has
-	 * bee specified. It will swipe only within the particular element you have
+	 * This function will swipe within a given element to find the text that has bee
+	 * specified. It will swipe only within the particular element you have
 	 * specified.
 	 * 
 	 * @param swipeWithinElement
 	 *            The element within which elementToFind is located. We need to
-	 *            swipe within this element. Please also make sure that the
-	 *            element is swipeable, otherwise it will throw an error.
+	 *            swipe within this element. Please also make sure that the element
+	 *            is swipeable, otherwise it will throw an error.
 	 * @param elementToFind
 	 *            The element that has to be found with the swipes.
 	 * @param maxSwipes
-	 *            The maximum number of times you want to swipe until the
-	 *            element has been found.
+	 *            The maximum number of times you want to swipe until the element
+	 *            has been found.
 	 * @param direction
 	 *            The direction of swipe. It is either 'up', 'down', 'left' or
 	 *            'right'. If the direction is something else, an
@@ -569,18 +568,18 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This function will check if the given element is NOT in the list. Pass if
-	 * it is not found, FAIL if it is found
+	 * This function will check if the given element is NOT in the list. Pass if it
+	 * is not found, FAIL if it is found
 	 * 
 	 * @param swipeWithinElement
 	 *            The element within which elementToFind is located. We need to
-	 *            swipe within this element. Please also make sure that the
-	 *            element is swipeable, otherwise it will throw an error.
+	 *            swipe within this element. Please also make sure that the element
+	 *            is swipeable, otherwise it will throw an error.
 	 * @param elementToFind
 	 *            The element that has to be found with the swipes.
 	 * @param maxSwipes
-	 *            The maximum number of times you want to swipe until the
-	 *            element has been found.
+	 *            The maximum number of times you want to swipe until the element
+	 *            has been found.
 	 * @param direction
 	 *            The direction of swipe. It is either 'up', 'down', 'left' or
 	 *            'right'. If the direction is something else, an
@@ -654,8 +653,8 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This method will return the text of the element which has been specified
-	 * and print it in the report as well.
+	 * This method will return the text of the element which has been specified and
+	 * print it in the report as well.
 	 * 
 	 * @param objElement
 	 *            The element for which the text is to be printed in the report.
@@ -670,17 +669,16 @@ public class MobileAction2 extends CommonLib {
 		String textToReturn = null;
 		/*
 		 * try { WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-		 * wait.until(ExpectedConditions.visibilityOf(objElement)); textToReturn
-		 * = objElement.getText(); GetReporting().FuncReport("Pass",
-		 * "Text of the element " + objElement.getTagName() + " is '" +
-		 * textToReturn + "'."); } catch (IllegalArgumentException e) {
-		 * GetReporting().FuncReport("Fail", "IllegalArgumentException"); throw
-		 * e; } catch (NoSuchElementException n) {
-		 * GetReporting().FuncReport("Fail", "Element not displayed" +
-		 * objElement.getTagName()); throw n; } catch (Exception e) {
-		 * GetReporting().FuncReport("Fail", "The element <b>- " +
-		 * objElement.getTagName() + "</b> not present in current page"); throw
-		 * e; } finally { return textToReturn; }
+		 * wait.until(ExpectedConditions.visibilityOf(objElement)); textToReturn =
+		 * objElement.getText(); GetReporting().FuncReport("Pass",
+		 * "Text of the element " + objElement.getTagName() + " is '" + textToReturn +
+		 * "'."); } catch (IllegalArgumentException e) {
+		 * GetReporting().FuncReport("Fail", "IllegalArgumentException"); throw e; }
+		 * catch (NoSuchElementException n) { GetReporting().FuncReport("Fail",
+		 * "Element not displayed" + objElement.getTagName()); throw n; } catch
+		 * (Exception e) { GetReporting().FuncReport("Fail", "The element <b>- " +
+		 * objElement.getTagName() + "</b> not present in current page"); throw e; }
+		 * finally { return textToReturn; }
 		 */
 		try {
 
@@ -757,8 +755,8 @@ public class MobileAction2 extends CommonLib {
 	 * This method will close the keyboard if it is open. <br>
 	 * <p>
 	 * <b> Please use this method only when the keyboard is open as it used
-	 * navigate.back in the backend and will navigate to the previous page if
-	 * the keyboard is not open. </b>
+	 * navigate.back in the backend and will navigate to the previous page if the
+	 * keyboard is not open. </b>
 	 * </p>
 	 * 
 	 * @throws IOException
@@ -779,9 +777,9 @@ public class MobileAction2 extends CommonLib {
 
 	/**
 	 * This function will launch the application incase it is not launched.
-	 * Essentially Appium launches the application initially on its own. Please
-	 * use this method only after closing the application otherwise it will give
-	 * you an exception.
+	 * Essentially Appium launches the application initially on its own. Please use
+	 * this method only after closing the application otherwise it will give you an
+	 * exception.
 	 * 
 	 * @throws IOException
 	 *             If there is problem while reporting.
@@ -856,8 +854,8 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This method will pinch over the device depending on the value of the
-	 * boolean inside.
+	 * This method will pinch over the device depending on the value of the boolean
+	 * inside.
 	 * 
 	 * @param inside
 	 *            true if you want to zoom out and false if you want to zoom in.
@@ -1012,8 +1010,8 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * Forcefully send character sequence by opening up the keyboard even if you
-	 * are not on any text element.
+	 * Forcefully send character sequence by opening up the keyboard even if you are
+	 * not on any text element.
 	 * 
 	 * @param charctersToSend
 	 *            The character sequence to send.
@@ -1034,8 +1032,8 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This method will send a text or type some text to the element that has
-	 * been specified in the objElement.
+	 * This method will send a text or type some text to the element that has been
+	 * specified in the objElement.
 	 * 
 	 * @param objElement
 	 *            The Mobile element to which we want to send the text.
@@ -1046,10 +1044,9 @@ public class MobileAction2 extends CommonLib {
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 * @throws TimeoutException
-	 *             In case the element is not found within the specified
-	 *             timeout.
+	 *             In case the element is not found within the specified timeout.
 	 */
-	public void FuncSendKeys(MobileElement objElement, String sTextToSend)
+	public void FuncSendKeys(WebElement objElement, String sTextToSend)
 			throws InterruptedException, IOException, TimeoutException {
 		try {
 			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
@@ -1092,9 +1089,9 @@ public class MobileAction2 extends CommonLib {
 	/**
 	 * This method will set the device location to a specific location that is
 	 * specified in the method. For android make sure that in developer setting,
-	 * mock location has been checked for API level>21, otherwise it will throw
-	 * an exception. This will work only on iOS emulators and not on real iOS
-	 * devices until the device is jailbroken which is not recommended.
+	 * mock location has been checked for API level>21, otherwise it will throw an
+	 * exception. This will work only on iOS emulators and not on real iOS devices
+	 * until the device is jailbroken which is not recommended.
 	 * 
 	 * @param latitude
 	 *            The latitude..
@@ -1169,24 +1166,23 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This function will swipe through the screen until an element is found on
-	 * the screen and click over it if the clickOnElement parameter is given as
-	 * true.
+	 * This function will swipe through the screen until an element is found on the
+	 * screen and click over it if the clickOnElement parameter is given as true.
 	 * 
 	 * @param elementToFind
 	 *            The element that has to be found with the swipes.
 	 * @param maxSwipes
-	 *            The maximum number of times you want to swipe until the
-	 *            element has been found.
+	 *            The maximum number of times you want to swipe until the element
+	 *            has been found.
 	 * @param direction
 	 *            The direction of swipe. It is either 'up', 'down', 'left' or
 	 *            'right'. If the direction is something else, an
 	 *            IllegalArgumentException is thrown and the test will fail.
 	 * @param offset
-	 *            The offset for the swipe. It will be useful in devices in
-	 *            which the back home buttons are present on the screen itself,
-	 *            eg in motorola devices. You need to give offset so that the
-	 *            swipe starts above it.
+	 *            The offset for the swipe. It will be useful in devices in which
+	 *            the back home buttons are present on the screen itself, eg in
+	 *            motorola devices. You need to give offset so that the swipe starts
+	 *            above it.
 	 * @param clickOnElement
 	 *            A boolean value specifying weather you want to click on the
 	 *            element after it has been found.
@@ -1251,8 +1247,8 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * Switch from one iFrame to another. It is to be used only for website
-	 * testing in case the website is using iframes.
+	 * Switch from one iFrame to another. It is to be used only for website testing
+	 * in case the website is using iframes.
 	 * 
 	 * @param iFrameXPath
 	 *            The xPath to locate the iFrame.
@@ -1279,20 +1275,20 @@ public class MobileAction2 extends CommonLib {
 
 	/**
 	 * This method will swipe either up, Down, left or Right according to the
-	 * direction specified. This method takes the size of the screen and uses
-	 * the swipe function present in the Appium driver to swipe on the screen
-	 * with a particular timeout. There is one more method to implement swipe
-	 * using touch actions, which is not put up here.
+	 * direction specified. This method takes the size of the screen and uses the
+	 * swipe function present in the Appium driver to swipe on the screen with a
+	 * particular timeout. There is one more method to implement swipe using touch
+	 * actions, which is not put up here.
 	 * 
 	 * @param Direction
 	 *            The direction we need to swipe in.
 	 * @param swipeTime
-	 *            The swipe time, ie the time for which the driver is supposed
-	 *            to swipe.
+	 *            The swipe time, ie the time for which the driver is supposed to
+	 *            swipe.
 	 * @param Offset
-	 *            The offset for the driver, eg. If you want to swipe 'up', then
-	 *            the offset is the number of pixels you want to leave from the
-	 *            bottom of the screen t start the swipe.
+	 *            The offset for the driver, eg. If you want to swipe 'up', then the
+	 *            offset is the number of pixels you want to leave from the bottom
+	 *            of the screen t start the swipe.
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 */
@@ -1335,14 +1331,14 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This function waits for an element to appear in the screen. It waits
-	 * until the element is visible on the screen within the given timeout.
+	 * This function waits for an element to appear in the screen. It waits until
+	 * the element is visible on the screen within the given timeout.
 	 * 
 	 * @param objElement
 	 *            The element to wait for.
 	 * @param timeout
-	 *            The timeout in seconds for which you want to wait for the
-	 *            element to be visible on the screen.
+	 *            The timeout in seconds for which you want to wait for the element
+	 *            to be visible on the screen.
 	 * @throws IOException
 	 *             If there is problem while reporting .
 	 */
@@ -1388,8 +1384,7 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/*	*//**
-			 * This method will verify the text of the element is same as the
-			 * expected text
+			 * This method will verify the text of the element is same as the expected text
 			 * 
 			 * @param The
 			 *            element which has to be identified
@@ -1402,22 +1397,20 @@ public class MobileAction2 extends CommonLib {
 			 *         true if element is displayed or false
 			 * 
 			 *//*
-			 * public boolean verifyElement(MobileElement mobileElement, String
-			 * text) { String elementText = mobileElement.getText();
-			 * WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-			 * wait.until(ExpectedConditions.elementToBeClickable(mobileElement)
-			 * );
-			 * 
-			 * if (elementText.equalsIgnoreCase(text)) { try {
-			 * GetReporting().FuncReport("Pass", "The text '" + text +
-			 * "' is verified"); } catch (IOException e) { System.out.print(
-			 * "IOException from Method " + this.getClass().toString() + " " +
-			 * e.getCause()); } return true; } else { try {
-			 * GetReporting().FuncReport("Fail", "The text '" + text +
-			 * "' is not verified"); } catch (IOException e) { System.out.print(
-			 * "IOException from Method " + this.getClass().toString() + " " +
-			 * e.getCause()); } return false; } }
-			 */
+				 * public boolean verifyElement(MobileElement mobileElement, String text) {
+				 * String elementText = mobileElement.getText(); WebDriverWait wait = new
+				 * WebDriverWait(GetDriver(), 10L);
+				 * wait.until(ExpectedConditions.elementToBeClickable(mobileElement) );
+				 * 
+				 * if (elementText.equalsIgnoreCase(text)) { try {
+				 * GetReporting().FuncReport("Pass", "The text '" + text + "' is verified"); }
+				 * catch (IOException e) { System.out.print( "IOException from Method " +
+				 * this.getClass().toString() + " " + e.getCause()); } return true; } else { try
+				 * { GetReporting().FuncReport("Fail", "The text '" + text +
+				 * "' is not verified"); } catch (IOException e) { System.out.print(
+				 * "IOException from Method " + this.getClass().toString() + " " +
+				 * e.getCause()); } return false; } }
+				 */
 	public boolean verifyElement(MobileElement mobileElement, String text) { // @Author
 																				// -
 																				// Sushil
@@ -1433,10 +1426,10 @@ public class MobileAction2 extends CommonLib {
 			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
 
 			/*
-			 * if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
-			 * "Android")) elementText = mobileElement.getText(); else {
-			 * elementText = mobileElement.getAttribute("label"); if(elementText
-			 * == null) elementText = mobileElement.getAttribute("value"); }
+			 * if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase( "Android"))
+			 * elementText = mobileElement.getText(); else { elementText =
+			 * mobileElement.getAttribute("label"); if(elementText == null) elementText =
+			 * mobileElement.getAttribute("value"); }
 			 */
 			elementText = FuncGetElementText(mobileElement);
 			if (elementText != null) {
@@ -1501,20 +1494,18 @@ public class MobileAction2 extends CommonLib {
 			 *         true if element is displayed or false
 			 * 
 			 *//*
-			 * public void verifyElementIsDisplayed(MobileElement mobileElement,
-			 * String expectedText) throws IOException { try { WebDriverWait
-			 * wait = new WebDriverWait(GetDriver(), 10L);
-			 * wait.until(ExpectedConditions.elementToBeClickable(mobileElement)
-			 * ); mobileElement.isDisplayed(); GetReporting().FuncReport("Pass",
-			 * "The '" + expectedText + "' is verified"); } catch
-			 * (IllegalArgumentException e) { GetReporting().FuncReport("Fail",
-			 * "IllegalArgumentException"); throw e; } catch
-			 * (NoSuchElementException n) { GetReporting().FuncReport("Fail",
-			 * "Element not displayed" + expectedText); throw n; } catch
-			 * (Exception e) { GetReporting().FuncReport("Fail",
-			 * "The element <b>- " + expectedText +
-			 * "</b> not present in current page"); throw e; } }
-			 */
+				 * public void verifyElementIsDisplayed(MobileElement mobileElement, String
+				 * expectedText) throws IOException { try { WebDriverWait wait = new
+				 * WebDriverWait(GetDriver(), 10L);
+				 * wait.until(ExpectedConditions.elementToBeClickable(mobileElement) );
+				 * mobileElement.isDisplayed(); GetReporting().FuncReport("Pass", "The '" +
+				 * expectedText + "' is verified"); } catch (IllegalArgumentException e) {
+				 * GetReporting().FuncReport("Fail", "IllegalArgumentException"); throw e; }
+				 * catch (NoSuchElementException n) { GetReporting().FuncReport("Fail",
+				 * "Element not displayed" + expectedText); throw n; } catch (Exception e) {
+				 * GetReporting().FuncReport("Fail", "The element <b>- " + expectedText +
+				 * "</b> not present in current page"); throw e; } }
+				 */
 
 	/**
 	 * This method will verify the element is displayed on the screen.
@@ -1549,30 +1540,40 @@ public class MobileAction2 extends CommonLib {
 		}
 
 		/*
-		 * } catch (IllegalArgumentException e) {
-		 * GetReporting().FuncReport("Fail", "IllegalArgumentException"); throw
-		 * e; } catch (NoSuchElementException n) {
-		 * GetReporting().FuncReport("Fail", "Element not displayed" +
-		 * expectedText); throw n; } catch (Exception e) {
-		 * GetReporting().FuncReport("Fail", "The element <b>- " + expectedText
-		 * + "</b> not present in current page"); throw e; }
+		 * } catch (IllegalArgumentException e) { GetReporting().FuncReport("Fail",
+		 * "IllegalArgumentException"); throw e; } catch (NoSuchElementException n) {
+		 * GetReporting().FuncReport("Fail", "Element not displayed" + expectedText);
+		 * throw n; } catch (Exception e) { GetReporting().FuncReport("Fail",
+		 * "The element <b>- " + expectedText + "</b> not present in current page");
+		 * throw e; }
 		 */
 	}
 
-	public boolean verifyElementNotPresent(MobileElement mobileElement, String expectedText) {
-		WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
-		wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
+	public boolean verifyElementNotPresent(WebElement mobileElement, String expectedText) {
 
-		if (mobileElement.isDisplayed() == true) {
-			try {
-				GetReporting().FuncReport("Fail", "The '" + expectedText + "' is verified");
-			} catch (IOException e) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		try {
+			WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
+			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
+
+			if (mobileElement.isDisplayed() == true) {
+				try {
+					GetReporting().FuncReport("Fail", "The '" + expectedText + "' is verified");
+				} catch (IOException e) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				return true;
+			} else {
+				try {
+					GetReporting().FuncReport("Pass", "The '" + expectedText + "' is not verified");
+				} catch (IOException e) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				return false;
 			}
-			return true;
-		} else {
+
+		} catch (Exception ex) {
 			try {
-				GetReporting().FuncReport("Pass", "The '" + expectedText + "' is not verified");
+				GetReporting().FuncReport("Pass", "The '" + expectedText + "' is not present");
 			} catch (IOException e) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
@@ -1586,37 +1587,33 @@ public class MobileAction2 extends CommonLib {
 			 * 
 			 *
 			 * @param objElement
-			 *            The MobileElement on which the click action has to be
-			 *            performed.
+			 *            The MobileElement on which the click action has to be performed.
 			 * @throws Exception
-			 *             In case an exception occurs while clicking over the
-			 *             element. In case the element is not found over the
-			 *             screen.
+			 *             In case an exception occurs while clicking over the element. In
+			 *             case the element is not found over the screen.
 			 *//*
-			 * public void verifyElementTextContains(MobileElement objElement,
-			 * String text) throws IOException { try {
-			 * 
-			 * if (objElement.getAttribute("label").contains(text)) {
-			 * 
-			 * GetReporting().FuncReport("Pass", "Element contains text " +
-			 * text);
-			 * 
-			 * }
-			 * 
-			 * } catch (IOException e) { GetReporting().FuncReport("Fail",
-			 * "IOException Exception occurred"); throw e; } }
-			 */
+				 * public void verifyElementTextContains(MobileElement objElement, String text)
+				 * throws IOException { try {
+				 * 
+				 * if (objElement.getAttribute("label").contains(text)) {
+				 * 
+				 * GetReporting().FuncReport("Pass", "Element contains text " + text);
+				 * 
+				 * }
+				 * 
+				 * } catch (IOException e) { GetReporting().FuncReport("Fail",
+				 * "IOException Exception occurred"); throw e; } }
+				 */
 
 	/**
 	 * This method will verify the text contained in another String.
 	 * 
 	 *
 	 * @param objElement
-	 *            The MobileElement on which the click action has to be
-	 *            performed.
+	 *            The MobileElement on which the click action has to be performed.
 	 * @throws Exception
-	 *             In case an exception occurs while clicking over the element.
-	 *             In case the element is not found over the screen.
+	 *             In case an exception occurs while clicking over the element. In
+	 *             case the element is not found over the screen.
 	 */
 	public void verifyElementTextContains(WebElement objElement, String text) {// throws
 																				// IOException
@@ -1698,8 +1695,7 @@ public class MobileAction2 extends CommonLib {
 
 	/**
 	 * 
-	 * THis method will return true if element contains some part of expected
-	 * text.
+	 * THis method will return true if element contains some part of expected text.
 	 * 
 	 * @param retrivedText
 	 * @param expectedText
@@ -1833,11 +1829,10 @@ public class MobileAction2 extends CommonLib {
 	 * 
 	 *
 	 * @param objElement
-	 *            The MobileElement on which the click action has to be
-	 *            performed.
+	 *            The MobileElement on which the click action has to be performed.
 	 * @throws Exception
-	 *             In case an exception occurs while clicking over the element.
-	 *             In case the element is not found over the screen.
+	 *             In case an exception occurs while clicking over the element. In
+	 *             case the element is not found over the screen.
 	 */
 	public MobileElement verifyElementUsingXPath(String objElement, String text) throws IOException {
 		try {
@@ -1857,11 +1852,10 @@ public class MobileAction2 extends CommonLib {
 	 * 
 	 *
 	 * @param objElement
-	 *            The MobileElement on which the click action has to be
-	 *            performed.
+	 *            The MobileElement on which the click action has to be performed.
 	 * @throws Exception
-	 *             In case an exception occurs while clicking over the element.
-	 *             In case the element is not found over the screen.
+	 *             In case an exception occurs while clicking over the element. In
+	 *             case the element is not found over the screen.
 	 */
 	public WebElement verifyWebElementUsingXPath(String objElement, String text) throws IOException {
 		try {
@@ -1876,8 +1870,7 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This method will convert the String to mobileElement and do swipe
-	 * function
+	 * This method will convert the String to mobileElement and do swipe function
 	 * 
 	 * @param The
 	 *            element which has to disappear
@@ -1916,11 +1909,11 @@ public class MobileAction2 extends CommonLib {
 	 * public void FuncISDisplayed(MobileElement elementToFind, String value) {
 	 * 
 	 * try { if (elementToFind.isDisplayed() && !value.isEmpty()) {
-	 * GetReporting().FuncReport("Pass", "The text '" + value + "' is Displayed"
-	 * ); } } catch (Exception e) { try { GetReporting().FuncReport("Fail",
-	 * "The text '" + value + "' is not appeared"); } catch (IOException ie) {
-	 * // TODO Auto-generated catch block ie.printStackTrace(); }
-	 * e.printStackTrace(); } }
+	 * GetReporting().FuncReport("Pass", "The text '" + value + "' is Displayed" );
+	 * } } catch (Exception e) { try { GetReporting().FuncReport("Fail",
+	 * "The text '" + value + "' is not appeared"); } catch (IOException ie) { //
+	 * TODO Auto-generated catch block ie.printStackTrace(); } e.printStackTrace();
+	 * } }
 	 */
 
 	public boolean FuncIsDisplayed(MobileElement elementToFind) {
@@ -1974,14 +1967,12 @@ public class MobileAction2 extends CommonLib {
 
 				try {
 					/*
-					 * if (elementToFind.isDisplayed()) { flag = false; sEleName
-					 * = FuncGetText(elementToFind); } else {
-					 * if(direction.equalsIgnoreCase("up")) ((MobileDriver)
-					 * GetDriver()).swipe(startx / 2, starty/2, startx / 2,
-					 * endy/2 - heightPer, 2000); else
-					 * if(direction.equalsIgnoreCase("down")) ((MobileDriver)
-					 * GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2
-					 * + heightPer , 2000); count++; }
+					 * if (elementToFind.isDisplayed()) { flag = false; sEleName =
+					 * FuncGetText(elementToFind); } else { if(direction.equalsIgnoreCase("up"))
+					 * ((MobileDriver) GetDriver()).swipe(startx / 2, starty/2, startx / 2, endy/2 -
+					 * heightPer, 2000); else if(direction.equalsIgnoreCase("down")) ((MobileDriver)
+					 * GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2 + heightPer , 2000);
+					 * count++; }
 					 */
 					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
 					wait.until(ExpectedConditions.visibilityOf(elementToFind));
@@ -2041,16 +2032,13 @@ public class MobileAction2 extends CommonLib {
 
 				try {
 					/*
-					 * if
-					 * (GetDriver().findElement(By.xpath(xpathEle)).isDisplayed(
-					 * )) { flag = false; sEleName =
-					 * FuncGetTextByxpath(xpathEle); } else {
+					 * if (GetDriver().findElement(By.xpath(xpathEle)).isDisplayed( )) { flag =
+					 * false; sEleName = FuncGetTextByxpath(xpathEle); } else {
 					 * if(direction.equalsIgnoreCase("up")) ((MobileDriver)
-					 * GetDriver()).swipe(startx / 2, starty/2, startx / 2,
-					 * endy/2 - heightPer, 2000); else
-					 * if(direction.equalsIgnoreCase("down")) ((MobileDriver)
-					 * GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2
-					 * + heightPer , 2000); count++; }
+					 * GetDriver()).swipe(startx / 2, starty/2, startx / 2, endy/2 - heightPer,
+					 * 2000); else if(direction.equalsIgnoreCase("down")) ((MobileDriver)
+					 * GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2 + heightPer , 2000);
+					 * count++; }
 					 */
 					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
 					wait.until(ExpectedConditions.visibilityOf(GetDriver().findElement(By.xpath(xpathEle))));
@@ -2192,9 +2180,9 @@ public class MobileAction2 extends CommonLib {
 	 * 
 	 * @param expectedText
 	 *            The expected text in this format like: "CONTACT INFORMATION |
-	 *            COORDONNÃ‰ES" if language is English then "CONTACT INFORMATION
-	 *            "to be printed in report if language is French then
-	 *            "COORDONNÃ‰ES" to be printed in report
+	 *            COORDONNÃ‰ES" if language is English then "CONTACT INFORMATION "to
+	 *            be printed in report if language is French then "COORDONNÃ‰ES" to
+	 *            be printed in report
 	 * 
 	 * @return nothing
 	 * 
@@ -2246,8 +2234,8 @@ public class MobileAction2 extends CommonLib {
 	 * @param The
 	 *            element whose text has to be retrieved.
 	 * 
-	 * @return String The text that is associated with the mobile element or
-	 *         value for iOS device
+	 * @return String The text that is associated with the mobile element or value
+	 *         for iOS device
 	 * 
 	 */
 	public String getValue(MobileElement objElement) {
@@ -2630,8 +2618,8 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This method will return the text of the element which has been specified
-	 * and print it in the report as well.
+	 * This method will return the text of the element which has been specified and
+	 * print it in the report as well.
 	 * 
 	 * @param objElement
 	 *            The element for which the text is to be printed in the report.
@@ -2717,8 +2705,8 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This method will return the text of the element which has been specified
-	 * and print it in the report as well.
+	 * This method will return the text of the element which has been specified and
+	 * print it in the report as well.
 	 * 
 	 * @param objElement
 	 *            The element for which the text is to be printed in the report.
@@ -2779,11 +2767,10 @@ public class MobileAction2 extends CommonLib {
 	 * 
 	 *
 	 * @param objElement
-	 *            The MobileElement on which the click action has to be
-	 *            performed.
+	 *            The MobileElement on which the click action has to be performed.
 	 * @throws Exception
-	 *             In case an exception occurs while clicking over the element.
-	 *             In case the element is not found over the screen.
+	 *             In case an exception occurs while clicking over the element. In
+	 *             case the element is not found over the screen.
 	 */
 	public MobileElement mobileElementUsingXPath(String objElement) throws IOException {
 
@@ -2864,9 +2851,9 @@ public class MobileAction2 extends CommonLib {
 	 *
 	 * 
 	 * @param MobileElement
-	 *            switch mobile element for android device, attribute "checked"
-	 *            is the switch status, true or false for iOS device, attribute
-	 *            "value" is the switch status, true or false
+	 *            switch mobile element for android device, attribute "checked" is
+	 *            the switch status, true or false for iOS device, attribute "value"
+	 *            is the switch status, true or false
 	 * 
 	 * @throws IOException
 	 */
@@ -2993,20 +2980,20 @@ public class MobileAction2 extends CommonLib {
 
 	/**
 	 * This method will swipe either up, Down, left or Right according to the
-	 * direction specified. This method takes the size of the screen and uses
-	 * the swipe function present in the Appium driver to swipe on the screen
-	 * with a particular timeout. There is one more method to implement swipe
-	 * using touch actions, which is not put up here.
+	 * direction specified. This method takes the size of the screen and uses the
+	 * swipe function present in the Appium driver to swipe on the screen with a
+	 * particular timeout. There is one more method to implement swipe using touch
+	 * actions, which is not put up here.
 	 * 
 	 * @param Direction
 	 *            The direction we need to swipe in.
 	 * @param swipeTime
-	 *            The swipe time, ie the time for which the driver is supposed
-	 *            to swipe.
+	 *            The swipe time, ie the time for which the driver is supposed to
+	 *            swipe.
 	 * @param Offset
-	 *            The offset for the driver, eg. If you want to swipe 'up', then
-	 *            the offset is the number of pixels you want to leave from the
-	 *            bottom of the screen t start the swipe.
+	 *            The offset for the driver, eg. If you want to swipe 'up', then the
+	 *            offset is the number of pixels you want to leave from the bottom
+	 *            of the screen t start the swipe.
 	 * @throws IOException
 	 *             If there is problem while reporting.
 	 */
@@ -3037,11 +3024,10 @@ public class MobileAction2 extends CommonLib {
 	 * 
 	 *
 	 * @param objElement
-	 *            The MobileElement on which the click action has to be
-	 *            performed.
+	 *            The MobileElement on which the click action has to be performed.
 	 * @throws Exception
-	 *             In case an exception occurs while clicking over the element.
-	 *             In case the element is not found over the screen.
+	 *             In case an exception occurs while clicking over the element. In
+	 *             case the element is not found over the screen.
 	 */
 	public void verifyElementTextContainsReverse(MobileElement objElement, String text) {// throws
 																							// IOException
@@ -3206,8 +3192,8 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This will allow the user to switch between Appium Driver contextes such
-	 * as NATIVE_APP or WEBVIEW
+	 * This will allow the user to switch between Appium Driver contextes such as
+	 * NATIVE_APP or WEBVIEW
 	 * 
 	 * @param targetContext
 	 */
@@ -3230,8 +3216,8 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * @author Ashraf This method will convert the string xpath to
-	 *         MobileElement. Then Swipe and click on it once found.
+	 * @author Ashraf This method will convert the string xpath to MobileElement.
+	 *         Then Swipe and click on it once found.
 	 * 
 	 * @param elementXpath
 	 *            = String xpath of element
@@ -3350,12 +3336,11 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This method will look for an element on the screen to be tappable within
-	 * the given timeout and then click over the element.
+	 * This method will look for an element on the screen to be tappable within the
+	 * given timeout and then click over the element.
 	 * 
 	 * @param objElement
-	 *            The MobileElement on which the click action has to be
-	 *            performed.
+	 *            The MobileElement on which the click action has to be performed.
 	 * 
 	 * @param text
 	 *            The text of element objElement clicked.
@@ -3387,13 +3372,11 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This method will look for an element on the screen to be tappable within
-	 * the given timeout and then click over the element based on the
-	 * coordinates.
+	 * This method will look for an element on the screen to be tappable within the
+	 * given timeout and then click over the element based on the coordinates.
 	 * 
 	 * @param objElement
-	 *            The MobileElement on which the click action has to be
-	 *            performed.
+	 *            The MobileElement on which the click action has to be performed.
 	 * 
 	 * @param text
 	 *            The text of element objElement clicked.
@@ -3516,6 +3499,30 @@ public class MobileAction2 extends CommonLib {
 		amount_no_char = amount_no_char.replaceAll(",", "");
 		return Double.parseDouble(amount_no_char.trim());
 
+	}
+
+	/**
+	 * This method will scroll element into view
+	 * 
+	 * @param objElement
+	 * @param text
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * @throws NoSuchElementException
+	 */
+	public void FuncScrollIntoView(WebElement objElement, String text)
+			throws InterruptedException, IOException, NoSuchElementException {
+		try {
+			((JavascriptExecutor) GetDriver()).executeScript("arguments[0].scrollIntoView(true);", objElement);
+			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> is scrolled into view");
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> is not scrolled into view");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			throw e;
+		}
 	}
 
 	public MobileElement getMobileElement(By element) {

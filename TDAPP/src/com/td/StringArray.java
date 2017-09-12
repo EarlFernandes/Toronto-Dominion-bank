@@ -107,9 +107,33 @@ public final class StringArray {
 			"特快结余查询", "特快結餘查詢" };
 	public static final String[] ARRAY_QUICK_ACCESS_SWITCH_AND = { "Quick Access", "Accès rapide", "特快结余查询", "特快結餘查詢" };
 	public static final String[] ARRAY_OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE = {
-			"we can't verify the security code entered.", "", "", "" };
+			"we can't verify the security code entered.", "nous ne pouvons valider votre code de sécurité",
+			"我们无法验证输入的安全码", "我們無法確認輸入的驗證碼" };
 	public static final String[] ARRAY_OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED = {
-			"you have requested too many passcodes without entering one", "", "", "" };
+			"You've exceeded the number of security code requests",
+			"Vous avez atteint le nombre maximal de demandes de code de sécurité", "您索取安全码的次数已超过上限", "您要求索取驗證碼的次數太多" };
+	public static final String[] ARRAY_OTP_SETUP_GET_STARTED = { "Get started", "Commencer", "立即开始", "立即開始" };
+	public static final String[] ARRAY_OTP_SETUP_GET_STARTED_IOS = { "Get Started", "Commencer", "立即开始", "立即開始" };
+	public static final String[] ARRAY_OTP_SETUP_ADD_ANOTHER_PHONE = { "Add another phone?",
+			"Ajouter un autre téléphone?", "添加其他电话号码", "新增更多電話號碼" };
+	public static final String[] ARRAY_OTP_SETUP_INVALID_PASSCODE_FORMAT = { "Please enter numbers only",
+			"Veuillez entrer des chiffres seulement", "请仅输入数字", "請僅輸入數字" };
+	public static final String[] ARRAY_OTP_SETUP_EXPIRED_PASSCODE = { "This code has expired", "Ce code a expiré",
+			"此代码已失效", "此驗證碼已失效" };
+
+	public static final String[] ARRAY_OTP_SETUP_SECURITY_EMAIL_HEADER = {
+			"Please provide an email address to get security alerts",
+			"Veuillez fournir une adresse courriel pour recevoir les alertes de sécurité", "请提供一个用户接收安全信息的电子邮件邮箱地址",
+			"請提供電郵地址，用來接收安全性資訊" };
+	public static final String[] ARRAY_OTP_SETUP_UNABLE_DELETE_PHONE = { "Unable to delete phone",
+			"Impossible de supprimer le téléphone", "无法删除电话号码", "無法刪除電話號碼" };
+	public static final String[] ARRAY_OTP_SETUP_UNABLE_DELETE_PHONE_MSG = {
+			"Before you can delete this phone, you must add another number so you can always get your security codes",
+			"Avant de supprimer ce téléphone, vous devez ajouter un autre numéro sur lequel recevoir des codes de sécurité",
+			"删除此电话号码前，您必须添加一个其他电话号码以确保始终可接收安全码", "刪除此電話號碼前，您必須新增另一個電話號碼以確保您可隨時接收驗證碼" };
+	public static final String[] ARRAY_OTP_SETUP_PASSCODE_VERIFIED = { "Verified", "Validé", "验证成功", "驗證成功" };
+	public static final String[] ARRAY_OTP_SETUP_SETUP_COMPLETE_HEADER = { "Security Setup Complete",
+			"Configuration de sécurité terminée", "安全设置完成", "安全設定完成" };
 
 	public static final String[] ARRAY_INVESTING_ACCOUNTS = { "Investing Accounts", "Comptes Placements directs TD",
 			"投资账户", "投資賬戶" };
