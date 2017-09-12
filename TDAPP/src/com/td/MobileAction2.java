@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
@@ -1050,7 +1051,7 @@ public class MobileAction2 extends CommonLib {
 	 *             In case the element is not found within the specified
 	 *             timeout.
 	 */
-	public void FuncSendKeys(MobileElement objElement, String sTextToSend)
+	public void FuncSendKeys(WebElement objElement, String sTextToSend)
 			throws InterruptedException, IOException, TimeoutException {
 		try {
 			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
@@ -3504,5 +3505,29 @@ public class MobileAction2 extends CommonLib {
 		amount_no_char = amount_no_char.replaceAll("USD", "");
 		amount_no_char = amount_no_char.replaceAll(",", "");
 		return Double.parseDouble(amount_no_char.trim());
+	}
+	
+	/**
+	 * This method will scroll element into view
+	 * 
+	 * @param objElement
+	 * @param text
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * @throws NoSuchElementException
+	 */
+	public void FuncScrollIntoView(WebElement objElement, String text)
+			throws InterruptedException, IOException, NoSuchElementException {
+		try {
+			((JavascriptExecutor) GetDriver()).executeScript("arguments[0].scrollIntoView(true);", objElement);
+			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> is scrolled into view");
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> is not scrolled into view");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			throw e;
+		}
 	}
 }

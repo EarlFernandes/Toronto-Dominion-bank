@@ -12,8 +12,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.td._CommonPage;
 
 public class GoogleVoiceWebPage extends _CommonPage{
-	final String TD_BANK_VERIFICATION_CODE = "is your TD security code";
-
+	final String TD_BANK_VERIFICATION_CODE_EN = "is your TD security code";
+	final String TD_BANK_VERIFICATION_CODE_NON_EN = "Votre code de s?curit? TD pour test de votre num?ro de t?l?phone de s?curit? est le";
+	
 	@FindBy(xpath = "//a[@class='signUpLink' and contains(text(),'Sign In')]")	
 	private WebElement signInButton;
 	
@@ -29,7 +30,7 @@ public class GoogleVoiceWebPage extends _CommonPage{
 	@FindBy(xpath = "//div[@id='passwordNext']")	
 	private WebElement passwordNextButton;
 	
-	@FindBy(xpath = "//gv-mini-nav//gv-nav-button[@gv-aria-label='Messages']")	
+	@FindBy(xpath = "//gv-nav-button[@icon='message']")	
 	private WebElement gv_nav_messages;
 	
 	@FindBy(xpath = "//gv-conversation-list")	
@@ -85,14 +86,22 @@ public class GoogleVoiceWebPage extends _CommonPage{
 		try {
 			this.waitForElementVisible(this.gv_conversation_list);
 			this.waitForElementVisible(this.gv_first_message);
-
-			int index = this.gv_first_message.getText().indexOf(TD_BANK_VERIFICATION_CODE);
-			passcode = this.gv_first_message.getText().substring(0, index).trim();
+			
+			//currentLocale = "en";
+			if(currentLocale.equals("fr")) {
+				int index = this.TD_BANK_VERIFICATION_CODE_NON_EN.length();
+				passcode = this.gv_first_message.getText().substring(index).trim();
+				
+			}else {
+				int index = this.gv_first_message.getText().indexOf(TD_BANK_VERIFICATION_CODE_EN);
+				passcode = this.gv_first_message.getText().substring(0, index).trim();
+			}
+		
 			mobileAction.GetReporting().FuncReport("Pass", "Retrieved passcode from Google Voice successfully");
 
 		}catch(Exception e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+				mobileAction.GetReporting().FuncReport("Fail", "Cannot retrieve passcode from Google Voice: " + e.getMessage());
 			} catch (IOException ex) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}		
