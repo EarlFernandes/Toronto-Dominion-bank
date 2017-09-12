@@ -890,8 +890,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				{
 					((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
 
-					mobileAction.FuncClick(getMobileElement(BTN_Back), "BTN_Back");
-
+					mobileAction.FuncClick(mobileAction.getMobileElement(BTN_Back), "BTN_Back");
 					// Fix needed for lblCrossBorder mod page android object
 					// mobileAction.FuncClick((MobileElement)
 					// CL.GetDriver().findElement(BTN_Back),
@@ -926,7 +925,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 					// CL.GetDriver().findElement(Text_Condition),
 					// "Text_Condition");
 
-					mobileAction.FuncClick(getMobileElement(BTN_Back), "BTN_Back");
+					mobileAction.FuncClick(mobileAction.getMobileElement(BTN_Back), "BTN_Back");
 
 					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
 					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
@@ -1467,7 +1466,6 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			Thread.sleep(1000);
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutTrade, false, 10, "up");
 
@@ -1561,20 +1559,6 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 		catch (Exception e) {
 			e.printStackTrace();
-		}
-
-	}
-
-	public MobileElement getMobileElement(By element) {
-
-		try {
-
-			return (MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(element);
-
-		} catch (Exception e) {
-
-			return null;
-
 		}
 
 	}

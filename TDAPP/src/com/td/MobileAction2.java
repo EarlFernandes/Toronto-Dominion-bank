@@ -1,7 +1,7 @@
 package com.td;
 
 import java.io.IOException;
-
+import com.td._CommonPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
@@ -16,7 +16,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.td.test.framework.CommonLib;
-
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.InteractsWithApps;
 import io.appium.java_client.MobileDriver;
@@ -3518,4 +3517,19 @@ public class MobileAction2 extends CommonLib {
 		return Double.parseDouble(amount_no_char.trim());
 
 	}
+
+	public MobileElement getMobileElement(By element) {
+
+		try {
+
+			return (MobileElement) ((AppiumDriver) GetDriver()).findElement(element);
+
+		} catch (Exception e) {
+
+			return null;
+
+		}
+
+	}
+
 }
