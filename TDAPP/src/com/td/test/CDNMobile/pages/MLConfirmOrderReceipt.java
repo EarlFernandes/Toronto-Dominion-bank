@@ -500,7 +500,7 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 		try {
 			// Thread.sleep(40000);
 			mobileAction.FuncSwipeWhileElementNotFound(btn_ORDERS, false, 5, "up");
-			mobileAction.FuncClick(btn_ORDERS, "Trade Button");
+			mobileAction.FuncClick(btn_ORDERS, "Order Button");
 			mobileAction.verifyElementIsDisplayed(ordersTab, " On Clicking Quick Order Link Orders Tab");
 		} catch (Exception e) {
 			e.printStackTrace();

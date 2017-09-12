@@ -44,7 +44,7 @@ public class OrderDetails extends _CommonPage {
 	private MobileElement changeOrderMessage;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel Order']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/cancel_order_btn' and @text='Cancel Order']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/cancel_order_btn' or @resource-id='com.td:id/orderEntryPreviewButton']")
 	private MobileElement cancelOrderButton;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Your request to cancel the order was received.']")
@@ -139,14 +139,15 @@ public class OrderDetails extends _CommonPage {
 				mobileAction.FuncClick(cancelOrderButton, "Cancel Order Clicked");
 				mobileAction.waitForElementToVanish(progressBar);
 
-				mobileAction.FunCSwipeandScroll(tradingPasswordEditText, true);
+				//mobileAction.FunCSwipeandScroll(tradingPasswordEditText, true);
+				if(mobileAction.verifyElementIsPresent(tradingPasswordEditText)){
 				mobileAction.FuncClick(tradingPasswordEditText, "tradingPasswordEditText");
 
-				String tradingPasswordEditText_value = getTestdata("tradingPasswordEditText");
+				String tradingPasswordEditText_value = getTestdata("Trading_Pwd");
 				mobileAction.FuncSendKeys(tradingPasswordEditText, tradingPasswordEditText_value);
 
 				mobileAction.FuncClickDone();
-
+				}
 				mobileAction.FuncClick(cancelOrderButton, "Cancel order");
 
 				mobileAction.waitForElementToVanish(progressBar);
@@ -160,10 +161,12 @@ public class OrderDetails extends _CommonPage {
 				if (!mobileAction.FuncIsDisplayed(tradingPasswordEditText)) {
 					mobileAction.FunctionSwipe("up", 200, 100);
 				}
-				mobileAction.FuncClick(tradingPasswordEditText, "tradingPasswordEditText");
-				String tradingPasswordEditText_value = getTestdata("tradingPasswordEditText");
-				mobileAction.FuncSendKeys(tradingPasswordEditText, tradingPasswordEditText_value);
-				mobileAction.FuncHideKeyboard();
+				if(mobileAction.verifyElementIsPresent(tradingPasswordEditText)){
+					mobileAction.FuncClick(tradingPasswordEditText, "tradingPasswordEditText");
+					String tradingPasswordEditText_value = getTestdata("tradingPasswordEditText");
+					mobileAction.FuncSendKeys(tradingPasswordEditText, tradingPasswordEditText_value);
+					mobileAction.FuncHideKeyboard();
+				}
 				mobileAction.FuncClick(cancelOrderButton, "Cancel order");
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.verifyElementIsDisplayed(verifySuccessMessageCancelOrder, "Cancel Order");
