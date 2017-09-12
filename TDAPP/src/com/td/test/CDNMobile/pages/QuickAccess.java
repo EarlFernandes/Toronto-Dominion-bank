@@ -112,20 +112,34 @@ public class QuickAccess extends _CommonPage {
 			} else {
 				// Disabled
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
-					indiviual_accounts = mobileAction.verifyElementUsingXPath(indiviual_accounts_xpath, "ACCOUNTS");
-				}
-				if (indiviual_accounts != null || mobileAction.isObjExists(indiviual_accounts)) {
-					mobileAction.Report_Fail("Account still exists when switch status  is false");
+					try{
+						indiviual_accounts = mobileAction.verifyElementUsingXPath(indiviual_accounts_xpath, "ACCOUNTS");
+						mobileAction.Report_Fail("Account still exists when switch status  is false");
+					} catch (Exception e1) {
+						mobileAction.Report_Pass_Verified("Accounts no displaying ");
+						// Toggle to Enable it
+						mobileAction.FuncClick(quickaccess_switch, "Quick Access Switch Toggle");
+						System.out.println("Toggle Switch");
+						mobileAction.waitForElementToVanish(progress_bar);
+						switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
+						System.out.println("Checked now :" + switchCheckStatus);
+						indiviual_accounts = mobileAction.verifyElementUsingXPath(indiviual_accounts_xpath, "ACCOUNTS");
+						mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, accountString);
+					}
 				} else {
-					mobileAction.Report_Pass_Verified("Accounts no displaying ");
-					// Toggle to Enable it
-					mobileAction.FuncClick(quickaccess_switch, "Quick Access Switch Toggle");
-					System.out.println("Toggle Switch");
-					mobileAction.waitForElementToVanish(progress_bar);
-					switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
-					System.out.println("Checked now :" + switchCheckStatus);
-					mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, accountString);
-				}
+					if ( mobileAction.isObjExists(indiviual_accounts)) {
+						mobileAction.Report_Fail("Account still exists when switch status  is false");
+					} else {
+						mobileAction.Report_Pass_Verified("Accounts no displaying ");
+						// Toggle to Enable it
+						mobileAction.FuncClick(quickaccess_switch, "Quick Access Switch Toggle");
+						System.out.println("Toggle Switch");
+						mobileAction.waitForElementToVanish(progress_bar);
+						switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
+						System.out.println("Checked now :" + switchCheckStatus);
+						mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, accountString);
+					}
+				}				
 			}
 
 		} catch (Exception e) {
