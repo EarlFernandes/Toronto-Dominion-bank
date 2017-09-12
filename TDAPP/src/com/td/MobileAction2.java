@@ -139,7 +139,7 @@ public class MobileAction2 extends CommonLib {
 
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
 		} catch (WebDriverException e) {
-			System.out.println("WebDriverException, ignor it");		
+			System.out.println("WebDriverException, ignor it");
 		} catch (Exception e) {
 			try {
 				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
@@ -3336,7 +3336,7 @@ public class MobileAction2 extends CommonLib {
 		// what language)
 
 		try {
-			if(isOrientationLandscape() && isGoOnKeyBoard()) {
+			if (isOrientationLandscape() && isGoOnKeyBoard()) {
 				HideKeyBoard_IOS();
 				GetReporting().FuncReport("Pass", "The Key board was hidden");
 			} else {
@@ -3492,48 +3492,73 @@ public class MobileAction2 extends CommonLib {
 			}
 		}
 	}
-	
+
+	public void FuncVerifyTextEquals(MobileElement mElement, String sExpected) // Author
+																				// -
+																				// Sushil
+																				// 28-Aug-2017
+	{
+		String sActual = "";
+
+		try {
+			sActual = FuncGetText(mElement);
+			if (sActual.equals(sExpected))
+				GetReporting().FuncReport("Pass", "Expected : " + sExpected + " Actual : " + sActual);
+			else
+				GetReporting().FuncReport("Fail", "Expected : " + sExpected + " Actual : " + sActual);
+
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "<b> Exception in FuncVerifyTextEquals()" + "</b>");
+				e.printStackTrace();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+
 	public double convertStringAmountTodouble(String amount) {
 		String amount_no_char = amount.replaceAll("\\$", "");
 		amount_no_char = amount_no_char.replaceAll("USD", "");
 		amount_no_char = amount_no_char.replaceAll(",", "");
 		return Double.parseDouble(amount_no_char.trim());
 	}
-	
-	public void HideKeyBoard_IOS(){
-		IOSDriver< WebElement> ios_driver= (IOSDriver) (GetAppiumDriver());
+
+	public void HideKeyBoard_IOS() {
+		IOSDriver<WebElement> ios_driver = (IOSDriver) (GetAppiumDriver());
 		ios_driver.getKeyboard().sendKeys(Keys.RETURN);
 		System.out.println("Hide IOS key Board");
 	}
-	
-	public boolean isOrientationLandscape(){
-		try{
+
+	public boolean isOrientationLandscape() {
+		try {
 			ScreenOrientation currentOrientation = GetAppiumDriver().getOrientation();
-			System.out.println("Orientation:"+currentOrientation);
-			if(currentOrientation == ScreenOrientation.LANDSCAPE) {
+			System.out.println("Orientation:" + currentOrientation);
+			if (currentOrientation == ScreenOrientation.LANDSCAPE) {
 				return true;
-			}else{
+			} else {
 				return false;
 			}
-		}catch (WebDriverException e){
-			//Rotating screen to right may get exception here 
+		} catch (WebDriverException e) {
+			// Rotating screen to right may get exception here
 			System.out.println("Orientation:landscaperight");
 			return true;
-		}catch (Exception e){
+		} catch (Exception e) {
 			System.out.println("Unknown exception");
 			return true;
 		}
 	}
-	
-	public boolean isGoOnKeyBoard(){
-		try{
+
+	public boolean isGoOnKeyBoard() {
+		try {
 			String goePath = "//*[@name='Go']";
 			MobileElement GoOnKeyBoard = (MobileElement) GetAppiumDriver().findElement(By.xpath(goePath));
 			System.out.println("Go is found on keyboard");
 			return true;
-		}catch (Exception e){
+		} catch (Exception e) {
 			System.out.println("Done is found on keyboard");
 			return false;
 		}
 	}
 }
+
