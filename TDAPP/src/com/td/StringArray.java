@@ -99,6 +99,7 @@ public final class StringArray {
 	public static final String[] ARRAY_PREFERENCE_NOTIFICATIONS = {"Notifications", "Avis", "通知", "通知"};
 	public static final String[] ARRAY_PREFERENCE_TD_FOR_ME_SETTINGS = {"TD for Me Settings", "Paramètres TD et moi", "TD for Me 设置", "TD for Me 設置"};
 	public static final String[] ARRAY_PREFERENCE_WAHTS_NEW = {"What's New", "Nouveautés", "新增功能", "新增功能"};
+	public static final String[] ARRAY_PREFERENCE_ACCOUNTS = {"ACCOUNTS", "COMPTES", "账户", "賬戶"};
 	public static final String[] ARRAY_PREFERENCE_SECURITY_QUESTION = {"Security Questions", "Questions de sécurité", "密保问题", "密保问题"};
 	public static final String[] ARRAY_VIEW_PROFILE_LINK_IOS = {"View profile >", "Consulter le profil >", "查看个人资料", "查看個人資料"};
 	public static final String[] ARRAY_VIEW_PROFILE_LINK_AND = {"View profile", "Consulter le profil", "查看个人资料", "查看個人資料"};

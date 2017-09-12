@@ -27,17 +27,10 @@ public class Notifications extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progress_bar;
 
-	// @iOSFindBy(xpath = "//*[@label='Customize Notifications' or
-	// @label='Personnaliser les avis']")
-	// @AndroidFindBy(xpath = "//android.widget.TextView[@text='Customize
-	// Notifications' or @text='Personnaliser les avis']")
-	// private MobileElement customize_notification_link;
-
 	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement TDforme_notification_Header;
 
-//	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Enable Notifications' or @label='Activer les notifications']/../XCUIElementTypeSwitch")
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/nav_row_switch']")
 	private MobileElement enable_notification_switch;
 
@@ -91,8 +84,8 @@ public class Notifications extends _CommonPage {
 	public void VerifyTdforMeNotificationsHeader() {
 
 		Decorator();
-		try {		
-			String titleText = getTextInCurrentLocale(StringArray.ARRAY_TD_FOR_ME_NOTIFICATIONS);					
+		try {
+			String titleText = getTextInCurrentLocale(StringArray.ARRAY_TD_FOR_ME_NOTIFICATIONS);
 			mobileAction.verifyElementTextIsDisplayed(TDforme_notification_Header, titleText);
 
 		} catch (NoSuchElementException | IOException e) {

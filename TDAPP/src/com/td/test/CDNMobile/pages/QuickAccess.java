@@ -38,7 +38,7 @@ public class QuickAccess extends _CommonPage {
 
 	private MobileElement quickaccess_switch;
 
-	@iOSFindBy(xpath = "//*[@label='ACCOUNTS' or @label='COMPTES']")
+	// @iOSFindBy(xpath = "//*[@label='ACCOUNTS' or @label='COMPTES']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title_text']")
 	private MobileElement indiviual_accounts;
 
@@ -86,9 +86,16 @@ public class QuickAccess extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(quickaccess_switch, "Quick Access Switch");
 			String switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
 			System.out.println("Checked Status :" + switchCheckStatus);
+
+			String accountString = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_ACCOUNTS);
+			String indiviual_accounts_xpath = "//*[@label='" + accountString + "']";
+
 			if (switchCheckStatus.equalsIgnoreCase("true")) {
 				// Enabled
-				mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, "ACCOUNTS | COMPTES ");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+					indiviual_accounts = mobileAction.verifyElementUsingXPath(indiviual_accounts_xpath, "ACCOUNTS");
+				}
+				mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, accountString);
 				// Toggle to disable it
 				mobileAction.FuncClick(quickaccess_switch, "Quick Access Switch Toggle");
 				System.out.println("Toggle Switch");
@@ -104,7 +111,10 @@ public class QuickAccess extends _CommonPage {
 
 			} else {
 				// Disabled
-				if (mobileAction.isObjExists(indiviual_accounts)) {
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+					indiviual_accounts = mobileAction.verifyElementUsingXPath(indiviual_accounts_xpath, "ACCOUNTS");
+				}
+				if (indiviual_accounts != null || mobileAction.isObjExists(indiviual_accounts)) {
 					mobileAction.Report_Fail("Account still exists when switch status  is false");
 				} else {
 					mobileAction.Report_Pass_Verified("Accounts no displaying ");
@@ -114,7 +124,7 @@ public class QuickAccess extends _CommonPage {
 					mobileAction.waitForElementToVanish(progress_bar);
 					switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
 					System.out.println("Checked now :" + switchCheckStatus);
-					mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, "ACCOUNTS | COMPTES ");
+					mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, accountString);
 				}
 			}
 
