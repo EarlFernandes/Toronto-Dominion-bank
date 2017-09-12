@@ -32,6 +32,7 @@ import com.td.test.CDNMobile.pages.Login;
 import com.td.test.CDNMobile.pages.LoginMIT;
 import com.td.test.CDNMobile.pages.Logout;
 import com.td.test.CDNMobile.pages.MFA_ChangeAnswer;
+import com.td.test.CDNMobile.pages.MIT_DSH_FlyoutMenu;
 import com.td.test.CDNMobile.pages.MIT_DSHQuickLinks;
 import com.td.test.CDNMobile.pages.MIT_PNSAccessAlerts;
 import com.td.test.CDNMobile.pages.MIT_PNSCreateNewAlert;
@@ -126,7 +127,7 @@ public class EventCase {
 
 		CDNCash, CDNCash_Sell_StopMarket, CDNMargin_Buy, CDNMargin_Buy_TriggerDelta, CDNMargin_Sell_TrailingStopLimit, CDNMargin_Sell_TrailingStopMarket, CDNMarginLimit, CDNMarginLimitTradePreviewOrder,
 
-		Check_Remember_Me_Default, ClickBack,ClickBackBtn_Lnk, clickChangeOrder, clickChangeorder_MarketToLimit, ClickContact, ClickDepositCheque, CardDetails_save,
+		Check_Remember_Me_Default, ClickBack, ClickBackBtn_Lnk, clickChangeOrder, clickChangeorder_MarketToLimit, ClickContact, ClickDepositCheque, CardDetails_save,
 
 		ClickMenu, ClickMenu_French, ClickMenuHome, clickMenuTrade, Confirm_order, Confirm_order_French, ClickPrivacy, ClickSave, ClickPhoneNumber, ClickClearText, ClickAddressDetail, ClickPopupGoBackButton,
 
@@ -195,7 +196,7 @@ public class EventCase {
 		Accounts_SelectAccount, AccountsCredit_ClickPayBill, AccountsCredit_verifyLastTranaction, AccountsCredit_clickLastTranaction, Transaction_VerifyTransac, AccountsCredit_clickSummaryTab, AccountsCredit_VerifySummaryDetails, AccountsCredit_clickStatementTab, AccountsCredit_VeifyStatementDetails, StatementBalance_VerifyBalanceDetails, Bill_PayCanada_verifyCurrentBalance, Bill_PayCanada_PayBill, AccountsCredit_ClickTransfers
 
 		// trade,
-		, clickChangeorder_TSM_to_TSL, TradeTrailingStopMarket, TradeStopMarket,MenumenuTradePresent, TradeStopMarketSell, TradeLimitDAYEXT, ClickWatchList, TradeStopLimit, OrderRecieptValidateBuy, Investing_ClickPlacedOrder, OrderDetails_Changeorder, TradeMarket, clickChangeorder_LimitToMarket, TradeLimit, TradeLimitAndTriggerDelta, TradeOrderType, TradeSymbol, TradeTrailingStopLimit, ConfirmOrderValidateBuy, verifyEmptyWatchList, ClickOrders, clickChangeorder_SM_to_SL, verifyShareHolder, confirmOrder_ClickBack, verifyBuyToCover, TradeStopLimitSell, ConfirmOrderDoNotCancel, ConfirmOrderImpInformation, ClickHoldingAndSymbol, changeOrderLimitDayToDayEXT,
+		, clickChangeorder_TSM_to_TSL, TradeTrailingStopMarket, TradeStopMarket, MenumenuTradePresent, TradeStopMarketSell, TradeLimitDAYEXT, ClickWatchList, TradeStopLimit, OrderRecieptValidateBuy, Investing_ClickPlacedOrder, OrderDetails_Changeorder, TradeMarket, clickChangeorder_LimitToMarket, TradeLimit, TradeLimitAndTriggerDelta, TradeOrderType, TradeSymbol, TradeTrailingStopLimit, ConfirmOrderValidateBuy, verifyEmptyWatchList, ClickOrders, clickChangeorder_SM_to_SL, verifyShareHolder, confirmOrder_ClickBack, verifyBuyToCover, TradeStopLimitSell, ConfirmOrderDoNotCancel, ConfirmOrderImpInformation, ClickHoldingAndSymbol, changeOrderLimitDayToDayEXT,
 
 		// MIT Multi-Leg
 
@@ -207,7 +208,7 @@ public class EventCase {
 
 		// MIT Dashboard
 
-		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser,
+		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyFlyoutUnauthenticated, verifyFlyoutBankingOnlyUser, verifyFlyoutInvestingOnlyUser, verifyFlyoutBlendedyUser,
 
 		// P2P
 
@@ -418,11 +419,11 @@ public class EventCase {
 		case HomeScreen_WatchLists:
 			HomeScreen.get().clickWatchLists();
 			break;
-						
+
 		case selectFirstLocation:
 			FindLocations.get().selectFirstLocation();
 			break;
-			
+
 		case Env_set:
 			Env_Settings.get().set_environment();
 			break;
@@ -703,7 +704,7 @@ public class EventCase {
 		case ClickBack:
 			HomeScreen.get().back_button();
 			break;
-			
+
 		case ClickBackBtn_Lnk:
 			HomeScreen.get().clickbackBtnLnk();
 			break;
@@ -1679,7 +1680,7 @@ public class EventCase {
 		case TradeMarket:
 			Trade.get().market();
 			break;
-			
+
 		case MenumenuTradePresent:
 			HomeScreen.get().menuTradePresent();
 			break;
@@ -3729,6 +3730,22 @@ public class EventCase {
 			SpendingSpikes.get().spendingSpikePageMessages();
 			break;
 
+		// DSh
+		case verifyFlyoutUnauthenticated:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutUnauthenticated();
+			break;
+
+		case verifyFlyoutBankingOnlyUser:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutBankingOnlyUser();
+			break;
+
+		case verifyFlyoutInvestingOnlyUser:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutInvestingOnlyUser();
+			break;
+
+		case verifyFlyoutBlendedyUser:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutBlendedyUser();
+			break;
 		}
 	}
 

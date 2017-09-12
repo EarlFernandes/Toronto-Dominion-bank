@@ -96,7 +96,6 @@ public final class StringArray {
 			"查看我的账户", "查看我的賬戶" };
 	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE = { "Accepted Fund Details & Fees",
 			"Infos sur le fonds et les frais acceptées", "已接受的基金 详情与费用", "已接受的基金 詳情與費用" };
-	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE_ANSWER = { "Yes", "Oui", "是", "是" };
 	public static final String[] ARRAY_MF_FUND_FACT = { "Fund Facts", "Aperçu du fonds", "基金概况", "基金概況" };
 	public static final String[] ARRAY_MF_FUND_FACT_PDF = { "fund facts.pdf", "Aperçu du fonds.pdf", "基金概况.pdf",
 			"基金概況.pdf" };
@@ -192,8 +191,43 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_PAYBILL = { "PAY BILL", "PAIEMENT DE FACTURES", "支付账单",
 			"支付賬單" };
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_TRADE = { "TRADE", "NÉGOCIATION", "交易", "交易" };
+
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_HOME = { "Home", "Accueil", "主页", "首頁" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS = { "My Accounts", "Mes comptes", "我的账户", "我的賬戶" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_TRANSFERS = { "Transfers", "Virements", "转账", "轉賬" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_BILLS = { "Bills", "Factures", "账单", "賬單" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_APPLEPAY = { "Apple Pay", "Apple Pay", "Apple Pay",
+			"Apple Pay" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_TDMYSPEND = { "TD MySpend", "Dépense TD", "TD MySpend",
+			"TD MySpend" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT = { "TD Mobile Payment", "Factures", "道明移动支付",
+			"道明流動付款" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_TDMOBILEDEPOSIT = { "Mobile Deposit", "Dépôt mobile", "移动存款服务",
+			"流動存款" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_TDFORME = { "TD for Me", "TD et Moi", "TD for Me",
+			"TD for Me" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_INVESTINGACCOUNTS = { "Investing Accounts",
+			"Comptes Placements directs TD", "投资账户", "投資賬戶" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_CROSSBORDERBANKING = { "Cross-Border Banking",
+			"Services bancaires transfrontaliers", "跨境理财服务", "跨國理財服務" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_PROFILESETTINGS = { "Profile & Settings",
+			"Profil et paramètres transfrontaliers", "个人资料和设置", "個人資料和設定" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_APPLEWATCH = { "Apple Watch", "Apple Watch", "Apple Watch",
+			"Apple Watch" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_LOCATIONS = { "Locations", "Succursales", "分行网点", "分行" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_GIVEFEEDBACK = { "Give Feedback", "Fournir des commentaires",
+			"提供意见反馈", "提供意見回饋" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_CONTACTUS = { "Contact Us", "Contactez-nous", "联系我们", "聯絡我們" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_FAQ = { "Frequently Asked Questions", "Foire aux questions",
+			"常见问答", "常見問題" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_PRIVACYSECURITY = { "Privacy, Security & Legal",
+			"Confidentialité, sécurité et avis juridique", "隐私、安全与法律声明", "私隱政策、安全性和法律聲明" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_TRADE = { "Trade", "Négociation", "交易", "交易" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_LOGOUT = { "Logout", "Fermer la session", "退出", "登出" };
+
 	// MIT Dashboard END
 
+	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE_ANSWER = { "Yes", "Oui", "是", "是" };
 	public static final String[] ARRAY_BRABCH_HEADER = { "Branch", "Succursale", "分行", "分行" };
 	public static final String[] ARRAY_FIND_LOCATION = { "Find Locations", "Trouver une succursale", "查找分行", "查找分行" };
 	public static final String[] ARRAY_CONFIRM = { "Confirm", "Confirm", "确认", "確認" };
