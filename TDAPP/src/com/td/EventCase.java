@@ -105,6 +105,8 @@ import com.td.test.CDNMobile.pages.MoreOptions;
 import com.td.test.CDNMobile.pages.CreditLimitIncreaseForm;
 import com.td.test.CDNMobile.pages.AppointmentBooking;
 import com.td.test.CDNMobile.pages.Branch;
+import com.td.test.CDNMobile.pages.ReplaceDamagedCard;
+
 
 public class EventCase {
 
@@ -233,6 +235,9 @@ public class EventCase {
 		
 		//MAB
 		VerifyContactUsMABContent,verifyAppointmentBookingHeader,ClickAppointmentBooking, SelectBranchLocation,verifyBranchHeader,verifyBranchBookAppointmentContent,clickBranchBookAppointmentIcon,verifyMABLandingPageContent,clickBookAppointmentNowbtn,verifyAppointmentURLLink,
+		
+		//Damaged Card
+		verifyReplaceDamagedCardHeader, ClickReplaceDamagedCardBtn, verifyReplaceDamagedCardDirectionalCopy,
 
 	}
 
@@ -2997,6 +3002,20 @@ public class EventCase {
 			AppointmentBooking.get().verifyAppointmentURLLink();
 			break;			
 		//End of MAB
+			
+		//Damaged Card
+		case ClickReplaceDamagedCardBtn:
+			MoreOptions.get().ClickReplaceDamagedCardBtn();
+			break;	
+			
+		case verifyReplaceDamagedCardDirectionalCopy:
+			MoreOptions.get().verifyReplaceDamagedCardDirectionalCopy();
+			break;	
+			
+		case verifyReplaceDamagedCardHeader:
+			ReplaceDamagedCard.get().verifyReplaceDamagedCardHeader();
+			break;			
+		//End of Damaged card	
 
 		case VerifyStatementBalanceHeader:
 			StatementBalance.get().verifyStatementBalanceHeader();

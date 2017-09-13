@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -40,7 +41,7 @@ public class CreditLimitIncreaseForm extends _CommonPage {
 	
 	public void verifyCreditLimitIncreaseHeader() {
 		Decorator();
-		String creditLimitIncreaseText="";
+		String creditLimitIncreaseText=getTextInCurrentLocale(StringArray.ARRAY_CREDIT_LIMIT_INCREASE_HEADER);
 		try {
 			mobileAction.verifyTextEquality(mobileAction.getValue(creditLimitIncrease_header),creditLimitIncreaseText);
 		}catch (Exception e) {

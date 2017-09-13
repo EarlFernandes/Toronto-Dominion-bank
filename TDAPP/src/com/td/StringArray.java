@@ -110,6 +110,7 @@ public final class StringArray {
 	public static final String[] ARRAY_MORE_LINK ={"MORE","PLUS","更多","更多"};
 	public static final String[] ARRAY_MORE_OPTION_HEADER ={"More Options","Plus d’options","更多选项","更多選項"};
 	public static final String[] ARRAY_CREDIT_LIMIT_INCREASE_REQ ={"Request a Credit Limit Increase","Demander une augmentation de limite de crédit","申请提高信用额度","申請增加信用限額"};
+	public static final String[] ARRAY_CREDIT_LIMIT_INCREASE_HEADER ={"Credit Limit Increase","Augment. limite crédit","申请提高信用额","申請提高信用額"};
 	public static final String[] ARRAY_CREDIT_LIMIT_INCREASE_DIR ={"You must be the Primary cardholder on the card to make a credit limit increase request. Requests take only a few minutes to complete.",
 			        "Vous n’aurez besoin que de quelques minutes pour remplir une demande et vous recevrez une réponse peu de temps après.",
 			        "申请只需几分钟即可完成，很快您将收到答复。","申請只需幾分鐘即可完成，您很快會收到回覆。"};
@@ -137,5 +138,12 @@ public final class StringArray {
 	public static final String[] ARRAY_BRABCH_HEADER ={"Branch","Succursale","分行","分行"};
 	public static final String[] ARRAY_FIND_LOCATION ={"Find Locations","Trouver une succursale","查找分行","查找分行"};
 	public static final String[] ARRAY_CONFIRM ={"Confirm","Confirm","确认", "確認"};
+	
+	//damaged card
+	public static final String[] ARRAY_REPLACE_A_DAMAGED_CARD ={"Replace a Damaged Card","Remplacement d’une carte endommagée","更换损坏的卡片","更換損壞的卡片"};
+	public static final String[] ARRAY_REPLACE_A_DAMAGED_CARD_HEADER ={"Replace a Damaged Card","Remplacement une carte","更换损坏的卡片","更換損壞的卡片"};
+	public static final String[] ARRAY_COPY_REPLACE_DAMAGED_CARD ={"If your existing credit card is damaged or not working, you can request a replacement card.",
+					"Si votre carte de crédit est endommagée ou ne fonctionne plus, vous pouvez demander une carte de remplacement.",
+					"如果您现有的信用卡损坏或无效，您可以申请换卡。","如果您現有的信用卡損壞或無效，您可以申請換卡。"};
 
 }
