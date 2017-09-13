@@ -103,7 +103,7 @@ public class QuickAccess extends _CommonPage {
 				switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
 				System.out.println("Checked status now :" + switchCheckStatus);
 
-				if (mobileAction.isObjExists(indiviual_accounts)) {
+				if (mobileAction.verifyElementIsPresent(indiviual_accounts)) {
 					mobileAction.Report_Fail("Account still exists even when switch toggle to disable");
 				} else {
 					mobileAction.Report_Pass_Verified("Accounts no displaying ");
@@ -127,7 +127,7 @@ public class QuickAccess extends _CommonPage {
 						mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, accountString);
 					}
 				} else {
-					if ( mobileAction.isObjExists(indiviual_accounts)) {
+					if ( mobileAction.verifyElementIsPresent(indiviual_accounts)) {
 						mobileAction.Report_Fail("Account still exists when switch status  is false");
 					} else {
 						mobileAction.Report_Pass_Verified("Accounts no displaying ");
