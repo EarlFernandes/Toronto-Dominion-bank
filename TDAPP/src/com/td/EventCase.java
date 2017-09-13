@@ -727,8 +727,8 @@ public class EventCase {
 			break;
 
 		/*
-		 * case OrderDetails_clickChangeorder: OrderDetails.get().performChangeorder();
-		 * break;
+		 * case OrderDetails_clickChangeorder:
+		 * OrderDetails.get().performChangeorder(); break;
 		 */
 
 		case OrderDetailsLimitPrice:
@@ -1168,8 +1168,8 @@ public class EventCase {
 			break;
 
 		/*
-		 * case OrderDetails_CancelOrder: OrderDetails.get().performCancelOrder();
-		 * break;
+		 * case OrderDetails_CancelOrder:
+		 * OrderDetails.get().performCancelOrder(); break;
 		 */
 
 		case ConfirmOrderReciept:
