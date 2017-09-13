@@ -288,29 +288,9 @@ public class MIT_PNSManageAlerts extends _CommonPage {
 		try {
 			MIT_PNSAccessAlerts.get().FuncSwitchContext("NATIVE_APP");
 
-			Dimension size = (CL.GetDriver()).manage().window().getSize();
-			int startx = size.width;
-			int starty = size.height;
-			int endy = size.height;
-			int heightPer = (endy * 25 / 100);
-
-			if (sDirection.equalsIgnoreCase("up")) {
-				((AppiumDriver<WebElement>) (CL.GetDriver())).swipe(startx / 2, starty / 2, startx / 2,
-						endy / 2 - heightPer, 2000);
-				CL.GetReporting().FuncReport("Pass", "Swipe Up once.");
-			} else if (sDirection.equalsIgnoreCase("down")) {
-				((AppiumDriver<WebElement>) (CL.GetDriver())).swipe(startx / 2, endy / 2, startx / 2,
-						endy / 2 + heightPer, 2000);
-				CL.GetReporting().FuncReport("Pass", "Swipe Down once.");
-			} else
-				CL.GetReporting().FuncReport("Fail", "Invalid direction given.");
+			mobileAction.FuncSwipeOnce(sDirection);
 		} catch (Exception e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "Exception occurred.Swiped failed.");
-				e.printStackTrace();
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
+			e.printStackTrace();
 		}
 
 		MIT_PNSAccessAlerts.get().FuncSwitchContext(MIT_PNSAccessAlerts.get().getWebViewContextString());

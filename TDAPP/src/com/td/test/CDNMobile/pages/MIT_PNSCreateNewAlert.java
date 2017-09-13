@@ -574,7 +574,7 @@ public class MIT_PNSCreateNewAlert extends _CommonPage {
 
 			String[] total = getTestdata("Symbol", XLSheetUserIDs).split(";");
 
-			for (int i = 0; i < total.length; i++) {
+			for (int i = 0; i < 2; i++) {
 
 				// clickFirstSymbolPNS(getTestdata("Symbol",
 				// XLSheetUserIDs).split(";")[i], getTestdata("Symbol",

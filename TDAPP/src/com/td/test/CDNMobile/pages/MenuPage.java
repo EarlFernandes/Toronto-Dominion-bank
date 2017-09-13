@@ -87,7 +87,7 @@ public class MenuPage extends _CommonPage {
 	private MobileElement privacy;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade' or @label='Négociation']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Trade' or @text='Négociation')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Trade' or @text='Négociation')]")
 	private MobileElement trade;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD Mobile Payment']")
@@ -296,8 +296,13 @@ public class MenuPage extends _CommonPage {
 						"My Accounts");
 			}
 			Thread.sleep(5000);
-
-			mobileAction.FuncClick(accounts_button, "Accounts");
+			//click Menu may fail in some case. so need to check if accounts is present
+			if(mobileAction.verifyElementIsPresent(accounts_button)){
+				mobileAction.FuncClick(accounts_button, "Accounts");
+			}else{
+				mobileAction.Report_Fail("Accounts is not present in Menu page");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
