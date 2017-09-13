@@ -3,6 +3,7 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
@@ -102,11 +103,20 @@ public class QuickAccess extends _CommonPage {
 				mobileAction.waitForElementToVanish(progress_bar);
 				switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
 				System.out.println("Checked status now :" + switchCheckStatus);
-
-				if (mobileAction.verifyElementIsPresent(indiviual_accounts)) {
-					mobileAction.Report_Fail("Account still exists even when switch toggle to disable");
+				
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+					try{
+						indiviual_accounts = (MobileElement)CL.GetAppiumDriver().findElement(By.xpath(indiviual_accounts_xpath));
+						mobileAction.Report_Fail("Account still exists even when switch toggle to disable");
+					} catch (Exception e1) {
+						mobileAction.Report_Pass_Verified("Accounts no displaying ");
+					}
 				} else {
-					mobileAction.Report_Pass_Verified("Accounts no displaying ");
+					if (mobileAction.verifyElementIsPresent(indiviual_accounts)) {
+						mobileAction.Report_Fail("Account still exists even when switch toggle to disable");
+					} else {
+						mobileAction.Report_Pass_Verified("Accounts no displaying ");
+					}
 				}
 
 			} else {
