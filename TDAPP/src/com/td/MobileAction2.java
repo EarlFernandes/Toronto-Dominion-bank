@@ -4,10 +4,11 @@ import java.io.IOException;
 import com.td._CommonPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.ScreenOrientation;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
-import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.td.test.framework.CommonLib;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.InteractsWithApps;
 import io.appium.java_client.MobileDriver;
@@ -1050,7 +1052,7 @@ public class MobileAction2 extends CommonLib {
 	 *             In case the element is not found within the specified
 	 *             timeout.
 	 */
-	public void FuncSendKeys(MobileElement objElement, String sTextToSend)
+	public void FuncSendKeys(WebElement objElement, String sTextToSend)
 			throws InterruptedException, IOException, TimeoutException {
 		try {
 			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
@@ -1406,8 +1408,8 @@ public class MobileAction2 extends CommonLib {
 			 * public boolean verifyElement(MobileElement mobileElement, String
 			 * text) { String elementText = mobileElement.getText();
 			 * WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-			 * wait.until(ExpectedConditions.elementToBeClickable(mobileElement)
-			 * );
+			 * wait.until(ExpectedConditions.elementToBeClickable(
+			 * mobileElement) );
 			 * 
 			 * if (elementText.equalsIgnoreCase(text)) { try {
 			 * GetReporting().FuncReport("Pass", "The text '" + text +
@@ -1560,20 +1562,31 @@ public class MobileAction2 extends CommonLib {
 		 */
 	}
 
-	public boolean verifyElementNotPresent(MobileElement mobileElement, String expectedText) {
-		WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
-		wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
+	public boolean verifyElementNotPresent(WebElement mobileElement, String expectedText) {
 
-		if (mobileElement.isDisplayed() == true) {
-			try {
-				GetReporting().FuncReport("Fail", "The '" + expectedText + "' is verified");
-			} catch (IOException e) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		try {
+			WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
+			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
+
+			if (mobileElement.isDisplayed() == true) {
+				try {
+					GetReporting().FuncReport("Fail", "The '" + expectedText + "' is verified");
+				} catch (IOException e) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				return true;
+			} else {
+				try {
+					GetReporting().FuncReport("Pass", "The '" + expectedText + "' is not verified");
+				} catch (IOException e) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				return false;
 			}
-			return true;
-		} else {
+
+		} catch (Exception ex) {
 			try {
-				GetReporting().FuncReport("Pass", "The '" + expectedText + "' is not verified");
+				GetReporting().FuncReport("Pass", "The '" + expectedText + "' is not present");
 			} catch (IOException e) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
@@ -3560,6 +3573,30 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
+	/**
+	 * This method will scroll element into view
+	 * 
+	 * @param objElement
+	 * @param text
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * @throws NoSuchElementException
+	 */
+	public void FuncScrollIntoView(WebElement objElement, String text)
+			throws InterruptedException, IOException, NoSuchElementException {
+		try {
+			((JavascriptExecutor) GetDriver()).executeScript("arguments[0].scrollIntoView(true);", objElement);
+			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> is scrolled into view");
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> is not scrolled into view");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			throw e;
+		}
+	}
+
 	public MobileElement getMobileElement(By element) {
 
 		try {
@@ -3573,5 +3610,4 @@ public class MobileAction2 extends CommonLib {
 		}
 
 	}
-
 }
