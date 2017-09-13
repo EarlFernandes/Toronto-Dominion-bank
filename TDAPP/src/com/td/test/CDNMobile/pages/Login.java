@@ -8,7 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.PageFactory;
-
 import com.td.StringArray;
 import com.td._CommonPage;
 import com.td.mainframe.Executor;
@@ -211,6 +210,9 @@ public class Login extends _CommonPage {
 	String session = "//XCUIElementTypeStaticText[@label='Session Expired']";
 	String session1 = "//android.widget.TextView[contains(@text,'Session Expired')]";
 	String message = "Session Expired";
+
+	@iOSFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeImage")
+	private MobileElement TD_Image;
 
 	public synchronized static Login get() {
 		if (Login == null) {
@@ -425,11 +427,17 @@ public class Login extends _CommonPage {
 				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(login, "Login");
 				mobileAction.waitForElementToVanish(progressBar);
-
 			} else {
-				mobileAction.FuncClick(login, "Login");
+				// For Landscape, need to hide key board
+
+				if (mobileAction.isOrientationLandscape()) {
+					mobileAction.HideKeyBoard_IOS();
+				} else {
+					mobileAction.FuncClick(login, "Login");
+				}
 				mobileAction.waitForElementToVanish(progressBar);
 			}
+
 			verifySystemError();
 			verifySecurityQuestion();
 
@@ -480,8 +488,11 @@ public class Login extends _CommonPage {
 				mobileAction.FuncClick(login_InFrench, "Login");
 				mobileAction.waitForElementToDisappear(progressBarFrench);
 			} else {
-				mobileAction.FuncClick(login_InFrench, "Login");
-
+				if(mobileAction.isOrientationLandscape()) {
+					mobileAction.HideKeyBoard_IOS();
+				}else{
+					mobileAction.FuncClick(login_InFrench, "Login");
+				}
 				mobileAction.waitForElementToDisappear(progressBarFrench);
 			}
 			verifySystemError();
@@ -558,6 +569,9 @@ public class Login extends _CommonPage {
 			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 			if (platFormName.equalsIgnoreCase("ios")) {
 				Thread.sleep(1000);
+				if(mobileAction.isOrientationLandscape()) {
+					mobileAction.HideKeyBoard_IOS();
+				}
 				mobileAction.FuncClick(rememberMe_button, "Remember Yes");
 				mobileAction.FuncClick(login, "Login");
 				mobileAction.waitForElementToVanish(progressBar);
@@ -698,7 +712,11 @@ public class Login extends _CommonPage {
 
 				mobileAction.FuncSendKeys(password, passwords);
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					mobileAction.FuncClickDone();
+					if(mobileAction.isOrientationLandscape()) {
+						mobileAction.HideKeyBoard_IOS();
+					}else{
+						mobileAction.FuncClickDone();
+					}					
 				} else {
 					mobileAction.FuncHideKeyboard();
 				}
@@ -928,6 +946,16 @@ public class Login extends _CommonPage {
 						mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 						mobileAction.FuncClick(addUser, "AddUser");
 
+						if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")
+								&& mobileAction.isOrientationLandscape()) {
+							//Freddy: This is a workaround to hide keyboard to verify "Remember me" button in Landscape
+							//driver.hideKeyboard(HideKeyboardStrategy.TAP_OUTSIDE)  and
+							//driver.hideKeyboard(HideKeyboardStrategy.PRESS_KEY, "Hide keyboard")
+							//only works for English not for FR, Chinese
+
+							System.out.println("Hide keyboard by clicking TD Image");
+							mobileAction.FuncClick(TD_Image, "TD");
+						}
 						mobileAction.verifyElementIsDisplayed(rememberMe_button_on, "Remember is ON");
 
 					} catch (NoSuchElementException e) {
@@ -969,22 +997,7 @@ public class Login extends _CommonPage {
 						&& StringUtils.contains(loginTextField.getAttribute("value"), "**"))
 						|| (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
 								&& StringUtils.contains(select_accesscard.getText(), "**"))) {
-					mobileAction.FuncClick(select_accesscard, "Select Accesscard");
-					mobileAction.FuncClick(addUser, "AddUser");
-					mobileAction.FuncClick(username, "Username");
-					mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-					mobileAction.FuncClick(password, "Password");
-					mobileAction.FuncSendKeys(password, passwordArray[count]);
-					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-
-						mobileAction.FuncHideKeyboard();
-						mobileAction.FuncClick(login, "Login");
-						mobileAction.waitForElementToVanish(progressBar);
-					} else {
-						mobileAction.FuncClick(login, "Login");
-						Thread.sleep(3000);
-						// mobileAction.waitForElementToVanish(progressBar);
-					}
+					login_with_ID_remembered();
 				} else {
 					login_without_ID_remembered();
 				}
@@ -1049,12 +1062,6 @@ public class Login extends _CommonPage {
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
@@ -1102,22 +1109,7 @@ public class Login extends _CommonPage {
 						&& StringUtils.contains(loginTextField.getAttribute("value"), "**"))
 						|| (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
 								&& StringUtils.contains(select_accesscard.getText(), "**"))) {
-					mobileAction.FuncClick(select_accesscard, "Select Accesscard");
-					mobileAction.FuncClick(addUser, "AddUser");
-					mobileAction.FuncClick(username, "Username");
-					mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-					mobileAction.FuncClick(password, "Password");
-					mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-
-					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-
-						mobileAction.FuncHideKeyboard();
-						mobileAction.FuncClick(login, "Login");
-						mobileAction.waitForElementToVanish(progressBar);
-					} else {
-						mobileAction.FuncClick(login, "Login");
-						mobileAction.waitForElementToVanish(progressBar);
-					}
+					login_with_ID_remembered();
 				} else {
 					login_without_ID_remembered();
 				}
@@ -1143,9 +1135,6 @@ public class Login extends _CommonPage {
 		} catch (InterruptedException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
@@ -1175,39 +1164,11 @@ public class Login extends _CommonPage {
 						&& StringUtils.contains(loginTextField.getAttribute("value"), "**"))
 						|| (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
 								&& StringUtils.contains(select_accesscard.getText(), "**"))) {
-					mobileAction.FuncClick(select_accesscard, "Select Accesscard");
-					mobileAction.FuncClick(addUser, "AddUser");
-					mobileAction.FuncClick(username, "Username");
-					mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-					mobileAction.FuncClick(password, "Password");
-					mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-
-						mobileAction.FuncHideKeyboard();
-						mobileAction.FuncClick(login, "Login");
-						mobileAction.waitForElementToVanish(progressBar);
-					} else {
-						mobileAction.FuncClick(login, "Login");
-						mobileAction.waitForElementToVanish(progressBar);
-					}
+					login_with_ID_remembered();
 				}
 			} else {
 
-				mobileAction.FuncClick(username, "Username");
-				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-
-				mobileAction.FuncClick(password, "Password");
-				mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					mobileAction.FuncHideKeyboard();
-					mobileAction.FuncClick(login, "Login");
-					mobileAction.waitForElementToVanish(progressBar);
-				} else {
-					mobileAction.FuncClick(login, "Login");
-					mobileAction.waitForElementToVanish(progressBar);
-
-				}
+				login_without_ID_remembered();
 			}
 			Thread.sleep(2000);
 
@@ -1370,6 +1331,42 @@ public class Login extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
+	
+	private void login_with_ID_remembered() {
+		try {
+			mobileAction.FuncClick(select_accesscard, "Select Accesscard");
+			mobileAction.FuncClick(addUser, "AddUser");
+			mobileAction.FuncClick(username, "Username");
+			mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
+			mobileAction.FuncClick(password, "Password");
+			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
+				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClick(login, "Login");
+			} else {				
+				if (mobileAction.isOrientationLandscape()) {
+					mobileAction.HideKeyBoard_IOS();
+				} else {
+					mobileAction.FuncClick(login, "Login");
+				}
+			}
+			mobileAction.waitForElementToVanish(progressBar);
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
 
 	private void login_without_ID_remembered() {
 		try {
@@ -1382,12 +1379,14 @@ public class Login extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(login, "Login");
-				mobileAction.waitForElementToVanish(progressBar);
 			} else {
-				mobileAction.FuncClick(login, "Login");
-				mobileAction.waitForElementToVanish(progressBar);
-
+				if (mobileAction.isOrientationLandscape()) {
+					mobileAction.HideKeyBoard_IOS();
+				} else {
+					mobileAction.FuncClick(login, "Login");
+				}				
 			}
+			mobileAction.waitForElementToVanish(progressBar);
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -1414,21 +1413,7 @@ public class Login extends _CommonPage {
 						&& StringUtils.contains(loginTextField.getAttribute("value"), "**"))
 						|| (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
 								&& StringUtils.contains(select_accesscard.getText(), "**"))) {
-					mobileAction.FuncClick(select_accesscard, "Select Accesscard");
-					mobileAction.FuncClick(addUser, "AddUser");
-					mobileAction.FuncClick(username, "Username");
-					mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
-					mobileAction.FuncClick(password, "Password");
-					mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-
-						mobileAction.FuncHideKeyboard();
-						mobileAction.FuncClick(login, "Login");
-						mobileAction.waitForElementToVanish(progressBar);
-					} else {
-						mobileAction.FuncClick(login, "Login");
-						mobileAction.waitForElementToVanish(progressBar);
-					}
+					login_with_ID_remembered();
 				} else {
 					login_without_ID_remembered();
 				}

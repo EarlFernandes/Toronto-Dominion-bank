@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -18,7 +19,7 @@ public class TDForMe extends _CommonPage {
 
 	private static TDForMe Tdforme;
 
-	@iOSFindBy(xpath = "//*[@label='TD for Me Settings' or @label='Paramètres TD et moi']")
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement tdforme_title;
 
@@ -71,7 +72,8 @@ public class TDForMe extends _CommonPage {
 	public void VerifyTDForMeSettingsHeader() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(tdforme_title, "TD for Me Settings | Paramètres TD et moi");
+			mobileAction.verifyElementTextIsDisplayed(tdforme_title,
+					getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_TD_FOR_ME_SETTINGS));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

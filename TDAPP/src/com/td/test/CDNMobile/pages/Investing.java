@@ -1687,7 +1687,7 @@ public class Investing extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(balance_tab, getTextInCurrentLocale(StringArray.ARRAY_TAB_BALANCE));
 			mobileAction.verifyElementTextIsDisplayed(funds_tab, getTextInCurrentLocale(StringArray.ARRAY_TAB_FUND));
 			mobileAction.verifyElementTextIsDisplayed(activity_tab, getTextInCurrentLocale(StringArray.ARRAY_TAB_ACTIVITY));
-			mobileAction.verifyElementTextIsDisplayed(table_heading_left, getTextInCurrentLocale(StringArray.ARRAY_TAB_FUND));
+			mobileAction.verifyElementTextIsDisplayed(table_heading_left, getTextInCurrentLocale(StringArray.ARRAY_FUND_TAB_LEFT));
 			mobileAction.verifyElementTextIsDisplayed(table_heading_middle, getTextInCurrentLocale(StringArray.ARRAY_TABLE_MARKET_VALUE));
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 				mobileAction.verifyElementTextIsDisplayed(table_heading_unit,  
