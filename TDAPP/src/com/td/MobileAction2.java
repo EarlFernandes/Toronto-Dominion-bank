@@ -78,7 +78,7 @@ public class MobileAction2 extends CommonLib {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
-	public void FuncClearUsername(MobileElement objElement, String text)
+	public void FuncClearUsername(WebElement objElement, String text)
 			throws InterruptedException, IOException, NoSuchElementException {
 		try {
 			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);

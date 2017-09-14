@@ -135,6 +135,21 @@ public final class StringArray {
 	public static final String[] ARRAY_OTP_SETUP_SETUP_COMPLETE_HEADER = { "Security Setup Complete",
 			"Configuration de sécurité terminée", "安全设置完成", "安全設定完成" };
 
+	public static final String[] ARRAY_OTP_UPDATE_HEADER = {
+			"You can review and manage your current security settings below",
+			"Vous pouvez consulter et gérer vos paramètres de sécurité ci-dessous", "您可在下方查看并管理您目前的安全设置",
+			"您可在下方查看並管理您目前的安全設定" };
+	public static final String[] ARRAY_OTP_UPDATE_TEST_PHONE_HEADER = { "Test Phones (optional)",
+			"Test de téléphone (facultatif)", "测试电话号码（可选）", "測試電話號碼（非必要）" };
+	
+	public static final String[] ARRAY_OTP_UPDATE_LOGIN_OPTION_HEADER = { "Change Login Option",
+			"Modifier l’option d’ouverture de session", "更改登录选项", "變更登入選項" };
+
+	public static final String[] ARRAY_OTP_UPDATE_CHANGE_EMAIL_HEADER = { "Change Security Email",
+			"Modifier l’adresse courriel de sécurité", "更改安全信息邮箱", "變更安全性資訊收件箱" };
+
+	public static final String[] ARRAY_OTP_UPDATE_COMPLETE_HEADER = { "Thanks", "Merci", "谢谢", "謝謝您" };
+
 	public static final String[] ARRAY_INVESTING_ACCOUNTS = { "Investing Accounts", "Comptes Placements directs TD",
 			"投资账户", "投資賬戶" };
 	public static final String[] ARRAY_MOBILE_PAYMENT = { "TD Mobile Payment", "Paiement mobile TD", "道明移动支付",

@@ -58,6 +58,7 @@ import com.td.test.CDNMobile.pages.MutualFunds;
 import com.td.test.CDNMobile.pages.Notifications;
 import com.td.test.CDNMobile.pages.OTPChallenge;
 import com.td.test.CDNMobile.pages.OTPSetup;
+import com.td.test.CDNMobile.pages.OTPUpdate;
 import com.td.test.CDNMobile.pages.Options;
 import com.td.test.CDNMobile.pages.OptionsReceiptPage;
 import com.td.test.CDNMobile.pages.OrderDetails;
@@ -232,6 +233,9 @@ public class EventCase {
 		// OTP Setup
 
 		OTP_Setup_AcceptWelcomeTCScreens, OTP_Setup_VerifyGetStartedOptionOnly, OTP_Setup_AddPhoneNumber, OTP_Setup_VerifyAddedPhoneNumber, OTP_Setup_AddPhoneContinue, OTP_Setup_VerifyAddAnotherPhoneNumberDialog, OTP_Setup_DeleteFirstPhoneNumber, OTP_Setup_VerifyDeletePhoneNumberFail, OTP_Setup_VerifyMaxPhoneNumbers, OTP_Setup_VerifyInvalidSecurityCodeFormatMsg, OTP_Setup_ClickTextOption, OTP_Setup_ClickVoiceOption, OTP_Setup_ClickFirstPhoneNumber, OTP_Setup_ClickGetCodeButton, OTP_Setup_ClickSubmitCodeButton, OTP_Setup_EnterSecurityCode, OTP_Setup_WaitForOTPProgressBarToVanish, OTP_Setup_VerifyInvalidSecurityCode, OTP_Setup_ClickAnotherPhoneNo, OTP_Setup_VerifySecurityCodeSent, OTP_Setup_TestPhonesContinue, OTP_Setup_VerifySecurityEmailScreen, OTP_Setup_EnterSecurityEmail, OTP_Setup_VerifySecurityCodeFrequencyScreen, OTP_Setup_RetrievePasscodeTest, OTP_Setup_VerifyCorrectSecurityCode, OTP_Setup_PasscodeContinue, OTP_Setup_CodeFrequencyContinue, OTP_Setup_VerifySetupComplete, OTP_Setup_EnterExpiredSecurityCode, OTP_Setup_VerifyExpiredSecurityCodeMsg, OTP_Setup_EnterIncorrectSecurityCode,
+
+		// OTP Update
+		OTP_Update_VerifyOTPUpdateScreen, OTP_Update_VerifyTestPhoneUpdateScreen, OTP_Update_ClickTestPhoneButton, OTP_Update_VerifyLoginOptionUpdateScreen, OTP_Update_ClickLoginOptionButton, OTP_Update_VerifyChangeEmailScreen, OTP_Update_ClickChangeEmailButton, OTP_Update_UpdateSecurityEmail, OTP_Update_ClickOTPUpdateContinueButton, OTP_Update_VerifyOTPUpdateCompleteScreen, OTP_Update_ClickAddPhoneUpdateButton, OTP_Update_AddPhoneNumber, OTP_Update_DeleteFirstPhoneNumber, OTP_Update_VerifyDeletePhoneNumberFail, OTP_Update_VerifyAddedPhoneNumber, OTP_Update_VerifyMaxPhoneNumbers, OTP_Update_VerifyUpdatedSecurityEmail, 
 
 		// myspend
 		Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, TourPage_clickConnectTDApp, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickGetTDAppButton, click_PreferencesLink
@@ -3666,6 +3670,76 @@ public class EventCase {
 			OTPSetup.get().retrievePasscode();
 			break;
 
+		// OTP Update
+		case OTP_Update_VerifyOTPUpdateScreen:
+			OTPUpdate.get().verifyOTPUpdateScreen();
+			break;
+
+		case OTP_Update_ClickTestPhoneButton:
+			OTPUpdate.get().clickTestPhoneButton();
+			break;
+
+		case OTP_Update_VerifyTestPhoneUpdateScreen:
+			OTPUpdate.get().verifyTestPhoneUpdateScreen();
+			break;
+
+		case OTP_Update_ClickLoginOptionButton:
+			OTPUpdate.get().clickLoginOptionButton();
+			break;
+
+		case OTP_Update_VerifyLoginOptionUpdateScreen:
+			OTPUpdate.get().verifyLoginOptionUpdateScreen();
+			break;
+		
+		case OTP_Update_ClickChangeEmailButton:
+			OTPUpdate.get().clickChangeEmailButton();
+			break;
+			
+		case OTP_Update_VerifyChangeEmailScreen:
+			OTPUpdate.get().verifyChangeEmailScreen();
+			break;
+			
+		case OTP_Update_ClickOTPUpdateContinueButton:
+			OTPUpdate.get().clickOTPUpdateContinueButton();
+			break;
+		
+		case OTP_Update_VerifyOTPUpdateCompleteScreen:
+			OTPUpdate.get().verifyOTPUpdateCompleteScreen();
+			break;
+			
+		case OTP_Update_ClickAddPhoneUpdateButton:
+			OTPUpdate.get().clickAddPhoneUpdateButton();
+			break;
+			
+		case OTP_Update_AddPhoneNumber:
+			OTPUpdate.get().addPhoneNumber();
+			break;
+			
+		case OTP_Update_DeleteFirstPhoneNumber:
+			OTPUpdate.get().deleteFirstPhoneNumber();
+			break;
+
+		case OTP_Update_VerifyDeletePhoneNumberFail:
+			OTPUpdate.get().verifyDeletePhoneNumberFail();
+			break;
+			
+		case OTP_Update_VerifyAddedPhoneNumber:
+			OTPUpdate.get().verifyAddedPhoneNumber();
+			break;
+
+		case OTP_Update_VerifyMaxPhoneNumbers:
+			OTPUpdate.get().verifyMaxPhoneNumbers();
+			break;
+			
+		case OTP_Update_UpdateSecurityEmail:
+			OTPUpdate.get().updateSecurityEmail();
+			break;
+			
+		case OTP_Update_VerifyUpdatedSecurityEmail:
+			OTPUpdate.get().verifyUpdatedSecurityEmail();
+			break;
+			
+			
 		// MySpend
 
 		case TourPage_clickConnectTDApp:
