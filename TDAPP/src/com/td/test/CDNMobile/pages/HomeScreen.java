@@ -433,8 +433,8 @@ public class HomeScreen extends _CommonPage {
 			Decorator();
 
 			// FIXED removed back button
-			mobileAction.FuncClick(menu, "Menu");			
-			
+			mobileAction.FuncClick(menu, "Menu");
+
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -678,6 +678,19 @@ public class HomeScreen extends _CommonPage {
 
 	}
 
+	/**
+	 * This method will click on the send money quick link present on the
+	 * homescreen.
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void sendMoney() {
 		try {
 			Decorator();

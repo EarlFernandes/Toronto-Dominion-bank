@@ -44,7 +44,6 @@ public class Interac_Send_Money extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done' or @label='OK' or @label='Ok']")
 	private MobileElement done;
 
-	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeTextField")
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount' or @label='Montant']/following-sibling::XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/send_money_amount_value_view']")
 	private MobileElement amount;
@@ -72,7 +71,6 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Sender' or @text='Expéditeur')]")
 	private MobileElement sender;
 
-	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Sender']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Sender' or @label='Expéditeur']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Sender' or @text='Expéditeur')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement senderName;
@@ -81,7 +79,6 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='From Account' or @text='Compte de provenance')]")
 	private MobileElement fromAccount;
 
-	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account' or @label='Compte de provenance']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='From Account' or @text='Compte de provenance')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement fromAccountName;
@@ -90,12 +87,10 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Recipient' or @text='Destinataire')]")
 	private MobileElement recipient;
 
-	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient' or @label='Destinataire']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Recipient' or @text='Destinataire')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement recipientVal;
 
-	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[2]")
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient' or @label='Destinataire']/following-sibling::XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Recipient' or @text='Destinataire')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView[2]")
 	private MobileElement recipientEmail;
@@ -104,7 +99,6 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Security Question' or @text='Question de sécurité')]")
 	private MobileElement securityQuestionLbl;
 
-	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Question']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Question' or @label='Question de sécurité']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Security Question' or @text='Question de sécurité')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement securityQuestionVal;
@@ -113,7 +107,6 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Answer' or @text='Réponse')]")
 	private MobileElement securityAnswerLbl;
 
-	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Answer']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Answer' or @label='Réponse']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Answer' or @text='Réponse')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement securityAnswerVal;
@@ -122,7 +115,6 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Amount' or @text='Montant')]")
 	private MobileElement amountLbl;
 
-	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount' or @label='Montant']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Amount' or @text='Montant')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement amountVal;
@@ -161,7 +153,7 @@ public class Interac_Send_Money extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementIsDisplayed(sendMoneyHeader, "Send Money Header"); 
+			mobileAction.verifyElementIsDisplayed(sendMoneyHeader, "Send Money Header");
 			mobileAction.FuncClick(selectRecipient, "Select Recipient");
 
 			if (platformName.equalsIgnoreCase("Android")) {
@@ -198,14 +190,7 @@ public class Interac_Send_Money extends _CommonPage {
 				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(continueButton, "ContinueButton");
 				mobileAction.FunctionSwipe("down", 200, 200);
-				mobileAction.verifyElementIsDisplayed(errorMessage, "Please enter a security question"); // TODO::Take
-																											// xpath
-																											// for
-																											// ios
-																											// element
-																											// not
-																											// present
-																											// currenltly
+				mobileAction.verifyElementIsDisplayed(errorMessage, "Please enter a security question");
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(securityQuestion, "Security Question");
 				mobileAction.FuncSendKeys(securityQuestion, getTestdata("SecurityQuestion"));
@@ -228,8 +213,8 @@ public class Interac_Send_Money extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will check if the error message is displayed
-	 *         then will transfer the money on Send Money Page.
+	 * @author Ashraf This method will perform the send money transaction and
+	 *         click on continue.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -247,32 +232,27 @@ public class Interac_Send_Money extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(sendMoneyHeader, "Header " + sendMoneyHeader.getText());
 			mobileAction.FuncClick(selectRecipient, "Select Recipient");
 
-			
-			if(platformName.equalsIgnoreCase("Android")){
-			/*String recipientXpath = "//android.widget.TextView[@text='" + getTestdata("ToAccount")
-					+ "']/preceding-sibling::android.widget.RadioButton";*/
-			
-			String recipientXpath = "//android.widget.TextView[@text='" + getTestdata("ToAccount")
-			+ "']";
-			MobileElement recipient = mobileAction.mobileElementUsingXPath(recipientXpath);
-			mobileAction.FuncClick(recipient, "Recipient " + recipient.getText());
-			//mobileAction.FuncClickDone();
-			mobileAction.FunctionSwipe("up", 200, 200);
-			mobileAction.FuncClick(securityQuestion, "Security Question");
-			mobileAction.FuncSendKeys(securityQuestion, getTestdata("SecurityQuestion"));
-			mobileAction.FuncHideKeyboard();
-			mobileAction.FuncClick(securityAnswer, "Enter A security answer");
-			mobileAction.FuncSendKeys(securityAnswer, getTestdata("SecurityAnswer"));
-			mobileAction.FuncHideKeyboard();
-			mobileAction.FuncClick(confirmAnswer, "Confirm security answer");
-			mobileAction.FuncSendKeys(confirmAnswer, getTestdata("SecurityAnswer"));
-			mobileAction.FuncHideKeyboard();
-			mobileAction.FuncClick(amount, "Amount");
-			mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
-			mobileAction.FuncHideKeyboard();
-			mobileAction.FuncClick(continueButton, "ContinueButton");
-			}else{
-				
+			if (platformName.equalsIgnoreCase("Android")) {
+
+				String recipientXpath = "//android.widget.TextView[@text='" + getTestdata("ToAccount") + "']";
+				MobileElement recipient = mobileAction.mobileElementUsingXPath(recipientXpath);
+				mobileAction.FuncClick(recipient, "Recipient " + recipient.getText());
+				mobileAction.FunctionSwipe("up", 200, 200);
+				mobileAction.FuncClick(securityQuestion, "Security Question");
+				mobileAction.FuncSendKeys(securityQuestion, getTestdata("SecurityQuestion"));
+				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClick(securityAnswer, "Enter A security answer");
+				mobileAction.FuncSendKeys(securityAnswer, getTestdata("SecurityAnswer"));
+				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClick(confirmAnswer, "Confirm security answer");
+				mobileAction.FuncSendKeys(confirmAnswer, getTestdata("SecurityAnswer"));
+				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClick(amount, "Amount");
+				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
+				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClick(continueButton, "ContinueButton");
+			} else {
+
 				String recipientXpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'"
 						+ getTestdata("ToAccount") + "')]";
 				MobileElement recipient = mobileAction.mobileElementUsingXPath(recipientXpath);
@@ -291,7 +271,7 @@ public class Interac_Send_Money extends _CommonPage {
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
 				mobileAction.FuncClick(done, "Done");
 				mobileAction.FuncClick(continueButton, "ContinueButton");
-				
+
 			}
 
 		} catch (NoSuchElementException | IOException | InterruptedException e) {
@@ -301,8 +281,8 @@ public class Interac_Send_Money extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will check if the error message is displayed
-	 *         then will transfer the money on Send Money Page.
+	 * @author Ashraf This method will verify the details present on send money
+	 *         details verification screen.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -338,8 +318,8 @@ public class Interac_Send_Money extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will check if the error message is displayed
-	 *         then will transfer the money on Send Money Page.
+	 * @author Ashraf This method will will verify the success message is
+	 *         displayed on Send money transaction success screen.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -365,11 +345,10 @@ public class Interac_Send_Money extends _CommonPage {
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
-	
+
 	/**
-	 * @author Ashraf This method will check if the error message is displayed
-	 *         then will transfer the money on Send Money Page.
+	 * @author Ashraf This method will perform the quick send money transaction
+	 *         without verifying the details.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -378,10 +357,10 @@ public class Interac_Send_Money extends _CommonPage {
 	 * @return void
 	 * 
 	 */
-	public void quickSendMoney(){
-		
+	public void quickSendMoney() {
+
 		Decorator();
-		
+
 		try {
 			Transfers.get().clickInterac_e_Transfer();
 			sendMoney();
@@ -399,8 +378,7 @@ public class Interac_Send_Money extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-		
-		
+
 	}
 
 }

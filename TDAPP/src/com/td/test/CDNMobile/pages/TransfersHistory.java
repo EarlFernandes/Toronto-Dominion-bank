@@ -61,8 +61,6 @@ public class TransfersHistory extends _CommonPage {
 	private MobileElement moneySentStatus;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='PENDING' or @label='EN ATTENTE']/../following-sibling::XCUIElementTypeCell")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.TextView[@text='PENDING']/../following-sibling::android.widget.LinearLayout/android.widget.TextView[@resource-id='com.td:id/historyTransferItemName']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Sent' or @text='Envoyé']")
 	private List<MobileElement> pendingTransactions;
 
@@ -305,20 +303,6 @@ public class TransfersHistory extends _CommonPage {
 				mobileAction.verifyTextEquality(transacStatus.getText(), transStatus);
 
 			} else {
-				/*
-				 * initialsCircle = mobileAction .mobileElementUsingXPath(
-				 * "//XCUIElementTypeStaticText[@label='" + initials + "']");
-				 * receiverName = mobileAction .mobileElementUsingXPath(
-				 * "//XCUIElementTypeStaticText[@label='" + receiver + "']");
-				 * amountSent = mobileAction.mobileElementUsingXPath(
-				 * "//XCUIElementTypeStaticText[@label='" + receiver +
-				 * "']/following-sibling::XCUIElementTypeStaticText[2]");
-				 * transacStatus = mobileAction.mobileElementUsingXPath(
-				 * "//XCUIElementTypeStaticText[@label='" + receiver +
-				 * "']/following-sibling::XCUIElementTypeStaticText[@label='" +
-				 * transStatus + "' or @label='" + transStatus.toUpperCase() +
-				 * "']");
-				 */
 
 				initialsCircle = mobileAction
 						.mobileElementUsingXPath("//XCUIElementTypeButton[contains(@label,'" + initials + "')]");
@@ -399,7 +383,7 @@ public class TransfersHistory extends _CommonPage {
 	 * @return NoSuchElementException
 	 * @return IOException
 	 */
-	public void clickMoneySentSeeAll() { // new Updated
+	public void clickMoneySentSeeAll() {
 
 		int counter = 0;
 
@@ -432,7 +416,7 @@ public class TransfersHistory extends _CommonPage {
 	 * @return NoSuchElementException
 	 * @return IOException
 	 */
-	public void clickMoneyReceivedSeeAll() { // new Updated
+	public void clickMoneyReceivedSeeAll() {
 
 		Decorator();
 		try {
@@ -474,23 +458,23 @@ public class TransfersHistory extends _CommonPage {
 				transacStatus = mobileAction.mobileElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/historyTransferItemName' and @text='"
 								+ receiver + "']/following-sibling::android.widget.TextView[1]");
-				
-				
+
 				mobileAction.verifyElementIsDisplayed(receiverName, "Receiver Name: " + receiver);
 				mobileAction.verifyTextEquality(receiver, receiverName.getText());
 				mobileAction.verifyTextEquality(transStatus, transacStatus.getText());
-				
+
 			} else {
 				receiverName = mobileAction
 						.mobileElementUsingXPath("//XCUIElementTypeButton[contains(@label,'" + receiver + "')]");
-				transacStatus = mobileAction.mobileElementUsingXPath("//XCUIElementTypeButton[contains(@label,'" + receiver + "') and (contains(@label,'"+transStatus+"') or contains(@label,'"+transStatus.toUpperCase()+"'))]");
+				transacStatus = mobileAction.mobileElementUsingXPath(
+						"//XCUIElementTypeButton[contains(@label,'" + receiver + "') and (contains(@label,'"
+								+ transStatus + "') or contains(@label,'" + transStatus.toUpperCase() + "'))]");
 
 				mobileAction.verifyElementIsDisplayed(receiverName, "Receiver Name: " + receiver);
-				mobileAction.verifyTextContains(receiverName.getText(),receiver);
-				mobileAction.verifyTextContains(transacStatus.getText(),transStatus);
-				
+				mobileAction.verifyTextContains(receiverName.getText(), receiver);
+				mobileAction.verifyTextContains(transacStatus.getText(), transStatus);
+
 			}
-			
 
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -515,9 +499,6 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(viewDetailsHeader, "View Details page header");
 			mobileAction.verifyElementIsDisplayed(transactionStatus, transactionStatus.getText());
-
-			// mobileAction.verifyTextEquality(transactionStatus.getText(),
-			// getTestdata("TransactionStatus"));
 
 			mobileAction.verifyElementIsDisplayed(dateSent, "Date sent");
 			mobileAction.verifyElementIsDisplayed(dateSentVal, "Date value " + dateSentVal.getText());
@@ -556,7 +537,7 @@ public class TransfersHistory extends _CommonPage {
 	 * @return NoSuchElementException
 	 * @return IOException
 	 */
-	public void clickTransaction() { // new Updated
+	public void clickTransaction() {
 
 		Decorator();
 		try {
@@ -579,7 +560,7 @@ public class TransfersHistory extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will return the receiver name ijn a send money
+	 * @author Ashraf This method will return the receiver name in a send money
 	 *         or receive money card.
 	 * @return
 	 */
@@ -599,8 +580,9 @@ public class TransfersHistory extends _CommonPage {
 								+ receiver + "' or @text='" + receiver.toUpperCase() + "']");
 			} else {
 
-				receiverName = mobileAction
-						.mobileElementUsingXPath("//XCUIElementTypeButton[contains(@label,'" + receiver + "') and (contains(@label,'" + transStatus + "') or contains(@label,'" + transStatus.toUpperCase() + "'))]");
+				receiverName = mobileAction.mobileElementUsingXPath(
+						"//XCUIElementTypeButton[contains(@label,'" + receiver + "') and (contains(@label,'"
+								+ transStatus + "') or contains(@label,'" + transStatus.toUpperCase() + "'))]");
 
 			}
 		} catch (IOException e) {
@@ -612,13 +594,14 @@ public class TransfersHistory extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will verify the page header.
+	 * @author Ashraf This method will verify the details present on money sent
+	 *         activity page.
 	 * 
 	 * 
 	 * @return NoSuchElementException
 	 * @return IOException
 	 */
-	public void verifyActivityPage() { // new Updated
+	public void verifyActivityPage() {
 
 		Decorator();
 		try {
@@ -658,13 +641,13 @@ public class TransfersHistory extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will verify the page header.
+	 * @author Ashraf This method will click on the first received money card.
 	 * 
 	 * 
 	 * @return NoSuchElementException
 	 * @return IOException
 	 */
-	public void clickReceivedTransaction() { // new Updated
+	public void clickReceivedTransaction() {
 
 		int counter = 0;
 
@@ -699,6 +682,10 @@ public class TransfersHistory extends _CommonPage {
 		}
 	}
 
+	/**
+	 * @author Ashraf This method will return the sender element.
+	 * @return
+	 */
 	public MobileElement getSender() {
 
 		Decorator();
@@ -729,13 +716,13 @@ public class TransfersHistory extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will verify the page header.
+	 * @author Ashraf This method will verify the received transaction details.
 	 * 
 	 * 
 	 * @return NoSuchElementException
 	 * @return IOException
 	 */
-	public void verifyReceivedTransDetails() { // new Updated
+	public void verifyReceivedTransDetails() {
 
 		Decorator();
 		try {
@@ -768,13 +755,13 @@ public class TransfersHistory extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will verify the page header.
+	 * @author Ashraf This method will click on the cancel transfer button.
 	 * 
 	 * 
 	 * @return NoSuchElementException
 	 * @return IOException
 	 */
-	public void clickCancelTransferBtn() { // new Updated
+	public void clickCancelTransferBtn() {
 
 		Decorator();
 		try {
@@ -791,13 +778,13 @@ public class TransfersHistory extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will verify the page header.
+	 * @author Ashraf This method will perform the cancel transfer transaction.
 	 * 
 	 * 
 	 * @return NoSuchElementException
 	 * @return IOException
 	 */
-	public void cancelTransfer() { // new Updated
+	public void cancelTransfer() {
 
 		Decorator();
 		try {
@@ -808,7 +795,6 @@ public class TransfersHistory extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 
-				// mobileAction.FuncClick(done, "Done");
 				mobileAction.FuncClick(messageField, "Message");
 				mobileAction.FuncSendKeys(messageField, getTestdata("Message"));
 				mobileAction.FuncHideKeyboard();
@@ -832,13 +818,13 @@ public class TransfersHistory extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will verify the page header.
+	 * @author Ashraf This method will verify the cancel transfer details.
 	 * 
 	 * 
 	 * @return NoSuchElementException
 	 * @return IOException
 	 */
-	public void verifyCancelDetails() { // new Updated
+	public void verifyCancelDetails() {
 
 		Decorator();
 		try {
@@ -870,13 +856,14 @@ public class TransfersHistory extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will verify the page header.
+	 * @author Ashraf This method will verify the cancel transfer success
+	 *         message.
 	 * 
 	 * 
 	 * @return NoSuchElementException
 	 * @return IOException
 	 */
-	public void verifyCancelConfirmation() { // new Updated
+	public void verifyCancelConfirmation() {
 
 		Decorator();
 		try {
@@ -902,33 +889,22 @@ public class TransfersHistory extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will verify the page header.
+	 * @author Ashraf This method will verify all the transactions present on
+	 *         the activity page.
 	 * 
 	 * 
 	 * @return NoSuchElementException
 	 * @return IOException
 	 */
-	public void verifyTransactionOnActivity() { // new Updated
+	public void verifyTransactionOnActivity() {
 
 		Decorator();
 		try {
 
-			System.err.println("Current Locale-->"+_CommonPage.currentLocale);
-			
 			String receiver = getTestdata("ToAccount");
 			String TransacStatusXL = getTestdata("TransactionStatus");
 			getTransactionStatus();
 			String transactionCategory = null;
-
-			/*
-			 * if (transStatus.equalsIgnoreCase(mobileAction.getAppString(
-			 * "history_money_request_declined")) ||
-			 * transStatus.equalsIgnoreCase(mobileAction.getAppString(
-			 * "history_money_request_sent"))) { transactionCategory
-			 * =mobileAction.getAppString("history_list_pending_transfers"); }
-			 * else { transactionCategory =
-			 * mobileAction.getAppString("history_list_completed_transfers"); }
-			 */
 
 			if (TransacStatusXL.equalsIgnoreCase("Declined") || TransacStatusXL.equalsIgnoreCase("Sent")) {
 
@@ -960,20 +936,6 @@ public class TransfersHistory extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(transacCategory, "Transaction Category: " + transactionCategory);
 
 			} else {
-				/*
-				 * receiverName = mobileAction.mobileElementUsingXPath(
-				 * "//XCUIElementTypeStaticText[@label='" + receiver +
-				 * "' or @label='" + receiver.toUpperCase() + "']");
-				 * 
-				 * transacStatus = mobileAction.mobileElementUsingXPath(
-				 * "//XCUIElementTypeStaticText[@label='" + receiver +
-				 * "']/following-sibling::XCUIElementTypeStaticText[@label='" +
-				 * transStatus + "' or @label='" + transStatus.toUpperCase() +
-				 * "']"); transacCategory = mobileAction
-				 * .mobileElementUsingXPath(
-				 * "//XCUIElementTypeStaticText[@label='" + transactionCategory
-				 * + "']");
-				 */
 
 				receiverName = mobileAction
 						.mobileElementUsingXPath("//XCUIElementTypeButton[contains(@label,'" + receiver + "')]");
@@ -986,7 +948,7 @@ public class TransfersHistory extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(receiverName, "Receiver Name: " + receiver);
 				mobileAction.verifyTextContains(transacStatus.getText(), transStatus);
 				mobileAction.verifyElementIsDisplayed(transacCategory, "Transaction Category: " + transactionCategory);
-				
+
 			}
 
 		} catch (NoSuchElementException | IOException e) {

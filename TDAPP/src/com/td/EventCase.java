@@ -10,6 +10,7 @@ import com.td.test.CDNMobile.pages.AddCanadian_Payee;
 import com.td.test.CDNMobile.pages.AddPayee;
 import com.td.test.CDNMobile.pages.AddRecipient;
 import com.td.test.CDNMobile.pages.ApplePay;
+import com.td.test.CDNMobile.pages.AutoDepositPage;
 import com.td.test.CDNMobile.pages.Between_My_accounts;
 import com.td.test.CDNMobile.pages.Bill_PayCanada;
 import com.td.test.CDNMobile.pages.Bills;
@@ -61,6 +62,7 @@ import com.td.test.CDNMobile.pages.OrderDetails;
 import com.td.test.CDNMobile.pages.OrderReciept;
 import com.td.test.CDNMobile.pages.PayWithRewards;
 import com.td.test.CDNMobile.pages.Pay_US_Bill;
+import com.td.test.CDNMobile.pages.PaymentsAndTransfers;
 import com.td.test.CDNMobile.pages.PendingInteracTransfer;
 import com.td.test.CDNMobile.pages.Preferences;
 import com.td.test.CDNMobile.pages.Profile;
@@ -113,8 +115,8 @@ public class EventCase {
 
 		Add_Recipient_ErrorPage, AddCanadianPayee, AddPayee_SearchPayee, AddCard_MobilePayment, AddToTDMobilePayment, ApplePay_AddCard, ApplePay_SelectACard, ApplePay_CheckEligibleCard, ApplePay_ChangeDefaultCard, ApplePay_CheckPersonalCard, ApplePay_CheckBusinessCard, ApplePay_CheckDefaultCard, ApplePay_AddAllCards, ApplePay_OtherEligibleCards, Accounts_Credit_clickTransfer,
 
-		Banking_Header, Bill_PayCanada_Pay_Bill, Between_My_Accounts_RTB_permissible_transfer, 
-		
+		Banking_Header, Bill_PayCanada_Pay_Bill, Between_My_Accounts_RTB_permissible_transfer,
+
 		Between_My_accounts, Between_My_accounts_CanadianToUS, Between_My_accounts_exchange_rate_expired, Between_My_accounts_Exchange_Rate_Expired, Between_My_Accounts_LIRA, Between_My_accounts_Mobile_Rate_Expiry, Between_My_Accounts_Permissible_Transfer, Between_My_accounts_transfer, Between_My_Accounts_Transfer_less, Between_My_accounts_transfer_verify_receipt, Between_My_accounts_VerifyFromAccounts,
 
 		BetweenMyAccounts_CADTFSA_TDCTTFSA, BetweenMyAccounts_MobileRateExpiryOnSmartphones, BetweenMyAccounts_NegativeTestingTransferFunds, BetweenMyAccounts_permissible_transfer_on_mobile, BetweenMyAccounts_TDCTTFSA_CADTFSA, BetweenMyAccounts_TDCTTFSAMessage, BetweenMyAccounts_TransferNotSupported, BetweenMyAccounts_TransferTDCTCADUSDVISA,
@@ -177,15 +179,15 @@ public class EventCase {
 
 		verify_access_to_WB, Verify_account_activity_credit, Verify_Combined_Account, Verify_FP_Account, verify_login_5_times, Verify_PIA_Account, VerifyAccessCard, VerifyAccessCardDetails, VerifyActionFields, verifybill_landingpage, VerifyCombinedAccounts, verifyconfirm_order, VerifyDIAccounts, verifyErrorMessage, VerifyFPAccounts, VerifyIconDetails, VerifyInvestingScreen, VerifyNoEligibleAccounts, VerifyNoTradingAccounts, VerifyPIAAccounts, VerifyQuickIcons, VerifyReceipt, VerifySender, VerifySenderList, VerifyShareholderType, Verifytimestamp, VerifyTwoAccessCardDetails, VerifyUser, VerifyNickName, verifydefaultcard, View_profile, VerifyProfileHeader, VerifyContactInformationHeader, VerifyInitialNameforIndividual, VerifyInitialNameforBusinessUser, VerifyInitialNameInUpperCase, VerifyHomePhoneMasked, VerifyExtensionNotMasked, verifyProfileandSettingLandingPage, VerifyProfileNameLength, VerifyErrorMessage, VerifySecurityQuestionButton, VeirfySecuirtyQuestionPageheader, VerifyNotificationsButton, VeirfyNotificationsPageheader, VerifyQuickAccessSettings, VerifyQuickAccessSettingsHeader, VerifyTDForMeSettings, VerifyTDForMeSettingsHeader, VerifyWhatsNew, VerifyWhatsNewPageHeader, VerifyProfileAndSettingslink, VerifyEmailFormat, VerifyEmailIDLength, VerifyBlankEmailNotSuccesful, VerifyErrorMessageOrLength, VerifyEmailIDBlankorNot, VerifyEmailAddedSuccesful, VerifyPopUpWithCancelButton, VerifyClearTextIconDisplayed, VerifyPhoneNumberIsEmpty, VerifyTDForMeDisableSwitchFunction, VerifyTDForMeEnableSwitchFunction, ClickCustomizeNotificationlinkFromTDforMe, VerifyTDForMeNotificationPageHeader, VerifyQuickAccessSwitchWork,
 
-		VerifyPlaceHolderDisplayed, VerifyToastmessageDisplayed, VerifyPhoneEmailNotChanged, verifyQuickAccessBillPaidUpdate, ClickBackFromAppOrGooglePage, Verify_quick_link_go_back_home, Verify_quick_link_view_myaccounts, Verify_error_screen, VerifyFIFOLogic, VerifyEquityAndETFs, VerifyTradeOnLandingPage, Verify_flyoutMenu, VerfiyOptionConfirmOrderScreen, verifyOptionConfirmOrderReceipt,ClickCustomizeNotificationsLinkFromNotifications,VerifyTdforMeNotificationsHeader,VerifyEnableNotificationsSwitchFunction,
+		VerifyPlaceHolderDisplayed, VerifyToastmessageDisplayed, VerifyPhoneEmailNotChanged, verifyQuickAccessBillPaidUpdate, ClickBackFromAppOrGooglePage, Verify_quick_link_go_back_home, Verify_quick_link_view_myaccounts, Verify_error_screen, VerifyFIFOLogic, VerifyEquityAndETFs, VerifyTradeOnLandingPage, Verify_flyoutMenu, VerfiyOptionConfirmOrderScreen, verifyOptionConfirmOrderReceipt, ClickCustomizeNotificationsLinkFromNotifications, VerifyTdforMeNotificationsHeader, VerifyEnableNotificationsSwitchFunction,
 
 		ClickActivityTab, SelectFirstTransaction, VerifyTransactionDetailHeader, VerifyTransactionDetails, SelectPreviousTransaction, VerifyMFChineseContent, VerifyPurchaseMFPageInChinese, VerifyMFActivityChineseContent, VerifyFundDetailsInformationInChinese, verifyTransactionDetailsInChinese, ClickPreviewPurchase, VerifyPreviewPurchasePageHeader, VerifyPreviewPurchasePhoneFormat, VerifyPreviewPurchasePhoneNotMasked, VerifyPreviewPurchaseContentInChinese, VerifyMinimumAmount, VerifyMaximumAmount, savePhoneInforForMFVerification, saveEmailInforForMFVerification, VerifyPhoneIsPopulatedWithProfilePhone, VerifyEmailIsPopulatedWithProfileEmail, SelectLastTransaction, VerifyZeroBalance, VerifyPurchaseButtonNotpresent, VerifyUSDDisclaimer, VerifyPrepopulatedInformatiom, ClickTDForMe_Flyout, VerifyCADValueForMarketAndBookValue, VerifyUSDAmount, ClickMobilePhoneNumber, VerifyBorrowMoneyYesButton, VerifyClosingDayDisclaimer, VerifyFundfactsAcknowledgement, clickpreviewButtonWithNoForm, VerifyErrorMessageForClosedFund, VerifyErrorMessageWithoutFundSelected,
-		
-		ClickPopupCancelOrderButton,VerifyFromCADAccountToUSDMFAccountIsNotAllowed,VerifyFromUSDAccountToCADMFAccountIsNotAllowed,ClickViewfundFacts,VerifyFundfactsPageheader,GoBackToHomePage,SelectIneligibleFund,VerifyErrorMessageForIneligibleFund,ClickfundFacts,ClickBalanceTab,VerifyUSDConversionRatePresent,ClickCancelMFpurchase,VerifyCancelPopUpMessage,VerifyWarningMessageContent,
-		
-		EditMobilePhoneNumber, VerifyPurchaseMFPageHeader,VerifyEmailAddressIsEditable,SelectAccountUsingAccountName,VerifyFundDropdownList,VerifyFromAccountBeStaticAndLinked, ClickFundsTab,SelectFirstFund,SelectUSDFunds,VerifyNoMutualFundAccounts,VerifyQuickLinkDisplayed,randomlySelectOneFund,VerifyFundDetailsPageHeader,VerifyFundCategory,ClickPurchaseButton,
 
-		savePhoneInforForPFVerification, VerifyPhoneIsNotUpdatedAsMFChanges, VerifyConfirmationPageHeader, ClickPurchaseNowBtn, ClickGoBackHomeBtn, ClickViewMyAccountsBtn, VerifyQuickLinkPurchaseChineseContent, VerifyReceiptDetailChineseContent, VerifyFeedBackNTimes, VerifyCallFuntionality,ClickPurchaseMF,
+		ClickPopupCancelOrderButton, VerifyFromCADAccountToUSDMFAccountIsNotAllowed, VerifyFromUSDAccountToCADMFAccountIsNotAllowed, ClickViewfundFacts, VerifyFundfactsPageheader, GoBackToHomePage, SelectIneligibleFund, VerifyErrorMessageForIneligibleFund, ClickfundFacts, ClickBalanceTab, VerifyUSDConversionRatePresent, ClickCancelMFpurchase, VerifyCancelPopUpMessage, VerifyWarningMessageContent,
+
+		EditMobilePhoneNumber, VerifyPurchaseMFPageHeader, VerifyEmailAddressIsEditable, SelectAccountUsingAccountName, VerifyFundDropdownList, VerifyFromAccountBeStaticAndLinked, ClickFundsTab, SelectFirstFund, SelectUSDFunds, VerifyNoMutualFundAccounts, VerifyQuickLinkDisplayed, randomlySelectOneFund, VerifyFundDetailsPageHeader, VerifyFundCategory, ClickPurchaseButton,
+
+		savePhoneInforForPFVerification, VerifyPhoneIsNotUpdatedAsMFChanges, VerifyConfirmationPageHeader, ClickPurchaseNowBtn, ClickGoBackHomeBtn, ClickViewMyAccountsBtn, VerifyQuickLinkPurchaseChineseContent, VerifyReceiptDetailChineseContent, VerifyFeedBackNTimes, VerifyCallFuntionality, ClickPurchaseMF,
 
 		WatchLists_addSymbolToWatchLists, WatchLists_clickSearchBar, WatchLists_Header, Watchlists_verify_newOrderFlow_Watchlists, WatchLists_verifyRecentSearches, WatchLists_verifySymbol, WatchLists_verifySymbolAdded,
 
@@ -206,7 +208,7 @@ public class EventCase {
 
 		// P2P
 
-		Transfers_clickManageContactsLink, ManageContacts_verifyPageHEader, Interac_e_Transfer_clickContinueButton, Profile_And_Settings_clickPaymentsAndTransfers, Interac_e_Transfer_verifyErrorText, Interac_e_Transfer_registerUser, Interac_e_Transfer_verifyDetails, Interac_e_Transfer_verifyRegSuccessMessage,
+		AutoDepositPage_clickSetUpAutoDepositBtn, PaymentsAndTransfers_clickManageAutoDeposit, Transfers_clickManageContactsLink, ManageContacts_verifyPageHEader, Interac_e_Transfer_clickContinueButton, Profile_And_Settings_clickPaymentsAndTransfers, Interac_e_Transfer_verifyErrorText, Interac_e_Transfer_registerUser, Interac_e_Transfer_verifyDetails, Interac_e_Transfer_verifyRegSuccessMessage,
 
 		// Tetris Loyalty
 		CreditHeader, ClickAccount, VerifyPayWithRewards, ClickStatementTab, Env_ClearSavedCards, ClickReward, RewardHeader, ClickPayWithRewards, PayWithRewardsHeader, ClickStatement, VerifyStatementBalanceHeader, VerifyAndClickPayWithRewardsBtn, ValidateAmount, VerifyMinAndMaxPaymentBtn, PayWithRewardsNotVisible, ValidateMinPayment, VerifyReviewHeader, ClickPayNowButton, ClickCancelButton, VerifyReceiptHeader, VerifyAmountRedeem, ClickSummaryTab, ClickVisitRewards, VerifyURL, VerifyRedemptionText, VerifyNoRewards, VerifyRewardsText, VerifyCashbackText, VerifyRewardsBtn, VerifyTextcashBack, VerifyEarnedAndRedeemed, VerifyNoRewardsInQuickAccess, ClickQuickAccessSettings, DisableCardInQuickAccess, VerifyNoCardInQuickAccess, VerifyDollarRewardBalance, VerifyNoEarnedAndRedeemed, VerifyDollarDecimalValue, VerifyAmountAndContinueIsDisabled, VerifyPayWithRewardsText, VerifyRewardPointstxt, VerifyRewardPayee, VerifyRedemptionDetails, VerifyCashBack,
@@ -217,8 +219,7 @@ public class EventCase {
 
 		// P2P EUF
 
-		Interac_e_Registration_registerMultiProfileUser,Interac_e_Registration_clickRegisterAnotherProfile,Interac_e_Registration_registerBusinessUser,TransfersHistory_clickMoneyReceivedSeeAll,Transfers_clickTransferHistoryLink,Interac_e_Registration_clickGoBackHome,TransfersHistory_verifySentMoneyCard,TransfersHistory_clickMoneySentSeeAll,TransfersHistory_verifyPendingTransaction,TransfersHistory_verifyTransactionDetails,TransfersHistory_clickTransaction,TransfersHistory_verifyActivityPage,TransfersHistory_clickReceivedTransaction,TransfersHistory_verifyReceivedTransDetails,TransfersHistory_clickCancelTransferBtn,TransfersHistory_cancelTransfer,TransfersHistory_verifyCancelDetails,TransfersHistory_verifyCancelConfirmation,TransfersHistory_verifyTransactionOnActivity,ManageContacts_verifyContactDeleteSuccessMsg, ManageContacts_noDeleteContact, ManageContacts_deleteContact, ManageContacts_clickContact, ManageContacts_AddContactfromPhone, ManageContacts_clickAddContactfromPhone, ManageContacts_MultiProfileDeleteContact, Interac_e_Registration_registerPersonalUser,Interac_e_Registration_clickContinueButton, ManageContacts_verifySuccessMessage, ManageContacts_clickAddContactPlusSign, ManageContacts_clickAddContactButton, ManageContacts_editContact, ManageContacts_verifyContactEditSuccessMsg, ManageContacts_MultiProfileAddContact, ManageContacts_addContact, ManageContacts_MultiProfileEditContact, HomeScreen_clickSendMoney,Interac_Send_Money_quickSendMoney, Interac_Send_Money_sendMoneyVerifyDetails, Interac_Send_Money_sendMoney, Interac_Send_Money_sendMoneyVerifySuccessMsg, Interac_Send_Money_sendMoneyWithError, Interac_e_Registration_verifyDetails, Interac_e_Registration_verifyBusinessDetails, Interac_e_Registration_verifyRegSuccessMessage,
-
+		Interac_e_Registration_verifyErrorMessage, Interac_e_Registration_registerMultiProfileUser, Interac_e_Registration_clickRegisterAnotherProfile, Interac_e_Registration_registerBusinessUser, TransfersHistory_clickMoneyReceivedSeeAll, Transfers_clickTransferHistoryLink, Interac_e_Registration_clickGoBackHome, TransfersHistory_verifySentMoneyCard, TransfersHistory_clickMoneySentSeeAll, TransfersHistory_verifyPendingTransaction, TransfersHistory_verifyTransactionDetails, TransfersHistory_clickTransaction, TransfersHistory_verifyActivityPage, TransfersHistory_clickReceivedTransaction, TransfersHistory_verifyReceivedTransDetails, TransfersHistory_clickCancelTransferBtn, TransfersHistory_cancelTransfer, TransfersHistory_verifyCancelDetails, TransfersHistory_verifyCancelConfirmation, TransfersHistory_verifyTransactionOnActivity, ManageContacts_verifyContactDeleteSuccessMsg, ManageContacts_noDeleteContact, ManageContacts_deleteContact, ManageContacts_clickContact, ManageContacts_AddContactfromPhone, ManageContacts_clickAddContactfromPhone, ManageContacts_MultiProfileDeleteContact, Interac_e_Registration_registerPersonalUser, Interac_e_Registration_clickContinueButton, ManageContacts_verifySuccessMessage, ManageContacts_clickAddContactPlusSign, ManageContacts_clickAddContactButton, ManageContacts_editContact, ManageContacts_verifyContactEditSuccessMsg, ManageContacts_MultiProfileAddContact, ManageContacts_addContact, ManageContacts_MultiProfileEditContact, HomeScreen_clickSendMoney, Interac_Send_Money_quickSendMoney, Interac_Send_Money_sendMoneyVerifyDetails, Interac_Send_Money_sendMoney, Interac_Send_Money_sendMoneyVerifySuccessMsg, Interac_Send_Money_sendMoneyWithError, Interac_e_Registration_verifyDetails, Interac_e_Registration_verifyBusinessDetails, Interac_e_Registration_verifyRegSuccessMessage,
 
 		// OTP
 
@@ -249,80 +250,83 @@ public class EventCase {
 		//// Trade.get().verifyActionShortSellandBuyToCover();
 		//// break;
 		//
-		
+
 		case TransfersHistory_verifyTransactionOnActivity:
 			TransfersHistory.get().verifyTransactionOnActivity();
 			break;
-			
+
 		case TransfersHistory_verifyCancelConfirmation:
 			TransfersHistory.get().verifyCancelConfirmation();
 			break;
-			
+
 		case TransfersHistory_verifyCancelDetails:
 			TransfersHistory.get().verifyCancelDetails();
 			break;
-			
+
 		case TransfersHistory_cancelTransfer:
 			TransfersHistory.get().cancelTransfer();
 			break;
-			
+
 		case TransfersHistory_clickCancelTransferBtn:
 			TransfersHistory.get().clickCancelTransferBtn();
 			break;
-			
+
 		case TransfersHistory_verifyReceivedTransDetails:
 			TransfersHistory.get().verifyReceivedTransDetails();
 			break;
-			
+
 		case TransfersHistory_clickReceivedTransaction:
 			TransfersHistory.get().clickReceivedTransaction();
 			break;
-			
+
 		case TransfersHistory_verifyActivityPage:
 			TransfersHistory.get().verifyActivityPage();
 			break;
-			
+
 		case TransfersHistory_clickTransaction:
 			TransfersHistory.get().clickTransaction();
 			break;
-			
+
 		case TransfersHistory_verifyTransactionDetails:
 			TransfersHistory.get().verifyTransactionDetails();
 			break;
-			
+
 		case TransfersHistory_verifyPendingTransaction:
 			TransfersHistory.get().verifyPendingTransaction();
 			break;
-			
+
 		case TransfersHistory_clickMoneySentSeeAll:
 			TransfersHistory.get().clickMoneySentSeeAll();
 			break;
-			
+
 		case TransfersHistory_clickMoneyReceivedSeeAll:
 			TransfersHistory.get().clickMoneyReceivedSeeAll();
 			break;
-			
+
 		case TransfersHistory_verifySentMoneyCard:
 			TransfersHistory.get().verifySentMoneyCard();
 			break;
-			
+
 		case Transfers_clickTransferHistoryLink:
 			Transfers.get().clickTransferHistoryLink();
 			break;
-			
+
 		case Interac_e_Registration_clickGoBackHome:
 			Interac_e_Registration.get().clickGoBackHome();
 			break;
-			
+
 		case Interac_e_Registration_clickRegisterAnotherProfile:
 			Interac_e_Registration.get().clickRegisterAnotherProfile();
 			break;
-			
+
 		case Interac_e_Registration_registerMultiProfileUser:
 			Interac_e_Registration.get().registerMultiProfileUser();
 			break;
-			
-			
+
+		case Interac_e_Registration_verifyErrorMessage:
+			Interac_e_Registration.get().verifyErrorMessage();
+			break;
+
 		case CDNCash_Sell_StopMarket:
 			ConfirmOrder.get().cdncash_sell_stopmarket();
 			break;
@@ -593,15 +597,14 @@ public class EventCase {
 			Interac_e_Registration.get().clickContinueButton();
 			break;
 
-			
 		case Interac_e_Registration_registerPersonalUser:
 			Interac_e_Registration.get().registerPersonalUser();
 			break;
-			
+
 		case Interac_e_Registration_registerBusinessUser:
 			Interac_e_Registration.get().registerBusinessUser();
 			break;
-			
+
 		case Interac_e_Transfer_clickContinueButton:
 			Interac_e_Transfer.get().clickContinueButton();
 			break;
@@ -645,7 +648,7 @@ public class EventCase {
 		case Interac_Send_Money_sendMoney:
 			Interac_Send_Money.get().sendMoney();
 			break;
-			
+
 		case Interac_Send_Money_quickSendMoney:
 			Interac_Send_Money.get().quickSendMoney();
 			break;
@@ -1923,6 +1926,14 @@ public class EventCase {
 			Profile_And_Settings.get().clickPaymentsAndTransfers();
 			break;
 
+		case PaymentsAndTransfers_clickManageAutoDeposit:
+			PaymentsAndTransfers.get().clickManageAutoDeposit();
+			break;
+
+		case AutoDepositPage_clickSetUpAutoDepositBtn:
+			AutoDepositPage.get().clickSetUpAutoDepositBtn();
+			break;
+
 		case View_profile:
 			Profile_And_Settings.get().view_profile();
 			break;
@@ -2730,7 +2741,7 @@ public class EventCase {
 		case VerifyErrorMessageWithoutFundSelected:
 			PurchaseMutualFunds.get().VerifyErrorMessageWithoutFundSelected();
 			break;
-					
+
 		case VerifyEmailAddressIsEditable:
 			PurchaseMutualFunds.get().VerifyEmailAddressIsEditable();
 			break;
@@ -2830,7 +2841,7 @@ public class EventCase {
 		case ClickViewfundFacts:
 			PurchaseMutualFunds.get().ClickViewfundFacts();
 			break;
-			
+
 		case VerifyBorrowMoneyYesButton:
 			PurchaseMutualFunds.get().VerifyBorrowMoneyYesButton();
 			break;
@@ -2958,7 +2969,7 @@ public class EventCase {
 		case VerifyUSDConversionRatePresent:
 			FundDetails.get().VerifyUSDConversionRatePresent();
 			break;
-			
+
 		case VerifyCADValueForMarketAndBookValue:
 			FundDetails.get().VerifyCADValueForMarketAndBookValue();
 			break;
@@ -3786,4 +3797,3 @@ public class EventCase {
 	}
 
 }
-

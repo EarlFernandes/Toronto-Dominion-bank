@@ -86,16 +86,14 @@ public class Transfers extends _CommonPage {
 
 	String confirm_transfer_value = "Thank you!";
 
-	@iOSFindBy(accessibility = "TRANSFERVIEW_RECIPIENTS") //updated
+	@iOSFindBy(accessibility = "TRANSFERVIEW_RECIPIENTS")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Contacts' or @text='Gérer les destinataires']")
 	private MobileElement manageContacts;
 
-	@iOSFindBy(accessibility = "TRANSFERVIEW_PENDING") //updated
+	@iOSFindBy(accessibility = "TRANSFERVIEW_PENDING")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='History' or @text='Historique']")
 	private MobileElement transferHistory;
-	
-	
-	
+
 	/**
 	 * This method will click on Between my accounts button
 	 * 
@@ -158,10 +156,7 @@ public class Transfers extends _CommonPage {
 		initElementInteracETransfer();
 		try {
 			Thread.sleep(5000);
-			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer Header"); // added
-																						// by
-																						// Ashraf
-
+			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer Header");
 			mobileAction.FuncClick(Interac_e_Transfer_button, "Interac e_Transfer");
 
 			// mobileAction.waitForElementToVanish(progrees_Bar);
@@ -283,21 +278,24 @@ public class Transfers extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				System.out.println(mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer"));
 
-
-				/*Interac_e_Transfer_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+				/*
+				 * Interac_e_Transfer_button =
+				 * mobileAction.verifyElementUsingXPath(
+				 * "//android.widget.TextView[@text='"
+				 * 
+				 * Interac_e_Transfer_button =
+				 * mobileAction.verifyElementUsingXPath(
+				 * "//android.widget.TextView[@text='" >>>>>>>
+				 * 384be1910d268ff2c307e639bef8370e6ac28c42 +
+				 * mobileAction.getAppString(
+				 * "transfersTransfersNavRowHeaderInteracETransfer")
+				 * .replaceAll("\\<.*?>", "") + "']", "Send Money");
+				 */
 
 				Interac_e_Transfer_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
->>>>>>> 384be1910d268ff2c307e639bef8370e6ac28c42
-						+ mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer")
-								.replaceAll("\\<.*?>", "")
-						+ "']", "Send Money");*/
-				
-				Interac_e_Transfer_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("transfersTransfersNavRowHeaderSendMoney")
-								.replaceAll("\\<.*?>", "")
+						+ mobileAction.getAppString("transfersTransfersNavRowHeaderSendMoney").replaceAll("\\<.*?>", "")
 						+ "']", "Send Money");
-				
-				
+
 			}
 		} catch (NoSuchElementException | IOException e) {
 			try {
@@ -354,7 +352,6 @@ public class Transfers extends _CommonPage {
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
-	
 
 	/**
 	 * This method will click on verify the Transfer Header
@@ -440,11 +437,9 @@ public class Transfers extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("transfer_faq_question") + "']",
 						"Transfer faq");
-				mobileAction
-						.verifyElementUsingXPath(
-								"//android.widget.TextView[@text='" + mobileAction
-										.getAppString("imtHintTextManageRecipients").replaceAll("\\<.*?>", "") + "']",
-								"Add, edit or delete");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ mobileAction.getAppString("imtHintTextManageRecipients").replaceAll("\\<.*?>", "") + "']",
+						"Add, edit or delete");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction
 						.getAppString("transfersTransfersHintTextPendingInteracETransfer").replaceAll("\\<.*?>", "")
 						+ "']", "View pending");
@@ -499,7 +494,7 @@ public class Transfers extends _CommonPage {
 	 * @return NoSuchElementException
 	 * @return IOException
 	 */
-	public void clickTransferHistoryLink() {					//new Updated
+	public void clickTransferHistoryLink() {
 
 		Decorator();
 		try {
@@ -515,5 +510,4 @@ public class Transfers extends _CommonPage {
 		}
 	}
 
-	
 }

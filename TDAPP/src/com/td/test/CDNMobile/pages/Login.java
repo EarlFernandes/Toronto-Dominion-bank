@@ -153,7 +153,7 @@ public class Login extends _CommonPage {
 	private MobileElement errorText;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Session Expired')]")
-	@AndroidFindBy(xpath = "//*[contains(@label,'Session Expired')")
+	@AndroidFindBy(xpath = "//*[contains(@text,'Session Expired')")
 	private MobileElement sessionTimeout;
 
 	// FIXME: What is the identifier for this?

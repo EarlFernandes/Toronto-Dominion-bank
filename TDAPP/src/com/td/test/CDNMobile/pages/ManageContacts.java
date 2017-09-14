@@ -59,7 +59,7 @@ public class ManageContacts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subHeader' or @text='Thank you!' or @text='Merci']")
 	private MobileElement thankYou;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'contact has been  added') or contains(@name,'This contact has been added successfully') or contains(@value,'contact has been  added') or contains(@label,'Ce destinataire a été ajouté avec succès')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@label,'contact has been  added') or contains(@name,'This contact has been added successfully') or contains(@value,'Ce destinataire a été ajouté avec succès')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subSubHeader' or contains(@text,'The contact has been added successfully') or contains(@text,'Ce destinataire a été ajouté avec succès')]")
 	private MobileElement contactCreated;
 
@@ -107,7 +107,7 @@ public class ManageContacts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_footer' or @text='Done']")
 	private List<MobileElement> editDone;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'information has been updated successfully') or contains(@label,'Les renseignements sur le destinataire ont été modifiés')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@label,'information has been updated successfully') or contains(@value,'Les renseignements sur le destinataire ont été modifiés avec succès')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'information has been updated successfully') or contains(@text,'Les renseignements sur le destinataire ont été modifiés')]")
 	private MobileElement editContactSuccessMsg;
 
@@ -116,7 +116,7 @@ public class ManageContacts extends _CommonPage {
 	private MobileElement contactDeletSuccMsg;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Delete' or @label='Supprimer']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/detail_menu_delete']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/detail_menu_delete']")
 	private MobileElement deleteOption;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='No' or @label='Non']")
@@ -273,10 +273,6 @@ public class ManageContacts extends _CommonPage {
 				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(languageSpinner, "Language Drop Down");
 
-				/*String languageXL = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='" + getTestdata("Language")
-						+ "']";
-				MobileElement language = mobileAction.mobileElementUsingXPath(languageXL);*/
-
 			} else {
 				mobileAction.FuncClick(contactName, "Contact Name");
 				mobileAction.FuncSendKeys(contactName, contactNameTxt[contactCounter]);
@@ -290,22 +286,7 @@ public class ManageContacts extends _CommonPage {
 				mobileAction.FuncSendKeys(confirmEmail, getTestdata("Email"));
 				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(languageSpinner, "Language Drop Down");
-				// String
-				// languageXL="//android.widget.CheckedTextView[@text='"+getTestdata("Language")+"']";
-				// String languageXL = "//android.widget.TextView[@text='" +
-				// getTestdata("Language")
-				// + "']/preceding-sibling::android.widget.RadioButton";
-				/*
-				 * String languageXL="//android.widget.TextView[@text='" +
-				 * getTestdata("Language") + "']";
-				 * 
-				 * MobileElement language =
-				 * mobileAction.mobileElementUsingXPath(languageXL);
-				 * mobileAction.FuncClick(language, "Language " +
-				 * getTestdata("Language"));
-				 */
 
-				
 			}
 
 			if (getTestdata("Language").equalsIgnoreCase("English")) {
@@ -315,7 +296,7 @@ public class ManageContacts extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(continueButton, "Continue Button");
-			
+
 			contactCounter++;
 			if (contactCounter >= 3) {
 				contactCounter = 0;
@@ -381,8 +362,7 @@ public class ManageContacts extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will click on Add contact button on Manage
-	 *         Contacts
+	 * @author Ashraf This method will add contact from phone.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -408,17 +388,6 @@ public class ManageContacts extends _CommonPage {
 				mobileAction.verifyTextEquality(contactName.getText(), contactNme);
 				mobileAction.verifyTextEquality(email.getText(), contactMail);
 				mobileAction.FuncClick(languageSpinner, "Language Drop Down");
-				// String
-				// languageXL="//android.widget.CheckedTextView[@text='"+getTestdata("Language")+"']";
-				/*
-				 * String languageXL="//android.widget.TextView[@text='" +
-				 * getTestdata("Language") + "']";
-				 * 
-				 * MobileElement language =
-				 * mobileAction.mobileElementUsingXPath(languageXL);
-				 * mobileAction.FuncClick(language, "Language " +
-				 * getTestdata("Language"));
-				 */
 
 				if (getTestdata("Language").equalsIgnoreCase("English")) {
 					mobileAction.FuncClick(language.get(0), language.get(0).getText());
@@ -426,7 +395,6 @@ public class ManageContacts extends _CommonPage {
 					mobileAction.FuncClick(language.get(1), language.get(1).getText());
 				}
 
-				mobileAction.FuncClickDone();
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(continueButton, "Continue Button");
 			} else {
@@ -524,17 +492,6 @@ public class ManageContacts extends _CommonPage {
 				}
 
 				mobileAction.FuncClick(languageSpinner, "Language Drop Down");
-				// String
-				// languageXL="//android.widget.CheckedTextView[@text='"+getTestdata("Language")+"']";
-				/*
-				 * String languageXL="//android.widget.TextView[@text='" +
-				 * getTestdata("Language") + "']";
-				 * 
-				 * MobileElement language =
-				 * mobileAction.mobileElementUsingXPath(languageXL);
-				 * mobileAction.FuncClick(language, "Language " +
-				 * getTestdata("Language"));
-				 */
 
 				if (getTestdata("Language").equalsIgnoreCase("English")) {
 					mobileAction.FuncClick(language.get(0), language.get(0).getText());
@@ -542,7 +499,6 @@ public class ManageContacts extends _CommonPage {
 					mobileAction.FuncClick(language.get(1), language.get(1).getText());
 				}
 
-				mobileAction.FuncClick(done, "Done Button");
 				mobileAction.FuncClick(editDone.get(0), "Done Button");
 
 			} else {
@@ -568,12 +524,8 @@ public class ManageContacts extends _CommonPage {
 
 				}
 
-				/*mobileAction.FuncClick(languageSpinner, "Language Drop Down");
-				String languageXL = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='" + getTestdata("Language")
-						+ "']";
-				MobileElement language = mobileAction.mobileElementUsingXPath(languageXL);
-				mobileAction.FuncClick(language, "Language " + getTestdata("Language"));*/
-				
+				mobileAction.FuncClick(languageSpinner, "Language Drop Down");
+
 				if (getTestdata("Language").equalsIgnoreCase("English")) {
 					mobileAction.FuncClick(language.get(0), language.get(0).getText());
 				} else if (getTestdata("Language").equalsIgnoreCase("French")) {
@@ -593,8 +545,8 @@ public class ManageContacts extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will click on edit contact icon on Manage
-	 *         Contacts
+	 * @author Ashraf This method will verify the edit contact success message
+	 *         on success screen.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -616,8 +568,8 @@ public class ManageContacts extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will click on edit contact icon on Manage
-	 *         Contacts
+	 * @author Ashraf This method will click on delete contact icon but will not
+	 *         delete the contact.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -646,8 +598,8 @@ public class ManageContacts extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will click on edit contact icon on Manage
-	 *         Contacts
+	 * @author Ashraf This method will click on delete contact icon and will
+	 *         delete the contact.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -676,8 +628,8 @@ public class ManageContacts extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will click on edit contact icon on Manage
-	 *         Contacts
+	 * @author Ashraf This method will verify the delete contact success
+	 *         message.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -699,8 +651,7 @@ public class ManageContacts extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will click on edit contact icon on Manage
-	 *         Contacts
+	 * @author Ashraf This method will edit the multiprofile contact.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -745,8 +696,7 @@ public class ManageContacts extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will click on edit contact icon on Manage
-	 *         Contacts
+	 * @author Ashraf This method will delete the multiprofile contacts.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -766,8 +716,6 @@ public class ManageContacts extends _CommonPage {
 
 				clickContact();
 				noDeleteContact();
-				verifyPageHeader();
-				clickContact();
 				deleteContact();
 				verifyContactDeleteSuccessMsg();
 				mobileAction.waitForElementToVanish(progressBar);
@@ -785,8 +733,8 @@ public class ManageContacts extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will click on edit contact icon on Manage
-	 *         Contacts
+	 * @author Ashraf This method will add contact to each profile for
+	 *         multiprofile.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -808,15 +756,19 @@ public class ManageContacts extends _CommonPage {
 				addContact();
 				verifySuccessMessage();
 				// Interac_e_Registration.get().clickGoBackHome();
-				HomeScreen.get().clickMenu();
-				MenuPage.get().clickMenuTransfer();
-				Transfers.get().clickManageContactsLink();
 
-				mobileAction.waitForElementToVanish(progressBar);
+				if (platformName.equalsIgnoreCase("Android")) {
+					mobileAction.FuncClickBackButton();
+				} else {
+					HomeScreen.get().clickMenu();
+					MenuPage.get().clickMenuTransfer();
+					Transfers.get().clickManageContactsLink();
+				}
 
 				if (i != 2) {
 					for (int m = 0; m <= i; m++) {
-						mobileAction.FunctionSwipe("left", 3000, 200);
+						mobileAction.FunctionSwipe("left", 200, 100);
+						System.err.println("Swiping left");
 					}
 				}
 

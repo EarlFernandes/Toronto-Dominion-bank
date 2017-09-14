@@ -20,7 +20,7 @@ public class Profile_And_Settings extends _CommonPage {
 	String preferences = "Profile & Settings | Profil et paramètres";
 
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 
 	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres']")
@@ -68,7 +68,7 @@ public class Profile_And_Settings extends _CommonPage {
 	private MobileElement whatsnew;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Payments & Transfers']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Payments & Transfers']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Payments & Transfers' or @text='Paiements et virements']")
 	private MobileElement paymentsAndTransfers;
 
 	public synchronized static Profile_And_Settings get() {
