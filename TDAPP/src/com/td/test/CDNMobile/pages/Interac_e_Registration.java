@@ -138,6 +138,9 @@ public class Interac_e_Registration extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[contains(@content-desc,'Navigate up') or contains(@content-desc,'Parcourir vers le haut')]")
 	private MobileElement backButton;
+	
+	@AndroidFindBy(xpath = "//*[@text='Done' or @text='Annuler']")
+	private MobileElement doneButton;
 
 	String tradeResponseTxt = null;
 
@@ -354,7 +357,7 @@ public class Interac_e_Registration extends _CommonPage {
 				MobileElement tradeResponse = mobileAction.mobileElementUsingXPath(response);
 
 				mobileAction.FuncClick(tradeResponse, "Trade Response Option");
-				mobileAction.FuncClickDone();
+				mobileAction.FuncClick(doneButton, "Done");
 
 				mobileAction.FunctionSwipe("up", 200, 200);
 
@@ -507,7 +510,7 @@ public class Interac_e_Registration extends _CommonPage {
 						MobileElement profile = mobileAction.mobileElementUsingXPath(profileStr);
 
 						mobileAction.FuncClick(profile, nameArr[i]);
-						mobileAction.FuncClickDone();
+						mobileAction.FuncClick(doneButton, "Done");
 					}
 
 					if (profileArr[i].equalsIgnoreCase("Business")) {

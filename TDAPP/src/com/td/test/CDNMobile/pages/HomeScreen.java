@@ -124,7 +124,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeButton[@name='QUICKLINKS_SENDMONEY']")
+	@iOSFindBy(accessibility = "QUICKLINKS_SENDMONEY")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/send_money_dashboard']")
 	private MobileElement send_money_button;
 

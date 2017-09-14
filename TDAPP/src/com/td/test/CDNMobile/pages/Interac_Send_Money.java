@@ -131,6 +131,9 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subHeader' and (contains(@text,'The money has been sent') or contains(@text,'Les fonds ont été virés'))]")
 	private MobileElement successMessage;
 
+	@AndroidFindBy(xpath = "//*[@text='Done' or @text='Annuler']")
+	private MobileElement doneButton;
+	
 	private void Decorator() {
 		PageFactory.initElements(
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
@@ -161,7 +164,7 @@ public class Interac_Send_Money extends _CommonPage {
 						+ "']/preceding-sibling::android.widget.RadioButton";
 				MobileElement recipient = mobileAction.mobileElementUsingXPath(recipientXpath);
 				mobileAction.FuncClick(recipient, "Recipient " + recipient.getText());
-				mobileAction.FuncClickDone();
+				mobileAction.FuncClick(doneButton, "Done");
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(amount, "Amount");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
