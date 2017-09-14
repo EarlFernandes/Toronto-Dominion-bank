@@ -38,8 +38,8 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Accounts']")
 	private MobileElement my_accounts;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfers']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Transfers' or @text='Virments']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfers' or @label='Virements']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Transfers' or @text='Virements']")
 	private MobileElement transfers;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Markets']")
@@ -76,7 +76,7 @@ public class HomeScreen extends _CommonPage {
 	MobileElement investing_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'TRADE')]")
-	@AndroidFindBy(xpath = "//android.widget.TableRow[@text='TRADE']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trade']")
 	private MobileElement trade;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='VIREMENTS'] ")
@@ -105,14 +105,6 @@ public class HomeScreen extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/your_location_text_view']")
 	private MobileElement nearByLoaction;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/following-sibling::XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_location']")
-	private MobileElement searchLocation;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[2]")
-	@AndroidFindBy(xpath = "//*[@content-desc='Filter Locations']")
-	private MobileElement filter_locations_Button;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/zone_name'][1]")
 	private MobileElement zone_Name;
@@ -729,8 +721,55 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Thread.sleep(2500);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.FuncClick(back_button, "Back Button");
+			}else{
+	
+				mobileAction.FuncClickBackButton();
+			}
 
-				mobileAction.FuncClick(back_button, "BACK");
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	/**
+	 * This method will click on the Back button
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void clickbackBtnLnk() {
+		int symbolMiddleY = 0;
+		Decorator();
+		try {
+			Thread.sleep(5000);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				String symbolSearch="//XCUIElementTypeStaticText[contains(@label,'"+ getTestdata("Search")+"')]";
+				MobileElement symbolSearchVal=mobileAction.mobileElementUsingXPath(symbolSearch);
+				int leftX = symbolSearchVal.getLocation().getX();
+				int rightX = leftX + symbolSearchVal.getSize().getWidth();
+				int middleX = (rightX + leftX) / 2;
+				int upperY = symbolSearchVal.getLocation().getY();
+				int lowerY = upperY + symbolSearchVal.getSize().getHeight();
+				int middleY = (upperY + lowerY) / 2;
+				symbolMiddleY = middleY;
+				mobileAction.TapCoOrdinates(30, symbolMiddleY, "Back Button");
 			} else {
 
 				mobileAction.FuncClickBackButton();
@@ -786,34 +825,7 @@ public class HomeScreen extends _CommonPage {
 
 	}
 
-	/**
-	 * This method will click on the locations and verify the nearby locations
-	 * 
-	 * @return void
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 */
-	public void verifyLocations() {
-		Decorator();
-		try {
 
-			mobileAction.verifyElementIsDisplayed(filter_locations_Button, "Filter Locations");
-			mobileAction.verifyElementIsDisplayed(searchLocation, "Search Location");
-
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		}
-
-	}
 
 	/**
 	 * This method will click investing button from the hamburger menu. language
@@ -1061,7 +1073,50 @@ public class HomeScreen extends _CommonPage {
 
 		Decorator();
 		try {
-			mobileAction.verifyElementNotPresent(clickmenu_trade, "Menu Trade");
+			if(mobileAction.verifyElementIsPresent(clickmenu_trade)){
+				try {
+					CL.GetReporting().FuncReport("Fail", "Trade is Present");
+				} catch (IOException e) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+			}else{
+				try {
+					CL.GetReporting().FuncReport("Pass", "Trade is not Present");
+				} catch (IOException e) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+			}
+			//mobileAction.verifyElementNotPresent(clickmenu_trade, "Menu Trade");
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+	
+	
+	
+	public void menuTradePresent() throws Exception {
+
+		Decorator();
+		try {
+			if(mobileAction.verifyElementIsPresent(clickmenu_trade)){
+				try {
+					CL.GetReporting().FuncReport("Pass", "Trade is Present");
+				} catch (IOException e) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+			}else{
+				try {
+					CL.GetReporting().FuncReport("Fail", "Trade is not Present");
+				} catch (IOException e) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+			}
+			//mobileAction.verifyElementNotPresent(clickmenu_trade, "Menu Trade");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

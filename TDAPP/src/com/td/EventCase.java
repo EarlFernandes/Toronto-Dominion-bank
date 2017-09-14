@@ -33,6 +33,8 @@ import com.td.test.CDNMobile.pages.Login;
 import com.td.test.CDNMobile.pages.LoginMIT;
 import com.td.test.CDNMobile.pages.Logout;
 import com.td.test.CDNMobile.pages.MFA_ChangeAnswer;
+import com.td.test.CDNMobile.pages.MIT_DSH_FlyoutMenu;
+import com.td.test.CDNMobile.pages.MIT_DSHQuickLinks;
 import com.td.test.CDNMobile.pages.MIT_PNSAccessAlerts;
 import com.td.test.CDNMobile.pages.MIT_PNSCreateNewAlert;
 import com.td.test.CDNMobile.pages.MIT_PNSManageAlerts;
@@ -56,6 +58,7 @@ import com.td.test.CDNMobile.pages.Multitasking_System;
 import com.td.test.CDNMobile.pages.MutualFunds;
 import com.td.test.CDNMobile.pages.Notifications;
 import com.td.test.CDNMobile.pages.OTPChallenge;
+import com.td.test.CDNMobile.pages.OTPSetup;
 import com.td.test.CDNMobile.pages.Options;
 import com.td.test.CDNMobile.pages.OptionsReceiptPage;
 import com.td.test.CDNMobile.pages.OrderDetails;
@@ -104,6 +107,7 @@ import com.td.test.myspend.Spending_Insight;
 import com.td.test.myspend.TDAppHomePage;
 import com.td.test.myspend.TourPage;
 import com.td.test.myspend.TransactionHistory;
+import com.td.test.CDNMobile.pages.Branch;
 
 public class EventCase {
 
@@ -127,13 +131,13 @@ public class EventCase {
 
 		CDNCash, CDNCash_Sell_StopMarket, CDNMargin_Buy, CDNMargin_Buy_TriggerDelta, CDNMargin_Sell_TrailingStopLimit, CDNMargin_Sell_TrailingStopMarket, CDNMarginLimit, CDNMarginLimitTradePreviewOrder,
 
-		Check_Remember_Me_Default, ClickBack, clickChangeOrder, clickChangeorder_MarketToLimit, ClickContact, ClickDepositCheque, CardDetails_save,
+		Check_Remember_Me_Default, ClickBack, ClickBackBtn_Lnk, clickChangeOrder, clickChangeorder_MarketToLimit, ClickContact, ClickDepositCheque, CardDetails_save,
 
 		ClickMenu, ClickMenu_French, ClickMenuHome, clickMenuTrade, Confirm_order, Confirm_order_French, ClickPrivacy, ClickSave, ClickPhoneNumber, ClickClearText, ClickAddressDetail, ClickPopupGoBackButton,
 
 		ConfirmOrderCancel, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, ChangeDefaultCard, CardDetails_deleteicon, ConfirmPayee_InvalidAmount, EditEmailAddressWithInvalidChar,
 
-		Dashboard_Authentication, Dashboard_UnAuthentication,
+		Dashboard_Authentication, Dashboard_UnAuthentication, selectFirstLocation,
 
 		Delete_usr, Deposit_Header, DepositChequeHeader, END,
 
@@ -196,7 +200,7 @@ public class EventCase {
 		Accounts_SelectAccount, AccountsCredit_ClickPayBill, AccountsCredit_verifyLastTranaction, AccountsCredit_clickLastTranaction, Transaction_VerifyTransac, AccountsCredit_clickSummaryTab, AccountsCredit_VerifySummaryDetails, AccountsCredit_clickStatementTab, AccountsCredit_VeifyStatementDetails, StatementBalance_VerifyBalanceDetails, Bill_PayCanada_verifyCurrentBalance, Bill_PayCanada_PayBill, AccountsCredit_ClickTransfers
 
 		// trade,
-		, clickChangeorder_TSM_to_TSL, TradeTrailingStopMarket, TradeStopMarket, TradeStopMarketSell, TradeLimitDAYEXT, ClickWatchList, TradeStopLimit, OrderRecieptValidateBuy, Investing_ClickPlacedOrder, OrderDetails_Changeorder, TradeMarket, clickChangeorder_LimitToMarket, TradeLimit, TradeLimitAndTriggerDelta, TradeOrderType, TradeSymbol, TradeTrailingStopLimit, ConfirmOrderValidateBuy, verifyEmptyWatchList, ClickOrders, clickChangeorder_SM_to_SL, verifyShareHolder, confirmOrder_ClickBack, verifyBuyToCover, TradeStopLimitSell, ConfirmOrderDoNotCancel, ConfirmOrderImpInformation, ClickHoldingAndSymbol, changeOrderLimitDayToDayEXT,
+		, clickChangeorder_TSM_to_TSL, TradeTrailingStopMarket, TradeStopMarket, MenumenuTradePresent, TradeStopMarketSell, TradeLimitDAYEXT, ClickWatchList, TradeStopLimit, OrderRecieptValidateBuy, Investing_ClickPlacedOrder, OrderDetails_Changeorder, TradeMarket, clickChangeorder_LimitToMarket, TradeLimit, TradeLimitAndTriggerDelta, TradeOrderType, TradeSymbol, TradeTrailingStopLimit, ConfirmOrderValidateBuy, verifyEmptyWatchList, ClickOrders, clickChangeorder_SM_to_SL, verifyShareHolder, confirmOrder_ClickBack, verifyBuyToCover, TradeStopLimitSell, ConfirmOrderDoNotCancel, ConfirmOrderImpInformation, ClickHoldingAndSymbol, changeOrderLimitDayToDayEXT,
 
 		// MIT Multi-Leg
 
@@ -205,6 +209,10 @@ public class EventCase {
 		// MIT PNS Alerts
 
 		verifyPreLoginDashboardAlerts, verifyAlertUI, tapAlerts, verifyBackandGearIcon, verifyxCancelbutton, verifycreateAlertConditionPriceRises, verifyCreateAlertConditionPricehit52Week, verifyQuoteInformation, VerifyPriceChangesOnHeavyVolume, VerifyPrimaryEmailDeliveryPreferences, VerifySecondaryEmailDeliveryPreferences, VerifyEnablingAllDeliveryPreferences, VerifyCreateSimilarAlertConditionPriceRisesFasterThanIndex, VerifyAlertConditionPriceGapAtOpeningTrade, verifyAlertIconMODQuotesPage, verifyNotificationPrefMOD, verifyNotificationPrefFlyMenu, verifyPriceDropsBelow, verifyPriceRisesAbove, verifyEditAlertUI, verifyDefaultWhenAlertConditionChange, verifyPriceChangesFromPreviousClose, verifyPriceEarningRatioDropsBelow, verifyModPagesLoaded, verifyExceedDailyVolume, navigateToQuotePage, navigateToOrderForm, VerifyDoneConditionPriceChangesFromPreviousClose, VerifyErrorConditionPriceDropsBelowStocks, CreateAlertConditionPriceChangesFromPrevious, VerifyBackButtonOnCreateNewAlertpage, VerifyChangeConditionCreateNewAlertPage, VerifyRefreshButtonOnCreateNewAlertPage, verifyFuncFlow, VerifyClientNavigateInvestingAlertsNotifcationOFF, VerifyClientNavigateInvestingPNSAndAlertsNotifcationON, VerifyClientNavigateInvestingAlertsNotifcationSuspended,
+
+		// MIT Dashboard
+
+		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyFlyoutUnauthenticated, verifyFlyoutBankingOnlyUser, verifyFlyoutInvestingOnlyUser, verifyFlyoutBlendedyUser,
 
 		// P2P
 
@@ -223,7 +231,11 @@ public class EventCase {
 
 		// OTP
 
-		OTP_Challenge_ClickTextOption, OTP_Challenge_ClickVoiceOption, OTP_Challenge_ClickFirstPhoneNumber, OTP_Challenge_ClickGetCodeButton, OTP_Challenge_ClickSubmitCodeButton, OTP_Challenge_EnterSecurityCode, OTP_Challenge_WaitForOTPProgressBarToVanish, OTP_Challenge_VerifyInvalidSecurityCode, OTP_Challenge_ResendCode, OTP_Challenge_VerifyTooManySecurityCodesRequested,
+		OTP_Challenge_ClickTextOption, OTP_Challenge_ClickVoiceOption, OTP_Challenge_ClickGetCodeButton, OTP_Challenge_ClickSubmitCodeButton, OTP_Challenge_EnterSecurityCode, OTP_Challenge_WaitForOTPProgressBarToVanish, OTP_Challenge_VerifyInvalidSecurityCode, OTP_Challenge_ResendCode, OTP_Challenge_VerifyTooManySecurityCodesRequested,
+
+		// OTP Setup
+
+		OTP_Setup_AcceptWelcomeTCScreens, OTP_Setup_VerifyGetStartedOptionOnly, OTP_Setup_AddPhoneNumber, OTP_Setup_VerifyAddedPhoneNumber, OTP_Setup_AddPhoneContinue, OTP_Setup_VerifyAddAnotherPhoneNumberDialog, OTP_Setup_DeleteFirstPhoneNumber, OTP_Setup_VerifyDeletePhoneNumberFail, OTP_Setup_VerifyMaxPhoneNumbers, OTP_Setup_VerifyInvalidSecurityCodeFormatMsg, OTP_Setup_ClickTextOption, OTP_Setup_ClickVoiceOption, OTP_Setup_ClickFirstPhoneNumber, OTP_Setup_ClickGetCodeButton, OTP_Setup_ClickSubmitCodeButton, OTP_Setup_EnterSecurityCode, OTP_Setup_WaitForOTPProgressBarToVanish, OTP_Setup_VerifyInvalidSecurityCode, OTP_Setup_ClickAnotherPhoneNo, OTP_Setup_VerifySecurityCodeSent, OTP_Setup_TestPhonesContinue, OTP_Setup_VerifySecurityEmailScreen, OTP_Setup_EnterSecurityEmail, OTP_Setup_VerifySecurityCodeFrequencyScreen, OTP_Setup_RetrievePasscodeTest, OTP_Setup_VerifyCorrectSecurityCode, OTP_Setup_PasscodeContinue, OTP_Setup_CodeFrequencyContinue, OTP_Setup_VerifySetupComplete, OTP_Setup_EnterExpiredSecurityCode, OTP_Setup_VerifyExpiredSecurityCodeMsg, OTP_Setup_EnterIncorrectSecurityCode,
 
 		// myspend
 		Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, TourPage_clickConnectTDApp, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickGetTDAppButton, click_PreferencesLink
@@ -493,6 +505,11 @@ public class EventCase {
 		case HomeScreen_WatchLists:
 			HomeScreen.get().clickWatchLists();
 			break;
+
+		case selectFirstLocation:
+			FindLocations.get().selectFirstLocation();
+			break;
+
 		case Env_set:
 			Env_Settings.get().set_environment();
 			break;
@@ -786,6 +803,10 @@ public class EventCase {
 			HomeScreen.get().back_button();
 			break;
 
+		case ClickBackBtn_Lnk:
+			HomeScreen.get().clickbackBtnLnk();
+			break;
+
 		case OrderReciept_ordertab:
 			OrderReciept.get().ordertab();
 			break;
@@ -972,7 +993,7 @@ public class EventCase {
 			break;
 
 		case HomeScreen_Location_Details:
-			HomeScreen.get().verifyLocations();
+			Branch.get().verifyLocationDetails();
 			break;
 
 		case Login_Ntimes:
@@ -1756,6 +1777,10 @@ public class EventCase {
 			break;
 		case TradeMarket:
 			Trade.get().market();
+			break;
+
+		case MenumenuTradePresent:
+			HomeScreen.get().menuTradePresent();
 			break;
 
 		case TradeLimit:
@@ -2620,6 +2645,30 @@ public class EventCase {
 			break;
 
 		// MIT PNS Alerts END
+
+		// MIT Dashboard START
+
+		case verifyQuickLinksUnAuthenicatedUser:
+			MIT_DSHQuickLinks.get().verifyQuickLinksUnAuthenicatedUser();
+			break;
+
+		case goToDashboardHome:
+			MIT_DSHQuickLinks.get().goToDashboardHome();
+			break;
+
+		case verifyQuickLinksBankingOnlyUser:
+			MIT_DSHQuickLinks.get().verifyQuickLinksBankingOnlyUser();
+			break;
+
+		case verifyQuickLinksInvestingOnlyUser:
+			MIT_DSHQuickLinks.get().verifyQuickLinksInvestingOnlyUser();
+			break;
+
+		case verifyQuickLinksBlendedUser:
+			MIT_DSHQuickLinks.get().verifyQuickLinksBlendedUser();
+			break;
+
+		// MIT Dashboard END
 
 		case Env_DeleteDefaultCard:
 			Env_Settings.get().deleteDefaultCard();
@@ -3558,11 +3607,7 @@ public class EventCase {
 			break;
 
 		case OTP_Challenge_ClickVoiceOption:
-			OTPChallenge.get().clickTextVoice();
-			break;
-
-		case OTP_Challenge_ClickFirstPhoneNumber:
-			OTPChallenge.get().clickFirstPhoneNumber();
+			OTPChallenge.get().clickVoiceOption();
 			break;
 
 		case OTP_Challenge_EnterSecurityCode:
@@ -3591,6 +3636,135 @@ public class EventCase {
 
 		case OTP_Challenge_VerifyTooManySecurityCodesRequested:
 			OTPChallenge.get().verifyTooManySecurityCodesRequestedMsg();
+			break;
+
+		// OTP Setup
+		case OTP_Setup_VerifyGetStartedOptionOnly:
+			OTPSetup.get().verifyGetStartedOptionOnly();
+			break;
+
+		case OTP_Setup_AcceptWelcomeTCScreens:
+			OTPSetup.get().acceptWelcomeTCScreens();
+			break;
+
+		case OTP_Setup_AddPhoneNumber:
+			OTPSetup.get().addPhoneNumber();
+			break;
+
+		case OTP_Setup_VerifyAddedPhoneNumber:
+			OTPSetup.get().verifyAddedPhoneNumber();
+			break;
+
+		case OTP_Setup_AddPhoneContinue:
+			OTPSetup.get().addPhoneContinue();
+			break;
+
+		case OTP_Setup_VerifyAddAnotherPhoneNumberDialog:
+			OTPSetup.get().verifyAddAnotherPhoneNumberDialog();
+			break;
+
+		case OTP_Setup_ClickAnotherPhoneNo:
+			OTPSetup.get().clickAnotherPhoneNo();
+			break;
+
+		case OTP_Setup_DeleteFirstPhoneNumber:
+			OTPSetup.get().deleteFirstPhoneNumber();
+			break;
+
+		case OTP_Setup_VerifyDeletePhoneNumberFail:
+			OTPSetup.get().verifyDeletePhoneNumberFail();
+			break;
+
+		case OTP_Setup_VerifyMaxPhoneNumbers:
+			OTPSetup.get().verifyMaxPhoneNumbers();
+			break;
+
+		case OTP_Setup_VerifyInvalidSecurityCodeFormatMsg:
+			OTPSetup.get().verifyInvalidSecurityCodeFormatMsg();
+			break;
+
+		case OTP_Setup_ClickTextOption:
+			OTPSetup.get().clickTextOption();
+			break;
+
+		case OTP_Setup_ClickVoiceOption:
+			OTPSetup.get().clickVoiceOption();
+			break;
+
+		case OTP_Setup_ClickFirstPhoneNumber:
+			OTPSetup.get().clickFirstPhoneNumber();
+			break;
+
+		case OTP_Setup_EnterSecurityCode:
+			OTPSetup.get().enterSecurityCode();
+			break;
+
+		case OTP_Setup_EnterIncorrectSecurityCode:
+			OTPSetup.get().enterIncorrectSecurityCode();
+			break;
+
+		case OTP_Setup_ClickGetCodeButton:
+			OTPSetup.get().clickGetCodeButton();
+			break;
+
+		case OTP_Setup_VerifySecurityCodeSent:
+			OTPSetup.get().verifySecurityCodeSent();
+			break;
+
+		case OTP_Setup_ClickSubmitCodeButton:
+			OTPSetup.get().clickSubmitCodeButton();
+			break;
+
+		case OTP_Setup_VerifyInvalidSecurityCode:
+			OTPSetup.get().verifyInvalidSecurityCodeMsg();
+			break;
+
+		case OTP_Setup_WaitForOTPProgressBarToVanish:
+			OTPSetup.get().waitForOTPProgressBarToVanish();
+			break;
+
+		case OTP_Setup_TestPhonesContinue:
+			OTPSetup.get().testPhonesContinue();
+			break;
+
+		case OTP_Setup_VerifySecurityEmailScreen:
+			OTPSetup.get().verifySecurityEmailScreen();
+			break;
+
+		case OTP_Setup_EnterSecurityEmail:
+			OTPSetup.get().enterSecurityEmail();
+			break;
+
+		case OTP_Setup_VerifyCorrectSecurityCode:
+			OTPSetup.get().verifyCorrectSecurityCode();
+			break;
+
+		case OTP_Setup_VerifySecurityCodeFrequencyScreen:
+			OTPSetup.get().verifySecurityCodeFrequencyScreen();
+			break;
+
+		case OTP_Setup_PasscodeContinue:
+			OTPSetup.get().passcodeContinue();
+			break;
+
+		case OTP_Setup_CodeFrequencyContinue:
+			OTPSetup.get().codeFrequencyContinue();
+			break;
+
+		case OTP_Setup_VerifySetupComplete:
+			OTPSetup.get().verifySetupComplete();
+			break;
+
+		case OTP_Setup_EnterExpiredSecurityCode:
+			OTPSetup.get().enterExpiredSecurityCode();
+			break;
+
+		case OTP_Setup_VerifyExpiredSecurityCodeMsg:
+			OTPSetup.get().enterExpiredSecurityCode();
+			break;
+
+		case OTP_Setup_RetrievePasscodeTest:
+			OTPSetup.get().retrievePasscode();
 			break;
 
 		// MySpend
@@ -3787,6 +3961,22 @@ public class EventCase {
 			SpendingSpikes.get().spendingSpikePageMessages();
 			break;
 
+		// DSh
+		case verifyFlyoutUnauthenticated:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutUnauthenticated();
+			break;
+
+		case verifyFlyoutBankingOnlyUser:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutBankingOnlyUser();
+			break;
+
+		case verifyFlyoutInvestingOnlyUser:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutInvestingOnlyUser();
+			break;
+
+		case verifyFlyoutBlendedyUser:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutBlendedyUser();
+			break;
 		}
 	}
 

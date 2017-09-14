@@ -576,8 +576,9 @@ public class PurchaseMutualFunds extends _CommonPage {
 				System.out.println("Phone populated:" + ori_phone);
 			}
 
-			mobileAction.FuncSwipeOnce("up");
-			mobileAction.FuncClick(consent_checkbox, "consent check box");
+			//mobileAction.FuncSwipeOnce("up");
+			//mobileAction.FuncClick(consent_checkbox, "consent check box");
+			mobileAction.FuncSwipeWhileElementNotFound(consent_checkbox, true, 5, "up");
 
 		} catch (Exception e) {
 			return false;

@@ -137,7 +137,7 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Confirmation # :' and @resource-id='com.td:id/confirmation']")
 	private MobileElement confirmation_text;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Select Payee']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='PAYBILL_VIEW_PAYEE' or @label='Select Payee']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
 	private MobileElement select_payee;
 
@@ -265,7 +265,7 @@ public class Bill_PayCanada extends _CommonPage {
 			mobileAction.FuncClick(select_payee, "Select Payee");
 			String payeeAccountxpath;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				payeeAccountxpath = "//*[contains(@label, '" + payeeName + "')]";
+				payeeAccountxpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//*[contains(@label, '" + payeeName + "')]";
 			} else {
 				payeeAccountxpath = "//android.widget.TextView[contains(@text,'" + payeeName + "')]";
 			}
@@ -286,6 +286,7 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
 				selectPayee();
 				Decorator();
+				Thread.sleep(2000);
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				String Amount = getTestdata("Amount");
 				// mobileAction.FuncSendKeys(amount, Amount);

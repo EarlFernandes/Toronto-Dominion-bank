@@ -1,9 +1,11 @@
 package com.td;
 
 import java.io.IOException;
-
+import com.td._CommonPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.ScreenOrientation;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
@@ -138,6 +140,8 @@ public class MobileAction2 extends CommonLib {
 			objElement.click();
 
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
+		} catch (WebDriverException e) {
+			System.out.println("WebDriverException, ignor it");
 		} catch (Exception e) {
 			try {
 				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
@@ -1049,7 +1053,7 @@ public class MobileAction2 extends CommonLib {
 	 *             In case the element is not found within the specified
 	 *             timeout.
 	 */
-	public void FuncSendKeys(MobileElement objElement, String sTextToSend)
+	public void FuncSendKeys(WebElement objElement, String sTextToSend)
 			throws InterruptedException, IOException, TimeoutException {
 		try {
 			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
@@ -1405,8 +1409,8 @@ public class MobileAction2 extends CommonLib {
 			 * public boolean verifyElement(MobileElement mobileElement, String
 			 * text) { String elementText = mobileElement.getText();
 			 * WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-			 * wait.until(ExpectedConditions.elementToBeClickable(mobileElement)
-			 * );
+			 * wait.until(ExpectedConditions.elementToBeClickable(
+			 * mobileElement) );
 			 * 
 			 * if (elementText.equalsIgnoreCase(text)) { try {
 			 * GetReporting().FuncReport("Pass", "The text '" + text +
@@ -1559,20 +1563,31 @@ public class MobileAction2 extends CommonLib {
 		 */
 	}
 
-	public boolean verifyElementNotPresent(MobileElement mobileElement, String expectedText) {
-		WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
-		wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
+	public boolean verifyElementNotPresent(WebElement mobileElement, String expectedText) {
 
-		if (mobileElement.isDisplayed() == true) {
-			try {
-				GetReporting().FuncReport("Fail", "The '" + expectedText + "' is verified");
-			} catch (IOException e) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		try {
+			WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
+			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
+
+			if (mobileElement.isDisplayed() == true) {
+				try {
+					GetReporting().FuncReport("Fail", "The '" + expectedText + "' is verified");
+				} catch (IOException e) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				return true;
+			} else {
+				try {
+					GetReporting().FuncReport("Pass", "The '" + expectedText + "' is not verified");
+				} catch (IOException e) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				return false;
 			}
-			return true;
-		} else {
+
+		} catch (Exception ex) {
 			try {
-				GetReporting().FuncReport("Pass", "The '" + expectedText + "' is not verified");
+				GetReporting().FuncReport("Pass", "The '" + expectedText + "' is not present");
 			} catch (IOException e) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
@@ -1730,14 +1745,14 @@ public class MobileAction2 extends CommonLib {
 	public boolean verifyTextEquality(String text1, String text2) {
 		if (text1.equalsIgnoreCase(text2)) {
 			try {
-				GetReporting().FuncReport("Pass", "The text "+text1+" is verified");
+				GetReporting().FuncReport("Pass", "The text " + text1 + " is verified");
 			} catch (IOException e) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			return true;
 		} else {
 			try {
-				GetReporting().FuncReport("Fail", "The text "+text1+" is not verified");
+				GetReporting().FuncReport("Fail", "The text " + text1 + " is not verified");
 			} catch (IOException e) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
@@ -1745,11 +1760,10 @@ public class MobileAction2 extends CommonLib {
 		}
 
 	}
-	
-	
+
 	/**
-	 * @author Ashraf
-	 * This method will verify if the text1 contains the value present in text2.
+	 * @author Ashraf This method will verify if the text1 contains the value
+	 *         present in text2.
 	 * @param text1
 	 * @param text2
 	 * @return
@@ -1757,14 +1771,14 @@ public class MobileAction2 extends CommonLib {
 	public boolean verifyTextContains(String text1, String text2) {
 		if (text1.contains(text2) || text1.contains(text2.toUpperCase()) || text1.contains(text2.toLowerCase())) {
 			try {
-				GetReporting().FuncReport("Pass", "The text "+text1+" is verified");
+				GetReporting().FuncReport("Pass", "The text " + text1 + " is verified");
 			} catch (IOException e) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			return true;
 		} else {
 			try {
-				GetReporting().FuncReport("Fail", "The text "+text1+" is not verified");
+				GetReporting().FuncReport("Fail", "The text " + text1 + " is not verified");
 			} catch (IOException e) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
@@ -2815,10 +2829,10 @@ public class MobileAction2 extends CommonLib {
 	public MobileElement mobileElementUsingXPath(String objElement) throws IOException {
 
 		MobileElement objMobileElement = null;
-		
-		try{
-		objMobileElement = (MobileElement) ((AppiumDriver) GetDriver()).findElement(By.xpath(objElement));
-		}catch(Exception e){
+
+		try {
+			objMobileElement = (MobileElement) ((AppiumDriver) GetDriver()).findElement(By.xpath(objElement));
+		} catch (Exception e) {
 			System.err.println("Element not found");
 		}
 		return objMobileElement;
@@ -2995,7 +3009,7 @@ public class MobileAction2 extends CommonLib {
 			}
 
 		} else {
-			back_xpath = "//*[@label='Back' or @label='Retour']";
+			back_xpath = "//*[@name='NAVIGATION_ITEM_BACK']";
 		}
 		try {
 			MobileElement back_arrow = (MobileElement) GetDriver().findElement(By.xpath(back_xpath));
@@ -3366,11 +3380,18 @@ public class MobileAction2 extends CommonLib {
 		// what language)
 
 		try {
-			String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
-					+ getAppString("secureLoginEditButtonDone") + "' or @text='Done' or @text='Annuler']";
-			MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
-			Done.click();
-			GetReporting().FuncReport("Pass", "The element <b>  Done </b> Clicked");
+
+			if (isOrientationLandscape() && isGoOnKeyBoard()) {
+				HideKeyBoard_IOS();
+				GetReporting().FuncReport("Pass", "The Key board was hidden");
+			} else {
+				String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
+						+ getAppString("secureLoginEditButtonDone") + "']";
+				MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
+				Done.click();
+				GetReporting().FuncReport("Pass", "The element <b>  Done </b> Clicked");
+			}
+
 		} catch (Exception e) {
 			try {
 				GetReporting().FuncReport("Fail", "The element <b> Done </b> not present in current page");
@@ -3517,25 +3538,128 @@ public class MobileAction2 extends CommonLib {
 			}
 		}
 	}
-	
-	
-	public void getPageSource(){
-		
+
+	public void getPageSource() {
+
 		try {
 			Thread.sleep(3000);
 			System.out.println(GetDriver().getPageSource());
 		} catch (InterruptedException e) {
 			System.err.println("Failed to fetch the page source");
 		}
-		
+
 	}
-	
-	
-	public void dumpAppKeys(){
-		Iterator<String> itr=_CommonPage.appStringMap.keySet().iterator();
-		Iterator<String> itr1=_CommonPage.appStringMap.values().iterator();
-		while(itr.hasNext() && itr1.hasNext()){
-			System.out.println(itr.next()+" = "+itr1.next());
+
+	public void dumpAppKeys() {
+		Iterator<String> itr = _CommonPage.appStringMap.keySet().iterator();
+		Iterator<String> itr1 = _CommonPage.appStringMap.values().iterator();
+		while (itr.hasNext() && itr1.hasNext()) {
+			System.out.println(itr.next() + " = " + itr1.next());
+		}
+	}
+
+	public void FuncVerifyTextEquals(MobileElement mElement, String sExpected) // Author
+																				// -
+																				// Sushil
+																				// 28-Aug-2017
+	{
+		String sActual = "";
+
+		try {
+			sActual = FuncGetText(mElement);
+			if (sActual.equals(sExpected))
+				GetReporting().FuncReport("Pass", "Expected : " + sExpected + " Actual : " + sActual);
+			else
+				GetReporting().FuncReport("Fail", "Expected : " + sExpected + " Actual : " + sActual);
+
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "<b> Exception in FuncVerifyTextEquals()" + "</b>");
+				e.printStackTrace();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	public double convertStringAmountTodouble(String amount) {
+		String amount_no_char = amount.replaceAll("\\$", "");
+		amount_no_char = amount_no_char.replaceAll("USD", "");
+		amount_no_char = amount_no_char.replaceAll(",", "");
+		return Double.parseDouble(amount_no_char.trim());
+	}
+
+	public void HideKeyBoard_IOS() {
+		IOSDriver<WebElement> ios_driver = (IOSDriver) (GetAppiumDriver());
+		ios_driver.getKeyboard().sendKeys(Keys.RETURN);
+		System.out.println("Hide IOS key Board");
+	}
+
+	public boolean isOrientationLandscape() {
+		try {
+			ScreenOrientation currentOrientation = GetAppiumDriver().getOrientation();
+			System.out.println("Orientation:" + currentOrientation);
+			if (currentOrientation == ScreenOrientation.LANDSCAPE) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (WebDriverException e) {
+			// Rotating screen to right may get exception here
+			System.out.println("Orientation:landscaperight");
+			return true;
+		} catch (Exception e) {
+			System.out.println("Unknown exception");
+			return true;
+		}
+	}
+
+	public boolean isGoOnKeyBoard() {
+		try {
+			String goePath = "//*[@name='Go']";
+			MobileElement GoOnKeyBoard = (MobileElement) GetAppiumDriver().findElement(By.xpath(goePath));
+			System.out.println("Go is found on keyboard");
+			return true;
+		} catch (Exception e) {
+			System.out.println("Done is found on keyboard");
+			return false;
+		}
+	}
+
+	/**
+	 * This method will scroll element into view
+	 * 
+	 * @param objElement
+	 * @param text
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * @throws NoSuchElementException
+	 */
+	public void FuncScrollIntoView(WebElement objElement, String text)
+			throws InterruptedException, IOException, NoSuchElementException {
+		try {
+			((JavascriptExecutor) GetDriver()).executeScript("arguments[0].scrollIntoView(true);", objElement);
+			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> is scrolled into view");
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> is not scrolled into view");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			throw e;
+		}
+	}
+
+	public MobileElement getMobileElement(By element) {
+
+		try {
+
+			return (MobileElement) ((AppiumDriver) GetDriver()).findElement(element);
+
+		} catch (Exception e) {
+
+			return null;
+
 		}
 
 	}

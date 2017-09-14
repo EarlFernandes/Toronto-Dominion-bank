@@ -248,9 +248,9 @@ public class PreviewPurchase extends _CommonPage {
 			String disclaimerInfo = getTextInCurrentLocale(StringArray.ARRAY_MF_DISCLAIMER_INFO);
 			String capturedText = mobileAction.getValue(disclaimer_info);
 			capturedText = capturedText.trim().replaceAll("\n", "");
-			capturedText = capturedText.replaceAll(" ", "");
-			capturedText = capturedText.replaceAll(" ", "");// empty space of
-															// Chinese char
+//			capturedText = capturedText.replaceAll(" ", "");
+//			capturedText = capturedText.replaceAll(" ", "");// empty space of
+//															// Chinese char
 			System.out.println("Captured:" + capturedText);
 			mobileAction.verifyTextEquality(capturedText, disclaimerInfo);
 
@@ -369,7 +369,8 @@ public class PreviewPurchase extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 
 				String acceptedXpath = "//android.widget.TextView[@text='"
-						+ getTextInCurrentLocale(StringArray.ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE) + "']";
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE)
+						+ "']/following-sibling::android.widget.RelativeLayout/android.widget.TextView";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(acceptedXpath, false, 5, "up");
 
 				fund_facts_acknowledgement = mobileAction.verifyElementUsingXPath(acceptedXpath,
@@ -378,13 +379,9 @@ public class PreviewPurchase extends _CommonPage {
 				mobileAction.FuncSwipeWhileElementNotFound(fund_facts_acknowledgement, false, 5, "up");
 			}
 
-			String acknowlegmentText = mobileAction.getValue(fund_facts_acknowledgement);
-			System.out.println("acknowlegmentText:" + acknowlegmentText);
-			if (acknowlegmentText.toLowerCase().contains("yes") || acknowlegmentText.toLowerCase().contains("oui")) {
-				mobileAction.Report_Pass_Verified("Fund acknowledgement is " + acknowlegmentText);
-			} else {
-				mobileAction.Report_Fail("Fund acknowledgement is " + acknowlegmentText);
-			}
+			mobileAction.verifyElementTextIsDisplayed(fund_facts_acknowledgement,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE_ANSWER));
+
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

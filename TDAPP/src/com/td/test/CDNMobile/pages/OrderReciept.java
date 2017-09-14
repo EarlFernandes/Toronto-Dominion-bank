@@ -79,8 +79,8 @@ public class OrderReciept extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Good 'til']")
 	private MobileElement btnorders;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='ORDERS']")
-	@AndroidFindBy(xpath = "android.widget.TextView[@text='ORDERS']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Orders']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='ORDERS']")
 	private MobileElement ordersicon;
 
 	@iOSFindBy(xpath = " //XCUIElementTypeStaticText[contains(@label,'Receipt')]")
@@ -100,10 +100,12 @@ public class OrderReciept extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[contains(@text,'Receipt') or contains(@text,'Reçu')]")
 	private MobileElement receipt_header;
 
-	@AndroidFindBy(xpath = "android.widget.TextView[@text='GO BACK HOME']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Home']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='GO BACK HOME' or @text='HOME']") 
 	private MobileElement gohomeicon;
 
-	@AndroidFindBy(xpath = "android.widget.TextView[@text='TRADE']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Trade']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='TRADE']") 
 	private MobileElement tradeicon;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu']")
@@ -117,7 +119,7 @@ public class OrderReciept extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='My Accounts']")
 	private MobileElement accounts_header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'our request to cancel the order was received.')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Your request to cancel the order was received.')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/thank_you' and @text='Thank you!']")
 	private MobileElement verify_cancel_order;
 
@@ -520,6 +522,9 @@ public class OrderReciept extends _CommonPage {
 	public void quicklinkicon() {
 		try {
 			Decorator();
+			if(!mobileAction.verifyElementIsPresent(gohomeicon)){
+				mobileAction.FuncSwipeOnce("up");
+			}
 			mobileAction.verifyElementIsDisplayed(gohomeicon, "Verify Go Back Home Icon");
 			mobileAction.verifyElementIsDisplayed(ordersicon, "Verify Orders Icon");
 			mobileAction.verifyElementIsDisplayed(tradeicon, "Verify Trade Icon");
@@ -591,7 +596,12 @@ public class OrderReciept extends _CommonPage {
 
 		Decorator();
 		try {
-			mobileAction.FuncClick(ordersicon, "Order");
+			if(mobileAction.verifyElementIsPresent(ordersicon)){
+				mobileAction.FuncClick(ordersicon, "Order");
+			}else{
+				mobileAction.FunctionSwipe("up", 200, 100);
+				mobileAction.FuncClick(ordersicon, "Order");
+			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

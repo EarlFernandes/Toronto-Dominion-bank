@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import org.apache.commons.lang3.StringUtils;
-
 import com.td.mainframe.Executor;
 
 public class MainScreen extends _CommonPage {
@@ -33,7 +32,7 @@ public class MainScreen extends _CommonPage {
 			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName",
 			"Passcode", "NewPasscode", "Email", "Name", "EmailProfile", "PhoneProfile", "PostSurveyText", "Response",
 			"ProfileType", "SecurityQuestion", "OTPSecurityCode", "UserProfileType", "SecurityQuestion", "Category",
-			"TransactionStatus", "Message" };
+			"TransactionStatus", "Message", "Nickname" };
 
 	public void readSheet() {
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
@@ -141,7 +140,6 @@ public class MainScreen extends _CommonPage {
 			}
 
 		}
-
 	}
 
 	// Singleton object of self

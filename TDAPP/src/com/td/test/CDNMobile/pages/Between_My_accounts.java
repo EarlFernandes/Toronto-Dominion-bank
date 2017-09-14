@@ -280,13 +280,6 @@ public class Between_My_accounts extends _CommonPage {
 
 	}
 
-	private double convertStringAmount(String amount) {
-		String amount_no_char = amount.replaceAll("\\$", "");
-		amount_no_char = amount_no_char.replaceAll("USD", "");
-		amount_no_char = amount_no_char.replaceAll(",", "");
-		return Double.parseDouble(amount_no_char.trim());
-	}
-
 	public void perFormTransfer() {
 		Decorator();
 		try {
@@ -1656,14 +1649,14 @@ public class Between_My_accounts extends _CommonPage {
 			}
 
 			double fromAccountValueBefore_d, toAccountValueBefore_d, transferValueCAN_d, transferValueUS_d = 0;
-			fromAccountValueBefore_d = convertStringAmount(fromAccountValueBefore);
+			fromAccountValueBefore_d = mobileAction.convertStringAmountTodouble(fromAccountValueBefore);
 			System.out.println("From account value before transfer:" + fromAccountValueBefore_d);
-			toAccountValueBefore_d = convertStringAmount(toAccountValueBefore);
+			toAccountValueBefore_d = mobileAction.convertStringAmountTodouble(toAccountValueBefore);
 			System.out.println("To account value before transfer:" + toAccountValueBefore_d);
-			transferValueCAN_d = convertStringAmount(transferValueCAN);
+			transferValueCAN_d = mobileAction.convertStringAmountTodouble(transferValueCAN);
 			System.out.println("transfer amount CAN:" + transferValueCAN_d);
 			if (is_fromaccount_usd || is_toaccount_usd) {
-				transferValueUS_d = convertStringAmount(transferValueUS);
+				transferValueUS_d = mobileAction.convertStringAmountTodouble(transferValueUS);
 				System.out.println("transfer amount USA:" + transferValueUS_d);
 			}
 
@@ -1675,8 +1668,8 @@ public class Between_My_accounts extends _CommonPage {
 				fromAccountValueAfter = mobileAction.FuncGetValByRegx(fromAccountValueAfter, "\\$\\d+,*\\d+\\.\\d+");
 				toAccountValueAfter = mobileAction.FuncGetValByRegx(toAccountValueAfter, "\\$\\d+,*\\d+\\.\\d+");
 			}
-			double fromAccountValueAfter_d = convertStringAmount(fromAccountValueAfter);
-			double toAccountValueAfter_d = convertStringAmount(toAccountValueAfter);
+			double fromAccountValueAfter_d = mobileAction.convertStringAmountTodouble(fromAccountValueAfter);
+			double toAccountValueAfter_d = mobileAction.convertStringAmountTodouble(toAccountValueAfter);
 			System.out.println("From account value after transfer:" + fromAccountValueAfter_d);
 			System.out.println("To account value after transfer:" + toAccountValueAfter_d);
 
