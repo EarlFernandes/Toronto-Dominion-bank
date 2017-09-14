@@ -10,6 +10,7 @@ import com.td.test.CDNMobile.pages.AddCanadian_Payee;
 import com.td.test.CDNMobile.pages.AddPayee;
 import com.td.test.CDNMobile.pages.AddRecipient;
 import com.td.test.CDNMobile.pages.ApplePay;
+import com.td.test.CDNMobile.pages.AutoDepositPage;
 import com.td.test.CDNMobile.pages.Between_My_accounts;
 import com.td.test.CDNMobile.pages.Bill_PayCanada;
 import com.td.test.CDNMobile.pages.Bills;
@@ -64,6 +65,7 @@ import com.td.test.CDNMobile.pages.OrderDetails;
 import com.td.test.CDNMobile.pages.OrderReciept;
 import com.td.test.CDNMobile.pages.PayWithRewards;
 import com.td.test.CDNMobile.pages.Pay_US_Bill;
+import com.td.test.CDNMobile.pages.PaymentsAndTransfers;
 import com.td.test.CDNMobile.pages.PendingInteracTransfer;
 import com.td.test.CDNMobile.pages.Preferences;
 import com.td.test.CDNMobile.pages.Profile;
@@ -85,6 +87,7 @@ import com.td.test.CDNMobile.pages.TradeMIT;
 import com.td.test.CDNMobile.pages.TradeMultiLeg;
 import com.td.test.CDNMobile.pages.Transaction;
 import com.td.test.CDNMobile.pages.Transfers;
+import com.td.test.CDNMobile.pages.TransfersHistory;
 import com.td.test.CDNMobile.pages.WatchLists;
 import com.td.test.CDNMobile.pages.WhatsNew;
 import com.td.test.CDNMobile.pages.PurchaseMutualFunds;
@@ -170,7 +173,7 @@ public class EventCase {
 
 		PermissibleTransfer, Preferences_Update_Question, PendingTransfer_Cancel, PlaceHolderText, QuickAccess, SearchPage_searchBar, Select_Account, SenderList_Cancel, Session_expired, SetupWalletPasscode,
 
-		TDDirectInvestingContact, Trade_changeAccountTypeLongtoShortFre_French, Trade_clickAction, Trade_clickCross, Trade_clickFundFactLink, Trade_clickMutualFunds, Trade_clickMutualPreviewOrder, Trade_clickOnAgree, Trade_clickOnPreviewOrderBtn, Trade_clickOptions, Trade_clickOrderType, Trade_clickOrderType_French, Trade_clickQuantity, Trade_clickStockETFs, Trade_clickSymbol, Trade_clickSymbol_French, Trade_confirmCancelOrder, Trade_ConfirmSendOrder, Trade_createMutualfund, Trade_Details, Trade_enterAmount, Trade_enterAndSearch, Trade_enterTradingPassword, Trade_includesComission, Trade_Limit, Trade_nosearch, Trade_placeStockOrder, Trade_selectAccount, Trade_selectAcknowledgement, Trade_selectDividendOption, Trade_selectMutualQuantity, Trade_selectMutualSymbol, Trade_selectQuantity, Trade_sendOrder, Trade_trade_account, Trade_Trigger, Trade_verifyMutualConfirmDetails,Trade_verify_MutualConfirmDetails,Tab_OrderReciept_ordermenu, Trade_verifymutualconfirmsell, Trade_verifyRelaventMatchInResult, Trade_verifysearchbar, Trade_verifySendOrderDisplayed, Trade_verifySendOrderState, Trade_verifySuccessMessage, Trade_verifySwitchMutualConfirmDetails,Trade_verifyMutualFundDetails, Trade_verifySymbol, Trade_verifyTrade, Trade_verifyTradeActionShortAccountFre_French, TradeAccount, TradeAccount_French, TradeAction, TradeAction_French, TradeAgree, TradeAgree_French, TradeDate, TradeGoodTill, TradeGoodTill_French, TradeHeader, TradeIcon, TradeLimitPrice, TradeMarginAccount, TradePreviewOrder, TradePreviewOrder_French, TradePrice, TradePrice_French, TradeQuantity, TradeQuantity_French, TradeShareHolder, TradeTriggerDelta, TradeTriggerPrice, TradeTriggerPrice_French, TradingPassword, TradingPassword_French,
+		TDDirectInvestingContact, Trade_changeAccountTypeLongtoShortFre_French, Trade_clickAction, Trade_clickCross, Trade_clickFundFactLink, Trade_clickMutualFunds, Trade_clickMutualPreviewOrder, Trade_clickOnAgree, Trade_clickOnPreviewOrderBtn, Trade_clickOptions, Trade_clickOrderType, Trade_clickOrderType_French, Trade_clickQuantity, Trade_clickStockETFs, Trade_clickSymbol, Trade_clickSymbol_French, Trade_confirmCancelOrder, Trade_ConfirmSendOrder, Trade_createMutualfund, Trade_Details, Trade_enterAmount, Trade_enterAndSearch, Trade_enterTradingPassword, Trade_includesComission, Trade_Limit, Trade_nosearch, Trade_placeStockOrder, Trade_selectAccount, Trade_selectAcknowledgement, Trade_selectDividendOption, Trade_selectMutualQuantity, Trade_selectMutualSymbol, Trade_selectQuantity, Trade_sendOrder, Trade_trade_account, Trade_Trigger, Trade_verifyMutualConfirmDetails, Trade_verify_MutualConfirmDetails, Tab_OrderReciept_ordermenu, Trade_verifymutualconfirmsell, Trade_verifyRelaventMatchInResult, Trade_verifysearchbar, Trade_verifySendOrderDisplayed, Trade_verifySendOrderState, Trade_verifySuccessMessage, Trade_verifySwitchMutualConfirmDetails, Trade_verifyMutualFundDetails, Trade_verifySymbol, Trade_verifyTrade, Trade_verifyTradeActionShortAccountFre_French, TradeAccount, TradeAccount_French, TradeAction, TradeAction_French, TradeAgree, TradeAgree_French, TradeDate, TradeGoodTill, TradeGoodTill_French, TradeHeader, TradeIcon, TradeLimitPrice, TradeMarginAccount, TradePreviewOrder, TradePreviewOrder_French, TradePrice, TradePrice_French, TradeQuantity, TradeQuantity_French, TradeShareHolder, TradeTriggerDelta, TradeTriggerPrice, TradeTriggerPrice_French, TradingPassword, TradingPassword_French,
 
 		Trans_TFSA_To_Othr_Accounts, Transfer_InteracTransfer, TransferHeader, Transfers, Transfers_Click_Between_My_Accounts, Transfers_clickInterac_e_Transfer, Transfers_clickPendingInterac_e_Transfer, Transfers_ManageRecipients,
 
@@ -213,7 +216,7 @@ public class EventCase {
 
 		// P2P
 
-		Transfers_clickManageContactsLink, ManageContacts_verifyPageHEader, Interac_e_Transfer_clickContinueButton, Profile_And_Settings_clickPaymentsAndTransfers, Interac_e_Transfer_verifyErrorText, Interac_e_Transfer_registerUser, Interac_e_Transfer_verifyDetails, Interac_e_Transfer_verifyRegSuccessMessage,
+		AutoDepositPage_clickSetUpAutoDepositBtn, PaymentsAndTransfers_clickManageAutoDeposit, Transfers_clickManageContactsLink, ManageContacts_verifyPageHEader, Interac_e_Transfer_clickContinueButton, Profile_And_Settings_clickPaymentsAndTransfers, Interac_e_Transfer_verifyErrorText, Interac_e_Transfer_registerUser, Interac_e_Transfer_verifyDetails, Interac_e_Transfer_verifyRegSuccessMessage,
 
 		// Tetris Loyalty
 		CreditHeader, ClickAccount, VerifyPayWithRewards, ClickStatementTab, Env_ClearSavedCards, ClickReward, RewardHeader, ClickPayWithRewards, PayWithRewardsHeader, ClickStatement, VerifyStatementBalanceHeader, VerifyAndClickPayWithRewardsBtn, ValidateAmount, VerifyMinAndMaxPaymentBtn, PayWithRewardsNotVisible, ValidateMinPayment, VerifyReviewHeader, ClickPayNowButton, ClickCancelButton, VerifyReceiptHeader, VerifyAmountRedeem, ClickSummaryTab, ClickVisitRewards, VerifyURL, VerifyRedemptionText, VerifyNoRewards, VerifyRewardsText, VerifyCashbackText, VerifyRewardsBtn, VerifyTextcashBack, VerifyEarnedAndRedeemed, VerifyNoRewardsInQuickAccess, ClickQuickAccessSettings, DisableCardInQuickAccess, VerifyNoCardInQuickAccess, VerifyDollarRewardBalance, VerifyNoEarnedAndRedeemed, VerifyDollarDecimalValue, VerifyAmountAndContinueIsDisabled, VerifyPayWithRewardsText, VerifyRewardPointstxt, VerifyRewardPayee, VerifyRedemptionDetails, VerifyCashBack,
@@ -223,7 +226,8 @@ public class EventCase {
 		AccountsCredit_VerifyActivityText, AccountsCredit_VerifyCreditText, AccountsCredit_VerifySummaryText, Accounts_VerifyTextOpenNewAccount, AccountsCredit_VerifyTabTextElements, AddPayee_VerifyTextReview, AddPayee_VerifyTextReviewUS, AddPayee_VerifyTextConfirmation, AddPayee_VerifyTextSuccess, AddPayee_VerifyTextSelectUSAddress, Between_My_accounts_VerifyTextElements, Between_My_accounts_performTransferToConfirmation, Between_My_accounts_performTransferToSuccess, Between_My_accounts_VerifyConfirmationText, Between_My_accounts_VerifySuccessText, Bills_ScheduledPayments_VerifyText, Bills_VerifyTextElements, Bills_VerifyTextConfirmCancelScheduledPayment, Bills_VerifyTextNoCanadianPayeesAdded, CrossBorderBanking_ClickLogin, CrossBorderBanking_VerifyTextLoginPopup, CrossBorderBanking_VerifyTextWelcomePage, ClickCrossBorderBanking, ClickTDForMe, ClickTDMySpend, ClickChequeDepositHistory, ClickAddRecipientFromContactsList, ContactUs_VerifyTextElements, HomeScreen_VerifyTextElements, HomeScreen_ClickOpenNewAccount, LoginScreen_VerifyTextElements, HomeScreenDashboardButtons_VerifyTextEelements, Interac_VerifyTextElements, Interac_e_Transfer_VerifyConfirmationText, PendingInterac_e_Transfer_cancel_confirmation_VerifyText, Interac_e_Transfer_VerifySuccessText, Investing_VerifyTextOpenNewAccount, Logout_VerifyTextElements, ManagePayee_AddUSPayee, ManagePayee_VerifyTextSearchPayee, ManagePayees_VerifySpecificPayeeTextElements, ManagePayees_VerifyTextElements, ManageRecipient_ClickAddRecipient, ManageRecipient_VerifyTextEditRecipientInfo, ManageRecipient_VerifyTextAddRecipientConfirmation, ManageRecipient_VerifyTextAddRecipientSuccess, ManageRecipient_ClickYesAddRecipientFromContacts, ManageRecipient_VerifyTextAddRecipientFromContactsList, ManageRecipients_VerifyTextElements, ManageRecipient_VerifyTextAddRecipient, ManageRecipient_VerifyTextRecipientInfo, ManageRecipient_VerifyTextContactsPopUp, Menu_VerifyTextElements, MobileDeposit_VerifyTextElements, MobileDeposit_VerifyTextElementsIneligible, MobileDeposit_VerifyTextDepositCheque, MobileDeposit_VerifyTextDepositChequeHistory, MobileDeposit_VerifyTextChequeDetails, PayBill_US_VerifyTextElements, PayBill_US_VerifyTextElementsNeverRegistered, PayBill_US_VerifyTextElementsSuccess, PayBill_Canada_VerifyTextElementsConfirmation, PayBill_US_VerifyTextElementsConfirmation, PayBill_Canada_VerifyTextElements, PendingInterac_e_Transfer_VerifyText, PendingInterac_e_Transfer_cancel_deposit_to_VerifyText, QuickAccess_VerifyActivateText, QuickAccess_VerifyFTEText, Transfer_VerifyTextElements, InvestingAccountSummary_verifyDetails, InvestingAccountSummary_verifyCreditCardSummaryDetails, InvestingAccountSummary_verifyCreditCardActivityDetails, InvestingAccountSummary_verifyCreditCardPaymentDetails, InvestingAccountSummary_verifyCreditCardPaymentPurchaseDetails, InvestingAccountSummary_verifyCreditCardStatementDetails, InvestingAccountSummary_verifyCreditCardStatementTabDetails, InvestingAccountSummary_verifyHoldingsDetails, InvestingAccountSummary_verifyListedHoldingsDetails, InvestingAccountSummary_verifyInvestingOrderDetails, InvestingAccountSummary_verifyOrdersDetails, InvestingAccountSummary_verifyActivityTabDetails, Investing_verifyPageDetails, Investing_clickAccount, MutualFunds_verifyMutualFundDetails, clickInvestingAccounts,
 
 		// P2P EUF
-		ManageContacts_verifyContactDeleteSuccessMsg, ManageContacts_noDeleteContact, ManageContacts_deleteContact, ManageContacts_clickContact, ManageContacts_AddContactfromPhone, ManageContacts_clickAddContactfromPhone, ManageContacts_MultiProfileDeleteContact, Interac_e_Registration_clickContinueButton, ManageContacts_verifySuccessMessage, ManageContacts_clickAddContactPlusSign, ManageContacts_clickAddContactButton, ManageContacts_editContact, ManageContacts_verifyContactEditSuccessMsg, ManageContacts_MultiProfileAddContact, ManageContacts_addContact, ManageContacts_MultiProfileEditContact, HomeScreen_clickSendMoney, Interac_Send_Money_sendMoneyVerifyDetails, Interac_Send_Money_sendMoney, Interac_Send_Money_sendMoneyVerifySuccessMsg, Interac_Send_Money_sendMoneyWithError, Interac_e_Registration_verifyDetails, Interac_e_Registration_verifyBusinessDetails, Interac_e_Registration_verifyRegSuccessMessage,
+
+		Interac_e_Registration_verifyErrorMessage, Interac_e_Registration_registerMultiProfileUser, Interac_e_Registration_clickRegisterAnotherProfile, Interac_e_Registration_registerBusinessUser, TransfersHistory_clickMoneyReceivedSeeAll, Transfers_clickTransferHistoryLink, Interac_e_Registration_clickGoBackHome, TransfersHistory_verifySentMoneyCard, TransfersHistory_clickMoneySentSeeAll, TransfersHistory_verifyPendingTransaction, TransfersHistory_verifyTransactionDetails, TransfersHistory_clickTransaction, TransfersHistory_verifyActivityPage, TransfersHistory_clickReceivedTransaction, TransfersHistory_verifyReceivedTransDetails, TransfersHistory_clickCancelTransferBtn, TransfersHistory_cancelTransfer, TransfersHistory_verifyCancelDetails, TransfersHistory_verifyCancelConfirmation, TransfersHistory_verifyTransactionOnActivity, ManageContacts_verifyContactDeleteSuccessMsg, ManageContacts_noDeleteContact, ManageContacts_deleteContact, ManageContacts_clickContact, ManageContacts_AddContactfromPhone, ManageContacts_clickAddContactfromPhone, ManageContacts_MultiProfileDeleteContact, Interac_e_Registration_registerPersonalUser, Interac_e_Registration_clickContinueButton, ManageContacts_verifySuccessMessage, ManageContacts_clickAddContactPlusSign, ManageContacts_clickAddContactButton, ManageContacts_editContact, ManageContacts_verifyContactEditSuccessMsg, ManageContacts_MultiProfileAddContact, ManageContacts_addContact, ManageContacts_MultiProfileEditContact, HomeScreen_clickSendMoney, Interac_Send_Money_quickSendMoney, Interac_Send_Money_sendMoneyVerifyDetails, Interac_Send_Money_sendMoney, Interac_Send_Money_sendMoneyVerifySuccessMsg, Interac_Send_Money_sendMoneyWithError, Interac_e_Registration_verifyDetails, Interac_e_Registration_verifyBusinessDetails, Interac_e_Registration_verifyRegSuccessMessage,
 
 		// OTP
 
@@ -258,6 +262,83 @@ public class EventCase {
 		//// Trade.get().verifyActionShortSellandBuyToCover();
 		//// break;
 		//
+
+		case TransfersHistory_verifyTransactionOnActivity:
+			TransfersHistory.get().verifyTransactionOnActivity();
+			break;
+
+		case TransfersHistory_verifyCancelConfirmation:
+			TransfersHistory.get().verifyCancelConfirmation();
+			break;
+
+		case TransfersHistory_verifyCancelDetails:
+			TransfersHistory.get().verifyCancelDetails();
+			break;
+
+		case TransfersHistory_cancelTransfer:
+			TransfersHistory.get().cancelTransfer();
+			break;
+
+		case TransfersHistory_clickCancelTransferBtn:
+			TransfersHistory.get().clickCancelTransferBtn();
+			break;
+
+		case TransfersHistory_verifyReceivedTransDetails:
+			TransfersHistory.get().verifyReceivedTransDetails();
+			break;
+
+		case TransfersHistory_clickReceivedTransaction:
+			TransfersHistory.get().clickReceivedTransaction();
+			break;
+
+		case TransfersHistory_verifyActivityPage:
+			TransfersHistory.get().verifyActivityPage();
+			break;
+
+		case TransfersHistory_clickTransaction:
+			TransfersHistory.get().clickTransaction();
+			break;
+
+		case TransfersHistory_verifyTransactionDetails:
+			TransfersHistory.get().verifyTransactionDetails();
+			break;
+
+		case TransfersHistory_verifyPendingTransaction:
+			TransfersHistory.get().verifyPendingTransaction();
+			break;
+
+		case TransfersHistory_clickMoneySentSeeAll:
+			TransfersHistory.get().clickMoneySentSeeAll();
+			break;
+
+		case TransfersHistory_clickMoneyReceivedSeeAll:
+			TransfersHistory.get().clickMoneyReceivedSeeAll();
+			break;
+
+		case TransfersHistory_verifySentMoneyCard:
+			TransfersHistory.get().verifySentMoneyCard();
+			break;
+
+		case Transfers_clickTransferHistoryLink:
+			Transfers.get().clickTransferHistoryLink();
+			break;
+
+		case Interac_e_Registration_clickGoBackHome:
+			Interac_e_Registration.get().clickGoBackHome();
+			break;
+
+		case Interac_e_Registration_clickRegisterAnotherProfile:
+			Interac_e_Registration.get().clickRegisterAnotherProfile();
+			break;
+
+		case Interac_e_Registration_registerMultiProfileUser:
+			Interac_e_Registration.get().registerMultiProfileUser();
+			break;
+
+		case Interac_e_Registration_verifyErrorMessage:
+			Interac_e_Registration.get().verifyErrorMessage();
+			break;
+
 		case CDNCash_Sell_StopMarket:
 			ConfirmOrder.get().cdncash_sell_stopmarket();
 			break;
@@ -533,6 +614,14 @@ public class EventCase {
 			Interac_e_Registration.get().clickContinueButton();
 			break;
 
+		case Interac_e_Registration_registerPersonalUser:
+			Interac_e_Registration.get().registerPersonalUser();
+			break;
+
+		case Interac_e_Registration_registerBusinessUser:
+			Interac_e_Registration.get().registerBusinessUser();
+			break;
+
 		case Interac_e_Transfer_clickContinueButton:
 			Interac_e_Transfer.get().clickContinueButton();
 			break;
@@ -575,6 +664,10 @@ public class EventCase {
 
 		case Interac_Send_Money_sendMoney:
 			Interac_Send_Money.get().sendMoney();
+			break;
+
+		case Interac_Send_Money_quickSendMoney:
+			Interac_Send_Money.get().quickSendMoney();
 			break;
 
 		case Interac_Send_Money_sendMoneyVerifyDetails:
@@ -1321,15 +1414,13 @@ public class EventCase {
 		// Trade.get().verifymutualconfirmsell();
 		// break;
 		//
-		 case Trade_verifySwitchMutualConfirmDetails:
-			 ConfirmOrder.get().verifySwitchMutualConfirmDetails();
-		 break;
-		 
-		 case Trade_verifyMutualFundDetails:
+		case Trade_verifySwitchMutualConfirmDetails:
+			ConfirmOrder.get().verifySwitchMutualConfirmDetails();
+			break;
+
+		case Trade_verifyMutualFundDetails:
 			MutualFunds.get().verifyMutualFundDetails();
-			 break;
-		 
-		 
+			break;
 
 		case PendingInteracTransfer_verify_CancelPendingTransfer:
 			PendingInteracTransfer.get().verify_CancelPendingTransfer();
@@ -1486,7 +1577,7 @@ public class EventCase {
 		case Tab_OrderReciept_ordermenu:
 			MutualFunds.get().OrderReciept_ordermenu();
 			break;
-			
+
 		case Env_EnableMobilePayment:
 			Env_Settings.get().enableMobilePayment();
 			break;
@@ -1821,10 +1912,10 @@ public class EventCase {
 		case Trade_verifyMutualConfirmDetails:
 			MutualFunds.get().verifyMutualConfirmDetails();
 			break;
-			
+
 		case Trade_verify_MutualConfirmDetails:
 			MutualFunds.get().verify_MutualConfirmDetails();
-			break;	
+			break;
 
 		case Trade_ConfirmSendOrder:
 			MutualFunds.get().ConfirmSendOrder();
@@ -1870,6 +1961,14 @@ public class EventCase {
 
 		case Profile_And_Settings_clickPaymentsAndTransfers:
 			Profile_And_Settings.get().clickPaymentsAndTransfers();
+			break;
+
+		case PaymentsAndTransfers_clickManageAutoDeposit:
+			PaymentsAndTransfers.get().clickManageAutoDeposit();
+			break;
+
+		case AutoDepositPage_clickSetUpAutoDepositBtn:
+			AutoDepositPage.get().clickSetUpAutoDepositBtn();
 			break;
 
 		case View_profile:

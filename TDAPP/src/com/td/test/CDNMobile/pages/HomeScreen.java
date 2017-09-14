@@ -124,8 +124,8 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 
+	@iOSFindBy(accessibility = "QUICKLINKS_SENDMONEY")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/send_money_dashboard']")
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@value='SEND MONEY']")
 	private MobileElement send_money_button;
 
 	@iOSFindBy(accessibility = "QUICK_ACCESS_ITEM_QUOTE")
@@ -135,7 +135,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Privacy, Security & Legal']")
 	private MobileElement privacy;
 
-	@iOSFindBy(xpath = "//*[@label='背面' or @label='返回' or @label='Back']")
+	@iOSFindBy(xpath = "//*[@label='背面' or @label='返回' or @label='Back' or @label='p2p header caret']")
 	private MobileElement back_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Locations']")
@@ -423,8 +423,10 @@ public class HomeScreen extends _CommonPage {
 	public void clickMenu() {
 		try {
 			Decorator();
+
 			// FIXED removed back button
 			mobileAction.FuncClick(menu, "Menu");
+
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -668,6 +670,19 @@ public class HomeScreen extends _CommonPage {
 
 	}
 
+	/**
+	 * This method will click on the send money quick link present on the
+	 * homescreen.
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
 	public void sendMoney() {
 		try {
 			Decorator();

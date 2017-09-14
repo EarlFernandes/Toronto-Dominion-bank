@@ -20,7 +20,7 @@ public class Profile_And_Settings extends _CommonPage {
 	private static Profile_And_Settings ProfileAndSettings;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 
 	@iOSFindBy(accessibility = "TDVIEW_TITLE")
@@ -43,6 +43,10 @@ public class Profile_And_Settings extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_whatsnew']/android.widget.TextView")
 	private MobileElement whatsnew;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Payments & Transfers']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Payments & Transfers' or @text='Paiements et virements']")
+	private MobileElement paymentsAndTransfers;
 
 	public synchronized static Profile_And_Settings get() {
 		if (ProfileAndSettings == null) {
