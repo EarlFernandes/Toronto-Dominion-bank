@@ -3,6 +3,7 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
@@ -292,13 +293,19 @@ public class Transfers extends _CommonPage {
 				 * "transfersTransfersNavRowHeaderInteracETransfer")
 				 * .replaceAll("\\<.*?>", "") + "']", "Send Money");
 				 */
-
-				Interac_e_Transfer_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("transfersTransfersNavRowHeaderSendMoney").replaceAll("\\<.*?>", "")
-						+ "']", "Send Money");
-
+				final String iEMTButton1 = mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer");
+				final String iEMTButton2 = mobileAction.getAppString("transfersTransfersNavRowHeaderSendMoney");
+				if (!StringUtils.isEmpty(iEMTButton1)) {
+					Interac_e_Transfer_button = mobileAction.verifyElementUsingXPath(
+							"//android.widget.TextView[@text='" + iEMTButton1.replaceAll("\\<.*?>", "") + "']",
+							"Send Money");
+				} else {
+					Interac_e_Transfer_button = mobileAction.verifyElementUsingXPath(
+							"//android.widget.TextView[@text='" + iEMTButton2.replaceAll("\\<.*?>", "") + "']",
+							"Send Money");
+				}
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail",
 						"No such element was found on screen: " + e.getMessage());
