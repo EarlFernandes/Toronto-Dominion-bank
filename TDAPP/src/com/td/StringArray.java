@@ -3,7 +3,7 @@ package com.td;
 public final class StringArray {
 	public static final String[] ARRAY_HOME_HEADER = { "Home", "Accueil", "首页", "首頁" };
 	public static final String[] ARRAY_MF_FUNDS = { "Fund", "Fonds", "基金", "基金" };
-	public static final String[] ARRAY_MF_SELECT_FUNDS = { "Select Fund", "Sélectionner un fonds", "选择基金", "選擇基金" };
+	public static final String[] ARRAY_MF_SELECT_FUNDS = { "Select a fund", "Sélectionner un fonds", "选择基金", "選擇基金" };
 	public static final String[] ARRAY_MF_PURCHASE_HEADER = { "Purchase Mutual Funds", "Achat de fonds", "购买互惠基金",
 			"購買互惠基金" };
 	public static final String[] ARRAY_MF_AMOUNT = { "Amount", "Montant", "金额", "金額" };
@@ -32,12 +32,13 @@ public final class StringArray {
 			"每周七天、每天 24 小时，您都可以进行购买。如果在工作日东部时间下午 3 点之前购买，将按当天价格交易。如果在东部时间下午 3 点之后或在周末购买，将按照下一个工作日的收市价交易。所有购买通常均需要数天的时间进行确认。",
 			"每週七天、每天 24 小時，您都可以購買。如果在工作日的東部時間下午 3 時之前購買，將按當天價格交易。如果在東部時間下午 3 時之後或在週末購買，將按下一個工作日的收市價交易。所有購買通常均需要數天的時間進行確認。" };
 	public static final String[] ARRAY_MF_DISCLAIMER_INFO = {
-			"We only use your information to contact you about your purchase.Please make sure that all RSP and Tax Free Savings Account transactions do not exceed your allowed contribution limit.If a trade is rejected for any reason, we'll cancel it and notify you via email within one business day.The fund you are buying has a minimum holding period. A short- term trading fee of up to 2%, payable to the fund, may apply to all units of TD Mutual funds (except money market funds), if redeemed prior to the minimum holding period.  Please refer to the applicable fund facts for details.",
-			"Vos renseignements seront uniquement utilisés pour communiquer avec vous au sujet de votre achat.Vérifiez qu’aucune opération visant un REER ou un CELI ne vous fera dépasser votre plafond de cotisation.Si une opération est refusée pour quelque raison que ce soit, nous l’annulerons et nous vous aviserons par courriel dans un délai d’un jour ouvrable.Le fonds que vous souscrivez comporte une période de conservation minimale. Des frais d’opération à court terme d’au plus 2 %, qui sont payables au fonds, peuvent s’appliquer à l’ensemble des parts des Fonds Mutuels TD (exception faite des fonds du marché monétaire), si vous les rachetez avant la fin de la période de conservation minimale. Veuillez vous reporter à l’aperçu du fonds pertinent pour obtenir plus de précisions.",
+			"We only use your information to contact you about your purchase.Please make sure that all RSP and Tax Free Savings Account transactions do not exceed your allowed contribution limit.If a trade is rejected for any reason, we'll cancel it and notify you via email within one business day.The fund you are buying has a minimum holding period.  A short- term trading fee of up to 2%, payable to the fund, may apply to all units of TD Mutual funds (except money market funds), if redeemed prior to the minimum holding period.  Please refer to the applicable fund facts for details.TD Asset Management Inc. (TDAM) pays TD Investment Services Inc. (TDIS) a trailing commission for as long as you hold units of TD Mutual Funds. It is for the services and advice provided to you. See the Fund Facts for more details.",
+			"Vos renseignements seront uniquement utilisés pour communiquer avec vous au sujet de votre achat.Vérifiez qu’aucune opération visant un REER ou un CELI ne vous fera dépasser votre plafond de cotisation.Si une opération est refusée pour quelque raison que ce soit, nous l’annulerons et nous vous aviserons par courriel dans un délai d’un jour ouvrable.Le fonds que vous souscrivez comporte une période de conservation minimale. Des frais d’opération à court terme, payables au fonds et pouvant aller jusqu’à 2 %, peuvent s’appliquer à toutes les parts des Fonds Mutuels TD (à l’exception des fonds du marché monétaire) si elles sont rachetées avant la fin de la période de détention minimale. Veuillez vous reporter à l’aperçu du fonds pertinent pour obtenir plus de précisions.Gestion de Placements TD Inc. (GPTD) verse une commission de suivi à Services d’investissement TD Inc. en contrepartie des services et des conseils qui vous sont offerts, tant et aussi longtemps que vous détenez des parts des Fonds Mutuels TD. Veuillez vous reporter à l’aperçu du fonds pertinent pour obtenir plus de précisions.",
 			"您的个人信息仅用于我们就您的基金购买情况与您联络。请确保所有注册退休储蓄计划(RSP)和免税储蓄账户(TFSA)交易不超过您允许的供款限额。如果交易出于任何原因被拒，我们将在一个工作日内取消交易并向您发送电子邮件通知。您购买的基金有最短持有期要求。如果您在最短持有期到期之前赎回，则可能需向基金支付最高2%的短期交易费，此要求适用于道明互惠基金的所有单位（货币市场基金除外）。详情请参阅相关基金概况。道明资产管理有限公司（TDAM）在您持有道明互惠基金单位期间向道明投资服务有限公司（TDIS）支付尾随佣金，作为其向您提供服务和咨询的费用。有关详细信息，请参阅基金概况。",
-			"我們僅在因有關您的購買時，才會使用您的資訊與您聯絡。請確保所有註冊退休儲蓄計劃(RSP)和免稅儲蓄賬戶(TFSA)交易不超過您允許的供款限額。如果交易因任何原因被拒，我們將在一個工作日內取消交易並向您發送電郵通知。您購買的基金有最短持有期要求。如果您在最短持有期到期之前贖回，則可能需向基金支付最高2%的短期交易費，此要求適用於道明互惠基金的所有單位（貨幣市場基金除外）。詳情請參閱相關基金概況。道明資產管理有限公司（TDAM）在您持有道明互惠基金單位期間向道明投資服務有限公司（TDIS）支付尾隨佣金，作為其向您提供服務和諮詢的費用。有關詳細信息，請參閱基金概況。" };
+			"我們僅在因有關您的購買時，才會使用您的資訊與您聯絡。請確保所有註冊退休儲蓄計劃(RSP)和免稅儲蓄賬戶(TFSA)交易不超過您允許的供款限額。如果交易因任何原因被拒，我們將在一個工作日內取消交易並向您發送電郵通知。您購買的基金有最短持有期要求。如果您在最短持有期到期之前贖回，可能需向基金支付最高 2%的短期交易費，此要求適用於道明互惠基金的所有單位（貨幣市場基金除外）。詳情請參閱相關基金概況。道明資產管理有限公司（TDAM）在您持有道明互惠基金單位期間向道明投資服務有限公司（TDIS）支付尾隨佣金，作為其向您提供服務和諮詢的費用。有關詳細信息，請參閱基金概況。" };
 	public static final String[] ARRAY_TAB_BALANCE = { "Balances", "Soldes", "结余", "結餘" };
 	public static final String[] ARRAY_TAB_FUND = { "Funds", "Fonds", "基金", "基金" };
+	public static final String[] ARRAY_FUND_TAB_LEFT = { "Fund", "Fond", "基金", "基金" };
 	public static final String[] ARRAY_TAB_ACTIVITY = { "Activity", "Activité", "活动", "活動" };
 	public static final String[] ARRAY_TABLE_DATE = { "DATE", "DATE", "日期", "日期" };
 	public static final String[] ARRAY_TABLE_TRANSACTION = { "TRANSACTION", "OPÉRATION", "交易", "交易" };
@@ -61,7 +62,7 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_PURCHASE_BEFORE3 = { "Purchases made before 3:00PM",
 			"Achats effectués avant 15 h", "下午 3 点之前的购买 ", "下午 3 時之前的購買" };
 	public static final String[] ARRAY_MF_CONTENT_BEFORE3 = {
-			"If you made your purchase before 3:00PM EST on a business day, it will be processed at that day's rate",
+			"If you made your purchase before 3:00PM EST on a business day, it will be processed at that day's rate.",
 			"Si vous avez effectué votre achat avant 15 h (HE) un jour ouvrable, il sera traité au prix en vigueur à cette date.",
 			"如果您在工作日东部时间下午 3 点之前购买，将按当天价格交易。", "如果在工作日的東部時間下午 3 時之前購買，將按當天價格交易。" };
 
@@ -98,13 +99,25 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_FUND_FACT = { "Fund Facts", "Aperçu du fonds", "基金概况", "基金概況" };
 	public static final String[] ARRAY_MF_FUND_FACT_PDF = { "fund facts.pdf", "Aperçu du fonds.pdf", "基金概况.pdf",
 			"基金概況.pdf" };
+	public static final String[] ARRAY_MF_TRANSACTION_DETAIL = { "Transaction Details", "Détails de l’opération",
+			"交易详情", "交易詳情" };
+	public static final String[] ARRAY_MF_TRANSACTION_DATE = { "Date", "Date", "日期 ", "日期 " };
+	public static final String[] ARRAY_MF_TRANSACTION_TYPE = { "Transaction Type", "Type d’opération", "交易类型",
+			"交易類型常" };
+	public static final String[] ARRAY_MF_TRANSACTION_GROSS_AMOUNT = { "Gross Amount", "Montant brut", "总金额", "總金額" };
+	public static final String[] ARRAY_MF_TRANSACTION_CHARGE = { "Transaction Charge", "Frais d’opération", "交易收费",
+			"交易費用" };
+	public static final String[] ARRAY_MF_TRANSACTION_NET_AMOUNT = { "Net Amount", "Montant net", "净额", "淨額" };
+	public static final String[] ARRAY_MF_TRANSACTION_UNIT_PRICE = { "Unit Price", "Prix par part", "单位价格", "單位價格" };
+	public static final String[] ARRAY_MF_TRANSACTION_UNIT = { "Transaction Units", "Parts visées par l’opération",
+			"交易单位数量", "交易單位數" };
 
 	public static final String[] ARRAY_PROFILE_AND_PREFERENCE = { "Profile & Settings", "Profil et paramètres",
 			"个人资料和设置", "個人資料和設定" };
 	public static final String[] ARRAY_CUSTOMER_FEEDBACK = { "Give Feedback", "Fournir des commentaires", "发送意见回馈",
 			"發送意見" };
 	public static final String[] ARRAY_QUICK_ACCESS_SETTINGS = { "Quick Access Settings", "Paramètres Accès rapide",
-			"特快结余查询", "特快結餘查詢" };
+			"特快结余查询设定", "特快結餘查詢設定" };
 	public static final String[] ARRAY_QUICK_ACCESS_SWITCH_AND = { "Quick Access", "Accès rapide", "特快结余查询", "特快結餘查詢" };
 	public static final String[] ARRAY_OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE = {
 			"we can't verify the security code entered.", "nous ne pouvons valider votre code de sécurité",
@@ -239,5 +252,23 @@ public final class StringArray {
 	public static final String[] ARRAY_BRABCH_HEADER = { "Branch", "Succursale", "分行", "分行" };
 	public static final String[] ARRAY_FIND_LOCATION = { "Find Locations", "Trouver une succursale", "查找分行", "查找分行" };
 	public static final String[] ARRAY_CONFIRM = { "Confirm", "Confirm", "确认", "確認" };
+	public static final String[] ARRAY_PREFERENCE_NOTIFICATIONS = { "Notifications", "Avis", "通知", "通知" };
+	public static final String[] ARRAY_PREFERENCE_TD_FOR_ME_SETTINGS = { "TD for Me Settings", "Paramètres TD et moi",
+			"TD for Me 设置", "TD for Me 設置" };
+	public static final String[] ARRAY_PREFERENCE_WAHTS_NEW = { "What's New", "Nouveautés", "新增功能", "新增功能" };
+	public static final String[] ARRAY_PREFERENCE_ACCOUNTS = { "ACCOUNTS", "COMPTES", "账户", "賬戶" };
+	public static final String[] ARRAY_PREFERENCE_SECURITY_QUESTION = { "Security Questions", "Questions de sécurité",
+			"密保问题", "密保问题" };
+	public static final String[] ARRAY_VIEW_PROFILE_LINK_IOS = { "View profile >", "Consulter le profil >", "查看个人资料",
+			"查看個人資料" };
+	public static final String[] ARRAY_VIEW_PROFILE_LINK_AND = { "View profile", "Consulter le profil", "查看个人资料",
+			"查看個人資料" };
+	public static final String[] ARRAY_PAYMENT_AND_TRANSFER = { "Payments & Transfers", "", "", "" };
+	public static final String[] ARRAY_CUSTOMIZE_NOTIFICATIONS = { "Customize Notifications", "Personnaliser les avis",
+			"定制通知", "定制通知" };
+	public static final String[] ARRAY_TD_FOR_ME_NOTIFICATIONS = { "TD for Me Notifications", "Avis TD et moi",
+			"TD for Me 通知", "TD for Me 通知" };
+	public static final String[] ARRAY_ENABLE_NOTIFICATIONS = { "Enable Notifications", "Activer les notifications",
+			"启用通知", "启用通知" };
 
 }

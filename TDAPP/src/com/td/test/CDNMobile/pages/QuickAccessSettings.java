@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -18,8 +19,8 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class QuickAccessSettings extends _CommonPage {
 	private static QuickAccessSettings QuickAccessSettings;
 
-	@iOSFindBy(xpath = "//*[@label='Quick Access']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Quick Access Settings']")
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement QuickAccessSettingsHeader;
 
 	@iOSFindBy(xpath = "//*[@label='Turn Quick Access on or off']")
@@ -63,7 +64,8 @@ public class QuickAccessSettings extends _CommonPage {
 	public void verifyQuickAccessSettingsHeader() {
 		Decorator();
 		try {
-			mobileAction.verifyElementIsDisplayed(QuickAccessSettingsHeader, "Quick Access Settings");
+			String titleText = getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_SETTINGS);
+			mobileAction.verifyElementTextIsDisplayed(QuickAccessSettingsHeader, titleText);
 
 		} catch (IOException e) {
 			System.err.println("TestCase has failed.");

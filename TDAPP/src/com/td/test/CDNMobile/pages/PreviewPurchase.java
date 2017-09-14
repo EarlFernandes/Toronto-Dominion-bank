@@ -248,9 +248,9 @@ public class PreviewPurchase extends _CommonPage {
 			String disclaimerInfo = getTextInCurrentLocale(StringArray.ARRAY_MF_DISCLAIMER_INFO);
 			String capturedText = mobileAction.getValue(disclaimer_info);
 			capturedText = capturedText.trim().replaceAll("\n", "");
-			capturedText = capturedText.replaceAll(" ", "");
-			capturedText = capturedText.replaceAll(" ", "");// empty space of
-															// Chinese char
+//			capturedText = capturedText.replaceAll(" ", "");
+//			capturedText = capturedText.replaceAll(" ", "");// empty space of
+//															// Chinese char
 			System.out.println("Captured:" + capturedText);
 			mobileAction.verifyTextEquality(capturedText, disclaimerInfo);
 

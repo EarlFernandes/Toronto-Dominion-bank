@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -18,7 +19,7 @@ public class Security_Questions extends _CommonPage {
 
 	private static Security_Questions SecuirtyQuestions;
 
-	@iOSFindBy(xpath = "//*[@label='Security Questions' or @label='Questions de sécurité']")
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement security_questions_title;
 
@@ -42,9 +43,8 @@ public class Security_Questions extends _CommonPage {
 	public void VerifySecurityQuestionHeader() {
 		Decorator();
 		try {
-
-			mobileAction.verifyElementTextIsDisplayed(security_questions_title,
-					"Security Questions | Questions de sécurité");
+			String titleText = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_SECURITY_QUESTION);
+			mobileAction.verifyElementTextIsDisplayed(security_questions_title, titleText);
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

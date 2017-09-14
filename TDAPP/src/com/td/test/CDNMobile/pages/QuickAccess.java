@@ -3,6 +3,7 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
@@ -38,7 +39,7 @@ public class QuickAccess extends _CommonPage {
 
 	private MobileElement quickaccess_switch;
 
-	@iOSFindBy(xpath = "//*[@label='ACCOUNTS' or @label='COMPTES']")
+	// @iOSFindBy(xpath = "//*[@label='ACCOUNTS' or @label='COMPTES']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title_text']")
 	private MobileElement indiviual_accounts;
 
@@ -86,36 +87,69 @@ public class QuickAccess extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(quickaccess_switch, "Quick Access Switch");
 			String switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
 			System.out.println("Checked Status :" + switchCheckStatus);
+
+			String accountString = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_ACCOUNTS);
+			String indiviual_accounts_xpath = "//*[@label='" + accountString + "']";
+
 			if (switchCheckStatus.equalsIgnoreCase("true")) {
 				// Enabled
-				mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, "ACCOUNTS | COMPTES ");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+					indiviual_accounts = mobileAction.verifyElementUsingXPath(indiviual_accounts_xpath, "ACCOUNTS");
+				}
+				mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, accountString);
 				// Toggle to disable it
 				mobileAction.FuncClick(quickaccess_switch, "Quick Access Switch Toggle");
 				System.out.println("Toggle Switch");
 				mobileAction.waitForElementToVanish(progress_bar);
 				switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
 				System.out.println("Checked status now :" + switchCheckStatus);
-
-				if (mobileAction.isObjExists(indiviual_accounts)) {
-					mobileAction.Report_Fail("Account still exists even when switch toggle to disable");
+				
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+					try{
+						indiviual_accounts = (MobileElement)CL.GetAppiumDriver().findElement(By.xpath(indiviual_accounts_xpath));
+						mobileAction.Report_Fail("Account still exists even when switch toggle to disable");
+					} catch (Exception e1) {
+						mobileAction.Report_Pass_Verified("Accounts no displaying ");
+					}
 				} else {
-					mobileAction.Report_Pass_Verified("Accounts no displaying ");
+					if (mobileAction.verifyElementIsPresent(indiviual_accounts)) {
+						mobileAction.Report_Fail("Account still exists even when switch toggle to disable");
+					} else {
+						mobileAction.Report_Pass_Verified("Accounts no displaying ");
+					}
 				}
 
 			} else {
 				// Disabled
-				if (mobileAction.isObjExists(indiviual_accounts)) {
-					mobileAction.Report_Fail("Account still exists when switch status  is false");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+					try{
+						indiviual_accounts = mobileAction.verifyElementUsingXPath(indiviual_accounts_xpath, "ACCOUNTS");
+						mobileAction.Report_Fail("Account still exists when switch status  is false");
+					} catch (Exception e1) {
+						mobileAction.Report_Pass_Verified("Accounts no displaying ");
+						// Toggle to Enable it
+						mobileAction.FuncClick(quickaccess_switch, "Quick Access Switch Toggle");
+						System.out.println("Toggle Switch");
+						mobileAction.waitForElementToVanish(progress_bar);
+						switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
+						System.out.println("Checked now :" + switchCheckStatus);
+						indiviual_accounts = mobileAction.verifyElementUsingXPath(indiviual_accounts_xpath, "ACCOUNTS");
+						mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, accountString);
+					}
 				} else {
-					mobileAction.Report_Pass_Verified("Accounts no displaying ");
-					// Toggle to Enable it
-					mobileAction.FuncClick(quickaccess_switch, "Quick Access Switch Toggle");
-					System.out.println("Toggle Switch");
-					mobileAction.waitForElementToVanish(progress_bar);
-					switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
-					System.out.println("Checked now :" + switchCheckStatus);
-					mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, "ACCOUNTS | COMPTES ");
-				}
+					if ( mobileAction.verifyElementIsPresent(indiviual_accounts)) {
+						mobileAction.Report_Fail("Account still exists when switch status  is false");
+					} else {
+						mobileAction.Report_Pass_Verified("Accounts no displaying ");
+						// Toggle to Enable it
+						mobileAction.FuncClick(quickaccess_switch, "Quick Access Switch Toggle");
+						System.out.println("Toggle Switch");
+						mobileAction.waitForElementToVanish(progress_bar);
+						switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
+						System.out.println("Checked now :" + switchCheckStatus);
+						mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, accountString);
+					}
+				}				
 			}
 
 		} catch (Exception e) {
