@@ -3,6 +3,7 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
@@ -86,9 +87,13 @@ public class Transfers extends _CommonPage {
 
 	String confirm_transfer_value = "Thank you!";
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Manage Contacts']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Contacts']")
+	@iOSFindBy(accessibility = "TRANSFERVIEW_RECIPIENTS")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Contacts' or @text='Gérer les destinataires']")
 	private MobileElement manageContacts;
+
+	@iOSFindBy(accessibility = "TRANSFERVIEW_PENDING")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='History' or @text='Historique']")
+	private MobileElement transferHistory;
 
 	/**
 	 * This method will click on Between my accounts button
@@ -152,10 +157,9 @@ public class Transfers extends _CommonPage {
 		initElementInteracETransfer();
 		try {
 			Thread.sleep(5000);
-			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer Header"); // added
-																						// by
-																						// Ashraf
+			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer Header");
 			mobileAction.FuncClick(Interac_e_Transfer_button, "Interac e_Transfer");
+
 			// mobileAction.waitForElementToVanish(progrees_Bar);
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -275,12 +279,33 @@ public class Transfers extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				System.out.println(mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer"));
-				Interac_e_Transfer_button = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer")
-								.replaceAll("\\<.*?>", "")
-						+ "']", "Send Money");
+
+				/*
+				 * Interac_e_Transfer_button =
+				 * mobileAction.verifyElementUsingXPath(
+				 * "//android.widget.TextView[@text='"
+				 * 
+				 * Interac_e_Transfer_button =
+				 * mobileAction.verifyElementUsingXPath(
+				 * "//android.widget.TextView[@text='" >>>>>>>
+				 * 384be1910d268ff2c307e639bef8370e6ac28c42 +
+				 * mobileAction.getAppString(
+				 * "transfersTransfersNavRowHeaderInteracETransfer")
+				 * .replaceAll("\\<.*?>", "") + "']", "Send Money");
+				 */
+				final String iEMTButton1 = mobileAction.getAppString("transfersTransfersNavRowHeaderInteracETransfer");
+				final String iEMTButton2 = mobileAction.getAppString("transfersTransfersNavRowHeaderSendMoney");
+				if (!StringUtils.isEmpty(iEMTButton1)) {
+					Interac_e_Transfer_button = mobileAction.verifyElementUsingXPath(
+							"//android.widget.TextView[@text='" + iEMTButton1.replaceAll("\\<.*?>", "") + "']",
+							"Send Money");
+				} else {
+					Interac_e_Transfer_button = mobileAction.verifyElementUsingXPath(
+							"//android.widget.TextView[@text='" + iEMTButton2.replaceAll("\\<.*?>", "") + "']",
+							"Send Money");
+				}
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail",
 						"No such element was found on screen: " + e.getMessage());
@@ -331,8 +356,8 @@ public class Transfers extends _CommonPage {
 	}
 
 	private void Decorator() {
-		PageFactory.initElements(new AppiumFieldDecorator((CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
-				this);
+		PageFactory.initElements(
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
 
@@ -420,11 +445,9 @@ public class Transfers extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("transfer_faq_question") + "']",
 						"Transfer faq");
-				mobileAction
-						.verifyElementUsingXPath(
-								"//android.widget.TextView[@text='" + mobileAction
-										.getAppString("imtHintTextManageRecipients").replaceAll("\\<.*?>", "") + "']",
-								"Add, edit or delete");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ mobileAction.getAppString("imtHintTextManageRecipients").replaceAll("\\<.*?>", "") + "']",
+						"Add, edit or delete");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction
 						.getAppString("transfersTransfersHintTextPendingInteracETransfer").replaceAll("\\<.*?>", "")
 						+ "']", "View pending");
@@ -461,7 +484,31 @@ public class Transfers extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer Header");
 			mobileAction.FuncClick(manageContacts, "Manage Contacts Link");
+			mobileAction.waitForElementToVanish(progressBar);
 
+		} catch (NoSuchElementException | IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	/**
+	 * @author Ashraf This method will click on Transfer History Link.
+	 * 
+	 * 
+	 * @return NoSuchElementException
+	 * @return IOException
+	 */
+	public void clickTransferHistoryLink() {
+
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(transferHistory, "Transfer History Link");
+			mobileAction.waitForElementToVanish(progressBar);
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
