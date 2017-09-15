@@ -11,7 +11,7 @@ public class MainScreen extends _CommonPage {
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
 
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.140.135:4784/wd/hub/";
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.19.17.226:4780/wd/hub/";
 
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
@@ -128,6 +128,8 @@ public class MainScreen extends _CommonPage {
 				} else {
 					appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
 				}
+				
+				mobileAction.FuncSetLandscapeOrientation();
 
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
