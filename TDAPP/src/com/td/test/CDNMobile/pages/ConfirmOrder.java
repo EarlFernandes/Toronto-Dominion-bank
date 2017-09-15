@@ -67,15 +67,15 @@ public class ConfirmOrder extends _CommonPage {
 	private MobileElement buyingpower_required;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Estimated Principal Value' or contains(@label,'Principal estim')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Estimated Principal Value' or contains(@text,'Principal estim']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Estimated Principal') or contains(@text,'Principal estim')]")
 	private MobileElement estimate_principle_value;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Estimated Commission' or contains(@label,'Commission estim')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Estimated Commission' or contains(@text,'Commission estim']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Commission') or contains(@text,'Commission estim')]")
 	private MobileElement estimate_comission;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Estimated Total Cost' or contains(@label,'Total estim')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/estTotalCostLabel' and (@text='Estimated Total Cost' or contains(@text,'Total estim'))]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Estimated Total') or contains(@text,'Total estim')]")
 	private MobileElement estimated_total_cost;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Account') or contains(@label,'Compte')]")
@@ -1233,6 +1233,43 @@ public class ConfirmOrder extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
+	
+	/**
+	 * This method will verify confirm Order screen for switch Action
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * @throws Exception
+	 *             If there is problem while finding that element.
+	 */
+	public void verifySwitchMutualConfirmDetails() {
+		try {
+			Decorator();
+			if(!mobileAction.verifyElementIsPresent(estimated_total_cost)){
+				mobileAction.FunctionSwipe("up", 200, 100);
+			}
+			mobileAction.verifyElementIsDisplayed(estimate_principle_value, "Verify Estimated Principal Value");
+			mobileAction.verifyElementIsDisplayed(estimate_comission, "Estimated Commission");
+			mobileAction.verifyElementIsDisplayed(estimated_total_cost, "Estimated Total Cost");
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
 
 }
 
