@@ -99,6 +99,7 @@ public class MainScreen extends _CommonPage {
 			if (targetEnvVars.length >= 2) {
 				currentLocale = targetEnvVars[1];
 				appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
+				orientation = targetEnvVars[2];
 			} else {
 				currentLocale = "EN";
 				appStringMap = (CL.GetAppiumDriver()).getAppStringMap();
@@ -115,10 +116,16 @@ public class MainScreen extends _CommonPage {
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_ANDROID));
 						currentLocale = CL.LoadData("Language", CL.getTestDataInstance().getSetupFile(), "AppURL",
 								"Name", APP_ANDROID);
+
+						orientation = CL.LoadData("Orientation", CL.getTestDataInstance().getSetupFile(), "AppURL",
+								"Name", APP_ANDROID);
 					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS));
 						currentLocale = CL.LoadData("Language", CL.getTestDataInstance().getSetupFile(), "AppURL",
+								"Name", APP_IOS);
+
+						orientation = CL.LoadData("Orientation", CL.getTestDataInstance().getSetupFile(), "AppURL",
 								"Name", APP_IOS);
 					}
 				}
@@ -128,16 +135,14 @@ public class MainScreen extends _CommonPage {
 				} else {
 					appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
 				}
-				
-				mobileAction.FuncSetLandscapeOrientation();
 
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
 			}
-
 		}
+		if (orientation.equalsIgnoreCase("Landscape"))
+			mobileAction.FuncSetLandscapeOrientation();
 	}
 
 	// Singleton object of self
