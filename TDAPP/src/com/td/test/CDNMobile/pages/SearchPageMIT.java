@@ -34,16 +34,19 @@ public class SearchPageMIT extends _CommonPage {
 
 	// @iOSFindBy(xpath = "//XCUIElementTypeSearchField[@label='Enter name or
 	// symbol' or contains(@label,'Entrez le')]") //@Author - Sushil 03-Feb-2017
-//	@iOSFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]") //@Author - Sushil 03-Feb-2017
-	@iOSFindBy(xpath = "//*[@name='TextField_0' or @name='SYMBOL_SEARCH_CELL_1']") // @Author - Sushil
-													// 03-Feb-2017
+	// @iOSFindBy(xpath = "//*[@label='Enter name or symbol' or
+	// contains(@label,'Entrez le')]") //@Author - Sushil 03-Feb-2017
+	@iOSFindBy(xpath = "//*[@name='TextField_0' or @name='SYMBOL_SEARCH_CELL_1']") // @Author
+																					// -
+																					// Sushil
+	// 03-Feb-2017
 	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
 	private MobileElement search_symbol;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeSearchField[@label='Enter name or symbol' or contains(@label,'Entrez le')]")
 	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
 	private MobileElement enter_symbol;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1][@label='Toronto Dominion Bank']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tdticker' and @text='	TORONTO DOMINION BANK']")
 	private MobileElement selectTD;
@@ -194,8 +197,7 @@ public class SearchPageMIT extends _CommonPage {
 		String property = "";
 		try {
 			mobileAction.FuncClick(search_symbol, "search_symbol");
-			 mobileAction.FuncSendKeys(search_symbol, getTestdata("Symbol",
-			 "UserIDs") + " ");
+			mobileAction.FuncSendKeys(search_symbol, getTestdata("Symbol", "UserIDs") + " ");
 			enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs"));
 			String xpathFlag = "";
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -253,20 +255,6 @@ public class SearchPageMIT extends _CommonPage {
 	{
 		Decorator();
 		try {
-			/*
-			 * String xpathFlag="";
-			 * if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
-			 * "Android")) xpathFlag = xpathSymbolFlag; else xpathFlag =
-			 * xpathSymbolFlag_ios; //mobileAction.selectItemFromList(, item);
-			 * mobileAction.FuncClick(search_symbol, "search_symbol");
-			 * //mobileAction.FuncSendKeys(search_symbol,"TD ");
-			 * enterSymbol(search_symbol,"TD");
-			 * if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
-			 * "Android")) mobileAction.FuncHideKeyboard();
-			 * mobileAction.verifyElement(txt_results,getTestdata("RESULTS",
-			 * XLSheetUserIDs));
-			 * CL.GetDriver().findElements(By.xpath(xpathFlag)).get(0).click();
-			 */
 			clickFirstSymbol("TD");
 			mobileAction.verifyElementIsDisplayed(Quote_Symbol, "Quote_Symbol");
 			mobileAction.verifyElementIsDisplayed(Quote_description, "Quote_description");
@@ -294,12 +282,12 @@ public class SearchPageMIT extends _CommonPage {
 			String sSymbol = getTestdata("Symbol", XLSheetUserIDs).trim();
 			boolean bFound = false;
 			String sProperty = "";
-			//String sSymbolName = "";
-			//boolean bSymbolText = false;
+			// String sSymbolName = "";
+			// boolean bSymbolText = false;
 
-			//mobileAction.FuncClick(search_symbol, "search_symbol");
-			
-			//search_symbol.click();
+			// mobileAction.FuncClick(search_symbol, "search_symbol");
+
+			// search_symbol.click();
 			Thread.sleep(5000);
 			enterSymbol(search_symbol, sSymbol);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -362,14 +350,14 @@ public class SearchPageMIT extends _CommonPage {
 					|| CL.getTestDataInstance().getMobilePlatFormVersion().contains("7")) {
 				mobileAction.FuncSendKeys(mEle, symbol + " ");
 			} else {
-				//mobileAction.FuncSendKeys(mEle, symbol + " ");
-				//mEle.sendKeys(symbol + " ");
+				// mobileAction.FuncSendKeys(mEle, symbol + " ");
+				// mEle.sendKeys(symbol + " ");
 				((RemoteWebDriver) CL.GetDriver()).getKeyboard().pressKey(symbol + " ");
 				((RemoteWebDriver) CL.GetDriver()).getKeyboard().pressKey(Keys.BACK_SPACE);
-				CL.GetReporting().FuncReport("Pass", "Symbol " + symbol  +  " entered.");
+				CL.GetReporting().FuncReport("Pass", "Symbol " + symbol + " entered.");
 			}
 			// mobileAction.FuncSendKeys(mEle,"\u0008");
-			 //mEle.sendKeys(Keys.DELETE);
+			// mEle.sendKeys(Keys.DELETE);
 			TradeMultiLeg.get().handleKeyboard();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -394,10 +382,12 @@ public class SearchPageMIT extends _CommonPage {
 			// String sSymbolName = "";
 			boolean bSymbolText = false;
 
-			mobileAction.FuncClick(search_symbol, "search_symbol");
-			enterSymbol(search_symbol, sSymbolName);
-			// mobileAction.verifyElement(txt_results,getTestdata("RESULTS",
-			// XLSheetUserIDs));
+			/*
+			 * mobileAction.FuncClick(search_symbol, "search_symbol");
+			 * enterSymbol(search_symbol, sSymbolName); //
+			 * mobileAction.verifyElement(txt_results,getTestdata("RESULTS", //
+			 * XLSheetUserIDs));
+			 */ enterSymbol(search_symbol, sSymbolName);
 			TradeMultiLeg.get().handleKeyboard();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				xpathFlag = xpathSymbolFlag;
