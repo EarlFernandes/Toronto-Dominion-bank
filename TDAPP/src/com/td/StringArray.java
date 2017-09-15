@@ -255,5 +255,7 @@ public final class StringArray {
 			"TD for Me 通知", "TD for Me 通知" };
 	public static final String[] ARRAY_ENABLE_NOTIFICATIONS = { "Enable Notifications", "Activer les notifications",
 			"启用通知", "启用通知" };
-
+  //UA Core
+	public static final String[] ARRAY_ACCOUNT_TOTAL = { "Total", "Total", "总计", "總計" };
+  //UA Core End	
 }

@@ -25,9 +25,6 @@ public class Multitasking_System extends _CommonPage {
 		return Multitasking_System;
 	}
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Quick Access']")
-	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access']")
-	private MobileElement home;
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -53,9 +50,8 @@ public class Multitasking_System extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.verifyElementIsDisplayed(home, "Home");
 			mobileAction.FuncRunAppInBackground(120);
-			mobileAction.verifyElementIsDisplayed(home, "Home");
+			mobileAction.Report_Pass_Verified("Run App in Background");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
