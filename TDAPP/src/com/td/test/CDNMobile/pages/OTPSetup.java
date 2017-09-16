@@ -252,12 +252,7 @@ public class OTPSetup extends _CommonPage {
 		try {
 			String acctType = getTestdata("Accounts");
 			if (acctType.equalsIgnoreCase("new")) {
-				mobileAction.FuncClick(this.getStartedNewButton, "Get started button"); // only
-																						// shows
-																						// for
-																						// new
-																						// customer
-																						// IDs
+				mobileAction.FuncClick(this.getStartedNewButton, "Get started button");
 			}
 			mobileAction.FuncClick(continueButton, "Continue button");
 
