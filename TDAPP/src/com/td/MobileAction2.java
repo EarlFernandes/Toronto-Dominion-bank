@@ -833,7 +833,7 @@ public class MobileAction2 extends CommonLib {
 						count++;
 					}
 				} catch (Exception e) {
-					System.out.print("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+					System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 
 					((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty - starty / 4,
 							startx / 2, starty / 4, 600);
@@ -1414,11 +1414,11 @@ public class MobileAction2 extends CommonLib {
 			 * 
 			 * if (elementText.equalsIgnoreCase(text)) { try {
 			 * GetReporting().FuncReport("Pass", "The text '" + text +
-			 * "' is verified"); } catch (IOException e) { System.out.print(
+			 * "' is verified"); } catch (IOException e) { System.out.println(
 			 * "IOException from Method " + this.getClass().toString() + " " +
 			 * e.getCause()); } return true; } else { try {
 			 * GetReporting().FuncReport("Fail", "The text '" + text +
-			 * "' is not verified"); } catch (IOException e) { System.out.print(
+			 * "' is not verified"); } catch (IOException e) { System.out.println(
 			 * "IOException from Method " + this.getClass().toString() + " " +
 			 * e.getCause()); } return false; } }
 			 */
@@ -1573,14 +1573,14 @@ public class MobileAction2 extends CommonLib {
 				try {
 					GetReporting().FuncReport("Fail", "The '" + expectedText + "' is verified");
 				} catch (IOException e) {
-					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+					System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 				}
 				return true;
 			} else {
 				try {
 					GetReporting().FuncReport("Pass", "The '" + expectedText + "' is not verified");
 				} catch (IOException e) {
-					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+					System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 				}
 				return false;
 			}
@@ -1589,7 +1589,7 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Pass", "The '" + expectedText + "' is not present");
 			} catch (IOException e) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			return false;
 		}
@@ -1697,14 +1697,14 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Pass", "The symbol'" + delimiter + "' is verified");
 			} catch (IOException e) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			return true;
 		} else {
 			try {
 				GetReporting().FuncReport("Fail", "The symbol'" + delimiter + "' is not verified");
 			} catch (IOException e) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			return false;
 		}
@@ -1729,14 +1729,14 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Pass", "The text '" + expectedText + "' is verified");
 			} catch (IOException e) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			return true;
 		} else {
 			try {
 				GetReporting().FuncReport("Fail", "The text '" + expectedText + "' is not verified");
 			} catch (IOException e) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			return false;
 		}
@@ -1747,14 +1747,14 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Pass", "The text " + text1 + " is verified");
 			} catch (IOException e) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			return true;
 		} else {
 			try {
 				GetReporting().FuncReport("Fail", "The text " + text1 + " is not verified");
 			} catch (IOException e) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			return false;
 		}
@@ -1773,14 +1773,14 @@ public class MobileAction2 extends CommonLib {
 			try {
 				GetReporting().FuncReport("Pass", "The text " + text1 + " is verified");
 			} catch (IOException e) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			return true;
 		} else {
 			try {
 				GetReporting().FuncReport("Fail", "The text " + text1 + " is not verified");
 			} catch (IOException e) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			return false;
 		}
@@ -1865,7 +1865,7 @@ public class MobileAction2 extends CommonLib {
 				}
 			}
 		} catch (Exception e) {
-			System.out.print("Exception from Method " + this.getClass().toString());
+			System.out.println("Exception from Method " + this.getClass().toString());
 		}
 	}
 
@@ -1932,7 +1932,7 @@ public class MobileAction2 extends CommonLib {
 			FunCSwipeandScroll(elementVal, clickable);
 
 		} catch (Exception e) {
-			System.out.print("Exception from Method " + this.getClass().toString());
+			System.out.println("Exception from Method " + this.getClass().toString());
 		}
 	}
 
@@ -3151,13 +3151,13 @@ public class MobileAction2 extends CommonLib {
 					try {
 						GetReporting().FuncReport("Pass", "Correct date format found");
 					} catch (IOException e) {
-						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				} else {
 					try {
 						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
 					} catch (IOException e) {
-						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				}
 				break;
@@ -3166,13 +3166,13 @@ public class MobileAction2 extends CommonLib {
 					try {
 						GetReporting().FuncReport("Pass", "Correct date format found");
 					} catch (IOException e) {
-						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				} else {
 					try {
 						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
 					} catch (IOException e) {
-						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				}
 				break;
@@ -3181,13 +3181,13 @@ public class MobileAction2 extends CommonLib {
 					try {
 						GetReporting().FuncReport("Pass", "Correct date format found");
 					} catch (IOException e) {
-						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				} else {
 					try {
 						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
 					} catch (IOException e) {
-						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				}
 				break;
@@ -3196,13 +3196,13 @@ public class MobileAction2 extends CommonLib {
 					try {
 						GetReporting().FuncReport("Pass", "Correct date format found");
 					} catch (IOException e) {
-						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				} else {
 					try {
 						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
 					} catch (IOException e) {
-						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				}
 				break;
@@ -3211,13 +3211,13 @@ public class MobileAction2 extends CommonLib {
 					try {
 						GetReporting().FuncReport("Pass", "Correct date format found");
 					} catch (IOException e) {
-						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				} else {
 					try {
 						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
 					} catch (IOException e) {
-						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				}
 				break;
@@ -3226,13 +3226,13 @@ public class MobileAction2 extends CommonLib {
 					try {
 						GetReporting().FuncReport("Pass", "Correct date format found");
 					} catch (IOException e) {
-						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				} else {
 					try {
 						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
 					} catch (IOException e) {
-						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				}
 				break;
@@ -3246,7 +3246,7 @@ public class MobileAction2 extends CommonLib {
 				GetReporting().FuncReport("Fail",
 						"Unknown locale found to test against date string: " + _CommonPage.currentLocale);
 			} catch (IOException e) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 		}
 	}

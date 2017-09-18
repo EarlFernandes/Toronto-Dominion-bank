@@ -38,7 +38,7 @@ public final class StringArray {
 			"我們僅在因有關您的購買時，才會使用您的資訊與您聯絡。請確保所有註冊退休儲蓄計劃(RSP)和免稅儲蓄賬戶(TFSA)交易不超過您允許的供款限額。如果交易因任何原因被拒，我們將在一個工作日內取消交易並向您發送電郵通知。您購買的基金有最短持有期要求。如果您在最短持有期到期之前贖回，可能需向基金支付最高 2%的短期交易費，此要求適用於道明互惠基金的所有單位（貨幣市場基金除外）。詳情請參閱相關基金概況。道明資產管理有限公司（TDAM）在您持有道明互惠基金單位期間向道明投資服務有限公司（TDIS）支付尾隨佣金，作為其向您提供服務和諮詢的費用。有關詳細信息，請參閱基金概況。" };
 	public static final String[] ARRAY_TAB_BALANCE = { "Balances", "Soldes", "结余", "結餘" };
 	public static final String[] ARRAY_TAB_FUND = { "Funds", "Fonds", "基金", "基金" };
-	public static final String[] ARRAY_FUND_TAB_LEFT = { "Fund", "Fond", "基金", "基金" };
+	public static final String[] ARRAY_FUND_TAB_LEFT = { "FUNDS", "FUNDS", "基金", "基金" };
 	public static final String[] ARRAY_TAB_ACTIVITY = { "Activity", "Activité", "活动", "活動" };
 	public static final String[] ARRAY_TABLE_DATE = { "DATE", "DATE", "日期", "日期" };
 	public static final String[] ARRAY_TABLE_TRANSACTION = { "TRANSACTION", "OPÉRATION", "交易", "交易" };

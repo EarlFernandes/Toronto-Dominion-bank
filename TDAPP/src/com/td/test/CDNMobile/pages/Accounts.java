@@ -15,6 +15,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Accounts extends _CommonPage {
 
@@ -85,7 +86,7 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/summaryContent']")
 	private MobileElement acntsListnew;
 
-	@iOSFindBy(xpath = "//*[@name='NAVIGATION_ITEM_BACK'] | //XCUIElementTypeNavigationBar/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement back_button;
 
