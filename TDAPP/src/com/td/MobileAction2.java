@@ -34,7 +34,7 @@ import java.util.regex.Pattern;
 
 public class MobileAction2 extends CommonLib {
 
-	public final int MaxTimeoutInSec = 25;
+	public final int MaxTimeoutInSec = 10;
 
 	public void findElementByXpathAndClick(String xpath) throws IOException {
 		try {
@@ -83,7 +83,7 @@ public class MobileAction2 extends CommonLib {
 	public void FuncClearUsername(MobileElement objElement, String text)
 			throws InterruptedException, IOException, NoSuchElementException {
 		try {
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.elementToBeClickable(objElement));
 			objElement.clear();
 			objElement.click();
@@ -134,7 +134,7 @@ public class MobileAction2 extends CommonLib {
 			throws InterruptedException, IOException, NoSuchElementException {
 		try {
 
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 15L);
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.visibilityOf(objElement));
 
 			objElement.click();
@@ -265,7 +265,7 @@ public class MobileAction2 extends CommonLib {
 			throws InterruptedException, IOException, NoSuchElementException {
 		try {
 
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 5L);
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.elementToBeClickable(objElement));
 			objElement.tap(1, 2000);
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
@@ -672,23 +672,9 @@ public class MobileAction2 extends CommonLib {
 															// Sushil
 															// 13-Apr-2017
 		String textToReturn = null;
-		/*
-		 * try { WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-		 * wait.until(ExpectedConditions.visibilityOf(objElement)); textToReturn
-		 * = objElement.getText(); GetReporting().FuncReport("Pass",
-		 * "Text of the element " + objElement.getTagName() + " is '" +
-		 * textToReturn + "'."); } catch (IllegalArgumentException e) {
-		 * GetReporting().FuncReport("Fail", "IllegalArgumentException"); throw
-		 * e; } catch (NoSuchElementException n) {
-		 * GetReporting().FuncReport("Fail", "Element not displayed" +
-		 * objElement.getTagName()); throw n; } catch (Exception e) {
-		 * GetReporting().FuncReport("Fail", "The element <b>- " +
-		 * objElement.getTagName() + "</b> not present in current page"); throw
-		 * e; } finally { return textToReturn; }
-		 */
 		try {
 
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.visibilityOf(objElement));
 
 			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -739,7 +725,7 @@ public class MobileAction2 extends CommonLib {
 	 */
 	public void FuncGetTextToReport(MobileElement objElement) throws IOException {
 		try {
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.visibilityOf(objElement));
 			String textOfElement = objElement.getText();
 			GetReporting().FuncReport("Pass",
@@ -1056,7 +1042,7 @@ public class MobileAction2 extends CommonLib {
 	public void FuncSendKeys(WebElement objElement, String sTextToSend)
 			throws InterruptedException, IOException, TimeoutException {
 		try {
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.elementToBeClickable(objElement));
 			objElement.clear();
 			objElement.sendKeys(new CharSequence[] { sTextToSend });
@@ -1265,7 +1251,7 @@ public class MobileAction2 extends CommonLib {
 	 */
 	public void FuncSwitchFrame(String iFrameXPath) throws IOException {
 		try {
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(iFrameXPath)));
 			((AppiumDriver) GetDriver()).switchTo().frame(iFrameXPath);
 			GetReporting().FuncReport("Pass", "Switched to new iFrame. '" + iFrameXPath + "'.");
@@ -1391,37 +1377,21 @@ public class MobileAction2 extends CommonLib {
 
 	}
 
-	/*	*//**
-			 * This method will verify the text of the element is same as the
-			 * expected text
-			 * 
-			 * @param The
-			 *            element which has to be identified
-			 * 
-			 * @param The
-			 *            expected text
-			 * 
-			 * @return boolean
-			 * 
-			 *         true if element is displayed or false
-			 * 
-			 *//*
-			 * public boolean verifyElement(MobileElement mobileElement, String
-			 * text) { String elementText = mobileElement.getText();
-			 * WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-			 * wait.until(ExpectedConditions.elementToBeClickable(
-			 * mobileElement) );
-			 * 
-			 * if (elementText.equalsIgnoreCase(text)) { try {
-			 * GetReporting().FuncReport("Pass", "The text '" + text +
-			 * "' is verified"); } catch (IOException e) { System.out.println(
-			 * "IOException from Method " + this.getClass().toString() + " " +
-			 * e.getCause()); } return true; } else { try {
-			 * GetReporting().FuncReport("Fail", "The text '" + text +
-			 * "' is not verified"); } catch (IOException e) { System.out.println(
-			 * "IOException from Method " + this.getClass().toString() + " " +
-			 * e.getCause()); } return false; } }
-			 */
+	/**
+	 * This method will verify the text of the element is same as the expected
+	 * text
+	 * 
+	 * @param The
+	 *            element which has to be identified
+	 * 
+	 * @param The
+	 *            expected text
+	 * 
+	 * @return boolean
+	 * 
+	 *         true if element is displayed or false
+	 * 
+	 */
 	public boolean verifyElement(MobileElement mobileElement, String text) { // @Author
 																				// -
 																				// Sushil
@@ -1433,7 +1403,7 @@ public class MobileAction2 extends CommonLib {
 
 			boolean verifyFlag = true;
 
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
 
 			/*
@@ -1491,35 +1461,6 @@ public class MobileAction2 extends CommonLib {
 		return false;
 	}
 
-	/*	*//**
-			 * This method will verify the element is displayed on the screen.
-			 * 
-			 * @param The
-			 *            element which has to be identified
-			 * 
-			 * @param Text
-			 *            to print in report
-			 * 
-			 * @return boolean
-			 * 
-			 *         true if element is displayed or false
-			 * 
-			 *//*
-			 * public void verifyElementIsDisplayed(MobileElement mobileElement,
-			 * String expectedText) throws IOException { try { WebDriverWait
-			 * wait = new WebDriverWait(GetDriver(), 10L);
-			 * wait.until(ExpectedConditions.elementToBeClickable(mobileElement)
-			 * ); mobileElement.isDisplayed(); GetReporting().FuncReport("Pass",
-			 * "The '" + expectedText + "' is verified"); } catch
-			 * (IllegalArgumentException e) { GetReporting().FuncReport("Fail",
-			 * "IllegalArgumentException"); throw e; } catch
-			 * (NoSuchElementException n) { GetReporting().FuncReport("Fail",
-			 * "Element not displayed" + expectedText); throw n; } catch
-			 * (Exception e) { GetReporting().FuncReport("Fail",
-			 * "The element <b>- " + expectedText +
-			 * "</b> not present in current page"); throw e; } }
-			 */
-
 	/**
 	 * This method will verify the element is displayed on the screen.
 	 * 
@@ -1566,7 +1507,7 @@ public class MobileAction2 extends CommonLib {
 	public boolean verifyElementNotPresent(WebElement mobileElement, String expectedText) {
 
 		try {
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
 
 			if (mobileElement.isDisplayed() == true) {
@@ -1595,32 +1536,6 @@ public class MobileAction2 extends CommonLib {
 		}
 
 	}
-
-	/*	*//**
-			 * This method will verify the text contained in another String.
-			 * 
-			 *
-			 * @param objElement
-			 *            The MobileElement on which the click action has to be
-			 *            performed.
-			 * @throws Exception
-			 *             In case an exception occurs while clicking over the
-			 *             element. In case the element is not found over the
-			 *             screen.
-			 *//*
-			 * public void verifyElementTextContains(MobileElement objElement,
-			 * String text) throws IOException { try {
-			 * 
-			 * if (objElement.getAttribute("label").contains(text)) {
-			 * 
-			 * GetReporting().FuncReport("Pass", "Element contains text " +
-			 * text);
-			 * 
-			 * }
-			 * 
-			 * } catch (IOException e) { GetReporting().FuncReport("Fail",
-			 * "IOException Exception occurred"); throw e; } }
-			 */
 
 	/**
 	 * This method will verify the text contained in another String.
@@ -1679,7 +1594,7 @@ public class MobileAction2 extends CommonLib {
 	 */
 	public boolean verifyLoginErrorOccured(String mobileElement) throws InterruptedException, IOException {
 		try {
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 20);
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(mobileElement)));
 
 			GetReporting().FuncReport("Pass",
@@ -1822,11 +1737,10 @@ public class MobileAction2 extends CommonLib {
 	 * 
 	 */
 	public void waitForElementToDisappear(String xpath) throws InterruptedException {
-		long timeoutInSeconds = 5;
 		boolean flag = false;
 		while (flag == false) {
 			try {
-				WebDriverWait wait = new WebDriverWait(GetDriver(), timeoutInSeconds);
+				WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
 
 				flag = true;
@@ -1848,22 +1762,8 @@ public class MobileAction2 extends CommonLib {
 	 */
 	public void waitForElementToVanish(MobileElement elementToVanish) {
 		try {
-			int count = 1;
-			boolean isElementDisplayed = elementToVanish.isDisplayed();
-			while (count <= 10) {
-				isElementDisplayed = elementToVanish.isDisplayed();
-				if (isElementDisplayed) {
-					try {
-						Thread.sleep(1000);
-						count++;
-
-					} catch (NoSuchElementException e) {
-						break;
-					}
-				} else {
-					break;
-				}
-			}
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+			wait.until(ExpectedConditions.invisibilityOf(elementToVanish));
 		} catch (Exception e) {
 			System.out.println("Exception from Method " + this.getClass().toString());
 		}
@@ -2014,16 +1914,6 @@ public class MobileAction2 extends CommonLib {
 			while (flag && count <= swipes) {
 
 				try {
-					/*
-					 * if (elementToFind.isDisplayed()) { flag = false; sEleName
-					 * = FuncGetText(elementToFind); } else {
-					 * if(direction.equalsIgnoreCase("up")) ((MobileDriver)
-					 * GetDriver()).swipe(startx / 2, starty/2, startx / 2,
-					 * endy/2 - heightPer, 2000); else
-					 * if(direction.equalsIgnoreCase("down")) ((MobileDriver)
-					 * GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2
-					 * + heightPer , 2000); count++; }
-					 */
 					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
 					wait.until(ExpectedConditions.visibilityOf(elementToFind));
 
@@ -2081,18 +1971,6 @@ public class MobileAction2 extends CommonLib {
 			while (flag && count <= swipes) {
 
 				try {
-					/*
-					 * if
-					 * (GetDriver().findElement(By.xpath(xpathEle)).isDisplayed(
-					 * )) { flag = false; sEleName =
-					 * FuncGetTextByxpath(xpathEle); } else {
-					 * if(direction.equalsIgnoreCase("up")) ((MobileDriver)
-					 * GetDriver()).swipe(startx / 2, starty/2, startx / 2,
-					 * endy/2 - heightPer, 2000); else
-					 * if(direction.equalsIgnoreCase("down")) ((MobileDriver)
-					 * GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2
-					 * + heightPer , 2000); count++; }
-					 */
 					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
 					wait.until(ExpectedConditions.visibilityOf(GetDriver().findElement(By.xpath(xpathEle))));
 
@@ -2246,7 +2124,7 @@ public class MobileAction2 extends CommonLib {
 
 		try {
 			boolean verified = false;
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 7L);
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
 			String capturedText = getValue(mobileElement);
 			capturedText = capturedText.trim().replaceAll("\n", "");
@@ -2686,7 +2564,7 @@ public class MobileAction2 extends CommonLib {
 		String textToReturn = null;
 		try {
 
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.visibilityOf(objElement));
 
 			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -2773,7 +2651,7 @@ public class MobileAction2 extends CommonLib {
 		String textToReturn = null;
 		try {
 
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.visibilityOf(objElement));
 
 			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -2845,7 +2723,7 @@ public class MobileAction2 extends CommonLib {
 		// boolean verifyFlag = true;
 		try {
 
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.elementToBeClickable(value));
 
 			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -3023,16 +2901,10 @@ public class MobileAction2 extends CommonLib {
 	public boolean verifyElementIsPresent(WebElement elementToFind) {
 
 		try {
-			if (elementToFind.isDisplayed()) {
-
-				return true;
-			} else {
-
-				return false;
-
-			}
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+			wait.until(ExpectedConditions.visibilityOf(elementToFind));
+			return true;
 		} catch (Exception e) {
-
 			return false;
 		}
 	}
@@ -3136,103 +3008,108 @@ public class MobileAction2 extends CommonLib {
 	public static final int TYPE_YYYY_MM_DD_HOUR = 5;
 	public static final int TYPE_YYYY_MM_DD_RANGE = 6;
 
-	public static final String PATTERN_ZH_YYYY_MM_DD = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日|待处理|尚待處理";
-	public static final String PATTERN_ZH_YYYY_MM_DD_WEEKDATE = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\((星期|週)[一|二|三|四|五|六|日|天]\\)";
-	public static final String PATTERN_ZH_MM_YYYY = "\\d{4}年\\s?\\d{1,2}月";
-	public static final String PATTERN_ZH_YYYY_MM_DD_TODAY = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\((今天|今日)\\)";
-	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日.*";
-	public static final String PATTERN_ZH_YYYY_MM_DD_RANGE = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日 – (\\d{4}年)*\\d{1,2}月\\d{1,2}日";
-
 	public void verifyDateFormat(final String dateStr, final int type) {
 		if (_CommonPage.currentLocale.startsWith("zh")) {
 			switch (type) {
 			case (TYPE_YYYY_MM_DD):
-				if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD)) {
+				if (dateStr.matches(StringArray.PATTERN_ZH_YYYY_MM_DD)) {
 					try {
 						GetReporting().FuncReport("Pass", "Correct date format found");
 					} catch (IOException e) {
-						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out
+								.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				} else {
 					try {
 						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
 					} catch (IOException e) {
-						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out
+								.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				}
 				break;
 			case (TYPE_YYYY_MM_DD_WEEKDATE):
-				if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD_WEEKDATE)) {
+				if (dateStr.matches(StringArray.PATTERN_ZH_YYYY_MM_DD_WEEKDATE)) {
 					try {
 						GetReporting().FuncReport("Pass", "Correct date format found");
 					} catch (IOException e) {
-						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out
+								.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				} else {
 					try {
 						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
 					} catch (IOException e) {
-						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out
+								.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				}
 				break;
 			case (TYPE_MM_YYYY):
-				if (dateStr.matches(PATTERN_ZH_MM_YYYY)) {
+				if (dateStr.matches(StringArray.PATTERN_ZH_MM_YYYY)) {
 					try {
 						GetReporting().FuncReport("Pass", "Correct date format found");
 					} catch (IOException e) {
-						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out
+								.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				} else {
 					try {
 						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
 					} catch (IOException e) {
-						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out
+								.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				}
 				break;
 			case (TYPE_YYYY_MM_DD_TODAY):
-				if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD_TODAY)) {
+				if (dateStr.matches(StringArray.PATTERN_ZH_YYYY_MM_DD_TODAY)) {
 					try {
 						GetReporting().FuncReport("Pass", "Correct date format found");
 					} catch (IOException e) {
-						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out
+								.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				} else {
 					try {
 						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
 					} catch (IOException e) {
-						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out
+								.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				}
 				break;
 			case (TYPE_YYYY_MM_DD_HOUR):
-				if (dateStr.matches(PATTERN_ZH_YY_MM_DD_HOUR)) {
+				if (dateStr.matches(StringArray.PATTERN_ZH_YY_MM_DD_HOUR)) {
 					try {
 						GetReporting().FuncReport("Pass", "Correct date format found");
 					} catch (IOException e) {
-						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out
+								.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				} else {
 					try {
 						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
 					} catch (IOException e) {
-						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out
+								.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				}
 				break;
 			case (TYPE_YYYY_MM_DD_RANGE):
-				if (dateStr.matches(PATTERN_ZH_YYYY_MM_DD_RANGE)) {
+				if (dateStr.matches(StringArray.PATTERN_ZH_YYYY_MM_DD_RANGE)) {
 					try {
 						GetReporting().FuncReport("Pass", "Correct date format found");
 					} catch (IOException e) {
-						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out
+								.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				} else {
 					try {
 						GetReporting().FuncReport("Fail", "Incorrect date format: " + dateStr);
 					} catch (IOException e) {
-						System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						System.out
+								.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 					}
 				}
 				break;
@@ -3460,7 +3337,7 @@ public class MobileAction2 extends CommonLib {
 	public void FuncTapCord(MobileElement objElement, String text)
 			throws InterruptedException, IOException, NoSuchElementException {
 		try {
-			WebDriverWait wait = new WebDriverWait((AppiumDriver) GetDriver(), 10L);
+			WebDriverWait wait = new WebDriverWait((AppiumDriver) GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.elementToBeClickable(objElement));
 
 			int leftX = objElement.getLocation().getX();
