@@ -182,9 +182,16 @@ public class SearchPageMIT extends _CommonPage {
 	{
 		Decorator();
 		try {
-			mobileAction.verifyElementIsDisplayed(search_symbol, "Search Screen");
+			//mobileAction.verifyElementIsDisplayed(search_symbol, "Search Screen");
+			search_symbol.isDisplayed();
+			CL.GetReporting().FuncReport(PASS, "Search Screen displayed.");
 		} catch (Exception e) {
 			e.printStackTrace();
+			try {
+				CL.GetReporting().FuncReport(FAIL, "Search Screen displayed.");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 
@@ -196,8 +203,8 @@ public class SearchPageMIT extends _CommonPage {
 		String sSymbolName = "";
 		String property = "";
 		try {
-			mobileAction.FuncClick(search_symbol, "search_symbol");
-			mobileAction.FuncSendKeys(search_symbol, getTestdata("Symbol", "UserIDs") + " ");
+/*			mobileAction.FuncClick(search_symbol, "search_symbol");
+			mobileAction.FuncSendKeys(search_symbol, getTestdata("Symbol", "UserIDs") + " ");*/
 			enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs"));
 			String xpathFlag = "";
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
