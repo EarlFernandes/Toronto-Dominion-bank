@@ -591,9 +591,9 @@ public class Pay_US_Bill extends _CommonPage {
 				String to_accountNo = "//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("Payee") + "')]";
 
 				MobileElement toAccountval = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(to_accountNo));
-				MobileElement memo = (MobileElement) (CL.GetAppiumDriver())
-						.findElement(By.xpath("//XCUIElementTypeTextField[2]"));
 				mobileAction.FunCSwipeandScroll(toAccountval, true);
+				MobileElement memo = (MobileElement) (CL.GetAppiumDriver())
+						.findElement(By.xpath("//XCUIElementTypeTextField[2]"));				
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
 				mobileAction.FuncClickDone();
