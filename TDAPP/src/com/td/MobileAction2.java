@@ -2114,8 +2114,10 @@ public class MobileAction2 extends CommonLib {
 			if (!flag) {
 				GetReporting().FuncReport("Pass",
 						"Swiped " + direction + " till element found. Element : <b>" + sEleName + "</b>");
-				if (clickYorN)
+				if (clickYorN) {
+					Thread.sleep(4000);
 					FuncClick((MobileElement) GetDriver().findElement(By.xpath(xpathEle)), sEleName);
+				}
 			} else
 				GetReporting().FuncReport("Fail", "Swiped " + direction + " but element not found. Swipes : " + count);
 
