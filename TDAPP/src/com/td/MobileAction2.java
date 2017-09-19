@@ -233,7 +233,6 @@ public class MobileAction2 extends CommonLib {
 	public void FuncDragElementToElement(MobileElement fromElement, MobileElement toElement) throws IOException {
 		try {
 			new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(fromElement));
-			new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(toElement));
 			new TouchAction(((MobileDriver) GetDriver())).longPress(fromElement).moveTo(toElement).release().perform();
 			GetReporting().FuncReport("Pass", "Successfully dragged element '" + fromElement.getTagName()
 					+ "' to Element '" + toElement.getTagName() + "'.");
@@ -700,7 +699,6 @@ public class MobileAction2 extends CommonLib {
 	 * @throws Exception
 	 */
 	public void FunCnewSwipe(MobileElement elementToFind, boolean clickYorN, int swipes) throws Exception {
-		new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(elementToFind));
 		Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 		int startx = size.width;
 		int starty = size.height;
@@ -1033,7 +1031,6 @@ public class MobileAction2 extends CommonLib {
 
 	public void FunCSwipeandScroll(MobileElement elementToFind, boolean clickYorN) throws Exception {
 		try {
-			new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(elementToFind));
 			Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 			int startx = size.width;
 			int starty = size.height;
@@ -1088,7 +1085,6 @@ public class MobileAction2 extends CommonLib {
 	public void FuncSwipeScreenWhileNotFound(MobileElement elementToFind, int maxSwipes, String direction, int offset,
 			boolean clickOnElement) throws IOException {
 		try {
-			new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(elementToFind));
 			int startx, starty, endx, endy;
 			Dimension screenDimensions = ((AppiumDriver) GetDriver()).manage().window().getSize();
 			if (direction.equalsIgnoreCase("down")) {
@@ -1773,7 +1769,6 @@ public class MobileAction2 extends CommonLib {
 	public void FuncSwipeWhileElementNotFound(MobileElement elementToFind, boolean clickYorN, int swipes,
 			String direction) {// throws Exception {//@Author - Sushil
 								// 24-Feb-2017
-		new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(elementToFind));
 		Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 		int startx = size.width;
 		int starty = size.height;
@@ -2673,7 +2668,6 @@ public class MobileAction2 extends CommonLib {
 																// 10-May-2017
 	{
 		try {
-			new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(mEle));
 			FunctionSwipe("up", 200, 100);
 			if (!mEle.isDisplayed()) {
 				FunctionSwipe("up", 200, 100);
@@ -2696,7 +2690,6 @@ public class MobileAction2 extends CommonLib {
 																// Sushil
 																// 10-May-2017
 	{
-		new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(mEle));
 		try {
 			FunctionSwipe("down", 200, 200);
 			if (!mEle.isDisplayed()) {
