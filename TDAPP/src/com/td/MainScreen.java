@@ -103,11 +103,9 @@ public class MainScreen extends _CommonPage {
 			if (targetEnvVars.length >= 2) {
 				currentLocale = targetEnvVars[1];
 				appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
-				try {
+				orientation = "Portrait";
+				if (targetEnvVars.length >= 3) {
 					orientation = targetEnvVars[2];
-				} catch (Exception e) {
-					orientation = "Portrait";
-					System.out.println("Orientation not specified, defaults to Portrait.");
 				}
 			} else {
 				currentLocale = "EN";
