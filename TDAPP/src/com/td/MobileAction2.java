@@ -21,6 +21,7 @@ import com.td.test.framework.CommonLib;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.InteractsWithApps;
+import io.appium.java_client.MobileBy.ByAccessibilityId;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.MultiTouchAction;
@@ -2743,18 +2744,26 @@ public class MobileAction2 extends CommonLib {
 				return;
 			} catch (Exception e) {
 				back_xpath = "//android.widget.ImageView[@resource-id='android:id/up']";
+				try {
+					MobileElement back_arrow = (MobileElement) GetDriver().findElement(By.xpath(back_xpath));
+					FuncClick(back_arrow, "<");
+
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
 			}
 
 		} else {
-			back_xpath = "//*[@name='NAVIGATION_ITEM_BACK']";
-		}
-		try {
-			MobileElement back_arrow = (MobileElement) GetDriver().findElement(By.xpath(back_xpath));
-			FuncClick(back_arrow, "<");
+			back_xpath = "NAVIGATION_ITEM_BACK";
+			try {
+				MobileElement back_arrow = (MobileElement) GetDriver().findElement(ByAccessibilityId.AccessibilityId(back_xpath));
+				FuncClick(back_arrow, "<");
 
-		} catch (Exception e) {
-			e.printStackTrace();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
+
 	}
 
 	public boolean verifyElementIsPresent(WebElement elementToFind) {

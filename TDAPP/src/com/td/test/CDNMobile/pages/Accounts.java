@@ -86,7 +86,7 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/summaryContent']")
 	private MobileElement acntsListnew;
 
-	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
+	@iOSFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement back_button;
 
