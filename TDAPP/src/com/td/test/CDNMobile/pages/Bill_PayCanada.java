@@ -1277,7 +1277,7 @@ public class Bill_PayCanada extends _CommonPage {
 			// CL.GetDriver().findElement(By.xpath(payeeXL)).click();
 			CL.GetReporting().FuncReport("Pass", "<b>" + payeeXL + "</b> is Clicked.");
 
-			mobileAction.waitForElementToVanished(progressBar);
+			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.verifyElementIsDisplayed(txtPaywithRewards, "Pay With Rewards ");
 
 		} catch (Exception e) {

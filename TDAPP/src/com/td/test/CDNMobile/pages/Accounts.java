@@ -825,7 +825,7 @@ public class Accounts extends _CommonPage {
 					+ "') or contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "')  ]";
 
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountXL, true, 40, "up");
-			mobileAction.waitForElementToVanished(progresssBar);
+			mobileAction.waitForElementToVanish(progresssBar);
 
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
