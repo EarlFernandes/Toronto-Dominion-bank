@@ -28,6 +28,7 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -1744,14 +1745,40 @@ public class MobileAction2 extends CommonLib {
 	public boolean verifyTextEquality(String text1, String text2) {
 		if (text1.equalsIgnoreCase(text2)) {
 			try {
-				GetReporting().FuncReport("Pass", "The text is verified");
+				GetReporting().FuncReport("Pass", "The text " + text1 + " is verified");
 			} catch (IOException e) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			return true;
 		} else {
 			try {
-				GetReporting().FuncReport("Fail", "The text is not verified");
+				GetReporting().FuncReport("Fail", "The text " + text1 + " is not verified");
+			} catch (IOException e) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			return false;
+		}
+
+	}
+
+	/**
+	 * @author Ashraf This method will verify if the text1 contains the value
+	 *         present in text2.
+	 * @param text1
+	 * @param text2
+	 * @return
+	 */
+	public boolean verifyTextContains(String text1, String text2) {
+		if (text1.contains(text2) || text1.contains(text2.toUpperCase()) || text1.contains(text2.toLowerCase())) {
+			try {
+				GetReporting().FuncReport("Pass", "The text " + text1 + " is verified");
+			} catch (IOException e) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			return true;
+		} else {
+			try {
+				GetReporting().FuncReport("Fail", "The text " + text1 + " is not verified");
 			} catch (IOException e) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
@@ -2802,8 +2829,13 @@ public class MobileAction2 extends CommonLib {
 	 */
 	public MobileElement mobileElementUsingXPath(String objElement) throws IOException {
 
-		MobileElement objMobileElement = (MobileElement) ((AppiumDriver) GetDriver()).findElement(By.xpath(objElement));
+		MobileElement objMobileElement = null;
 
+		try {
+			objMobileElement = (MobileElement) ((AppiumDriver) GetDriver()).findElement(By.xpath(objElement));
+		} catch (Exception e) {
+			System.err.println("Element not found");
+		}
 		return objMobileElement;
 
 	}
@@ -3349,6 +3381,7 @@ public class MobileAction2 extends CommonLib {
 		// what language)
 
 		try {
+
 			if (isOrientationLandscape() && isGoOnKeyBoard()) {
 				HideKeyBoard_IOS();
 				GetReporting().FuncReport("Pass", "The Key board was hidden");
@@ -3359,6 +3392,7 @@ public class MobileAction2 extends CommonLib {
 				Done.click();
 				GetReporting().FuncReport("Pass", "The element <b>  Done </b> Clicked");
 			}
+
 		} catch (Exception e) {
 			try {
 				GetReporting().FuncReport("Fail", "The element <b> Done </b> not present in current page");
@@ -3503,6 +3537,25 @@ public class MobileAction2 extends CommonLib {
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
+		}
+	}
+
+	public void getPageSource() {
+
+		try {
+			Thread.sleep(3000);
+			System.out.println(GetDriver().getPageSource());
+		} catch (InterruptedException e) {
+			System.err.println("Failed to fetch the page source");
+		}
+
+	}
+
+	public void dumpAppKeys() {
+		Iterator<String> itr = _CommonPage.appStringMap.keySet().iterator();
+		Iterator<String> itr1 = _CommonPage.appStringMap.values().iterator();
+		while (itr.hasNext() && itr1.hasNext()) {
+			System.out.println(itr.next() + " = " + itr1.next());
 		}
 	}
 

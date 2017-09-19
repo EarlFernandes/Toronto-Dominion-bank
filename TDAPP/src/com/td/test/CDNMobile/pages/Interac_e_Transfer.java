@@ -580,6 +580,7 @@ public class Interac_e_Transfer extends _CommonPage {
 						+ "')]";
 				MobileElement toAccountval = (MobileElement) ((AppiumDriver) CL.GetDriver())
 						.findElement(By.xpath(to_accountNo));
+
 				mobileAction.FunCSwipeandScroll(toAccountval, true);
 
 				String ValueofAmount = getTestdata("Amount");
@@ -1026,8 +1027,7 @@ public class Interac_e_Transfer extends _CommonPage {
 	}
 
 	/**
-	 * @author Ashraf This method will verify The Registration Page and click on
-	 *         continue button.
+	 * @author Ashraf This method will click on Open an Account Link.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
