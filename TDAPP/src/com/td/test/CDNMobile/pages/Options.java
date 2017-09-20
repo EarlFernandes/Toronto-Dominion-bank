@@ -534,7 +534,7 @@ public class Options extends _CommonPage {
 			MobileElement searchSymbol = mobileAction.verifyElementUsingXPath(xpathSymbolFlag, "Symbol");
 			mobileAction.FuncClick(searchSymbol, "Search symbol");
 			mobileAction.FuncClick(clickOptions, "click on Options");
-			mobileAction.waitForElementToVanished(progressBar);
+			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncSwipeOnce("up");
 			mobileAction.clickCoOrdinatesPercentage(0.90f, 0.70f, 1);

@@ -1,6 +1,14 @@
 package com.td;
 
 public final class StringArray {
+
+	public static final String PATTERN_ZH_YYYY_MM_DD = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日|待处理|尚待處理";
+	public static final String PATTERN_ZH_YYYY_MM_DD_WEEKDATE = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\((星期|週)[一|二|三|四|五|六|日|天]\\)";
+	public static final String PATTERN_ZH_MM_YYYY = "\\d{4}年\\s?\\d{1,2}月";
+	public static final String PATTERN_ZH_YYYY_MM_DD_TODAY = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\((今天|今日)\\)";
+	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日.*";
+	public static final String PATTERN_ZH_YYYY_MM_DD_RANGE = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日 – (\\d{4}年)*\\d{1,2}月\\d{1,2}日";
+
 	public static final String[] ARRAY_HOME_HEADER = { "Home", "Accueil", "首页", "首頁" };
 	public static final String[] ARRAY_MF_FUNDS = { "Fund", "Fonds", "基金", "基金" };
 	public static final String[] ARRAY_MF_SELECT_FUNDS = { "Select a fund", "Sélectionner un fonds", "选择基金", "選擇基金" };
@@ -38,7 +46,7 @@ public final class StringArray {
 			"我們僅在因有關您的購買時，才會使用您的資訊與您聯絡。請確保所有註冊退休儲蓄計劃(RSP)和免稅儲蓄賬戶(TFSA)交易不超過您允許的供款限額。如果交易因任何原因被拒，我們將在一個工作日內取消交易並向您發送電郵通知。您購買的基金有最短持有期要求。如果您在最短持有期到期之前贖回，可能需向基金支付最高 2%的短期交易費，此要求適用於道明互惠基金的所有單位（貨幣市場基金除外）。詳情請參閱相關基金概況。道明資產管理有限公司（TDAM）在您持有道明互惠基金單位期間向道明投資服務有限公司（TDIS）支付尾隨佣金，作為其向您提供服務和諮詢的費用。有關詳細信息，請參閱基金概況。" };
 	public static final String[] ARRAY_TAB_BALANCE = { "Balances", "Soldes", "结余", "結餘" };
 	public static final String[] ARRAY_TAB_FUND = { "Funds", "Fonds", "基金", "基金" };
-	public static final String[] ARRAY_FUND_TAB_LEFT = { "Fund", "Fond", "基金", "基金" };
+	public static final String[] ARRAY_FUND_TAB_LEFT = { "FUND", "FUNDS", "基金", "基金" };
 	public static final String[] ARRAY_TAB_ACTIVITY = { "Activity", "Activité", "活动", "活動" };
 	public static final String[] ARRAY_TABLE_DATE = { "DATE", "DATE", "日期", "日期" };
 	public static final String[] ARRAY_TABLE_TRANSACTION = { "TRANSACTION", "OPÉRATION", "交易", "交易" };
@@ -60,17 +68,17 @@ public final class StringArray {
 			"我们已经开始处理您的购买。如有问题，我们将与您联系。", "我們已開始處理您的購買。如有問題，我們將與您聯絡。" };
 	public static final String[] ARRAY_MF_NEXT_HAPPEN = { "WHAT HAPPENS NEXT", "PROCHAINES ÉTAPES", "后续流程", "後續流程" };
 	public static final String[] ARRAY_MF_PURCHASE_BEFORE3 = { "Purchases made before 3:00PM",
-			"Achats effectués avant 15 h", "下午 3 点之前的购买 ", "下午 3 時之前的購買" };
+			"Achats effectués avant 15 h", "下午 3 点之前的购买 ", "下午 3 時之前的購買" };
 	public static final String[] ARRAY_MF_CONTENT_BEFORE3 = {
 			"If you made your purchase before 3:00PM EST on a business day, it will be processed at that day's rate.",
-			"Si vous avez effectué votre achat avant 15 h (HE) un jour ouvrable, il sera traité au prix en vigueur à cette date.",
+			"Si vous avez effectué votre achat avant 15 h (HE) un jour ouvrable, il sera traité au prix en vigueur à cette date.",
 			"如果您在工作日东部时间下午 3 点之前购买，将按当天价格交易。", "如果在工作日的東部時間下午 3 時之前購買，將按當天價格交易。" };
 
 	public static final String[] ARRAY_MF_PURCHASE_AFTER3 = { "Purchases made after 3:00PM",
-			"Achats effectués après 15 h", "下午 3 点之后的购买 ", "下午 3 時之後的購買" };
+			"Achats effectués après 15 h", "下午 3 点之后的购买 ", "下午 3 時之後的購買" };
 	public static final String[] ARRAY_MF_CONTENT_AFTER3 = {
 			"If you made your purchase after 3:00PM EST, or on the weekend, it will be processed at the next business day's closing price.",
-			"Si vous avez effectué votre achat après 15 h (HE) ou la fin de semaine, il sera traité au prix de clôture du jour ouvrable suivant.",
+			"Si vous avez effectué votre achat après 15 h (HE) ou la fin de semaine, il sera traité au prix de clôture du jour ouvrable suivant.",
 
 			"如果您在东部时间下午 3 点之后或在周末购买，将按照下一个工作日的收市价交易。", "如果在東部時間下午 3 時之後或在週末購買，將按下一個工作日的收市價交易。" };
 	public static final String[] ARRAY_MF_PURCHASE_CONFIRM = { "Purchase confirmation", "Confirmation d’achat", "购买确认",
@@ -255,7 +263,8 @@ public final class StringArray {
 			"TD for Me 通知", "TD for Me 通知" };
 	public static final String[] ARRAY_ENABLE_NOTIFICATIONS = { "Enable Notifications", "Activer les notifications",
 			"启用通知", "启用通知" };
-  //UA Core
+	// UA Core
 	public static final String[] ARRAY_ACCOUNT_TOTAL = { "Total", "Total", "总计", "總計" };
-  //UA Core End	
+	public static final String[] ARRAY_ADD_LOGIN = {"Add Login","Ajouter une connexion","添加登录", "新增登入"};
+	// UA Core End
 }

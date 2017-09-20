@@ -276,6 +276,9 @@ public class Between_My_accounts extends _CommonPage {
 	@iOSFindBy(accessibility = "TDVIEW_MESSAGE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
 	private MobileElement transfer_error_message;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable")
+	private MobileElement ios_account_dropdown_window;
 
 	private void Decorator() {
 		PageFactory.initElements(new AppiumFieldDecorator((CL.GetDriver()), new TimeOutDuration(10, TimeUnit.SECONDS)),
@@ -455,11 +458,19 @@ public class Between_My_accounts extends _CommonPage {
 				System.out.println("From account:" + from_AccountNo);
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
+				if(mobileAction.verifyElementIsPresent(ios_account_dropdown_window)){
+					mobileAction.FuncSwipeOnce("up");
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 2, "down");
+				}
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
 				String to_accountNo = getTestdata("ToAccount");
 				System.out.println("To account:" + to_accountNo);
 				account_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
+				if(mobileAction.verifyElementIsPresent(ios_account_dropdown_window)){
+					mobileAction.FuncSwipeOnce("up");
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 2, "down");
+				}
 			} else {
 				String from_Account = getTestdata("FromAccount");
 

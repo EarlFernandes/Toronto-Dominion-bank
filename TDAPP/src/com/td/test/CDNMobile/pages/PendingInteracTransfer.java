@@ -47,7 +47,7 @@ public class PendingInteracTransfer extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='-Balance-' or @label='-Balance'][1]")
 
-	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index='1']")
+	@AndroidFindBy(xpath = "//android.widget.ScrollView//android.widget.RelativeLayout[@index='1']")
 	private MobileElement selectTransaction;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel Interac e-Transfer']")
@@ -478,6 +478,7 @@ public class PendingInteracTransfer extends _CommonPage {
 					mobileAction.waitForElementToVanish(progressBar);
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_senderValue, true, 2, "Up");
 					mobileAction.waitForElementToVanish(progressBar);
+					
 				}
 
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
