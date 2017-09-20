@@ -265,5 +265,6 @@ public final class StringArray {
 			"启用通知", "启用通知" };
 	// UA Core
 	public static final String[] ARRAY_ACCOUNT_TOTAL = { "Total", "Total", "总计", "總計" };
+	public static final String[] ARRAY_ADD_LOGIN = {"Add Login","Ajouter une connexion","添加登录", "新增登入"};
 	// UA Core End
 }

@@ -1000,7 +1000,7 @@ public class Profile extends _CommonPage {
 			mobileAction.Report_Fail(errorMessage);
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			return;
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			return;
 		}
 	}

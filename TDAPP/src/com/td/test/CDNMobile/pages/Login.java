@@ -394,6 +394,17 @@ public class Login extends _CommonPage {
 			System.out.println("Exception for no T&C found ");
 		}
 	}
+	
+	private void verifyLoginError() {
+		if(verifySystemError()) {
+			System.out.println("Failed with system error");
+		}else if(verifySessionTimeout()){
+			System.out.println("Failed with Session Expired");
+		}else{
+			System.out.println("Unknown login issue");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
 
 	/**
 	 * This method will login the application
@@ -447,21 +458,18 @@ public class Login extends _CommonPage {
 			}
 			// Do positive checking before doing any negative ones
 			if (!mobileAction.verifyElementIsPresent(logined_page_Header)) {
-				if(verifySystemError()) {
-					System.out.println("Failed with system error");
-				}else if(verifySessionTimeout()){
-					System.out.println("Failed with Session Expired");
-				}else{
-					System.out.println("Unknown login issue");
-					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				}
+				verifyLoginError();
 				
 			} else {
 				String securityQuestionTitle = mobileAction.getAppString("securityQuestionPageHeader");
 				String pageTitle = mobileAction.getValue(logined_page_Header);
+				String addLoginTitle = getTextInCurrentLocale(StringArray.ARRAY_ADD_LOGIN);
 				if (pageTitle.contentEquals(securityQuestionTitle)) {
 					System.out.println("Security Question page");
 					verifySecurityQuestion();
+				} else if(pageTitle.contentEquals(addLoginTitle)){
+					//still in login page
+					verifyLoginError();
 				} else {
 					System.out.println("Login successfully to page " + pageTitle);
 				}
