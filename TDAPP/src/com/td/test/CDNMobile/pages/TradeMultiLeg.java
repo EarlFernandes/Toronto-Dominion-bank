@@ -930,6 +930,7 @@ public class TradeMultiLeg extends _CommonPage {
 	}
 
 	public void verifyMidNaturalVarience() {
+		Decorator();
 		String sMidPrice = "";
 		String sNaturalPrice = "";
 		try {
@@ -1498,11 +1499,10 @@ public class TradeMultiLeg extends _CommonPage {
 
 			}
 
-			/*
-			 * mobileAction.FuncSwipeWhileElementNotFound(objLeg1SelectOption,
-			 * false, 5, "up"); mobileAction.FuncSwipeOnce("up");
-			 */
-			mobileAction.FuncSwipeUpTillScreenBottom(objLeg1SelectOption);
+			mobileAction.FuncSwipeWhileElementNotFound(objLeg1SelectOption, false, 5, "up");
+			mobileAction.FuncSwipeOnce("up");
+
+			// mobileAction.FuncSwipeUpTillScreenBottom(objLeg1SelectOption);
 
 			mobileAction.FuncClick(objLeg1SelectOption, sLeg1OptionDesc);
 			mobileAction.FuncClick(Continue, "Continue");
@@ -1518,12 +1518,15 @@ public class TradeMultiLeg extends _CommonPage {
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, false, 5, "up");
 			mobileAction.FuncSwipeOnce("up");
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			// if
+			// (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			// {
+			mobileAction.FuncClick(leg2Option, "Select Option Leg2");
+			if (mobileAction.isObjExists(leg2Option, 2))
 				mobileAction.FuncClick(leg2Option, "Select Option Leg2");
-				if (mobileAction.isObjExists(leg2Option, 2))
-					mobileAction.FuncClick(leg2Option, "Select Option Leg2");
-			} else
-				mobileAction.FuncClick(leg2Option, "Select Option Leg2");
+			/*
+			 * } else mobileAction.FuncClick(leg2Option, "Select Option Leg2");
+			 */
 
 			if (getTestdata("Good'til", XLSheetUserIDs).equalsIgnoreCase("Cancel")
 					|| getTestdata("Good'til", XLSheetUserIDs).equalsIgnoreCase("Annuler")) {
@@ -1543,11 +1546,10 @@ public class TradeMultiLeg extends _CommonPage {
 
 			}
 
-			/*
-			 * mobileAction.FuncSwipeWhileElementNotFound(objLeg2SelectOption,
-			 * false, 5, "up"); mobileAction.FuncSwipeOnce("up");
-			 */
-			mobileAction.FuncSwipeUpTillScreenBottom(objLeg2SelectOption);
+			mobileAction.FuncSwipeWhileElementNotFound(objLeg2SelectOption, false, 5, "up");
+			mobileAction.FuncSwipeOnce("up");
+
+			// mobileAction.FuncSwipeUpTillScreenBottom(objLeg2SelectOption);
 
 			mobileAction.FuncClick(objLeg2SelectOption, sLeg2OptionDesc);
 			mobileAction.FuncClick(Continue, "Continue");

@@ -2443,10 +2443,11 @@ public class MobileAction2 extends CommonLib {
 			xpathExpression = "//*[@label='" + item + "']";
 		try {
 			// waitForElement(defaultItem);
-			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+/*			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.visibilityOf(defaultItem));
-			FuncClick(defaultItem, "defaultItem");
-
+			FuncClick(defaultItem, "defaultItem");*/
+			Thread.sleep(3000);
+			defaultItem.click();
 			// if(GetDriver().findElement(By.xpath(xpathExpression)).isDisplayed())
 			Thread.sleep(3000);
 			GetDriver().findElement(By.xpath(xpathExpression)).click();
