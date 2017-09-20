@@ -118,6 +118,10 @@ public class MIT_PNSViewAlertsLandingPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and (contains(@text,'Alerts') or contains(@text,'Alertes'))]")
 	private MobileElement LBL_Alerts;
 
+	@iOSFindBy(xpath = "//*[@label='Allow' or @label='Autoriser']")
+	@AndroidFindBy(id = "com.td:id/btn_bottom_right")
+	private MobileElement BT_AllowAlert;
+
 	public void verifyPriceDropsBelow() {
 		Decorator();
 		String symbolName = "";
@@ -242,7 +246,9 @@ public class MIT_PNSViewAlertsLandingPage extends _CommonPage {
 		try {
 			mobileAction.FuncClick(backButton, "backButton");
 			mobileAction.FuncClick(LBL_Alerts, "Alerts");
-
+			if (mobileAction.isObjExists(BT_AllowAlert)) {
+				mobileAction.FuncClick(BT_AllowAlert, "Allow");
+			}
 			Thread.sleep(7000);
 		} catch (Exception e) {
 			e.printStackTrace();
