@@ -653,7 +653,7 @@ public class TradeMultiLeg extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Shareholder Type') or contains(@text,'actionnaire')]")
 	private MobileElement lblshareholderType;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeImage[contains(@name,'error')]/../*[1]") // @Author
+	@iOSFindBy(xpath = "//XCUIElementTypeImage[contains(@name,'error')]/../*[2]") // @Author
 																					// -
 																					// Sushil
 																					// 29-Mar-2017
@@ -1389,12 +1389,12 @@ public class TradeMultiLeg extends _CommonPage {
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, false, 7, "up");
 			mobileAction.FuncSwipeOnce("up");
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+//			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(leg2Option, "Select Option Leg2");
 				if (mobileAction.isObjExists(leg2Option, 2))
 					mobileAction.FuncClick(leg2Option, "Select Option Leg2");
-			} else
-				mobileAction.FuncClick(leg2Option, "Select Option Leg2");
+/*			} else
+				mobileAction.FuncClick(leg2Option, "Select Option Leg2");*/
 
 			if (getTestdata("Good'til", XLSheetUserIDs).equalsIgnoreCase("Cancel")
 					|| getTestdata("Good'til", XLSheetUserIDs).equalsIgnoreCase("Annuler")) {
@@ -2025,21 +2025,7 @@ public class TradeMultiLeg extends _CommonPage {
 
 			mobileAction.FuncClick(search_txtSearchTitle, "search_txtSearchTitle");
 
-			String xpathFlag = "";
-			int temp = 0;
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				xpathFlag = xpathSymbolFlag;
-			} else {
-				xpathFlag = xpathSymbolFlag_ios;
-			}
-			mobileAction.FuncClick(search_symbol, "search_symbol");
-			SearchPageMIT.get().enterSymbol(search_symbol, "AAPL");
-			try {
-				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp),
-						"First Symbol");
-			} catch (Exception e) {
-				CL.GetReporting().FuncReport("Fail", "First Symbol not selected.");
-			}
+			SearchPageMIT.get().clickFirstSymbol("AAPL");
 
 			mobileAction.verifyElement(error_text, getTestdata("WarningMessage", XLSheetUserIDs));
 

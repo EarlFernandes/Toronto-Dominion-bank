@@ -1431,7 +1431,7 @@ public class MobileAction2 extends CommonLib {
 		try {
 			String elementText = "";
 
-			boolean verifyFlag = true;
+			//boolean verifyFlag = true;
 
 			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
 			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
