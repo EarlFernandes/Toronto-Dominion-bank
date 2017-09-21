@@ -12,8 +12,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.td._CommonPage;
 
 public class GoogleVoiceWebPage extends _CommonPage {
-	final String TD_BANK_VERIFICATION_CODE_EN = "is your TD security code";
-	final String TD_BANK_VERIFICATION_CODE_NON_EN = "Votre code de s?curit? TD pour test de votre num?ro de t?l?phone de s?curit? est le ";
 
 	@FindBy(xpath = "//a[@class='signUpLink' and contains(text(),'Sign In')]")
 	private WebElement signInButton;
@@ -89,12 +87,13 @@ public class GoogleVoiceWebPage extends _CommonPage {
 
 			// currentLocale = "en";
 			if (currentLocale.equals("fr")) {
-				int index = this.TD_BANK_VERIFICATION_CODE_NON_EN.length();
-				passcode = this.gv_first_message.getText().substring(index, index + 6).trim();
-
+				int lastSpace = this.gv_first_message.getText().lastIndexOf(" ");
+				int lastPeriod = this.gv_first_message.getText().lastIndexOf(".");
+				passcode = this.gv_first_message.getText().substring(lastSpace, lastPeriod).trim();
+				
 			} else {
-				int index = this.gv_first_message.getText().indexOf(TD_BANK_VERIFICATION_CODE_EN);
-				passcode = this.gv_first_message.getText().substring(0, index).trim();
+				int firstSpace = this.gv_first_message.getText().indexOf(" ");
+				passcode = this.gv_first_message.getText().substring(0, firstSpace).trim();
 			}
 
 			mobileAction.GetReporting().FuncReport("Pass", "Retrieved passcode from Google Voice successfully");
