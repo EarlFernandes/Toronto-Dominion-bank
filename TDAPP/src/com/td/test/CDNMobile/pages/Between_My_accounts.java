@@ -255,11 +255,11 @@ public class Between_My_accounts extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='-Amount']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/myaccounts_amount_value']")
-	private MobileElement amount_review_can;
+	private MobileElement amount_review_main;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='--Amount']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/myaccounts_amount_second_value']")
-	private MobileElement amount_review_us;
+	private MobileElement amount_review_second;
 
 	@iOSFindBy(xpath = "//*[@name='COMMON_RECEIPT_CELL_TITLE_0']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_account_bal']")
@@ -270,9 +270,15 @@ public class Between_My_accounts extends _CommonPage {
 	private MobileElement toAccountValue_receipt;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Activity']")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.TextView[@resource-id='com.td:id/to_account_bal']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/activityTab']")
 	private MobileElement activity_tab;
+	
+	@iOSFindBy(accessibility = "TDVIEW_MESSAGE")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
+	private MobileElement transfer_error_message;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable")
+	private MobileElement ios_account_dropdown_window;
 
 	private void Decorator() {
 		PageFactory.initElements(new AppiumFieldDecorator((CL.GetDriver()), new TimeOutDuration(10, TimeUnit.SECONDS)),
@@ -280,6 +286,168 @@ public class Between_My_accounts extends _CommonPage {
 
 	}
 
+	private double verifyAccountbalanceAndConfirmationNumber() {
+		Decorator();
+		String fromAccountValueBefore = mobileAction.getValue(fromAccountValue_review);
+		String toAccountValueBefore = mobileAction.getValue(toAccountValue_review);
+		String transferValueMain = mobileAction.getValue(amount_review_main);
+		String transferValueUS = "";
+		String transferValueCAD ="";
+
+		boolean is_fromaccount_usd = false;
+		boolean is_toaccount_usd = false;
+		if (fromAccountValueBefore.contains("USD")) {
+			is_fromaccount_usd = true;
+		}
+
+		if (toAccountValueBefore.contains("USD")) {
+			is_toaccount_usd = true;
+		}
+			
+		if(is_fromaccount_usd && is_toaccount_usd) {
+			transferValueUS = transferValueMain;
+		}else if(!is_fromaccount_usd && !is_toaccount_usd) {
+			transferValueCAD = transferValueMain;
+		} else if(is_fromaccount_usd && !is_toaccount_usd) {
+			transferValueUS = transferValueMain;
+			transferValueCAD = mobileAction.getValue(amount_review_second);
+		} else {
+			transferValueCAD = transferValueMain;
+			transferValueUS = mobileAction.getValue(amount_review_second);
+		}
+
+		double fromAccountValueBefore_d, toAccountValueBefore_d, transferValueCAN_d=0.0, transferValueUS_d = 0.0;
+		fromAccountValueBefore_d = mobileAction.convertStringAmountTodouble(fromAccountValueBefore);
+		System.out.println("From account value before transfer:" + fromAccountValueBefore_d);
+		toAccountValueBefore_d = mobileAction.convertStringAmountTodouble(toAccountValueBefore);
+		System.out.println("To account value before transfer:" + toAccountValueBefore_d);
+		
+		if(!transferValueCAD.isEmpty()) {
+			transferValueCAN_d = mobileAction.convertStringAmountTodouble(transferValueCAD);
+			System.out.println("transfer amount CAN:" + transferValueCAN_d);
+		}
+		
+		if (!transferValueUS.isEmpty()) {
+			transferValueUS_d = mobileAction.convertStringAmountTodouble(transferValueUS);
+			System.out.println("transfer amount USA:" + transferValueUS_d);
+		}
+
+		if(!FinishButton()) {
+			mobileAction.Report_Fail("Failed to transfer");
+			return 0.00;
+		}
+		// Verify amount in Receipt
+		String fromAccountValueAfter = mobileAction.getValue(fromAccountValue_receipt);
+		String toAccountValueAfter = mobileAction.getValue(toAccountValue_receipt);
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			fromAccountValueAfter = mobileAction.FuncGetValByRegx(fromAccountValueAfter, "\\$\\d+,*\\d+\\.\\d+");
+			toAccountValueAfter = mobileAction.FuncGetValByRegx(toAccountValueAfter, "\\$\\d+,*\\d+\\.\\d+");
+		}
+		double fromAccountValueAfter_d = mobileAction.convertStringAmountTodouble(fromAccountValueAfter);
+		double toAccountValueAfter_d = mobileAction.convertStringAmountTodouble(toAccountValueAfter);
+		System.out.println("From account value after transfer:" + fromAccountValueAfter_d);
+		System.out.println("To account value after transfer:" + toAccountValueAfter_d);
+
+		if (is_fromaccount_usd) {
+			System.out.println("From account is USD account");
+			if (fromAccountValueBefore_d == fromAccountValueAfter_d + transferValueUS_d) {
+				mobileAction.Report_Pass_Verified("From account balance:" + fromAccountValueAfter);
+			} else {
+				mobileAction.Report_Fail("From account balance not match after transfer:" + fromAccountValueAfter);
+			}
+		} else {
+			System.out.println("From account is CAN account");
+			if (fromAccountValueBefore_d == fromAccountValueAfter_d + transferValueCAN_d) {
+				mobileAction.Report_Pass_Verified("From account balance:" + fromAccountValueAfter);
+			} else {
+				mobileAction.Report_Fail("From account balance not match after transfer:" + fromAccountValueAfter);
+			}
+		}
+
+		if (is_toaccount_usd) {
+			System.out.println("To account is USD account");
+			if (toAccountValueBefore_d == toAccountValueAfter_d - transferValueUS_d) {
+				mobileAction.Report_Pass_Verified("To account balance:" + toAccountValueAfter);
+			} else {
+				mobileAction.Report_Fail("To account balance does't match after transfer:" + toAccountValueAfter);
+			}
+		} else {
+			System.out.println("To account is CAN account");
+			if (toAccountValueBefore_d == toAccountValueAfter_d - transferValueCAN_d) {
+				mobileAction.Report_Pass_Verified("To account balance:" + toAccountValueAfter);
+			} else {
+				mobileAction.Report_Fail("To account balance does't match after transfer:" + toAccountValueAfter);
+			}
+		}
+
+		// Verify confirmation number
+		if (!is_fromaccount_usd && !is_toaccount_usd) {
+			String from_AccountNo = getTestdata("FromAccount");
+			String to_accountNo = getTestdata("ToAccount");
+			String conf_val = mobileAction.getText(confirmation_Val);
+			String confirmationValue[] = conf_val.split(":");
+			String confirmationNum = confirmationValue[0].trim();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				confirmationNum = confirmationValue[1].trim();
+			}
+
+			System.out.println("Confirmation num:" + confirmationNum);
+			try {
+				mobileAction.verifyElementIsDisplayed(txtTrnsfrSucssfl, "Transfer Successful");
+				mobileAction.FuncClick(btnMenu, "Menu");
+				mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
+				mobileAction.waitForElementToVanish(txtProgressBar);
+
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
+					String account_value = "//XCUIElementTypeStaticText[contains(@value,'" + from_AccountNo + "')]";
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
+
+					mobileAction.FuncClick(activity_tab, "Activity Tab");
+					String confirmationXpath = "//XCUIElementTypeStaticText[contains(@label,'" + confirmationNum
+							+ "')]";
+					mobileAction.verifyElementUsingXPath(confirmationXpath, confirmationNum);
+
+				} else {
+
+					String account_value = "//*[contains(@text,'" + from_AccountNo + "') or contains(@content-desc,'"
+							+ from_AccountNo + "')]";
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
+					mobileAction.FuncClick(activity_tab, "Activity Tab");
+					String confirmationXpath = "//android.widget.TextView[contains(@text,'" + confirmationNum + "')]";
+					mobileAction.verifyElementUsingXPath(confirmationXpath, confirmationNum);
+				}
+				mobileAction.ClickBackButton();
+				mobileAction.waitForElementToVanish(txtProgressBar);
+				// Verify to account
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
+					String account_value = "//XCUIElementTypeStaticText[contains(@value,'" + to_accountNo + "')]";
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
+
+					mobileAction.FuncClick(activity_tab, "Activity Tab");
+					String confirmationXpath = "//XCUIElementTypeStaticText[contains(@label,'" + confirmationNum
+							+ "')]";
+					mobileAction.verifyElementUsingXPath(confirmationXpath, confirmationNum);
+
+				} else {
+
+					String account_value = "//*[contains(@text,'" + to_accountNo + "') or contains(@content-desc,'"
+							+ to_accountNo + "')]";
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
+					mobileAction.FuncClick(activity_tab, "Activity Tab");
+					String confirmationXpath = "//android.widget.TextView[contains(@text,'" + confirmationNum + "')]";
+					mobileAction.verifyElementUsingXPath(confirmationXpath, confirmationNum);
+				}
+
+			} catch (Exception e) {
+				System.out.println("Exception in verifyAccountbalanceAndConfirmationNumber");
+				mobileAction.Report_Fail("Exception in verifyAccountbalanceAndConfirmationNumber");
+			}
+		}
+		return fromAccountValueAfter_d;
+	}
+	
 	public void perFormTransfer() {
 		Decorator();
 		try {
@@ -288,17 +456,21 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.FuncClick(txtFrom_acnt, "From Account");
 				String from_AccountNo = getTestdata("FromAccount");
 				System.out.println("From account:" + from_AccountNo);
-				// mobileAction.FuncSelectElementInTable(from_Accounts_table,
-				// Firstpart, Secondpart, from_AccountNo);
 				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
+				if(mobileAction.verifyElementIsPresent(ios_account_dropdown_window)){
+					mobileAction.FuncSwipeOnce("up");
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 2, "down");
+				}
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
 				String to_accountNo = getTestdata("ToAccount");
 				System.out.println("To account:" + to_accountNo);
 				account_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
-				// mobileAction.FuncSelectElementInTable(from_Accounts_table,
-				// Firstpart, Secondpart, to_accountNo);
+				if(mobileAction.verifyElementIsPresent(ios_account_dropdown_window)){
+					mobileAction.FuncSwipeOnce("up");
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 2, "down");
+				}
 			} else {
 				String from_Account = getTestdata("FromAccount");
 
@@ -596,161 +768,63 @@ public class Between_My_accounts extends _CommonPage {
 
 	public void exchange_rate_expired() {
 		Decorator();
-		String verify_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
-				+ getTestdata("ToAccount") // changed by rashmi
-				+ "')]";
-
-		String verify_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-				+ getTestdata("FromAccount") + "']";
-		String select_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
-				+ getTestdata("FromAccount") + "')]";
-
-		String select_to_Acnt = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and contains(@text,'"
-				+ getTestdata("ToAccount") + "')]";
-		String progressBar = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
-
-		String from_Accounts_table = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]";
-		String Firstpart = "//XCUIElementTypeCell[";
-		String Secondpart = "]/XCUIElementTypeStaticText[1]";
-		// String accountsPage_Table =
-		// "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/"
-		// + "XCUIElementTypeOther[1]/XCUIElementTypeTable[1]";
-
+		
+		perFormTransfer();
+		continueButton();
+		
 		try {
+			System.out.println("Wait rate exchange expires:122s");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(txtFrom_acnt, "From Account");
-				String accountNo = getTestdata("FromAccount");
-				System.out.println("From Account:" + accountNo);
-				mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, accountNo);
-
-				mobileAction.FuncClick(txtto_Acnt, "To Account");
-				String to_accountNo = getTestdata("ToAccount");
-				System.out.println("ToAccount:" + to_accountNo);
-				mobileAction.FuncSelectElementInTable(from_Accounts_table, Firstpart, Secondpart, to_accountNo);
-				mobileAction.FuncClick(usd_Button, "USD");
-				mobileAction.FuncClick(txtAmount, "Amount");
-				String ValueofAmount = getTestdata("Amount");
-				mobileAction.FuncSendKeys(txtAmount, ValueofAmount);
-				mobileAction.FuncClickDone();
-				mobileAction.FuncClick(btncontinue_Transfer, "Continue");
-				mobileAction.waitForElementToVanish(txtProgressBar);
-				// mobileAction.FuncWaitForElement(ok_Button, 120, "Ok");
-				// mobileAction.FuncClick(ok_Button, "OK");
-				mobileAction.FuncClick(btnFinish_transfer, "Finish");
-				mobileAction.waitForElementToVanish(txtProgressBar);
-
-				String conf_val = mobileAction.getText(confirmation_Val);
-				System.out.println("Confirm info:" + conf_val);
-				String[] confmVal = conf_val.split(":");
-				mobileAction.FuncClick(btnMenu, "Menu");
-				mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
-				mobileAction.waitForElementToDisappear(progressBar);
-				verify_from_acnt = "//*[@label='" + accountNo + "']";
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(verify_from_acnt, true, 20, "up");
-				// mobileAction.FuncSelectElementInTable(accountsPage_Table,
-				// Firstpart, Secondpart, accountNo);
-				mobileAction.verifyElementTextContains(activityConfText, confmVal[1].trim());
-				String amt_sent = lastTransacAmt.getAttribute("label");
-				System.out.println("amt_sent:" + amt_sent);
-				if (mobileAction.verifySymbol(amt_sent, "-")) {
-					String amount[] = amt_sent.split("-");
-					mobileAction.verifyTextEquality(amount[1], ValueofAmount);
-				}
-				mobileAction.FuncClick(backBtn, "Back");
-				// mobileAction.FuncSelectElementInTable(accountsPage_Table,
-				// Firstpart, Secondpart, to_accountNo);
-				select_to_Acnt = "//*[@label='" + to_accountNo + "']";
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_to_Acnt, true, 20, "up");
-				String amt_recvd = lastTransacAmt.getAttribute("label");
-				String amt_sent_after_exchange = mobileAction.getText(amountSent);
-				mobileAction.verifyTextEquality(amt_recvd, amt_sent_after_exchange);
-				mobileAction.FuncClick(btnMenu, "Menu");
-				mobileAction.FuncClick(btnLogout, "Logout");
-				mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
-			} else {
-
-				mobileAction.FuncClick(txtFrom_acnt, "From Account");
-				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_from_acnt, 5, "down", true);
-				mobileAction.waitForElementToDisappear(select_from_acnt);
-				mobileAction.FuncClick(txtto_Acnt, "To Account");
-				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_to_Acnt, 2, "down", true);
-				mobileAction.waitForElementToDisappear(select_to_Acnt);
-
-				mobileAction.FuncClick(cad_Button, "CAD");
-				mobileAction.FuncClick(usd_Button, "USD");
-				mobileAction.FuncClick(txtAmount, "Amount");
-				String ValueofAmount = getTestdata("Amount");
-				mobileAction.FuncSendKeys(txtAmount, ValueofAmount);
-				mobileAction.FuncHideKeyboard();
-				mobileAction.FuncClick(btncontinue_Transfer, "Continue");
-				mobileAction.FuncWaitForElement(ok_Button, 120, "Ok");
+				WebDriverWait wait = new WebDriverWait(CL.GetAppiumDriver(), 122);
+				wait.until(ExpectedConditions.visibilityOf(ok_Button));
 				mobileAction.FuncClick(ok_Button, "OK");
-				mobileAction.FuncClick(btnFinish_transfer, "Finish");
-
-				String conf_val = mobileAction.getText(confirmation_Val);
-
-				mobileAction.FuncClick(btnMenu, "Menu");
-				mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
-				mobileAction.waitForElementToDisappear(progressBar);
-
-				// mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList,
-				// verify_from_acnt, 1, "down", true);
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(verify_from_acnt, true, 5, "up");
-				mobileAction.verifyTextContains(last_Transaction_List.get(0), conf_val);
-
-				String amt_sent = mobileAction.getText(amt_Trnsfrd.get(0));
-				if (mobileAction.verifySymbol(amt_sent, "-")) {
-					String amount[] = amt_sent.split("$");
-
-					String org_amt[] = amount[1].split(".");
-
-					for (int j = 0; j < org_amt.length; j++)
-						mobileAction.verifyTextEquality(org_amt[0], ValueofAmount);
-				}
-				mobileAction.FuncClickBackButton();
-				mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList, verify_to_Acnt, 1, "down", true);
-				String amt_recvd = mobileAction.getText(amt_Trnsfrd.get(0));
-				String amt_sent_after_exchange = mobileAction.getText(amountSent);
-				mobileAction.verifyTextEquality(amt_recvd, amt_sent_after_exchange);
-				mobileAction.verifyTextContains(last_Transaction_List.get(1), conf_val);
-				mobileAction.FuncClick(btnMenu, "Menu");
-				mobileAction.FuncClick(btnLogout, "Logout");
-
-				mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
+	
+			} else {
+				mobileAction.FuncWaitForElement(ok_Button, 122, "Ok");
+				mobileAction.FuncClick(ok_Button, "OK");
 			}
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}catch (Exception e ){
+			System.out.println("Failed to wait rate exchange expired");
+			mobileAction.Report_Fail("Failed to wait rate exchange expired");
+			return;
 		}
+		verifyAccountbalanceAndConfirmationNumber();
 	}
 
-	public void FinishButton() {
+	public boolean FinishButton() {
 		Decorator();
 		try {
 			mobileAction.FuncClick(btnFinish_transfer, "Finish");
 			mobileAction.waitForElementToVanish(txtProgressBar);
+			try {
+				String errorMessage = mobileAction.getValue(transfer_error_message);
+				if(!errorMessage.isEmpty()) {
+					System.out.println("Error:"+errorMessage);
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					return false;
+				}
+			} catch (Exception e1) {
+				return true;
+			}
+			
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			return false;
 		} catch (InterruptedException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			return false;
 		} catch (IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			return false;
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+			return false;
 		}
+		return true;
 	}
 
 	/**
@@ -1068,46 +1142,10 @@ public class Between_My_accounts extends _CommonPage {
 		try {
 			perFormTransfer();
 			continueButton();
-			FinishButton();
-			String from_AccountNo = getTestdata("FromAccount");
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-
-				String conf_val = mobileAction.getText(confirmation_Val);
-				String confirmationValue[] = conf_val.split(":");
-				mobileAction.verifyElementIsDisplayed(txtTrnsfrSucssfl, "Transfer Successful");
-				mobileAction.FuncClick(btnMenu, "Menu");
-				mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
-				mobileAction.waitForElementToVanish(txtProgressBar);
-
-				String account_value = "//XCUIElementTypeStaticText[contains(@value,'" + from_AccountNo + "')]";
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
-
-				mobileAction.FuncClick(activity_tab, "Activity Tab");
-				String confirmationXpath = "//XCUIElementTypeStaticText[contains(@label,'" + confirmationValue[1].trim()
-						+ "')]";
-				mobileAction.verifyElementUsingXPath(confirmationXpath, confirmationValue[1].trim());
-				// mobileAction.verifyElementTextContains(activityConfText,
-				// confirmationValue[1].trim());
-
-			} else {
-				mobileAction.verifyElementIsDisplayed(txtTrnsfrSucssfl, "Transfer Successful");
-				mobileAction.FuncClick(btnMenu, "Menu");
-				mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
-				mobileAction.waitForElementToVanish(txtProgressBar);
-				String account_value = "//*[contains(@text,'" + from_AccountNo + "') or contains(@content-desc,'"
-						+ from_AccountNo + "')]";
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
-				mobileAction.verifyElementIsDisplayed(balance, "Account Balance");
-			}
+			verifyAccountbalanceAndConfirmationNumber();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
@@ -1473,30 +1511,17 @@ public class Between_My_accounts extends _CommonPage {
 
 		Decorator();
 		try {
+			perFormTransfer();
+			mobileAction.FuncClick(btncontinue_Transfer, "Continue");
+			mobileAction.waitForElementToVanish(txtProgressBar);
+			mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(from_acnt, "From Account");
-				String from_AccountNo = getTestdata("FromAccount");
-				String account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
-				mobileAction.FuncClick(to_Acnt, "To Account");
-				String to_accountNo = getTestdata("ToAccount");
-				String accountValue = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountValue, true, 25, "Up");
-				mobileAction.FuncClick(cad_Button, "CAD");
-				mobileAction.FuncClick(amount, "Amount");
-				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
-				mobileAction.FuncClickDone();
-				mobileAction.FuncClick(continue_Transfer, "Continue");
-				mobileAction.waitForElementToVanish(txtProgressBar);
 				WebDriverWait wait = new WebDriverWait(CL.GetAppiumDriver(), 122);
 				wait.until(ExpectedConditions.visibilityOf(ok_Button));
 				mobileAction.FuncClick(ok_Button, "OK");
 
 			} else {
-				perFormTransfer();
-				mobileAction.FuncClick(btncontinue_Transfer, "Continue");
-				mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "ConfirmHeader");
 				mobileAction.FuncWaitForElement(ok_Button, 122, "Ok");
 				mobileAction.FuncClick(ok_Button, "OK");
 			}
@@ -1622,106 +1647,19 @@ public class Between_My_accounts extends _CommonPage {
 
 	public double transferTDCTCad_USDVisa() {
 		Decorator();
-		String verify_from_acnt = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-				+ getTestdata("FromAccount") + "']";
+		// String verify_from_acnt =
+		// "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum'
+		// and @text='"
+		// + getTestdata("FromAccount") + "']";
 		double fromAccountval = 0.00;
 		try {
 			perFormTransfer();
 			continueButton();
-			Decorator();
-			String fromAccountValueBefore = mobileAction.getValue(fromAccountValue_review);
-			String toAccountValueBefore = mobileAction.getValue(toAccountValue_review);
-			String transferValueCAN = mobileAction.getValue(amount_review_can);
-			String transferValueUS = "";
-
-			boolean is_fromaccount_usd = false;
-			boolean is_toaccount_usd = false;
-			if (fromAccountValueBefore.contains("USD")) {
-				is_fromaccount_usd = true;
-			}
-
-			if (toAccountValueBefore.contains("USD")) {
-				is_toaccount_usd = true;
-			}
-
-			if (is_fromaccount_usd || is_toaccount_usd) {
-				transferValueUS = mobileAction.getValue(amount_review_us);
-			}
-
-			double fromAccountValueBefore_d, toAccountValueBefore_d, transferValueCAN_d, transferValueUS_d = 0;
-			fromAccountValueBefore_d = mobileAction.convertStringAmountTodouble(fromAccountValueBefore);
-			System.out.println("From account value before transfer:" + fromAccountValueBefore_d);
-			toAccountValueBefore_d = mobileAction.convertStringAmountTodouble(toAccountValueBefore);
-			System.out.println("To account value before transfer:" + toAccountValueBefore_d);
-			transferValueCAN_d = mobileAction.convertStringAmountTodouble(transferValueCAN);
-			System.out.println("transfer amount CAN:" + transferValueCAN_d);
-			if (is_fromaccount_usd || is_toaccount_usd) {
-				transferValueUS_d = mobileAction.convertStringAmountTodouble(transferValueUS);
-				System.out.println("transfer amount USA:" + transferValueUS_d);
-			}
-
-			FinishButton();
-			// Verify amount in Receipt
-			String fromAccountValueAfter = mobileAction.getValue(fromAccountValue_receipt);
-			String toAccountValueAfter = mobileAction.getValue(toAccountValue_receipt);
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				fromAccountValueAfter = mobileAction.FuncGetValByRegx(fromAccountValueAfter, "\\$\\d+,*\\d+\\.\\d+");
-				toAccountValueAfter = mobileAction.FuncGetValByRegx(toAccountValueAfter, "\\$\\d+,*\\d+\\.\\d+");
-			}
-			double fromAccountValueAfter_d = mobileAction.convertStringAmountTodouble(fromAccountValueAfter);
-			double toAccountValueAfter_d = mobileAction.convertStringAmountTodouble(toAccountValueAfter);
-			System.out.println("From account value after transfer:" + fromAccountValueAfter_d);
-			System.out.println("To account value after transfer:" + toAccountValueAfter_d);
-
-			if (is_fromaccount_usd) {
-				System.out.println("From account is USD account");
-				if (fromAccountValueBefore_d == fromAccountValueAfter_d + transferValueUS_d) {
-					mobileAction.Report_Pass_Verified("From account value");
-				} else {
-					mobileAction.Report_Fail("From account value not match after transfer");
-				}
-			} else {
-				System.out.println("From account is CAN account");
-				if (fromAccountValueBefore_d == fromAccountValueAfter_d + transferValueCAN_d) {
-					mobileAction.Report_Pass_Verified("From account value");
-				} else {
-					mobileAction.Report_Fail("From account value not match after transfer");
-				}
-			}
-
-			if (is_toaccount_usd) {
-				System.out.println("To account is USD account");
-				if (toAccountValueBefore_d == toAccountValueAfter_d - transferValueUS_d) {
-					mobileAction.Report_Pass_Verified("To account value");
-				} else {
-					mobileAction.Report_Fail("To account value does't match after transfer");
-				}
-			} else {
-				System.out.println("To account is CAN account");
-				if (toAccountValueBefore_d == toAccountValueAfter_d - transferValueCAN_d) {
-					mobileAction.Report_Pass_Verified("To account value");
-				} else {
-					mobileAction.Report_Fail("To account value does't match after transfer");
-				}
-			}
-
-			fromAccountval = fromAccountValueAfter_d;
-			if (!is_fromaccount_usd && !is_toaccount_usd) {
-				mobileAction.FuncClick(btnMenu, "Menu");
-				mobileAction.FuncClick(txtMy_Accounts, "My Accounts");
-				mobileAction.FuncElementSwipeWhileNotFound(acntSummaryList, verify_from_acnt, 5, "down", true);
-				mobileAction.verifyElementIsDisplayed(verifyAmount, "Verify Amount");
-			}
+			fromAccountval = verifyAccountbalanceAndConfirmationNumber();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());

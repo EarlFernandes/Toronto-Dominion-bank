@@ -433,9 +433,11 @@ public class Pay_US_Bill extends _CommonPage {
 								+ mobileAction.getAppString("confirmation_no").replace("%1$s", "") + "')]",
 						"Confirmation #");
 
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("payBillDropdownHeaderFromAccount").replace(" ", "\n") + "']",
-						"From Account");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.TextView[@text='" + mobileAction
+										.getAppString("payBillDropdownHeaderFromAccount").replace(" ", "\n") + "']",
+								"From Account");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("payBillConfirmFieldHeaderAmount") + "']", "Amount");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
@@ -496,36 +498,51 @@ public class Pay_US_Bill extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				payUSBillToConfirmation();
-//				mobileAction.verifyElementUsingXPath(
-//						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("usbp_legal_notes")
-//								.replace("#LINK#", mobileAction.getAppString("usbp_legal_notes_link")) + "']",
-//						"Terms and conditions");
-//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
-//						+ mobileAction.getAppString("payBillDropdownHeaderFromAccount").replace(" ", "\n") + "']",
-//						"From Account");
-//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
-//						+ mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");
+				// mobileAction.verifyElementUsingXPath(
+				// "//XCUIElementTypeStaticText[@value='" +
+				// mobileAction.getAppString("usbp_legal_notes")
+				// .replace("#LINK#",
+				// mobileAction.getAppString("usbp_legal_notes_link")) + "']",
+				// "Terms and conditions");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
+				// +
+				// mobileAction.getAppString("payBillDropdownHeaderFromAccount").replace("
+				// ", "\n") + "']",
+				// "From Account");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
+				// + mobileAction.getAppString("payBillConfirmFieldHeaderPayee")
+				// + "']", "Payee");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
 						+ mobileAction.getAppString("estimated_delivery_date") + "']", "Est delivery date");
 				final String xPathReason = "//XCUIElementTypeStaticText[@value='"
 						+ mobileAction.getAppString("reason_for_payment_label") + "']";
-//				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathReason, false, 4, "up");
-//				mobileAction.verifyElementUsingXPath(
-//						"//XCUIElementTypeStaticText[@value='"
-//								+ mobileAction.getAppString("transfersFXExchangeRate").replace(" ", "\n") + "']",
-//						"Exchange Rate");
-//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
-//						+ mobileAction.getAppString("payBillConfirmButtonPayBill") + "']", "Pay Bill");
-//				mobileAction.verifyElementUsingXPath(
-//						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("service_fee") + "']",
-//						"Service Fee");
-//				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
-//						+ mobileAction.getAppString("payBillConfirmFieldHeaderAmount") + "']", "Amount");
-//				mobileAction.verifyElementUsingXPath(
-//						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("total_amount") + "']",
-//						"Total Amount");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathReason, false, 3, "up");
+				// mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathReason,
+				// false, 4, "up");
+				// mobileAction.verifyElementUsingXPath(
+				// "//XCUIElementTypeStaticText[@value='"
+				// +
+				// mobileAction.getAppString("transfersFXExchangeRate").replace("
+				// ", "\n") + "']",
+				// "Exchange Rate");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
+				// + mobileAction.getAppString("payBillConfirmButtonPayBill") +
+				// "']", "Pay Bill");
+				// mobileAction.verifyElementUsingXPath(
+				// "//XCUIElementTypeStaticText[@value='" +
+				// mobileAction.getAppString("service_fee") + "']",
+				// "Service Fee");
+				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
+				// +
+				// mobileAction.getAppString("payBillConfirmFieldHeaderAmount")
+				// + "']", "Amount");
+				// mobileAction.verifyElementUsingXPath(
+				// "//XCUIElementTypeStaticText[@value='" +
+				// mobileAction.getAppString("total_amount") + "']",
+				// "Total Amount");
 				mobileAction.verifyElementUsingXPath(xPathReason, "Reason for payment");
-//				mobileAction.verifyDateFormat(estDate.getText(), MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
+				// mobileAction.verifyDateFormat(estDate.getText(),
+				// MobileAction2.TYPE_YYYY_MM_DD_WEEKDATE);
 			} else {
 				payUSBillToConfirmation();
 				mobileAction.verifyElementUsingXPath(
@@ -591,12 +608,12 @@ public class Pay_US_Bill extends _CommonPage {
 				String to_accountNo = "//XCUIElementTypeStaticText[contains(@value, '" + getTestdata("Payee") + "')]";
 
 				MobileElement toAccountval = (MobileElement) (CL.GetAppiumDriver()).findElement(By.xpath(to_accountNo));
-				MobileElement memo = (MobileElement) (CL.GetAppiumDriver())
-						.findElement(By.xpath("//XCUIElementTypeTextField[2]"));
 				mobileAction.FunCSwipeandScroll(toAccountval, true);
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
 				mobileAction.FuncClickDone();
+				MobileElement memo = (MobileElement) (CL.GetAppiumDriver()).findElement(
+						By.xpath("//*[@name='PAYUSBILL_VIEW_REASON']/following-sibling::XCUIElementTypeTextField"));
 				mobileAction.FuncClick(memo, "US memo clicked");
 				mobileAction.FuncSendKeys(memo, "us test bill pay");
 				mobileAction.FuncClickDone();

@@ -207,6 +207,10 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/confirm_delete']")
 	private MobileElement deluser;
 
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
+	private MobileElement logined_page_Header;
+
 	String session = "//XCUIElementTypeStaticText[@label='Session Expired']";
 	String session1 = "//android.widget.TextView[contains(@text,'Session Expired')]";
 	String message = "Session Expired";
@@ -302,30 +306,34 @@ public class Login extends _CommonPage {
 		return flag;
 	}
 
-	public void verifySystemError() {
+	public boolean verifySystemError() {
 		Decorator();
 		try {
 			if (mobileAction.verifyElementIsPresent(errorText)) {
 				mobileAction.GetReporting().FuncReport("Fail", "System exception occured during login");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				return true;
 			}
 		} catch (Exception e) {
 			System.out.println("Exception for no System Error ");
+			return false;
 		}
-
+		return false;
 	}
 
-	public void verifySessionTimeout() {
+	public boolean verifySessionTimeout() {
 		Decorator();
 		try {
 			if (mobileAction.verifyElementIsPresent(sessionTimeout)) {
 				mobileAction.GetReporting().FuncReport("Fail", "Session Timeout during login");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				return true;
 			}
 		} catch (Exception e) {
 			System.out.println("No session timeout found");
+			return false;
 		}
-
+		return false;
 	}
 
 	public void verifySecurityQuestion() {
@@ -386,6 +394,17 @@ public class Login extends _CommonPage {
 			System.out.println("Exception for no T&C found ");
 		}
 	}
+	
+	private void verifyLoginError() {
+		if(verifySystemError()) {
+			System.out.println("Failed with system error");
+		}else if(verifySessionTimeout()){
+			System.out.println("Failed with Session Expired");
+		}else{
+			System.out.println("Unknown login issue");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
 
 	/**
 	 * This method will login the application
@@ -437,12 +456,24 @@ public class Login extends _CommonPage {
 				}
 				mobileAction.waitForElementToVanish(progressBar);
 			}
-
-			verifySystemError();
-			verifySecurityQuestion();
-
-			verifySessionTimeout();
-			// verifyTandC();
+			// Do positive checking before doing any negative ones
+			if (!mobileAction.verifyElementIsPresent(logined_page_Header)) {
+				verifyLoginError();
+				
+			} else {
+				String securityQuestionTitle = mobileAction.getAppString("securityQuestionPageHeader");
+				String pageTitle = mobileAction.getValue(logined_page_Header);
+				String addLoginTitle = getTextInCurrentLocale(StringArray.ARRAY_ADD_LOGIN);
+				if (pageTitle.contentEquals(securityQuestionTitle)) {
+					System.out.println("Security Question page");
+					verifySecurityQuestion();
+				} else if(pageTitle.contentEquals(addLoginTitle)){
+					//still in login page
+					verifyLoginError();
+				} else {
+					System.out.println("Login successfully to page " + pageTitle);
+				}
+			}
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -488,9 +519,9 @@ public class Login extends _CommonPage {
 				mobileAction.FuncClick(login_InFrench, "Login");
 				mobileAction.waitForElementToDisappear(progressBarFrench);
 			} else {
-				if(mobileAction.isOrientationLandscape()) {
+				if (mobileAction.isOrientationLandscape()) {
 					mobileAction.HideKeyBoard_IOS();
-				}else{
+				} else {
 					mobileAction.FuncClick(login_InFrench, "Login");
 				}
 				mobileAction.waitForElementToDisappear(progressBarFrench);
@@ -569,7 +600,7 @@ public class Login extends _CommonPage {
 			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 			if (platFormName.equalsIgnoreCase("ios")) {
 				Thread.sleep(1000);
-				if(mobileAction.isOrientationLandscape()) {
+				if (mobileAction.isOrientationLandscape()) {
 					mobileAction.HideKeyBoard_IOS();
 				}
 				mobileAction.FuncClick(rememberMe_button, "Remember Yes");
@@ -712,11 +743,11 @@ public class Login extends _CommonPage {
 
 				mobileAction.FuncSendKeys(password, passwords);
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					if(mobileAction.isOrientationLandscape()) {
+					if (mobileAction.isOrientationLandscape()) {
 						mobileAction.HideKeyBoard_IOS();
-					}else{
+					} else {
 						mobileAction.FuncClickDone();
-					}					
+					}
 				} else {
 					mobileAction.FuncHideKeyboard();
 				}
@@ -948,10 +979,13 @@ public class Login extends _CommonPage {
 
 						if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")
 								&& mobileAction.isOrientationLandscape()) {
-							//Freddy: This is a workaround to hide keyboard to verify "Remember me" button in Landscape
-							//driver.hideKeyboard(HideKeyboardStrategy.TAP_OUTSIDE)  and
-							//driver.hideKeyboard(HideKeyboardStrategy.PRESS_KEY, "Hide keyboard")
-							//only works for English not for FR, Chinese
+							// Freddy: This is a workaround to hide keyboard to
+							// verify "Remember me" button in Landscape
+							// driver.hideKeyboard(HideKeyboardStrategy.TAP_OUTSIDE)
+							// and
+							// driver.hideKeyboard(HideKeyboardStrategy.PRESS_KEY,
+							// "Hide keyboard")
+							// only works for English not for FR, Chinese
 
 							System.out.println("Hide keyboard by clicking TD Image");
 							mobileAction.FuncClick(TD_Image, "TD");
@@ -1331,7 +1365,7 @@ public class Login extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	private void login_with_ID_remembered() {
 		try {
 			mobileAction.FuncClick(select_accesscard, "Select Accesscard");
@@ -1344,7 +1378,7 @@ public class Login extends _CommonPage {
 
 				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(login, "Login");
-			} else {				
+			} else {
 				if (mobileAction.isOrientationLandscape()) {
 					mobileAction.HideKeyBoard_IOS();
 				} else {
@@ -1384,7 +1418,7 @@ public class Login extends _CommonPage {
 					mobileAction.HideKeyBoard_IOS();
 				} else {
 					mobileAction.FuncClick(login, "Login");
-				}				
+				}
 			}
 			mobileAction.waitForElementToVanish(progressBar);
 		} catch (NoSuchElementException e) {

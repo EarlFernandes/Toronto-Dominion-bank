@@ -116,7 +116,7 @@ public class EventCase {
 
 		Account_Home_Button, Account_Prefer_Button, Accounts_EW_WB_Functionality, Accounts_Header, Accounts_sessionTimedOut,
 
-		Accounts_Verify_Page, Accounts_VerifyAccountsPage, Accounts_VerifyTFSA_Activity, AddVaildEmail,
+		Accounts_Verify_Page, Accounts_VerifyAccountsPage, Accounts_VerifyTFSA_Activity, AddVaildEmail,verifyCAD_USD_AccountsInTotal,
 
 		Add_Recipient_ErrorPage, AddCanadianPayee, AddPayee_SearchPayee, AddCard_MobilePayment, AddToTDMobilePayment, ApplePay_AddCard, ApplePay_SelectACard, ApplePay_CheckEligibleCard, ApplePay_ChangeDefaultCard, ApplePay_CheckPersonalCard, ApplePay_CheckBusinessCard, ApplePay_CheckDefaultCard, ApplePay_AddAllCards, ApplePay_OtherEligibleCards, Accounts_Credit_clickTransfer,
 
@@ -389,6 +389,10 @@ public class EventCase {
 
 		case Investing_clickHoldings:
 			Investing.get().clickHoldings();
+			break;
+			
+		case verifyCAD_USD_AccountsInTotal:
+			Accounts.get().verifyCAD_USD_AccountsInTotal();
 			break;
 
 		case Login_Error:
@@ -4086,6 +4090,7 @@ public class EventCase {
 		case verifyFlyoutBlendedyUser:
 			MIT_DSH_FlyoutMenu.get().verifyFlyoutBlendedyUser();
 			break;
+			
 		}
 	}
 
