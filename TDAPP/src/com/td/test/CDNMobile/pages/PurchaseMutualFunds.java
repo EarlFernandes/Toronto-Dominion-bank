@@ -130,7 +130,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Ineligible') or contains(@label,'Non admissible')]/../XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Ineligible') or contains(@text,'Non admissible')]/../android.widget.TextView[@resource-id='com.td:id/txtItemValue']")
 	private MobileElement Ineligible_fund;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable")
 	private MobileElement ios_account_dropdown_window;
 
@@ -480,7 +480,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			System.out.println("FundInListText:" + FundInListText);
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(FundInListText, true, 10, "up");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				if(mobileAction.verifyElementIsPresent(ios_account_dropdown_window)) {
+				if (mobileAction.verifyElementIsPresent(ios_account_dropdown_window)) {
 					mobileAction.FuncSwipeOnce("up");
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(FundInListText, true, 2, "down");
 				}
@@ -585,8 +585,8 @@ public class PurchaseMutualFunds extends _CommonPage {
 				System.out.println("Phone populated:" + ori_phone);
 			}
 
-			//mobileAction.FuncSwipeOnce("up");
-			//mobileAction.FuncClick(consent_checkbox, "consent check box");
+			// mobileAction.FuncSwipeOnce("up");
+			// mobileAction.FuncClick(consent_checkbox, "consent check box");
 			mobileAction.FuncSwipeWhileElementNotFound(consent_checkbox, true, 5, "up");
 
 		} catch (Exception e) {
@@ -933,15 +933,12 @@ public class PurchaseMutualFunds extends _CommonPage {
 			}
 
 			// String capturedErrorMsg = mobileAction.getValue(error_message);
-			String expectedErrorMsg = "Looks like you're not set up to purchase mutual funds. Let us help you by calling \\d{1}-\\d{3}-\\d{3}-\\d{4}.";
+			String expectedErrorMsg = getTextInCurrentLocale(StringArray.ARRAY_MF_NONELIGIBAL_ERROR_MSG);
 			if (currentLocale.equalsIgnoreCase("fr")) {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					expectedErrorMsg = "Il semble que vous ne puissiez pas effectuer d’achats. Pour obtenir de l’aide, composez le \\d{1}–\\d{3}–\\d{3}–\\d{4}.";
-				} else {
-					expectedErrorMsg = "Il semble que vous ne puissiez pas effectuer d’achats. Pour obtenir de l’aide, composez le \\d{1}-\\d{3}-\\d{3}-\\d{4}.";
+					expectedErrorMsg = expectedErrorMsg.replaceAll("-", "–");
 				}
 			}
-
 			mobileAction.verifyElementTextIsDisplayed(error_message, expectedErrorMsg);
 
 		} catch (NoSuchElementException e) {
@@ -972,15 +969,13 @@ public class PurchaseMutualFunds extends _CommonPage {
 			}
 
 			// String capturedErrorMsg = mobileAction.getValue(error_message);
-			String expectedErrorMsg = "Looks like the account you are using is closed. Try another fund or let us help you by calling \\d{1}-\\d{3}-\\d{3}-\\d{4}.";
+			String expectedErrorMsg = getTextInCurrentLocale(StringArray.ARRAY_MF_CLOASED_ACCOUNT_ERROR_MSG);
+
 			if (currentLocale.equalsIgnoreCase("fr")) {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					expectedErrorMsg = "Il semble que le compte est fermé. Essayez avec un autre fonds, ou appelez-nous au \\d{1}–\\d{3}–\\d{3}–\\d{4} pour obtenir de l’aide.";
-				} else {
-					expectedErrorMsg = "Il semble que le compte est fermé. Essayez avec un autre fonds, ou appelez-nous au \\d{1}-\\d{3}-\\d{3}-\\d{4} pour obtenir de l’aide.";
+					expectedErrorMsg = expectedErrorMsg.replaceAll("-", "–");
 				}
 			}
-
 			mobileAction.verifyElementTextIsDisplayed(error_message, expectedErrorMsg);
 
 		} catch (NoSuchElementException e) {
