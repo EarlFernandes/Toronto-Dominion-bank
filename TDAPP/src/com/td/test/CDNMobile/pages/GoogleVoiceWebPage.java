@@ -13,7 +13,7 @@ import com.td._CommonPage;
 
 public class GoogleVoiceWebPage extends _CommonPage {
 	final String TD_BANK_VERIFICATION_CODE_EN = "is your TD security code";
-	final String TD_BANK_VERIFICATION_CODE_NON_EN = "Votre code de s?curit? TD pour test de votre num?ro de t?l?phone de s?curit? est le";
+	final String TD_BANK_VERIFICATION_CODE_NON_EN = "Votre code de s?curit? TD pour test de votre num?ro de t?l?phone de s?curit? est le ";
 
 	@FindBy(xpath = "//a[@class='signUpLink' and contains(text(),'Sign In')]")
 	private WebElement signInButton;
@@ -90,7 +90,7 @@ public class GoogleVoiceWebPage extends _CommonPage {
 			// currentLocale = "en";
 			if (currentLocale.equals("fr")) {
 				int index = this.TD_BANK_VERIFICATION_CODE_NON_EN.length();
-				passcode = this.gv_first_message.getText().substring(index).trim();
+				passcode = this.gv_first_message.getText().substring(index, index + 6).trim();
 
 			} else {
 				int index = this.gv_first_message.getText().indexOf(TD_BANK_VERIFICATION_CODE_EN);
