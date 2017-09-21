@@ -1575,11 +1575,12 @@ public class Investing extends _CommonPage {
 			int randFund = (int) (Math.random() * size);
 			if (randFund >= size) {
 				randFund = size - 1;
-			} else if(randFund != 0){
-				randFund = randFund -1;
+			} 
+			if (!mobileAction.verifyElementIsPresent(fundsList.get(randFund))) {
+				mobileAction.FuncSwipeWhileElementNotFound(fundsList.get(randFund), false, 20, "up");
 			}
-			if (!mobileAction.verifyElementIsPresent(fundsList.get(randFund+1))) {
-				mobileAction.FuncSwipeWhileElementNotFound(fundsList.get(randFund+1), false, 20, "up");
+			if(randFund != 0){
+				randFund= randFund-1;
 			}
 			String fundName = mobileAction.getValue(fundsList.get(randFund));
 			System.out.println("Name of the selected fund:" + fundName);
