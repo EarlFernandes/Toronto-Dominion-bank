@@ -73,61 +73,6 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-<<<<<<< HEAD
-	 * This method will clear the username field text area.
-	 * 
-	 * @param objElement
-	 *            The MobileElement on which the click action has to be
-	 *            performed.
-	 * @param text
-	 *            The text to be updated in report.
-	 * 
-	 * @throws Exception
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IllegalArgumentException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 */
-	public void FuncClearUsername(WebElement objElement, String text)
-			throws InterruptedException, IOException, NoSuchElementException {
-		try {
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-			wait.until(ExpectedConditions.elementToBeClickable(objElement));
-			objElement.clear();
-			objElement.click();
-			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
-		} catch (IllegalArgumentException e) {
-			try {
-				GetReporting().FuncReport("Fail", "IllegalArgumentException");
-			} catch (IOException e1) {
-
-				e1.printStackTrace();
-			}
-			throw e;
-		} catch (NoSuchElementException n) {
-			try {
-				GetReporting().FuncReport("Fail", "Element not displayed" + text);
-			} catch (IOException e) {
-
-				e.printStackTrace();
-			}
-			throw n;
-		} catch (Exception e) {
-			try {
-				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
-			} catch (IOException e1) {
-
-				e1.printStackTrace();
-			}
-			throw e;
-		}
-
-	}
-
-	/**
-=======
->>>>>>> refs/remotes/origin/master
 	 * This method will look for an element on the screen to be clickable within
 	 * the given timeout and then click over the element.
 	 * 
