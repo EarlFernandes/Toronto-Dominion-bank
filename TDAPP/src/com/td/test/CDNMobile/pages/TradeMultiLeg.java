@@ -19,6 +19,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class TradeMultiLeg extends _CommonPage {
 	private static TradeMultiLeg TradeMultiLeg;
@@ -376,10 +377,9 @@ public class TradeMultiLeg extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Shareholder') or contains(@text,'actionnaire')]/../android.widget.TextView[@index=1]")
 	private MobileElement shareholderType;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview Order') or contains(@label,'Aperçu de')]") // @Author
-																													// -
-																													// Sushil
-																													// 03-Mar-2017
+	// @iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Preview
+	// Order') or contains(@label,'Aperçu de')]")
+	@iOSXCUITFindBy(accessibility = "previewOrderButton")
 	@AndroidFindBy(id = "com.td:id/orderEntryPreviewButton")
 	private MobileElement previewOrderButton;
 
