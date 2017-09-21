@@ -37,7 +37,7 @@ public class MIT_DSH_Contact_Location  extends _CommonPage{
 	@AndroidFindBy(id = "com.td:id/hamburger")
 	MobileElement BT_Home_HamburgerMenu;
 	
-	@iOSFindBy(xpath = "//*[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶']")
+	@iOSFindBy(xpath = "//*[(@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶' or @label='Trade' or contains(@label,'Négociation') or @label='交易' or @label='交易') and @name='Label_0']")
 	@AndroidFindBy(xpath = "//*[(@text='Investing Accounts' or @text='Comptes Placements directs TD' or @text='投资账户' or @text='投資賬戶') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	MobileElement InvestingAccount;
 	
@@ -76,15 +76,19 @@ public class MIT_DSH_Contact_Location  extends _CommonPage{
 	private MobileElement btnFilter;
 	
 	
-	@iOSFindBy(xpath = "//*[@label='Branches' or @label='Succursales' or @label='分行' or @label='分行']")
+	
+	@iOSFindBy(xpath = "//*[@name='actionSheetDoneButton']/../following-sibling::XCUIElementTypeCell[1]/*[1]")
+	//@iOSFindBy(xpath = "//*[@label='Branches' or @label='Succursales' or @label='分行' or @label='分行']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Alerts' or @text='Alertes']")
 	private MobileElement filterOptions1;
 	
-	@iOSFindBy(xpath = "//*[@label='ATMs' or @label='GAB' or @label='自动柜员机' or @label='自動櫃員機']")
+	@iOSFindBy(xpath = "//*[@name='actionSheetDoneButton']/../following-sibling::XCUIElementTypeCell[2]/*[1]")
+	//@iOSFindBy(xpath = "//*[@label='ATMs' or @label='GAB' or @label='自动柜员机' or @label='自動櫃員機']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Alerts' or @text='Alertes']")
 	private MobileElement filterOptions2;
 	
-	@iOSFindBy(xpath = "//*[@label='Investor Centres' or @label='Centres d’investissement' or @label='道明自管投资服务中心' or @label='道明自管投資服務中心']")
+	@iOSFindBy(xpath = "//*[@name='actionSheetDoneButton']/../following-sibling::XCUIElementTypeCell[3]/*[1]")
+	//@iOSFindBy(xpath = "//*[@label='Investor Centres' or @label='Centres d’investissement' or @label='道明自管投资服务中心' or @label='道明自管投資服務中心']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Alerts' or @text='Alertes']")
 	private MobileElement filterOptions3;
 	
@@ -113,6 +117,10 @@ public class MIT_DSH_Contact_Location  extends _CommonPage{
 		try {
 			
 			mobileAction.FuncSwipeWhileElementNotFound(btnContactUs, false, 10, "up");
+			mobileAction.FuncVerifyTextEquals(btnContactUs,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_CONTACTUS));
+			
+		
 			
 			mobileAction.FuncClick(btnContactUs, "btnContactUs");
 			
@@ -135,10 +143,13 @@ public class MIT_DSH_Contact_Location  extends _CommonPage{
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
 			mobileAction.FuncClick(InvestingAccount, "Investing Accounts Flyout Menu");
 			LoginMIT.get().MITLogin();
+			
+			
 			mobileAction.FuncClick(BT_Back, "< Button");			
 			
 			mobileAction.FuncSwipeWhileElementNotFound(btnContactUs, false, 10, "up");
-			
+			mobileAction.FuncVerifyTextEquals(btnContactUs,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_CONTACTUS));
 			mobileAction.FuncClick(btnContactUs, "btnContactUs");
 			
 			mobileAction.verifyElementIsDisplayed(lblContactUs, "lblContactUs");
@@ -193,11 +204,19 @@ public class MIT_DSH_Contact_Location  extends _CommonPage{
 			
 			mobileAction.FuncSwipeWhileElementNotFound(btnNearestBranch, false, 10, "up");
 			
+			mobileAction.FuncVerifyTextEquals(btnNearestBranch,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_LOCATIONNEAREST));
+			
+			
+			
+			
+			
+			mobileAction.FuncClick(btnNearestBranch, "btnNearestBranch");
 			
 			mobileAction.verifyElementIsDisplayed(lblFindLocation, "lblFindLocation");
 			
 			mobileAction.verifyElementIsDisplayed(btnFilter, "btnFilter");
-			
+			mobileAction.FuncClick(btnFilter, "btnFilter");
 			mobileAction.verifyElementIsDisplayed(btnDone, "btnDone");
 			
 			mobileAction.verifyElementIsDisplayed(filterOptions1, "filterOptions1");
@@ -220,6 +239,8 @@ public class MIT_DSH_Contact_Location  extends _CommonPage{
 		Decorator();
 
 		try {
+			
+Thread.sleep(1000);
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
 			mobileAction.FuncClick(InvestingAccount, "Investing Accounts Flyout Menu");
 			LoginMIT.get().MITLogin();
@@ -227,12 +248,13 @@ public class MIT_DSH_Contact_Location  extends _CommonPage{
 			
 			
 			mobileAction.FuncSwipeWhileElementNotFound(btnNearestBranch, false, 10, "up");
-			
-			
+			mobileAction.FuncVerifyTextEquals(btnNearestBranch,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_LOCATIONNEAREST));
+			mobileAction.FuncClick(btnNearestBranch, "btnNearestBranch");
 			mobileAction.verifyElementIsDisplayed(lblFindLocation, "lblFindLocation");
 			
 			mobileAction.verifyElementIsDisplayed(btnFilter, "btnFilter");
-			
+			mobileAction.FuncClick(btnFilter, "btnFilter");
 			mobileAction.verifyElementIsDisplayed(btnDone, "btnDone");
 			
 			mobileAction.verifyElementIsDisplayed(filterOptions1, "filterOptions1");
