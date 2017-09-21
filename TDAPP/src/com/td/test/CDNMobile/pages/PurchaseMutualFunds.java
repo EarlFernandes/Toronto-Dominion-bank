@@ -130,6 +130,9 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Ineligible') or contains(@label,'Non admissible')]/../XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Ineligible') or contains(@text,'Non admissible')]/../android.widget.TextView[@resource-id='com.td:id/txtItemValue']")
 	private MobileElement Ineligible_fund;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable")
+	private MobileElement ios_account_dropdown_window;
 
 	public synchronized static PurchaseMutualFunds get() {
 		if (purchaseMutualFunds == null) {
@@ -476,6 +479,12 @@ public class PurchaseMutualFunds extends _CommonPage {
 			}
 			System.out.println("FundInListText:" + FundInListText);
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(FundInListText, true, 10, "up");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				if(mobileAction.verifyElementIsPresent(ios_account_dropdown_window)) {
+					mobileAction.FuncSwipeOnce("up");
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(FundInListText, true, 2, "down");
+				}
+			}
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
