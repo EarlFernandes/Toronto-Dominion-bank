@@ -208,7 +208,7 @@ public class EventCase {
 
 		// MIT Dashboard
 
-		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser,
+		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser,
 
 		// P2P
 
@@ -2564,6 +2564,10 @@ public class EventCase {
 
 		case verifyNavRowsUnAuthenicatedUser:
 			MIT_DSHNavRows.get().verifyNavRowsUnAuthenicatedUser();
+			break;
+
+		case verifyNavRowsBankingOnlyUser:
+			MIT_DSHNavRows.get().verifyNavRowsBankingOnlyUser();
 			break;
 
 		// MIT Dashboard END

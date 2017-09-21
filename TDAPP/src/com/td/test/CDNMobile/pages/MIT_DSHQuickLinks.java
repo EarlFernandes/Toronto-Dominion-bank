@@ -306,10 +306,14 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
-			mobileAction.FuncClick(InvestingAccount, "Investing Accounts Flyout Menu");
+			mobileAction.FuncClick(flyoutMyAccountLink, "My Accounts Flyout Menu");
 			LoginMIT.get().MITLogin();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
+				mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+			}
 			mobileAction.FuncClick(BT_Back, "< Button");
-			mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

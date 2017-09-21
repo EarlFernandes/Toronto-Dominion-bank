@@ -42,7 +42,7 @@ public class MIT_DSHNavRows extends _CommonPage {
 	MobileElement BT_Back;
 
 	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='ENVOI DE FONDS' or @label='汇款' or @label='匯款']")
-	@AndroidFindBy(xpath = "//*[@text='Accounts' or contains(@text,'ENVOI') or @text='汇款' or @text='匯款']")
+	@AndroidFindBy(xpath = "//*[@text='Accounts' or @text='Comptes' or @text='汇款' or @text='匯款']")
 	private MobileElement NR_Accounts;
 
 	@iOSFindBy(xpath = "//*[@label='Transfers' or @label='Virements' or @label='账单' or @label='轉賬']")
@@ -65,6 +65,18 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Markets' or @text='Marchés' or @text='市场' or @text='市場']")
 	private MobileElement NR_Markets;
 
+	@iOSFindBy(xpath = "//*[@label='Investing' or @label='Placements' or @label='投资' or @label='投資']")
+	@AndroidFindBy(xpath = "//*[@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶]")
+	private MobileElement HDR_MyAccounts;
+	
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
+	@AndroidFindBy(id = "android:id/up")
+	MobileElement BT_HamburgerMenu;
+	
+	@iOSFindBy(xpath = "//*[@label='Home' or @label='Accueil' or @label='主页' or @label='首頁']")
+	@AndroidFindBy(xpath = "//*[@text='Home' or @text='Accueil' or @text='主页' or @text='首頁']")
+	private MobileElement FLY_Home;
+
 	By ED_Markets_symbolSearch = By.id("symbol-search");
 
 	private By BTN_Back = By.xpath("//*[@class='sprite sprite-back']");
@@ -79,11 +91,35 @@ public class MIT_DSHNavRows extends _CommonPage {
 
 			verifyNR_Bills(false);
 
-			verifyNR_InvestingAccounts(false);
+			// verifyNR_InvestingAccounts(false); //Investing Accounts removed
+			// from Nav Rows as per new requirement
 
 			verifyNR_Trade(false);
 
 			verifyNR_Markets(false);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void verifyNavRowsBankingOnlyUser() {
+		Decorator();
+		try {
+
+			verifyNR_Accounts(true);
+
+			verifyNR_Transfers(true);
+
+			verifyNR_Bills(true);
+
+			// verifyNR_InvestingAccounts(false); //Investing Accounts removed
+			// from Nav Rows as per new requirement
+
+			verifyNR_Trade(true);
+
+			verifyNR_Markets(true);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -149,9 +185,12 @@ public class MIT_DSHNavRows extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
 					mobileAction.FuncClick(BT_Back, "< Button");
 				} else {
-					// mobileAction.verifyElementIsDisplayed(HDR_Interac_e_Transfer,
-					// "HDR_Interac_e_Transfer");
-					// mobileAction.FuncClick(BT_Back, "< Button");
+					mobileAction.verifyElementIsDisplayed(HDR_MyAccounts, "HDR_MyAccounts");
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+						mobileAction.FuncClick(BT_HamburgerMenu, "BT_Home_HamburgerMenu");
+						mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+					}
+					mobileAction.FuncClick(BT_Back, "< Button");
 				}
 			}
 		} catch (Exception e) {

@@ -161,11 +161,20 @@ public class LoginMIT extends _CommonPage {
 	 * private MobileElement Investing_Trade;
 	 */
 
+	/*
+	 * @iOSFindBy(xpath =
+	 * "//*[@label='Investing' or @label='Placements' or @label='投资' or @label='投資']"
+	 * ) // @Author // - // Sushil // 01-Sep-2017
+	 * 
+	 * @AndroidFindBy(xpath =
+	 * "//*[@text='Investing' or @text='Placements' or @text='投资' or @text='投資']"
+	 * )
+	 */ // Investing Landing page removed as per new requirement
 	@iOSFindBy(xpath = "//*[@label='Investing' or @label='Placements' or @label='投资' or @label='投資']") // @Author
 	// -
 	// Sushil
-	// 01-Sep-2017
-	@AndroidFindBy(xpath = "//*[@text='Investing' or @text='Placements' or @text='投资' or @text='投資']")
+	// 21-Sep-2017
+	@AndroidFindBy(xpath = "//*[@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶]")
 	private MobileElement Investing_Trade;
 
 	String verifyLogin_ios = "//*[contains(@label,'Your Login Info Please')]";
