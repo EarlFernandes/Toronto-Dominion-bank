@@ -1775,6 +1775,7 @@ public class MobileAction2 extends CommonLib {
 		else if (direction.equalsIgnoreCase("down"))
 			((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy + heightPer,
 					1000);
+		handleUnwantedKeyBoard();
 	}
 
 	public void FuncSwipeWhileElementNotFound(MobileElement elementToFind, boolean clickYorN, int swipes,
@@ -1805,6 +1806,7 @@ public class MobileAction2 extends CommonLib {
 					else if (direction.equalsIgnoreCase("down"))
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
 								startx / 2, endy / 2 + heightPer, 2000);
+					handleUnwantedKeyBoard();
 					count++;
 				}
 
@@ -1862,6 +1864,7 @@ public class MobileAction2 extends CommonLib {
 					else if (direction.equalsIgnoreCase("down"))
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
 								startx / 2, endy / 2 + heightPer, 2000);
+					handleUnwantedKeyBoard();
 					count++;
 				}
 
@@ -3118,6 +3121,34 @@ public class MobileAction2 extends CommonLib {
 				e1.printStackTrace();
 			}
 			throw e;
+		}
+	}
+
+	/**
+	 * This method will hide keyboard for both IOS and Androd
+	 * 
+	 * @throws NoSuchElementException
+	 */
+	public void handleUnwantedKeyBoard() {
+		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			try {
+				(GetAppiumDriver()).hideKeyboard();
+			} catch (Exception e) {
+
+			}
+		} else {
+			try {
+				if (isOrientationLandscape() && isGoOnKeyBoard()) {
+					HideKeyBoard_IOS();
+				} else {
+					String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
+							+ getAppString("secureLoginEditButtonDone") + "']";
+					MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
+					Done.click();
+				}
+			} catch (Exception e) {
+
+			}
 		}
 	}
 
