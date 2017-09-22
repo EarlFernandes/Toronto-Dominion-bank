@@ -233,7 +233,6 @@ public class MobileAction2 extends CommonLib {
 	 */
 	public void FuncDragElementToElement(MobileElement fromElement, MobileElement toElement) throws IOException {
 		try {
-			new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(fromElement));
 			new TouchAction(((MobileDriver) GetDriver())).longPress(fromElement).moveTo(toElement).release().perform();
 			GetReporting().FuncReport("Pass", "Successfully dragged element '" + fromElement.getTagName()
 					+ "' to Element '" + toElement.getTagName() + "'.");
@@ -283,8 +282,6 @@ public class MobileAction2 extends CommonLib {
 
 	public void FuncElementSwipeWhileNotFound(int x, int y, int width, int hieght, MobileElement swipeForElement,
 			int maxSwipes, String direction) {
-		WebDriverWait wait = new WebDriverWait(GetDriver(), 1L);
-		wait.until(ExpectedConditions.elementToBeClickable(swipeForElement));
 		int locationX = x;
 		int locationY = y;
 		int dimensionX = width;
@@ -348,8 +345,6 @@ public class MobileAction2 extends CommonLib {
 	public void FuncElementSwipeWhileNotFound(MobileElement swipeWithinElement, MobileElement elementToFind,
 			int maxSwipes, String direction, boolean clickOnElement) throws IOException {
 		try {
-			new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(swipeWithinElement));
-
 			Dimension dimensionOfSwipingElement = swipeWithinElement.getSize();
 			Point locationOfSwipingElement = swipeWithinElement.getLocation();
 			int startx, starty, endx, endy;
@@ -519,7 +514,6 @@ public class MobileAction2 extends CommonLib {
 	public boolean FuncElementNotInListSwipe(MobileElement swipeWithinElement, String xpathOfElement, int maxSwipes,
 			String direction) throws IOException {
 		try {
-			new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(swipeWithinElement));
 			Dimension dimensionOfSwipingElement = swipeWithinElement.getSize();
 			Point locationOfSwipingElement = swipeWithinElement.getLocation();
 			int startx, starty, endx, endy;
@@ -1239,7 +1233,6 @@ public class MobileAction2 extends CommonLib {
 	 * 
 	 */
 	public String getText(MobileElement objElement) {
-		new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(objElement));
 		return objElement.getText();
 
 	}
@@ -1510,9 +1503,6 @@ public class MobileAction2 extends CommonLib {
 	 */
 
 	public boolean verifyTextContains(MobileElement mobileElement, String expectedText) {
-
-		new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(mobileElement));
-
 		String retrivedText = mobileElement.getText();
 
 		if (retrivedText.contains(expectedText)) {
@@ -1637,8 +1627,23 @@ public class MobileAction2 extends CommonLib {
 	 */
 	public void waitForElementToVanish(MobileElement elementToVanish) {
 		try {
-			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
-			wait.until(ExpectedConditions.invisibilityOf(elementToVanish));
+			int count = 1;
+			Thread.sleep(4000);
+			boolean isElementDisplayed = elementToVanish.isDisplayed();
+			while (count <= 3) {
+				isElementDisplayed = elementToVanish.isDisplayed();
+				if (isElementDisplayed) {
+					try {
+						Thread.sleep(1000);
+						count++;
+
+					} catch (NoSuchElementException e) {
+						break;
+					}
+				} else {
+					break;
+				}
+			}
 		} catch (Exception e) {
 			System.out.println("Exception from Method " + this.getClass().toString());
 		}
@@ -1729,7 +1734,6 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	public boolean FuncIsDisplayed(MobileElement elementToFind) {
-		new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(elementToFind));
 
 		try {
 			if (elementToFind.isDisplayed()) {
@@ -1745,7 +1749,6 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	public boolean FuncIsDisplayed(MobileElement elementToFind, String value) {
-		new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(elementToFind));
 		try {
 			if (elementToFind.isDisplayed()) {
 				GetReporting().FuncReport("Pass", "The text '" + value + "' is Displayed");
@@ -1972,7 +1975,6 @@ public class MobileAction2 extends CommonLib {
 	 */
 	public boolean verifyElementVisible(MobileElement objElement, String text) throws IOException {
 		boolean flag = false;
-		new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(objElement));
 		try {
 			if (objElement.isDisplayed()) {
 				GetReporting().FuncReport("Pass", "Element " + text + " is present");
@@ -2054,8 +2056,6 @@ public class MobileAction2 extends CommonLib {
 	 * 
 	 */
 	public String getValue(MobileElement objElement) {
-		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
-		wait.until(ExpectedConditions.visibilityOf(objElement));
 		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 			return objElement.getText();
 		} else {
@@ -2334,7 +2334,6 @@ public class MobileAction2 extends CommonLib {
 																					// Sushil
 																					// 06-Mar-2017
 	{
-		new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(objMobileElement));
 		String sText = "";
 		try {
 			sText = objMobileElement.getText();
@@ -2365,7 +2364,6 @@ public class MobileAction2 extends CommonLib {
 																						// Sushil
 																						// 06-Mar-2017
 	{
-		new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(objMobileElement));
 		String sText = "";
 		try {
 			sText = objMobileElement.getText();
@@ -2615,7 +2613,6 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	public boolean FuncISDisplayed(MobileElement elementToFind, String text) {
-		new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(elementToFind));
 		try {
 			if (elementToFind.isDisplayed()) {
 				GetReporting().FuncReport("Pass", "The text '" + text + "' is Displayed");
@@ -2670,7 +2667,6 @@ public class MobileAction2 extends CommonLib {
 	 */
 	public String getSwitchStatus(MobileElement switchElement) {
 		String status = "";
-		new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(switchElement));
 		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 			status = switchElement.getAttribute("checked");
 		} else {
@@ -3109,8 +3105,6 @@ public class MobileAction2 extends CommonLib {
 	public void FuncClickWithActions(WebElement objElement, String text)
 			throws InterruptedException, IOException, NoSuchElementException {
 		try {
-			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
-			wait.until(ExpectedConditions.visibilityOf(objElement));
 			Actions actions = new Actions(GetAppiumDriver());
 			actions.moveToElement(objElement).click().perform();
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
@@ -3272,7 +3266,6 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	public boolean verifyTextIsContained(WebElement mobileElement, String expectedText) {
-		new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(mobileElement));
 		String retrivedText = "";
 		try {
 			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -3348,7 +3341,6 @@ public class MobileAction2 extends CommonLib {
 																				// 28-Aug-2017
 	{
 		String sActual = "";
-		new WebDriverWait(GetDriver(), MaxTimeoutInSec).until(ExpectedConditions.visibilityOf(mElement));
 		try {
 			sActual = FuncGetText(mElement);
 			if (sActual.equals(sExpected))

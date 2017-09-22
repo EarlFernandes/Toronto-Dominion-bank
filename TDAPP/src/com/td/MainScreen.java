@@ -12,7 +12,7 @@ public class MainScreen extends _CommonPage {
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
 
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://127.0.0.1:4723/wd/hub/";
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.104:4776/wd/hub/";
 
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
@@ -95,24 +95,26 @@ public class MainScreen extends _CommonPage {
 			}
 
 			CL.mobileApp(appiumPath);
+			orientation = "Portrait";
 
 			// If length is 2, then second token is the locale
 			if (targetEnvVars.length >= 2) {
 				currentLocale = targetEnvVars[1];
 				appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
-				orientation = "Portrait";
+
 				if (targetEnvVars.length >= 3) {
 					orientation = targetEnvVars[2];
 				}
 			} else {
-				currentLocale = "EN";
-				appStringMap = (CL.GetAppiumDriver()).getAppStringMap();
+				currentLocale = "en";
+				appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
 			}
 		} else { // Local execution
 			try { // Set udid explicitly for local execution, to handle udid
 					// with all caps, when reading from excel sheet // it seems
 					// that framework forces to lower case
 				CL.getTestDataInstance().DriversCapability.put("udid", udid);
+				orientation = "Portrait";
 				if (CL.getTestDataInstance().getAppFilePath() == null
 						|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -134,11 +136,12 @@ public class MainScreen extends _CommonPage {
 					}
 				}
 				CL.mobileApp(LOCAL_EXECUTION_APPIUM_SERVER);
+
 				if (StringUtils.isEmpty(currentLocale)) {
-					appStringMap = (CL.GetAppiumDriver()).getAppStringMap();
-				} else {
-					appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
+					currentLocale = "en";
 				}
+
+				appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
 
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
