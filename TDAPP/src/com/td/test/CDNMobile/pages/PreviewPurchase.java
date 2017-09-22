@@ -123,7 +123,7 @@ public class PreviewPurchase extends _CommonPage {
 										+ "']/../android.widget.RelativeLayout/android.widget.TextView",
 								"Phone Number");
 			} else {
-
+				mobileAction.FuncSwipeWhileElementNotFound(phone_number, false, 5, "up");
 			}
 
 			String phoneNumber = mobileAction.getValue(phone_number);

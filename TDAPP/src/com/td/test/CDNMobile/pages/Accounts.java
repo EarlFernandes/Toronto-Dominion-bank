@@ -891,21 +891,6 @@ public class Accounts extends _CommonPage {
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, true, 30, "up");
 			mobileAction.waitForElementToVanish(progresssBar);
 
-			if (mobileAction.verifyElementIsPresent(txtMy_Account_Header)) {
-				String accountTitle = "";
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					accountTitle = mobileAction.getAppString("str_My_Accounts");
-				} else {
-					accountTitle = mobileAction.getAppString("accountsPageHeader");
-				}
-				if (mobileAction.getValue(txtMy_Account_Header).contentEquals(accountTitle)) {
-					// Still in account page
-					System.out.println("Still in Accounts page...");
-					mobileAction.FuncSwipeOnce("up");
-					mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, true, 2, "down");
-				}
-			}
-
 		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -930,6 +915,13 @@ public class Accounts extends _CommonPage {
 				int size = accountList.size();
 				System.out.println("Account size:" + size);
 				for (int i = 0; i < size; i++) {
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+						if (!mobileAction.verifyElementIsPresent(accountList.get(i))) {
+							mobileAction.FuncSwipeWhileElementNotFound(accountList.get(i), false, 2, "up");
+							accountList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
+									"//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
+						}
+					}
 					String accounttext = mobileAction.getValue(accountList.get(i));
 					System.out.println("Account " + (i + 1) + ":" + accounttext);
 					if (accounttext.toLowerCase().contains("mutual fund") || accounttext.contains("FONDS COMM.")) {

@@ -144,6 +144,10 @@ public final class StringArray {
 			"未实现收益/亏损", "未實現收益/虧損" };
 	public static final String[] ARRAY_MF_FD_VIEW_PERFORMANCE = { "View Fund Facts (Performance & Fees)",
 			"Consulter l’Aperçu du fonds(rendement et frais)", "查看基金概况（表现和费用）", "查看基金概況（表現和費用）" };
+	public static final String[] ARRAY_MF_PHONE_PLACEHOLDER = { "Enter number", "Entrer le numéro", "输入号码", "輸入號碼" };
+	public static final String[] ARRAY_MF_EMAIL_PLACEHOLDER = { "example@address.com", "exemple@adresse.com",
+			"示例 @address.com", "範例 @address.com" };
+	public static final String[] ARRAY_MF_INELIGIBLE_LABEL = { "Ineligible", "Non admissible", "不符合条件", "不符合資格" };
 
 	public static final String[] ARRAY_PROFILE_AND_PREFERENCE = { "Profile & Settings", "Profil et paramètres",
 			"个人资料和设置", "個人資料和設定" };

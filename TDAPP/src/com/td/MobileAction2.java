@@ -1767,6 +1767,16 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
+	private void FuncSwipeAlittleFurther(int startx, int starty, int endx, int endy, int height, String direction) {
+		int heightPer = (height * 10 / 100);
+		if (direction.equalsIgnoreCase("up"))
+			((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy - heightPer,
+					1000);
+		else if (direction.equalsIgnoreCase("down"))
+			((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy + heightPer,
+					1000);
+	}
+
 	public void FuncSwipeWhileElementNotFound(MobileElement elementToFind, boolean clickYorN, int swipes,
 			String direction) {// throws Exception {//@Author - Sushil
 								// 24-Feb-2017
@@ -1784,7 +1794,7 @@ public class MobileAction2 extends CommonLib {
 				try {
 					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
 					wait.until(ExpectedConditions.visibilityOf(elementToFind));
-
+					FuncSwipeAlittleFurther(startx / 2, starty / 2, startx / 2, endy / 2, endy, direction);
 					flag = false;
 					sEleName = FuncGetElementText(elementToFind);
 
@@ -1841,7 +1851,7 @@ public class MobileAction2 extends CommonLib {
 				try {
 					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
 					wait.until(ExpectedConditions.visibilityOf(GetDriver().findElement(By.xpath(xpathEle))));
-
+					FuncSwipeAlittleFurther(startx / 2, starty / 2, startx / 2, endy / 2, endy, direction);
 					flag = false;
 					sEleName = FuncGetTextByxpath(xpathEle);
 
