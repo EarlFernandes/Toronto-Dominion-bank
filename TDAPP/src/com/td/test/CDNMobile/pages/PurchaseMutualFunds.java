@@ -887,7 +887,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 
 			mobileAction.FuncClick(fund_dropdown_list, "Funds dorpdown list");
 			String ineligibalXpath = "";
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
 				ineligibalXpath = "//XCUIElementTypeStaticText[contains(@label,'"
 						+ getTextInCurrentLocale(StringArray.ARRAY_MF_INELIGIBLE_LABEL)
 						+ "')]/../XCUIElementTypeStaticText[1]";
