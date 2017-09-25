@@ -1774,11 +1774,10 @@ public class MobileAction2 extends CommonLib {
 		int heightPer = (height * 10 / 100);
 		if (direction.equalsIgnoreCase("up"))
 			((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy - heightPer,
-					1000);
+					2000);
 		else if (direction.equalsIgnoreCase("down"))
 			((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy + heightPer,
-					1000);
-		handleUnwantedKeyBoard();
+					2000);
 	}
 
 	public void FuncSwipeWhileElementNotFound(MobileElement elementToFind, boolean clickYorN, int swipes,
@@ -1809,7 +1808,6 @@ public class MobileAction2 extends CommonLib {
 					else if (direction.equalsIgnoreCase("down"))
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
 								startx / 2, endy / 2 + heightPer, 2000);
-					handleUnwantedKeyBoard();
 					count++;
 				}
 
@@ -1867,7 +1865,6 @@ public class MobileAction2 extends CommonLib {
 					else if (direction.equalsIgnoreCase("down"))
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
 								startx / 2, endy / 2 + heightPer, 2000);
-					handleUnwantedKeyBoard();
 					count++;
 				}
 
@@ -3119,8 +3116,9 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This method will hide keyboard for both IOS and Androd
-	 * 
+	 * This method will hide keyboard for both IOS and Androd if keyboard opened unwanted
+	 * Sometimes when Swipe is invoked and focused element is a textEdit like phone, email
+	 * then the keyboard will be opened
 	 * @throws NoSuchElementException
 	 */
 	public void handleUnwantedKeyBoard() {
@@ -3128,20 +3126,20 @@ public class MobileAction2 extends CommonLib {
 			try {
 				(GetAppiumDriver()).hideKeyboard();
 			} catch (Exception e) {
-
+				//normal 
 			}
 		} else {
 			try {
+				String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
+						+ getAppString("secureLoginEditButtonDone") + "']";
+				MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));				
 				if (isOrientationLandscape() && isGoOnKeyBoard()) {
 					HideKeyBoard_IOS();
 				} else {
-					String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
-							+ getAppString("secureLoginEditButtonDone") + "']";
-					MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
 					Done.click();
 				}
 			} catch (Exception e) {
-
+				//normal
 			}
 		}
 	}

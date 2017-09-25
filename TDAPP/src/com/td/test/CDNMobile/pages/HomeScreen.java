@@ -157,8 +157,8 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mpay_dashboard' and @text='PAY NOW']")
 	private MobileElement pay_now_button;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title'and @index='0']")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText | //XCUIElementTypeNavigationBar/XCUIElementTypeOther")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @index='0']")
 	private MobileElement home_bar;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Contact Us' or @label='Contactez-nous']")
@@ -1256,20 +1256,9 @@ public class HomeScreen extends _CommonPage {
 
 		try {
 			String hometitle = "";
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				hometitle = mobileAction.getValue(home_bar);
-				System.out.println("hometitle:" + hometitle);
-				mobileAction.verifyElementTextIsDisplayed(home_bar, "Home | Accueil");
-			} else {
-				hometitle = home_bar.getAttribute("name");
-				System.out.println("hometitle:" + hometitle);
-				String ExpectedString = "HomeView | HomeView";
-				if (ExpectedString.contains(hometitle)) {
-					mobileAction.Report_Pass_Verified(hometitle);
-				} else {
-					mobileAction.Report_Fail_Not_Verified(hometitle);
-				}
-			}
+			hometitle = mobileAction.getValue(home_bar);
+			System.out.println("hometitle:" + hometitle);
+			mobileAction.verifyElementTextIsDisplayed(home_bar, getTextInCurrentLocale(StringArray.ARRAY_HOME_HEADER));		
 
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");

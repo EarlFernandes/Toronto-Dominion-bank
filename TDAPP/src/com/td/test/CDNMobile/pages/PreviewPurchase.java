@@ -119,7 +119,7 @@ public class PreviewPurchase extends _CommonPage {
 				mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView", 2, "down");
 				phone_number = mobileAction
 						.verifyElementUsingXPath(
-								"//android.widget.TextView[@text='" + mobileAction.getAppString("label_phone_number")
+								"//android.widget.TextView[@text='" + getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE)
 										+ "']/../android.widget.RelativeLayout/android.widget.TextView",
 								"Phone Number");
 			} else {
@@ -155,7 +155,7 @@ public class PreviewPurchase extends _CommonPage {
 				// mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView",
 				// 2, "down");
 				String phoneNumberxpath = "//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("label_phone_number")
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE)
 						+ "']/../android.widget.RelativeLayout/android.widget.TextView";
 
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(phoneNumberxpath, false, 10, "up");
@@ -248,9 +248,9 @@ public class PreviewPurchase extends _CommonPage {
 			String disclaimerInfo = getTextInCurrentLocale(StringArray.ARRAY_MF_DISCLAIMER_INFO);
 			String capturedText = mobileAction.getValue(disclaimer_info);
 			capturedText = capturedText.trim().replaceAll("\n", "");
-//			capturedText = capturedText.replaceAll(" ", "");
-//			capturedText = capturedText.replaceAll(" ", "");// empty space of
-//															// Chinese char
+			// capturedText = capturedText.replaceAll(" ", "");
+			// capturedText = capturedText.replaceAll(" ", "");// empty space of
+			// // Chinese char
 			System.out.println("Captured:" + capturedText);
 			mobileAction.verifyTextEquality(capturedText, disclaimerInfo);
 
