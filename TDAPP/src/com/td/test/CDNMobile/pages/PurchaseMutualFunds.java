@@ -1051,6 +1051,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 				emialInfo = mobileAction.getValue(email_info);
 				emialInfo = replacePlaceholderToNothing(emialInfo,
 						getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL_PLACEHOLDER));
+				emialInfo = replacePlaceholderToNothing(emialInfo, StringArray.ARRAY_MF_EMAIL_PLACEHOLDER[0]);
 				if (emialInfo.isEmpty()) {
 					mobileAction.Report_Pass_Verified("Email is edited to empty");
 				} else {
