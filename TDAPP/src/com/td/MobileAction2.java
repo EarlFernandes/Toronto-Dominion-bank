@@ -1791,13 +1791,17 @@ public class MobileAction2 extends CommonLib {
 		boolean flag = true;
 		int count = 0;
 		String sEleName = "";
+		boolean isSwiped = false;
 		try {
 			while (flag && count <= swipes) {
 
 				try {
 					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
 					wait.until(ExpectedConditions.visibilityOf(elementToFind));
-					FuncSwipeAlittleFurther(startx / 2, starty / 2, startx / 2, endy / 2, endy, direction);
+					if (isSwiped) {
+						//To swipe a little further only when swipe is done at least once
+						FuncSwipeAlittleFurther(startx / 2, starty / 2, startx / 2, endy / 2, endy, direction);
+					}
 					flag = false;
 					sEleName = FuncGetElementText(elementToFind);
 
@@ -1809,6 +1813,7 @@ public class MobileAction2 extends CommonLib {
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
 								startx / 2, endy / 2 + heightPer, 2000);
 					count++;
+					isSwiped = true;
 				}
 
 			}
@@ -1848,13 +1853,17 @@ public class MobileAction2 extends CommonLib {
 		boolean flag = true;
 		int count = 0;
 		String sEleName = "";
+		boolean isSwiped = false;
 		try {
 			while (flag && count <= swipes) {
 
 				try {
 					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
 					wait.until(ExpectedConditions.visibilityOf(GetDriver().findElement(By.xpath(xpathEle))));
-					FuncSwipeAlittleFurther(startx / 2, starty / 2, startx / 2, endy / 2, endy, direction);
+					if (isSwiped) {
+						//To swipe a little further only when swipe is done at least once
+						FuncSwipeAlittleFurther(startx / 2, starty / 2, startx / 2, endy / 2, endy, direction);
+					}
 					flag = false;
 					sEleName = FuncGetTextByxpath(xpathEle);
 
@@ -1866,6 +1875,7 @@ public class MobileAction2 extends CommonLib {
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
 								startx / 2, endy / 2 + heightPer, 2000);
 					count++;
+					isSwiped = true;
 				}
 
 			}
@@ -2669,7 +2679,8 @@ public class MobileAction2 extends CommonLib {
 		} else {
 			status = switchElement.getAttribute("value");
 		}
-		//for iPad landscape, the status is 1 or 0, need to change it to true or false
+		// for iPad landscape, the status is 1 or 0, need to change it to true
+		// or false
 		if (status.equals("1")) {
 			status = "true";
 		} else if (status.equals("0")) {
