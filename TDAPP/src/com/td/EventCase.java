@@ -201,7 +201,7 @@ public class EventCase {
 		Accounts_SelectAccount, AccountsCredit_ClickPayBill, AccountsCredit_verifyLastTranaction, AccountsCredit_clickLastTranaction, Transaction_VerifyTransac, AccountsCredit_clickSummaryTab, AccountsCredit_VerifySummaryDetails, AccountsCredit_clickStatementTab, AccountsCredit_VeifyStatementDetails, StatementBalance_VerifyBalanceDetails, Bill_PayCanada_verifyCurrentBalance, Bill_PayCanada_PayBill, AccountsCredit_ClickTransfers
 
 		// trade,
-		, clickChangeorder_TSM_to_TSL, TradeTrailingStopMarket, TradeStopMarket, MenumenuTradePresent, TradeStopMarketSell, TradeLimitDAYEXT, ClickWatchList, TradeStopLimit, OrderRecieptValidateBuy, Investing_ClickPlacedOrder, OrderDetails_Changeorder, TradeMarket, clickChangeorder_LimitToMarket, TradeLimit, TradeLimitAndTriggerDelta, TradeOrderType, TradeSymbol, TradeTrailingStopLimit, ConfirmOrderValidateBuy, verifyEmptyWatchList, ClickOrders, clickChangeorder_SM_to_SL, verifyShareHolder, confirmOrder_ClickBack, verifyBuyToCover, TradeStopLimitSell, ConfirmOrderDoNotCancel, ConfirmOrderImpInformation, ClickHoldingAndSymbol, changeOrderLimitDayToDayEXT,
+		, clickChangeorder_TSM_to_TSL, TradeTrailingStopMarket, TradeStopMarket, MenumenuTradePresent, TradeStopMarketSell, TradeLimitDAYEXT, ClickWatchList, TradeStopLimit, OrderRecieptValidateBuy, Investing_ClickPlacedOrder, OrderDetails_Changeorder,stocksVerifyWatchlists, TSL_ClickBackButton,TradeMarket, clickChangeorder_LimitToMarket, TradeLimit, TradeLimitAndTriggerDelta, TradeOrderType, TradeSymbol, TradeTrailingStopLimit, ConfirmOrderValidateBuy, verifyEmptyWatchList, ClickOrders, clickChangeorder_SM_to_SL, verifyShareHolder, confirmOrder_ClickBack, verifyBuyToCover, TradeStopLimitSell, ConfirmOrderDoNotCancel, ConfirmOrderImpInformation, ClickHoldingAndSymbol, changeOrderLimitDayToDayEXT,
 
 		// MIT Multi-Leg
 
@@ -1847,8 +1847,12 @@ public class EventCase {
 			OrderDetails.get().performChangeorder();
 			break;
 
-		case verifyEmptyWatchList:
+			/*case verifyEmptyWatchList:
 			Investing.get().verifyEmptyWatchLists();
+			break;*/
+
+		case stocksVerifyWatchlists:
+			Investing.get().verifyWatchLists();
 			break;
 
 		case ClickOrders:
@@ -1859,6 +1863,10 @@ public class EventCase {
 			Trade.get().verifyShareHolder();
 			break;
 
+		case TSL_ClickBackButton:
+			Trade.get().Tsl_ClickBackButton();
+			break;
+			
 		case confirmOrder_ClickBack:
 			ConfirmOrder.get().confirmOrderClickBack();
 			break;

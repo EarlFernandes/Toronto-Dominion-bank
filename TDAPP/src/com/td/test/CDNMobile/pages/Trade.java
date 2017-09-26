@@ -61,7 +61,7 @@ public class Trade extends _CommonPage {
 	private MobileElement txtNavigateButton; 
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='Choisissez']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/caption' and @text='Action' and @index='0']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='Choisissez']")
 	private MobileElement selectActionFRE;
 
 	@iOSFindBy(xpath = " //XCUIElementTypeStaticText[contains(@label,'Account') or contains(@label,'Compte')]")
@@ -94,7 +94,7 @@ public class Trade extends _CommonPage {
 	private MobileElement symbolEditText;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/market_name'])[2]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/market_name'])[1]")
 	private MobileElement selectSymbolValue;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[8]/XCUIElementTypeTextField[1]")
@@ -102,10 +102,10 @@ public class Trade extends _CommonPage {
 	// "//android.widget.EditText[@resource-id='com.td:id/amountEditText' and
 	// (contains(@text,'Trigger Price ($)') or
 	// contains(@text,'D�clenchement'))]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Trigger Price') or contains(@text,'Déclenchement')]/../*[1]")// @Author
-																																	// -
-																																	// Sushil
-																																	// 17-Apr-2017
+	@AndroidFindBy(xpath = "//android.widget.EditText[contains(@text,'Trigger Price') or contains(@text,'Déclenchement')]") //  /../*[1]   @Author
+																																	       // -
+																																	      // Sushil
+																																	      // 17-Apr-2017
 	private MobileElement triggerPriceEditText;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[8]/XCUIElementTypeTextField[1]")
@@ -118,7 +118,7 @@ public class Trade extends _CommonPage {
 	// @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Limit
 	// Price') or contains(@text,'Cours limite')]/../*[2]/*[1]")//@Author -
 	// Shahbaaz 30-May-2017
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Limit Price') or contains(@text,'Cours limite')]/../*[1]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[contains(@text,'Limit Price') or contains(@text,'Cours limite')]") // /../*[1]
 	private MobileElement limitPriceEditText;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[9]/XCUIElementTypeTextField[1]")
@@ -131,7 +131,7 @@ public class Trade extends _CommonPage {
 	// @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Limit
 	// Price') or contains(@text,'Cours limite')]/../*[2]/*[1]")//@Author -
 	// Shahbaaz 30-May-2017
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Limit Price') or contains(@text,'Cours limite')]/../*[1]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[contains(@text,'Limit Price') or contains(@text,'Cours limite')]") //  /../*[1]
 	private MobileElement limitPriceEditTextWithTrigger;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Day' or @label='Jour']")
@@ -156,7 +156,7 @@ public class Trade extends _CommonPage {
 	private MobileElement share_holder;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[9]/XCUIElementTypeTextField[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Trigger Delta') or contains(@text,'déclenchement')]/../*[1]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[contains(@text,'Trigger Delta') or contains(@text,'déclenchement')]") //  /../*[1]
 	private MobileElement triggerDelta;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[9]/XCUIElementTypeTextField[1]")
@@ -184,10 +184,10 @@ public class Trade extends _CommonPage {
 	// @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Limit
 	// Delta') or contains(@text,'Delta limite')]/../*[2]/*[1]")//@Author -
 	// Shahbaaz 30-May-2017
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Limit Delta') or contains(@text,'Delta limite')]/../*[1]") // @Author
-																																	// -
-																																	// Sushil
-																																	// 17-Apr-2017
+	@AndroidFindBy(xpath = "//android.widget.EditText[contains(@text,'Limit Delta') or contains(@text,'Delta limite')]") //  /../*[1]  @Author
+																																	   // -
+																																	   // Sushil
+																																	   // 17-Apr-2017
 	private MobileElement limitDeltaWithTrigger;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Preview Order' or contains(@label,'ordre')]") // @Author
@@ -253,6 +253,10 @@ public class Trade extends _CommonPage {
 	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement backButton;
 
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@content-desc='Confirm Order, Navigate up']")
+	private MobileElement backbtn;
+	
+	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Watchlists')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Watchlists']")
 	private MobileElement watchListsButton;
@@ -391,9 +395,8 @@ public class Trade extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.waitForElementToVanish(progressBar);
-			// mobileAction.verifyElementIsDisplayed(trade_header,
-			// t_verifyTrade);
-			// mobileAction.FunctionSwipe("up", 200, 200);
+			 //mobileAction.verifyElementIsDisplayed(trade_header,t_verifyTrade);
+			 mobileAction.FunctionSwipe("down", 200, 200);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(selectAccount, "AccountSelected");
 				// MobileElement marginAccVal = (MobileElement) ((AppiumDriver)
@@ -468,9 +471,9 @@ public class Trade extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				MobileElement OrderType = mobileAction.verifyElementUsingXPath(orderType, "Order Type");
 
-				//mobileAction.FuncClick(OrderType, "OrderType");
+				mobileAction.FuncClick(OrderType, "OrderType");
 				String orderValue = "//XCUIElementTypeStaticText[contains(@label,'" + orderValueXL + "')]";
-				mobileAction.selectItemFromList(stocks_ETFs, getTestdata("Ordervalue"));
+				mobileAction.selectItemFromList(stocks_ETFs, getTestdata("orderValueXL"));
 			} else {
 				mobileAction.FuncClick(order_Type, "OrderType");
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(orderValue, true, 1, "up");
@@ -880,7 +883,7 @@ public class Trade extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(priceElement, "Price Selected");
 				mobileAction.FuncSelectElementInTable(price_table, Firstpart, Secondpart, price_value);
-				//mobileAction.FunCSwipeandScroll(trading_pwd, false);
+				mobileAction.FunCSwipeandScroll(trading_pwd, false);
 			} else {
 
 				// if (!mobileAction.FuncIsDisplayed(priceElement)) {
@@ -909,6 +912,42 @@ public class Trade extends _CommonPage {
 		}
 	}
 
+	public void Tsl_ClickBackButton(){
+		selectAccount();
+		selectOrderType();
+		selectAndEnterSymbol();
+		getStockPrice();
+		selectAction();
+		selectQuantity();
+		selectPrice();
+		enterLimitAndTriggerDelta();
+		selectShareHolder();
+		selectGoodTill();
+		enterTradingPassword();
+		clickPreviewOrder();
+		clickAgree();
+		ConfirmOrder_ClickBack();
+	}
+	
+	public void ConfirmOrder_ClickBack(){
+		Decorator();
+		try {
+			mobileAction.FuncClick(backbtn, "back");
+			
+			//mobileAction.FuncClick(CL.GetDriver().findElement(By.xpath("//android.widget.LinearLayout[@content-desc='Confirm Order, Navigate up']")), "Back Button");
+		} catch (NoSuchElementException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	} 
+	
+	
 	public void selectGoodTill() {
 		Decorator();
 
@@ -916,7 +955,7 @@ public class Trade extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(btngood, "Good 'til");
 				mobileAction.FuncSelectElementInTable(goodtilTable, Firstpart, Secondpart, goodXL);
-				//mobileAction.FunCSwipeandScroll(trading_pwd, false);
+				mobileAction.FunCSwipeandScroll(trading_pwd, false);
 			} else {
 
 				// if (!mobileAction.FuncIsDisplayed(btngood)) {
@@ -1004,6 +1043,7 @@ public class Trade extends _CommonPage {
 				}
 			} else {
 				mobileAction.FunctionSwipe("up", 200, 100);
+				if(mobileAction.verifyElementIsPresent(trading_pwd)){
 				mobileAction.FuncClick(trading_pwd, "Trading Password");
 				mobileAction.verifyElementIsDisplayed(trading_pwd, "Trading Password");
 
@@ -1016,7 +1056,7 @@ public class Trade extends _CommonPage {
 					mobileAction.FuncClick(ignoreBackButton, "ignore back");
 				}
 				}
-			
+			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

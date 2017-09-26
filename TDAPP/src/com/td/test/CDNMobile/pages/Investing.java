@@ -71,7 +71,7 @@ public class Investing extends _CommonPage {
 	private MobileElement call_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Holdings']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trade' and @index='0']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/holdingsTab' and @text='Holdings']")
 	private MobileElement Holdings;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Go to WebBroker']")
@@ -92,6 +92,12 @@ public class Investing extends _CommonPage {
 																// 07-Mar-2017
 	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement backButton;
+	
+	@AndroidFindBy(xpath = "android.widget.LinearLayout[@content-desc='Trade, Navigate up']")
+	private MobileElement backBtn;
+	
+	@AndroidFindBy(xpath = "android.widget.Button[@resource-id='android:id/button1' and @text = 'Agree']")
+	private MobileElement agreeButton;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Accounts']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='My Accounts']")
@@ -135,8 +141,29 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Watchlists']")
 	private MobileElement watchListsButton;
 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/symbol']")
+	private MobileElement stocksSymbol;
+		
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='Buy_Entity_Button']")
+	private MobileElement buyBtn;
+	
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='Sell_Entity_Button']")
+	private MobileElement sellBtn;
+	
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/accountCaption']//following::android.widget.TextView[@resource-id='com.td:id/selectedValue']")
+	private MobileElement defaultAccount;
+	
+
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/orderDropdownCaption']//following::android.widget.TextView[@resource-id='com.td:id/selectedText']")
+	private MobileElement actionBuy;
+	
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/orderDropdownCaption']//following::android.widget.TextView[@resource-id='com.td:id/selectedText']")
+	private MobileElement goodTilDay;
+	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Your Watchlist is empty')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/first_line' and @text='Your Watchlist is empty.']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Welcome to the new Watchlist']")   //@resource-id='com.td:id/first_line' 
 	private MobileElement watchListsEmpty;
 
 	@iOSFindBy(xpath = "//*[@label='TRADE' or @label='Négociation']") // @Author
@@ -494,7 +521,7 @@ public class Investing extends _CommonPage {
 
 			MobileElement OrderVal=null;
 			
-			mobileAction.FuncClick(order, "order");
+			//mobileAction.FuncClick(order, "order");
 			mobileAction.waitForElementToVanish(progressBar);
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
 			OrderVal = mobileAction.verifyElementUsingXPath(order_value, "Order");
@@ -1279,7 +1306,7 @@ public class Investing extends _CommonPage {
 	 *             If there is problem while finding that element.
 	 */
 
-	public void verifyEmptyWatchLists() {
+	/*public void verifyEmptyWatchLists() {
 		try {
 			Decorator();
 			Thread.sleep(5000);
@@ -1315,6 +1342,58 @@ public class Investing extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+	}*/
+	
+	public void verifyWatchLists() {
+		try {
+			Decorator();
+			Thread.sleep(5000);
+			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.FuncClick(watchListsButton, "Watch List");
+			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.FuncClick(stocksSymbol, "Stocks Symbol");
+			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.verifyElementIsDisplayed(buyBtn, "Buy Button");
+			mobileAction.verifyElementIsDisplayed(sellBtn, "Sell Button");
+			mobileAction.FuncClick(buyBtn, "Click Buy");
+			mobileAction.waitForElementToVanish(progressBar);
+			Thread.sleep(2000);
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				
+			}else{
+				for(int i=0;i<2;i++){
+					mobileAction.FunctionSwipe("up", 100, 100);
+					String verifyAction="//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='"+getTestdata("Action", i)+"']";
+					MobileElement actionVerify=mobileAction.mobileElementUsingXPath(verifyAction);
+					mobileAction.verifyElementIsDisplayed(actionVerify, "Action Verified");
+					mobileAction.FunctionSwipe("down", 100, 100);
+					mobileAction.verifyElementIsDisplayed(defaultAccount, "Default Account");
+					mobileAction.FunctionSwipe("up", 200, 200);
+					mobileAction.verifyElementIsDisplayed(goodTilDay, "Good'til Day");
+					if(getTestdata("Action", 0).equalsIgnoreCase("Buy")){
+						mobileAction.FuncClick(backBtn, "Back");
+						mobileAction.FuncClick(agreeButton, "Agree Button");
+						Thread.sleep(3000);
+						mobileAction.FuncClick(sellBtn, "Click Sell");
+						mobileAction.waitForElementToVanish(progressBar);
+					}
+				}
+			}
+			
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+		
 	}
 
 	/**
@@ -1337,14 +1416,15 @@ public class Investing extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.waitForElementToVanish(progressBar);
-			mobileAction.FuncClick(Holdings, "Holdings");
+			//mobileAction.FuncClick(Holdings, "Holdings");
 			mobileAction.waitForElementToVanish(progressBar);
 			String symbolValue = getTestdata("Search");
 			String symbolXpath = "//android.widget.TextView[@resource-id='com.td:id/symbol' and @text='" + symbolValue
-					+ "')]";
+					+ "']";
 
 			try {
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(symbolXpath, true, 15, "up");
+				mobileAction.changeToMobileElementAndSwipe(symbolXpath, true);
+				//mobileAction.FuncSwipeWhileElementNotFoundByxpath(symbolXpath, true, 15, "up");
 			} catch (Exception e) {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
@@ -1355,31 +1435,11 @@ public class Investing extends _CommonPage {
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (Exception e) {
+		}catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-		try {
-			mobileAction.FuncClick(watchListsButton, "Click Trade Icon");
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		}
+		
 	}
 
 	public void ClickPurchaseMF() {
