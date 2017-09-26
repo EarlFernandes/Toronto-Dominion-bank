@@ -717,10 +717,10 @@ public class ConfirmOrder extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='En cours']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='En cours']")
 	private MobileElement progressBarFRE;
-	
+
 	@iOSFindBy(xpath = "//*[@label='Back']")
-	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@content-desc='Confirm Order, Navigate up']") 
-	//android.widget.ImageView[@resource-id='android:id/up'] 
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@content-desc='Confirm Order, Navigate up']")
+	// android.widget.ImageView[@resource-id='android:id/up']
 	private MobileElement backButton;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Send Order') or contains(@label,'Envoyer l')]")
@@ -1234,7 +1234,7 @@ public class ConfirmOrder extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	/**
 	 * This method will verify confirm Order screen for switch Action
 	 * 
@@ -1253,7 +1253,7 @@ public class ConfirmOrder extends _CommonPage {
 	public void verifySwitchMutualConfirmDetails() {
 		try {
 			Decorator();
-			if(!mobileAction.verifyElementIsPresent(estimated_total_cost)){
+			if (!mobileAction.verifyElementIsPresent(estimated_total_cost)) {
 				mobileAction.FunctionSwipe("up", 200, 100);
 			}
 			mobileAction.verifyElementIsDisplayed(estimate_principle_value, "Verify Estimated Principal Value");
@@ -1270,7 +1270,6 @@ public class ConfirmOrder extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-
 
 }
 
