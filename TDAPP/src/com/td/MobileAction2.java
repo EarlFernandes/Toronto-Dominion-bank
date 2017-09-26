@@ -2669,6 +2669,12 @@ public class MobileAction2 extends CommonLib {
 		} else {
 			status = switchElement.getAttribute("value");
 		}
+		//for iPad landscape, the status is 1 or 0, need to change it to true or false
+		if (status.equals("1")) {
+			status = "true";
+		} else if (status.equals("0")) {
+			status = "false";
+		}
 		return status;
 	}
 
@@ -3116,9 +3122,10 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This method will hide keyboard for both IOS and Androd if keyboard opened unwanted
-	 * Sometimes when Swipe is invoked and focused element is a textEdit like phone, email
-	 * then the keyboard will be opened
+	 * This method will hide keyboard for both IOS and Androd if keyboard opened
+	 * unwanted Sometimes when Swipe is invoked and focused element is a
+	 * textEdit like phone, email then the keyboard will be opened
+	 * 
 	 * @throws NoSuchElementException
 	 */
 	public void handleUnwantedKeyBoard() {
@@ -3126,20 +3133,20 @@ public class MobileAction2 extends CommonLib {
 			try {
 				(GetAppiumDriver()).hideKeyboard();
 			} catch (Exception e) {
-				//normal 
+				// normal
 			}
 		} else {
 			try {
 				String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
 						+ getAppString("secureLoginEditButtonDone") + "']";
-				MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));				
+				MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
 				if (isOrientationLandscape() && isGoOnKeyBoard()) {
 					HideKeyBoard_IOS();
 				} else {
 					Done.click();
 				}
 			} catch (Exception e) {
-				//normal
+				// normal
 			}
 		}
 	}
