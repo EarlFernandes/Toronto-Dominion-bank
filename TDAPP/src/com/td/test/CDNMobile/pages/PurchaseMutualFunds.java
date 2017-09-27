@@ -502,7 +502,6 @@ public class PurchaseMutualFunds extends _CommonPage {
 			SelectFund(selectedFund);
 			enterAmount(amount_selected);
 			mobileAction.FuncSwipeWhileElementNotFound(consent_checkbox, false, 5, "up");
-			mobileAction.handleUnwantedKeyBoard();
 
 			String ori_email = getEmailInfo();
 			if (!user_email.isEmpty()) {
@@ -551,7 +550,6 @@ public class PurchaseMutualFunds extends _CommonPage {
 			SelectFund(selectedFund);
 			enterAmount(amount_selected);
 			mobileAction.FuncSwipeWhileElementNotFound(consent_checkbox, false, 5, "up");
-			mobileAction.handleUnwantedKeyBoard();
 
 			String ori_email = getEmailInfo();
 			if (ori_email.isEmpty()) {

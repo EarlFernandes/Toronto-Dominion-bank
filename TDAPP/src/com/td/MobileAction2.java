@@ -1802,6 +1802,7 @@ public class MobileAction2 extends CommonLib {
 						//To swipe a little further only when swipe is done at least once
 						FuncSwipeAlittleFurther(startx / 2, starty / 2, startx / 2, endy / 2, endy, direction);
 					}
+					handleUnwantedKeyBoard();
 					flag = false;
 					sEleName = FuncGetElementText(elementToFind);
 
@@ -1864,6 +1865,7 @@ public class MobileAction2 extends CommonLib {
 						//To swipe a little further only when swipe is done at least once
 						FuncSwipeAlittleFurther(startx / 2, starty / 2, startx / 2, endy / 2, endy, direction);
 					}
+					handleUnwantedKeyBoard();
 					flag = false;
 					sEleName = FuncGetTextByxpath(xpathEle);
 
