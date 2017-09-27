@@ -2781,10 +2781,10 @@ public class MobileAction2 extends CommonLib {
 			}
 
 		} else {
-			back_xpath = "NAVIGATION_ITEM_BACK";
+			back_xpath = "//*[@name='NAVIGATION_ITEM_BACK' or @label='p2p header caret']";
 			try {
 				MobileElement back_arrow = (MobileElement) GetDriver()
-						.findElement(ByAccessibilityId.AccessibilityId(back_xpath));
+						.findElement(By.xpath(back_xpath));
 				FuncClick(back_arrow, "<");
 
 			} catch (Exception ex) {

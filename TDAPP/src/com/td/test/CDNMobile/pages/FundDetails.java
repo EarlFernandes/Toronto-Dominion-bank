@@ -358,40 +358,12 @@ public class FundDetails extends _CommonPage {
 			String timeStamp = mobileAction.getValue(time_stamp);
 			System.out.println("TimeStamp:" + timeStamp);
 
-			String disclaimerReg = "Au \\d{1,2} .{3,5}\\s*\\d{4} à \\d{1,2}:\\d{1,2}:\\d{1,2}.*";
-			switch (currentLocale) {
-			case "EN":
-			case "en":
-				disclaimerReg = "Au \\d{1,2} .{3,5}\\s*\\d{4} à \\d{1,2}:\\d{1,2}:\\d{1,2}.*";
-				break;
-			case "FR":
-			case "fr":
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					disclaimerReg = "Au .{3,5}\\s*\\d{1,2},\\s*\\d{4} à \\d{1,2}:\\d{1,2}:\\d{1,2}.*";
-				} else {
-					disclaimerReg = "Au \\d{1,2} .{3,5}\\s*\\d{4} à \\d{1,2}:\\d{1,2}:\\d{1,2}.*";
-				}
-				break;
-			case "zh":
-			case "zh-Hans":
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					disclaimerReg = "截至\\s*\\d{4}年\\s*\\d{1,2}月\\s*\\d{1,2}日*.*\\d{1,2}:\\d{1,2}:\\d{1,2}.*";
-				}else{
-					disclaimerReg = "有效时间至*.*\\d{4}年\\s*\\d{1,2}月\\s*\\d{1,2}日*.*\\d{1,2}:\\d{1,2}:\\d{1,2}";
-				}
-				
-				break;
-			case "zh-rHK":
-			case "zh-rTW":
-			case "zh-Hant":
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					disclaimerReg = "截至\\s*\\d{4}年\\s*\\d{1,2}月\\s*\\d{1,2}日*.*\\d{1,2}:\\d{1,2}:\\d{1,2}.*";
-				}else{
-					disclaimerReg = "有效时间至\\s*\\d{4}年\\s*\\d{1,2}月 \\s*\\d{1,2}日\\s*.*\\d{1,2}:\\d{1,2}:\\d{1,2}.*";
-				}
-				break;
+			String disclaimerReg = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				disclaimerReg = getTextInCurrentLocale(StringArray.ARRAY_MF_DISCLAIMER_IOS);
+			} else {
+				disclaimerReg = getTextInCurrentLocale(StringArray.ARRAY_MF_DISCLAIMER_AND);
 			}
-
 			if (timeStamp.matches(disclaimerReg)) {
 				mobileAction.Report_Pass_Verified(timeStamp);
 			} else {
