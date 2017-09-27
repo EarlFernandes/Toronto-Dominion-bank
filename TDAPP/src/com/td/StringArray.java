@@ -104,7 +104,7 @@ public final class StringArray {
 			"查看我的账户", "查看我的賬戶" };
 	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE = { "Accepted Fund Details & Fees",
 			"Infos sur le fonds et les frais acceptées", "已接受的基金 详情与费用", "已接受的基金 詳情與費用" };
-	public static final String[] ARRAY_MF_FUND_FACT = { "Fund Facts", "Aperçu du fonds", "基金概况", "基金概況" };
+	public static final String[] ARRAY_MF_FUND_FACT = { "Fund Facts", "Aperçu du fonds", "基金概况", "基金產品概述" };
 	public static final String[] ARRAY_MF_FUND_FACT_PDF = { "fund facts.pdf", "Aperçu du fonds.pdf", "基金概况.pdf",
 			"基金概況.pdf" };
 	public static final String[] ARRAY_MF_TRANSACTION_DETAIL = { "Transaction Details", "Détails de l’opération",
