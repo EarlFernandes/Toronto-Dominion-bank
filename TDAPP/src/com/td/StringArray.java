@@ -279,4 +279,26 @@ public final class StringArray {
 	public static final String[] ARRAY_ACCOUNT_TOTAL = { "Total", "Total", "总计", "總計" };
 	public static final String[] ARRAY_ADD_LOGIN = { "Add Login", "Ajouter une connexion", "添加登录", "新增登入" };
 	// UA Core End
+	
+	
+	// P2P EUF
+
+		public static final String[] ARRAY_PAYMENT_AND_TRANSFER_AUTODEPOSIT = { "Manage Autodeposit", "", "", "" };
+		public static final String[] ARRAY_AUTODEPOSIT_ALMOST_DONE = { "Almost done!", "", "", "" };
+		public static final String[] ARRAY_AUTODEPOSIT_EMAIL_SENT_MSG = {
+				"Check your email for instructions from INTERAC. You have 24hrs to complete your Autodeposit setup.", "",
+				"", "" };
+		public static final String[] ARRAY_AUTODEPOSIT_PENDING_STATUS = { "Pending", "", "", "" };
+		public static final String[] ARRAY_AUTODEPOSIT_ACTIVE_STATUS = { "Active", "", "", "" };
+		public static final String[] ARRAY_AUTODEPOSIT_DELETE_MSG = { "The Autodeposit setup was deleted successfully.", "",
+				"", "" };
+		public static final String[] ARRAY_AUTODEPOSIT_UPDATE_MSG = { "The Autodeposit setup was edited successfully.", "",
+				"", "" };
+		public static final String[] ARRAY_REQUEST_MONEY_REQUEST_SENT = { "Request sent!", "", "", "" };
+		public static final String[] ARRAY_REQUEST_MONEY_SUCCESS_MSG = {
+				"Your recipient will be emailed details on how to respond to your request.", "", "", "" };
+		public static final String[] ARRAY_REQUEST_MONEY_MONEY_REQUESTED = { "Money Requested", "", "", "" };
+		public static final String[] ARRAY_REQUEST_MONEY_CANCELLED_STATUS = { "Cancelled", "", "", "" };
+		public static final String[] ARRAY_REQUEST_MONEY_WRONG_EMAIL_STR = { "INVALID EMAIL ADDRESS", "", "", "" };
+	
 }

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
@@ -15,36 +14,37 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Interac_e_Registration extends _CommonPage {
 
 	private static Interac_e_Registration Interac_e_Registration;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Interac e-Transfer') or contains(@label,'Registration') or contains(@label,'Inscription')]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Interac e-Transfer' OR label CONTAINS[cd] 'Registration' OR label CONTAINS[cd] 'Inscription'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement registrationPageHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue' or @label='Continuer']")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='Continue' OR label=='Continuer'`]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button' or @resource-id='com.td:id/btn_footer']")
 	private MobileElement continueButton;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Name' or @label='Mon nom']/following-sibling::XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'TEST' OR label CONTAINS[cd] 'TEST'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_name']")
 	private MobileElement name;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter email address']")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`value=='Enter email address'`]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_interac_registration_email']")
 	private MobileElement emailId;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Should match email address above']")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeTextField[`value=='Re-enter email address'`]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_interac_registration_confirm_email']")
 	private MobileElement confirmEmailId;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Name' or @label='Mon nom']")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='My Name' OR label=='Mon nom'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Name' or @text='Mon nom']")
 	private MobileElement myName;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Name' or @label='Mon nom']/following-sibling::XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Name' or @label='Mon nom']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
 	private MobileElement myNameVal;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Name']/following-sibling::android.widget.TextView[1]")
@@ -68,25 +68,25 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_value_item1']")
 	private List<MobileElement> confirmationRowValues;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Email Address') or @label='Adresse courriel pour Virement Interac']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Email Address for Interac e-Transfer' or @text='Adresse courriel pour Virement Interac']")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Email Address' OR label CONTAINS[cd] 'Adresse courriel pour Virement Interac'`]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Email Address for Interac') or @text='Adresse courriel pour Virement Interac']")
 	private MobileElement emailAddress;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Email Address') or @label='Adresse courriel pour Virement Interac']/following-sibling::XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Email Address') or @label='Adresse courriel pour Virement Interac']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
 	private MobileElement emailAddressVal;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Email Address for Interac e-Transfer']/following-sibling::android.widget.TextView[3]")
 	private MobileElement reviewEmailId;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Thank you!' or @label='Merci!']")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='Thank you!' OR label=='Merci!'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header']")
 	private MobileElement thankYou;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'now registered for') or contains(@label,'Vous êtes maintenant inscrit au service Virement Interac')]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'now registered for' or label CONTAINS[cd] 'Vous êtes maintenant inscrit au service Virement Interac'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subHeader']")
 	private MobileElement successMag;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress' or @label='en cours']")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='In progress' OR label=='en cours'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
@@ -138,7 +138,7 @@ public class Interac_e_Registration extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[contains(@content-desc,'Navigate up') or contains(@content-desc,'Parcourir vers le haut')]")
 	private MobileElement backButton;
-	
+
 	@AndroidFindBy(xpath = "//*[@text='Done' or @text='Annuler']")
 	private MobileElement doneButton;
 
@@ -178,6 +178,7 @@ public class Interac_e_Registration extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(registrationPageHeader, "Interac e-Transfer® - Registration");
 			mobileAction.FuncClick(continueButton, "Continue");
+			mobileAction.waitForElementToVanish(progressBar);
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -265,6 +266,8 @@ public class Interac_e_Registration extends _CommonPage {
 
 			} else {
 
+				myName = mobileAction.mobileElementUsingXPath("//android.widget.TextView[@text='"
+						+ mobileAction.getAppString("interac_registration_confirmation_personal_name") + "']");
 				mobileAction.verifyElementIsDisplayed(myName, "My Name");
 				mobileAction.verifyElementIsDisplayed(confirmationRowValues.get(0),
 						confirmationRowValues.get(0).getText());

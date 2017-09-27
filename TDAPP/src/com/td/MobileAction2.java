@@ -22,6 +22,7 @@ import com.td.test.framework.CommonLib;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.InteractsWithApps;
 import io.appium.java_client.MobileBy.ByAccessibilityId;
+import io.appium.java_client.MobileBy.ByIosClassChain;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.MultiTouchAction;
@@ -2576,6 +2577,34 @@ public class MobileAction2 extends CommonLib {
 
 	}
 
+	
+	
+	/**
+	 * This method will get the Mobile element from IOSClassChain
+	 * 
+	 *
+	 * @param objElement
+	 *            The MobileElement on which the click action has to be
+	 *            performed.
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             In case the element is not found over the screen.
+	 */
+	public MobileElement mobileElementUsingIOSClassChain(String objElement) throws IOException {
+
+		MobileElement objMobileElement = null;
+
+		try {
+			objMobileElement = (MobileElement) ((AppiumDriver) GetDriver()).findElement(ByIosClassChain.iOSClassChain(objElement));
+			
+		} catch (Exception e) {
+			System.err.println("Element not found");
+		}
+		return objMobileElement;
+
+	}
+	
+	
 	public String verifyElementUsingBy(By value) {
 
 		String elementText = "";
