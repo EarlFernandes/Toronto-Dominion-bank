@@ -717,9 +717,10 @@ public class ConfirmOrder extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='En cours']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='En cours']")
 	private MobileElement progressBarFRE;
-	
+
 	@iOSFindBy(xpath = "//*[@label='Back']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@content-desc='Confirm Order, Navigate up']")
+	// android.widget.ImageView[@resource-id='android:id/up']
 	private MobileElement backButton;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Send Order') or contains(@label,'Envoyer l')]")
@@ -924,7 +925,7 @@ public class ConfirmOrder extends _CommonPage {
 
 					+ " @ Delta de déclenchement" + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
 					+ " $ Delta limite " + df.format(Double.parseDouble(limitDelta_value)).replace(".", ",")
-					+ " $ Échéance" + goodXL;
+					+ " $ Échéance " + goodXL;
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 					+ " @ Trigger Delta $" + df.format(Double.parseDouble(triggerDelta_value)) + " Limit Delta $"
@@ -955,7 +956,7 @@ public class ConfirmOrder extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 					+ " @ Delta de déclenchement  "
-					+ df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",") + " $ Échéance" + goodXL;
+					+ df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",") + " $ Échéance " + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
@@ -1020,7 +1021,7 @@ public class ConfirmOrder extends _CommonPage {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 
 					+ " @ Déclencheur  " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
-					+ " $ Échéance" + goodXL;
+					+ " $ Échéance " + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
@@ -1049,7 +1050,7 @@ public class ConfirmOrder extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value + " @ "
-					+ df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance" + goodXL;
+					+ df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance " + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value + " @ $"
@@ -1079,7 +1080,7 @@ public class ConfirmOrder extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " @ " + price_value
 
-					+ " Échéance" + goodXL;// @Author - Sushil 19-Apr-2017
+					+ " Échéance " + goodXL;// @Author - Sushil 19-Apr-2017
 											// Modified
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " @ " + price_value
@@ -1233,7 +1234,7 @@ public class ConfirmOrder extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	/**
 	 * This method will verify confirm Order screen for switch Action
 	 * 
@@ -1252,7 +1253,7 @@ public class ConfirmOrder extends _CommonPage {
 	public void verifySwitchMutualConfirmDetails() {
 		try {
 			Decorator();
-			if(!mobileAction.verifyElementIsPresent(estimated_total_cost)){
+			if (!mobileAction.verifyElementIsPresent(estimated_total_cost)) {
 				mobileAction.FunctionSwipe("up", 200, 100);
 			}
 			mobileAction.verifyElementIsDisplayed(estimate_principle_value, "Verify Estimated Principal Value");
@@ -1269,7 +1270,6 @@ public class ConfirmOrder extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-
 
 }
 
