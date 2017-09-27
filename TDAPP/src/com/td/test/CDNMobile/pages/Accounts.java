@@ -15,6 +15,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Accounts extends _CommonPage {
 
@@ -23,7 +24,7 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/accntBalanceSum']")
 	private MobileElement txtBalance;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Accounts' or @label='Comptes' or @name='TDVIEW_TITLE']")
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement txtMy_Account_Header;
 
@@ -85,7 +86,7 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/summaryContent']")
 	private MobileElement acntsListnew;
 
-	@iOSFindBy(xpath = "//*[@name='NAVIGATION_ITEM_BACK'] | //XCUIElementTypeNavigationBar/XCUIElementTypeButton[1]")
+	@iOSFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	private MobileElement back_button;
 
@@ -153,7 +154,7 @@ public class Accounts extends _CommonPage {
 	private MobileElement progressBar;
 
 	private MobileElement total_accounts_ios;
-	
+
 	private MobileElement total_accounts_and_cad;
 	private MobileElement total_accounts_and_usd;
 
@@ -824,7 +825,7 @@ public class Accounts extends _CommonPage {
 					+ "') or contains(@label,'" + CL.getTestDataInstance().getPrimaryAccount() + "')  ]";
 
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(accountXL, true, 40, "up");
-			mobileAction.waitForElementToVanished(progresssBar);
+			mobileAction.waitForElementToVanish(progresssBar);
 
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
@@ -889,6 +890,7 @@ public class Accounts extends _CommonPage {
 			System.out.println("Acnt_Description:" + Acnt_Description);
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, true, 30, "up");
 			mobileAction.waitForElementToVanish(progresssBar);
+
 		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -913,6 +915,13 @@ public class Accounts extends _CommonPage {
 				int size = accountList.size();
 				System.out.println("Account size:" + size);
 				for (int i = 0; i < size; i++) {
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+						if (!mobileAction.verifyElementIsPresent(accountList.get(i))) {
+							mobileAction.FuncSwipeWhileElementNotFound(accountList.get(i), false, 2, "up");
+							accountList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
+									"//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
+						}
+					}
 					String accounttext = mobileAction.getValue(accountList.get(i));
 					System.out.println("Account " + (i + 1) + ":" + accounttext);
 					if (accounttext.toLowerCase().contains("mutual fund") || accounttext.contains("FONDS COMM.")) {
@@ -1014,12 +1023,13 @@ public class Accounts extends _CommonPage {
 			String total_Account_value_usd = "";
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				total_xpath = "//*[@label='"+totalStr.toUpperCase() + "']/preceding-sibling::XCUIElementTypeStaticText[1]";
+				total_xpath = "//*[@label='" + totalStr.toUpperCase()
+						+ "']/preceding-sibling::XCUIElementTypeStaticText[1]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(total_xpath, false, 20, "up");
 
-				total_accounts_ios = mobileAction.verifyElementUsingXPath(total_xpath,"Total Account");
+				total_accounts_ios = mobileAction.verifyElementUsingXPath(total_xpath, "Total Account");
 				String TotalAccountValue = mobileAction.getValue(total_accounts_ios);
-				total_Account_value_usd = mobileAction.FuncGetValByRegx(TotalAccountValue,"USD *.*");
+				total_Account_value_usd = mobileAction.FuncGetValByRegx(TotalAccountValue, "USD *.*");
 				total_Account_value_cad = TotalAccountValue.replace(total_Account_value_usd, "").trim();
 
 			} else {
@@ -1048,8 +1058,6 @@ public class Accounts extends _CommonPage {
 			} else {
 				mobileAction.Report_Fail("Total account USD is empty");
 			}
-
-
 
 		} catch (Exception e) {
 			try {

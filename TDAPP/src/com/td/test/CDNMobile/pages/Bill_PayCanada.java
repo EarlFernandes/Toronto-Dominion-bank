@@ -202,9 +202,6 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Bills']")
 	private MobileElement bills_header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
-	private MobileElement back_button;
-
 	@iOSFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Home']")
 	private MobileElement home;
@@ -265,7 +262,8 @@ public class Bill_PayCanada extends _CommonPage {
 			mobileAction.FuncClick(select_payee, "Select Payee");
 			String payeeAccountxpath;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				payeeAccountxpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//*[contains(@label, '" + payeeName + "')]";
+				payeeAccountxpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//*[contains(@label, '"
+						+ payeeName + "')]";
 			} else {
 				payeeAccountxpath = "//android.widget.TextView[contains(@text,'" + payeeName + "')]";
 			}
@@ -994,7 +992,7 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.FuncClick(cancelBtn, "Cancel");
 				mobileAction.verifyElementIsDisplayed(bills_header, "Bills");
-				mobileAction.FuncClick(back_button, "Back");
+				mobileAction.ClickBackButton();
 				mobileAction.verifyElementIsDisplayed(home, "Home");
 
 			}
@@ -1277,7 +1275,7 @@ public class Bill_PayCanada extends _CommonPage {
 			// CL.GetDriver().findElement(By.xpath(payeeXL)).click();
 			CL.GetReporting().FuncReport("Pass", "<b>" + payeeXL + "</b> is Clicked.");
 
-			mobileAction.waitForElementToVanished(progressBar);
+			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.verifyElementIsDisplayed(txtPaywithRewards, "Pay With Rewards ");
 
 		} catch (Exception e) {

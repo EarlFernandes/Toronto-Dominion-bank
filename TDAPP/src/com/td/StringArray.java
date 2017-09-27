@@ -1,6 +1,14 @@
 package com.td;
 
 public final class StringArray {
+
+	public static final String PATTERN_ZH_YYYY_MM_DD = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日|待处理|尚待處理";
+	public static final String PATTERN_ZH_YYYY_MM_DD_WEEKDATE = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\((星期|週)[一|二|三|四|五|六|日|天]\\)";
+	public static final String PATTERN_ZH_MM_YYYY = "\\d{4}年\\s?\\d{1,2}月";
+	public static final String PATTERN_ZH_YYYY_MM_DD_TODAY = "\\d{4}年\\s?\\d{1,2}月\\s?\\d{1,2}日 \\((今天|今日)\\)";
+	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日.*";
+	public static final String PATTERN_ZH_YYYY_MM_DD_RANGE = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日 – (\\d{4}年)*\\d{1,2}月\\d{1,2}日";
+
 	public static final String[] ARRAY_HOME_HEADER = { "Home", "Accueil", "首页", "首頁" };
 	public static final String[] ARRAY_MF_FUNDS = { "Fund", "Fonds", "基金", "基金" };
 	public static final String[] ARRAY_MF_SELECT_FUNDS = { "Select a fund", "Sélectionner un fonds", "选择基金", "選擇基金" };
@@ -38,7 +46,7 @@ public final class StringArray {
 			"我們僅在因有關您的購買時，才會使用您的資訊與您聯絡。請確保所有註冊退休儲蓄計劃(RSP)和免稅儲蓄賬戶(TFSA)交易不超過您允許的供款限額。如果交易因任何原因被拒，我們將在一個工作日內取消交易並向您發送電郵通知。您購買的基金有最短持有期要求。如果您在最短持有期到期之前贖回，可能需向基金支付最高 2%的短期交易費，此要求適用於道明互惠基金的所有單位（貨幣市場基金除外）。詳情請參閱相關基金概況。道明資產管理有限公司（TDAM）在您持有道明互惠基金單位期間向道明投資服務有限公司（TDIS）支付尾隨佣金，作為其向您提供服務和諮詢的費用。有關詳細信息，請參閱基金概況。" };
 	public static final String[] ARRAY_TAB_BALANCE = { "Balances", "Soldes", "结余", "結餘" };
 	public static final String[] ARRAY_TAB_FUND = { "Funds", "Fonds", "基金", "基金" };
-	public static final String[] ARRAY_FUND_TAB_LEFT = { "Fund", "Fond", "基金", "基金" };
+	public static final String[] ARRAY_FUND_TAB_LEFT = { "FUND", "FUNDS", "基金", "基金" };
 	public static final String[] ARRAY_TAB_ACTIVITY = { "Activity", "Activité", "活动", "活動" };
 	public static final String[] ARRAY_TABLE_DATE = { "DATE", "DATE", "日期", "日期" };
 	public static final String[] ARRAY_TABLE_TRANSACTION = { "TRANSACTION", "OPÉRATION", "交易", "交易" };
@@ -50,7 +58,7 @@ public final class StringArray {
 			"ACHETER DES FONDS COMMUNS DE PLACEMENT", "购买互惠基金", "購買互惠基金" };
 	public static final String[] ARRAY_MF_CANADIAN_DOLLAR_NOTE = {
 			"All values in Canadian Dollars unless otherwise stated.",
-			"Toutes les valeurs sont en dollars canadiens, sauf avis contraire.", "所有金额均为加元，除非另有说明。",
+			"Toutes les valeurs sont en dollars canadiens, sauf avis contraire.", "除非另有说明，否则所有金额均为加元。",
 			"所有金額均為加元，除非另有說明。" };
 	public static final String[] ARRAY_MF_RECEIPT_HEADER = { "Receipt", "Reçu", "收据", "收據" };
 	public static final String[] ARRAY_MF_THANKYOU = { "Thank you!", "Merci!", "谢谢！", "謝謝您！" };
@@ -60,17 +68,17 @@ public final class StringArray {
 			"我们已经开始处理您的购买。如有问题，我们将与您联系。", "我們已開始處理您的購買。如有問題，我們將與您聯絡。" };
 	public static final String[] ARRAY_MF_NEXT_HAPPEN = { "WHAT HAPPENS NEXT", "PROCHAINES ÉTAPES", "后续流程", "後續流程" };
 	public static final String[] ARRAY_MF_PURCHASE_BEFORE3 = { "Purchases made before 3:00PM",
-			"Achats effectués avant 15 h", "下午 3 点之前的购买 ", "下午 3 時之前的購買" };
+			"Achats effectués avant 15 h", "下午 3 点之前的购买 ", "下午 3 時之前的購買" };
 	public static final String[] ARRAY_MF_CONTENT_BEFORE3 = {
 			"If you made your purchase before 3:00PM EST on a business day, it will be processed at that day's rate.",
-			"Si vous avez effectué votre achat avant 15 h (HE) un jour ouvrable, il sera traité au prix en vigueur à cette date.",
+			"Si vous avez effectué votre achat avant 15 h (HE) un jour ouvrable, il sera traité au prix en vigueur à cette date.",
 			"如果您在工作日东部时间下午 3 点之前购买，将按当天价格交易。", "如果在工作日的東部時間下午 3 時之前購買，將按當天價格交易。" };
 
 	public static final String[] ARRAY_MF_PURCHASE_AFTER3 = { "Purchases made after 3:00PM",
-			"Achats effectués après 15 h", "下午 3 点之后的购买 ", "下午 3 時之後的購買" };
+			"Achats effectués après 15 h", "下午 3 点之后的购买 ", "下午 3 時之後的購買" };
 	public static final String[] ARRAY_MF_CONTENT_AFTER3 = {
 			"If you made your purchase after 3:00PM EST, or on the weekend, it will be processed at the next business day's closing price.",
-			"Si vous avez effectué votre achat après 15 h (HE) ou la fin de semaine, il sera traité au prix de clôture du jour ouvrable suivant.",
+			"Si vous avez effectué votre achat après 15 h (HE) ou la fin de semaine, il sera traité au prix de clôture du jour ouvrable suivant.",
 			"如果您在东部时间下午 3 点之后或在周末购买，将按照下一个工作日的收市价交易。", "如果在東部時間下午 3 時之後或在週末購買，將按下一個工作日的收市價交易。" };
 	public static final String[] ARRAY_MF_PURCHASE_CONFIRM = { "Purchase confirmation", "Confirmation d’achat", "购买确认",
 			"購買確認" };
@@ -95,7 +103,7 @@ public final class StringArray {
 			"查看我的账户", "查看我的賬戶" };
 	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE = { "Accepted Fund Details & Fees",
 			"Infos sur le fonds et les frais acceptées", "已接受的基金 详情与费用", "已接受的基金 詳情與費用" };
-	public static final String[] ARRAY_MF_FUND_FACT = { "Fund Facts", "Aperçu du fonds", "基金概况", "基金概況" };
+	public static final String[] ARRAY_MF_FUND_FACT = { "Fund Facts", "Aperçu du fonds", "基金概况", "基金產品概述" };
 	public static final String[] ARRAY_MF_FUND_FACT_PDF = { "fund facts.pdf", "Aperçu du fonds.pdf", "基金概况.pdf",
 			"基金概況.pdf" };
 	public static final String[] ARRAY_MF_TRANSACTION_DETAIL = { "Transaction Details", "Détails de l’opération",
@@ -110,6 +118,45 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_TRANSACTION_UNIT_PRICE = { "Unit Price", "Prix par part", "单位价格", "單位價格" };
 	public static final String[] ARRAY_MF_TRANSACTION_UNIT = { "Transaction Units", "Parts visées par l’opération",
 			"交易单位数量", "交易單位數" };
+	public static final String[] ARRAY_MF_NONELIGIBAL_ERROR_MSG = {
+			"Looks like you're not set up to purchase mutual funds. Let us help you by calling 1-866-568-0951.",
+			"Il semble que vous ne puissiez pas effectuer d’achats. Pour obtenir de l’aide, composez le 1-888-568-0952.",
+			"您似乎未启用购买互惠基金的功能。请拨打1-866-235-0002（广东话）或1-866-769-0002（普通话）获取帮助。",
+			"看來您尚未設定好購買互惠基金。請致電我們以獲得協助；廣東話：1-866-235-0002，普通話： 1-866-769-0002。" };
+	public static final String[] ARRAY_MF_CLOASED_ACCOUNT_ERROR_MSG = {
+			"Looks like the account you are using is closed. Try another fund or let us help you by calling 1-888-568-0951.",
+			"Il semble que le compte est fermé. Essayez avec un autre fonds, ou appelez-nous au 1-888-568-0952 pour obtenir de l’aide.",
+			"您使用的账户似乎已关闭。请拨打1-866-235-0002（广东话）或1-866-769-0002（普通话）购买其他基金或获取帮助。",
+			"看來您使用的賬戶已關閉。請選擇另一種基金或致電我們，讓我們提供協助；廣東話：1-866-235-0002，普通話：1-866-769-0002。" };
+	public static final String[] ARRAY_MF_FUND_DETAIL_PURCHASE = { "Purchase", "Acheter", "买入", "買入" };
+	public static final String[] ARRAY_MF_FUND_DETAIL_CALL = { "Call", "Appeler", "致电", "致電" };
+	public static final String[] ARRAY_MF_FUND_DETAIL_QUOTE = { "Quote", "Cote", "报价", "報價" };
+	public static final String[] ARRAY_MF_FUND_DETAIL_HEADER = { "Fund Details", "Détails sur le fonds", "基金详情",
+			"基金詳情" };
+	public static final String[] ARRAY_MF_FD_MARKETVALUE = { "Market Value", "Valeur marchande", "市场价值", "市場價值" };
+	public static final String[] ARRAY_MF_FD_BOOKVALUE = { "Book Value", "Valeur comptable", "账面价值", "賬面價值" };
+	public static final String[] ARRAY_MF_FD_PERCENTAGE_PORTFOLIO = { "Percentage of Portfolio on this Account",
+			"Pourcentage du portefeuille du compte", "此账户的投资组合百分比", "此賬戶的投資組合百分比" };
+	public static final String[] ARRAY_MF_FD_UNITS_HELD = { "Units Held", "Parts détenues", "所持单位数", "所持單位數" };
+	public static final String[] ARRAY_MF_FD_UNIT_PRICE = { "Price Per Unit ", "Prix par part ", "单位价格", "單位價格" };
+	public static final String[] ARRAY_MF_FD_GAIN_LOSS = { "Unrealized Gain/Loss", "Gains/pertes non réalisés",
+			"未实现收益/亏损", "未實現收益/虧損" };
+	public static final String[] ARRAY_MF_FD_VIEW_PERFORMANCE = { "View Fund Facts (Performance & Fees)",
+			"Consulter l’Aperçu du fonds(rendement et frais)", "查看基金概况（表现和费用）", "查看基金概況（表現和費用）" };
+	public static final String[] ARRAY_MF_PHONE_PLACEHOLDER = { "Enter number", "Entrer le numéro", "输入号码", "輸入號碼" };
+	public static final String[] ARRAY_MF_EMAIL_PLACEHOLDER = { "example@address.com", "exemple@adresse.com",
+			"示例 @address.com", "範例 @address.com" };
+	public static final String[] ARRAY_MF_INELIGIBLE_LABEL = { "Ineligible", "Non admissible", "不符合条件", "不符合資格" };
+	public static final String[] ARRAY_MF_DISCLAIMER_AND = {
+			"As of [A-Za-z]{3}\\s*\\d{1,2},\\s*\\d{4} at \\d{1,2}:\\d{1,2}:\\d{1,2}.*",
+			"Au .{3,5}\\s*\\d{1,2},\\s*\\d{4} à \\d{1,2}:\\d{1,2}:\\d{1,2}.*",
+			"截至\\s*\\d{4}年\\s*\\d{1,2}月\\s*\\d{1,2}日*.*\\d{1,2}:\\d{1,2}:\\d{1,2}.*",
+			"截至\\s*\\d{4}年\\s*\\d{1,2}月\\s*\\d{1,2}日*.*\\d{1,2}:\\d{1,2}:\\d{1,2}.*" };
+	public static final String[] ARRAY_MF_DISCLAIMER_IOS = {
+			"As of [A-Za-z]{3}\\s*\\d{1,2},\\s*\\d{4} at \\d{1,2}:\\d{1,2}:\\d{1,2}.*",
+			"Au \\d{1,2} .{3,5}\\s*\\d{4} à \\d{1,2}:\\d{1,2}:\\d{1,2}.*",
+			"有效时间至*.*\\d{4}年\\s*\\d{1,2}月\\s*\\d{1,2}日*.*\\d{1,2}:\\d{1,2}:\\d{1,2}",
+			"有效时间至\\s*\\d{4}年\\s*\\d{1,2}月 \\s*\\d{1,2}日\\s*.*\\d{1,2}:\\d{1,2}:\\d{1,2}.*" };
 
 	public static final String[] ARRAY_PROFILE_AND_PREFERENCE = { "Profile & Settings", "Profil et paramètres",
 			"个人资料和设置", "個人資料和設定" };
@@ -146,6 +193,18 @@ public final class StringArray {
 	public static final String[] ARRAY_OTP_SETUP_PASSCODE_VERIFIED = { "Verified", "Validé", "验证成功", "驗證成功" };
 	public static final String[] ARRAY_OTP_SETUP_SETUP_COMPLETE_HEADER = { "Security Setup Complete",
 			"Configuration de sécurité terminée", "安全设置完成", "安全設定完成" };
+
+	public static final String[] ARRAY_OTP_UPDATE_HEADER = {
+			"You can review and manage your current security settings below",
+			"Vous pouvez consulter et gérer vos paramètres de sécurité ci-dessous", "您可在下方查看并管理您目前的安全设置",
+			"您可在下方查看並管理您目前的安全設定" };
+	public static final String[] ARRAY_OTP_UPDATE_TEST_PHONE_HEADER = { "Test Phones (optional)",
+			"Test de téléphone (facultatif)", "测试电话号码（可选）", "測試電話號碼（非必要）" };
+	public static final String[] ARRAY_OTP_UPDATE_LOGIN_OPTION_HEADER = { "Change Login Option",
+			"Modifier l’option d’ouverture de session", "更改登录选项", "變更登入選項" };
+	public static final String[] ARRAY_OTP_UPDATE_CHANGE_EMAIL_HEADER = { "Change Security Email",
+			"Modifier l’adresse courriel de sécurité", "更改安全信息邮箱", "變更安全性資訊收件箱" };
+	public static final String[] ARRAY_OTP_UPDATE_COMPLETE_HEADER = { "Thanks", "Merci", "谢谢", "謝謝" };
 
 	public static final String[] ARRAY_INVESTING_ACCOUNTS = { "Investing Accounts", "Comptes Placements directs TD",
 			"投资账户", "投資賬戶" };
@@ -243,8 +302,8 @@ public final class StringArray {
 	public static final String[] ARRAY_PREFERENCE_ACCOUNTS = { "ACCOUNTS", "COMPTES", "账户", "賬戶" };
 	public static final String[] ARRAY_PREFERENCE_SECURITY_QUESTION = { "Security Questions", "Questions de sécurité",
 			"密保问题", "密保问题" };
-	public static final String[] ARRAY_VIEW_PROFILE_LINK_IOS = { "View profile >", "Consulter le profil >", "查看个人资料",
-			"查看個人資料" };
+	public static final String[] ARRAY_VIEW_PROFILE_LINK_IOS = { "View profile >", "Consulter le profil >", "查看个人资料 >",
+			"查看個人資料 >" };
 	public static final String[] ARRAY_VIEW_PROFILE_LINK_AND = { "View profile", "Consulter le profil", "查看个人资料",
 			"查看個人資料" };
 	public static final String[] ARRAY_PAYMENT_AND_TRANSFER = { "Payments & Transfers", "", "", "" };
@@ -307,7 +366,10 @@ public final class StringArray {
 			"Si votre carte de crédit est endommagée ou ne fonctionne plus, vous pouvez demander une carte de remplacement.",
 			"如果您现有的信用卡损坏或无效，您可以申请换卡。", "如果您現有的信用卡損壞或無效，您可以申請換卡。" };
 
-  //UA Core
+	// UA Core
 	public static final String[] ARRAY_ACCOUNT_TOTAL = { "Total", "Total", "总计", "總計" };
-  //UA Core End	
+	public static final String[] ARRAY_ADD_LOGIN = { "Add Login", "Ajouter une connexion", "添加登录", "新增登入" };
+	public static final String[] ARRAY_ADD_CANADIAN_PAYEE = { "Add Canadian Payee", "Ajouter un preneur", "添加加拿大收款人",
+			"添加加拿大收款人" };
+	// UA Core End
 }

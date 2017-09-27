@@ -3,7 +3,6 @@ package com.td;
 import java.io.IOException;
 
 import org.openqa.selenium.NoSuchElementException;
-
 import com.td.test.CDNMobile.pages.Accounts;
 import com.td.test.CDNMobile.pages.Accounts_Credit;
 import com.td.test.CDNMobile.pages.AddCanadian_Payee;
@@ -59,6 +58,7 @@ import com.td.test.CDNMobile.pages.MutualFunds;
 import com.td.test.CDNMobile.pages.Notifications;
 import com.td.test.CDNMobile.pages.OTPChallenge;
 import com.td.test.CDNMobile.pages.OTPSetup;
+import com.td.test.CDNMobile.pages.OTPUpdate;
 import com.td.test.CDNMobile.pages.Options;
 import com.td.test.CDNMobile.pages.OptionsReceiptPage;
 import com.td.test.CDNMobile.pages.OrderDetails;
@@ -96,6 +96,7 @@ import com.td.test.CDNMobile.pages.TransactionDetails;
 import com.td.test.CDNMobile.pages.PreviewPurchase;
 import com.td.test.CDNMobile.pages.Popupwindow;
 import com.td.test.CDNMobile.pages.FundFacts;
+import com.td.test.myspend.DailyDigest;
 import com.td.test.myspend.LogoutMySpend;
 import com.td.test.myspend.MoneyPath;
 import com.td.test.myspend.MyspendPreferences;
@@ -120,7 +121,7 @@ public class EventCase {
 
 		Account_Home_Button, Account_Prefer_Button, Accounts_EW_WB_Functionality, Accounts_Header, Accounts_sessionTimedOut,
 
-		Accounts_Verify_Page, Accounts_VerifyAccountsPage, Accounts_VerifyTFSA_Activity, AddVaildEmail,verifyCAD_USD_AccountsInTotal,
+		Accounts_Verify_Page, Accounts_VerifyAccountsPage, Accounts_VerifyTFSA_Activity, AddVaildEmail, verifyCAD_USD_AccountsInTotal,
 
 		Add_Recipient_ErrorPage, AddCanadianPayee, AddPayee_SearchPayee, AddCard_MobilePayment, AddToTDMobilePayment, ApplePay_AddCard, ApplePay_SelectACard, ApplePay_CheckEligibleCard, ApplePay_ChangeDefaultCard, ApplePay_CheckPersonalCard, ApplePay_CheckBusinessCard, ApplePay_CheckDefaultCard, ApplePay_AddAllCards, ApplePay_OtherEligibleCards, Accounts_Credit_clickTransfer,
 
@@ -205,7 +206,7 @@ public class EventCase {
 		Accounts_SelectAccount, AccountsCredit_ClickPayBill, AccountsCredit_verifyLastTranaction, AccountsCredit_clickLastTranaction, Transaction_VerifyTransac, AccountsCredit_clickSummaryTab, AccountsCredit_VerifySummaryDetails, AccountsCredit_clickStatementTab, AccountsCredit_VeifyStatementDetails, StatementBalance_VerifyBalanceDetails, Bill_PayCanada_verifyCurrentBalance, Bill_PayCanada_PayBill, AccountsCredit_ClickTransfers
 
 		// trade,
-		, clickChangeorder_TSM_to_TSL, TradeTrailingStopMarket, TradeStopMarket, MenumenuTradePresent, TradeStopMarketSell, TradeLimitDAYEXT, ClickWatchList, TradeStopLimit, OrderRecieptValidateBuy, Investing_ClickPlacedOrder, OrderDetails_Changeorder, TradeMarket, clickChangeorder_LimitToMarket, TradeLimit, TradeLimitAndTriggerDelta, TradeOrderType, TradeSymbol, TradeTrailingStopLimit, ConfirmOrderValidateBuy, verifyEmptyWatchList, ClickOrders, clickChangeorder_SM_to_SL, verifyShareHolder, confirmOrder_ClickBack, verifyBuyToCover, TradeStopLimitSell, ConfirmOrderDoNotCancel, ConfirmOrderImpInformation, ClickHoldingAndSymbol, changeOrderLimitDayToDayEXT,
+		, clickChangeorder_TSM_to_TSL, TradeTrailingStopMarket, TradeStopMarket, MenumenuTradePresent, TradeStopMarketSell, TradeLimitDAYEXT, ClickWatchList, TradeStopLimit, OrderRecieptValidateBuy, Investing_ClickPlacedOrder, OrderDetails_Changeorder, stocksVerifyWatchlists, TSL_ClickBackButton, TradeMarket, clickChangeorder_LimitToMarket, TradeLimit, TradeLimitAndTriggerDelta, TradeOrderType, TradeSymbol, TradeTrailingStopLimit, ConfirmOrderValidateBuy, verifyEmptyWatchList, ClickOrders, clickChangeorder_SM_to_SL, verifyShareHolder, confirmOrder_ClickBack, verifyBuyToCover, TradeStopLimitSell, ConfirmOrderDoNotCancel, ConfirmOrderImpInformation, ClickHoldingAndSymbol, changeOrderLimitDayToDayEXT,
 
 		// MIT Multi-Leg
 
@@ -240,11 +241,14 @@ public class EventCase {
 
 		// OTP Setup
 
-		OTP_Setup_AcceptWelcomeTCScreens, OTP_Setup_VerifyGetStartedOptionOnly, OTP_Setup_AddPhoneNumber, OTP_Setup_VerifyAddedPhoneNumber, OTP_Setup_AddPhoneContinue, OTP_Setup_VerifyAddAnotherPhoneNumberDialog, OTP_Setup_DeleteFirstPhoneNumber, OTP_Setup_VerifyDeletePhoneNumberFail, OTP_Setup_VerifyMaxPhoneNumbers, OTP_Setup_VerifyInvalidSecurityCodeFormatMsg, OTP_Setup_ClickTextOption, OTP_Setup_ClickVoiceOption, OTP_Setup_ClickFirstPhoneNumber, OTP_Setup_ClickGetCodeButton, OTP_Setup_ClickSubmitCodeButton, OTP_Setup_EnterSecurityCode, OTP_Setup_WaitForOTPProgressBarToVanish, OTP_Setup_VerifyInvalidSecurityCode, OTP_Setup_ClickAnotherPhoneNo, OTP_Setup_VerifySecurityCodeSent, OTP_Setup_TestPhonesContinue, OTP_Setup_VerifySecurityEmailScreen, OTP_Setup_EnterSecurityEmail, OTP_Setup_VerifySecurityCodeFrequencyScreen, OTP_Setup_RetrievePasscodeTest, OTP_Setup_VerifyCorrectSecurityCode, OTP_Setup_PasscodeContinue, OTP_Setup_CodeFrequencyContinue, OTP_Setup_VerifySetupComplete, OTP_Setup_EnterExpiredSecurityCode, OTP_Setup_VerifyExpiredSecurityCodeMsg, OTP_Setup_EnterIncorrectSecurityCode,
+		OTP_Setup_AcceptWelcomeTCScreens, OTP_Setup_VerifyGetStartedOptionOnly, OTP_Setup_AddPhoneNumber, OTP_Setup_VerifyAddedPhoneNumber, OTP_Setup_AddPhoneContinue, OTP_Setup_VerifyAddAnotherPhoneNumberDialog, OTP_Setup_DeleteFirstPhoneNumber, OTP_Setup_VerifyDeletePhoneNumberFail, OTP_Setup_VerifyMaxPhoneNumbers, OTP_Setup_VerifyInvalidSecurityCodeFormatMsg, OTP_Setup_ClickTextOption, OTP_Setup_ClickVoiceOption, OTP_Setup_ClickFirstPhoneNumber, OTP_Setup_ClickGetCodeButton, OTP_Setup_ClickSubmitCodeButton, OTP_Setup_EnterSecurityCode, OTP_Setup_WaitForOTPProgressBarToVanish, OTP_Setup_VerifyInvalidSecurityCode, OTP_Setup_ClickAnotherPhoneNo, OTP_Setup_VerifySecurityCodeSent, OTP_Setup_TestPhonesContinue, OTP_Setup_VerifySecurityEmailScreen, OTP_Setup_EnterSecurityEmail, OTP_Setup_VerifySecurityCodeFrequencyScreen, OTP_Setup_VerifyCorrectSecurityCode, OTP_Setup_PasscodeContinue, OTP_Setup_CodeFrequencyContinue, OTP_Setup_VerifySetupComplete, OTP_Setup_EnterExpiredSecurityCode, OTP_Setup_VerifyExpiredSecurityCodeMsg, OTP_Setup_EnterIncorrectSecurityCode,
+
+		// OTP Update
+		OTP_Update_VerifyOTPUpdateScreen, OTP_Update_VerifyTestPhoneUpdateScreen, OTP_Update_ClickTestPhoneButton, OTP_Update_VerifyLoginOptionUpdateScreen, OTP_Update_ClickLoginOptionButton, OTP_Update_VerifyChangeEmailScreen, OTP_Update_ClickChangeEmailButton, OTP_Update_UpdateSecurityEmail, OTP_Update_ClickOTPUpdateContinueButton, OTP_Update_VerifyOTPUpdateCompleteScreen, OTP_Update_ClickAddPhoneUpdateButton, OTP_Update_AddSinglePhoneNumber, OTP_Update_AddMaxPhoneNumbers, OTP_Update_DeleteFirstPhoneNumber, OTP_Update_VerifyDeletePhoneNumberFail, OTP_Update_VerifyAddedPhoneNumber, OTP_Update_VerifyMaxPhoneNumbers, OTP_Update_VerifyUpdatedSecurityEmail, OTP_Update_ClickFirstPhoneNumber, OTP_Update_ClickTextOption, OTP_Update_ClickSubmitCodeButton, OTP_Update_EnterSecurityCode, OTP_Update_VerifyCorrectSecurityCode, OTP_Update_ClickGetCodeButton,
 
 		// myspend
-		Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, TourPage_clickConnectTDApp, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickGetTDAppButton, click_PreferencesLink,
-		
+		DailyDigest_verifyHeader,DailyDigest_verifyHomePage,DailyDigest_verifyBackButton,DailyDigest_verifySpending,DailyDigest_verifyCategorySpike,DailyDigest_clickCategoryTab,DailyDigest_verifyCategoryMessage,Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality,Preferences_verifyPreferenceTabs,Preferences_verifyRealTimeNotifications,Preferences_verifyDailyDigestNotifications, TourPage_clickConnectTDApp, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks,SideMenu_clickSideMenu, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes,SpendingInsight_clickDailyDigest,SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickGetTDAppButton, click_PreferencesLink,
+
 		//CLIP
 		VerifyMoreLinkPresent, ClickMoreLink, verifyMoreOptionHeader,ClickCardlimitIncreaseBtn, verifyCreditLimitIncreaseHeader, verifyMoreOptionsDirectionalCopy,verifyCreditCardContent,
 		
@@ -253,7 +257,6 @@ public class EventCase {
 		
 		//Damaged Card
 		verifyReplaceDamagedCardHeader, ClickReplaceDamagedCardBtn, verifyReplaceDamagedCardDirectionalCopy,
-
 	}
 
 	public void FuncCOREEventCase(String sFunctionname)
@@ -400,7 +403,7 @@ public class EventCase {
 		case Investing_clickHoldings:
 			Investing.get().clickHoldings();
 			break;
-			
+
 		case verifyCAD_USD_AccountsInTotal:
 			Accounts.get().verifyCAD_USD_AccountsInTotal();
 			break;
@@ -1857,8 +1860,13 @@ public class EventCase {
 			OrderDetails.get().performChangeorder();
 			break;
 
-		case verifyEmptyWatchList:
-			Investing.get().verifyEmptyWatchLists();
+		/*
+		 * case verifyEmptyWatchList: Investing.get().verifyEmptyWatchLists();
+		 * break;
+		 */
+
+		case stocksVerifyWatchlists:
+			Investing.get().verifyWatchLists();
 			break;
 
 		case ClickOrders:
@@ -1867,6 +1875,10 @@ public class EventCase {
 
 		case verifyShareHolder:
 			Trade.get().verifyShareHolder();
+			break;
+
+		case TSL_ClickBackButton:
+			Trade.get().Tsl_ClickBackButton();
 			break;
 
 		case confirmOrder_ClickBack:
@@ -3880,8 +3892,101 @@ public class EventCase {
 			OTPSetup.get().enterExpiredSecurityCode();
 			break;
 
-		case OTP_Setup_RetrievePasscodeTest:
-			OTPSetup.get().retrievePasscode();
+		// OTP Update
+		case OTP_Update_VerifyOTPUpdateScreen:
+			OTPUpdate.get().verifyOTPUpdateScreen();
+			break;
+
+		case OTP_Update_ClickTestPhoneButton:
+			OTPUpdate.get().clickTestPhoneButton();
+			break;
+
+		case OTP_Update_VerifyTestPhoneUpdateScreen:
+			OTPUpdate.get().verifyTestPhoneUpdateScreen();
+			break;
+
+		case OTP_Update_ClickLoginOptionButton:
+			OTPUpdate.get().clickLoginOptionButton();
+			break;
+
+		case OTP_Update_VerifyLoginOptionUpdateScreen:
+			OTPUpdate.get().verifyLoginOptionUpdateScreen();
+			break;
+
+		case OTP_Update_ClickChangeEmailButton:
+			OTPUpdate.get().clickChangeEmailButton();
+			break;
+
+		case OTP_Update_VerifyChangeEmailScreen:
+			OTPUpdate.get().verifyChangeEmailScreen();
+			break;
+
+		case OTP_Update_ClickOTPUpdateContinueButton:
+			OTPUpdate.get().clickOTPUpdateContinueButton();
+			break;
+
+		case OTP_Update_VerifyOTPUpdateCompleteScreen:
+			OTPUpdate.get().verifyOTPUpdateCompleteScreen();
+			break;
+
+		case OTP_Update_ClickAddPhoneUpdateButton:
+			OTPUpdate.get().clickAddPhoneUpdateButton();
+			break;
+
+		case OTP_Update_AddSinglePhoneNumber:
+			OTPUpdate.get().addSinglePhoneNumber();
+			break;
+
+		case OTP_Update_AddMaxPhoneNumbers:
+			OTPUpdate.get().addMaxPhoneNumbers();
+			break;
+
+		case OTP_Update_DeleteFirstPhoneNumber:
+			OTPUpdate.get().deleteFirstPhoneNumber();
+			break;
+
+		case OTP_Update_VerifyDeletePhoneNumberFail:
+			OTPUpdate.get().verifyDeletePhoneNumberFail();
+			break;
+
+		case OTP_Update_VerifyAddedPhoneNumber:
+			OTPUpdate.get().verifyAddedPhoneNumber();
+			break;
+
+		case OTP_Update_VerifyMaxPhoneNumbers:
+			OTPUpdate.get().verifyMaxPhoneNumbers();
+			break;
+
+		case OTP_Update_UpdateSecurityEmail:
+			OTPUpdate.get().updateSecurityEmail();
+			break;
+
+		case OTP_Update_VerifyUpdatedSecurityEmail:
+			OTPUpdate.get().verifyUpdatedSecurityEmail();
+			break;
+
+		case OTP_Update_ClickFirstPhoneNumber:
+			OTPUpdate.get().clickFirstPhoneNumber();
+			break;
+
+		case OTP_Update_ClickTextOption:
+			OTPUpdate.get().clickTextOption();
+			break;
+
+		case OTP_Update_ClickGetCodeButton:
+			OTPUpdate.get().clickGetCodeButton();
+			break;
+
+		case OTP_Update_EnterSecurityCode:
+			OTPUpdate.get().enterSecurityCode();
+			break;
+
+		case OTP_Update_ClickSubmitCodeButton:
+			OTPUpdate.get().clickSubmitCodeButton();
+			break;
+
+		case OTP_Update_VerifyCorrectSecurityCode:
+			OTPUpdate.get().verifyCorrectSecurityCode();
 			break;
 
 		// MySpend
@@ -4077,6 +4182,59 @@ public class EventCase {
 		case SpendingSpike_pageMessages:
 			SpendingSpikes.get().spendingSpikePageMessages();
 			break;
+			
+		case SideMenu_clickDailyDigest:
+			SideMenu.get().clickDailyDigest();
+			break;
+			
+		case DailyDigest_verifyHeader:
+			DailyDigest.get().verifyPageheader();
+			break;
+			
+		case SpendingInsight_clickDailyDigest:
+			Spending_Insight.get().clickDailyDigest();
+			break;
+			
+		case Preferences_verifyPreferenceTabs:
+			MyspendPreferences.get().verifyPreferenceTabs();
+			break;
+			
+		case Preferences_verifyRealTimeNotifications:
+			MyspendPreferences.get().realTimeNotifications();
+			break;
+			
+		case Preferences_verifyDailyDigestNotifications:
+			MyspendPreferences.get().dailyDigestNotifications();
+			break;
+			
+		case SideMenu_clickSideMenu:
+			SideMenu.get().clickSideMenu();
+			break;
+
+		case DailyDigest_verifyHomePage:
+			DailyDigest.get().verifyTDAPPHomePage();
+			break;
+			
+		case DailyDigest_verifyBackButton:
+			DailyDigest.get().verifyBackButton();
+			break;
+			
+		case DailyDigest_verifySpending:
+			DailyDigest.get().verifySpending();
+			break;
+			
+		case DailyDigest_verifyCategorySpike:
+			DailyDigest.get().verifyCategorySpike();
+			break;
+			
+		case DailyDigest_clickCategoryTab:
+			DailyDigest.get().clickCategoryTab();
+			break;
+			
+		case DailyDigest_verifyCategoryMessage:
+			DailyDigest.get().verifyCategoryMessage();
+			break;
+			
 
 		// DSh
 		case verifyFlyoutUnauthenticated:
@@ -4094,7 +4252,7 @@ public class EventCase {
 		case verifyFlyoutBlendedyUser:
 			MIT_DSH_FlyoutMenu.get().verifyFlyoutBlendedyUser();
 			break;
-			
+
 		}
 	}
 

@@ -114,6 +114,8 @@ public class AddCanadian_Payee extends _CommonPage {
 			}
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(selectedPayee, true, 10, "up");
 
+			Thread.sleep(2000);
+
 			mobileAction.FuncClick(payee_AccountNum, "PayeeAccount");
 
 			mobileAction.FuncSendKeys(payee_AccountNum, newPayeeNumber);
