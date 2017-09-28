@@ -1474,7 +1474,11 @@ public class TradeMultiLeg extends _CommonPage {
 		try {
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Option, false, 5, "up");
 			mobileAction.FuncSwipeOnce("up");
+			//mobileAction.FuncClick(leg1Option, "Select Option Leg1");
+			
 			mobileAction.FuncClick(leg1Option, "Select Option Leg1");
+			if (mobileAction.isObjExists(leg1Option, 2))
+				mobileAction.FuncClick(leg1Option, "Select Option Leg1");
 
 			if (getTestdata("Good'til", XLSheetUserIDs).equalsIgnoreCase("Cancel")
 					|| getTestdata("Good'til", XLSheetUserIDs).equalsIgnoreCase("Annuler")) {
