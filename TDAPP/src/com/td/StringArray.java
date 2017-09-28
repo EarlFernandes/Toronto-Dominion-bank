@@ -157,7 +157,7 @@ public final class StringArray {
 			"As of [A-Za-z]{3}\\s*\\d{1,2},\\s*\\d{4} at \\d{1,2}:\\d{1,2}:\\d{1,2}.*",
 			"Au \\d{1,2} .{3,5}\\s*\\d{4} à \\d{1,2}:\\d{1,2}:\\d{1,2}.*",
 			"有效时间至*.*\\d{4}年\\s*\\d{1,2}月\\s*\\d{1,2}日*.*\\d{1,2}:\\d{1,2}:\\d{1,2}",
-			"有效至\\s*\\d{4}年\\s*\\d{1,2}月 \\s*\\d{1,2}日\\s*.*\\d{1,2}:\\d{1,2}:\\d{1,2}.*" };
+			"有效至*.*\\d{4}年\\s*\\d{1,2}月\\s*\\d{1,2}日*.*\\d{1,2}:\\d{1,2}:\\d{1,2}" };
 
 	public static final String[] ARRAY_PROFILE_AND_PREFERENCE = { "Profile & Settings", "Profil et paramètres",
 			"个人资料和设置", "個人資料和設定" };
