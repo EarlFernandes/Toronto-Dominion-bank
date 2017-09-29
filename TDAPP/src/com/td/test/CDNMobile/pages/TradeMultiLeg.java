@@ -1389,12 +1389,15 @@ public class TradeMultiLeg extends _CommonPage {
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, false, 7, "up");
 			mobileAction.FuncSwipeOnce("up");
 
-//			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			// if
+			// (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			// {
+			mobileAction.FuncClick(leg2Option, "Select Option Leg2");
+			if (mobileAction.isObjExists(leg2Option, 2))
 				mobileAction.FuncClick(leg2Option, "Select Option Leg2");
-				if (mobileAction.isObjExists(leg2Option, 2))
-					mobileAction.FuncClick(leg2Option, "Select Option Leg2");
-/*			} else
-				mobileAction.FuncClick(leg2Option, "Select Option Leg2");*/
+			/*
+			 * } else mobileAction.FuncClick(leg2Option, "Select Option Leg2");
+			 */
 
 			if (getTestdata("Good'til", XLSheetUserIDs).equalsIgnoreCase("Cancel")
 					|| getTestdata("Good'til", XLSheetUserIDs).equalsIgnoreCase("Annuler")) {
@@ -1474,8 +1477,8 @@ public class TradeMultiLeg extends _CommonPage {
 		try {
 			mobileAction.FuncSwipeWhileElementNotFound(leg1Option, false, 5, "up");
 			mobileAction.FuncSwipeOnce("up");
-			//mobileAction.FuncClick(leg1Option, "Select Option Leg1");
-			
+			// mobileAction.FuncClick(leg1Option, "Select Option Leg1");
+
 			mobileAction.FuncClick(leg1Option, "Select Option Leg1");
 			if (mobileAction.isObjExists(leg1Option, 2))
 				mobileAction.FuncClick(leg1Option, "Select Option Leg1");
@@ -1716,6 +1719,9 @@ public class TradeMultiLeg extends _CommonPage {
 				fillStockOptionOrder(firstBidPUTS, "firstBidPUTS");
 
 			mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
+			if (mobileAction.isObjExists(previewOrderButton)) {
+				mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
+			}
 			mobileAction.FuncClick(agreeButton, "agreeButton");
 			// mobileAction.verifyElement(titleConfirmOrder,
 			// getTestdata("urlTitle",XLSheetUserIDs));
