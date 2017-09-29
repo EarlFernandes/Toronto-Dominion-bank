@@ -228,6 +228,9 @@ public class Receipt extends _CommonPage {
 		}
 	}
 
+	private String replaceANDFrenchSpace(String text) {
+		return text.replaceAll(" ", " ");
+	}
 	public void VerifyReceiptDetailChineseContent() {
 		Decorator();
 		try {
@@ -239,10 +242,10 @@ public class Receipt extends _CommonPage {
 					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_REPLY));
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				String[] detailInfomation = { getTextInCurrentLocale(StringArray.ARRAY_MF_NEXT_HAPPEN),
-						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_BEFORE3),
-						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_BEFORE3),
-						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_AFTER3),
-						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_AFTER3),
+						replaceANDFrenchSpace(getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_BEFORE3)),
+						replaceANDFrenchSpace(getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_BEFORE3)),
+						replaceANDFrenchSpace(getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_AFTER3)),
+						replaceANDFrenchSpace(getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_AFTER3)),
 						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_CONFIRM),
 						getTextInCurrentLocale(StringArray.ARRAY_MF_CONFIRM_DESCRIPTION),
 						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_DETAILS),
@@ -269,7 +272,8 @@ public class Receipt extends _CommonPage {
 					System.out.println("Text " + i + " " + textInfo);
 					mobileAction.verifyElementTextIsDisplayed(detailList.get(i), detailInfomation[i]);
 				}
-				mobileAction.FuncSwipeWhileElementNotFound(foot_note, false, 5, "up");
+				mobileAction.FuncSwipeWhileElementNotFound(foot_note, false, 5, "up"); 
+				mobileAction.FuncSwipeOnce("down");
 				detailList = ((MobileDriver) (CL.GetAppiumDriver())).findElementsByXPath(
 						"//android.support.v7.widget.RecyclerView/android.widget.LinearLayout/android.widget.TextView");
 
@@ -299,8 +303,8 @@ public class Receipt extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REF_NUM), "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_FUNDS), "ignore", "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT), "ignore",
-						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REQUEST_TIME), "ignore", "ignore",
-						getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT), "ignore", "ignore", "ignore",
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REQUEST_TIME), "ignore",
+						getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT), "ignore","ignore", "ignore", "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT), "ignore", "ignore", "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_BALANCE_NOTE) };
 				int size = detailList.size();
