@@ -1797,6 +1797,9 @@ public class TradeMultiLeg extends _CommonPage {
 				fillOptionOptionOrder(firstBidPUTS, "firstBidPUTS", firstAskPUTS, "firstAskPUTS");
 
 			mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
+			if (mobileAction.isObjExists(previewOrderButton)) {
+				mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
+			}
 			mobileAction.FuncClick(agreeButton, "agreeButton");
 			mobileAction.verifyElementIsDisplayed(titleConfirmOrder, "titleConfirmOrder");
 		} catch (Exception e) {
