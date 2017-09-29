@@ -54,18 +54,16 @@ public final class StringArray {
 	public static final String[] ARRAY_TABLE_MARKET_VALUE = { "MARKET VALUE", "VALEUR MARCHANDE", "市场价值", "市價" };
 	public static final String[] ARRAY_TABLE_UNIT = { "UNITS", "PARTS", "单位", "單位" };
 	public static final String[] ARRAY_TABLE_PRICE_PER_UINT = { "PRICE PER UNIT", "PRIX PAR PART", "单位价格", "單位價格" };
-	public static final String[] ARRAY_MF_PURCHASE_BUTTON = { "PURCHASE MUTUAL FUNDS",
-			"ACHETER DES FONDS COMMUNS DE PLACEMENT", "购买互惠基金", "購買互惠基金" };
+	public static final String[] ARRAY_MF_PURCHASE_BUTTON = { "PURCHASE MUTUAL FUNDS", "ACHETER DES FONDS COMMM.",
+			"购买互惠基金", "購買互惠基金" };
 	public static final String[] ARRAY_MF_CANADIAN_DOLLAR_NOTE = {
 			"All values in Canadian Dollars unless otherwise stated.",
 			"Toutes les valeurs sont en dollars canadiens, sauf avis contraire.", "除非另有说明，否则所有金额均为加元。",
 			"所有金額均為加元，除非另有說明。" };
 	public static final String[] ARRAY_MF_RECEIPT_HEADER = { "Receipt", "Reçu", "收据", "收據" };
 	public static final String[] ARRAY_MF_THANKYOU = { "Thank you!", "Merci!", "谢谢！", "謝謝您！" };
-	public static final String[] ARRAY_MF_RECEIPT_REPLY = {
-			"We've started to work on your purchase. If we have any questions, we’ll contact you.",
-			"Nous avons commencé à traiter votre achat. Nous communiquerons avec vous si nous avons des questions.",
-			"我们已经开始处理您的购买。如有问题，我们将与您联系。", "我們已開始處理您的購買。如有問題，我們將與您聯絡。" };
+	public static final String[] ARRAY_MF_RECEIPT_REPLY = { "We're working on your purchase.",
+			"Nous traitons votre achat.", "我们已经开始处理您的购买。如有问题，我们将与您联系。", "我們已開始處理您的購買。如有問題，我們將與您聯絡。" };
 	public static final String[] ARRAY_MF_NEXT_HAPPEN = { "WHAT HAPPENS NEXT", "PROCHAINES ÉTAPES", "后续流程", "後續流程" };
 	public static final String[] ARRAY_MF_PURCHASE_BEFORE3 = { "Purchases made before 3:00PM",
 			"Achats effectués avant 15 h", "下午 3 点之前的购买 ", "下午 3 時之前的購買" };
@@ -98,7 +96,7 @@ public final class StringArray {
 			"Le solde de votre compte ne reflète pas encore votre achat. Une fois que nous aurons terminé de traiter votre achat, le solde de votre compte sera mis à jour.",
 			"您的账户结余没有显示您购买的基金。我们处理完您的购买后，您的账户结余将会即刻更新。", "您的賬戶結餘沒有顯示您購買的基金。我們處理完您的購買後，您的賬戶結餘便會更新。" };
 
-	public static final String[] ARRAY_MF_RECEIPT_GO_HOME_BTN = { "GO BACK HOME", "RETOURNER À L’ACCUEIL", "返回主页",
+	public static final String[] ARRAY_MF_RECEIPT_GO_HOME_BTN = { "GO BACK HOME", "RETOUR À L’ACCUEIL", "返回主页",
 			"返回首頁" };
 	public static final String[] ARRAY_MF_RECEIPT_VIEW_ACCOUNT_BTN = { "VIEW MY ACCOUNTS", "CONSULTER MES COMPTES",
 			"查看我的账户", "查看我的賬戶" };

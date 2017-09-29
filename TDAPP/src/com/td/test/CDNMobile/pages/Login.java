@@ -231,7 +231,7 @@ public class Login extends _CommonPage {
 	public boolean verifyAccessCard() {
 		boolean flag = false;
 		try {
-			if (mobileAction.FuncIsDisplayed(select_accesscard, "Select Access Card")) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 				if ((CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")
 						&& StringUtils.contains(loginTextField.getAttribute("value"), "**"))
 						|| (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
@@ -268,7 +268,7 @@ public class Login extends _CommonPage {
 	public boolean verifyAccessCardFRE() {
 		boolean flag = false;
 		try {
-			if (mobileAction.FuncIsDisplayed(select_accesscard, "SelectAccessCard")) {
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 				if ((CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")
 						&& StringUtils.contains(loginTextField.getAttribute("value"), "**"))
 						|| (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
@@ -351,7 +351,7 @@ public class Login extends _CommonPage {
 						"Login");
 			}
 
-			if (mobileAction.FuncIsDisplayed(securityQuestionHeader)) {
+			if (mobileAction.verifyElementIsPresent(securityQuestionHeader)) {
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 					enterAnswer = mobileAction.verifyElementUsingXPath("//XCUIElementTypeSecureTextField[@value='"
