@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -38,7 +39,7 @@ public class Interac_Send_Money extends _CommonPage {
 	private MobileElement sendMoneyHeader;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'To' or label CONTAINS[cd] 'Virer des fonds'`]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/middle_textview' and (@text='Select Recipient' or @text='Sélectionnez le destinataire')]")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/recipient_view']")
 	private MobileElement selectRecipient;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_done' or @text='Done']")
@@ -49,7 +50,7 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/send_money_amount_value_view']")
 	private MobileElement amount;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label=='Continue' or label=='Send Money' or label=='Continuer'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label=='Continue' or label=='Send Money' or label=='Continuer' or label=='Envoyer ces fonds'`]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button' or @resource-id='com.td:id/btn_footer' or @text='Continue' or @text='Continuer']")
 	private MobileElement continueButton;
 
@@ -77,8 +78,12 @@ public class Interac_Send_Money extends _CommonPage {
 	private MobileElement senderName;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'From Account' or label CONTAINS[cd] 'Compte de provenance'`]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='From Account' or @text='Compte de provenance')]")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/account_view']")
 	private MobileElement fromAccount;
+	
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'From Account' or label CONTAINS[cd] 'Compte de provenance'`]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='From Account' or @text='Compte de provenance')]")
+	private MobileElement fromAccountVerifyDetails;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account' or @label='Compte de provenance']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='From Account' or @text='Compte de provenance')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
@@ -120,16 +125,16 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Amount' or @text='Montant')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement amountVal;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='In progress' OR label=='en cours'`]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and (@text='Loading' or @text='Chargement')]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeActivityIndicator[`value=='1'")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Money Sent' or label CONTAINS[cd] 'Merci!'`]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header' and (@text='Thank You!' or @text='Merci!')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header']")
 	private MobileElement thankYou;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'The recipient will be notified by email' or label CONTAINS[cd] 'Les fonds ont été virés'`]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subHeader' and (contains(@text,'The money has been sent') or contains(@text,'Les fonds ont été virés'))]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'The recipient will be notified by email' or label CONTAINS[cd] 'Le destinataire sera avisé par courriel'`]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subHeader']")
 	private MobileElement successMessage;
 
 	@AndroidFindBy(xpath = "//*[@text='Done' or @text='Annuler']")
@@ -235,7 +240,6 @@ public class Interac_Send_Money extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(sendMoneyHeader, "Header " + sendMoneyHeader.getText());
 			
-
 			if (platformName.equalsIgnoreCase("Android")) {
 				
 				mobileAction.FuncClick(fromAccount, "from Account");
@@ -316,7 +320,7 @@ public class Interac_Send_Money extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(sender, "Sender");
 			mobileAction.verifyElementIsDisplayed(senderName, senderName.getText());
-			mobileAction.verifyElementIsDisplayed(fromAccount, "From Account");
+			mobileAction.verifyElementIsDisplayed(fromAccountVerifyDetails, "From Account");
 			mobileAction.verifyElementIsDisplayed(fromAccountName, fromAccountName.getText());
 			mobileAction.verifyElementIsDisplayed(recipient, "Recipient");
 			mobileAction.verifyTextEquality(recipientVal.getText(), getTestdata("ToAccount"));
@@ -352,10 +356,12 @@ public class Interac_Send_Money extends _CommonPage {
 		try {
 
 			mobileAction.waitForElementToVanish(progressBar);
-			mobileAction.verifyElementIsDisplayed(thankYou, "Thank You!");
+			mobileAction.verifyElementIsDisplayed(thankYou, thankYou.getText());
 			mobileAction.verifyElementIsDisplayed(successMessage,
-					"The money has been sent. The recipient will be sent an email notification.");
+					successMessage.getText());
 
+			mobileAction.verifyTextContains(successMessage.getText(), getTextInCurrentLocale(StringArray.SEND_MONEY_SUCCESS_MSG));
+			
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

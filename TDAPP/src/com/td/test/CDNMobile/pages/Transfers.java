@@ -79,7 +79,7 @@ public class Transfers extends _CommonPage {
 	@iOSFindBy(accessibility = "TRANSFERVIEW_RECIPIENTS_DES")
 	private MobileElement manageRecipientDesc;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='In progress' OR label=='en cours'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeActivityIndicator[`value=='1'") //TODO::
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 
@@ -97,7 +97,7 @@ public class Transfers extends _CommonPage {
 	private MobileElement transferHistory;
 
 	@iOSFindBy(accessibility = "TRANSFERVIEW_ETRANSFER")
-	@iOSXCUITFindBy(iOSClassChain = "**/*[`name=='TRANSFERVIEW_ETRANSFER' and label=='Request Money'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`name=='TRANSFERVIEW_ETRANSFER' and (label=='Request Money' or label=='Demander des fonds')`]")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/interac_request_money']")
 	private MobileElement requestMoney;
 

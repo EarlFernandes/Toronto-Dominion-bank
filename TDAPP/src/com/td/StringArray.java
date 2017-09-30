@@ -268,7 +268,8 @@ public final class StringArray {
 			"查看個人資料" };
 	public static final String[] ARRAY_VIEW_PROFILE_LINK_AND = { "View profile", "Consulter le profil", "查看个人资料",
 			"查看個人資料" };
-	public static final String[] ARRAY_PAYMENT_AND_TRANSFER = { "Payments & Transfers", "", "", "" };
+	public static final String[] ARRAY_PAYMENT_AND_TRANSFER = { "Payments & Transfers", "Paiements et virements", "",
+			"" };
 	public static final String[] ARRAY_CUSTOMIZE_NOTIFICATIONS = { "Customize Notifications", "Personnaliser les avis",
 			"定制通知", "定制通知" };
 	public static final String[] ARRAY_TD_FOR_ME_NOTIFICATIONS = { "TD for Me Notifications", "Avis TD et moi",
@@ -279,26 +280,61 @@ public final class StringArray {
 	public static final String[] ARRAY_ACCOUNT_TOTAL = { "Total", "Total", "总计", "總計" };
 	public static final String[] ARRAY_ADD_LOGIN = { "Add Login", "Ajouter une connexion", "添加登录", "新增登入" };
 	// UA Core End
-	
-	
+
 	// P2P EUF
 
-		public static final String[] ARRAY_PAYMENT_AND_TRANSFER_AUTODEPOSIT = { "Manage Autodeposit", "", "", "" };
-		public static final String[] ARRAY_AUTODEPOSIT_ALMOST_DONE = { "Almost done!", "", "", "" };
-		public static final String[] ARRAY_AUTODEPOSIT_EMAIL_SENT_MSG = {
-				"Check your email for instructions from INTERAC. You have 24hrs to complete your Autodeposit setup.", "",
-				"", "" };
-		public static final String[] ARRAY_AUTODEPOSIT_PENDING_STATUS = { "Pending", "", "", "" };
-		public static final String[] ARRAY_AUTODEPOSIT_ACTIVE_STATUS = { "Active", "", "", "" };
-		public static final String[] ARRAY_AUTODEPOSIT_DELETE_MSG = { "The Autodeposit setup was deleted successfully.", "",
-				"", "" };
-		public static final String[] ARRAY_AUTODEPOSIT_UPDATE_MSG = { "The Autodeposit setup was edited successfully.", "",
-				"", "" };
-		public static final String[] ARRAY_REQUEST_MONEY_REQUEST_SENT = { "Request sent!", "", "", "" };
-		public static final String[] ARRAY_REQUEST_MONEY_SUCCESS_MSG = {
-				"Your recipient will be emailed details on how to respond to your request.", "", "", "" };
-		public static final String[] ARRAY_REQUEST_MONEY_MONEY_REQUESTED = { "Money Requested", "", "", "" };
-		public static final String[] ARRAY_REQUEST_MONEY_CANCELLED_STATUS = { "Cancelled", "", "", "" };
-		public static final String[] ARRAY_REQUEST_MONEY_WRONG_EMAIL_STR = { "INVALID EMAIL ADDRESS", "", "", "" };
-	
+	public static final String[] ARRAY_REQUEST_MONEY_HEADER = { "Request Money", "Demander des fonds", "", "" };
+	public static final String[] ARRAY_PAYMENT_AND_TRANSFER_AUTODEPOSIT = { "Manage Autodeposit", "Gérer Autodépôt", "",
+			"" };
+	public static final String[] ARRAY_AUTODEPOSIT_ALMOST_DONE = { "Almost done!", "Vous avez presque terminé!", "",
+			"" };
+	public static final String[] ARRAY_AUTODEPOSIT_EMAIL_SENT_MSG = {
+			"Check your email for instructions from INTERAC",
+			"Consultez les instructions que vous avez reçues", "", "" };
+	public static final String[] ARRAY_AUTODEPOSIT_PENDING_STATUS = { "Pending", "En attente", "", "" };
+	public static final String[] ARRAY_AUTODEPOSIT_ACTIVE_STATUS = { "Active", "Actif", "", "" };
+	public static final String[] ARRAY_AUTODEPOSIT_DELETE_MSG = { "The Autodeposit setup was deleted successfully.",
+			"Configuration Autodépôt supprimée", "", "" };
+	public static final String[] ARRAY_AUTODEPOSIT_UPDATE_MSG = { "The Autodeposit setup was edited successfully.",
+			"Configuration Autodépôt modifiée", "", "" };
+	public static final String[] ARRAY_REQUEST_MONEY_REQUEST_SENT = { "Request sent!", "Demande envoyée!", "", "" };
+	public static final String[] ARRAY_REQUEST_MONEY_SUCCESS_MSG = {
+			"Your recipient will be emailed details on how to respond to your request.",
+			"Le destinataire recevra un courriel lui indiquant comment répondre à votre demande.", "", "" };
+	public static final String[] ARRAY_REQUEST_MONEY_MONEY_REQUESTED = { "Money Requested", "Fonds demandés", "", "" };
+	public static final String[] ARRAY_REQUEST_MONEY_CANCELLED_STATUS = { "Cancelled", "Annulé", "", "" };
+	public static final String[] ARRAY_REQUEST_MONEY_WRONG_EMAIL_STR = { "INVALID EMAIL ADDRESS",
+			"Adresse courriel non valide", "", "" };
+	public static final String[] ARRAY_CUSTOMER_ELIGIBILITY_ERROR_MSG = {
+			"There appears to be an issue with your account", "Il semble y avoir un problème avec votre compte", "",
+			"" };
+	public static final String[] TRADE_RESPONSE_1 = {
+			"I acknowledge the trade name displayed above IS the trade name of the business",
+			"Je confirme que le nom commercial ci‑dessus EST celui de l’entreprise.", "", "" };
+	public static final String[] TRADE_RESPONSE_2 = {
+			"I acknowledge the trade name displayed above IS NOT the trade name of the business",
+			"Je confirme que le nom commercial ci‑dessus N’EST PAS celui de l’entreprise", "", "" };
+	public static final String[] TRADE_RESPONSE_3 = { "I acknowledge the business DOES NOT operate under a trade name",
+			"Je confirme que l’entreprise NE MÈNE PAS ses activités sous un nom commercial", "", "" };
+	public static final String[] CONTACT_ADDED_SUCCESS_MSG = { "The contact has been added successfully",
+			"Ce destinataire a été ajouté avec succès", "", "" };
+	public static final String[] ADD_CONTACT_FROM_PHONE_MSG = { "Add a contact from your phone",
+			"Ajouter un destinataire à partir de la liste de contacts de votre téléphone", "", "" };
+	public static final String[] CONTACT_EDIT_SUCCESS_MSG = { "information has been updated successfully",
+			"Les renseignements sur le destinataire ont été modifiés avec succès", "", "" };
+	public static final String[] SEND_MONEY_SUCCESS_MSG = { "The recipient will be notified by email",
+			"Le destinataire sera avisé par courriel", "", "" };
+	public static final String[] CONTACT_DELETE_SUCCESS_MSG = { "The contact was deleted successfully",
+			"Ce destinataire a été supprimé avec succès", "", "" };
+	public static final String[] MONEY_SENT_LBL = { "Money Sent", "Fonds virés", "", "" };
+	public static final String[] MONEY_REQUESTED_LBL = { "Money Requested", "Fonds demandés", "", "" };
+	public static final String[] SEE_ALL_LBL = { "See all", "Tout afficher", "", "" };
+	public static final String[] SEND_MONEY_TRANSFER_CANCELLED_RECEIPT = { "Transfer Cancelled",
+			"[FR]Transfer Cancelled", "", "" };
+	public static final String[] ADD_AUTODEPOSIT_RECEIPT_HEADER = { "Almost done!", "Vous avez presque terminé!", "",
+			"" };
+	public static final String[] ADD_AUTODEPOSIT_RECEIPT_SUB_HEADER = { "Check your email for instructions",
+			"Consultez les instructions que vous avez reçues", "", "" };
+	public static final String[] CANCEL_MONEY_RECEIPT_HEADER = { "Request Cancelled", "Demande annulée", "", "" };
+
 }

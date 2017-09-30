@@ -35,14 +35,6 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='History']")
 	private MobileElement pageHeader;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Money Sent' or @label='Fonds virés']/following-sibling::XCUIElementTypeButton[@label='See all' or @label='Tout afficher']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Money Sent' or @text='Fonds virés']/following-sibling::android.widget.TextView[@text='See all' or @text='Tout afficher']")
-	private MobileElement moneySentSeeAll;
-
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@label='Money Requested' or @label='Fonds demandés']/following-sibling::XCUIElementTypeButton[@label='See all' or @label='Tout afficher']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Money Requested' or @text='Fonds demandés']/following-sibling::android.widget.TextView[@text='See all' or @text='Tout afficher']")
-	private MobileElement requestMoneySentSeeAll;
-
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Money Received' or @label='Fonds reçus']/following-sibling::XCUIElementTypeButton[@label='See all']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Money Received' or @text='Fonds reçus']/following-sibling::android.widget.TextView[@text='See all']")
 	private MobileElement moneyReceivedSeeAll;
@@ -58,12 +50,12 @@ public class TransfersHistory extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeStaticText[@label='Money Sent' or @label='Fonds virés']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header']")
 	private MobileElement transactionStatus;
-	
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='Request Updated' OR label=='EN ATTENTE'`]")
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='Request Updated' OR label=='Demande mis à jour'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header']")
 	private MobileElement updateTransactionStatus;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='Request Cancelled' OR label=='EN ATTENTE'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='Request Cancelled' OR label=='Demande annulée'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header']")
 	private MobileElement cancelledTransactionStatus;
 
@@ -114,7 +106,7 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_sub_heading']")
 	private MobileElement depositToAccountNumber;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Done' or @label='Terminé']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_done' or @text='Done']")
 	private MobileElement done;
 
@@ -226,7 +218,7 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subSubHeader']")
 	private MobileElement confirmationCode;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='In progress' OR label=='en cours'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeActivityIndicator[`value=='1'")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 
@@ -241,11 +233,11 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header']")
 	private MobileElement requestTransactionStatus;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='Requested From'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='Requested From' or label=='Demandé à'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Requested From' or @text='Demandé à']")
 	private MobileElement requestedFrom;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Requested From']/following-sibling::XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Requested From' or @label='Demandé à']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Requested From' or @text='Demandé à']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement requestedFromVal;
 
@@ -261,7 +253,7 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/positive_button']")
 	private MobileElement cancelRequestConfirm;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label=='Update'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label=='Update' or label=='Mise à jour'`]")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/updateButtonView']")
 	private MobileElement updateRequest;
 
@@ -273,16 +265,19 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/update_money_request_continue_button']")
 	private MobileElement MoneyRequestContinueBtn;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label=='Finish'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label=='Finish' or label=='Terminer'`]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button']")
 	private MobileElement finishBtn;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label contains[cd] 'Your request has been updated'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label contains[cd] 'Your request has been updated' or label contains[cd] 'Votre demande a été modifiée'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subHeader']")
 	private MobileElement requestUpdateMsg;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@label='Money Requested']/../following-sibling::XCUIElementTypeCell/XCUIElementTypeButton[contains(@label,'$')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@label='Money Requested' or @label='Fonds demandés']/../following-sibling::XCUIElementTypeCell/XCUIElementTypeButton[contains(@label,'$')]")
 	private List<MobileElement> requestMoneyCardIOS;
+
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Message']/following-sibling::android.widget.EditText")
+	private MobileElement messageRqstMoney;
 
 	String platform = CL.getTestDataInstance().getMobilePlatForm();
 
@@ -408,32 +403,32 @@ public class TransfersHistory extends _CommonPage {
 		switch (getTestdata("TransactionStatus")) {
 		case "Sent":
 
-			transStatus = (_CommonPage.currentLocale.equalsIgnoreCase("en")) ? "Sent" : "Envoyé";
+			transStatus = (currentLocale.equalsIgnoreCase("en")) ? "Sent" : "Envoyé";
 
 			break;
 		case "Deposited":
 
-			transStatus = (_CommonPage.currentLocale.equalsIgnoreCase("en")) ? "Deposited" : "Déposé";
+			transStatus = (currentLocale.equalsIgnoreCase("en")) ? "Deposited" : "Déposé";
 
 			break;
 		case "Cancelled":
 
-			transStatus = (_CommonPage.currentLocale.equalsIgnoreCase("en")) ? "Cancelled" : "Annulé";
+			transStatus = (currentLocale.equalsIgnoreCase("en")) ? "Cancelled" : "Annulé";
 
 			break;
 		case "Declined":
 
-			transStatus = (_CommonPage.currentLocale.equalsIgnoreCase("en")) ? "Declined" : "Refusé";
+			transStatus = (currentLocale.equalsIgnoreCase("en")) ? "Declined" : "Refusé";
 
 			break;
 		case "Received":
 
-			transStatus = (_CommonPage.currentLocale.equalsIgnoreCase("en")) ? "Received" : "Reçus";
+			transStatus = (currentLocale.equalsIgnoreCase("en")) ? "Received" : "Reçus";
 
 			break;
 		case "Invalid Email Address":
 
-			transStatus = (_CommonPage.currentLocale.equalsIgnoreCase("en")) ? "Invalid Email Address"
+			transStatus = (currentLocale.equalsIgnoreCase("en")) ? "Invalid Email Address"
 					: "Adresse courriel non valide";
 
 			break;
@@ -452,32 +447,32 @@ public class TransfersHistory extends _CommonPage {
 		switch (TransactionStatus) {
 		case "Sent":
 
-			transStatus = (_CommonPage.currentLocale.equalsIgnoreCase("en")) ? "Sent" : "Envoyé";
+			transStatus = (currentLocale.equalsIgnoreCase("en")) ? "Sent" : "Envoyé";
 
 			break;
 		case "Deposited":
 
-			transStatus = (_CommonPage.currentLocale.equalsIgnoreCase("en")) ? "Deposited" : "Déposé";
+			transStatus = (currentLocale.equalsIgnoreCase("en")) ? "Deposited" : "Déposé";
 
 			break;
 		case "Cancelled":
 
-			transStatus = (_CommonPage.currentLocale.equalsIgnoreCase("en")) ? "Cancelled" : "Annulé";
+			transStatus = (currentLocale.equalsIgnoreCase("en")) ? "Cancelled" : "Annulé";
 
 			break;
 		case "Declined":
 
-			transStatus = (_CommonPage.currentLocale.equalsIgnoreCase("en")) ? "Declined" : "Refusé";
+			transStatus = (currentLocale.equalsIgnoreCase("en")) ? "Declined" : "Refusé";
 
 			break;
 		case "Received":
 
-			transStatus = (_CommonPage.currentLocale.equalsIgnoreCase("en")) ? "Received" : "Reçus";
+			transStatus = (currentLocale.equalsIgnoreCase("en")) ? "Received" : "Reçus";
 
 			break;
 		case "Invalid Email Address":
 
-			transStatus = (_CommonPage.currentLocale.equalsIgnoreCase("en")) ? "Invalid Email Address"
+			transStatus = (currentLocale.equalsIgnoreCase("en")) ? "Invalid Email Address"
 					: "Adresse courriel non valide";
 
 			break;
@@ -499,12 +494,30 @@ public class TransfersHistory extends _CommonPage {
 		Decorator();
 		try {
 
+			MobileElement moneySentSeeAll = null;
+
 			while (!mobileAction.verifyElementIsPresent(getReceiver()) && counter < 3) {
 				mobileAction.FunctionSwipe("left", 200, 200);
 				mobileAction.waitForElementToVanish(progressBar);
 				counter++;
 			}
 			counter = 0;
+
+			if (platform.equalsIgnoreCase("Android")) {
+
+				moneySentSeeAll = mobileAction.mobileElementUsingXPath(
+						"//android.widget.TextView[@text='" + getTextInCurrentLocale(StringArray.MONEY_SENT_LBL)
+								+ "']/following-sibling::android.widget.TextView[@text='"
+								+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']");
+
+			} else {
+				moneySentSeeAll = mobileAction.mobileElementUsingXPath(
+						"//XCUIElementTypeStaticText[@label='" + getTextInCurrentLocale(StringArray.MONEY_SENT_LBL)
+								+ "']/following-sibling::XCUIElementTypeButton[@label='"
+								+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']");
+
+			}
+
 			mobileAction.FuncClick(moneySentSeeAll, "See All");
 			mobileAction.waitForElementToVanish(progressBar);
 
@@ -1009,6 +1022,8 @@ public class TransfersHistory extends _CommonPage {
 		try {
 
 			mobileAction.verifyElementIsDisplayed(cancelConfirmationMsg, "Transfer Cancelled");
+			mobileAction.verifyTextEquality(cancelConfirmationMsg.getText(),
+					getTextInCurrentLocale(StringArray.SEND_MONEY_TRANSFER_CANCELLED_RECEIPT));
 			mobileAction.verifyElementIsDisplayed(confirmationCode, confirmationCode.getText());
 			mobileAction.verifyElementIsDisplayed(recipient, "Recipient");
 			mobileAction.verifyElementIsDisplayed(recipientVal, recipientVal.getText());
@@ -1048,14 +1063,14 @@ public class TransfersHistory extends _CommonPage {
 
 			if (TransacStatusXL.equalsIgnoreCase("Declined") || TransacStatusXL.equalsIgnoreCase("Sent")) {
 
-				if (_CommonPage.currentLocale.equalsIgnoreCase("en"))
+				if (currentLocale.equalsIgnoreCase("en"))
 					transactionCategory = "PENDING";
 				else
 					transactionCategory = "EN ATTENTE";
 
 			} else {
 
-				if (_CommonPage.currentLocale.equalsIgnoreCase("en"))
+				if (currentLocale.equalsIgnoreCase("en"))
 					transactionCategory = "COMPLETED";
 				else
 					transactionCategory = "EFFECTUÉS";
@@ -1142,14 +1157,33 @@ public class TransfersHistory extends _CommonPage {
 		Decorator();
 		try {
 
+			MobileElement requestMoneySentSeeAll = null;
+
 			while (!mobileAction.verifyElementIsPresent(getRequester()) && counter < 3) {
 				mobileAction.FunctionSwipe("left", 200, 200);
 				mobileAction.waitForElementToVanish(progressBar);
 				counter++;
 			}
 			counter = 0;
+
+			if (platform.equalsIgnoreCase("Android")) {
+
+				requestMoneySentSeeAll = mobileAction.mobileElementUsingXPath(
+						"//android.widget.TextView[@text='" + getTextInCurrentLocale(StringArray.MONEY_REQUESTED_LBL)
+								+ "']/following-sibling::android.widget.TextView[@text='"
+								+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']");
+
+			} else {
+
+				requestMoneySentSeeAll = mobileAction.mobileElementUsingXPath(
+						"//XCUIElementTypeOther[@label='" + getTextInCurrentLocale(StringArray.MONEY_REQUESTED_LBL)
+								+ "']/following-sibling::XCUIElementTypeButton[@label='"
+								+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']");
+
+			}
+
 			mobileAction.FuncClick(requestMoneySentSeeAll, "See All");
-			mobileAction.waitForElementToVanish(progressBar);
+			// mobileAction.waitForElementToVanish(progressBar);
 
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1195,17 +1229,19 @@ public class TransfersHistory extends _CommonPage {
 								+ transStatus.toUpperCase() + "'))]");
 
 			}
+
+			statusCounter++;
+			if (statusCounter == transactionStatusArr.length) {
+				statusCounter = 0;
+			}
+
 		} catch (IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
-		statusCounter++;
-		if (statusCounter == transactionStatusArr.length) {
-			statusCounter = 0;
-		}
-
 		return receiverName;
+
 	}
 
 	/**
@@ -1223,7 +1259,7 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(viewDetailsHeader, "View Details page header");
 
 			if (platform.equalsIgnoreCase("iOS")) {
-				
+
 				requestTransactionStatus = mobileAction
 						.mobileElementUsingIOSClassChain("**/XCUIElementTypeStaticText[`label=='"
 								+ getTextInCurrentLocale(StringArray.ARRAY_REQUEST_MONEY_MONEY_REQUESTED) + "'`]");
@@ -1284,7 +1320,10 @@ public class TransfersHistory extends _CommonPage {
 			if (platform.equalsIgnoreCase("iOS")) {
 
 				wrongEmailTransaction = mobileAction.mobileElementUsingXPath("//XCUIElementTypeButton[contains(@label,'"
-						+ getTextInCurrentLocale(StringArray.ARRAY_REQUEST_MONEY_WRONG_EMAIL_STR) + "')]");
+						+ getTextInCurrentLocale(StringArray.ARRAY_REQUEST_MONEY_WRONG_EMAIL_STR)
+						+ "') or contains(@label,'"
+						+ getTextInCurrentLocale(StringArray.ARRAY_REQUEST_MONEY_WRONG_EMAIL_STR).toUpperCase()
+						+ "')]");
 
 			} else {
 				wrongEmailTransaction = mobileAction.mobileElementUsingXPath(
@@ -1354,6 +1393,10 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.verifyElementIsDisplayed(cancelledTransactionStatus,
 					"Transaction Status: " + cancelledTransactionStatus.getText());
+
+			mobileAction.verifyTextEquality(cancelledTransactionStatus.getText(),
+					getTextInCurrentLocale(StringArray.CANCEL_MONEY_RECEIPT_HEADER));
+
 			mobileAction.verifyElementIsDisplayed(confirmationCode, "confirmation Code " + confirmationCode.getText());
 
 			cancelFlag = true;
@@ -1397,10 +1440,8 @@ public class TransfersHistory extends _CommonPage {
 
 				cancelledTransaction = mobileAction
 						.mobileElementUsingXPath("//XCUIElementTypeCell/XCUIElementTypeButton[contains(@label,'"
-								+ getTestdata("ToAccount") + "') and contains(@label,'CANCELLED')]");
+								+ getTestdata("ToAccount") + "') and contains(@label,'CANCELLED')]"); //TODO::IOS: CANCELLED:french
 			}
-
-			mobileAction.getPageSource();
 
 			mobileAction.verifyElementIsDisplayed(cancelledTransaction, "Cancelled Transaction");
 			mobileAction.FuncClick(cancelledTransaction, "Cancelled Transaction");
@@ -1448,8 +1489,6 @@ public class TransfersHistory extends _CommonPage {
 	 */
 	public void updateMoneyRequest() {
 
-		MobileElement messageRqstMoney = null;
-
 		Decorator();
 		try {
 
@@ -1457,13 +1496,13 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.FuncSendKeys(amountField, getTestdata("Amount"));
 
 			if (platform.equalsIgnoreCase("Android")) {
-				messageRqstMoney = mobileAction.mobileElementUsingXPath(
-						"//android.widget.EditText/preceding-sibling::android.widget.TextView[@text='"
-								+ mobileAction.getAppString("history_details_message_label") + "']");
 
 				mobileAction.FuncHideKeyboard();
+
 				mobileAction.FuncClick(depositToDropDown, "Deposit To drop Down");
 				mobileAction.FuncClick(depositToAccountNumber, depositToAccountNumber.getText());
+				mobileAction.FuncHideKeyboard();
+
 				mobileAction.FuncClick(messageRqstMoney, "Message Field");
 				mobileAction.FuncSendKeys(messageRqstMoney, getTestdata("Message"));
 				mobileAction.FuncHideKeyboard();
@@ -1484,7 +1523,7 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.FuncClick(MoneyRequestContinueBtn, "Continue Button");
 			mobileAction.FuncClick(finishBtn, "Finish");
-			mobileAction.waitForElementToVanish(progressBar);
+			// mobileAction.waitForElementToVanish(progressBar);
 
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1511,11 +1550,11 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(updateTransactionStatus, updateTransactionStatus.getText());
 			mobileAction.verifyElementIsDisplayed(requestUpdateMsg, requestUpdateMsg.getText());
 
-			if(platform.equalsIgnoreCase("Android")){
-			mobileAction.verifyTextEquality(transactionStatus.getText(),
-					mobileAction.getAppString("update_money_request_confirmation_header"));
-			mobileAction.verifyTextEquality(requestUpdateMsg.getText(),
-					mobileAction.getAppString("update_money_request_confirmation_sub_header"));
+			if (platform.equalsIgnoreCase("Android")) {
+				mobileAction.verifyTextEquality(transactionStatus.getText(),
+						mobileAction.getAppString("update_money_request_confirmation_header"));
+				mobileAction.verifyTextEquality(requestUpdateMsg.getText(),
+						mobileAction.getAppString("update_money_request_confirmation_sub_header"));
 			}
 
 		} catch (NoSuchElementException | IOException e) {
@@ -1544,13 +1583,9 @@ public class TransfersHistory extends _CommonPage {
 		try {
 
 			HomeScreen.get().clickMenu();
-			System.out.println("Clicked on Menu");
 			MenuPage.get().clickMenuTransfer();
-			System.out.println("Clicked on Menu transfers");
 			Transfers.get().clickTransferHistoryLink();
-			System.out.println("Clicked on Transfers History link");
 			clickRequestMoneySeeAll();
-			System.out.println("Clicked on request money see all");
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

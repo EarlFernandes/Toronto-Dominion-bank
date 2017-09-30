@@ -8,6 +8,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.sun.jna.Platform;
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -15,6 +16,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class ManageContacts extends _CommonPage {
 
@@ -52,24 +54,16 @@ public class ManageContacts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_footer' or @text='Continue' or @text='Continuer']")
 	private MobileElement continueButton;
 
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.android.packageinstaller:id/permission_allow_button' or @text='ALLOW' or @text='Autoriser']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.android.packageinstaller:id/permission_allow_button']")
 	private MobileElement allowBtn;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Thank you!' or @label='Merci!']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subHeader' or @text='Thank you!' or @text='Merci']")
 	private MobileElement thankYou;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@label,'contact has been  added') or contains(@name,'This contact has been added successfully') or contains(@value,'Ce destinataire a été ajouté avec succès')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subSubHeader' or contains(@text,'The contact has been added successfully') or contains(@text,'Ce destinataire a été ajouté avec succès')]")
-	private MobileElement contactCreated;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Add Contact' or @label='Ajouter un destinataire']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/manage_contacts_add_contact_button']")
 	private MobileElement addContactButton;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@label,'Add a contact from your phone') or @label='Ajouter un destinataire à partir de la liste de contacts de votre téléphone']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/add_contacts_row_title' or contains(@text,'Add a contact from your phone') or contains(@text,'Ajouter un destinataire à partir de la liste de contacts')]")
-	private MobileElement addContactFromPhone;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/list_item_recipient_name']")
@@ -104,16 +98,8 @@ public class ManageContacts extends _CommonPage {
 	private MobileElement done;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther/following-sibling::XCUIElementTypeButton[@label='Done' or @label='OK' or @label='Ok']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_footer' or @text='Done']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_footer' or @text='Done' or @text='Terminé']")
 	private List<MobileElement> editDone;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@label,'information has been updated successfully') or contains(@value,'Les renseignements sur le destinataire ont été modifiés avec succès')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'information has been updated successfully') or contains(@text,'Les renseignements sur le destinataire ont été modifiés')]")
-	private MobileElement editContactSuccessMsg;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'The contact was deleted successfully') or contains(@label,'Ce destinataire a été supprimé avec succès')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
-	private MobileElement contactDeletSuccMsg;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Delete' or @label='Supprimer']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/detail_menu_delete']")
@@ -137,7 +123,7 @@ public class ManageContacts extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Allow' or @label='Autoriser']")
 	private MobileElement alertAllow;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In Progress' or @label='en cours']")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeActivityIndicator[`value=='1'")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and (@text='Loading' or @text='Chargement')]")
 	private MobileElement progressBar;
 
@@ -326,7 +312,23 @@ public class ManageContacts extends _CommonPage {
 		Decorator();
 		try {
 
+			MobileElement contactCreated = null;
+
 			mobileAction.verifyElementIsDisplayed(thankYou, "Thank you!");
+
+			if (platformName.equalsIgnoreCase("Android")) {
+
+				contactCreated = mobileAction.mobileElementUsingXPath(
+						"//android.widget.TextView[@resource-id='com.td:id/receipt_subSubHeader' and contains(@text,'"
+								+ getTextInCurrentLocale(StringArray.CONTACT_ADDED_SUCCESS_MSG) + "')]");
+
+			} else {
+				contactCreated = mobileAction
+						.mobileElementUsingXPath("//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@label,'"
+								+ getTextInCurrentLocale(StringArray.CONTACT_ADDED_SUCCESS_MSG) + "')]");
+
+			}
+
 			mobileAction.verifyElementIsDisplayed(contactCreated, "The contact has been added successfully.");
 
 		} catch (NoSuchElementException | IOException e) {
@@ -349,6 +351,18 @@ public class ManageContacts extends _CommonPage {
 	public void clickAddContactfromPhone() {
 		Decorator();
 		try {
+
+			MobileElement addContactFromPhone = null;
+
+			if (platformName.equalsIgnoreCase("Android")) {
+				addContactFromPhone = mobileAction.mobileElementUsingXPath(
+						"//android.widget.TextView[@resource-id='com.td:id/add_contacts_row_title' or contains(@text,'"
+								+ getTextInCurrentLocale(StringArray.ADD_CONTACT_FROM_PHONE_MSG) + "')]");
+			} else {
+				addContactFromPhone = mobileAction
+						.mobileElementUsingXPath("//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@label,'"
+								+ getTextInCurrentLocale(StringArray.ADD_CONTACT_FROM_PHONE_MSG) + "')]");
+			}
 
 			mobileAction.FuncClick(addContactFromPhone, "Add Contacts From Phone");
 
@@ -559,6 +573,18 @@ public class ManageContacts extends _CommonPage {
 		Decorator();
 		try {
 
+			MobileElement editContactSuccessMsg = null;
+
+			if (platformName.equalsIgnoreCase("Android")) {
+				editContactSuccessMsg = mobileAction
+						.mobileElementUsingXPath("//android.widget.TextView[contains(@text,'"
+								+ getTextInCurrentLocale(StringArray.CONTACT_EDIT_SUCCESS_MSG) + "')]");
+			} else {
+				editContactSuccessMsg = mobileAction
+						.mobileElementUsingXPath("//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@label,'"
+								+ getTextInCurrentLocale(StringArray.CONTACT_EDIT_SUCCESS_MSG) + "')]");
+			}
+
 			mobileAction.verifyElementIsDisplayed(editContactSuccessMsg, "Your Contact Has been Edited Successfully");
 
 		} catch (NoSuchElementException | IOException e) {
@@ -641,6 +667,17 @@ public class ManageContacts extends _CommonPage {
 	public void verifyContactDeleteSuccessMsg() {
 		Decorator();
 		try {
+
+			MobileElement contactDeletSuccMsg = null;
+
+			if (platformName.equalsIgnoreCase("Android")) {
+				contactDeletSuccMsg = mobileAction.mobileElementUsingXPath(
+						"//android.widget.TextView[@resource-id='com.td:id/banner_info' and contains(@text,'"
+								+ getTextInCurrentLocale(StringArray.CONTACT_DELETE_SUCCESS_MSG) + "')]");
+			} else {
+				contactDeletSuccMsg = mobileAction.mobileElementUsingXPath("//XCUIElementTypeButton[contains(@label,'"
+						+ getTextInCurrentLocale(StringArray.CONTACT_DELETE_SUCCESS_MSG) + "')]");
+			}
 
 			mobileAction.verifyElementIsDisplayed(contactDeletSuccMsg, "Contact Has been deleted successfully");
 

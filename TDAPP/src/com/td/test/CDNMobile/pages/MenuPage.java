@@ -102,7 +102,7 @@ public class MenuPage extends _CommonPage {
 	private MobileElement locations;
 
 	//TODO:: Need label in P2P: [@label='Profile & Settings']
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_PREFERENCES']/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_PREFERENCES']/XCUIElementTypeStaticText[@label='Profile & Settings']")
 	private MobileElement profile_and_settings;
 
 	// customer feedback
@@ -652,6 +652,7 @@ public class MenuPage extends _CommonPage {
 				mobileAction.FunctionSwipe("down", 200, 200);
 			}
 			String profileSettings = mobileAction.getValue(profile_and_settings);
+		
 			mobileAction.FuncClick(profile_and_settings, profileSettings);
 			
 			mobileAction.waitForElementToVanish(progressBar);

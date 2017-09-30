@@ -426,6 +426,7 @@ public class HomeScreen extends _CommonPage {
 
 			// FIXED removed back button
 			mobileAction.FuncClick(menu, "Menu");
+			
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
