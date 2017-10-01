@@ -692,6 +692,8 @@ public class AutoDepositPage extends _CommonPage {
 		Decorator();
 		try {
 
+			mobileAction.FunctionSwipe("up", 200, 200);
+			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(requestMoneyCTAOption, "Requested By DropDown");		//TODO::IOS
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Request Money Page Header");
 			mobileAction.verifyTextEquality(pageHeader.getText(),

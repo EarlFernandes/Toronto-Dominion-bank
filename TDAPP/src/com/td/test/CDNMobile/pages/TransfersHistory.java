@@ -1327,8 +1327,11 @@ public class TransfersHistory extends _CommonPage {
 
 			} else {
 				wrongEmailTransaction = mobileAction.mobileElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/historyTransferItemStatus' and @text='"
-								+ mobileAction.getAppString("history_money_request_invalid_email") + "']");
+						"//android.widget.TextView[@resource-id='com.td:id/historyTransferItemStatus' and (@text='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_REQUEST_MONEY_WRONG_EMAIL_STR)
+								+ "' or @text='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_REQUEST_MONEY_WRONG_EMAIL_STR).toUpperCase()
+								+ "')]");
 			}
 			mobileAction.FuncClick(wrongEmailTransaction, "Invalid Email Transaction");
 
@@ -1440,7 +1443,8 @@ public class TransfersHistory extends _CommonPage {
 
 				cancelledTransaction = mobileAction
 						.mobileElementUsingXPath("//XCUIElementTypeCell/XCUIElementTypeButton[contains(@label,'"
-								+ getTestdata("ToAccount") + "') and contains(@label,'CANCELLED')]"); //TODO::IOS: CANCELLED:french
+								+ getTestdata("ToAccount") + "') and contains(@label,'CANCELLED')]"); // TODO::IOS:
+																										// CANCELLED:french
 			}
 
 			mobileAction.verifyElementIsDisplayed(cancelledTransaction, "Cancelled Transaction");
