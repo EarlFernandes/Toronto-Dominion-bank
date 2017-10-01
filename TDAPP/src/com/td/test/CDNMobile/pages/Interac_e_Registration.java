@@ -335,6 +335,8 @@ public class Interac_e_Registration extends _CommonPage {
 				
 				mobileAction.verifyTextContains(autoDepositSuccmsg.getText(),
 						getTextInCurrentLocale(StringArray.ARRAY_AUTODEPOSIT_EMAIL_SENT_MSG));
+				
+				AutoDepositDoneWhileReg=false;
 			}
 
 		} catch (NoSuchElementException | IOException e) {
