@@ -195,10 +195,7 @@ public class AutoDepositPage extends _CommonPage {
 		try {
 
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Page Header");
-			if (platform.equalsIgnoreCase("Android")) {
-				mobileAction.verifyTextEquality(pageHeader.getText(),
-						mobileAction.getAppString("auto_deposit_page_header"));
-			}
+
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
