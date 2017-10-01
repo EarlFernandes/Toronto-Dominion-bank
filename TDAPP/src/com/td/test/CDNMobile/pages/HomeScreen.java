@@ -426,7 +426,7 @@ public class HomeScreen extends _CommonPage {
 			Decorator();
 
 			// FIXED removed back button
-			Env_Settings.get().set_environment();
+			//Env_Settings.get().set_environment();
 			mobileAction.FuncClick(menu, "Menu");
 			
 
