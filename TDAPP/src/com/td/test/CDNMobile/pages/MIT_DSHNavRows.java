@@ -41,7 +41,7 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 
-	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='ENVOI DE FONDS' or @label='汇款' or @label='匯款']")
+	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='Comptes' or @label='汇款' or @label='匯款']")
 	@AndroidFindBy(xpath = "//*[@text='Accounts' or @text='Comptes' or @text='汇款' or @text='匯款']")
 	private MobileElement NR_Accounts;
 
@@ -65,7 +65,7 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Markets' or @text='Marchés' or @text='市场' or @text='市場']")
 	private MobileElement NR_Markets;
 
-	@iOSFindBy(xpath = "//*[@label='My Accounts' or @label='Mes comptes' or @label='我的账户' or @label='我的賬戶']")
+	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='Comptes' or @label='我的账户' or @label='我的賬戶']")
 	@AndroidFindBy(xpath = "//*[@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶']")
 	private MobileElement HDR_MyAccounts;
 
@@ -85,16 +85,16 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Bills' or @text='Factures' or @text='账单' or @text='賬單']")
 	private MobileElement HDR_Bills;
 
-	@iOSFindBy(xpath = "//*[@label='Open a TD Direct Investing Account' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶']")
-	@AndroidFindBy(xpath = "//*[@text='Open a TD Direct Investing Account' or @text='Comptes Placements directs TD' or @text='投资账户' or @text='投資賬戶']")
+	@iOSFindBy(xpath = "//*[@label='Open a TD Direct Investing Account' or @label='Ouvrir un compte Placements directs TD' or @label='投资账户' or @label='投資賬戶']")
+	@AndroidFindBy(xpath = "//*[@text='Open a TD Direct Investing Account' or @text='Ouvrir un compte Placements directs TD' or @text='投资账户' or @text='投資賬戶']")
 	private MobileElement NR_TDDirectInvestingAccounts;
 
 	@iOSFindBy(xpath = "//*[@label='Investing' or @label='Placements' or @label='投资' or @label='投資']")
 	@AndroidFindBy(xpath = "//*[@text='Investing' or @text='Placements' or @text='投资' or @text='投資']")
 	private MobileElement HDR_Investing;
 
-	@iOSFindBy(xpath = "//*[@label='QUOTE' or @label='COTE' or @label='报价' or @label='報價']")
-	@AndroidFindBy(xpath = "//*[@text='QUOTE' or @text='COTE' or @text='报价' or @text='報價']")
+	@iOSFindBy(xpath = "//*[@label='Quote' or @label='Cote' or @label='报价' or @label='報價']")
+	@AndroidFindBy(xpath = "//*[@text='Quote' or @text='Cote' or @text='报价' or @text='報價']")
 	private MobileElement NR_Quote;
 
 	@iOSFindBy(xpath = "//*[@label='Alerts' or @label='Alertes' or @label='账单' or @label='轉賬']")
@@ -180,9 +180,9 @@ public class MIT_DSHNavRows extends _CommonPage {
 			// verifyNR_InvestingAccounts(false); //Investing Accounts removed
 			// from Nav Rows as per new requirement
 
-			verifyNR_Transfers(true);
-
 			verifyNR_Alerts(true);
+
+			verifyNR_Markets(true);
 
 			verifyNR_OpenBankAccount(true);
 
@@ -425,6 +425,8 @@ public class MIT_DSHNavRows extends _CommonPage {
 					mobileAction.FuncClick(BT_Cancel_QuoteSearchSymbolScreen, "BT_Cancel_QuoteSearchSymbolScreen");
 
 				}
+
+				mobileAction.switchAppiumContext("NATIVE_APP");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -455,6 +457,8 @@ public class MIT_DSHNavRows extends _CommonPage {
 					mobileAction.FuncClick(BT_Cancel_QuoteSearchSymbolScreen, "BT_Cancel_QuoteSearchSymbolScreen");
 
 				}
+
+				mobileAction.switchAppiumContext("NATIVE_APP");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -475,9 +479,22 @@ public class MIT_DSHNavRows extends _CommonPage {
 				 * "Login Screen"); mobileAction.FuncClick(BT_Back, "< Button");
 				 * } else {
 				 */
-				mobileAction.verifyElementIsDisplayed(HDR_Alerts, "Alerts");
-				mobileAction.FuncClick(BT_Back, "< Button");
-				// }
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+					if (mobileAction.isObjExists(HDR_Alerts)) {
+						mobileAction.verifyElementIsDisplayed(HDR_Alerts, "Alerts");
+						mobileAction.FuncClick(BT_Back, "< Button");
+					} else {
+						MIT_PNSAccessAlerts.get()
+								.FuncSwitchContext(MIT_PNSAccessAlerts.get().getWebViewContextString());
+						MIT_PNSAccessAlerts.get().verifyAlertLandingPage();
+						mobileAction.switchAppiumContext("NATIVE_APP");
+					}
+				} else {
+					if (mobileAction.isObjExists(HDR_Alerts)) {
+						mobileAction.verifyElementIsDisplayed(HDR_Alerts, "Alerts");
+						mobileAction.FuncClick(BT_Back, "< Button");
+					}
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -487,11 +504,11 @@ public class MIT_DSHNavRows extends _CommonPage {
 	public void verifyNR_OpenBankAccount(boolean bIsAuthenticatedUser) {
 		Decorator();
 		try {
-			if (verifyNavRowExists(NR_OpenBankAccount, "Alerts")) {
+			if (verifyNavRowExists(NR_OpenBankAccount, "Open a Bank Account")) {
 				mobileAction.FuncVerifyTextEquals(NR_OpenBankAccount,
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_OPENABANKACCOUNT));
 
-				clickNavRow(NR_OpenBankAccount, "Alerts");
+				clickNavRow(NR_OpenBankAccount, "Open a Bank Account");
 				/*
 				 * if (!bIsAuthenticatedUser) {
 				 * mobileAction.verifyElementIsDisplayed(password,

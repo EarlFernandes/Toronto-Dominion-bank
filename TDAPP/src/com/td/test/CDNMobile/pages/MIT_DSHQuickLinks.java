@@ -481,6 +481,8 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 					mobileAction.FuncClick(BT_Cancel_QuoteSearchSymbolScreen, "BT_Cancel_QuoteSearchSymbolScreen");
 
 				}
+
+				mobileAction.switchAppiumContext("NATIVE_APP");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
