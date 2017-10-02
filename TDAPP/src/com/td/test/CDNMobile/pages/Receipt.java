@@ -228,10 +228,6 @@ public class Receipt extends _CommonPage {
 		}
 	}
 
-	private String replaceANDFrenchSpace(String text) {
-		return text.replaceAll(" ", " ");
-	}
-
 	public void VerifyReceiptDetailChineseContent() {
 		Decorator();
 		try {
@@ -243,10 +239,10 @@ public class Receipt extends _CommonPage {
 					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_REPLY));
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				String[] detailInfomation = { getTextInCurrentLocale(StringArray.ARRAY_MF_NEXT_HAPPEN),
-						replaceANDFrenchSpace(getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_BEFORE3)),
-						replaceANDFrenchSpace(getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_BEFORE3)),
-						replaceANDFrenchSpace(getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_AFTER3)),
-						replaceANDFrenchSpace(getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_AFTER3)),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_BEFORE3),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_BEFORE3),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_AFTER3),
+						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_AFTER3),
 						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_CONFIRM),
 						getTextInCurrentLocale(StringArray.ARRAY_MF_CONFIRM_DESCRIPTION),
 						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_DETAILS),
@@ -271,9 +267,12 @@ public class Receipt extends _CommonPage {
 				for (int i = 0; i < size; i++) {
 					String textInfo = mobileAction.getValue(detailList.get(i));
 					System.out.println("Text " + i + " " + textInfo);
-					mobileAction.verifyElementTextIsDisplayed(detailList.get(i), detailInfomation[i]);
+					mobileAction.verifyTextEquality(textInfo, detailInfomation[i]);
 				}
 				mobileAction.FuncSwipeWhileElementNotFound(foot_note, false, 5, "up");
+				if (currentLocale.equalsIgnoreCase("fr")) {
+					mobileAction.FuncSwipeOnce("down");
+				}
 				detailList = ((MobileDriver) (CL.GetAppiumDriver())).findElementsByXPath(
 						"//android.support.v7.widget.RecyclerView/android.widget.LinearLayout/android.widget.TextView");
 
@@ -320,7 +319,7 @@ public class Receipt extends _CommonPage {
 					}
 				}
 			}
-
+			mobileAction.FuncSwipeWhileElementNotFound(foot_note, false, 5, "up");
 			String footnote = getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_BALANCE_NOTE);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementTextIsDisplayed(foot_note, footnote);

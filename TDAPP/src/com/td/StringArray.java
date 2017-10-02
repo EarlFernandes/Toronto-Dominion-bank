@@ -66,17 +66,17 @@ public final class StringArray {
 			"Nous traitons votre achat.", "我们已经开始处理您的购买。如有问题，我们将与您联系。", "我們已開始處理您的購買。如有問題，我們將與您聯絡。" };
 	public static final String[] ARRAY_MF_NEXT_HAPPEN = { "WHAT HAPPENS NEXT", "PROCHAINES ÉTAPES", "后续流程", "後續流程" };
 	public static final String[] ARRAY_MF_PURCHASE_BEFORE3 = { "Purchases made before 3:00PM",
-			"Achats effectués avant 15 h", "下午 3 点之前的购买 ", "下午 3 時之前的購買" };
+			"Achats effectués avant 15 h", "下午 3 点之前的购买 ", "下午 3 時之前的購買" };
 	public static final String[] ARRAY_MF_CONTENT_BEFORE3 = {
 			"If you made your purchase before 3:00PM EST on a business day, it will be processed at that day's rate.",
-			"Si vous avez effectué votre achat avant 15 h (HE) un jour ouvrable, il sera traité au prix en vigueur à cette date.",
+			"Si vous avez effectué votre achat avant 15 h (HE) un jour ouvrable, il sera traité au prix en vigueur à cette date.",
 			"如果您在工作日东部时间下午 3 点之前购买，将按当天价格交易。", "如果在工作日的東部時間下午 3 時之前購買，將按當天價格交易。" };
 
 	public static final String[] ARRAY_MF_PURCHASE_AFTER3 = { "Purchases made after 3:00PM",
-			"Achats effectués après 15 h", "下午 3 点之后的购买 ", "下午 3 時之後的購買" };
+			"Achats effectués après 15 h", "下午 3 点之后的购买 ", "下午 3 時之後的購買" };
 	public static final String[] ARRAY_MF_CONTENT_AFTER3 = {
 			"If you made your purchase after 3:00PM EST, or on the weekend, it will be processed at the next business day's closing price.",
-			"Si vous avez effectué votre achat après 15 h (HE) ou la fin de semaine, il sera traité au prix de clôture du jour ouvrable suivant.",
+			"Si vous avez effectué votre achat après 15 h (HE) ou la fin de semaine, il sera traité au prix de clôture du jour ouvrable suivant.",
 
 			"如果您在东部时间下午 3 点之后或在周末购买，将按照下一个工作日的收市价交易。", "如果在東部時間下午 3 時之後或在週末購買，將按下一個工作日的收市價交易。" };
 	public static final String[] ARRAY_MF_PURCHASE_CONFIRM = { "Purchase confirmation", "Confirmation d’achat", "购买确认",
