@@ -73,7 +73,7 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Sender' or @text='Expéditeur')]")
 	private MobileElement sender;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Sender' or @label='Expéditeur']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Sender' or @label='Expéditeur']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Sender' or @text='Expéditeur')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement senderName;
 
@@ -85,7 +85,7 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='From Account' or @text='Compte de provenance')]")
 	private MobileElement fromAccountVerifyDetails;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account' or @label='Compte de provenance']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account' or @label='Compte de provenance']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='From Account' or @text='Compte de provenance')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement fromAccountName;
 
@@ -93,11 +93,11 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Recipient' or @text='Destinataire')]")
 	private MobileElement recipient;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient' or @label='Destinataire']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient' or @label='Destinataire']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Recipient' or @text='Destinataire')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement recipientVal;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient' or @label='Destinataire']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Recipient' or @label='Destinataire']/following-sibling::XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Recipient' or @text='Destinataire')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView[2]")
 	private MobileElement recipientEmail;
 
@@ -105,7 +105,7 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Security Question' or @text='Question de sécurité')]")
 	private MobileElement securityQuestionLbl;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Question' or @label='Question de sécurité']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Question' or @label='Question de sécurité']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Security Question' or @text='Question de sécurité')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement securityQuestionVal;
 
@@ -113,7 +113,7 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Answer' or @text='Réponse')]")
 	private MobileElement securityAnswerLbl;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Answer' or @label='Réponse']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Answer' or @label='Réponse']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Answer' or @text='Réponse')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement securityAnswerVal;
 
@@ -121,7 +121,7 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Amount' or @text='Montant')]")
 	private MobileElement amountLbl;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount' or @label='Montant']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount' or @label='Montant']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Amount' or @text='Montant')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement amountVal;
 

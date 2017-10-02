@@ -140,6 +140,14 @@ public class AutoDepositPage extends _CommonPage {
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label=='Continue' or label=='Request Money' or label=='Next' or `label=='Continuer' or label=='Demander des fonds' or label=='Suivant'`]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button']")
 	private MobileElement next;
+	
+	@iOSXCUITFindBy(xpath="//XCUIElementTypeOther/XCUIElementTypeButton[@label='Next' or @name='Next']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button']")
+	private MobileElement nextAutoDep;
+	
+	@iOSXCUITFindBy(xpath="//XCUIElementTypeOther/XCUIElementTypeButton[@label='Request Money' or @name='Demander des fonds']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button']")
+	private MobileElement nextReqMoney;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button']")
 	private MobileElement requestMoneyBtn;
@@ -147,15 +155,15 @@ public class AutoDepositPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header']")
 	private MobileElement requestMoneySuccessMsg;
 
+	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='Request sent!' or @label='Demande envoyée!']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subHeader']")
 	private MobileElement requestMoneySubHeader;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
 	private MobileElement customerEligigbilityFailMsg;
 
-	
-	
-	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='Requested By' or label=='Demandé par'`]")
+	//@iOSXCUITFindBy(iOSClassChain = "**/[`label=='Requested By' or label=='Demandé par'`]")
+	@iOSXCUITFindBy(xpath="//XCUIElementTypeImage[@name='td_iemt_arrow_down']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/request_money_requestor_view']")
 	private MobileElement requestedBy;
 
@@ -620,7 +628,7 @@ public class AutoDepositPage extends _CommonPage {
 				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(depositTo, "Deposit To Drop Down");
 				mobileAction.FuncClick(depositToAccount, "Deposit To Account " + depositToAccount.getText());
-				mobileAction.FuncClick(next, "Next Button");
+				mobileAction.FuncClick(nextAutoDep, "Next Button");
 
 			} else {
 
@@ -663,7 +671,9 @@ public class AutoDepositPage extends _CommonPage {
 		Decorator();
 		try {
 
+		
 			mobileAction.FuncClick(requestedBy, "Requested By DropDown");
+			
 			mobileAction.FuncClick(registerAnotherProfile, "Register Another Profile");
 
 		} catch (NoSuchElementException | IOException e) {
@@ -725,7 +735,7 @@ public class AutoDepositPage extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.FuncClick(next, "Request Money Button");
+			mobileAction.FuncClick(nextReqMoney, "Request Money Button");
 
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -752,6 +762,9 @@ public class AutoDepositPage extends _CommonPage {
 
 		Decorator();
 		try {
+			
+			mobileAction.waitForElementToVanish(progressBar);
+			
 			if (platform.equalsIgnoreCase("iOS")) {
 
 				requestMoneySuccessMsg = mobileAction.mobileElementUsingIOSClassChain("**/*[`label=='"

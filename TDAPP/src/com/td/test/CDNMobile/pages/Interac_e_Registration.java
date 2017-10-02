@@ -57,7 +57,7 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Name' or @text='Mon nom']")
 	private MobileElement myName;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Name' or @label='Mon nom']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Name' or @label='Mon nom']/following-sibling::XCUIElementTypeStaticText")
 	private MobileElement myNameVal;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Name']/following-sibling::android.widget.TextView[1]")
@@ -67,14 +67,14 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Business Name' or @text='Nom d’entreprise']")
 	private MobileElement BusinessName;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Business Name' or @label='Nom d’entreprise']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Business Name' or @label='Nom d’entreprise']/following-sibling::XCUIElementTypeStaticText")
 	private MobileElement BusinessNameVal;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade Name' or @label='Nom commercial']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trade Name' or @text='Nom commercial']")
 	private MobileElement tradeNameReview;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade Name' or @label='Nom commercial']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade Name' or @label='Nom commercial']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trade Name']")
 	private MobileElement tradeNameReviewVal;
 
@@ -85,7 +85,7 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Email Address for Interac') or contains(@text,'Adresse courriel pour Virement')]")
 	private MobileElement emailAddress;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Email Address') or @label='Adresse courriel pour Virement Interac']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Email Address') or @label='Adresse courriel pour Virement Interac']/following-sibling::XCUIElementTypeStaticText")
 	private MobileElement emailAddressVal;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Email Address for Interac e-Transfer']/following-sibling::android.widget.TextView[3]")
@@ -104,7 +104,7 @@ public class Interac_e_Registration extends _CommonPage {
 	private MobileElement progressBar;
 
 	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@value,'Please choose which profile')]")
-	@iOSXCUITFindBy(iOSClassChain = "**/*[`value CONTAINS[cd] 'Please choose which profile' or value CONTAINS[cd] 'Veuillez choisir un profil pour l’inscription'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Please choose which profile' or label CONTAINS[cd] 'Veuillez choisir un profil pour l’inscription'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_multi_profile']")
 	private MobileElement chooseProfile;
 
@@ -116,10 +116,12 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_trade_name']")
 	private MobileElement tradeName;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@value,'I acknowledge the trade name displayed') or contains(@value,'Je confirme que le nom commercial')]")
+	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'I acknowledge the trade name displayed') or contains(@label,'Je confirme que le nom commercial')]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'I acknowledge the trade name displayed' or label CONTAINS[cd] 'Je confirme que le nom commercial'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_trade_name_response']")
 	private MobileElement tradeResponse;
 
+	
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_done' or @text='Done']")
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
 	private MobileElement done;
@@ -140,7 +142,8 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/quick_access_go_home' or @text='Go Back Home']")
 	private MobileElement goBackHome;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Register anohter profile') or contains(@label,'Ajouter un autre profil')]")
+	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Register anohter profile') or contains(@label,'Ajouter un autre profil')]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`name CONTAINS[cd] 'Register anohter profile' or name CONTAINS[cd] 'Ajouter un autre profil'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_payments_and_transfers_register_account']")
 	private MobileElement registerAnotherProfile;
 
@@ -326,6 +329,7 @@ public class Interac_e_Registration extends _CommonPage {
 		Decorator();
 		try {
 
+			
 			mobileAction.verifyElementIsDisplayed(thankYou, "Thank You");
 			mobileAction.verifyElementIsDisplayed(successMag, "You're now registered for Interac e-Transfer");
 
@@ -369,9 +373,12 @@ public class Interac_e_Registration extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(tradeName, tradeName.getText());
 				mobileAction.FuncClick(tradeResponse, "Trade Response");
 
-				String response = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@name,'" + tradeResponseTxt
-						+ "')]";
-				MobileElement tradeResponse = mobileAction.mobileElementUsingXPath(response);
+				/*String response = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@name,'" + tradeResponseTxt
+						+ "')]";*/
+				
+				String response ="**/*[`label CONTAINS[cd] '"+tradeResponseTxt+"' OR name CONTAINS[cd] '"+tradeResponseTxt+"' OR value CONTAINS[cd] '"+tradeResponseTxt+"'`]";
+				//MobileElement tradeResponse = mobileAction.mobileElementUsingXPath(response);
+				MobileElement tradeResponse = mobileAction.mobileElementUsingIOSClassChain(response);
 
 				mobileAction.FuncClick(tradeResponse, "Trade Response Option");
 				mobileAction.FunctionSwipe("up", 200, 200);
@@ -705,9 +712,7 @@ public class Interac_e_Registration extends _CommonPage {
 							MenuPage.get().clickProfileAndSettings();
 							Profile_And_Settings.get().clickPaymentsAndTransfers();
 						}
-					} else {
-						Transfers.get().clickInterac_e_Transfer();
-					}
+					} 
 					clickRegisterAnotherProfile();
 				}
 
@@ -787,14 +792,17 @@ public class Interac_e_Registration extends _CommonPage {
 		Decorator();
 		try {
 
-			if (platformName.equalsIgnoreCase("Android")) {
+
 				if (mobileAction.verifyElementIsPresent(sendMoney)) {
+					
+					if(platformName.equalsIgnoreCase("Android")){
 					mobileAction.FuncClick(backButton, "Back Button");
+					}
 					HomeScreen.get().clickMenu();
 					MenuPage.get().clickProfileAndSettings();
 					Profile_And_Settings.get().clickPaymentsAndTransfers();
 				}
-			}
+		
 
 			mobileAction.FuncClick(registerAnotherProfile, "Register Another Profile");
 

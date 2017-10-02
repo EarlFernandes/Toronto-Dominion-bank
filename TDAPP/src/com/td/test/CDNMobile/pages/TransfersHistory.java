@@ -86,7 +86,8 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/historyTransferItemName' or contains(@resource-id,'com.td:id/transfersReceivedCard')]")
 	private MobileElement receivedTransaction;
 
-	@iOSXCUITFindBy(accessibility = "CTA_CANCEL")
+	//@iOSXCUITFindBy(accessibility = "CTA_CANCEL")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel Request']")//TODO::FrenchText
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/history_details_footer_button']")
 	private MobileElement cancelTransferBtn;
 
