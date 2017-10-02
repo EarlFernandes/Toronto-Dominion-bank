@@ -125,7 +125,7 @@ public class LoginMIT extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Done']")
 	private MobileElement done;
 
-	@iOSFindBy(xpath = "//*[@label='Login']")
+	@iOSFindBy(xpath = "//*[@label='Login' or @label='Ouvrir une session']")
 	// @AndroidFindBy(xpath =
 	// "//android.widget.TextView[@resource-id='com.td:id/mfa_login_btn_txt' and
 	// @text='Login']")

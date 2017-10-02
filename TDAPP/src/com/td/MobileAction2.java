@@ -2712,6 +2712,10 @@ public class MobileAction2 extends CommonLib {
 						}
 					}
 				}
+				if(textToReturn==null)
+				{
+					textToReturn = objElement.getAttribute("value");
+				}
 			}
 		} catch (Exception e) {
 			try {
