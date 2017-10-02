@@ -231,6 +231,7 @@ public class Receipt extends _CommonPage {
 	private String replaceANDFrenchSpace(String text) {
 		return text.replaceAll(" ", " ");
 	}
+
 	public void VerifyReceiptDetailChineseContent() {
 		Decorator();
 		try {
@@ -272,8 +273,7 @@ public class Receipt extends _CommonPage {
 					System.out.println("Text " + i + " " + textInfo);
 					mobileAction.verifyElementTextIsDisplayed(detailList.get(i), detailInfomation[i]);
 				}
-				mobileAction.FuncSwipeWhileElementNotFound(foot_note, false, 5, "up"); 
-				mobileAction.FuncSwipeOnce("down");
+				mobileAction.FuncSwipeWhileElementNotFound(foot_note, false, 5, "up");
 				detailList = ((MobileDriver) (CL.GetAppiumDriver())).findElementsByXPath(
 						"//android.support.v7.widget.RecyclerView/android.widget.LinearLayout/android.widget.TextView");
 
@@ -304,14 +304,13 @@ public class Receipt extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_MF_FUNDS), "ignore", "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT), "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REQUEST_TIME), "ignore",
-						getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT), "ignore","ignore", "ignore", "ignore",
-						getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT), "ignore", "ignore", "ignore",
+						getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT), "ignore", "ignore", "ignore",
+						"ignore", getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT), "ignore", "ignore", "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_BALANCE_NOTE) };
 				int size = detailList.size();
 				System.out.println("size of data:" + size);
 				for (int i = 0; i < size; i++) {
 					if (detailInfomation[i].equalsIgnoreCase("ignore")) {
-						// System.out.println("ignore index " + i);
 						continue;
 					} else {
 						if (!mobileAction.verifyElementIsPresent(detailList.get(i))) {
@@ -319,13 +318,9 @@ public class Receipt extends _CommonPage {
 						}
 						mobileAction.verifyElementTextIsDisplayed(detailList.get(i), detailInfomation[i]);
 					}
-					// System.out.println("Text "+ i+"
-					// "+detailList.get(i).getText() );
 				}
 			}
 
-			// mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView",
-			// 3, "down");
 			String footnote = getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_BALANCE_NOTE);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementTextIsDisplayed(foot_note, footnote);

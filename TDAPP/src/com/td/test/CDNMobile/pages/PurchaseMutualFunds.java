@@ -122,9 +122,6 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/purchasePreviewButton")
 	private MobileElement borrow_money_warning_message;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable")
-	private MobileElement ios_account_dropdown_window;
-
 	public synchronized static PurchaseMutualFunds get() {
 		if (purchaseMutualFunds == null) {
 			purchaseMutualFunds = new PurchaseMutualFunds();
@@ -469,13 +466,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 				FundInListText = FundInListText + "]";
 			}
 			System.out.println("FundInListText:" + FundInListText);
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(FundInListText, true, 10, "up");
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				if (mobileAction.verifyElementIsPresent(ios_account_dropdown_window)) {
-					mobileAction.FuncSwipeOnce("up");
-					mobileAction.FuncSwipeWhileElementNotFoundByxpath(FundInListText, true, 2, "down");
-				}
-			}
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(FundInListText, true, 10, "up", true);
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
