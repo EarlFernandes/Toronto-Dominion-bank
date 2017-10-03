@@ -332,6 +332,8 @@ public class TransfersHistory extends _CommonPage {
 	 */
 	public void verifySentMoneyCard() {
 
+		int counter=0;
+		
 		Decorator();
 		try {
 
@@ -346,6 +348,13 @@ public class TransfersHistory extends _CommonPage {
 				initials = initials.concat("" + toAccArr[i].charAt(0));
 			}
 
+			while (!mobileAction.verifyElementIsPresent(getReceiver()) && counter < 3) {
+				mobileAction.FunctionSwipe("left", 200, 200);
+				mobileAction.waitForElementToVanish(progressBar);
+				counter++;
+			}
+			counter = 0;
+			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 
 				initialsCircle = mobileAction.mobileElementUsingXPath(
@@ -386,6 +395,8 @@ public class TransfersHistory extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(amountSent, "Amount sent: " + amountSent.getText());
 				mobileAction.verifyTextContains(transacStatus.getText(), transStatus);
 			}
+			
+
 
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

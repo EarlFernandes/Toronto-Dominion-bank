@@ -38,7 +38,7 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement sendMoneyHeader;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'To' or label CONTAINS[cd] 'Virer des fonds'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Select Recipient' or label CONTAINS[cd] 'Virer des fonds'`]")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/recipient_view']")
 	private MobileElement selectRecipient;
 
