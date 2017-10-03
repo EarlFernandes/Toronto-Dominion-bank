@@ -41,6 +41,10 @@ public class FundDetails extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[@index='2']/android.widget.LinearLayout/android.widget.TextView[@index='0']")
 	private List<MobileElement> InfoList;
+	
+	@iOSFindBy(xpath = "//*[@name='short_term_fee_label']")
+	@AndroidFindBy(xpath = "//android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[@index='5']/android.widget.TextView")
+	private MobileElement footnote_mimholding_fee;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
@@ -205,6 +209,8 @@ public class FundDetails extends _CommonPage {
 
 			mobileAction.verifyElementTextIsDisplayed(fund_facts_view_text,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_FD_VIEW_PERFORMANCE));
+			mobileAction.verifyElementTextIsDisplayed(footnote_mimholding_fee,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_TRADE_FEE_DISCLAIMER));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

@@ -54,7 +54,7 @@ public final class StringArray {
 	public static final String[] ARRAY_TABLE_MARKET_VALUE = { "MARKET VALUE", "VALEUR MARCHANDE", "市场价值", "市價" };
 	public static final String[] ARRAY_TABLE_UNIT = { "UNITS", "PARTS", "单位", "單位" };
 	public static final String[] ARRAY_TABLE_PRICE_PER_UINT = { "PRICE PER UNIT", "PRIX PAR PART", "单位价格", "單位價格" };
-	public static final String[] ARRAY_MF_PURCHASE_BUTTON = { "PURCHASE MUTUAL FUNDS", "ACHETER DES FONDS COMMM.",
+	public static final String[] ARRAY_MF_PURCHASE_BUTTON = { "PURCHASE MUTUAL FUNDS", "ACHETER DES FONDS COMM.",
 			"购买互惠基金", "購買互惠基金" };
 	public static final String[] ARRAY_MF_CANADIAN_DOLLAR_NOTE = {
 			"All values in Canadian Dollars unless otherwise stated.",
@@ -156,6 +156,16 @@ public final class StringArray {
 			"Au \\d{1,2} .{3,5}\\s*\\d{4} à \\d{1,2}:\\d{1,2}:\\d{1,2}.*",
 			"有效时间至*.*\\d{4}年\\s*\\d{1,2}月\\s*\\d{1,2}日*.*\\d{1,2}:\\d{1,2}:\\d{1,2}",
 			"有效至*.*\\d{4}年\\s*\\d{1,2}月\\s*\\d{1,2}日*.*\\d{1,2}:\\d{1,2}:\\d{1,2}" };
+	public static final String[] ARRAY_MF_TRADE_FEE_DISCLAIMER = {
+			"You may be charged a short term trading fee of up to 2% of your purchase cost if you switch or redeem your Funds (except the Money Market Funds). This fee does not apply to Fund units purchased through distribution / dividend reinvestment. Short term trading fees are paid directly to the Fund. Please see the applicable fund facts or the simplified prospectus for further details.",
+			"Vous pourriez devoir payer des frais d’opérations à court terme s’élevant jusqu’à 2 % du coût d’achat si vous substituez ou rachetez des parts du fonds (sauf dans le cas d’un Fonds du marché monétaire). Ces frais ne s’appliquent pas aux parts de fonds achetés dans le cadre d’un régime de réinvestissement des distributions ou des dividendes. Les frais d’opérations à court terme sont versés directement dans le fonds. Pour plus de précisions, veuillez consulter l’aperçu du fonds ou le prospectus simplifié pertinent.",
+			"如果您转换或赎回基金（货币市场基金除外），您可能需要支付不超过购买成本2%的短期交易费。此费用不适用于通过分红/股息再投资购买的基金单位。短期交易费直接支付给基金。请参阅相关基金概况或简化招股说明书了解更多详情。",
+			"如果您轉換或贖回基金（貨幣市場基金除外），您可能需要支付不超過購買成本2%的短期交易費。此費用不適用於透過分紅/股息再投資所購買的基金單位。短期交易費將直接支付給基金。請參閱相關基金概況或簡化版招股章程以了解更多詳情。" };
+	public static final String[] ARRAY_MF_LEGAL_MIN_HOLDING_FEE = {
+			"I acknowledge that I may be charged a short term trading fee of up to 2% of my purchase cost if I switch or redeem my Funds (except the Money Market Funds).Please note: This fee does not apply to Fund units purchased through distribution / dividend reinvestment. Short term trading fees are paid directly to the Fund. You can refer to the applicable fund facts or the simplified prospectus for further details.",
+			"Je comprends que je pourrais devoir payer des frais d’opérations à court terme s’élevant jusqu’à 2 % du coût d’achat si je substitue ou rachète des parts du fonds (sauf dans le cas d’un Fonds du marché monétaire).Remarque : Ces frais ne s’appliquent pas aux parts de fonds achetés dans le cadre d’un régime deréinvestissement des distributions ou des dividendes. Les frais d’opérations à court terme sont versés directement dans le fonds. Vous pouvez consulter l’aperçu du fonds ou le prospectus simplifié pertinent pour plus de précisions.",
+			"我同意，如果我转换或赎回基金（货币市场基金除外），我可能需要支付不超过购买成本2%的短期交易费。请注意：此费用不适用于通过分红/股息再投资购买的基金单位。短期交易费将直接支付给基金。请参阅相关基金概况或简化招股说明书了解更多详情。 ",
+			"本人確認了解，如果我轉換或贖回基金（貨幣市場基金除外），我可能需要支付不超過購買成本2%的短期交易費。 註：此費用不適用於透過分紅/股息再投資所購買的基金單位。短期交易費將直接支付給基金。請參閱相關基金概況或簡化版招股章程以了解更多詳情。" };
 
 	public static final String[] ARRAY_PROFILE_AND_PREFERENCE = { "Profile & Settings", "Profil et paramètres",
 			"个人资料和设置", "個人資料和設定" };

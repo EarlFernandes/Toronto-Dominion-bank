@@ -281,6 +281,10 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/disclaimer_link']")
 	private MobileElement tdDirectInvestment;
 
+	@iOSFindBy(accessibility = "TD_ACCOUNT_FOOTER_VIEW_LABEL")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tradingFeeDisclaimer']")
+	private MobileElement tradingFeeDisclaimer;
+
 	public synchronized static Investing get() {
 		if (Investing == null) {
 			Investing = new Investing();
@@ -1309,8 +1313,8 @@ public class Investing extends _CommonPage {
 	 * public void verifyEmptyWatchLists() { try { Decorator();
 	 * Thread.sleep(5000); mobileAction.waitForElementToVanish(progressBar);
 	 * mobileAction.FuncClick(watchListsButton, "Watch List");
-	 * mobileAction.verifyElementIsDisplayed(watchListsEmpty,
-	 * "Watch List Empty");
+	 * mobileAction.verifyElementIsDisplayed(watchListsEmpty, "Watch List Empty"
+	 * );
 	 * 
 	 * } catch (NoSuchElementException e) {
 	 * CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1635,18 +1639,17 @@ public class Investing extends _CommonPage {
 			int randFund = (int) (Math.random() * size);
 			if (randFund >= size) {
 				randFund = size - 1;
-			} 
+			}
 			if (!mobileAction.verifyElementIsPresent(fundsList.get(randFund))) {
 				mobileAction.FuncSwipeWhileElementNotFound(fundsList.get(randFund), false, 20, "up");
 			}
-			if(randFund != 0){
-				randFund= randFund-1;
+			if (randFund != 0) {
+				randFund = randFund - 1;
 			}
 			String fundName = mobileAction.getValue(fundsList.get(randFund));
 			System.out.println("Name of the selected fund:" + fundName);
 			mobileAction.FuncClick(fundsList.get(randFund), fundName);
 			mobileAction.waitForElementToVanish(progressBar);
-			
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -1769,6 +1772,10 @@ public class Investing extends _CommonPage {
 				mobileAction.verifyElementTextIsDisplayed(table_heading_unit_price,
 						getTextInCurrentLocale(StringArray.ARRAY_TABLE_PRICE_PER_UINT));
 			}
+
+			mobileAction.FuncSwipeWhileElementNotFound(tradingFeeDisclaimer, false, 10, "up");			
+			mobileAction.verifyElementTextContains(tradingFeeDisclaimer,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_TRADE_FEE_DISCLAIMER));		
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

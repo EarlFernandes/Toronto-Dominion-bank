@@ -90,7 +90,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/checkbox_description']")
 	private MobileElement consent_checkbox_description;
 
-	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeOther[9]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther[11]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer' and @index='7']/android.widget.TextView")
 	private MobileElement legal_text;
 
@@ -424,13 +424,9 @@ public class PurchaseMutualFunds extends _CommonPage {
 				mobileAction.verifyElementTextIsDisplayed(consent_checkbox,
 						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_RADIO));
 			}
-			// String expectedLegalText
-			// ="您购买的基金有最短持有期要求。如果您在最短持有期到期之前赎回，则可能需向基金支付最高 2%
-			// 的短期交易费，此要求适用于道明互惠基金的所有单位（货币市场基金除外）。详情请参阅相关基金概况。"+
-			// "| 您購買的基金有最短持有期要求。如果您在最短持有期到期之前贖回，則可能需向基金支付最高 2%
-			// 的短期交易費，此要求適用於道明互惠基金的所有單位（貨幣市場基金除外）。詳情請參閱相關基金概況。";
-			// mobileAction.verifyElementTextIsDisplayed(legal_text,
-			// expectedLegalText);
+
+			mobileAction.FuncSwipeWhileElementNotFound(legal_text, false, 5, "up");
+			mobileAction.verifyElementTextIsDisplayed(legal_text,getTextInCurrentLocale(StringArray.ARRAY_MF_LEGAL_MIN_HOLDING_FEE));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed to VerifyPurchaseMFPageInChinese.");
