@@ -46,7 +46,8 @@ public class ManageContacts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amend_contacts_email_confirm_edit_text_field']")
 	private MobileElement confirmEmail;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Email Language Preference' or @label='Langue de préférence']/following-sibling::XCUIElementTypeStaticText")
+	//@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Email Language Preference' or @label='Langue de préférence']/following-sibling::XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeImage[@name='td_iemt_arrow_down']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/add_contacts_language_selection']")
 	private MobileElement languageSpinner;
 
@@ -123,6 +124,10 @@ public class ManageContacts extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Allow' or @label='Autoriser']")
 	private MobileElement alertAllow;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Settings')]")
+	private MobileElement settings;
+	
+	
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeActivityIndicator[`value=='1'")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and (@text='Loading' or @text='Chargement')]")
 	private MobileElement progressBar;
@@ -416,16 +421,19 @@ public class ManageContacts extends _CommonPage {
 				if (mobileAction.verifyElementIsPresent(alertContinue)) {
 					mobileAction.FuncClick(alertContinue, "Continue");
 					mobileAction.FuncClick(alertAllow, "Allow");
-					// TODO::Incomplete steps as app is not stable needs to
-					// complete
+					
+					mobileAction.getPageSource();
+					
+					mobileAction.FuncClick(settings, "Settings");
 				}
 
+				mobileAction.getPageSource();
+				
 				String contactNme = mobileContact.getText();
 				String contactMail = mobileEmail.getText();
 				mobileAction.FuncClick(mobileContact, "Phone Contact");
 				mobileAction.verifyTextEquality(contactName.getText(), contactNme);
 				mobileAction.verifyTextEquality(email.getText(), contactMail);
-				mobileAction.verifyTextEquality(confirmEmail.getText(), contactMail);
 				mobileAction.FuncClick(languageSpinner, "Language Drop Down");
 
 				String languageXL = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='" + getTestdata("Language")
@@ -639,9 +647,9 @@ public class ManageContacts extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(deleteOption, "Delete Contact");
-			mobileAction.verifyElementIsDisplayed(deleteWarning, "Warning: Are you sure you want to delete");
+			/*mobileAction.verifyElementIsDisplayed(deleteWarning, "Warning: Are you sure you want to delete");
 			mobileAction.verifyElementIsDisplayed(noOption, "No");
-			mobileAction.verifyElementIsDisplayed(yesOption, "Yes");
+			mobileAction.verifyElementIsDisplayed(yesOption, "Yes");*/
 			mobileAction.FuncClick(yesOption, "Yes");
 
 		} catch (NoSuchElementException | IOException e) {
@@ -805,7 +813,7 @@ public class ManageContacts extends _CommonPage {
 				if (i != 2) {
 					for (int m = 0; m <= i; m++) {
 						mobileAction.FunctionSwipe("left", 200, 100);
-						System.err.println("Swiping left");
+						mobileAction.waitForElementToVanish(progressBar);
 					}
 				}
 
