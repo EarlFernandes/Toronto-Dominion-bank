@@ -81,11 +81,11 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Transfers' or @text='Virements' or @text='账单' or @text='轉賬']")
 	private MobileElement HDR_Transfers;
 
-	@iOSFindBy(xpath = "//*[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單']")
+	@iOSFindBy(xpath = "//*[(@label='Bills' or @label='Factures' or @label='账单' or @label='賬單') and @name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='Bills' or @text='Factures' or @text='账单' or @text='賬單']")
 	private MobileElement HDR_Bills;
 
-	@iOSFindBy(xpath = "//*[@label='Open a TD Direct Investing Account' or @label='Ouvrir un compte Placements directs TD' or @label='投资账户' or @label='投資賬戶']")
+	@iOSFindBy(xpath = "//*[@label='Open a Direct Investing Account' or @label='Ouvrir un compte Placements directs TD' or @label='投资账户' or @label='投資賬戶']")
 	@AndroidFindBy(xpath = "//*[@text='Open a TD Direct Investing Account' or @text='Ouvrir un compte Placements directs TD' or @text='投资账户' or @text='投資賬戶']")
 	private MobileElement NR_TDDirectInvestingAccounts;
 
@@ -289,18 +289,41 @@ public class MIT_DSHNavRows extends _CommonPage {
 	public void verifyNR_Transfers(boolean bIsAuthenticatedUser) {
 		Decorator();
 		try {
-			if (verifyNavRowExists(NR_Transfers, "Transfers")) {
-				mobileAction.FuncVerifyTextEquals(NR_Transfers,
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_TRANSFERES));
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				if (verifyNavRowExists(NR_Transfers, "Transfers")) {
+					mobileAction.FuncVerifyTextEquals(NR_Transfers,
+							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_TRANSFERES));
 
-				clickNavRow(NR_Transfers, "Transfers");
-				if (!bIsAuthenticatedUser) {
-					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
-					mobileAction.FuncClick(BT_Back, "< Button");
-				} else {
-					mobileAction.verifyElementIsDisplayed(HDR_Transfers, "Transfers");
-					mobileAction.FuncClick(BT_HamburgerMenu, "BT_Home_HamburgerMenu");
-					mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+					clickNavRow(NR_Transfers, "Transfers");
+
+					if (!bIsAuthenticatedUser) {
+						mobileAction.verifyElementIsDisplayed(password, "Login Screen");
+						mobileAction.FuncClick(BT_Back, "< Button");
+					} else {
+						mobileAction.verifyElementIsDisplayed(HDR_Transfers, "Transfers");
+						mobileAction.FuncClick(BT_HamburgerMenu, "BT_Home_HamburgerMenu");
+						mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+					}
+				}
+			} else {
+				if (NR_Transfers.getAttribute("label")
+						.equals(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_TRANSFERES))) {
+					CL.GetReporting().FuncReport(PASS, "Transfers Nav row present.");
+					// NR_Transfers.click();
+					/*
+					 * if (!bIsAuthenticatedUser) {
+					 * mobileAction.verifyElementIsDisplayed(password,
+					 * "Login Screen"); mobileAction.FuncClick(BT_Back,
+					 * "< Button"); } else {
+					 * mobileAction.verifyElementIsDisplayed(HDR_Transfers,
+					 * "Transfers"); mobileAction.FuncClick(BT_HamburgerMenu,
+					 * "BT_Home_HamburgerMenu");
+					 * mobileAction.FuncClick(FLY_Home, "Home Flyout Menu"); }
+					 */
+				}
+				else
+				{
+					CL.GetReporting().FuncReport(FAIL, "Transfers Nav row not present.");
 				}
 			}
 		} catch (Exception e) {
@@ -311,18 +334,35 @@ public class MIT_DSHNavRows extends _CommonPage {
 	public void verifyNR_Bills(boolean bIsAuthenticatedUser) {
 		Decorator();
 		try {
-			if (verifyNavRowExists(NR_Bills, "Bills")) {
-				mobileAction.FuncVerifyTextEquals(NR_Bills,
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_BILLS));
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				if (verifyNavRowExists(NR_Bills, "Bills")) {
+					mobileAction.FuncVerifyTextEquals(NR_Bills,
+							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_BILLS));
 
-				clickNavRow(NR_Bills, "Bills");
-				if (!bIsAuthenticatedUser) {
-					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
-					mobileAction.FuncClick(BT_Back, "< Button");
-				} else {
-					mobileAction.verifyElementIsDisplayed(HDR_Bills, "HDR_Bills");
-					mobileAction.FuncClick(BT_HamburgerMenu, "BT_Home_HamburgerMenu");
-					mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+					clickNavRow(NR_Bills, "Bills");
+					if (!bIsAuthenticatedUser) {
+						mobileAction.verifyElementIsDisplayed(password, "Login Screen");
+						mobileAction.FuncClick(BT_Back, "< Button");
+					} else {
+						mobileAction.verifyElementIsDisplayed(HDR_Bills, "HDR_Bills");
+						mobileAction.FuncClick(BT_HamburgerMenu, "BT_Home_HamburgerMenu");
+						mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+					}
+				}
+			} else {
+				if (NR_Bills.getAttribute("label")
+						.equals(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_BILLS))) {
+					CL.GetReporting().FuncReport(PASS, "Bills Nav row present.");
+					/*
+					 * NR_Bills.click();
+					 * mobileAction.verifyElementIsDisplayed(HDR_Bills,
+					 * "HDR_Bills"); mobileAction.FuncClick(BT_Back,
+					 * "< Button");
+					 */
+				}
+				else
+				{
+					CL.GetReporting().FuncReport(FAIL, "Bills Nav row not present.");
 				}
 			}
 		} catch (Exception e) {
@@ -334,21 +374,33 @@ public class MIT_DSHNavRows extends _CommonPage {
 		Decorator();
 
 		try {
-			String sUserType = getTestdata("UserRole", XLSheetUserIDs);
-			if (verifyNavRowExists(NR_TDDirectInvestingAccounts, "Open a TD Direct Investing Account")) {
-				mobileAction.FuncVerifyTextEquals(NR_TDDirectInvestingAccounts,
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_OPENTDDIRECTINVESTINGACCOUNT));
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				String sUserType = getTestdata("UserRole", XLSheetUserIDs);
+				if (verifyNavRowExists(NR_TDDirectInvestingAccounts, "Open a TD Direct Investing Account")) {
+					mobileAction.FuncVerifyTextEquals(NR_TDDirectInvestingAccounts,
+							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_OPENTDDIRECTINVESTINGACCOUNT));
 
-				clickNavRow(NR_TDDirectInvestingAccounts, "Open a TD Direct Investing Account");
-				/*
-				 * if (!bIsAuthenticatedUser) {
-				 * mobileAction.verifyElementIsDisplayed(password,
-				 * "Login Screen"); mobileAction.FuncClick(BT_Back, "< Button");
-				 * } else {
-				 */
-				if (sUserType.equalsIgnoreCase("Banking")) {
-					mobileAction.verifyElementIsDisplayed(HDR_Investing, "HDR_Investing");
-					mobileAction.FuncClick(BT_Back, "< Button");
+					clickNavRow(NR_TDDirectInvestingAccounts, "Open a TD Direct Investing Account");
+					/*
+					 * if (!bIsAuthenticatedUser) {
+					 * mobileAction.verifyElementIsDisplayed(password,
+					 * "Login Screen"); mobileAction.FuncClick(BT_Back,
+					 * "< Button"); } else {
+					 */
+					if (sUserType.equalsIgnoreCase("Banking")) {
+						mobileAction.verifyElementIsDisplayed(HDR_Investing, "HDR_Investing");
+						mobileAction.FuncClick(BT_Back, "< Button");
+					}
+
+				}
+			} else {
+				if (NR_TDDirectInvestingAccounts.getAttribute("label").equals(
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_OPENTDDIRECTINVESTINGACCOUNT))) {
+					CL.GetReporting().FuncReport(PASS, "Open a TD Direct Investing Account Nav row present.");
+				}
+				else
+				{
+					CL.GetReporting().FuncReport(FAIL, "Open a TD Direct Investing Account Nav row not present.");
 				}
 
 			}
