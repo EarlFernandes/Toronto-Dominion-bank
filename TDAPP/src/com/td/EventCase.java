@@ -34,6 +34,7 @@ import com.td.test.CDNMobile.pages.Logout;
 import com.td.test.CDNMobile.pages.MFA_ChangeAnswer;
 import com.td.test.CDNMobile.pages.MIT_DSHNavRows;
 import com.td.test.CDNMobile.pages.MIT_DSHQuickLinks;
+import com.td.test.CDNMobile.pages.MIT_DSHWLTopNav;
 import com.td.test.CDNMobile.pages.MIT_PNSAccessAlerts;
 import com.td.test.CDNMobile.pages.MIT_PNSCreateNewAlert;
 import com.td.test.CDNMobile.pages.MIT_PNSManageAlerts;
@@ -208,7 +209,7 @@ public class EventCase {
 
 		// MIT Dashboard
 
-		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser,
+		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown,
 
 		// P2P
 
@@ -2576,6 +2577,14 @@ public class EventCase {
 
 		case verifyNavRowsBlendedUser:
 			MIT_DSHNavRows.get().verifyNavRowsBlendedUser();
+			break;
+
+		case verifyWatchlistHeaderUI:
+			MIT_DSHWLTopNav.get().verifyWatchlistHeaderUI();
+			break;
+
+		case verifyMenuBarWatchlistDropDown:
+			MIT_DSHWLTopNav.get().verifyMenuBarWatchlistDropDown();
 			break;
 
 		// MIT Dashboard END
