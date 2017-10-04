@@ -1147,13 +1147,24 @@ public class Login extends _CommonPage {
 
 				login_without_ID_remembered();
 			}
-			try {
-				if (mobileAction.verifyElementIsPresent(errorText)) {
 
+			// Do positive checking before doing any negative ones
+			if (!mobileAction.verifyElementIsPresent(logined_page_Header)) {
+				verifyLoginError();
+
+			} else {
+				String securityQuestionTitle = mobileAction.getAppString("securityQuestionPageHeader");
+				String pageTitle = mobileAction.getValue(logined_page_Header);
+				String addLoginTitle = getTextInCurrentLocale(StringArray.ARRAY_ADD_LOGIN);
+				if (pageTitle.contentEquals(securityQuestionTitle)) {
+					System.out.println("Security Question page");
+					verifySecurityQuestion();
+				} else if (pageTitle.contentEquals(addLoginTitle)) {
+					// still in login page
+					verifyLoginError();
+				} else {
+					System.out.println("Login successfully to page " + pageTitle);
 				}
-			} catch (Exception e) {
-				System.err.println("TestCase has failed.");
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			}
 			Thread.sleep(5000);
 
