@@ -116,8 +116,7 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_trade_name']")
 	private MobileElement tradeName;
 
-	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'I acknowledge the trade name displayed') or contains(@label,'Je confirme que le nom commercial')]")
-	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'I acknowledge the trade name displayed' or label CONTAINS[cd] 'Je confirme que le nom commercial'`]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeStaticText[@label='Confirm Trade Name']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_trade_name_response']")
 	private MobileElement tradeResponse;
 
@@ -126,7 +125,7 @@ public class Interac_e_Registration extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
 	private MobileElement done;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Interac e-Transfer is a great way to send money') or contains(@label,'excellent moyen d’envoyer des fonds à vos employés')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Interac e‑Transfer is a great way to send money') or contains(@label,'excellent moyen')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/errorMessage']")
 	private MobileElement errorText;
 
@@ -134,7 +133,7 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/errorButton2' or @text='Find a Branch' or @text='Trouver une succursale']")
 	private MobileElement findABranch;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Open an Account Online') or contains(@label,'Ouvrir un compte')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Open an Account') or contains(@label,'Ouvrir un compte')]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/errorButton1' or @text='Open an Account' or @text='Ouvrir un compte']")
 	private MobileElement openAnAccount;
 
@@ -142,8 +141,8 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/quick_access_go_home' or @text='Go Back Home']")
 	private MobileElement goBackHome;
 
-	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Register anohter profile') or contains(@label,'Ajouter un autre profil')]")
-	@iOSXCUITFindBy(iOSClassChain = "**/*[`name CONTAINS[cd] 'Register anohter profile' or name CONTAINS[cd] 'Ajouter un autre profil'`]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Register another profile' or @label='Ajouter un autre profil']")
+	//@iOSXCUITFindBy(iOSClassChain = "**/*[`name CONTAINS[cd] 'Register anohter profile' or name CONTAINS[cd] 'Ajouter un autre profil'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_payments_and_transfers_register_account']")
 	private MobileElement registerAnotherProfile;
 
@@ -159,7 +158,7 @@ public class Interac_e_Registration extends _CommonPage {
 	private MobileElement doneButton;
 
 	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Send Money')]")
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label CONTAINS[cd] 'Check your email for instructions from'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Check your email for instructions from'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
 	private MobileElement autoDepositSuccmsg;
 
@@ -333,6 +332,8 @@ public class Interac_e_Registration extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(thankYou, "Thank You");
 			mobileAction.verifyElementIsDisplayed(successMag, "You're now registered for Interac e-Transfer");
 
+			mobileAction.getPageSource();
+			
 			if (AutoDepositDoneWhileReg) {
 				
 				mobileAction.verifyElementIsDisplayed(autoDepositSuccmsg, "Auto Deposit Success Message");
@@ -742,7 +743,7 @@ public class Interac_e_Registration extends _CommonPage {
 	public void verifyErrorMessage() {
 		Decorator();
 		try {
-
+			
 			mobileAction.verifyElementIsDisplayed(errorText, "Error Message");
 			mobileAction.verifyElementIsDisplayed(openAnAccount, "Open An Account");
 			mobileAction.verifyElementIsDisplayed(findABranch, "Find A Branch");

@@ -276,8 +276,13 @@ public class Interac_Send_Money extends _CommonPage {
 				
 				mobileAction.FuncClick(selectRecipient, "Select Recipient");
 				
-				String recipientXpath = "**/*[`label CONTAINS[cd] '"+getTestdata("ToAccount")+"'`]";
-				MobileElement recipient = mobileAction.mobileElementUsingIOSClassChain(recipientXpath);
+				mobileAction.getPageSource();
+				
+				//String recipientXpath = "**/*[`label CONTAINS[cd] '"+getTestdata("ToAccount")+"'`]";
+				//MobileElement recipient = mobileAction.mobileElementUsingIOSClassChain(recipientXpath);
+				
+				String recipientXpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'"+getTestdata("ToAccount")+"')]";
+				MobileElement recipient = mobileAction.mobileElementUsingXPath(recipientXpath);
 				
 				mobileAction.FuncClick(recipient, "Recipient " + recipient.getText());
 				mobileAction.FunctionSwipe("up", 200, 200);

@@ -117,7 +117,7 @@ public class AutoDepositPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/cta_text_view']")
 	private MobileElement autoDepositBanner;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/*[`name=='TDVIEW_TITLE' and (label=='Autodeposit' or label=='Dépôt automatique')`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`name=='TDVIEW_TITLE'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement pageHeader;
 
@@ -163,14 +163,16 @@ public class AutoDepositPage extends _CommonPage {
 	private MobileElement customerEligigbilityFailMsg;
 
 	//@iOSXCUITFindBy(iOSClassChain = "**/[`label=='Requested By' or label=='Demandé par'`]")
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeImage[@name='td_iemt_arrow_down']")
+	@iOSXCUITFindBy(xpath="//XCUIElementTypeButton[@label='Select a profile']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/request_money_requestor_view']")
 	private MobileElement requestedBy;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='Register another profile' or label=='Ajouter un autre profil'`]")
+	//@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Register another profile' or label CONTAINS[cd] 'Ajouter un autre profil'`]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Register another profile' or @label='Ajouter un autre profil']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Register another profile' or @text='Ajouter un autre profil']")
 	private MobileElement registerAnotherProfile;
 
+	@iOSXCUITFindBy(xpath="//*[contains(@label,'Request')]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_access_request_money']")
 	private MobileElement requestMoneyCTAOption;
 
@@ -673,9 +675,7 @@ public class AutoDepositPage extends _CommonPage {
 
 		
 			mobileAction.FuncClick(requestedBy, "Requested By DropDown");
-			
 			mobileAction.FuncClick(registerAnotherProfile, "Register Another Profile");
-
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -704,6 +704,9 @@ public class AutoDepositPage extends _CommonPage {
 
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FunctionSwipe("up", 200, 200);
+			
+			mobileAction.getPageSource();
+			
 			mobileAction.FuncClick(requestMoneyCTAOption, "Requested By DropDown");		//TODO::IOS
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Request Money Page Header");
 			mobileAction.verifyTextEquality(pageHeader.getText(),

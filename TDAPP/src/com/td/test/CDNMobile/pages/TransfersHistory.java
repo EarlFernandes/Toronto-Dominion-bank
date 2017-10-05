@@ -378,6 +378,8 @@ public class TransfersHistory extends _CommonPage {
 				mobileAction.verifyTextEquality(transacStatus.getText(), transStatus);
 
 			} else {
+				
+				mobileAction.getPageSource();
 
 				initialsCircle = mobileAction
 						.mobileElementUsingXPath("//XCUIElementTypeButton[contains(@label,'" + initials + "')]");
