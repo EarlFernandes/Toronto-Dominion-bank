@@ -600,9 +600,7 @@ public class Interac_e_Registration extends _CommonPage {
 							MenuPage.get().clickProfileAndSettings();
 							Profile_And_Settings.get().clickPaymentsAndTransfers();
 						}
-					} else {
-						Transfers.get().clickInterac_e_Transfer();
-					}
+					} 
 					clickRegisterAnotherProfile();
 				}
 
