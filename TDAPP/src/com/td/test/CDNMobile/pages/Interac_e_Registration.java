@@ -332,8 +332,6 @@ public class Interac_e_Registration extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(thankYou, "Thank You");
 			mobileAction.verifyElementIsDisplayed(successMag, "You're now registered for Interac e-Transfer");
 
-			mobileAction.getPageSource();
-			
 			if (AutoDepositDoneWhileReg) {
 				
 				mobileAction.verifyElementIsDisplayed(autoDepositSuccmsg, "Auto Deposit Success Message");

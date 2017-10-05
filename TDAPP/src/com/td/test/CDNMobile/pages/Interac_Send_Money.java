@@ -276,8 +276,6 @@ public class Interac_Send_Money extends _CommonPage {
 				
 				mobileAction.FuncClick(selectRecipient, "Select Recipient");
 				
-				mobileAction.getPageSource();
-				
 				//String recipientXpath = "**/*[`label CONTAINS[cd] '"+getTestdata("ToAccount")+"'`]";
 				//MobileElement recipient = mobileAction.mobileElementUsingIOSClassChain(recipientXpath);
 				

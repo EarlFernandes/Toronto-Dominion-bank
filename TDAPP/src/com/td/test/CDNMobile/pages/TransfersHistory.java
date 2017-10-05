@@ -379,8 +379,6 @@ public class TransfersHistory extends _CommonPage {
 
 			} else {
 				
-				mobileAction.getPageSource();
-
 				initialsCircle = mobileAction
 						.mobileElementUsingXPath("//XCUIElementTypeButton[contains(@label,'" + initials + "')]");
 				receiverName = mobileAction

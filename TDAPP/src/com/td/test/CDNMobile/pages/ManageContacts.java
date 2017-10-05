@@ -421,14 +421,10 @@ public class ManageContacts extends _CommonPage {
 				if (mobileAction.verifyElementIsPresent(alertContinue)) {
 					mobileAction.FuncClick(alertContinue, "Continue");
 					mobileAction.FuncClick(alertAllow, "Allow");
-					
-					mobileAction.getPageSource();
-					
+				
 					mobileAction.FuncClick(settings, "Settings");
 				}
 
-				mobileAction.getPageSource();
-				
 				String contactNme = mobileContact.getText();
 				String contactMail = mobileEmail.getText();
 				mobileAction.FuncClick(mobileContact, "Phone Contact");
