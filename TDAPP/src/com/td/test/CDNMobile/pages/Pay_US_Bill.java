@@ -74,7 +74,7 @@ public class Pay_US_Bill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/listView']")
 	private MobileElement payeeList;
 
-	@iOSFindBy(accessibility = "PAYBILLUS_PAY_BILL")
+	@iOSFindBy(xpath = "//*[@name='PAYBILLUS_PAY_BILL' or @name='PAYUSBILL_CONFIRM_PAYBILL']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/button_footer']")
 	private MobileElement pay_bill_button;
 

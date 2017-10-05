@@ -28,7 +28,7 @@ public class Investing extends _CommonPage {
 
 	// @iOSFindBy(xpath =
 	// "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Investing'] | //XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//*[@name='TDVEW_TITLE'] | //XCUIElementTypeOther[@label='Investing'] | //XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement investing_header;
 
@@ -1773,9 +1773,9 @@ public class Investing extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_TABLE_PRICE_PER_UINT));
 			}
 
-			mobileAction.FuncSwipeWhileElementNotFound(tradingFeeDisclaimer, false, 10, "up");			
+			mobileAction.FuncSwipeWhileElementNotFound(tradingFeeDisclaimer, false, 10, "up");
 			mobileAction.verifyElementTextContains(tradingFeeDisclaimer,
-					getTextInCurrentLocale(StringArray.ARRAY_MF_TRADE_FEE_DISCLAIMER));		
+					getTextInCurrentLocale(StringArray.ARRAY_MF_TRADE_FEE_DISCLAIMER));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -2036,7 +2036,7 @@ public class Investing extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				String from_accountNo = "//XCUIElementTypeStaticText[contains(@name, 'INVESTING_ACCOUNT_SUMMARY_DETAILCELL_') and contains(@value, '"
+				String from_accountNo = "//XCUIElementTypeStaticText[contains(@name, 'INVESTING_ACCOUNT_SUMMARY_DETAILCELL_') and contains(@label, '"
 						+ getTestdata("FromAccount") + "')]";
 
 				MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())

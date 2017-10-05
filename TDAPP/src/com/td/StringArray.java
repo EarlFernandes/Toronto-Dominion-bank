@@ -326,6 +326,8 @@ public final class StringArray {
 	public static final String[] ARRAY_ACCOUNT_TOTAL = { "Total", "Total", "总计", "總計" };
 	public static final String[] ARRAY_ADD_LOGIN = { "Add Login", "Ajouter une connexion", "添加登录", "新增登入" };
 	public static final String[] ARRAY_ADD_CANADIAN_PAYEE = { "Add Canadian Payee", "Ajouter un preneur", "添加加拿大收款人",
-			"添加加拿大收款人" };
+			"新增加拿大收款人" };
+	public static final String[] ARRAY_ADD_US_PAYEE = { "Add U.S. Payee", "Ajouter un preneur américain", "添加美国收款人",
+			"新增美國收款人" };
 	// UA Core End
 }
