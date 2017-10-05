@@ -171,6 +171,8 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_NAVROW_ALERTS = { "Alerts", "Alertes", "报价", "報價" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_OPENABANKACCOUNT = { "Open a Bank Account",
 			"Ouvrir un compte bancaire", "报价", "報價" };
+	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGS = { "Home Screen Settings",
+			"Paramètres de l’écran d’accueil", "主屏幕设置", "主屏幕設置" };
 
 	// MIT Dashboard END
 

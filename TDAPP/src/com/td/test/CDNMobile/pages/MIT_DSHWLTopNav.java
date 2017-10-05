@@ -59,6 +59,10 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/watchlist_name']")
 	private List<MobileElement> LBL_WatchListItems;
 
+	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@AndroidFindBy(id = "com.td:id/watchlist_edit_button")
+	private MobileElement BT_Watchlist_Edit;
+
 	public void verifyWatchlistHeaderUI() {
 		Decorator();
 		try {
@@ -83,12 +87,12 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 		String sCurrentWatchlist = null;
 		String sNewWatchList = null;
 		try {
-/*			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				MIT_DSHQuickLinks.get().clickQuickLink(QL_WATCHLISTS, "WATCHLISTS");
 
 			} else {
 				// Click More button ... Not identifiable in iOS <FIX>
-			}*/
+			}
 			sCurrentWatchlist = mobileAction.FuncGetText(LT_WatchListDropDown);
 			mobileAction.FuncClick(LT_WatchListDropDown, "LT_WatchListDropDown");
 
@@ -105,13 +109,15 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 			for (MobileElement sWatchListItem : LBL_WatchListItems) {
 				sNewWatchList = mobileAction.FuncGetText(sWatchListItem);
 				if (!sNewWatchList.equals(sCurrentWatchlist)) {
-					mobileAction.FuncClick(sWatchListItem,sNewWatchList );
+					mobileAction.FuncClick(sWatchListItem, sNewWatchList);
 					break;
 				}
 			}
-			
+
 			mobileAction.verifyElement(LT_WatchListDropDown, sNewWatchList);
-			
+
+			mobileAction.verifyElementIsDisplayed(BT_Watchlist_Edit, "Watchlist Menu Bar Edit Button");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
