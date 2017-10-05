@@ -836,6 +836,8 @@ public class Profile extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				save_button = mobileAction.verifyElementUsingXPath(
 						"//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_SAVE_BUTTON) + "']", "Save Button");
+			} else {
+				mobileAction.FuncSwipeOnce("up");
 			}
 			mobileAction.FuncClick(save_button, "Save");
 			mobileAction.waitForElementToVanish(progressBar);

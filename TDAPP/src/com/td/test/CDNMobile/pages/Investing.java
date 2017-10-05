@@ -2036,8 +2036,8 @@ public class Investing extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				String from_accountNo = "//XCUIElementTypeStaticText[contains(@name, 'INVESTING_ACCOUNT_SUMMARY_DETAILCELL_') and contains(@label, '"
-						+ getTestdata("FromAccount") + "')]";
+				String from_accountNo = "//XCUIElementTypeStaticText[contains(@label, '" + getTestdata("FromAccount")
+						+ "')]";
 
 				MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())
 
