@@ -28,7 +28,7 @@ public class Investing extends _CommonPage {
 
 	// @iOSFindBy(xpath =
 	// "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
-	@iOSFindBy(xpath = "//*[@name='TDVEW_TITLE'] | //XCUIElementTypeOther[@label='Investing'] | //XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE'] | //XCUIElementTypeOther[@label='Investing'] | //XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement investing_header;
 
@@ -1548,13 +1548,14 @@ public class Investing extends _CommonPage {
 				mobileAction.verifyTextEquality(investing_header.getAttribute("label"),
 						mobileAction.getAppString("Investing"));
 				mobileAction.verifyTextEquality(investing_body_title.getText(),
-						mobileAction.getAppString("investing_open_account"));
+						getTextInCurrentLocale(StringArray.ARRAY_INVESTING_OPEN_ACCOUNT));
 				mobileAction.verifyTextEquality(investing_body_msg.getText(),
-						mobileAction.getAppString("str_investing_cross_sell_message_detail"));
+						getTextInCurrentLocale(StringArray.ARRAY_INVESTING_CROSS_MSG));
 				mobileAction.verifyTextEquality(go_to_webbroker_button.getText(),
 						mobileAction.getAppString("str_go_to_webbroker"));
 				mobileAction.verifyTextEquality(call_button.getText().split(" ")[0],
-						mobileAction.getAppString("call_phone").replace(" %1$s", ""));
+						//mobileAction.getAppString("call_phone").replace(" %1$s", ""));
+						mobileAction.getAppString("str_Call").replace(" %1$s", ""));
 			} else {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"

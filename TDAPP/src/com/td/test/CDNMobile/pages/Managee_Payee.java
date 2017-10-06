@@ -234,7 +234,7 @@ public class Managee_Payee extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
-						+ mobileAction.getAppString("manage_payees_title") + "']", "Manage Payee title");
+						+ mobileAction.getAppString("add_payee_title") + "']", "Add Payee title");
 				mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeTextField[@label='" + mobileAction.getAppString("add_cdn_payee_hint") + "']",
 						"Search payee");
@@ -425,10 +425,11 @@ public class Managee_Payee extends _CommonPage {
 						"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("us") + "']",
 						"US banner button");
 				usElement.click();
-				addPayee = mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeNavigationBar/XCUIElementTypeButton[@label='"
-								+ getTextInCurrentLocale(StringArray.ARRAY_ADD_US_PAYEE) + "']",
-						"Add Canadian Payee");
+				addPayee = mobileAction
+						.verifyElementUsingXPath(
+								"//XCUIElementTypeNavigationBar/XCUIElementTypeButton[@label='"
+										+ getTextInCurrentLocale(StringArray.ARRAY_ADD_US_PAYEE) + "']",
+								"Add Canadian Payee");
 				mobileAction.FuncClick(addPayee, "Add US Payee");
 				Thread.sleep(10000);
 			} else {

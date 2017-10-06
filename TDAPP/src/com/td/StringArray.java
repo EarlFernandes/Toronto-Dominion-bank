@@ -330,5 +330,12 @@ public final class StringArray {
 			"新增加拿大收款人" };
 	public static final String[] ARRAY_ADD_US_PAYEE = { "Add U.S. Payee", "Ajouter un preneur américain", "添加美国收款人",
 			"新增美國收款人" };
+	public static final String[] ARRAY_INVESTING_OPEN_ACCOUNT = { "Open a TD Direct Investing Account",
+			"Ouvrir un compte Placements directs TD", "开设道明自管投资账户", "開設道明自管投資賬戶" };
+	public static final String[] ARRAY_INVESTING_CROSS_MSG = {
+			"Trade with confidence. Open a TD Direct Investing account today.",
+			"Négociez en toute confiance. Ouvrez un compte Placements directs TD.", "开设道明银行自管投资账户 增强信心，驾驭全局。",
+			"立即開設道明自管投資賬戶 增強信心，駕馭全局。" };
+
 	// UA Core End
 }
