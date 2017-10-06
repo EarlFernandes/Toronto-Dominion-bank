@@ -28,9 +28,10 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_VIEW_FUND_FACT = { "View Fund Facts (Performance & Fees)",
 			"Consulter l’Aperçu du fonds (rendement et frais)", "查看基金概况（表现和费用）", "查看基金概況（表現和費用）" };
 	public static final String[] ARRAY_MF_CONTENT_RADIO = {
-			"I consent to receiving the Fund Details and Fees electronically and I acknowledge I've had the opportunity to review them prior to purchasing the fund.",
-			"Je consens à recevoir les renseignements au sujet du fonds et des frais par voie électronique et je reconnais que j’ai eu l’occasion de les examiner avant d’investir dans le fonds.",
-			"我同意通过电子方式获取基金概况和费用，并确认我有机会在购买基金之前查阅基金概况和费用。", "我同意以電子方式獲取基金詳情和費用，並確認我在購買基金前都有機會先查閱內容。" };
+			"I consent to receiving the Fund Details and Fees electronically and I acknowledge I've had the opportunity to review them prior to purchasing the fund. I acknowledge that I may be charged a short term trading fee of up to 2% of my purchase cost if I switch or redeem my Funds (except the Money Market Funds). Please note: This fee does not apply to Fund units purchased through distribution / dividend reinvestment. Short term trading fees are paid directly to the Fund. You can refer to the applicable fund facts or the simplified prospectus for further details.",
+			"Je consens à recevoir les renseignements au sujet du fonds et des frais par voie électronique et je reconnais que j’ai eu l’occasion de les examiner avant d’investir dans le fonds. Je comprends que je pourrais devoir payer des frais d’opérations à court terme s’élevant jusqu’à 2 % du coût d’achat si je substitue ou rachète des parts du fonds (sauf dans le cas d’un Fonds du marché monétaire). Remarque : Ces frais ne s’appliquent pas aux parts de fonds achetés dans le cadre d’un régime deréinvestissement des distributions ou des dividendes. Les frais d’opérations à court terme sont versés directement dans le fonds. Vous pouvez consulter l’aperçu du fonds ou le prospectus simplifié pertinent pour plus de précisions.",
+			"我同意通过电子方式获取基金概况和费用，并确认我有机会在购买基金之前查阅基金概况和费用。 我同意，如果我转换或赎回基金（货币市场基金除外），我可能需要支付不超过购买成本2%的短期交易费。 请注意：此费用不适用于通过分红/股息再投资购买的基金单位。短期交易费将直接支付给基金。请参阅相关基金概况或简化招股说明书了解更多详情。",
+			"我同意以電子方式獲取基金詳情和費用，並確認我在購買基金前都有機會先查閱內容。 本人確認了解，如果我轉換或贖回基金（貨幣市場基金除外），我可能需要支付不超過購買成本2%的短期交易費。 註：此費用不適用於透過分紅/股息再投資所購買的基金單位。短期交易費將直接支付給基金。請參閱相關基金概況或簡化版招股章程以了解更多詳情。" };
 	public static final String[] ARRAY_MF_PREVIEW_PURCHASE_HEADER = { "Preview Purchase", "Aperçu", "预览购买", "預覽購買" };
 	public static final String[] ARRAY_MF_ERROR_NO_FUND_SELECTED = { "Please Select a Fund",
 			"Veuillez sélectionner un fonds", "请选择一支基金", "請選擇基金" };
@@ -161,11 +162,11 @@ public final class StringArray {
 			"Vous pourriez devoir payer des frais d’opérations à court terme s’élevant jusqu’à 2 % du coût d’achat si vous substituez ou rachetez des parts du fonds (sauf dans le cas d’un Fonds du marché monétaire). Ces frais ne s’appliquent pas aux parts de fonds achetés dans le cadre d’un régime de réinvestissement des distributions ou des dividendes. Les frais d’opérations à court terme sont versés directement dans le fonds. Pour plus de précisions, veuillez consulter l’aperçu du fonds ou le prospectus simplifié pertinent.",
 			"如果您转换或赎回基金（货币市场基金除外），您可能需要支付不超过购买成本2%的短期交易费。此费用不适用于通过分红/股息再投资购买的基金单位。短期交易费直接支付给基金。请参阅相关基金概况或简化招股说明书了解更多详情。",
 			"如果您轉換或贖回基金（貨幣市場基金除外），您可能需要支付不超過購買成本2%的短期交易費。此費用不適用於透過分紅/股息再投資所購買的基金單位。短期交易費將直接支付給基金。請參閱相關基金概況或簡化版招股章程以了解更多詳情。" };
-	public static final String[] ARRAY_MF_LEGAL_MIN_HOLDING_FEE = {
-			"I acknowledge that I may be charged a short term trading fee of up to 2% of my purchase cost if I switch or redeem my Funds (except the Money Market Funds).Please note: This fee does not apply to Fund units purchased through distribution / dividend reinvestment. Short term trading fees are paid directly to the Fund. You can refer to the applicable fund facts or the simplified prospectus for further details.",
-			"Je comprends que je pourrais devoir payer des frais d’opérations à court terme s’élevant jusqu’à 2 % du coût d’achat si je substitue ou rachète des parts du fonds (sauf dans le cas d’un Fonds du marché monétaire).Remarque : Ces frais ne s’appliquent pas aux parts de fonds achetés dans le cadre d’un régime deréinvestissement des distributions ou des dividendes. Les frais d’opérations à court terme sont versés directement dans le fonds. Vous pouvez consulter l’aperçu du fonds ou le prospectus simplifié pertinent pour plus de précisions.",
-			"我同意，如果我转换或赎回基金（货币市场基金除外），我可能需要支付不超过购买成本2%的短期交易费。请注意：此费用不适用于通过分红/股息再投资购买的基金单位。短期交易费将直接支付给基金。请参阅相关基金概况或简化招股说明书了解更多详情。 ",
-			"本人確認了解，如果我轉換或贖回基金（貨幣市場基金除外），我可能需要支付不超過購買成本2%的短期交易費。 註：此費用不適用於透過分紅/股息再投資所購買的基金單位。短期交易費將直接支付給基金。請參閱相關基金概況或簡化版招股章程以了解更多詳情。" };
+	public static final String[] ARRAY_MF_LEGAL_TRAILING_COMMISSION = {
+			"TD Asset Management Inc. (TDAM) pays TD Investment Services Inc. (TDIS) a trailing commission for as long as you hold units of TD Mutual Funds. It is for the services and advice provided to you. See the Fund Facts for more details.",
+			"Gestion de Placements TD Inc. (GPTD) verse une commission de suivi à Services d’investissement TD Inc. en contrepartie des services et des conseils qui vous sont offerts, tant et aussi longtemps que vous détenez des parts des Fonds Mutuels TD. Veuillez vous reporter à l’aperçu du fonds pertinent pour obtenir plus de précisions.",
+			"道明资产管理有限公司（TDAM）在您持有道明互惠基金单位期间向道明投资服务有限公司（TDIS）支付尾随佣金，作为其向您提供服务和咨询的费用。有关详细信息，请参阅基金概况。",
+			"道明資產管理有限公司（TDAM）在您持有道明互惠基金單位期間向道明投資服務有限公司（TDIS）支付尾隨佣金，作為其向您提供服務和諮詢的費用。有關詳細信息，請參閱基金概況。" };
 
 	public static final String[] ARRAY_PROFILE_AND_PREFERENCE = { "Profile & Settings", "Profil et paramètres",
 			"个人资料和设置", "個人資料和設定" };

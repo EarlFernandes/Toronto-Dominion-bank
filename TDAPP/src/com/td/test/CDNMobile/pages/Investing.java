@@ -2035,14 +2035,16 @@ public class Investing extends _CommonPage {
 		int count = 0;
 		try {
 
+			String fromAccount = getTestdata("FromAccount");
+			System.out.println("Account:"+fromAccount);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				String from_accountNo = "//XCUIElementTypeStaticText[contains(@label, '" + getTestdata("FromAccount")
-						+ "')]";
+				String from_accountNo = "//XCUIElementTypeStaticText[contains(@label, '" + fromAccount + "')]";
 
-				MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())
-
-						.findElement(By.xpath(from_accountNo));
-				mobileAction.FunCSwipeandScroll(fromAccountval, true);
+//				MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())
+//
+//						.findElement(By.xpath(from_accountNo));
+//				mobileAction.FunCSwipeandScroll(fromAccountval, true);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(from_accountNo, true, 10, "up");
 			} else {
 
 				String accountNum = getTestdata("FromAccount");

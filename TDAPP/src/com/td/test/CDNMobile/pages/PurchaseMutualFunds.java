@@ -426,7 +426,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			}
 
 			mobileAction.FuncSwipeWhileElementNotFound(legal_text, false, 5, "up");
-			mobileAction.verifyElementTextIsDisplayed(legal_text,getTextInCurrentLocale(StringArray.ARRAY_MF_LEGAL_MIN_HOLDING_FEE));
+			mobileAction.verifyElementTextIsDisplayed(legal_text,getTextInCurrentLocale(StringArray.ARRAY_MF_LEGAL_TRAILING_COMMISSION));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed to VerifyPurchaseMFPageInChinese.");

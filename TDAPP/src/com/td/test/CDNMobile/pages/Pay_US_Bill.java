@@ -346,13 +346,13 @@ public class Pay_US_Bill extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				payUSBillToConfirmation();
 				mobileAction.FuncClick(pay_bill_button, "Pay bill");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @text='"
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
 						+ mobileAction.getAppString("pay_us_bill_page_title") + "']", "Pay US Bill title");
 				mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("receipt_thankyou") + "']",
 						"Thank you!");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
-						+ mobileAction.getAppString("bill_paid_successfully") + "']", "Payment Submitted");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value,'"
+						+ mobileAction.getAppString("bill_paid_successfully") + "')]", "Payment Submitted");
 				// mobileAction.verifyElementUsingXPath(
 				// "//XCUIElementTypeStaticText[@value='" +
 				// mobileAction.getAppString("note") + "']", "Note");
@@ -422,8 +422,8 @@ public class Pay_US_Bill extends _CommonPage {
 						"Thank you!");
 				mobileAction
 						.verifyElementUsingXPath(
-								"//android.widget.TextView[@resource-id='com.td:id/label' and @text='"
-										+ mobileAction.getAppString("bill_paid_successfully") + "']",
+								"//android.widget.TextView[@resource-id='com.td:id/label' and contains(@text,'"
+										+ mobileAction.getAppString("bill_paid_successfully") + "')]",
 								"Payment Submitted");
 				mobileAction
 						.verifyElementUsingXPath("//android.widget.TextView[@resource-id='com.td:id/note' and @text='"
