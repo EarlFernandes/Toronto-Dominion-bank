@@ -306,7 +306,7 @@ public final class StringArray {
 	public static final String[] ARRAY_REQUEST_MONEY_WRONG_EMAIL_STR = { "INVALID EMAIL ADDRESS",
 			"Adresse courriel non valide", "", "" };
 	public static final String[] ARRAY_CUSTOMER_ELIGIBILITY_ERROR_MSG = {
-			"There appears to be an issue with your account", "Il semble y avoir un problème avec votre compte", "",
+			"There appears to be an issue with your", "Il semble y avoir un problème avec votre compte", "",
 			"" };
 	public static final String[] TRADE_RESPONSE_1 = {
 			"I acknowledge the trade name displayed above IS the trade name of the business",

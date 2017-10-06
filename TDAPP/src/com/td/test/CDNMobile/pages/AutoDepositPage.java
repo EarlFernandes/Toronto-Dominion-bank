@@ -129,7 +129,7 @@ public class AutoDepositPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[contains(@text,'$')]")
 	private MobileElement amount;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Deposit to' or @label='Compte de destination']/following-sibling::XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Deposit to' or @label='Compte de destination']/following-sibling::XCUIElementTypeButton")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/request_money_deposit_to_view']")
 	private MobileElement depositTo;
 
@@ -628,6 +628,7 @@ public class AutoDepositPage extends _CommonPage {
 				mobileAction.FuncClick(amount, "Amount");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
 				mobileAction.FuncClickDone();
+				
 				mobileAction.FuncClick(depositTo, "Deposit To Drop Down");
 				mobileAction.FuncClick(depositToAccount, "Deposit To Account " + depositToAccount.getText());
 				mobileAction.FuncClick(nextAutoDep, "Next Button");
