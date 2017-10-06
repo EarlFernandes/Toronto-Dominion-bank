@@ -90,7 +90,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/checkbox_description']")
 	private MobileElement consent_checkbox_description;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther[11]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther[10]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer' and @index='7']/android.widget.TextView")
 	private MobileElement legal_text;
 
@@ -401,11 +401,12 @@ public class PurchaseMutualFunds extends _CommonPage {
 					getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT));
 			mobileAction.verifyElementTextIsDisplayed(contact_caption,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_CONTACT_INFO));
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView", 1, "down");
-			} else {
-				mobileAction.SwipeWithinElement("//XCUIElementTypeTable", 1, "down");
-			}
+//			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+//				mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView", 1, "down");
+//			} else {
+//				mobileAction.SwipeWithinElement("//XCUIElementTypeTable", 1, "down");
+//			}
+			mobileAction.FuncSwipeWhileElementNotFound(view_fundFacts, false, 3, "up");
 			mobileAction.verifyElementTextIsDisplayed(email_caption,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL));
 			mobileAction.verifyElementTextIsDisplayed(phone_caption,
@@ -417,6 +418,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 
 			mobileAction.verifyElementTextIsDisplayed(view_fundFacts,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_VIEW_FUND_FACT));
+			mobileAction.FuncSwipeWhileElementNotFound(legal_text, false, 2, "up");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementTextIsDisplayed(consent_checkbox_description,
 						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_RADIO));
@@ -425,8 +427,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_RADIO));
 			}
 
-			mobileAction.FuncSwipeWhileElementNotFound(legal_text, false, 5, "up");
-			mobileAction.verifyElementTextIsDisplayed(legal_text,getTextInCurrentLocale(StringArray.ARRAY_MF_LEGAL_TRAILING_COMMISSION));
+			//mobileAction.verifyElementTextIsDisplayed(legal_text,getTextInCurrentLocale(StringArray.ARRAY_MF_LEGAL_TRAILING_COMMISSION));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed to VerifyPurchaseMFPageInChinese.");

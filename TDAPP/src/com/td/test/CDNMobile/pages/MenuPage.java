@@ -20,18 +20,18 @@ public class MenuPage extends _CommonPage {
 
 	private static MenuPage MenuPage;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_TRANSFERS']/XCUIElementTypeStaticText")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_TRANSFERS")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Transfers' or @text='Virements')]")
 	private MobileElement transfers;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_BILLS']/XCUIElementTypeStaticText")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_BILLS")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Bills']")
 	private MobileElement bills;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_MOVEN']/XCUIElementTypeStaticText")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_MOVEN")
 	private MobileElement tdMySpend;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_CROSSBORDER']/XCUIElementTypeStaticText")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_CROSSBORDER")
 	private MobileElement crossBorder;
 
 	// @iOSFindBy(xpath =
@@ -49,21 +49,21 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Comptes Placements directs TD']")
 	private MobileElement investingFRE;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_QUESTIONS']/XCUIElementTypeStaticText")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_QUESTIONS")
 	private MobileElement faq;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_FEEDBACK']/XCUIElementTypeStaticText")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_FEEDBACK")
 	private MobileElement feedback;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_DEPOSIT']/XCUIElementTypeStaticText")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_DEPOSIT")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Mobile Deposit']")
 	private MobileElement mobile_Deposit_button;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_ACCOUNTS']/XCUIElementTypeStaticText")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_ACCOUNTS")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='My Accounts' or @text='Mes comptes')]")
 	private MobileElement accounts_button;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_TDFORME']/XCUIElementTypeStaticText")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_TDFORME")
 	private MobileElement tdForMe;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Virements'] ")
@@ -74,15 +74,15 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_CONTACT']/XCUIElementTypeStaticText")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_CONTACT")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Contact Us' or @text='Contactez-nous')]")
 	private MobileElement contactUs;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']/XCUIElementTypeStaticText")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_HOME")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
 	private MobileElement home_button;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_PRIVACY']/XCUIElementTypeStaticText")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_PRIVACY")
 	private MobileElement privacy;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade' or @label='Négociation']")
@@ -96,19 +96,19 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Apple Pay']")
 	private MobileElement applePay;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_LOCATIONS']/XCUIElementTypeStaticText")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_LOCATIONS")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
 	private MobileElement locations;
 
 	// Profile and preference
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_PREFERENCES']/XCUIElementTypeStaticText")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_PREFERENCES")
 	private MobileElement profile_and_settings;
 
 	// customer feedback
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_FEEDBACK']/XCUIElementTypeStaticText")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_FEEDBACK")
 	private MobileElement give_feedback;
 
-	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_MAIL_TITLE']")
+	@iOSFindBy(accessibility = "CONTACTUS_CELL_0_MAIL_TITLE")
 	private MobileElement give_feedback_contact_us;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText']")
