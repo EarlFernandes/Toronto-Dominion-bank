@@ -374,7 +374,7 @@ public class EventCase {
 			break;
 			
 		case AutoDepositPage_setupQuickAutoDeposit:
-			//AutoDepositPage.get().setupQuickAutoDeposit();
+			AutoDepositPage.get().setupQuickAutoDeposit();
 			break;
 			
 		case Transfers_clickRequestMoneyLink:
