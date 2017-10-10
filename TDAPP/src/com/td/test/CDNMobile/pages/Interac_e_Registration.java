@@ -103,7 +103,9 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 
-	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@value,'Please choose which profile')]")
+	// @iOSXCUITFindBy(xpath =
+	// "//XCUIElementTypeStaticText[contains(@value,'Please choose which
+	// profile')]")
 	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Please choose which profile' or label CONTAINS[cd] 'Veuillez choisir un profil pour l’inscription'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_multi_profile']")
 	private MobileElement chooseProfile;
@@ -120,7 +122,6 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_trade_name_response']")
 	private MobileElement tradeResponse;
 
-	
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_done' or @text='Done']")
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
 	private MobileElement done;
@@ -142,7 +143,8 @@ public class Interac_e_Registration extends _CommonPage {
 	private MobileElement goBackHome;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Register another profile' or @label='Ajouter un autre profil']")
-	//@iOSXCUITFindBy(iOSClassChain = "**/*[`name CONTAINS[cd] 'Register anohter profile' or name CONTAINS[cd] 'Ajouter un autre profil'`]")
+	// @iOSXCUITFindBy(iOSClassChain = "**/*[`name CONTAINS[cd] 'Register
+	// anohter profile' or name CONTAINS[cd] 'Ajouter un autre profil'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_payments_and_transfers_register_account']")
 	private MobileElement registerAnotherProfile;
 
@@ -157,7 +159,8 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Done' or @text='Annuler']")
 	private MobileElement doneButton;
 
-	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Send Money')]")
+	// @iOSXCUITFindBy(xpath =
+	// "//XCUIElementTypeStaticText[contains(@label,'Send Money')]")
 	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Check your email for instructions from'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
 	private MobileElement autoDepositSuccmsg;
@@ -200,15 +203,9 @@ public class Interac_e_Registration extends _CommonPage {
 			mobileAction.FuncClick(continueButton, "Continue");
 			mobileAction.waitForElementToVanish(progressBar);
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -259,12 +256,9 @@ public class Interac_e_Registration extends _CommonPage {
 
 			AutoDepositDoneWhileReg = true;
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -304,12 +298,9 @@ public class Interac_e_Registration extends _CommonPage {
 			mobileAction.FuncClick(continueButton, "Continue Button");
 			mobileAction.waitForElementToVanish(progressBar);
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -328,23 +319,22 @@ public class Interac_e_Registration extends _CommonPage {
 		Decorator();
 		try {
 
-			
 			mobileAction.verifyElementIsDisplayed(thankYou, "Thank You");
 			mobileAction.verifyElementIsDisplayed(successMag, "You're now registered for Interac e-Transfer");
 
 			if (AutoDepositDoneWhileReg) {
-				
+
 				mobileAction.verifyElementIsDisplayed(autoDepositSuccmsg, "Auto Deposit Success Message");
-				
+
 				mobileAction.verifyTextContains(autoDepositSuccmsg.getText(),
 						getTextInCurrentLocale(StringArray.ARRAY_AUTODEPOSIT_EMAIL_SENT_MSG));
-				
-				AutoDepositDoneWhileReg=false;
+
+				AutoDepositDoneWhileReg = false;
 			}
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -372,11 +362,16 @@ public class Interac_e_Registration extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(tradeName, tradeName.getText());
 				mobileAction.FuncClick(tradeResponse, "Trade Response");
 
-				/*String response = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@name,'" + tradeResponseTxt
-						+ "')]";*/
-				
-				String response ="**/*[`label CONTAINS[cd] '"+tradeResponseTxt+"' OR name CONTAINS[cd] '"+tradeResponseTxt+"' OR value CONTAINS[cd] '"+tradeResponseTxt+"'`]";
-				//MobileElement tradeResponse = mobileAction.mobileElementUsingXPath(response);
+				/*
+				 * String response =
+				 * "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@name,'"
+				 * + tradeResponseTxt + "')]";
+				 */
+
+				String response = "**/*[`label CONTAINS[cd] '" + tradeResponseTxt + "' OR name CONTAINS[cd] '"
+						+ tradeResponseTxt + "' OR value CONTAINS[cd] '" + tradeResponseTxt + "'`]";
+				// MobileElement tradeResponse =
+				// mobileAction.mobileElementUsingXPath(response);
 				MobileElement tradeResponse = mobileAction.mobileElementUsingIOSClassChain(response);
 
 				mobileAction.FuncClick(tradeResponse, "Trade Response Option");
@@ -393,16 +388,16 @@ public class Interac_e_Registration extends _CommonPage {
 
 				mobileAction.verifyElementIsDisplayed(businessName, businessName.getText());
 				mobileAction.verifyElementIsDisplayed(tradeName, tradeName.getText());
-				mobileAction.FunctionSwipe("up",9000, 600);
+				mobileAction.FunctionSwipe("up", 9000, 600);
 				mobileAction.FuncClick(tradeResponse, "Trade Response");
 				String response = "//android.widget.TextView[contains(@text,'" + tradeResponseTxt + "')]";
 
 				MobileElement tradeResponse = mobileAction.mobileElementUsingXPath(response);
 
 				mobileAction.FuncClick(tradeResponse, "Trade Response Option");
-				//mobileAction.FuncClick(doneButton, "Done");
+				// mobileAction.FuncClick(doneButton, "Done");
 
-				mobileAction.FunctionSwipe("up",8000, 600);
+				mobileAction.FunctionSwipe("up", 8000, 600);
 
 				mobileAction.FuncClick(emailId, "Email");
 				mobileAction.FuncSendKeys(emailId, email);
@@ -414,12 +409,9 @@ public class Interac_e_Registration extends _CommonPage {
 				mobileAction.FuncClick(continueButton, "Continue Button");
 
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -488,12 +480,9 @@ public class Interac_e_Registration extends _CommonPage {
 			mobileAction.FuncClick(continueButton, "Continue Button");
 			mobileAction.waitForElementToVanish(progressBar);
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -598,18 +587,15 @@ public class Interac_e_Registration extends _CommonPage {
 							MenuPage.get().clickProfileAndSettings();
 							Profile_And_Settings.get().clickPaymentsAndTransfers();
 						}
-					} 
+					}
 					clickRegisterAnotherProfile();
 				}
 
 			}
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -709,18 +695,15 @@ public class Interac_e_Registration extends _CommonPage {
 							MenuPage.get().clickProfileAndSettings();
 							Profile_And_Settings.get().clickPaymentsAndTransfers();
 						}
-					} 
+					}
 					clickRegisterAnotherProfile();
 				}
 
 			}
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -739,14 +722,14 @@ public class Interac_e_Registration extends _CommonPage {
 	public void verifyErrorMessage() {
 		Decorator();
 		try {
-			
+
 			mobileAction.verifyElementIsDisplayed(errorText, "Error Message");
 			mobileAction.verifyElementIsDisplayed(openAnAccount, "Open An Account");
 			mobileAction.verifyElementIsDisplayed(findABranch, "Find A Branch");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -768,9 +751,9 @@ public class Interac_e_Registration extends _CommonPage {
 			HomeScreen.get().clickMenu();
 			MenuPage.get().clickMenuTransfer();
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -789,23 +772,21 @@ public class Interac_e_Registration extends _CommonPage {
 		Decorator();
 		try {
 
+			if (mobileAction.verifyElementIsPresent(sendMoney)) {
 
-				if (mobileAction.verifyElementIsPresent(sendMoney)) {
-					
-					if(platformName.equalsIgnoreCase("Android")){
+				if (platformName.equalsIgnoreCase("Android")) {
 					mobileAction.FuncClick(backButton, "Back Button");
-					}
-					HomeScreen.get().clickMenu();
-					MenuPage.get().clickProfileAndSettings();
-					Profile_And_Settings.get().clickPaymentsAndTransfers();
 				}
-		
+				HomeScreen.get().clickMenu();
+				MenuPage.get().clickProfileAndSettings();
+				Profile_And_Settings.get().clickPaymentsAndTransfers();
+			}
 
 			mobileAction.FuncClick(registerAnotherProfile, "Register Another Profile");
 
-		} catch (NoSuchElementException | IOException | InterruptedException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

@@ -336,5 +336,6 @@ public final class StringArray {
 	public static final String[] ADD_AUTODEPOSIT_RECEIPT_SUB_HEADER = { "Check your email for instructions",
 			"Consultez les instructions que vous avez reçues", "", "" };
 	public static final String[] CANCEL_MONEY_RECEIPT_HEADER = { "Request Cancelled", "Demande annulée", "", "" };
+	public static final String[] SETUP_AUTODEPOSIT_STR = { "Set up Autodeposit", "Établir Autodépôt", "", "" };
 
 }

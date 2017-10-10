@@ -655,7 +655,7 @@ public class MenuPage extends _CommonPage {
 		
 			mobileAction.FuncClick(profile_and_settings, profileSettings);
 			
-			mobileAction.waitForElementToVanish(progressBar);
+			//mobileAction.waitForElementToVanish(progressBar);
 			
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

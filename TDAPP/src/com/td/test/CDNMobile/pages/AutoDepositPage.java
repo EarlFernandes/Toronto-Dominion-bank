@@ -140,12 +140,12 @@ public class AutoDepositPage extends _CommonPage {
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label=='Continue' or label=='Request Money' or label=='Next' or `label=='Continuer' or label=='Demander des fonds' or label=='Suivant'`]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button']")
 	private MobileElement next;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeOther/XCUIElementTypeButton[@label='Next' or @name='Next']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeButton[@label='Next' or @name='Next']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button']")
 	private MobileElement nextAutoDep;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeOther/XCUIElementTypeButton[@label='Request Money' or @name='Demander des fonds']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeButton[@label='Request Money' or @name='Demander des fonds']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button']")
 	private MobileElement nextReqMoney;
 
@@ -155,24 +155,22 @@ public class AutoDepositPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header']")
 	private MobileElement requestMoneySuccessMsg;
 
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='Request sent!' or @label='Demande envoyée!']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Request sent!' or @label='Demande envoyée!']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subHeader']")
 	private MobileElement requestMoneySubHeader;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
 	private MobileElement customerEligigbilityFailMsg;
 
-	//@iOSXCUITFindBy(iOSClassChain = "**/[`label=='Requested By' or label=='Demandé par'`]")
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeButton[@label='Select a profile']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Select a profile']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/request_money_requestor_view']")
 	private MobileElement requestedBy;
 
-	//@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Register another profile' or label CONTAINS[cd] 'Ajouter un autre profil'`]")
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Register another profile' or @label='Ajouter un autre profil']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Register another profile' or @text='Ajouter un autre profil']")
 	private MobileElement registerAnotherProfile;
 
-	@iOSXCUITFindBy(xpath="//*[contains(@label,'Request')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Request')]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_access_request_money']")
 	private MobileElement requestMoneyCTAOption;
 
@@ -206,13 +204,9 @@ public class AutoDepositPage extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Page Header");
 
-
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -240,10 +234,9 @@ public class AutoDepositPage extends _CommonPage {
 			else
 				mobileAction.FuncClick(setAutodepositTopBtn, "Set up Autodeposit Button");
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -305,10 +298,9 @@ public class AutoDepositPage extends _CommonPage {
 				emailCounter = 0;
 			}
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -331,10 +323,9 @@ public class AutoDepositPage extends _CommonPage {
 
 			mobileAction.FuncClick(acceptBtn, "Accept Button");
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -362,10 +353,9 @@ public class AutoDepositPage extends _CommonPage {
 			mobileAction.verifyTextContains(checkEmailMsg.getText(),
 					getTextInCurrentLocale(StringArray.ADD_AUTODEPOSIT_RECEIPT_SUB_HEADER));
 
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -394,6 +384,7 @@ public class AutoDepositPage extends _CommonPage {
 
 				autodepositStatus = autodepositAccToDel[i];
 
+			Thread.sleep(3000);
 				clickAutoDeposit();
 
 				mobileAction.FuncClick(deleteAutoDepositBtn, "Delete AutoDeposit Button");
@@ -408,14 +399,14 @@ public class AutoDepositPage extends _CommonPage {
 					mobileAction.verifyTextEquality(Successmsg.getText(),
 							mobileAction.getAppString("auto_deposit_deleted"));
 				}
+				
+				Interac_Send_Money.get().iOS_back_button();
+				PaymentsAndTransfers.get().clickManageAutoDeposit();
 			}
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -469,28 +460,24 @@ public class AutoDepositPage extends _CommonPage {
 						.equalsIgnoreCase(getTextInCurrentLocale(StringArray.ARRAY_AUTODEPOSIT_PENDING_STATUS))) {
 
 					pendingAutoDeposit = mobileAction
-							.mobileElementUsingXPath("//XCUIElementTypeButton[contains(@label,'"
+							.mobileElementUsingXPath("//XCUIElementTypeOther/XCUIElementTypeButton[contains(@label,'"
 									+ getTextInCurrentLocale(StringArray.ARRAY_AUTODEPOSIT_PENDING_STATUS) + "')]");
 					mobileAction.FuncClick(pendingAutoDeposit, "Pending AutoDeposit");
 
 				} else {
 
-					activeAutoDeposit = mobileAction.mobileElementUsingXPath("//XCUIElementTypeButton[contains(@label,'"
+					activeAutoDeposit = mobileAction.mobileElementUsingXPath("//XCUIElementTypeOther/XCUIElementTypeButton[contains(@label,'"
 							+ getTextInCurrentLocale(StringArray.ARRAY_AUTODEPOSIT_ACTIVE_STATUS) + "')]");
 					mobileAction.FuncClick(activeAutoDeposit, "Active AutoDeposit");
 				}
 
 			}
+			
+			activeAutoDeposit = null;
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -516,6 +503,8 @@ public class AutoDepositPage extends _CommonPage {
 			String enterAccount = null;
 			MobileElement accountToSelect = null;
 
+			mobileAction.waitForElementToVanish(progressBar);
+			
 			if (autodepositAcc.getText().contains(accounts[0])) {
 				enterAccount = accounts[1];
 			} else {
@@ -563,12 +552,9 @@ public class AutoDepositPage extends _CommonPage {
 						mobileAction.getAppString("auto_deposit_updated"));
 			}
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -591,12 +577,9 @@ public class AutoDepositPage extends _CommonPage {
 
 			mobileAction.FuncClick(autoDepositBanner, "Auto Deposit Banner");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -628,7 +611,7 @@ public class AutoDepositPage extends _CommonPage {
 				mobileAction.FuncClick(amount, "Amount");
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
 				mobileAction.FuncClickDone();
-				
+
 				mobileAction.FuncClick(depositTo, "Deposit To Drop Down");
 				mobileAction.FuncClick(depositToAccount, "Deposit To Account " + depositToAccount.getText());
 				mobileAction.FuncClick(nextAutoDep, "Next Button");
@@ -648,12 +631,9 @@ public class AutoDepositPage extends _CommonPage {
 				mobileAction.FuncClick(next, "Next Button");
 			}
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -674,15 +654,11 @@ public class AutoDepositPage extends _CommonPage {
 		Decorator();
 		try {
 
-		
 			mobileAction.FuncClick(requestedBy, "Requested By DropDown");
 			mobileAction.FuncClick(registerAnotherProfile, "Register Another Profile");
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -705,18 +681,15 @@ public class AutoDepositPage extends _CommonPage {
 
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FunctionSwipe("up", 200, 200);
-			
-			mobileAction.FuncClick(requestMoneyCTAOption, "Requested By DropDown");		//TODO::IOS
+
+			mobileAction.FuncClick(requestMoneyCTAOption, "Requested By DropDown");
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Request Money Page Header");
 			mobileAction.verifyTextEquality(pageHeader.getText(),
 					getTextInCurrentLocale(StringArray.ARRAY_REQUEST_MONEY_HEADER));
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -739,12 +712,9 @@ public class AutoDepositPage extends _CommonPage {
 
 			mobileAction.FuncClick(nextReqMoney, "Request Money Button");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -764,9 +734,9 @@ public class AutoDepositPage extends _CommonPage {
 
 		Decorator();
 		try {
-			
+
 			mobileAction.waitForElementToVanish(progressBar);
-			
+
 			if (platform.equalsIgnoreCase("iOS")) {
 
 				requestMoneySuccessMsg = mobileAction.mobileElementUsingIOSClassChain("**/*[`label=='"
@@ -785,9 +755,9 @@ public class AutoDepositPage extends _CommonPage {
 						mobileAction.getAppString("request_money_receipt_sub_header"));
 			}
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -824,9 +794,9 @@ public class AutoDepositPage extends _CommonPage {
 
 			}
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -853,9 +823,9 @@ public class AutoDepositPage extends _CommonPage {
 			PaymentsAndTransfers.get().clickManageAutoDeposit();
 			deleteAutoDeposit();
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -878,7 +848,8 @@ public class AutoDepositPage extends _CommonPage {
 
 			if (platform.equalsIgnoreCase("iOS")) {
 
-				customerEligigbilityFailMsg = mobileAction.mobileElementUsingIOSClassChain("**/*[`label contains[cd] '"+getTextInCurrentLocale(StringArray.ARRAY_CUSTOMER_ELIGIBILITY_ERROR_MSG)+"'`]");
+				customerEligigbilityFailMsg = mobileAction.mobileElementUsingIOSClassChain("**/*[`label contains[cd] '"
+						+ getTextInCurrentLocale(StringArray.ARRAY_CUSTOMER_ELIGIBILITY_ERROR_MSG) + "'`]");
 
 			}
 

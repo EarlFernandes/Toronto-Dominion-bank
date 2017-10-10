@@ -80,7 +80,7 @@ public class Interac_Send_Money extends _CommonPage {
 	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'From Account' or label CONTAINS[cd] 'Compte de provenance'`]")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/account_view']")
 	private MobileElement fromAccount;
-	
+
 	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'From Account' or label CONTAINS[cd] 'Compte de provenance'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='From Account' or @text='Compte de provenance')]")
 	private MobileElement fromAccountVerifyDetails;
@@ -140,6 +140,9 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Done' or @text='Annuler']")
 	private MobileElement doneButton;
 	
+	@iOSFindBy(xpath = "//*[@label='背面' or @label='返回' or @label='Back' or @label='p2p header caret']")
+	private MobileElement back_button;
+
 	private void Decorator() {
 		PageFactory.initElements(
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
@@ -215,9 +218,9 @@ public class Interac_Send_Money extends _CommonPage {
 
 			mobileAction.FuncClick(continueButton, "ContinueButton");
 
-		} catch (NoSuchElementException | IOException | InterruptedException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -239,14 +242,14 @@ public class Interac_Send_Money extends _CommonPage {
 			mobileAction.waitForElementToVanish(progressBar);
 
 			mobileAction.verifyElementIsDisplayed(sendMoneyHeader, "Header " + sendMoneyHeader.getText());
-			
+
 			if (platformName.equalsIgnoreCase("Android")) {
-				
+
 				mobileAction.FuncClick(fromAccount, "from Account");
 				String fromAccountNumXL = "//android.widget.TextView[@text='" + getTestdata("FromAccount") + "']";
 				MobileElement fromAccountNumber = mobileAction.mobileElementUsingXPath(fromAccountNumXL);
-				mobileAction.FuncClick(fromAccountNumber, "Account Number: "+getTestdata("FromAccount"));
-				
+				mobileAction.FuncClick(fromAccountNumber, "Account Number: " + getTestdata("FromAccount"));
+
 				mobileAction.FuncClick(selectRecipient, "Select Recipient");
 				String recipientXpath = "//android.widget.TextView[@text='" + getTestdata("ToAccount") + "']";
 				MobileElement recipient = mobileAction.mobileElementUsingXPath(recipientXpath);
@@ -268,20 +271,23 @@ public class Interac_Send_Money extends _CommonPage {
 			} else {
 
 				mobileAction.FuncClick(fromAccount, "from Account");
-				
-				String fromAccountNumXL = "**/*[`label CONTAINS[cd] '"+getTestdata("FromAccount")+"'`]";
+
+				String fromAccountNumXL = "**/*[`label CONTAINS[cd] '" + getTestdata("FromAccount") + "'`]";
 				MobileElement fromAccountNumber = mobileAction.mobileElementUsingIOSClassChain(fromAccountNumXL);
-				
-				mobileAction.FuncClick(fromAccountNumber, "Account Number: "+getTestdata("FromAccount"));
-				
+
+				mobileAction.FuncClick(fromAccountNumber, "Account Number: " + getTestdata("FromAccount"));
+
 				mobileAction.FuncClick(selectRecipient, "Select Recipient");
-				
-				//String recipientXpath = "**/*[`label CONTAINS[cd] '"+getTestdata("ToAccount")+"'`]";
-				//MobileElement recipient = mobileAction.mobileElementUsingIOSClassChain(recipientXpath);
-				
-				String recipientXpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'"+getTestdata("ToAccount")+"')]";
+
+				// String recipientXpath = "**/*[`label CONTAINS[cd]
+				// '"+getTestdata("ToAccount")+"'`]";
+				// MobileElement recipient =
+				// mobileAction.mobileElementUsingIOSClassChain(recipientXpath);
+
+				String recipientXpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'"
+						+ getTestdata("ToAccount") + "')]";
 				MobileElement recipient = mobileAction.mobileElementUsingXPath(recipientXpath);
-				
+
 				mobileAction.FuncClick(recipient, "Recipient " + recipient.getText());
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(securityQuestion, "Security Question");
@@ -300,9 +306,9 @@ public class Interac_Send_Money extends _CommonPage {
 
 			}
 
-		} catch (NoSuchElementException | IOException | InterruptedException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -337,9 +343,9 @@ public class Interac_Send_Money extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(amountVal, "Amount " + amountVal.getText());
 			mobileAction.FuncClick(continueButton, "Continue Button");
 
-		} catch (NoSuchElementException | IOException | InterruptedException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -360,17 +366,14 @@ public class Interac_Send_Money extends _CommonPage {
 
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.verifyElementIsDisplayed(thankYou, thankYou.getText());
-			mobileAction.verifyElementIsDisplayed(successMessage,
-					successMessage.getText());
+			mobileAction.verifyElementIsDisplayed(successMessage, successMessage.getText());
 
-			mobileAction.verifyTextContains(successMessage.getText(), getTextInCurrentLocale(StringArray.SEND_MONEY_SUCCESS_MSG));
-			
-		} catch (NoSuchElementException e) {
+			mobileAction.verifyTextContains(successMessage.getText(),
+					getTextInCurrentLocale(StringArray.SEND_MONEY_SUCCESS_MSG));
+
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -396,17 +399,48 @@ public class Interac_Send_Money extends _CommonPage {
 			mobileAction.FuncClick(continueButton, "Continue Button");
 			mobileAction.waitForElementToVanish(progressBar);
 			Interac_e_Registration.get().clickGoBackHome();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+	
+	
+	/**
+	 * This method will click on the Back button
+	 * 
+	 * @return void
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 */
+	public void iOS_back_button() {
+
+		Decorator();
+		try {
+			Thread.sleep(2500);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.FuncClick(back_button, "Back Button");
+			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-
 	}
+	
 
 }

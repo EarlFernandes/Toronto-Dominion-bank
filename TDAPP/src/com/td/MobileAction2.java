@@ -17,6 +17,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.td.test.CDNMobile.pages.HomeScreen;
 import com.td.test.framework.CommonLib;
 
 import io.appium.java_client.AppiumDriver;
@@ -31,6 +32,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 
 import java.util.Iterator;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -2590,7 +2592,7 @@ public class MobileAction2 extends CommonLib {
 	 *             In case an exception occurs while clicking over the element.
 	 *             In case the element is not found over the screen.
 	 */
-	public MobileElement mobileElementUsingIOSClassChain(String objElement) throws IOException {
+	public MobileElement mobileElementUsingIOSClassChain(String objElement){
 
 		MobileElement objMobileElement = null;
 
@@ -2600,8 +2602,8 @@ public class MobileAction2 extends CommonLib {
 		} catch (Exception e) {
 			System.err.println("Element not found");
 		}
+		
 		return objMobileElement;
-
 	}
 	
 	

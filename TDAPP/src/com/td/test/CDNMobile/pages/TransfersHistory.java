@@ -86,8 +86,8 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/historyTransferItemName' or contains(@resource-id,'com.td:id/transfersReceivedCard')]")
 	private MobileElement receivedTransaction;
 
-	//@iOSXCUITFindBy(accessibility = "CTA_CANCEL")
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel Request']")//TODO::FrenchText
+	// @iOSXCUITFindBy(accessibility = "CTA_CANCEL")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel Request']") // TODO::FrenchText
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/history_details_footer_button']")
 	private MobileElement cancelTransferBtn;
 
@@ -314,12 +314,9 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.FuncClick(pageHeader, "Transfer History page header");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -332,8 +329,8 @@ public class TransfersHistory extends _CommonPage {
 	 */
 	public void verifySentMoneyCard() {
 
-		int counter=0;
-		
+		int counter = 0;
+
 		Decorator();
 		try {
 
@@ -354,7 +351,7 @@ public class TransfersHistory extends _CommonPage {
 				counter++;
 			}
 			counter = 0;
-			
+
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 
 				initialsCircle = mobileAction.mobileElementUsingXPath(
@@ -378,7 +375,7 @@ public class TransfersHistory extends _CommonPage {
 				mobileAction.verifyTextEquality(transacStatus.getText(), transStatus);
 
 			} else {
-				
+
 				initialsCircle = mobileAction
 						.mobileElementUsingXPath("//XCUIElementTypeButton[contains(@label,'" + initials + "')]");
 				receiverName = mobileAction
@@ -395,12 +392,10 @@ public class TransfersHistory extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(amountSent, "Amount sent: " + amountSent.getText());
 				mobileAction.verifyTextContains(transacStatus.getText(), transStatus);
 			}
-			
 
-
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -533,12 +528,9 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.FuncClick(moneySentSeeAll, "See All");
 			mobileAction.waitForElementToVanish(progressBar);
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -557,12 +549,9 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.FuncClick(moneyReceivedSeeAll, "See All");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -610,9 +599,9 @@ public class TransfersHistory extends _CommonPage {
 
 			}
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -657,9 +646,9 @@ public class TransfersHistory extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(cancelTransferBtn, "Cancel Transfer Button");
 			}
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -684,12 +673,9 @@ public class TransfersHistory extends _CommonPage {
 
 				mobileAction.FuncClick(getReceiver(), "Receiver: " + receiver);
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -714,12 +700,9 @@ public class TransfersHistory extends _CommonPage {
 
 				mobileAction.FuncClick(getRequester(), "Receiver: " + receiver);
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -749,9 +732,9 @@ public class TransfersHistory extends _CommonPage {
 								+ transStatus + "') or contains(@label,'" + transStatus.toUpperCase() + "'))]");
 
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 		return receiverName;
@@ -793,12 +776,6 @@ public class TransfersHistory extends _CommonPage {
 					mobileAction.FunctionSwipe("down", 200, 200);
 			}
 
-		} catch (NoSuchElementException | IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
@@ -838,12 +815,9 @@ public class TransfersHistory extends _CommonPage {
 				mobileAction.FuncClick(getSender(), "Sender: " + sender);
 
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -872,9 +846,9 @@ public class TransfersHistory extends _CommonPage {
 						.mobileElementUsingXPath("//XCUIElementTypeButton[contains(@label,'" + sender + "')]");
 			}
 
-		} catch (IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 		return senderName;
@@ -913,9 +887,9 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(confirmationNumberVal,
 					"Confirmation number value " + confirmationNumberVal.getText());
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -933,12 +907,9 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.FuncClick(cancelTransferBtn, "Cancel Transfer Button");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -973,12 +944,9 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.FuncClick(continueBtn, "Continue Button");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1011,12 +979,9 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.waitForElementToVanish(progressBar);
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1049,9 +1014,9 @@ public class TransfersHistory extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(messageVal, "Message: " + messageVal.getText());
 			}
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1118,9 +1083,9 @@ public class TransfersHistory extends _CommonPage {
 
 			}
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1149,9 +1114,9 @@ public class TransfersHistory extends _CommonPage {
 				}
 
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1197,12 +1162,9 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.FuncClick(requestMoneySentSeeAll, "See All");
 			// mobileAction.waitForElementToVanish(progressBar);
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1247,9 +1209,9 @@ public class TransfersHistory extends _CommonPage {
 				statusCounter = 0;
 			}
 
-		} catch (IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 		return receiverName;
@@ -1308,9 +1270,9 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(confirmationNumberVal,
 					"Confirmation number value " + confirmationNumberVal.getText());
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1347,12 +1309,9 @@ public class TransfersHistory extends _CommonPage {
 			}
 			mobileAction.FuncClick(wrongEmailTransaction, "Invalid Email Transaction");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1384,9 +1343,9 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(cancelTransferBtn, "Cancel Transfer Button");
 			mobileAction.verifyElementNotPresent(sendAReminder, "Send A reminder Button");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1416,15 +1375,9 @@ public class TransfersHistory extends _CommonPage {
 
 			cancelFlag = true;
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1462,12 +1415,9 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(cancelledTransaction, "Cancelled Transaction");
 			mobileAction.FuncClick(cancelledTransaction, "Cancelled Transaction");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1486,12 +1436,9 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.FuncClick(updateRequest, "Update");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1541,12 +1488,9 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.FuncClick(finishBtn, "Finish");
 			// mobileAction.waitForElementToVanish(progressBar);
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1573,9 +1517,9 @@ public class TransfersHistory extends _CommonPage {
 						mobileAction.getAppString("update_money_request_confirmation_sub_header"));
 			}
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -1603,9 +1547,6 @@ public class TransfersHistory extends _CommonPage {
 			Transfers.get().clickTransferHistoryLink();
 			clickRequestMoneySeeAll();
 
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());

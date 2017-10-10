@@ -374,7 +374,7 @@ public class EventCase {
 			break;
 			
 		case AutoDepositPage_setupQuickAutoDeposit:
-			AutoDepositPage.get().setupQuickAutoDeposit();
+			//AutoDepositPage.get().setupQuickAutoDeposit();
 			break;
 			
 		case Transfers_clickRequestMoneyLink:
@@ -382,7 +382,7 @@ public class EventCase {
 			break;
 			
 		case iOS_back_button:
-			HomeScreen.get().iOS_back_button();
+			Interac_Send_Money.get().iOS_back_button();
 			break;
 			
 		case TransfersHistory_verifyTransactionOnActivity:

@@ -251,7 +251,7 @@ public class Profile_And_Settings extends _CommonPage {
 				payment_transfer_xpath = "//*[@text='" + paymentTransferText + "']";
 			}
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(payment_transfer_xpath, true, 5, "up");
-			mobileAction.waitForElementToVanish(progressBar);
+			//mobileAction.waitForElementToVanish(progressBar);
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
