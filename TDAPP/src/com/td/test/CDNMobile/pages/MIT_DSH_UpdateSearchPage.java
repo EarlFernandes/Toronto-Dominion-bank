@@ -7,6 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.td.StringArray;
 import com.td._CommonPage;
+import com.td.test.framework.MobileAction;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -66,6 +68,58 @@ private MobileElement searchBar;
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc='info icon' or @content-desc='icône info']/../*[2]")
 	private MobileElement info;
 	
+
+	@iOSFindBy(xpath = "//*[@label='RESULTS' or @label='RÉSULTATS']")
+	@AndroidFindBy(id = "android:id/content")
+	private MobileElement hdrRESULTS;
+	
+	
+	@iOSFindBy(xpath = "//*[@label='Watchlist Button' or contains(@label,'Entrez le')]") // @AuthorSushil03-Feb-2017
+    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+    private MobileElement 	WatchlistButton;
+	
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
+	@AndroidFindBy(id = "android:id/up")
+	 MobileElement BT_Back;
+	
+	
+	
+	@iOSFindBy(xpath = "//*[@label='banner' or contains(@label,'Entrez le')]/*[1]")
+	@AndroidFindBy(id = "android:id/up")
+	 MobileElement BT_Back1;
+	
+	
+		
+	
+	@iOSFindBy(xpath = "//*[@label='RECENT SEARCHES' or @label='RÉSULTATS']")
+	@AndroidFindBy(id = "android:id/content")
+	private MobileElement hdrRECENT;
+	
+	
+	@iOSFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]") // @AuthorSushil03-Feb-2017
+    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+    private MobileElement 	btnClear;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Indices' or contains(@label,'Entrez le')]") // @AuthorSushil03-Feb-2017
+    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+    private MobileElement 	btnIndices;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Mutual Funds' or contains(@label,'Entrez le')]") // @AuthorSushil03-Feb-2017
+    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+    private MobileElement 	btnMF;
+	
+	
+	
+	@iOSFindBy(xpath = "//*[@label='Watchlist Button' or contains(@label,'Entrez le')]") // @AuthorSushil03-Feb-2017
+    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+    private MobileElement 	symHeader;
+	
+	
+	
+	
+	
+	
+	
 	
 	public void verifyUpdateSearch() {
 		Decorator();
@@ -94,6 +148,9 @@ private MobileElement searchBar;
 			mobileAction.verifyElementIsDisplayed(search_symbol, "Search Screen");
 			
 					
+			enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs"));
+			
+			
 			verifySymbolUSCAD();
 			
 		
@@ -149,6 +206,346 @@ private MobileElement searchBar;
 	}
 	
 	
+	public void verifyHeaderResult() {
+		Decorator();
+		try {					
+				Thread.sleep(1000);
+			MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+				
+			if(mobileAction.isObjExists(searchBar, 2))
+			{
+				mobileAction.FuncClick(searchBar, "searchBar");
+				
+				
+			}
+			else
+			
+			{
+			
+			mobileAction.FuncSwipeWhileElementNotFound(searchBar, true,7, "up");
+			
+			}
+			
+			mobileAction.verifyElementIsDisplayed(search_symbol, "Search Screen");
+			
+			enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs"));
+			
+			verifySymbolUSCAD();
+			
+			
+			mobileAction.verifyElementIsDisplayed(hdrRESULTS, "hdrRESULTS");
+			
+			
+			
+			mobileAction.FuncClick(btnClear, "btnClear");
+			
+			
+			
+			mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+			
+				
+			enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs"));
+			
+			clickFirstSymbolUSCAD(getTestdata("Symbol", "UserIDs"));
+			
+						
+		
+		
+			mobileAction.verifyElementIsDisplayed(WatchlistButton, "WatchlistButton");
+			
+				
+				
+				/*
+				int iAbscissa = BT_Back1.getRect().getHeight();
+				int iOrdinate = BT_Back1.getRect().getY();
+				
+			
+				mobileAction.FuncClickCoordinates(iAbscissa, iOrdinate, 1);*/
+				
+			
+			
+			
+			
+		
+			
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+	
+	
+	
+	public void verifyNavigateQuoteSummaryIndices() {
+		Decorator();
+		
+		try {				
+			
+			MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+				
+			if(mobileAction.isObjExists(searchBar, 2))
+			{
+				mobileAction.FuncClick(searchBar, "searchBar");
+				
+				
+			}
+			else
+			
+			{
+			
+			mobileAction.FuncSwipeWhileElementNotFound(searchBar, true,7, "up");
+			
+			}
+			
+			mobileAction.FuncClick(btnIndices, "btnIndices");
+			
+			String[] aSymbolArray = getTestdata("Symbol", "UserIDs").split(":");
+			//String sStock = aSymbolArray[0];
+			
+			
+			
+			for(int i=0; i<aSymbolArray.length; i++)
+			
+			{
+				
+				
+				enterSymbol(search_symbol, aSymbolArray[i]);
+				
+				clickFirstSymbolUSCAD(aSymbolArray[i]);
+				
+				
+				
+				//String sXPath = "//XCUIElementTypeStatictext[@label='" + aSymbolArray[i] + "' or @text='" + aSymbolArray[i] + "']";
+								
+				
+				
+				Thread.sleep(4000);
+				mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
+				
+				
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+	public void verifyNavigateQuoteSummaryMF() {
+		Decorator();
+		
+		try {	
+			
+			Thread.sleep(1000);
+			
+		/*	MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+				
+			if(mobileAction.isObjExists(searchBar, 2))
+			{
+				mobileAction.FuncClick(searchBar, "searchBar");
+				
+				
+			}
+			else
+			
+			{
+			
+			mobileAction.FuncSwipeWhileElementNotFound(searchBar, true,7, "up");
+			
+			}
+			*/
+			mobileAction.FuncClick(btnMF, "btnMF");
+			
+			String[] aSymbolArray = getTestdata("Symbol", "UserIDs").split(":");
+			String sXPath = null;
+			//String sStock = aSymbolArray[0];
+			
+			
+			
+			for(int i=0; i<aSymbolArray.length; i++)
+			
+			{				
+				
+				enterSymbol(search_symbol, aSymbolArray[i]);
+				
+				clickFirstSymbolUSCAD(aSymbolArray[i]);
+				
+				
+				Thread.sleep(4000);
+				
+		    	sXPath = "//XCUIElementTypeOther[@label='" + aSymbolArray[i] + "' or @text='" + aSymbolArray[i] + "']/*[1]";
+		    	//XCUIElementTypeOther[@label='AIM10693' or @text='AIM10693']/*[1]
+		    	mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPath, aSymbolArray[i])), aSymbolArray[i]);
+				
+					
+				mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
+				
+				
+				mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+				 	
+				
+				clickFirstSymbolUSCAD(aSymbolArray[i]);
+				
+				
+				Thread.sleep(4000);
+				
+				
+				mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPath, aSymbolArray[i])), aSymbolArray[i]);
+				
+				mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
+				
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public void verifyAddWatchlist() {
+		Decorator();
+		try {					
+				
+			MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+				
+			
+	
+			if(mobileAction.isObjExists(searchBar, 2))
+			{
+				mobileAction.FuncClick(searchBar, "searchBar");
+				
+				
+			}
+			else
+			
+			{
+			
+			mobileAction.FuncSwipeWhileElementNotFound(searchBar, true,7, "up");
+			
+			}
+			
+			mobileAction.verifyElementIsDisplayed(search_symbol, "Search Screen");
+			
+			
+			mobileAction.FuncClick(btnIndices, "btnIndices");
+			
+			
+			enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs").split(":")[0]);
+			
+			
+			mobileAction.verifyElementIsDisplayed(hdrRESULTS, "hdrRESULTS");
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			verifySymbolUSCAD();
+			
+			
+			mobileAction.verifyElementIsDisplayed(hdrRESULTS, "hdrRESULTS");
+			
+			
+			
+			mobileAction.FuncClick(btnClear, "btnClear");
+			
+			
+			
+			mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+			
+				
+			
+			
+			//clickFirstSymbolUSCAD();
+			
+						
+		
+		
+			mobileAction.verifyElementIsDisplayed(WatchlistButton, "WatchlistButton");
+			
+			
+			
+			
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -172,7 +569,7 @@ private MobileElement searchBar;
 			mobileAction.FuncClick(search_symbol, "search_symbol");
 			// mobileAction.FuncSendKeys(search_symbol, getTestdata("Symbol",
 			// "UserIDs") + " ");
-			enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs"));
+			//enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs"));
 			String xpathFlag = "";
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				xpathFlag = xpathSymbolFlag;
@@ -227,7 +624,7 @@ private MobileElement searchBar;
 	
 	
 	
-	public void verifySymbolCAD() throws Exception// @Author - Sushil 06-Feb-2017
+/*	public void verifySymbolCAD() throws Exception// @Author - Sushil 06-Feb-2017
 	{
 		// List<MobileElement> elementToFind = null;
 		Decorator();
@@ -276,7 +673,7 @@ private MobileElement searchBar;
 					CL.GetReporting().FuncReport("Fail", "Incorrect option found in search list.");
 			}
 
-		/*	try {
+			try {
 				CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
 				// CL.GetReporting().FuncReport("Pass",
 				// listItem.get(temp).getAttribute(property) + " from symbol
@@ -284,15 +681,78 @@ private MobileElement searchBar;
 				CL.GetReporting().FuncReport("Pass", "First Symbol from symbol search list selected.");
 			} catch (Exception e) {
 				CL.GetReporting().FuncReport("Fail", "First Symbol from symbol search list is not selected.");
-			}*/
+			}
 		} catch (Exception e) {
 			CL.GetReporting().FuncReport("Fail", "Incorrect option found in search list.");
 			e.printStackTrace();
 		}
+	}*/
+	
+	
+	public void clickFirstSymbolUSCAD(String sSymbol)// @Author - Sushil 08-Feb-2017
+	{
+		Decorator();
+		try {
+			String xpathFlag = "";
+			int temp = 0;
+			//String sSymbol = getTestdata("Symbol", XLSheetUserIDs).trim();
+			sSymbol = "";
+			boolean bFound = false;
+			String sProperty = "";
+			String sSymbolName = "";
+			boolean bSymbolText = false;
+
+			//mobileAction.FuncClick(search_symbol, "search_symbol");
+			//enterSymbol(search_symbol, sSymbol);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				xpathFlag = xpathSymbolFlag;
+				sProperty = "text";
+				// sSymbolName =
+				// CL.GetDriver().findElements(By.xpath("//*[@resource-id='com.td:id/market_name']")).get(i).getText();
+				try {
+					CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
+					CL.GetReporting().FuncReport("Pass", "Symbol <b> " + sSymbol + "</b> Clicked.");
+				} catch (Exception e) {
+					e.printStackTrace();
+					CL.GetReporting().FuncReport("Fail", "Symbol <b> " + sSymbol + "</b> not Clicked.");
+				}
+			} else {
+				xpathFlag = xpathSymbolFlag_ios;
+				// temp =0;
+				sProperty = "label";
+				do {
+					try {
+						/*
+						 * try{ bSymbolText =
+						 * CL.GetDriver().findElements(By.xpath(
+						 * "//*[@resource-id='com.td:id/market_name']")).get(
+						 * temp).getText().contains(sSymbol); } catch(ex)
+						 */
+						if (CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).isDisplayed()
+								&& CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).getAttribute(sProperty)
+										.contains(sSymbol)) {
+							bFound = true;
+							CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
+							CL.GetReporting().FuncReport("Pass", "Symbol <b> " + sSymbol + "</b> Clicked.");
+						} else
+							temp++;
+					} catch (Exception e) {
+						/*
+						 * if(CL.GetDriver().findElements(By.xpath(xpathFlag)).
+						 * get(1).isDisplayed()) {
+						 * CL.GetDriver().findElements(By.xpath(xpathFlag)).get(
+						 * 1).click(); CL.GetReporting().FuncReport("Pass",
+						 * "Symbol <b> "+ sSymbol + "</b> Clicked."); }
+						 */
+						temp++;
+					}
+				} while (!bFound && temp < CL.GetDriver().findElements(By.xpath(xpathFlag)).size());
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
-	
-	
 	
 	
 	

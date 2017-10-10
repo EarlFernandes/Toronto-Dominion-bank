@@ -126,24 +126,8 @@ public class MIT_DSH_Contact_Location  extends _CommonPage{
 		Decorator();
 		try {
 			
-/*			
-			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
-			mobileAction.FuncClick(InvestingAccount, "Investing Accounts Flyout Menu");
-			LoginMIT.get().MITLogin();
-			
-			
-			mobileAction.FuncClick(BT_Back, "< Button");	*/		
-			
-			
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-			
-			
-			
-			
-			
-			
-			
-			mobileAction.FuncSwipeWhileElementNotFound(btnContactUs, false, 10, "up");
+						mobileAction.FuncSwipeWhileElementNotFound(btnContactUs, false, 10, "up");
 			mobileAction.FuncVerifyTextEquals(btnContactUs,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_CONTACTUS));
 			mobileAction.FuncClick(btnContactUs, "btnContactUs");
@@ -165,11 +149,6 @@ public class MIT_DSH_Contact_Location  extends _CommonPage{
 		Decorator();
 
 		try {
-		/*	mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
-			mobileAction.FuncClick(InvestingAccount, "Investing Accounts Flyout Menu");
-			LoginMIT.get().MITLogin();
-			mobileAction.FuncClick(BT_Back, "< Button");*/
-			
 			
 			MIT_DSHQuickLinks.get().goToDashboardHome();
 						
@@ -235,20 +214,9 @@ public class MIT_DSH_Contact_Location  extends _CommonPage{
 
 		Decorator();
 
-		try {
-			
-/*							
-			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
-			mobileAction.FuncClick(InvestingAccount, "Investing Accounts Flyout Menu");
-			LoginMIT.get().MITLogin();
-			mobileAction.FuncClick(BT_Back, "< Button");*/
-			
-			
-			
+		try {		
 			
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-			
-			
 			
 			mobileAction.FuncSwipeWhileElementNotFound(btnNearestBranch, false, 10, "up");
 			//mobileAction.FuncVerifyTextEquals(btnNearestBranch,
@@ -273,22 +241,7 @@ public class MIT_DSH_Contact_Location  extends _CommonPage{
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	public void clickFlyout(MobileElement objElement, String text) {
@@ -316,20 +269,6 @@ public class MIT_DSH_Contact_Location  extends _CommonPage{
 		}
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 
