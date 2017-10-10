@@ -52,7 +52,17 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 		try {
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "Home HamburgerMenu");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings, true, 5, "up");
-			mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
+			}
+			/*
+			 * } else { if (mobileAction.isObjExists(lblProfileSettings)) {
+			 * CL.GetReporting().FuncReport(PASS,
+			 * "Profile & Settings is displayed."); } else
+			 * CL.GetReporting().FuncReport(FAIL,
+			 * "Profile & Settings is not displayed."); }
+			 */
+
 			mobileAction.FuncVerifyTextEquals(LBL_HomeScreenSettings,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_HOMESCREENSETTINGS));
 		} catch (Exception e) {

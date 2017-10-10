@@ -3,6 +3,7 @@ package com.td.test.CDNMobile.pages;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
@@ -47,21 +48,25 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='WATCHLISTS' or @text='LISTES DE SURVEILLANCE' or @text='自选股观察名单' or @text='自選股觀察名單']")
 	private MobileElement QL_WATCHLISTS;
 
-	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@iOSFindBy(xpath = "//*[@label='Edit']/../*[1]")
 	@AndroidFindBy(id = "com.td:id/watchlist_name_drop_down")
 	private MobileElement LT_WatchListDropDown;
 
-	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@iOSXCUITFindBy(accessibility = "actionSheetCancelButton")
 	@AndroidFindBy(id = "com.td:id/cancel_button")
 	private MobileElement BT_WatchListCancel;
 
-	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@iOSXCUITFindBy(xpath = "//*[@name='actionSheetCancelButton']/../../XCUIElementTypeCell/*[1]")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/watchlist_name']")
 	private List<MobileElement> LBL_WatchListItems;
 
-	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@iOSFindBy(xpath = "//*[@label='Edit' or @label='LISTES DE SURVEILLANCE' or @label='自选股观察名单' or @label='自選股觀察名單']")
 	@AndroidFindBy(id = "com.td:id/watchlist_edit_button")
 	private MobileElement BT_Watchlist_Edit;
+
+	@iOSFindBy(xpath = "//*[@label='More' or @label='LISTES DE SURVEILLANCE' or @label='自选股观察名单' or @label='自選股觀察名單']")
+	@AndroidFindBy(xpath = "//*[@text='More' or @text='LISTES DE SURVEILLANCE' or @text='自选股观察名单' or @text='自選股觀察名單']")
+	private MobileElement BT_More;
 
 	public void verifyWatchlistHeaderUI() {
 		Decorator();
@@ -70,7 +75,8 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 				MIT_DSHQuickLinks.get().clickQuickLink(QL_WATCHLISTS, "WATCHLISTS");
 
 			} else {
-				// Click More button ... Not identifiable in iOS <FIX>
+
+				mobileAction.FuncClick(BT_More, "More Button");
 			}
 
 			mobileAction.verifyElementIsDisplayed(BT_WatchListBack, "Back");
@@ -91,7 +97,7 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 				MIT_DSHQuickLinks.get().clickQuickLink(QL_WATCHLISTS, "WATCHLISTS");
 
 			} else {
-				// Click More button ... Not identifiable in iOS <FIX>
+				mobileAction.FuncClick(BT_More, "More Button");
 			}
 			sCurrentWatchlist = mobileAction.FuncGetText(LT_WatchListDropDown);
 			mobileAction.FuncClick(LT_WatchListDropDown, "LT_WatchListDropDown");

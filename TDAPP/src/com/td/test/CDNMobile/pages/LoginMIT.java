@@ -170,7 +170,7 @@ public class LoginMIT extends _CommonPage {
 	 * "//*[@text='Investing' or @text='Placements' or @text='投资' or @text='投資']"
 	 * )
 	 */ // Investing Landing page removed as per new requirement
-	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='comptes' or @label='投资' or @label='投資']") // @Author
+	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='Comptes' or @label='账户' or @label='賬戶']") // @Author
 	// -
 	// Sushil
 	// 21-Sep-2017

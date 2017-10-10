@@ -2053,8 +2053,9 @@ public class MobileAction2 extends CommonLib {
 					 * GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2
 					 * + heightPer , 2000); count++; }
 					 */
-					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
-					wait.until(ExpectedConditions.visibilityOf(GetDriver().findElement(By.xpath(xpathEle))));
+/*					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
+					wait.until(ExpectedConditions.visibilityOf(GetDriver().findElement(By.xpath(xpathEle))));*/
+					GetDriver().findElement(By.xpath(xpathEle));
 
 					flag = false;
 					sEleName = FuncGetTextByxpath(xpathEle);
