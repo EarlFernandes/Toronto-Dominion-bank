@@ -58,7 +58,7 @@ public final class StringArray {
 			"ACHETER DES FONDS COMMUNS DE PLACEMENT", "购买互惠基金", "購買互惠基金" };
 	public static final String[] ARRAY_MF_CANADIAN_DOLLAR_NOTE = {
 			"All values in Canadian Dollars unless otherwise stated.",
-			"Toutes les valeurs sont en dollars canadiens, sauf avis contraire.", "所有金额均为加元，除非另有说明。",
+			"Toutes les valeurs sont en dollars canadiens, sauf avis contraire.", "除非另有说明，否则所有金额均为加元。",
 			"所有金額均為加元，除非另有說明。" };
 	public static final String[] ARRAY_MF_RECEIPT_HEADER = { "Receipt", "Reçu", "收据", "收據" };
 	public static final String[] ARRAY_MF_THANKYOU = { "Thank you!", "Merci!", "谢谢！", "謝謝您！" };
@@ -104,7 +104,7 @@ public final class StringArray {
 			"查看我的账户", "查看我的賬戶" };
 	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE = { "Accepted Fund Details & Fees",
 			"Infos sur le fonds et les frais acceptées", "已接受的基金 详情与费用", "已接受的基金 詳情與費用" };
-	public static final String[] ARRAY_MF_FUND_FACT = { "Fund Facts", "Aperçu du fonds", "基金概况", "基金概況" };
+	public static final String[] ARRAY_MF_FUND_FACT = { "Fund Facts", "Aperçu du fonds", "基金概况", "基金產品概述" };
 	public static final String[] ARRAY_MF_FUND_FACT_PDF = { "fund facts.pdf", "Aperçu du fonds.pdf", "基金概况.pdf",
 			"基金概況.pdf" };
 	public static final String[] ARRAY_MF_TRANSACTION_DETAIL = { "Transaction Details", "Détails de l’opération",
@@ -119,6 +119,45 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_TRANSACTION_UNIT_PRICE = { "Unit Price", "Prix par part", "单位价格", "單位價格" };
 	public static final String[] ARRAY_MF_TRANSACTION_UNIT = { "Transaction Units", "Parts visées par l’opération",
 			"交易单位数量", "交易單位數" };
+	public static final String[] ARRAY_MF_NONELIGIBAL_ERROR_MSG = {
+			"Looks like you're not set up to purchase mutual funds. Let us help you by calling 1-866-568-0951.",
+			"Il semble que vous ne puissiez pas effectuer d’achats. Pour obtenir de l’aide, composez le 1-888-568-0952.",
+			"您似乎未启用购买互惠基金的功能。请拨打1-866-235-0002（广东话）或1-866-769-0002（普通话）获取帮助。",
+			"看來您尚未設定好購買互惠基金。請致電我們以獲得協助；廣東話：1-866-235-0002，普通話： 1-866-769-0002。" };
+	public static final String[] ARRAY_MF_CLOASED_ACCOUNT_ERROR_MSG = {
+			"Looks like the account you are using is closed. Try another fund or let us help you by calling 1-888-568-0951.",
+			"Il semble que le compte est fermé. Essayez avec un autre fonds, ou appelez-nous au 1-888-568-0952 pour obtenir de l’aide.",
+			"您使用的账户似乎已关闭。请拨打1-866-235-0002（广东话）或1-866-769-0002（普通话）购买其他基金或获取帮助。",
+			"看來您使用的賬戶已關閉。請選擇另一種基金或致電我們，讓我們提供協助；廣東話：1-866-235-0002，普通話：1-866-769-0002。" };
+	public static final String[] ARRAY_MF_FUND_DETAIL_PURCHASE = { "Purchase", "Acheter", "买入", "買入" };
+	public static final String[] ARRAY_MF_FUND_DETAIL_CALL = { "Call", "Appeler", "致电", "致電" };
+	public static final String[] ARRAY_MF_FUND_DETAIL_QUOTE = { "Quote", "Cote", "报价", "報價" };
+	public static final String[] ARRAY_MF_FUND_DETAIL_HEADER = { "Fund Details", "Détails sur le fonds", "基金详情",
+			"基金詳情" };
+	public static final String[] ARRAY_MF_FD_MARKETVALUE = { "Market Value", "Valeur marchande", "市场价值", "市場價值" };
+	public static final String[] ARRAY_MF_FD_BOOKVALUE = { "Book Value", "Valeur comptable", "账面价值", "賬面價值" };
+	public static final String[] ARRAY_MF_FD_PERCENTAGE_PORTFOLIO = { "Percentage of Portfolio on this Account",
+			"Pourcentage du portefeuille du compte", "此账户的投资组合百分比", "此賬戶的投資組合百分比" };
+	public static final String[] ARRAY_MF_FD_UNITS_HELD = { "Units Held", "Parts détenues", "所持单位数", "所持單位數" };
+	public static final String[] ARRAY_MF_FD_UNIT_PRICE = { "Price Per Unit ", "Prix par part ", "单位价格", "單位價格" };
+	public static final String[] ARRAY_MF_FD_GAIN_LOSS = { "Unrealized Gain/Loss", "Gains/pertes non réalisés",
+			"未实现收益/亏损", "未實現收益/虧損" };
+	public static final String[] ARRAY_MF_FD_VIEW_PERFORMANCE = { "View Fund Facts (Performance & Fees)",
+			"Consulter l’Aperçu du fonds(rendement et frais)", "查看基金概况（表现和费用）", "查看基金概況（表現和費用）" };
+	public static final String[] ARRAY_MF_PHONE_PLACEHOLDER = { "Enter number", "Entrer le numéro", "输入号码", "輸入號碼" };
+	public static final String[] ARRAY_MF_EMAIL_PLACEHOLDER = { "example@address.com", "exemple@adresse.com",
+			"示例 @address.com", "範例 @address.com" };
+	public static final String[] ARRAY_MF_INELIGIBLE_LABEL = { "Ineligible", "Non admissible", "不符合条件", "不符合資格" };
+	public static final String[] ARRAY_MF_DISCLAIMER_AND = {
+			"As of [A-Za-z]{3}\\s*\\d{1,2},\\s*\\d{4} at \\d{1,2}:\\d{1,2}:\\d{1,2}.*",
+			"Au .{3,5}\\s*\\d{1,2},\\s*\\d{4} à \\d{1,2}:\\d{1,2}:\\d{1,2}.*",
+			"截至\\s*\\d{4}年\\s*\\d{1,2}月\\s*\\d{1,2}日*.*\\d{1,2}:\\d{1,2}:\\d{1,2}.*",
+			"截至\\s*\\d{4}年\\s*\\d{1,2}月\\s*\\d{1,2}日*.*\\d{1,2}:\\d{1,2}:\\d{1,2}.*" };
+	public static final String[] ARRAY_MF_DISCLAIMER_IOS = {
+			"As of [A-Za-z]{3}\\s*\\d{1,2},\\s*\\d{4} at \\d{1,2}:\\d{1,2}:\\d{1,2}.*",
+			"Au \\d{1,2} .{3,5}\\s*\\d{4} à \\d{1,2}:\\d{1,2}:\\d{1,2}.*",
+			"有效时间至*.*\\d{4}年\\s*\\d{1,2}月\\s*\\d{1,2}日*.*\\d{1,2}:\\d{1,2}:\\d{1,2}",
+			"有效时间至\\s*\\d{4}年\\s*\\d{1,2}月 \\s*\\d{1,2}日\\s*.*\\d{1,2}:\\d{1,2}:\\d{1,2}.*" };
 
 	public static final String[] ARRAY_PROFILE_AND_PREFERENCE = { "Profile & Settings", "Profil et paramètres",
 			"个人资料和设置", "個人資料和設定" };
@@ -264,12 +303,11 @@ public final class StringArray {
 	public static final String[] ARRAY_PREFERENCE_ACCOUNTS = { "ACCOUNTS", "COMPTES", "账户", "賬戶" };
 	public static final String[] ARRAY_PREFERENCE_SECURITY_QUESTION = { "Security Questions", "Questions de sécurité",
 			"密保问题", "密保问题" };
-	public static final String[] ARRAY_VIEW_PROFILE_LINK_IOS = { "View profile >", "Consulter le profil >", "查看个人资料",
-			"查看個人資料" };
+	public static final String[] ARRAY_VIEW_PROFILE_LINK_IOS = { "View profile >", "Consulter le profil >", "查看个人资料 >",
+			"查看個人資料 >" };
 	public static final String[] ARRAY_VIEW_PROFILE_LINK_AND = { "View profile", "Consulter le profil", "查看个人资料",
 			"查看個人資料" };
-	public static final String[] ARRAY_PAYMENT_AND_TRANSFER = { "Payments & Transfers", "Paiements et virements", "",
-			"" };
+	public static final String[] ARRAY_PAYMENT_AND_TRANSFER = { "Payments & Transfers", "", "", "" };
 	public static final String[] ARRAY_CUSTOMIZE_NOTIFICATIONS = { "Customize Notifications", "Personnaliser les avis",
 			"定制通知", "定制通知" };
 	public static final String[] ARRAY_TD_FOR_ME_NOTIFICATIONS = { "TD for Me Notifications", "Avis TD et moi",
@@ -279,10 +317,12 @@ public final class StringArray {
 	// UA Core
 	public static final String[] ARRAY_ACCOUNT_TOTAL = { "Total", "Total", "总计", "總計" };
 	public static final String[] ARRAY_ADD_LOGIN = { "Add Login", "Ajouter une connexion", "添加登录", "新增登入" };
+	public static final String[] ARRAY_ADD_CANADIAN_PAYEE = { "Add Canadian Payee", "Ajouter un preneur", "添加加拿大收款人",
+			"添加加拿大收款人" };
 	// UA Core End
-
-	// P2P EUF
-
+	
+	//P2P EUF
+	
 	public static final String[] ARRAY_REQUEST_MONEY_HEADER = { "Request Money", "Demander des fonds", "", "" };
 	public static final String[] ARRAY_PAYMENT_AND_TRANSFER_AUTODEPOSIT = { "Manage Autodeposit", "Gérer Autodépôt", "",
 			"" };
@@ -337,5 +377,5 @@ public final class StringArray {
 			"Consultez les instructions que vous avez reçues", "", "" };
 	public static final String[] CANCEL_MONEY_RECEIPT_HEADER = { "Request Cancelled", "Demande annulée", "", "" };
 	public static final String[] SETUP_AUTODEPOSIT_STR = { "Set up Autodeposit", "Établir Autodépôt", "", "" };
-
 }
+

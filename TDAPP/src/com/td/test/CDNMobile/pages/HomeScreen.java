@@ -136,8 +136,8 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Privacy, Security & Legal']")
 	private MobileElement privacy;
 
-	@iOSFindBy(xpath = "//*[@label='背面' or @label='返回' or @label='Back' or @label='p2p header caret']")
-	private MobileElement back_button;
+//	@iOSFindBy(xpath = "//*[@label='背面' or @label='返回' or @label='Back' or @label='p2p header caret']")
+//	private MobileElement back_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Locations']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
@@ -158,8 +158,8 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mpay_dashboard' and @text='PAY NOW']")
 	private MobileElement pay_now_button;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title'and @index='0']")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText | //XCUIElementTypeNavigationBar/XCUIElementTypeOther")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @index='0']")
 	private MobileElement home_bar;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Contact Us' or @label='Contactez-nous']")
@@ -722,12 +722,7 @@ public class HomeScreen extends _CommonPage {
 		Decorator();
 		try {
 			Thread.sleep(2500);
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(back_button, "Back Button");
-			}else{
-	
-				mobileAction.FuncClickBackButton();
-			}
+			mobileAction.ClickBackButton();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -735,9 +730,6 @@ public class HomeScreen extends _CommonPage {
 		} catch (InterruptedException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
@@ -885,7 +877,7 @@ public class HomeScreen extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				mobileAction.FuncClick(back_button, "Back");
+				mobileAction.ClickBackButton();
 				mobileAction.FuncClick(menu, "Menu");
 
 			} else {
@@ -926,7 +918,7 @@ public class HomeScreen extends _CommonPage {
 
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(back_button, "Back Button");
+				mobileAction.ClickBackButton();
 			}
 
 			mobileAction.FuncClick(menu, "Menu");
@@ -1258,20 +1250,9 @@ public class HomeScreen extends _CommonPage {
 
 		try {
 			String hometitle = "";
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				hometitle = mobileAction.getValue(home_bar);
-				System.out.println("hometitle:" + hometitle);
-				mobileAction.verifyElementTextIsDisplayed(home_bar, "Home | Accueil");
-			} else {
-				hometitle = home_bar.getAttribute("name");
-				System.out.println("hometitle:" + hometitle);
-				String ExpectedString = "HomeView | HomeView";
-				if (ExpectedString.contains(hometitle)) {
-					mobileAction.Report_Pass_Verified(hometitle);
-				} else {
-					mobileAction.Report_Fail_Not_Verified(hometitle);
-				}
-			}
+			hometitle = mobileAction.getValue(home_bar);
+			System.out.println("hometitle:" + hometitle);
+			mobileAction.verifyElementTextIsDisplayed(home_bar, getTextInCurrentLocale(StringArray.ARRAY_HOME_HEADER));		
 
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");

@@ -15,11 +15,12 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class LogoutMySpend extends _CommonPage {
 	private static LogoutMySpend Logout;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Logout') or contains(@label,'Fermer la session')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Logout') or contains(@label,'Fermer la session')]")
 	private MobileElement logout;
 
 	@iOSFindBy(xpath = "//*[@label='Logged Out' or @label='Terminé']")

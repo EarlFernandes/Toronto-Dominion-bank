@@ -111,9 +111,6 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/loginEditText' and @text='Username or Access Card']")
 	private MobileElement verify_No_Username;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton")
-	private MobileElement backButton;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Thanks, I'll do this later on my computer']")
 	private MobileElement terms_Conditions_Msg;
 
@@ -394,13 +391,13 @@ public class Login extends _CommonPage {
 			System.out.println("Exception for no T&C found ");
 		}
 	}
-	
+
 	private void verifyLoginError() {
-		if(verifySystemError()) {
+		if (verifySystemError()) {
 			System.out.println("Failed with system error");
-		}else if(verifySessionTimeout()){
+		} else if (verifySessionTimeout()) {
 			System.out.println("Failed with Session Expired");
-		}else{
+		} else {
 			System.out.println("Unknown login issue");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
@@ -459,7 +456,7 @@ public class Login extends _CommonPage {
 			// Do positive checking before doing any negative ones
 			if (!mobileAction.verifyElementIsPresent(logined_page_Header)) {
 				verifyLoginError();
-				
+
 			} else {
 				String securityQuestionTitle = mobileAction.getAppString("securityQuestionPageHeader");
 				String pageTitle = mobileAction.getValue(logined_page_Header);
@@ -467,8 +464,8 @@ public class Login extends _CommonPage {
 				if (pageTitle.contentEquals(securityQuestionTitle)) {
 					System.out.println("Security Question page");
 					verifySecurityQuestion();
-				} else if(pageTitle.contentEquals(addLoginTitle)){
-					//still in login page
+				} else if (pageTitle.contentEquals(addLoginTitle)) {
+					// still in login page
 					verifyLoginError();
 				} else {
 					System.out.println("Login successfully to page " + pageTitle);
@@ -664,14 +661,13 @@ public class Login extends _CommonPage {
 			Decorator();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				mobileAction.FuncClick(backButton, "BackButton");
+				mobileAction.ClickBackButton();
 				Thread.sleep(1000);
 				mobileAction.FuncClick(menu, "Menu");
 				mobileAction.FuncClick(logout, "Logout");
-				mobileAction.FuncClick(backButton, "BackButton");
+				mobileAction.ClickBackButton();
 				Thread.sleep(1000);
 			} else {
-				// mobileAction.FuncClick(backButton, "BackButton");
 				mobileAction.FuncClick(menu, "Menu");
 				logout = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
@@ -776,11 +772,11 @@ public class Login extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				mobileAction.FuncClick(backButton, "BackButton");
+				mobileAction.ClickBackButton();
 				mobileAction.FuncClick(menu, "Menu");
 				mobileAction.FuncClick(logout, "Logout");
 				mobileAction.verifyElementIsDisplayed(logoutHeader, "Logged Out");
-				mobileAction.FuncClick(backButton, "BackButton");
+				mobileAction.ClickBackButton();
 				mobileAction.FuncClick(menu, "Menu");
 				HomeScreen.get().clickBill();
 
@@ -1253,7 +1249,7 @@ public class Login extends _CommonPage {
 					Thread.sleep(4000);
 					Decorator();
 					Thread.sleep(4000);
-					mobileAction.FuncClick(backButton, "BackButton");
+					mobileAction.ClickBackButton();
 					Thread.sleep(2000);
 					mobileAction.FuncClick(menu, "Menu");
 					Thread.sleep(2000);

@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -24,15 +25,12 @@ public class FundDetails extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement FundDetails_header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Purchase' or @label='Acheter']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/purchaseBtn']")
 	private MobileElement Purchase;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Call' or @label='Appeler']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/callBtn']")
 	private MobileElement CallBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Quote' or @label='Cote']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quoteBtn']")
 	private MobileElement QuoteBtn;
 
@@ -109,6 +107,11 @@ public class FundDetails extends _CommonPage {
 
 		Decorator();
 		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				Purchase = mobileAction.verifyElementUsingXPath(
+						"//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_DETAIL_PURCHASE) + "']",
+						"Purchase");
+			}
 			mobileAction.FuncClick(Purchase, "Purchase");
 			mobileAction.waitForElementToVanish(progressBar);
 
@@ -125,7 +128,7 @@ public class FundDetails extends _CommonPage {
 		try {
 
 			mobileAction.verifyElementTextIsDisplayed(FundDetails_header,
-					"Fund Details | Détails sur le fonds|基金详情|基金詳情");
+					getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_DETAIL_HEADER));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -152,23 +155,24 @@ public class FundDetails extends _CommonPage {
 		Decorator();
 		try {
 
+			String purchaseText = getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_DETAIL_PURCHASE);
+			String callText = getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_DETAIL_CALL);
+			String quoteText = getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_DETAIL_QUOTE);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				// System.out.println(mobileAction.getAppString(locale_used,"str_BUY"));
-				// System.out.println(mobileAction.getAppString(locale_used,"call"));
-				// System.out.println(mobileAction.getAppString(locale_used,"str_QUOTE"));
-				Purchase = mobileAction
-						.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString("str_BUY") + "']", "Buy");
-				CallBtn = mobileAction
-						.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString("call") + "']", "Call");
-				QuoteBtn = mobileAction.verifyElementUsingXPath(
-						"//*[@label='" + mobileAction.getAppString("str_QUOTE") + "']", "Quote");
+				Purchase = mobileAction.verifyElementUsingXPath("//*[@label='" + purchaseText + "']", "Purchase");
+				CallBtn = mobileAction.verifyElementUsingXPath("//*[@label='" + callText + "']", "Call");
+				QuoteBtn = mobileAction.verifyElementUsingXPath("//*[@label='" + quoteText + "']", "Quote");
 			}
-			mobileAction.verifyElementTextIsDisplayed(Purchase, "买入| 買入");
-			mobileAction.verifyElementTextIsDisplayed(CallBtn, "致电 | 致電 ");
-			mobileAction.verifyElementTextIsDisplayed(QuoteBtn, "报价| 報價 ");
+			mobileAction.verifyElementIsDisplayed(Purchase, purchaseText);
+			mobileAction.verifyElementTextIsDisplayed(CallBtn, callText);
+			mobileAction.verifyElementTextIsDisplayed(QuoteBtn, quoteText);
 
-			String[] expectedText = { "市场价值 |市場價值", "账面价值 | 賬面價值", "此账户的投资组合百分比 | 此賬戶的投資組合百分比", "所持单位数 |所持單位數",
-					"单位价格 | 單位價格", "未实现收益/亏损 | 未實現收益/虧損 " };
+			String[] expectedText = { getTextInCurrentLocale(StringArray.ARRAY_MF_FD_MARKETVALUE),
+					getTextInCurrentLocale(StringArray.ARRAY_MF_FD_BOOKVALUE),
+					getTextInCurrentLocale(StringArray.ARRAY_MF_FD_PERCENTAGE_PORTFOLIO),
+					getTextInCurrentLocale(StringArray.ARRAY_MF_FD_UNITS_HELD),
+					getTextInCurrentLocale(StringArray.ARRAY_MF_FD_UNIT_PRICE),
+					getTextInCurrentLocale(StringArray.ARRAY_MF_FD_GAIN_LOSS) };
 			int lengthOfText = expectedText.length;
 			System.out.println("Expected fund details number:" + lengthOfText);
 			int size = InfoList.size();
@@ -199,7 +203,8 @@ public class FundDetails extends _CommonPage {
 				mobileAction.FuncSwipeWhileElementNotFound(fund_facts_view_text, false, 3, "up");
 			}
 
-			mobileAction.verifyElementTextIsDisplayed(fund_facts_view_text, "查看基金概况（表现和费用）| 查看基金概況（表現和費用） ");
+			mobileAction.verifyElementTextIsDisplayed(fund_facts_view_text,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_FD_VIEW_PERFORMANCE));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -238,7 +243,8 @@ public class FundDetails extends _CommonPage {
 				CallBtn = mobileAction
 						.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString("call") + "']", "Call");
 			}
-			mobileAction.verifyElementTextIsDisplayed(CallBtn, "Call | Appeler");
+			mobileAction.verifyElementTextIsDisplayed(CallBtn,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_DETAIL_CALL));
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -250,8 +256,9 @@ public class FundDetails extends _CommonPage {
 		try {
 			Decorator();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				Purchase = mobileAction
-						.verifyElementUsingXPath("//*[@label='" + mobileAction.getAppString("str_BUY") + "']", "Buy");
+				Purchase = mobileAction.verifyElementUsingXPath(
+						"//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_DETAIL_PURCHASE) + "']",
+						"Purchase");
 			}
 			if (!mobileAction.verifyElementIsPresent(Purchase)) {
 				mobileAction.Report_Pass_Verified("Purchase is not present for Zero account");
@@ -351,17 +358,12 @@ public class FundDetails extends _CommonPage {
 			String timeStamp = mobileAction.getValue(time_stamp);
 			System.out.println("TimeStamp:" + timeStamp);
 
-			String disclaimerReg;
-			if (currentLocale.equalsIgnoreCase("fr")) {
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-					disclaimerReg = "Au .{3,5}\\s*\\d{1,2},\\s*\\d{4} à \\d{1,2}:\\d{1,2}:\\d{1,2}.*";
-				}else{
-					disclaimerReg = "Au \\d{1,2} .{3,5}\\s*\\d{4} à \\d{1,2}:\\d{1,2}:\\d{1,2}.*";
-				}
+			String disclaimerReg = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				disclaimerReg = getTextInCurrentLocale(StringArray.ARRAY_MF_DISCLAIMER_IOS);
 			} else {
-				disclaimerReg = "As of [A-Za-z]{3}\\s*\\d{1,2},\\s*\\d{4} at \\d{1,2}:\\d{1,2}:\\d{1,2}.*";
+				disclaimerReg = getTextInCurrentLocale(StringArray.ARRAY_MF_DISCLAIMER_AND);
 			}
-
 			if (timeStamp.matches(disclaimerReg)) {
 				mobileAction.Report_Pass_Verified(timeStamp);
 			} else {

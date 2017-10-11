@@ -9,8 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
+import com.td.test.CDNMobile.pages.HomeScreen;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -18,94 +18,110 @@ import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
-public class Spending_Insight extends _CommonPage {
-
-	private static Spending_Insight Spending_Insight;
-
-	public synchronized static Spending_Insight get() {
-		if (Spending_Insight == null) {
-			Spending_Insight = new Spending_Insight();
-		}
-		return Spending_Insight;
-	}
-
-	String platform = null;
-
-	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Spending Insights') or contains(@label,'Aperçu des dépenses')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Spending Insights') or contains(@content-desc,'Aperçu des dépenses')]")
-	private MobileElement spendingInsightHeader;
-
-	@AndroidFindBy(xpath = "(//*[@aria-label='Menu'])[1]")
-	private MobileElement sideMenuButton;
-
-	@iOSFindBy(xpath = "//*[contains(@label,'0 Accounts Selected') or contains(@label,'0 Comptes sélectionnés')]")
-	private MobileElement noAccountSelected;
+public class DailyDigest extends _CommonPage{
 	
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Daily Digest') or contains(@label,'Sommaire quotidien')]")
-	@AndroidFindBy(xpath="//android.widget.Button[@content-desc='Daily Digest']")
-	private MobileElement dailyDigest;
-
-	@iOSFindBy(xpath = "//*[contains(@label,'Accounts Selected')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Accounts Selected')]")
-	private MobileElement accountSelected;
-
-	@iOSFindBy(xpath = "//*[contains(@label,'MONEY PATH') or contains(@label,'Trajectoire financière') or contains(@label,'Money Path')]")
-	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'MONEY PATH') or contains(@content-desc,'Trajectoire financière') or contains(@content-desc,'Money Path')]")
-	private MobileElement moneyPathButton;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Logout') or contains(@label,'Fermer la session')]")
-	private MobileElement logout;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Spending by Category') or contains(@label,'Dépenses par catégorie')]")
-	private MobileElement spendingByCategoryBtn;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Transaction History') or contains(@label,'Historique des opérations')]")
-	private MobileElement transactionHistoryBtn;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Spending History') or contains(@label,'Historique de dépenses')]")
-	private MobileElement spendingHistoryBtn;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Home') or contains(@label,'Accueil')]")
+	private static DailyDigest DailyDigest;
+	
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@name,'Daily Digest') or contains(@label,'Sommaire quotidien')]")
+	private MobileElement pageHeader;
+	
+	@iOSFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access']") 
+	private MobileElement quickAccess;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD MySpend']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='TD MySpend']")
+	private MobileElement TDMySpend;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Home']")
 	private MobileElement homeBtn;
-
-	@FindBy(xpath = "//*[text()='Spending Insights' or text()='Aperçu des dépenses']")
-	private WebElement spendingInsightHeaderAndroid;
-
-	@FindBy(id = "homeButton")
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@name,'Daily Digest') or contains(@label,'Sommaire quotidien')]")
+	private MobileElement dailyDigest;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Logout') or contains(@label,'Fermer la session')]")
+	private MobileElement logoutBtn;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Spent Yesterday')]")
+	private MobileElement yesterdaySpending;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Spent Yesterday')]")
+	private MobileElement usualSpending;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Spent Yesterday')]")
+	private MobileElement billerInfo;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Spent Yesterday')]")
+	private MobileElement changeCategory;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Spent Yesterday')]")
+	private MobileElement categorySpikeMessage;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Summary')]")
+	private MobileElement summaryTab;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Category')]")
+	private MobileElement categoryTab;
+	
+	@FindBy(xpath="//*[text()='Daily Digest' or text()='Sommaire quotidien']")
+	private WebElement pageHeaderAndroid;
+	
+	@FindBy(xpath="(//*[@id='homeButton'])[2]")
 	private WebElement homeBtnAndroid;
-
-	@FindBy(xpath = "//*[@aria-label='Spending by Category' or @aria-label='Dépenses par catégorie']")
-	private WebElement spendingByCategoryBtnAndroid;
-
-	@FindBy(xpath = "//*[@aria-label='Transaction History' or @aria-label='Historique des opérations']")
-	private WebElement transactionHistorybtnAndroid;
-
-	@FindBy(xpath = "//*[contains(@class,'money-path')]")
-	private WebElement moneyPathBtnAndroid;
-
-	@FindBy(xpath = "//*[contains(@class,'spend-history')]")
-	private WebElement spendingHistoryBtnAndroid;
-
+	
+	@FindBy(xpath="(//*[@id='menuButtonActive'])[2]")
+	private WebElement backBtnAndroid;
+	
 	@FindBy(id = "firstMenuItem")
 	private WebElement logoutBtnAndroid;
-
-	@FindBy(xpath = "//*[contains(@class,'numberAccountsText')]")
-	private WebElement noAccountSelectedAndroid;
 	
-	@FindBy(xpath = "//*[@aria-label='Daily Digest']")
+	@FindBy(xpath = "(//*[contains(@href,'dailyDigest')])[2]")
 	private WebElement dailyDigestAndroid;
+	
+	@FindBy(xpath = "//*[contains(text(),'Summary')]")
+	private WebElement summaryTabAndroid;
+	
+	@FindBy(xpath = "//*[contains(text(),'Category')]")
+	private WebElement categoryTabAndroid;
+	
+	@FindBy(xpath = "//*[text()='Spent Yesterday']/..//*[text()='Yesterday']/preceding-sibling::*[1]")
+	private WebElement yesterdaySpendingAndroid;
+	
+	@FindBy(xpath = "//*[text()='Spent Yesterday']/..//*[text()='Usual']/preceding-sibling::*[1]")
+	private WebElement usualSpendingAndroid;
+	
+	@FindBy(xpath = "(//*[contains(@href,'dailyDigest')])[2]")
+	private WebElement billerInfoAndroid;
+	
+	@FindBy(xpath = "(//*[contains(@href,'dailyDigest')])[2]")
+	private WebElement changeCategoryAndroid;
+	
+	@FindBy(xpath = "//*[contains(text(),'SPENDING SPIKE IN')]")
+	private WebElement categorySpikeMessageAndriod;
+	
+	//*[text()='vs Monthly Typical']
+	//*[@class='monthly-chart']
+	//*[text()='Spent Yesterday']/..//*[text()='Yesterday']  --->
+	
+	//*[text()='Spent Yesterday']/..//*[text()='Usual']  --->
+	
 
-	int spendingMiddleY = 0;
-
+	public synchronized static DailyDigest get() {
+		if (DailyDigest == null) {
+			DailyDigest = new DailyDigest();
+		}
+		return DailyDigest;
+	}
+	
 	private void Decorator() {
 		PageFactory.initElements(
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
-		platform = CL.getTestDataInstance().getMobilePlatForm();
-
 	}
 
+	
 	/**
-	 * This method will verify the 'Spending Insight' header page.
+	 * This method will verify the Daily Digest page header.
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -116,26 +132,16 @@ public class Spending_Insight extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void verifyPageHeader() throws InterruptedException {
-
+	public void verifyPageheader() {
 		Decorator();
 
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
-				mobileAction.verifyElementIsDisplayed(spendingInsightHeaderAndroid, "Spending Insight Header");
-				CL.GetAppiumDriver().context("NATIVE_APP");
+				mobileAction.verifyElementIsDisplayed(pageHeaderAndroid, "Daily Digest Page Header");
 			} else {
-				mobileAction.verifyElementIsDisplayed(spendingInsightHeader, "Spending Insight Header");
-
+				mobileAction.verifyElementIsDisplayed(pageHeader, "Daily Digest Page Header");
 			}
-			int leftX = spendingInsightHeader.getLocation().getX();
-			int rightX = leftX + spendingInsightHeader.getSize().getWidth();
-			int middleX = (rightX + leftX) / 2;
-			int upperY = spendingInsightHeader.getLocation().getY();
-			int lowerY = upperY + spendingInsightHeader.getSize().getHeight();
-			int middleY = (upperY + lowerY) / 2;
-			spendingMiddleY = middleY;
+			
 
 		} catch (NoSuchElementException e) {
 			try {
@@ -146,312 +152,7 @@ public class Spending_Insight extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		}
-	}
-
-	/**
-	 * This method will verify the 'Spending Insight' header page.
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 * 
-	 * 
-	 */
-	public void clickSideMenuButton() {
-
-		Decorator();
-
-		try {
-
-			// mobileAction.FuncClick(sideMenuButton, "Side Menu Button");
-			mobileAction.TapCoOrdinates(30, spendingMiddleY, "Side Menu Bar");
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
-			}
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		}
-	}
-
-	/**
-	 * This method will verify the 'Spending Insight' header page.
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 * 
-	 * 
-	 */
-	public void verifyPreferencesDisabled() {
-
-		Decorator();
-
-		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.verifyElementIsDisplayed(noAccountSelectedAndroid, "0 Accounts Selected");
-			} else {
-				mobileAction.verifyElementIsDisplayed(noAccountSelected, "0 Accounts Selected");
-			}
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (Exception e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "Exception from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		}
-	}
-
-	/**
-	 * This method will verify the 'Spending Insight' header page.
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 * 
-	 * 
-	 */
-	public void verifyPreferencesEnabled() {
-
-		Decorator();
-
-		try {
-
-			String accountsSelectedText = accountSelected.getAttribute("name");
-			String[] accountsSelectedArr = accountsSelectedText.split(" Accounts");
-			int accountsCount = Integer.parseInt(accountsSelectedArr[0]);
-
-			if (accountsCount > 0) {
-				mobileAction.verifyElementIsDisplayed(accountSelected, accountsCount + " Accounts Selected");
-			} else {
-				mobileAction.stringToReport("Fail",
-						"0 accounts are enabled or accounts are not present in preferences");
-			}
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (NumberFormatException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "NumberFormatException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NumberFormatException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * This method will logout from the application
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 * 
-	 * 
-	 */
-	public void logoutApplication() {
-
-		Decorator();
-
-		try {
-			clickSideMenuButton();
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.FuncClick(logoutBtnAndroid, "Logout Button");
-			} else {
-				mobileAction.FuncClick(logout, "Logout Button");
-			}
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		}
-	}
-
-	/**
-	 * This method will click on the money path button
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 * 
-	 * 
-	 */
-	public void clickMoneyPathButton() {
-
-		Decorator();
-
-		try {
-			mobileAction.FuncClick(moneyPathButton, "Money Path Button");
-
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		}
-	}
-
-	/**
-	 * This method will verify all the buttons of the page
-	 * 
-	 * @throws InterruptedException
-	 *             In case an exception occurs while clicking over the element.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 * 
-	 * 
-	 */
-	public void verifySpendingInsightsPage() {
-
-		Decorator();
-
-		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-
-				mobileAction.verifyElementIsDisplayed(spendingByCategoryBtnAndroid, "Spending by category button");
-				mobileAction.verifyElementIsDisplayed(transactionHistorybtnAndroid, "Transaction history Button");
-				mobileAction.verifyElementIsDisplayed(moneyPathBtnAndroid, "MoneyPath Button");
-				mobileAction.verifyElementIsDisplayed(spendingHistoryBtnAndroid, "Spending History button");
-				mobileAction.FuncClick(homeBtnAndroid, "Home Button");
-			} else {
-				mobileAction.verifyElementIsDisplayed(spendingByCategoryBtn, "Spending by category button");
-				mobileAction.verifyElementIsDisplayed(transactionHistoryBtn, "Transaction history Button");
-				mobileAction.verifyElementIsDisplayed(moneyPathButton, "MoneyPath Button");
-				//mobileAction.verifyElementIsDisplayed(spendingHistoryBtn, "Spending History button");
-				mobileAction.FuncClick(homeBtn, "Home Button");
-			}
-
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
+		}catch (IOException e) {
 			try {
 				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
 			} catch (IOException e1) {
@@ -463,7 +164,7 @@ public class Spending_Insight extends _CommonPage {
 	}
 	
 	/**
-	 * This method will click on the Daily Digest in the Spending Insight Page
+	 * This method will verify TDAPP Home Page from the Daily Digest page
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -474,16 +175,81 @@ public class Spending_Insight extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void clickDailyDigest() {
+	public void verifyTDAPPHomePage() {
 		Decorator();
 
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				CL.GetAppiumDriver().context("NATIVE_APP");
-				mobileAction.FuncClick(dailyDigest, "Daily Digest");
 				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
-				//mobileAction.FuncClick(dailyDigestAndroid, "Daily Digest");
+				mobileAction.FuncClick(homeBtnAndroid, "Home Button");
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				mobileAction.verifyElementIsDisplayed(quickAccess, "Home Page");
+				HomeScreen.get().clickMenu();
+				mobileAction.FuncClick(TDMySpend, "TD My Spend");
+				
 			} else {
+				mobileAction.FuncClick(homeBtn, "Home Button");
+				mobileAction.verifyElementIsDisplayed(quickAccess, "Home Page");
+				HomeScreen.get().clickMenu();
+				mobileAction.FuncClick(TDMySpend, "TD My Spend");
+				
+			}
+			
+
+		} catch (NoSuchElementException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		}catch (IOException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		
+		}
+	}
+	
+	/**
+	 * This method will verify TDAPP Home Page from the Daily Digest page
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void verifyBackButton() {
+		Decorator();
+
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
+				mobileAction.FuncClick(backBtnAndroid, "Back Button");
+				mobileAction.verifyElementIsDisplayed(logoutBtnAndroid, "Menu Page");
+				mobileAction.FuncClick(dailyDigestAndroid, "Daily Digest");
+				
+			} else {
+				Spending_Insight.get().clickSideMenuButton();
+				mobileAction.verifyElementIsDisplayed(logoutBtn, "Menu Page");
 				mobileAction.FuncClick(dailyDigest, "Daily Digest");
 			}
 			
@@ -513,7 +279,312 @@ public class Spending_Insight extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
+	
+	/**
+	 * This method will verify the tabs on the daily digest page.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void verifyTabs() {
+		Decorator();
 
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.verifyElementIsDisplayed(summaryTabAndroid, "Summary tab");
+				mobileAction.verifyElementIsDisplayed(categoryTabAndroid, "Category Tab");
+			} else {
+				mobileAction.verifyElementIsDisplayed(summaryTab, "Summary tab");
+				mobileAction.verifyElementIsDisplayed(categoryTab, "Category Tab");
+			}
+			
+
+		} catch (NoSuchElementException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		}catch (IOException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	/**
+	 * This method will click on the Summary tab
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void clickSummaryTab() {
+		Decorator();
+
+		try {
+				verifyTabs();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncClick(summaryTabAndroid, "Summary tab");
+				
+			} else {
+				mobileAction.FuncClick(summaryTab, "Summary tab");
+				
+			}
+			
+
+		} catch (NoSuchElementException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		}catch (IOException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	/**
+	 * This method will click on the category tab
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void clickCategoryTab() {
+		Decorator();
+
+		try {
+			verifyTabs();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncClick(categoryTabAndroid, "Category Tab");
+			} else {
+				mobileAction.FuncClick(categoryTab, "Category Tab");
+			}
+			
+
+		} catch (NoSuchElementException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		}catch (IOException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		}catch (InterruptedException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	/**
+	 * This method will verify the category spending message
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void verifyCategoryMessage() {
+		Decorator();
+
+		try {
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				
+				mobileAction.verifyElementIsDisplayed(yesterdaySpendingAndroid, "Yesterday Spending");
+				mobileAction.verifyElementIsDisplayed(usualSpendingAndroid, "Usual Spending");
+				mobileAction.verifyElementIsDisplayed(billerInfoAndroid, "Biller Information");
+				mobileAction.verifyElementIsDisplayed(changeCategoryAndroid, "Change category");
+				
+				
+			
+			} else {
+				
+				mobileAction.verifyElementIsDisplayed(yesterdaySpending, "Yesterday Spending");
+				mobileAction.verifyElementIsDisplayed(usualSpending, "Usual Spending");
+				mobileAction.verifyElementIsDisplayed(billerInfo, "Biller Information");
+				mobileAction.verifyElementIsDisplayed(changeCategory, "Change category");
+			}
+			
+
+		} catch (NoSuchElementException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		}catch (IOException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	/**
+	 * This method will verify the Previous Day and Usual Spending 
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void verifySpending() {
+		Decorator();
+
+		try {
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			
+				mobileAction.verifyElementIsDisplayed(yesterdaySpendingAndroid, "Yesterday Spending");
+				mobileAction.verifyElementIsDisplayed(usualSpendingAndroid, "Usual Spending");
+			} else {
+				mobileAction.verifyElementIsDisplayed(yesterdaySpending, "Yesterday Spending");
+				mobileAction.verifyElementIsDisplayed(usualSpending, "Usual Spending");
+			}
+			
+
+		} catch (NoSuchElementException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		}catch (IOException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	/**
+	 * This method will verify the Category Spike
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void verifyCategorySpike() {
+		Decorator();
+
+		try {
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			
+				mobileAction.verifyElementIsDisplayed(yesterdaySpendingAndroid, "Yesterday Spending");
+				mobileAction.verifyElementIsDisplayed(usualSpendingAndroid, "Usual Spending");
+				mobileAction.verifyElementIsDisplayed(categorySpikeMessageAndriod, "Category Spike Message");
+			} else {
+				mobileAction.verifyElementIsDisplayed(yesterdaySpending, "Yesterday Spending");
+				mobileAction.verifyElementIsDisplayed(usualSpending, "Usual Spending");
+				mobileAction.verifyElementIsDisplayed(categorySpikeMessage, "Category Spike Message");
+			}
+			
+
+		} catch (NoSuchElementException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		}catch (IOException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	
+	
 }

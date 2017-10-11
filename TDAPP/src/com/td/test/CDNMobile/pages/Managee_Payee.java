@@ -9,6 +9,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -46,7 +47,9 @@ public class Managee_Payee extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement managePayees;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[2]")
+	// @iOSFindBy(xpath =
+	// "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[@label='Add
+	// Canadian Payee']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement addPayee;
 
@@ -422,6 +425,10 @@ public class Managee_Payee extends _CommonPage {
 						"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("us") + "']",
 						"US banner button");
 				usElement.click();
+				addPayee = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeNavigationBar/XCUIElementTypeButton[@label='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_ADD_CANADIAN_PAYEE) + "']",
+						"Add Canadian Payee");
 				mobileAction.FuncClick(addPayee, "Add US Payee");
 				Thread.sleep(10000);
 			} else {
@@ -475,6 +482,12 @@ public class Managee_Payee extends _CommonPage {
 		try {
 
 			mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees Header");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				addPayee = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeNavigationBar/XCUIElementTypeButton[@label='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_ADD_CANADIAN_PAYEE) + "']",
+						"Add Canadian Payee");
+			}
 			mobileAction.FuncClick(addPayee, "Add Payee");
 			mobileAction.waitForElementToVanish(progressBar);
 
