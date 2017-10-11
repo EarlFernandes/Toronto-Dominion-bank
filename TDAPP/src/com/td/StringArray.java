@@ -174,6 +174,18 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGS = { "Home Screen Settings",
 			"Paramètres de l’écran d’accueil", "主屏幕设置", "主屏幕設置" };
 
+	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGSHEADERDESCRIPTION = {
+			"Choose what view to show on your home screen", "Choisir l’affichage de votre écran d’accueil", "选择主屏幕视图",
+			"選擇主屏幕視圖" };
+	public static final String[] ARRAY_DASHBOARD_ENABLEINVESTINGVIEW = { "Enable Investing View",
+			"Activer l’affichage de Placements", "启用投资视图", "啟用投資視圖" };
+	public static final String[] ARRAY_DASHBOARD_ENABLEINVESTINGVIEWDESCRIPTION = {
+			"Add a Watchlist, symbol search box and investing Quick Links.",
+			"Ajouter une liste de surveillance, une boîte de recherche de symboles et des liens rapides sur les placements",
+			"添加自选股观察名单、股票代码搜索框和投资快速连接。", "添加自選股觀察名單、股票代號搜索框和投資快速連結。" };
+	public static final String[] ARRAY_DASHBOARD_INVESTINGVIEWISON = { "Investing view is now on",
+			"Affichage Placements activé", "投资视图已开启", "投資視圖已開啟" };
+	public static final String[] ARRAY_DASHBOARD_GOHOME = { "Go home", "Aller à l’accueil", "回到主页", "回到首頁" };
 	// MIT Dashboard END
 
 	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE_ANSWER = { "Yes", "Oui", "是", "是" };

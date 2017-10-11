@@ -210,7 +210,7 @@ public class EventCase {
 
 		// MIT Dashboard
 
-		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser,
+		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI,
 
 		// P2P
 
@@ -2594,6 +2594,10 @@ public class EventCase {
 
 		case verifyHomeScreenSettingsInvestingUser:
 			MIT_DSHHomeScreenSettings.get().verifyHomeScreenSettingsInvestingUser();
+			break;
+
+		case verifyHomeScreenSettingsPageUI:
+			MIT_DSHHomeScreenSettings.get().verifyHomeScreenSettingsPageUI();
 			break;
 
 		// MIT Dashboard END

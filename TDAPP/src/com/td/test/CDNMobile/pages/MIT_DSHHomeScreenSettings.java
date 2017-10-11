@@ -2,6 +2,7 @@ package com.td.test.CDNMobile.pages;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.StringArray;
@@ -47,6 +48,42 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/hamburger")
 	private MobileElement BT_Home_HamburgerMenu;
 
+	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@AndroidFindBy(id = "com.td:id/settings_header_icon")
+	private MobileElement ICON_Home;
+
+	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@AndroidFindBy(id = "com.td:id/settings_header_description")
+	private MobileElement LBL_HomeSettingsHeaderDescription;
+
+	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@AndroidFindBy(id = "com.td:id/nav_row_title")
+	private MobileElement LBL_EnableInvestingView;
+
+	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@AndroidFindBy(id = "com.td:id/nav_row_desc")
+	private MobileElement LBL_EnableInvestingViewDescription;
+
+	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@AndroidFindBy(id = "com.td:id/nav_row_switch")
+	private MobileElement BT_EnableInvestingViewSwitch;
+
+	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@AndroidFindBy(id = "com.td:id/nav_row_left_icon")
+	private MobileElement ICON_MarketRise;
+
+	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/nav_row_left_icon']/following-sibling::*/*[@resource-id='com.td:id/nav_row_title']")
+	private MobileElement LBL_InvestingViewIsNowOn;
+
+	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/nav_row_left_icon']/following-sibling::*/*[@resource-id='com.td:id/nav_row_description']")
+	private MobileElement LBL_GoHome;
+
+	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
+	private MobileElement ICON_Chevron;
+
 	public void verifyHomeScreenSettingsUI() {
 		Decorator();
 		try {
@@ -75,13 +112,63 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 		try {
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "Home HamburgerMenu");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings, true, 5, "up");
-			mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
+			}
 			if (!mobileAction.isObjExists(LBL_HomeScreenSettings)) {
 				CL.GetReporting().FuncReport(PASS,
 						"As expected 'Home Screen Settings' is not displayed for Investing User.");
 			} else {
 				CL.GetReporting().FuncReport(PASS, "'Home Screen Settings' should not display for Investing User.");
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void verifyHomeScreenSettingsPageUI() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "Home HamburgerMenu");
+			mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings, true, 5, "up");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
+			}
+			mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
+			mobileAction.FuncVerifyTextEquals(LBL_HomeScreenSettings,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_HOMESCREENSETTINGS));
+
+			mobileAction.verifyElementIsDisplayed(ICON_Home, "Home Icon");
+
+			mobileAction.FuncVerifyTextEquals(LBL_HomeSettingsHeaderDescription,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_HOMESCREENSETTINGSHEADERDESCRIPTION));
+
+			mobileAction.FuncVerifyTextEquals(LBL_EnableInvestingView,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ENABLEINVESTINGVIEW));
+
+			mobileAction.FuncVerifyTextEquals(LBL_EnableInvestingViewDescription,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ENABLEINVESTINGVIEWDESCRIPTION));
+
+			if (!BT_EnableInvestingViewSwitch.isSelected()) {
+				CL.GetReporting().FuncReport(PASS, "Enable Investing View is bydefault OFF.");
+			} else {
+				CL.GetReporting().FuncReport(FAIL, "Enable Investing View is bydefault should be OFF.");
+			}
+
+			mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
+
+			mobileAction.verifyElementIsDisplayed(ICON_MarketRise, "MarketRise Icon");
+
+			mobileAction.FuncVerifyTextEquals(LBL_InvestingViewIsNowOn,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_INVESTINGVIEWISON));
+			
+			mobileAction.FuncVerifyTextEquals(LBL_GoHome,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_GOHOME));
+			
+			mobileAction.verifyElementIsDisplayed(ICON_Chevron, "> Icon");
+			
+			mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
