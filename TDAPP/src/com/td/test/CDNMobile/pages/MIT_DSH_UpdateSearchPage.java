@@ -11,6 +11,7 @@ import com.td.test.framework.MobileAction;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import io.appium.java_client.AppiumDriver;
@@ -342,7 +343,7 @@ private MobileElement searchBar;
 		
 		try {	
 			
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			
 		/*	MIT_DSHQuickLinks.get().goToDashboardHome();
 			
@@ -375,7 +376,7 @@ private MobileElement searchBar;
 				
 				enterSymbol(search_symbol, aSymbolArray[i]);
 				
-				clickFirstSymbolUSCAD(aSymbolArray[i]);
+				clickOtherSymbolUSCAD(aSymbolArray[i]);
 				
 				
 				Thread.sleep(4000);
@@ -391,7 +392,7 @@ private MobileElement searchBar;
 				mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
 				 	
 				
-				clickFirstSymbolUSCAD(aSymbolArray[i]);
+				clickOtherSymbolUSCAD(aSymbolArray[i]);
 				
 				
 				Thread.sleep(4000);
@@ -696,7 +697,7 @@ private MobileElement searchBar;
 			String xpathFlag = "";
 			int temp = 0;
 			//String sSymbol = getTestdata("Symbol", XLSheetUserIDs).trim();
-			sSymbol = "";
+			//sSymbol = "";
 			boolean bFound = false;
 			String sProperty = "";
 			String sSymbolName = "";
@@ -728,9 +729,8 @@ private MobileElement searchBar;
 						 * "//*[@resource-id='com.td:id/market_name']")).get(
 						 * temp).getText().contains(sSymbol); } catch(ex)
 						 */
-						if (CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).isDisplayed()
-								&& CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).getAttribute(sProperty)
-										.contains(sSymbol)) {
+						if (CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).isDisplayed() && CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).getAttribute(sProperty).contains(sSymbol))
+						{
 							bFound = true;
 							CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
 							CL.GetReporting().FuncReport("Pass", "Symbol <b> " + sSymbol + "</b> Clicked.");
@@ -754,7 +754,78 @@ private MobileElement searchBar;
 		}
 	}
 	
-	
+	public void clickOtherSymbolUSCAD(String sSymbol)// @Author - Sushil 08-Feb-2017
+	{
+		Decorator();
+		try {
+			String xpathFlag = "";
+			int temp = 0;
+			//String sSymbol = getTestdata("Symbol", XLSheetUserIDs).trim();
+			//sSymbol = "";
+			boolean bFound = false;
+			String sProperty = "";
+			String sSymbolName = "";
+			boolean bSymbolText = false;
+
+			//mobileAction.FuncClick(search_symbol, "search_symbol");
+			//enterSymbol(search_symbol, sSymbol);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				//xpathFlag = xpathSymbolFlag;
+				
+			
+				
+				xpathFlag = "//android.widget.ImageView[@resource-id='com.td:id/market_symbol' and (@content-desc='" + sSymbol + "')]";
+				
+				sProperty = "text";
+				// sSymbolName =
+				// CL.GetDriver().findElements(By.xpath("//*[@resource-id='com.td:id/market_name']")).get(i).getText();
+				try {
+					CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
+					CL.GetReporting().FuncReport("Pass", "Symbol <b> " + sSymbol + "</b> Clicked.");
+				} catch (Exception e) {
+					e.printStackTrace();
+					CL.GetReporting().FuncReport("Fail", "Symbol <b> " + sSymbol + "</b> not Clicked.");
+				}
+			} else {
+				//xpathFlag = xpathSymbolFlag_ios;
+				
+				
+				xpathFlag = "//XCUIElementTypeCell[@label='" + sSymbol + "' or @text='" + sSymbol + "']";
+				
+				// temp =0;
+				sProperty = "label";
+				do {
+					try {
+						/*
+						 * try{ bSymbolText =
+						 * CL.GetDriver().findElements(By.xpath(
+						 * "//*[@resource-id='com.td:id/market_name']")).get(
+						 * temp).getText().contains(sSymbol); } catch(ex)
+						 */
+						if (CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).isDisplayed() && CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).getAttribute(sProperty).contains(sSymbol))
+						{
+							bFound = true;
+							CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
+							CL.GetReporting().FuncReport("Pass", "Symbol <b> " + sSymbol + "</b> Clicked.");
+						} else
+							temp++;
+					} catch (Exception e) {
+						/*
+						 * if(CL.GetDriver().findElements(By.xpath(xpathFlag)).
+						 * get(1).isDisplayed()) {
+						 * CL.GetDriver().findElements(By.xpath(xpathFlag)).get(
+						 * 1).click(); CL.GetReporting().FuncReport("Pass",
+						 * "Symbol <b> "+ sSymbol + "</b> Clicked."); }
+						 */
+						temp++;
+					}
+				} while (!bFound && temp < CL.GetDriver().findElements(By.xpath(xpathFlag)).size());
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	
