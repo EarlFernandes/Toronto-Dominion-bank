@@ -342,10 +342,8 @@ private MobileElement searchBar;
 		Decorator();
 		
 		try {	
-			
-			//Thread.sleep(1000);
-			
-		/*	MIT_DSHQuickLinks.get().goToDashboardHome();
+					
+		MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 				
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -361,7 +359,7 @@ private MobileElement searchBar;
 			mobileAction.FuncSwipeWhileElementNotFound(searchBar, true,7, "up");
 			
 			}
-			*/
+			
 			mobileAction.FuncClick(btnMF, "btnMF");
 			
 			String[] aSymbolArray = getTestdata("Symbol", "UserIDs").split(":");
@@ -412,7 +410,73 @@ private MobileElement searchBar;
 	
 	
 	
-	
+	public void verifyNavigateQuoteSummaryETF() {
+		Decorator();
+		
+		try {	
+					
+		MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+				
+			if(mobileAction.isObjExists(searchBar, 2))
+			{
+				mobileAction.FuncClick(searchBar, "searchBar");
+				
+				
+			}
+			else
+			
+			{
+			
+			mobileAction.FuncSwipeWhileElementNotFound(searchBar, true,7, "up");
+			
+			}
+						
+			String[] aSymbolArray = getTestdata("Symbol", "UserIDs").split(":");
+			String sXPath = null;
+			//String sStock = aSymbolArray[0];
+			
+			
+			
+			for(int i=0; i<aSymbolArray.length; i++)
+			
+			{				
+				
+				enterSymbol(search_symbol, aSymbolArray[i]);
+				
+				clickFirstSymbolUSCAD(aSymbolArray[i]);
+				
+				
+				Thread.sleep(4000);
+				
+		    	sXPath = "//XCUIElementTypeOther[@label='" + aSymbolArray[i] + "' or @text='" + aSymbolArray[i] + "']/*[1]";
+		    	//XCUIElementTypeOther[@label='AIM10693' or @text='AIM10693']/*[1]
+		    	mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPath, aSymbolArray[i])), aSymbolArray[i]);
+				
+					
+				mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
+				
+				
+				mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+				 	
+				
+				clickFirstSymbolUSCAD(aSymbolArray[i]);
+				
+				
+				Thread.sleep(4000);
+				
+				
+				mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPath, aSymbolArray[i])), aSymbolArray[i]);
+				
+				mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
+				
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 	
 	
 	
@@ -790,7 +854,7 @@ private MobileElement searchBar;
 				//xpathFlag = xpathSymbolFlag_ios;
 				
 				
-				xpathFlag = "//XCUIElementTypeCell[@label='" + sSymbol + "' or @text='" + sSymbol + "']";
+				xpathFlag = "//XCUIElementTypeCell[contains(@label,'" + sSymbol + "') or contains(@text,'" + sSymbol + "')]";
 				
 				// temp =0;
 				sProperty = "label";
