@@ -60,6 +60,20 @@ private MobileElement searchBar;
 	private MobileElement search_symbol;
 
 	
+	@iOSFindBy(xpath = "//*[@label='Symbol then month or strike' or contains(@label,'Entrez le')]") //@Author - Sushil 03-Feb-2017
+	//@iOSFindBy(xpath = "//*[@name='TextField_0']") // @Author - Sushil
+													// 03-Feb-2017
+	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
+	private MobileElement search_symbol_option;
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	String xpathSymbolFlag = "//android.widget.ImageView[@resource-id='com.td:id/market_symbol' and (@content-desc='U S' or @content-desc='CAD' or @content-desc='CAN' or @content-desc='CA' or @content-desc='C A')]";
 	
 	String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'US') or contains(@label,'US') or contains(@label,'CAD') or contains(@label,'CAN') or contains(@label,'CA')  or contains(@label,'C A')]";
@@ -78,6 +92,18 @@ private MobileElement searchBar;
 	@iOSFindBy(xpath = "//*[@label='Watchlist Button' or contains(@label,'Entrez le')]") // @AuthorSushil03-Feb-2017
     @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
     private MobileElement 	WatchlistButton;
+	
+	
+	@iOSXCUITFindBy(accessibility = "codeSearchButton")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+    private MobileElement 	AddWatchlistButton;
+	
+	@iOSXCUITFindBy(accessibility = "actionSheetCancelButton")
+    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+    private MobileElement 	CancelButton;
+	
+	
+	
 	
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/up")
@@ -110,12 +136,31 @@ private MobileElement searchBar;
     private MobileElement 	btnMF;
 	
 	
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Options' or contains(@label,'Entrez le')]") // @AuthorSushil03-Feb-2017
+    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+    private MobileElement 	btnOption;
+	
+
+	
 	
 	@iOSFindBy(xpath = "//*[@label='Watchlist Button' or contains(@label,'Entrez le')]") // @AuthorSushil03-Feb-2017
     @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
     private MobileElement 	symHeader;
 	
 	
+	@iOSFindBy(xpath = "//*[@label='ADD TO OR REMOVE FROM WATCHLIST' or @label='RÉSULTATS']")
+	@AndroidFindBy(id = "android:id/content")
+	private MobileElement lblAddWatchlist;
+	
+	
+	@iOSXCUITFindBy(accessibility = "Button_0")
+	@AndroidFindBy(id = "android:id/up")
+	 MobileElement BT_CancelHome;
+	
+	
+	@iOSFindBy(xpath = "//*[@name='QuickLinkLeftNavButton']/following-sibling::XCUIElementTypeImage[1]")
+	@AndroidFindBy(id = "com.td:id/logo")
+	private MobileElement hdrHome;
 	
 	
 	
@@ -480,32 +525,140 @@ private MobileElement searchBar;
 	
 	
 	
+	public void verifyNavigateQuoteSummaryOption() {
+		Decorator();
+		
+		try {	
+					
+		MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+				
+			if(mobileAction.isObjExists(searchBar, 2))
+			{
+				mobileAction.FuncClick(searchBar, "searchBar");
+				
+				
+			}
+			else
+			
+			{
+			
+			mobileAction.FuncSwipeWhileElementNotFound(searchBar, true,7, "up");
+			
+			}
+			
+			mobileAction.FuncClick(btnOption, "btnOption");
+			
+			String[] aSymbolArray = getTestdata("Symbol", "UserIDs").split(":");
+			String sXPath = null;
+			//String sStock = aSymbolArray[0];
+			
+			
+			
+			for(int i=0; i<aSymbolArray.length; i++)
+			
+			{				
+				
+				enterSymbol(search_symbol_option, aSymbolArray[i]);
+				
+				clickOtherSymbolUSCAD(aSymbolArray[i]);
+				
+				
+				Thread.sleep(4000);
+				
+		    	sXPath = "//XCUIElementTypeOther[@label='" + aSymbolArray[i] + "' or @text='" + aSymbolArray[i] + "']/*[1]";
+		    	//XCUIElementTypeOther[@label='AIM10693' or @text='AIM10693']/*[1]
+		    	mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPath, aSymbolArray[i])), aSymbolArray[i]);
+				
+					
+				mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
+				
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 	
 	
 	
+	public void verifyNavigateQuoteSummaryStocks() {
+		Decorator();
+		
+		try {	
+					
+		MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+				
+			if(mobileAction.isObjExists(searchBar, 2))
+			{
+				mobileAction.FuncClick(searchBar, "searchBar");
+				
+				
+			}
+			else
+			
+			{
+			
+			mobileAction.FuncSwipeWhileElementNotFound(searchBar, true,7, "up");
+			
+			}
+						
+			String[] aSymbolArray = getTestdata("Symbol", "UserIDs").split(":");
+			String sXPath = null;
+			//String sStock = aSymbolArray[0];
+			
+			
+			
+			for(int i=0; i<aSymbolArray.length; i++)
+			
+			{				
+				
+				enterSymbol(search_symbol, aSymbolArray[i]);
+				
+				clickFirstSymbolUSCAD(aSymbolArray[i]);
+				
+				
+				Thread.sleep(4000);
+				
+		    	sXPath = "//XCUIElementTypeOther[@label='" + aSymbolArray[i] + "' or @text='" + aSymbolArray[i] + "']/*[1]";
+		    	//XCUIElementTypeOther[@label='AIM10693' or @text='AIM10693']/*[1]
+		    	mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPath, aSymbolArray[i])), aSymbolArray[i]);
+				
+					
+				mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
+				
+				
+				mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+				 	
+				
+				clickFirstSymbolUSCAD(aSymbolArray[i]);
+				
+				
+				Thread.sleep(4000);
+				
+				
+				mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPath, aSymbolArray[i])), aSymbolArray[i]);
+				
+				mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
+				
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 	
 	
+		
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public void verifyAddWatchlist() {
+	public void verifyAddWatchlistIndices() {
 		Decorator();
 		try {					
 				
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-			
-				
 			
 	
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -527,33 +680,31 @@ private MobileElement searchBar;
 			
 			mobileAction.FuncClick(btnIndices, "btnIndices");
 			
+			String[] aSymbolArray = getTestdata("Symbol", "UserIDs").split(":");
+			for(int i=0; i<aSymbolArray.length; i++)
+				
+				
+			{
 			
-			enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs").split(":")[0]);
+			enterSymbol(search_symbol, aSymbolArray[i]);
 			
 			
 			mobileAction.verifyElementIsDisplayed(hdrRESULTS, "hdrRESULTS");
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			
 			
 			
 			verifySymbolUSCAD();
 			
 			
-			mobileAction.verifyElementIsDisplayed(hdrRESULTS, "hdrRESULTS");
+			
+			mobileAction.FuncClick(AddWatchlistButton, "AddWatchlistButton");
+			
+			
+			
+			mobileAction.verifyElementIsDisplayed(lblAddWatchlist, "lblAddWatchlist");
+			
+						
+			mobileAction.FuncClick(CancelButton, "CancelButton");
 			
 			
 			
@@ -561,21 +712,151 @@ private MobileElement searchBar;
 			
 			
 			
-			mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
 			
+	
+			
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+	
+	public void verifyAddWatchlistMF() {
+		Decorator();
+		try {					
 				
+			MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+	
+			if(mobileAction.isObjExists(searchBar, 2))
+			{
+				mobileAction.FuncClick(searchBar, "searchBar");
+				
+				
+			}
+			else
+			
+			{
+			
+			mobileAction.FuncSwipeWhileElementNotFound(searchBar, true,7, "up");
+			
+			}
+			
+			mobileAction.verifyElementIsDisplayed(search_symbol, "Search Screen");
 			
 			
-			//clickFirstSymbolUSCAD();
+			mobileAction.FuncClick(btnMF, "btnMF");
+			
+			String[] aSymbolArray = getTestdata("Symbol", "UserIDs").split(":");
+			for(int i=0; i<aSymbolArray.length; i++)
+				
+				
+			{
+			
+			enterSymbol(search_symbol, aSymbolArray[i]);
+			
+			
+			mobileAction.verifyElementIsDisplayed(hdrRESULTS, "hdrRESULTS");
+			
+			
+			
+			verifySymbolUSCAD();
+			
+			
+			
+			mobileAction.FuncClick(AddWatchlistButton, "AddWatchlistButton");
+			
+			
+			
+			mobileAction.verifyElementIsDisplayed(lblAddWatchlist, "lblAddWatchlist");
 			
 						
+			mobileAction.FuncClick(CancelButton, "CancelButton");
+			
+			
+			
+			mobileAction.FuncClick(btnClear, "btnClear");
+			
+			
+			
+			
+	
+			
+			}
 		
-		
-			mobileAction.verifyElementIsDisplayed(WatchlistButton, "WatchlistButton");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+	public void verifyAddWatchlistStocksETF() {
+		Decorator();
+		try {					
+				
+			MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+	
+			if(mobileAction.isObjExists(searchBar, 2))
+			{
+				mobileAction.FuncClick(searchBar, "searchBar");
+				
+				
+			}
+			else
+			
+			{
+			
+			mobileAction.FuncSwipeWhileElementNotFound(searchBar, true,7, "up");
+			
+			}
+			
+			mobileAction.verifyElementIsDisplayed(search_symbol, "Search Screen");
 			
 			
 			
 			
+			String[] aSymbolArray = getTestdata("Symbol", "UserIDs").split(":");
+			for(int i=0; i<aSymbolArray.length; i++)
+				
+				
+			{
+			
+			enterSymbol(search_symbol, aSymbolArray[i]);
+			
+			
+			mobileAction.verifyElementIsDisplayed(hdrRESULTS, "hdrRESULTS");
+			
+			
+			
+			verifySymbolUSCAD();
+			
+			
+			
+			mobileAction.FuncClick(AddWatchlistButton, "AddWatchlistButton");
+			
+			
+			
+			mobileAction.verifyElementIsDisplayed(lblAddWatchlist, "lblAddWatchlist");
+			
+						
+			mobileAction.FuncClick(CancelButton, "CancelButton");
+			
+			
+			
+			mobileAction.FuncClick(btnClear, "btnClear");
+			
+			
+			
+			
+	
+			
+			}
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -586,18 +867,119 @@ private MobileElement searchBar;
 	
 	
 	
+	public void verifyNavigateUnAuthenticated() {
+		Decorator();
+		try {					
+				
+			MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+	
+			if(mobileAction.isObjExists(searchBar, 2))
+			{
+				mobileAction.FuncClick(searchBar, "searchBar");
+				
+				
+			}
+			else
+			
+			{
+			
+			mobileAction.FuncSwipeWhileElementNotFound(searchBar, true,7, "up");
+			
+			}
+			
+			mobileAction.verifyElementIsDisplayed(search_symbol, "Search Screen");
+			
+			
+			
+			mobileAction.verifyElementIsDisplayed(CancelButton, "CancelButton");
+			
+			mobileAction.verifyElementIsDisplayed(btnMF, "btnMF");
+			mobileAction.verifyElementIsDisplayed(btnOption, "btnOption");
+			
+			mobileAction.verifyElementIsDisplayed(btnIndices, "btnIndices");
+			mobileAction.verifyElementIsDisplayed(hdrHome, "hdrHome");
+			
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 	
 	
 	
 	
+	public void verifyAddWatchlistOption() {
+		Decorator();
+		try {					
+				
+			MIT_DSHQuickLinks.get().goToDashboardHome();
+			
 	
+			if(mobileAction.isObjExists(searchBar, 2))
+			{
+				mobileAction.FuncClick(searchBar, "searchBar");
+				
+				
+			}
+			else
+			
+			{
+			
+			mobileAction.FuncSwipeWhileElementNotFound(searchBar, true,7, "up");
+			
+			}
+			
+			mobileAction.verifyElementIsDisplayed(search_symbol, "Search Screen");
+			
+			
+			mobileAction.FuncClick(btnOption, "btnOption");
+			
+			String[] aSymbolArray = getTestdata("Symbol", "UserIDs").split(":");
+			for(int i=0; i<aSymbolArray.length; i++)
+				
+				
+			{
+			
+			enterSymbol(search_symbol, aSymbolArray[i]);
+			
+			
+			mobileAction.verifyElementIsDisplayed(hdrRESULTS, "hdrRESULTS");
+			
+			
+			
+			verifySymbolUSCAD();
+			
+			
+			
+			mobileAction.FuncClick(AddWatchlistButton, "AddWatchlistButton");
+			
+			
+			
+			mobileAction.verifyElementIsDisplayed(lblAddWatchlist, "lblAddWatchlist");
+			
+						
+			mobileAction.FuncClick(CancelButton, "CancelButton");
+			
+			
+			
+			mobileAction.FuncClick(btnClear, "btnClear");
+			
+			
+			
+			
 	
-	
-	
-	
-	
-	
-	
+			
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 	
 	
 	
