@@ -100,7 +100,7 @@ public class InvestingAccountSummary extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textview_right']")
 	private MobileElement gainLossUnrealized;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/symbol']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/symbol' and @index='1']")
 	private MobileElement holdingName;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/buyBtn']")
@@ -897,8 +897,6 @@ public class InvestingAccountSummary extends _CommonPage {
 	public void verifyListedHoldingDetails() {
 
 		Decorator();
-		boolean flag = true;
-		int count = 0;
 		String text = null;
 
 		try {
@@ -912,23 +910,7 @@ public class InvestingAccountSummary extends _CommonPage {
 								+ mobileAction.getAppString("str_Investing") + "']",
 						"Investing Header");
 
-				while (flag && count < 5) {
-					try {
-
-						if (holdingName.isDisplayed()) {
-							mobileAction.FuncClick(holdingName, "Holding Symbol");
-							flag = false;
-						} else {
-							mobileAction.FunctionSwipe("up", 200, 200);
-							count++;
-						}
-
-					} catch (Exception e) {
-						mobileAction.FunctionSwipe("up", 200, 200);
-						count++;
-					}
-				}
-
+				mobileAction.FuncSwipeWhileElementNotFound(holdingName, true, 10, "up");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
 								+ mobileAction.getAppString("str_Holding_Detail") + "']",

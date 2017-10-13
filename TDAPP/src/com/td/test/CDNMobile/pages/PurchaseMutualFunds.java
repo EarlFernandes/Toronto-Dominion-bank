@@ -95,7 +95,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	private MobileElement legal_text;
 
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer']/android.widget.TextView")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer' and @index='8']/android.widget.TextView")
 	private MobileElement copy_text;
 
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/preceding-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
@@ -401,16 +401,24 @@ public class PurchaseMutualFunds extends _CommonPage {
 					getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT));
 			mobileAction.verifyElementTextIsDisplayed(contact_caption,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_CONTACT_INFO));
-//			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-//				mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView", 1, "down");
-//			} else {
-//				mobileAction.SwipeWithinElement("//XCUIElementTypeTable", 1, "down");
-//			}
+			// if
+			// (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			// {
+			// mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView",
+			// 1, "down");
+			// } else {
+			// mobileAction.SwipeWithinElement("//XCUIElementTypeTable", 1,
+			// "down");
+			// }
 			mobileAction.FuncSwipeWhileElementNotFound(view_fundFacts, false, 3, "up");
 			mobileAction.verifyElementTextIsDisplayed(email_caption,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL));
 			mobileAction.verifyElementTextIsDisplayed(phone_caption,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE));
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				copy_text = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_COPY_TEXT) + "']", "Copy text");
+			}
 			if (mobileAction.verifyElementIsPresent(copy_text)) {
 				mobileAction.verifyElementTextIsDisplayed(copy_text,
 						getTextInCurrentLocale(StringArray.ARRAY_MF_COPY_TEXT));
@@ -418,16 +426,31 @@ public class PurchaseMutualFunds extends _CommonPage {
 
 			mobileAction.verifyElementTextIsDisplayed(view_fundFacts,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_VIEW_FUND_FACT));
-			mobileAction.FuncSwipeWhileElementNotFound(legal_text, false, 2, "up");
+			mobileAction.FuncSwipeUpTillScreenBottom(legal_text);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.verifyElementTextIsDisplayed(consent_checkbox_description,
+				String capturedText = mobileAction.getValue(consent_checkbox_description);
+				if (currentLocale.equalsIgnoreCase("en")) {
+					capturedText = capturedText.replaceAll("\n ", "");
+					capturedText = capturedText.replaceAll("\n", "");
+					capturedText = capturedText.replace(" Please note:", "Please note:");
+				}
+
+				mobileAction.verifyTextEquality(capturedText,
 						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_RADIO));
+				// mobileAction.verifyElementTextIsDisplayed(consent_checkbox_description,
+				// getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_RADIO));
 			} else {
 				mobileAction.verifyElementTextIsDisplayed(consent_checkbox,
 						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_RADIO));
 			}
-
-			//mobileAction.verifyElementTextIsDisplayed(legal_text,getTextInCurrentLocale(StringArray.ARRAY_MF_LEGAL_TRAILING_COMMISSION));
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				legal_text = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_MF_LEGAL_TRAILING_COMMISSION) + "']",
+						"legal text");
+				mobileAction.verifyElementTextIsDisplayed(legal_text,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_LEGAL_TRAILING_COMMISSION));
+			}
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed to VerifyPurchaseMFPageInChinese.");

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
@@ -888,7 +889,7 @@ public class Accounts extends _CommonPage {
 			}
 
 			System.out.println("Acnt_Description:" + Acnt_Description);
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, true, 30, "up",true);
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, true, 30, "up", true);
 			mobileAction.waitForElementToVanish(progresssBar);
 
 		} catch (NoSuchElementException e) {
@@ -1023,14 +1024,31 @@ public class Accounts extends _CommonPage {
 			String total_Account_value_usd = "";
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				total_xpath = "//*[@label='" + totalStr.toUpperCase()
-						+ "']/preceding-sibling::XCUIElementTypeStaticText[1]";
+				total_xpath = "//*[@label='" + totalStr.toUpperCase() + "']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(total_xpath, false, 20, "up");
 
-				total_accounts_ios = mobileAction.verifyElementUsingXPath(total_xpath, "Total Account");
-				String TotalAccountValue = mobileAction.getValue(total_accounts_ios);
-				total_Account_value_usd = mobileAction.FuncGetValByRegx(TotalAccountValue, "USD *.*");
-				total_Account_value_cad = TotalAccountValue.replace(total_Account_value_usd, "").trim();
+				List<MobileElement> total_List = CL.GetAppiumDriver().findElements(
+						By.xpath("//*[@label='" + totalStr.toUpperCase() + "']/../XCUIElementTypeStaticText"));
+				String TotalAccountValue ="";
+				boolean isUSDFound = false;
+				for(int i=0; i<total_List.size(); i++ ) {
+					TotalAccountValue = mobileAction.getValue(total_List.get(i));
+					if(TotalAccountValue.contains("USD") ) {
+						System.out.println("USD account in TOTAL was found");
+						isUSDFound = true;
+						break;
+					} 
+				}
+				//total_accounts_ios = mobileAction.verifyElementUsingXPath(total_xpath, "Total Account");
+				//String TotalAccountValue = mobileAction.getValue(total_accounts_ios);
+				if(isUSDFound) {
+					total_Account_value_usd = mobileAction.FuncGetValByRegx(TotalAccountValue, "USD *.*");
+					total_Account_value_cad = TotalAccountValue.replace(total_Account_value_usd, "").trim();
+				} else {
+					mobileAction.Report_Fail("Failed to find USD account in Total");
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					return;
+				}
 
 			} else {
 

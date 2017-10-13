@@ -262,7 +262,7 @@ public class Investing extends _CommonPage {
 	private MobileElement account_balance;
 
 	@iOSFindBy(xpath = "//*[@name='TD_ACCOUNT_FOOTER_VIEW_LABEL']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/canadianDollarNote']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tradingFeeDisclaimer']")
 	private MobileElement usd_disclaimer_foot;
 
 	@iOSFindBy(xpath = "//*[@name='FUND_BALANCE_MARKET_VALUE']/../XCUIElementTypeStaticText[2]")
@@ -282,9 +282,9 @@ public class Investing extends _CommonPage {
 	private MobileElement tdDirectInvestment;
 
 	@iOSFindBy(accessibility = "TD_ACCOUNT_FOOTER_VIEW_LABEL")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tradingFeeDisclaimer']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/canadianDollarNote']")
 	private MobileElement tradingFeeDisclaimer;
-
+	
 	public synchronized static Investing get() {
 		if (Investing == null) {
 			Investing = new Investing();
@@ -1554,7 +1554,8 @@ public class Investing extends _CommonPage {
 				mobileAction.verifyTextEquality(go_to_webbroker_button.getText(),
 						mobileAction.getAppString("str_go_to_webbroker"));
 				mobileAction.verifyTextEquality(call_button.getText().split(" ")[0],
-						//mobileAction.getAppString("call_phone").replace(" %1$s", ""));
+						// mobileAction.getAppString("call_phone").replace("
+						// %1$s", ""));
 						mobileAction.getAppString("str_Call").replace(" %1$s", ""));
 			} else {
 				mobileAction.verifyElementUsingXPath(
@@ -1755,18 +1756,17 @@ public class Investing extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(funds_tab, getTextInCurrentLocale(StringArray.ARRAY_TAB_FUND));
 			mobileAction.verifyElementTextIsDisplayed(activity_tab,
 					getTextInCurrentLocale(StringArray.ARRAY_TAB_ACTIVITY));
-			mobileAction.verifyElementTextIsDisplayed(table_heading_left,
-					getTextInCurrentLocale(StringArray.ARRAY_FUND_TAB_LEFT));
-			mobileAction.verifyElementTextIsDisplayed(table_heading_middle,
+			String strFundTabLeft = mobileAction.getValue(table_heading_left).replaceAll(" ¹", "").trim();
+			System.out.println("strFundTabLeft:" + strFundTabLeft);
+			mobileAction.verifyTextEquality(strFundTabLeft, getTextInCurrentLocale(StringArray.ARRAY_FUND_TAB_LEFT));
+			String strFundTabMiddle = mobileAction.getValue(table_heading_middle).replaceAll(" ²", "").trim();
+			System.out.println("strFundTabMiddle:" + strFundTabMiddle);
+			mobileAction.verifyTextEquality(strFundTabMiddle,
 					getTextInCurrentLocale(StringArray.ARRAY_TABLE_MARKET_VALUE));
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 				mobileAction.verifyElementTextIsDisplayed(table_heading_unit,
 						getTextInCurrentLocale(StringArray.ARRAY_TABLE_UNIT) + " "
-								+ getTextInCurrentLocale(StringArray.ARRAY_TABLE_PRICE_PER_UINT));// "单位
-																									// 单位价格
-																									// |
-																									// 單位
-																									// 單位價格");
+								+ getTextInCurrentLocale(StringArray.ARRAY_TABLE_PRICE_PER_UINT));
 			} else {
 				mobileAction.verifyElementTextIsDisplayed(table_heading_unit,
 						getTextInCurrentLocale(StringArray.ARRAY_TABLE_UNIT));
@@ -1774,9 +1774,19 @@ public class Investing extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_TABLE_PRICE_PER_UINT));
 			}
 
-			mobileAction.FuncSwipeWhileElementNotFound(tradingFeeDisclaimer, false, 10, "up");
-			mobileAction.verifyElementTextContains(tradingFeeDisclaimer,
-					getTextInCurrentLocale(StringArray.ARRAY_MF_TRADE_FEE_DISCLAIMER));
+			mobileAction.FuncSwipeWhileElementNotFound(tradingFeeDisclaimer, false, 20, "up");
+			String capturedtext = mobileAction.getValue(tradingFeeDisclaimer);
+			if (currentLocale.equalsIgnoreCase("fr")) {
+				capturedtext = capturedtext.replaceAll("2 %", "2 %");
+			}
+			System.out.println("Captured:" + capturedtext);
+
+			if (capturedtext.contains(getTextInCurrentLocale(StringArray.ARRAY_MF_TRADE_FEE_DISCLAIMER))) {
+				mobileAction.Report_Pass_Verified(getTextInCurrentLocale(StringArray.ARRAY_MF_TRADE_FEE_DISCLAIMER));
+			} else {
+				mobileAction
+						.Report_Fail_Not_Verified(getTextInCurrentLocale(StringArray.ARRAY_MF_TRADE_FEE_DISCLAIMER));
+			}
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -1874,7 +1884,7 @@ public class Investing extends _CommonPage {
 	public void VerifyUSDDisclaimer() {
 		try {
 			Decorator();
-			mobileAction.FuncSwipeWhileElementNotFound(usd_disclaimer_foot, false, 10, "up");
+			mobileAction.FuncSwipeWhileElementNotFound(usd_disclaimer_foot, false, 20, "up");
 			String usDisclaimerText = mobileAction.getValue(usd_disclaimer_foot);
 			String expectedText = getTextInCurrentLocale(StringArray.ARRAY_MF_CANADIAN_DOLLAR_NOTE);
 
@@ -2037,14 +2047,15 @@ public class Investing extends _CommonPage {
 		try {
 
 			String fromAccount = getTestdata("FromAccount");
-			System.out.println("Account:"+fromAccount);
+			System.out.println("Account:" + fromAccount);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				String from_accountNo = "//XCUIElementTypeStaticText[contains(@label, '" + fromAccount + "')]";
 
-//				MobileElement fromAccountval = (MobileElement) (CL.GetAppiumDriver())
-//
-//						.findElement(By.xpath(from_accountNo));
-//				mobileAction.FunCSwipeandScroll(fromAccountval, true);
+				// MobileElement fromAccountval = (MobileElement)
+				// (CL.GetAppiumDriver())
+				//
+				// .findElement(By.xpath(from_accountNo));
+				// mobileAction.FunCSwipeandScroll(fromAccountval, true);
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(from_accountNo, true, 10, "up");
 			} else {
 
