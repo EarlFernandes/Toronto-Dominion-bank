@@ -167,6 +167,9 @@ public final class StringArray {
 			"Gestion de Placements TD Inc. (GPTD) verse une commission de suivi à Services d’investissement TD Inc. en contrepartie des services et des conseils qui vous sont offerts, tant et aussi longtemps que vous détenez des parts des Fonds Mutuels TD. Veuillez vous reporter à l’aperçu du fonds pertinent pour obtenir plus de précisions.",
 			"道明资产管理有限公司（TDAM）在您持有道明互惠基金单位期间向道明投资服务有限公司（TDIS）支付尾随佣金，作为其向您提供服务和咨询的费用。有关详细信息，请参阅基金概况。",
 			"道明資產管理有限公司（TDAM）在您持有道明互惠基金單位期間向道明投資服務有限公司（TDIS）支付尾隨佣金，作為其向您提供服務和諮詢的費用。有關詳細信息，請參閱基金概況。" };
+	public static final String[] ARRAY_MF_USD_CONVERSION_RATE = { "U\\.S\\. conversion rate used\\s*:\\s*\\d+\\.\\d+",
+			"Taux de conversion US utilisé\\s*:\\s*\\d+\\.\\d+", "美元汇率\\s*:\\s*\\d+\\.\\d+",
+			"美元匯率\\s*:\\s*\\d+\\.\\d+" };
 
 	public static final String[] ARRAY_PROFILE_AND_PREFERENCE = { "Profile & Settings", "Profil et paramètres",
 			"个人资料和设置", "個人資料和設定" };

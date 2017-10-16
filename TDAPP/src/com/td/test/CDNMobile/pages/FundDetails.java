@@ -295,10 +295,7 @@ public class FundDetails extends _CommonPage {
 			}
 			mobileAction.FuncSwipeWhileElementNotFound(usd_conversion_rate, false, 10, "up");
 			String conversionText = mobileAction.getValue(usd_conversion_rate);
-			String expectedTextReg = "U\\.S\\. conversion rate used\\s*:\\s*\\d+\\.\\d+";
-			if (currentLocale.equalsIgnoreCase("FR")) {
-				expectedTextReg = "Taux de conversion US utilisé\\s*:\\s*\\d+\\.\\d+";
-			}
+			String expectedTextReg = getTextInCurrentLocale(StringArray.ARRAY_MF_USD_CONVERSION_RATE);
 			String expectedText = mobileAction.FuncGetValByRegx(conversionText, expectedTextReg);
 			if (!expectedText.isEmpty()) {
 				System.out.println(expectedText);
