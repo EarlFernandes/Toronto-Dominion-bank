@@ -32,7 +32,7 @@ public final class StringArray {
 			"每周七天、每天 24 小时，您都可以进行购买。如果在工作日东部时间下午 3 点之前购买，将按当天价格交易。如果在东部时间下午 3 点之后或在周末购买，将按照下一个工作日的收市价交易。所有购买通常均需要数天的时间进行确认。",
 			"每週七天、每天 24 小時，您都可以購買。如果在工作日的東部時間下午 3 時之前購買，將按當天價格交易。如果在東部時間下午 3 時之後或在週末購買，將按下一個工作日的收市價交易。所有購買通常均需要數天的時間進行確認。" };
 	public static final String[] ARRAY_MF_DISCLAIMER_INFO = {
-			"We only use your information to contact you about your purchase.Please make sure that all RSP and Tax Free Savings Account transactions do not exceed your allowed contribution limit.If a trade is rejected for any reason, we'll cancel it and notify you via email within one business day.The fund you are buying has a minimum holding period. A short- term trading fee of up to 2%, payable to the fund, may apply to all units of TD Mutual funds (except money market funds), if redeemed prior to the minimum holding period.  Please refer to the applicable fund facts for details.",
+			"We only use your information to contact you about your purchase.Please make sure that all RSP and Tax Free Savings Account transactions do not exceed your allowed contribution limit.If a trade is rejected for any reason, we'll cancel it and notify you via email within one business day.The fund you are ing has a minimum holding period. A short- term trading fee of up to 2%, payable to the fund, may apply to all units of TD Mutual funds (except money market funds), if redeemed prior to the minimum holding period.  Please refer to the applicable fund facts for details.",
 			"Vos renseignements seront uniquement utilisés pour communiquer avec vous au sujet de votre achat.Vérifiez qu’aucune opération visant un REER ou un CELI ne vous fera dépasser votre plafond de cotisation.Si une opération est refusée pour quelque raison que ce soit, nous l’annulerons et nous vous aviserons par courriel dans un délai d’un jour ouvrable.Le fonds que vous souscrivez comporte une période de conservation minimale. Des frais d’opération à court terme d’au plus 2 %, qui sont payables au fonds, peuvent s’appliquer à l’ensemble des parts des Fonds Mutuels TD (exception faite des fonds du marché monétaire), si vous les rachetez avant la fin de la période de conservation minimale. Veuillez vous reporter à l’aperçu du fonds pertinent pour obtenir plus de précisions.",
 			"您的个人信息仅用于我们就您的基金购买情况与您联络。请确保所有注册退休储蓄计划(RSP)和免税储蓄账户(TFSA)交易不超过您允许的供款限额。如果交易出于任何原因被拒，我们将在一个工作日内取消交易并向您发送电子邮件通知。您购买的基金有最短持有期要求。如果您在最短持有期到期之前赎回，则可能需向基金支付最高2%的短期交易费，此要求适用于道明互惠基金的所有单位（货币市场基金除外）。详情请参阅相关基金概况。道明资产管理有限公司（TDAM）在您持有道明互惠基金单位期间向道明投资服务有限公司（TDIS）支付尾随佣金，作为其向您提供服务和咨询的费用。有关详细信息，请参阅基金概况。",
 			"我們僅在因有關您的購買時，才會使用您的資訊與您聯絡。請確保所有註冊退休儲蓄計劃(RSP)和免稅儲蓄賬戶(TFSA)交易不超過您允許的供款限額。如果交易因任何原因被拒，我們將在一個工作日內取消交易並向您發送電郵通知。您購買的基金有最短持有期要求。如果您在最短持有期到期之前贖回，則可能需向基金支付最高2%的短期交易費，此要求適用於道明互惠基金的所有單位（貨幣市場基金除外）。詳情請參閱相關基金概況。道明資產管理有限公司（TDAM）在您持有道明互惠基金單位期間向道明投資服務有限公司（TDIS）支付尾隨佣金，作為其向您提供服務和諮詢的費用。有關詳細信息，請參閱基金概況。" };
@@ -186,6 +186,12 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_INVESTINGVIEWISON = { "Investing view is now on",
 			"Affichage Placements activé", "投资视图已开启", "投資視圖已開啟" };
 	public static final String[] ARRAY_DASHBOARD_GOHOME = { "Go home", "Aller à l’accueil", "回到主页", "回到首頁" };
+	public static final String[] ARRAY_DASHBOARD_STOCKETFs = { "Stocks & ETFs", "Actions et FNB", "股票和交易所交易基金",
+			"股票和交易所買賣基金" };
+	public static final String[] ARRAY_DASHBOARD_ACTIONBUY = { "Buy", "Acheter", "买入", "買入" };
+	public static final String[] ARRAY_DASHBOARD_ACTIONSELL = { "Sell", "Vendre", "卖出", "賣出" };
+	public static final String[] ARRAY_DASHBOARD_PRICEMARKET = { "Market", "Cours du marché", "市场", "市場" };
+	public static final String[] ARRAY_DASHBOARD_GOODTILLDAY = { "Day", "Jour", "当天有效", "當日有效" };
 	// MIT Dashboard END
 
 	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE_ANSWER = { "Yes", "Oui", "是", "是" };

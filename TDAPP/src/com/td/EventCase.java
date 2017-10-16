@@ -35,6 +35,7 @@ import com.td.test.CDNMobile.pages.MFA_ChangeAnswer;
 import com.td.test.CDNMobile.pages.MIT_DSHHomeScreenSettings;
 import com.td.test.CDNMobile.pages.MIT_DSHNavRows;
 import com.td.test.CDNMobile.pages.MIT_DSHQuickLinks;
+import com.td.test.CDNMobile.pages.MIT_DSHWLPopulateData;
 import com.td.test.CDNMobile.pages.MIT_DSHWLTopNav;
 import com.td.test.CDNMobile.pages.MIT_PNSAccessAlerts;
 import com.td.test.CDNMobile.pages.MIT_PNSCreateNewAlert;
@@ -210,7 +211,7 @@ public class EventCase {
 
 		// MIT Dashboard
 
-		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI,
+		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI,verifyStockETFsWLSymbolRow,
 
 		// P2P
 
@@ -2599,7 +2600,11 @@ public class EventCase {
 		case verifyHomeScreenSettingsPageUI:
 			MIT_DSHHomeScreenSettings.get().verifyHomeScreenSettingsPageUI();
 			break;
-
+			
+		case verifyStockETFsWLSymbolRow:
+			MIT_DSHWLPopulateData.get().verifyStockETFsWLSymbolRow();
+			break;
+			
 		// MIT Dashboard END
 
 		case Env_DeleteDefaultCard:

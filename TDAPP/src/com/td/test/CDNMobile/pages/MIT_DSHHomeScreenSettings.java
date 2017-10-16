@@ -52,19 +52,19 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/settings_header_icon")
 	private MobileElement ICON_Home;
 
-	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@iOSXCUITFindBy(accessibility = "PROFILE_HEADER_DES")
 	@AndroidFindBy(id = "com.td:id/settings_header_description")
 	private MobileElement LBL_HomeSettingsHeaderDescription;
 
-	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@iOSXCUITFindBy(accessibility = "ProfilePreferencesToggleTableViewCell_Title_Label")
 	@AndroidFindBy(id = "com.td:id/nav_row_title")
 	private MobileElement LBL_EnableInvestingView;
 
-	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@iOSXCUITFindBy(accessibility = "ProfilePreferencesToggleTableViewCell_Description_Label")
 	@AndroidFindBy(id = "com.td:id/nav_row_desc")
 	private MobileElement LBL_EnableInvestingViewDescription;
 
-	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@iOSXCUITFindBy(accessibility = "ProfilePreferencesToggleTableViewCell_Toggle_Switch")
 	@AndroidFindBy(id = "com.td:id/nav_row_switch")
 	private MobileElement BT_EnableInvestingViewSwitch;
 
@@ -72,15 +72,15 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/nav_row_left_icon")
 	private MobileElement ICON_MarketRise;
 
-	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Title_Label")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/nav_row_left_icon']/following-sibling::*/*[@resource-id='com.td:id/nav_row_title']")
 	private MobileElement LBL_InvestingViewIsNowOn;
 
-	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Subtitle_Label")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/nav_row_left_icon']/following-sibling::*/*[@resource-id='com.td:id/nav_row_description']")
 	private MobileElement LBL_GoHome;
 
-	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Accessory_Button")
 	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
 	private MobileElement ICON_Chevron;
 
@@ -119,7 +119,7 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 				CL.GetReporting().FuncReport(PASS,
 						"As expected 'Home Screen Settings' is not displayed for Investing User.");
 			} else {
-				CL.GetReporting().FuncReport(PASS, "'Home Screen Settings' should not display for Investing User.");
+				CL.GetReporting().FuncReport(FAIL, "'Home Screen Settings' should not display for Investing User.");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -138,7 +138,8 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 			mobileAction.FuncVerifyTextEquals(LBL_HomeScreenSettings,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_HOMESCREENSETTINGS));
 
-			mobileAction.verifyElementIsDisplayed(ICON_Home, "Home Icon");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				mobileAction.verifyElementIsDisplayed(ICON_Home, "Home Icon");
 
 			mobileAction.FuncVerifyTextEquals(LBL_HomeSettingsHeaderDescription,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_HOMESCREENSETTINGSHEADERDESCRIPTION));
@@ -149,26 +150,43 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 			mobileAction.FuncVerifyTextEquals(LBL_EnableInvestingViewDescription,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ENABLEINVESTINGVIEWDESCRIPTION));
 
-			if (!BT_EnableInvestingViewSwitch.isSelected()) {
-				CL.GetReporting().FuncReport(PASS, "Enable Investing View is bydefault OFF.");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				if (!BT_EnableInvestingViewSwitch.isSelected()) {
+					CL.GetReporting().FuncReport(PASS, "Enable Investing View is bydefault OFF.");
+				} else {
+					CL.GetReporting().FuncReport(FAIL, "Enable Investing View is bydefault should be OFF.");
+				}
 			} else {
-				CL.GetReporting().FuncReport(FAIL, "Enable Investing View is bydefault should be OFF.");
+				if (!mobileAction.isObjExists(LBL_InvestingViewIsNowOn)) {
+					CL.GetReporting().FuncReport(PASS, "Enable Investing View is bydefault OFF.");
+				} else {
+					CL.GetReporting().FuncReport(FAIL, "Enable Investing View is bydefault should be OFF.");
+				}
+
 			}
 
 			mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
 
-			mobileAction.verifyElementIsDisplayed(ICON_MarketRise, "MarketRise Icon");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				mobileAction.verifyElementIsDisplayed(ICON_MarketRise, "MarketRise Icon");
 
 			mobileAction.FuncVerifyTextEquals(LBL_InvestingViewIsNowOn,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_INVESTINGVIEWISON));
-			
-			mobileAction.FuncVerifyTextEquals(LBL_GoHome,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_GOHOME));
-			
-			mobileAction.verifyElementIsDisplayed(ICON_Chevron, "> Icon");
-			
+
+			mobileAction.FuncVerifyTextEquals(LBL_GoHome, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_GOHOME));
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				if (!mobileAction.isObjExists(ICON_Chevron)) {
+					CL.GetReporting().FuncReport(PASS, "Chevron Icon should not display.");
+				} else {
+					CL.GetReporting().FuncReport(FAIL, "Chevron Icon should not be displayed.");
+				}
+			} else {
+				mobileAction.verifyElementIsDisplayed(ICON_Chevron, "> Icon");
+			}
+
 			mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
