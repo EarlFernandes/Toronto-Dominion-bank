@@ -234,8 +234,9 @@ public class Accounts extends _CommonPage {
 
 			} else {
 				mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 25, "down", true);
-
 			}
+			
+			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncClick(summaryBtn, "Summary");
 			// mobileAction.verifyElementIsDisplayed(current_Balance, "Current
 			// balance");
