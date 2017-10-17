@@ -48,7 +48,7 @@ public class Managee_Payee extends _CommonPage {
 	private MobileElement managePayees;
 
 	// For nexus addpayee class is not a button, to consolidate that, change to
-	@AndroidFindBy(xpath = "//android.view.ViewGroup/android.widget.Linearlayout[@index='1']")
+	@AndroidFindBy(xpath = "//android.view.ViewGroup/android.widget.LinearLayout[@index='1']")
 	private MobileElement addPayee;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
