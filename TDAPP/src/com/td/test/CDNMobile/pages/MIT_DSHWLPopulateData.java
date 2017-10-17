@@ -94,11 +94,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 		Decorator();
 		try {
 			String sSymbol = getTestdata("Symbol", XLSheetUserIDs);
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				MIT_DSHQuickLinks.get().clickQuickLink(QL_WATCHLISTS, "WATCHLISTS");
-			} else {
-				mobileAction.FuncClick(BT_More, "More Button");
-			}
+
 			clickWLSymbolBuyButton(sSymbol);
 
 			verifyStockOrderEntryScreen(sSymbol, "Buy");
@@ -118,10 +114,15 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 		try {
 
 			String xpathWLSymbol = "//*[@label='" + sSymbol + "']";
-			mobileAction.FuncClick(mobileAction.mobileElementUsingXPath(xpathWLSymbol), sSymbol);
+			String xpathWLSymbolQuotePage = "//*[contains(@label,'" + sSymbol + "')]";
+
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbol, true, 4, "up");
+			// mobileAction.FuncClick(mobileAction.mobileElementUsingXPath(xpathWLSymbol),
+			// sSymbol);
 			Thread.sleep(10000);
 			if (!CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.FuncVerifyTextEquals(mobileAction.mobileElementUsingXPath(xpathWLSymbol), sSymbol);
+				mobileAction.verifyElementTextContains(mobileAction.mobileElementUsingXPath(xpathWLSymbolQuotePage),
+						sSymbol);
 			} else {
 
 			}
@@ -137,9 +138,22 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 
 			String xpathWLSymbolBuyButton = "(//*[@label='" + sSymbol + "']/../../following-sibling::*/*[1]/*[@label='"
 					+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY) + "'])[1]";
-			mobileAction.FuncClick(mobileAction.mobileElementUsingXPath(xpathWLSymbolBuyButton), "Buy Button");
-			// Thread.sleep(15000);
 
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolBuyButton, true, 4, "left");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void clickWLSymbolSellButton(String sSymbol) {
+		Decorator();
+		try {
+
+			String xpathWLSymbolBuyButton = "(//*[@label='" + sSymbol + "']/../../following-sibling::*/*[1]/*[@label='"
+					+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL) + "'])[1]";
+
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolBuyButton, true, 5, "left");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -166,6 +180,94 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 			mobileAction.FuncSwipeWhileElementNotFound(VAL_Price, false, 4, "up");
 			mobileAction.FuncVerifyTextEquals(VAL_Price,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_PRICEMARKET));
+
+			mobileAction.FuncSwipeWhileElementNotFound(VAL_GoodTill, false, 4, "up");
+			mobileAction.FuncVerifyTextEquals(VAL_GoodTill,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_GOODTILLDAY));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void goToWLExpandedView() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				MIT_DSHQuickLinks.get().clickQuickLink(QL_WATCHLISTS, "WATCHLISTS");
+			} else {
+				mobileAction.FuncSwipeWhileElementNotFound(BT_More, false, 4, "up");
+				mobileAction.FuncClick(BT_More, "More Button");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void verifyTappingWLOptionSymbol() {
+		Decorator();
+		try {
+			String sSymbol = getTestdata("Symbol", XLSheetUserIDs);
+			selectWLSymbol(sSymbol);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void verifyTappingWLMutualFundSymbol() {
+		Decorator();
+		try {
+			String sSymbol = getTestdata("Symbol", XLSheetUserIDs);
+			selectWLSymbol(sSymbol);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void verifyWLOptionSymbolSellButton() {
+		Decorator();
+		try {
+			String sSymbol = getTestdata("Symbol", XLSheetUserIDs);
+
+			clickWLSymbolSellButton(sSymbol);
+
+			verifyOptionOrderEntryScreen(sSymbol, "Sell");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void verifyOptionOrderEntryScreen(String sSymbol, String sAction) {
+		Decorator();
+		try {
+
+			String accNumber = getTestdata("Accounts", "UserIDs").trim();
+
+			String xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
+
+			mobileAction.FuncVerifyNonBlankValue(VAL_AccountNumber, "Account Number");
+
+			mobileAction.FuncClick(VAL_AccountNumber, "Account Number");
+
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount, true, 30, "up");
+
+			mobileAction.FuncVerifyTextEquals(VAL_OrderType,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_OPTIONS));
+
+			mobileAction.verifyElementTextContains(VAL_TradingSymbol, sSymbol);
+
+			mobileAction.FuncSwipeWhileElementNotFound(VAL_Action, false, 4, "up");
+			if (sAction.equalsIgnoreCase("Buy"))
+				mobileAction.FuncVerifyTextEquals(VAL_Action,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUYTOOPEN));
+			else
+				mobileAction.FuncVerifyTextEquals(VAL_Action,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELLTOCLOSE));
+
+			mobileAction.FuncSwipeWhileElementNotFound(VAL_Price, false, 4, "up");
+			mobileAction.FuncVerifyTextEquals(VAL_Price,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_PRICELIMIT));
 
 			mobileAction.FuncSwipeWhileElementNotFound(VAL_GoodTill, false, 4, "up");
 			mobileAction.FuncVerifyTextEquals(VAL_GoodTill,

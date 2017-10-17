@@ -1964,9 +1964,10 @@ public class MobileAction2 extends CommonLib {
 
 		Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 		int startx = size.width;
+		int endx = size.width;
 		int starty = size.height;
 		int endy = size.height;
-		int heightPer = (endy * 25 / 100);
+		// int heightPer = (int) (endy * 0.25);
 		boolean flag = true;
 		int count = 0;
 		String sEleName = "";
@@ -1993,10 +1994,16 @@ public class MobileAction2 extends CommonLib {
 				} catch (Exception e) {
 					if (direction.equalsIgnoreCase("up"))
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2,
-								startx / 2, endy / 2 - heightPer, 2000);
+								startx / 2, (int) (endy * 0.25), 2000);
 					else if (direction.equalsIgnoreCase("down"))
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
-								startx / 2, endy / 2 + heightPer, 2000);
+								startx / 2, (int) (endy * 0.75), 2000);
+					if (direction.equalsIgnoreCase("left"))
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.5),
+								starty / 2, (int) (endx * 0.35), endy / 2, 2000);
+					else if (direction.equalsIgnoreCase("right"))
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.5),
+								starty / 2, (int) (endx * 0.65), endy / 2, 2000);
 					count++;
 				}
 
@@ -2031,9 +2038,10 @@ public class MobileAction2 extends CommonLib {
 
 		Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 		int startx = size.width;
+		int endx = size.width;
 		int starty = size.height;
 		int endy = size.height;
-		int heightPer = (endy * 25 / 100);
+		// int heightPer = (endy * 25 / 100);
 		boolean flag = true;
 		int count = 0;
 		String sEleName = "";
@@ -2053,9 +2061,11 @@ public class MobileAction2 extends CommonLib {
 					 * GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2
 					 * + heightPer , 2000); count++; }
 					 */
-/*					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
-					wait.until(ExpectedConditions.visibilityOf(GetDriver().findElement(By.xpath(xpathEle))));*/
-					GetDriver().findElement(By.xpath(xpathEle));
+
+					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
+					wait.until(ExpectedConditions.visibilityOf(GetDriver().findElement(By.xpath(xpathEle))));
+
+					// GetDriver().findElement(By.xpath(xpathEle));
 
 					flag = false;
 					sEleName = FuncGetTextByxpath(xpathEle);
@@ -2063,10 +2073,16 @@ public class MobileAction2 extends CommonLib {
 				} catch (Exception e) {
 					if (direction.equalsIgnoreCase("up"))
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2,
-								startx / 2, endy / 2 - heightPer, 2000);
+								startx / 2, (int) (endy * 0.25), 2000);
 					else if (direction.equalsIgnoreCase("down"))
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
-								startx / 2, endy / 2 + heightPer, 2000);
+								startx / 2, (int) (endy * 0.75), 2000);
+					if (direction.equalsIgnoreCase("left"))
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.5),
+								starty / 2, (int) (endx * 0.35), endy / 2, 2000);
+					else if (direction.equalsIgnoreCase("right"))
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.5),
+								starty / 2, (int) (endx * 0.65), endy / 2, 2000);
 					count++;
 				}
 
@@ -2670,7 +2686,11 @@ public class MobileAction2 extends CommonLib {
 						}
 					}
 				}
+				if (textToReturn == null) {
+					textToReturn = objElement.getAttribute("value");
+				}
 			}
+
 		} catch (Exception e) {
 			try {
 				GetReporting().FuncReport("Fail", "Exception in FuncGetElementText(). getText() failed.");
@@ -2734,8 +2754,8 @@ public class MobileAction2 extends CommonLib {
 		String textToReturn = null;
 		try {
 
-			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-			wait.until(ExpectedConditions.visibilityOf(objElement));
+/*			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+			wait.until(ExpectedConditions.visibilityOf(objElement));*/
 
 			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				try {

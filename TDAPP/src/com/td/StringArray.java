@@ -188,9 +188,15 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_GOHOME = { "Go home", "Aller à l’accueil", "回到主页", "回到首頁" };
 	public static final String[] ARRAY_DASHBOARD_STOCKETFs = { "Stocks & ETFs", "Actions et FNB", "股票和交易所交易基金",
 			"股票和交易所買賣基金" };
+	public static final String[] ARRAY_DASHBOARD_OPTIONS = { "Options", "Options", "期权", "期權" };
 	public static final String[] ARRAY_DASHBOARD_ACTIONBUY = { "Buy", "Acheter", "买入", "買入" };
 	public static final String[] ARRAY_DASHBOARD_ACTIONSELL = { "Sell", "Vendre", "卖出", "賣出" };
+	public static final String[] ARRAY_DASHBOARD_ACTIONBUYTOOPEN = { "Buy to Open", "Achat pour ouvrir", "买入开仓",
+			"買入開倉" };
+	public static final String[] ARRAY_DASHBOARD_ACTIONSELLTOCLOSE = { "Sell to Close", "Vente pour fermer", "卖出平仓",
+			"賣出平倉" };
 	public static final String[] ARRAY_DASHBOARD_PRICEMARKET = { "Market", "Cours du marché", "市场", "市場" };
+	public static final String[] ARRAY_DASHBOARD_PRICELIMIT = { "Limit", "Limite", "限价", "限價" };
 	public static final String[] ARRAY_DASHBOARD_GOODTILLDAY = { "Day", "Jour", "当天有效", "當日有效" };
 	// MIT Dashboard END
 

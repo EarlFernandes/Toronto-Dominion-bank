@@ -211,7 +211,7 @@ public class EventCase {
 
 		// MIT Dashboard
 
-		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI,verifyStockETFsWLSymbolRow,
+		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI, verifyStockETFsWLSymbolRow, verifyTappingWLOptionSymbol, goToWLExpandedView,verifyTappingWLMutualFundSymbol,
 
 		// P2P
 
@@ -2600,11 +2600,23 @@ public class EventCase {
 		case verifyHomeScreenSettingsPageUI:
 			MIT_DSHHomeScreenSettings.get().verifyHomeScreenSettingsPageUI();
 			break;
-			
+
 		case verifyStockETFsWLSymbolRow:
 			MIT_DSHWLPopulateData.get().verifyStockETFsWLSymbolRow();
 			break;
+
+		case verifyTappingWLOptionSymbol:
+			MIT_DSHWLPopulateData.get().verifyTappingWLOptionSymbol();
+			break;
 			
+		case verifyTappingWLMutualFundSymbol:
+			MIT_DSHWLPopulateData.get().verifyTappingWLMutualFundSymbol();
+			break;
+			
+		case goToWLExpandedView:
+			MIT_DSHWLPopulateData.get().goToWLExpandedView();
+			break;
+
 		// MIT Dashboard END
 
 		case Env_DeleteDefaultCard:
