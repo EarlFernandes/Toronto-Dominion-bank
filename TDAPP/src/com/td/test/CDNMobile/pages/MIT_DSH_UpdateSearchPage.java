@@ -42,27 +42,20 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 	}
 	
 	
-//	@iOSFindBy(xpath = "//*[@label='Search or add symbols' or contains(@label,'Entrez le')]") // @Author
-	// -
-	// Sushil
-	// 03-Feb-2017
-// @AndroidFindBy(xpath =
-// "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and
-// @text='Enter name or symbol']")
+//	@iOSFindBy(xpath = "//*[@label='Search or add symbols' or contains(@label,'Entrez le')]") 
 	@iOSFindBy(accessibility = "SearchBarWidget")
-@AndroidFindBy(id = "com.td:id/txtSearchTitle")
-private MobileElement searchBar;
+    //@AndroidFindBy(id = "com.td:id/txtSearchTitle")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Search or add symbols' or @text='Rechercher ou ajouter des symboles']")
+    private MobileElement searchBar;
 	
-	@iOSFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]") //@Author - Sushil 03-Feb-2017
-	//@iOSFindBy(xpath = "//*[@name='TextField_0']") // @Author - Sushil
-													// 03-Feb-2017
+	
+	
+	@iOSFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]")
 	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
 	private MobileElement search_symbol;
 
 	
-	@iOSFindBy(xpath = "//*[@label='Symbol then month or strike' or contains(@label,'Entrez le')]") //@Author - Sushil 03-Feb-2017
-	//@iOSFindBy(xpath = "//*[@name='TextField_0']") // @Author - Sushil
-													// 03-Feb-2017
+	@iOSFindBy(xpath = "//*[@label='Symbol then month or strike' or contains(@label,'Entrez le')]")
 	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
 	private MobileElement search_symbol_option;
 	
@@ -80,29 +73,30 @@ private MobileElement searchBar;
 	
 	@iOSFindBy(xpath = "//*[@name='CodeSearchHeaderCellTitleLabel']/../following-sibling::XCUIElementTypeCell[1]/*[1]")
 	//@AndroidFindBy(xpath = "//*[(@text='Terms of Use' or @text='Conditions d’utilisation' or @text='使用条款' or @text='使用條款') and @resource-id='android:id/action_bar_title']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[3]/*[1]")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc='info icon' or @content-desc='icône info']/../*[2]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'The symbol you entered is not valid')]")
 	private MobileElement info;
 	
 
 	@iOSFindBy(xpath = "//*[@label='RESULTS' or @label='RÉSULTATS']")
-	@AndroidFindBy(id = "android:id/content")
+//	@AndroidFindBy(id = "android:id/content")
+	 @AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/classificationTexView' or @resource-id='com.td:id/txt_results') and (@text='RESULTS' or @text='RÉSULTATS')]")
 	private MobileElement hdrRESULTS;
 	
 	
-	@iOSFindBy(xpath = "//*[@label='Watchlist Button' or contains(@label,'Entrez le')]") // @AuthorSushil03-Feb-2017
+	@iOSFindBy(xpath = "//*[@label='Watchlist Button' or contains(@label,'Entrez le')]") 
     @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
     private MobileElement 	WatchlistButton;
 	
 	
-	@iOSXCUITFindBy(accessibility = "codeSearchButton")
-    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+	@iOSFindBy(xpath = "(//*[@name='codeSearchButton'])[1]")
+	//@iOSXCUITFindBy(accessibility = "codeSearchButton")
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id='com.td:id/img_added_in_watchlist'])[1]")
     private MobileElement 	AddWatchlistButton;
 	
 	@iOSXCUITFindBy(accessibility = "actionSheetCancelButton")
-    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/dialog_button']")
+ // @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/dialog_button' and @text='Enter name or symbol']")
     private MobileElement 	CancelButton;
-	
-	
 	
 	
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
@@ -115,57 +109,59 @@ private MobileElement searchBar;
 	@AndroidFindBy(id = "android:id/up")
 	 MobileElement BT_Back1;
 	
-	
-		
+
 	
 	@iOSFindBy(xpath = "//*[@label='RECENT SEARCHES' or @label='RÉSULTATS']")
-	@AndroidFindBy(id = "android:id/content")
+	//@AndroidFindBy(id = "android:id/content")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and @text='RECENT SEARCHES']")
 	private MobileElement hdrRECENT;
 	
 	
-	@iOSFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]") // @AuthorSushil03-Feb-2017
-    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+	@iOSFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]") 
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/btn_clear_search_text']")
     private MobileElement 	btnClear;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Indices' or contains(@label,'Entrez le')]") // @AuthorSushil03-Feb-2017
-    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Indices' or contains(@label,'Entrez le')]") 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Indices']")
     private MobileElement 	btnIndices;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Mutual Funds' or contains(@label,'Entrez le')]") // @AuthorSushil03-Feb-2017
-    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Mutual Funds' or contains(@label,'Entrez le')]") 
+  //  @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mutual ? Funds']")
+	@AndroidFindBy(id = "com.td:id/txt_tradeMutualFund")
     private MobileElement 	btnMF;
 	
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Options' or contains(@label,'Entrez le')]") // @AuthorSushil03-Feb-2017
-    @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Options' or contains(@label,'Entrez le')]") 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Options']")
     private MobileElement 	btnOption;
 	
 
 	
 	
-	@iOSFindBy(xpath = "//*[@label='Watchlist Button' or contains(@label,'Entrez le')]") // @AuthorSushil03-Feb-2017
+	@iOSFindBy(xpath = "//*[@label='Watchlist Button' or contains(@label,'Entrez le')]") 
     @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
     private MobileElement 	symHeader;
 	
 	
 	@iOSFindBy(xpath = "//*[@label='ADD TO OR REMOVE FROM WATCHLIST' or @label='RÉSULTATS']")
-	@AndroidFindBy(id = "android:id/content")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title' and @text='Add to or remove from watchlist']")
 	private MobileElement lblAddWatchlist;
 	
 	
 	@iOSXCUITFindBy(accessibility = "Button_0")
-	@AndroidFindBy(id = "android:id/up")
-	 MobileElement BT_CancelHome;
+	@AndroidFindBy(id = "com.td:id/btn_cancel")
+	private MobileElement BT_CancelHome;
 	
 	
 	@iOSFindBy(xpath = "//*[@name='QuickLinkLeftNavButton']/following-sibling::XCUIElementTypeImage[1]")
 	@AndroidFindBy(id = "com.td:id/logo")
 	private MobileElement hdrHome;
 	
+	By WatchlistButtonMod = By.xpath("//*[@class='btn btn-default add-to-td-watchlist icon pull-left icon-star']");
 	
 	
-	
-	
+	private By BTN_BackMod = By.xpath("//*[@class='sprite sprite-back']");
+
 	
 	public void verifyUpdateSearch() {
 		Decorator();
@@ -175,7 +171,7 @@ private MobileElement searchBar;
 		
 			
 						
-			MIT_DSHQuickLinks.get().goToDashboardHome();
+			//MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 						
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -215,7 +211,7 @@ private MobileElement searchBar;
 			
 			
 			
-			MIT_DSHQuickLinks.get().goToDashboardHome();
+			//MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 			
 			
@@ -255,8 +251,8 @@ private MobileElement searchBar;
 	public void verifyHeaderResult() {
 		Decorator();
 		try {					
-				Thread.sleep(1000);
-			MIT_DSHQuickLinks.get().goToDashboardHome();
+				
+			//MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 				
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -297,10 +293,35 @@ private MobileElement searchBar;
 			
 						
 		
-		
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			
+			{
+				((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+				
+				mobileAction.verifyElementIsDisplayed((MobileElement) CL.GetDriver().findElement(WatchlistButtonMod),
+						"WatchlistButton");
+				
+				
+				((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+				
+				
+			}
+				
+				
+				
+				
+			else{
+				
 			mobileAction.verifyElementIsDisplayed(WatchlistButton, "WatchlistButton");
 			
-				
+			}
+			
+			
+			
+			
+			
+			
 				
 				/*
 				int iAbscissa = BT_Back1.getRect().getHeight();
@@ -331,7 +352,7 @@ private MobileElement searchBar;
 		
 		try {				
 			
-			MIT_DSHQuickLinks.get().goToDashboardHome();
+		//	MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 				
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -371,8 +392,29 @@ private MobileElement searchBar;
 				
 				
 				Thread.sleep(4000);
-				mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
 				
+				
+				
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+					
+				{
+					((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+					
+					mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(BTN_BackMod),
+							"BTN_BackMod");
+					
+					
+					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+					
+					
+				}
+				
+				
+				
+				else{
+				
+				mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
+				}
 				
 				
 			}
@@ -388,7 +430,7 @@ private MobileElement searchBar;
 		
 		try {	
 					
-		MIT_DSHQuickLinks.get().goToDashboardHome();
+		//MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 				
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -408,7 +450,8 @@ private MobileElement searchBar;
 			mobileAction.FuncClick(btnMF, "btnMF");
 			
 			String[] aSymbolArray = getTestdata("Symbol", "UserIDs").split(":");
-			String sXPath = null;
+			String sXPathios = null;
+			String sXPathAnd = null;
 			//String sStock = aSymbolArray[0];
 			
 			
@@ -424,27 +467,84 @@ private MobileElement searchBar;
 				
 				Thread.sleep(4000);
 				
-		    	sXPath = "//XCUIElementTypeOther[@label='" + aSymbolArray[i] + "' or @text='" + aSymbolArray[i] + "']/*[1]";
+		    	sXPathios = "//XCUIElementTypeOther[@label='" + aSymbolArray[i] + "' or @text='" + aSymbolArray[i] + "']/*[1]";
+		    	
+		    	sXPathAnd = "//*[@class='text-prominent symbol']";
 		    	//XCUIElementTypeOther[@label='AIM10693' or @text='AIM10693']/*[1]
-		    	mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPath, aSymbolArray[i])), aSymbolArray[i]);
-				
+		    	
+		    	
+		    	if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+		    	
+		    	{
+		    		((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
 					
+		    		
+		    		mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPathAnd, aSymbolArray[i])), aSymbolArray[i]);
+		    		
+		    		
+		    		
+		    		
+		    		
+					mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(BTN_BackMod),
+							"BTN_BackMod");
+					
+					
+					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+					
+		    		
+		    		
+		    	}
+		    	
+		    	else
+		    	
+		    	{
+		    	mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPathios, aSymbolArray[i])), aSymbolArray[i]);
+				
+				
+		    	
 				mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
 				
 				
 				mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
 				 	
-				
+		    	}
 				clickOtherSymbolUSCAD(aSymbolArray[i]);
 				
 				
 				Thread.sleep(4000);
 				
 				
-				mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPath, aSymbolArray[i])), aSymbolArray[i]);
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			    	
+		    	{
+		    		((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+					
+		    		
+		    		mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPathAnd, aSymbolArray[i])), aSymbolArray[i]);
+		    		
+		    		
+		    		
+		    		
+		    		
+					mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(BTN_BackMod),
+							"BTN_BackMod");
+					
+					
+					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+					
+		    		
+		    		
+		    	}
+				
+				
+				else{
+				
+				
+				
+				mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPathios, aSymbolArray[i])), aSymbolArray[i]);
 				
 				mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
-				
+				}
 				
 			}
 		} catch (Exception e) {
@@ -460,7 +560,7 @@ private MobileElement searchBar;
 		
 		try {	
 					
-		MIT_DSHQuickLinks.get().goToDashboardHome();
+		//MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 				
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -478,7 +578,9 @@ private MobileElement searchBar;
 			}
 						
 			String[] aSymbolArray = getTestdata("Symbol", "UserIDs").split(":");
-			String sXPath = null;
+			String sXPathiOS = null;
+			String sXPathAnd = null;
+			
 			//String sStock = aSymbolArray[0];
 			
 			
@@ -494,26 +596,88 @@ private MobileElement searchBar;
 				
 				Thread.sleep(4000);
 				
-		    	sXPath = "//XCUIElementTypeOther[@label='" + aSymbolArray[i] + "' or @text='" + aSymbolArray[i] + "']/*[1]";
-		    	//XCUIElementTypeOther[@label='AIM10693' or @text='AIM10693']/*[1]
-		    	mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPath, aSymbolArray[i])), aSymbolArray[i]);
+		    	sXPathiOS = "//XCUIElementTypeOther[@label='" + aSymbolArray[i] + "' or @text='" + aSymbolArray[i] + "']/*[1]";
+		    	sXPathAnd = "//*[@class='text-prominent symbol']";
+		    	
+		    	
+		    	
+		    	
+		    	if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+		    		
+		    	{
+
+		    		((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+					
+		    		
+		    		mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPathAnd, aSymbolArray[i])), aSymbolArray[i]);
+		    		
+		    				    		
+		    		
+					mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(BTN_BackMod),
+							"BTN_BackMod");
+					
+					
+					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+					
+		    		
+					mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+					
+					clickFirstSymbolUSCAD(aSymbolArray[i]);
+					
+					
+					Thread.sleep(4000);
+					
+					((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+					
+		    		
+		    		mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPathAnd, aSymbolArray[i])), aSymbolArray[i]);
+		    		
+		    		
+		    		
+		    		
+		    		
+					mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(BTN_BackMod),
+							"BTN_BackMod");
+					
+					
+					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+					
+		    		
+		    	}
+		    	
+		    	
+		    	
+		    	else{
+		    		
+		    		mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPathiOS, aSymbolArray[i])), aSymbolArray[i]);
+		    		
+		    		
+		    		mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
+					
+					
+					mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+					 	
+					
+					clickFirstSymbolUSCAD(aSymbolArray[i]);
+					
+					
+					Thread.sleep(4000);
+					
+					
+					mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPathiOS, aSymbolArray[i])), aSymbolArray[i]);
+					
+					mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
+					
+		    		
+		    		
+		    		
+		    	}
+		    	
+		    	
+		    	
+		    	
 				
 					
-				mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
-				
-				
-				mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
-				 	
-				
-				clickFirstSymbolUSCAD(aSymbolArray[i]);
-				
-				
-				Thread.sleep(4000);
-				
-				
-				mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPath, aSymbolArray[i])), aSymbolArray[i]);
-				
-				mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
 				
 				
 			}
@@ -530,7 +694,7 @@ private MobileElement searchBar;
 		
 		try {	
 					
-		MIT_DSHQuickLinks.get().goToDashboardHome();
+	//	MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 				
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -550,15 +714,15 @@ private MobileElement searchBar;
 			mobileAction.FuncClick(btnOption, "btnOption");
 			
 			String[] aSymbolArray = getTestdata("Symbol", "UserIDs").split(":");
-			String sXPath = null;
+			String sXPathiOS = null;
+			String sXPathAnd = null;
 			//String sStock = aSymbolArray[0];
 			
 			
 			
 			for(int i=0; i<aSymbolArray.length; i++)
 			
-			{				
-				
+			{							
 				enterSymbol(search_symbol_option, aSymbolArray[i]);
 				
 				clickOtherSymbolUSCAD(aSymbolArray[i]);
@@ -566,13 +730,39 @@ private MobileElement searchBar;
 				
 				Thread.sleep(4000);
 				
-		    	sXPath = "//XCUIElementTypeOther[@label='" + aSymbolArray[i] + "' or @text='" + aSymbolArray[i] + "']/*[1]";
-		    	//XCUIElementTypeOther[@label='AIM10693' or @text='AIM10693']/*[1]
-		    	mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPath, aSymbolArray[i])), aSymbolArray[i]);
+		    	sXPathiOS = "//XCUIElementTypeOther[@label='" + aSymbolArray[i] + "' or @text='" + aSymbolArray[i] + "']/*[1]";
+		    	sXPathAnd = "//*[@class='text-prominent symbol']";
+		    	
+		    	
+		    		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+		    		
+		    	{
+
+		    		((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+					
+		    		
+		    		mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPathAnd, aSymbolArray[i])), aSymbolArray[i]);
+		    		
+		    				    		
+		    		
+					mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(BTN_BackMod),
+							"BTN_BackMod");
+					
+					
+					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+		    	
+		    	
+		    	}	    	
+		    	
+		    		else{
+		    	
+		    	
+		    	
+		    	mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPathiOS, aSymbolArray[i])), aSymbolArray[i]);
 				
 					
 				mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
-				
+		    		}
 				
 			}
 		} catch (Exception e) {
@@ -588,7 +778,7 @@ private MobileElement searchBar;
 		
 		try {	
 					
-		MIT_DSHQuickLinks.get().goToDashboardHome();
+	//	MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 				
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -606,8 +796,8 @@ private MobileElement searchBar;
 			}
 						
 			String[] aSymbolArray = getTestdata("Symbol", "UserIDs").split(":");
-			String sXPath = null;
-			//String sStock = aSymbolArray[0];
+			String sXPathiOS = null;
+			String sXPathAnd = null;
 			
 			
 			
@@ -622,9 +812,52 @@ private MobileElement searchBar;
 				
 				Thread.sleep(4000);
 				
-		    	sXPath = "//XCUIElementTypeOther[@label='" + aSymbolArray[i] + "' or @text='" + aSymbolArray[i] + "']/*[1]";
-		    	//XCUIElementTypeOther[@label='AIM10693' or @text='AIM10693']/*[1]
-		    	mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPath, aSymbolArray[i])), aSymbolArray[i]);
+		    	sXPathiOS = "//XCUIElementTypeOther[@label='" + aSymbolArray[i] + "' or @text='" + aSymbolArray[i] + "']/*[1]";
+		    	sXPathAnd = "//*[@class='text-prominent symbol']";
+		    	
+		    	if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+		    		
+		    	{
+
+		    		((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+		    		
+		    		mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPathAnd, aSymbolArray[i])), aSymbolArray[i]);
+		    		
+		    				    		
+		    		
+					mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(BTN_BackMod),
+							"BTN_BackMod");
+					
+					
+					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+		    		
+		    		
+		    		
+					mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+				 	
+					
+					clickFirstSymbolUSCAD(aSymbolArray[i]);
+					
+					
+					Thread.sleep(4000);
+					
+					((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+					
+					mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPathAnd, aSymbolArray[i])), aSymbolArray[i]);
+		    	
+					mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(BTN_BackMod),
+							"BTN_BackMod");
+					
+					
+					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+		    		
+		    	
+		    	}
+		    	
+		    	else{
+		    	
+		    	
+		    	mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPathiOS, aSymbolArray[i])), aSymbolArray[i]);
 				
 					
 				mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
@@ -639,10 +872,10 @@ private MobileElement searchBar;
 				Thread.sleep(4000);
 				
 				
-				mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPath, aSymbolArray[i])), aSymbolArray[i]);
+				mobileAction.verifyElementIsDisplayed((mobileAction.verifyElementUsingXPath(sXPathiOS, aSymbolArray[i])), aSymbolArray[i]);
 				
 				mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
-				
+		    	}
 				
 			}
 		} catch (Exception e) {
@@ -652,13 +885,17 @@ private MobileElement searchBar;
 	}
 	
 	
+	
+	
+	
+	
 		
 	
 	public void verifyAddWatchlistIndices() {
 		Decorator();
 		try {					
 				
-			MIT_DSHQuickLinks.get().goToDashboardHome();
+		//	MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 	
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -675,8 +912,7 @@ private MobileElement searchBar;
 			
 			}
 			
-			mobileAction.verifyElementIsDisplayed(search_symbol, "Search Screen");
-			
+			mobileAction.verifyElementIsDisplayed(search_symbol, "Search Screen");			
 			
 			mobileAction.FuncClick(btnIndices, "btnIndices");
 			
@@ -693,7 +929,7 @@ private MobileElement searchBar;
 			
 			
 			
-			verifySymbolUSCAD();
+			
 			
 			
 			
@@ -702,20 +938,30 @@ private MobileElement searchBar;
 			
 			
 			mobileAction.verifyElementIsDisplayed(lblAddWatchlist, "lblAddWatchlist");
+		
 			
-						
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			{		
 			mobileAction.FuncClick(CancelButton, "CancelButton");
 			
 			
 			
 			mobileAction.FuncClick(btnClear, "btnClear");
+			}
 			
+			else
+			{
+				
+				mobileAction.FuncClick(CancelButton, "CancelButton");
+				
+				mobileAction.FuncClick(btnClear, "btnClear");
+				}
 			
-			
-			
-	
 			
 			}
+			
+			
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -728,8 +974,8 @@ private MobileElement searchBar;
 	public void verifyAddWatchlistMF() {
 		Decorator();
 		try {					
-				
-			MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+		//	MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 	
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -764,7 +1010,7 @@ private MobileElement searchBar;
 			
 			
 			
-			verifySymbolUSCAD();
+		
 			
 			
 			
@@ -799,7 +1045,7 @@ private MobileElement searchBar;
 		Decorator();
 		try {					
 				
-			MIT_DSHQuickLinks.get().goToDashboardHome();
+			//MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 	
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -834,7 +1080,7 @@ private MobileElement searchBar;
 			
 			
 			
-			verifySymbolUSCAD();
+			
 			
 			
 			
@@ -871,7 +1117,7 @@ private MobileElement searchBar;
 		Decorator();
 		try {					
 				
-			MIT_DSHQuickLinks.get().goToDashboardHome();
+			//MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 	
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -892,12 +1138,15 @@ private MobileElement searchBar;
 			
 			
 			
-			mobileAction.verifyElementIsDisplayed(CancelButton, "CancelButton");
+			mobileAction.verifyElementIsDisplayed(BT_CancelHome, "BT_CancelHome");
 			
 			mobileAction.verifyElementIsDisplayed(btnMF, "btnMF");
 			mobileAction.verifyElementIsDisplayed(btnOption, "btnOption");
 			
 			mobileAction.verifyElementIsDisplayed(btnIndices, "btnIndices");
+			
+			mobileAction.FuncClick(BT_CancelHome, "BT_CancelHome");
+			
 			mobileAction.verifyElementIsDisplayed(hdrHome, "hdrHome");
 			
 			
@@ -916,7 +1165,7 @@ private MobileElement searchBar;
 		Decorator();
 		try {					
 				
-			MIT_DSHQuickLinks.get().goToDashboardHome();
+		//MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 	
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -944,14 +1193,14 @@ private MobileElement searchBar;
 				
 			{
 			
-			enterSymbol(search_symbol, aSymbolArray[i]);
+			enterSymbol(search_symbol_option, aSymbolArray[i]);
 			
 			
 			mobileAction.verifyElementIsDisplayed(hdrRESULTS, "hdrRESULTS");
 			
 			
 			
-			verifySymbolUSCAD();
+	
 			
 			
 			
@@ -1005,7 +1254,7 @@ private MobileElement searchBar;
 	
 	
 	
-	public void verifySymbolUSCAD() throws Exception// @Author - Sushil 06-Feb-2017
+	public void verifySymbolUSCAD() throws Exception
 	{
 		// List<MobileElement> elementToFind = null;
 		Decorator();
@@ -1013,7 +1262,7 @@ private MobileElement searchBar;
 		String sSymbolName = "";
 		String property = "";
 		try {
-			mobileAction.FuncClick(search_symbol, "search_symbol");
+			//mobileAction.FuncClick(search_symbol, "search_symbol");
 			// mobileAction.FuncSendKeys(search_symbol, getTestdata("Symbol",
 			// "UserIDs") + " ");
 			//enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs"));
@@ -1071,7 +1320,7 @@ private MobileElement searchBar;
 	
 	
 	
-/*	public void verifySymbolCAD() throws Exception// @Author - Sushil 06-Feb-2017
+/*	public void verifySymbolCAD() throws Exception
 	{
 		// List<MobileElement> elementToFind = null;
 		Decorator();
@@ -1136,7 +1385,7 @@ private MobileElement searchBar;
 	}*/
 	
 	
-	public void clickFirstSymbolUSCAD(String sSymbol)// @Author - Sushil 08-Feb-2017
+	public void clickFirstSymbolUSCAD(String sSymbol)
 	{
 		Decorator();
 		try {
@@ -1200,7 +1449,7 @@ private MobileElement searchBar;
 		}
 	}
 	
-	public void clickOtherSymbolUSCAD(String sSymbol)// @Author - Sushil 08-Feb-2017
+	public void clickOtherSymbolUSCAD(String sSymbol)
 	{
 		Decorator();
 		try {
@@ -1220,7 +1469,7 @@ private MobileElement searchBar;
 				
 			
 				
-				xpathFlag = "//android.widget.ImageView[@resource-id='com.td:id/market_symbol' and (@content-desc='" + sSymbol + "')]";
+				xpathFlag = "//android.widget.TextView[@resource-id='com.td:id/market_name' and (@content-desc='" + sSymbol + "' or @text='" + sSymbol + "')]";
 				
 				sProperty = "text";
 				// sSymbolName =
