@@ -101,8 +101,6 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
 	private MobileElement locations;
 
-	//TODO:: Need label in P2P: [@label='Profile & Settings']
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_PREFERENCES']/XCUIElementTypeStaticText[@label='Profile & Settings']")
 	private MobileElement profile_and_settings;
 
 	// customer feedback
@@ -296,10 +294,11 @@ public class MenuPage extends _CommonPage {
 						"My Accounts");
 			}
 			Thread.sleep(5000);
-			//click Menu may fail in some case. so need to check if accounts is present
-			if(mobileAction.verifyElementIsPresent(accounts_button)){
+			// click Menu may fail in some case. so need to check if accounts is
+			// present
+			if (mobileAction.verifyElementIsPresent(accounts_button)) {
 				mobileAction.FuncClick(accounts_button, "Accounts");
-			}else{
+			} else {
 				mobileAction.Report_Fail("Accounts is not present in Menu page");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			}
@@ -650,13 +649,15 @@ public class MenuPage extends _CommonPage {
 						"Profile & Setting");
 			} else {
 				mobileAction.FunctionSwipe("down", 200, 200);
+				profile_and_settings = mobileAction.verifyElementUsingXPath(
+						"//*[@name='NAV_DRAWER_ITEMS_PREFERENCES']/XCUIElementTypeStaticText[@label='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE) + "']",
+						"Profile & Setting");
 			}
 			String profileSettings = mobileAction.getValue(profile_and_settings);
-		
+
 			mobileAction.FuncClick(profile_and_settings, profileSettings);
-			
-			//mobileAction.waitForElementToVanish(progressBar);
-			
+
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
