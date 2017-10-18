@@ -211,7 +211,7 @@ public class EventCase {
 
 		// MIT Dashboard
 
-		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI, verifyStockETFsWLSymbolRow, verifyTappingWLOptionSymbol, goToWLExpandedView,verifyTappingWLMutualFundSymbol,verifyWLOptionSymbolSellButton,
+		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI, verifyStockETFsWLSymbolRow, verifyTappingWLOptionSymbol, goToWLExpandedView, verifyTappingWLMutualFundSymbol, verifyWLOptionSymbolSellButton, verifyWLMutualFundSymbolBuyButton, verifyWLOptionSymbolBuyButton,
 
 		// P2P
 
@@ -2608,11 +2608,11 @@ public class EventCase {
 		case verifyTappingWLOptionSymbol:
 			MIT_DSHWLPopulateData.get().verifyTappingWLOptionSymbol();
 			break;
-			
+
 		case verifyTappingWLMutualFundSymbol:
 			MIT_DSHWLPopulateData.get().verifyTappingWLMutualFundSymbol();
 			break;
-			
+
 		case goToWLExpandedView:
 			MIT_DSHWLPopulateData.get().goToWLExpandedView();
 			break;
@@ -2620,7 +2620,15 @@ public class EventCase {
 		case verifyWLOptionSymbolSellButton:
 			MIT_DSHWLPopulateData.get().verifyWLOptionSymbolSellButton();
 			break;
-			
+
+		case verifyWLMutualFundSymbolBuyButton:
+			MIT_DSHWLPopulateData.get().verifyWLMutualFundSymbolBuyButton();
+			break;
+
+		case verifyWLOptionSymbolBuyButton:
+			MIT_DSHWLPopulateData.get().verifyWLOptionSymbolBuyButton();
+			break;
+
 		// MIT Dashboard END
 
 		case Env_DeleteDefaultCard:

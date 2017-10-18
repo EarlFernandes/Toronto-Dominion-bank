@@ -63,9 +63,17 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
 	private MobileElement VAL_TradingSymbol;
 
+	@iOSXCUITFindBy(accessibility = "symbolNameLabel")
+	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
+	private MobileElement VAL_TradingSymbolMF;
+
 	@iOSXCUITFindBy(xpath = "//*[@name='ACTION_CELL_1']/*[@name='valueLeftLabel']")
 	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
 	private MobileElement VAL_Action;
+
+	@iOSXCUITFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[@name='valueLeftLabel']")
+	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
+	private MobileElement VAL_ActionMF;
 
 	@iOSXCUITFindBy(xpath = "//*[@name='PRICE_ACTION_CELL_1']/*[@name='valueLeftLabel']")
 	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
@@ -82,6 +90,14 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "alert_ok_button")
 	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
 	private MobileElement BT_AlertAgree;
+
+	@iOSXCUITFindBy(xpath = "//*[@name='toggleSegmentedControl']/*[1]")
+	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
+	private MobileElement BT_IncludeCommissionYes;
+
+	@iOSXCUITFindBy(xpath = "//*[@name='DIVIDEND_OPTION_CELL_2']/*[@name='valueLeftLabel']")
+	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
+	private MobileElement VAL_DividendOption;
 
 	/*
 	 * public void test() { String device = (String) ((AppiumDriver)
@@ -255,7 +271,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 			mobileAction.FuncVerifyTextEquals(VAL_OrderType,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_OPTIONS));
 
-			mobileAction.verifyElementTextContains(VAL_TradingSymbol, sSymbol);
+			mobileAction.verifyElementTextContainsReverse(VAL_TradingSymbol, sSymbol);
 
 			mobileAction.FuncSwipeWhileElementNotFound(VAL_Action, false, 4, "up");
 			if (sAction.equalsIgnoreCase("Buy"))
@@ -272,6 +288,64 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 			mobileAction.FuncSwipeWhileElementNotFound(VAL_GoodTill, false, 4, "up");
 			mobileAction.FuncVerifyTextEquals(VAL_GoodTill,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_GOODTILLDAY));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void verifyWLMutualFundSymbolBuyButton() {
+		Decorator();
+		try {
+			String sSymbol = getTestdata("Symbol", XLSheetUserIDs);
+
+			clickWLSymbolBuyButton(sSymbol);
+
+			verifyMutualFundOrderEntryScreen(sSymbol, "Buy");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void verifyMutualFundOrderEntryScreen(String sSymbol, String sAction) {
+		Decorator();
+		try {
+			mobileAction.FuncVerifyNonBlankValue(VAL_AccountNumber, "Account Number");
+
+			mobileAction.FuncVerifyTextEquals(VAL_OrderType,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_MUTUALFUNDS));
+
+			mobileAction.FuncVerifyTextEquals(VAL_TradingSymbolMF, sSymbol);
+
+			mobileAction.FuncSwipeWhileElementNotFound(VAL_ActionMF, false, 4, "up");
+			if (sAction.equalsIgnoreCase("Buy"))
+				mobileAction.FuncVerifyTextEquals(VAL_ActionMF,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY));
+			else
+				mobileAction.FuncVerifyTextEquals(VAL_ActionMF,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL));
+
+			mobileAction.FuncSwipeWhileElementNotFound(BT_IncludeCommissionYes, false, 4, "up");
+			mobileAction.verifyElementIsDisplayed(BT_IncludeCommissionYes, "Include Commission Yes Button");
+
+			mobileAction.FuncSwipeWhileElementNotFound(VAL_DividendOption, false, 4, "up");
+			mobileAction.FuncVerifyTextEquals(VAL_DividendOption,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_MF_REINVESTED));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void verifyWLOptionSymbolBuyButton() {
+		Decorator();
+		try {
+			String sSymbol = getTestdata("Symbol", XLSheetUserIDs);
+
+			clickWLSymbolSellButton(sSymbol);
+
+			verifyOptionOrderEntryScreen(sSymbol, "Buy");
 
 		} catch (Exception e) {
 			e.printStackTrace();
