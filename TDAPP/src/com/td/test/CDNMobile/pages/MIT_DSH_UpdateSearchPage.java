@@ -45,7 +45,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 //	@iOSFindBy(xpath = "//*[@label='Search or add symbols' or contains(@label,'Entrez le')]") 
 	@iOSFindBy(accessibility = "SearchBarWidget")
     //@AndroidFindBy(id = "com.td:id/txtSearchTitle")
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Search or add symbols' or @text='Rechercher ou ajouter des symboles']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Search or add symbols' or @text='Rechercher ou ajouter des symboles' or @text='搜索或添加股票代码' or @text='搜尋或添加股票代號']")
     private MobileElement searchBar;
 	
 	
@@ -61,25 +61,19 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 	
 	
 	
+	String xpathSymbolFlag = "//android.widget.ImageView[@resource-id='com.td:id/market_symbol' and (@content-desc='U S' or @content-desc='CAD' or @content-desc='CAN' or @content-desc='CA' or @content-desc='C A' or @content-desc='加拿大' or @content-desc='美国' or @content-desc='加拿大' or @content-desc='美國')]";
 	
-	
-	
-	
-	
-	
-	String xpathSymbolFlag = "//android.widget.ImageView[@resource-id='com.td:id/market_symbol' and (@content-desc='U S' or @content-desc='CAD' or @content-desc='CAN' or @content-desc='CA' or @content-desc='C A')]";
-	
-	String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'US') or contains(@label,'US') or contains(@label,'CAD') or contains(@label,'CAN') or contains(@label,'CA')  or contains(@label,'C A')]";
+	String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'US') or contains(@label,'U S') or contains(@label,'CAD') or contains(@label,'CAN') or contains(@label,'CA')  or contains(@label,'C A') or contains(@label,'加拿大') or contains(@label,'美国') or contains(@label,'加拿大') or contains(@label,'美國')]";
 	
 	@iOSFindBy(xpath = "//*[@name='CodeSearchHeaderCellTitleLabel']/../following-sibling::XCUIElementTypeCell[1]/*[1]")
 	//@AndroidFindBy(xpath = "//*[(@text='Terms of Use' or @text='Conditions d’utilisation' or @text='使用条款' or @text='使用條款') and @resource-id='android:id/action_bar_title']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[3]/*[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'The symbol you entered is not valid')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'The symbol you entered is not valid') or contains(@text,'Le symbole entr? nest pas valide; veuillez lentrer')]")
 	private MobileElement info;
 	
 
 	@iOSFindBy(xpath = "//*[@label='RESULTS' or @label='RÉSULTATS']")
 //	@AndroidFindBy(id = "android:id/content")
-	 @AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/classificationTexView' or @resource-id='com.td:id/txt_results') and (@text='RESULTS' or @text='RÉSULTATS')]")
+	 @AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/classificationTexView' or @resource-id='com.td:id/txt_results') and (@text='RESULTS' or @text='RÉSULTATS' or @text='结果' or @text='結果')]")
 	private MobileElement hdrRESULTS;
 	
 	
@@ -95,7 +89,6 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 	
 	@iOSXCUITFindBy(accessibility = "actionSheetCancelButton")
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/dialog_button']")
- // @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/dialog_button' and @text='Enter name or symbol']")
     private MobileElement 	CancelButton;
 	
 	
@@ -113,7 +106,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 	
 	@iOSFindBy(xpath = "//*[@label='RECENT SEARCHES' or @label='RÉSULTATS']")
 	//@AndroidFindBy(id = "android:id/content")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and @text='RECENT SEARCHES']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and (@text='RECENT SEARCHES' or @text='RECHERCHES RÉCENTES' or @text='最近的搜索' or @text='最近的搜尋')]")
 	private MobileElement hdrRECENT;
 	
 	
@@ -144,7 +137,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 	
 	
 	@iOSFindBy(xpath = "//*[@label='ADD TO OR REMOVE FROM WATCHLIST' or @label='RÉSULTATS']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title' and @text='Add to or remove from watchlist']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title' and (@text='Add to or remove from watchlist' or @text='Ajouter ou supprimer de la liste de surveillance' or @text='添加至自选股观察名单或从自选股观察名单中移除' or @text='新增至或從自選股觀察名單中移除')]")
 	private MobileElement lblAddWatchlist;
 	
 	
@@ -300,7 +293,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 				((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
 				
 				mobileAction.verifyElementIsDisplayed((MobileElement) CL.GetDriver().findElement(WatchlistButtonMod),
-						"WatchlistButton");
+						"WatchlistButtonMod");
 				
 				
 				((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
@@ -777,7 +770,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 		Decorator();
 		
 		try {	
-					
+			//Thread.sleep(4000);
 	//	MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 				
@@ -1289,13 +1282,13 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 			// CL.GetDriver()).findElements(By.xpath(xpathSymbol));
 
 			for (i = temp; i < listItem.size(); i++) {
-				if (listItem.get(i).getAttribute(property).contains("U S")||listItem.get(i).getAttribute(property).contains("C A")||listItem.get(i).getAttribute(property).contains("C A N"))
+				if (listItem.get(i).getAttribute(property).contains("U S")||listItem.get(i).getAttribute(property).contains("C A")||listItem.get(i).getAttribute(property).contains("C A N")||listItem.get(i).getAttribute(property).contains("加拿大")||listItem.get(i).getAttribute(property).contains("美国")||listItem.get(i).getAttribute(property).contains("加拿大")||listItem.get(i).getAttribute(property).contains("美國"))
 				// listItem.get(i).findElementByXPath(using)
 				{
 					sSymbolName = CL.GetDriver().findElements(By.xpath("//*[@resource-id='com.td:id/market_name']"))
 							.get(i).getText();
 					CL.GetReporting().FuncReport("Pass", "Option found in search list. Item :" + sSymbolName);
-				} else if (listItem.get(i).getAttribute("name").contains("US")||listItem.get(i).getAttribute("name").contains("CA")||listItem.get(i).getAttribute("name").contains("CAN")) {
+				} else if (listItem.get(i).getAttribute("name").contains("US")||listItem.get(i).getAttribute("name").contains("CA")||listItem.get(i).getAttribute("name").contains("CAN")||listItem.get(i).getAttribute("name").contains("加拿大")||listItem.get(i).getAttribute("name").contains("美国")||listItem.get(i).getAttribute("name").contains("加拿大")||listItem.get(i).getAttribute("name").contains("美國")) {
 
 					CL.GetReporting().FuncReport("Pass",
 							"Option found in search list. Item :" + listItem.get(i).getAttribute("name"));
@@ -1469,7 +1462,10 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 				
 			
 				
-				xpathFlag = "//android.widget.TextView[@resource-id='com.td:id/market_name' and (@content-desc='" + sSymbol + "' or @text='" + sSymbol + "')]";
+				//xpathFlag = "//android.widget.TextView[@resource-id='com.td:id/market_name' and (@content-desc='" + sSymbol + "' or @text='" + sSymbol + "')]";
+				
+				xpathFlag = "//android.widget.TextView[@resource-id='com.td:id/market_name' and (@content-desc='" + sSymbol + "' or contains(@text,'" + sSymbol + "'))]";
+				
 				
 				sProperty = "text";
 				// sSymbolName =
