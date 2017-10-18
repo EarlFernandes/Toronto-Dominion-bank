@@ -47,8 +47,9 @@ public class Managee_Payee extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement managePayees;
 
-	// For nexus addpayee class is not a button, to consolidate that, change to
-	@AndroidFindBy(xpath = "//android.view.ViewGroup/android.widget.LinearLayout[@index='1']")
+	// For nexus addpayee class is not a button; for tab3, the class is View not
+	// ViewGroup to consolidate that, change to
+	@AndroidFindBy(xpath = "//android.view.ViewGroup/android.widget.LinearLayout[@index='1'] | //android.view.View/android.widget.LinearLayout[@index='1']")
 	private MobileElement addPayee;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
