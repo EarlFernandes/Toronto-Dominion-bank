@@ -101,6 +101,7 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
 	private MobileElement locations;
 
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_PREFERENCES")
 	private MobileElement profile_and_settings;
 
 	// customer feedback
@@ -649,10 +650,6 @@ public class MenuPage extends _CommonPage {
 						"Profile & Setting");
 			} else {
 				mobileAction.FunctionSwipe("down", 200, 200);
-				profile_and_settings = mobileAction.verifyElementUsingXPath(
-						"//*[@name='NAV_DRAWER_ITEMS_PREFERENCES']/XCUIElementTypeStaticText[@label='"
-								+ getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE) + "']",
-						"Profile & Setting");
 			}
 			String profileSettings = mobileAction.getValue(profile_and_settings);
 
