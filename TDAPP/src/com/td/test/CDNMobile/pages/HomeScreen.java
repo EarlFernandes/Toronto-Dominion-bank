@@ -4,12 +4,8 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import com.td.StringArray;
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -426,6 +422,7 @@ public class HomeScreen extends _CommonPage {
 
 			// FIXED removed back button
 			mobileAction.FuncClick(menu, "Menu");
+			
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1514,5 +1511,8 @@ public class HomeScreen extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	
+	
 
 }
