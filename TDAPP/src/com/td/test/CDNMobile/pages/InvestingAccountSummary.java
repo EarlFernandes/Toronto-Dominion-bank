@@ -383,11 +383,11 @@ public class InvestingAccountSummary extends _CommonPage {
 						"//android.widget.TextView[contains(@text, '"
 								+ mobileAction.getAppString("str_Cash_Balance_Footnote") + "')]",
 						"Cash balance footnote");
-				mobileAction
-						.verifyElementUsingXPath(
-								"//android.widget.TextView[contains(@text, '" + mobileAction
-										.getAppString("common_str_Time_Stamp_substition").replace(" %1$s", "") + "')]",
-								"time stamp substituion");
+//				mobileAction
+//						.verifyElementUsingXPath(
+//								"//android.widget.TextView[contains(@text, '" + mobileAction
+//										.getAppString("common_str_Time_Stamp_substition").replace(" %1$s", "") + "')]",
+//								"time stamp substituion");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[contains(@text, '"
 						+ mobileAction.getAppString("str_Insufficient_Information") + "')]", "Insufficient");
 
