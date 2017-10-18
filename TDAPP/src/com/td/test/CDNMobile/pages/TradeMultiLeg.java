@@ -1719,8 +1719,11 @@ public class TradeMultiLeg extends _CommonPage {
 				fillStockOptionOrder(firstBidPUTS, "firstBidPUTS");
 
 			mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
-			if (mobileAction.isObjExists(previewOrderButton)) {
-				mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				if (mobileAction.isObjExists(btnDone)) {
+					mobileAction.FuncClick(btnDone, "btnDone");
+					mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
+				}
 			}
 			mobileAction.FuncClick(agreeButton, "agreeButton");
 			// mobileAction.verifyElement(titleConfirmOrder,
@@ -1797,8 +1800,11 @@ public class TradeMultiLeg extends _CommonPage {
 				fillOptionOptionOrder(firstBidPUTS, "firstBidPUTS", firstAskPUTS, "firstAskPUTS");
 
 			mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
-			if (mobileAction.isObjExists(previewOrderButton)) {
-				mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				if (mobileAction.isObjExists(btnDone)) {
+					mobileAction.FuncClick(btnDone, "btnDone");
+					mobileAction.FuncClick(previewOrderButton, "previewOrderButton");
+				}
 			}
 			mobileAction.FuncClick(agreeButton, "agreeButton");
 			mobileAction.verifyElementIsDisplayed(titleConfirmOrder, "titleConfirmOrder");
