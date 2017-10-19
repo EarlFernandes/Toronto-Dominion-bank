@@ -144,26 +144,16 @@ public class Managee_Payee extends _CommonPage {
 			} else {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement name = mobileAction
-						.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[1]", "name");
+				mobileAction.verifyWebElementUsingXPath(
+						"//div[contains(text(),'" + mobileAction.getAppString("str_payee_name") + "')]", "name");
 				// final WebElement address =
 				// mobileAction.verifyWebElementUsingXPath("(//div[@class='column1
 				// ng-binding'])[2]", "address");
-				final WebElement account = mobileAction
-						.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[3]", "account");
-				final WebElement description = mobileAction
-						.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[4]", "description");
-				if (!mobileAction.verifyTextEquality(name.getText().trim(), mobileAction.getAppString("str_payee_name"))
-						||
-						// !mobileAction.verifyTextEquality(address.getText().trim(),
-						// mobileAction.getAppString("str_payee_address")) ||
-						!mobileAction.verifyTextEquality(account.getText().trim(),
-								mobileAction.getAppString("str_payee_account"))
-						|| !mobileAction.verifyTextEquality(description.getText().trim(),
-								mobileAction.getAppString("str_description"))) {
-					System.err.println("TestCase has failed.");
-					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				}
+				mobileAction.verifyWebElementUsingXPath(
+						"//div[contains(text(),'" + mobileAction.getAppString("str_payee_account") + "')]", "account");
+				mobileAction.verifyWebElementUsingXPath(
+						"//div[contains(text(),'" + mobileAction.getAppString("str_description") + "')]",
+						"description");
 				// Switch back to native to get proper screenshots
 				mobileAction.switchAppiumContext("NATIVE_APP");
 			}
