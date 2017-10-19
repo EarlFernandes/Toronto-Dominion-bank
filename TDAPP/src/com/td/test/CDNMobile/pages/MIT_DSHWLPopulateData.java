@@ -166,10 +166,10 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 		Decorator();
 		try {
 
-			String xpathWLSymbolBuyButton = "(//*[@label='" + sSymbol + "']/../../following-sibling::*/*[1]/*[@label='"
+			String xpathWLSymbolSellButton = "(//*[@label='" + sSymbol + "']/../../following-sibling::*/*[1]/*[@label='"
 					+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL) + "'])[1]";
 
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolBuyButton, true, 5, "left");
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolSellButton, true, 5, "left");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -337,15 +337,63 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void verifyWLOptionSymbolBuyButton() {
+		Decorator();
+		try {
+			String sSymbol = getTestdata("Symbol", XLSheetUserIDs);
+
+			clickWLSymbolBuyButton(sSymbol);
+
+			verifyOptionOrderEntryScreen(sSymbol, "Buy");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void verifyWLETFSymbolSellButton() {
 		Decorator();
 		try {
 			String sSymbol = getTestdata("Symbol", XLSheetUserIDs);
 
 			clickWLSymbolSellButton(sSymbol);
 
-			verifyOptionOrderEntryScreen(sSymbol, "Buy");
+			verifyStockOrderEntryScreen(sSymbol, "Sell");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void verifyWLIndicesSymbolBuySellButton() {
+		Decorator();
+		try {
+			String sSymbol = getTestdata("Symbol", XLSheetUserIDs);
+
+			mobileAction.SwipeQuickLinks(200, 100);
+
+			String xpathWLSymbolBuyButton = "(//*[@label='" + sSymbol + "']/../../following-sibling::*/*[1]/*[@label='"
+					+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY) + "'])[1]";
+
+			String xpathWLSymbolSellButton = "(//*[@label='" + sSymbol + "']/../../following-sibling::*/*[1]/*[@label='"
+					+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL) + "'])[1]";
+
+			if (!mobileAction
+					.isObjExists((MobileElement) CL.GetDriver().findElement(By.xpath(xpathWLSymbolBuyButton)))) {
+				CL.GetReporting().FuncReport(PASS, "Buy button not displayed for Indices.");
+
+			} else {
+				CL.GetReporting().FuncReport(FAIL, "Buy button should not display for Indices.");
+			}
+
+			if (!mobileAction
+					.isObjExists((MobileElement) CL.GetDriver().findElement(By.xpath(xpathWLSymbolSellButton)))) {
+				CL.GetReporting().FuncReport(PASS, "Sell button not displayed for Indices.");
+
+			} else {
+				CL.GetReporting().FuncReport(FAIL, "Sell button should not display for Indices.");
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
