@@ -14,6 +14,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class MLOrderDetails extends _CommonPage {
 
@@ -78,9 +79,11 @@ public class MLOrderDetails extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/editTextPassword")
 	private MobileElement editTextPassword;
 
-	@iOSFindBy(xpath = "//*[@label='Back' or @label='Précédent']") // @Author -
-																	// Sushil
-																	// 07-Mar-2017
+	/*
+	 * @iOSFindBy(xpath = "//*[@label='Back' or @label='Précédent']") // @Author
+	 * - // Sushil // 07-Mar-2017
+	 */
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement backButton;
 
