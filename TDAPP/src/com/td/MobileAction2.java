@@ -99,8 +99,8 @@ public class MobileAction2 extends CommonLib {
 			objElement.click();
 
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
-		} catch (WebDriverException e) {
-			System.out.println("WebDriverException, ignor it");
+			// } catch (WebDriverException e) {
+			// System.out.println("WebDriverException, ignor it");
 		} catch (Exception e) {
 			try {
 				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
@@ -1784,8 +1784,10 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	public void FuncSwipeWhileElementNotFound(MobileElement elementToFind, boolean clickYorN, int swipes,
-			String direction) {// throws Exception {//@Author - Sushil
-								// 24-Feb-2017
+			String direction, boolean needFurtherSwipe) {// throws Exception
+															// {//@Author -
+															// Sushil
+		// 24-Feb-2017
 		Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 		int startx = size.width;
 		int starty = size.height;
@@ -1801,11 +1803,11 @@ public class MobileAction2 extends CommonLib {
 				try {
 					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
 					wait.until(ExpectedConditions.visibilityOf(elementToFind));
-					if (isSwiped) {
-						//To swipe a little further only when swipe is done at least once
+					if (isSwiped && needFurtherSwipe) {
+						// To swipe a little further only when swipe is done at
+						// least once
 						FuncSwipeAlittleFurther(startx / 2, starty / 2, startx / 2, endy / 2, endy, direction);
 					}
-					handleUnwantedKeyBoard();
 					flag = false;
 					sEleName = FuncGetElementText(elementToFind);
 
@@ -1842,12 +1844,14 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
-	public void FuncSwipeWhileElementNotFoundByxpath(String xpathEle, boolean clickYorN, int swipes, String direction) {// throws
-																														// Exception
-																														// {//@Author
-																														// -
-																														// Sushil
-																														// 01-Mar-2017
+	public void FuncSwipeWhileElementNotFound(MobileElement elementToFind, boolean clickYorN, int swipes,
+			String direction) {
+		FuncSwipeWhileElementNotFound(elementToFind, clickYorN, swipes, direction, false);
+	}
+
+	public void FuncSwipeWhileElementNotFoundByxpath(String xpathEle, boolean clickYorN, int swipes, String direction,
+			boolean needFurtherSwipe) {// throws Exception @Author - Sushil
+										// 01-Mar-2017
 
 		Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 		int startx = size.width;
@@ -1864,11 +1868,11 @@ public class MobileAction2 extends CommonLib {
 				try {
 					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
 					wait.until(ExpectedConditions.visibilityOf(GetDriver().findElement(By.xpath(xpathEle))));
-					if (isSwiped) {
-						//To swipe a little further only when swipe is done at least once
+					if (isSwiped && needFurtherSwipe) {
+						// To swipe a little further only when swipe is done at
+						// least once
 						FuncSwipeAlittleFurther(startx / 2, starty / 2, startx / 2, endy / 2, endy, direction);
 					}
-					handleUnwantedKeyBoard();
 					flag = false;
 					sEleName = FuncGetTextByxpath(xpathEle);
 
@@ -1905,6 +1909,10 @@ public class MobileAction2 extends CommonLib {
 			}
 		}
 
+	}
+	
+	public void FuncSwipeWhileElementNotFoundByxpath(String xpathEle, boolean clickYorN, int swipes, String direction) {
+		FuncSwipeWhileElementNotFoundByxpath(xpathEle,clickYorN, swipes, direction, false );
 	}
 
 	/**
@@ -2025,6 +2033,7 @@ public class MobileAction2 extends CommonLib {
 			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
 			String capturedText = getValue(mobileElement);
+			capturedText = capturedText.trim().replaceAll("\n ", "");
 			capturedText = capturedText.trim().replaceAll("\n", "");
 			for (int i = 0; i < expectedHeadertext.length; i++) {
 				if (capturedText.equalsIgnoreCase(expectedHeadertext[i].trim())) {
@@ -2814,8 +2823,7 @@ public class MobileAction2 extends CommonLib {
 		} else {
 			back_xpath = "//*[@name='NAVIGATION_ITEM_BACK' or @label='p2p header caret']";
 			try {
-				MobileElement back_arrow = (MobileElement) GetDriver()
-						.findElement(By.xpath(back_xpath));
+				MobileElement back_arrow = (MobileElement) GetDriver().findElement(By.xpath(back_xpath));
 				FuncClick(back_arrow, "<");
 
 			} catch (Exception ex) {

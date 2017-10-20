@@ -47,10 +47,9 @@ public class Managee_Payee extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement managePayees;
 
-	// @iOSFindBy(xpath =
-	// "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[@label='Add
-	// Canadian Payee']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
+	// For nexus addpayee class is not a button; for tab3, the class is View not
+	// ViewGroup to consolidate that, change to
+	@AndroidFindBy(xpath = "//android.view.ViewGroup/android.widget.LinearLayout[@index='1'] | //android.view.View/android.widget.LinearLayout[@index='1']")
 	private MobileElement addPayee;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
@@ -145,26 +144,16 @@ public class Managee_Payee extends _CommonPage {
 			} else {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement name = mobileAction
-						.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[1]", "name");
+				mobileAction.verifyWebElementUsingXPath(
+						"//div[contains(text(),'" + mobileAction.getAppString("str_payee_name") + "')]", "name");
 				// final WebElement address =
 				// mobileAction.verifyWebElementUsingXPath("(//div[@class='column1
 				// ng-binding'])[2]", "address");
-				final WebElement account = mobileAction
-						.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[3]", "account");
-				final WebElement description = mobileAction
-						.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[4]", "description");
-				if (!mobileAction.verifyTextEquality(name.getText().trim(), mobileAction.getAppString("str_payee_name"))
-						||
-						// !mobileAction.verifyTextEquality(address.getText().trim(),
-						// mobileAction.getAppString("str_payee_address")) ||
-						!mobileAction.verifyTextEquality(account.getText().trim(),
-								mobileAction.getAppString("str_payee_account"))
-						|| !mobileAction.verifyTextEquality(description.getText().trim(),
-								mobileAction.getAppString("str_description"))) {
-					System.err.println("TestCase has failed.");
-					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				}
+				mobileAction.verifyWebElementUsingXPath(
+						"//div[contains(text(),'" + mobileAction.getAppString("str_payee_account") + "')]", "account");
+				mobileAction.verifyWebElementUsingXPath(
+						"//div[contains(text(),'" + mobileAction.getAppString("str_description") + "')]",
+						"description");
 				// Switch back to native to get proper screenshots
 				mobileAction.switchAppiumContext("NATIVE_APP");
 			}
@@ -425,10 +414,11 @@ public class Managee_Payee extends _CommonPage {
 						"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("us") + "']",
 						"US banner button");
 				usElement.click();
-				addPayee = mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeNavigationBar/XCUIElementTypeButton[@label='"
-								+ getTextInCurrentLocale(StringArray.ARRAY_ADD_CANADIAN_PAYEE) + "']",
-						"Add Canadian Payee");
+				addPayee = mobileAction
+						.verifyElementUsingXPath(
+								"//XCUIElementTypeNavigationBar/XCUIElementTypeButton[@label='"
+										+ getTextInCurrentLocale(StringArray.ARRAY_ADD_US_PAYEE) + "']",
+								"Add Canadian Payee");
 				mobileAction.FuncClick(addPayee, "Add US Payee");
 				Thread.sleep(10000);
 			} else {

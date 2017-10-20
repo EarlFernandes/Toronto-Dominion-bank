@@ -837,7 +837,12 @@ public class Profile extends _CommonPage {
 				save_button = mobileAction.verifyElementUsingXPath(
 						"//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_SAVE_BUTTON) + "']", "Save Button");
 			}
-			mobileAction.FuncClick(save_button, "Save");
+			if (mobileAction.verifyElementIsPresent(save_button)) {
+				mobileAction.FuncClick(save_button, "Save");
+			} else {
+				mobileAction.Report_Fail("Save button is not displayed");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
 			mobileAction.waitForElementToVanish(progressBar);
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");

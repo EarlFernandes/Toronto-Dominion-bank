@@ -131,8 +131,9 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Privacy, Security & Legal']")
 	private MobileElement privacy;
 
-//	@iOSFindBy(xpath = "//*[@label='背面' or @label='返回' or @label='Back' or @label='p2p header caret']")
-//	private MobileElement back_button;
+	// @iOSFindBy(xpath = "//*[@label='背面' or @label='返回' or @label='Back' or
+	// @label='p2p header caret']")
+	// private MobileElement back_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Locations']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
@@ -186,6 +187,10 @@ public class HomeScreen extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/acceptButton' and @text='Accept']")
 	private MobileElement accept;
+
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_HOME")
+	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/list_slidermenu']")
+	private MobileElement slidemenu_list;
 
 	int i = 1;
 	String Firstpart = "//XCUIElementTypeCell[";
@@ -422,7 +427,6 @@ public class HomeScreen extends _CommonPage {
 
 			// FIXED removed back button
 			mobileAction.FuncClick(menu, "Menu");
-			
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -730,7 +734,7 @@ public class HomeScreen extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	/**
 	 * This method will click on the Back button
 	 * 
@@ -749,8 +753,8 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Thread.sleep(5000);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				String symbolSearch="//XCUIElementTypeStaticText[contains(@label,'"+ getTestdata("Search")+"')]";
-				MobileElement symbolSearchVal=mobileAction.mobileElementUsingXPath(symbolSearch);
+				String symbolSearch = "//XCUIElementTypeStaticText[contains(@label,'" + getTestdata("Search") + "')]";
+				MobileElement symbolSearchVal = mobileAction.mobileElementUsingXPath(symbolSearch);
 				int leftX = symbolSearchVal.getLocation().getX();
 				int rightX = leftX + symbolSearchVal.getSize().getWidth();
 				int middleX = (rightX + leftX) / 2;
@@ -813,8 +817,6 @@ public class HomeScreen extends _CommonPage {
 		}
 
 	}
-
-
 
 	/**
 	 * This method will click investing button from the hamburger menu. language
@@ -1062,20 +1064,21 @@ public class HomeScreen extends _CommonPage {
 
 		Decorator();
 		try {
-			if(mobileAction.verifyElementIsPresent(clickmenu_trade)){
+			if (mobileAction.verifyElementIsPresent(clickmenu_trade)) {
 				try {
 					CL.GetReporting().FuncReport("Fail", "Trade is Present");
 				} catch (IOException e) {
 					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 				}
-			}else{
+			} else {
 				try {
 					CL.GetReporting().FuncReport("Pass", "Trade is not Present");
 				} catch (IOException e) {
 					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 				}
 			}
-			//mobileAction.verifyElementNotPresent(clickmenu_trade, "Menu Trade");
+			// mobileAction.verifyElementNotPresent(clickmenu_trade, "Menu
+			// Trade");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -1085,27 +1088,26 @@ public class HomeScreen extends _CommonPage {
 		}
 
 	}
-	
-	
-	
+
 	public void menuTradePresent() throws Exception {
 
 		Decorator();
 		try {
-			if(mobileAction.verifyElementIsPresent(clickmenu_trade)){
+			if (mobileAction.verifyElementIsPresent(clickmenu_trade)) {
 				try {
 					CL.GetReporting().FuncReport("Pass", "Trade is Present");
 				} catch (IOException e) {
 					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 				}
-			}else{
+			} else {
 				try {
 					CL.GetReporting().FuncReport("Fail", "Trade is not Present");
 				} catch (IOException e) {
 					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 				}
 			}
-			//mobileAction.verifyElementNotPresent(clickmenu_trade, "Menu Trade");
+			// mobileAction.verifyElementNotPresent(clickmenu_trade, "Menu
+			// Trade");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -1247,7 +1249,7 @@ public class HomeScreen extends _CommonPage {
 			String hometitle = "";
 			hometitle = mobileAction.getValue(home_bar);
 			System.out.println("hometitle:" + hometitle);
-			mobileAction.verifyElementTextIsDisplayed(home_bar, getTextInCurrentLocale(StringArray.ARRAY_HOME_HEADER));		
+			mobileAction.verifyElementTextIsDisplayed(home_bar, getTextInCurrentLocale(StringArray.ARRAY_HOME_HEADER));
 
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
@@ -1511,8 +1513,5 @@ public class HomeScreen extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
-	
-	
 
 }

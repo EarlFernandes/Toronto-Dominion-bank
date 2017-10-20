@@ -3692,7 +3692,6 @@ public class EventCase {
 			break;
 		case clickInvestingAccounts:
 			MenuPage.get().clickInvestingAccounts();
-			;
 			break;
 
 		case InvestingAccountSummary_verifyDetails:
