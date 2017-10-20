@@ -144,7 +144,8 @@ public class Login extends _CommonPage {
 	private MobileElement securityLogin;
 
 	// FIXME: What is the identifier for this?
-	@iOSFindBy(xpath = "//*[contains(@label,'Something went wrong on') or contains(@label, 'MPAM') or contains(@label, 'request timed out') or contains(@label, 'setup failed')]")
+	//@iOSFindBy(xpath = "//*[contains(@label,'Something went wrong on') or contains(@label, 'MPAM') or contains(@label, 'request timed out') or contains(@label, 'setup failed')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='OK' or @label='确定' or @label='確定']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
 	private MobileElement errorText;
 
@@ -214,6 +215,7 @@ public class Login extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeImage")
 	private MobileElement TD_Image;
+	
 
 	public synchronized static Login get() {
 		if (Login == null) {
@@ -307,11 +309,11 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 			if (mobileAction.verifyElementIsPresent(errorText)) {
-				mobileAction.GetReporting().FuncReport("Fail", "System exception occured during login");
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				//will repeat, so remove error report
 				return true;
 			}
 		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception for no System Error ");
 			return false;
 		}
@@ -392,14 +394,92 @@ public class Login extends _CommonPage {
 		}
 	}
 
-	private void verifyLoginError() {
+	private boolean verifyIsLoginErrorSystemError() {
 		if (verifySystemError()) {
 			System.out.println("Failed with system error");
+			return true;
 		} else if (verifySessionTimeout()) {
 			System.out.println("Failed with Session Expired");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return false;
 		} else {
 			System.out.println("Unknown login issue");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return false;
+		}
+	}
+	
+	private boolean isSystemErrorStillFound() {
+		if (!mobileAction.verifyElementIsPresent(logined_page_Header)) {
+			return verifyIsLoginErrorSystemError();
+
+		} else {
+			String securityQuestionTitle = mobileAction.getAppString("securityQuestionPageHeader");
+			String pageTitle = mobileAction.getValue(logined_page_Header);
+			String addLoginTitle = getTextInCurrentLocale(StringArray.ARRAY_ADD_LOGIN);
+			if (pageTitle.contentEquals(securityQuestionTitle)) {
+				System.out.println("Security Question page");
+				verifySecurityQuestion();
+				return false;
+			} else if (pageTitle.contentEquals(addLoginTitle)) {
+				// still in login page
+				return verifyIsLoginErrorSystemError();
+			} else {
+				System.out.println("Login successfully to page " + pageTitle);
+				return false;
+			}
+		}
+	}
+	
+	public void enterPwdifSystemError() {
+		Decorator();
+
+		try {
+			int iCnt = 1;
+			final int REPEAT_TIMES=4;
+			// if(!mobileAction.isObjExists(Investing_Trade) &&
+			// mobileAction.isObjExists(errorText))
+			if (isSystemErrorStillFound()) {
+				do {
+
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+						mobileAction.FuncClick(errorText, "System Error Button");
+					}
+					mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+					
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+						mobileAction.FuncHideKeyboard();
+						mobileAction.FuncClick(login, "Login");
+						mobileAction.waitForElementToVanish(progressBar);
+					} else {
+						// For Landscape, need to hide key board
+
+						if (mobileAction.isOrientationLandscape()) {
+							mobileAction.HideKeyBoard_IOS();
+						} else {
+							mobileAction.FuncClick(login, "Login");
+						}
+						mobileAction.waitForElementToVanish(progressBar);
+					}
+					iCnt++;
+				} while (isSystemErrorStillFound() && iCnt <= REPEAT_TIMES);
+
+				if (iCnt > REPEAT_TIMES) {
+					try {
+						System.out.println("Failed to try maximum " + (REPEAT_TIMES+1) + " times");
+						CL.GetReporting().FuncReport("Fail", "Login Failed");
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				CL.GetReporting().FuncReport("Fail", "Login Failed");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 
@@ -453,24 +533,7 @@ public class Login extends _CommonPage {
 				}
 				mobileAction.waitForElementToVanish(progressBar);
 			}
-			// Do positive checking before doing any negative ones
-			if (!mobileAction.verifyElementIsPresent(logined_page_Header)) {
-				verifyLoginError();
-
-			} else {
-				String securityQuestionTitle = mobileAction.getAppString("securityQuestionPageHeader");
-				String pageTitle = mobileAction.getValue(logined_page_Header);
-				String addLoginTitle = getTextInCurrentLocale(StringArray.ARRAY_ADD_LOGIN);
-				if (pageTitle.contentEquals(securityQuestionTitle)) {
-					System.out.println("Security Question page");
-					verifySecurityQuestion();
-				} else if (pageTitle.contentEquals(addLoginTitle)) {
-					// still in login page
-					verifyLoginError();
-				} else {
-					System.out.println("Login successfully to page " + pageTitle);
-				}
-			}
+			enterPwdifSystemError();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1150,7 +1213,7 @@ public class Login extends _CommonPage {
 
 			// Do positive checking before doing any negative ones
 			if (!mobileAction.verifyElementIsPresent(logined_page_Header)) {
-				verifyLoginError();
+				verifyIsLoginErrorSystemError();
 
 			} else {
 				String securityQuestionTitle = mobileAction.getAppString("securityQuestionPageHeader");
@@ -1161,7 +1224,7 @@ public class Login extends _CommonPage {
 					verifySecurityQuestion();
 				} else if (pageTitle.contentEquals(addLoginTitle)) {
 					// still in login page
-					verifyLoginError();
+					verifyIsLoginErrorSystemError();
 				} else {
 					System.out.println("Login successfully to page " + pageTitle);
 				}
