@@ -1210,25 +1210,7 @@ public class Login extends _CommonPage {
 
 				login_without_ID_remembered();
 			}
-
-			// Do positive checking before doing any negative ones
-			if (!mobileAction.verifyElementIsPresent(logined_page_Header)) {
-				verifyIsLoginErrorSystemError();
-
-			} else {
-				String securityQuestionTitle = mobileAction.getAppString("securityQuestionPageHeader");
-				String pageTitle = mobileAction.getValue(logined_page_Header);
-				String addLoginTitle = getTextInCurrentLocale(StringArray.ARRAY_ADD_LOGIN);
-				if (pageTitle.contentEquals(securityQuestionTitle)) {
-					System.out.println("Security Question page");
-					verifySecurityQuestion();
-				} else if (pageTitle.contentEquals(addLoginTitle)) {
-					// still in login page
-					verifyIsLoginErrorSystemError();
-				} else {
-					System.out.println("Login successfully to page " + pageTitle);
-				}
-			}
+			enterPwdifSystemError();
 			Thread.sleep(5000);
 
 			logout();
