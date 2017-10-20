@@ -235,7 +235,7 @@ public class Accounts extends _CommonPage {
 			} else {
 				mobileAction.FuncElementSwipeWhileNotFound(acntsListnew, verify_Acnt, 25, "down", true);
 			}
-			
+
 			mobileAction.waitForElementToVanish(progressBar);
 			mobileAction.FuncClick(summaryBtn, "Summary");
 			// mobileAction.verifyElementIsDisplayed(current_Balance, "Current
@@ -1030,19 +1030,22 @@ public class Accounts extends _CommonPage {
 
 				List<MobileElement> total_List = CL.GetAppiumDriver().findElements(
 						By.xpath("//*[@label='" + totalStr.toUpperCase() + "']/../XCUIElementTypeStaticText"));
-				String TotalAccountValue ="";
+				String TotalAccountValue = "";
 				boolean isUSDFound = false;
-				for(int i=0; i<total_List.size(); i++ ) {
+				for (int i = 0; i < total_List.size(); i++) {
 					TotalAccountValue = mobileAction.getValue(total_List.get(i));
-					if(TotalAccountValue.contains("USD") ) {
+					if (TotalAccountValue.contains("USD")) {
 						System.out.println("USD account in TOTAL was found");
 						isUSDFound = true;
 						break;
-					} 
+					}
 				}
-				//total_accounts_ios = mobileAction.verifyElementUsingXPath(total_xpath, "Total Account");
-				//String TotalAccountValue = mobileAction.getValue(total_accounts_ios);
-				if(isUSDFound) {
+				// total_accounts_ios =
+				// mobileAction.verifyElementUsingXPath(total_xpath, "Total
+				// Account");
+				// String TotalAccountValue =
+				// mobileAction.getValue(total_accounts_ios);
+				if (isUSDFound) {
 					total_Account_value_usd = mobileAction.FuncGetValByRegx(TotalAccountValue, "USD *.*");
 					total_Account_value_cad = TotalAccountValue.replace(total_Account_value_usd, "").trim();
 				} else {

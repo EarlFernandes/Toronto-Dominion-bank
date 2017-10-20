@@ -837,7 +837,7 @@ public class Profile extends _CommonPage {
 				save_button = mobileAction.verifyElementUsingXPath(
 						"//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_SAVE_BUTTON) + "']", "Save Button");
 			}
-			if(mobileAction.verifyElementIsPresent(save_button)) {
+			if (mobileAction.verifyElementIsPresent(save_button)) {
 				mobileAction.FuncClick(save_button, "Save");
 			} else {
 				mobileAction.Report_Fail("Save button is not displayed");

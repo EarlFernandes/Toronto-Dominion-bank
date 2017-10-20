@@ -248,13 +248,13 @@ public class PreviewPurchase extends _CommonPage {
 			String disclaimerInfo = getTextInCurrentLocale(StringArray.ARRAY_MF_DISCLAIMER_INFO);
 			String capturedText = mobileAction.getValue(disclaimer_info);
 			capturedText = capturedText.trim().replaceAll("\n", "");
-			if(currentLocale.equalsIgnoreCase("fr")) {
-				String unkownEmptySpace =" "; //for french only
-				capturedText = capturedText.trim().replaceAll(unkownEmptySpace," ");
+			if (currentLocale.equalsIgnoreCase("fr")) {
+				String unkownEmptySpace = " "; // for french only
+				capturedText = capturedText.trim().replaceAll(unkownEmptySpace, " ");
 			}
 			System.out.println("Captured:" + capturedText);
-			if(currentLocale.equalsIgnoreCase("zh") || currentLocale.equalsIgnoreCase("zh-Hans") ) {
-				if(capturedText.matches(disclaimerInfo)) {
+			if (currentLocale.equalsIgnoreCase("zh") || currentLocale.equalsIgnoreCase("zh-Hans")) {
+				if (capturedText.matches(disclaimerInfo)) {
 					mobileAction.Report_Pass_Verified(capturedText);
 				} else {
 					mobileAction.Report_Fail_Not_Verified(capturedText);
@@ -262,7 +262,6 @@ public class PreviewPurchase extends _CommonPage {
 			} else {
 				mobileAction.verifyTextEquality(capturedText, disclaimerInfo);
 			}
-			
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

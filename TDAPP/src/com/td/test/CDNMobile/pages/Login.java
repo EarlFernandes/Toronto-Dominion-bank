@@ -144,7 +144,9 @@ public class Login extends _CommonPage {
 	private MobileElement securityLogin;
 
 	// FIXME: What is the identifier for this?
-	//@iOSFindBy(xpath = "//*[contains(@label,'Something went wrong on') or contains(@label, 'MPAM') or contains(@label, 'request timed out') or contains(@label, 'setup failed')]")
+	// @iOSFindBy(xpath = "//*[contains(@label,'Something went wrong on') or
+	// contains(@label, 'MPAM') or contains(@label, 'request timed out') or
+	// contains(@label, 'setup failed')]")
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='OK' or @label='确定' or @label='確定']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
 	private MobileElement errorText;
@@ -215,7 +217,8 @@ public class Login extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeImage")
 	private MobileElement TD_Image;
-	
+
+	final int REPEAT_TIMES = 4;
 
 	public synchronized static Login get() {
 		if (Login == null) {
@@ -309,7 +312,7 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 			if (mobileAction.verifyElementIsPresent(errorText)) {
-				//will repeat, so remove error report
+				// will repeat, so remove error report
 				return true;
 			}
 		} catch (Exception e) {
@@ -408,7 +411,7 @@ public class Login extends _CommonPage {
 			return false;
 		}
 	}
-	
+
 	private boolean isSystemErrorStillFound() {
 		if (!mobileAction.verifyElementIsPresent(logined_page_Header)) {
 			return verifyIsLoginErrorSystemError();
@@ -430,15 +433,12 @@ public class Login extends _CommonPage {
 			}
 		}
 	}
-	
+
 	public void enterPwdifSystemError() {
 		Decorator();
 
 		try {
 			int iCnt = 1;
-			final int REPEAT_TIMES=4;
-			// if(!mobileAction.isObjExists(Investing_Trade) &&
-			// mobileAction.isObjExists(errorText))
 			if (isSystemErrorStillFound()) {
 				do {
 
@@ -446,7 +446,7 @@ public class Login extends _CommonPage {
 						mobileAction.FuncClick(errorText, "System Error Button");
 					}
 					mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-					
+
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 						mobileAction.FuncHideKeyboard();
 						mobileAction.FuncClick(login, "Login");
@@ -466,7 +466,7 @@ public class Login extends _CommonPage {
 
 				if (iCnt > REPEAT_TIMES) {
 					try {
-						System.out.println("Failed to try maximum " + (REPEAT_TIMES+1) + " times");
+						System.out.println("Failed to try maximum " + (REPEAT_TIMES + 1) + " times");
 						CL.GetReporting().FuncReport("Fail", "Login Failed");
 					} catch (IOException e1) {
 						e1.printStackTrace();
