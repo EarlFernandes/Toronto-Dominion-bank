@@ -4,12 +4,8 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import com.td.StringArray;
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -430,28 +426,8 @@ public class HomeScreen extends _CommonPage {
 			Decorator();
 
 			// FIXED removed back button
+			mobileAction.FuncClick(menu, "Menu");
 
-			// For iPad, not clear why it failed to click menu, so try 5 times
-			// in case of any failure
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				int tryLimit = 5;
-				int count = 0;
-				while (count < tryLimit) {
-					mobileAction.FuncClick(menu, "Menu");
-					if (mobileAction.verifyElementIsPresent(slidemenu_list)) {
-						System.out.println("Clicking Menu successfully, try " + (count + 1) + " times");
-						break;
-					} else {
-						count++;
-					}
-				}
-				if (count == tryLimit) {
-					mobileAction.Report_Fail("Failed to click menu");
-					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				}
-			} else {
-				mobileAction.FuncClick(menu, "Menu");
-			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
