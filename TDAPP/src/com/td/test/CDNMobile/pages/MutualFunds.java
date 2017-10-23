@@ -160,9 +160,6 @@ public class MutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Order Type' or @text='Type d’ordre']")
 	private MobileElement orderTypeElement;
 
-	@iOSFindBy(xpath = "//*[@label='In Progress']")
-	private MobileElement progresssBar;
-
 	@iOSFindBy(xpath = "//*[contains(@label,'Action') or contains(@label,'Action')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='Please Select' or @text='Choisissez']")
 	private MobileElement selectAction;
@@ -508,16 +505,9 @@ public class MutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label' and contains(@text,'Please View The Fund Facts for') or contains(@text,'Veuillez consulter l’Aperçu du fonds de')]")
 	private MobileElement fundFacts;
 
-	@iOSFindBy(xpath = "//*[@label='Retour' or @label='Back']")
-	private MobileElement backButton;
-
 	@iOSFindBy(xpath = "//*[(contains(@label,'Send Order') or contains(@label,'Envoyer l')) and @enabled='true']")
 	@AndroidFindBy(xpath = "//android.widget.Button[(@text='Send Order' or contains(@text,'Envoyer')) and @enabled='false']")
 	private MobileElement sendOrderDisabled;
-
-	@iOSFindBy(xpath = "//*[@label='Retour' or @label='Back']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
-	private MobileElement back;
 
 	@iOSFindBy(xpath = "//*[@name='alert_cancel_button' or @label='Annuler']") // @Author
 																				// -
@@ -1208,7 +1198,7 @@ public class MutualFunds extends _CommonPage {
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(fundFacts, "Fund Facts");
 				mobileAction.waitForElementToVanish(progressBar);
-				mobileAction.FuncClick(backButton, "Back Button");
+				mobileAction.ClickBackButton();
 			}
 
 		} catch (NoSuchElementException e) {

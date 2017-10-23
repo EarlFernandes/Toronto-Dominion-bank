@@ -192,10 +192,6 @@ public class Interac_e_Transfer extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'now registered for Interac e-Transfer')]")
 	private MobileElement successMag;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeActivityIndicator[`value=='1'`]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progressBar;
-
 	public synchronized static Interac_e_Transfer get() {
 		if (Interac_e_Transfer == null) {
 			Interac_e_Transfer = new Interac_e_Transfer();
@@ -279,7 +275,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				mobileAction.verifyElement(interac_Etransfer_Header, "Interac e-Transfer");
 				mobileAction.FuncClick(selectSender, "Sender");
 
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 
 				// mobileAction.FuncElementSwipeWhileNotFound(acntsListSender,
 				// select_SenderValue, 0, "up", true);
@@ -290,7 +286,7 @@ public class Interac_e_Transfer extends _CommonPage {
 					mobileAction.FuncClick(cancelSender, "Cancel");
 				}
 
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 
 				mobileAction.FuncClick(fromAccount, "From Account");
 				accVal = Double.parseDouble(mobileAction.getText(fromAccountVal));
@@ -637,9 +633,11 @@ public class Interac_e_Transfer extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("receipt_thankyou") + "']",
 						"Thank you!");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
-						+ mobileAction.getAppString("eTransferReceiptTransferSent").replaceAll("\\<.*?>", "") + "']",
-						"Interac e-transfer sent");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//XCUIElementTypeStaticText[@value='" + mobileAction
+										.getAppString("eTransferReceiptTransferSent").replaceAll("\\<.*?>", "") + "']",
+								"Interac e-transfer sent");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value, '"
 						+ mobileAction.getAppString("receipt_confirmation") + "')]", "Confirmation");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
@@ -829,7 +827,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				mobileAction.verifyElement(interac_Etransfer_Header, "Interac e-Transfer");
 				mobileAction.FuncClick(selectSender, "Sender");
 
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_SenderValue, true, 5, "up");
 				// add click cancel when cancel is still present, this is an
@@ -838,7 +836,7 @@ public class Interac_e_Transfer extends _CommonPage {
 					mobileAction.FuncClick(cancelSender, "Cancel");
 				}
 
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(recipient, "Recipient");
 
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_Recipient, true, 2, "up");
@@ -881,7 +879,7 @@ public class Interac_e_Transfer extends _CommonPage {
 
 			mobileAction.FuncClick(selectSender, "ClickSender");
 
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 			if (mobileAction.verifyElementIsPresent(senderCancel)) {
 				mobileAction.FuncClick(senderCancel, "Click Cancel");
@@ -1101,7 +1099,7 @@ public class Interac_e_Transfer extends _CommonPage {
 			mobileAction.FuncHideKeyboard();
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(continueButton, "Continue Button");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1135,7 +1133,7 @@ public class Interac_e_Transfer extends _CommonPage {
 			mobileAction.verifyTextEquality(reviewEmailId.getText(), email);
 
 			mobileAction.FuncClick(continueButton, "Continue Button");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -1355,9 +1353,11 @@ public class Interac_e_Transfer extends _CommonPage {
 								"//XCUIElementTypeStaticText[@value='" + getTestdata("RecipientName") + "']", ""),
 						"Recipient to cancel");
 				Thread.sleep(1000);
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
-						+ mobileAction.getAppString("interacEtransferCancelHeader").replaceAll("\\<.*?>", "") + "']",
-						"Transfer Details title");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='" + mobileAction
+										.getAppString("interacEtransferCancelHeader").replaceAll("\\<.*?>", "") + "']",
+								"Transfer Details title");
 				mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[@value='"
 								+ mobileAction.getAppString("e_transfer_str").replaceAll("\\<.*?>", "") + "']",

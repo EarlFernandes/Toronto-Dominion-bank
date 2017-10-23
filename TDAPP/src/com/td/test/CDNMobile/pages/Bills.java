@@ -86,10 +86,6 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Scheduled Payments']")
 	private MobileElement scheduled_Payments_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement menu;
-
 	@iOSFindBy(accessibility = "PAYBILL_VIEW_DATE_VALUE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtDate']")
 	private MobileElement datePicker;

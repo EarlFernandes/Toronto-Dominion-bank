@@ -41,10 +41,6 @@ public class HoldingDetails extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Agree']")
 	private MobileElement AgreeButton;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
-
 	public synchronized static HoldingDetails get() {
 		if (HoldingDetails == null) {
 			HoldingDetails = new HoldingDetails();
@@ -68,7 +64,7 @@ public class HoldingDetails extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(Good, "Good 'til, Day");
 			mobileAction.FuncClickBackButton();
 			mobileAction.FuncClick(AgreeButton, "Agree");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(Sell, "Sell");
 			Thread.sleep(3000);
 		} catch (NoSuchElementException e) {
@@ -97,7 +93,7 @@ public class HoldingDetails extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(Good, "Good 'til, Day");
 			mobileAction.FuncClickBackButton();
 			mobileAction.FuncClick(AgreeButton, "Agree");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(Sell, "Sell");
 			Thread.sleep(3000);
 		} catch (NoSuchElementException e) {

@@ -74,10 +74,6 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[contains(@text,'Receipt') or contains(@text,'Reçu')]")
 	private MobileElement hdrReceipt;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Menu')]")
-	@AndroidFindBy(id = "android:id/up")
-	MobileElement MenuUp;
-
 	@iOSFindBy(xpath = "//*[contains(@label,'Thank you!') or contains(@label,'Merci!')]") // @Author
 																							// -
 																							// Sushil
@@ -441,7 +437,7 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 		Decorator();
 		try {
 			Thread.sleep(40000);
-			mobileAction.FuncClick(MenuUp, "Menu Button");
+			mobileAction.clickMenuButton();
 			mobileAction.FuncClick(myAccounts, "My Accounts");
 
 			mobileAction.verifyElementIsDisplayed(lblBanking, "On Clicking My Account Label Banking");
@@ -456,7 +452,7 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.FuncClick(MenuUp, "Menu Button");
+			mobileAction.clickMenuButton();
 			mobileAction.FuncClick(trade, "Trade");
 
 			mobileAction.verifyElementIsDisplayed(lblAccount, "On Clicking Trade Label Account");

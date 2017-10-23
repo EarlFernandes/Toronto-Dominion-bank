@@ -25,10 +25,6 @@ public class PreviewPurchase extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement page_title;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progress_bar;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[10]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Phone Number']/../android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement phone_number;
@@ -78,10 +74,6 @@ public class PreviewPurchase extends _CommonPage {
 
 	String phoneReg = "\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
 	String phoneRegFR = "\\(\\d{3}\\)\\s*\\d{3}\\s*–\\s*\\d{4}";
-
-	@iOSFindBy(accessibility = "NAVIGATION_ITEM_BACK")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
-	private MobileElement back_icon;
 
 	public synchronized static PreviewPurchase get() {
 		if (previewPurchase == null) {
@@ -325,7 +317,7 @@ public class PreviewPurchase extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(purchase_now_button, "Purchase");
-			mobileAction.waitForElementToVanish(progress_bar);
+			mobileAction.waitProgressBarVanish();
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -403,16 +395,12 @@ public class PreviewPurchase extends _CommonPage {
 		int count = 10;
 		String homeText = getTextInCurrentLocale(StringArray.ARRAY_HOME_HEADER);
 		try {
-			while (mobileAction.verifyElementIsPresent(back_icon) && count != 0) {
+			while (mobileAction.isBackButtonPresent() && count != 0) {
 				String pageText = mobileAction.getValue(page_title);
 				if (pageText.equalsIgnoreCase(homeText)) {
 					break;
 				}
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					mobileAction.FuncClickBackButton();
-				} else {
-					mobileAction.FuncClick(back_icon, "<");
-				}
+				mobileAction.ClickBackButton();
 				count--;
 				Decorator();
 			}

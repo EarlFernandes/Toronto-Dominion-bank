@@ -87,10 +87,6 @@ public class MobilePayment extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/nickname_box']")
 	private MobileElement nickname_Edit_Text;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement backButton;
-
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/pay_button']")
 	private MobileElement pay_Button;
 
@@ -126,10 +122,6 @@ public class MobilePayment extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/add_cards_button' and @text='Add to TD Mobile Payment']")
 	private MobileElement addMobilePayment;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
 
 	@AndroidFindBy(xpath = "//android.widget.ProgressBar[@resource-id='com.td:id/content_loader']")
 	private MobileElement progressBarAddCard;
@@ -279,7 +271,7 @@ public class MobilePayment extends _CommonPage {
 					Decorator();
 					mobileAction.FuncClick(set_Default_Card, "Set As Default Card");
 					mobileAction.FuncClick(save_Button, "Save");
-					mobileAction.FuncClick(backButton, "Back");
+					mobileAction.ClickBackButton();
 
 				}
 
@@ -519,7 +511,7 @@ public class MobilePayment extends _CommonPage {
 					mobileAction.FuncHideKeyboard();
 				}
 				mobileAction.FuncClick(securityLogin, "Login");
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 			}
 
 		} catch (NoSuchElementException e) {

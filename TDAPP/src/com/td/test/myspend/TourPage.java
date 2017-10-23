@@ -42,10 +42,6 @@ public class TourPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/acceptButton']")
 	private MobileElement acceptBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progresssBar;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Open TD MySpend' or @label='Acceptez']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/button']")
 	private MobileElement openTDMySpend;
@@ -137,13 +133,13 @@ public class TourPage extends _CommonPage {
 		Decorator();
 
 		try {
-			if(mobileAction.verifyElementIsPresent(continueBtn)){
+			if (mobileAction.verifyElementIsPresent(continueBtn)) {
 				mobileAction.FuncClick(continueBtn, "Continue");
 				mobileAction.FuncClick(continueBtn, "Continue");
 				mobileAction.FuncClick(getStartedBtn, "Get Started");
-				mobileAction.waitForElementToVanish(progresssBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(acceptBtn, "Accept");
-				mobileAction.waitForElementToVanish(progresssBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(openTDMySpend, "Open TD My Spend");
 			}
 			mobileAction.FunctionSwipe("Left", 200, 200);
@@ -152,8 +148,7 @@ public class TourPage extends _CommonPage {
 			mobileAction.FunctionSwipe("Left", 200, 200);
 			if (mobileAction.verifyElementIsPresent(MySpendReadyToGo)) {
 				mobileAction.FuncClick(MySpendReadyToGo, "TD My Spend is ready to go");
-			}
-			else if (mobileAction.verifyElementIsPresent(fxMsgHeader)) {
+			} else if (mobileAction.verifyElementIsPresent(fxMsgHeader)) {
 				mobileAction.FuncClick(okBtn, "OK");
 			}
 

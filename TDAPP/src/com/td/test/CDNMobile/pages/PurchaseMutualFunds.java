@@ -26,10 +26,6 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement page_title;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progress_bar;
-
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/selectedText")
 	private MobileElement fund_dropdown_list;
@@ -158,7 +154,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.out.println("Failed to click preview purchase button");
 		}
-		mobileAction.waitForElementToVanish(progress_bar);
+		mobileAction.waitProgressBarVanish();
 	}
 
 	private void enterAmount(String amountentered) {
@@ -257,7 +253,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.out.println("Failed to click preview purchase button");
 		}
-		mobileAction.waitForElementToVanish(progress_bar);
+		mobileAction.waitProgressBarVanish();
 	}
 
 	public void VerifyFundDropdownList() {
@@ -266,7 +262,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(fund_dropdown_list, "Fund Dropdown");
 			mobileAction.FuncClick(fund_dropdown_list, "Fund Dropdown");
-			mobileAction.waitForElementToVanish(progress_bar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(cancel_button, "Cancel Button");
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {

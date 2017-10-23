@@ -173,13 +173,6 @@ public class MLOptionChainTable extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Type')]/../*[@resource-id='com.td:id/selectedText']")
 	private MobileElement selectedOrderType;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back' or @label='Retour']") // @Author
-																					// -
-																					// Sushil
-																					// 07-Mar-2017
-	@AndroidFindBy(id = "android:id/up")
-	private MobileElement backButtonOptionTable;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Refresh' or @label='Actualiser']") // @Author
 																							// -
 																							// Sushil
@@ -372,7 +365,7 @@ public class MLOptionChainTable extends _CommonPage {
 			mobileAction.FuncVerifyNonBlankValue(defaultOptionType, "Leg1 defaultOptionType");
 			mobileAction.FuncVerifyNonBlankValue(defaultStrikes, "Leg1 defaultStrikes");
 
-			mobileAction.FuncClick(backButtonOptionTable, "backButtonOptionTable");
+			mobileAction.ClickBackButton();
 
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, true, 5, "up");
 			mobileAction.FuncVerifyNonBlankValue(defaultExpiryType, "Leg2 defaultExpiryType");
@@ -463,7 +456,7 @@ public class MLOptionChainTable extends _CommonPage {
 			// mobileAction.verifyElementIsDisplayed(titleConfirmOrder,
 			// "titleConfirmOrder");
 
-			mobileAction.FuncClick(backButtonOptionTable, "backButtonOptionTable");
+			mobileAction.ClickBackButton();
 			mobileAction.FuncClick(agreeButton, "agreeButton");
 
 			TradeMIT.get().clickInvestingTrade();
@@ -482,7 +475,7 @@ public class MLOptionChainTable extends _CommonPage {
 			mobileAction.FuncVerifyNonBlankValue(defaultOptionType, "Leg1 defaultOptionType");
 			mobileAction.FuncVerifyNonBlankValue(defaultStrikes, "Leg1 defaultStrikes");
 
-			mobileAction.FuncClick(backButtonOptionTable, "backButtonOptionTable");
+			mobileAction.ClickBackButton();
 
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, true, 5, "up");
 			mobileAction.FuncVerifyNonBlankValue(defaultExpiryType, "Leg2 defaultExpiryType");
@@ -543,7 +536,7 @@ public class MLOptionChainTable extends _CommonPage {
 			// mobileAction.verifyElementIsDisplayed(titleConfirmOrder,
 			// "titleConfirmOrder");
 
-			mobileAction.FuncClick(backButtonOptionTable, "backButtonOptionTable");
+			mobileAction.ClickBackButton();
 			mobileAction.FuncClick(agreeButton, "agreeButton");
 
 			TradeMIT.get().clickInvestingTrade();
@@ -553,7 +546,7 @@ public class MLOptionChainTable extends _CommonPage {
 			TradeMIT.get().tapTradeSearchBar();
 			SearchPageMIT.get().clickFirstSymbol();
 
-			mobileAction.FuncClick(backButtonOptionTable, "backButtonOptionTable");
+			mobileAction.ClickBackButton();
 			mobileAction.FuncClick(cancelButton, "cancelButton");
 
 			mobileAction.FuncSwipeWhileElementNotFound(leg2Option, true, 5, "up");

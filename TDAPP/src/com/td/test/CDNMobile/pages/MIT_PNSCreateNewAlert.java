@@ -71,24 +71,15 @@ public class MIT_PNSCreateNewAlert extends _CommonPage {
 	// @AndroidFindBy(id="android:id/action_bar_title")
 	private MobileElement backButton1;
 
-	// @iOSFindBy(xpath = "//XCUIElementTypeImage[@label='Home' or
-	// @label='Accueil']")
 	@iOSFindBy(xpath = "//*[contains(@label,'Menu')]")
 	@AndroidFindBy(xpath = "//*[(@text='Home' or @text='Accueil') and @resource-id='android:id/action_bar_title']")
 	private MobileElement hdrHome;
-
-	@iOSFindBy(xpath = "//*[contains(@label,'Menu')]")
-	@AndroidFindBy(id = "android:id/up")
-	MobileElement MenuUp;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Alert Delivery Prefrences' or @label='Accueil']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='DeliveryPrefrencesButton']")
 	private MobileElement gearIcon;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='Delivery Preferences' or @name='Accueil']")
-	// @iOSFindBy(xpath="//*[contains(@label,'Menu')]")
-	// @AndroidFindBy(xpath = "//*[(@text='Home' or @text='Accueil') and
-	// @resource-id='android:id/action_bar_title']")
 	@AndroidFindBy(xpath = "//android.view.View[@resource-id='BackButton']")
 	private MobileElement txtdelivery;
 

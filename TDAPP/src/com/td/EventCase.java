@@ -2280,7 +2280,7 @@ public class EventCase {
 			break;
 
 		case VerifyPopUpWithCancelButton:
-			Profile.get().VerifyPopUpWithCancelButton();
+			Popupwindow.get().VerifyPopUpWithCancelButton();
 			break;
 
 		case EditEmailAddressWithoutSave:
@@ -2336,7 +2336,7 @@ public class EventCase {
 			break;
 
 		case ClickPopupGoBackButton:
-			Profile.get().ClickPopupGoBackButton();
+			Popupwindow.get().ClickPopupGoBackButton();
 			break;
 
 		case VerifyPhoneEmailNotChanged:

@@ -88,8 +88,9 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_val']")
 	private MobileElement confirmation_val;
 
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
-	private MobileElement menu;
+	// @AndroidFindBy(xpath =
+	// "//android.widget.ImageView[@resource-id='android:id/up']")
+	// private MobileElement menu;
 
 	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
@@ -1007,7 +1008,7 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.FuncClick(cancelBtn, "Cancel");
 				mobileAction.verifyElementIsDisplayed(bills_header, "Bills");
-				mobileAction.FuncClick(menu, "Menu");
+				mobileAction.clickMenuButton();
 				mobileAction.FuncClick(homeBtn, "Home Button");
 				mobileAction.verifyElementIsDisplayed(home, "Home");
 

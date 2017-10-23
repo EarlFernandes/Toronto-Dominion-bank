@@ -27,10 +27,6 @@ public class ManageRecipients extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[contains(@text,'Register') or contains(@content-desc,'Register')]")
 	private MobileElement registerBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progressBar;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeLink[1]/XCUIElementTypeLink/XCUIElementTypeStaticText")
 	private MobileElement selectRecipient;
 
@@ -173,7 +169,7 @@ public class ManageRecipients extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.verifyElementIsDisplayed(manageRecipientHeader, "Manage Recipients");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.verifyElementIsDisplayed(registerBtn, "Register");
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -200,7 +196,7 @@ public class ManageRecipients extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.verifyElementIsDisplayed(manageRecipientHeader, "Manage Recipients");
 				// Thread.sleep(3000);
 				// mobileAction.FuncClick(selectRecipient, "Select Recipient");
@@ -221,7 +217,7 @@ public class ManageRecipients extends _CommonPage {
 			} else {
 				// String recipient_saved = "Success Recipient details have been
 				// saved.";
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.verifyElementIsDisplayed(manageRecipientHeader, "Manage Recipients");
 				// String select_recipient
 				// ="//android.view.View[@content-desc='" + sender_SelectSender+
@@ -430,7 +426,7 @@ public class ManageRecipients extends _CommonPage {
 				final MobileElement firstRecipient = mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[@value='" + getTestdata("RecipientName") + "']", "Recipient Name");
 				firstRecipient.click();
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
 						+ mobileAction.getAppString("mng_payee_view_title") + "']", "View title");
 			} else {
@@ -440,7 +436,7 @@ public class ManageRecipients extends _CommonPage {
 						"//div[@ng-model='searchExpression' and text()='" + getTestdata("RecipientName") + "']",
 						"Recipient Name");
 				firstRecipient.click();
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
