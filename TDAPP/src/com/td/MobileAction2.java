@@ -17,11 +17,13 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.td.test.CDNMobile.pages.HomeScreen;
 import com.td.test.framework.CommonLib;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.InteractsWithApps;
 import io.appium.java_client.MobileBy.ByAccessibilityId;
+import io.appium.java_client.MobileBy.ByIosClassChain;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.MultiTouchAction;
@@ -30,7 +32,9 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 
 import java.util.Iterator;
+
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -97,8 +101,8 @@ public class MobileAction2 extends CommonLib {
 			objElement.click();
 
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
-		} catch (WebDriverException e) {
-			System.out.println("WebDriverException, ignor it");
+			// } catch (WebDriverException e) {
+			// System.out.println("WebDriverException, ignor it");
 		} catch (Exception e) {
 			try {
 				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
@@ -1771,9 +1775,21 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
+	private void FuncSwipeAlittleFurther(int startx, int starty, int endx, int endy, int height, String direction) {
+		int heightPer = (height * 10 / 100);
+		if (direction.equalsIgnoreCase("up"))
+			((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy - heightPer,
+					2000);
+		else if (direction.equalsIgnoreCase("down"))
+			((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy + heightPer,
+					2000);
+	}
+
 	public void FuncSwipeWhileElementNotFound(MobileElement elementToFind, boolean clickYorN, int swipes,
-			String direction) {// throws Exception {//@Author - Sushil
-								// 24-Feb-2017
+			String direction, boolean needFurtherSwipe) {// throws Exception
+															// {//@Author -
+															// Sushil
+		// 24-Feb-2017
 		Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 		int startx = size.width;
 		int starty = size.height;
@@ -1782,13 +1798,18 @@ public class MobileAction2 extends CommonLib {
 		boolean flag = true;
 		int count = 0;
 		String sEleName = "";
+		boolean isSwiped = false;
 		try {
 			while (flag && count <= swipes) {
 
 				try {
 					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
 					wait.until(ExpectedConditions.visibilityOf(elementToFind));
-
+					if (isSwiped && needFurtherSwipe) {
+						// To swipe a little further only when swipe is done at
+						// least once
+						FuncSwipeAlittleFurther(startx / 2, starty / 2, startx / 2, endy / 2, endy, direction);
+					}
 					flag = false;
 					sEleName = FuncGetElementText(elementToFind);
 
@@ -1800,6 +1821,7 @@ public class MobileAction2 extends CommonLib {
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
 								startx / 2, endy / 2 + heightPer, 2000);
 					count++;
+					isSwiped = true;
 				}
 
 			}
@@ -1824,12 +1846,14 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
-	public void FuncSwipeWhileElementNotFoundByxpath(String xpathEle, boolean clickYorN, int swipes, String direction) {// throws
-																														// Exception
-																														// {//@Author
-																														// -
-																														// Sushil
-																														// 01-Mar-2017
+	public void FuncSwipeWhileElementNotFound(MobileElement elementToFind, boolean clickYorN, int swipes,
+			String direction) {
+		FuncSwipeWhileElementNotFound(elementToFind, clickYorN, swipes, direction, false);
+	}
+
+	public void FuncSwipeWhileElementNotFoundByxpath(String xpathEle, boolean clickYorN, int swipes, String direction,
+			boolean needFurtherSwipe) {// throws Exception @Author - Sushil
+										// 01-Mar-2017
 
 		Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 		int startx = size.width;
@@ -1839,13 +1863,18 @@ public class MobileAction2 extends CommonLib {
 		boolean flag = true;
 		int count = 0;
 		String sEleName = "";
+		boolean isSwiped = false;
 		try {
 			while (flag && count <= swipes) {
 
 				try {
 					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
 					wait.until(ExpectedConditions.visibilityOf(GetDriver().findElement(By.xpath(xpathEle))));
-
+					if (isSwiped && needFurtherSwipe) {
+						// To swipe a little further only when swipe is done at
+						// least once
+						FuncSwipeAlittleFurther(startx / 2, starty / 2, startx / 2, endy / 2, endy, direction);
+					}
 					flag = false;
 					sEleName = FuncGetTextByxpath(xpathEle);
 
@@ -1857,6 +1886,7 @@ public class MobileAction2 extends CommonLib {
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
 								startx / 2, endy / 2 + heightPer, 2000);
 					count++;
+					isSwiped = true;
 				}
 
 			}
@@ -1881,6 +1911,10 @@ public class MobileAction2 extends CommonLib {
 			}
 		}
 
+	}
+	
+	public void FuncSwipeWhileElementNotFoundByxpath(String xpathEle, boolean clickYorN, int swipes, String direction) {
+		FuncSwipeWhileElementNotFoundByxpath(xpathEle,clickYorN, swipes, direction, false );
 	}
 
 	/**
@@ -2001,6 +2035,7 @@ public class MobileAction2 extends CommonLib {
 			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.elementToBeClickable(mobileElement));
 			String capturedText = getValue(mobileElement);
+			capturedText = capturedText.trim().replaceAll("\n ", "");
 			capturedText = capturedText.trim().replaceAll("\n", "");
 			for (int i = 0; i < expectedHeadertext.length; i++) {
 				if (capturedText.equalsIgnoreCase(expectedHeadertext[i].trim())) {
@@ -2577,6 +2612,34 @@ public class MobileAction2 extends CommonLib {
 
 	}
 
+	
+	
+	/**
+	 * This method will get the Mobile element from IOSClassChain
+	 * 
+	 *
+	 * @param objElement
+	 *            The MobileElement on which the click action has to be
+	 *            performed.
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             In case the element is not found over the screen.
+	 */
+	public MobileElement mobileElementUsingIOSClassChain(String objElement){
+
+		MobileElement objMobileElement = null;
+
+		try {
+			objMobileElement = (MobileElement) ((AppiumDriver) GetDriver()).findElement(ByIosClassChain.iOSClassChain(objElement));
+			
+		} catch (Exception e) {
+			System.err.println("Element not found");
+		}
+		
+		return objMobileElement;
+	}
+	
+	
 	public String verifyElementUsingBy(By value) {
 
 		String elementText = "";
@@ -2659,6 +2722,13 @@ public class MobileAction2 extends CommonLib {
 			status = switchElement.getAttribute("checked");
 		} else {
 			status = switchElement.getAttribute("value");
+		}
+		// for iPad landscape, the status is 1 or 0, need to change it to true
+		// or false
+		if (status.equals("1")) {
+			status = "true";
+		} else if (status.equals("0")) {
+			status = "false";
 		}
 		return status;
 	}
@@ -2753,10 +2823,9 @@ public class MobileAction2 extends CommonLib {
 			}
 
 		} else {
-			back_xpath = "NAVIGATION_ITEM_BACK";
+			back_xpath = "//*[@name='NAVIGATION_ITEM_BACK' or @label='p2p header caret']";
 			try {
-				MobileElement back_arrow = (MobileElement) GetDriver()
-						.findElement(ByAccessibilityId.AccessibilityId(back_xpath));
+				MobileElement back_arrow = (MobileElement) GetDriver().findElement(By.xpath(back_xpath));
 				FuncClick(back_arrow, "<");
 
 			} catch (Exception ex) {
@@ -3115,6 +3184,36 @@ public class MobileAction2 extends CommonLib {
 				e1.printStackTrace();
 			}
 			throw e;
+		}
+	}
+
+	/**
+	 * This method will hide keyboard for both IOS and Androd if keyboard opened
+	 * unwanted Sometimes when Swipe is invoked and focused element is a
+	 * textEdit like phone, email then the keyboard will be opened
+	 * 
+	 * @throws NoSuchElementException
+	 */
+	public void handleUnwantedKeyBoard() {
+		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			try {
+				(GetAppiumDriver()).hideKeyboard();
+			} catch (Exception e) {
+				// normal
+			}
+		} else {
+			try {
+				String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
+						+ getAppString("secureLoginEditButtonDone") + "']";
+				MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
+				if (isOrientationLandscape() && isGoOnKeyBoard()) {
+					HideKeyBoard_IOS();
+				} else {
+					Done.click();
+				}
+			} catch (Exception e) {
+				// normal
+			}
 		}
 	}
 

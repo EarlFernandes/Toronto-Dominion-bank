@@ -100,10 +100,6 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
-	private MobileElement back_Button;
-
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/upcomingbill_date_value']")
 	private MobileElement upcomingBillDate;
 
@@ -394,10 +390,10 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(bills_Header, "Verifyipay_US_Bills_Headerng Bill Page Header");
 				mobileAction.FuncClick(pay_Bills, "Pay Bills");
 				mobileAction.verifyElementIsDisplayed(pay_Bills_Header, "Pay Bill Functionality Page Displayed");
-				mobileAction.FuncClick(back_Button, "Back");
+				mobileAction.ClickBackButton();
 				mobileAction.FuncClick(pay_US_Bills, "Pay US Bills");
 				mobileAction.verifyElementIsDisplayed(pay_US_Bills_Header, "Pay US Bill Functionality Page Displayed");
-				mobileAction.FuncClick(back_Button, "Back");
+				mobileAction.ClickBackButton();
 				mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
 				mobileAction.verifyElementIsDisplayed(scheduled_Payments_Header,
 						"Scheduled Payments Functionality Page Displayed");
@@ -408,14 +404,15 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(bills_Header, "Verifying Bill Page Header");
 				mobileAction.FuncClick(pay_Bills, "Pay Bills");
 				mobileAction.verifyElementIsDisplayed(pay_Bills_Header, "Pay Bill Functionality Page Displayed");
-				mobileAction.FuncClick(back_Button, "back arrow button clicked");
+				mobileAction.ClickBackButton();
 				mobileAction.FuncClick(pay_US_Bills, "Pay US Bills");
 				mobileAction.verifyElementIsDisplayed(pay_US_Bills_Header, "Pay US Bill Functionality Page Displayed");
-				mobileAction.FuncClick(back_Button, "back arrow button clicked");
+
+				mobileAction.ClickBackButton();
 				mobileAction.FuncClick(managePayees, "Manage Payees");
 
 				mobileAction.verifyElementIsDisplayed(manage_Payees_Header, "Manage Payees Page Displayed");
-				mobileAction.FuncClick(back_Button, "back arrow button clicked");
+				mobileAction.ClickBackButton();
 				mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
 				mobileAction.verifyElementIsDisplayed(scheduled_Payments_Header,
 						"Scheduled Payments Functionality Page Displayed");
@@ -456,16 +453,13 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(back_Button, "BACK");
+				mobileAction.ClickBackButton();
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());

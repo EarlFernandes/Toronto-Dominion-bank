@@ -4,12 +4,8 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import com.td.StringArray;
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -130,8 +126,9 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Privacy, Security & Legal']")
 	private MobileElement privacy;
 
-	@iOSFindBy(xpath = "//*[@label='背面' or @label='返回' or @label='Back' or @label='p2p header caret']")
-	private MobileElement back_button;
+	// @iOSFindBy(xpath = "//*[@label='背面' or @label='返回' or @label='Back' or
+	// @label='p2p header caret']")
+	// private MobileElement back_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Locations']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
@@ -185,6 +182,10 @@ public class HomeScreen extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/acceptButton' and @text='Accept']")
 	private MobileElement accept;
+
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_HOME")
+	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/list_slidermenu']")
+	private MobileElement slidemenu_list;
 
 	int i = 1;
 	String Firstpart = "//XCUIElementTypeCell[";
@@ -715,12 +716,7 @@ public class HomeScreen extends _CommonPage {
 		Decorator();
 		try {
 			Thread.sleep(2500);
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(back_button, "Back Button");
-			}else{
-	
-				mobileAction.FuncClickBackButton();
-			}
+			mobileAction.ClickBackButton();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -728,15 +724,12 @@ public class HomeScreen extends _CommonPage {
 		} catch (InterruptedException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	/**
 	 * This method will click on the Back button
 	 * 
@@ -876,7 +869,7 @@ public class HomeScreen extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				mobileAction.FuncClick(back_button, "Back");
+				mobileAction.ClickBackButton();
 				mobileAction.FuncClick(menu, "Menu");
 
 			} else {
@@ -917,7 +910,7 @@ public class HomeScreen extends _CommonPage {
 
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(back_button, "Back Button");
+				mobileAction.ClickBackButton();
 			}
 
 			mobileAction.FuncClick(menu, "Menu");
@@ -1066,7 +1059,7 @@ public class HomeScreen extends _CommonPage {
 
 		Decorator();
 		try {
-			if(mobileAction.verifyElementIsPresent(clickmenu_trade)){
+			if (mobileAction.verifyElementIsPresent(clickmenu_trade)) {
 				try {
 					CL.GetReporting().FuncReport("Fail", "Trade is Present");
 				} catch (IOException e) {

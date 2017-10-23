@@ -77,7 +77,7 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement continue_pay;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Pay Bill']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue'and @text='Pay Bill']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue' and @text='Pay Bill']")
 	private MobileElement pay_bill;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeNavigationBar/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeSegmentedControl[1]/XCUIElementTypeButton[3]")
@@ -202,9 +202,6 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Bills']")
 	private MobileElement bills_header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
-	private MobileElement back_button;
-
 	@iOSFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Home']")
 	private MobileElement home;
@@ -265,7 +262,8 @@ public class Bill_PayCanada extends _CommonPage {
 			mobileAction.FuncClick(select_payee, "Select Payee");
 			String payeeAccountxpath;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				payeeAccountxpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//*[contains(@label, '" + payeeName + "')]";
+				payeeAccountxpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//*[contains(@label, '"
+						+ payeeName + "')]";
 			} else {
 				payeeAccountxpath = "//android.widget.TextView[contains(@text,'" + payeeName + "')]";
 			}
@@ -994,7 +992,7 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.waitForElementToVanish(progressBar);
 				mobileAction.FuncClick(cancelBtn, "Cancel");
 				mobileAction.verifyElementIsDisplayed(bills_header, "Bills");
-				mobileAction.FuncClick(back_button, "Back");
+				mobileAction.ClickBackButton();
 				mobileAction.verifyElementIsDisplayed(home, "Home");
 
 			}

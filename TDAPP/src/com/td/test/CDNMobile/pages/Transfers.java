@@ -70,7 +70,7 @@ public class Transfers extends _CommonPage {
 	@iOSFindBy(accessibility = "TRANSFERVIEW_RECIPIENTS_DES")
 	private MobileElement manageRecipientDesc;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeActivityIndicator[`value=='1'") // TODO::
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 
@@ -80,16 +80,21 @@ public class Transfers extends _CommonPage {
 	String confirm_transfer_value = "Thank you!";
 
 	@iOSFindBy(accessibility = "TRANSFERVIEW_RECIPIENTS")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Contacts' or @text='Gérer les destinataires']")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/transfer_manage_contacts']")
 	private MobileElement manageContacts;
 
 	@iOSFindBy(accessibility = "TRANSFERVIEW_PENDING")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='History' or @text='Historique']")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/transfers_history']")
 	private MobileElement transferHistory;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Between My Accounts']")
 	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement betweenMyAccountsHeader;
+
+	@iOSFindBy(accessibility = "TRANSFERVIEW_ETRANSFER")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`name=='TRANSFERVIEW_ETRANSFER' and (label=='Request Money' or label=='Demander des fonds')`]")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/interac_request_money']")
+	private MobileElement requestMoney;
 
 	/**
 	 * This method will click on Between my accounts button
@@ -489,6 +494,29 @@ public class Transfers extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(transferHistory, "Transfer History Link");
+			mobileAction.waitForElementToVanish(progressBar);
+		} catch (NoSuchElementException | IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	/**
+	 * @author Ashraf This method will click on Transfer History Link.
+	 * 
+	 * 
+	 * @return NoSuchElementException
+	 * @return IOException
+	 */
+	public void clickRequestMoneyLink() {
+
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(requestMoney, "Request Money Link");
 			mobileAction.waitForElementToVanish(progressBar);
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

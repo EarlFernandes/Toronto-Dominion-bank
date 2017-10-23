@@ -124,13 +124,6 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[starts-with(@text,'Withdrawals may impact your annual TFSA contribution limit.')]")
 	private MobileElement verify_Message;
 
-	@iOSFindBy(xpath = "//*[@label='Done' or @label='完成']")
-	private MobileElement done;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
-	private MobileElement backBtn;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel' or @label='CANCEL']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/myaccounts_entry_btn_cancel' and @text='Cancel']")
 	private MobileElement cancelBtn;
@@ -1043,7 +1036,7 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(txtConfirmHeader, "Confirm Page");
 				mobileAction.FuncClick(cancelBtn, "Cancel");
 				mobileAction.verifyElementIsDisplayed(txtTransfers_Header, "Transfers");
-				mobileAction.FuncClick(backBtn, "Back");
+				mobileAction.ClickBackButton();
 				mobileAction.verifyElementIsDisplayed(quickAccess, "Home Page");
 
 			} else {
@@ -1390,7 +1383,7 @@ public class Between_My_accounts extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(fromAccountBalance, "From Account Balance");
 
 				}
-				mobileAction.FuncClick(backBtn, "BackButton");
+				mobileAction.ClickBackButton();
 				Login.get().logout();
 			} else {
 

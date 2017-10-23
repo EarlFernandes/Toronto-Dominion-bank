@@ -119,11 +119,11 @@ public class PreviewPurchase extends _CommonPage {
 				mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView", 2, "down");
 				phone_number = mobileAction
 						.verifyElementUsingXPath(
-								"//android.widget.TextView[@text='" + mobileAction.getAppString("label_phone_number")
+								"//android.widget.TextView[@text='" + getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE)
 										+ "']/../android.widget.RelativeLayout/android.widget.TextView",
 								"Phone Number");
 			} else {
-
+				mobileAction.FuncSwipeWhileElementNotFound(phone_number, false, 5, "up");
 			}
 
 			String phoneNumber = mobileAction.getValue(phone_number);
@@ -155,7 +155,7 @@ public class PreviewPurchase extends _CommonPage {
 				// mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView",
 				// 2, "down");
 				String phoneNumberxpath = "//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("label_phone_number")
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE)
 						+ "']/../android.widget.RelativeLayout/android.widget.TextView";
 
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(phoneNumberxpath, false, 10, "up");
@@ -248,11 +248,20 @@ public class PreviewPurchase extends _CommonPage {
 			String disclaimerInfo = getTextInCurrentLocale(StringArray.ARRAY_MF_DISCLAIMER_INFO);
 			String capturedText = mobileAction.getValue(disclaimer_info);
 			capturedText = capturedText.trim().replaceAll("\n", "");
-//			capturedText = capturedText.replaceAll(" ", "");
-//			capturedText = capturedText.replaceAll(" ", "");// empty space of
-//															// Chinese char
+			if (currentLocale.equalsIgnoreCase("fr")) {
+				String unkownEmptySpace = " "; // for french only
+				capturedText = capturedText.trim().replaceAll(unkownEmptySpace, " ");
+			}
 			System.out.println("Captured:" + capturedText);
-			mobileAction.verifyTextEquality(capturedText, disclaimerInfo);
+			if (currentLocale.equalsIgnoreCase("zh") || currentLocale.equalsIgnoreCase("zh-Hans")) {
+				if (capturedText.matches(disclaimerInfo)) {
+					mobileAction.Report_Pass_Verified(capturedText);
+				} else {
+					mobileAction.Report_Fail_Not_Verified(capturedText);
+				}
+			} else {
+				mobileAction.verifyTextEquality(capturedText, disclaimerInfo);
+			}
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");

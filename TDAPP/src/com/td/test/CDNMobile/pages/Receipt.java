@@ -380,9 +380,12 @@ public class Receipt extends _CommonPage {
 				for (int i = 0; i < size; i++) {
 					String textInfo = mobileAction.getValue(detailList.get(i));
 					System.out.println("Text " + i + " " + textInfo);
-					mobileAction.verifyElementTextIsDisplayed(detailList.get(i), detailInfomation[i]);
+					mobileAction.verifyTextEquality(textInfo, detailInfomation[i]);
 				}
 				mobileAction.FuncSwipeWhileElementNotFound(foot_note, false, 5, "up");
+				if (currentLocale.equalsIgnoreCase("fr")) {
+					mobileAction.FuncSwipeOnce("down");
+				}
 				detailList = ((MobileDriver) (CL.GetAppiumDriver())).findElementsByXPath(
 						"//android.support.v7.widget.RecyclerView/android.widget.LinearLayout/android.widget.TextView");
 
@@ -412,29 +415,35 @@ public class Receipt extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REF_NUM), "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_FUNDS), "ignore", "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT), "ignore",
-						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REQUEST_TIME), "ignore", "ignore",
-						getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT), "ignore", "ignore", "ignore",
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REQUEST_TIME), "ignore", "ignore", "ignore",
+						getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT), "ignore", "ignore", 
 						getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT), "ignore", "ignore", "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_BALANCE_NOTE) };
 				int size = detailList.size();
 				System.out.println("size of data:" + size);
 				for (int i = 0; i < size; i++) {
+//					if(i>=15 ) {
+//						String capturedText = mobileAction.getValue(detailList.get(i));
+//						System.out.println("Captured text "+ i+ ":"+capturedText);
+//					}
 					if (detailInfomation[i].equalsIgnoreCase("ignore")) {
-						// System.out.println("ignore index " + i);
 						continue;
 					} else {
 						if (!mobileAction.verifyElementIsPresent(detailList.get(i))) {
-							mobileAction.FuncSwipeWhileElementNotFound(detailList.get(i), false, 5, "up");
+							mobileAction.FuncSwipeWhileElementNotFound(detailList.get(size-1), false, 10, "up");
 						}
-						mobileAction.verifyElementTextIsDisplayed(detailList.get(i), detailInfomation[i]);
+						String capturedText = mobileAction.getValue(detailList.get(i));
+						if(currentLocale.equalsIgnoreCase("fr")) {
+							String unkownEmptySpace =" "; //for french only
+							capturedText = capturedText.trim().replaceAll(unkownEmptySpace," ");
+						}
+						//mobileAction.verifyElementTextIsDisplayed(detailList.get(i), detailInfomation[i]);
+						System.out.println("Captured text "+ i+ ":"+capturedText);
+						mobileAction.verifyTextEquality(capturedText, detailInfomation[i]);
 					}
-					// System.out.println("Text "+ i+"
-					// "+detailList.get(i).getText() );
 				}
 			}
-
-			// mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView",
-			// 3, "down");
+			mobileAction.FuncSwipeWhileElementNotFound(foot_note, false, 5, "up");
 			String footnote = getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_BALANCE_NOTE);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementTextIsDisplayed(foot_note, footnote);

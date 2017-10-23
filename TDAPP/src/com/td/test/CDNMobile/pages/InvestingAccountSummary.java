@@ -82,7 +82,7 @@ public class InvestingAccountSummary extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/last_statement_balance_header']")
 	private MobileElement statementBalance;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/last_statement_balance_title' or @resource-id='com.td:id/statement_balance_title']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/statement_period' or @resource-id='com.td:id/last_statement_balance_title' or @resource-id='com.td:id/statement_balance_title']")
 	private MobileElement statementBalanceDateRange;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/minimum_payment_header']")
@@ -100,7 +100,7 @@ public class InvestingAccountSummary extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textview_right']")
 	private MobileElement gainLossUnrealized;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/symbol']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/symbol' and @index='1']")
 	private MobileElement holdingName;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/buyBtn']")
@@ -383,11 +383,12 @@ public class InvestingAccountSummary extends _CommonPage {
 						"//android.widget.TextView[contains(@text, '"
 								+ mobileAction.getAppString("str_Cash_Balance_Footnote") + "')]",
 						"Cash balance footnote");
-				mobileAction
-						.verifyElementUsingXPath(
-								"//android.widget.TextView[contains(@text, '" + mobileAction
-										.getAppString("common_str_Time_Stamp_substition").replace(" %1$s", "") + "')]",
-								"time stamp substituion");
+				// mobileAction
+				// .verifyElementUsingXPath(
+				// "//android.widget.TextView[contains(@text, '" + mobileAction
+				// .getAppString("common_str_Time_Stamp_substition").replace("
+				// %1$s", "") + "')]",
+				// "time stamp substituion");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[contains(@text, '"
 						+ mobileAction.getAppString("str_Insufficient_Information") + "')]", "Insufficient");
 
@@ -798,7 +799,7 @@ public class InvestingAccountSummary extends _CommonPage {
 				mobileAction.verifyDateFormat(CClastStatement.getText(), MobileAction2.TYPE_YYYY_MM_DD_RANGE);
 
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("rtb_last_statement_balance") + "']", "Statement Balance");
+						+ mobileAction.getAppString("statement_balance") + "']", "Statement Balance");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_Minimum_Payment") + "']",
 						"Minimum payment");
@@ -897,8 +898,6 @@ public class InvestingAccountSummary extends _CommonPage {
 	public void verifyListedHoldingDetails() {
 
 		Decorator();
-		boolean flag = true;
-		int count = 0;
 		String text = null;
 
 		try {
@@ -912,23 +911,7 @@ public class InvestingAccountSummary extends _CommonPage {
 								+ mobileAction.getAppString("str_Investing") + "']",
 						"Investing Header");
 
-				while (flag && count < 5) {
-					try {
-
-						if (holdingName.isDisplayed()) {
-							mobileAction.FuncClick(holdingName, "Holding Symbol");
-							flag = false;
-						} else {
-							mobileAction.FunctionSwipe("up", 200, 200);
-							count++;
-						}
-
-					} catch (Exception e) {
-						mobileAction.FunctionSwipe("up", 200, 200);
-						count++;
-					}
-				}
-
+				mobileAction.FuncSwipeWhileElementNotFound(holdingName, true, 10, "up");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
 								+ mobileAction.getAppString("str_Holding_Detail") + "']",

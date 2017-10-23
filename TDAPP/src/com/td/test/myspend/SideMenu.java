@@ -13,6 +13,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class SideMenu extends com.td._CommonPage {
 
@@ -32,6 +33,9 @@ public class SideMenu extends com.td._CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@name,'Spending Spikes') or contains(@label,'Pics de dépenses')]")
 	private MobileElement spendingSpikes;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@name,'Daily Digest') or contains(@label,'Sommaire quotidien')]")
+	private MobileElement dailyDigest;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@name,'Spending History') or contains(@name,'Historique de dépenses')]")
 	private MobileElement spendingHistory;
@@ -51,7 +55,7 @@ public class SideMenu extends com.td._CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@label,'Spending by Category') or contains(@label,'Dépenses par catégorie')]")
 	private MobileElement spendingByCategory;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@label,'Spending Insights') or contains(@label,'Aperçu des dépenses')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@label,'Spending Insights') or contains(@label,'Aperçu des dépenses')]")
 	private MobileElement spendingInsights;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Go back to TD MySpend') or contains(@label,'Go back') or contains(@label,'Retourner à Dépense TD')]")
@@ -92,6 +96,9 @@ public class SideMenu extends com.td._CommonPage {
 
 	@FindBy(xpath = "//*[contains(@ng-click,'billpay')]")
 	private WebElement billsAndroid;
+	
+	@FindBy(xpath = "(//*[contains(@href,'dailyDigest')])[2]")
+	private WebElement dailyDigestAndroid;
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -680,6 +687,103 @@ public class SideMenu extends com.td._CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+	}
+	
+	/**
+	 * This method will click on the Daily Digest button and verify the page
+	 * header.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void clickDailyDigest() {
+		Decorator();
+
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
+				mobileAction.FuncClick(dailyDigestAndroid, "Daily Digest");
+			} else {
+				mobileAction.FuncClick(dailyDigest, "Daily Digest");
+			}
+			DailyDigest.get().verifyPageheader();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				CL.GetAppiumDriver().context("NATIVE_APP");
+			}
+			
+		} catch (NoSuchElementException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	/**
+	 * This method will click on the Side Menu twice
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void clickSideMenu() {
+		Decorator();
+
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickSideMenuButton();
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickSideMenuButton();
+
+			} else {
+				
+				Spending_Insight.get().clickSideMenuButton();
+				Spending_Insight.get().clickSideMenuButton();
+			}
+			
+
+		} catch (NoSuchElementException e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} 
 	}
 
 }
