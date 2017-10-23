@@ -200,9 +200,8 @@ public class MLChangeOrder extends _CommonPage {
 																															// -
 																															// Sushil
 																															// 16-Feb-2017
-	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/ticker_layout']/android.widget.TextView")
-	// @AndroidFindBy(xpath = "//*[contains(@text,'1st') or
-	// contains(@text,'1re')]/../following-sibling::*/*/*[@resource-id='com.td:id/amountEditText']")
+//	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/ticker_layout']/android.widget.TextView")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/multi_leg1_ticker']/*[1]")
 	private MobileElement leg1Option;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell[2]/*[2]") // @Author
@@ -236,9 +235,8 @@ public class MLChangeOrder extends _CommonPage {
 																															// -
 																															// Sushil
 																															// 16-Feb-2017
-	@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/ticker_layout']/android.widget.TextView")
-	// @AndroidFindBy(xpath = "//*[contains(@text,'1st') or
-	// contains(@text,'1re')]/../following-sibling::*/*/*[@resource-id='com.td:id/amountEditText']")
+//	@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/ticker_layout']/android.widget.TextView")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/multi_leg2_ticker']/*[1]")
 	private MobileElement leg2Option;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell[2]/*[2]") // @Author
