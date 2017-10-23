@@ -9,7 +9,7 @@ public final class StringArray {
 	public static final String PATTERN_ZH_YY_MM_DD_HOUR = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日.*";
 	public static final String PATTERN_ZH_YYYY_MM_DD_RANGE = "\\d{4}年\\s?\\d{1,2}月\\d{1,2}日 – (\\d{4}年)*\\d{1,2}月\\d{1,2}日";
 
-	public static final String[] ARRAY_HOME_HEADER = { "Home", "Accueil", "首页", "首頁" };
+	public static final String[] ARRAY_HOME_HEADER = { "Home", "Accueil", "主页", "首頁" };
 	public static final String[] ARRAY_MF_FUNDS = { "Fund", "Fonds", "基金", "基金" };
 	public static final String[] ARRAY_MF_SELECT_FUNDS = { "Select a fund", "Sélectionner un fonds", "选择基金", "選擇基金" };
 	public static final String[] ARRAY_MF_PURCHASE_HEADER = { "Purchase Mutual Funds", "Achat de fonds", "购买互惠基金",
@@ -127,6 +127,8 @@ public final class StringArray {
 	public static final String[] ARRAY_QUICK_ACCESS_SETTINGS = { "Quick Access Settings", "Paramètres Accès rapide",
 			"特快结余查询设定", "特快結餘查詢設定" };
 	public static final String[] ARRAY_QUICK_ACCESS_SWITCH_AND = { "Quick Access", "Accès rapide", "特快结余查询", "特快結餘查詢" };
+
+	// OTP
 	public static final String[] ARRAY_OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE = {
 			"we can't verify the security code entered.", "nous ne pouvons valider votre code de sécurité",
 			"我们无法验证输入的安全码", "我們無法確認輸入的驗證碼" };
@@ -141,7 +143,6 @@ public final class StringArray {
 			"Veuillez entrer des chiffres seulement", "请仅输入数字", "請僅輸入數字" };
 	public static final String[] ARRAY_OTP_SETUP_EXPIRED_PASSCODE = { "This code has expired", "Ce code a expiré",
 			"此代码已失效", "此驗證碼已失效" };
-
 	public static final String[] ARRAY_OTP_SETUP_SECURITY_EMAIL_HEADER = {
 			"Please provide an email address to get security alerts",
 			"Veuillez fournir une adresse courriel pour recevoir les alertes de sécurité", "请提供一个用户接收安全信息的电子邮件邮箱地址",
@@ -155,7 +156,6 @@ public final class StringArray {
 	public static final String[] ARRAY_OTP_SETUP_PASSCODE_VERIFIED = { "Verified", "Validé", "验证成功", "驗證成功" };
 	public static final String[] ARRAY_OTP_SETUP_SETUP_COMPLETE_HEADER = { "Security Setup Complete",
 			"Configuration de sécurité terminée", "安全设置完成", "安全設定完成" };
-
 	public static final String[] ARRAY_OTP_UPDATE_HEADER = {
 			"You can review and manage your current security settings below",
 			"Vous pouvez consulter et gérer vos paramètres de sécurité ci-dessous", "您可在下方查看并管理您目前的安全设置",
@@ -167,6 +167,45 @@ public final class StringArray {
 	public static final String[] ARRAY_OTP_UPDATE_CHANGE_EMAIL_HEADER = { "Change Security Email",
 			"Modifier l’adresse courriel de sécurité", "更改安全信息邮箱", "變更安全性資訊收件箱" };
 	public static final String[] ARRAY_OTP_UPDATE_COMPLETE_HEADER = { "Thanks", "Merci", "谢谢", "謝謝" };
+
+	//Apple Pay
+	public static final String[] ARRAY_APPLE_PAY_LOGIN_NOW = { "Login Now", "Ouvrir une session", "立即登录", "立即登入" };
+
+	// My Accounts
+	public static final String[] ARRAY_MY_ACCOUNTS_CREDIT_HEADER = { "CREDIT", "CRÉDIT", "信用", "信用" };
+	public static final String[] ARRAY_MY_ACCOUNTS_BANKING_HEADER = { "BANKING", "SERVICES BANCAIRES", "理财", "理財" };
+	public static final String[] ARRAY_TRANSACTION_PENDING = { "Pending", "En attente", "待处理", "尚待處理" };
+	public static final String[] ARRAY_MY_ACCOUNTS_QUICKLINK_PAY = { "PAY", "PAYER", "付款", "付款" };
+
+	//Buttons
+	public static final String[] ARRAY_BUTTON_CONTINUE = { "Continue", "Continuer", "继续", "繼續" };
+
+	// Between My Accounts
+	public static final String[] ARRAY_BETWEEN_MY_ACCOUNTS_HEADER = { "Between My Accounts", "Entre mes comptes",
+			"在我的账户间转账", "我的賬戶之間" };
+
+	// Homescreen
+	public static final String[] ARRAY_HOMESCREEN_DASHBOARD_PAYNOW = { "PAY NOW", "PAYER MAINTENANT", "现在付款", "立即付款" };
+
+	// Login
+	public static final String[] ARRAY_LOGIN_USERNAME_OR_ACCESS_CARD_IOS = { "Username or Access Card", "Nom d’utilisateur ou numéro de carte Accès", "用户名或易通卡", "用戶名稱或易通卡" };
+
+	// Manage Payees
+	public static final String[] ARRAY_CANADIAN_PAYEE_DELETED = { "Canadian payee has been deleted",
+			"Preneur canadien supprimé", "已删除加拿大收款人", "已刪除加拿大收款人" };
+	public static final String[] ARRAY_US_PAYEE_DELETED = { "U.S. payee has been deleted", "Preneur américain supprimé",
+			"已删除美国收款人", "已刪除美國收款人" };
+
+	// Pay Bill
+	public static final String[] ARRAY_PAYBILL = { "Pay Bill", "Paiement de Factures", "支付账单", "支付賬單" };
+
+	// Quick Access
+	public static final String[] ARRAY_QUICK_ACCESS_VISIT_SETTINGS = { "visit Settings to activate Accounts",
+			"Ajustez les paramètres afin dactiver Comptes pour laffichage Accès rapide", "请前往“设置”为账户启用特快结余查询",
+			"請前往「設定」以啟用特快結餘查詢的賬戶" };
+
+	// Receipt
+	public static final String[] ARRAY_RECEIPT_QUICKLINK_SCHEDULED_PAYMENTS = { "SCHEDULED PAYMENTS", "", "", "" };
 
 	public static final String[] ARRAY_INVESTING_ACCOUNTS = { "Investing Accounts", "Comptes Placements directs TD",
 			"投资账户", "投資賬戶" };
@@ -226,8 +265,8 @@ public final class StringArray {
 			"Apple Pay" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_TDMYSPEND = { "TD MySpend", "Dépense TD", "TD MySpend",
 			"TD MySpend" };
-	public static final String[] ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT = { "TD Mobile Payment", "Factures", "道明移动支付",
-			"道明流動付款" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT = { "TD Mobile Payment", "Paiement mobile TD",
+			"道明移动支付", "道明流動付款" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_TDMOBILEDEPOSIT = { "Mobile Deposit", "Dépôt mobile", "移动存款服务",
 			"流動存款" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_TDFORME = { "TD for Me", "TD et Moi", "TD for Me",
@@ -256,7 +295,7 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE_ANSWER = { "Yes", "Oui", "是", "是" };
 	public static final String[] ARRAY_BRABCH_HEADER = { "Branch", "Succursale", "分行", "分行" };
 	public static final String[] ARRAY_FIND_LOCATION = { "Find Locations", "Trouver une succursale", "查找分行", "查找分行" };
-	public static final String[] ARRAY_CONFIRM = { "Confirm", "Confirm", "确认", "確認" };
+	public static final String[] ARRAY_CONFIRM = { "Confirm", "Confirmer", "确认", "確認" };
 	public static final String[] ARRAY_PREFERENCE_NOTIFICATIONS = { "Notifications", "Avis", "通知", "通知" };
 	public static final String[] ARRAY_PREFERENCE_TD_FOR_ME_SETTINGS = { "TD for Me Settings", "Paramètres TD et moi",
 			"TD for Me 设置", "TD for Me 設置" };

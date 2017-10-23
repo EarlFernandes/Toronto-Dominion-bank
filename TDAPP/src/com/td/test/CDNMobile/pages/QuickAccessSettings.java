@@ -31,11 +31,19 @@ public class QuickAccessSettings extends _CommonPage {
 	private MobileElement rewardsBalanceToggle;
 
 	@iOSFindBy(xpath = "//*[@label='Back']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
+	@AndroidFindBy(id = "android:id/up")
 	private MobileElement quickAccessSettingsBackBtn;
 
 	String cardToggle = "//XCUIElementTypeSwitch[contains(@label,'";
 	String accountXL = CL.getTestDataInstance().getPrimaryAccount();
+
+	@iOSFindBy(xpath = "//*[@label='Turn Quick Access on or off']") // TBD
+	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/easy_access_account_on_off_switch'][1]")
+	private MobileElement firstAcctToggle;
+
+	@iOSFindBy(xpath = "//*[@label='Turn Quick Access on or off']") // TBD
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/easy_access_account_name_on_off'][1]")
+	private MobileElement firstAcctName;
 
 	public synchronized static QuickAccessSettings get() {
 		if (QuickAccessSettings == null) {
@@ -90,14 +98,18 @@ public class QuickAccessSettings extends _CommonPage {
 		Decorator();
 		try {
 
-			if (QuickAccessToggle.isEnabled())
-				System.out.println("Toggle is enabled");
-			else
-				mobileAction.FuncClick(QuickAccessToggle, "Quick Access Toggle");
+			if (mobileAction.getSwitchStatus(QuickAccessToggle).equalsIgnoreCase("false")) {
+				mobileAction.FuncClick(QuickAccessToggle, "Quick Access Toggle ON");
+			}
 
-		} catch (InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -212,25 +224,26 @@ public class QuickAccessSettings extends _CommonPage {
 		}
 	}
 
-	/**
-	 * This method will click the Back Button in Quick Access Settings Page
-	 * 
-	 * @return void
-	 * @throws InterruptedException
-	 * 
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 */
-	public void verifyQuickAccessSettingsBackBtn() {
-
+	public void disableFirstAccount() {
 		Decorator();
 		try {
-			mobileAction.FuncClick(quickAccessSettingsBackBtn, "Quick Access Settings Back Button");
 
-		} catch (IOException | InterruptedException e) {
-			e.printStackTrace();
+			if (mobileAction.getSwitchStatus(firstAcctToggle).equalsIgnoreCase("true")) {
+				mobileAction.FuncClick(firstAcctToggle, "First Account Toggle OFF");
+				String acctName = mobileAction.FuncGetElementText(firstAcctName);
+				// Save acct name for later verification
+				CL.getTestDataInstance().TCParameters.put("Accounts", acctName);
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
+
 }

@@ -6,8 +6,10 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -15,16 +17,14 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class AddPayee extends _CommonPage {
 
 	private static AddPayee AddPayee;
 
-	@iOSFindBy(xpath = "//*[@label='Done' or @label='完成']")
-	private MobileElement done;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
+	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[1]")
+	@AndroidFindBy(id = "android:id/progress")
 	private MobileElement progressBar;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Search for Canadian payees']")
@@ -32,6 +32,56 @@ public class AddPayee extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'found any matches. Please try again.')]")
 	private MobileElement errorMessage;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeTextField[1]")
+	@FindBy(xpath = "//input[@ng-model='searchText']")
+	private WebElement searchPayeeField;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
+	@FindBy(xpath = "//td-switch//li[1]")
+	private WebElement tabCanada;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[2]")
+	@FindBy(xpath = "//td-switch//li[2]")
+	private WebElement tabUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1] | "
+			+ "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeLink[1]/XCUIElementTypeLink[1]")
+	@FindBy(id = "result0")
+	private WebElement firstPayeeFound;
+	
+//	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeLink[1]/XCUIElementTypeLink[1]")
+//	@FindBy(id = "result0")
+//	private WebElement firstUSPayeeFound;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[5]/XCUIElementTypeTextField[1] | "
+			+ "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[6]/XCUIElementTypeTextField[1]") 
+	@FindBy(name = "accountNumber")
+	private WebElement payeeAcctNumber;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
+	@FindBy(id = "btn")
+	private WebElement payeeContinueBtn;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
+	@FindBy(xpath = "//button[contains(@ng-click,'addPayee')]")
+	private WebElement addPayeeBtn;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
+	@FindBy(xpath = "//button[contains(@ng-click,'continuePayee')]")
+	private WebElement addPayeeContinueBtn;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]") // TBD
+	@FindBy(xpath = "//div[contains(@class,'thank-you')]")
+	private WebElement addPayeeReceiptHeader;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@FindBy(xpath = "//button[contains(@ng-click,'goHome')]")
+	private WebElement goHomeBtn;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")
+	@FindBy(xpath = "//button[contains(@ng-click,'addAnotherPayee')]")
+	private WebElement addAnotherPayeeBtn;
 
 	public synchronized static AddPayee get() {
 		if (AddPayee == null) {
@@ -717,4 +767,333 @@ public class AddPayee extends _CommonPage {
 			}
 		}
 	}
+
+	public void searchCdnPayees() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			}
+
+			mobileAction.FuncClick(tabCanada, "Canada tab");
+
+			String payee = getTestdata("Payee");
+			mobileAction.FuncClick(searchPayeeField, "Search Payee Field");
+			mobileAction.FuncSendKeys(searchPayeeField, payee);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.FuncHideKeyboard();
+			} else {
+				mobileAction.FuncClickDone();
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+			mobileAction.switchAppiumContext("NATIVE_APP");
+		}
+
+	}
+
+	public void searchUSPayees() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			}
+
+			mobileAction.FuncClick(tabUS, "US tab");
+
+			String payee = getTestdata("USAccount");
+			mobileAction.FuncClick(searchPayeeField, "Search Payee Field");
+			mobileAction.FuncSendKeys(searchPayeeField, payee);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.FuncHideKeyboard();
+			} else {
+				mobileAction.FuncClickDone();
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+			mobileAction.switchAppiumContext("NATIVE_APP");
+		}
+
+	}
+
+	public void clickFirstPayeeFound() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			}
+
+			mobileAction.FuncClick(firstPayeeFound, "First Payee found");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+			mobileAction.switchAppiumContext("NATIVE_APP");
+		}
+
+	}
+
+	public void clickFirstUSPayeeFound() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			}
+
+			mobileAction.FuncClick(firstPayeeFound, "First Payee found");
+
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			MobileElement progressBar = PageHeader.get().getProgressBar();
+			if (mobileAction.verifyElementIsPresent(progressBar)) {
+				mobileAction.waitForElementToVanish(progressBar);
+			}
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			}
+
+			mobileAction.FuncClick(firstPayeeFound, "First Payee Address found");
+
+			// Wait for progressBar, otherwise next button is not recognized
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			if(mobileAction.verifyElementIsPresent(progressBar)) {
+				mobileAction.waitForElementToVanish(progressBar);
+			}
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			}
+
+			mobileAction.FuncClick(addPayeeContinueBtn, "Add Payee Continue");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+			mobileAction.switchAppiumContext("NATIVE_APP");
+		}
+
+	}
+
+	public void enterPayeeDetails() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			}
+
+			// String acctNum = getTestdata("Accounts");
+			String acctNum = getRandomAccountNumber("Accounts");
+			mobileAction.FuncClick(payeeAcctNumber, "Payee Acct Number");
+			mobileAction.FuncSendKeys(payeeAcctNumber, acctNum);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.FuncHideKeyboard();
+			} else {
+				mobileAction.FuncClickDone();
+			}
+
+			mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
+
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			MobileElement progressBar = PageHeader.get().getProgressBar();
+			if(mobileAction.verifyElementIsPresent(progressBar)) {
+				mobileAction.waitForElementToVanish(progressBar);
+			}
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			}
+			mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+			mobileAction.switchAppiumContext("NATIVE_APP");
+		}
+
+	}
+
+	public void enterUSPayeeDetails() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			}
+
+			// String acctNum = getTestdata("FromAccount");
+			String acctNum = getRandomAccountNumber("FromAccount");
+			mobileAction.FuncClick(payeeAcctNumber, "Payee Acct Number");
+			mobileAction.FuncSendKeys(payeeAcctNumber, acctNum);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.FuncHideKeyboard();
+			} else {
+				mobileAction.FuncClickDone();
+			}
+
+			mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
+
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			MobileElement progressBar = PageHeader.get().getProgressBar();
+			if(mobileAction.verifyElementIsPresent(progressBar)) {
+				mobileAction.waitForElementToVanish(progressBar);
+			}
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			}
+			mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+			mobileAction.switchAppiumContext("NATIVE_APP");
+		}
+
+	}
+
+	public void clickGoBackHomeBtn() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			}
+
+			mobileAction.FuncClick(goHomeBtn, "Go Back Home btn");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+			mobileAction.switchAppiumContext("NATIVE_APP");
+		}
+
+	}
+
+	public void clickAddAnotherPayeeBtn() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			}
+
+			mobileAction.FuncClick(addAnotherPayeeBtn, "Add Another Payee btn");
+			MobileElement progressBar = PageHeader.get().getProgressBar();
+			if(mobileAction.verifyElementIsPresent(progressBar)) {
+				mobileAction.waitForElementToVanish(progressBar);
+			}
+			
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+			mobileAction.switchAppiumContext("NATIVE_APP");
+		}
+
+	}
+
+	public void verifyAddPayeeReceipt() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			}
+
+			mobileAction.verifyElementIsDisplayed(addPayeeReceiptHeader, "Add Payee Receipt header");
+			mobileAction.verifyElementTextContains(addPayeeReceiptHeader,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_THANKYOU));
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+			mobileAction.switchAppiumContext("NATIVE_APP");
+		}
+
+	}
+
+	private String getRandomAccountNumber(String columnName) {
+		String currentAcctNum = getTestdata(columnName);
+
+		// generate a random payee number with the given length
+		int acctNumLength = currentAcctNum.length();
+		String newAcctNum = "";
+		for (int i = 0; i < acctNumLength; i++) {
+			int digit = (int) (Math.random() * 9);
+			newAcctNum += digit;
+		}
+		System.out.println("New payee number:" + newAcctNum);
+
+		// Save the new payee number for late verification
+		CL.getTestDataInstance().TCParameters.put(columnName, newAcctNum);
+
+		return newAcctNum;
+	}
+
 }

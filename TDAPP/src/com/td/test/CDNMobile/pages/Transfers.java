@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -14,20 +15,11 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Transfers extends _CommonPage {
 
 	private static Transfers Transfers;
-
-	/*
-	 * @iOSFindBy(xpath =
-	 * "//*[@label='Pending Interac e-Transfer View pending and cancelled Interac e-']"
-	 * )
-	 * 
-	 * @AndroidFindBy(xpath =
-	 * "//android.widget.TextView[@resource-id='com.td:id/canTotal' and @text='View pending and cancelled Interac e-Transfers']"
-	 * ) private MobileElement pending_transfer;
-	 */
 
 	public synchronized static Transfers get() {
 		if (Transfers == null) {
@@ -55,15 +47,15 @@ public class Transfers extends _CommonPage {
 	@iOSFindBy(accessibility = "TRANSFERVIEW_ETRANSFER_DES")
 	private MobileElement Interac_e_Transfer_button_desc;
 
-	@iOSFindBy(accessibility = "TRANSFERVIEW_BETWEENACCOUNTS")
+	@iOSXCUITFindBy(accessibility = "TRANSFERVIEW_BETWEENACCOUNTS")
 	private MobileElement btw_my_accnts;
 
 	@iOSFindBy(accessibility = "TRANSFERVIEW_BETWEENACCOUNTS_DES")
 	private MobileElement btw_my_accnts_desc;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progrees_bar;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/progress']")
+	private MobileElement progress_bar;
 
 	@iOSFindBy(accessibility = "TRANSFERVIEW_RECIPIENTS")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Recipients']")
@@ -95,6 +87,10 @@ public class Transfers extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='History' or @text='Historique']")
 	private MobileElement transferHistory;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Between My Accounts']")
+	@AndroidFindBy(id = "android:id/action_bar_title")
+	private MobileElement betweenMyAccountsHeader;
+
 	/**
 	 * This method will click on Between my accounts button
 	 * 
@@ -114,23 +110,29 @@ public class Transfers extends _CommonPage {
 	public void clickBetweenMyAccountsTransfers() {
 		try {
 			Decorator();
-			initElementBetweenMyAccounts();
-			// mobileAction.FuncClick(TD, "TDAPP");
-			// mobileAction.FuncClick(alwaysBtn, "Always");
-			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer");
+
+			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
+			mobileAction.verifyElementIsDisplayed(pageHeader, "Transfer header");
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				btw_my_accnts = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='"
+								+ mobileAction.getAppString("transfersTransfersNavRowHeaderBetweenMyAccounts") + "']",
+						"Transfer Between");
+			}
 			mobileAction.FuncClick(btw_my_accnts, "Between my Accounts");
-			mobileAction.waitForElementToVanish(progressBar);
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+
+			mobileAction.verifyElementIsDisplayed(pageHeader, "Between My Accounts header");
+			mobileAction.verifyElementTextContains(pageHeader,
+					getTextInCurrentLocale(StringArray.ARRAY_BETWEEN_MY_ACCOUNTS_HEADER));
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
@@ -335,30 +337,9 @@ public class Transfers extends _CommonPage {
 		}
 	}
 
-	private void initElementBetweenMyAccounts() {
-		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				btw_my_accnts = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='"
-								+ mobileAction.getAppString("transfersTransfersNavRowHeaderBetweenMyAccounts") + "']",
-						"Transfer Between");
-			}
-		} catch (NoSuchElementException | IOException e) {
-			try {
-				mobileAction.GetReporting().FuncReport("Fail",
-						"No such element was found on screen: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-			}
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-	}
-
 	private void Decorator() {
 		PageFactory.initElements(
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
-
 	}
 
 	/**

@@ -30,6 +30,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -2765,6 +2766,18 @@ public class MobileAction2 extends CommonLib {
 
 	}
 
+	
+	public boolean verifyElementIsPresentByXpath(String elementXpath) {
+
+		try {
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+			wait.until(ExpectedConditions.visibilityOf(GetDriver().findElement(By.xpath(elementXpath))));
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
 	public boolean verifyElementIsPresent(WebElement elementToFind) {
 
 		try {
@@ -3397,5 +3410,24 @@ public class MobileAction2 extends CommonLib {
 
 		}
 
+	}
+	
+	public List<MobileElement> getElementsList(String elementsXpath) {
+
+		List<MobileElement> list = null;
+
+		try {
+			list = ((AppiumDriver) GetDriver()).findElements(By.xpath(elementsXpath));
+
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "Cannot find list of " + elementsXpath + ": " + e.getMessage());
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+		return list;
 	}
 }

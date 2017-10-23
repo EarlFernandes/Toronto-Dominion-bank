@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -52,6 +53,10 @@ public class QuickAccessPage extends _CommonPage {
 
 	By iosRewardstxt = By.xpath("//XCUIElementTypeStaticText[@label='Cash Back Dollars']");
 
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")	//TBD
+	@AndroidFindBy(id = "com.td:id/easy_access_visit")
+	private MobileElement visitSettingsText;
+	
 	public synchronized static QuickAccessPage get() {
 		if (QuickAccessPage == null) {
 			QuickAccessPage = new QuickAccessPage();
@@ -196,4 +201,24 @@ public class QuickAccessPage extends _CommonPage {
 		}
 	}
 
+	public void verifyNoAccounts() {
+		Decorator();
+		try {
+
+			mobileAction.verifyElementIsDisplayed(visitSettingsText, "Visit Settings text");
+			mobileAction.verifyElementTextContains(visitSettingsText,
+					getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_VISIT_SETTINGS));
+
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} 
+
+	}
 }

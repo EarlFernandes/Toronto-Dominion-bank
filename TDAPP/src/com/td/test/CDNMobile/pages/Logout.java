@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -26,7 +27,6 @@ public class Logout extends _CommonPage {
 	private MobileElement Menu_Button;
 
 	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_LOGOUT")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Logout' or @text='Fermer la session')]")
 	private MobileElement logout;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Fermer la session']")
@@ -169,15 +169,22 @@ public class Logout extends _CommonPage {
 
 		Decorator();
 		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOGOUT);
+				logout = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='" + labelText + "')]",
+						"Menu Logout");
+			}
+
 			mobileAction.FuncClick(logout, "Logout");
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
