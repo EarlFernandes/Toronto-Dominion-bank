@@ -2341,6 +2341,7 @@ public class MobileAction2 extends CommonLib {
 			int startx = size.width;
 			int starty = size.height;
 			int endy = size.height;
+			int endx = size.width;
 			int heightPer = (endy * 25 / 100);
 
 			if (sDirection.equalsIgnoreCase("up")) {
@@ -2351,6 +2352,14 @@ public class MobileAction2 extends CommonLib {
 				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2, startx / 2,
 						endy / 2 + heightPer, 2000);
 				GetReporting().FuncReport("Pass", "Swipe Down once.");
+			} else if (sDirection.equalsIgnoreCase("left")) {
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.90),
+						(int) (starty * 0.50), (int) (endx * 0.15), (int) (endy * 0.50), 200);
+				GetReporting().FuncReport("Pass", "Swiped extreme Left.");
+			} else if (sDirection.equalsIgnoreCase("right")) {
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.15),
+						(int) (starty * 0.50), (int) (endx * 0.90), (int) (endy * 0.50), 200);
+				GetReporting().FuncReport("Pass", "Swiped extreme Right.");
 			} else
 				GetReporting().FuncReport("Fail", "Invalid direction given.");
 		} catch (Exception e) {
@@ -2754,8 +2763,10 @@ public class MobileAction2 extends CommonLib {
 		String textToReturn = null;
 		try {
 
-/*			WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
-			wait.until(ExpectedConditions.visibilityOf(objElement));*/
+			/*
+			 * WebDriverWait wait = new WebDriverWait(GetDriver(), 10L);
+			 * wait.until(ExpectedConditions.visibilityOf(objElement));
+			 */
 
 			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				try {

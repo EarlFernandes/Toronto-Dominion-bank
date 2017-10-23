@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.StringArray;
@@ -52,15 +53,15 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 	private MobileElement QL_WATCHLISTS;
 
 	@iOSXCUITFindBy(accessibility = "accountNumberLabel")
-	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
+	@AndroidFindBy(id = "com.td:id/selectedValue")
 	private MobileElement VAL_AccountNumber;
 
 	@iOSXCUITFindBy(xpath = "//*[@name='SELECT_ORDER_TYPE_0']/*[@name='valueLeftLabel']")
-	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
+	@AndroidFindBy(id = "com.td:id/selectedText")
 	private MobileElement VAL_OrderType;
 
 	@iOSXCUITFindBy(accessibility = "tradingSymbol")
-	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
+	@AndroidFindBy(id = "com.td:id/symbol")
 	private MobileElement VAL_TradingSymbol;
 
 	@iOSXCUITFindBy(accessibility = "symbolNameLabel")
@@ -68,7 +69,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 	private MobileElement VAL_TradingSymbolMF;
 
 	@iOSXCUITFindBy(xpath = "//*[@name='ACTION_CELL_1']/*[@name='valueLeftLabel']")
-	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/order_action']/*[1]/*[1]/*[2]")
 	private MobileElement VAL_Action;
 
 	@iOSXCUITFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[@name='valueLeftLabel']")
@@ -76,7 +77,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 	private MobileElement VAL_ActionMF;
 
 	@iOSXCUITFindBy(xpath = "//*[@name='PRICE_ACTION_CELL_1']/*[@name='valueLeftLabel']")
-	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/order_action']/following-sibling::*/*[@resource-id='com.td:id/edtSpinner']/")
 	private MobileElement VAL_Price;
 
 	@iOSXCUITFindBy(xpath = "//*[@name='GOOD_TIL_CELL_2']/*[@name='valueLeftLabel']")
@@ -129,7 +130,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 		Decorator();
 		try {
 
-			String xpathWLSymbol = "//*[@label='" + sSymbol + "']";
+			String xpathWLSymbol = "//*[@label='" + sSymbol + "' or @text='" + sSymbol + "']";
 			String xpathWLSymbolQuotePage = "//*[contains(@label,'" + sSymbol + "')]";
 
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbol, true, 4, "up");
@@ -151,11 +152,33 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 	public void clickWLSymbolBuyButton(String sSymbol) {
 		Decorator();
 		try {
+			int iRow = 0;
 
-			String xpathWLSymbolBuyButton = "(//*[@label='" + sSymbol + "']/../../following-sibling::*/*[1]/*[@label='"
-					+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY) + "'])[1]";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				/*
+				 * String xpathWLSymbol = "//*[@label='" + sSymbol +
+				 * "' or @text='" + sSymbol + "']";
+				 * mobileAction.FuncSwipeWhileElementNotFoundByxpath(
+				 * xpathWLSymbol, false, 4, "up");
+				 * 
+				 * for (WebElement meSymbol : CL.GetDriver().findElements(By.id(
+				 * "com.td:id/tv_item_watchlist_name"))) { if
+				 * (mobileAction.FuncGetElementText(meSymbol).equals(sSymbol)) {
+				 * break; } else iCnt++; }
+				 */
+				iRow = getWLSymbolRowNumber_Android(sSymbol);
+				mobileAction.FuncSwipeOnce("left");
+				mobileAction.FuncClick(
+						(MobileElement) CL.GetDriver().findElements(By.id("com.td:id/button_buy")).get(iRow),
+						"Buy Button");
 
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolBuyButton, true, 4, "left");
+			} else {
+				String xpathWLSymbolBuyButton = "(//*[@label='" + sSymbol
+						+ "']/../../following-sibling::*/*[1]/*[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY) + "'])[1]";
+
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolBuyButton, true, 4, "left");
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -166,10 +189,22 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 		Decorator();
 		try {
 
-			String xpathWLSymbolSellButton = "(//*[@label='" + sSymbol + "']/../../following-sibling::*/*[1]/*[@label='"
-					+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL) + "'])[1]";
+			int iRow = 0;
 
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolSellButton, true, 5, "left");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				iRow = getWLSymbolRowNumber_Android(sSymbol);
+				mobileAction.FuncSwipeOnce("left");
+				mobileAction.FuncClick(
+						(MobileElement) CL.GetDriver().findElements(By.id("com.td:id/button_sell")).get(iRow),
+						"Sell Button");
+
+			} else {
+				String xpathWLSymbolSellButton = "(//*[@label='" + sSymbol
+						+ "']/../../following-sibling::*/*[1]/*[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL) + "'])[1]";
+
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolSellButton, true, 5, "left");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -398,5 +433,25 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public int getWLSymbolRowNumber_Android(String sSymbol) {
+		Decorator();
+		int iCnt = 0;
+		try {
+			String xpathWLSymbol = "//*[@label='" + sSymbol + "' or @text='" + sSymbol + "']";
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbol, false, 4, "up");
+
+			for (WebElement meSymbol : CL.GetDriver().findElements(By.id("com.td:id/tv_item_watchlist_name"))) {
+				if (mobileAction.FuncGetElementText(meSymbol).equals(sSymbol)) {
+					break;
+				} else
+					iCnt++;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return iCnt;
 	}
 }
