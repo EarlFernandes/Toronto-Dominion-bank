@@ -77,17 +77,7 @@ public class AccountDetails extends _CommonPage {
 	public void clickQuickLinkPay() {
 		Decorator();
 		try {
-			// if
-			// (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios"))
-			// {
-			// String labelText =
-			// getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_QUICKLINK_PAY);
-			// quickLinkPayButton =
-			// mobileAction.verifyElementUsingXPath("//*[@label='" + labelText +
-			// "']",
-			// "Quick Link Pay button");
-			// }
-
+			
 			mobileAction.FuncClick(quickLinkPayButton, "Quick Link Pay button");
 			MobileElement headerText = PageHeader.get().getHeaderTextElement();
 			mobileAction.verifyElementIsDisplayed(headerText, "Pay Bill");
