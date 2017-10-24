@@ -845,10 +845,12 @@ public class AddPayee extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(firstPayeeFound, "First Payee found");
-			MobileElement progressBar = PageHeader.get().getProgressBar();
-			if (mobileAction.verifyElementIsPresent(progressBar)) {
-				mobileAction.waitForElementToVanish(progressBar);
-			}
+			mobileAction.sleep(3000);
+//			mobileAction.switchAppiumContext("NATIVE_APP");
+//			MobileElement progressBar = PageHeader.get().getProgressBar();
+//			if (mobileAction.verifyElementIsPresent(progressBar)) {
+//				mobileAction.waitForElementToVanish(progressBar);
+//			}
 			
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
