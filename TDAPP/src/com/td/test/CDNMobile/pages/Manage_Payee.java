@@ -581,10 +581,13 @@ public class Manage_Payee extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(editPayeeBtn, "Delete Payee button");
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 			}
 
 			mobileAction.FuncClick(deletePayeeBtn, "Delete Payee button");
 			mobileAction.FuncClick(confirmYes, "Confirm dialog, Yes button");
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

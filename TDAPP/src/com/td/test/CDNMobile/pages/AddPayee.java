@@ -846,12 +846,7 @@ public class AddPayee extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(firstPayeeFound, "First Payee found");
-			mobileAction.sleep(3000);
-			// mobileAction.switchAppiumContext("NATIVE_APP");
-			// MobileElement progressBar = PageHeader.get().getProgressBar();
-			// if (mobileAction.verifyElementIsPresent(progressBar)) {
-			// mobileAction.waitForElementToVanish(progressBar);
-			// }
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -876,26 +871,15 @@ public class AddPayee extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(firstPayeeFound, "First Payee found");
-
-			mobileAction.sleep(3000);
-			// mobileAction.switchAppiumContext("NATIVE_APP");
-			// MobileElement progressBar = PageHeader.get().getProgressBar();
-			// if (mobileAction.verifyElementIsPresent(progressBar)) {
-			// mobileAction.waitForElementToVanish(progressBar);
-			// }
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 			}
 
 			mobileAction.FuncClick(firstPayeeFound, "First Payee Address found");
-
 			// Wait for progressBar, otherwise next button is not recognized
-			mobileAction.sleep(3000);
-			// mobileAction.switchAppiumContext("NATIVE_APP");
-			// if(mobileAction.verifyElementIsPresent(progressBar)) {
-			// mobileAction.waitForElementToVanish(progressBar);
-			// }
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
@@ -937,12 +921,7 @@ public class AddPayee extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
-			mobileAction.sleep(5000);
-			// mobileAction.switchAppiumContext("NATIVE_APP");
-			// MobileElement progressBar = PageHeader.get().getProgressBar();
-			// if(mobileAction.verifyElementIsPresent(progressBar)) {
-			// mobileAction.waitForElementToVanish(progressBar);
-			// }
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
@@ -983,12 +962,7 @@ public class AddPayee extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
-			mobileAction.sleep(5000);
-			// mobileAction.switchAppiumContext("NATIVE_APP");
-			// MobileElement progressBar = PageHeader.get().getProgressBar();
-			// if(mobileAction.verifyElementIsPresent(progressBar)) {
-			// mobileAction.waitForElementToVanish(progressBar);
-			// }
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
@@ -1042,11 +1016,6 @@ public class AddPayee extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(addAnotherPayeeBtn, "Add Another Payee btn");
-			mobileAction.sleep(5000);
-			// MobileElement progressBar = PageHeader.get().getProgressBar();
-			// if(mobileAction.verifyElementIsPresent(progressBar)) {
-			// mobileAction.waitForElementToVanish(progressBar);
-			// }
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
