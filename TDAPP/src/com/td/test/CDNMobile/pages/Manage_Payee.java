@@ -517,7 +517,8 @@ public class Manage_Payee extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Manage Payees Header");
 			mobileAction.FuncClick(addPayee, "Add Payee");
 
-			mobileAction.sleep(5000);
+			//mobileAction.sleep(5000);
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 			// MobileElement progressBar = PageHeader.get().getProgressBar();
 			// if (mobileAction.verifyElementIsPresent(progressBar)) {
 			// mobileAction.waitForElementToVanish(progressBar);
@@ -563,6 +564,7 @@ public class Manage_Payee extends _CommonPage {
 
 				String payeeAcctXpath = "//XCUIElementTypeLink[@name='" + acctNumIos.trim() + "']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(payeeAcctXpath, true, 30, "up");
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 			}
 
 		} catch (Exception e) {
