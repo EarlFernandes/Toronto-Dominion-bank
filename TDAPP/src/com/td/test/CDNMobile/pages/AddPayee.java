@@ -1021,6 +1021,7 @@ public class AddPayee extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(addAnotherPayeeBtn, "Add Another Payee btn");
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
