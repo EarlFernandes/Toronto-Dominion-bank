@@ -50,6 +50,7 @@ public class Managee_Payee extends _CommonPage {
 	// For nexus addpayee class is not a button; for tab3, the class is View not
 	// ViewGroup to consolidate that, change to
 	@AndroidFindBy(xpath = "//android.view.ViewGroup/android.widget.LinearLayout[@index='1'] | //android.view.View/android.widget.LinearLayout[@index='1']")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[2]")
 	private MobileElement addPayee;
 
 	public synchronized static Managee_Payee get() {
@@ -308,9 +309,9 @@ public class Managee_Payee extends _CommonPage {
 					Thread.sleep(2000);
 					mobileAction.verifyElementIsDisplayed(myPayees, "My Payees");
 					mobileAction.FuncClick(accesscard, "Accesscard");
-					mobileAction.FuncClick(thirdAccessCard, "Second Access Card");
+					mobileAction.FuncClick(thirdAccessCard, "Third Access Card");
 					Thread.sleep(2000);
-					mobileAction.verifyElementIsDisplayed(addPayee, "Add Payee");
+					mobileAction.verifyElementIsDisplayed(addCanadianPayee, "Add Payee");
 				}
 			} else {
 				// For android, using webview to handle

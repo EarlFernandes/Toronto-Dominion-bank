@@ -213,8 +213,8 @@ public class Login extends _CommonPage {
 	String session1 = "//android.widget.TextView[contains(@text,'Session Expired')]";
 	String message = "Session Expired";
 
-	@iOSFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeImage")
-	private MobileElement TD_Image;
+//	@iOSFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeImage")
+//	private MobileElement TD_Image;
 
 	final int REPEAT_TIMES = 4;
 
@@ -1035,19 +1035,19 @@ public class Login extends _CommonPage {
 						mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 						mobileAction.FuncClick(addUser, "AddUser");
 
-						if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")
-								&& mobileAction.isOrientationLandscape()) {
-							// Freddy: This is a workaround to hide keyboard to
-							// verify "Remember me" button in Landscape
-							// driver.hideKeyboard(HideKeyboardStrategy.TAP_OUTSIDE)
-							// and
-							// driver.hideKeyboard(HideKeyboardStrategy.PRESS_KEY,
-							// "Hide keyboard")
-							// only works for English not for FR, Chinese
-
-							System.out.println("Hide keyboard by clicking TD Image");
-							mobileAction.FuncClick(TD_Image, "TD");
-						}
+//						if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")
+//								&& mobileAction.isOrientationLandscape()) {
+//							// Freddy: This is a workaround to hide keyboard to
+//							// verify "Remember me" button in Landscape
+//							// driver.hideKeyboard(HideKeyboardStrategy.TAP_OUTSIDE)
+//							// and
+//							// driver.hideKeyboard(HideKeyboardStrategy.PRESS_KEY,
+//							// "Hide keyboard")
+//							// only works for English not for FR, Chinese
+//
+//							System.out.println("Hide keyboard by clicking TD Image");
+//							mobileAction.FuncClick(TD_Image, "TD");
+//						}
 						mobileAction.verifyElementIsDisplayed(rememberMe_button_on, "Remember is ON");
 
 					} catch (NoSuchElementException e) {
