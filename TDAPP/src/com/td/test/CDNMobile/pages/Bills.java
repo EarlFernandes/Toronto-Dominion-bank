@@ -230,11 +230,7 @@ public class Bills extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(managePayees, "Manage Payees");
-			mobileAction.sleep(5000);
-			// MobileElement progressBar = PageHeader.get().getProgressBar();
-			// if (mobileAction.verifyElementIsPresent(progressBar)) {
-			// mobileAction.waitForElementToVanish(progressBar);
-			// }
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -353,8 +349,7 @@ public class Bills extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
-			MobileElement progressBar = PageHeader.get().getProgressBar();
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
