@@ -11,7 +11,7 @@ import com.td.test.framework.MobileAction;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import io.appium.java_client.AppiumDriver;
@@ -91,8 +91,18 @@ public class MIT_DSH_ActivityTab  extends _CommonPage  {
 	public void verifyActivityDetailsUI() {
 		Decorator();
 		try {
+			
+			int iCnt=0;
+			String sXPathAnd = null;
+			String descReg = null;
+			String desc = null;
+			String sXPathAndAmount = null;
+			String sXPathAnddate = null;
+		//Thread.sleep(1000);
 	
-			MIT_DSHQuickLinks.get().goToDashboardHome();
+	
+		   /* MIT_DSHQuickLinks.get().goToDashboardHome();
+ 
 		
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
             mobileAction.FuncClick(flyoutMyAccountLink, "My Accounts Flyout Menu");
@@ -109,12 +119,133 @@ public class MIT_DSH_ActivityTab  extends _CommonPage  {
 			mobileAction.verifyElementIsDisplayed(lblDetails, "lblDetails");
 			
 			
-			mobileAction.verifyElementIsDisplayed(lblAmount, "lblAmount");
-			
-			mobileAction.FuncGetValByRegx(mobileAction.FuncGetText(description), "([0-9]+[@])");
+			mobileAction.verifyElementIsDisplayed(lblAmount, "lblAmount");*/
 			
 			
-			//mobileAction.FuncGetValByRegx(mobileAction.FuncGetText(description), "([0-9]+)");
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			//sXPathAnd = "//android.widget.TextView[@resource-id='com.td:id/description']";
+			
+
+	/*		
+			for (WebElement meSymbol : CL.GetDriver().findElements(By.id("com.td:id/description"))) {
+
+                if ((mobileAction.FuncGetValByRegx(mobileAction.FuncGetElementText(meSymbol), "([0-9]+[' ']+[@])").length()>0)) {
+
+                	               	
+                       break;
+
+                } else
+                {
+                         
+						iCnt++;
+                mobileAction.FuncSwipeOnce("up");
+                }
+				}
+			*/
+			
+			
+			
+			
+			
+			sXPathAnd = "//android.widget.TextView[@resource-id='com.td:id/description' and contains(@text,' @')]";
+			sXPathAndAmount = "//android.widget.TextView[@resource-id='com.td:id/amount' and contains(@text,'$')]";
+			sXPathAnddate = "//android.widget.TextView[@resource-id='com.td:id/date_settle' and contains(@text,'/')]";
+			
+			
+			
+			
+			
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXPathAnd, false, 20, "up");
+			
+			
+			
+			String saction = CL.GetDriver().findElement(By.xpath(sXPathAnd)).getText().split("@")[0];
+	    	String sprice = CL.GetDriver().findElement(By.xpath(sXPathAnd)).getText().split("@")[1];
+	    	
+	    	
+	    	String sbuy = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY);
+	    	String ssell = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL);
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	if((mobileAction.FuncGetValByRegx(saction, "((['sbuy']+)|(['ssell']+))([0-9]+)").length()>=1))
+	    		//if((saction.contains(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY))||saction.contains(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL)))&&((mobileAction.FuncGetValByRegx(saction, "(([' ']+)([0-9]+)([' ']+))").length()>=1))&&(sprice.contains("$")))																																																	
+	    	//if((saction.contains(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY))||saction.contains(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL)))&&((mobileAction.FuncGetValByRegx(saction, "(' ')+([0-9]+)+(' ')").length()>=1))&&(sprice.contains("$")))    
+	    	{
+	    	if(sprice.contains("$"))
+	    	
+	    	
+	    	{
+	    		
+	    		
+	    		mobileAction.verifyTextContains((MobileElement)CL.GetDriver().findElement(By.xpath(sXPathAndAmount)),"$");
+	    		mobileAction.verifyTextContains((MobileElement)CL.GetDriver().findElement(By.xpath(sXPathAnddate)),"/");
+	    		CL.GetReporting().FuncReport("Pass", "Action and price is present, Amount is displayed and date/settle is displayed");
+	    		
+	    		
+	    		
+	    	
+	    		
+	    	
+	    		}}
+	    		
+	    	else{
+	    		
+	    		CL.GetReporting().FuncReport("Fail", "Action and price not present, Amount is not displayed and date/settle is not displayed");
+	    		
+	    	}
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -125,30 +256,94 @@ public class MIT_DSH_ActivityTab  extends _CommonPage  {
 			
 			
 		
+			
+		/*	//////////////////////////////////////////////////////////
+			
+			for (int i=0; i < 10; i++)
+			{
+				sXPathAnd = "//android.widget.TextView[@resource-id='com.td:id/description']";
+				sXPathAndAmount = "//android.widget.TextView[@resource-id='com.td:id/amount']";
+				sXPathAnddate = "//android.widget.TextView[@resource-id='com.td:id/date_settle']";
+		    if(mobileAction.verifyTextContains((MobileElement)CL.GetDriver().findElements(By.xpath(sXPathAnd)).get(i)," @"))
+		    {
+		    	
+		    	String saction = CL.GetDriver().findElements(By.xpath(sXPathAnd)).get(i).getText().split("@")[0];
+		    	String sprice = CL.GetDriver().findElements(By.xpath(sXPathAnd)).get(i).getText().split("@")[1];
+		    	
+		    	if(saction.contains("BUY")||saction.contains("SELL")&&(sprice.contains("$")))
+		    		
+		    		
+		    	{
+		    		
+		    		
+		    		mobileAction.verifyTextContains((MobileElement)CL.GetDriver().findElements(By.xpath(sXPathAndAmount)).get(i),"$");
+		    		mobileAction.verifyTextContains((MobileElement)CL.GetDriver().findElements(By.xpath(sXPathAnddate)).get(i),"/");
+		    		CL.GetReporting().FuncReport("Pass", "Action and price is present, Amount is displayed and date/settle is displayed");
+		    		
+		    		
+		    		
+		    		break;
+		    		
+		    	}
+		    		
+		    		
+		    	else{
+		    		
+		    		CL.GetReporting().FuncReport("Fail", "Action and price not present, Amount is not displayed and date/settle is not displayed");
+		    		
+		    	}
+		    		
+		    				    	
+		    }		
+		    
+		    else  {
+		    	
+		    	 mobileAction.FuncSwipeOnce("up");
+		    }
+			
+			
+		    
+			}
+		    
+		    
+		    
+		    ///////////////////////////////////////////////
+		    
+		    
+		    */
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		/*	
+			//sXPathAnd = "//android.widget.TextView[@resource-id='com.td:id/description' and contains(@text,'" + des +"')]";
+			
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXPathAnd, true, 60, "up");
+			
+			}		
+			descReg = mobileAction.FuncGetValByRegx(mobileAction.FuncGetText(description), "([0-9]+[@])");
+			
+			sXPathAnd = "//android.widget.TextView[@resource-id='com.td:id/description' and contains(@text,'" + descReg +"')]";
+						
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXPathAnd, true, 60, "up");
+			
+			
+			*/
+			
+			
+			
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 
 }
