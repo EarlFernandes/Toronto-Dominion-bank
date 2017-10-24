@@ -230,10 +230,11 @@ public class Bills extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(managePayees, "Manage Payees");
-			MobileElement progressBar = PageHeader.get().getProgressBar();
-			if (mobileAction.verifyElementIsPresent(progressBar)) {
-				mobileAction.waitForElementToVanish(progressBar);
-			}
+			mobileAction.sleep(5000);
+			// MobileElement progressBar = PageHeader.get().getProgressBar();
+			// if (mobileAction.verifyElementIsPresent(progressBar)) {
+			// mobileAction.waitForElementToVanish(progressBar);
+			// }
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
