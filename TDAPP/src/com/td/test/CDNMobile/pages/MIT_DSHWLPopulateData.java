@@ -45,7 +45,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 	private MobileElement LBL_WLSymbol;
 
 	@iOSFindBy(xpath = "//*[@label='More' or @label='LISTES DE SURVEILLANCE' or @label='自选股观察名单' or @label='自選股觀察名單']")
-	@AndroidFindBy(xpath = "//*[@text='More' or @text='LISTES DE SURVEILLANCE' or @text='自选股观察名单' or @text='自選股觀察名單']")
+	@AndroidFindBy(id = "com.td:id/tv_watchlist_more_footer")
 	private MobileElement BT_More;
 
 	@iOSFindBy(xpath = "//*[@label='WATCHLISTS' or @label='LISTES DE SURVEILLANCE' or @label='自选股观察名单' or @label='自選股觀察名單']")
@@ -57,7 +57,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 	private MobileElement VAL_AccountNumber;
 
 	@iOSXCUITFindBy(xpath = "//*[@name='SELECT_ORDER_TYPE_0']/*[@name='valueLeftLabel']")
-	@AndroidFindBy(id = "com.td:id/selectedText")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/order_type']/*[1]/*[1]/*[2]")
 	private MobileElement VAL_OrderType;
 
 	@iOSXCUITFindBy(accessibility = "tradingSymbol")
@@ -65,7 +65,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 	private MobileElement VAL_TradingSymbol;
 
 	@iOSXCUITFindBy(accessibility = "symbolNameLabel")
-	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
+	@AndroidFindBy(id = "com.td:id/symbol_name")
 	private MobileElement VAL_TradingSymbolMF;
 
 	@iOSXCUITFindBy(xpath = "//*[@name='ACTION_CELL_1']/*[@name='valueLeftLabel']")
@@ -73,15 +73,15 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 	private MobileElement VAL_Action;
 
 	@iOSXCUITFindBy(xpath = "//*[@name='ACTION_CELL_0']/*[@name='valueLeftLabel']")
-	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/order_action']/*[1]/*[1]/*[2]")
 	private MobileElement VAL_ActionMF;
 
 	@iOSXCUITFindBy(xpath = "//*[@name='PRICE_ACTION_CELL_1']/*[@name='valueLeftLabel']")
-	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/order_action']/following-sibling::*/*[@resource-id='com.td:id/edtSpinner']/")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Price' or @text='Cours' or @text='价格' or @text='價格']/../android.widget.TextView[@index=1]")
 	private MobileElement VAL_Price;
 
 	@iOSXCUITFindBy(xpath = "//*[@name='GOOD_TIL_CELL_2']/*[@name='valueLeftLabel']")
-	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Good') or @text='Échéance' or @text='有效期' or @text='有效期']/../android.widget.TextView[@index=1]")
 	private MobileElement VAL_GoodTill;
 
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
@@ -89,16 +89,18 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 	MobileElement BT_Back;
 
 	@iOSXCUITFindBy(accessibility = "alert_ok_button")
-	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
+	@AndroidFindBy(id = "android:id/button1")
 	private MobileElement BT_AlertAgree;
 
 	@iOSXCUITFindBy(xpath = "//*[@name='toggleSegmentedControl']/*[1]")
-	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
+	@AndroidFindBy(id = "com.td:id/button_left")
 	private MobileElement BT_IncludeCommissionYes;
 
 	@iOSXCUITFindBy(xpath = "//*[@name='DIVIDEND_OPTION_CELL_2']/*[@name='valueLeftLabel']")
-	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/dividend_type']/*[1]/*[1]/*[2]")
 	private MobileElement VAL_DividendOption;
+
+	private By LBL_Symbol_QuotePage = By.xpath("//*[@class='text-prominent symbol']");
 
 	/*
 	 * public void test() { String device = (String) ((AppiumDriver)
@@ -134,14 +136,17 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 			String xpathWLSymbolQuotePage = "//*[contains(@label,'" + sSymbol + "')]";
 
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbol, true, 4, "up");
-			// mobileAction.FuncClick(mobileAction.mobileElementUsingXPath(xpathWLSymbol),
-			// sSymbol);
+
 			Thread.sleep(10000);
 			if (!CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.verifyElementTextContains(mobileAction.mobileElementUsingXPath(xpathWLSymbolQuotePage),
-						sSymbol);
+				mobileAction.verifyElementTextContainsReverse(
+						mobileAction.mobileElementUsingXPath(xpathWLSymbolQuotePage), sSymbol);
 			} else {
+				MIT_PNSAccessAlerts.get().FuncSwitchContext(MIT_PNSAccessAlerts.get().getWebViewContextString());
 
+				mobileAction.verifyElementTextContainsReverse(mobileAction.getMobileElement(LBL_Symbol_QuotePage),
+						sSymbol);
+				MIT_PNSAccessAlerts.get().FuncSwitchContext("NATIVE_APP");
 			}
 
 		} catch (Exception e) {
@@ -244,12 +249,16 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 	public void goToWLExpandedView() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				MIT_DSHQuickLinks.get().clickQuickLink(QL_WATCHLISTS, "WATCHLISTS");
-			} else {
-				mobileAction.FuncSwipeWhileElementNotFound(BT_More, false, 4, "up");
-				mobileAction.FuncClick(BT_More, "More Button");
-			}
+			/*
+			 * if
+			 * (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
+			 * "Android")) {
+			 * MIT_DSHQuickLinks.get().clickQuickLink(QL_WATCHLISTS,
+			 * "WATCHLISTS"); } else {
+			 */
+			mobileAction.FuncSwipeWhileElementNotFound(BT_More, false, 4, "up");
+			mobileAction.FuncClick(BT_More, "More Button");
+			// }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -297,7 +306,14 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 
 			String xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
 
-			mobileAction.FuncVerifyNonBlankValue(VAL_AccountNumber, "Account Number");
+			// mobileAction.FuncVerifyNonBlankValue(VAL_AccountNumber, "Account
+			// Number");
+			if (mobileAction.FuncGetValByRegx(mobileAction.FuncGetElementText(VAL_AccountNumber), "[0-9]+")
+					.length() > 1) {
+				CL.GetReporting().FuncReport(PASS, "Account number is pre-populated.");
+			} else {
+				CL.GetReporting().FuncReport(FAIL, "Account number is not pre-populated.");
+			}
 
 			mobileAction.FuncClick(VAL_AccountNumber, "Account Number");
 
@@ -346,7 +362,12 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 	public void verifyMutualFundOrderEntryScreen(String sSymbol, String sAction) {
 		Decorator();
 		try {
-			mobileAction.FuncVerifyNonBlankValue(VAL_AccountNumber, "Account Number");
+			if (mobileAction.FuncGetValByRegx(mobileAction.FuncGetElementText(VAL_AccountNumber), "[0-9]+")
+					.length() > 1) {
+				CL.GetReporting().FuncReport(PASS, "Account number is pre-populated.");
+			} else {
+				CL.GetReporting().FuncReport(FAIL, "Account number is not pre-populated.");
+			}
 
 			mobileAction.FuncVerifyTextEquals(VAL_OrderType,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_MUTUALFUNDS));
