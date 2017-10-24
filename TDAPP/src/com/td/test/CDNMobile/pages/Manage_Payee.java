@@ -517,10 +517,11 @@ public class Manage_Payee extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Manage Payees Header");
 			mobileAction.FuncClick(addPayee, "Add Payee");
 
-			MobileElement progressBar = PageHeader.get().getProgressBar();
-			if (mobileAction.verifyElementIsPresent(progressBar)) {
-				mobileAction.waitForElementToVanish(progressBar);
-			}
+			mobileAction.sleep(5000);
+			// MobileElement progressBar = PageHeader.get().getProgressBar();
+			// if (mobileAction.verifyElementIsPresent(progressBar)) {
+			// mobileAction.waitForElementToVanish(progressBar);
+			// }
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -647,10 +648,11 @@ public class Manage_Payee extends _CommonPage {
 				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
 			}
 
-			MobileElement progressBar = PageHeader.get().getProgressBar();
-			if (mobileAction.verifyElementIsPresent(progressBar)) {
-				mobileAction.waitForElementToVanish(progressBar);
-			}
+			mobileAction.sleep(5000);
+			// MobileElement progressBar = PageHeader.get().getProgressBar();
+			// if (mobileAction.verifyElementIsPresent(progressBar)) {
+			// mobileAction.waitForElementToVanish(progressBar);
+			// }
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
