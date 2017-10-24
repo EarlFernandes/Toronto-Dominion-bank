@@ -886,6 +886,8 @@ public class AddPayee extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(addPayeeContinueBtn, "Add Payee Continue");
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -927,6 +929,8 @@ public class AddPayee extends _CommonPage {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 			}
 			mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -968,6 +972,7 @@ public class AddPayee extends _CommonPage {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 			}
 			mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
