@@ -516,10 +516,7 @@ public class Manage_Payee extends _CommonPage {
 			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Manage Payees Header");
 			mobileAction.FuncClick(addPayee, "Add Payee");
-
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
-			}
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -592,7 +589,6 @@ public class Manage_Payee extends _CommonPage {
 				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 			}
 
-
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -613,7 +609,6 @@ public class Manage_Payee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 			}
-
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -640,12 +635,12 @@ public class Manage_Payee extends _CommonPage {
 			mobileAction.FuncSendKeys(payeeDescriptionField, payee);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
 			} else {
 				mobileAction.HideKeyBoard_IOS();
 			}
 
-			mobileAction.switchAppiumContext("NATIVE_APP");
 			String acctNum = getTestdata("Accounts");
 			String usAccount = getTestdata("USAccount");
 			if (acctNum == null && usAccount != null) {
@@ -655,7 +650,6 @@ public class Manage_Payee extends _CommonPage {
 					mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 				}
 
-
 				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
@@ -666,7 +660,6 @@ public class Manage_Payee extends _CommonPage {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 				}
-
 			}
 
 		} catch (Exception e) {

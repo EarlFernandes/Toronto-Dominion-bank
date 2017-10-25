@@ -843,11 +843,9 @@ public class AddPayee extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
-			} else {
-				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
-				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 			}
+			mobileAction.FuncClick(firstPayeeFound, "First Payee found");
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
