@@ -2227,9 +2227,7 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.verifyElementTextContains(pageHeader, getTextInCurrentLocale(StringArray.ARRAY_CONFIRM));
 
 			mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
-
-			MobileElement progress = PageHeader.get().getProgressBar();
-			mobileAction.waitForElementToVanish(progress);
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 			
 
 		} catch (Exception e) {
@@ -2270,9 +2268,7 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.verifyElementTextContains(pageHeader, getTextInCurrentLocale(StringArray.ARRAY_CONFIRM));
 
 			mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
-
-			MobileElement progress = PageHeader.get().getProgressBar();
-			mobileAction.waitForElementToVanish(progress);
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 			
 
 		} catch (Exception e) {

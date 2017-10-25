@@ -191,7 +191,10 @@ public class Bills extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(pay_Cananda_Bill, "Pay Canada Bill");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -231,7 +234,9 @@ public class Bills extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(managePayees, "Manage Payees");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -311,7 +316,9 @@ public class Bills extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(pay_US_Bills, "Pay US Bills");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -351,7 +358,9 @@ public class Bills extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

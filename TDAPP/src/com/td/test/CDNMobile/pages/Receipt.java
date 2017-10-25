@@ -635,7 +635,7 @@ public class Receipt extends _CommonPage {
 		try {
 
 			mobileAction.FuncSwipeWhileElementNotFound(scheduledPaymentsBtn, true, 10, "up");
-			mobileAction.sleep(2000);
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

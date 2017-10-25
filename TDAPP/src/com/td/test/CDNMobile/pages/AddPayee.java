@@ -843,10 +843,11 @@ public class AddPayee extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
+			} else {
+				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 			}
-
-			mobileAction.FuncClick(firstPayeeFound, "First Payee found");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -868,26 +869,19 @@ public class AddPayee extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
+				mobileAction.FuncClick(firstPayeeFound, "First Payee Address found");
+				mobileAction.FuncClick(addPayeeContinueBtn, "Add Payee Continue");
+
+			} else {
+				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				mobileAction.FuncClick(firstPayeeFound, "First Payee Address found");
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				mobileAction.FuncClick(addPayeeContinueBtn, "Add Payee Continue");
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+
 			}
-
-			mobileAction.FuncClick(firstPayeeFound, "First Payee found");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
-
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-			}
-
-			mobileAction.FuncClick(firstPayeeFound, "First Payee Address found");
-			// Wait for progressBar, otherwise next button is not recognized
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
-
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-			}
-
-			mobileAction.FuncClick(addPayeeContinueBtn, "Add Payee Continue");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
-
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -918,19 +912,17 @@ public class AddPayee extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
+				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+
 			} else {
 				mobileAction.FuncClickDone();
+				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+
 			}
-
-			mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
-
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-			}
-			mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
-
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -961,18 +953,17 @@ public class AddPayee extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
+				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+
 			} else {
 				mobileAction.FuncClickDone();
-			}
+				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
-			mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
-
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 			}
-			mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1018,10 +1009,11 @@ public class AddPayee extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.FuncClick(addAnotherPayeeBtn, "Add Another Payee btn");
+			} else {
+				mobileAction.FuncClick(addAnotherPayeeBtn, "Add Another Payee btn");
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 			}
-
-			mobileAction.FuncClick(addAnotherPayeeBtn, "Add Another Payee btn");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

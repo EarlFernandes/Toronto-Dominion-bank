@@ -517,7 +517,9 @@ public class Manage_Payee extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Manage Payees Header");
 			mobileAction.FuncClick(addPayee, "Add Payee");
 
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -580,13 +582,15 @@ public class Manage_Payee extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(editPayeeBtn, "Delete Payee button");
+				mobileAction.FuncClick(editPayeeBtn, "Edit Payee button");
 				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 			}
 
 			mobileAction.FuncClick(deletePayeeBtn, "Delete Payee button");
 			mobileAction.FuncClick(confirmYes, "Confirm dialog, Yes button");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			}
 
 
 		} catch (Exception e) {
@@ -606,7 +610,10 @@ public class Manage_Payee extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(editPayeeBtn, "Edit Payee button");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			}
+
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -644,14 +651,21 @@ public class Manage_Payee extends _CommonPage {
 			if (acctNum == null && usAccount != null) {
 				// US account, click Check button twice
 				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
-				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				}
+
 
 				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
-				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				}
 
 			} else {
 				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
-				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				}
 
 			}
 
