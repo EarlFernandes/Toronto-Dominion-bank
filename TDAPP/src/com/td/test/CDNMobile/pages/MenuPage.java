@@ -631,10 +631,15 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 
-			String profileSettingsXpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
-					+ getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE) + "']";
+			String profileSettingsXpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				profileSettingsXpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE) + "']";
+			} else {
+				profileSettingsXpath = "//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE) + "']";
+			}
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(profileSettingsXpath, true, 10, "Up");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
