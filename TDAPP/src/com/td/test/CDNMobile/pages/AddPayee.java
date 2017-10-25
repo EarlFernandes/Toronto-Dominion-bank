@@ -909,8 +909,12 @@ public class AddPayee extends _CommonPage {
 			mobileAction.FuncSendKeys(payeeAcctNumber, acctNum);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
+				
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
+				mobileAction.sleep(5000);
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
 
 			} else {
@@ -950,7 +954,10 @@ public class AddPayee extends _CommonPage {
 			mobileAction.FuncSendKeys(payeeAcctNumber, acctNum);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
+				
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
 
