@@ -25,7 +25,7 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Transfers' or @text='Virements')]")
 	private MobileElement transfers;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_BILLS']/XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_BILLS']/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Bills']")
 	private MobileElement bills;
 
@@ -60,7 +60,7 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Mobile Deposit']")
 	private MobileElement mobile_Deposit_button;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_ACCOUNTS']/XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_ACCOUNTS']/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='My Accounts' or @text='Mes comptes')]")
 	private MobileElement accounts_button;
 
@@ -76,7 +76,7 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Contact Us' or @text='Contactez-nous')]")
 	private MobileElement contactUs;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']/XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
 	private MobileElement home_button;
 
@@ -98,7 +98,7 @@ public class MenuPage extends _CommonPage {
 	private MobileElement locations;
 
 	// Profile and preference
-	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_PREFERENCES")
+	@iOSXCUITFindBy(accessibility = "NAV_DRAWER_ITEMS_PREFERENCES")
 	private MobileElement profile_and_settings;
 
 	// customer feedback
@@ -111,7 +111,7 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText']")
 	private List<MobileElement> menuOpts;
 
-	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_ACCOUNTS")
+	@iOSXCUITFindBy(accessibility = "NAV_DRAWER_ITEMS_ACCOUNTS")
 	private MobileElement menuAccounts;
 
 	public synchronized static MenuPage get() {
@@ -631,14 +631,13 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 
-			String profileSettingsXpath = "";
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				profileSettingsXpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
-						+ getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE) + "']";
-			} else {
-				profileSettingsXpath = "//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE) + "']";
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE);
+				profile_and_settings = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + labelText + "']",
+						"Profile & Settings Menu button");
 			}
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(profileSettingsXpath, true, 10, "Up");
+			mobileAction.FuncSwipeWhileElementNotFound(profile_and_settings, true, 10, "Up");
 			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
@@ -669,27 +668,22 @@ public class MenuPage extends _CommonPage {
 	public void VerifyProfileAndSettingslink() {
 		Decorator();
 		try {
-			String profilepreference = getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE);
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout", 2, "down");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE);
 				profile_and_settings = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + profilepreference + "']", "Profile & Setting");
+						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + labelText + "']",
+						"Profile & Settings Menu button");
 			}
-
-			if (mobileAction.verifyElementIsPresent(profile_and_settings)) {
-				mobileAction.Report_Pass_Verified(profilepreference);
-			} else {
-				mobileAction.Report_Fail_Not_Verified(profilepreference);
-			}
-
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			mobileAction.FuncSwipeWhileElementNotFound(profile_and_settings, false, 10, "Up");
+			mobileAction.verifyElementIsDisplayed(profile_and_settings, "Profile & Settings Menu item");
+			
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
