@@ -63,17 +63,17 @@ public class MIT_DSH_ActivityTab  extends _CommonPage  {
 	
 	
 	
-	@iOSXCUITFindBy(accessibility = "Button_0")
+	@iOSXCUITFindBy(accessibility = "INVESTING_ACTIVITY_DATE_BUTTON")
 	@AndroidFindBy(id = "com.td:id/textview_left")
 	private MobileElement lblDateSettle;
 	
 	
-	@iOSXCUITFindBy(accessibility = "Button_0")
+	@iOSXCUITFindBy(accessibility = "INVESTING_ACTIVITY_DES_BUTTON")
 	@AndroidFindBy(id = "com.td:id/textview_center")
 	private MobileElement lblDetails;
 	
 	
-	@iOSXCUITFindBy(accessibility = "Button_0")
+	@iOSXCUITFindBy(accessibility = "INVESTING_ACTIVITY_AMOUNT_BUTTON")
 	@AndroidFindBy(id = "com.td:id/textview_right")
 	private MobileElement lblAmount;
 	
@@ -98,6 +98,12 @@ public class MIT_DSH_ActivityTab  extends _CommonPage  {
 			String desc = null;
 			String sXPathAndAmount = null;
 			String sXPathAnddate = null;
+			String sXPathiOS = null;
+			String sXPathiOSAmount = null;
+			String sXPathiOSdate = null;
+			
+			
+			
 		//Thread.sleep(1000);
 	
 	
@@ -162,9 +168,19 @@ public class MIT_DSH_ActivityTab  extends _CommonPage  {
 			sXPathAndAmount = "//android.widget.TextView[@resource-id='com.td:id/amount' and contains(@text,'$')]";
 			sXPathAnddate = "//android.widget.TextView[@resource-id='com.td:id/date_settle' and contains(@text,'/')]";
 			
+			sXPathiOS = "//XCUIElementTypeStaticText[contains(@label,' @')]";
+			sXPathiOSAmount = "//XCUIElementTypeStaticText[contains(@label,'$')]";
+			sXPathiOSdate = "//XCUIElementTypeStaticText[contains(@label,'/')]";
 			
 			
 			
+			
+			
+			
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			
+			{
 			
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXPathAnd, false, 20, "up");
 			
@@ -181,26 +197,16 @@ public class MIT_DSH_ActivityTab  extends _CommonPage  {
 	    	
 	    	
 	    	
-	    	if((mobileAction.FuncGetValByRegx(saction, "((['sbuy']+)|(['ssell']+))([0-9]+)").length()>=1))
+	    	if((mobileAction.FuncGetValByRegx(saction, "(([" + sbuy + "]+)|([" + ssell +"]+))([' ']+)([0-9]+)([' ']+)").length()>=1)&&(sprice.contains("$")))
 	    		//if((saction.contains(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY))||saction.contains(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL)))&&((mobileAction.FuncGetValByRegx(saction, "(([' ']+)([0-9]+)([' ']+))").length()>=1))&&(sprice.contains("$")))																																																	
 	    	//if((saction.contains(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY))||saction.contains(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL)))&&((mobileAction.FuncGetValByRegx(saction, "(' ')+([0-9]+)+(' ')").length()>=1))&&(sprice.contains("$")))    
-	    	{
-	    	if(sprice.contains("$"))
-	    	
-	    	
-	    	{
-	    		
+	    	{ 		
 	    		
 	    		mobileAction.verifyTextContains((MobileElement)CL.GetDriver().findElement(By.xpath(sXPathAndAmount)),"$");
 	    		mobileAction.verifyTextContains((MobileElement)CL.GetDriver().findElement(By.xpath(sXPathAnddate)),"/");
 	    		CL.GetReporting().FuncReport("Pass", "Action and price is present, Amount is displayed and date/settle is displayed");
 	    		
-	    		
-	    		
-	    	
-	    		
-	    	
-	    		}}
+	    		}
 	    		
 	    	else{
 	    		
@@ -210,7 +216,55 @@ public class MIT_DSH_ActivityTab  extends _CommonPage  {
 	    	
 	    	
 	    	
-	    	
+			}
+			
+			else{
+				
+				
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXPathiOS, false, 5, "up");
+				
+				
+				
+				String saction = CL.GetDriver().findElement(By.xpath(sXPathiOS)).getText().split("@")[0];
+		    	String sprice = CL.GetDriver().findElement(By.xpath(sXPathiOS)).getText().split("@")[1];
+		    	
+		    	
+		    	String sbuy = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY);
+		    	String ssell = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL);
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	if((mobileAction.FuncGetValByRegx(saction, "(([" + sbuy + "]+)|([" + ssell +"]+))([' ']+)([0-9]+)([' ']+)").length()>=1)&&(sprice.contains("$")))
+		    		//if((saction.contains(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY))||saction.contains(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL)))&&((mobileAction.FuncGetValByRegx(saction, "(([' ']+)([0-9]+)([' ']+))").length()>=1))&&(sprice.contains("$")))																																																	
+		    	//if((saction.contains(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY))||saction.contains(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL)))&&((mobileAction.FuncGetValByRegx(saction, "(' ')+([0-9]+)+(' ')").length()>=1))&&(sprice.contains("$")))    
+		    	{ 		
+		    		
+		    		mobileAction.verifyTextContains((MobileElement)CL.GetDriver().findElement(By.xpath(sXPathiOSAmount)),"$");
+		    		mobileAction.verifyTextContains((MobileElement)CL.GetDriver().findElement(By.xpath(sXPathiOSdate)),"/");
+		    		CL.GetReporting().FuncReport("Pass", "Action and price is present, Amount is displayed and date/settle is displayed");
+		    		
+		    		}
+		    		
+		    	else{
+		    		
+		    		CL.GetReporting().FuncReport("Fail", "Action and price not present, Amount is not displayed and date/settle is not displayed");
+		    		
+		    	}
+		    	
+		    	
+		    	
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+			}
 	    	
 	    	
 	    	
@@ -339,7 +393,7 @@ public class MIT_DSH_ActivityTab  extends _CommonPage  {
 			
 			
 		
-		} catch (Exception e) {
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 
