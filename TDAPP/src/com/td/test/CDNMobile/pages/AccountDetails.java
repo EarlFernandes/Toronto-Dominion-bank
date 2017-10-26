@@ -132,6 +132,7 @@ public class AccountDetails extends _CommonPage {
 			if (Double.compare(balance, newBalance) != 0) {
 				System.out.println(balance + " != " + newBalance);
 				mobileAction.GetReporting().FuncReport("Fail", "Incorrect balance after transaction");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			} else {
 				mobileAction.GetReporting().FuncReport("Pass", "Correct balance after transaction");
 			}

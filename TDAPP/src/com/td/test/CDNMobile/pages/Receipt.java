@@ -515,6 +515,16 @@ public class Receipt extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(payeeValue, "Payee Value");
 			mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
 			mobileAction.verifyElementIsDisplayed(dateValue, "Date Value");
+			
+			//For bill payment, takes some time to update acct balance
+			String specificAccts = getTestdata("Description");
+			if (specificAccts.equalsIgnoreCase("specified")) {
+				for(int i = 0; i < 2; i++) {
+					mobileAction.sleep(60000);
+					mobileAction.FunctionSwipe("up", 1000, 0);
+				}
+			}
+
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
