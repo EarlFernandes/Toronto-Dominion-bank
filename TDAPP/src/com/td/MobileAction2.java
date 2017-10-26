@@ -2072,10 +2072,10 @@ public class MobileAction2 extends CommonLib {
 
 				} catch (Exception e) {
 					if (direction.equalsIgnoreCase("up"))
-						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2,
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.25), starty / 2,
 								startx / 2, (int) (endy * 0.25), 2000);
 					else if (direction.equalsIgnoreCase("down"))
-						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.25), endy / 2,
 								startx / 2, (int) (endy * 0.75), 2000);
 					if (direction.equalsIgnoreCase("left"))
 						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.5),

@@ -211,7 +211,7 @@ public class EventCase {
 
 		// MIT Dashboard
 
-		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI, verifyStockETFsWLSymbolRow, verifyTappingWLOptionSymbol, goToWLExpandedView, verifyTappingWLMutualFundSymbol, verifyWLOptionSymbolSellButton, verifyWLMutualFundSymbolBuyButton, verifyWLOptionSymbolBuyButton,verifyWLETFSymbolSellButton,verifyWLIndicesSymbolBuySellButton,
+		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI, verifyStockETFsWLSymbolRow, verifyTappingWLOptionSymbol, goToWLExpandedView, verifyTappingWLMutualFundSymbol, verifyWLOptionSymbolSellButton, verifyWLMutualFundSymbolBuyButton, verifyWLOptionSymbolBuyButton, verifyWLETFSymbolSellButton, verifyWLIndicesSymbolBuySellButton, verifyWLBackButton,verifyWLSymbolFlagCompanyName,
 
 		// P2P
 
@@ -2628,14 +2628,23 @@ public class EventCase {
 		case verifyWLOptionSymbolBuyButton:
 			MIT_DSHWLPopulateData.get().verifyWLOptionSymbolBuyButton();
 			break;
-			
+
 		case verifyWLETFSymbolSellButton:
 			MIT_DSHWLPopulateData.get().verifyWLETFSymbolSellButton();
-			break;		
-			
+			break;
+
 		case verifyWLIndicesSymbolBuySellButton:
 			MIT_DSHWLPopulateData.get().verifyWLIndicesSymbolBuySellButton();
-			break;					
+			break;
+
+		case verifyWLBackButton:
+			MIT_DSHWLPopulateData.get().verifyWLBackButton();
+			break;
+			
+		case verifyWLSymbolFlagCompanyName:
+			MIT_DSHWLPopulateData.get().verifyWLSymbolFlagCompanyName();
+			break;
+			
 
 		// MIT Dashboard END
 

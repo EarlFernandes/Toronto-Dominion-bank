@@ -172,7 +172,10 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 				 * break; } else iCnt++; }
 				 */
 				iRow = getWLSymbolRowNumber_Android(sSymbol);
-				mobileAction.FuncSwipeOnce("left");
+				String xpathWLSymbolBuyButton = "(//*[@text='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY) + "'])[1]";
+				// mobileAction.FuncSwipeOnce("left");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolBuyButton, false, 10, "left");
 				mobileAction.FuncClick(
 						(MobileElement) CL.GetDriver().findElements(By.id("com.td:id/button_buy")).get(iRow),
 						"Buy Button");
@@ -182,7 +185,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 						+ "']/../../following-sibling::*/*[1]/*[@label='"
 						+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY) + "'])[1]";
 
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolBuyButton, true, 4, "left");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolBuyButton, true, 10, "left");
 			}
 
 		} catch (Exception e) {
@@ -198,7 +201,10 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				iRow = getWLSymbolRowNumber_Android(sSymbol);
-				mobileAction.FuncSwipeOnce("left");
+				String xpathWLSymbolSellButton = "(//*[@text='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL) + "'])[1]";
+				// mobileAction.FuncSwipeOnce("left");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolSellButton, false, 10, "left");
 				mobileAction.FuncClick(
 						(MobileElement) CL.GetDriver().findElements(By.id("com.td:id/button_sell")).get(iRow),
 						"Sell Button");
@@ -474,5 +480,42 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 			e.printStackTrace();
 		}
 		return iCnt;
+	}
+
+	public void verifyWLBackButton() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(BT_Back, "< Button");
+			mobileAction.FuncSwipeWhileElementNotFound(BT_More, false, 4, "up");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void verifyWLSymbolFlagCompanyName() {
+		Decorator();
+		try {
+
+			String[] aSymbolList = getTestdata("Symbol", XLSheetUserIDs).split(",");
+			
+			for (String sSymbol : aSymbolList) {
+				String xpathWLSymbol = "//*[@label='" + sSymbol + "' or @text='" + sSymbol + "']";
+				String xpathWLSymbolFlag = "//*[@label='" + sSymbol + "' or @text='" + sSymbol
+						+ "']/../*[@name='flagImageView']";
+				String xpathWLSymbolCompanyName = "//*[@label='" + sSymbol + "' or @text='" + sSymbol
+						+ "']/../*[@name='companyLabel']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbol, false, 10, "up");
+				mobileAction.verifyElementUsingXPath(xpathWLSymbolFlag, "Country Flag");
+				if (!sSymbol.contains(" ")) {
+					String sCompanyName = mobileAction.FuncGetTextByxpath(xpathWLSymbolCompanyName);
+					CL.GetReporting().FuncReport(PASS, sSymbol + " company name : " + sCompanyName);
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 }

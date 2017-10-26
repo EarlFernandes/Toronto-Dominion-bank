@@ -196,7 +196,7 @@ public final class StringArray {
 			"買入開倉" };
 	public static final String[] ARRAY_DASHBOARD_ACTIONSELLTOCLOSE = { "Sell to Close", "Vente pour fermer", "卖出平仓",
 			"賣出平倉" };
-	public static final String[] ARRAY_DASHBOARD_PRICEMARKET = { "Market", "Cours du marché", "市场", "市場" };
+	public static final String[] ARRAY_DASHBOARD_PRICEMARKET = { "Market", "Cours du marché", "市场", "市價" };
 	public static final String[] ARRAY_DASHBOARD_PRICELIMIT = { "Limit", "Limite", "限价", "限價" };
 	public static final String[] ARRAY_DASHBOARD_GOODTILLDAY = { "Day", "Jour", "当天有效", "當日有效" };
 	public static final String[] ARRAY_DASHBOARD_MF_REINVESTED = { "Reinvested", "Réinvestis", "再投资", "再投資" };
