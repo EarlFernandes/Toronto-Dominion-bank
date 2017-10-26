@@ -326,6 +326,13 @@ public final class StringArray {
 			"TD for Me 通知", "TD for Me 通知" };
 	public static final String[] ARRAY_ENABLE_NOTIFICATIONS = { "Enable Notifications", "Activer les notifications",
 			"启用通知", "启用通知" };
+	
+	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité",
+			"安全问题", "安全問題" };
+	public static final String[] ARRAY_SECURITY_LOGIN = { "Login", "Ouvrir une session",
+			"登录", "登入" };
+	public static final String[] ARRAY_MFA_ENTER_ANSWER = { "Enter your answer", "Entrez votre réponse",
+			"输入您的答案", "輸入您的答案" };
 	// UA Core
 	public static final String[] ARRAY_ACCOUNT_TOTAL = { "Total", "Total", "总计", "總計" };
 	public static final String[] ARRAY_ADD_LOGIN = { "Add Login", "Ajouter une connexion", "添加登录", "新增登入" };
