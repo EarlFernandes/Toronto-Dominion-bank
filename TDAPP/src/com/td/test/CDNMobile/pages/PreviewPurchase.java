@@ -278,7 +278,7 @@ public class PreviewPurchase extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
 				String phoneNumberxpath = "//XCUIElementTypeStaticText[@label='"
-						+ mobileAction.getAppString("label_phone_number")
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE)
 						+ "']/following-sibling::XCUIElementTypeStaticText";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(phoneNumberxpath, false, 10, "up");
 				phone_number = mobileAction.verifyElementUsingXPath(
@@ -287,7 +287,7 @@ public class PreviewPurchase extends _CommonPage {
 						"Email");
 			} else {
 				String phoneNumberxpath = "//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("label_phone_number")
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE)
 						+ "']/../android.widget.RelativeLayout/android.widget.TextView";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(phoneNumberxpath, false, 10, "up");
 				phone_number = mobileAction
