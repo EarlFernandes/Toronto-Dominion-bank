@@ -1914,7 +1914,7 @@ public class MobileAction2 extends CommonLib {
 	}
 	
 	public void FuncSwipeWhileElementNotFoundByxpath(String xpathEle, boolean clickYorN, int swipes, String direction) {
-		FuncSwipeWhileElementNotFoundByxpath(xpathEle,clickYorN, swipes, direction, false );
+		FuncSwipeWhileElementNotFoundByxpath(xpathEle, clickYorN, swipes, direction, false);
 	}
 
 	/**
@@ -2612,8 +2612,6 @@ public class MobileAction2 extends CommonLib {
 
 	}
 
-	
-	
 	/**
 	 * This method will get the Mobile element from IOSClassChain
 	 * 
@@ -2625,21 +2623,21 @@ public class MobileAction2 extends CommonLib {
 	 *             In case an exception occurs while clicking over the element.
 	 *             In case the element is not found over the screen.
 	 */
-	public MobileElement mobileElementUsingIOSClassChain(String objElement){
+	public MobileElement mobileElementUsingIOSClassChain(String objElement) {
 
 		MobileElement objMobileElement = null;
 
 		try {
-			objMobileElement = (MobileElement) ((AppiumDriver) GetDriver()).findElement(ByIosClassChain.iOSClassChain(objElement));
-			
+			objMobileElement = (MobileElement) ((AppiumDriver) GetDriver())
+					.findElement(ByIosClassChain.iOSClassChain(objElement));
+
 		} catch (Exception e) {
 			System.err.println("Element not found");
 		}
-		
+
 		return objMobileElement;
 	}
-	
-	
+
 	public String verifyElementUsingBy(By value) {
 
 		String elementText = "";
@@ -2835,7 +2833,6 @@ public class MobileAction2 extends CommonLib {
 
 	}
 
-	
 	public boolean verifyElementIsPresentByXpath(String elementXpath) {
 
 		try {
@@ -2846,7 +2843,7 @@ public class MobileAction2 extends CommonLib {
 			return false;
 		}
 	}
-	
+
 	public boolean verifyElementIsPresent(WebElement elementToFind) {
 
 		try {
@@ -3510,7 +3507,7 @@ public class MobileAction2 extends CommonLib {
 		}
 
 	}
-	
+
 	public List<MobileElement> getElementsList(String elementsXpath) {
 
 		List<MobileElement> list = null;
@@ -3529,4 +3526,56 @@ public class MobileAction2 extends CommonLib {
 
 		return list;
 	}
+
+	public void swipeAndSearchByxpath(String xpath, boolean clickYorN, int numSwipes, String direction) {
+
+		try {
+			Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
+			int startx = size.width / 2;
+			int starty = (int) (size.height * 0.85);
+			int endy = (int) (size.height * 0.15);
+
+			boolean isFound = false;
+			int count = 0;
+			String sEleName = "";
+			boolean isSwiped = false;
+
+			while (!isFound && count <= numSwipes) {
+
+				isFound = this.verifyElementIsPresentByXpath(xpath);
+				if (!isFound) {
+					TouchAction touchAction = new TouchAction((AppiumDriver) GetDriver());
+					if (direction.equalsIgnoreCase("up")) {
+						//touchAction.press(startx, starty).moveTo(startx, endy).release().perform();
+						((AppiumDriver) GetDriver()).swipe(startx, starty, startx, endy, 2000);
+					} else if (direction.equalsIgnoreCase("down")) {
+						//touchAction.press(startx, endy).moveTo(startx, starty).release().perform();
+						((AppiumDriver) GetDriver()).swipe(startx, endy, startx, starty, 2000);
+					}
+					count++;
+				} 
+			}
+			if (isFound) {
+				if (clickYorN) {
+					sEleName = FuncGetTextByxpath(xpath);
+					FuncClick((MobileElement) GetDriver().findElement(By.xpath(xpath)), sEleName);
+				}
+				GetReporting().FuncReport("Pass",
+						"Swiped " + direction + " till element found. Swipes: " + count + " Element : <b>" + sEleName + "</b>");
+
+			} else if (!isFound) {
+				GetReporting().FuncReport("Fail", "Swiped " + direction + " but element not found. Swipes : " + count);
+			}
+		
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "Cannot find element after swipes " + xpath + ": " + e.getMessage());
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
 }

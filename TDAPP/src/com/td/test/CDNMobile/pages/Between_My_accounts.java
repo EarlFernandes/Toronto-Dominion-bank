@@ -2197,7 +2197,7 @@ public class Between_My_accounts extends _CommonPage {
 				fromAccountXpath = "//XCUIElementTypeStaticText[contains(@label,'" + fromAccount + "')]";
 			}
 			mobileAction.FuncClick(txtFrom_acnt, "From Account field");
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(fromAccountXpath, true, 30, "Up");
+			mobileAction.swipeAndSearchByxpath(fromAccountXpath, true, 30, "Up");
 
 			String toAccount = getTestdata("ToAccount");
 			String toAccountXpath = "";
@@ -2206,7 +2206,7 @@ public class Between_My_accounts extends _CommonPage {
 						+ toAccount + "']";
 
 				mobileAction.FuncClick(txtto_Acnt, "To Account field");
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(toAccountXpath, true, 30, "Up");
+				mobileAction.swipeAndSearchByxpath(toAccountXpath, true, 30, "Up");
 
 			} else {
 				toAccountXpath = "//XCUIElementTypeStaticText[contains(@label,'" + toAccount + "')]";
@@ -2216,7 +2216,7 @@ public class Between_My_accounts extends _CommonPage {
 				// check if acct field is empty (" ")
 				if (toAcctNumber.equals(" ")) {
 					mobileAction.FuncClick(txtto_Acnt, "To Account field");
-					mobileAction.FuncSwipeWhileElementNotFoundByxpath(toAccountXpath, true, 30, "Up");
+					mobileAction.swipeAndSearchByxpath(toAccountXpath, true, 30, "Up");
 				}
 
 			}
@@ -2227,8 +2227,7 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.verifyElementTextContains(pageHeader, getTextInCurrentLocale(StringArray.ARRAY_CONFIRM));
 
 			mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
-			
+			mobileAction.verifyElementIsPresent(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -2269,7 +2268,6 @@ public class Between_My_accounts extends _CommonPage {
 
 			mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
 			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
-			
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

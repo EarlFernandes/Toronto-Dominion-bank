@@ -415,30 +415,33 @@ public class Receipt extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REF_NUM), "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_FUNDS), "ignore", "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT), "ignore",
-						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REQUEST_TIME), "ignore", "ignore", "ignore",
-						getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT), "ignore", "ignore", 
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REQUEST_TIME), "ignore", "ignore",
+						"ignore", getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT), "ignore", "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT), "ignore", "ignore", "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_BALANCE_NOTE) };
 				int size = detailList.size();
 				System.out.println("size of data:" + size);
 				for (int i = 0; i < size; i++) {
-//					if(i>=15 ) {
-//						String capturedText = mobileAction.getValue(detailList.get(i));
-//						System.out.println("Captured text "+ i+ ":"+capturedText);
-//					}
+					// if(i>=15 ) {
+					// String capturedText =
+					// mobileAction.getValue(detailList.get(i));
+					// System.out.println("Captured text "+ i+
+					// ":"+capturedText);
+					// }
 					if (detailInfomation[i].equalsIgnoreCase("ignore")) {
 						continue;
 					} else {
 						if (!mobileAction.verifyElementIsPresent(detailList.get(i))) {
-							mobileAction.FuncSwipeWhileElementNotFound(detailList.get(size-1), false, 10, "up");
+							mobileAction.FuncSwipeWhileElementNotFound(detailList.get(size - 1), false, 10, "up");
 						}
 						String capturedText = mobileAction.getValue(detailList.get(i));
-						if(currentLocale.equalsIgnoreCase("fr")) {
-							String unkownEmptySpace =" "; //for french only
-							capturedText = capturedText.trim().replaceAll(unkownEmptySpace," ");
+						if (currentLocale.equalsIgnoreCase("fr")) {
+							String unkownEmptySpace = " "; // for french only
+							capturedText = capturedText.trim().replaceAll(unkownEmptySpace, " ");
 						}
-						//mobileAction.verifyElementTextIsDisplayed(detailList.get(i), detailInfomation[i]);
-						System.out.println("Captured text "+ i+ ":"+capturedText);
+						// mobileAction.verifyElementTextIsDisplayed(detailList.get(i),
+						// detailInfomation[i]);
+						System.out.println("Captured text " + i + ":" + capturedText);
 						mobileAction.verifyTextEquality(capturedText, detailInfomation[i]);
 					}
 				}
@@ -515,16 +518,12 @@ public class Receipt extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(payeeValue, "Payee Value");
 			mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
 			mobileAction.verifyElementIsDisplayed(dateValue, "Date Value");
-			
-			//For bill payment, takes some time to update acct balance
+
+			// For bill payment, takes some time to update acct balance
 			String specificAccts = getTestdata("Description");
 			if (specificAccts.equalsIgnoreCase("specified")) {
-				for(int i = 0; i < 2; i++) {
-					mobileAction.sleep(60000);
-					mobileAction.FunctionSwipe("up", 1000, 0);
-				}
+				mobileAction.sleep(60000);
 			}
-
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
