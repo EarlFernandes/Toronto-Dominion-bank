@@ -2612,6 +2612,8 @@ public class MobileAction2 extends CommonLib {
 
 	}
 
+	
+	
 	/**
 	 * This method will get the Mobile element from IOSClassChain
 	 * 
@@ -2623,14 +2625,13 @@ public class MobileAction2 extends CommonLib {
 	 *             In case an exception occurs while clicking over the element.
 	 *             In case the element is not found over the screen.
 	 */
-	public MobileElement mobileElementUsingIOSClassChain(String objElement) {
+	public MobileElement mobileElementUsingIOSClassChain(String objElement){
 
 		MobileElement objMobileElement = null;
 
 		try {
-			objMobileElement = (MobileElement) ((AppiumDriver) GetDriver())
-					.findElement(ByIosClassChain.iOSClassChain(objElement));
-
+			objMobileElement = (MobileElement) ((AppiumDriver) GetDriver()).findElement(ByIosClassChain.iOSClassChain(objElement));
+			
 		} catch (Exception e) {
 			System.err.println("Element not found");
 		}
