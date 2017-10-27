@@ -123,7 +123,7 @@ public class MoneyPath extends _CommonPage {
 				Spending_Insight.get().clickSideMenuButton();
 				CL.GetAppiumDriver().context("NATIVE_APP");
 			} else {
-				details = mobileAction.FuncGetElementText(spendingDetailsFromGraph);
+				details = mobileAction.getText(spendingDetailsFromGraph);
 				System.out.println(details);
 				String[] value = details.split(",");
 				for (int i = 0; i < value.length; i++) {

@@ -17,6 +17,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Login extends _CommonPage {
 
@@ -205,8 +206,10 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/confirm_delete']")
 	private MobileElement deluser;
 
-	@iOSFindBy(accessibility = "TDVIEW_TITLE")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
+	//@iOSFindBy(accessibility = "TDVIEW_TITLE")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
+	@iOSXCUITFindBy(xpath="//*[@name='TD MySpend' or @name='TDVIEW_TITLE']")
+	@AndroidFindBy(xpath = "//*[@resource-id='android:id/action_bar_title' or @resource-id='android:id/content']")
 	private MobileElement logined_page_Header;
 
 	String session = "//XCUIElementTypeStaticText[@label='Session Expired']";
@@ -341,17 +344,23 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				securityQuestionHeader = mobileAction.verifyElementUsingXPath(
+				/*securityQuestionHeader = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
 								+ mobileAction.getAppString("securityQuestionPageHeader") + "']",
+						"Security Page Header!");*/
+				
+				securityQuestionHeader = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_LOGIN_SECURITY_QUESTION) + "']",
 						"Security Page Header!");
 			} else {
 				securityQuestionHeader = mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
-								+ mobileAction.getAppString("securityQuestionPageHeader") + "']",
+								+ getTextInCurrentLocale(StringArray.ARRAY_LOGIN_SECURITY_QUESTION) + "']",
 						"Security Page Header");
+				
 				securityLogin = mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("secureLoginButton") + "']",
+						"//XCUIElementTypeButton[@label='" + getTextInCurrentLocale(StringArray.ARRAY_SECURITY_LOGIN) + "']",
 						"Login");
 			}
 
@@ -359,7 +368,7 @@ public class Login extends _CommonPage {
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 					enterAnswer = mobileAction.verifyElementUsingXPath("//XCUIElementTypeSecureTextField[@value='"
-							+ mobileAction.getAppString("mfa_enter_answer") + "']", "Enter your answer");
+							+ getTextInCurrentLocale(StringArray.ARRAY_MFA_ENTER_ANSWER) + "']", "Enter your answer");
 				}
 				mobileAction.FuncSendKeys(enterAnswer, getTestdata("SecurityAnswer"));
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -369,7 +378,7 @@ public class Login extends _CommonPage {
 				}
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 					securityLogin = mobileAction.verifyElementUsingXPath(
-							"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("secureLoginButton") + "']",
+							"//XCUIElementTypeButton[@label='" + getTextInCurrentLocale(StringArray.ARRAY_SECURITY_LOGIN) + "']",
 							"Login");
 				}
 				mobileAction.FuncClick(securityLogin, "Login");
@@ -416,7 +425,8 @@ public class Login extends _CommonPage {
 			return verifyIsLoginErrorSystemError();
 
 		} else {
-			String securityQuestionTitle = mobileAction.getAppString("securityQuestionPageHeader");
+			//String securityQuestionTitle = mobileAction.getAppString("securityQuestionPageHeader");
+			String securityQuestionTitle = getTextInCurrentLocale(StringArray.ARRAY_LOGIN_SECURITY_QUESTION);
 			String pageTitle = mobileAction.getValue(logined_page_Header);
 			String addLoginTitle = getTextInCurrentLocale(StringArray.ARRAY_ADD_LOGIN);
 			if (pageTitle.contentEquals(securityQuestionTitle)) {

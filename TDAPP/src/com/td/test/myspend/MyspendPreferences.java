@@ -146,6 +146,7 @@ public class MyspendPreferences extends com.td._CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementIsDisplayed(pageHeaderAndroid, "Preferences Page Header");
+			
 			} else {
 				mobileAction.verifyElementIsDisplayed(pageHeader, "Preferences Page Header");
 			}
