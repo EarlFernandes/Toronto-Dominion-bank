@@ -2267,7 +2267,7 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.verifyElementTextContains(pageHeader, getTextInCurrentLocale(StringArray.ARRAY_CONFIRM));
 
 			mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			mobileAction.verifyElementIsPresent(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

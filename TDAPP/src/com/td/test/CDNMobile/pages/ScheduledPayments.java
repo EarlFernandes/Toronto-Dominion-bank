@@ -69,7 +69,9 @@ public class ScheduledPayments extends _CommonPage {
 				lastPaymentTitleXpath = "//XCUIElementTypeStaticText[@name='UPCOMING_BILLS_DETAIL_TITLE_0"
 						+ lastPaymentIndex + "']";
 			}
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(lastPaymentTitleXpath, true, 30, "Up");
+			// mobileAction.FuncSwipeWhileElementNotFoundByxpath(lastPaymentTitleXpath,
+			// true, 30, "Up");
+			mobileAction.swipeAndSearchByxpath(lastPaymentTitleXpath, true, 30, "Up");
 			mobileAction.FuncClick(cancelPaymentBtn, "Cancel Payment Button");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")
@@ -102,7 +104,7 @@ public class ScheduledPayments extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				String paymentDescription = "//android.widget.TextView[@resource-id='com.td:id/secondaryText' and contains(@text,'"
 						+ fromAccount + "') and contains(@text,'" + toAccount + "')]";
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(paymentDescription, false, 30, "Up");
+				mobileAction.swipeAndSearchByxpath(paymentDescription, false, 30, "Up");
 
 			} else {
 				String paymentCell = "//XCUIElementTypeTable[1]/XCUIElementTypeCell";
@@ -114,7 +116,7 @@ public class ScheduledPayments extends _CommonPage {
 				String lastPaymentDescXpath = "//XCUIElementTypeStaticText[@name='UPCOMING_BILLS_DATE_DESCRIPTION_0"
 						+ lastPaymentIndex + "']";
 
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(lastPaymentTitleXpath, false, 30, "Up");
+				mobileAction.swipeAndSearchByxpath(lastPaymentTitleXpath, false, 30, "Up");
 				MobileElement lastPaymentTitle = mobileAction.verifyElementUsingXPath(lastPaymentTitleXpath,
 						"Last Payment Title");
 				mobileAction.verifyElementTextContains(lastPaymentTitle, toAccount);
