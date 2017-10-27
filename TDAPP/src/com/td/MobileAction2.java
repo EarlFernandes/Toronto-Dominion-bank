@@ -3537,7 +3537,7 @@ public class MobileAction2 extends CommonLib {
 
 		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 			menuXpath = "//android.widget.ImageView[@resource-id='android:id/up' and @index='0']";
-			menuSlideXpath = "//android.widget.ListView[@resource-id='com.td:id/list_slidermenu' ]";
+			menuSlideXpath = "//android.widget.ListView[@index='1']";
 		} else {
 			menuXpath = "//*[@name ='NAVIGATION_ITEM_MENU']";
 			menuSlideXpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']";
