@@ -518,7 +518,7 @@ public class Receipt extends _CommonPage {
 
 			// For bill payment, takes some time to update acct balance
 			String specificAccts = getTestdata("Description");
-			if (specificAccts.equalsIgnoreCase("specified")) {
+			if (specificAccts != null && specificAccts.equalsIgnoreCase("specified")) {
 				mobileAction.sleep(60000);
 			}
 
@@ -641,7 +641,7 @@ public class Receipt extends _CommonPage {
 		try {
 
 			mobileAction.FuncSwipeWhileElementNotFound(scheduledPaymentsBtn, true, 10, "up");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			mobileAction.verifyElementIsPresent(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

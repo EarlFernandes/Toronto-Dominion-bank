@@ -3557,8 +3557,8 @@ public class MobileAction2 extends CommonLib {
 				} 
 			}
 			if (isFound) {
+				sEleName = FuncGetTextByxpath(xpath);
 				if (clickYorN) {
-					sEleName = FuncGetTextByxpath(xpath);
 					FuncClick((MobileElement) GetDriver().findElement(By.xpath(xpath)), sEleName);
 				}
 				GetReporting().FuncReport("Pass",

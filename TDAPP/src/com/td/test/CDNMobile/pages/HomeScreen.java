@@ -1223,12 +1223,13 @@ public class HomeScreen extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(pageHeader, "Home header");
 				mobileAction.verifyElementTextContains(pageHeader,
 						getTextInCurrentLocale(StringArray.ARRAY_HOME_HEADER));
-				
+
+				mobileAction.FunctionSwipe("down", 1000, 0);
 				mobileAction.verifyElementIsDisplayed(pay_now_button, "Pay Now button");
 				mobileAction.verifyElementTextContains(pay_now_button,
 						getTextInCurrentLocale(StringArray.ARRAY_HOMESCREEN_DASHBOARD_PAYNOW));
 			} else {
-				
+
 				mobileAction.verifyElementIsDisplayed(menu, "Menu button");
 				mobileAction.verifyElementIsDisplayed(pay_now_button, "Apple Pay button");
 				mobileAction.verifyElementTextContains(pay_now_button,

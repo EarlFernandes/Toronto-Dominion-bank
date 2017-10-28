@@ -94,6 +94,10 @@ public class PayBill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']/android.widget.LinearLayout[@index='0']")
 	private MobileElement firstAcct;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
+	@AndroidFindBy(xpath = "//android.widget.ListView[@index='2']//android.widget.TextView[@index='0']")
+	private MobileElement firstUSAcct;
+
 	public synchronized static PayBill get() {
 		if (PayBill == null) {
 			PayBill = new PayBill();
@@ -115,7 +119,7 @@ public class PayBill extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Pay Bill");
 
 			String specificAccts = getTestdata("Description");
-			if (specificAccts.equalsIgnoreCase("specified")) {
+			if (specificAccts != null && specificAccts.equalsIgnoreCase("specified")) {
 				// Use specific accts
 				String fromAccount = getTestdata("FromAccount");
 				String fromAccountXpath = "";
@@ -132,6 +136,7 @@ public class PayBill extends _CommonPage {
 			} else {
 				// Use first acct
 				mobileAction.FuncClick(from_account, "From Account field");
+
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 					String acctNum = mobileAction.FuncGetText(fromAcctNum);
 					CL.getTestDataInstance().TCParameters.put("FromAccount", acctNum);
@@ -153,7 +158,7 @@ public class PayBill extends _CommonPage {
 					&& to_account_post.isEnabled())
 					|| (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios") && !hasPayee)) {
 
-				if (specificAccts.equalsIgnoreCase("specified")) {
+				if (specificAccts != null && specificAccts.equalsIgnoreCase("specified")) {
 					// Use specific accts
 					String toAccount = getTestdata("ToAccount");
 					String toAccountXpath = "";
@@ -212,10 +217,10 @@ public class PayBill extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Pay Bill");
 
 			mobileAction.FuncClick(fromAccountUS, "From Account field");
-			mobileAction.FuncClick(firstAcct, "1st Account in List");
+			mobileAction.FuncClick(firstUSAcct, "1st Account in List");
 
 			mobileAction.FuncClick(toAccountUS, "Select Payee field");
-			mobileAction.FuncClick(firstAcct, "1st Account in List");
+			mobileAction.FuncClick(firstUSAcct, "1st Account in List");
 
 			String amt = getTestdata("Amount");
 			mobileAction.FuncClick(amountUS, "Amount button clicked");
@@ -257,13 +262,22 @@ public class PayBill extends _CommonPage {
 			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Pay Bill");
 
-			mobileAction.FuncClick(from_account, "From Account field");
-
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				String acctNum = mobileAction.FuncGetText(fromAcctNum);
-				CL.getTestDataInstance().TCParameters.put("FromAccount", acctNum);
-				mobileAction.FuncClick(firstAcct, "1st Account in List");
+
+				String fromAccount = getTestdata("FromAccount");
+				String fromAccountXpath = "";
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+					fromAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
+							+ fromAccount + "']";
+
+				} else {
+					fromAccountXpath = "//XCUIElementTypeStaticText[contains(@label,'" + fromAccount + "')]";
+				}
+				mobileAction.FuncClick(from_account, "From Account field");
+				mobileAction.swipeAndSearchByxpath(fromAccountXpath, true, 10, "Up");
+
 			} else {
+				mobileAction.FuncClick(from_account, "From Account field");
 				mobileAction.FuncClick(firstAcct, "1st Account in List");
 				String acctNum = mobileAction.FuncGetText(fromAcctNum);
 				CL.getTestDataInstance().TCParameters.put("FromAccount", acctNum);
@@ -276,9 +290,25 @@ public class PayBill extends _CommonPage {
 					&& to_account_post.isEnabled())
 					|| (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios") && !hasPayee)) {
 
-				mobileAction.FuncClick(to_account_post, "Select Payee field");
-				mobileAction.FuncClick(firstAcct, "1st Account in List");
-				mobileAction.sleep(2000);
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+					// Use specific accts
+					String toAccount = getTestdata("ToAccount");
+					String toAccountXpath = "";
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+						toAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and contains(@text,'"
+								+ toAccount + "')]";
+
+					} else {
+						toAccountXpath = "//XCUIElementTypeStaticText[contains(@label,'" + toAccount + "')]";
+					}
+					mobileAction.FuncClick(to_account_post, "Select Payee field");
+					mobileAction.swipeAndSearchByxpath(toAccountXpath, true, 10, "Up");
+
+				} else {
+					mobileAction.FuncClick(to_account_post, "Select Payee field");
+					mobileAction.FuncClick(firstAcct, "1st Account in List");
+					mobileAction.sleep(2000);
+				}
 
 			}
 
@@ -343,6 +373,15 @@ public class PayBill extends _CommonPage {
 		}
 
 		return date;
+	}
+
+	private String getTimeAsAmt() {
+
+		Calendar cal = Calendar.getInstance();
+		String amt = String.valueOf(cal.get(Calendar.MONTH)) + String.valueOf(cal.get(Calendar.DATE))
+				+ String.valueOf(cal.get(Calendar.HOUR)) + "." + String.valueOf(cal.get(Calendar.MINUTE));
+
+		return String.valueOf(amt);
 	}
 
 }
