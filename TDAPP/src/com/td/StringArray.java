@@ -349,7 +349,7 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE_ANSWER = { "Yes", "Oui", "是", "是" };
 	public static final String[] ARRAY_BRABCH_HEADER = { "Branch", "Succursale", "分行", "分行" };
 	public static final String[] ARRAY_FIND_LOCATION = { "Find Locations", "Trouver une succursale", "查找分行", "查找分行" };
-	public static final String[] ARRAY_CONFIRM = { "Confirm", "Confirmer", "确认", "確認" };
+	public static final String[] ARRAY_CONFIRM = { "Confirm", "Confirm", "确认", "確認" };
 	public static final String[] ARRAY_PREFERENCE_NOTIFICATIONS = { "Notifications", "Avis", "通知", "通知" };
 	public static final String[] ARRAY_PREFERENCE_TD_FOR_ME_SETTINGS = { "TD for Me Settings", "Paramètres TD et moi",
 			"TD for Me 设置", "TD for Me 設置" };
@@ -368,6 +368,12 @@ public final class StringArray {
 			"TD for Me 通知", "TD for Me 通知" };
 	public static final String[] ARRAY_ENABLE_NOTIFICATIONS = { "Enable Notifications", "Activer les notifications",
 			"启用通知", "启用通知" };
+
+	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",
+			"安全問題" };
+	public static final String[] ARRAY_SECURITY_LOGIN = { "Login", "Ouvrir une session", "登录", "登入" };
+	public static final String[] ARRAY_MFA_ENTER_ANSWER = { "Enter your answer", "Entrez votre réponse", "输入您的答案",
+			"輸入您的答案" };
 	// UA Core
 	public static final String[] ARRAY_ACCOUNT_TOTAL = { "Total", "Total", "总计", "總計" };
 	public static final String[] ARRAY_ADD_LOGIN = { "Add Login", "Ajouter une connexion", "添加登录", "新增登入" };

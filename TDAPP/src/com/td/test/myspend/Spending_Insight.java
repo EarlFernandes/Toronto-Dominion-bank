@@ -121,6 +121,7 @@ public class Spending_Insight extends _CommonPage {
 		Decorator();
 
 		try {
+			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
 				mobileAction.verifyElementIsDisplayed(spendingInsightHeaderAndroid, "Spending Insight Header");
@@ -322,6 +323,7 @@ public class Spending_Insight extends _CommonPage {
 
 		try {
 			clickSideMenuButton();
+			Thread.sleep(5000);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(logoutBtnAndroid, "Logout Button");
 			} else {
