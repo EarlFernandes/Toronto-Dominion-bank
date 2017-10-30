@@ -15,6 +15,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class MenuPage extends _CommonPage {
 
@@ -63,14 +64,11 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='My Accounts' or @text='Mes comptes')]")
 	private MobileElement accounts_button;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_TDFORME']/XCUIElementTypeStaticText")
-	private MobileElement tdForMe;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Virements'] ")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard'and @text='VIREMENTS']")
 	private MobileElement french_transfers;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='In progress' OR label=='en cours'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
@@ -97,11 +95,10 @@ public class MenuPage extends _CommonPage {
 	private MobileElement applePay;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_LOCATIONS']/XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Locations']")
 	private MobileElement locations;
 
 	// Profile and preference
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_PREFERENCES']/XCUIElementTypeStaticText")
+	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_PREFERENCES")
 	private MobileElement profile_and_settings;
 
 	// customer feedback
@@ -295,10 +292,11 @@ public class MenuPage extends _CommonPage {
 						"My Accounts");
 			}
 			Thread.sleep(5000);
-			//click Menu may fail in some case. so need to check if accounts is present
-			if(mobileAction.verifyElementIsPresent(accounts_button)){
+			// click Menu may fail in some case. so need to check if accounts is
+			// present
+			if (mobileAction.verifyElementIsPresent(accounts_button)) {
 				mobileAction.FuncClick(accounts_button, "Accounts");
-			}else{
+			} else {
 				mobileAction.Report_Fail("Accounts is not present in Menu page");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			}
@@ -641,17 +639,16 @@ public class MenuPage extends _CommonPage {
 	public void clickProfileAndSettings() {
 		Decorator();
 		try {
+			String profileSettings = getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout", 2, "down");
 				profile_and_settings = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='"
-								+ getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE) + "']",
-						"Profile & Setting");
+						"//android.widget.TextView[@text='" + profileSettings + "']", "Profile & Setting");
 			} else {
 				mobileAction.FunctionSwipe("down", 200, 200);
 			}
-			String profileSettings = mobileAction.getValue(profile_and_settings);
 			mobileAction.FuncClick(profile_and_settings, profileSettings);
+
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -684,20 +681,19 @@ public class MenuPage extends _CommonPage {
 	public void VerifyProfileAndSettingslink() {
 		Decorator();
 		try {
+			String profilepreference = getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout", 2, "down");
 				profile_and_settings = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='"
-								+ getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE) + "']",
-						"Profile & Setting");
+						"//android.widget.TextView[@text='" + profilepreference + "']", "Profile & Setting");
 			}
 
-			try {
-				mobileAction.verifyElementTextIsDisplayed(profile_and_settings,
-						getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE));
-			} catch (IOException e) {
-				e.printStackTrace();
+			if (mobileAction.verifyElementIsPresent(profile_and_settings)) {
+				mobileAction.Report_Pass_Verified(profilepreference);
+			} else {
+				mobileAction.Report_Fail_Not_Verified(profilepreference);
 			}
+
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

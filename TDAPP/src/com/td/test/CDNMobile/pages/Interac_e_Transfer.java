@@ -17,6 +17,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Interac_e_Transfer extends _CommonPage {
 	private static Interac_e_Transfer Interac_e_Transfer;
@@ -191,8 +192,8 @@ public class Interac_e_Transfer extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'now registered for Interac e-Transfer')]")
 	private MobileElement successMag;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeActivityIndicator[`value=='1'`]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 
 	public synchronized static Interac_e_Transfer get() {

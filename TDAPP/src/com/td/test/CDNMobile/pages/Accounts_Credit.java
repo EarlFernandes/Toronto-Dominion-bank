@@ -497,8 +497,9 @@ public class Accounts_Credit extends _CommonPage {
 	 *             In case the element is not found over the screen.
 	 */
 	public void verifySummaryTabTextElements() {
-		Decorator();
+		Decorator();		
 		try {
+			mobileAction.FuncClick(summaryTab, "Summary Tab");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
 				// + mobileAction.getAppString("str_summary") + "']", "Summary
@@ -511,6 +512,7 @@ public class Accounts_Credit extends _CommonPage {
 				// "Available Balance");
 
 			} else {
+				
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/summaryTab' and @text='"
 								+ mobileAction.getAppString("str_summary") + "']",
@@ -522,7 +524,7 @@ public class Accounts_Credit extends _CommonPage {
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_Available_Balance") + "']",
 						"Available Balance");
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail",
 						"No such element was found on screen: " + e.getMessage());
@@ -559,7 +561,7 @@ public class Accounts_Credit extends _CommonPage {
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_Activity") + "']",
 						"Summary Tab");
 				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_statements") + "']",
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("mes_statement_tab_type_statement") + "']",
 						"Statements Tab");
 			}
 		} catch (NoSuchElementException | IOException e) {

@@ -14,12 +14,13 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Profile_And_Settings extends _CommonPage {
 
 	private static Profile_And_Settings ProfileAndSettings;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='In progress' OR label=='en cours'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progressBar;
 
@@ -182,10 +183,11 @@ public class Profile_And_Settings extends _CommonPage {
 
 			String tdme = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_TD_FOR_ME_SETTINGS);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				tdformesettings = mobileAction.verifyElementUsingXPath("//*[@label='" + tdme + "']",
-						"TD For Me Settings");
+				String tdformeXpath = "//*[@label='" + tdme + "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(tdformeXpath, true, 5, "up");
+			} else {
+				mobileAction.FuncClick(tdformesettings, tdme);
 			}
-			mobileAction.FuncClick(tdformesettings, tdme);
 			mobileAction.waitForElementToVanish(progressBar);
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {

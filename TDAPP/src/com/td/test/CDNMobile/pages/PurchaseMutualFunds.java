@@ -90,20 +90,18 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/checkbox_description']")
 	private MobileElement consent_checkbox_description;
 
-	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeOther[9]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther[10]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer' and @index='7']/android.widget.TextView")
 	private MobileElement legal_text;
 
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/following-sibling::XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer']/android.widget.TextView")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer' and @index='8']/android.widget.TextView")
 	private MobileElement copy_text;
 
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/preceding-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
 	private MobileElement error_message;
 
-	String emailPlaceHolder = "example@address.com | exemple@adresse.com";
-	String phonePlaceHolder = "Enter number | Entrer le numéro";
 	String purchaseListView = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/purchaseListView']";
 	String phoneReg = "\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
 	String emailReg = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
@@ -123,13 +121,6 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='TDFundSelectorCellIdentifier']/../XCUIElementTypeCell[6]/XCUIElementTypeStaticText")
 	@AndroidFindBy(id = "com.td:id/purchasePreviewButton")
 	private MobileElement borrow_money_warning_message;
-
-	@iOSFindBy(xpath = "//*[@label='Done' or @label='OK']")
-	private MobileElement done;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Ineligible') or contains(@label,'Non admissible')]/../XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Ineligible') or contains(@text,'Non admissible')]/../android.widget.TextView[@resource-id='com.td:id/txtItemValue']")
-	private MobileElement Ineligible_fund;
 
 	public synchronized static PurchaseMutualFunds get() {
 		if (purchaseMutualFunds == null) {
@@ -178,8 +169,6 @@ public class PurchaseMutualFunds extends _CommonPage {
 			}
 			mobileAction.FuncSendKeys(amount, amountentered);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				done = mobileAction.verifyElementUsingXPath("//*[@label='Done' or @label='OK' or @label='"
-						+ mobileAction.getAppString("secureLoginEditButtonDone") + "']", "Done");
 				mobileAction.FuncClickDone();
 			} else {
 				mobileAction.FuncHideKeyboard();
@@ -204,7 +193,8 @@ public class PurchaseMutualFunds extends _CommonPage {
 
 			String phoneNumber = mobileAction.getValue(phone_info);
 
-			phoneNumber = replacePlaceholderToNothing(phoneNumber, phonePlaceHolder);
+			phoneNumber = replacePlaceholderToNothing(phoneNumber,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE_PLACEHOLDER));
 			if (phoneNumber.isEmpty()) {
 				System.out.println("phoneNumber is empty");
 				return "";
@@ -230,7 +220,8 @@ public class PurchaseMutualFunds extends _CommonPage {
 		try {
 
 			String emailInfo = mobileAction.getValue(email_info);
-			emailInfo = replacePlaceholderToNothing(emailInfo, emailPlaceHolder);
+			emailInfo = replacePlaceholderToNothing(emailInfo,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL_PLACEHOLDER));
 			if (emailInfo.isEmpty()) {
 				System.out.println("Email is empty");
 				return "";
@@ -410,15 +401,24 @@ public class PurchaseMutualFunds extends _CommonPage {
 					getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT));
 			mobileAction.verifyElementTextIsDisplayed(contact_caption,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_CONTACT_INFO));
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView", 1, "down");
-			} else {
-				mobileAction.SwipeWithinElement("//XCUIElementTypeTable", 1, "down");
-			}
+			// if
+			// (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			// {
+			// mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView",
+			// 1, "down");
+			// } else {
+			// mobileAction.SwipeWithinElement("//XCUIElementTypeTable", 1,
+			// "down");
+			// }
+			mobileAction.FuncSwipeWhileElementNotFound(view_fundFacts, false, 3, "up");
 			mobileAction.verifyElementTextIsDisplayed(email_caption,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL));
 			mobileAction.verifyElementTextIsDisplayed(phone_caption,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE));
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				copy_text = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_COPY_TEXT) + "']", "Copy text");
+			}
 			if (mobileAction.verifyElementIsPresent(copy_text)) {
 				mobileAction.verifyElementTextIsDisplayed(copy_text,
 						getTextInCurrentLocale(StringArray.ARRAY_MF_COPY_TEXT));
@@ -426,20 +426,31 @@ public class PurchaseMutualFunds extends _CommonPage {
 
 			mobileAction.verifyElementTextIsDisplayed(view_fundFacts,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_VIEW_FUND_FACT));
+			mobileAction.FuncSwipeUpTillScreenBottom(legal_text);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.verifyElementTextIsDisplayed(consent_checkbox_description,
+				String capturedText = mobileAction.getValue(consent_checkbox_description);
+				if (currentLocale.equalsIgnoreCase("en")) {
+					capturedText = capturedText.replaceAll("\n ", "");
+					capturedText = capturedText.replaceAll("\n", "");
+					capturedText = capturedText.replace(" Please note:", "Please note:");
+				}
+
+				mobileAction.verifyTextEquality(capturedText,
 						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_RADIO));
+				// mobileAction.verifyElementTextIsDisplayed(consent_checkbox_description,
+				// getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_RADIO));
 			} else {
 				mobileAction.verifyElementTextIsDisplayed(consent_checkbox,
 						getTextInCurrentLocale(StringArray.ARRAY_MF_CONTENT_RADIO));
 			}
-			// String expectedLegalText
-			// ="您购买的基金有最短持有期要求。如果您在最短持有期到期之前赎回，则可能需向基金支付最高 2%
-			// 的短期交易费，此要求适用于道明互惠基金的所有单位（货币市场基金除外）。详情请参阅相关基金概况。"+
-			// "| 您購買的基金有最短持有期要求。如果您在最短持有期到期之前贖回，則可能需向基金支付最高 2%
-			// 的短期交易費，此要求適用於道明互惠基金的所有單位（貨幣市場基金除外）。詳情請參閱相關基金概況。";
-			// mobileAction.verifyElementTextIsDisplayed(legal_text,
-			// expectedLegalText);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				legal_text = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_MF_LEGAL_TRAILING_COMMISSION) + "']",
+						"legal text");
+				mobileAction.verifyElementTextIsDisplayed(legal_text,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_LEGAL_TRAILING_COMMISSION));
+			}
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed to VerifyPurchaseMFPageInChinese.");
@@ -475,7 +486,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 				FundInListText = FundInListText + "]";
 			}
 			System.out.println("FundInListText:" + FundInListText);
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(FundInListText, true, 10, "up");
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(FundInListText, true, 10, "up", true);
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -501,9 +512,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 		try {
 			SelectFund(selectedFund);
 			enterAmount(amount_selected);
-			if (!mobileAction.verifyElementIsPresent(consent_checkbox)) {
-				mobileAction.FuncSwipeWhileElementNotFound(consent_checkbox, false, 5, "up");
-			}
+			mobileAction.FuncSwipeWhileElementNotFound(consent_checkbox, false, 5, "up");
 
 			String ori_email = getEmailInfo();
 			if (!user_email.isEmpty()) {
@@ -576,10 +585,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 				System.out.println("Phone populated:" + ori_phone);
 			}
 
-			//mobileAction.FuncSwipeOnce("up");
-			//mobileAction.FuncClick(consent_checkbox, "consent check box");
-			mobileAction.FuncSwipeWhileElementNotFound(consent_checkbox, true, 5, "up");
-
+			mobileAction.FuncClick(consent_checkbox, "consent check box");
 		} catch (Exception e) {
 			return false;
 		}
@@ -889,12 +895,17 @@ public class PurchaseMutualFunds extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(fund_dropdown_list, "Funds dorpdown list");
-
-			if (!mobileAction.verifyElementIsPresent(Ineligible_fund)) {
-				mobileAction.FuncSwipeWhileElementNotFound(Ineligible_fund, true, 10, "up");
+			String ineligibalXpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+				ineligibalXpath = "//XCUIElementTypeStaticText[contains(@label,'"
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_INELIGIBLE_LABEL)
+						+ "')]/../XCUIElementTypeStaticText[1]";
 			} else {
-				mobileAction.FuncClick(Ineligible_fund, "Ineligible Fund");
+				ineligibalXpath = "//android.widget.TextView[contains(@text,'"
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_INELIGIBLE_LABEL)
+						+ "')]/../android.widget.TextView[@resource-id='com.td:id/txtItemValue']";
 			}
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(ineligibalXpath, true, 10, "up");
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -924,15 +935,12 @@ public class PurchaseMutualFunds extends _CommonPage {
 			}
 
 			// String capturedErrorMsg = mobileAction.getValue(error_message);
-			String expectedErrorMsg = "Looks like you're not set up to purchase mutual funds. Let us help you by calling \\d{1}-\\d{3}-\\d{3}-\\d{4}.";
+			String expectedErrorMsg = getTextInCurrentLocale(StringArray.ARRAY_MF_NONELIGIBAL_ERROR_MSG);
 			if (currentLocale.equalsIgnoreCase("fr")) {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					expectedErrorMsg = "Il semble que vous ne puissiez pas effectuer d’achats. Pour obtenir de l’aide, composez le \\d{1}–\\d{3}–\\d{3}–\\d{4}.";
-				} else {
-					expectedErrorMsg = "Il semble que vous ne puissiez pas effectuer d’achats. Pour obtenir de l’aide, composez le \\d{1}-\\d{3}-\\d{3}-\\d{4}.";
+					expectedErrorMsg = expectedErrorMsg.replaceAll("-", "–");
 				}
 			}
-
 			mobileAction.verifyElementTextIsDisplayed(error_message, expectedErrorMsg);
 
 		} catch (NoSuchElementException e) {
@@ -963,15 +971,13 @@ public class PurchaseMutualFunds extends _CommonPage {
 			}
 
 			// String capturedErrorMsg = mobileAction.getValue(error_message);
-			String expectedErrorMsg = "Looks like the account you are using is closed. Try another fund or let us help you by calling \\d{1}-\\d{3}-\\d{3}-\\d{4}.";
+			String expectedErrorMsg = getTextInCurrentLocale(StringArray.ARRAY_MF_CLOASED_ACCOUNT_ERROR_MSG);
+
 			if (currentLocale.equalsIgnoreCase("fr")) {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					expectedErrorMsg = "Il semble que le compte est fermé. Essayez avec un autre fonds, ou appelez-nous au \\d{1}–\\d{3}–\\d{3}–\\d{4} pour obtenir de l’aide.";
-				} else {
-					expectedErrorMsg = "Il semble que le compte est fermé. Essayez avec un autre fonds, ou appelez-nous au \\d{1}-\\d{3}-\\d{3}-\\d{4} pour obtenir de l’aide.";
+					expectedErrorMsg = expectedErrorMsg.replaceAll("-", "–");
 				}
 			}
-
 			mobileAction.verifyElementTextIsDisplayed(error_message, expectedErrorMsg);
 
 		} catch (NoSuchElementException e) {
@@ -1052,7 +1058,9 @@ public class PurchaseMutualFunds extends _CommonPage {
 				}
 
 				emialInfo = mobileAction.getValue(email_info);
-				emialInfo = replacePlaceholderToNothing(emialInfo, emailPlaceHolder);
+				emialInfo = replacePlaceholderToNothing(emialInfo,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL_PLACEHOLDER));
+				emialInfo = replacePlaceholderToNothing(emialInfo, StringArray.ARRAY_MF_EMAIL_PLACEHOLDER[0]);
 				if (emialInfo.isEmpty()) {
 					mobileAction.Report_Pass_Verified("Email is edited to empty");
 				} else {

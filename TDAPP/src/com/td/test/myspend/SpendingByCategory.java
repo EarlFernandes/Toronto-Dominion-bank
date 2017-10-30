@@ -690,12 +690,12 @@ public class SpendingByCategory extends _CommonPage {
 					String[] catArr = category.split(". ");
 					mobileAction.verifyElementIsDisplayed(transactionCategory, "Transaction Category: " + catArr[0]);
 					
-					spendingDetailsTransacName="//*[contains(@label,'"+ catArr[0] +" Spending Details') or contains(@label,'Détail des dépenses "+ catArr[0] +"')]/following-sibling::XCUIElementTypeOther[3]";
+					spendingDetailsTransacName="//*[contains(@label,'Spending Details') or contains(@label,'Détail des dépenses')]/following-sibling::XCUIElementTypeOther[3]";
 					MobileElement transacName=mobileAction.mobileElementUsingXPath(spendingDetailsTransacName);
 					String TransName = transacName.getAttribute("name");
 					mobileAction.verifyElementIsDisplayed(transacName, "Transaction: " + TransName);
 	
-					spendingDetailsTransacAmount="//*[contains(@label,'"+ catArr[0] +" Spending Details') or contains(@label,'Détail des dépenses "+ catArr[0] +"')]/following-sibling::XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeStaticText";
+					spendingDetailsTransacAmount="//*[contains(@label,'Spending Details') or contains(@label,'Détail des dépenses')]/following-sibling::XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeStaticText";
 					MobileElement transacAmount=mobileAction.mobileElementUsingXPath(spendingDetailsTransacAmount);
 					String amountText = transacAmount.getAttribute("name");
 					mobileAction.verifyElementIsDisplayed(transacAmount, "Amount: " + amountText);

@@ -13,6 +13,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class TourPage extends _CommonPage {
 
@@ -30,40 +31,61 @@ public class TourPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Connect using your TD bank app') or contains(@content-desc,'Connect')]")
 	private MobileElement connectBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue' or @label='Continuer']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Continue' or @label='Continuer']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/skittles_feature_button']")
 	private MobileElement continueBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Get Started' or @label='Commencer']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Get Started' or @label='Commencer']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/skittles_feature_button']")
 	private MobileElement getStartedBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Accept' or @label='Acceptez']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Accept' or @label='Acceptez']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/acceptButton']")
 	private MobileElement acceptBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progresssBar;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Open TD MySpend' or @label='Acceptez']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Open TD MySpend' or @label='Acceptez']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/button']")
 	private MobileElement openTDMySpend;
 
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Loading your accounts') or contains(@content-desc,'Analyzing your transactions')]")
 	private MobileElement loadingAccounts;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'TD MySpend is ready to go') or contains(@label,'Dépense TD peut maintenant être utilisée')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'TD MySpend is ready to go') or contains(@label,'Dépense TD peut maintenant être utilisée')]")
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'TD MySpend is ready to go')]")
 	private MobileElement MySpendReadyToGo;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'See the TD MySpend') or contains(@label,'Pour en savoir plus')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'See the TD MySpend') or contains(@label,'Pour en savoir plus')]")
 	@AndroidFindBy(xpath = "//android.view.View[@resource-id='fxMsgHeader']")
 	private MobileElement fxMsgHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='OK']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='OK']")
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'OK')]")
 	private MobileElement okBtn;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Like to Send You Notifications')]")
+	private MobileElement sendNotification;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Allow']")
+	private MobileElement allowBtn;
+	
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Username or Access Card') or contains(@value,'Username or Access Card') or contains(@label,'Access Card or Username') or @name='LOGIN_USERNAME']")
+	private MobileElement username;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeSecureTextField[@name='Password']")
+	private MobileElement password;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Login']")
+	private MobileElement login;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeButton[1]")
+	private MobileElement select_accesscard;
+	
+	@iOSXCUITFindBy(xpath= "//XCUIElementTypeStaticText[@name='Add Username or Access Card']")
+	private MobileElement addUser;
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -153,9 +175,14 @@ public class TourPage extends _CommonPage {
 			if (mobileAction.verifyElementIsPresent(MySpendReadyToGo)) {
 				mobileAction.FuncClick(MySpendReadyToGo, "TD My Spend is ready to go");
 			}
-			else if (mobileAction.verifyElementIsPresent(fxMsgHeader)) {
+			if (mobileAction.verifyElementIsPresent(fxMsgHeader)) {
 				mobileAction.FuncClick(okBtn, "OK");
 			}
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				if(mobileAction.verifyElementIsPresent(sendNotification)){
+					mobileAction.FuncClick(allowBtn, "Allow");
+			}
+				}
 
 		} catch (NoSuchElementException e) {
 			try {
@@ -182,6 +209,40 @@ public class TourPage extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+	
+	/**
+	 * This method will login into mySpend 
+	 * 
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 */
+	public void mySpendLogin() {
+
+		Decorator();
+
+		try {
+			
+			if(mobileAction.verifyElementIsPresent(select_accesscard)){
+				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
+				mobileAction.FuncClick(addUser, "AddUser");
+			}
+			mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
+			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+			Thread.sleep(3000);
+			mobileAction.FuncClick(login, "Login");
+
+		}catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
