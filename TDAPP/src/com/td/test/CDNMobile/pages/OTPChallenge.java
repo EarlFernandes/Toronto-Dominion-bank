@@ -48,8 +48,8 @@ public class OTPChallenge extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/loading_indicator_textview")
 	private MobileElement progressBar;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
-	@FindBy(xpath = "//a[@ng-click='sp.testPhone(phone)' and @tabindex='0']")
+	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]") // TBD
+	@FindBy(id = "phone_0")
 	private WebElement firstPhoneNumber;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeTextField[1]")
@@ -60,21 +60,21 @@ public class OTPChallenge extends _CommonPage {
 	@FindBy(id = "enter")
 	private WebElement submitCodeButton;
 
-	//@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='server-validation']/span[2]")
 	private WebElement cannotVerifySecurityCodeMsg;
 
-	//@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='server-validation']/span[2]")
 	private WebElement tooManySecurityCodesRequestedMsg;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeLink[1]")
-	@FindBy(xpath = "//a[@ng-click='ec.resendCode()']")
+	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeLink[1]") // TBD
+	@FindBy(xpath = "//a[contains(@href,'change-phone')]")
 	private WebElement resendCodeLink;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeOther[3]/XCUIElementTypeButton[1]")
-	@AndroidFindBy(id = "android:id/button3")
-	private MobileElement resendCodeDialogTextButton;
+	@iOSFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeOther[3]//XCUIElementTypeButton[1]")
+	@AndroidFindBy(id = "android:id/button1")
+	private MobileElement sessionExpiredOK;
 
 	private String GOOGLE_VOICE_URL = "http://voice.google.com";
 	private String GOOGLE_VOICE_login = "tdmobileqa1@gmail.com";
@@ -158,8 +158,6 @@ public class OTPChallenge extends _CommonPage {
 			}
 			mobileAction.FuncClick(getCodeButton, "Get Code Button");
 
-			mobileAction.switchAppiumContext("NATIVE_APP");
-			mobileAction.waitForElementToVanish(progressBar);
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -214,8 +212,28 @@ public class OTPChallenge extends _CommonPage {
 			}
 			mobileAction.FuncClick(submitCodeButton, "submit code button");
 
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 			mobileAction.switchAppiumContext("NATIVE_APP");
-			mobileAction.waitForElementToVanish(progressBar);
+		}
+	}
+
+	public void clickFirstPhoneNumber() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			}
+
+			mobileAction.FuncClick(firstPhoneNumber, "First phone number");
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -235,11 +253,10 @@ public class OTPChallenge extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 			}
-			mobileAction.FuncClick(resendCodeLink, "Resend Code button click");
 
-			mobileAction.switchAppiumContext("NATIVE_APP");
-			mobileAction.FuncClick(resendCodeDialogTextButton, "Resend code confirmation dialog, TEXT button");
-			mobileAction.waitForElementToVanish(progressBar);
+			// Doesn't allow immediate code requests, needs to wait some time
+			Thread.sleep(10000);
+			mobileAction.FuncClick(resendCodeLink, "Resend Code button click");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -285,10 +302,41 @@ public class OTPChallenge extends _CommonPage {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} finally {
-
 		}
 		return passcode;
+	}
+
+	public void idleTillLoggedOut() {
+		Decorator();
+		try {
+			// Need to wait 2mins for session timeout, but Appium doesn't allow
+			// 2mins of inactivity
+			for (int i = 0; i < 2; i++) {
+				Thread.sleep(1000 * 60);
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+					mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				} else {
+					mobileAction.switchAppiumContext("NATIVE_APP");
+				}
+			}
+
+			mobileAction.FuncClick(submitCodeButton, "Submit Code button click");
+
+			mobileAction.switchAppiumContext("NATIVE_APP");
+			mobileAction.verifyElementIsDisplayed(sessionExpiredOK, "Session Expired dialog, OK button");
+			mobileAction.FuncClick(sessionExpiredOK, "Session Expired dialog, OK button");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+			mobileAction.switchAppiumContext("NATIVE_APP");
+		}
 	}
 
 	public void verifyInvalidSecurityCodeMsg() {

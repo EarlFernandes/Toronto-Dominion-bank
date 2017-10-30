@@ -133,8 +133,7 @@ public final class StringArray {
 	public static final String[] ARRAY_OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED = {
 			"You've exceeded the number of security code requests",
 			"Vous avez atteint le nombre maximal de demandes de code de sécurité", "您索取安全码的次数已超过上限", "您要求索取驗證碼的次數太多" };
-	public static final String[] ARRAY_OTP_SETUP_GET_STARTED = { "Get started", "Commencer", "立即开始", "立即開始" };
-	public static final String[] ARRAY_OTP_SETUP_GET_STARTED_IOS = { "Get Started", "Commencer", "立即开始", "立即開始" };
+	public static final String[] ARRAY_OTP_SETUP_GET_STARTED = { "Get Started", "Commencer", "立即开始", "立即開始" };
 	public static final String[] ARRAY_OTP_SETUP_ADD_ANOTHER_PHONE = { "Add another phone?",
 			"Ajouter un autre téléphone?", "添加其他电话号码", "新增更多電話號碼" };
 	public static final String[] ARRAY_OTP_SETUP_INVALID_PASSCODE_FORMAT = { "Please enter numbers only",
@@ -155,6 +154,8 @@ public final class StringArray {
 	public static final String[] ARRAY_OTP_SETUP_PASSCODE_VERIFIED = { "Verified", "Validé", "验证成功", "驗證成功" };
 	public static final String[] ARRAY_OTP_SETUP_SETUP_COMPLETE_HEADER = { "Security Setup Complete",
 			"Configuration de sécurité terminée", "安全设置完成", "安全設定完成" };
+	public static final String[] ARRAY_OTP_SETUP_ADD_PHONE_HEADER = { "Add Phone", "Ajouter un téléphone", "添加电话号码",
+			"新增電話號碼" };
 
 	public static final String[] ARRAY_OTP_UPDATE_HEADER = {
 			"You can review and manage your current security settings below",
@@ -257,6 +258,10 @@ public final class StringArray {
 	public static final String[] ARRAY_BRABCH_HEADER = { "Branch", "Succursale", "分行", "分行" };
 	public static final String[] ARRAY_FIND_LOCATION = { "Find Locations", "Trouver une succursale", "查找分行", "查找分行" };
 	public static final String[] ARRAY_CONFIRM = { "Confirm", "Confirm", "确认", "確認" };
+	public static final String[] ARRAY_PREFERENCE_NEW_SECURITY_SETUP = { "New Security Setup",
+			"Nouvelle configuration de sécurité", "新的安全设置", "新的安全設定" };
+	public static final String[] ARRAY_PREFERENCE_SET_UP_NOW = { "Set Up Now", "Configurer maintenant", "立即设置",
+			"立即設定" };
 	public static final String[] ARRAY_PREFERENCE_NOTIFICATIONS = { "Notifications", "Avis", "通知", "通知" };
 	public static final String[] ARRAY_PREFERENCE_TD_FOR_ME_SETTINGS = { "TD for Me Settings", "Paramètres TD et moi",
 			"TD for Me 设置", "TD for Me 設置" };

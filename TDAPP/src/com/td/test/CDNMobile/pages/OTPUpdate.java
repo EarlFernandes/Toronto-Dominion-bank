@@ -137,7 +137,6 @@ public class OTPUpdate extends _CommonPage {
 	@FindBy(id = "getCode")
 	private WebElement otpUpdateContinueButton;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Thanks') or contains(@label,'Merci') or contains(@label,'谢谢') or contains(@label,'謝謝') ]")
 	@AndroidFindBy(id = "com.td:id/notice_header")
 	private MobileElement otpUpdateCompleteHeader;
 
@@ -270,13 +269,12 @@ public class OTPUpdate extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				if (!addPhoneUpdateButton.isDisplayed()) {
-					mobileAction.FunctionSwipe("up", 100, 0);
+					mobileAction.FunctionSwipe("up", 1000, 0);
 				}
 			}
 
 			mobileAction.FuncClick(addPhoneUpdateButton, "Add Phone Update Button");
 			mobileAction.FuncClick(addAnotherPhoneButton, "Add Another Phone Button");
-
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -342,7 +340,7 @@ public class OTPUpdate extends _CommonPage {
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				if (!editPhoneField.isDisplayed()) {
-					mobileAction.FunctionSwipe("up", 100, 0);
+					mobileAction.FunctionSwipe("up", 1000, 0);
 				}
 
 				mobileAction.FuncClick(editPhoneField, "Edit Phone Number");
@@ -403,7 +401,7 @@ public class OTPUpdate extends _CommonPage {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.FuncScrollIntoView(changeEmailUpdateButton, "Change Email Button");
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FunctionSwipe("up", 100, 0);
+				mobileAction.FunctionSwipe("up", 1000, 0);
 			}
 			mobileAction.FuncClick(changeEmailUpdateButton, "Change Email Button");
 
@@ -448,7 +446,7 @@ public class OTPUpdate extends _CommonPage {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.FuncScrollIntoView(changeLoginOptionUpdateButton, "Change Login Option Button");
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FunctionSwipe("up", 100, 0);
+				mobileAction.FunctionSwipe("up", 1000, 0);
 			}
 			mobileAction.FuncClick(changeLoginOptionUpdateButton, "Change Login Option Button");
 
@@ -970,7 +968,7 @@ public class OTPUpdate extends _CommonPage {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.FuncScrollIntoView(emailUpdateField, "Security Email field");
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FunctionSwipe("up", 100, 0);
+				mobileAction.FunctionSwipe("up", 1000, 0);
 			}
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")
@@ -1090,6 +1088,12 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_OTP_UPDATE_COMPLETE_HEADER);
+				otpUpdateCompleteHeader = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[contains(@label,'" + labelText + "')]",
+						"OTP Update complete screen header");
+			}
 			mobileAction.verifyElementIsDisplayed(otpUpdateCompleteHeader, "OTP Update complete screen header");
 			mobileAction.verifyElementTextContains(otpUpdateCompleteHeader,
 					getTextInCurrentLocale(StringArray.ARRAY_OTP_UPDATE_COMPLETE_HEADER));

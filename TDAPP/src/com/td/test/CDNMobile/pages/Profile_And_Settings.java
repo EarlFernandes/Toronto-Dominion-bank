@@ -31,7 +31,7 @@ public class Profile_And_Settings extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_security']/android.widget.TextView")
 	private MobileElement security_questions;
-
+	
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_notifications']/android.widget.TextView")
 	private MobileElement notifications;
 
@@ -48,6 +48,12 @@ public class Profile_And_Settings extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Payments & Transfers' or @text='Paiements et virements']")
 	private MobileElement paymentsAndTransfers;
 
+	@AndroidFindBy(id = "com.td:id/profile_landing_nav_security")
+	private MobileElement newSecuritySetup;
+	
+	@AndroidFindBy(id = "com.td:id/otp_settings_button")
+	private MobileElement setUpNow;
+	
 	public synchronized static Profile_And_Settings get() {
 		if (ProfileAndSettings == null) {
 			ProfileAndSettings = new Profile_And_Settings();
@@ -258,4 +264,33 @@ public class Profile_And_Settings extends _CommonPage {
 		}
 	}
 
+	public void newSecuritySetup() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_NEW_SECURITY_SETUP);
+				newSecuritySetup = mobileAction.verifyElementUsingXPath("//*[@label='" + labelText + "']",
+						"New Security Setup");
+			}
+			mobileAction.FuncClick(newSecuritySetup, "New Security Setup Button");
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_SET_UP_NOW);
+				newSecuritySetup = mobileAction.verifyElementUsingXPath("//*[@label='" + labelText + "']",
+						"Set Up Now");
+			}
+			mobileAction.FuncClick(setUpNow, "Set Up Now Button");
+			
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+	
 }
