@@ -31,38 +31,38 @@ public class TourPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Connect using your TD bank app') or contains(@content-desc,'Connect')]")
 	private MobileElement connectBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue' or @label='Continuer']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Continue' or @label='Continuer']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/skittles_feature_button']")
 	private MobileElement continueBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Get Started' or @label='Commencer']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Get Started' or @label='Commencer']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/skittles_feature_button']")
 	private MobileElement getStartedBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Accept' or @label='Acceptez']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Accept' or @label='Acceptez']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/acceptButton']")
 	private MobileElement acceptBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement progresssBar;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Open TD MySpend' or @label='Acceptez']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Open TD MySpend' or @label='Acceptez']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/button']")
 	private MobileElement openTDMySpend;
 
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Loading your accounts') or contains(@content-desc,'Analyzing your transactions')]")
 	private MobileElement loadingAccounts;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'TD MySpend is ready to go') or contains(@label,'Dépense TD peut maintenant être utilisée')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'TD MySpend is ready to go') or contains(@label,'Dépense TD peut maintenant être utilisée')]")
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'TD MySpend is ready to go')]")
 	private MobileElement MySpendReadyToGo;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'See the TD MySpend') or contains(@label,'Pour en savoir plus')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'See the TD MySpend') or contains(@label,'Pour en savoir plus')]")
 	@AndroidFindBy(xpath = "//android.view.View[@resource-id='fxMsgHeader']")
 	private MobileElement fxMsgHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='OK']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='OK']")
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'OK')]")
 	private MobileElement okBtn;
 	
