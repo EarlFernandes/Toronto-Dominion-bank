@@ -317,7 +317,8 @@ public class PayBill extends _CommonPage {
 				CL.getTestDataInstance().TCParameters.put("ToAccount", acctNum);
 			}
 
-			String amt = getTestdata("Amount");
+			// String amt = getTestdata("Amount");
+			String amt = getTimeAsAmt();
 			mobileAction.FuncClick(amount, "Amount button clicked");
 			mobileAction.FuncSendKeys(amount, amt);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -378,10 +379,10 @@ public class PayBill extends _CommonPage {
 	private String getTimeAsAmt() {
 
 		Calendar cal = Calendar.getInstance();
-		String amt = String.valueOf(cal.get(Calendar.MONTH)) + String.valueOf(cal.get(Calendar.DATE))
-				+ String.valueOf(cal.get(Calendar.HOUR)) + "." + String.valueOf(cal.get(Calendar.MINUTE));
+		String amt = String.valueOf(cal.get(Calendar.MONTH) + cal.get(Calendar.DATE)) + "."
+				+ String.valueOf(cal.get(Calendar.HOUR_OF_DAY));
 
-		return String.valueOf(amt);
+		return amt;
 	}
 
 }
