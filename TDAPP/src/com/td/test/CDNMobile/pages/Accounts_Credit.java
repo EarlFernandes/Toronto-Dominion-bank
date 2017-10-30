@@ -8,6 +8,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.MobileAction2;
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -222,6 +223,10 @@ public class Accounts_Credit extends _CommonPage {
 	public void clickSummary() {
 		Decorator();
 		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				summaryTab = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_TAB_SUMMARY) + "']", "Summary Tab");
+			}
 			mobileAction.FuncClick(summaryTab, "Summary tab");
 			Thread.sleep(3000);
 		} catch (NoSuchElementException e) {
@@ -495,6 +500,10 @@ public class Accounts_Credit extends _CommonPage {
 	public void verifySummaryTabTextElements() {
 		Decorator();
 		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				summaryTab = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_TAB_SUMMARY) + "']", "Summary Tab");
+			}
 			mobileAction.FuncClick(summaryTab, "Summary Tab");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"

@@ -49,6 +49,7 @@ public final class StringArray {
 	public static final String[] ARRAY_TAB_FUND = { "Funds", "Fonds", "基金", "基金" };
 	public static final String[] ARRAY_FUND_TAB_LEFT = { "FUND", "FONDS", "基金", "基金" };
 	public static final String[] ARRAY_TAB_ACTIVITY = { "Activity", "Activité", "活动", "活動" };
+	public static final String[] ARRAY_TAB_SUMMARY = { "Summary", "Sommaire", "概要", "摘要" };
 	public static final String[] ARRAY_TABLE_DATE = { "DATE", "DATE", "日期", "日期" };
 	public static final String[] ARRAY_TABLE_TRANSACTION = { "TRANSACTION", "OPÉRATION", "交易", "交易" };
 	public static final String[] ARRAY_TABLE_AMOUNT = { "AMOUNT", "MONTANT", "金额", "金額" };
@@ -340,6 +341,8 @@ public final class StringArray {
 			"新增加拿大收款人" };
 	public static final String[] ARRAY_ADD_US_PAYEE = { "Add U.S. Payee", "Ajouter un preneur américain", "添加美国收款人",
 			"新增美國收款人" };
+	public static final String[] ARRAY_PAY_US_BILL_TITLE = { "Pay U.S. Bill", "Payer des factures américaines", "支付美国账单",
+	"支付美國賬單" };
 	public static final String[] ARRAY_INVESTING_OPEN_ACCOUNT = { "Open a TD Direct Investing Account",
 			"Ouvrir un compte Placements directs TD", "开设道明自管投资账户", "開設道明自管投資賬戶" };
 	public static final String[] ARRAY_INVESTING_CROSS_MSG = {
