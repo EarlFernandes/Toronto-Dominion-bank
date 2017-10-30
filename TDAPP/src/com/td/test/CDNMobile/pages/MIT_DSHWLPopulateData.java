@@ -498,16 +498,18 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 		try {
 
 			String[] aSymbolList = getTestdata("Symbol", XLSheetUserIDs).split(",");
-			
+
 			for (String sSymbol : aSymbolList) {
 				String xpathWLSymbol = "//*[@label='" + sSymbol + "' or @text='" + sSymbol + "']";
 				String xpathWLSymbolFlag = "//*[@label='" + sSymbol + "' or @text='" + sSymbol
-						+ "']/../*[@name='flagImageView']";
+						+ "']/../*[@name='flagImageView' or @resource-id='com.td:id/iv_item_watchlist_flag']";
 				String xpathWLSymbolCompanyName = "//*[@label='" + sSymbol + "' or @text='" + sSymbol
-						+ "']/../*[@name='companyLabel']";
+						+ "']/../*[@name='companyLabel' or @resource-id='com.td:id/tv_item_watchlist_desp']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbol, false, 10, "up");
+
 				mobileAction.verifyElementUsingXPath(xpathWLSymbolFlag, "Country Flag");
 				if (!sSymbol.contains(" ")) {
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolCompanyName, false, 4, "up");
 					String sCompanyName = mobileAction.FuncGetTextByxpath(xpathWLSymbolCompanyName);
 					CL.GetReporting().FuncReport(PASS, sSymbol + " company name : " + sCompanyName);
 				}

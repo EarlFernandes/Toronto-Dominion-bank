@@ -83,12 +83,16 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Accessory_Button")
 	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
 	private MobileElement ICON_Chevron;
+	
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
+	@AndroidFindBy(id = "android:id/up")
+	MobileElement BT_Back;
 
 	public void verifyHomeScreenSettingsUI() {
 		Decorator();
 		try {
-			mobileAction.FuncClick(BT_Home_HamburgerMenu, "Home HamburgerMenu");
-			mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings, true, 5, "up");
+/*			mobileAction.FuncClick(BT_Home_HamburgerMenu, "Home HamburgerMenu");
+			mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings, true, 5, "up");*/
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
 			}
@@ -110,8 +114,8 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	public void verifyHomeScreenSettingsInvestingUser() {
 		Decorator();
 		try {
-			mobileAction.FuncClick(BT_Home_HamburgerMenu, "Home HamburgerMenu");
-			mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings, true, 5, "up");
+/*			mobileAction.FuncClick(BT_Home_HamburgerMenu, "Home HamburgerMenu");
+			mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings, true, 5, "up");*/
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
 			}
@@ -129,8 +133,8 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	public void verifyHomeScreenSettingsPageUI() {
 		Decorator();
 		try {
-			mobileAction.FuncClick(BT_Home_HamburgerMenu, "Home HamburgerMenu");
-			mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings, true, 5, "up");
+/*			mobileAction.FuncClick(BT_Home_HamburgerMenu, "Home HamburgerMenu");
+			mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings, true, 5, "up");*/
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
 			}
@@ -187,6 +191,34 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 
 			mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void verifyHomeScreenSettingsBlendedInvestingFocusUser() {
+		Decorator();
+		try {
+			if (mobileAction.isObjExists(LBL_InvestingViewIsNowOn)) {
+				CL.GetReporting().FuncReport(PASS, "Enable Investing View is bydefault ON for investing focus user.");
+			} else {
+				CL.GetReporting().FuncReport(FAIL, "Enable Investing View is not bydefault ON for investing focus user.");
+			}
+			
+			mobileAction.FuncClick(BT_Back, "< Button");
+			
+			mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void goToProfileAndSettings() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "Home HamburgerMenu");
+			mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings, true, 5, "up");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
