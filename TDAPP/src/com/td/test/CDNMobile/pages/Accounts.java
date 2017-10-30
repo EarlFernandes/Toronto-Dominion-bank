@@ -863,7 +863,7 @@ public class Accounts extends _CommonPage {
 			}
 
 			System.out.println("Acnt_Description:" + Acnt_Description);
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, true, 50, "up", true);
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(Acnt_Description, true, 100, "up", true);
 			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
