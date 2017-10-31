@@ -2815,7 +2815,7 @@ public class MobileAction2 extends CommonLib {
 			}
 
 		} else {
-			back_xpath = "//*[@name='NAVIGATION_ITEM_BACK' or @label='p2p header caret']";
+			back_xpath = "//XCUIElementTypeButton[@name='NAVIGATION_ITEM_BACK' or @label='p2p header caret']";
 			try {
 				MobileElement back_arrow = (MobileElement) GetDriver().findElement(By.xpath(back_xpath));
 				FuncClick(back_arrow, "<");
@@ -3512,7 +3512,7 @@ public class MobileAction2 extends CommonLib {
 		MobileElement progressBar = null;
 		String progressbarXpath = "";
 		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-			progressbarXpath = "//*[@resource-id='android:id/message' or @resource-id='com.td:id/loading_indicator_textview']";
+			progressbarXpath = "//android.widget.TextView[@resource-id='android:id/message' or @resource-id='com.td:id/loading_indicator_textview']";
 		} else {
 			progressbarXpath = "//XCUIElementTypeActivityIndicator[@value='1']";
 		}
@@ -3539,7 +3539,7 @@ public class MobileAction2 extends CommonLib {
 			menuXpath = "//android.widget.ImageView[@resource-id='android:id/up' and @index='0']";
 			menuSlideXpath = "//android.widget.ListView[@index='1']";
 		} else {
-			menuXpath = "//*[@name ='NAVIGATION_ITEM_MENU']";
+			menuXpath = "//XCUIElementTypeButton[@name ='NAVIGATION_ITEM_MENU']";
 			menuSlideXpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']";
 		}
 		boolean isMenuOpened = false;

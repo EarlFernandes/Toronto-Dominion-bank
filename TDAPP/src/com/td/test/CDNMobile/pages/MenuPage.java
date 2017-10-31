@@ -98,7 +98,7 @@ public class MenuPage extends _CommonPage {
 	private MobileElement profile_and_settings;
 
 	// customer feedback
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_FEEDBACK']/XCUIElementTypeStaticText | ")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_FEEDBACK']/XCUIElementTypeStaticText | @name='NAV_DRAWER_ITEMS_FEEDBACK']")
 	private MobileElement give_feedback;
 
 	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_MAIL_TITLE']")
