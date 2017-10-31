@@ -208,7 +208,7 @@ public class Login extends _CommonPage {
 
 	//@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
-	@iOSXCUITFindBy(xpath="//*[@name='TD MySpend' or @name='TDVIEW_TITLE']")
+	@iOSXCUITFindBy(xpath="//*[@name='TD MySpend' or @name='Dépense TD' or @name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//*[@resource-id='android:id/action_bar_title' or @resource-id='android:id/content']")
 	private MobileElement logined_page_Header;
 
