@@ -496,7 +496,7 @@ public class MyspendPreferences extends com.td._CommonPage {
 				
 				
 				mobileAction.FuncClick(saveBtnAndroid, "Save Button");
-				mobileAction.verifyTextContains((MobileElement)realTimeNotificationStatusAndroid, notiStatus);
+				mobileAction.verifyTextContains(realTimeNotificationStatusAndroid, notiStatus);
 				CL.GetAppiumDriver().context("NATIVE_APP");
 				
 				
@@ -615,7 +615,7 @@ public class MyspendPreferences extends com.td._CommonPage {
 				
 				mobileAction.FuncClick(saveBtnAndroid, "Save Button");
 				System.out.println("dailyDigestNotificationsAndroid: "+dailyDigestNotificationsAndroid.getText());
-				mobileAction.verifyTextContains((MobileElement)dailyDigestNotificationsAndroid,notiStatus);
+				mobileAction.verifyTextContains(dailyDigestNotificationsAndroid,notiStatus);
 				//CL.GetAppiumDriver().context("NATIVE_APP");
 				//Spending_Insight.get().clickSideMenuButton();
 				CL.GetAppiumDriver().context("NATIVE_APP");

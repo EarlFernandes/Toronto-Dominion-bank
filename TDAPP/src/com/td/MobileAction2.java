@@ -1501,7 +1501,7 @@ public class MobileAction2 extends CommonLib {
 	 * @return
 	 */
 
-	public boolean verifyTextContains(MobileElement mobileElement, String expectedText) {
+	public boolean verifyTextContains(WebElement mobileElement, String expectedText) {
 		String retrivedText = mobileElement.getText();
 
 		if (retrivedText.contains(expectedText)) {
