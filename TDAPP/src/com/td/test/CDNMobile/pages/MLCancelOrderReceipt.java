@@ -74,6 +74,10 @@ public class MLCancelOrderReceipt extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[contains(@text,'Receipt') or contains(@text,'Reçu')]")
 	private MobileElement hdrReceipt;
 
+	@iOSFindBy(xpath = "//*[contains(@label,'Menu')]")
+	@AndroidFindBy(id = "android:id/up")
+	MobileElement MenuUp;
+
 	@iOSFindBy(xpath = "//*[contains(@label,'Thank you!') or contains(@label,'Merci!')]") // @Author
 																							// -
 																							// Sushil

@@ -50,6 +50,9 @@ public class WatchLists extends _CommonPage {
 	@iOSFindBy(xpath = "//*[contains(@label,'CA']")
 	private MobileElement symbol_td;
 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_tradingPassword']")
+	private MobileElement progressBar;
+
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/btn_cancel']")
 	private MobileElement CancelBtn;
 
@@ -164,7 +167,7 @@ public class WatchLists extends _CommonPage {
 
 				mobileAction.FuncClick(wishList, "WishList " + i);
 
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitForElementToVanish(progressBar);
 
 			}
 

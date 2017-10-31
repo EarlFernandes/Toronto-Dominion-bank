@@ -37,6 +37,16 @@ public class MIT_PNSAccessAlerts extends _CommonPage {
 				this);
 	}
 
+	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']") // @Author -
+																// Sushil
+																// 07-Mar-2017
+	@AndroidFindBy(id = "android:id/action_bar_title")
+	private MobileElement backButton;
+
+	@iOSFindBy(xpath = "//*[contains(@label,'Menu')]")
+	@AndroidFindBy(id = "android:id/up")
+	MobileElement MenuUp;
+
 	@iOSFindBy(xpath = "//XCUIElementTypeCell[@name='NAV_DRAWER_ITEMS_LOGOUT']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement Logout;
@@ -128,7 +138,7 @@ public class MIT_PNSAccessAlerts extends _CommonPage {
 	public void logout() {
 		Decorator();
 		try {
-			mobileAction.clickMenuButton();
+			mobileAction.FuncClick(MenuUp, "Hamburger Menu");
 			mobileAction.FuncClick(Logout, "Logout");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -138,7 +148,7 @@ public class MIT_PNSAccessAlerts extends _CommonPage {
 	public void verifyPreLoginDashboardAlerts() {
 		Decorator();
 		try {
-			mobileAction.ClickBackButton();
+			mobileAction.FuncClick(backButton, "backButton");
 			logout();
 			mobileAction.FuncClick(BTN_GOBACKHOME, "BTN_GOBACKHOME");
 			mobileAction.verifyElementIsDisplayed(LBL_Alerts, "Alerts");
@@ -259,7 +269,7 @@ public class MIT_PNSAccessAlerts extends _CommonPage {
 	public void verifyNotificationPrefMOD() {
 		Decorator();
 		try {
-			mobileAction.ClickBackButton();
+			mobileAction.FuncClick(backButton, "backButton");
 
 			mobileAction.FuncClick(LBL_Alerts, "Alerts");
 
@@ -283,8 +293,8 @@ public class MIT_PNSAccessAlerts extends _CommonPage {
 	public void verifyNotificationPrefFlyMenu() {
 		Decorator();
 		try {
-			mobileAction.ClickBackButton();
-			mobileAction.clickMenuButton();
+			mobileAction.FuncClick(backButton, "backButton");
+			mobileAction.FuncClick(MenuUp, "Hamburger Manu");
 			mobileAction.FuncSwipeWhileElementNotFound(MN_Settings, true, 5, "up");
 			mobileAction.FuncClick(LBL_Notifications, "Notifications");
 			mobileAction.verifyElementIsDisplayed(HDR_Notifications, "Notifications");
@@ -320,9 +330,9 @@ public class MIT_PNSAccessAlerts extends _CommonPage {
 				 * System.out.println("hi"); if(contextes.contains("WEBVIEW")) {
 				 * ((AppiumDriver) CL.GetDriver()).context(contextes);
 				 * System.out.println(CL.GetDriver().getPageSource());
-				 * if(((AppiumDriver) CL.GetDriver()).getPageSource().contains(
-				 * "Active Alerts")) { sWebViewContext = contextes; //break; }
-				 * // } }
+				 * if(((AppiumDriver)
+				 * CL.GetDriver()).getPageSource().contains("Active Alerts")) {
+				 * sWebViewContext = contextes; //break; } // } }
 				 */
 				/*
 				 * final String text = ((AppiumDriver) CL.GetDriver())

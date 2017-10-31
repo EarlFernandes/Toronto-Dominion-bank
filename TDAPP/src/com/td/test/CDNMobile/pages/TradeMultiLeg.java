@@ -265,6 +265,12 @@ public class TradeMultiLeg extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Confirm Order' or contains(@text,'Confirmer l')) and @resource-id='android:id/action_bar_title']")
 	private MobileElement titleConfirmOrder;
 
+	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']") // @Author -
+																// Sushil
+																// 07-Mar-2017
+	@AndroidFindBy(id = "android:id/action_bar_title")
+	private MobileElement backButton;
+
 	@iOSFindBy(xpath = "//*[@label='OK' or @label='Done' or @name='Go' or @name='Search']") // @Author
 																							// -
 																							// Sushil
@@ -1250,7 +1256,7 @@ public class TradeMultiLeg extends _CommonPage {
 
 			SearchPageMIT.get().clickFirstSymbol("TD");
 
-			mobileAction.ClickBackButton();
+			mobileAction.FuncClick(backButton, "backButton");
 			mobileAction.verifyElement(messageBackButton, getTestdata("WarningMessage", XLSheetUserIDs));
 			mobileAction.FuncClick(cancelButton, "cancelButton");
 
@@ -1292,7 +1298,7 @@ public class TradeMultiLeg extends _CommonPage {
 				mobileAction.FuncClick(firstAskCALLSMUL, "firstAskCALLSMUL");
 			}
 
-			mobileAction.ClickBackButton();
+			mobileAction.FuncClick(backButton, "backButton");
 			mobileAction.verifyElement(messageBackButton, getTestdata("WarningMessage", XLSheetUserIDs));
 			mobileAction.FuncClick(cancelButton, "cancelButton");
 
@@ -1304,7 +1310,7 @@ public class TradeMultiLeg extends _CommonPage {
 
 			SearchPageMIT.get().clickFirstSymbol("TDB093");
 
-			mobileAction.ClickBackButton();
+			mobileAction.FuncClick(backButton, "backButton");
 			mobileAction.verifyElement(messageBackButton, getTestdata("WarningMessage", XLSheetUserIDs));
 
 		} catch (Exception e) {
@@ -1607,11 +1613,11 @@ public class TradeMultiLeg extends _CommonPage {
 			verifyPriceVarience(mobileAction.FuncGetText(naturalPrice), sNaturalPrice, "naturalPrice");
 
 			mobileAction.FuncIsElementEnabled(previewOrderButton, "previewOrderButton");
-			mobileAction.ClickBackButton();
+			mobileAction.FuncClick(backButton, "backButton");
 			mobileAction.verifyElement(messageBackButton, getTestdata("WarningMessage", XLSheetUserIDs));
 			mobileAction.FuncClick(cancelButton, "cancelButton");
 			mobileAction.FuncIsElementEnabled(previewOrderButton, "previewOrderButton");
-			mobileAction.ClickBackButton();
+			mobileAction.FuncClick(backButton, "backButton");
 			mobileAction.FuncClick(agreeButton, "agreeButton");
 			mobileAction.FuncIsElementEnabled(Investing_Trade, "Investing_Trade");
 		} catch (Exception e) {
@@ -1634,11 +1640,11 @@ public class TradeMultiLeg extends _CommonPage {
 			verifyPriceVarience(mobileAction.FuncGetText(naturalPrice), sNaturalPrice, "naturalPrice");
 
 			mobileAction.FuncIsElementEnabled(previewOrderButton, "previewOrderButton");
-			mobileAction.ClickBackButton();
+			mobileAction.FuncClick(backButton, "backButton");
 			mobileAction.verifyElement(messageBackButton, getTestdata("WarningMessage", XLSheetUserIDs));
 			mobileAction.FuncClick(cancelButton, "cancelButton");
 			mobileAction.FuncIsElementEnabled(previewOrderButton, "previewOrderButton");
-			mobileAction.ClickBackButton();
+			mobileAction.FuncClick(backButton, "backButton");
 			mobileAction.FuncClick(acceptButton, "acceptButton");
 			mobileAction.FuncIsElementEnabled(Investing_Trade, "Investing_Trade");
 		} catch (Exception e) {
