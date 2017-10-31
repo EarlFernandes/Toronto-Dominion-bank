@@ -554,7 +554,7 @@ public class Manage_Payee extends _CommonPage {
 				}
 
 				String payeeAcctXpath = "//XCUIElementTypeLink[@name='" + acctNumIos.trim() + "']";
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(payeeAcctXpath, true, 30, "up");
+				mobileAction.swipeAndSearchByxpath(payeeAcctXpath, true, 10, "up");
 				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 			}
 
