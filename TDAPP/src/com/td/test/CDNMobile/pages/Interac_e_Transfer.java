@@ -40,10 +40,6 @@ public class Interac_e_Transfer extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Interac e-Transfer']")
 	private MobileElement interac_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progrees_Bar;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Interac e-Transfer']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Interac e-Transfer')]")
 	private MobileElement interac_Etransfer_Header;
@@ -341,7 +337,7 @@ public class Interac_e_Transfer extends _CommonPage {
 		try {
 			mobileAction.verifyElementIsDisplayed(interac_Header, "Interac e-Transfer");
 			mobileAction.FuncClick(addRecipient_Interac, "AddRecipient");
-			mobileAction.waitForElementToVanish(progrees_Bar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

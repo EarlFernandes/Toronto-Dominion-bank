@@ -83,10 +83,6 @@ public class Accounts_Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transferTo' and @text='TRANSFERS']")
 	private MobileElement transfer_Btn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
-
 	public synchronized static Accounts_Credit get() {
 		if (Accounts_Credit == null) {
 			Accounts_Credit = new Accounts_Credit();
@@ -350,7 +346,7 @@ public class Accounts_Credit extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(transfer_Btn, "Transfer");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

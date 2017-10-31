@@ -60,10 +60,6 @@ public class ManageRecipients extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement addRecipient;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progress_bar;
-
 	String recipientMail = getTestdata("RecipientMail");
 	String answer = getTestdata("SecurityAnswer");
 
@@ -87,7 +83,7 @@ public class ManageRecipients extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(addRecipient, "Add Recipient");
-			mobileAction.waitForElementToVanish(progress_bar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -143,7 +139,7 @@ public class ManageRecipients extends _CommonPage {
 						+ mobileAction.getAppString("mng_payee_modify_title") + "']", "Edit button");
 			}
 			mobileAction.FuncClick(editRecipient, "Edit Recipient");
-			mobileAction.waitForElementToVanish(progress_bar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -839,7 +835,7 @@ public class ManageRecipients extends _CommonPage {
 				final WebElement addRecipientButton = mobileAction.verifyWebElementUsingXPath(
 						"//button[@class='primary-button green-button ng-binding']", "Add Recipient button");
 				addRecipientButton.click();
-				mobileAction.waitForElementToVanish(progress_bar);
+				mobileAction.waitProgressBarVanish();
 				// Switch to native
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.verifyElementUsingXPath(
@@ -931,7 +927,7 @@ public class ManageRecipients extends _CommonPage {
 				final WebElement review = mobileAction.verifyWebElementUsingXPath(
 						"//button[@aria-label=\"" + mobileAction.getAppString("btn_review_details") + "\"]", "Review");
 				review.click();
-				mobileAction.waitForElementToVanish(progress_bar);
+				mobileAction.waitProgressBarVanish();
 				// Switch to native
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.verifyElementUsingXPath(
