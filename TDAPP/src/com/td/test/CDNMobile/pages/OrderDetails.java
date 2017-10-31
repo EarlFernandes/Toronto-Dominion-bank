@@ -17,8 +17,8 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class OrderDetails extends _CommonPage {
 	private static OrderDetails OrderDetails;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Change Order']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='Change Order']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Change Order' or @label='Modifier l’ordre']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='Change Order' or contains(@text,'Modifier l')]")
 	private MobileElement changeOrderButton;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter your trading password']")
@@ -46,7 +46,15 @@ public class OrderDetails extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel Order']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/cancel_order_btn' or @resource-id='com.td:id/orderEntryPreviewButton']")
 	private MobileElement cancelOrderButton;
-
+	
+	@iOSFindBy(xpath="//XCUIElementTypeButton[@label='Retour']")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[contains(@content-desc,'Revenir en haut de la page')]")
+	private MobileElement backButton;
+	
+	@iOSFindBy(xpath="//XCUIElementTypeButton[@label='Actualiser']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/refresh_menu']")
+	private MobileElement refreshButton;
+	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Your request to cancel the order was received.']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/message' and @text='Your request to cancel the order was received.']")
 	private MobileElement verifySuccessMessageCancelOrder;
@@ -107,6 +115,22 @@ public class OrderDetails extends _CommonPage {
 		} catch (IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	public void VerifyChangeorder(){
+		Decorator();
+		try{
+			mobileAction.verifyElementIsDisplayed(backButton, "back button");
+			mobileAction.verifyElementIsDisplayed(refreshButton, "refresh button");
+			mobileAction.verifyElementIsDisplayed(cancelOrderButton, "cancel order");
+			mobileAction.verifyElementIsDisplayed(changeOrderButton, "change order");
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());

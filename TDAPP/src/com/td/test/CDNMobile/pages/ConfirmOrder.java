@@ -59,11 +59,11 @@ public class ConfirmOrder extends _CommonPage {
 	private MobileElement goodtill;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Shareholder Type']")
-	@AndroidFindBy(xpath = "//android.widget.TextView(@text,'Shareholder Type')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Shareholder Type']")
 	private MobileElement shareholdertype;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Buying Power Required']")
-	@AndroidFindBy(xpath = "//android.widget.TextView(@text,'Buying Power Required')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label' and (@text='Buying Power Required' or contains(@text,'Pouvoir'))]")
 	private MobileElement buyingpower_required;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Estimated Principal Value' or contains(@label,'Principal estim')]")
@@ -90,8 +90,8 @@ public class ConfirmOrder extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
 	private MobileElement confirmDoNotCancel;
 
-	@iOSFindBy(xpath = "//*[@label='Important Information']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/importantInfoLink' and @text='Important Information']")
+	@iOSFindBy(xpath = "//*[@label='Important Information' or @label='Renseignements importants']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/importantInfoLink']")
 	private MobileElement impInformationMessage;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Quantity Filled')]")
@@ -121,6 +121,7 @@ public class ConfirmOrder extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label' and contains(@text,'Good')]")
 	private MobileElement goodTil;
+	
 
 	String platFormName = CL.getTestDataInstance().getMobilePlatForm();
 	String t_OrderAccountName = "Account";
@@ -626,12 +627,17 @@ public class ConfirmOrder extends _CommonPage {
 			Decorator();
 			mobileAction.verifyElementIsDisplayed(confirmorder_header, "Verifying Confirm Order Page Header");
 			mobileAction.verifyElementIsDisplayed(verifyaccount, "account verified");
-			mobileAction.verifyElementIsDisplayed(action_quantity, "Action And Quantity");
-			mobileAction.verifyElementIsDisplayed(price, "Price");
-			mobileAction.verifyElementIsDisplayed(goodtill, "GoodTill");
-			mobileAction.verifyElementIsDisplayed(shareholdertype, "Verify Shareholder Type");
+			mobileAction.verifyElementIsDisplayed(orderElement, "order");
+			//mobileAction.verifyElementIsDisplayed(price, "Price");
+			//mobileAction.verifyElementIsDisplayed(goodtill, "GoodTill");
+			OrderReciept.get().validateTimeStamp();
+			//validateConfirmOrderBuy();
+			
+			if(mobileAction.verifyElementIsPresent(shareholdertype))
+				mobileAction.verifyElementIsDisplayed(shareholdertype, "Verify Shareholder Type");
+			mobileAction.FuncSwipeWhileElementNotFound(buyingpower_required, false, 5,"up");
 			mobileAction.verifyElementIsDisplayed(buyingpower_required, "Buying Power Required");
-			mobileAction.FunCSwipeandScroll(estimated_total_cost, false);
+			//mobileAction.FunCSwipeandScroll(estimated_total_cost, false);
 			mobileAction.verifyElementIsDisplayed(estimate_principle_value, "Verify Estimated Principal Value");
 			mobileAction.verifyElementIsDisplayed(estimate_comission, "Estimated Commission");
 			mobileAction.verifyElementIsDisplayed(estimated_total_cost, "Estimated Total Cost");
@@ -667,7 +673,8 @@ public class ConfirmOrder extends _CommonPage {
 
 	String pricetype = "";
 	String accountno = "";
-
+	
+	String quantityXL_valueArray[];
 	String quantityXL = "";
 
 	String trade_account_no = "";
@@ -699,14 +706,19 @@ public class ConfirmOrder extends _CommonPage {
 																														// 17-Apr-2017
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_value_main' and contains(@text,' @ ')]")
 	private MobileElement orderElement;
+	
+	@iOSFindBy(xpath="//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@label,'All change and cancel requests') or contains(@label,'Toute demande de')]")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/changeWarning']")
+	private MobileElement warningMessage;
 
 	@iOSFindBy(xpath = "//*[@label='Annuler' or @label='Cancel']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel' and (@text='Cancel' or @text='Annuler')]")
 	private MobileElement cancelButton;
 
-	@iOSFindBy(xpath = "//*[@label='Annuler' or @label='Cancel']") // @Author -
+	//@iOSFindBy(xpath = "//*[@label='Annuler' or @label='Cancel']") // @Author -
 																	// Shahbaaz
 																	// 17-Apr-2017
+	@iOSFindBy(xpath = "//*[@name='alert_cancel_button']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and (@text='Cancel' or @text='Annuler')]")
 	private MobileElement confirmCancel;
 
@@ -718,10 +730,13 @@ public class ConfirmOrder extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='En cours']")
 	private MobileElement progressBarFRE;
 
-	@iOSFindBy(xpath = "//*[@label='Back']")
-	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@content-desc='Confirm Order, Navigate up']")
-	// android.widget.ImageView[@resource-id='android:id/up']
+	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@content-desc='Confirm Order, Navigate up' or contains(@content-desc,'Revenir en haut de la page')]") 
+	//android.widget.ImageView[@resource-id='android:id/up'] 
 	private MobileElement backButton;
+	
+	@AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/recycler_view_confirm']")
+	private MobileElement listView;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Send Order') or contains(@label,'Envoyer l')]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@text='Send Order' or contains(@text,'Envoyer l')]")
@@ -733,7 +748,8 @@ public class ConfirmOrder extends _CommonPage {
 
 	public void init() {
 
-		quantityXL = getTestdata("Quantity");
+		quantityXL_valueArray = getTestDataStringArray("Quantity");
+		quantityXL = setCurrentArrayValue(getTestDataStringArray("Quantity"));
 
 		trade_account_no = getTestdata("CDNMarginAccount");
 
@@ -923,7 +939,7 @@ public class ConfirmOrder extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 
-					+ " @ Delta de déclenchement" + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
+					+ " @ Delta de déclenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
 					+ " $ Delta limite " + df.format(Double.parseDouble(limitDelta_value)).replace(".", ",")
 					+ " $ Échéance " + goodXL;
 		} else {
@@ -955,7 +971,7 @@ public class ConfirmOrder extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
-					+ " @ Delta de déclenchement  "
+					+ " @ Delta de déclenchement "
 					+ df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",") + " $ Échéance " + goodXL;
 
 		} else {
@@ -985,8 +1001,8 @@ public class ConfirmOrder extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
-					+ " @ Déclencheur" + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
-					+ " $ limite " + df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance  "
+					+ " @ Déclencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",") 
+					+ " $ limite " + df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance "
 					+ goodXL;
 
 		} else {
@@ -1020,7 +1036,7 @@ public class ConfirmOrder extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 
-					+ " @ Déclencheur  " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
+					+ " @ Déclencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
 					+ " $ Échéance " + goodXL;
 
 		} else {
@@ -1187,7 +1203,46 @@ public class ConfirmOrder extends _CommonPage {
 			break;
 
 		}
+
 	}
+	
+	public void validateChangeConfirmOrder() { 
+			Decorator();
+			mobileAction.waitForElementToVanish(progressBar);
+			try{
+				mobileAction.verifyElementIsDisplayed(warningMessage, "Warning message");
+
+			
+			mobileAction.verifyElementIsDisplayed(verifyaccount, "account verified");
+			
+		//mobileAction.FuncElementSwipeWhileNotFound(listView, buyingpower_required, 5, "up", false);
+		
+		//mobileAction.FunCSwipeandScroll(buyingpower_required, false);
+		
+		mobileAction.FuncSwipeWhileElementNotFound(impInformationMessage, false, 5, "up");
+		if(mobileAction.verifyElementIsPresent(buyingpower_required)){
+			mobileAction.verifyElementIsDisplayed(buyingpower_required, "Buying Power Required");
+		}
+		mobileAction.verifyElementIsDisplayed(backButton, "Back button");
+		mobileAction.waitForElementToVanish(progressBar);
+		mobileAction.verifyElementIsDisplayed(impInformationMessage, "Important information");
+		mobileAction.verifyElementIsDisplayed(send_order, "send order");
+		mobileAction.verifyElementIsDisplayed(cancelButton, "cancel button");
+		validateConfirmOrderBuy();
+		
+	} catch (NoSuchElementException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (IOException e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+	} catch (Exception e) {
+		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+	}
+}
+
+
 
 	/**
 	 * This method will validates the orders and will report for pass or Fail
@@ -1211,6 +1266,7 @@ public class ConfirmOrder extends _CommonPage {
 			String confirmOrderArray[] = orderValue.split("\\s+");
 			boolean validateValue = true;
 			for (String value : confirmOrderArray) {
+				if(!(value.contains("Specify")||value.contains("Préciser")))
 				if (!confirmOrderValue.contains(value)) {
 					validateValue = false;
 					break;
