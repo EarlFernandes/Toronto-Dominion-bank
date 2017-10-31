@@ -206,7 +206,13 @@ public class AutoDepositPage extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 
 	}
@@ -236,7 +242,13 @@ public class AutoDepositPage extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -300,7 +312,13 @@ public class AutoDepositPage extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -325,7 +343,13 @@ public class AutoDepositPage extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -355,7 +379,13 @@ public class AutoDepositPage extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -384,7 +414,7 @@ public class AutoDepositPage extends _CommonPage {
 
 				autodepositStatus = autodepositAccToDel[i];
 
-			Thread.sleep(3000);
+				Thread.sleep(3000);
 				clickAutoDeposit();
 
 				mobileAction.FuncClick(deleteAutoDepositBtn, "Delete AutoDeposit Button");
@@ -399,14 +429,20 @@ public class AutoDepositPage extends _CommonPage {
 					mobileAction.verifyTextEquality(Successmsg.getText(),
 							mobileAction.getAppString("auto_deposit_deleted"));
 				}
-				
+
 				Interac_Send_Money.get().iOS_back_button();
 				PaymentsAndTransfers.get().clickManageAutoDeposit();
 			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -466,18 +502,25 @@ public class AutoDepositPage extends _CommonPage {
 
 				} else {
 
-					activeAutoDeposit = mobileAction.mobileElementUsingXPath("//XCUIElementTypeOther/XCUIElementTypeButton[contains(@label,'"
-							+ getTextInCurrentLocale(StringArray.ARRAY_AUTODEPOSIT_ACTIVE_STATUS) + "')]");
+					activeAutoDeposit = mobileAction
+							.mobileElementUsingXPath("//XCUIElementTypeOther/XCUIElementTypeButton[contains(@label,'"
+									+ getTextInCurrentLocale(StringArray.ARRAY_AUTODEPOSIT_ACTIVE_STATUS) + "')]");
 					mobileAction.FuncClick(activeAutoDeposit, "Active AutoDeposit");
 				}
 
 			}
-			
+
 			activeAutoDeposit = null;
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -504,7 +547,7 @@ public class AutoDepositPage extends _CommonPage {
 			MobileElement accountToSelect = null;
 
 			mobileAction.waitForElementToVanish(progressBar);
-			
+
 			if (autodepositAcc.getText().contains(accounts[0])) {
 				enterAccount = accounts[1];
 			} else {
@@ -554,7 +597,13 @@ public class AutoDepositPage extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -579,7 +628,13 @@ public class AutoDepositPage extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -633,7 +688,13 @@ public class AutoDepositPage extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -658,7 +719,13 @@ public class AutoDepositPage extends _CommonPage {
 			mobileAction.FuncClick(registerAnotherProfile, "Register Another Profile");
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -689,7 +756,13 @@ public class AutoDepositPage extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -714,7 +787,13 @@ public class AutoDepositPage extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -757,7 +836,13 @@ public class AutoDepositPage extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -796,7 +881,13 @@ public class AutoDepositPage extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -825,7 +916,13 @@ public class AutoDepositPage extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -859,7 +956,13 @@ public class AutoDepositPage extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 

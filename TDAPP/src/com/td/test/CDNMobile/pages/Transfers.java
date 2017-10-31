@@ -492,12 +492,15 @@ public class Transfers extends _CommonPage {
 			mobileAction.FuncClick(manageContacts, "Manage Contacts Link");
 			mobileAction.waitForElementToVanish(progressBar);
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -515,12 +518,15 @@ public class Transfers extends _CommonPage {
 
 			mobileAction.FuncClick(transferHistory, "Transfer History Link");
 			mobileAction.waitForElementToVanish(progressBar);
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -538,12 +544,15 @@ public class Transfers extends _CommonPage {
 
 			mobileAction.FuncClick(requestMoney, "Request Money Link");
 			mobileAction.waitForElementToVanish(progressBar);
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 

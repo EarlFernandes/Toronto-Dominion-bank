@@ -1018,12 +1018,15 @@ public class Interac_e_Transfer extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(registrationPageHeader, "Interac e-Transfer® - Registration");
 			mobileAction.FuncClick(continueButton, "Continue");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1043,12 +1046,15 @@ public class Interac_e_Transfer extends _CommonPage {
 
 			mobileAction.FuncClick(openAnAccount, "Open An Account");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1071,9 +1077,15 @@ public class Interac_e_Transfer extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(openAnAccount, "Open An Account");
 			mobileAction.verifyElementIsDisplayed(findABranch, "Find A Branch");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1103,12 +1115,15 @@ public class Interac_e_Transfer extends _CommonPage {
 			mobileAction.FuncClick(continueButton, "Continue Button");
 			mobileAction.waitForElementToVanish(progressBar);
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1136,12 +1151,15 @@ public class Interac_e_Transfer extends _CommonPage {
 
 			mobileAction.FuncClick(continueButton, "Continue Button");
 			mobileAction.waitForElementToVanish(progressBar);
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1163,9 +1181,15 @@ public class Interac_e_Transfer extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(thankYou, "Thank You");
 			mobileAction.verifyElementIsDisplayed(successMag, "You're now registered for Interac e-Transfer");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
