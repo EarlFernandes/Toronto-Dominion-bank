@@ -40,10 +40,6 @@ public class Profile extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement profile_Header;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progressBar;
-
 	private MobileElement profile_contact_info_header;
 
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/home_phone']//android.widget.EditText[@resource-id='com.td:id/phone_number']")
@@ -91,18 +87,6 @@ public class Profile extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='error-circle']/../XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
 	private MobileElement error_message;
-
-	@iOSFindBy(accessibility = "NAVIGATION_ITEM_BACK")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
-	private MobileElement back_arrow;
-
-	@iOSFindBy(xpath = "//*[@label='Cancel' or @label='Annuler']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
-	private MobileElement cancel_button;
-
-	@iOSFindBy(xpath = "//*[@label='Yes, go back' or @label='Oui']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
-	private MobileElement goback_button;
 
 	@iOSFindBy(xpath = "//*[@id='banner_info']")
 	@AndroidFindBy(xpath = "//android.widget.ScrollView[@resource-id='com.td:id/scrollView']/android.widget.TextView")
@@ -843,7 +827,7 @@ public class Profile extends _CommonPage {
 				mobileAction.Report_Fail("Save button is not displayed");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			}
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1250,22 +1234,13 @@ public class Profile extends _CommonPage {
 	public void NavigationBackToProfileandSettingPage() {
 
 		Decorator();
-		String back_xpath = "";
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.FuncClickBackButton();
-			} else {
-				// back_xpath = "//*[@label='Back' or @label='Retour']";
-				// MobileElement back_arrow = (MobileElement)
-				// CL.GetDriver().findElement(By.xpath(back_xpath));
-				mobileAction.FuncClick(back_arrow, "<");
-			}
 
-		} catch (NoSuchElementException | IOException e) {
+			mobileAction.ClickBackButton();
+
+		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		} catch (InterruptedException e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -1284,18 +1259,6 @@ public class Profile extends _CommonPage {
 
 		} catch (NoSuchElementException e) {
 			VerifyEmailIDLength();
-		}
-	}
-
-	public void VerifyPopUpWithCancelButton() {
-
-		Decorator();
-		try {
-			mobileAction.verifyElementIsDisplayed(cancel_button, "Cancel");
-
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
 
@@ -1588,17 +1551,6 @@ public class Profile extends _CommonPage {
 		mobileAction.Report_Pass_Verified("ori_phone:" + ori_phone);
 		mobileAction.Report_Pass_Verified("ori_email:" + ori_email);
 
-	}
-
-	public void ClickPopupGoBackButton() {
-		Decorator();
-		try {
-			mobileAction.FuncClick(goback_button, "Yes, Go Back");
-		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			return;
-		}
 	}
 
 	public void VerifyPhoneEmailNotChanged() {

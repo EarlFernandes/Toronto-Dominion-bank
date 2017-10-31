@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.MobileAction2;
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -346,8 +347,9 @@ public class Pay_US_Bill extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				payUSBillToConfirmation();
 				mobileAction.FuncClick(pay_bill_button, "Pay bill");
+				mobileAction.waitProgressBarVanish();
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
-						+ mobileAction.getAppString("pay_us_bill_page_title") + "']", "Pay US Bill title");
+						+ getTextInCurrentLocale(StringArray.ARRAY_PAY_US_BILL_TITLE) + "']", "Pay US Bill title");
 				mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("receipt_thankyou") + "']",
 						"Thank you!");

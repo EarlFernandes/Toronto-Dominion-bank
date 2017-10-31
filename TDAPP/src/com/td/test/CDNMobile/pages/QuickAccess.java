@@ -24,10 +24,6 @@ public class QuickAccess extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement quickaccess_title;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progress_bar;
-
 	@iOSFindBy(accessibility = "QUICKBALANCE_ONBOARDING_VIEW_TITLE")
 	private MobileElement title;
 
@@ -100,13 +96,14 @@ public class QuickAccess extends _CommonPage {
 				// Toggle to disable it
 				mobileAction.FuncClick(quickaccess_switch, "Quick Access Switch Toggle");
 				System.out.println("Toggle Switch");
-				mobileAction.waitForElementToVanish(progress_bar);
+				mobileAction.waitProgressBarVanish();
 				switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
 				System.out.println("Checked status now :" + switchCheckStatus);
-				
+
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
-					try{
-						indiviual_accounts = (MobileElement)CL.GetAppiumDriver().findElement(By.xpath(indiviual_accounts_xpath));
+					try {
+						indiviual_accounts = (MobileElement) CL.GetAppiumDriver()
+								.findElement(By.xpath(indiviual_accounts_xpath));
 						mobileAction.Report_Fail("Account still exists even when switch toggle to disable");
 					} catch (Exception e1) {
 						mobileAction.Report_Pass_Verified("Accounts no displaying ");
@@ -122,7 +119,7 @@ public class QuickAccess extends _CommonPage {
 			} else {
 				// Disabled
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
-					try{
+					try {
 						indiviual_accounts = mobileAction.verifyElementUsingXPath(indiviual_accounts_xpath, "ACCOUNTS");
 						mobileAction.Report_Fail("Account still exists when switch status  is false");
 					} catch (Exception e1) {
@@ -130,26 +127,26 @@ public class QuickAccess extends _CommonPage {
 						// Toggle to Enable it
 						mobileAction.FuncClick(quickaccess_switch, "Quick Access Switch Toggle");
 						System.out.println("Toggle Switch");
-						mobileAction.waitForElementToVanish(progress_bar);
+						mobileAction.waitProgressBarVanish();
 						switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
 						System.out.println("Checked now :" + switchCheckStatus);
 						indiviual_accounts = mobileAction.verifyElementUsingXPath(indiviual_accounts_xpath, "ACCOUNTS");
 						mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, accountString);
 					}
 				} else {
-					if ( mobileAction.verifyElementIsPresent(indiviual_accounts)) {
+					if (mobileAction.verifyElementIsPresent(indiviual_accounts)) {
 						mobileAction.Report_Fail("Account still exists when switch status  is false");
 					} else {
 						mobileAction.Report_Pass_Verified("Accounts no displaying ");
 						// Toggle to Enable it
 						mobileAction.FuncClick(quickaccess_switch, "Quick Access Switch Toggle");
 						System.out.println("Toggle Switch");
-						mobileAction.waitForElementToVanish(progress_bar);
+						mobileAction.waitProgressBarVanish();
 						switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
 						System.out.println("Checked now :" + switchCheckStatus);
 						mobileAction.verifyElementTextIsDisplayed(indiviual_accounts, accountString);
 					}
-				}				
+				}
 			}
 
 		} catch (Exception e) {
@@ -185,7 +182,7 @@ public class QuickAccess extends _CommonPage {
 				// Toggle to Enable it
 				mobileAction.FuncClick(quickaccess_switch, "Quick Access Switch Toggle");
 				System.out.println("Toggle Switch");
-				mobileAction.waitForElementToVanish(progress_bar);
+				mobileAction.waitProgressBarVanish();
 				switchCheckStatus = mobileAction.getSwitchStatus(quickaccess_switch);
 				System.out.println("Checked now :" + switchCheckStatus);
 				if (switchCheckStatus.equalsIgnoreCase("true")) {

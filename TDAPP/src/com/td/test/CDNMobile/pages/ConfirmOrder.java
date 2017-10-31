@@ -501,7 +501,7 @@ public class ConfirmOrder extends _CommonPage {
 		try {
 			mobileAction.FuncClick(send_order, "Click Send Order Button");
 
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -710,10 +710,6 @@ public class ConfirmOrder extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and (@text='Cancel' or @text='Annuler')]")
 	private MobileElement confirmCancel;
 
-	@iOSFindBy(xpath = "//*[@label='In Progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
-
 	@iOSFindBy(xpath = "//*[@label='En cours']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='En cours']")
 	private MobileElement progressBarFRE;
@@ -763,7 +759,7 @@ public class ConfirmOrder extends _CommonPage {
 
 		goodXL = setCurrentArrayValue(getTestDataStringArray("Good'til"));
 
-		mobileAction.waitForElementToVanish(progressBar);
+		mobileAction.waitProgressBarVanish();
 	}
 
 	public String setCurrentArrayValue(String[] arrayValue) {

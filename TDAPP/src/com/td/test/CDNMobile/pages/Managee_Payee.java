@@ -50,12 +50,8 @@ public class Managee_Payee extends _CommonPage {
 	// For nexus addpayee class is not a button; for tab3, the class is View not
 	// ViewGroup to consolidate that, change to
 	@AndroidFindBy(xpath = "//android.view.ViewGroup/android.widget.LinearLayout[@index='1'] | //android.view.View/android.widget.LinearLayout[@index='1']")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[2]")
 	private MobileElement addPayee;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-
-	private MobileElement progressBar;
 
 	public synchronized static Managee_Payee get() {
 		if (Managee_Payee == null) {
@@ -189,7 +185,7 @@ public class Managee_Payee extends _CommonPage {
 				final WebElement firstPayee = mobileAction.verifyWebElementUsingXPath(
 						"//div[@ng-if='payee.AccountNO' and text()='" + getTestdata("Payee") + "']", "Payee");
 				firstPayee.click();
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
@@ -313,9 +309,9 @@ public class Managee_Payee extends _CommonPage {
 					Thread.sleep(2000);
 					mobileAction.verifyElementIsDisplayed(myPayees, "My Payees");
 					mobileAction.FuncClick(accesscard, "Accesscard");
-					mobileAction.FuncClick(thirdAccessCard, "Second Access Card");
+					mobileAction.FuncClick(thirdAccessCard, "Third Access Card");
 					Thread.sleep(2000);
-					mobileAction.verifyElementIsDisplayed(addPayee, "Add Payee");
+					mobileAction.verifyElementIsDisplayed(addCanadianPayee, "Add Payee");
 				}
 			} else {
 				// For android, using webview to handle
@@ -431,7 +427,7 @@ public class Managee_Payee extends _CommonPage {
 				// Switch back to native to get proper screenshots
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncClick(addPayee, "Add US Payee");
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				Thread.sleep(10000);
 			}
 		} catch (Exception e) {
@@ -479,7 +475,7 @@ public class Managee_Payee extends _CommonPage {
 						"Add Canadian Payee");
 			}
 			mobileAction.FuncClick(addPayee, "Add Payee");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 			Thread.sleep(10000);
 

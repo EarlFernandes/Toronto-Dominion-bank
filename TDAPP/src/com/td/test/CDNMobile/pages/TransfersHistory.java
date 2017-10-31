@@ -219,10 +219,6 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subSubHeader']")
 	private MobileElement confirmationCode;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeActivityIndicator[`value=='1'")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progressBar;
-
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Money Requested' or @label='Fonds virés']/following-sibling::XCUIElementTypeButton[@label='See all' or @label='Tout afficher']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Money Requested' or @text='Fonds virés']/following-sibling::android.widget.TextView[@text='See all' or @text='Tout afficher']")
 	private MobileElement moneyRequestSeeAll;
@@ -347,7 +343,7 @@ public class TransfersHistory extends _CommonPage {
 
 			while (!mobileAction.verifyElementIsPresent(getReceiver()) && counter < 3) {
 				mobileAction.FunctionSwipe("left", 200, 200);
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				counter++;
 			}
 			counter = 0;
@@ -505,7 +501,7 @@ public class TransfersHistory extends _CommonPage {
 
 			while (!mobileAction.verifyElementIsPresent(getReceiver()) && counter < 3) {
 				mobileAction.FunctionSwipe("left", 200, 200);
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				counter++;
 			}
 			counter = 0;
@@ -526,7 +522,7 @@ public class TransfersHistory extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(moneySentSeeAll, "See All");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -806,7 +802,7 @@ public class TransfersHistory extends _CommonPage {
 
 				while (!mobileAction.verifyElementIsPresent(getSender()) && counter < 3) {
 					mobileAction.FunctionSwipe("left", 200, 200);
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 					mobileAction.FunctionSwipe("up", 200, 200);
 					counter++;
 				}
@@ -977,7 +973,7 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1138,7 +1134,7 @@ public class TransfersHistory extends _CommonPage {
 
 			while (!mobileAction.verifyElementIsPresent(getRequester()) && counter < 3) {
 				mobileAction.FunctionSwipe("left", 200, 200);
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				counter++;
 			}
 			counter = 0;
@@ -1364,7 +1360,7 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(cancelRequest, "cancel Request");
 			mobileAction.FuncClick(cancelRequestConfirm, "Cancel Request Confirm button");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.verifyElementIsDisplayed(cancelledTransactionStatus,
 					"Transaction Status: " + cancelledTransactionStatus.getText());
 
@@ -1542,7 +1538,7 @@ public class TransfersHistory extends _CommonPage {
 		Decorator();
 		try {
 
-			HomeScreen.get().clickMenu();
+			mobileAction.clickMenuButton();
 			MenuPage.get().clickMenuTransfer();
 			Transfers.get().clickTransferHistoryLink();
 			clickRequestMoneySeeAll();
