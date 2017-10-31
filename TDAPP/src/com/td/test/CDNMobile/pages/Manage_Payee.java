@@ -42,9 +42,6 @@ public class Manage_Payee extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Canadian Payee'] | //android.widget.TextView[@content-desc='Add Canadian Payee']")
 	private MobileElement addCanadianPayee;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Manage Payees']")
-	private MobileElement managePayeeHeader;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@name='TDVIEW_TITLE']")
 	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement managePayees;
@@ -55,7 +52,7 @@ public class Manage_Payee extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement addPayee;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeActivityIndicator[1]")
 	@AndroidFindBy(id = "android:id/progress")
 	private MobileElement progressBar;
 

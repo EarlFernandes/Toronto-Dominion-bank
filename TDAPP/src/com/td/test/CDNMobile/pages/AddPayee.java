@@ -23,7 +23,7 @@ public class AddPayee extends _CommonPage {
 
 	private static AddPayee AddPayee;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeActivityIndicator[1]")
 	@AndroidFindBy(id = "android:id/progress")
 	private MobileElement progressBar;
 
@@ -33,7 +33,7 @@ public class AddPayee extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'found any matches. Please try again.')]")
 	private MobileElement errorMessage;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeTextField[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeTextField[1]")
 	@FindBy(xpath = "//input[@ng-model='searchText']")
 	private WebElement searchPayeeField;
 
@@ -911,7 +911,7 @@ public class AddPayee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
-				
+
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
 				mobileAction.sleep(5000);
@@ -956,7 +956,7 @@ public class AddPayee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
-				
+
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");

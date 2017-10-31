@@ -146,7 +146,7 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/footer_text']")
 	private MobileElement foot_text;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeActivityIndicator[1]")
 	@AndroidFindBy(id = "android:id/progress")
 	private MobileElement progressBar;
 
@@ -1090,6 +1090,10 @@ public class Accounts extends _CommonPage {
 				sectionHeader = mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[contains(@label,'" + labelText + "')]",
 						"My Accounts Banking header");
+				// sectionHeader = mobileAction.mobileElementUsingIOSClassChain(
+				// "**/XCUIElementTypeStaticText[`label CONTAINS[cd] '" +
+				// labelText + "'`]");
+
 			}
 			mobileAction.verifyElementIsDisplayed(sectionHeader, "My Accounts Banking header");
 			mobileAction.verifyElementTextContains(sectionHeader,
@@ -1116,6 +1120,9 @@ public class Accounts extends _CommonPage {
 				sectionHeader = mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[contains(@label,'" + labelText + "')]",
 						"My Accounts Credit header");
+				// sectionHeader = mobileAction.mobileElementUsingIOSClassChain(
+				// "**/XCUIElementTypeStaticText[`label CONTAINS[cd] '" +
+				// labelText + "'`]");
 			}
 			mobileAction.verifyElementIsDisplayed(sectionHeader, "My Accounts Credit header");
 			mobileAction.verifyElementTextContains(sectionHeader,
@@ -1162,9 +1169,8 @@ public class Accounts extends _CommonPage {
 				acctXpath = "//android.widget.TextView[contains(@text,'" + account + "')]";
 			}
 
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(acctXpath, true, 30, "Up");
-			MobileElement progress = PageHeader.get().getProgressBar();
-			mobileAction.waitForElementToVanish(progress);
+			mobileAction.swipeAndSearchByxpath(acctXpath, true, 30, "Up");
+			mobileAction.verifyElementIsPresent(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -73,43 +73,34 @@ public class Receipt extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/thank_you")
 	private MobileElement thankYouTitle;
 
-	@iOSXCUITFindBy(accessibility = "-Detail")
 	@AndroidFindBy(id = "com.td:id/confirmation_val")
 	private MobileElement cnfrDetail;
 
-	@iOSXCUITFindBy(accessibility = "-From Account")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/from_account_bal")
 	private MobileElement fromAccountValue;
 
-	@iOSXCUITFindBy(accessibility = "-FROM")
-	@AndroidFindBy(id = "com.td:id/from_account_bal")
-	private MobileElement fromAccountValueCB;
-
-	@iOSXCUITFindBy(accessibility = "-To Account")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/to_account_bal")
 	private MobileElement ToAccountValue;
 
-	@iOSXCUITFindBy(accessibility = "-Amount")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/amount_val")
 	private MobileElement amountValue;
 
-	@iOSXCUITFindBy(accessibility = "-AMOUNT")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/amount_val")
 	private MobileElement amountValueCB;
 
-	@iOSXCUITFindBy(accessibility = "-Payee")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/payee_val")
 	private MobileElement payeeValue;
 
-	@iOSXCUITFindBy(accessibility = "-PAYEE")
-	@AndroidFindBy(id = "com.td:id/payee_val")
-	private MobileElement payeeValueCB;
-
-	@iOSXCUITFindBy(accessibility = "-Date")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/date_val")
 	private MobileElement dateValue;
 
-	@iOSXCUITFindBy(accessibility = "-DATE")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/date_val")
 	private MobileElement dateValueCB;
 
@@ -125,7 +116,6 @@ public class Receipt extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/transfers_make_another")
 	private MobileElement makeAnthTran_Button;
 
-	@iOSXCUITFindBy(accessibility = "-Detail")
 	@AndroidFindBy(id = "com.td:id/confirmation_no")
 	private MobileElement confirmNumberUS;
 
@@ -133,23 +123,23 @@ public class Receipt extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/account_name")
 	private MobileElement fromAccountUS;
 
-	@iOSXCUITFindBy(accessibility = "-From Account")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/amount")
 	private MobileElement fromAccountValueUS;
 
-	@iOSXCUITFindBy(accessibility = "-Payee")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/payee_details")
 	private MobileElement payeeDetailsUS;
 
-	@iOSXCUITFindBy(accessibility = "-Amount")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/confirm_amount")
 	private MobileElement amountValueUS;
 
-	@iOSXCUITFindBy(accessibility = "-Total Amount")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[7]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/total_amount")
 	private MobileElement amountTotalValueUS;
 
-	@iOSXCUITFindBy(accessibility = "-Reason for Payment")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[8]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/reason_for_payment")
 	private MobileElement paymentReasonUS;
 
@@ -415,30 +405,33 @@ public class Receipt extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REF_NUM), "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_FUNDS), "ignore", "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT), "ignore",
-						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REQUEST_TIME), "ignore", "ignore", "ignore",
-						getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT), "ignore", "ignore", 
+						getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_REQUEST_TIME), "ignore", "ignore",
+						"ignore", getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT), "ignore", "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_TO_ACCOUNT), "ignore", "ignore", "ignore",
 						getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_BALANCE_NOTE) };
 				int size = detailList.size();
 				System.out.println("size of data:" + size);
 				for (int i = 0; i < size; i++) {
-//					if(i>=15 ) {
-//						String capturedText = mobileAction.getValue(detailList.get(i));
-//						System.out.println("Captured text "+ i+ ":"+capturedText);
-//					}
+					// if(i>=15 ) {
+					// String capturedText =
+					// mobileAction.getValue(detailList.get(i));
+					// System.out.println("Captured text "+ i+
+					// ":"+capturedText);
+					// }
 					if (detailInfomation[i].equalsIgnoreCase("ignore")) {
 						continue;
 					} else {
 						if (!mobileAction.verifyElementIsPresent(detailList.get(i))) {
-							mobileAction.FuncSwipeWhileElementNotFound(detailList.get(size-1), false, 10, "up");
+							mobileAction.FuncSwipeWhileElementNotFound(detailList.get(size - 1), false, 10, "up");
 						}
 						String capturedText = mobileAction.getValue(detailList.get(i));
-						if(currentLocale.equalsIgnoreCase("fr")) {
-							String unkownEmptySpace =" "; //for french only
-							capturedText = capturedText.trim().replaceAll(unkownEmptySpace," ");
+						if (currentLocale.equalsIgnoreCase("fr")) {
+							String unkownEmptySpace = " "; // for french only
+							capturedText = capturedText.trim().replaceAll(unkownEmptySpace, " ");
 						}
-						//mobileAction.verifyElementTextIsDisplayed(detailList.get(i), detailInfomation[i]);
-						System.out.println("Captured text "+ i+ ":"+capturedText);
+						// mobileAction.verifyElementTextIsDisplayed(detailList.get(i),
+						// detailInfomation[i]);
+						System.out.println("Captured text " + i + ":" + capturedText);
 						mobileAction.verifyTextEquality(capturedText, detailInfomation[i]);
 					}
 				}
@@ -485,6 +478,11 @@ public class Receipt extends _CommonPage {
 			mobileAction.verifyElementTextContains(pageHeader,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
 
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				cnfrDetail = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RECEIPT_DETAIL) + "']", "Confirm text");
+			}
+
 			mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
 			mobileAction.verifyElementIsDisplayed(fromAccountValue, "From Account Value");
 			mobileAction.verifyElementIsDisplayed(ToAccountValue, "To Account Value");
@@ -509,6 +507,11 @@ public class Receipt extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Receipt Header");
 			mobileAction.verifyElementTextContains(pageHeader,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				cnfrDetail = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RECEIPT_DETAIL) + "']", "Confirm text");
+			}
 
 			mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
 			mobileAction.verifyElementIsDisplayed(fromAccountValue, "From Account Value");
@@ -542,6 +545,11 @@ public class Receipt extends _CommonPage {
 			mobileAction.verifyElementTextContains(thankYouTitleUS,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_THANKYOU));
 
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				confirmNumberUS = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RECEIPT_DETAIL) + "']", "Confirm text");
+			}
+
 			mobileAction.verifyElementIsDisplayed(confirmNumberUS, "Confirm Details");
 			mobileAction.verifyElementIsDisplayed(fromAccountUS, "From Account US");
 			mobileAction.verifyElementIsDisplayed(fromAccountValueUS, "From Account Value US");
@@ -572,9 +580,14 @@ public class Receipt extends _CommonPage {
 			mobileAction.verifyElementTextContains(pageHeader,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
 
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				cnfrDetail = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RECEIPT_DETAIL) + "']", "Confirm text");
+			}
+
 			mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
-			mobileAction.verifyElementIsDisplayed(fromAccountValueCB, "From Account Value");
-			mobileAction.verifyElementIsDisplayed(payeeValueCB, "Payee Value");
+			mobileAction.verifyElementIsDisplayed(fromAccountValue, "From Account Value");
+			mobileAction.verifyElementIsDisplayed(payeeValue, "Payee Value");
 			mobileAction.verifyElementIsDisplayed(amountValueCB, "Amount Value");
 			mobileAction.verifyElementIsDisplayed(dateValueCB, "Date Value");
 

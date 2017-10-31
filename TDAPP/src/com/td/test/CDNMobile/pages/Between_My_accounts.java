@@ -128,7 +128,7 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/myaccounts_entry_btn_cancel' and @text='Cancel']")
 	private MobileElement cancelBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeActivityIndicator[1]")
 	@AndroidFindBy(id = "android:id/progress")
 	private MobileElement txtProgressBar;
 
@@ -285,7 +285,7 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']/android.widget.LinearLayout[@index='0']")
 	private MobileElement firstAcct;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement screenHeader;
 

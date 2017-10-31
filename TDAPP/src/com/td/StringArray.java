@@ -235,7 +235,7 @@ public final class StringArray {
 
 	// Between My Accounts
 	public static final String[] ARRAY_BETWEEN_MY_ACCOUNTS_HEADER = { "Between My Accounts", "Entre mes comptes",
-			"在我的账户间转账", "我的賬戶之間" };
+			"在我的账户间转账", "賬戶之間" };
 
 	// Homescreen
 	public static final String[] ARRAY_HOMESCREEN_DASHBOARD_PAYNOW = { "PAY NOW", "PAYER MAINTENANT", "现在付款", "立即付款" };
@@ -259,7 +259,7 @@ public final class StringArray {
 			"請前往「設定」以啟用特快結餘查詢的賬戶" };
 
 	// Receipt
-	public static final String[] ARRAY_RECEIPT_QUICKLINK_SCHEDULED_PAYMENTS = { "SCHEDULED PAYMENTS", "", "", "" };
+	public static final String[] ARRAY_RECEIPT_DETAIL = { "-Detail", "-Détail", "-详细信息", "-詳情" };
 
 	public static final String[] ARRAY_INVESTING_ACCOUNTS = { "Investing Accounts", "Comptes Placements directs TD",
 			"投资账户", "投資賬戶" };

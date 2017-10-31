@@ -149,10 +149,6 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/mpay_dashboard")
 	private MobileElement pay_now_button;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar")
-	@AndroidFindBy(id = "android:id/action_bar_title")
-	private MobileElement homeHeader;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Contact Us' or @label='Contactez-nous']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/contact_us_tile']/android.widget.TextView")
 	private MobileElement contact_us;
