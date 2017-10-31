@@ -225,7 +225,8 @@ public final class StringArray {
 	public static final String[] ARRAY_APPLE_PAY_LOGIN_NOW = { "Login Now", "Ouvrir une session", "立即登录", "立即登入" };
 
 	// My Accounts
-	public static final String[] ARRAY_MY_ACCOUNTS_CREDIT_HEADER = { "CREDIT", "CRÉDIT", "信用", "信用" };
+	public static final String[] ARRAY_MY_ACCOUNTS_CREDIT_HEADER_IOS = { "CREDIT", "CRÉDIT", "信用", "信用" };
+	public static final String[] ARRAY_MY_ACCOUNTS_CREDIT_HEADER_ANDROID = { "CREDIT", "CRÉDIT", "信贷", "信貸" };
 	public static final String[] ARRAY_MY_ACCOUNTS_BANKING_HEADER = { "BANKING", "SERVICES BANCAIRES", "理财", "理財" };
 	public static final String[] ARRAY_TRANSACTION_PENDING = { "Pending", "En attente", "待处理", "尚待處理" };
 	public static final String[] ARRAY_MY_ACCOUNTS_QUICKLINK_PAY = { "PAY", "PAYER", "付款", "付款" };
