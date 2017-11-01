@@ -42,7 +42,7 @@ public class MoreOptions extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/background_view' and @index='1']/android.widget.LinearLayout/android.widget.TextView[@resource-id='com.td:id/description']")
 	private MobileElement limit_increase_direction;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/background_view' and @index='2']/android.widget.LinearLayout/android.widget.TextView[@resource-id='com.td:id/title']")
 	private MobileElement replace_a_damaged_card_btn;
@@ -50,10 +50,6 @@ public class MoreOptions extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/background_view' and @index='2']/android.widget.LinearLayout/android.widget.TextView[@resource-id='com.td:id/description']")
 	private MobileElement replace_a_damaged_card_direction;
-
-	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progress_bar;
 
 	public synchronized static MoreOptions get() {
 		if (moreOptions == null) {
@@ -143,7 +139,7 @@ public class MoreOptions extends _CommonPage {
 		String limitIncreaseRequestText = getTextInCurrentLocale(StringArray.ARRAY_CREDIT_LIMIT_INCREASE_REQ);
 		try {
 			mobileAction.FuncClick(limit_increase_request_btn, limitIncreaseRequestText);
-			mobileAction.waitForElementToVanish(progress_bar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException | IOException | InterruptedException e) {
 			System.err.println("TestCase has failed.");
@@ -151,7 +147,7 @@ public class MoreOptions extends _CommonPage {
 			return;
 		}
 	}
-	
+
 	public void verifyReplaceDamagedCardDirectionalCopy() {
 		Decorator();
 
@@ -182,7 +178,7 @@ public class MoreOptions extends _CommonPage {
 		String replacedDamagedCardText = getTextInCurrentLocale(StringArray.ARRAY_REPLACE_A_DAMAGED_CARD);
 		try {
 			mobileAction.FuncClick(replace_a_damaged_card_btn, replacedDamagedCardText);
-			mobileAction.waitForElementToVanish(progress_bar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException | IOException | InterruptedException e) {
 			System.err.println("TestCase has failed.");

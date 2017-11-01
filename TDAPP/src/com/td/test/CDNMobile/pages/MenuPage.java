@@ -602,10 +602,8 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				locations = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='"
-								+getTextInCurrentLocale(StringArray.ARRAY_MENU_LOCATION) + "']",
-						"Locations");
+				locations = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_MENU_LOCATION) + "']", "Locations");
 			}
 			mobileAction.FuncClick(locations, "Locations");
 			Thread.sleep(2000);

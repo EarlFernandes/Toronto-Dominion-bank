@@ -37,11 +37,7 @@ public class AppointmentBooking extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='URL']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.android.chrome:id/url_bar']")
 	private MobileElement appointment_url_link;
-	
-	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progress_bar;
-	
+		
 	public synchronized static AppointmentBooking get() {
 		if (appointmentBooking == null) {
 			appointmentBooking = new AppointmentBooking();
@@ -106,7 +102,7 @@ public class AppointmentBooking extends _CommonPage {
 		
 		try {
 			mobileAction.FuncClick(book_appointment_now_btn, "Book Appointment Now");
-			mobileAction.waitForElementToVanish(progress_bar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
