@@ -107,7 +107,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	private MobileElement QL_PAY_BILL;
 
 	@iOSFindBy(xpath = "//*[@label='TRADE' or @label='NÉGOCIATION' or @label='交易' or @label='交易']")
-	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation' or @text='交易' or @text='交易']")
+	@AndroidFindBy(xpath = "//*[@text='TRADE' or @text='NÉGOCIATION' or @text='交易' or @text='交易']")
 	private MobileElement QL_TRADE;
 
 	@AndroidFindBy(xpath = "//*[@text='Mobile Payment' or @text='Paiement mobile' or @text='移动支付' or @text='流動付款']")
@@ -147,6 +147,22 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeSearchField[contains(@label,'Add symbol') or @label='Ajouter un symbole à la liste' or @label='将代号添加至自选股观察名单' or @label='新增代號至自選股觀察名單']")
 	@AndroidFindBy(xpath = "//*[@text='Add symbol to watchlist' or @text='Ajouter un symbole à la liste' or @text='将代号添加至自选股观察名单' or @text='新增代號至自選股觀察名單']")
 	private MobileElement ED_AddSymbolToWatchlist;
+
+	@iOSFindBy(xpath = "//*[@label='HOLDINGS' or @label='PLACEMENTS' or @label='持有投资' or @label='持有投資']")
+	@AndroidFindBy(xpath = "//*[@text='HOLDINGS' or @text='PLACEMENTS' or @text='持有投资' or @text='持有投資']")
+	private MobileElement QL_HOLDINGS;
+
+	@iOSFindBy(xpath = "//*[@label='ORDERS' or @label='ORDRES' or @label='订单' or @label='交易訂單']")
+	@AndroidFindBy(xpath = "//*[@text='ORDERS' or @text='ORDRES' or @text='订单' or @text='交易訂單']")
+	private MobileElement QL_ORDERS;
+
+	@iOSFindBy(xpath = "//*[@label='ORDERS' or @label='ORDRES' or @label='订单' or @label='交易訂單']")
+	@AndroidFindBy(id = "com.td:id/ordersTab")
+	private MobileElement LBL_OrdersTab;
+
+	@iOSFindBy(xpath = "//*[@label='ORDERS' or @label='ORDRES' or @label='订单' or @label='交易訂單']")
+	@AndroidFindBy(id = "com.td:id/textview_left")
+	private MobileElement LBL_HoldingsTab_SYMBOL;
 
 	private By ED_Quote_Search_Symbol = By.id("symbol-search");
 
@@ -230,6 +246,12 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		Decorator();
 		try {
 
+			verifyQL_TRADE(true);
+
+			verifyQL_HOLDINGS(true);
+
+			verifyQL_ORDERS(true);
+
 			verifyQL_SENDMONEY(true);
 
 			verifyQL_TRANSFER(true);
@@ -241,8 +263,6 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 			verifyQL_DEPOSIT(true);
 
 			verifyQL_PAY_BILL(true);
-
-			verifyQL_TRADE(true);
 
 			verifyQL_WATCHLISTS(true);
 
@@ -521,6 +541,39 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 				clickQuickLink(QL_TRADE, "TRADE");
 				mobileAction.verifyElementIsDisplayed(hdrTrade, "Header: Trade");
+				mobileAction.FuncClick(BT_Back, "< Button");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void verifyQL_HOLDINGS(boolean bIsAuthenticatedUser) {
+		Decorator();
+		try {
+			if (verifyQuickLinkExists(QL_HOLDINGS, "HOLDINGS")) {
+				mobileAction.FuncVerifyTextEquals(QL_HOLDINGS,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_HOLDINGS));
+
+				clickQuickLink(QL_HOLDINGS, "HOLDINGS");
+				mobileAction.verifyElementIsDisplayed(LBL_HoldingsTab_SYMBOL,
+						"Holdings Tab under Account Details: SYMBOL Label");
+				mobileAction.FuncClick(BT_Back, "< Button");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void verifyQL_ORDERS(boolean bIsAuthenticatedUser) {
+		Decorator();
+		try {
+			if (verifyQuickLinkExists(QL_ORDERS, "ORDERS")) {
+				mobileAction.FuncVerifyTextEquals(QL_ORDERS,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_ORDERS));
+
+				clickQuickLink(QL_ORDERS, "ORDERS");
+				mobileAction.verifyElementIsDisplayed(LBL_OrdersTab, "Orders Tab under Account Details");
 				mobileAction.FuncClick(BT_Back, "< Button");
 			}
 		} catch (Exception e) {

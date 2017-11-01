@@ -3,6 +3,7 @@ package com.td.test.CDNMobile.pages;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.StringArray;
@@ -10,6 +11,7 @@ import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidKeyCode;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
@@ -83,16 +85,24 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Accessory_Button")
 	@AndroidFindBy(id = "com.td:id/nav_row_right_icon")
 	private MobileElement ICON_Chevron;
-	
+
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 
+	@iOSFindBy(xpath = "//*[@label='More' or @label='LISTES DE SURVEILLANCE' or @label='自选股观察名单' or @label='自選股觀察名單']")
+	@AndroidFindBy(id = "com.td:id/tv_watchlist_more_footer")
+	private MobileElement BT_More;
+
 	public void verifyHomeScreenSettingsUI() {
 		Decorator();
 		try {
-/*			mobileAction.FuncClick(BT_Home_HamburgerMenu, "Home HamburgerMenu");
-			mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings, true, 5, "up");*/
+			/*
+			 * mobileAction.FuncClick(BT_Home_HamburgerMenu,
+			 * "Home HamburgerMenu");
+			 * mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings,
+			 * true, 5, "up");
+			 */
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
 			}
@@ -114,8 +124,12 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	public void verifyHomeScreenSettingsInvestingUser() {
 		Decorator();
 		try {
-/*			mobileAction.FuncClick(BT_Home_HamburgerMenu, "Home HamburgerMenu");
-			mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings, true, 5, "up");*/
+			/*
+			 * mobileAction.FuncClick(BT_Home_HamburgerMenu,
+			 * "Home HamburgerMenu");
+			 * mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings,
+			 * true, 5, "up");
+			 */
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
 			}
@@ -133,14 +147,25 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	public void verifyHomeScreenSettingsPageUI() {
 		Decorator();
 		try {
-/*			mobileAction.FuncClick(BT_Home_HamburgerMenu, "Home HamburgerMenu");
-			mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings, true, 5, "up");*/
+			/*
+			 * mobileAction.FuncClick(BT_Home_HamburgerMenu,
+			 * "Home HamburgerMenu");
+			 * mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings,
+			 * true, 5, "up");
+			 */
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
+
+				mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
+				mobileAction.FuncVerifyTextEquals(LBL_HomeScreenSettings,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_HOMESCREENSETTINGS));
+				CL.GetDriver().navigate().back();
+				mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
+			} else {
+				mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
+				mobileAction.FuncVerifyTextEquals(LBL_HomeScreenSettings,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_HOMESCREENSETTINGS));
 			}
-			mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
-			mobileAction.FuncVerifyTextEquals(LBL_HomeScreenSettings,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_HOMESCREENSETTINGS));
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 				mobileAction.verifyElementIsDisplayed(ICON_Home, "Home Icon");
@@ -181,7 +206,7 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				if (!mobileAction.isObjExists(ICON_Chevron)) {
-					CL.GetReporting().FuncReport(PASS, "Chevron Icon should not display.");
+					CL.GetReporting().FuncReport(PASS, "Chevron Icon should not display for Android.");
 				} else {
 					CL.GetReporting().FuncReport(FAIL, "Chevron Icon should not be displayed.");
 				}
@@ -199,14 +224,16 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	public void verifyHomeScreenSettingsBlendedInvestingFocusUser() {
 		Decorator();
 		try {
-			if (mobileAction.isObjExists(LBL_InvestingViewIsNowOn)) {
+			mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
+			if (BT_EnableInvestingViewSwitch.isSelected()) {
 				CL.GetReporting().FuncReport(PASS, "Enable Investing View is bydefault ON for investing focus user.");
 			} else {
-				CL.GetReporting().FuncReport(FAIL, "Enable Investing View is not bydefault ON for investing focus user.");
+				CL.GetReporting().FuncReport(FAIL,
+						"Enable Investing View is not bydefault ON for investing focus user.");
 			}
-			
+
 			mobileAction.FuncClick(BT_Back, "< Button");
-			
+
 			mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
 
 		} catch (Exception e) {
@@ -223,4 +250,6 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 			e.printStackTrace();
 		}
 	}
+
+
 }
