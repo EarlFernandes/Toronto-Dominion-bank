@@ -44,10 +44,6 @@ public class OTPChallenge extends _CommonPage {
 	@FindBy(id = "getCode")
 	private WebElement getCodeButton;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[1]")
-	@AndroidFindBy(id = "com.td:id/loading_indicator_textview")
-	private MobileElement progressBar;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//a[@ng-click='sp.testPhone(phone)' and @tabindex='0']")
 	private WebElement firstPhoneNumber;
@@ -60,11 +56,13 @@ public class OTPChallenge extends _CommonPage {
 	@FindBy(id = "enter")
 	private WebElement submitCodeButton;
 
-	//@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
+	// @iOSFindBy(xpath =
+	// "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='server-validation']/span[2]")
 	private WebElement cannotVerifySecurityCodeMsg;
 
-	//@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
+	// @iOSFindBy(xpath =
+	// "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='server-validation']/span[2]")
 	private WebElement tooManySecurityCodesRequestedMsg;
 
@@ -95,7 +93,7 @@ public class OTPChallenge extends _CommonPage {
 	public void waitForOTPProgressBarToVanish() {
 		Decorator();
 		try {
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -159,7 +157,7 @@ public class OTPChallenge extends _CommonPage {
 			mobileAction.FuncClick(getCodeButton, "Get Code Button");
 
 			mobileAction.switchAppiumContext("NATIVE_APP");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -215,7 +213,7 @@ public class OTPChallenge extends _CommonPage {
 			mobileAction.FuncClick(submitCodeButton, "submit code button");
 
 			mobileAction.switchAppiumContext("NATIVE_APP");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -239,7 +237,7 @@ public class OTPChallenge extends _CommonPage {
 
 			mobileAction.switchAppiumContext("NATIVE_APP");
 			mobileAction.FuncClick(resendCodeDialogTextButton, "Resend code confirmation dialog, TEXT button");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

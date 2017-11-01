@@ -51,7 +51,7 @@ public class SpendingSpikes extends _CommonPage {
 	private MobileElement homeButton;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Current Month') or contains(@label,'Mois en cours')]/following-sibling::XCUIElementTypeOther[4]")
-	@AndroidFindBy(xpath = "//*[contains(@content-desc,'Current Month') or contains(@content-desc,'Mois en cours')]/../following-sibling::android.view.View[4]")
+	@AndroidFindBy(xpath = "//*[contains(@content-desc,'Current Month') or contains(@content-desc,'Mois en cours')]/../following-sibling::android.view.View[2]")
 	private MobileElement currentMonthSpending;
 	
 	@FindBy(xpath="//*[text()='Spending Spikes' or text()='Pics de dépenses']")
@@ -63,7 +63,7 @@ public class SpendingSpikes extends _CommonPage {
 	@FindBy(xpath="//*[text()='Previous Months' or text()='Mois précédents']")
 	private WebElement previousMonthAndroid;
 	
-	@FindBy(xpath="(//*[@class='col listItemTextBigWrap ng-binding'])[2]")
+	@FindBy(xpath="(//*[@class='col listItemTextBigWrap ng-binding'])[1]")
 	private WebElement currentMonthSpendingAndroid;
 	
 	/**
@@ -300,7 +300,7 @@ public class SpendingSpikes extends _CommonPage {
 			System.out.println(currDate);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementIsDisplayed(currentMonthAndroid, "Current Month");
-				mobileAction.verifyElementIsDisplayed(previousMonthAndroid, "Previous Month");
+				//mobileAction.verifyElementIsDisplayed(previousMonthAndroid, "Previous Month");
 				String currentMonthCategory = mobileAction.FuncGetElementText(currentMonthSpendingAndroid);
 				System.out.println("Current month category :"+currentMonthCategory);
 				String[] arrText = currentMonthCategory.split("-");

@@ -44,9 +44,6 @@ public class PayWithRewards extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue']")
 	private MobileElement continueBtn;
 
-	@iOSFindBy(xpath = "//*[@label='Done']")
-	private MobileElement doneBtn;
-
 	By rewardPayee = By
 			.xpath("//XCUIElementTypeTable/preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[1]");
 
