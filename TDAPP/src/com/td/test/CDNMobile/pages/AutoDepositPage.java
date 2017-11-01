@@ -57,9 +57,11 @@ public class AutoDepositPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_footer']")
 	private MobileElement continueBtn;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeActivityIndicator[`value=='1'")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progressBar;
+	// @iOSXCUITFindBy(iOSClassChain =
+	// "**/XCUIElementTypeActivityIndicator[`value=='1'")
+	// @AndroidFindBy(xpath =
+	// "//android.widget.TextView[@resource-id='android:id/message']")
+	// private MobileElement progressBar;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label=='Accept' or label=='Accepter'`]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/acceptButton']")
@@ -291,7 +293,7 @@ public class AutoDepositPage extends _CommonPage {
 			MobileElement accountNumberToDeposit = mobileAction.mobileElementUsingXPath(AccToDeposit);
 			mobileAction.FuncClick(accountNumberToDeposit, "Account Number " + getTestdata("ToAccount"));
 			mobileAction.FuncClick(continueBtn, "Continue Button");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 			emailCounter++;
 			if (emailCounter == emailArr.length) {
@@ -384,7 +386,7 @@ public class AutoDepositPage extends _CommonPage {
 
 				autodepositStatus = autodepositAccToDel[i];
 
-			Thread.sleep(3000);
+				Thread.sleep(3000);
 				clickAutoDeposit();
 
 				mobileAction.FuncClick(deleteAutoDepositBtn, "Delete AutoDeposit Button");
@@ -399,7 +401,7 @@ public class AutoDepositPage extends _CommonPage {
 					mobileAction.verifyTextEquality(Successmsg.getText(),
 							mobileAction.getAppString("auto_deposit_deleted"));
 				}
-				
+
 				Interac_Send_Money.get().iOS_back_button();
 				PaymentsAndTransfers.get().clickManageAutoDeposit();
 			}
@@ -466,13 +468,14 @@ public class AutoDepositPage extends _CommonPage {
 
 				} else {
 
-					activeAutoDeposit = mobileAction.mobileElementUsingXPath("//XCUIElementTypeOther/XCUIElementTypeButton[contains(@label,'"
-							+ getTextInCurrentLocale(StringArray.ARRAY_AUTODEPOSIT_ACTIVE_STATUS) + "')]");
+					activeAutoDeposit = mobileAction
+							.mobileElementUsingXPath("//XCUIElementTypeOther/XCUIElementTypeButton[contains(@label,'"
+									+ getTextInCurrentLocale(StringArray.ARRAY_AUTODEPOSIT_ACTIVE_STATUS) + "')]");
 					mobileAction.FuncClick(activeAutoDeposit, "Active AutoDeposit");
 				}
 
 			}
-			
+
 			activeAutoDeposit = null;
 
 		} catch (Exception e) {
@@ -503,8 +506,8 @@ public class AutoDepositPage extends _CommonPage {
 			String enterAccount = null;
 			MobileElement accountToSelect = null;
 
-			mobileAction.waitForElementToVanish(progressBar);
-			
+			mobileAction.waitProgressBarVanish();
+
 			if (autodepositAcc.getText().contains(accounts[0])) {
 				enterAccount = accounts[1];
 			} else {
@@ -735,7 +738,7 @@ public class AutoDepositPage extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 			if (platform.equalsIgnoreCase("iOS")) {
 

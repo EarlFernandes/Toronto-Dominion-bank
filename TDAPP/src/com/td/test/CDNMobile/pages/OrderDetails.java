@@ -37,9 +37,6 @@ public class OrderDetails extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Agree']")
 	private MobileElement agreeButton;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='done']")
-	private MobileElement doneButton;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'The change to your order was received')]")
 	private MobileElement changeOrderMessage;
 
@@ -58,10 +55,6 @@ public class OrderDetails extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Your request to cancel the order was received.']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/message' and @text='Your request to cancel the order was received.']")
 	private MobileElement verifySuccessMessageCancelOrder;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In Progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
 
 	int i = 1;
 	String price_table = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]";
@@ -102,9 +95,9 @@ public class OrderDetails extends _CommonPage {
 
 		try {
 
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(changeOrderButton, "Change Order Clicked");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -159,40 +152,41 @@ public class OrderDetails extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(cancelOrderButton, "Cancel Order Clicked");
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 
-				//mobileAction.FunCSwipeandScroll(tradingPasswordEditText, true);
-				if(mobileAction.verifyElementIsPresent(tradingPasswordEditText)){
-				mobileAction.FuncClick(tradingPasswordEditText, "tradingPasswordEditText");
+				// mobileAction.FunCSwipeandScroll(tradingPasswordEditText,
+				// true);
+				if (mobileAction.verifyElementIsPresent(tradingPasswordEditText)) {
+					mobileAction.FuncClick(tradingPasswordEditText, "tradingPasswordEditText");
 
-				String tradingPasswordEditText_value = getTestdata("Trading_Pwd");
-				mobileAction.FuncSendKeys(tradingPasswordEditText, tradingPasswordEditText_value);
+					String tradingPasswordEditText_value = getTestdata("Trading_Pwd");
+					mobileAction.FuncSendKeys(tradingPasswordEditText, tradingPasswordEditText_value);
 
-				mobileAction.FuncClickDone();
+					mobileAction.FuncClickDone();
 				}
 				mobileAction.FuncClick(cancelOrderButton, "Cancel order");
 
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 
 				mobileAction.verifyElementIsDisplayed(verifySuccessMessageCancelOrder, "Cancel Order");
 
 			} else {
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(cancelOrderButton, "Cancel Order Clicked");
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				if (!mobileAction.FuncIsDisplayed(tradingPasswordEditText)) {
 					mobileAction.FunctionSwipe("up", 200, 100);
 				}
-				if(mobileAction.verifyElementIsPresent(tradingPasswordEditText)){
+				if (mobileAction.verifyElementIsPresent(tradingPasswordEditText)) {
 					mobileAction.FuncClick(tradingPasswordEditText, "tradingPasswordEditText");
 					String tradingPasswordEditText_value = getTestdata("tradingPasswordEditText");
 					mobileAction.FuncSendKeys(tradingPasswordEditText, tradingPasswordEditText_value);
 					mobileAction.FuncHideKeyboard();
 				}
 				mobileAction.FuncClick(cancelOrderButton, "Cancel order");
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.verifyElementIsDisplayed(verifySuccessMessageCancelOrder, "Cancel Order");
 			}
 		} catch (NoSuchElementException e) {

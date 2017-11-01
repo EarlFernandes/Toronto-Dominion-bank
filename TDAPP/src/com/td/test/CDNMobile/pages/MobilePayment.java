@@ -63,9 +63,6 @@ public class MobilePayment extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/carousel_card_nickname' and @text='Add a Card']")
 	private MobileElement add_Card_Mobile_Payment;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	private MobileElement progresssBar;
-
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Set up Passcode']")
 	private MobileElement setup_Passcode_Header;
 
@@ -86,10 +83,6 @@ public class MobilePayment extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/nickname_box']")
 	private MobileElement nickname_Edit_Text;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement backButton;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/pay_button']")
 	private MobileElement pay_Button;
@@ -126,10 +119,6 @@ public class MobilePayment extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/add_cards_button' and @text='Add to TD Mobile Payment']")
 	private MobileElement addMobilePayment;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
 
 	@AndroidFindBy(xpath = "//android.widget.ProgressBar[@resource-id='com.td:id/content_loader']")
 	private MobileElement progressBarAddCard;
@@ -224,7 +213,7 @@ public class MobilePayment extends _CommonPage {
 			if (mobileAction.verifyElementIsPresent(mobilepayment_Header)) {
 				mobileAction.FuncClick(continue_Button, "Continue");
 				mobileAction.FuncClick(add_Card_Button, "Add a Card");
-				mobileAction.waitForElementToVanish(progresssBar);
+				mobileAction.waitProgressBarVanish();
 			}
 
 		} catch (NoSuchElementException e) {
@@ -248,7 +237,7 @@ public class MobilePayment extends _CommonPage {
 			Decorator();
 
 			String add_to_mobilePayment_path = "//*[label='Add to TD Mobile Payment']";
-			mobileAction.waitForElementToVanish(progresssBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.waitForElementToAppear(add_to_mobilePayment_path, "Add To Mobile Payment");
 			mobileAction.FuncClick(add_To_MobilePayment_Button, "Add to TD Mobile Payment");
 
@@ -279,7 +268,7 @@ public class MobilePayment extends _CommonPage {
 					Decorator();
 					mobileAction.FuncClick(set_Default_Card, "Set As Default Card");
 					mobileAction.FuncClick(save_Button, "Save");
-					mobileAction.FuncClick(backButton, "Back");
+					mobileAction.ClickBackButton();
 
 				}
 
@@ -345,7 +334,7 @@ public class MobilePayment extends _CommonPage {
 			Decorator();
 
 			String add_to_mobilePayment_path = "//XCUIElementTypeStaticText[label='Add to TD Mobile Payment']";
-			mobileAction.waitForElementToVanish(progresssBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.waitForElementToAppear(add_to_mobilePayment_path, "Add To Mobile Payment");
 			mobileAction.FuncClick(add_To_MobilePayment_Button, "Add to TD Mobile Payment");
 
@@ -390,7 +379,7 @@ public class MobilePayment extends _CommonPage {
 				mobileAction.FuncSendKeys(passcode);
 				mobileAction.FuncClick(setting_Button, "Setting");
 				mobileAction.FuncClick(add_Card_Button, "Add a Card");
-				mobileAction.waitForElementToVanish(progresssBar);
+				mobileAction.waitProgressBarVanish();
 
 			}
 
@@ -413,7 +402,7 @@ public class MobilePayment extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(pay_Button, "Pay Button");
-			mobileAction.waitForElementToVanish(cancel_Button);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.verifyElementIsDisplayed(timer_Text, msg);
 			mobileAction.verifyElementIsDisplayed(timer_Time, time);
 			mobileAction.FuncClick(restart_Timer, "Restart timer");
@@ -519,7 +508,7 @@ public class MobilePayment extends _CommonPage {
 					mobileAction.FuncHideKeyboard();
 				}
 				mobileAction.FuncClick(securityLogin, "Login");
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 			}
 
 		} catch (NoSuchElementException e) {
@@ -556,9 +545,9 @@ public class MobilePayment extends _CommonPage {
 		try {
 			Decorator();
 
-			mobileAction.waitForElementToVanish(progressBarCompatabilityCheck);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(addMobilePayment, "Add To Mobile Payment");
-			mobileAction.waitForElementToVanish(progressBarAddCard);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

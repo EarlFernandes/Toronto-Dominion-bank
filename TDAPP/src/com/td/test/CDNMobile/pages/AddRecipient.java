@@ -50,9 +50,6 @@ public class AddRecipient extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Error You must enter a valid answer')]")
 	private MobileElement verify_Msg;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done' or @label='Go']")
-	private MobileElement done;
-
 	public synchronized static AddRecipient get() {
 		if (AddRecipient == null) {
 			AddRecipient = new AddRecipient();
