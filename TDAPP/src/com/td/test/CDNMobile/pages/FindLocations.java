@@ -26,7 +26,7 @@ public class FindLocations extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Find Locations']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_location']")
 	private MobileElement searchLocation;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label, 'Branch')]")
 	@AndroidFindBy(xpath = "//android.widget.ListView/android.widget.LinearLayout//android.widget.TextView[contains(@text,'Branch')]")
 	private MobileElement first_location;

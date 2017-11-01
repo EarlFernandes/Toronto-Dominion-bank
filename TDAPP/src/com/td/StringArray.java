@@ -327,6 +327,8 @@ public final class StringArray {
 			"You must be the Primary cardholder on the card to make a credit limit increase request. Requests take only a few minutes to complete.",
 			"Vous n’aurez besoin que de quelques minutes pour remplir une demande et vous recevrez une réponse peu de temps après.",
 			"申请只需几分钟即可完成，很快您将收到答复。", "申請只需幾分鐘即可完成，您很快會收到回覆。" };
+	public static final String[] ARRAY_CREDIT_HEADER = { "Credit", "Crédit", "贷项", "信貸" };
+	public static final String[] ARRAY_CLIP_FORM_TITLE = { "TD Credit Card Limit Increase Request", "Crédit", "贷项", "信貸" };
 	// MAB
 	public static final String[] ARRAY_MENU_LOCATION = { "Locations", "Succursales", "分行网点", "分行地點" };
 	public static final String[] ARRAY_APPOINTMENT_BOOKING = { "Appointment Booking", "Prise de rendez-vous", "分行预约",
@@ -342,8 +344,8 @@ public final class StringArray {
 			"歡迎親臨分行了解更多有關理財、信用卡、借貸和投資的詳情。 要完成預約，您要退出道明應用程式並前往道明網站。" };
 	public static final String[] ARRAY_BOOKING_APPOINTMENT_BTN = { "Book Appointment Now",
 			"Prendre rendez-vous maintenant", "立即预约会面", "立即預約會面" };
-	public static final String[] ARRAY_CHANGE_CANCEl_LINK = { "Change or cancel an appointment",
-			"Modifier ou annuler un rendez-vous", "更改或取消预约", "更改或取消預約" };
+	public static final String[] ARRAY_MANAGE_EXISTING_APPOINTMENT_LINK = { "Manage my existing appointments",
+			"Gérer mes rendez-vous", "管理现有预约", "管理現有預約" };
 	public static final String[] ARRAY_MAB_FAQ = {
 			"What are the benefits of scheduling an appointment online?How can I change or cancel a scheduled appointment?",
 			"Quels sont les avantages de prendre rendez-vous en ligne?Comment puis-je modifier ou annuler un rendez-vous?",

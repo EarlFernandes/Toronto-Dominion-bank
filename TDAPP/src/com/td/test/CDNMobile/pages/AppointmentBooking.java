@@ -32,7 +32,7 @@ public class AppointmentBooking extends _CommonPage {
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.android.chrome:id/url_bar']")
-	private MobileElement cancel_change_appointment_link;
+	private MobileElement manage_existing_appointment_link;
 	
 	@iOSFindBy(xpath = "//*[@name='URL']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.android.chrome:id/url_bar']")
@@ -82,8 +82,8 @@ public class AppointmentBooking extends _CommonPage {
 			expectedText = getTextInCurrentLocale(StringArray.ARRAY_BOOKING_APPOINTMENT_BTN);
 			mobileAction.verifyElementTextIsDisplayed(book_appointment_now_btn, expectedText);
 			
-			expectedText = getTextInCurrentLocale(StringArray.ARRAY_CHANGE_CANCEl_LINK);
-			mobileAction.verifyElementTextIsDisplayed(cancel_change_appointment_link, expectedText);
+			expectedText = getTextInCurrentLocale(StringArray.ARRAY_MANAGE_EXISTING_APPOINTMENT_LINK);
+			mobileAction.verifyElementTextIsDisplayed(manage_existing_appointment_link, expectedText);
 			
 //			expectedText = getTextInCurrentLocale(StringArray.ARRAY_MAB_FAQ);
 //			mobileAction.verifyElementTextIsDisplayed(cancel_change_appointment_link, expectedText);

@@ -114,7 +114,6 @@ import com.td.test.CDNMobile.pages.AppointmentBooking;
 import com.td.test.CDNMobile.pages.Branch;
 import com.td.test.CDNMobile.pages.ReplaceDamagedCard;
 
-
 public class EventCase {
 
 	private enum functionNames {
@@ -247,15 +246,15 @@ public class EventCase {
 		OTP_Update_VerifyOTPUpdateScreen, OTP_Update_VerifyTestPhoneUpdateScreen, OTP_Update_ClickTestPhoneButton, OTP_Update_VerifyLoginOptionUpdateScreen, OTP_Update_ClickLoginOptionButton, OTP_Update_VerifyChangeEmailScreen, OTP_Update_ClickChangeEmailButton, OTP_Update_UpdateSecurityEmail, OTP_Update_ClickOTPUpdateContinueButton, OTP_Update_VerifyOTPUpdateCompleteScreen, OTP_Update_ClickAddPhoneUpdateButton, OTP_Update_AddSinglePhoneNumber, OTP_Update_AddMaxPhoneNumbers, OTP_Update_DeleteFirstPhoneNumber, OTP_Update_VerifyDeletePhoneNumberFail, OTP_Update_VerifyAddedPhoneNumber, OTP_Update_VerifyMaxPhoneNumbers, OTP_Update_VerifyUpdatedSecurityEmail, OTP_Update_ClickFirstPhoneNumber, OTP_Update_ClickTextOption, OTP_Update_ClickSubmitCodeButton, OTP_Update_EnterSecurityCode, OTP_Update_VerifyCorrectSecurityCode, OTP_Update_ClickGetCodeButton,
 
 		// myspend
-		DailyDigest_verifyHeader,DailyDigest_verifyHomePage,DailyDigest_verifyBackButton,DailyDigest_verifySpending,DailyDigest_verifyCategorySpike,DailyDigest_clickCategoryTab,DailyDigest_verifyCategoryMessage,Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality,Preferences_verifyPreferenceTabs,Preferences_verifyRealTimeNotifications,Preferences_verifyDailyDigestNotifications, TourPage_clickConnectTDApp, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks,SideMenu_clickSideMenu, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes,SpendingInsight_clickDailyDigest,SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickGetTDAppButton, click_PreferencesLink,
+		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_verifyCategoryMessage, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, TourPage_clickConnectTDApp, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickGetTDAppButton, click_PreferencesLink,
 
-		//CLIP
-		VerifyMoreLinkPresent, ClickMoreLink, verifyMoreOptionHeader,ClickCardlimitIncreaseBtn, verifyCreditLimitIncreaseHeader, verifyMoreOptionsDirectionalCopy,verifyCreditCardContent,
-		
-		//MAB
-		VerifyContactUsMABContent,verifyAppointmentBookingHeader,ClickAppointmentBooking, SelectBranchLocation,verifyBranchHeader,verifyBranchBookAppointmentContent,clickBranchBookAppointmentIcon,verifyMABLandingPageContent,clickBookAppointmentNowbtn,verifyAppointmentURLLink,
-		
-		//Damaged Card
+		// CLIP
+		VerifyMoreLinkPresent, ClickMoreLink, verifyMoreOptionHeader, ClickCardlimitIncreaseBtn, verifyCreditLimitIncreaseHeader, verifyMoreOptionsDirectionalCopy, verifyCreditCardContent,Click_GetStarted,
+
+		// MAB
+		VerifyContactUsMABContent, verifyAppointmentBookingHeader, ClickAppointmentBooking, SelectBranchLocation, verifyBranchHeader, verifyBranchBookAppointmentContent, clickBranchBookAppointmentIcon, verifyMABLandingPageContent, clickBookAppointmentNowbtn, verifyAppointmentURLLink,
+
+		// Damaged Card
 		verifyReplaceDamagedCardHeader, ClickReplaceDamagedCardBtn, verifyReplaceDamagedCardDirectionalCopy,
 	}
 
@@ -3101,8 +3100,8 @@ public class EventCase {
 			break;
 
 		// End of Purchase Mutual funds
-			
-		//CLIP
+
+		// CLIP
 		case VerifyMoreLinkPresent:
 			Credit.get().VerifyMoreLinkPresent();
 			break;
@@ -3114,34 +3113,38 @@ public class EventCase {
 		case verifyMoreOptionHeader:
 			MoreOptions.get().verifyMoreOptionHeader();
 			break;
-			
+
 		case ClickCardlimitIncreaseBtn:
 			MoreOptions.get().ClickCardlimitIncreaseBtn();
 			break;
-			
+
 		case verifyCreditLimitIncreaseHeader:
-			CreditLimitIncreaseForm.get().verifyCreditLimitIncreaseHeader();
-			break;	
-	
+			CreditLimitIncreaseForm.get().verifyCreditLimitIncreaseFormTitle();
+			break;
+
+		case Click_GetStarted:
+			CreditLimitIncreaseForm.get().Click_GetStarted();
+			break;
+			
 		case verifyMoreOptionsDirectionalCopy:
 			MoreOptions.get().verifyMoreOptionsDirectionalCopy();
 			break;
-			
+
 		case verifyCreditCardContent:
 			MoreOptions.get().verifyCreditCardContent();
-			break;				
+			break;
 
-		//End of CLIP	
-			
-		//MAB
+		// End of CLIP
+
+		// MAB
 		case VerifyContactUsMABContent:
 			ContactUs.get().VerifyContactUsMABContent();
 			break;
-			
+
 		case ClickAppointmentBooking:
 			ContactUs.get().ClickAppointmentBooking();
 			break;
-			
+
 		case verifyAppointmentBookingHeader:
 			AppointmentBooking.get().verifyAppointmentBookingHeader();
 			break;
@@ -3149,14 +3152,14 @@ public class EventCase {
 		case SelectBranchLocation:
 			FindLocations.get().SelectBranchLocation();
 			break;
-			
+
 		case verifyBranchHeader:
 			Branch.get().verifyBranchHeader();
 			break;
-			
+
 		case verifyBranchBookAppointmentContent:
 			Branch.get().verifyBranchBookAppointmentContent();
-			break;			
+			break;
 
 		case clickBranchBookAppointmentIcon:
 			Branch.get().clickBranchBookAppointmentIcon();
@@ -3169,25 +3172,25 @@ public class EventCase {
 		case clickBookAppointmentNowbtn:
 			AppointmentBooking.get().clickBookAppointmentNowbtn();
 			break;
-			
+
 		case verifyAppointmentURLLink:
 			AppointmentBooking.get().verifyAppointmentURLLink();
-			break;			
-		//End of MAB
-			
-		//Damaged Card
+			break;
+		// End of MAB
+
+		// Damaged Card
 		case ClickReplaceDamagedCardBtn:
 			MoreOptions.get().ClickReplaceDamagedCardBtn();
-			break;	
-			
+			break;
+
 		case verifyReplaceDamagedCardDirectionalCopy:
 			MoreOptions.get().verifyReplaceDamagedCardDirectionalCopy();
-			break;	
-			
+			break;
+
 		case verifyReplaceDamagedCardHeader:
 			ReplaceDamagedCard.get().verifyReplaceDamagedCardHeader();
-			break;			
-		//End of Damaged card	
+			break;
+		// End of Damaged card
 
 		case VerifyStatementBalanceHeader:
 			StatementBalance.get().verifyStatementBalanceHeader();
@@ -4182,31 +4185,31 @@ public class EventCase {
 		case SpendingSpike_pageMessages:
 			SpendingSpikes.get().spendingSpikePageMessages();
 			break;
-			
+
 		case SideMenu_clickDailyDigest:
 			SideMenu.get().clickDailyDigest();
 			break;
-			
+
 		case DailyDigest_verifyHeader:
 			DailyDigest.get().verifyPageheader();
 			break;
-			
+
 		case SpendingInsight_clickDailyDigest:
 			Spending_Insight.get().clickDailyDigest();
 			break;
-			
+
 		case Preferences_verifyPreferenceTabs:
 			MyspendPreferences.get().verifyPreferenceTabs();
 			break;
-			
+
 		case Preferences_verifyRealTimeNotifications:
 			MyspendPreferences.get().realTimeNotifications();
 			break;
-			
+
 		case Preferences_verifyDailyDigestNotifications:
 			MyspendPreferences.get().dailyDigestNotifications();
 			break;
-			
+
 		case SideMenu_clickSideMenu:
 			SideMenu.get().clickSideMenu();
 			break;
@@ -4214,27 +4217,26 @@ public class EventCase {
 		case DailyDigest_verifyHomePage:
 			DailyDigest.get().verifyTDAPPHomePage();
 			break;
-			
+
 		case DailyDigest_verifyBackButton:
 			DailyDigest.get().verifyBackButton();
 			break;
-			
+
 		case DailyDigest_verifySpending:
 			DailyDigest.get().verifySpending();
 			break;
-			
+
 		case DailyDigest_verifyCategorySpike:
 			DailyDigest.get().verifyCategorySpike();
 			break;
-			
+
 		case DailyDigest_clickCategoryTab:
 			DailyDigest.get().clickCategoryTab();
 			break;
-			
+
 		case DailyDigest_verifyCategoryMessage:
 			DailyDigest.get().verifyCategoryMessage();
 			break;
-			
 
 		// DSh
 		case verifyFlyoutUnauthenticated:

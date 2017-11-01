@@ -119,7 +119,7 @@ public class MoreOptions extends _CommonPage {
 		String limitIncreaseRequestText = getTextInCurrentLocale(StringArray.ARRAY_CREDIT_LIMIT_INCREASE_REQ);
 		try {
 			String capturedText = mobileAction.getValue(limit_increase_request_btn);
-			System.out.println("capturedText" + capturedText);
+			System.out.println("capturedText:" + capturedText);
 			mobileAction.verifyTextEquality(capturedText, limitIncreaseRequestText);
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -129,7 +129,7 @@ public class MoreOptions extends _CommonPage {
 		String limitIncreaseDirectionText = getTextInCurrentLocale(StringArray.ARRAY_CREDIT_LIMIT_INCREASE_DIR);
 		try {
 			String capturedText = mobileAction.getValue(limit_increase_direction);
-			System.out.println("capturedText" + capturedText);
+			System.out.println("capturedText:" + capturedText);
 			mobileAction.verifyTextEquality(capturedText, limitIncreaseDirectionText);
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

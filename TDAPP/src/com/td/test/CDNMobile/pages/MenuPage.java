@@ -60,7 +60,7 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Mobile Deposit']")
 	private MobileElement mobile_Deposit_button;
 
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_ACCOUNTS']/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_ACCOUNTS']/XCUIElementTypeStaticText | //*[@name='NAV_DRAWER_ITEMS_ACCOUNTS']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='My Accounts' or @text='Mes comptes')]")
 	private MobileElement accounts_button;
 
