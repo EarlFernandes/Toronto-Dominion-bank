@@ -89,10 +89,6 @@ public class PendingInteracTransfer extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Receipt']")
 	private MobileElement receiptHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement menu;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Home']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText'and and @text='Home']")
 	private MobileElement home;
@@ -167,10 +163,6 @@ public class PendingInteracTransfer extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/myaccounts_amount_header']")
 	private MobileElement verifyAmount;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
 	private MobileElement selectSenderVal;
 
@@ -226,7 +218,6 @@ public class PendingInteracTransfer extends _CommonPage {
 		PageFactory.initElements(
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 	}
-
 
 	/**
 	 * This method will click on Pending Interac_e transfer in Transfer Screen
@@ -391,16 +382,16 @@ public class PendingInteracTransfer extends _CommonPage {
 				mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
 				if (mobileAction.verifyElementIsPresent(selectSender)) {
 					mobileAction.FuncClick(selectSender, "sender");
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 					mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 1, "down", true);
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 				}
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 				mobileAction.FuncClick(depositToContinue, "Continue");
 				mobileAction.FuncClick(cnfrmCancellation, "Confirm");
 
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 
 				mobileAction.verifyElementIsDisplayed(cancelSuccessMsg,
 						"Interac e-Transfer reclaimed and deposited successfully");
@@ -475,10 +466,10 @@ public class PendingInteracTransfer extends _CommonPage {
 				mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
 				if (mobileAction.verifyElementIsPresent(selectSender)) {
 					mobileAction.FuncClick(selectSender, "sender");
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_senderValue, true, 2, "Up");
-					mobileAction.waitForElementToVanish(progressBar);
-					
+					mobileAction.waitProgressBarVanish();
+
 				}
 
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
@@ -548,14 +539,14 @@ public class PendingInteracTransfer extends _CommonPage {
 				mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
 				mobileAction.FuncClick(selectSender, "sender");
 
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 5, "down", true);
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 				mobileAction.FuncClick(depositToContinue, "Continue");
 				mobileAction.FuncClick(cnfrmCancellation, "Confirm");
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 
 				mobileAction.verifyElementIsDisplayed(receiptHeader, "Receipt Page Opens");
 				mobileAction.FuncClick(clickPendingIcon, "Click Pending Interac e-Transfer Icon");
@@ -627,7 +618,7 @@ public class PendingInteracTransfer extends _CommonPage {
 				mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
 				if (mobileAction.verifyElementIsPresent(selectSender)) {
 					mobileAction.FuncClick(selectSender, "sender");
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 
 					// mobileAction.FuncElementSwipeWhileNotFound(acntsList,
 					// select_senderValue, 0, "up", true);
@@ -638,7 +629,7 @@ public class PendingInteracTransfer extends _CommonPage {
 						mobileAction.FuncClick(cancelSender, "Cancel");
 					}
 
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 				}
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
 				mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
@@ -705,7 +696,7 @@ public class PendingInteracTransfer extends _CommonPage {
 
 				mobileAction.FuncClick(cnfrmCancellation, "Confirm");
 				mobileAction.verifyElementIsDisplayed(receiptHeader, "Receipt Page Opens");
-				mobileAction.FuncClick(menu, "Menu");
+				mobileAction.clickMenuButton();
 				mobileAction.FuncClick(home, "Home Button Clicked");
 				// mobileAction.FuncClick(gobackhomeButton,"Go Back Home Button
 				// Clicked");
@@ -728,7 +719,7 @@ public class PendingInteracTransfer extends _CommonPage {
 				mobileAction.FuncClick(cnfrmCancellation, "Confirm");
 				Thread.sleep(3000);
 				mobileAction.verifyElementIsDisplayed(receiptHeader, "Receipt Page Opens");
-				mobileAction.FuncClick(menu, "Menu");
+				mobileAction.clickMenuButton();
 				mobileAction.FuncClick(home, "Home Button Clicked");
 				mobileAction.verifyElementIsDisplayed(dashboard, "Dashboard Page Opened");
 
@@ -793,7 +784,7 @@ public class PendingInteracTransfer extends _CommonPage {
 				mobileAction.verifyElement(pendingTransfer_Header, "Pending Interac e-Transfer");
 				if (mobileAction.verifyElementIsPresent(selectSender)) {
 					mobileAction.FuncClick(selectSender, "sender");
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 					MobileElement Sender = mobileAction.verifyElementUsingXPath(select_senderValue, "Sender");
 					mobileAction.FuncClick(Sender, "Sender");
 					mobileAction.waitForElementToDisappear(select_senderValue);
@@ -950,9 +941,9 @@ public class PendingInteracTransfer extends _CommonPage {
 				if (mobileAction.verifyElementIsPresent(selectSender)) {
 					System.out.println("Select sender:" + sender_selectSender);
 					mobileAction.FuncClick(selectSender, "sender");
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 					mobileAction.FuncElementSwipeWhileNotFound(acntsList, select_senderValue, 2, "down", true);
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 				}
 				mobileAction.FuncClick(selectTransaction, "Select Transaction");
 
@@ -965,7 +956,7 @@ public class PendingInteracTransfer extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(recipientEmailId, transfer_fromAccount);
 
 				mobileAction.FuncClick(cnfrmCancellation, "Confirm");
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.verifyElementIsDisplayed(receiptHeader, "Receipt Page Opens");
 				mobileAction.verifyElementIsDisplayed(verifyAccountName, "Verifying Accout Name");
 				mobileAction.verifyElementIsDisplayed(verifyAccountEmailId, "Verifying Email Id");
@@ -1033,7 +1024,7 @@ public class PendingInteracTransfer extends _CommonPage {
 
 			double balance_after_Cancelled_d = mobileAction.convertStringAmountTodouble(balance_after_Cancelled);
 			System.out.println("balance_after_Cancelled:" + balance_after_Cancelled_d);
-			
+
 			double balance_diff = balance_after_Cancelled_d - balance_before_Cancelled_d;
 			if (balance_diff == amountCancelled_d || balance_diff == amountCancelled_d - cancel_fee) {
 				mobileAction.Report_Pass_Verified("Pending IET Cannceled");

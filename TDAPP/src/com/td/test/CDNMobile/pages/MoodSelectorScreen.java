@@ -24,10 +24,6 @@ public class MoodSelectorScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title']")
 	private MobileElement feedback_title;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progrees_bar;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/nav_row_profile_title']")
 	private MobileElement great_link;
@@ -85,9 +81,6 @@ public class MoodSelectorScreen extends _CommonPage {
 	private MobileElement check_box_container;
 
 	/*******************************************************/
-	@iOSFindBy(accessibility = "NAVIGATION_ITEM_MENU")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement menu;
 
 	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_FEEDBACK']/XCUIElementTypeStaticText")
 	private MobileElement give_feedback;
@@ -600,7 +593,7 @@ public class MoodSelectorScreen extends _CommonPage {
 			try {
 				Decorator();
 				// mobileAction.FuncClick(menu, "menu");
-				menu.click();
+				mobileAction.clickMenuButton();
 			} catch (Exception e) {
 				System.out.println("failed to click menu");
 				break;

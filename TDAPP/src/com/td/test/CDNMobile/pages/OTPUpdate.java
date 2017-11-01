@@ -157,10 +157,6 @@ public class OTPUpdate extends _CommonPage {
 	@AndroidFindBy(id = "android:id/message")
 	private MobileElement deletePhoneFailMessage;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[1]")
-	@AndroidFindBy(id = "com.td:id/loading_indicator_textview")
-	private MobileElement progressBar;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//a[@ng-click='sp.testPhone(phone)' and @tabindex='0']")
 	private WebElement firstPhoneNumber;
@@ -228,7 +224,7 @@ public class OTPUpdate extends _CommonPage {
 	public void waitForOTPProgressBarToVanish() {
 		Decorator();
 		try {
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -276,7 +272,6 @@ public class OTPUpdate extends _CommonPage {
 
 			mobileAction.FuncClick(addPhoneUpdateButton, "Add Phone Update Button");
 			mobileAction.FuncClick(addAnotherPhoneButton, "Add Another Phone Button");
-
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

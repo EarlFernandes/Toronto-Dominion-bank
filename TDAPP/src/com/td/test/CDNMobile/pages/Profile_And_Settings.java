@@ -20,10 +20,6 @@ public class Profile_And_Settings extends _CommonPage {
 
 	private static Profile_And_Settings ProfileAndSettings;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='In progress' OR label=='en cours'`]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progressBar;
-
 	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement profile_preferences_Header;
@@ -89,7 +85,7 @@ public class Profile_And_Settings extends _CommonPage {
 			}
 			view_profile = mobileAction.verifyElementUsingXPath(view_profile_xpath, "View Profile");
 			mobileAction.FuncClick(view_profile, "view profile");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -124,7 +120,7 @@ public class Profile_And_Settings extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(security_questions, security);
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -142,7 +138,7 @@ public class Profile_And_Settings extends _CommonPage {
 				notifications = mobileAction.verifyElementUsingXPath("//*[@label='" + notifi + "']", "Notifications");
 			}
 			mobileAction.FuncClick(notifications, notifi);
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -161,7 +157,7 @@ public class Profile_And_Settings extends _CommonPage {
 						"Quick Access Settings");
 			}
 			mobileAction.FuncClick(quickaccesssetting, quickSetting);
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -186,7 +182,7 @@ public class Profile_And_Settings extends _CommonPage {
 			} else {
 				mobileAction.FuncClick(tdformesettings, tdme);
 			}
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -207,22 +203,7 @@ public class Profile_And_Settings extends _CommonPage {
 				mobileAction.FuncSwipeWhileElementNotFound(whatsnew, true, 5, "up");
 			}
 
-			// if (!mobileAction.isObjExists(whatsnew)) {
-			// if
-			// (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS"))
-			// {
-			// mobileAction.SwipeWithinElement("//XCUIElementTypeTable", 2,
-			// "down");
-			// } else {
-			// mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout",
-			// 2, "down");
-			// }
-			//
-			// }
-			//
-			// String whatnew = mobileAction.getValue(whatsnew);
-			// mobileAction.FuncClick(whatsnew, whatnew);
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
@@ -256,7 +237,7 @@ public class Profile_And_Settings extends _CommonPage {
 				payment_transfer_xpath = "//*[@text='" + paymentTransferText + "']";
 			}
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(payment_transfer_xpath, true, 5, "up");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

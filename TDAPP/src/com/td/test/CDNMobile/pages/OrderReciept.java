@@ -101,16 +101,12 @@ public class OrderReciept extends _CommonPage {
 	private MobileElement receipt_header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Home']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='GO BACK HOME' or @text='HOME']") 
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='GO BACK HOME' or @text='HOME']")
 	private MobileElement gohomeicon;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Trade']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='TRADE']") 
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='TRADE']")
 	private MobileElement tradeicon;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement menu;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Accounts']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='My Accounts']")
@@ -522,7 +518,7 @@ public class OrderReciept extends _CommonPage {
 	public void quicklinkicon() {
 		try {
 			Decorator();
-			if(!mobileAction.verifyElementIsPresent(gohomeicon)){
+			if (!mobileAction.verifyElementIsPresent(gohomeicon)) {
 				mobileAction.FuncSwipeOnce("up");
 			}
 			mobileAction.verifyElementIsDisplayed(gohomeicon, "Verify Go Back Home Icon");
@@ -559,7 +555,7 @@ public class OrderReciept extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.FuncClick(gohomeicon, "Click Go Back Home Icon");
-			mobileAction.FuncClick(menu, "Click Menu");
+			mobileAction.clickMenuButton();
 			mobileAction.FuncClick(accounts_button, "Accounts");
 			mobileAction.verifyElementIsDisplayed(accounts_header, "Verify Accounts Header");
 		} catch (NoSuchElementException e) {
@@ -596,9 +592,9 @@ public class OrderReciept extends _CommonPage {
 
 		Decorator();
 		try {
-			if(mobileAction.verifyElementIsPresent(ordersicon)){
+			if (mobileAction.verifyElementIsPresent(ordersicon)) {
 				mobileAction.FuncClick(ordersicon, "Order");
-			}else{
+			} else {
 				mobileAction.FunctionSwipe("up", 200, 100);
 				mobileAction.FuncClick(ordersicon, "Order");
 			}
@@ -718,14 +714,6 @@ public class OrderReciept extends _CommonPage {
 																										// 17-Apr-2017
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_value_main' and contains(@text,' @ ')]")
 	private MobileElement orderElement;
-
-	@iOSFindBy(xpath = "//*[@label='In Progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
-
-	@iOSFindBy(xpath = "//*[@label='En cours']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='En cours']")
-	private MobileElement progressBarFRE;
 
 	// @iOSFindBy(xpath = "//*[@label='En cours']")
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Home' or @label='Accueil']") // @Author
@@ -866,7 +854,7 @@ public class OrderReciept extends _CommonPage {
 
 		goodXL = setCurrentArrayValue(getTestDataStringArray("Good'til"));
 
-		mobileAction.waitForElementToVanish(progressBar);
+		mobileAction.waitProgressBarVanish();
 	}
 
 	/**

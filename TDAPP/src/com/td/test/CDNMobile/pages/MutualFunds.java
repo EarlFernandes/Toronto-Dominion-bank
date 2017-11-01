@@ -160,9 +160,6 @@ public class MutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Order Type' or @text='Type d’ordre']")
 	private MobileElement orderTypeElement;
 
-	@iOSFindBy(xpath = "//*[@label='In Progress']")
-	private MobileElement progresssBar;
-
 	@iOSFindBy(xpath = "//*[contains(@label,'Action') or contains(@label,'Action')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='Please Select' or @text='Choisissez']")
 	private MobileElement selectAction;
@@ -268,10 +265,6 @@ public class MutualFunds extends _CommonPage {
 	private MobileElement neither;
 
 	String quant = "//android.widget.EditText[@resource-id='com.td:id/amountEditText'and @text='Quantity']";
-
-	@iOSFindBy(xpath = "//*[@label='In progress' or @label='En cours']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading' or @text='En cours']")
-	private MobileElement progressBar;
 
 	String trade_account_no = getTestdata("CDNMarginAccount");
 	String accselected = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
@@ -508,16 +501,9 @@ public class MutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_label' and contains(@text,'Please View The Fund Facts for') or contains(@text,'Veuillez consulter l’Aperçu du fonds de')]")
 	private MobileElement fundFacts;
 
-	@iOSFindBy(xpath = "//*[@label='Retour' or @label='Back']")
-	private MobileElement backButton;
-
 	@iOSFindBy(xpath = "//*[(contains(@label,'Send Order') or contains(@label,'Envoyer l')) and @enabled='true']")
 	@AndroidFindBy(xpath = "//android.widget.Button[(@text='Send Order' or contains(@text,'Envoyer')) and @enabled='false']")
 	private MobileElement sendOrderDisabled;
-
-	@iOSFindBy(xpath = "//*[@label='Retour' or @label='Back']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
-	private MobileElement back;
 
 	@iOSFindBy(xpath = "//*[@name='alert_cancel_button' or @label='Annuler']") // @Author
 																				// -
@@ -599,7 +585,7 @@ public class MutualFunds extends _CommonPage {
 
 		try {
 			Decorator();
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(orderTypeElement, "Order Type");
 			if (platformName.equalsIgnoreCase("iOS")) {
 
@@ -615,7 +601,7 @@ public class MutualFunds extends _CommonPage {
 			} else {
 				mobileAction.FuncClick(mutualfunds, "Mutual Funds");
 			}
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
@@ -646,7 +632,7 @@ public class MutualFunds extends _CommonPage {
 		 * e1) { }
 		 */
 		try {
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.verifyElementIsDisplayed(trade_header, t_verifyTrade);
 			Thread.sleep(1000);
 			// mobileAction.FunctionSwipe("up", 200, 200);
@@ -662,7 +648,7 @@ public class MutualFunds extends _CommonPage {
 				mobileAction.FuncClick(selectAccount, "Account Selected");
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(accselected, true, 60, "up");
 			}
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -716,7 +702,7 @@ public class MutualFunds extends _CommonPage {
 				if (!(actionToPerform.equals("Switch") || actionToPerform.equals("Substituer"))) {
 					mobileAction.FuncClick(symbol, "Enter name or symbol");
 					mobileAction.FuncSendKeys(symbolEditText1, searchKeyword1);
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 					Thread.sleep(2000);
 					try {
 						// String xpathSymbolFlag_ios =
@@ -736,7 +722,7 @@ public class MutualFunds extends _CommonPage {
 				} else {
 					mobileAction.FuncClick(symbol, "Enter name or symbol");
 					mobileAction.FuncSendKeys(symbolEditText1, searchKeyword1);
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 					Thread.sleep(2000);
 					try {
 						// String xpathSymbolFlag_ios =
@@ -755,7 +741,7 @@ public class MutualFunds extends _CommonPage {
 					// symbol2
 					mobileAction.FuncClick(symbol2, "Enter name or symbol");
 					mobileAction.FuncSendKeys(symbolEditText2, searchKeyword2);
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 					Thread.sleep(2000);
 					try {
 						// String xpathSymbolFlag_ios =
@@ -777,20 +763,20 @@ public class MutualFunds extends _CommonPage {
 					mobileAction.FuncClick(symbol, "Enter name or symbol");
 
 					mobileAction.FuncSendKeys(symbolEditText1, searchKeyword1);
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 
 					MobileElement selectSymbolValue1 = mobileAction.mobileElementUsingXPath(selectSymbolVal1);
 
 					mobileAction.FuncClick(selectSymbolValue1, "Symbol");
 
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 
 					mobileAction.FunctionSwipe("up", 150, 120);
 
 					// Symbol2
 					mobileAction.FuncClick(symbol2, "Enter name or symbol");
 					mobileAction.FuncSendKeys(symbolEditText2, searchKeyword2);
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 					Thread.sleep(5000);
 					MobileElement selectSymbolValue = mobileAction.mobileElementUsingXPath(selectSymbolVal2);
 
@@ -800,13 +786,13 @@ public class MutualFunds extends _CommonPage {
 					// mobileAction.FuncClick(symbolEditText, "Enter name or
 					// symbol");
 					mobileAction.FuncSendKeys(symbolEditText1, searchKeyword1);
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 
 					MobileElement selectSymbolValue1 = mobileAction.mobileElementUsingXPath(selectSymbolVal1);
 
 					mobileAction.FuncClick(selectSymbolValue1, "Symbol");
 
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 				}
 			}
 		} catch (NoSuchElementException | IOException | InterruptedException e) {
@@ -946,7 +932,7 @@ public class MutualFunds extends _CommonPage {
 				mobileAction.FuncSelectElementInTable(action_table, Firstpart, Secondpart, quantity);
 			}
 
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 
@@ -1088,9 +1074,9 @@ public class MutualFunds extends _CommonPage {
 		try {
 			// mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(previewOrderBtn, "Preview Order");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(AgreeCondition, "Agree button");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 
@@ -1202,13 +1188,13 @@ public class MutualFunds extends _CommonPage {
 			if (platformName.equalsIgnoreCase("Android")) {
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(fundFacts, "Fund Facts");
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClickBackButton();
 			} else {
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(fundFacts, "Fund Facts");
-				mobileAction.waitForElementToVanish(progressBar);
-				mobileAction.FuncClick(backButton, "Back Button");
+				mobileAction.waitProgressBarVanish();
+				mobileAction.ClickBackButton();
 			}
 
 		} catch (NoSuchElementException e) {
@@ -1282,7 +1268,7 @@ public class MutualFunds extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(sendOrderBtn, "Send Order");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 

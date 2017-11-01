@@ -88,10 +88,6 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Scheduled Payments']")
 	private MobileElement scheduled_Payments_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement menu;
-
 	@iOSFindBy(accessibility = "PAYBILL_VIEW_DATE_VALUE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtDate']")
 	private MobileElement datePicker;
@@ -102,10 +98,6 @@ public class Bills extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/upcomingbill_date_value']")
 	private MobileElement upcomingBillDate;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/progress']")
-	private MobileElement progress_bar;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/headerDate']")
 	private List<MobileElement> dateHeaders;
@@ -193,7 +185,7 @@ public class Bills extends _CommonPage {
 			mobileAction.FuncClick(pay_Cananda_Bill, "Pay Canada Bill");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				mobileAction.waitProgressBarVanish();
 			}
 
 		} catch (Exception e) {
@@ -234,7 +226,7 @@ public class Bills extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(managePayees, "Manage Payees");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -315,7 +307,7 @@ public class Bills extends _CommonPage {
 
 			mobileAction.FuncClick(pay_US_Bills, "Pay US Bills");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				mobileAction.waitProgressBarVanish();
 			}
 
 		} catch (Exception e) {
@@ -356,7 +348,7 @@ public class Bills extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -653,7 +645,7 @@ public class Bills extends _CommonPage {
 			initElementScheduledPayments();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
-				mobileAction.waitForElementToVanish(progress_bar);
+				mobileAction.waitProgressBarVanish();
 				MobileElement header = mobileAction
 						.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE']", "header");
 				mobileAction.verifyTextEquality(header.getText(),
@@ -665,7 +657,7 @@ public class Bills extends _CommonPage {
 
 			} else {
 				mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
-				mobileAction.waitForElementToVanish(progress_bar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction
 						.verifyElementUsingXPath(
 								"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"

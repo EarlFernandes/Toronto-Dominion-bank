@@ -1,7 +1,6 @@
 package com.td;
 
 import java.io.IOException;
-import com.td._CommonPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.ScreenOrientation;
@@ -17,12 +16,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.td.test.CDNMobile.pages.HomeScreen;
 import com.td.test.framework.CommonLib;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.InteractsWithApps;
-import io.appium.java_client.MobileBy.ByAccessibilityId;
 import io.appium.java_client.MobileBy.ByIosClassChain;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
@@ -32,9 +29,9 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 
 import java.util.Iterator;
-
 import java.util.List;
 import java.util.Optional;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -1507,7 +1504,7 @@ public class MobileAction2 extends CommonLib {
 	 * @return
 	 */
 
-	public boolean verifyTextContains(MobileElement mobileElement, String expectedText) {
+	public boolean verifyTextContains(WebElement mobileElement, String expectedText) {
 		String retrivedText = mobileElement.getText();
 
 		if (retrivedText.contains(expectedText)) {
@@ -1912,7 +1909,7 @@ public class MobileAction2 extends CommonLib {
 		}
 
 	}
-	
+
 	public void FuncSwipeWhileElementNotFoundByxpath(String xpathEle, boolean clickYorN, int swipes, String direction) {
 		FuncSwipeWhileElementNotFoundByxpath(xpathEle, clickYorN, swipes, direction, false);
 	}
@@ -2612,8 +2609,6 @@ public class MobileAction2 extends CommonLib {
 
 	}
 
-	
-	
 	/**
 	 * This method will get the Mobile element from IOSClassChain
 	 * 
@@ -2625,13 +2620,14 @@ public class MobileAction2 extends CommonLib {
 	 *             In case an exception occurs while clicking over the element.
 	 *             In case the element is not found over the screen.
 	 */
-	public MobileElement mobileElementUsingIOSClassChain(String objElement){
+	public MobileElement mobileElementUsingIOSClassChain(String objElement) {
 
 		MobileElement objMobileElement = null;
 
 		try {
-			objMobileElement = (MobileElement) ((AppiumDriver) GetDriver()).findElement(ByIosClassChain.iOSClassChain(objElement));
-			
+			objMobileElement = (MobileElement) ((AppiumDriver) GetDriver())
+					.findElement(ByIosClassChain.iOSClassChain(objElement));
+
 		} catch (Exception e) {
 			System.err.println("Element not found");
 		}
@@ -2822,7 +2818,7 @@ public class MobileAction2 extends CommonLib {
 			}
 
 		} else {
-			back_xpath = "//*[@name='NAVIGATION_ITEM_BACK' or @label='p2p header caret']";
+			back_xpath = "//XCUIElementTypeButton[@name='NAVIGATION_ITEM_BACK' or @label='p2p header caret']";
 			try {
 				MobileElement back_arrow = (MobileElement) GetDriver().findElement(By.xpath(back_xpath));
 				FuncClick(back_arrow, "<");
@@ -2843,6 +2839,23 @@ public class MobileAction2 extends CommonLib {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	public boolean isBackButtonPresent() {
+		String back_xpath = "";
+		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			back_xpath = "//android.widget.ImageView[@resource-id='android:id/up']";
+		} else {
+			back_xpath = "//*[@name='NAVIGATION_ITEM_BACK' or @label='p2p header caret']";
+		}
+
+		try {
+			MobileElement back_button = (MobileElement) GetDriver().findElement(By.xpath(back_xpath));
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+
 	}
 
 	public boolean verifyElementIsPresent(WebElement elementToFind) {
@@ -3547,27 +3560,29 @@ public class MobileAction2 extends CommonLib {
 				if (!isFound) {
 					TouchAction touchAction = new TouchAction((AppiumDriver) GetDriver());
 					if (direction.equalsIgnoreCase("up")) {
-						//touchAction.press(startx, starty).moveTo(startx, endy).release().perform();
+						// touchAction.press(startx, starty).moveTo(startx,
+						// endy).release().perform();
 						((AppiumDriver) GetDriver()).swipe(startx, starty, startx, endy, 2000);
 					} else if (direction.equalsIgnoreCase("down")) {
-						//touchAction.press(startx, endy).moveTo(startx, starty).release().perform();
+						// touchAction.press(startx, endy).moveTo(startx,
+						// starty).release().perform();
 						((AppiumDriver) GetDriver()).swipe(startx, endy, startx, starty, 2000);
 					}
 					count++;
-				} 
+				}
 			}
 			if (isFound) {
 				sEleName = FuncGetTextByxpath(xpath);
 				if (clickYorN) {
 					FuncClick((MobileElement) GetDriver().findElement(By.xpath(xpath)), sEleName);
 				}
-				GetReporting().FuncReport("Pass",
-						"Swiped " + direction + " till element found. Swipes: " + count + " Element : <b>" + sEleName + "</b>");
+				GetReporting().FuncReport("Pass", "Swiped " + direction + " till element found. Swipes: " + count
+						+ " Element : <b>" + sEleName + "</b>");
 
 			} else if (!isFound) {
 				GetReporting().FuncReport("Fail", "Swiped " + direction + " but element not found. Swipes : " + count);
 			}
-		
+
 		} catch (Exception e) {
 			try {
 				GetReporting().FuncReport("Fail", "Cannot find element after swipes " + xpath + ": " + e.getMessage());
@@ -3575,6 +3590,67 @@ public class MobileAction2 extends CommonLib {
 				e1.printStackTrace();
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void waitProgressBarVanish() {
+		MobileElement progressBar = null;
+		String progressbarXpath = "";
+		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			progressbarXpath = "//android.widget.TextView[@resource-id='android:id/message' or @resource-id='com.td:id/loading_indicator_textview']";
+		} else {
+			progressbarXpath = "//XCUIElementTypeActivityIndicator[@value='1']";
+		}
+
+		try {
+			progressBar = (MobileElement) ((AppiumDriver) GetDriver()).findElement(By.xpath(progressbarXpath));
+		} catch (Exception e) {
+			System.out.println("Progress bar not found");
+			return;
+		}
+
+		waitForElementToVanish(progressBar);
+	}
+
+	public void clickMenuButton() {
+
+		// Not clear why it failed to click menu on iPad, so let's try max 5
+		// times
+		MobileElement menu = null;
+		String menuXpath = "";
+		String menuSlideXpath = "";
+
+		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			menuXpath = "//android.widget.ImageView[@resource-id='android:id/up' and @index='0']";
+			menuSlideXpath = "//android.widget.ListView[@index='1']";
+		} else {
+			menuXpath = "//XCUIElementTypeButton[@name ='NAVIGATION_ITEM_MENU']";
+			menuSlideXpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']";
+		}
+		boolean isMenuOpened = false;
+		try {
+			menu = (MobileElement) ((AppiumDriver) GetDriver()).findElement(By.xpath(menuXpath));
+			int icnt = 1;
+			while (icnt <= 5) {
+				menu.click();
+				try {
+					((AppiumDriver) GetDriver()).findElement(By.xpath(menuSlideXpath));
+					isMenuOpened = true;
+					break;
+				} catch (Exception e1) {
+
+				}
+				icnt++;
+			}
+			if (isMenuOpened) {
+				Report_Pass_Verified("Menu opened");
+			} else {
+				Report_Fail("Failed to click menau");
+			}
+
+		} catch (Exception e) {
+			Report_Fail("Exception to click menau");
 		}
 
 	}

@@ -30,10 +30,6 @@ public class QuickAccessSettings extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/easy_access_rewards_on_off_switch']")
 	private MobileElement rewardsBalanceToggle;
 
-	@iOSFindBy(xpath = "//*[@label='Back']")
-	@AndroidFindBy(id = "android:id/up")
-	private MobileElement quickAccessSettingsBackBtn;
-
 	String cardToggle = "//XCUIElementTypeSwitch[contains(@label,'";
 	String accountXL = CL.getTestDataInstance().getPrimaryAccount();
 
@@ -140,7 +136,6 @@ public class QuickAccessSettings extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-
 
 	/**
 	 * This method will verify that TD Classic Travel Card Toggle is turned on

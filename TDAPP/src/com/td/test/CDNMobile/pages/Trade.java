@@ -73,10 +73,6 @@ public class Trade extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']")
 	private MobileElement list;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and (@text='Loading' or @text='Chargement')]")
-	private MobileElement progressBar;
-
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/orderDropdownCaption' and (contains(@text,'ordre') or @text='Order Type')]")
 	private MobileElement order_Type;
 
@@ -397,7 +393,7 @@ public class Trade extends _CommonPage {
 	public void selectAccount() {
 		Decorator();
 		try {
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			// mobileAction.verifyElementIsDisplayed(trade_header,t_verifyTrade);
 			mobileAction.FunctionSwipe("down", 200, 200);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -412,7 +408,7 @@ public class Trade extends _CommonPage {
 				mobileAction.FuncClick(selectAccount, "Account Selected");
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(accselected, true, 60, "up");
 			}
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -444,7 +440,7 @@ public class Trade extends _CommonPage {
 				mobileAction.FuncClick(selectAccount, "Account Selected");
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(accselected, true, 60, "up");
 			}
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 			mobileAction.FunctionSwipe("up", 200, 200);
 			if (!mobileAction.FuncIsDisplayed(share_holder)) {
@@ -541,9 +537,8 @@ public class Trade extends _CommonPage {
 
 				/*
 				 * mobileAction.FuncClick(symbol, "Enter name or symbol");
-				 * mobileAction.FuncClick(symbolEditText,
-				 * "Enter name or symbol");
-				 * mobileAction.FuncSendKeys(symbolEditText, searchKeyword);
+				 * mobileAction.FuncClick(symbolEditText, "Enter name or symbol"
+				 * ); mobileAction.FuncSendKeys(symbolEditText, searchKeyword);
 				 * mobileAction.FuncClick(selectSymbolValue, "Symbol");
 				 */
 
@@ -582,10 +577,10 @@ public class Trade extends _CommonPage {
 				// mobileAction.FuncSendKeys(symbolEditText, searchKeyword);
 				SearchPageMIT.get().enterSymbol(symbolEditText, searchKeyword);
 
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(selectSymbolValue, "Symbol");
 
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 
 			}
 		} catch (NoSuchElementException e) {
@@ -608,7 +603,6 @@ public class Trade extends _CommonPage {
 		Decorator();
 		isLanguageFrench = getTestdata("Language").equals("FRE");
 
-		MobileElement doneOK = isLanguageFrench ? ok : done;
 		try {
 
 			CL.getTestDataInstance().TCParameters.put("LimitPrice", limitPrice);
@@ -1297,9 +1291,9 @@ public class Trade extends _CommonPage {
 
 			Thread.sleep(1000);
 			mobileAction.FuncClick(preview_order, "Preview Order");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1346,7 +1340,7 @@ public class Trade extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(doNotAgreeButton, "Do Not Agree");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -1768,9 +1762,9 @@ public class Trade extends _CommonPage {
 
 		CL.getTestDataInstance().TCParameters.put("ChangeOrder", "TRUE");
 
-		mobileAction.waitForElementToVanish(progressBar);
+		mobileAction.waitProgressBarVanish();
 
-		mobileAction.waitForElementToVanish(progressBar);
+		mobileAction.waitProgressBarVanish();
 		getStockPrice();
 		selectPriceChangeOrder();
 		enterLimitPrice();
@@ -1783,9 +1777,9 @@ public class Trade extends _CommonPage {
 
 		CL.getTestDataInstance().TCParameters.put("ChangeOrder", "TRUE");
 
-		mobileAction.waitForElementToVanish(progressBar);
+		mobileAction.waitProgressBarVanish();
 
-		mobileAction.waitForElementToVanish(progressBar);
+		mobileAction.waitProgressBarVanish();
 
 		selectGoodTillChangeOrder();
 		enterTradingPassword();
@@ -1797,9 +1791,9 @@ public class Trade extends _CommonPage {
 
 		CL.getTestDataInstance().TCParameters.put("ChangeOrder", "TRUE");
 
-		mobileAction.waitForElementToVanish(progressBar);
+		mobileAction.waitProgressBarVanish();
 
-		mobileAction.waitForElementToVanish(progressBar);
+		mobileAction.waitProgressBarVanish();
 		selectPriceChangeOrder();
 		enterTradingPassword();
 		clickPreviewOrder();
@@ -1810,9 +1804,9 @@ public class Trade extends _CommonPage {
 
 		CL.getTestDataInstance().TCParameters.put("ChangeOrder", "TRUE");
 
-		mobileAction.waitForElementToVanish(progressBar);
+		mobileAction.waitProgressBarVanish();
 
-		mobileAction.waitForElementToVanish(progressBar);
+		mobileAction.waitProgressBarVanish();
 		selectPriceChangeOrder();
 		enterLimitAndTriggerDelta();
 		enterTradingPassword();
@@ -1824,9 +1818,9 @@ public class Trade extends _CommonPage {
 
 		CL.getTestDataInstance().TCParameters.put("ChangeOrder", "TRUE");
 
-		mobileAction.waitForElementToVanish(progressBar);
+		mobileAction.waitProgressBarVanish();
 
-		mobileAction.waitForElementToVanish(progressBar);
+		mobileAction.waitProgressBarVanish();
 		selectPriceChangeOrder();
 		getLimitAndTriggerPrice();
 		enterTradingPassword();
@@ -2059,7 +2053,7 @@ public class Trade extends _CommonPage {
 
 			mobileAction.FuncClick(symbol, "Enter name or symbol");
 			mobileAction.FuncSendKeys(symbolEditText, searchKeyword);
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(clearText, "Clear Text");
 
 		} catch (NoSuchElementException e) {
@@ -2085,7 +2079,7 @@ public class Trade extends _CommonPage {
 
 			mobileAction.FuncClick(symbol, "Enter name or symbol");
 			mobileAction.FuncSendKeys(symbolEditText, searchKeyword);
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.verifyElementIsDisplayed(errorMessage, "Error Message");
 
 		} catch (NoSuchElementException e) {

@@ -70,10 +70,6 @@ public class Transfers extends _CommonPage {
 	@iOSFindBy(accessibility = "TRANSFERVIEW_RECIPIENTS_DES")
 	private MobileElement manageRecipientDesc;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeActivityIndicator[`value=='1'") // TODO::
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progressBar;
-
 	String transfer_Header_Value = "Transfers";
 	String confirm_Header = "Confirm";
 
@@ -126,11 +122,10 @@ public class Transfers extends _CommonPage {
 						"Transfer Between");
 			}
 			mobileAction.FuncClick(btw_my_accnts, "Between my Accounts");
-
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Between My Accounts header");
 			mobileAction.verifyElementTextContains(pageHeader,
 					getTextInCurrentLocale(StringArray.ARRAY_BETWEEN_MY_ACCOUNTS_HEADER));
-
+			mobileAction.waitProgressBarVanish();
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -206,7 +201,7 @@ public class Transfers extends _CommonPage {
 			initElementManageRecipients();
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer Header");
 			mobileAction.FuncClick(manageRecipient, "Manage Recipients Link");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -243,7 +238,7 @@ public class Transfers extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer");
 			mobileAction.FuncClick(pending_Transfer, "Pending Transfers");
 			Thread.sleep(5000);
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -470,7 +465,7 @@ public class Transfers extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer Header");
 			mobileAction.FuncClick(manageContacts, "Manage Contacts Link");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -494,7 +489,7 @@ public class Transfers extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(transferHistory, "Transfer History Link");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -517,7 +512,7 @@ public class Transfers extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(requestMoney, "Request Money Link");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
