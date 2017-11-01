@@ -123,12 +123,12 @@ public class ScheduledPayments extends _CommonPage {
 				String paymentCell = "//XCUIElementTypeTable[1]/XCUIElementTypeCell";
 				List<MobileElement> paymentList = (List<MobileElement>) mobileAction.getElementsList(paymentCell);
 
-				int lastPaymentIndex = paymentList.size() - 1;
-				String lastPaymentTitleXpath = "//XCUIElementTypeStaticText[@name='UPCOMING_BILLS_DETAIL_TITLE_0"
-						+ lastPaymentIndex + "']";
-				String lastPaymentDescXpath = "//XCUIElementTypeStaticText[@name='UPCOMING_BILLS_DATE_DESCRIPTION_0"
-						+ lastPaymentIndex + "']";
-				String lastPaymentAmtXpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[" + (lastPaymentIndex + 1)
+				int lastPaymentIndex = paymentList.size();
+				String lastPaymentTitleXpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[" + (lastPaymentIndex)
+						+ "]/XCUIElementTypeStaticText[1]";
+				String lastPaymentDescXpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[" + (lastPaymentIndex)
+						+ "]/XCUIElementTypeStaticText[2]";
+				String lastPaymentAmtXpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[" + (lastPaymentIndex)
 						+ "]/XCUIElementTypeStaticText[3]";
 
 				mobileAction.swipeAndSearchByxpath(lastPaymentTitleXpath, false, 10, "Up");

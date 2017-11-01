@@ -131,8 +131,9 @@ public class AccountDetails extends _CommonPage {
 
 			if (Double.compare(balance, newBalance) != 0) {
 				System.out.println(balance + " != " + newBalance);
+				double delta = balance - newBalance;
 				mobileAction.GetReporting().FuncReport("Fail", "Incorrect balance after transaction. Previous balance: "
-						+ balance + " New balance: " + newBalance + " Delta: " + (balance - newBalance) );
+						+ balance + " New balance: " + newBalance + " Delta: " + delta );
 			} else {
 				mobileAction.GetReporting().FuncReport("Pass", "Correct balance after transaction");
 			}
