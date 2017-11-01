@@ -103,12 +103,20 @@ public class ScheduledPayments extends _CommonPage {
 			String fromAccount = getTestdata("FromAccount");
 			String toAccount = getTestdata("ToAccount");
 			Calendar cal = Calendar.getInstance();
-			String amt = String.valueOf(cal.get(Calendar.MONTH) + cal.get(Calendar.DATE)) + "."
+			String amt = String.valueOf(cal.get(Calendar.MONTH) + 1 + cal.get(Calendar.DATE)) + "."
 					+ String.valueOf(cal.get(Calendar.HOUR_OF_DAY));
+			String amtLastHr = String.valueOf(cal.get(Calendar.MONTH) + 1 + cal.get(Calendar.DATE)) + "."
+					+ String.valueOf(cal.get(Calendar.HOUR_OF_DAY) - 1);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				String paymentDescription = "//android.widget.TextView[@resource-id='com.td:id/amountText' and contains(@text,'"
-						+ amt + "')]";
+				String paymentDescription = "";
+				if (cal.get(Calendar.MINUTE) > 1) {
+					paymentDescription = "//android.widget.TextView[@resource-id='com.td:id/amountText' and contains(@text,'"
+							+ amt + "')]";
+				} else {
+					paymentDescription = "//android.widget.TextView[@resource-id='com.td:id/amountText' and contains(@text,'"
+							+ amtLastHr + "')]";
+				}
 				mobileAction.swipeAndSearchByxpath(paymentDescription, false, 10, "Up");
 
 			} else {
@@ -132,7 +140,11 @@ public class ScheduledPayments extends _CommonPage {
 				mobileAction.verifyElementTextContains(lastPaymentDesc, fromAccount);
 				MobileElement lastPaymentAmt = mobileAction.verifyElementUsingXPath(lastPaymentAmtXpath,
 						"Last Payment Amt");
-				mobileAction.verifyElementTextContains(lastPaymentAmt, amt);
+				if (cal.get(Calendar.MINUTE) > 1) {
+					mobileAction.verifyElementTextContains(lastPaymentAmt, amt);
+				} else {
+					mobileAction.verifyElementTextContains(lastPaymentAmt, amtLastHr);
+				}
 
 			}
 

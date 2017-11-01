@@ -791,7 +791,9 @@ public class AddPayee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.FuncHideKeyboard();
 			} else {
-				switchToEnglishKeyboard();
+				if (currentLocale.toLowerCase().startsWith("zh")) {
+					switchToEnglishKeyboard();
+				}
 				mobileAction.FuncClickDone();
 			}
 
@@ -826,7 +828,9 @@ public class AddPayee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.FuncHideKeyboard();
 			} else {
-				switchToEnglishKeyboard();
+				if (currentLocale.toLowerCase().startsWith("zh")) {
+					switchToEnglishKeyboard();
+				}
 				mobileAction.FuncClickDone();
 			}
 
@@ -1088,29 +1092,14 @@ public class AddPayee extends _CommonPage {
 	private void switchToEnglishKeyboard() {
 		try {
 			// Switch to English keyboard for correct text input
-			boolean isEngFrKeyboard = false;
-			while (!isEngFrKeyboard) {
-				boolean hasGoBtn = mobileAction.verifyElementIsPresent(keyboardGoBtn);
-
-				if (!hasGoBtn) {
-					// Click away from Emoji keyboard
-					mobileAction.FuncClick(keyboardEmojiBtn, "Switch to English keyboard");
-
-				} else {
-
-					String keyboardGoBtnText = keyboardGoBtn.getAttribute("label");
-					System.out.println("Go btn: " + keyboardGoBtnText);
-					if (keyboardGoBtnText.equals("Go") || keyboardGoBtnText.equals("Accéder")) {
-						isEngFrKeyboard = true;
-						break;
-					} else {
-						mobileAction.FuncClick(keyboardTypeBtn, "Switch to English keyboard");
-					}
-				}
+			String keyboardGoBtnText = keyboardGoBtn.getAttribute("label");
+			System.out.println("Go btn: " + keyboardGoBtnText);
+			if (keyboardGoBtnText.equals("确认")) {
+				mobileAction.FuncClick(keyboardTypeBtn, "Switch to English keyboard");
+				mobileAction.sleep(500);
 			}
 
 		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
 			} catch (IOException ex) {

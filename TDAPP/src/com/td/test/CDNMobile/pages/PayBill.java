@@ -379,7 +379,7 @@ public class PayBill extends _CommonPage {
 	private String getTimeAsAmt() {
 
 		Calendar cal = Calendar.getInstance();
-		String amt = String.valueOf(cal.get(Calendar.MONTH) + cal.get(Calendar.DATE)) + "."
+		String amt = String.valueOf(cal.get(Calendar.MONTH) + 1 + cal.get(Calendar.DATE)) + "."
 				+ String.valueOf(cal.get(Calendar.HOUR_OF_DAY));
 
 		return amt;

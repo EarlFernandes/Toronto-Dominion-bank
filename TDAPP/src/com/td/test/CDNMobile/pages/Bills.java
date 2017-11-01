@@ -226,7 +226,7 @@ public class Bills extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(managePayees, "Manage Payees");
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
