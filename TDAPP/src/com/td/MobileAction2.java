@@ -3580,7 +3580,7 @@ public class MobileAction2 extends CommonLib {
 						+ " Element : <b>" + sEleName + "</b>");
 
 			} else if (!isFound) {
-				GetReporting().FuncReport("Fail", "Swiped " + direction + " but element not found. Swipes : " + count);
+				GetReporting().FuncReport("Fail", "Swiped " + direction + " but element not found. Xpath : " + xpath);
 			}
 
 		} catch (Exception e) {

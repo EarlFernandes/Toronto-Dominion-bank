@@ -61,9 +61,11 @@ public class ScheduledPayments extends _CommonPage {
 				Calendar cal = Calendar.getInstance();
 				String amt = String.valueOf(cal.get(Calendar.MONTH) + 1 + cal.get(Calendar.DATE)) + "."
 						+ String.valueOf(cal.get(Calendar.HOUR_OF_DAY));
-				lastPaymentTitleXpath = "//android.widget.TextView[@resource-id='com.td:id/amountText' and contains(@text,'"
-						+ amt + "')]";
+				String amtLastHr = String.valueOf(cal.get(Calendar.MONTH) + 1 + cal.get(Calendar.DATE)) + "."
+						+ String.valueOf(cal.get(Calendar.HOUR_OF_DAY) - 1);
 
+				lastPaymentTitleXpath = "//android.widget.TextView[@resource-id='com.td:id/amountText' and (contains(@text,'"
+						+ amt + "') or contains(@text,'" + amtLastHr + "'))]";
 			} else {
 				String paymentCell = "//XCUIElementTypeTable[1]/XCUIElementTypeCell";
 				List<MobileElement> paymentList = (List<MobileElement>) mobileAction.getElementsList(paymentCell);
@@ -109,15 +111,15 @@ public class ScheduledPayments extends _CommonPage {
 					+ String.valueOf(cal.get(Calendar.HOUR_OF_DAY) - 1);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				String paymentDescription = "";
-				if (cal.get(Calendar.MINUTE) > 1) {
-					paymentDescription = "//android.widget.TextView[@resource-id='com.td:id/amountText' and contains(@text,'"
-							+ amt + "')]";
-				} else {
-					paymentDescription = "//android.widget.TextView[@resource-id='com.td:id/amountText' and contains(@text,'"
-							+ amtLastHr + "')]";
+				if (cal.get(Calendar.MINUTE) <= 1) {
+					amt = amtLastHr;
 				}
+				String paymentDescription = "//android.widget.TextView[@resource-id='com.td:id/amountText' and contains(@text,'"
+						+ amt + "')]";
 				mobileAction.swipeAndSearchByxpath(paymentDescription, false, 10, "Up");
+				MobileElement lastPaymentAmt = mobileAction.verifyElementUsingXPath(paymentDescription,
+						"Last Payment Amt");
+				mobileAction.verifyElementTextContains(lastPaymentAmt, amt);
 
 			} else {
 				String paymentCell = "//XCUIElementTypeTable[1]/XCUIElementTypeCell";
@@ -140,11 +142,11 @@ public class ScheduledPayments extends _CommonPage {
 				mobileAction.verifyElementTextContains(lastPaymentDesc, fromAccount);
 				MobileElement lastPaymentAmt = mobileAction.verifyElementUsingXPath(lastPaymentAmtXpath,
 						"Last Payment Amt");
-				if (cal.get(Calendar.MINUTE) > 1) {
-					mobileAction.verifyElementTextContains(lastPaymentAmt, amt);
-				} else {
-					mobileAction.verifyElementTextContains(lastPaymentAmt, amtLastHr);
+
+				if (cal.get(Calendar.MINUTE) <= 1) {
+					amt = amtLastHr;
 				}
+				mobileAction.verifyElementTextContains(lastPaymentAmt, amt);
 
 			}
 
