@@ -1093,8 +1093,8 @@ public class AddPayee extends _CommonPage {
 		try {
 			// Switch to English keyboard for correct text input
 			String keyboardGoBtnText = keyboardGoBtn.getAttribute("label");
-			System.out.println("Go btn: " + keyboardGoBtnText);
-			if (keyboardGoBtnText.equals("确认")) {
+			System.out.println("Go btn: " + keyboardGoBtnText + " " + keyboardGoBtn.getText());
+			if (keyboardGoBtnText.contains("确认") || keyboardGoBtnText.contains("🈳️")) {
 				mobileAction.FuncClick(keyboardTypeBtn, "Switch to English keyboard");
 				mobileAction.sleep(500);
 			}

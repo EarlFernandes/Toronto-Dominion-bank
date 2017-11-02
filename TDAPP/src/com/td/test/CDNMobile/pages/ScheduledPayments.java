@@ -59,7 +59,7 @@ public class ScheduledPayments extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 
 				Calendar cal = Calendar.getInstance();
-				String amt = String.valueOf(cal.get(Calendar.MONTH) + cal.get(Calendar.DATE)) + "."
+				String amt = String.valueOf(cal.get(Calendar.MONTH) + 1 + cal.get(Calendar.DATE)) + "."
 						+ String.valueOf(cal.get(Calendar.HOUR_OF_DAY));
 				lastPaymentTitleXpath = "//android.widget.TextView[@resource-id='com.td:id/amountText' and contains(@text,'"
 						+ amt + "')]";
@@ -68,9 +68,9 @@ public class ScheduledPayments extends _CommonPage {
 				String paymentCell = "//XCUIElementTypeTable[1]/XCUIElementTypeCell";
 				List<MobileElement> paymentList = (List<MobileElement>) mobileAction.getElementsList(paymentCell);
 
-				int lastPaymentIndex = paymentList.size() - 1;
-				lastPaymentTitleXpath = "//XCUIElementTypeStaticText[@name='UPCOMING_BILLS_DETAIL_TITLE_0"
-						+ lastPaymentIndex + "']";
+				int lastPaymentIndex = paymentList.size();
+				lastPaymentTitleXpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[" + (lastPaymentIndex)
+						+ "]/XCUIElementTypeStaticText[1]";
 			}
 			mobileAction.swipeAndSearchByxpath(lastPaymentTitleXpath, true, 10, "Up");
 			mobileAction.FuncClick(cancelPaymentBtn, "Cancel Payment Button");
