@@ -91,6 +91,12 @@ public class Manage_Payee extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement editPayeeCheckButton;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[2]")
+	private MobileElement keyboardTypeBtn;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]//XCUIElementTypeButton[4]")
+	private MobileElement keyboardGoBtn;
+
 	public synchronized static Manage_Payee get() {
 		if (Manage_Payee == null) {
 			Manage_Payee = new Manage_Payee();
@@ -635,6 +641,9 @@ public class Manage_Payee extends _CommonPage {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
 			} else {
+				if (currentLocale.toLowerCase().startsWith("zh")) {
+					switchToEnglishKeyboard();
+				}
 				mobileAction.HideKeyBoard_IOS();
 			}
 
@@ -759,6 +768,27 @@ public class Manage_Payee extends _CommonPage {
 			mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 
+	}
+
+	private void switchToEnglishKeyboard() {
+		try {
+			// Switch to English keyboard for correct text input
+			String keyboardGoBtnText = keyboardGoBtn.getAttribute("label");
+			System.out.println("Go btn: " + keyboardGoBtnText + " " + keyboardGoBtn.getText());
+			if (keyboardGoBtnText.contains("确认") || keyboardGoBtnText.contains("🈳️")) {
+				mobileAction.FuncClick(keyboardTypeBtn, "Switch to English keyboard");
+				mobileAction.sleep(500);
+			}
+
+		} catch (Exception e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
 	}
 
 }

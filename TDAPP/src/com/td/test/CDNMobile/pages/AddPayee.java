@@ -83,9 +83,6 @@ public class AddPayee extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[2]")
 	private MobileElement keyboardTypeBtn;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
-	private MobileElement keyboardEmojiBtn;
-
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]//XCUIElementTypeButton[4]")
 	private MobileElement keyboardGoBtn;
 
@@ -1108,6 +1105,5 @@ public class AddPayee extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
 		}
-
 	}
 }
