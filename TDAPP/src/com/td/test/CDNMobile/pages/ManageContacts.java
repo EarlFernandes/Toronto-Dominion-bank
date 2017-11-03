@@ -228,7 +228,11 @@ public class ManageContacts extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.FuncClick(addContactButton, "Add Contacts Button");
+			if (mobileAction.verifyElementIsPresent(addContactButton)) {
+				mobileAction.FuncClick(addContactButton, "Add Contacts Button");
+			} else {
+				mobileAction.FuncClick(addContactSign, "Add contact plus button");
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -530,10 +530,21 @@ public class TransfersHistory extends _CommonPage {
 								+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']");
 
 			} else {
-				moneySentSeeAll = mobileAction.mobileElementUsingXPath(
+				
+				String fistXpath = "//XCUIElementTypeStaticText[@label='" + getTextInCurrentLocale(StringArray.MONEY_SENT_LBL)
+								+ "']/following-sibling::XCUIElementTypeButton[@label='"
+								+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']";
+				
+				String secondXpath = "//XCUIElementTypeOther[@label='" + getTextInCurrentLocale(StringArray.MONEY_SENT_LBL)
+								+ "']/following-sibling::XCUIElementTypeButton[@label='"
+								+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']";
+				
+				/*moneySentSeeAll = mobileAction.mobileElementUsingXPath(
 						"//XCUIElementTypeStaticText[@label='" + getTextInCurrentLocale(StringArray.MONEY_SENT_LBL)
 								+ "']/following-sibling::XCUIElementTypeButton[@label='"
-								+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']");
+								+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']");*/
+				
+				moneySentSeeAll = mobileAction.mobileElementUsingXPath(fistXpath+" | "+secondXpath);
 
 			}
 
@@ -1274,7 +1285,7 @@ public class TransfersHistory extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(requestMoneySentSeeAll, "See All");
-			// mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitForElementToVanish(progressBar);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1648,7 +1659,7 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.FuncClick(MoneyRequestContinueBtn, "Continue Button");
 			mobileAction.FuncClick(finishBtn, "Finish");
-			// mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitForElementToVanish(progressBar);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

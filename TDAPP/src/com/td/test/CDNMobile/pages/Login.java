@@ -535,13 +535,14 @@ public class Login extends _CommonPage {
 				mobileAction.waitForElementToVanish(progressBar);
 			} else {
 				// For Landscape, need to hide key board
-
+				
 				if (mobileAction.isOrientationLandscape()) {
 					mobileAction.HideKeyBoard_IOS();
 				} else {
 					mobileAction.FuncClick(login, "Login");
 				}
 				mobileAction.waitForElementToVanish(progressBar);
+				
 			}
 			enterPwdifSystemError();
 

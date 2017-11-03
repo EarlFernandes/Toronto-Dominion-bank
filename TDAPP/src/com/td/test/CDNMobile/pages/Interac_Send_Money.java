@@ -276,12 +276,14 @@ public class Interac_Send_Money extends _CommonPage {
 				mobileAction.FuncClick(continueButton, "ContinueButton");
 			} else {
 
-				mobileAction.FuncClick(fromAccount, "from Account");
+				//mobileAction.FuncClick(fromAccount, "from Account");
+				
+				//String fromAccountNumXL = "**/*[`label CONTAINS[cd] '" + getTestdata("FromAccount") + "'`]";
+				//MobileElement fromAccountNumber = mobileAction.mobileElementUsingIOSClassChain(fromAccountNumXL);
+		/*		String fromAccountNumXL = "//*[contains(@label,'"+getTestdata("FromAccount")+"')]";
+				MobileElement fromAccountNumber = mobileAction.mobileElementUsingXPath(fromAccountNumXL);
 
-				String fromAccountNumXL = "**/*[`label CONTAINS[cd] '" + getTestdata("FromAccount") + "'`]";
-				MobileElement fromAccountNumber = mobileAction.mobileElementUsingIOSClassChain(fromAccountNumXL);
-
-				mobileAction.FuncClick(fromAccountNumber, "Account Number: " + getTestdata("FromAccount"));
+				mobileAction.FuncClick(fromAccountNumber, "Account Number: " + getTestdata("FromAccount"));*/
 
 				mobileAction.FuncClick(selectRecipient, "Select Recipient");
 

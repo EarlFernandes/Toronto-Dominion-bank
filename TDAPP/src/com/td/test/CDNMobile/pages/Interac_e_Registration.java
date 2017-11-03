@@ -399,7 +399,7 @@ public class Interac_e_Registration extends _CommonPage {
 				MobileElement tradeResponse = mobileAction.mobileElementUsingIOSClassChain(response);
 
 				mobileAction.FuncClick(tradeResponse, "Trade Response Option");
-				mobileAction.FunctionSwipe("up", 200, 200);
+				mobileAction.FunctionSwipe("up", 2000, 200);
 				mobileAction.FuncClick(emailId, "Email");
 				mobileAction.FuncSendKeys(emailId, email);
 				mobileAction.FuncClickDone();

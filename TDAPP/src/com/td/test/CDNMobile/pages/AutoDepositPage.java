@@ -123,7 +123,7 @@ public class AutoDepositPage extends _CommonPage {
 
 	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='Select a recipient' or label=='Choisir un destinataire'`]")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/request_money_contacts_view']")
-	private MobileElement requestMoneyTo;
+	private MobileElement requestMoneyFrom;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeTextField[`value CONTAINS[cd] '$'`]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[contains(@text,'$')]")
@@ -657,7 +657,11 @@ public class AutoDepositPage extends _CommonPage {
 
 			if (platform.equalsIgnoreCase("iOS")) {
 
-				mobileAction.FuncClick(requestMoneyTo, "Request Money To DropDown");
+				if(!mobileAction.verifyElementIsPresent(requestMoneyFrom)){
+					mobileAction.waitForElementToVanish(progressBar);
+				}
+				
+				mobileAction.FuncClick(requestMoneyFrom, "Request Money To DropDown");
 
 				MobileElement requestUser = mobileAction.mobileElementUsingIOSClassChain(
 						"**/XCUIElementTypeStaticText[`label CONTAINS[cd] '" + getTestdata("ToAccount") + "'`]");
@@ -673,7 +677,7 @@ public class AutoDepositPage extends _CommonPage {
 
 			} else {
 
-				mobileAction.FuncClick(requestMoneyTo, "Request Money From DropDown");
+				mobileAction.FuncClick(requestMoneyFrom, "Request Money From DropDown");
 				MobileElement requestUser = mobileAction.mobileElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/txt_heading' and @text='"
 								+ getTestdata("ToAccount") + "']");
