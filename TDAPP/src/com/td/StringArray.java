@@ -120,7 +120,7 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_TRANSACTION_UNIT = { "Transaction Units", "Parts visées par l’opération",
 			"交易单位数量", "交易單位數" };
 	public static final String[] ARRAY_MF_NONELIGIBAL_ERROR_MSG = {
-			"Looks like you're not set up to purchase mutual funds. Let us help you by calling 1-866-568-0951.",
+			"Looks like you're not set up to purchase mutual funds. Let us help you by calling 1-888-568-0951.",
 			"Il semble que vous ne puissiez pas effectuer d’achats. Pour obtenir de l’aide, composez le 1-888-568-0952.",
 			"您似乎未启用购买互惠基金的功能。请拨打1-866-235-0002（广东话）或1-866-769-0002（普通话）获取帮助。",
 			"看來您尚未設定好購買互惠基金。請致電我們以獲得協助；廣東話：1-866-235-0002，普通話： 1-866-769-0002。" };
