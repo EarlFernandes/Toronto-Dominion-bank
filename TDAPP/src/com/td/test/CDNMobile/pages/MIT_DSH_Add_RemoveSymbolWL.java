@@ -70,9 +70,16 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title' and (@text='Add to or remove from watchlist' or @text='Ajouter ou supprimer de la liste de surveillance' or @text='添加至自选股观察名单或从自选股观察名单中移除' or @text='新增至或從自選股觀察名單中移除')]")
 	private MobileElement lblAddWatchlist;
 	
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='名單 01' or @label='名单 01']") 
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@label='名單 03' or @label='名单 03'])[1]") 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and @text='List 01']")
+	private MobileElement ListViewExpand03;
+	
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@label='名單 01' or @label='名单 01'])[1]") 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and @text='List 01']")
 	private MobileElement ListViewExpand01;
+	
+	
+	
 	
 	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
 	@AndroidFindBy(id = "com.td:id/hamburger")
@@ -83,33 +90,26 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 	@AndroidFindBy(xpath = "//*[@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶']")
 	private MobileElement flyoutMyAccountLink;
 	
-	@iOSFindBy(xpath = " //*[contains(@label,'ACCOUNTS') or contains(@label,'COMPTES')]") // @Author
+	@iOSFindBy(xpath = " //*[contains(@label,'ACCOUNTS') or contains(@label,'COMPTES')]") 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView']")
     private MobileElement defaultTradeAccount;
 	
 	
 	String accNumber = getTestdata("Accounts", "UserIDs").trim();
 	
-	 String xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
+	String xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
 	
-		@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Activity' or contains(@label,'Activité')]") // @Author
-		@AndroidFindBy(id = "com.td:id/activityTab")
-		private MobileElement activityTab;
-	
-	
-	
-	
-	
-	
-	
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Holdings' or @label='Avoirs'  or @label='Activity' or @label='Activity']") 
+	@AndroidFindBy(id = "com.td:id/activityTab")
+	private MobileElement holdingsTab;
+
+	@iOSFindBy(xpath = "(//*[@name='codeSearchButton'])[1]")
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id='com.td:id/img_added_in_watchlist'])[1]")
+    private MobileElement 	AddWatchlistButton;
 	
 	By WatchlistButtonMod = By.xpath("//*[@class='btn btn-default add-to-td-watchlist icon pull-left icon-star']");
 	
-	
-	
-	
-	
-	
+		
 	
 	
 	public void verifyActionSheetUIMOD() {
@@ -396,24 +396,28 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 				mobileAction.waitForElement(defaultTradeAccount);
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount, true, 60, "up");
 
-				mobileAction.verifyElementIsDisplayed(activityTab, "activityTab");
-				mobileAction.FuncClick(activityTab, "activityTab");
+				mobileAction.verifyElementIsDisplayed(holdingsTab, "holdingsTab");
+				mobileAction.FuncClick(holdingsTab, "holdingsTab");
 			 
 			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 				
+				{
+					String sXpathAndHoldings = "(//*[@text='AAPL'])[1]"; 
+					 
+					
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathAndHoldings, true, 10, "up");
+				}
+				
+				
+				else{
+				String sXpathiOSHoldings = "(//XCUIElementTypeStaticText[@label='AAPL'])[1]"; 
+			 
+		
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiOSHoldings, true, 10, "up");
+			 
+			 
+				}
 				Thread.sleep(5000);
 			 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
@@ -513,12 +517,303 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 	
 	
 	
+	public void verifyCheckMarkHoldings() {
+		Decorator();
+		try {
+	
+		//	 MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+
+			 if (mobileAction.isObjExists(btnSwitchNow, 2)) 
+			 {
+					mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+					
+					mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
+					
+					mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+					
+					
+				}
+			 
+			 
+			 
+				mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
+	            mobileAction.FuncClick(flyoutMyAccountLink, "My Accounts Flyout Menu");
+							
+
+				mobileAction.waitForElement(defaultTradeAccount);
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount, true, 60, "up");
+
+				mobileAction.verifyElementIsDisplayed(holdingsTab, "holdingsTab");
+				mobileAction.FuncClick(holdingsTab, "holdingsTab");
+			 
+			 
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				
+				{
+					String sXpathAndHoldings = "(//*[@text='AAPL'])[1]"; 
+					 
+					
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathAndHoldings, true, 10, "up");
+				}
+				
+				
+				else{
+				String sXpathiOSHoldings = "(//XCUIElementTypeStaticText[@label='AAPL'])[1]"; 
+			 
+		
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiOSHoldings, true, 10, "up");
+			 
+			 
+				}
+				Thread.sleep(5000);
+			 
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+					
+				{
+					((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+					
+					mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(WatchlistButtonMod),
+							"WatchlistButtonMod");
+					
+					
+					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+					
+					
+				}
+					
+					
+					
+					
+				else{
+					
+				mobileAction.FuncClick(WatchlistButton, "WatchlistButton");
+				
+				}
+			 
+				
+			mobileAction.FuncClick(ListViewExpand03, "ListViewExpand03"); 
+			 
+			 
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				
+			{
+				((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+				
+				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(WatchlistButtonMod),
+						"WatchlistButtonMod");
+				
+				
+				((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+				
+				
+			}
+			 
+			
+			else{
+				
+			mobileAction.FuncClick(WatchlistButton, "WatchlistButton");
+			
+			}
+			
+			
+	
+		}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+	
+	
+	
+	public void verifyActionSheetUIWLSymbolSearch() {
+		Decorator();
+		try {
+	
+		//	 MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+			
+			 if (mobileAction.isObjExists(btnSwitchNow, 2)) 
+			 {
+					mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+					
+					mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
+					
+					mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+					
+					
+				}
+			 
+			 
+			 
+				if(mobileAction.isObjExists(searchBar, 2))
+				{
+					mobileAction.FuncClick(searchBar, "searchBar");
+					
+					
+				}
+				else
+				
+				{
+				
+				mobileAction.FuncSwipeWhileElementNotFound(searchBar, true,7, "up");
+				
+				}
+				
+			 
+			 
+				MIT_DSH_UpdateSearchPage.get().enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs"));
+			 
+			 
+			 
+				mobileAction.FuncClick(AddWatchlistButton, "AddWatchlistButton");
+			 
+				
+				
+			 
+				 
+				 mobileAction.FuncVerifyTextEquals(lblAddWatchlist,
+							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ADDTOWATCHLIST));
+			 
+			 
+				 for (int i=1; i<=10; i++)
+						
+					{
+						if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+						
+						
+						
+				       { 
+							 String sXpathiAnd = "(//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and contains(@text,'" + i + "')])[1]"; 
+														 
+							 mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAnd, false, 5, "up");
+							 
+							 mobileAction.verifyElementIsDisplayed((MobileElement)CL.GetDriver().findElement(By.xpath(sXpathiAnd)),"Empy List Number is Displayed" + i);		 
+								 
+							 
+							 
+
+							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and contains(@text,'" + i + "')])[2]"; 
+														 
+							 mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAndSymbolNumber, false, 5, "up");
+							 
+							 mobileAction.verifyElementIsDisplayed((MobileElement)CL.GetDriver().findElement(By.xpath(sXpathiAndSymbolNumber)),"Symbol number for list displayed" + i);		 
+								 
+												
+							 
+												
+						}
+						
+						
+						else{
+							
+							
+								
+							 String sXpathiOS = "(//XCUIElementTypeStaticText[contains(@label,'" + i + "')])[1]"; 
+							 
+							 mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiOS, false, 5, "up");
+							 
+							 mobileAction.verifyElementIsDisplayed((MobileElement)CL.GetDriver().findElement(By.xpath(sXpathiOS)),"Empy List Number is Displayed" + i);		 
+							
+							
+								
+							 String sXpathiOSSymbolNumber = "(//XCUIElementTypeStaticText[contains(@label,'" + i + "')])[2]"; 
+							 
+							 mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiOSSymbolNumber, false, 5, "up");
+							 
+							 mobileAction.verifyElementIsDisplayed((MobileElement)CL.GetDriver().findElement(By.xpath(sXpathiOSSymbolNumber)),"Symbol number for list displayed" + i);	 
+							 
+							
+							 
+						}
+						 
+					}
+			 
+			 
+			 
+				 
+	
+		}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
 	
 	
 	
 	
+	public void verifyCheckMarkWLSymbolSearch() {
+		Decorator();
+		try {
 	
-	
+		//	 MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+			
+			 if (mobileAction.isObjExists(btnSwitchNow, 2)) 
+			 {
+					mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+					
+					mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
+					
+					mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+					
+					
+				}
+			 
+			 
+			 
+				if(mobileAction.isObjExists(searchBar, 2))
+				{
+					mobileAction.FuncClick(searchBar, "searchBar");
+					
+					
+				}
+				else
+				
+				{
+				
+				mobileAction.FuncSwipeWhileElementNotFound(searchBar, true,7, "up");
+				
+				}
+				
+			 
+			 
+				MIT_DSH_UpdateSearchPage.get().enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs"));
+			 
+			 
+				mobileAction.FuncClick(AddWatchlistButton, "AddWatchlistButton");
+				
+			 
+		
+			 
+				
+			mobileAction.FuncClick(ListViewExpand01, "ListViewExpand01"); 
+			 
+			
+			
+			mobileAction.FuncClick(AddWatchlistButton, "AddWatchlistButton");
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 
+			mobileAction.FuncClick(ListViewExpand01, "ListViewExpand01");
+			
+		}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
 	
 	
 	
