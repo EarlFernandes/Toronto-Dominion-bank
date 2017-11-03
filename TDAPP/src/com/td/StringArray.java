@@ -203,8 +203,8 @@ public final class StringArray {
 			"Avant de supprimer ce téléphone, vous devez ajouter un autre numéro sur lequel recevoir des codes de sécurité",
 			"删除此电话号码前，您必须添加一个其他电话号码以确保始终可接收安全码", "刪除此電話號碼前，您必須新增另一個電話號碼以確保您可隨時接收驗證碼" };
 	public static final String[] ARRAY_OTP_SETUP_PASSCODE_VERIFIED = { "Verified", "Validé", "验证成功", "驗證成功" };
-	public static final String[] ARRAY_OTP_SETUP_SETUP_COMPLETE_HEADER = { "Security Setup Complete",
-			"Configuration de sécurité terminée", "安全设置完成", "安全設定完成" };
+	public static final String[] ARRAY_OTP_SETUP_SETUP_COMPLETE_HEADER = { "Setup Complete", "Configuration terminée",
+			"设置完成", "設定完成" };
 	public static final String[] ARRAY_OTP_SETUP_ADD_PHONE_HEADER = { "Add Phone", "Ajouter un téléphone", "添加电话号码",
 			"新增電話號碼" };
 
@@ -214,11 +214,12 @@ public final class StringArray {
 			"您可在下方查看並管理您目前的安全設定" };
 	public static final String[] ARRAY_OTP_UPDATE_TEST_PHONE_HEADER = { "Test Phones (optional)",
 			"Test de téléphone (facultatif)", "测试电话号码（可选）", "測試電話號碼（非必要）" };
-	public static final String[] ARRAY_OTP_UPDATE_LOGIN_OPTION_HEADER = { "Change Login Option",
-			"Modifier l’option d’ouverture de session", "更改登录选项", "變更登入選項" };
+	public static final String[] ARRAY_OTP_UPDATE_LOGIN_OPTION_HEADER = { "Security Code Login Option",
+			"Option d’ouverture de session", "安全码登录选项", "安全碼登入選項" };
 	public static final String[] ARRAY_OTP_UPDATE_CHANGE_EMAIL_HEADER = { "Change Security Email",
 			"Modifier l’adresse courriel de sécurité", "更改安全信息邮箱", "變更安全性資訊收件箱" };
-	public static final String[] ARRAY_OTP_UPDATE_COMPLETE_HEADER = { "Thanks", "Merci", "谢谢", "謝謝" };
+	public static final String[] ARRAY_OTP_UPDATE_COMPLETE_HEADER = { "Security Setup Complete",
+			"Configuration de sécurité terminée", "安全设置完成", "安全設定完成" };
 
 	public static final String[] ARRAY_INVESTING_ACCOUNTS = { "Investing Accounts", "Comptes Placements directs TD",
 			"投资账户", "投資賬戶" };
@@ -311,6 +312,8 @@ public final class StringArray {
 	public static final String[] ARRAY_CONFIRM = { "Confirm", "Confirm", "确认", "確認" };
 	public static final String[] ARRAY_PREFERENCE_NEW_SECURITY_SETUP = { "New Security Setup",
 			"Nouvelle configuration de sécurité", "新的安全设置", "新的安全設定" };
+	public static final String[] ARRAY_PREFERENCE_SECURITY_SETTINGS = { "Security Settings", "Paramètres de sécurité",
+			"安全设置", "安全設定" };
 	public static final String[] ARRAY_PREFERENCE_SET_UP_NOW = { "Set Up Now", "Configurer maintenant", "立即设置",
 			"立即設定" };
 	public static final String[] ARRAY_PREFERENCE_NOTIFICATIONS = { "Notifications", "Avis", "通知", "通知" };
@@ -331,13 +334,12 @@ public final class StringArray {
 			"TD for Me 通知", "TD for Me 通知" };
 	public static final String[] ARRAY_ENABLE_NOTIFICATIONS = { "Enable Notifications", "Activer les notifications",
 			"启用通知", "启用通知" };
-	
-	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité",
-			"安全问题", "安全問題" };
-	public static final String[] ARRAY_SECURITY_LOGIN = { "Login", "Ouvrir une session",
-			"登录", "登入" };
-	public static final String[] ARRAY_MFA_ENTER_ANSWER = { "Enter your answer", "Entrez votre réponse",
-			"输入您的答案", "輸入您的答案" };
+
+	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",
+			"安全問題" };
+	public static final String[] ARRAY_SECURITY_LOGIN = { "Login", "Ouvrir une session", "登录", "登入" };
+	public static final String[] ARRAY_MFA_ENTER_ANSWER = { "Enter your answer", "Entrez votre réponse", "输入您的答案",
+			"輸入您的答案" };
 	// UA Core
 	public static final String[] ARRAY_ACCOUNT_TOTAL = { "Total", "Total", "总计", "總計" };
 	public static final String[] ARRAY_ADD_LOGIN = { "Add Login", "Ajouter une connexion", "添加登录", "新增登入" };
@@ -353,16 +355,15 @@ public final class StringArray {
 			"立即開設道明自管投資賬戶 增強信心，駕馭全局。" };
 
 	// UA Core End
-	
-	//P2P EUF
-	
+
+	// P2P EUF
+
 	public static final String[] ARRAY_REQUEST_MONEY_HEADER = { "Request Money", "Demander des fonds", "", "" };
 	public static final String[] ARRAY_PAYMENT_AND_TRANSFER_AUTODEPOSIT = { "Manage Autodeposit", "Gérer Autodépôt", "",
 			"" };
 	public static final String[] ARRAY_AUTODEPOSIT_ALMOST_DONE = { "Almost done!", "Vous avez presque terminé!", "",
 			"" };
-	public static final String[] ARRAY_AUTODEPOSIT_EMAIL_SENT_MSG = {
-			"Check your email for instructions from INTERAC",
+	public static final String[] ARRAY_AUTODEPOSIT_EMAIL_SENT_MSG = { "Check your email for instructions from INTERAC",
 			"Consultez les instructions que vous avez reçues", "", "" };
 	public static final String[] ARRAY_AUTODEPOSIT_PENDING_STATUS = { "Pending", "En attente", "", "" };
 	public static final String[] ARRAY_AUTODEPOSIT_ACTIVE_STATUS = { "Active", "Actif", "", "" };
@@ -378,9 +379,8 @@ public final class StringArray {
 	public static final String[] ARRAY_REQUEST_MONEY_CANCELLED_STATUS = { "Cancelled", "Annulé", "", "" };
 	public static final String[] ARRAY_REQUEST_MONEY_WRONG_EMAIL_STR = { "INVALID EMAIL ADDRESS",
 			"Adresse courriel non valide", "", "" };
-	public static final String[] ARRAY_CUSTOMER_ELIGIBILITY_ERROR_MSG = {
-			"There appears to be an issue with your", "Il semble y avoir un problème avec votre compte", "",
-			"" };
+	public static final String[] ARRAY_CUSTOMER_ELIGIBILITY_ERROR_MSG = { "There appears to be an issue with your",
+			"Il semble y avoir un problème avec votre compte", "", "" };
 	public static final String[] TRADE_RESPONSE_1 = {
 			"I acknowledge the trade name displayed above IS the trade name of the business",
 			"Je confirme que le nom commercial ci‑dessus EST celui de l’entreprise.", "", "" };

@@ -648,6 +648,7 @@ public class MenuPage extends _CommonPage {
 				mobileAction.FunctionSwipe("down", 200, 200);
 			}
 			mobileAction.FuncClick(profile_and_settings, profileSettings);
+			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
