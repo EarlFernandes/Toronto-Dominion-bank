@@ -66,6 +66,10 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
     @AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
     private MobileElement 	WatchlistButton;
 	
+	@iOSXCUITFindBy(xpath = "//*[@label='Watchlist Button' or contains(@label,'Entrez le')]") 
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/btn_watchlist']")
+    private MobileElement 	WatchlistButtonHoldings;
+	
 	@iOSXCUITFindBy(xpath = "//*[@label='ADD TO OR REMOVE FROM WATCHLIST' or @label='AJOUTER OU SUPPRIMER DE LA LISTE DE SURVEILLANCE']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title' and (@text='Add to or remove from watchlist' or @text='Ajouter ou supprimer de la liste de surveillance' or @text='添加至自选股观察名单或从自选股观察名单中移除' or @text='新增至或從自選股觀察名單中移除')]")
 	private MobileElement lblAddWatchlist;
@@ -99,8 +103,8 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 	
 	String xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Holdings' or @label='Avoirs'  or @label='Activity' or @label='Activity']") 
-	@AndroidFindBy(id = "com.td:id/activityTab")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Holdings' or @label='Avoirs' or @label='Activity' or @label='Activity']") 
+	@AndroidFindBy(id = "com.td:id/holdingsTab")
 	private MobileElement holdingsTab;
 
 	@iOSFindBy(xpath = "(//*[@name='codeSearchButton'])[1]")
@@ -155,7 +159,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 				MIT_DSH_UpdateSearchPage.get().clickFirstSymbolUSCAD(getTestdata("Symbol", "UserIDs"));
 			 
 				
-				Thread.sleep(5000);
+				Thread.sleep(500);
 			 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 					
@@ -169,6 +173,9 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
 					
 					
+					 mobileAction.FuncVerifyTextEquals(lblAddWatchlist,
+								getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ADDTOWATCHLISTAND));
+					
 				}
 					
 					
@@ -178,12 +185,14 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 					
 				mobileAction.FuncClick(WatchlistButton, "WatchlistButton");
 				
+				 mobileAction.FuncVerifyTextEquals(lblAddWatchlist,
+							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ADDTOWATCHLIST));
+				
 				}
 			 
 			 
 				 
-				 mobileAction.FuncVerifyTextEquals(lblAddWatchlist,
-							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ADDTOWATCHLIST));
+				
 			 
 			 
 				 for (int i=1; i<=10; i++)
@@ -194,20 +203,20 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 						
 						
 				       { 
-							 String sXpathiAnd = "(//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and contains(@text,'" + i + "')])[1]"; 
+							 String sXpathiAnd = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistName' and contains(@text,'" + i + "')])[1]"; 
 														 
 							 mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAnd, false, 5, "up");
 							 
-							 mobileAction.verifyElementIsDisplayed((MobileElement)CL.GetDriver().findElement(By.xpath(sXpathiAnd)),"Empy List Number is Displayed" + i);		 
+							 mobileAction.verifyElementIsDisplayed((MobileElement)CL.GetDriver().findElement(By.xpath(sXpathiAnd)),"Empy List Number is Displayed " + i);		 
 								 
 							 
 							 
 
-							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and contains(@text,'" + i + "')])[2]"; 
+							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbol') or contains(@text,'symbole'))])[1]"; 
 														 
 							 mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAndSymbolNumber, false, 5, "up");
 							 
-							 mobileAction.verifyElementIsDisplayed((MobileElement)CL.GetDriver().findElement(By.xpath(sXpathiAndSymbolNumber)),"Symbol number for list displayed" + i);		 
+							 mobileAction.verifyElementIsDisplayed((MobileElement)CL.GetDriver().findElement(By.xpath(sXpathiAndSymbolNumber)),"Symbol number for list displayed " + i);		 
 								 
 												
 							 
@@ -423,15 +432,11 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 					
 				{
-					((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
 					
-					mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(WatchlistButtonMod),
-							"WatchlistButtonMod");
+					mobileAction.FuncClick(WatchlistButtonHoldings, "WatchlistButton");
 					
-					
-					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
-					
-					
+					 mobileAction.FuncVerifyTextEquals(lblAddWatchlist,
+								getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ADDTOWATCHLISTAND));
 				}
 					
 					
@@ -439,15 +444,17 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 					
 				else{
 					
-				mobileAction.FuncClick(WatchlistButton, "WatchlistButton");
+				mobileAction.FuncClick(WatchlistButtonHoldings, "WatchlistButton");
+				
+				 mobileAction.FuncVerifyTextEquals(lblAddWatchlist,
+							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ADDTOWATCHLIST));
+			 
 				
 				}
 			 
 			 
 				 
-				 mobileAction.FuncVerifyTextEquals(lblAddWatchlist,
-							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ADDTOWATCHLIST));
-			 
+				
 			 
 				 for (int i=1; i<=10; i++)
 						
@@ -457,7 +464,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 						
 						
 				       { 
-							 String sXpathiAnd = "(//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and contains(@text,'" + i + "')])[1]"; 
+							 String sXpathiAnd = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistName' and contains(@text,'" + i + "')])[1]"; 
 														 
 							 mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAnd, false, 5, "up");
 							 
@@ -466,7 +473,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 							 
 							 
 
-							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and contains(@text,'" + i + "')])[2]"; 
+							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbol') or contains(@text,'symbole'))])[1]"; 
 														 
 							 mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAndSymbolNumber, false, 5, "up");
 							 
@@ -669,14 +676,17 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 			 
 				mobileAction.FuncClick(AddWatchlistButton, "AddWatchlistButton");
 			 
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+				{
 				
-				
-			 
-				 
+				 mobileAction.FuncVerifyTextEquals(lblAddWatchlist,
+							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ADDTOWATCHLISTAND));
+				}
+				else{
 				 mobileAction.FuncVerifyTextEquals(lblAddWatchlist,
 							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ADDTOWATCHLIST));
 			 
-			 
+				}
 				 for (int i=1; i<=10; i++)
 						
 					{
@@ -685,7 +695,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 						
 						
 				       { 
-							 String sXpathiAnd = "(//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and contains(@text,'" + i + "')])[1]"; 
+							 String sXpathiAnd = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistName' and contains(@text,'" + i + "')])[1]"; 
 														 
 							 mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAnd, false, 5, "up");
 							 
@@ -694,7 +704,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 							 
 							 
 
-							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and contains(@text,'" + i + "')])[2]"; 
+							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbol') or contains(@text,'symbole'))])[1]"; 
 														 
 							 mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAndSymbolNumber, false, 5, "up");
 							 
