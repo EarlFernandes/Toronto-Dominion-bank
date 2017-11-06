@@ -470,6 +470,7 @@ public class Login extends _CommonPage {
 					try {
 						System.out.println("Failed to try maximum " + (REPEAT_TIMES + 1) + " times");
 						CL.GetReporting().FuncReport("Fail", "Login Failed");
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
@@ -479,6 +480,7 @@ public class Login extends _CommonPage {
 			e.printStackTrace();
 			try {
 				CL.GetReporting().FuncReport("Fail", "Login Failed");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
