@@ -58,7 +58,7 @@ public class MLOrderDetails extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/ordersTab")
 	private MobileElement ordersTab;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[1]") // @Author
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[1])[1]") // @Author
 																								// -
 																								// Sushil
 																								// 21-Mar-2017
@@ -94,7 +94,7 @@ public class MLOrderDetails extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/warning_text")
 	private MobileElement messageWarning;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]") // @Author
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')])[1]") // @Author
 																				// -
 																				// Sushil
 																				// 21-Mar-2017

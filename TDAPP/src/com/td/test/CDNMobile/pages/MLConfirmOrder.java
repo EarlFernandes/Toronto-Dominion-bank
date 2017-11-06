@@ -44,7 +44,7 @@ public class MLConfirmOrder extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/warning_text")
 	private MobileElement warning_text;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]") // @Author
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')])[1]") // @Author
 																				// -
 																				// Sushil
 																				// 21-Mar-2017

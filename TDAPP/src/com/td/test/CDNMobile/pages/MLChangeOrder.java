@@ -46,7 +46,7 @@ public class MLChangeOrder extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/btn_order")
 	private MobileElement btn_ORDERS;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[1]") // @Author
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[1])[1]") // @Author
 																								// -
 																								// Sushil
 																								// 21-Mar-2017
@@ -112,7 +112,7 @@ public class MLChangeOrder extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/warning_text")
 	private MobileElement messageWarning;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]") // @Author
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')])[1]") // @Author
 																				// -
 																				// Sushil
 																				// 21-Mar-2017

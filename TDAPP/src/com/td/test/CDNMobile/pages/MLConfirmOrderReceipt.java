@@ -47,7 +47,7 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Multi-Leg') or contains(@text,'Composantes multiples')]")
 	private MobileElement lblOrderMultiLeg;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[1]") // @Author
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[1])[1]") // @Author
 																								// -
 																								// Sushil
 																								// 21-Mar-2017
