@@ -34,6 +34,7 @@ import com.td.test.CDNMobile.pages.Logout;
 import com.td.test.CDNMobile.pages.MFA_ChangeAnswer;
 import com.td.test.CDNMobile.pages.MIT_DSHHomeScreenSettings;
 import com.td.test.CDNMobile.pages.MIT_DSHNavRows;
+import com.td.test.CDNMobile.pages.MIT_DSHNewProfileLogic;
 import com.td.test.CDNMobile.pages.MIT_DSHQuickLinks;
 import com.td.test.CDNMobile.pages.MIT_DSHWLPopulateData;
 import com.td.test.CDNMobile.pages.MIT_DSHWLTopNav;
@@ -211,7 +212,7 @@ public class EventCase {
 
 		// MIT Dashboard
 
-		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, goToProfileAndSettings, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI, verifyStockETFsWLSymbolRow, verifyTappingWLOptionSymbol, goToWLExpandedView, verifyTappingWLMutualFundSymbol, verifyWLOptionSymbolSellButton, verifyWLMutualFundSymbolBuyButton, verifyWLOptionSymbolBuyButton, verifyWLETFSymbolSellButton, verifyWLIndicesSymbolBuySellButton, verifyWLBackButton, verifyWLSymbolFlagCompanyName, verifyHomeScreenSettingsBlendedInvestingFocusUser,
+		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, goToProfileAndSettings, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI, verifyStockETFsWLSymbolRow, verifyTappingWLOptionSymbol, goToWLExpandedView, verifyTappingWLMutualFundSymbol, verifyWLOptionSymbolSellButton, verifyWLMutualFundSymbolBuyButton, verifyWLOptionSymbolBuyButton, verifyWLETFSymbolSellButton, verifyWLIndicesSymbolBuySellButton, verifyWLBackButton, verifyWLSymbolFlagCompanyName, verifyHomeScreenSettingsBlendedInvestingFocusUser,verifyQLOrderBlendedInvestingFocus,
 
 		// P2P
 
@@ -2652,6 +2653,12 @@ public class EventCase {
 		case verifyHomeScreenSettingsBlendedInvestingFocusUser:
 			MIT_DSHHomeScreenSettings.get().verifyHomeScreenSettingsBlendedInvestingFocusUser();
 			break;
+			
+		case verifyQLOrderBlendedInvestingFocus:
+			MIT_DSHNewProfileLogic.get().verifyQLOrderBlendedInvestingFocus();
+			break;
+			
+			
 
 		// MIT Dashboard END
 

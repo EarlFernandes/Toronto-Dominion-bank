@@ -94,6 +94,18 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/tv_watchlist_more_footer")
 	private MobileElement BT_More;
 
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
+	@AndroidFindBy(id = "android:id/up")
+	MobileElement BT_HamburgerMenu;
+
+	@iOSFindBy(xpath = "//*[@label='Home' or @label='Accueil' or @label='主页' or @label='首頁']")
+	@AndroidFindBy(xpath = "//*[@text='Home' or @text='Accueil' or @text='主页' or @text='首頁']")
+	private MobileElement FLY_Home;
+
+	@iOSFindBy(xpath = "//*[@label='Search or add symbols' or @label='Rechercher ou ajouter des symboles' or @label='搜索或添加股票代码' or @label='搜尋或添加股票代號']")
+	@AndroidFindBy(xpath = "//*[@text='Search or add symbols' or @text='Rechercher ou ajouter des symboles' or @text='搜索或添加股票代码' or @text='搜尋或添加股票代號']")
+	private MobileElement LBL_Searchoraddsymbols;
+
 	public void verifyHomeScreenSettingsUI() {
 		Decorator();
 		try {
@@ -236,6 +248,20 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
 
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			{
+			mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
+			mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+			}
+			else
+			{
+				mobileAction.FuncClick(BT_Back, "< Button");
+			}
+			
+			mobileAction.verifyElementIsDisplayed(LBL_Searchoraddsymbols, "Search or add symbols");
+			
+			mobileAction.FuncSwipeWhileElementNotFound(BT_More, false, 6, "up");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -250,6 +276,5 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 			e.printStackTrace();
 		}
 	}
-
 
 }

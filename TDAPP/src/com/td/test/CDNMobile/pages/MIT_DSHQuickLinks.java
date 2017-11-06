@@ -20,7 +20,7 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class MIT_DSHQuickLinks extends _CommonPage {
-
+ 
 	private static MIT_DSHQuickLinks MIT_DSHQuickLinks;
 
 	public synchronized static MIT_DSHQuickLinks get() {
@@ -264,9 +264,10 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 			verifyQL_PAY_BILL(true);
 
-			verifyQL_WATCHLISTS(true);
+/*	    	verifyQL_WATCHLISTS(true); De-Scoped as per New Requirement	
 
-			verifyQL_QUOTE(true);
+			verifyQL_QUOTE(true);De-Scoped as per New Requirement	*/
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -305,6 +306,44 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		if (bFlag) {
+			try {
+				CL.GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> Quick Link is present.");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				CL.GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> Quick Link does not exist.");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return bFlag;
+	}
+	
+	public boolean verifyQuickLinkExistsByXpath(String xpathEle, String sDesc) {
+		Decorator();
+		boolean bFlag = false;
+		try {
+
+			CL.GetDriver().findElement(By.xpath(xpathEle));
+				// mobileAction.FunctionSwipe("Left", 200, 100);
+
+				//if (mobileAction.isObjExists(mElement))
+					bFlag = true;
+			//else
+				//bFlag = true;
+
+		} catch (Exception e) {
+			try {
+				mobileAction.SwipeQuickLinks(200, 100);
+				bFlag = true;
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+//			e.printStackTrace();
 		}
 		if (bFlag) {
 			try {

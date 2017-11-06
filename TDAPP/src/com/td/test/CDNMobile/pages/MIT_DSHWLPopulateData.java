@@ -86,7 +86,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/up")
-	MobileElement BT_Back;
+	private MobileElement BT_Back;
 
 	@iOSXCUITFindBy(accessibility = "alert_ok_button")
 	@AndroidFindBy(id = "android:id/button1")
