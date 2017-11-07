@@ -153,8 +153,8 @@ public class OTPUpdate extends _CommonPage {
 	private MobileElement confirmButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeOther[3]//XCUIElementTypeButton[1]")
-	@AndroidFindBy(id = "android:id/button2")
-	private MobileElement testPHoneNoButton;
+	@AndroidFindBy(id = "android:id/button1")
+	private MobileElement deletePhoneOKButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(id = "com.td:id/alertTitle")
@@ -164,9 +164,6 @@ public class OTPUpdate extends _CommonPage {
 	@AndroidFindBy(id = "android:id/message")
 	private MobileElement deletePhoneFailMessage;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeActivityIndicator[1]")
-	@AndroidFindBy(id = "com.td:id/loading_indicator_textview")
-	private MobileElement progressBar;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//a[@ng-click='sp.testPhone(phone)' and @tabindex='0']")
@@ -289,7 +286,7 @@ public class OTPUpdate extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				if (!addPhoneUpdateButton.isDisplayed()) {
-					mobileAction.FunctionSwipe("up", 1000, 0);
+					mobileAction.FunctionSwipe("up", 100, 0);
 				}
 			}
 
@@ -417,7 +414,7 @@ public class OTPUpdate extends _CommonPage {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.FuncScrollIntoView(changeEmailUpdateButton, "Change Email Button");
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FunctionSwipe("up", 1000, 0);
+				mobileAction.FunctionSwipe("up", 100, 0);
 
 			}
 			mobileAction.FuncClick(changeEmailUpdateButton, "Change Email Button");
@@ -463,7 +460,7 @@ public class OTPUpdate extends _CommonPage {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.FuncScrollIntoView(changeLoginOptionUpdateButton, "Change Login Option Button");
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FunctionSwipe("up", 1000, 0);
+				mobileAction.FunctionSwipe("up", 100, 0);
 			}
 			mobileAction.FuncClick(changeLoginOptionUpdateButton, "Change Login Option Button");
 
@@ -806,6 +803,9 @@ public class OTPUpdate extends _CommonPage {
 			mobileAction.verifyElementTextContains(deletePhoneFailMessage,
 					getTextInCurrentLocale(StringArray.ARRAY_OTP_SETUP_UNABLE_DELETE_PHONE_MSG));
 
+			mobileAction.FuncClick(deletePhoneOKButton, "Cannot delete phone OK button");
+			mobileAction.sleep(3000);
+			
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -1005,7 +1005,7 @@ public class OTPUpdate extends _CommonPage {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.FuncScrollIntoView(emailUpdateField, "Security Email field");
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FunctionSwipe("up", 1000, 0);
+				mobileAction.FunctionSwipe("up", 100, 0);
 			}
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")

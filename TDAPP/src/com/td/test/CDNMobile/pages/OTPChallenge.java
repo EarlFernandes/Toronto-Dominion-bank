@@ -32,15 +32,15 @@ public class OTPChallenge extends _CommonPage {
 
 	private static OTPChallenge OneTimePasswordChallenge;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[4]//XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//button[@ng-click=\"sp.changeOptions('text')\"]")
 	private WebElement textOption;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeButton[2]")
 	@FindBy(xpath = "//button[@ng-click=\"sp.changeOptions('voice')\"]")
 	private WebElement voiceOption;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@FindBy(id = "getCode")
 	private WebElement getCodeButton;
 
@@ -48,31 +48,31 @@ public class OTPChallenge extends _CommonPage {
 	@FindBy(id = "phone_0")
 	private WebElement firstPhoneNumber;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeTextField[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeTextField[1]")
 	@FindBy(id = "secretCode")
 	private WebElement securityCodeField;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@FindBy(id = "enter")
 	private WebElement submitCodeButton;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "/XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='server-validation']/span[2]")
 	private WebElement cannotVerifySecurityCodeMsg;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "/XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='server-validation']/span[2]")
 	private WebElement tooManySecurityCodesRequestedMsg;
 
-	@iOSXCUITFindBy(xpath = "TBD")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/error_message")
 	private WebElement accountDisabledMsg;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeLink[1]") // TBD
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeOther[4]/XCUIElementTypeStaticText[2]")
 	@FindBy(xpath = "//a[contains(@ng-click,'ec.resendCode')]")
 	private WebElement resendCodeLink;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeOther[3]//XCUIElementTypeButton[1]") // TBD
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeOther[3]//XCUIElementTypeButton[2]")
 	@AndroidFindBy(id = "android:id/button3")
 	private MobileElement resendCodeText;
 
@@ -242,8 +242,6 @@ public class OTPChallenge extends _CommonPage {
 	public void requestMaxPassCodes() {
 		Decorator();
 		try {
-			clickTextOption();
-			clickGetCodeButton();
 
 			for (int i = 0; i < 5; i++) {
 
@@ -425,6 +423,10 @@ public class OTPChallenge extends _CommonPage {
 		try {
 
 			mobileAction.verifyElementIsDisplayed(accountDisabledMsg, "Account Disabled screen");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.verifyElementTextContains(accountDisabledMsg,
+						getTextInCurrentLocale(StringArray.ARRAY_OTP_CHALLENGE_ONLINE_ACCESS_DISABLED));
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

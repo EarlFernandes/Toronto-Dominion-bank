@@ -73,7 +73,7 @@ public class OTPSetup extends _CommonPage {
 	@AndroidFindBy(id = "android:id/button1")
 	private MobileElement confirmButton;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Add Another Phone') or contains(@label,'Ajouter un autre téléphone') or contains(@label,'添加其他电话号码') or contains(@label,'新增更多電話號碼') ]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Add Another Number') or contains(@label,'Ajouter un autre téléphone') or contains(@label,'添加其他号码') or contains(@label,'新增另一個號碼') ]")
 	@FindBy(xpath = "//a[contains(@ng-click,'add-phone')]")
 	private WebElement addAnotherPhoneButton;
 
@@ -85,47 +85,47 @@ public class OTPSetup extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/alertTitle")
 	private MobileElement addAnotherPhoneDialogTitle;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='phone_0']/div/div/div[1]")
 	private WebElement phoneCard1Phone;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='phone_0']/div/div/div[2]")
 	private WebElement phoneCard1Nickname;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[5]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[2]/XCUIElementTypeOther[3]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='phone_1']/div/div/div[1]")
 	private WebElement phoneCard2Phone;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[6]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[2]/XCUIElementTypeOther[4]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='phone_1']/div/div/div[2]")
 	private WebElement phoneCard2Nickname;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[2]/XCUIElementTypeOther[5]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='phone_2']/div/div/div[1]")
 	private WebElement phoneCard3Phone;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[8]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[2]/XCUIElementTypeOther[6]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='phone_2']/div/div/div[2]")
 	private WebElement phoneCard3Nickname;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[9]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[2]/XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='phone_3']/div/div/div[1]")
 	private WebElement phoneCard4Phone;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[10]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[2]/XCUIElementTypeOther[8]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='phone_3']/div/div/div[2]")
 	private WebElement phoneCard4Nickname;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[11]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[2]/XCUIElementTypeOther[9]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='phone_4']/div/div/div[1]")
 	private WebElement phoneCard5Phone;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[12]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[2]/XCUIElementTypeOther[10]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='phone_4']/div/div/div[2]")
 	private WebElement phoneCard5Nickname;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[2]/XCUIElementTypeButton[2]")
 	@FindBy(xpath = "//span[@ng-click='sp.deleteRecord($index)' and @tabindex='0']")
 	private WebElement deletePhone1Button;
 
@@ -137,19 +137,19 @@ public class OTPSetup extends _CommonPage {
 	@AndroidFindBy(id = "android:id/message")
 	private MobileElement deletePhoneFailMessage;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//a[@ng-click='sp.testPhone(phone)' and @tabindex='0']")
 	private WebElement firstPhoneNumber;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[4]//XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[5]/XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//button[@ng-click=\"sp.changeOptions('text')\"]")
 	private WebElement textOption;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[5]/XCUIElementTypeButton[2]")
 	@FindBy(xpath = "//button[@ng-click=\"sp.changeOptions('voice')\"]")
 	private WebElement voiceOption;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Continue') or contains(@label,'Continuer') or contains(@label,'继续') or contains(@label,'繼續') ]")
 	@FindBy(id = "getCode")
 	private WebElement getCodeButton;
 
@@ -161,15 +161,15 @@ public class OTPSetup extends _CommonPage {
 	@FindBy(id = "secretCode")
 	private WebElement securityCodeField;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='server-validation']/span[2]")
 	private WebElement cannotVerifySecurityCodeMsg;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='server-validation']/span[2]")
 	private WebElement expiredSecurityCodeMsg;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='number-ids']/span[2]")
 	private WebElement invalidPasscodeFormatMsg;
 
@@ -193,7 +193,7 @@ public class OTPSetup extends _CommonPage {
 	@FindBy(id = "enter")
 	private WebElement emailContinueButton;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//enter-security-email//span")
 	private WebElement securityEmailHeader;
 
@@ -314,7 +314,7 @@ public class OTPSetup extends _CommonPage {
 						mobileAction.switchAppiumContext("WEBVIEW_com.td");
 						mobileAction.FuncScrollIntoView(addAnotherPhoneButton, "Add Another Phone Button");
 					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-						mobileAction.FunctionSwipe("up", 1000, 0);
+						mobileAction.FunctionSwipe("up", 100, 0);
 					}
 
 					mobileAction.FuncClick(addAnotherPhoneButton, "Add Another Phone Button");
@@ -570,7 +570,31 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.FuncClickDone(); // hide iOS keyboard
 			}
 
-			this.clickSubmitCodeButton();
+			clickSubmitCodeButton();
+
+		} catch (Exception e) {
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+			mobileAction.switchAppiumContext("NATIVE_APP");
+		}
+	}
+
+	public void enterNonNumericSecurityCode() {
+		Decorator();
+
+		try {
+			String securityCode = "abcde";
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			}
+
+			mobileAction.FuncClick(securityCodeField, "Security Code Field");
+			mobileAction.FuncSendKeys(securityCodeField, securityCode);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.FuncClickDone(); // hide iOS keyboard
+			}
 
 		} catch (Exception e) {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
@@ -817,8 +841,13 @@ public class OTPSetup extends _CommonPage {
 		try {
 
 			mobileAction.verifyElementIsDisplayed(getStartedNewButton, "Get Started button");
-			mobileAction.verifyElementTextContains(getStartedNewButton,
-					getTextInCurrentLocale(StringArray.ARRAY_OTP_SETUP_GET_STARTED));
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.verifyElementTextContains(getStartedNewButton,
+						getTextInCurrentLocale(StringArray.ARRAY_OTP_SETUP_GET_STARTED));
+			} else {
+				mobileAction.verifyElementTextContains(getStartedNewButton,
+						getTextInCurrentLocale(StringArray.ARRAY_OTP_SETUP_CONTINUE));
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

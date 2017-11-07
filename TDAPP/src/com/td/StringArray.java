@@ -184,7 +184,13 @@ public final class StringArray {
 	public static final String[] ARRAY_OTP_CHALLENGE_TOO_MANY_SECURITY_CODES_REQUESTED = {
 			"You've exceeded the number of security code requests",
 			"Vous avez atteint le nombre maximal de demandes de code de sécurité", "您索取安全码的次数已超过上限", "您要求索取驗證碼的次數太多" };
+	public static final String[] ARRAY_OTP_CHALLENGE_ONLINE_ACCESS_DISABLED = {
+			"For your security, your online access has been disabled",
+			"Pour votre sécurité, nous avons suspendu votre accès en ligne", "出于安全性考虑，您的网上访问权限已禁用",
+			"基於安全考慮，您的網上存取權限已停用" };
+
 	public static final String[] ARRAY_OTP_SETUP_GET_STARTED = { "Get Started", "Commencer", "立即开始", "立即開始" };
+	public static final String[] ARRAY_OTP_SETUP_CONTINUE = { "Continue", "Continuer", "继续", "繼續" };
 	public static final String[] ARRAY_OTP_SETUP_ADD_ANOTHER_PHONE = { "Add another phone?",
 			"Ajouter un autre téléphone?", "添加其他电话号码", "新增更多電話號碼" };
 	public static final String[] ARRAY_OTP_SETUP_INVALID_PASSCODE_FORMAT = { "Please enter numbers only",
