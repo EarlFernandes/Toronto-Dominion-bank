@@ -154,6 +154,9 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
 	private MobileElement progressBar;
 
+	@AndroidFindBy(id = "com.td:id/classificationTexView")
+	private MobileElement sectionHeader;
+
 	private MobileElement total_accounts_ios;
 
 	private MobileElement total_accounts_and_cad;
@@ -474,20 +477,33 @@ public class Accounts extends _CommonPage {
 	 * @throws Exception
 	 *             If there is problem while finding that element.
 	 */
-	public void verify_Banking_Header() {
+	public void verifyBankingHeader() {
 		Decorator();
 		try {
-			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, account_Header);
-			mobileAction.verifyElementIsDisplayed(txtAccount_Banking_header, "BANKING");
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER);
+				sectionHeader = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[contains(@label,'" + labelText + "')]",
+						"My Accounts Banking header");
+				// sectionHeader = mobileAction.mobileElementUsingIOSClassChain(
+				// "**/XCUIElementTypeStaticText[`label CONTAINS[cd] '" +
+				// labelText + "'`]");
+
+			}
+			mobileAction.verifyElementIsDisplayed(sectionHeader, "My Accounts Banking header");
+			mobileAction.verifyElementTextContains(sectionHeader,
+					getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER));
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1059,13 +1075,13 @@ public class Accounts extends _CommonPage {
 				total_xpath = "//android.widget.TextView[@text='" + totalStr + "']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(total_xpath, false, 20, "up");
 
-				total_accounts_and_cad = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + totalStr
-								+ "']/../following-sibling::android.widget.LinearLayout/*[@resource-id='com.td:id/canTotal']",
+				total_accounts_and_cad = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ totalStr
+						+ "']/../following-sibling::android.widget.LinearLayout/*[@resource-id='com.td:id/canTotal']",
 						"Total Account CAD");
-				total_accounts_and_usd = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + totalStr
-								+ "']/../following-sibling::android.widget.LinearLayout/*[@resource-id='com.td:id/usTotal']",
+				total_accounts_and_usd = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ totalStr
+						+ "']/../following-sibling::android.widget.LinearLayout/*[@resource-id='com.td:id/usTotal']",
 						"Total Account USD");
 				total_Account_value_cad = mobileAction.getValue(total_accounts_and_cad);
 				total_Account_value_usd = mobileAction.getValue(total_accounts_and_usd);

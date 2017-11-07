@@ -227,6 +227,8 @@ public final class StringArray {
 	public static final String[] ARRAY_OTP_UPDATE_COMPLETE_HEADER = { "Security Setup Complete",
 			"Configuration de sécurité terminée", "安全设置完成", "安全設定完成" };
 
+	public static final String[] ARRAY_MY_ACCOUNTS_BANKING_HEADER = { "BANKING", "SERVICES BANCAIRES", "理财", "理財" };
+
 	public static final String[] ARRAY_INVESTING_ACCOUNTS = { "Investing Accounts", "Comptes Placements directs TD",
 			"投资账户", "投資賬戶" };
 	public static final String[] ARRAY_MOBILE_PAYMENT = { "TD Mobile Payment", "Paiement mobile TD", "道明移动支付",

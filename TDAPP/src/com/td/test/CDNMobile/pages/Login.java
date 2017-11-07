@@ -543,7 +543,8 @@ public class Login extends _CommonPage {
 				}
 				mobileAction.waitForElementToVanish(progressBar);
 			}
-			enterPwdifSystemError();
+			//enterPwdifSystemError();
+			mobileAction.sleep(5000);
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -48,7 +48,7 @@ public class OTPChallenge extends _CommonPage {
 	@FindBy(id = "phone_0")
 	private WebElement firstPhoneNumber;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeTextField[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeTextField[1] | //XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeTextField[1]")
 	@FindBy(id = "secretCode")
 	private WebElement securityCodeField;
 
@@ -189,6 +189,32 @@ public class OTPChallenge extends _CommonPage {
 			} catch (IOException ex) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+			mobileAction.switchAppiumContext("NATIVE_APP");
+		}
+	}
+
+	public void enterIncorrectSecurityCode() {
+		Decorator();
+
+		try {
+			String securityCode = "1111";
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+			}
+
+			mobileAction.FuncClick(securityCodeField, "Security Code Field");
+			mobileAction.FuncSendKeys(securityCodeField, securityCode);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.FuncClickDone(); // hide iOS keyboard
+			}
+
+			clickSubmitCodeButton();
+
+		} catch (Exception e) {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
 			mobileAction.switchAppiumContext("NATIVE_APP");

@@ -609,14 +609,13 @@ public class OTPSetup extends _CommonPage {
 		try {
 			// Scroll up every 60s to prevent session expiration after
 			// 2min of inactivity
-			for (int i = 0; i < 10; i++) {
-				mobileAction.FunctionSwipe("up", 100, 0);
-				Thread.sleep(1000 * 60);
+			for (int i = 0; i < 5; i++) {
+				enterIncorrectSecurityCode();
+				mobileAction.sleep(1000 * 60);
 			}
 
-			// Passcode expires after 10mins, enter correct passcode after 600s
-			enterSecurityCode();
-			clickSubmitCodeButton();
+			// Passcode expires after 5mins, enter correct passcode after 600s
+			enterIncorrectSecurityCode();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
