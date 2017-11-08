@@ -141,7 +141,7 @@ public class AutoDepositPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button']")
 	private MobileElement next;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeButton[@label='Next' or @name='Next']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeButton[@label='Next' or @name='Next' or @label='Suivant']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button']")
 	private MobileElement nextAutoDep;
 
