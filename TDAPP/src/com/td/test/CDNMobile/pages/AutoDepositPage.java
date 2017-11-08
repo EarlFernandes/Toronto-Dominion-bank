@@ -57,9 +57,11 @@ public class AutoDepositPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_footer']")
 	private MobileElement continueBtn;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeActivityIndicator[`value=='1'")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progressBar;
+	// @iOSXCUITFindBy(iOSClassChain =
+	// "**/XCUIElementTypeActivityIndicator[`value=='1'")
+	// @AndroidFindBy(xpath =
+	// "//android.widget.TextView[@resource-id='android:id/message']")
+	// private MobileElement progressBar;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label=='Accept' or label=='Accepter'`]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/acceptButton']")
@@ -303,7 +305,7 @@ public class AutoDepositPage extends _CommonPage {
 			MobileElement accountNumberToDeposit = mobileAction.mobileElementUsingXPath(AccToDeposit);
 			mobileAction.FuncClick(accountNumberToDeposit, "Account Number " + getTestdata("ToAccount"));
 			mobileAction.FuncClick(continueBtn, "Continue Button");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 			emailCounter++;
 			if (emailCounter == emailArr.length) {
@@ -546,7 +548,9 @@ public class AutoDepositPage extends _CommonPage {
 			String enterAccount = null;
 			MobileElement accountToSelect = null;
 
-			mobileAction.waitForElementToVanish(progressBar);
+
+			mobileAction.waitProgressBarVanish();
+
 
 			if (autodepositAcc.getText().contains(accounts[0])) {
 				enterAccount = accounts[1];
@@ -658,7 +662,7 @@ public class AutoDepositPage extends _CommonPage {
 			if (platform.equalsIgnoreCase("iOS")) {
 
 				if(!mobileAction.verifyElementIsPresent(requestMoneyFrom)){
-					mobileAction.waitForElementToVanish(progressBar);
+					mobileAction.waitProgressBarVanish();
 				}
 				
 				mobileAction.FuncClick(requestMoneyFrom, "Request Money To DropDown");
@@ -818,7 +822,7 @@ public class AutoDepositPage extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 			if (platform.equalsIgnoreCase("iOS")) {
 

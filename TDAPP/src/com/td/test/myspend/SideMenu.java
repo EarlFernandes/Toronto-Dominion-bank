@@ -132,31 +132,14 @@ public class SideMenu extends com.td._CommonPage {
 
 			}
 			MyspendPreferences.get().verifyPageHeader();
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		}  catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -184,31 +167,14 @@ public class SideMenu extends com.td._CommonPage {
 				mobileAction.FuncClick(spendingSpikes, "Spending Spike");
 			}
 			SpendingSpikes.get().verifyPageheader();
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -236,31 +202,14 @@ public class SideMenu extends com.td._CommonPage {
 			} else {
 				mobileAction.FuncClick(spendingByCategory, "Spending By Category");
 			}
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		}  catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -288,33 +237,16 @@ public class SideMenu extends com.td._CommonPage {
 			} else {
 				mobileAction.FuncClick(spendingInsights, "Spending Insights");
 			}
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -342,31 +274,14 @@ public class SideMenu extends com.td._CommonPage {
 
 			}
 
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		}  catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -392,31 +307,14 @@ public class SideMenu extends com.td._CommonPage {
 			} else {
 				mobileAction.FuncClick(transactionHistory, "Transaction History");
 			}
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -444,31 +342,14 @@ public class SideMenu extends com.td._CommonPage {
 			} else {
 				mobileAction.FuncClick(myAccounts, "My Accounts");
 			}
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		}  catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -496,31 +377,14 @@ public class SideMenu extends com.td._CommonPage {
 			} else {
 				mobileAction.FuncClick(transfers, "Transfers");
 			}
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		}  catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -548,31 +412,14 @@ public class SideMenu extends com.td._CommonPage {
 				mobileAction.FuncClick(bills, "Bills");
 			}
 
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		}  catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -614,31 +461,14 @@ public class SideMenu extends com.td._CommonPage {
 				CL.GetAppiumDriver().context("NATIVE_APP");
 			}
 
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		}  catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -661,31 +491,14 @@ public class SideMenu extends com.td._CommonPage {
 
 		try {
 			mobileAction.FuncClick(getTDApp, "Get the TD app");
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		}  catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
@@ -717,31 +530,14 @@ public class SideMenu extends com.td._CommonPage {
 				CL.GetAppiumDriver().context("NATIVE_APP");
 			}
 			
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		}  catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 	
@@ -774,16 +570,15 @@ public class SideMenu extends com.td._CommonPage {
 			}
 			
 
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		}  catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} 
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
 	}
 
 }

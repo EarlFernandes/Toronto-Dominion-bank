@@ -129,10 +129,6 @@ public class ManageContacts extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Settings')]")
 	private MobileElement settings;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeActivityIndicator[`value=='1'")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progressBar;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_heading']")
 	private List<MobileElement> language;
@@ -766,7 +762,7 @@ public class ManageContacts extends _CommonPage {
 				clickContact();
 				editContact();
 				verifyContactEditSuccessMsg();
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 
 				if (i != 2) {
 					for (int m = 0; m <= i; m++) {
@@ -812,7 +808,7 @@ public class ManageContacts extends _CommonPage {
 				noDeleteContact();
 				deleteContact();
 				verifyContactDeleteSuccessMsg();
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FunctionSwipe("left", 200, 200);
 
 			}
@@ -857,7 +853,7 @@ public class ManageContacts extends _CommonPage {
 				if (platformName.equalsIgnoreCase("Android")) {
 					mobileAction.FuncClickBackButton();
 				} else {
-					HomeScreen.get().clickMenu();
+					mobileAction.clickMenuButton();
 					MenuPage.get().clickMenuTransfer();
 					Transfers.get().clickManageContactsLink();
 				}
@@ -865,7 +861,7 @@ public class ManageContacts extends _CommonPage {
 				if (i != 2) {
 					for (int m = 0; m <= i; m++) {
 						mobileAction.FunctionSwipe("left", 200, 100);
-						mobileAction.waitForElementToVanish(progressBar);
+						mobileAction.waitProgressBarVanish();
 					}
 				}
 

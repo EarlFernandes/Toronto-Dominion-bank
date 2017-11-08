@@ -23,10 +23,6 @@ public class Security_Questions extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement security_questions_title;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progrees_bar;
-
 	public synchronized static Security_Questions get() {
 		if (SecuirtyQuestions == null) {
 			SecuirtyQuestions = new Security_Questions();

@@ -23,11 +23,11 @@ public class LogoutMySpend extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Logout') or contains(@label,'Fermer la session')]")
 	private MobileElement logout;
 
-	@iOSFindBy(xpath = "//*[@label='Logged Out' or @label='Terminé']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Logged Out' or @label='Terminé']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement loggedOutHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Success' or contains(@label,'Votre session a été fermée avec succès')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Success' or contains(@label,'Votre session a été fermée avec succès')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/success']")
 	private MobileElement successMsg;
 
@@ -74,31 +74,14 @@ public class LogoutMySpend extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(loggedOutHeader, "LoggedOut Header");
 			mobileAction.verifyElementIsDisplayed(successMsg, "Success Message");
 
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		}  catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 }

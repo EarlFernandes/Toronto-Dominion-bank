@@ -39,10 +39,6 @@ public class QuickAccessPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/easy_access_rewards_balance_currency_name']")
 	private MobileElement txtRewards;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
-
 	@iOSFindBy(xpath = "//*[@label='Quick Access Settings']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Quick Access Settings']")
 	private MobileElement quickAccessSettings;
@@ -187,7 +183,7 @@ public class QuickAccessPage extends _CommonPage {
 	public void clickQuickAccessSettings() {
 		Decorator();
 		try {
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(quickAccessSettings, "Quick Access Settings");
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");

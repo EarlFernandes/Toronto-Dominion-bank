@@ -99,9 +99,7 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subHeader']")
 	private MobileElement successMag;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeActivityIndicator[`value=='1'`]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progressBar;
+
 
 	// @iOSXCUITFindBy(xpath =
 	// "//XCUIElementTypeStaticText[contains(@value,'Please choose which
@@ -201,7 +199,7 @@ public class Interac_e_Registration extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(registrationPageHeader, "Interac e-Transfer® - Registration");
 			mobileAction.FuncClick(continueButton, "Continue");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -308,7 +306,7 @@ public class Interac_e_Registration extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(continueButton, "Continue Button");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -508,7 +506,7 @@ public class Interac_e_Registration extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(continueButton, "Continue Button");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -17,14 +17,6 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class Logout extends _CommonPage {
 	private static Logout Logout;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu en en-tête']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement french_Menu_Button;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement Menu_Button;
-
 	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_LOGOUT")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Logout' or @text='Fermer la session')]")
 	private MobileElement logout;
@@ -36,9 +28,6 @@ public class Logout extends _CommonPage {
 	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "android.widget.TextView//[@resource-id='android:id/action_bar_title' and @text='Logged Out']")
 	private MobileElement logoutHeader;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Retour']")
-	private MobileElement french_Back_Button;
 
 	@iOSFindBy(accessibility = "LOGOUT_SUC")
 	private MobileElement successTitle;
@@ -94,20 +83,14 @@ public class Logout extends _CommonPage {
 			Decorator();
 
 			if (platformName.equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(french_Back_Button, "BACK");
-				mobileAction.FuncClick(french_Menu_Button, "French_Menu");
+				mobileAction.clickMenuButton();
+				mobileAction.ClickBackButton();
 			} else {
-				mobileAction.FuncClick(french_Menu_Button, "French_Menu");
+				mobileAction.clickMenuButton();
 			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());

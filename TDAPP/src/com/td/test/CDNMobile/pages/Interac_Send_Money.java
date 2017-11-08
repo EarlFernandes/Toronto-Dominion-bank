@@ -125,10 +125,6 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Amount' or @text='Montant')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement amountVal;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeActivityIndicator[`value=='1'")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progressBar;
-
 	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Money Sent' or label CONTAINS[cd] 'Fonds virés!'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header']")
 	private MobileElement thankYou;
@@ -139,7 +135,7 @@ public class Interac_Send_Money extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//*[@text='Done' or @text='Annuler']")
 	private MobileElement doneButton;
-	
+
 	@iOSFindBy(xpath = "//*[@label='背面' or @label='返回' or @label='Back' or @label='p2p header caret']")
 	private MobileElement back_button;
 
@@ -245,7 +241,7 @@ public class Interac_Send_Money extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 			mobileAction.verifyElementIsDisplayed(sendMoneyHeader, "Header " + sendMoneyHeader.getText());
 
@@ -314,7 +310,7 @@ public class Interac_Send_Money extends _CommonPage {
 
 			}
 
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -358,7 +354,7 @@ public class Interac_Send_Money extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(amountLbl, "Amount");
 			mobileAction.verifyElementIsDisplayed(amountVal, "Amount " + amountVal.getText());
 			mobileAction.FuncClick(continueButton, "Continue Button");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -386,7 +382,7 @@ public class Interac_Send_Money extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.verifyElementIsDisplayed(thankYou, thankYou.getText());
 			mobileAction.verifyElementIsDisplayed(successMessage, successMessage.getText());
 
@@ -425,7 +421,7 @@ public class Interac_Send_Money extends _CommonPage {
 			sendMoney();
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(continueButton, "Continue Button");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			Interac_e_Registration.get().clickGoBackHome();
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -439,8 +435,7 @@ public class Interac_Send_Money extends _CommonPage {
 		}
 
 	}
-	
-	
+
 	/**
 	 * This method will click on the Back button
 	 * 
@@ -475,6 +470,5 @@ public class Interac_Send_Money extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
 
 }
