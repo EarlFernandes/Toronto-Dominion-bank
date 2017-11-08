@@ -74,17 +74,15 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title' and (@text='Add to or remove from watchlist' or @text='Ajouter ou supprimer de la liste de surveillance' or @text='添加至自选股观察名单或从自选股观察名单中移除' or @text='新增至或從自選股觀察名單中移除')]")
 	private MobileElement lblAddWatchlist;
 	
-	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@label='名單 03' or @label='名单 03'])[1]") 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and @text='List 01']")
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@label='List 03' or @label='Liste 03' or @label='名单 03' or @label='名單 03'])[1]") 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and (@text='List 03' or @text='Liste 03' or @text='名单 03' or @text='名單 03')]")
 	private MobileElement ListViewExpand03;
 	
-	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@label='名單 01' or @label='名单 01'])[1]") 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and @text='List 01']")
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@label='List 01' or @label='Liste 01' or @label='名单 01' or @label='名單 01'])[1]") 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and (@text='List 01' or @text='Liste 01' or @text='名单 01' or @text='名單 01')]")
 	private MobileElement ListViewExpand01;
 	
-	
-	
-	
+		
 	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
 	@AndroidFindBy(id = "com.td:id/hamburger")
 	MobileElement BT_Home_HamburgerMenu;
@@ -628,7 +626,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 				}
 			 
 				
-			mobileAction.FuncClick(ListViewExpand03, "ListViewExpand03"); 
+			mobileAction.FuncClick(ListViewExpand01, "ListViewExpand01"); 
 			 
 			 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
@@ -678,7 +676,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 
 			}
 			
-			mobileAction.FuncClick(ListViewExpand03, "ListViewExpand03"); 
+			mobileAction.FuncClick(ListViewExpand01, "ListViewExpand01"); 
 	
 		}
 			catch (Exception e) {
