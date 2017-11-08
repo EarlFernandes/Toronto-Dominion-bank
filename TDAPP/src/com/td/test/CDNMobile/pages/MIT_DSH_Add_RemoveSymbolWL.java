@@ -113,7 +113,9 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 	
 	By WatchlistButtonMod = By.xpath("//*[@class='btn btn-default add-to-td-watchlist icon pull-left icon-star']");
 	
-		
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='Push Notification' or contains(@name,'Notification')]/../following-sibling::XCUIElementTypeOther[1]/*/*[1]")
+	  @AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id='com.td:id/watchlist_selected_image_view'])[1]")
+	private MobileElement checkMark;
 	
 	
 	public void verifyActionSheetUIMOD() {
@@ -363,6 +365,33 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 			}
 			
 			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				try {
+					if (checkMark.getAttribute("enabled").equalsIgnoreCase("true"))
+
+						CL.GetReporting().FuncReport("Pass", "The Element is selected : <b> " + "</b>");
+
+					else {
+						CL.GetReporting().FuncReport("Fail", "The Element is not selected : <b> " + "</b>");
+					}
+				} catch (Exception e) {
+					CL.GetReporting().FuncReport("Fail", "Exception in FuncGetText(). getText() failed.");
+				}
+
+			}
+			else {
+
+				if (mobileAction.getText(checkMark).equalsIgnoreCase("true"))
+
+					CL.GetReporting().FuncReport("Pass", "The Element is selected : <b> " + "</b>");
+
+				else {
+					CL.GetReporting().FuncReport("Fail", "The Element is not selected : <b> " + "</b>");
+				}
+
+			}
+			
+			mobileAction.FuncClick(ListViewExpand01, "ListViewExpand01"); 
 			
 			
 			
@@ -623,7 +652,33 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 			
 			}
 			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				try {
+					if (checkMark.getAttribute("enabled").equalsIgnoreCase("true"))
+
+						CL.GetReporting().FuncReport("Pass", "The Element is selected : <b> " + "</b>");
+
+					else {
+						CL.GetReporting().FuncReport("Fail", "The Element is not selected : <b> " + "</b>");
+					}
+				} catch (Exception e) {
+					CL.GetReporting().FuncReport("Fail", "Exception in FuncGetText(). getText() failed.");
+				}
+
+			}
+			else {
+
+				if (mobileAction.getText(checkMark).equalsIgnoreCase("true"))
+
+					CL.GetReporting().FuncReport("Pass", "The Element is selected : <b> " + "</b>");
+
+				else {
+					CL.GetReporting().FuncReport("Fail", "The Element is not selected : <b> " + "</b>");
+				}
+
+			}
 			
+			mobileAction.FuncClick(ListViewExpand03, "ListViewExpand03"); 
 	
 		}
 			catch (Exception e) {
@@ -805,18 +860,34 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 			
 			mobileAction.FuncClick(AddWatchlistButton, "AddWatchlistButton");
 			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				try {
+					if (checkMark.getAttribute("enabled").equalsIgnoreCase("true"))
+
+						CL.GetReporting().FuncReport("Pass", "The Element is selected : <b> " + "</b>");
+
+					else {
+						CL.GetReporting().FuncReport("Fail", "The Element is not selected : <b> " + "</b>");
+					}
+				} catch (Exception e) {
+					CL.GetReporting().FuncReport("Fail", "Exception in FuncGetText(). getText() failed.");
+				}
+
+			}
+			else {
+
+				if (mobileAction.getText(checkMark).equalsIgnoreCase("true"))
+
+					CL.GetReporting().FuncReport("Pass", "The Element is selected : <b> " + "</b>");
+
+				else {
+					CL.GetReporting().FuncReport("Fail", "The Element is not selected : <b> " + "</b>");
+				}
+
+			}
 			
+			mobileAction.FuncClick(ListViewExpand01, "ListViewExpand01"); 		
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			 
-			mobileAction.FuncClick(ListViewExpand01, "ListViewExpand01");
 			
 		}
 			catch (Exception e) {
@@ -826,18 +897,4 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 		}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
