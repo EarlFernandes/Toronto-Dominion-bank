@@ -17,27 +17,27 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class AppointmentBooking extends _CommonPage {
 
 	private static AppointmentBooking appointmentBooking;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement appointmentbooking_header;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mab_description_text']")
 	private MobileElement copy_text;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[1]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/mab_book_button']")
 	private MobileElement book_appointment_now_btn;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.android.chrome:id/url_bar']")
 	private MobileElement manage_existing_appointment_link;
-	
+
 	@iOSFindBy(xpath = "//*[@name='URL']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.android.chrome:id/url_bar']")
 	private MobileElement appointment_url_link;
-		
+
 	public synchronized static AppointmentBooking get() {
 		if (appointmentBooking == null) {
 			appointmentBooking = new AppointmentBooking();
@@ -51,12 +51,12 @@ public class AppointmentBooking extends _CommonPage {
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
 	}
-	
+
 	public void verifyAppointmentBookingHeader() {
 		Decorator();
-		String expectedText=getTextInCurrentLocale(StringArray.ARRAY_APPOINTMENT_BOOKING);
+		String expectedText = getTextInCurrentLocale(StringArray.ARRAY_APPOINTMENT_BOOKING);
 		try {
-			mobileAction.verifyTextEquality(mobileAction.getValue(appointmentbooking_header),expectedText);
+			mobileAction.verifyTextEquality(mobileAction.getValue(appointmentbooking_header), expectedText);
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -65,29 +65,26 @@ public class AppointmentBooking extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	public void verifyMABLandingPageContent() {
 		Decorator();
-		
-		String expectedText="";
+
+		String expectedText = "";
 		try {
 
-			expectedText= getTextInCurrentLocale(StringArray.ARRAY_MAB_COPY_TEXT);
+			expectedText = getTextInCurrentLocale(StringArray.ARRAY_MAB_COPY_TEXT);
 			mobileAction.verifyElementTextIsDisplayed(copy_text, expectedText);
-			
-			expectedText = getTextInCurrentLocale(StringArray.ARRAY_BOOKING_APPOINTMENT_BTN);
-			mobileAction.verifyElementTextIsDisplayed(book_appointment_now_btn, expectedText);
-			
-			expectedText = getTextInCurrentLocale(StringArray.ARRAY_MANAGE_EXISTING_APPOINTMENT_LINK);
-			mobileAction.verifyElementTextIsDisplayed(manage_existing_appointment_link, expectedText);
-			
-//			expectedText = getTextInCurrentLocale(StringArray.ARRAY_MAB_FAQ);
-//			mobileAction.verifyElementTextIsDisplayed(cancel_change_appointment_link, expectedText);
-//			
-//			expectedText = getTextInCurrentLocale(StringArray.ARRAY_MAB_FAQ_LINK);
-//			mobileAction.verifyElementTextIsDisplayed(cancel_change_appointment_link, expectedText);
-			
-			
+
+			String book_Text = getTextInCurrentLocale(StringArray.ARRAY_BOOKING_APPOINTMENT_BTN);
+			String manage_Text = getTextInCurrentLocale(StringArray.ARRAY_MANAGE_EXISTING_APPOINTMENT_LINK);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				book_appointment_now_btn = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"+book_Text +"']", book_Text);
+				manage_existing_appointment_link = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"+manage_Text +"']", manage_Text);
+			}
+
+			mobileAction.verifyElementTextIsDisplayed(book_appointment_now_btn, book_Text);
+			mobileAction.verifyElementTextIsDisplayed(manage_existing_appointment_link, manage_Text);
+
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -96,10 +93,10 @@ public class AppointmentBooking extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	public void clickBookAppointmentNowbtn() {
 		Decorator();
-		
+
 		try {
 			mobileAction.FuncClick(book_appointment_now_btn, "Book Appointment Now");
 			mobileAction.waitProgressBarVanish();
@@ -111,19 +108,25 @@ public class AppointmentBooking extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	public void verifyAppointmentURLLink() {
 		Decorator();
-		String expectedText=getTextInCurrentLocale(StringArray.ARRAY_MAB_URL_LINK);
+		String expectedText = getTextInCurrentLocale(StringArray.ARRAY_MAB_URL_LINK);
 		try {
 			String capturedText;
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 				capturedText = appointment_url_link.getAttribute("value");
-			}else{
+			} else {
 				capturedText = mobileAction.getValue(appointment_url_link);
 			}
-			System.out.println("Captured text:"+capturedText);
-			mobileAction.verifyTextEquality(capturedText, expectedText);
+			String [] URLLink = capturedText.split(",");
+			capturedText = URLLink[0];
+			System.out.println("Captured text:" + capturedText);
+			if(capturedText.contains(expectedText)) {
+				mobileAction.Report_Pass_Verified(capturedText);
+			} else{
+				mobileAction.Report_Fail("URL link:"+capturedText);
+			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -132,5 +135,5 @@ public class AppointmentBooking extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 }

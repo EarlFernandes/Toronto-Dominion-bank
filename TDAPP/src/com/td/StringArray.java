@@ -340,7 +340,8 @@ public final class StringArray {
 			"Vous n’aurez besoin que de quelques minutes pour remplir une demande et vous recevrez une réponse peu de temps après.",
 			"申请只需几分钟即可完成，很快您将收到答复。", "申請只需幾分鐘即可完成，您很快會收到回覆。" };
 	public static final String[] ARRAY_CREDIT_HEADER = { "Credit", "Crédit", "贷项", "信貸" };
-	public static final String[] ARRAY_CLIP_FORM_TITLE = { "TD Credit Card Limit Increase Request", "Crédit", "贷项", "信貸" };
+	public static final String[] ARRAY_CLIP_FORM_TITLE = { "TD Credit Card Limit Increase Request", "Crédit", "贷项",
+			"信貸" };
 	// MAB
 	public static final String[] ARRAY_MENU_LOCATION = { "Locations", "Succursales", "分行网点", "分行地點" };
 	public static final String[] ARRAY_APPOINTMENT_BOOKING = { "Appointment Booking", "Prise de rendez-vous", "分行预约",
@@ -351,9 +352,9 @@ public final class StringArray {
 			"分行預約" };
 	public static final String[] ARRAY_MAB_COPY_TEXT = {
 			"Come in and ask us all your banking, credit card, borrowing and investing questions.To complete your appointment booking, you'll leave the TD app and go to the TD website.",
-			"Venez nous rencontrer pour obtenir des réponses à vos questions sur les opérations bancaires, les cartes de crédit, les emprunts et les placements. Pour effectuer votre prise de rendez-vous, vous serez dirigé hors de l’appli TD vers le site Web de la TD.",
-			"欢迎亲临分行了解更多有关理财、信用卡、贷款和投资的详情。 要完成预约，您要退出道明应用程序并前往道明网站。",
-			"歡迎親臨分行了解更多有關理財、信用卡、借貸和投資的詳情。 要完成預約，您要退出道明應用程式並前往道明網站。" };
+			"Venez nous rencontrer pour obtenir des réponses à vos questions sur les opérations bancaires, les cartes de crédit, les emprunts et les placements.Pour effectuer votre prise de rendez-vous, vous serez dirigé hors de l’appli TD vers le site Web de la TD.",
+			"欢迎亲临分行了解更多有关理财、信用卡、贷款和投资的详情。要完成预约，您要退出道明应用程序并前往道明网站。",
+			"歡迎親臨分行了解更多有關理財、信用卡、借貸和投資的詳情。要完成預約，您要退出道明應用程式並前往道明網站。" };
 	public static final String[] ARRAY_BOOKING_APPOINTMENT_BTN = { "Book Appointment Now",
 			"Prendre rendez-vous maintenant", "立即预约会面", "立即預約會面" };
 	public static final String[] ARRAY_MANAGE_EXISTING_APPOINTMENT_LINK = { "Manage my existing appointments",
@@ -365,27 +366,25 @@ public final class StringArray {
 
 	public static final String[] ARRAY_MAB_FAQ_LINK = { "Still have questions? Check our FAQs list.",
 			"Vous avez d’autres questions? Consultez notre FAQ.", "想知道更多？看看我们的常见问题。", "想知道更多？看看我們的常見問題。" };
-	public static final String[] ARRAY_MAB_URL_LINK = {
-			"https://www1.new.sys.td.com/ca/en/personal-banking/branch-locator/#/",
-			"https://www1.new.sys.td.com/ca/fr/services-bancaires-personnels/rendez-vous/#/",
-			"https://www1.new.sys.td.com/ca/en/personal-banking/branch-locator/#/",
-			"https://www1.new.sys.td.com/ca/en/personal-banking/branch-locator/#/" };
+	public static final String[] ARRAY_MAB_URL_LINK = { "www1.new.sys.td.com", "www1.new.sys.td.com",
+			"www1.new.sys.td.com", "www1.new.sys.td.com" };
 	// damaged card
 	public static final String[] ARRAY_REPLACE_A_DAMAGED_CARD = { "Replace a Damaged Card",
 			"Remplacement d’une carte endommagée", "更换损坏的卡片", "更換損壞的卡片" };
+	public static final String[] ARRAY_DM_REQUEST_FORM_TITLE = { "Damaged TD Credit CardReplacement Request", "Crédit",
+			"贷项", "信貸" };
 	public static final String[] ARRAY_REPLACE_A_DAMAGED_CARD_HEADER = { "Replace a Damaged Card",
 			"Remplacement une carte", "更换损坏的卡片", "更換損壞的卡片" };
 	public static final String[] ARRAY_COPY_REPLACE_DAMAGED_CARD = {
 			"If your existing credit card is damaged or not working, you can request a replacement card.",
 			"Si votre carte de crédit est endommagée ou ne fonctionne plus, vous pouvez demander une carte de remplacement.",
 			"如果您现有的信用卡损坏或无效，您可以申请换卡。", "如果您現有的信用卡損壞或無效，您可以申請換卡。" };
-	
-	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité",
-			"安全问题", "安全問題" };
-	public static final String[] ARRAY_SECURITY_LOGIN = { "Login", "Ouvrir une session",
-			"登录", "登入" };
-	public static final String[] ARRAY_MFA_ENTER_ANSWER = { "Enter your answer", "Entrez votre réponse",
-			"输入您的答案", "輸入您的答案" };
+
+	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",
+			"安全問題" };
+	public static final String[] ARRAY_SECURITY_LOGIN = { "Login", "Ouvrir une session", "登录", "登入" };
+	public static final String[] ARRAY_MFA_ENTER_ANSWER = { "Enter your answer", "Entrez votre réponse", "输入您的答案",
+			"輸入您的答案" };
 	// UA Core
 	public static final String[] ARRAY_ACCOUNT_TOTAL = { "Total", "Total", "总计", "總計" };
 	public static final String[] ARRAY_ADD_LOGIN = { "Add Login", "Ajouter une connexion", "添加登录", "新增登入" };
@@ -393,8 +392,8 @@ public final class StringArray {
 			"新增加拿大收款人" };
 	public static final String[] ARRAY_ADD_US_PAYEE = { "Add U.S. Payee", "Ajouter un preneur américain", "添加美国收款人",
 			"新增美國收款人" };
-	public static final String[] ARRAY_PAY_US_BILL_TITLE = { "Pay U.S. Bill", "Payer des factures américaines", "支付美国账单",
-	"支付美國賬單" };
+	public static final String[] ARRAY_PAY_US_BILL_TITLE = { "Pay U.S. Bill", "Payer des factures américaines",
+			"支付美国账单", "支付美國賬單" };
 	public static final String[] ARRAY_INVESTING_OPEN_ACCOUNT = { "Open a TD Direct Investing Account",
 			"Ouvrir un compte Placements directs TD", "开设道明自管投资账户", "開設道明自管投資賬戶" };
 	public static final String[] ARRAY_INVESTING_CROSS_MSG = {
@@ -403,16 +402,15 @@ public final class StringArray {
 			"立即開設道明自管投資賬戶 增強信心，駕馭全局。" };
 
 	// UA Core End
-	
-	//P2P EUF
-	
+
+	// P2P EUF
+
 	public static final String[] ARRAY_REQUEST_MONEY_HEADER = { "Request Money", "Demander des fonds", "", "" };
 	public static final String[] ARRAY_PAYMENT_AND_TRANSFER_AUTODEPOSIT = { "Manage Autodeposit", "Gérer Autodépôt", "",
 			"" };
 	public static final String[] ARRAY_AUTODEPOSIT_ALMOST_DONE = { "Almost done!", "Vous avez presque terminé!", "",
 			"" };
-	public static final String[] ARRAY_AUTODEPOSIT_EMAIL_SENT_MSG = {
-			"Check your email for instructions from INTERAC",
+	public static final String[] ARRAY_AUTODEPOSIT_EMAIL_SENT_MSG = { "Check your email for instructions from INTERAC",
 			"Consultez les instructions que vous avez reçues", "", "" };
 	public static final String[] ARRAY_AUTODEPOSIT_PENDING_STATUS = { "Pending", "En attente", "", "" };
 	public static final String[] ARRAY_AUTODEPOSIT_ACTIVE_STATUS = { "Active", "Actif", "", "" };
@@ -428,9 +426,8 @@ public final class StringArray {
 	public static final String[] ARRAY_REQUEST_MONEY_CANCELLED_STATUS = { "Cancelled", "Annulé", "", "" };
 	public static final String[] ARRAY_REQUEST_MONEY_WRONG_EMAIL_STR = { "INVALID EMAIL ADDRESS",
 			"Adresse courriel non valide", "", "" };
-	public static final String[] ARRAY_CUSTOMER_ELIGIBILITY_ERROR_MSG = {
-			"There appears to be an issue with your", "Il semble y avoir un problème avec votre compte", "",
-			"" };
+	public static final String[] ARRAY_CUSTOMER_ELIGIBILITY_ERROR_MSG = { "There appears to be an issue with your",
+			"Il semble y avoir un problème avec votre compte", "", "" };
 	public static final String[] TRADE_RESPONSE_1 = {
 			"I acknowledge the trade name displayed above IS the trade name of the business",
 			"Je confirme que le nom commercial ci‑dessus EST celui de l’entreprise.", "", "" };
@@ -461,4 +458,3 @@ public final class StringArray {
 	public static final String[] CANCEL_MONEY_RECEIPT_HEADER = { "Request Cancelled", "Demande annulée", "", "" };
 	public static final String[] SETUP_AUTODEPOSIT_STR = { "Set up Autodeposit", "Établir Autodépôt", "", "" };
 }
-
