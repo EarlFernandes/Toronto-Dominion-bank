@@ -79,7 +79,7 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				String[] aQuickLinksAndroid = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE),
+				String[] aFlyoutAndroid = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_HOLDINGS),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_ORDERS),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_SENDMONEY),
@@ -88,10 +88,10 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_PAYBILL),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_PAYNOW) };
 				
-				verifyQuickLinksOrder(aQuickLinksAndroid);
+				verifyFlyoutOrder(aFlyoutAndroid);
 				
 			} else {
-				String[] aQuickLinksiOS = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE),
+				String[] aFlyoutiOS = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_HOLDINGS),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_ORDERS),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_SENDMONEY),
@@ -100,7 +100,7 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_PAYBILL),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_APPLEPAY) };
 				
-				verifyQuickLinksOrder(aQuickLinksiOS);
+				verifyFlyoutOrder(aFlyoutiOS);
 			}
 
 		} catch (Exception e) {
@@ -151,6 +151,54 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 				CL.GetReporting().FuncReport(PASS, "</b>Quick links are in order.</b>");
 			} else {
 				CL.GetReporting().FuncReport(FAIL, "</b>Quick links are not in order.</b>");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void verifyFlyoutOrder(String[] aFlyout) {
+		Decorator();
+		HashMap<String, Integer> mActual = new HashMap<String, Integer>();
+		HashMap<String, Integer> mExpected = new HashMap<String, Integer>();
+		int iIndex = 0;
+		String sQLName = null;
+
+		try {
+			for (int i = 0; i < aFlyout.length; i++) {
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+					String xpathFlyout = "//*[@text='" + aFlyout[i] + "' and @resource-id='com.td:id/textview_flyout_menu_item']";
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathFlyout, false, 4, "up");
+						for (WebElement mEle : CL.GetDriver()
+								.findElements(By.xpath("//*[@resource-id='com.td:id/textview_flyout_menu_item']"))) {
+							sQLName = mobileAction.FuncGetElementText(mEle);
+							if (!mActual.containsKey(sQLName)) {
+								mActual.put(sQLName, iIndex);
+								iIndex++;
+							}
+						}
+
+				} else {
+					if (MIT_DSHQuickLinks.get().verifyQuickLinkExistsByXpath("//*[@name='NAV_DRAWER_ITEMS_" + i + "']",
+							aFlyout[i])) {
+						sQLName = mobileAction.FuncGetElementText(
+								CL.GetDriver().findElement(By.xpath("//*[@name='NAV_DRAWER_ITEMS_" + i + "']")));
+						if (!mActual.containsKey(sQLName)) {
+							mActual.put(sQLName, iIndex);
+							iIndex++;
+						}
+					}
+
+				}
+				mExpected.put(aFlyout[i], i);
+			}
+
+			System.out.println(Maps.difference(mActual, mExpected));
+			if (Maps.difference(mActual, mExpected) != null) {
+				CL.GetReporting().FuncReport(PASS, "</b>Flyout Menu are in order.</b>");
+			} else {
+				CL.GetReporting().FuncReport(FAIL, "</b>Flyout Menu are not in order.</b>");
 			}
 
 		} catch (Exception e) {
