@@ -212,7 +212,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 							 
 							 
 
-							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbol') or contains(@text,'symbole'))])[1]"; 
+							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole'))])[1]"; 
 														 
 							 mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAndSymbolNumber, false, 5, "up");
 							 
@@ -500,7 +500,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 							 
 							 
 
-							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbol') or contains(@text,'symbole'))])[1]"; 
+							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole'))])[1]"; 
 														 
 							 mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAndSymbolNumber, false, 5, "up");
 							 
@@ -757,7 +757,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 							 
 							 
 
-							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbol') or contains(@text,'symbole'))])[1]"; 
+							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole'))])[1]"; 
 														 
 							 mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAndSymbolNumber, false, 5, "up");
 							 
