@@ -209,9 +209,21 @@ public class OTPSetup extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/thank_you")
 	private MobileElement setupCompleteHeader;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(id = "android:id/action_bar_title")
-	private MobileElement addPhoneHeader;
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeSecureTextField[1]")
+	@FindBy(id = "TBD")
+	private WebElement tempPasswordField;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeSecureTextField[2]")
+	@FindBy(id = "TBD")
+	private WebElement newPasswordField;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeToolbar[1]/XCUIElementTypeButton[3]")
+	@AndroidFindBy(id = "TBD")
+	private MobileElement doneKey;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[3]")
+	@FindBy(id = "TBD")
+	private WebElement passwordGoButton;
 
 	private String GOOGLE_VOICE_URL = "https://voice.google.com";
 	private String GOOGLE_VOICE_login = "tdmobileqa1@gmail.com";
@@ -359,9 +371,6 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.FuncScrollIntoView(addPhoneButton, "Add Phone button");
 				mobileAction.FuncClick(addPhoneButton, "Add Phone button");
 
-				// mobileAction.switchAppiumContext("NATIVE_APP");
-				// mobileAction.FuncClick(confirmButton, "Confirm button");
-
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(editPhoneField, "Edit Phone Number");
 				mobileAction.FuncSendKeys(editPhoneField, phoneNumber);
@@ -373,7 +382,6 @@ public class OTPSetup extends _CommonPage {
 
 				mobileAction.FuncClick(addPhoneButton, "Add Phone button");
 
-				// mobileAction.FuncClick(confirmButton, "Confirm button");
 			}
 
 		} catch (Exception e) {
@@ -506,6 +514,7 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 			}
 			mobileAction.FuncClick(getCodeButton, "Get Code Button");
+			mobileAction.sleep(5000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -740,6 +749,61 @@ public class OTPSetup extends _CommonPage {
 			}
 			mobileAction.FuncClick(this.codeFrequencyContinueButton, "Passcode Frequency Continue button");
 			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+			mobileAction.switchAppiumContext("NATIVE_APP");
+		}
+	}
+
+	public void createNewPassword() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+
+				String tempPassword = this.getTestdata("Password");
+				mobileAction.FuncClick(tempPasswordField, "Temporary Password field");
+				mobileAction.FuncSendKeys(tempPasswordField, tempPassword);
+
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.FuncHideKeyboard();
+
+				String newPassword = this.getTestdata("Env");
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.FuncClick(newPasswordField, "New Password field");
+				mobileAction.FuncSendKeys(newPasswordField, newPassword);
+
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.FuncHideKeyboard();
+				
+				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.FuncClick(passwordGoButton, "Password GO button");
+
+			} else {
+
+				String tempPassword = this.getTestdata("Password");
+				mobileAction.FuncClick(tempPasswordField, "Temporary Password field");
+				mobileAction.FuncSendKeys(tempPasswordField, tempPassword);	
+				//need to use separate key to hide keyboard
+				mobileAction.FuncClick(doneKey, "Done keyboard button");
+
+				String newPassword = this.getTestdata("Env");
+				mobileAction.FuncClick(newPasswordField, "New Password field");
+				mobileAction.FuncSendKeys(newPasswordField, newPassword);
+				mobileAction.FuncClick(doneKey, "Done keyboard button");
+
+				mobileAction.FuncClick(passwordGoButton, "Password GO button");
+			}
+
+			mobileAction.sleep(5000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1132,24 +1196,4 @@ public class OTPSetup extends _CommonPage {
 		}
 	}
 
-	public void verifyAddPhoneScreen() {
-		Decorator();
-		try {
-
-			mobileAction.verifyElementIsDisplayed(addPhoneHeader, "Add Phone Screen header");
-			mobileAction.verifyElementTextContains(addPhoneHeader,
-					getTextInCurrentLocale(StringArray.ARRAY_OTP_SETUP_ADD_PHONE_HEADER));
-
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-			}
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} finally {
-			mobileAction.switchAppiumContext("NATIVE_APP");
-		}
-	}
 }

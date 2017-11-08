@@ -211,8 +211,6 @@ public final class StringArray {
 	public static final String[] ARRAY_OTP_SETUP_PASSCODE_VERIFIED = { "Verified", "Validé", "验证成功", "驗證成功" };
 	public static final String[] ARRAY_OTP_SETUP_SETUP_COMPLETE_HEADER = { "Setup Complete", "Configuration terminée",
 			"设置完成", "設定完成" };
-	public static final String[] ARRAY_OTP_SETUP_ADD_PHONE_HEADER = { "Add Phone", "Ajouter un téléphone", "添加电话号码",
-			"新增電話號碼" };
 
 	public static final String[] ARRAY_OTP_UPDATE_HEADER = {
 			"You can review and manage your current security settings below",
