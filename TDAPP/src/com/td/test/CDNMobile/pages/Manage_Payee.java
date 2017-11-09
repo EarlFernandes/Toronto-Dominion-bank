@@ -94,7 +94,7 @@ public class Manage_Payee extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[2]")
 	private MobileElement keyboardTypeBtn;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]//XCUIElementTypeButton[4]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[4]")
 	private MobileElement keyboardGoBtn;
 
 	public synchronized static Manage_Payee get() {
@@ -774,8 +774,7 @@ public class Manage_Payee extends _CommonPage {
 		try {
 			// Switch to English keyboard for correct text input
 			String keyboardGoBtnText = keyboardGoBtn.getAttribute("label");
-			System.out.println("Go btn: " + keyboardGoBtnText + " " + keyboardGoBtn.getText());
-			if (keyboardGoBtnText.contains("确认") || keyboardGoBtnText.contains("🈳️")) {
+			if (keyboardGoBtnText.contains("确认")) {
 				mobileAction.FuncClick(keyboardTypeBtn, "Switch to English keyboard");
 				mobileAction.sleep(500);
 			}

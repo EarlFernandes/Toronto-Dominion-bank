@@ -242,7 +242,7 @@ public class EventCase {
 		OTP_Update_VerifyOTPUpdateScreen, OTP_Update_VerifyTestPhoneUpdateScreen, OTP_Update_ClickTestPhoneButton, OTP_Update_VerifyLoginOptionUpdateScreen, OTP_Update_ClickLoginOptionButton, OTP_Update_VerifyChangeEmailScreen, OTP_Update_ClickChangeEmailButton, OTP_Update_UpdateSecurityEmail, OTP_Update_ClickOTPUpdateContinueButton, OTP_Update_VerifyOTPUpdateCompleteScreen, OTP_Update_ClickAddPhoneUpdateButton, OTP_Update_AddSinglePhoneNumber, OTP_Update_AddMaxPhoneNumbers, OTP_Update_DeleteFirstPhoneNumber, OTP_Update_VerifyDeletePhoneNumberFail, OTP_Update_VerifyAddedPhoneNumber, OTP_Update_VerifyMaxPhoneNumbers, OTP_Update_VerifyUpdatedSecurityEmail, OTP_Update_ClickFirstPhoneNumber, OTP_Update_ClickTextOption, OTP_Update_ClickSubmitCodeButton, OTP_Update_EnterSecurityCode, OTP_Update_VerifyCorrectSecurityCode, OTP_Update_ClickGetCodeButton,
 
 		// Account Details
-		AccountDetails_QuickLinkTransfer, AccountDetails_QuickLinkPay, AccountDetails_GetAccountBalance, AccountDetails_VerifyAccountBalance, AccountDetails_VerifyTransactionPosted,
+		AccountDetails_QuickLinkTransfer, AccountDetails_QuickLinkPay, AccountDetails_GetAccountBalance, AccountDetails_VerifyAccountBalance, AccountDetails_VerifyTransactionPosted, AccountDetails_VerifyActivityTab, AccountDetails_VerifySummaryTab,
 
 		// Accounts
 		Accounts_VerifyCreditHeader, Accounts_SelectFirstAccount, Accounts_SelectToAccount,
@@ -255,6 +255,9 @@ public class EventCase {
 
 		// Bills
 		PayBill_Canada_Button, PayBill_US_Button,
+
+		// Login
+		Login_VerifyUserNotRemembered, Login_LoginUsingAccessCardNumber, Login_LoginUsingAlias, Login_DeleteAllRememberedIDs, Login_VerifyAllRememberedIDsDeleted, Login_VerifyRememberedIDs,
 
 		// Manage Payee
 		ManagePayee_ClickNewPayee, ManagePayees_Button, ManagePayee_AddCanadianPayee, ManagePayee_ClickPayeeByAcctNumber, ManagePayee_DeletePayee, ManagePayee_EditPayee, ManagePayee_VerifyCanadianPayeeDeleted, ManagePayee_VerifyPayeeEdited, ManagePayee_VerifyUSPayeeDeleted, ManagePayee_EditPayeeDescription,
@@ -269,13 +272,16 @@ public class EventCase {
 		PayBill_PayBill, PayBill_PayFutureBill, PayBill_PayUSBill,
 
 		// Receipt
-		Receipt_VerifyTransferReceipt, Receipt_GoBackHome, Receipt_MakeAnotherTransfer, Receipt_VerifyBillReceipt, Receipt_ScheduledPayments, Receipt_VerifyUSBillReceipt, Receipt_VerifyCancelledBillReceipt,
+		Receipt_VerifyTransferReceipt, Receipt_GoBackHome, Receipt_MakeAnotherTransfer, Receipt_VerifyBillReceipt, Receipt_ScheduledPayments, Receipt_VerifyUSBillReceipt, Receipt_VerifyCancelledBillReceipt, Receipt_VerifyReceiptBanner,
 
 		// Quick Access
 		QuickAccessSettings_DisableFirstAccount, QuickAccessPage_VerifyNoAccounts,
 
 		// Scheduled Payments
 		ScheduledPayments_CancelLastPayment, ScheduledPayments_VerifyScheduledPayments,
+
+		// Trade
+		Trade_VerifyTradePage,
 
 		// myspend
 		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_verifyCategoryMessage, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, TourPage_clickConnectTDApp, TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickGetTDAppButton, click_PreferencesLink
@@ -4050,6 +4056,14 @@ public class EventCase {
 			AccountDetails.get().verifyTransactionPosted();
 			break;
 
+		case AccountDetails_VerifyActivityTab:
+			AccountDetails.get().verifyActivityTab();
+			break;
+
+		case AccountDetails_VerifySummaryTab:
+			AccountDetails.get().verifySummaryTab();
+			break;
+
 		// Add Payee
 		case AddPayee_SearchCdnPayees:
 			AddPayee.get().searchCdnPayees();
@@ -4118,6 +4132,31 @@ public class EventCase {
 			HomeScreen.get().clickDashboardTransfers();
 			break;
 
+		// Login
+		case Login_VerifyUserNotRemembered:
+			Login.get().verifyUserNotRemembered();
+			break;
+
+		case Login_LoginUsingAccessCardNumber:
+			Login.get().loginUsingAccessCardNumber();
+			break;
+
+		case Login_LoginUsingAlias:
+			Login.get().loginUsingAlias();
+			break;
+
+		case Login_DeleteAllRememberedIDs:
+			Login.get().deleteAllRememberedIDs();
+			break;
+
+		case Login_VerifyAllRememberedIDsDeleted:
+			Login.get().verifyAllRememberedIDsDeleted();
+			break;
+			
+		case Login_VerifyRememberedIDs:
+			Login.get().verifyRememberedIDs();
+			break;
+			
 		// Manage Payees
 		case ManagePayees_Button:
 			Bills.get().clickManagePayees();
@@ -4227,6 +4266,10 @@ public class EventCase {
 			Receipt.get().clickScheduledPaymentsBtn();
 			break;
 
+		case Receipt_VerifyReceiptBanner:
+			Receipt.get().verifyReceiptBanner();
+			break;
+
 		// Scheduled Payments
 		case ScheduledPayments_CancelLastPayment:
 			ScheduledPayments.get().cancelLastPayment();
@@ -4234,6 +4277,11 @@ public class EventCase {
 
 		case ScheduledPayments_VerifyScheduledPayments:
 			ScheduledPayments.get().verifyScheduledPayments();
+			break;
+
+		// Trade
+		case Trade_VerifyTradePage:
+			Trade.get().verifyTradePage();
 			break;
 
 		// MySpend

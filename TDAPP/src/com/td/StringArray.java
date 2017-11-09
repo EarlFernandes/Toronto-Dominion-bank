@@ -245,12 +245,22 @@ public final class StringArray {
 	// Login
 	public static final String[] ARRAY_LOGIN_USERNAME_OR_ACCESS_CARD_IOS = { "Username or Access Card",
 			"Nom d’utilisateur ou numéro de carte Accès", "用户名或易通卡", "用戶名稱或易通卡" };
+	public static final String[] ARRAY_LOGIN_REMEMBER_ME_ON = { "Remember Me on",
+			"Mémorisation des renseignements activée", "“记住我”已开启", "「記住我」已開啟" };
+	public static final String[] ARRAY_LOGIN_REMEMBER_ME_OFF = { "Remember Me off",
+			"Mémorisation des renseignements désactivée", "“记住我”已关闭", "「記住我」已關閉" };
 
 	// Manage Payees
 	public static final String[] ARRAY_CANADIAN_PAYEE_DELETED = { "Canadian payee has been deleted",
 			"Preneur canadien supprimé", "已删除加拿大收款人", "已刪除加拿大收款人" };
 	public static final String[] ARRAY_US_PAYEE_DELETED = { "U.S. payee has been deleted", "Preneur américain supprimé",
 			"已删除美国收款人", "已刪除美國收款人" };
+
+	// Menu
+	public static final String[] ARRAY_INVESTING_ACCOUNTS = { "Investing Accounts", "Comptes Placements directs TD",
+			"投资账户", "投資賬戶" };
+	public static final String[] ARRAY_MOBILE_PAYMENT = { "TD Mobile Payment", "Paiement mobile TD", "道明移动支付",
+			"道明移動支付" };
 
 	// Pay Bill
 	public static final String[] ARRAY_PAYBILL = { "Pay Bill", "Paiement de Factures", "支付账单", "支付賬單" };
@@ -263,10 +273,12 @@ public final class StringArray {
 	// Receipt
 	public static final String[] ARRAY_RECEIPT_DETAIL = { "-Detail", "-Détail", "-详细信息", "-詳情" };
 
-	public static final String[] ARRAY_INVESTING_ACCOUNTS = { "Investing Accounts", "Comptes Placements directs TD",
-			"投资账户", "投資賬戶" };
-	public static final String[] ARRAY_MOBILE_PAYMENT = { "TD Mobile Payment", "Paiement mobile TD", "道明移动支付",
-			"道明移動支付" };
+	// Trade
+	public static final String[] ARRAY_TRADE_ORDER_TYPE_STOCKS_ETF = { "Stocks & ETFs", "Actions et FNB", "股票和交易所交易基金",
+			"股票和交易所交易基金" };
+	public static final String[] ARRAY_TRADE_SELECT_ACCOUNT = { "Select Account", "Sélectionner un compte", "选择账户",
+			"選擇賬戶" };
+
 	public static final String[] ARRAY_PRIVACY_SECURITY_LEGAL = { "Privacy, Security & Legal",
 			"Confidentialité, sécurité et avis juridique", "隐私、安全与法律声明", "私隱、安全和法律聲明" };
 	public static final String[] ARRAY_FORGOT_PASSWORD = { "Forgot password?", "Mot de passe oublié?", "忘记密码？",

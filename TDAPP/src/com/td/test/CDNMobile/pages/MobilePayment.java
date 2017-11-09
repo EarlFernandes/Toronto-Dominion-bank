@@ -1000,9 +1000,8 @@ public class MobilePayment extends _CommonPage {
 			}
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.FuncClick(mobilePaymentContinue, "Continue");
-				mobileAction.FuncClick(mobilePaymentAddACard, "Add A Card");
+				mobileAction.verifyElementIsDisplayed(mobilePaymentAddACard, "Add A Card screen");
 
-				Login.get().verifyLoginScreenTextElements();
 			}
 
 		} catch (Exception e) {

@@ -3541,15 +3541,15 @@ public class MobileAction2 extends CommonLib {
 		return list;
 	}
 
-	public void swipeAndSearchByxpath(String xpath, boolean clickYorN, int numSwipes, String direction) {
+	public boolean swipeAndSearchByxpath(String xpath, boolean clickYorN, int numSwipes, String direction) {
 
+		boolean isFound = false;
 		try {
 			Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 			int startx = size.width / 2;
 			int starty = (int) (size.height * 0.85);
 			int endy = (int) (size.height * 0.15);
 
-			boolean isFound = false;
 			int count = 0;
 			String sEleName = "";
 			boolean isSwiped = false;
@@ -3591,6 +3591,7 @@ public class MobileAction2 extends CommonLib {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+		return isFound;
 
 	}
 

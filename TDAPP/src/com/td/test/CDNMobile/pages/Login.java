@@ -74,8 +74,10 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/loginEditText")
 	private MobileElement select_accesscard;
 
-	@iOSFindBy(accessibility = "ACTION_SHEET_LOGIN_DATA_CELL_0")
-	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/commandButton']/android.widget.TextView[@resource-id='com.td:id/txtAccessCard']")
+	@iOSXCUITFindBy(accessibility = "ACTION_SHEET_LOGIN_DATA_CELL_0")
+	// @AndroidFindBy(xpath =
+	// "//android.widget.LinearLayout[@resource-id='com.td:id/commandButton']/android.widget.TextView[@resource-id='com.td:id/txtAccessCard']")
+	@AndroidFindBy(xpath = "(android.widget.TextView[@resource-id='com.td:id/txtAccessCard'])[1]")
 	private MobileElement addUser;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Ajouter un nom d’utilisateur ou un numéro de carte Accès']")
@@ -199,18 +201,27 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard' and contains(@text,'*')]")
 	private List<MobileElement> user;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='actionsheet delete account']")
-	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/layout_cross']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeButton[1]")
+	@AndroidFindBy(id = "com.td:id/layout_cross")
 	private MobileElement cross;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/confirm_delete']")
 	private MobileElement deluser;
 
-	//@iOSFindBy(accessibility = "TDVIEW_TITLE")
-	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
-	@iOSXCUITFindBy(xpath="//*[@name='TD MySpend' or @name='Dépense TD' or @name='TDVIEW_TITLE']")
+	// @iOSFindBy(accessibility = "TDVIEW_TITLE")
+	// @AndroidFindBy(xpath =
+	// "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
+	@iOSXCUITFindBy(xpath = "//*[@name='TD MySpend' or @name='Dépense TD' or @name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//*[@resource-id='android:id/action_bar_title' or @resource-id='android:id/content']")
 	private MobileElement logined_page_Header;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeScrollView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]")
+	@AndroidFindBy(id = "com.td:id/remember_switch")
+	private MobileElement rememberMeSwitch;
+
+	@iOSXCUITFindBy(accessibility = "actionSheetCancelButton")
+	@AndroidFindBy(id = "com.td:id/dialog_button")
+	private MobileElement cancelActionList;
 
 	String session = "//XCUIElementTypeStaticText[@label='Session Expired']";
 	String session1 = "//android.widget.TextView[contains(@text,'Session Expired')]";
@@ -344,11 +355,14 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				/*securityQuestionHeader = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
-								+ mobileAction.getAppString("securityQuestionPageHeader") + "']",
-						"Security Page Header!");*/
-				
+				/*
+				 * securityQuestionHeader =
+				 * mobileAction.verifyElementUsingXPath(
+				 * "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
+				 * + mobileAction.getAppString("securityQuestionPageHeader") +
+				 * "']", "Security Page Header!");
+				 */
+
 				securityQuestionHeader = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
 								+ getTextInCurrentLocale(StringArray.ARRAY_LOGIN_SECURITY_QUESTION) + "']",
@@ -358,17 +372,18 @@ public class Login extends _CommonPage {
 						"//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
 								+ getTextInCurrentLocale(StringArray.ARRAY_LOGIN_SECURITY_QUESTION) + "']",
 						"Security Page Header");
-				
-				securityLogin = mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeButton[@label='" + getTextInCurrentLocale(StringArray.ARRAY_SECURITY_LOGIN) + "']",
-						"Login");
+
+				securityLogin = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_SECURITY_LOGIN) + "']", "Login");
 			}
 
 			if (mobileAction.verifyElementIsPresent(securityQuestionHeader)) {
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-					enterAnswer = mobileAction.verifyElementUsingXPath("//XCUIElementTypeSecureTextField[@value='"
-							+ getTextInCurrentLocale(StringArray.ARRAY_MFA_ENTER_ANSWER) + "']", "Enter your answer");
+					enterAnswer = mobileAction.verifyElementUsingXPath(
+							"//XCUIElementTypeSecureTextField[@value='"
+									+ getTextInCurrentLocale(StringArray.ARRAY_MFA_ENTER_ANSWER) + "']",
+							"Enter your answer");
 				}
 				mobileAction.FuncSendKeys(enterAnswer, getTestdata("SecurityAnswer"));
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -377,9 +392,8 @@ public class Login extends _CommonPage {
 					mobileAction.FuncHideKeyboard();
 				}
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-					securityLogin = mobileAction.verifyElementUsingXPath(
-							"//XCUIElementTypeButton[@label='" + getTextInCurrentLocale(StringArray.ARRAY_SECURITY_LOGIN) + "']",
-							"Login");
+					securityLogin = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+							+ getTextInCurrentLocale(StringArray.ARRAY_SECURITY_LOGIN) + "']", "Login");
 				}
 				mobileAction.FuncClick(securityLogin, "Login");
 				mobileAction.waitProgressBarVanish();
@@ -425,7 +439,8 @@ public class Login extends _CommonPage {
 			return verifyIsLoginErrorSystemError();
 
 		} else {
-			//String securityQuestionTitle = mobileAction.getAppString("securityQuestionPageHeader");
+			// String securityQuestionTitle =
+			// mobileAction.getAppString("securityQuestionPageHeader");
 			String securityQuestionTitle = getTextInCurrentLocale(StringArray.ARRAY_LOGIN_SECURITY_QUESTION);
 			String pageTitle = mobileAction.getValue(logined_page_Header);
 			String addLoginTitle = getTextInCurrentLocale(StringArray.ARRAY_ADD_LOGIN);
@@ -523,6 +538,12 @@ public class Login extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 			}
+
+			String toRemember = getTestdata("Action");
+			if (toRemember != null && toRemember.equalsIgnoreCase("rememberOff")) {
+				setRememberMe(false);
+			}
+
 			// Even in Landscape mode, the login button is visible
 			mobileAction.FuncClick(login, "Login");
 			mobileAction.waitProgressBarVanish();
@@ -1390,8 +1411,8 @@ public class Login extends _CommonPage {
 			mobileAction.FuncClick(password, "Password");
 			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.FuncHideKeyboard();			
-			} 
+				mobileAction.FuncHideKeyboard();
+			}
 			mobileAction.FuncClick(login, "Login");
 			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {
@@ -1419,8 +1440,8 @@ public class Login extends _CommonPage {
 			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.FuncHideKeyboard();			
-			} 
+				mobileAction.FuncHideKeyboard();
+			}
 			mobileAction.FuncClick(login, "Login");
 			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {
@@ -1575,6 +1596,234 @@ public class Login extends _CommonPage {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
+	}
+
+	public void setRememberMe(boolean turnOn) {
+		Decorator();
+		try {
+			if (turnOn) {
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
+					if (!Boolean.parseBoolean(rememberMeSwitch.getAttribute("checked"))) {
+						mobileAction.FuncClick(rememberMeSwitch, "Remember Me Switch ON");
+					}
+				} else {
+					String currentState = mobileAction.FuncGetText(rememberMeSwitch);
+					if (currentState
+							.equalsIgnoreCase(getTextInCurrentLocale(StringArray.ARRAY_LOGIN_REMEMBER_ME_OFF))) {
+						mobileAction.FuncClick(rememberMeSwitch, "Remember Me Switch ON");
+					}
+				}
+			} else {
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
+					if (Boolean.parseBoolean(rememberMeSwitch.getAttribute("checked"))) {
+						mobileAction.FuncClick(rememberMeSwitch, "Remember Me Switch OFF");
+					}
+				} else {
+					String currentState = mobileAction.FuncGetText(rememberMeSwitch);
+					if (currentState.equals("Remember Me")
+							|| currentState.equals(getTextInCurrentLocale(StringArray.ARRAY_LOGIN_REMEMBER_ME_ON))) {
+						mobileAction.FuncClick(rememberMeSwitch, "Remember Me Switch OFF");
+					}
+				}
+			}
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyUserNotRemembered() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(select_accesscard, "Select Accesscard");
+
+			String userID = getTestdata("UserID");
+			String maskedCard = userID.substring(0, 2) + "***" + userID.substring(userID.length() - 3, userID.length());
+			String xpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				xpath = "//android.widget.TextView[@text='" + maskedCard + "']";
+			} else {
+				xpath = "//XCUIElementTypeStaticText[@label='" + maskedCard + "']";
+			}
+			boolean cardFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
+
+			if (!cardFound) {
+				CL.GetReporting().FuncReport("Pass", "The card <b>- " + maskedCard + "</b> is not remembered.");
+			} else {
+				CL.GetReporting().FuncReport("Fail", "The card <b> " + maskedCard + "</b> is remembered");
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void loginUsingAccessCardNumber() {
+		Decorator();
+		try {
+
+			String connectID = getTestdata("UserID");
+			// Save connectID to Accounts column for restore later
+			CL.getTestDataInstance().TCParameters.put("Accounts", connectID);
+
+			String accessCardNumber = getTestdata("Action");
+			// Save accessCardNumber to UserID column for use in next Login
+			CL.getTestDataInstance().TCParameters.put("UserID", accessCardNumber);
+
+			login();
+
+			connectID = getTestdata("Accounts");
+			// Restore connectID to UserID column
+			CL.getTestDataInstance().TCParameters.put("UserID", connectID);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void loginUsingAlias() {
+		Decorator();
+		try {
+
+			String connectID = getTestdata("UserID");
+			// Save connectID to Accounts column for restore later
+			CL.getTestDataInstance().TCParameters.put("Accounts", connectID);
+
+			String alias = getTestdata("Transfers");
+			// Save accessCardNumber to UserID column for use in next Login
+			CL.getTestDataInstance().TCParameters.put("UserID", alias);
+
+			login();
+
+			connectID = getTestdata("Accounts");
+			// Restore connectID to UserID column
+			CL.getTestDataInstance().TCParameters.put("UserID", connectID);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void deleteAllRememberedIDs() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(select_accesscard, "Select Accesscard");
+
+			boolean hasIDs = mobileAction.verifyElementIsPresent(cross);
+			while (hasIDs) {
+				mobileAction.FuncClick(cross, "Delete Remembered ID");
+				mobileAction.sleep(500);
+				hasIDs = mobileAction.verifyElementIsPresent(cross);
+			}
+			mobileAction.FuncClick(cancelActionList, "Cancel Action List");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyAllRememberedIDsDeleted() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(select_accesscard, "Select Accesscard");
+
+			boolean hasIDs = mobileAction.verifyElementIsPresent(cross);
+			if (!hasIDs) {
+				CL.GetReporting().FuncReport("Pass", "All Remembered IDs deleted");
+			} else {
+				CL.GetReporting().FuncReport("Fail", "Not all Remembered IDs deleted");
+			}
+
+			mobileAction.FuncClick(cancelActionList, "Cancel Action List");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyRememberedIDs() {
+		Decorator();
+		try {
+			String connectID = getTestdata("UserID");
+			String accessCardNumber = getTestdata("Action");
+			String alias = getTestdata("Transfers");
+			String[] cardList = { connectID, accessCardNumber, alias };
+
+			boolean cardFound = false;
+			for (int i = 0; i < cardList.length; i++) {
+				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
+				String card = cardList[i];
+				String maskedCard = card.substring(0, 2) + "***"
+						+ card.substring(card.length() - 3, card.length());
+				String xpath = "";
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+					xpath = "//android.widget.TextView[@text='" + maskedCard + "']";
+				} else {
+					xpath = "//XCUIElementTypeStaticText[@label='" + maskedCard + "']";
+				}
+				cardFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
+				mobileAction.FuncClick(cancelActionList, "Cancel Action List");
+			}
+			
+			if (!cardFound) {
+				CL.GetReporting().FuncReport("Pass", "All IDs remembered");
+			} else {
+				CL.GetReporting().FuncReport("Fail", "Not all IDs remembered");
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
 	}
 
 }

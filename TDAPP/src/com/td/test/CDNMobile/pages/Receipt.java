@@ -147,6 +147,10 @@ public class Receipt extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/thank_you_label")
 	private MobileElement thankYouTitleUS;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]//XCUIElementTypeLink[1]")
+	@AndroidFindBy(xpath = "//android.webkit.WebView/android.view.View/android.view.View")
+	private MobileElement bannerImage;
+
 	public synchronized static Receipt get() {
 		if (Receipt == null) {
 			Receipt = new Receipt();
@@ -655,6 +659,32 @@ public class Receipt extends _CommonPage {
 
 			mobileAction.FuncSwipeWhileElementNotFound(scheduledPaymentsBtn, true, 10, "up");
 			mobileAction.verifyElementIsPresent(PageHeader.get().getProgressBar());
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyReceiptBanner() {
+		Decorator();
+		try {
+
+			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
+			mobileAction.verifyElementIsDisplayed(pageHeader, "Receipt Header");
+
+			boolean hasBanner = mobileAction.verifyElementIsPresent(bannerImage);
+			if (hasBanner) {
+				mobileAction.verifyElementIsDisplayed(bannerImage, "Receipt Banner");
+			} else {
+				mobileAction.GetReporting().FuncReport("Pass", "No receipt banner in this device");
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

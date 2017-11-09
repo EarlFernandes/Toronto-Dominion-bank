@@ -42,6 +42,14 @@ public class AccountDetails extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/posted_date_val")
 	private MobileElement postedDate;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]//XCUIElementTypeButton[1]")
+	@AndroidFindBy(id = "TBD")
+	private MobileElement activityTab;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]//XCUIElementTypeButton[2]")
+	@AndroidFindBy(id = "TBD")
+	private MobileElement summaryTab;
+
 	public synchronized static AccountDetails get() {
 		if (accountDetails == null) {
 			accountDetails = new AccountDetails();
@@ -133,7 +141,7 @@ public class AccountDetails extends _CommonPage {
 				System.out.println(balance + " != " + newBalance);
 				double delta = balance - newBalance;
 				mobileAction.GetReporting().FuncReport("Fail", "Incorrect balance after transaction. Previous balance: "
-						+ balance + " New balance: " + newBalance + " Delta: " + delta );
+						+ balance + " New balance: " + newBalance + " Delta: " + delta);
 			} else {
 				mobileAction.GetReporting().FuncReport("Pass", "Correct balance after transaction");
 			}
@@ -173,6 +181,46 @@ public class AccountDetails extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(postedDate, "Posted Date field");
 			mobileAction.verifyElementTextIsDisplayed(postedDate,
 					getTextInCurrentLocale(StringArray.ARRAY_TRANSACTION_PENDING));
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void verifyActivityTab() {
+		Decorator();
+		try {
+
+			mobileAction.verifyElementIsDisplayed(activityTab, "Activity Tab");
+			mobileAction.verifyElementTextIsDisplayed(activityTab,
+					getTextInCurrentLocale(StringArray.ARRAY_TAB_SUMMARY));
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void verifySummaryTab() {
+		Decorator();
+		try {
+
+			mobileAction.verifyElementIsDisplayed(summaryTab, "Summary Tab");
+			mobileAction.verifyElementTextIsDisplayed(summaryTab,
+					getTextInCurrentLocale(StringArray.ARRAY_TAB_SUMMARY));
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

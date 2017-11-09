@@ -2,6 +2,7 @@ package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -11,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -19,6 +21,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Trade extends _CommonPage {
 	private static Trade Trade;
@@ -322,6 +325,26 @@ public class Trade extends _CommonPage {
 	MobileElement priceTypeChangeOrderElement;
 	String priceTypeChangeOrderValue;
 	String xpathSymbolFlag_ios1 = "//XCUIElementTypeCell[contains(@label,'CA') or @label='Comptant CAN']";
+
+	@iOSXCUITFindBy(accessibility = "ACCOUNT_HEADER_TEXT")
+	@AndroidFindBy(id = "com.td:id/timestamp")
+	private MobileElement timeHeader;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStatusBar[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[3]")
+	@AndroidFindBy(id = "TBD")
+	private MobileElement statusTime;
+
+	@iOSXCUITFindBy(accessibility = "descriptionLabel")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/selectedText'])[1]")
+	private MobileElement accountName;
+
+	@iOSXCUITFindBy(accessibility = "accountNumberLabel")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/selectedValue'])[1]")
+	private MobileElement accountNumber;
+
+	@iOSXCUITFindBy(accessibility = "valueLeftLabel")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/selectedText'])[2]")
+	private MobileElement tradeOrderType;
 
 	public synchronized static Trade get() {
 		if (Trade == null) {
@@ -2097,4 +2120,57 @@ public class Trade extends _CommonPage {
 		}
 
 	}
+
+	public void verifyTradePage() {
+		Decorator();
+		try {
+
+			// Verify Current time
+			mobileAction.verifyElementIsDisplayed(timeHeader, "Time header");
+			// String date = Calendar.MONTH + " " + Calendar.DATE + "," +
+			// Calendar.YEAR;
+			// mobileAction.verifyElementTextContains(timeHeader, date);
+
+			// String time = mobileAction.FuncGetText(statusTime);
+			// time = time.substring(0, time.indexOf(" "));
+			// mobileAction.verifyElementTextContains(timeHeader, time);
+
+			// Verify account name & number is populated
+			boolean acctSelected = mobileAction.verifyElementIsPresent(accountNumber);
+			if (acctSelected) {
+				mobileAction.verifyElementIsDisplayed(accountName, "Account Name");
+				mobileAction.verifyElementIsDisplayed(accountNumber, "Account Number");
+
+				String acctName = mobileAction.FuncGetText(accountName);
+				String acctNum = mobileAction.FuncGetText(accountNumber);
+
+				if (acctName.length() > 0 && acctNum.length() > 0) {
+					CL.GetReporting().FuncReport("Pass",
+							"The element <b>- " + acctName + "," + acctNum + "</b> is displayed.");
+				} else {
+					CL.GetReporting().FuncReport("Fail", "No account name or number is displayed");
+				}
+			} else {
+				mobileAction.verifyElementIsDisplayed(accountName, "Account Name");
+				mobileAction.verifyElementTextContains(accountName,
+						getTextInCurrentLocale(StringArray.ARRAY_TRADE_SELECT_ACCOUNT));
+			}
+
+			// Verify Order Type
+			mobileAction.verifyElementIsDisplayed(tradeOrderType, "Order Type");
+			mobileAction.verifyElementTextContains(tradeOrderType,
+					getTextInCurrentLocale(StringArray.ARRAY_TRADE_ORDER_TYPE_STOCKS_ETF));
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
 }
