@@ -17,6 +17,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
+import io.appium.java_client.pagefactory.iOSFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class MIT_DSHNewProfileLogic extends _CommonPage {
@@ -40,6 +41,15 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@resource-id='android.widget.LinearLayout']")
 	private List<MobileElement> LST_WLFlyout;
 
+	@iOSFindBy(xpath = "//*[@label='Logout' or @label='Fermer la session' or @label='退出' or @label='登出']")
+	@AndroidFindBy(xpath = "//*[(@text='Logout' or @text='Fermer la session' or @text='退出' or @text='登出') and @resource-id='com.td:id/textview_flyout_menu_item']")
+	private MobileElement FLY_Logout;
+	
+	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@AndroidFindBy(id = "com.td:id/hamburger")
+	MobileElement BT_Home_HamburgerMenu;
+	
+
 	public void verifyQLOrderBlendedInvestingFocus() {
 		Decorator();
 
@@ -53,9 +63,9 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_DEPOSIT),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_PAYBILL),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_PAYNOW) };
-				
+
 				verifyQuickLinksOrder(aQuickLinksAndroid);
-				
+
 			} else {
 				String[] aQuickLinksiOS = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_HOLDINGS),
@@ -65,7 +75,7 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_DEPOSIT),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_PAYBILL),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_APPLEPAY) };
-				
+
 				verifyQuickLinksOrder(aQuickLinksiOS);
 			}
 
@@ -73,33 +83,52 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void verifyFlyoutOrderBlendedInvestingFocus() {
 		Decorator();
 
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				String[] aFlyoutAndroid = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE),
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_HOLDINGS),
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_ORDERS),
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_SENDMONEY),
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRANSFER),
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_DEPOSIT),
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_PAYBILL),
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_PAYNOW) };
-				
+				String[] aFlyoutAndroid = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOGOUT),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRANSFERS),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_BILLS),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDMYSPEND),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDMOBILEDEPOSIT),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDFORME),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRADE),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_CROSSBORDERBANKING),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PROFILESETTINGS),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOCATIONS),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_GIVEFEEDBACK),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_CONTACTUS),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_FAQ),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PRIVACYSECURITY)};
+
 				verifyFlyoutOrder(aFlyoutAndroid);
-				
+
 			} else {
-				String[] aFlyoutiOS = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE),
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_HOLDINGS),
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_ORDERS),
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_SENDMONEY),
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRANSFER),
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_DEPOSIT),
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_PAYBILL),
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_APPLEPAY) };
-				
+				String[] aFlyoutiOS = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOGOUT),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRANSFERS),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_BILLS),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_APPLEPAY),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDMYSPEND),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDMOBILEDEPOSIT),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDFORME),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRADE),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_CROSSBORDERBANKING),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PROFILESETTINGS),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_APPLEWATCH),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOCATIONS),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_GIVEFEEDBACK),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_CONTACTUS),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_FAQ),
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PRIVACYSECURITY)};
+
 				verifyFlyoutOrder(aFlyoutiOS);
 			}
 
@@ -147,17 +176,17 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 			}
 
 			System.out.println(Maps.difference(mActual, mExpected));
-			if (Maps.difference(mActual, mExpected) != null) {
+			if (Maps.difference(mActual, mExpected).areEqual()) {
 				CL.GetReporting().FuncReport(PASS, "</b>Quick links are in order.</b>");
 			} else {
-				CL.GetReporting().FuncReport(FAIL, "</b>Quick links are not in order.</b>");
+				CL.GetReporting().FuncReport(FAIL, "</b>Quick links are not in order." + Maps.difference(mActual, mExpected) + "</b>");
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void verifyFlyoutOrder(String[] aFlyout) {
 		Decorator();
 		HashMap<String, Integer> mActual = new HashMap<String, Integer>();
@@ -166,18 +195,21 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 		String sQLName = null;
 
 		try {
+			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
+			
 			for (int i = 0; i < aFlyout.length; i++) {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					String xpathFlyout = "//*[@text='" + aFlyout[i] + "' and @resource-id='com.td:id/textview_flyout_menu_item']";
+					String xpathFlyout = "//*[@text='" + aFlyout[i]
+							+ "' and @resource-id='com.td:id/textview_flyout_menu_item']";
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathFlyout, false, 4, "up");
-						for (WebElement mEle : CL.GetDriver()
-								.findElements(By.xpath("//*[@resource-id='com.td:id/textview_flyout_menu_item']"))) {
-							sQLName = mobileAction.FuncGetElementText(mEle);
-							if (!mActual.containsKey(sQLName)) {
-								mActual.put(sQLName, iIndex);
-								iIndex++;
-							}
+					for (WebElement mEle : CL.GetDriver()
+							.findElements(By.xpath("//*[@resource-id='com.td:id/textview_flyout_menu_item']"))) {
+						sQLName = mobileAction.FuncGetElementText(mEle);
+						if (!mActual.containsKey(sQLName)) {
+							mActual.put(sQLName, iIndex);
+							iIndex++;
 						}
+					}
 
 				} else {
 					if (MIT_DSHQuickLinks.get().verifyQuickLinkExistsByXpath("//*[@name='NAV_DRAWER_ITEMS_" + i + "']",
@@ -195,14 +227,26 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 			}
 
 			System.out.println(Maps.difference(mActual, mExpected));
-			if (Maps.difference(mActual, mExpected) != null) {
+			if (Maps.difference(mActual, mExpected).areEqual()) {
 				CL.GetReporting().FuncReport(PASS, "</b>Flyout Menu are in order.</b>");
 			} else {
-				CL.GetReporting().FuncReport(FAIL, "</b>Flyout Menu are not in order.</b>");
+				CL.GetReporting().FuncReport(FAIL, "</b>Flyout Menu are not in order." + Maps.difference(mActual, mExpected) + "</b>");
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
+	public void verifyQLFlyoutBlendedInvestingFocus() {
+		Decorator();
+		try {
+				MIT_DSHQuickLinks.get().verifyQL_TRADE(false);
+				//My Account flyout ?? //FIXME
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
 }

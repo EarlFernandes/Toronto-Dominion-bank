@@ -212,7 +212,7 @@ public class EventCase {
 
 		// MIT Dashboard
 
-		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, goToProfileAndSettings, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI, verifyStockETFsWLSymbolRow, verifyTappingWLOptionSymbol, goToWLExpandedView, verifyTappingWLMutualFundSymbol, verifyWLOptionSymbolSellButton, verifyWLMutualFundSymbolBuyButton, verifyWLOptionSymbolBuyButton, verifyWLETFSymbolSellButton, verifyWLIndicesSymbolBuySellButton, verifyWLBackButton, verifyWLSymbolFlagCompanyName, verifyHomeScreenSettingsBlendedInvestingFocusUser,verifyQLOrderBlendedInvestingFocus,verifyFlyoutOrderBlendedInvestingFocus,
+		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, goToProfileAndSettings, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI, verifyStockETFsWLSymbolRow, verifyTappingWLOptionSymbol, goToWLExpandedView, verifyTappingWLMutualFundSymbol, verifyWLOptionSymbolSellButton, verifyWLMutualFundSymbolBuyButton, verifyWLOptionSymbolBuyButton, verifyWLETFSymbolSellButton, verifyWLIndicesSymbolBuySellButton, verifyWLBackButton, verifyWLSymbolFlagCompanyName, verifyHomeScreenSettingsBlendedInvestingFocusUser,verifyQLOrderBlendedInvestingFocus,verifyFlyoutOrderBlendedInvestingFocus,logoutFromDashboard,verifyQLFlyoutBlendedInvestingFocus,
 
 		// P2P
 
@@ -2661,6 +2661,15 @@ public class EventCase {
 		case verifyFlyoutOrderBlendedInvestingFocus:
 			MIT_DSHNewProfileLogic.get().verifyFlyoutOrderBlendedInvestingFocus();
 			break;
+			
+		case logoutFromDashboard:
+			Logout.get().logoutFromDashboard();
+			break;
+			
+		case verifyQLFlyoutBlendedInvestingFocus:
+			MIT_DSHNewProfileLogic.get().verifyQLFlyoutBlendedInvestingFocus();
+			break;
+			
 			
 
 		// MIT Dashboard END
