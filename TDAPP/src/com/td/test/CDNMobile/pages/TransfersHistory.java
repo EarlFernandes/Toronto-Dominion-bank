@@ -70,7 +70,7 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Sent' or @text='Envoyé']")
 	private List<MobileElement> pendingTransactions;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='COMPLETED' OR label=='EFFECTUÉS'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='COMPLETED' OR label=='EFFECTUÉS' OR name=='EFFECTUÉS'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='COMPLETED' or @text='EFFECTUÉS']")
 	private MobileElement completedCategory;
 
@@ -1548,12 +1548,19 @@ public class TransfersHistory extends _CommonPage {
 	 */
 	public void verifyCancelledTransOnActivity() {
 
+		int counter = 0;
+		
 		MobileElement cancelledTransaction = null;
 
 		Decorator();
 		try {
 
-			mobileAction.FunctionSwipe("up", 200, 200);
+			
+			while(!mobileAction.verifyElementIsPresent(completedCategory) && counter<3){
+			mobileAction.FunctionSwipe("up", 2000, 200);
+			counter++;
+			}
+			
 			mobileAction.verifyElementIsDisplayed(completedCategory, "Completed Category");
 
 			if (platform.equalsIgnoreCase("Android")) {
