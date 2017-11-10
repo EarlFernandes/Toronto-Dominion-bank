@@ -259,6 +259,9 @@ public class EventCase {
 		// Bills
 		PayBill_Canada_Button, PayBill_US_Button,
 
+		// Credit
+		Credit_GetTDPointsBalance, Credit_ClickLatestStatement, Credit_ClickPay, Credit_VerifyNoTDPointsBalance,
+
 		// Login
 		Login_VerifyUserNotRemembered, Login_LoginUsingAccessCardNumber, Login_LoginUsingAlias, Login_DeleteAllRememberedIDs, Login_VerifyAllRememberedIDsDeleted, Login_VerifyRememberedIDs, Login_VerifyLoginMFA, Login_CloseApp,
 
@@ -277,11 +280,16 @@ public class EventCase {
 		// Receipt
 		Receipt_VerifyTransferReceipt, Receipt_GoBackHome, Receipt_MakeAnotherTransfer, Receipt_VerifyBillReceipt, Receipt_ScheduledPayments, Receipt_VerifyUSBillReceipt, Receipt_VerifyCancelledBillReceipt, Receipt_VerifyReceiptBanner,
 
+		// Rewards
+		Rewards_VerifyVisitTDRewards, Rewards_VerifyPayWithRewards, Rewards_ClickVisitTDRewards, Rewards_VerifyTDRewardsURL,
 		// Quick Access
 		QuickAccessSettings_DisableFirstAccount, QuickAccessPage_VerifyNoAccounts,
 
 		// Scheduled Payments
 		ScheduledPayments_CancelLastPayment, ScheduledPayments_VerifyScheduledPayments,
+
+		// StatementBalance
+		StatementBalance_VerifyPayWithRewardEligibility,
 
 		// Trade
 		Trade_VerifyTradePage,
@@ -4139,6 +4147,23 @@ public class EventCase {
 			Between_My_accounts.get().transferFirstAccounts();
 			break;
 
+		// Credit
+		case Credit_GetTDPointsBalance:
+			Credit.get().getTDPointsBalance();
+			break;
+
+		case Credit_ClickLatestStatement:
+			Credit.get().clickLatestStatement();
+			break;
+
+		case Credit_ClickPay:
+			Credit.get().clickPay();
+			break;
+
+		case Credit_VerifyNoTDPointsBalance:
+			Credit.get().verifyNoTDPointsBalance();
+			break;
+
 		// HomeScreen
 		case HomeScreen_Transfer_Button:
 			HomeScreen.get().clickDashboardTransfers();
@@ -4290,6 +4315,23 @@ public class EventCase {
 			Receipt.get().verifyReceiptBanner();
 			break;
 
+		// Rewards
+		case Rewards_VerifyVisitTDRewards:
+			Rewards.get().verifyVisitTDRewards();
+			break;
+
+		case Rewards_VerifyPayWithRewards:
+			Rewards.get().verifyPayWithRewards();
+			break;
+
+		case Rewards_ClickVisitTDRewards:
+			Rewards.get().clickVisitTDRewards();
+			break;
+
+		case Rewards_VerifyTDRewardsURL:
+			Rewards.get().verifyTDRewardsURL();
+			break;
+
 		// Scheduled Payments
 		case ScheduledPayments_CancelLastPayment:
 			ScheduledPayments.get().cancelLastPayment();
@@ -4297,6 +4339,11 @@ public class EventCase {
 
 		case ScheduledPayments_VerifyScheduledPayments:
 			ScheduledPayments.get().verifyScheduledPayments();
+			break;
+
+		// Statement Balance
+		case StatementBalance_VerifyPayWithRewardEligibility:
+			StatementBalance.get().verifyPayWithRewardEligibility();
 			break;
 
 		// Trade

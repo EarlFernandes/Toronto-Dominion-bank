@@ -107,7 +107,12 @@ public class AccountDetails extends _CommonPage {
 		try {
 
 			String balanceStr = mobileAction.FuncGetText(acctBalance);
-			double balance = Double.parseDouble(StringUtils.remove(balanceStr, "$"));
+			balanceStr = StringUtils.remove(balanceStr, "$").trim();
+			if (currentLocale.equalsIgnoreCase("fr")) {
+				balanceStr = balanceStr.replace(",", ".");
+				balanceStr = balanceStr.replace(" ", ",");
+			}
+			double balance = Double.parseDouble(balanceStr);
 
 			// Save current acct balance for late verification
 			CL.getTestDataInstance().TCParameters.put("Accounts", Double.toString(balance));
@@ -129,7 +134,12 @@ public class AccountDetails extends _CommonPage {
 		try {
 
 			String balanceStr = mobileAction.FuncGetText(acctBalance);
-			double balance = Double.parseDouble(StringUtils.remove(balanceStr, "$"));
+			balanceStr = StringUtils.remove(balanceStr, "$").trim();
+			if (currentLocale.equalsIgnoreCase("fr")) {
+				balanceStr = balanceStr.replace(",", ".");
+				balanceStr = balanceStr.replace(" ", ",");
+			}
+			double balance = Double.parseDouble(balanceStr);
 
 			double previousBalance = Double.parseDouble(getTestdata("Accounts"));
 			double amt = Double.parseDouble(getTestdata("Amount"));

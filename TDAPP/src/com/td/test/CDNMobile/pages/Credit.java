@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -14,6 +15,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Credit extends _CommonPage {
 
@@ -23,12 +25,16 @@ public class Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Credit']")
 	private MobileElement creditHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeCell[@label='REWARDS']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='REWARDS']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCollectionView[1]/XCUIElementTypeCell[1]")
+	@AndroidFindBy(id = "TBD")
+	private MobileElement payBtn;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCollectionView[1]/XCUIElementTypeCell[3]")
+	@AndroidFindBy(xpath = "TBD")
 	private MobileElement rewardBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Statements']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/statementTab' and @text='Statements']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]//XCUIElementTypeButton[3]")
+	@AndroidFindBy(id = "com.td:id/statementTab")
 	private MobileElement stmtBtn;
 
 	@iOSFindBy(xpath = "//*[@label='Accounts']")
@@ -66,6 +72,14 @@ public class Credit extends _CommonPage {
 
 	By iosVerifyLang = By.xpath("//XCUIElementTypeStaticText[contains(@label,'Dollars')]");
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
+	@AndroidFindBy(id = "TBD")
+	private MobileElement latestStatementDetail;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[3]")
+	@AndroidFindBy(id = "TBD")
+	private MobileElement tdPointsBalance;
+
 	public synchronized static Credit get() {
 		if (Credit == null) {
 			Credit = new Credit();
@@ -101,6 +115,23 @@ public class Credit extends _CommonPage {
 
 	}
 
+	public void clickPay() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(payBtn, "Pay button");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
 	/**
 	 * This method will click the Rewards Button in Credit Page
 	 * 
@@ -112,12 +143,16 @@ public class Credit extends _CommonPage {
 	public void clickReward() {
 		Decorator();
 		try {
-			if (rewardBtn.isDisplayed())
-				mobileAction.FuncClick(rewardBtn, "Rewards");
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			mobileAction.FuncClick(rewardBtn, "Rewards");
 
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -154,17 +189,18 @@ public class Credit extends _CommonPage {
 	public void clickStatmentTab() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
-				CL.GetDriver().findElement(iosStmtDetails).click();
+			mobileAction.FuncClick(stmtBtn, "Statements Tab");
 
-			} else {
-				mobileAction.FuncClick(stmtDetails, "Last Statement Details ");
-			}
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+
 	}
 
 	public void clickSummaryTab() {
@@ -328,6 +364,65 @@ public class Credit extends _CommonPage {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 
+		}
+	}
+
+	public void clickLatestStatement() {
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(latestStatementDetail, "Latest Statement Detail button");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void getTDPointsBalance() {
+		Decorator();
+		try {
+
+			boolean hasPtsBalance = mobileAction.verifyElementIsPresent(tdPointsBalance);
+			if (hasPtsBalance) {
+				String ptsBalance = mobileAction.FuncGetText(tdPointsBalance);
+				ptsBalance = ptsBalance.substring(0, ptsBalance.indexOf(" "));
+				ptsBalance = ptsBalance.replace(",", "");
+				CL.getTestDataInstance().TCParameters.put("Amount", ptsBalance);
+
+			} else {
+				CL.GetReporting().FuncReport("Fail", "No TD Points in this credit card");
+			}
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void verifyNoTDPointsBalance() {
+		Decorator();
+		try {
+
+			mobileAction.verifyElementNotPresent(tdPointsBalance, "TD Point Balance");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

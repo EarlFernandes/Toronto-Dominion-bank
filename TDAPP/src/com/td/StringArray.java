@@ -273,6 +273,12 @@ public final class StringArray {
 	// Receipt
 	public static final String[] ARRAY_RECEIPT_DETAIL = { "-Detail", "-Détail", "-详细信息", "-詳情" };
 
+	// Rewards
+	public static final String[] ARRAY_REWARDS_VISIT_TDREWARDS = { "Visit TDRewards.com", "Visitez primestd.com",
+			"前往 TDRewards.com", "前往 TDRewards.com" };
+	public static final String[] ARRAY_REWARDS_PAY_WITH_REWARDS = { "Pay With Rewards", "Payez avec vos primes",
+			"用奖励积分付款", "用獎勵積分付款" };
+
 	// Trade
 	public static final String[] ARRAY_TRADE_ORDER_TYPE_STOCKS_ETF = { "Stocks & ETFs", "Actions et FNB", "股票和交易所交易基金",
 			"股票和交易所交易基金" };

@@ -98,6 +98,10 @@ public class PayBill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='2']//android.widget.TextView[@index='0']")
 	private MobileElement firstUSAcct;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "TBD")
+	private MobileElement payWithRewards;
+
 	public synchronized static PayBill get() {
 		if (PayBill == null) {
 			PayBill = new PayBill();
@@ -362,6 +366,72 @@ public class PayBill extends _CommonPage {
 				+ String.valueOf(cal.get(Calendar.HOUR_OF_DAY));
 
 		return amt;
+	}
+
+	public void verifyPayWithRewardsLink() {
+		Decorator();
+		try {
+
+			// Use specific accts
+			String toAccount = getTestdata("ToAccount");
+			String toAccountXpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				toAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and contains(@text,'"
+						+ toAccount + "')]";
+
+			} else {
+				toAccountXpath = "//XCUIElementTypeStaticText[contains(@label,'" + toAccount + "')]";
+			}
+			mobileAction.FuncClick(to_account_post, "Select Payee field");
+			mobileAction.swipeAndSearchByxpath(toAccountXpath, true, 10, "Up");
+			mobileAction.sleep(2000);
+
+			mobileAction.verifyElementIsDisplayed(payWithRewards, "Pay With Rewards link");
+			mobileAction.verifyElementTextContains(payWithRewards,
+					getTextInCurrentLocale(StringArray.ARRAY_REWARDS_PAY_WITH_REWARDS));
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyNoPayWithRewardsLink() {
+		Decorator();
+		try {
+
+			// Use specific accts
+			String toAccount = getTestdata("ToAccount");
+			String toAccountXpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				toAccountXpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and contains(@text,'"
+						+ toAccount + "')]";
+
+			} else {
+				toAccountXpath = "//XCUIElementTypeStaticText[contains(@label,'" + toAccount + "')]";
+			}
+			mobileAction.FuncClick(to_account_post, "Select Payee field");
+			mobileAction.swipeAndSearchByxpath(toAccountXpath, true, 10, "Up");
+			mobileAction.sleep(2000);
+
+			mobileAction.verifyElementNotPresent(payWithRewards, "Pay With Rewards link");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
 	}
 
 }

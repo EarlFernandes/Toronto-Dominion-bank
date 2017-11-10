@@ -13,6 +13,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class StatementBalance extends _CommonPage {
 	private static StatementBalance StatementBalance;
@@ -33,7 +34,7 @@ public class StatementBalance extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Statement Balance']")
 	private MobileElement stmtBalHeader;
 
-	@iOSFindBy(xpath = "//*[@label='PAY WITH REWARDS']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeColletionView[1]/XCUIElementTypeCell[2]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='PAY WITH REWARDS']")
 	private MobileElement payWithRewardsBtn;
 
@@ -190,4 +191,37 @@ public class StatementBalance extends _CommonPage {
 		}
 
 	}
+
+	public void verifyPayWithRewardEligibility() {
+		Decorator();
+		try {
+
+			String ptsBalance = getTestdata("Amount");
+			boolean hasPayWithRewards = mobileAction.verifyElementNotPresent(payWithRewardsBtn,
+					"Pay With Reward button not present");
+
+			if ((Integer.parseInt(ptsBalance) < 10000) && hasPayWithRewards) {
+				CL.GetReporting().FuncReport("Fail",
+						"Pay With Rewards button should not appear if less than 10000 pts");
+			} else if ((Integer.parseInt(ptsBalance) < 10000) && !hasPayWithRewards) {
+				CL.GetReporting().FuncReport("Pass",
+						"Pay With Rewards button should not appear if less than 10000 pts");
+			} else if ((Integer.parseInt(ptsBalance) >= 10000) && hasPayWithRewards) {
+				CL.GetReporting().FuncReport("Pass", "Pay With Rewards button should appear if more than 10000 pts");
+			} else if ((Integer.parseInt(ptsBalance) >= 10000) && !hasPayWithRewards) {
+				CL.GetReporting().FuncReport("Fail", "Pay With Rewards button should appear if more than 10000 pts");
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
 }
