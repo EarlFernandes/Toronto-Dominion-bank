@@ -12,6 +12,8 @@ import com.td.StringArray;
 import com.td._CommonPage;
 import com.td.mainframe.Executor;
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -61,11 +63,6 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id= 'android:id/button2' and @index='0']")
 	private MobileElement install;
 
-	// @iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.TextView[@resource-id='android:id/message']")
-	// private MobileElement progressBar;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='Progression interrompue']")
 	@AndroidFindBy(xpath = "//android.widget.ProgressBar[@resource-id='android:id/progress']")
 	private MobileElement french_progressBar;
@@ -75,9 +72,7 @@ public class Login extends _CommonPage {
 	private MobileElement select_accesscard;
 
 	@iOSXCUITFindBy(accessibility = "ACTION_SHEET_LOGIN_DATA_CELL_0")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.LinearLayout[@resource-id='com.td:id/commandButton']/android.widget.TextView[@resource-id='com.td:id/txtAccessCard']")
-	@AndroidFindBy(xpath = "(android.widget.TextView[@resource-id='com.td:id/txtAccessCard'])[1]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/txtAccessCard'])[1]")
 	private MobileElement addUser;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Ajouter un nom d’utilisateur ou un numéro de carte Accès']")
@@ -133,15 +128,28 @@ public class Login extends _CommonPage {
 	// FIXME: What is the identifier for this?
 	private MobileElement securityQuestionHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/mfa_answer']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeSecureTextField[1]")
+	@AndroidFindBy(id = "com.td:id/mfa_answer")
 	private MobileElement enterAnswer;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeToolbar/XCUIElementTypeButton")
 	private MobileElement done;
 
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/mfa_login_btn']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@AndroidFindBy(id = "com.td:id/mfa_login_btn")
 	private MobileElement securityLogin;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(id = "com.td:id/mfa_question")
+	private MobileElement mfaQuestion;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]")
+	@AndroidFindBy(id = "TBD")
+	private MobileElement loginFailAlert;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeButton[1]")
+	@AndroidFindBy(id = "TBD")
+	private MobileElement loginFailAlertOK;
 
 	// FIXME: What is the identifier for this?
 	// @iOSFindBy(xpath = "//*[contains(@label,'Something went wrong on') or
@@ -194,8 +202,6 @@ public class Login extends _CommonPage {
 	private MobileElement popup_ok_button;
 
 	String platFormName = CL.getTestDataInstance().getMobilePlatForm();
-	// String progressBarFrench =
-	// "//android.widget.ProgressBar[@resource-id='android:id/progress']";
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'actionsheet delete account')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtAccessCard' and contains(@text,'*')]")
@@ -226,10 +232,6 @@ public class Login extends _CommonPage {
 	String session = "//XCUIElementTypeStaticText[@label='Session Expired']";
 	String session1 = "//android.widget.TextView[contains(@text,'Session Expired')]";
 	String message = "Session Expired";
-
-	// @iOSFindBy(xpath =
-	// "//XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeImage")
-	// private MobileElement TD_Image;
 
 	final int REPEAT_TIMES = 4;
 
@@ -531,7 +533,9 @@ public class Login extends _CommonPage {
 				}
 			} else {
 
-				mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
+				// mobileAction.FuncSendKeys(username,
+				// CL.getTestDataInstance().Userid);
+				mobileAction.FuncSendKeys(getTestdata("UserID"));
 			}
 			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 
@@ -542,6 +546,8 @@ public class Login extends _CommonPage {
 			String toRemember = getTestdata("Action");
 			if (toRemember != null && toRemember.equalsIgnoreCase("rememberOff")) {
 				setRememberMe(false);
+			} else {
+				setRememberMe(true);
 			}
 
 			// Even in Landscape mode, the login button is visible
@@ -1645,15 +1651,20 @@ public class Login extends _CommonPage {
 		try {
 			mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 
+			boolean hasCardList = mobileAction.verifyElementIsPresent(cancelActionList);
+			boolean cardFound = false;
 			String userID = getTestdata("UserID");
 			String maskedCard = userID.substring(0, 2) + "***" + userID.substring(userID.length() - 3, userID.length());
-			String xpath = "";
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				xpath = "//android.widget.TextView[@text='" + maskedCard + "']";
-			} else {
-				xpath = "//XCUIElementTypeStaticText[@label='" + maskedCard + "']";
+
+			if (hasCardList) {
+				String xpath = "";
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+					xpath = "//android.widget.TextView[@text='" + maskedCard + "']";
+				} else {
+					xpath = "//XCUIElementTypeStaticText[@label='" + maskedCard + "']";
+				}
+				cardFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
 			}
-			boolean cardFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
 
 			if (!cardFound) {
 				CL.GetReporting().FuncReport("Pass", "The card <b>- " + maskedCard + "</b> is not remembered.");
@@ -1741,10 +1752,18 @@ public class Login extends _CommonPage {
 			boolean hasIDs = mobileAction.verifyElementIsPresent(cross);
 			while (hasIDs) {
 				mobileAction.FuncClick(cross, "Delete Remembered ID");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+					mobileAction.FuncClick(deluser, "Delete Confirmed");
+				}
+
 				mobileAction.sleep(500);
 				hasIDs = mobileAction.verifyElementIsPresent(cross);
 			}
-			mobileAction.FuncClick(cancelActionList, "Cancel Action List");
+
+			boolean hasActionList = mobileAction.verifyElementIsPresent(cancelActionList);
+			if (hasActionList) {
+				mobileAction.FuncClick(cancelActionList, "Cancel Action List");
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1770,8 +1789,6 @@ public class Login extends _CommonPage {
 				CL.GetReporting().FuncReport("Fail", "Not all Remembered IDs deleted");
 			}
 
-			mobileAction.FuncClick(cancelActionList, "Cancel Action List");
-
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -1796,8 +1813,7 @@ public class Login extends _CommonPage {
 			for (int i = 0; i < cardList.length; i++) {
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				String card = cardList[i];
-				String maskedCard = card.substring(0, 2) + "***"
-						+ card.substring(card.length() - 3, card.length());
+				String maskedCard = card.substring(0, 2) + "***" + card.substring(card.length() - 3, card.length());
 				String xpath = "";
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					xpath = "//android.widget.TextView[@text='" + maskedCard + "']";
@@ -1805,15 +1821,152 @@ public class Login extends _CommonPage {
 					xpath = "//XCUIElementTypeStaticText[@label='" + maskedCard + "']";
 				}
 				cardFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
-				mobileAction.FuncClick(cancelActionList, "Cancel Action List");
+				// mobileAction.FuncClick(cancelActionList, "Cancel Action
+				// List");
+				mobileAction.ClickBackButton();
+
+				if (!cardFound) {
+					break;
+				}
+
 			}
-			
-			if (!cardFound) {
+
+			if (cardFound) {
 				CL.GetReporting().FuncReport("Pass", "All IDs remembered");
 			} else {
 				CL.GetReporting().FuncReport("Fail", "Not all IDs remembered");
 			}
 
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyLoginMFA() {
+		Decorator();
+		try {
+			int attempts = 0;
+			boolean isMFA = false;
+
+			while (!isMFA && (attempts < 10)) {
+				// any ID between T0C5A[1 - 8][01 - 99]
+				int digit1 = (int) (Math.random() * 8 + 1);
+				int digit2 = (int) (Math.random() * 99 + 1);
+				String randomID = "T0C5A" + digit1 + digit2;
+				if (digit2 < 10) {
+					randomID = "T0C5A" + digit1 + "0" + digit2;
+				}
+				System.out.println("RandomID: " + randomID);
+
+				enterLoginCredentials(randomID);
+
+				isMFA = mobileAction.verifyElementIsPresent(enterAnswer);
+				if (isMFA) {
+					String mfaQ1 = mobileAction.FuncGetText(mfaQuestion);
+
+					for (int i = 0; i < 3; i++) {
+						enterMFAAnswer("1111");
+					}
+
+					String mfaQ2 = mobileAction.FuncGetText(mfaQuestion);
+					if (!mfaQ1.equalsIgnoreCase(mfaQ2)) {
+						// enterMFAAnswer(getTestdata("SecurityAnswer"));
+						// mobileAction.waitProgressBarVanish();
+						CL.GetReporting().FuncReport("Pass", "Login MFA changed after 3 incorrect answers");
+
+					} else {
+						CL.GetReporting().FuncReport("Fail",
+								"Login MFA Question did not change after 3 incorrect answers");
+					}
+					break;
+
+				} else {
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+						boolean isFailAlert = mobileAction.verifyElementIsPresent(loginFailAlert);
+						if (isFailAlert) {
+							// login error alert
+							mobileAction.FuncClick(this.loginFailAlertOK, "Login Fail Alert OK button");
+						} else {
+							// OTP screen
+							mobileAction.ClickBackButton();
+						}
+					} else {
+						// Non-home screen
+						mobileAction.ClickBackButton();
+						boolean isLoginScreen = mobileAction.verifyElementIsPresent(select_accesscard);
+						if (!isLoginScreen) {
+							HomeScreen.get().clickMenu();
+							HomeScreen.get().clickMyAccounts();
+						}
+					}
+					attempts++;
+				}
+			}
+
+			if (!isMFA) {
+				CL.GetReporting().FuncReport("Fail", "Login MFA did not appear");
+			}
+
+		} catch (
+
+		Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void enterLoginCredentials(String ID) {
+		Decorator();
+		try {
+			mobileAction.FuncClick(select_accesscard, "Select Accesscard");
+			mobileAction.FuncClick(addUser, "AddUser");
+			mobileAction.FuncSendKeys(username, ID);
+			mobileAction.FuncClick(password, "Password");
+			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+			}
+			mobileAction.FuncClick(login, "Login");
+			mobileAction.waitProgressBarVanish();
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void enterMFAAnswer(String answer) {
+		Decorator();
+		try {
+			mobileAction.FuncClick(enterAnswer, "Security Answer field");
+			mobileAction.FuncSendKeys(enterAnswer, answer);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.FuncClickDone();
+			} else {
+				mobileAction.FuncHideKeyboard();
+			}
+
+			mobileAction.FuncClick(securityLogin, "Login");
+			mobileAction.sleep(2000);
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {

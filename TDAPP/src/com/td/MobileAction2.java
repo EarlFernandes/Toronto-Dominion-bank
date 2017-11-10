@@ -3656,4 +3656,52 @@ public class MobileAction2 extends CommonLib {
 
 	}
 
+	public void closeApp() {
+		try {
+			((MobileDriver) GetAppiumDriver()).closeApp();
+			GetReporting().FuncReport("Pass", "App closed");
+
+		} catch (Exception e) {
+			getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void runAppInBackGround() {
+		try {
+			((MobileDriver) GetAppiumDriver()).runAppInBackground(5);
+			GetReporting().FuncReport("Pass", "App pushed to background");
+
+		} catch (Exception e) {
+			getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void reopenApp() {
+		try {
+			((MobileDriver) GetAppiumDriver()).launchApp();
+			GetReporting().FuncReport("Pass", "App relaunched");
+
+		} catch (Exception e) {
+			getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
 }

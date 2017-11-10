@@ -78,15 +78,21 @@ public class PageHeader extends _CommonPage {
 
 		try {
 
-			boolean hasMenu = mobileAction.verifyElementIsPresent(menuButton);
+			boolean hasMenu = false;
 			while (!hasMenu) {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-					mobileAction.FuncClickBackButton();
 					String headerText = mobileAction.FuncGetText(screenHeader);
 					hasMenu = headerText.equalsIgnoreCase(getTextInCurrentLocale(StringArray.ARRAY_HOME_HEADER));
 				} else {
-					mobileAction.FuncClick(backButton, "Back button clicked");
 					hasMenu = mobileAction.verifyElementIsPresent(menuButton);
+				}
+
+				if (!hasMenu) {
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+						mobileAction.ClickBackButton();
+					} else {
+						mobileAction.FuncClick(backButton, "Back button clicked");
+					}
 				}
 			}
 

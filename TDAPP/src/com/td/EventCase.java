@@ -241,6 +241,9 @@ public class EventCase {
 		// OTP Update
 		OTP_Update_VerifyOTPUpdateScreen, OTP_Update_VerifyTestPhoneUpdateScreen, OTP_Update_ClickTestPhoneButton, OTP_Update_VerifyLoginOptionUpdateScreen, OTP_Update_ClickLoginOptionButton, OTP_Update_VerifyChangeEmailScreen, OTP_Update_ClickChangeEmailButton, OTP_Update_UpdateSecurityEmail, OTP_Update_ClickOTPUpdateContinueButton, OTP_Update_VerifyOTPUpdateCompleteScreen, OTP_Update_ClickAddPhoneUpdateButton, OTP_Update_AddSinglePhoneNumber, OTP_Update_AddMaxPhoneNumbers, OTP_Update_DeleteFirstPhoneNumber, OTP_Update_VerifyDeletePhoneNumberFail, OTP_Update_VerifyAddedPhoneNumber, OTP_Update_VerifyMaxPhoneNumbers, OTP_Update_VerifyUpdatedSecurityEmail, OTP_Update_ClickFirstPhoneNumber, OTP_Update_ClickTextOption, OTP_Update_ClickSubmitCodeButton, OTP_Update_EnterSecurityCode, OTP_Update_VerifyCorrectSecurityCode, OTP_Update_ClickGetCodeButton,
 
+		// App
+		CloseApp, RunAppInBackGround, ReopenApp,
+
 		// Account Details
 		AccountDetails_QuickLinkTransfer, AccountDetails_QuickLinkPay, AccountDetails_GetAccountBalance, AccountDetails_VerifyAccountBalance, AccountDetails_VerifyTransactionPosted, AccountDetails_VerifyActivityTab, AccountDetails_VerifySummaryTab,
 
@@ -257,7 +260,7 @@ public class EventCase {
 		PayBill_Canada_Button, PayBill_US_Button,
 
 		// Login
-		Login_VerifyUserNotRemembered, Login_LoginUsingAccessCardNumber, Login_LoginUsingAlias, Login_DeleteAllRememberedIDs, Login_VerifyAllRememberedIDsDeleted, Login_VerifyRememberedIDs,
+		Login_VerifyUserNotRemembered, Login_LoginUsingAccessCardNumber, Login_LoginUsingAlias, Login_DeleteAllRememberedIDs, Login_VerifyAllRememberedIDsDeleted, Login_VerifyRememberedIDs, Login_VerifyLoginMFA, Login_CloseApp,
 
 		// Manage Payee
 		ManagePayee_ClickNewPayee, ManagePayees_Button, ManagePayee_AddCanadianPayee, ManagePayee_ClickPayeeByAcctNumber, ManagePayee_DeletePayee, ManagePayee_EditPayee, ManagePayee_VerifyCanadianPayeeDeleted, ManagePayee_VerifyPayeeEdited, ManagePayee_VerifyUSPayeeDeleted, ManagePayee_EditPayeeDescription,
@@ -4018,6 +4021,19 @@ public class EventCase {
 			OTPUpdate.get().verifyCorrectSecurityCode();
 			break;
 
+		// App
+		case CloseApp:
+			(new com.td.MobileAction2()).closeApp();
+			break;
+
+		case RunAppInBackGround:
+			(new com.td.MobileAction2()).runAppInBackGround();
+			break;
+
+		case ReopenApp:
+			(new com.td.MobileAction2()).reopenApp();
+			break;
+
 		// Accounts
 		case Accounts_VerifyCreditHeader:
 			Accounts.get().verifyCreditHeader();
@@ -4097,10 +4113,6 @@ public class EventCase {
 			AddPayee.get().clickAddAnotherPayeeBtn();
 			break;
 
-		case ManagePayee_EditPayeeDescription:
-			Manage_Payee.get().editPayeeDescription();
-			break;
-
 		case AddPayee_VerifyAddPayeeReceipt:
 			AddPayee.get().verifyAddPayeeReceipt();
 			break;
@@ -4152,11 +4164,15 @@ public class EventCase {
 		case Login_VerifyAllRememberedIDsDeleted:
 			Login.get().verifyAllRememberedIDsDeleted();
 			break;
-			
+
 		case Login_VerifyRememberedIDs:
 			Login.get().verifyRememberedIDs();
 			break;
-			
+
+		case Login_VerifyLoginMFA:
+			Login.get().verifyLoginMFA();
+			break;
+
 		// Manage Payees
 		case ManagePayees_Button:
 			Bills.get().clickManagePayees();
@@ -4192,6 +4208,10 @@ public class EventCase {
 
 		case ManagePayee_VerifyPayeeEdited:
 			Manage_Payee.get().verifyPayeeEdited();
+			break;
+
+		case ManagePayee_EditPayeeDescription:
+			Manage_Payee.get().editPayeeDescription();
 			break;
 
 		// Mobile Payment
