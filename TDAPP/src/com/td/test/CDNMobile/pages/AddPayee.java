@@ -20,13 +20,6 @@ public class AddPayee extends _CommonPage {
 
 	private static AddPayee AddPayee;
 
-	@iOSFindBy(xpath = "//*[@label='Done' or @label='完成']")
-	private MobileElement done;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progressBar;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Search for Canadian payees']")
 	private MobileElement searchForCanadianPayee;
 
@@ -402,13 +395,13 @@ public class AddPayee extends _CommonPage {
 						"//XCUIElementTypeLink[contains(@label, '" + getTestdata("Payee").toUpperCase() + "')]",
 						"click payee");
 				payee.click();
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
 						+ mobileAction.getAppString("add_us_payee_title") + "']", "Add U.S. Payee title");
 			} else {
 				final WebElement payee = mobileAction.verifyWebElementUsingXPath("//a[@id='result0']", "click payee");
 				payee.click();
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction
 						.verifyElementUsingXPath(
@@ -437,13 +430,13 @@ public class AddPayee extends _CommonPage {
 						"//XCUIElementTypeButton[contains(@label, '" + getTestdata("Payee").toUpperCase() + "')]",
 						"click payee");
 				payee.click();
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
 						+ mobileAction.getAppString("add_cdn_payee_title") + "']", "Add Canadian Payee title");
 			} else {
 				final WebElement payee = mobileAction.verifyWebElementUsingXPath("//a[@id='result0']", "click payee");
 				payee.click();
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction
 						.verifyElementUsingXPath(
@@ -543,7 +536,7 @@ public class AddPayee extends _CommonPage {
 				continueButton.click();
 				continueButton.click();
 				continueButton.click();
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
@@ -658,7 +651,7 @@ public class AddPayee extends _CommonPage {
 				final WebElement addPayeeButton = (WebElement) (CL.GetAppiumDriver()).findElement(By.id("btn"));
 				mobileAction.verifyElementIsDisplayed(addPayeeButton, "Add Payee button");
 				addPayeeButton.click();
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				Thread.sleep(25000);
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.verifyElementUsingXPath(
@@ -704,7 +697,7 @@ public class AddPayee extends _CommonPage {
 				final WebElement searchForPayee = mobileAction
 						.verifyWebElementUsingXPath("//input[@ng-model='searchText']", "Search for payee");
 				searchForPayee.sendKeys(getTestdata("Payee"));
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 			} catch (Exception e) {
 				try {
 					// Switch back to native to get proper screenshots

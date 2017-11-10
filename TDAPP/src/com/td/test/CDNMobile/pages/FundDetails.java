@@ -46,10 +46,6 @@ public class FundDetails extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[@index='5']/android.widget.TextView")
 	private MobileElement footnote_mimholding_fee;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/fund_category']")
 	private MobileElement fund_category;
@@ -117,7 +113,7 @@ public class FundDetails extends _CommonPage {
 						"Purchase");
 			}
 			mobileAction.FuncClick(Purchase, "Purchase");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (IOException | NoSuchElementException | InterruptedException e) {
 			System.err.println("TestCase has failed.");

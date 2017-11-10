@@ -109,8 +109,6 @@ public class MobileDeposit extends _CommonPage {
 
 	private MobileElement validation_SixthLine;
 
-	String progressBar = "//android.widget.TextView[@resource-id='com.td:id/ProgressBar_TextView']";
-
 	String mobile_Header_value = "Mobile Deposit";
 
 	public synchronized static MobileDeposit get() {
@@ -186,7 +184,7 @@ public class MobileDeposit extends _CommonPage {
 
 		Decorator();
 		try {
-			mobileAction.waitForElementToDisappear(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.verifyElementIsDisplayed(mobile_Deposit_Header, mobile_Header_value);
 
 			mobileAction.verifyElementIsPresent(validation_FirstLine);
@@ -629,7 +627,7 @@ public class MobileDeposit extends _CommonPage {
 						"//android.widget.TextView[@resource-id='com.td:id/mobile_deposit_receipt_account_name' and @index='0']",
 						"Cheque to Select");
 				chequeToSelect.click();
-				mobileAction.waitForElementToDisappear(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
 								+ mobileAction.getAppString("ActionBar_MobileDepositReceipt") + "']",

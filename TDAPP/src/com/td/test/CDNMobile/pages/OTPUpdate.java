@@ -125,7 +125,7 @@ public class OTPUpdate extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@FindBy(xpath = "(//span[@ng-click='spc.deleteRecord($index)' and @tabindex='0'])[2]")
 	private WebElement deletePhone2UpdateButton;
-	
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Change Email') or contains(@label,'Modifier l’adresse courriel') or contains(@label,'更改邮箱地址') or contains(@label,'變更收件箱地址') ]")
 	@FindBy(xpath = "//div[contains(@ng-click,'enter-security-email')]")
 	private WebElement changeEmailUpdateButton;
@@ -163,7 +163,6 @@ public class OTPUpdate extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "android:id/message")
 	private MobileElement deletePhoneFailMessage;
-
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//a[@ng-click='sp.testPhone(phone)' and @tabindex='0']")
@@ -257,10 +256,9 @@ public class OTPUpdate extends _CommonPage {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 			}
 			mobileAction.FuncClick(deletePhone2UpdateButton, "Delete first phone number");
-			
+
 			mobileAction.switchAppiumContext("NATIVE_APP");
 			mobileAction.FuncClick(confirmButton, "Confirm Delete phone number");
-
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -805,7 +803,7 @@ public class OTPUpdate extends _CommonPage {
 
 			mobileAction.FuncClick(deletePhoneOKButton, "Cannot delete phone OK button");
 			mobileAction.sleep(3000);
-			
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -825,9 +823,9 @@ public class OTPUpdate extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 			}
-			
+
 			mobileAction.verifyElementNotPresent(deletePhone2UpdateButton, "2nd phone Deleted");
-			
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -842,7 +840,6 @@ public class OTPUpdate extends _CommonPage {
 
 	}
 
-		
 	public void verifyCorrectSecurityCode() {
 		Decorator();
 		try {

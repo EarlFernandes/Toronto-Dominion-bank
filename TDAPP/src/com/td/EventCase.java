@@ -136,7 +136,7 @@ public class EventCase {
 
 		ClickMenu, ClickMenu_French, ClickMenuHome, clickMenuTrade, Confirm_order, Confirm_order_French, ClickPrivacy, ClickSave, ClickPhoneNumber, ClickClearText, ClickAddressDetail, ClickPopupGoBackButton,
 
-		ConfirmOrderCancel, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, ChangeDefaultCard, CardDetails_deleteicon, ConfirmPayee_InvalidAmount, EditEmailAddressWithInvalidChar,
+		ConfirmOrderCancel,ValidateChangeConfirmOrderBuy_Sell, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, ChangeDefaultCard, CardDetails_deleteicon, ConfirmPayee_InvalidAmount, EditEmailAddressWithInvalidChar,
 
 		Dashboard_Authentication, Dashboard_UnAuthentication, selectFirstLocation,
 
@@ -146,7 +146,7 @@ public class EventCase {
 
 		getProfileInformation, GetEmailAndPhoneNumber, ClickFeedback, ClickContactUs_CF, VerifyMoodSelectorScreen, VerifyEmotionsAnimateFromTopToBottom, ClickGreatLink, VerifyPostSurveyScreen, ClickCouldvebeenBetterLink, ClickItwasntWorkingLink, ClickBackButton, VerifyHomePageDashBoard, ClickContactUsFromHomePage, ClickSendFeedbackNow, VerifyRateUsOnGooglePlayButton, VerifyGooglePlayRatePage, ClickBackFromPostSurvey, VerifyContactUsPageHeader,
 
-		FlyOut_HOME, Flyout_Location, Fill_OptionOrder, HoldingDetails_click_BuyButton, HoldingDetails_verify_Account_CADCash, HoldingDetails_verify_Account_US_MarginShort,
+		FlyOut_HOME, Flyout_Location, Fill_OptionOrder, HoldingDetails_click_BuyButton,HoldingDetails_Verify_Account_CADMargin, HoldingDetails_verify_Account_CADCash, HoldingDetails_verify_Account_US_MarginShort,
 
 		HomeScreen_ClickAccounts, HomeScreen_ClickBills, HomeScreen_ClickDeposit, HomeScreen_clickInvestingFromHamburger, HomeScreen_ClickMarkets, HomeScreen_ClickQuickAccess, HomeScreen_ClickTrade, HomeScreen_clickTradeDashboard, HomeScreen_ClickTransfers, HomeScreen_ClickTransfersFrench, HomeScreen_clickWatchLists, HomeScreen_Investing, HomeScreen_Location_Details, HomeScreen_Transfer_Button, HomeScreen_WatchLists, HomeScreen_PayNow, Homescreen_ApplePay, HomeScreen_ClickTDMobilePayment,
 
@@ -166,7 +166,7 @@ public class EventCase {
 
 		NavigationBackToProfileandSettingPage, NavigationToHomePage,
 
-		OpenApp, OrderDetails_CancelOrder, OrderDetails_clickChangeorder, OrderDetailsLimitPrice, OrderDetailsPage_orderConfirmDetails, OrderDetailsPage_verifyStockChangeorderConfirmScreen, OrderDetailsTriggerPrice, OrderReciept_CancelOrderReceipt, OrderReciept_French, OrderReciept_orderdetailMutualfund, OrderReciept_orderDetails, OrderReciept_orders, OrderReciept_OrdersIcon, OrderReciept_ordertab, OrderReciept_updatemsg, OrderReciept_verifyOrderScreen, Ordertype_Cancel, OptionOrderChangeQuantity, Options_verifyOptionsForNewOrder, Options_Changeprice, Options_ChangeGoodTil, Options_CancelOrder, Options_CancelOrderConfirmScreen, Options_VerifytradingPassword, Options_Verifybackbutton, Options_VerifyImportantInformation, Options_VerifyCancelReceipt,
+		OpenApp, OrderDetails_CancelOrder, OrderDetails_clickChangeorder, OrderDetailsLimitPrice, OrderDetailsPage_orderConfirmDetails, OrderDetailsPage_verifyStockChangeorderConfirmScreen, OrderDetailsTriggerPrice, OrderReciept_CancelOrderReceipt, OrderReciept_French, OrderReciept_orderdetailMutualfund, OrderReciept_orderDetails, OrderReciept_orders, OrderReciept_OrdersIcon, OrderReciept_ordertab, OrderReciept_updatemsg, OrderReciept_verifyOrderScreen,VerifyTradePage, Ordertype_Cancel, OptionOrderChangeQuantity, Options_verifyOptionsForNewOrder, Options_Changeprice, Options_ChangeGoodTil, Options_CancelOrder, Options_CancelOrderConfirmScreen, Options_VerifytradingPassword, Options_Verifybackbutton, Options_VerifyImportantInformation, Options_VerifyCancelReceipt,
 
 		Pay_US_bill_From_US_Account, Pay_US_bill_FromCanada_Account, PayBill_Canada_Button, PayBill_US_Button, PayBill_VerifyAddCanadianPayeeBtn, PayBillCanada_Add_Canadian_Payee, PayCanada_NegativeTestingBillPayment, PayCanadaBill_Post_Dated, PayCanadaBillP_Pay_Candadian_Bill, PayCanadianBill_InvalidAmount,
 
@@ -174,7 +174,7 @@ public class EventCase {
 
 		PermissibleTransfer, Preferences_Update_Question, PendingTransfer_Cancel, PlaceHolderText, QuickAccess, SearchPage_searchBar, Select_Account, SenderList_Cancel, Session_expired, SetupWalletPasscode,
 
-		TDDirectInvestingContact, Trade_changeAccountTypeLongtoShortFre_French, Trade_clickAction, Trade_clickCross, Trade_clickFundFactLink, Trade_clickMutualFunds, Trade_clickMutualPreviewOrder, Trade_clickOnAgree, Trade_clickOnPreviewOrderBtn, Trade_clickOptions, Trade_clickOrderType, Trade_clickOrderType_French, Trade_clickQuantity, Trade_clickStockETFs, Trade_clickSymbol, Trade_clickSymbol_French, Trade_confirmCancelOrder, Trade_ConfirmSendOrder, Trade_createMutualfund, Trade_Details, Trade_enterAmount, Trade_enterAndSearch, Trade_enterTradingPassword, Trade_includesComission, Trade_Limit, Trade_nosearch, Trade_placeStockOrder, Trade_selectAccount, Trade_selectAcknowledgement, Trade_selectDividendOption, Trade_selectMutualQuantity, Trade_selectMutualSymbol, Trade_selectQuantity, Trade_sendOrder, Trade_trade_account, Trade_Trigger, Trade_verifyMutualConfirmDetails, Trade_verify_MutualConfirmDetails, Tab_OrderReciept_ordermenu, Trade_verifymutualconfirmsell, Trade_verifyRelaventMatchInResult, Trade_verifysearchbar, Trade_verifySendOrderDisplayed, Trade_verifySendOrderState, Trade_verifySuccessMessage, Trade_verifySwitchMutualConfirmDetails, Trade_verifyMutualFundDetails, Trade_verifySymbol, Trade_verifyTrade, Trade_verifyTradeActionShortAccountFre_French, TradeAccount, TradeAccount_French, TradeAction, TradeAction_French, TradeAgree, TradeAgree_French, TradeDate, TradeGoodTill, TradeGoodTill_French, TradeHeader, TradeIcon, TradeLimitPrice, TradeMarginAccount, TradePreviewOrder, TradePreviewOrder_French, TradePrice, TradePrice_French, TradeQuantity, TradeQuantity_French, TradeShareHolder, TradeTriggerDelta, TradeTriggerPrice, TradeTriggerPrice_French, TradingPassword, TradingPassword_French,
+		TDDirectInvestingContact, Trade_changeAccountTypeLongtoShortFre_French, Trade_clickAction, Trade_clickCross, Trade_clickFundFactLink, Trade_clickMutualFunds, Trade_clickMutualPreviewOrder, Trade_clickOnAgree, Trade_clickOnPreviewOrderBtn, Trade_clickOptions, Trade_clickOrderType, Trade_clickOrderType_French, Trade_clickQuantity, Trade_clickStockETFs, Trade_clickSymbol, Trade_clickSymbol_French, Trade_confirmCancelOrder, Trade_ConfirmSendOrder, Trade_createMutualfund, Trade_Details, Trade_enterAmount, Trade_enterAndSearch, Trade_enterTradingPassword, Trade_includesComission, Trade_Limit, Trade_nosearch, Trade_placeStockOrder, Trade_selectAccount, Trade_selectAcknowledgement, Trade_selectDividendOption, Trade_selectMutualQuantity, Trade_selectMutualSymbol, Trade_selectQuantity, Trade_sendOrder, Trade_trade_account, Trade_Trigger, Trade_verifyMutualConfirmDetails, Trade_verify_MutualConfirmDetails, Tab_OrderReciept_ordermenu, Trade_verifymutualconfirmsell, Trade_verifyRelaventMatchInResult, Trade_verifysearchbar, Trade_verifySendOrderDisplayed, Trade_verifySendOrderState, Trade_verifySuccessMessage, Trade_verifySwitchMutualConfirmDetails, Trade_verifyMutualFundDetails, Trade_verifySymbol, Trade_verifyTrade, Trade_verifyTradeActionShortAccountFre_French, TradeAccount,changeAccount, TradeAccount_French, TradeAction, TradeAction_French, TradeAgree, TradeAgree_French, TradeDate, TradeGoodTill, TradeGoodTill_French, TradeHeader, TradeIcon, TradeLimitPrice, TradeMarginAccount, TradePreviewOrder, TradePreviewOrder_French, TradePrice, TradePrice_French, TradeQuantity, TradeQuantity_French, TradeShareHolder, TradeTriggerDelta, TradeTriggerPrice, TradeTriggerPrice_French, TradingPassword, TradingPassword_French,
 
 		Trans_TFSA_To_Othr_Accounts, Transfer_InteracTransfer, TransferHeader, Transfers, Transfers_Click_Between_My_Accounts, Transfers_clickInterac_e_Transfer, Transfers_clickPendingInterac_e_Transfer, Transfers_ManageRecipients,
 
@@ -201,7 +201,7 @@ public class EventCase {
 		Accounts_SelectAccount, AccountsCredit_ClickPayBill, AccountsCredit_verifyLastTranaction, AccountsCredit_clickLastTranaction, Transaction_VerifyTransac, AccountsCredit_clickSummaryTab, AccountsCredit_VerifySummaryDetails, AccountsCredit_clickStatementTab, AccountsCredit_VeifyStatementDetails, StatementBalance_VerifyBalanceDetails, Bill_PayCanada_verifyCurrentBalance, Bill_PayCanada_PayBill, AccountsCredit_ClickTransfers
 
 		// trade,
-		, clickChangeorder_TSM_to_TSL, TradeTrailingStopMarket, TradeStopMarket, MenumenuTradePresent, TradeStopMarketSell, TradeLimitDAYEXT, ClickWatchList, TradeStopLimit, OrderRecieptValidateBuy, Investing_ClickPlacedOrder, OrderDetails_Changeorder, stocksVerifyWatchlists, TSL_ClickBackButton, TradeMarket, clickChangeorder_LimitToMarket, TradeLimit, TradeLimitAndTriggerDelta, TradeOrderType, TradeSymbol, TradeTrailingStopLimit, ConfirmOrderValidateBuy, verifyEmptyWatchList, ClickOrders, clickChangeorder_SM_to_SL, verifyShareHolder, confirmOrder_ClickBack, verifyBuyToCover, TradeStopLimitSell, ConfirmOrderDoNotCancel, ConfirmOrderImpInformation, ClickHoldingAndSymbol, changeOrderLimitDayToDayEXT,
+		, clickChangeorder_TSM_to_TSL, TradeTrailingStopMarket, TradeStopMarket, MenumenuTradePresent, TradeStopMarketSell, TradeLimitDAYEXT, ClickWatchList, TradeStopLimit, OrderRecieptValidateBuy,VerifyOrder_flyoutQuicklnk, Investing_ClickPlacedOrder, OrderDetails_Changeorder,OrderDetails_VerifyChangeorder,stocksVerifyWatchlists, TradeMarket, clickChangeorder_LimitToMarket, TradeLimit, TradeLimitAndTriggerDelta, TradeOrderType, TradeSymbol, TradeTrailingStopLimit, ConfirmOrderValidateBuy, verifyEmptyWatchList, ClickOrders, clickChangeorder_SM_to_SL, verifyShareHolder, confirmOrder_ClickBack, verifyBuyToCover, TradeStopLimitSell, ConfirmOrderDoNotCancel, ConfirmOrderImpInformation, ClickHoldingAndSymbol, changeOrderLimitDayToDayEXT,changeOrderQuantity,
 
 		// MIT Multi-Leg
 
@@ -488,6 +488,10 @@ public class EventCase {
 			ConfirmOrder.get().verifycancel_cdnmargin_buy_triggerdelta();
 			break;
 
+		case ValidateChangeConfirmOrderBuy_Sell:
+			ConfirmOrder.get().validateChangeConfirmOrder();
+			break;
+			
 		case ConfirmOrderSendOrder:
 			ConfirmOrder.get().clicksendorder();
 			break;
@@ -505,7 +509,7 @@ public class EventCase {
 			break;
 
 		case HoldingDetails_verify_Account_US_MarginShort:
-			HoldingDetails.get().verify_Account_CADCash();
+			HoldingDetails.get().verify_Account_US_MarginShort();
 			break;
 
 		case Investing_clickHoldings:
@@ -1506,6 +1510,10 @@ public class EventCase {
 		case Ordertype_Cancel:
 			Trade.get().cancel_ordertype();
 			break;
+			
+		case VerifyTradePage:
+			Trade.get().verifyTrade();
+			break;	
 
 		case Cancel:
 			// Trade.get().cancelbutton();
@@ -1832,7 +1840,11 @@ public class EventCase {
 		case TradeAccount:
 			Trade.get().selectAccount();
 			break;
-
+			
+		case changeAccount:
+			Trade.get().change_Account();
+			break;
+			
 		case TradeAction:
 			Trade.get().selectAction();
 			break;
@@ -1943,6 +1955,11 @@ public class EventCase {
 		case OrderRecieptValidateBuy:
 			OrderReciept.get().validateConfirmOrderBuy();
 			break;
+			
+			
+		case VerifyOrder_flyoutQuicklnk:
+			OrderReciept.get().verifyOrder_Flyout_quicklnk();
+			break;
 
 		case clickChangeorder_MarketToLimit:
 			Trade.get().changeOrderMarketToLimit();
@@ -1967,6 +1984,10 @@ public class EventCase {
 		case OrderDetails_Changeorder:
 			OrderDetails.get().performChangeorder();
 			break;
+			
+		case OrderDetails_VerifyChangeorder:
+			OrderDetails.get().VerifyChangeorder();
+			break;
 
 		/*
 		 * case verifyEmptyWatchList: Investing.get().verifyEmptyWatchLists();
@@ -1984,11 +2005,7 @@ public class EventCase {
 		case verifyShareHolder:
 			Trade.get().verifyShareHolder();
 			break;
-
-		case TSL_ClickBackButton:
-			Trade.get().Tsl_ClickBackButton();
-			break;
-
+			
 		case confirmOrder_ClickBack:
 			ConfirmOrder.get().confirmOrderClickBack();
 			break;
@@ -2003,6 +2020,10 @@ public class EventCase {
 
 		case changeOrderLimitDayToDayEXT:
 			Trade.get().changeOrderLimitDayToDayEXT();
+			break;
+			
+		case changeOrderQuantity:
+			Trade.get().ChangeQuantity();
 			break;
 
 		// Mutual Funds
@@ -2286,7 +2307,7 @@ public class EventCase {
 			break;
 
 		case VerifyPopUpWithCancelButton:
-			Profile.get().VerifyPopUpWithCancelButton();
+			Popupwindow.get().VerifyPopUpWithCancelButton();
 			break;
 
 		case EditEmailAddressWithoutSave:
@@ -2342,7 +2363,7 @@ public class EventCase {
 			break;
 
 		case ClickPopupGoBackButton:
-			Profile.get().ClickPopupGoBackButton();
+			Popupwindow.get().ClickPopupGoBackButton();
 			break;
 
 		case VerifyPhoneEmailNotChanged:

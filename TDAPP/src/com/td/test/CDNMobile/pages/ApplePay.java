@@ -24,15 +24,6 @@ public class ApplePay extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Tap a Card to Add to Apple Pay']")
 	private MobileElement tapCardHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
-
-	// @iOSFindBy(xpath =
-	// "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeImage[@name='TDMobilePayment.bundle/card_TEF_E']")
-	// private MobileElement FirstCard;
-	//
-
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeImage")
 	private MobileElement firstCard;
 
@@ -44,9 +35,6 @@ public class ApplePay extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[4]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeImage")
 	private MobileElement fourthCard;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
-	private MobileElement doneButton;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Yourcard is ready to use with Apple Pay.')]")
 	private MobileElement cardAddedMessage;
@@ -126,7 +114,7 @@ public class ApplePay extends _CommonPage {
 
 	public void infoPage() {
 		Decorator();
-		mobileAction.waitForElementToVanish(progressBar);
+		mobileAction.waitProgressBarVanish();
 		try {
 			if (mobileAction.verifyElementIsPresent(continueButton)) {
 				mobileAction.FuncClick(continueButton, "Continue");
@@ -167,15 +155,15 @@ public class ApplePay extends _CommonPage {
 		infoPage();
 		Decorator();
 		try {
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(firstCard, "Select the card");
 
 			mobileAction.FuncClick(setUpPayButton, "Set Up Pay");
 
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClickDone();
 
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 			mobileAction.FuncClick(payButton, "Pay");
 		} catch (NoSuchElementException e) {
@@ -197,12 +185,12 @@ public class ApplePay extends _CommonPage {
 
 		Decorator();
 		try {
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(firstCard, "Select the card");
 			mobileAction.FuncClick(setUpPayButton, "Set Up Pay");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClickDone();
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(defaultCard, "Default Card");
 			mobileAction.FuncClick(payButton, "Pay");
 		} catch (NoSuchElementException e) {
@@ -225,7 +213,7 @@ public class ApplePay extends _CommonPage {
 		infoPage();
 		Decorator();
 		try {
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.verifyElementIsDisplayed(noEligibleCardMessage, "No Eligible card");
 
 		} catch (NoSuchElementException e) {
@@ -246,7 +234,7 @@ public class ApplePay extends _CommonPage {
 		infoPage();
 		Decorator();
 		try {
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(firstCard, "Select the card");
 			mobileAction.verifyElementTextContains(defaultCardName, "Aeroplane");
 
@@ -271,7 +259,7 @@ public class ApplePay extends _CommonPage {
 		infoPage();
 		Decorator();
 		try {
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(firstCard, "Select the card");
 			mobileAction.verifyElementTextContains(defaultCardName, "Business");
 
@@ -296,7 +284,7 @@ public class ApplePay extends _CommonPage {
 		infoPage();
 		Decorator();
 		try {
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(firstCard, "Select the card");
 
 			mobileAction.verifyElementIsDisplayed(defaultCard, "Default Card");
@@ -321,7 +309,7 @@ public class ApplePay extends _CommonPage {
 		infoPage();
 		Decorator();
 		try {
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(addAllCardsButton, "Select the card");
 
 		} catch (NoSuchElementException e) {
@@ -345,7 +333,7 @@ public class ApplePay extends _CommonPage {
 		infoPage();
 		Decorator();
 		try {
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.verifyElementIsDisplayed(tapCardHeader, "Select the card");
 
 		} catch (NoSuchElementException e) {

@@ -43,11 +43,7 @@ public class TourPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/acceptButton']")
 	private MobileElement acceptBtn;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progresssBar;
-
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Open TD MySpend' or @label='Acceptez']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Open TD MySpend' or @label='Acceptez']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/button']")
 	private MobileElement openTDMySpend;
 
@@ -65,26 +61,30 @@ public class TourPage extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='OK']")
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'OK')]")
 	private MobileElement okBtn;
-	
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Like to Send You Notifications')]")
-	private MobileElement sendNotification;
-	
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Allow']")
+
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`name=='Save' or name=='Enregistrer'`]")
+	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Save') or contains(@content-desc,'Enregistrer')]")
+	private MobileElement saveBtn;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Allow' or @label='Autoriser']")
 	private MobileElement allowBtn;
-	
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Like to Send You Notifications') or contains(@label,'à vous envoyer des notifications')]")
+	private MobileElement sendNotification;
+
 	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Username or Access Card') or contains(@value,'Username or Access Card') or contains(@label,'Access Card or Username') or @name='LOGIN_USERNAME']")
 	private MobileElement username;
-	
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeSecureTextField[@name='Password']")
 	private MobileElement password;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Login']")
 	private MobileElement login;
-	
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeButton[1]")
 	private MobileElement select_accesscard;
-	
-	@iOSXCUITFindBy(xpath= "//XCUIElementTypeStaticText[@name='Add Username or Access Card']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Add Username or Access Card']")
 	private MobileElement addUser;
 
 	private void Decorator() {
@@ -113,31 +113,14 @@ public class TourPage extends _CommonPage {
 		try {
 			mobileAction.FuncClick(connectBtn, "Connect button");
 
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -159,13 +142,13 @@ public class TourPage extends _CommonPage {
 		Decorator();
 
 		try {
-			if(mobileAction.verifyElementIsPresent(continueBtn)){
+			if (mobileAction.verifyElementIsPresent(continueBtn)) {
 				mobileAction.FuncClick(continueBtn, "Continue");
 				mobileAction.FuncClick(continueBtn, "Continue");
 				mobileAction.FuncClick(getStartedBtn, "Get Started");
-				mobileAction.waitForElementToVanish(progresssBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(acceptBtn, "Accept");
-				mobileAction.waitForElementToVanish(progresssBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(openTDMySpend, "Open TD My Spend");
 			}
 			mobileAction.FunctionSwipe("Left", 200, 200);
@@ -178,43 +161,29 @@ public class TourPage extends _CommonPage {
 			if (mobileAction.verifyElementIsPresent(fxMsgHeader)) {
 				mobileAction.FuncClick(okBtn, "OK");
 			}
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
-				if(mobileAction.verifyElementIsPresent(sendNotification)){
+
+			if (mobileAction.verifyElementIsPresent(saveBtn)) {
+				mobileAction.FuncClick(saveBtn, "Save");
+			}
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				if (mobileAction.verifyElementIsPresent(sendNotification)) {
 					mobileAction.FuncClick(allowBtn, "Allow");
-			}
 				}
+			}
 
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-
 	}
-	
+
 	/**
-	 * This method will login into mySpend 
+	 * This method will login into mySpend
 	 * 
 	 * 
 	 * @throws InterruptedException
@@ -230,18 +199,22 @@ public class TourPage extends _CommonPage {
 		Decorator();
 
 		try {
-			
-			if(mobileAction.verifyElementIsPresent(select_accesscard)){
+
+			if (mobileAction.verifyElementIsPresent(select_accesscard)) {
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				mobileAction.FuncClick(addUser, "AddUser");
 			}
 			mobileAction.FuncSendKeys(username, CL.getTestDataInstance().Userid);
 			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-			Thread.sleep(3000);
 			mobileAction.FuncClick(login, "Login");
 
-		}catch (Exception e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 

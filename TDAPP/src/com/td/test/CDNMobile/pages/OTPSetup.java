@@ -220,7 +220,7 @@ public class OTPSetup extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeToolbar[1]/XCUIElementTypeButton[3]")
 	@AndroidFindBy(id = "TBD")
 	private MobileElement doneKey;
-	
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[3]")
 	@FindBy(id = "TBD")
 	private WebElement passwordGoButton;
@@ -783,7 +783,7 @@ public class OTPSetup extends _CommonPage {
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
-				
+
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.FuncClick(passwordGoButton, "Password GO button");
 
@@ -791,8 +791,8 @@ public class OTPSetup extends _CommonPage {
 
 				String tempPassword = this.getTestdata("Password");
 				mobileAction.FuncClick(tempPasswordField, "Temporary Password field");
-				mobileAction.FuncSendKeys(tempPasswordField, tempPassword);	
-				//need to use separate key to hide keyboard
+				mobileAction.FuncSendKeys(tempPasswordField, tempPassword);
+				// need to use separate key to hide keyboard
 				mobileAction.FuncClick(doneKey, "Done keyboard button");
 
 				String newPassword = this.getTestdata("Env");

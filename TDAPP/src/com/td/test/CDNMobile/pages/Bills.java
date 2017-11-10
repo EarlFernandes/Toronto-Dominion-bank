@@ -86,10 +86,6 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Scheduled Payments']")
 	private MobileElement scheduled_Payments_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement menu;
-
 	@iOSFindBy(accessibility = "PAYBILL_VIEW_DATE_VALUE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtDate']")
 	private MobileElement datePicker;
@@ -100,10 +96,6 @@ public class Bills extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/upcomingbill_date_value']")
 	private MobileElement upcomingBillDate;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progrees_bar;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/headerDate']")
 	private List<MobileElement> dateHeaders;
@@ -203,7 +195,7 @@ public class Bills extends _CommonPage {
 
 			initElementPayCanadaBill();
 			mobileAction.FuncClick(pay_Cananda_Bill, "Pay Canada Bill");
-			mobileAction.waitForElementToVanish(progrees_bar);
+			mobileAction.waitProgressBarVanish();
 			Thread.sleep(2000);
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -242,7 +234,7 @@ public class Bills extends _CommonPage {
 			Decorator();
 			initElementManagePayees();
 			mobileAction.FuncClick(manage_Payees, "Manage Payees");
-			mobileAction.waitForElementToVanish(progrees_bar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -315,7 +307,7 @@ public class Bills extends _CommonPage {
 			Decorator();
 			initElementPayUSBill();
 			mobileAction.FuncClick(pay_US_Bills, "Pay US Bills");
-			mobileAction.waitForElementToVanish(progrees_bar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -352,7 +344,7 @@ public class Bills extends _CommonPage {
 		try {
 			initElementScheduledPayments();
 			mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
-			mobileAction.waitForElementToVanish(progrees_bar);
+			mobileAction.waitProgressBarVanish();
 			// mobileAction.verifyElementIsDisplayed(scheduledPayments,"No
 			// Upcoming Bills to display in this account");
 		} catch (NoSuchElementException e) {
@@ -655,7 +647,7 @@ public class Bills extends _CommonPage {
 			initElementScheduledPayments();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
-				mobileAction.waitForElementToVanish(progrees_bar);
+				mobileAction.waitProgressBarVanish();
 				MobileElement header = mobileAction
 						.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE']", "header");
 				mobileAction.verifyTextEquality(header.getText(),
@@ -667,7 +659,7 @@ public class Bills extends _CommonPage {
 
 			} else {
 				mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
-				mobileAction.waitForElementToVanish(progrees_bar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction
 						.verifyElementUsingXPath(
 								"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"

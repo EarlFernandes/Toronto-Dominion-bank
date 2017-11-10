@@ -32,10 +32,6 @@ public class Confirm_Payee extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Payee']")
 	private MobileElement addPayee_Btn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Pay This Payee']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Pay This Payee']")
 	private MobileElement payThisPayee;
@@ -108,12 +104,12 @@ public class Confirm_Payee extends _CommonPage {
 			// mobileAction.verifyElementIsDisplayed(access_card, "Access
 			// Card");
 			mobileAction.FuncClick(addPayee_Btn, "AddPayee");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 			// mobileAction.verifyElementIsDisplayed(successMsg, "Thank You!");
 
 			mobileAction.FuncSwipeWhileElementNotFound(payThisPayee, true, 5, "up");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			if (mobileAction.verifyElementIsPresent(payBill_Header)) {
 				String addedPayee;
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -170,7 +166,7 @@ public class Confirm_Payee extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(confirm_Header, "Confirm");
 			mobileAction.FuncClick(pay_Bill, "Pay Bill");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			String err = mobileAction.getValue(errorMsg);
 			mobileAction.verifyElementIsDisplayed(errorMsg, err);
 

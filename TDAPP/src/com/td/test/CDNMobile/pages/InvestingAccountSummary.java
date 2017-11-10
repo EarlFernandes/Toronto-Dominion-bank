@@ -24,8 +24,6 @@ public class InvestingAccountSummary extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/balancesTab' and @text='Balances']")
 	private MobileElement llbBalance;
 
-	String progressBar = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']";
-
 	String iOSProgressBar = "//XCUIElementTypeActivityIndicator[@label='In progress' or @label='En cours']";
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/gainLoss']/following-sibling::android.widget.TextView")
@@ -221,11 +219,11 @@ public class InvestingAccountSummary extends _CommonPage {
 							break;
 						} else {
 							mobileAction.FunctionSwipe("left", 2000, 30);
-							mobileAction.waitForElementToDisappear(progressBar);
+							mobileAction.waitProgressBarVanish();
 						}
 					} catch (NoSuchElementException e) {
 						mobileAction.FunctionSwipe("left", 2000, 30);
-						mobileAction.waitForElementToDisappear(progressBar);
+						mobileAction.waitProgressBarVanish();
 					}
 				}
 				flag = true;
@@ -241,11 +239,11 @@ public class InvestingAccountSummary extends _CommonPage {
 							break;
 						} else {
 							mobileAction.FunctionSwipe("right", 2000, 30);
-							mobileAction.waitForElementToDisappear(progressBar);
+							mobileAction.waitProgressBarVanish();
 						}
 					} catch (NoSuchElementException e) {
 						mobileAction.FunctionSwipe("right", 2000, 30);
-						mobileAction.waitForElementToDisappear(progressBar);
+						mobileAction.waitProgressBarVanish();
 					}
 				}
 
@@ -798,8 +796,9 @@ public class InvestingAccountSummary extends _CommonPage {
 
 				mobileAction.verifyDateFormat(CClastStatement.getText(), MobileAction2.TYPE_YYYY_MM_DD_RANGE);
 
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("statement_balance") + "']", "Statement Balance");
+				mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("statement_balance") + "']",
+						"Statement Balance");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_Minimum_Payment") + "']",
 						"Minimum payment");

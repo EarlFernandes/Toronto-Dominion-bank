@@ -21,10 +21,6 @@ public class Legal extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Legal']")
 	private MobileElement legal_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
-	private MobileElement back_Button;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Mobile Privacy, How we handle the information we collect when yo']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tvPrivacy' and @text='Mobile Privacy']")
 	private MobileElement mobile_Privacy;
@@ -79,11 +75,11 @@ public class Legal extends _CommonPage {
 
 			mobileAction.FuncClick(legal, "Click Legal");
 			mobileAction.verifyElementIsDisplayed(legal_Header, "Verifying Legal Page Header");
-			mobileAction.FuncClick(back_Button, "Back");
+			mobileAction.ClickBackButton();
 
 			mobileAction.FuncClick(termsofuse, "Click Terms Of Use");
 			mobileAction.verifyElementIsDisplayed(termsofuse_Header, "Verifying Terms Of Use");
-			mobileAction.FuncClick(back_Button, "Back");
+			mobileAction.ClickBackButton();
 
 			mobileAction.verifyElementIsDisplayed(mobile_Privacy, "Click Mobile Privacy");
 

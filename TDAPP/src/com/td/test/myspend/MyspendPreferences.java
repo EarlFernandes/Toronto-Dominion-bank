@@ -1,14 +1,20 @@
 package com.td.test.myspend;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+
+import com.td.test.CDNMobile.pages.HomeScreen;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -16,6 +22,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class MyspendPreferences extends com.td._CommonPage {
 
@@ -39,6 +46,21 @@ public class MyspendPreferences extends com.td._CommonPage {
 
 	@iOSFindBy(xpath = "//*[contains(@label,'Account Preferences') or contains(@label,'Paramètres du compte') or contains(@label,'Preferences') or contains(@label,'Préférences')]")
 	private MobileElement pageHeader;
+	
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[contains(@name,'Home') or contains(@name,'Accueil')])[2]")
+	private MobileElement homeBtn;
+	
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/easy_access']")
+	private MobileElement quickAccess;
+	
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up' and @index='0']")
+	private MobileElement menu;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD MySpend' or @label='Dépense TD']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='TD MySpend' or @text='Dépense TD')]")
+	private MobileElement TDMySpend;
 
 	@FindBy(xpath = "//*[contains(@ng-model,'isFWMOn')]")
 	private List<WebElement> onButtonsAndroid;
@@ -49,7 +71,7 @@ public class MyspendPreferences extends com.td._CommonPage {
 	@FindBy(xpath = "//*[text()='Account Preferences' or text()='Paramètres du compte' or text()='Preferences']")
 	private WebElement pageHeaderAndroid;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Active Accounts') or contains(@label,'Comptes Actifs')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Active Accounts') or contains(@label,'Comptes actifs')]")
 	private MobileElement activeAccounts;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Real Time Notifications') or contains(@label,'Avis en temps réel')]")
@@ -61,31 +83,52 @@ public class MyspendPreferences extends com.td._CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Notification Settings') or contains(@label,'Paramètres pour les avis')]")
 	private MobileElement notificationSettingsHeader;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeSwitch[(contains(@label,'Spending Notifications') or contains(@label,'Désactiver les avis sur les dépenses')) and @value='0']")
+	@iOSFindBy(xpath = "//XCUIElementTypeSwitch[(contains(@label,'Spending Notifications') or contains(@label,'les avis sur les dépenses')) and @value='0']")
 	private MobileElement spendingNotificationsBtnOff;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeSwitch[(contains(@label,'Spending Notifications') or contains(@label,'Désactiver les avis sur les dépenses')) and @value='1']")
+	@iOSFindBy(xpath = "//XCUIElementTypeSwitch[(contains(@label,'Spending Notifications') or contains(@label,'les avis sur les dépenses')) and @value='1']")
 	private MobileElement spendingNotificationsBtnOn;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeSwitch[(contains(@label,'Daily Digest Notifications') or contains(@label,'Désactiver les avis pour le sommaire quotidien')) and @value='0']")
+	@iOSFindBy(xpath = "//XCUIElementTypeSwitch[(contains(@label,'Daily Digest Notifications') or contains(@label,'les avis pour le sommaire quotidien')) and @value='0']")
 	private MobileElement dailyDigestNotificationsBtnOff;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeSwitch[(contains(@label,'Daily Digest Notifications') or contains(@label,'Désactiver les avis pour le sommaire quotidien')) and @value='1']")
+	@iOSFindBy(xpath = "//XCUIElementTypeSwitch[(contains(@label,'Daily Digest Notifications') or contains(@label,'les avis pour le sommaire quotidien')) and @value='1']")
 	private MobileElement dailyDigestNotificationsBtnOn;
 	
 	@iOSFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeStaticText[@label='Send Daily' or contains(@label,'Envoyer chaque jour')]/../following-sibling::XCUIElementTypeOther[1]/XCUIElementTypeOther")
 	private MobileElement sendDailyTime;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Send Daily' or contains(@label,'Envoyer chaque jour')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[(contains(@name,'Send Daily') or contains(@label,'Envoyer chaque jour')) and @enabled='true']")
+	private MobileElement sendDailyTimeEnabled;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[(contains(@name,'Send Daily') or contains(@label,'Envoyer chaque jour')) and @enabled='false']")
+	private MobileElement sendDailyTimeDisabled;
+	
+	@iOSFindBy(xpath = "//*[contains(@label,'Send Daily') or contains(@label,'Envoyer chaque jour')]")
 	private MobileElement sendDaily;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@name='SELECT ACCOUNTS' or contains(@label,'CHOISIR DES COMPTES')]/following-sibling::XCUIElementTypeOther[contains(@name,'ON')]")
+	private List<MobileElement> activeAccountsOn;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@name='SELECT ACCOUNTS' or contains(@label,'CHOISIR DES COMPTES')]/following-sibling::XCUIElementTypeOther[contains(@name,'OFF')]")
+	private List<MobileElement> activeAccountsOff;
+	
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`name=='Save' or name=='Enregistrer'`]")
+	private MobileElement saveBtn;
 	
 	@FindBy(xpath = "(//*[@id='firstMenuItem'])[1]")
 	private WebElement activeAccountsAndroid;
 	
-	@FindBy(xpath = "//*[contains(text(),'Real Time Notifications')]")
+	@FindBy(xpath = "(//*[@id='firstMenuItem'])[1]/*[3]")
+	private WebElement activeAccountsNoAndroid;
+	
+	@FindBy(xpath = "//*[contains(text(),'Real Time Notifications') or contains(@text(),'Avis en temps réel')]")
 	private WebElement realTimeNotificationsAndroid;
 	
-	@FindBy(xpath = "//*[contains(text(),'Daily Digest Notifications')]")
+	@FindBy(xpath = "//*[contains(text(),'Real Time Notifications') or contains(@text(),'Avis en temps réel')]/../*[3]")
+	private WebElement realTimeNotificationStatusAndroid;
+	
+	@FindBy(xpath = "//*[contains(text(),'Daily Digest Notifications') or contains(@text(),'Désactiver les avis pour le sommaire quotidien')]")
 	private WebElement dailyDigestNotificationsAndroid;
 	
 	@FindBy(xpath = "//*[@ng-model='notificationSettings.isNotifOn']")
@@ -100,24 +143,27 @@ public class MyspendPreferences extends com.td._CommonPage {
 	@FindBy(xpath = "//*[@ng-model='notificationSettings.isDailyDigestOff']")
 	private WebElement dailyDigestNotificationsBtnOffAndroid;
 	
-	@FindBy(xpath = "//*[contains(text(),'Notification Settings')]")
+	@FindBy(xpath = "//*[contains(text(),'Notification Settings') or contains(@text(),'Paramètres pour les avis')]")
 	private WebElement notificationSettingsHeaderAndroid;
 	
-	@FindBy(xpath = "//*[contains(text(),'Send Daily')]")
+	@FindBy(xpath = "//*[contains(text(),'Send Daily') or contains(text(),'Envoyer chaque jour')]")
 	private WebElement sendDailyAndroid;
 	
 	@FindBy(xpath = "//*[@ng-model='dailyNotifDate']")
 	private WebElement sendDailyTimeAndroid;
 	
-	@FindBy(xpath = "//*[contains(text(),'Active Accounts')]")
+	@FindBy(xpath = "//*[contains(text(),'Active Accounts') or contains(text(),'Comptes Actifs')]")
 	private WebElement activeAccountsHeaderAndroid;
 	
 	
 	@FindBy(xpath = "(//*[@ng-click='goMainPageBack()'])[1]")
 	private WebElement clickBackAndroid;
 	
-	@FindBy(xpath = "//*[contains(text(),'Save')]")
+	@FindBy(xpath = "//*[contains(text(),'Save') or contains(text(),'Enregistrer')]")
 	private WebElement saveBtnAndroid;
+	
+	@FindBy(xpath="(//*[@id='homeButton'])[2]")
+	private WebElement homeBtnAndroid;
 	
 
 	private void Decorator() {
@@ -146,21 +192,17 @@ public class MyspendPreferences extends com.td._CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementIsDisplayed(pageHeaderAndroid, "Preferences Page Header");
-			
 			} else {
 				mobileAction.verifyElementIsDisplayed(pageHeader, "Preferences Page Header");
 			}
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			e.printStackTrace();
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -201,31 +243,14 @@ public class MyspendPreferences extends com.td._CommonPage {
 				SideMenu.get().clickSpendingInsights();
 			}
 
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		}  catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -267,31 +292,14 @@ public class MyspendPreferences extends com.td._CommonPage {
 				SideMenu.get().clickSpendingInsights();
 			}
 
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
+		}  catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -324,23 +332,13 @@ public class MyspendPreferences extends com.td._CommonPage {
 				SpendingHistory.get().clickPreferencesLink();
 				enableAllAccounts();
 			}
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-
-				System.err.println("Failed to write in report.");
-			}
+		}  catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (Exception e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "Exception from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
@@ -360,13 +358,29 @@ public class MyspendPreferences extends com.td._CommonPage {
 	public void verifyPreferenceTabs() throws InterruptedException {
 
 		Decorator();
+		String accountText="";
+		 String accountTextReplaceSpace="";
+		 String[] accountTextSplit = null;
+		 
 
 		try {
 				if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-					
 					mobileAction.verifyElementIsDisplayed(activeAccountsAndroid, "Active Accounts");
+					
+					  accountText=activeAccountsNoAndroid.getText();
+					    String[] activeAccSize=accountText.split("/");
+					    int activeAcc=Integer.parseInt(activeAccSize[0]);
+					    
 					mobileAction.FuncClick(activeAccountsAndroid, "Active Accounts");
 					mobileAction.verifyElementIsDisplayed(activeAccountsHeaderAndroid, "Active Accounts");
+					
+					int onSize=activeAcc;
+				    if( activeAcc==onSize){
+				    	CL.GetReporting().FuncReport("Pass", "Active Accounts Verified: "+onSize+ "  Active Accounts");
+				    }else{
+				    	CL.GetReporting().FuncReport("Fail", "Active Acconts not verified");
+				    }
+					
 					CL.GetAppiumDriver().context("NATIVE_APP");
 					Spending_Insight.get().clickSideMenuButton();
 					
@@ -382,11 +396,33 @@ public class MyspendPreferences extends com.td._CommonPage {
 					CL.GetAppiumDriver().context("NATIVE_APP");
 					Spending_Insight.get().clickSideMenuButton();
 					
+				
 				}else{
 			
 					mobileAction.verifyElementIsDisplayed(activeAccounts, "Active Accounts");
+					
+				     accountText=activeAccounts.getText();
+				     accountTextReplaceSpace=accountText.replaceAll("\\s","");
+				     if(currentLocale.equalsIgnoreCase("EN")){
+				    	 accountTextSplit=accountTextReplaceSpace.split("select");
+				     }else{
+				    	 accountTextSplit=accountTextReplaceSpace.split("sélectionner");
+				     }
+				   
+				   
+				    String[] activeAccSize=accountTextSplit[1].split("/");
+				    int activeAcc=Integer.parseInt(activeAccSize[0]);
+					
 					mobileAction.FuncClick(activeAccounts, "Active Accounts");
 					mobileAction.verifyElementIsDisplayed(activeAccounts, "Active Accounts");
+					 	int onSize=onButtons.size();
+					    if( activeAcc==onSize){
+					    	CL.GetReporting().FuncReport("Pass", "Active Accounts Verified: "+onSize+ "  Active Accounts");
+					    }else{
+					    	CL.GetReporting().FuncReport("Fail", "Active Acconts not verified");
+					    }
+					
+					
 					Spending_Insight.get().clickSideMenuButton();
 					
 					mobileAction.verifyElementIsDisplayed(realTimeNotifications, "Real Time Notifications");
@@ -400,23 +436,13 @@ public class MyspendPreferences extends com.td._CommonPage {
 					Spending_Insight.get().clickSideMenuButton();
 				}
 			
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-
-				System.err.println("Failed to write in report.");
-			}
+		}  catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (Exception e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "Exception from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
@@ -436,6 +462,9 @@ public class MyspendPreferences extends com.td._CommonPage {
 	public void realTimeNotifications() throws InterruptedException {
 
 		Decorator();
+		String notificationStatus="";
+		String[] notificationStat=null;
+		String notiStatus=null;
 		
 
 		try {
@@ -444,19 +473,30 @@ public class MyspendPreferences extends com.td._CommonPage {
 				mobileAction.FuncClick(realTimeNotificationsAndroid, "Real Time Notification");
 				mobileAction.verifyElementIsDisplayed(notificationSettingsHeaderAndroid, "Notification Settings");
 				
-				mobileAction.verifyElementIsDisplayed(spendingNotificationsBtnOnAndroid, "Spending Notifications Switch");
-				mobileAction.FuncClick(spendingNotificationsBtnOnAndroid, "Spending Notification Button OFF");
-				mobileAction.FuncClick(spendingNotificationsBtnOnAndroid, "Spending Notification Button ON");
+				if(mobileAction.verifyElementIsPresent(spendingNotificationsBtnOffAndroid)){
+					mobileAction.verifyElementIsDisplayed(spendingNotificationsBtnOffAndroid, "Spending Notifications is OFF");
+					mobileAction.FuncClick(spendingNotificationsBtnOffAndroid, "Spending Notification Button OFF");
+					mobileAction.verifyElementIsDisplayed(spendingNotificationsBtnOffAndroid, "Spending Notification Button ON");
+					notificationStatus=spendingNotificationsBtnOffAndroid.getText();
+					
+				}else{
+					mobileAction.verifyElementIsDisplayed(spendingNotificationsBtnOnAndroid, "Spending Notifications is ON");
+					mobileAction.FuncClick(spendingNotificationsBtnOnAndroid, "Spending Notification Button ON");
+					mobileAction.verifyElementIsDisplayed(spendingNotificationsBtnOnAndroid, "Spending Notification Button OFF");
+					notificationStatus=spendingNotificationsBtnOnAndroid.getText();
+					
+				}
+				 if(currentLocale.equalsIgnoreCase("EN")){
+					  notificationStat=notificationStatus.split("Notifications ");
+					  notiStatus=notificationStat[1];
+				     }else{
+				    	 notificationStat=notificationStatus.split(" les");
+				    	 notiStatus=notificationStat[0];
+				     }
 				
-				mobileAction.verifyElementIsDisplayed(dailyDigestNotificationsBtnOnAndroid, "Daily Digest Notifications Switch");
-				mobileAction.FuncClick(dailyDigestNotificationsBtnOnAndroid, "Daily Digest Notification Button OFF");
-				mobileAction.FuncClick(dailyDigestNotificationsBtnOnAndroid, "Daily Digest Notifications ON");
 				
-				
-				mobileAction.FuncClick(sendDailyTimeAndroid, "Select Time");
-				Select notiTime=new Select(sendDailyTimeAndroid);
-				notiTime.selectByVisibleText(getTestdata("Time"));
 				mobileAction.FuncClick(saveBtnAndroid, "Save Button");
+				mobileAction.verifyTextContains(realTimeNotificationStatusAndroid, notiStatus);
 				CL.GetAppiumDriver().context("NATIVE_APP");
 				
 				
@@ -465,38 +505,58 @@ public class MyspendPreferences extends com.td._CommonPage {
 			
 				mobileAction.FuncClick(realTimeNotifications, "Real Time Notification");
 				mobileAction.verifyElementIsDisplayed(notificationSettingsHeader, "Notification Settings");
-				mobileAction.verifyElementIsDisplayed(spendingNotificationsBtnOn, "Spending Notifications Switch");
-				mobileAction.FuncClick(spendingNotificationsBtnOn, "Spending Notification Button ON");
-				mobileAction.FuncClick(spendingNotificationsBtnOff, "Spending Notification Button OFF");
 				
-				mobileAction.verifyElementIsDisplayed(dailyDigestNotificationsBtnOn, "Daily Digest Notifications Switch");
+				if(mobileAction.verifyElementIsPresent(spendingNotificationsBtnOff)){
+					mobileAction.verifyElementIsDisplayed(spendingNotificationsBtnOff, "Spending Notifications is OFF");
+					mobileAction.FuncClick(spendingNotificationsBtnOff, "Spending Notification Button OFF");
+					mobileAction.verifyElementIsDisplayed(spendingNotificationsBtnOn, "Spending Notifications is ON");
+					notificationStatus=spendingNotificationsBtnOn.getAttribute("name");
+				}else{
+					mobileAction.verifyElementIsDisplayed(spendingNotificationsBtnOn, "Spending Notifications is ON");
+					mobileAction.FuncClick(spendingNotificationsBtnOn, "Spending Notification Button ON");
+					mobileAction.verifyElementIsDisplayed(spendingNotificationsBtnOff, "Spending Notifications is oFF");
+					notificationStatus=spendingNotificationsBtnOff.getAttribute("name");
+				}
+				
+				  if(currentLocale.equalsIgnoreCase("EN")){
+					  notificationStat=notificationStatus.split("Notifications ");
+					  notiStatus=notificationStat[1];
+				     }else{
+				    	 notificationStat=notificationStatus.split(" les");
+				    	 notiStatus=notificationStat[0];
+				     }
+				
+				
+				mobileAction.FuncClick(saveBtn, "Save");
+				
+				System.out.println("realTimeNotifications: "+realTimeNotifications.getText() +" notiStatus:" +notiStatus);
+				mobileAction.verifyTextContains(realTimeNotifications,notiStatus);
+				//Spending_Insight.get().clickSideMenuButton();
+				
+				
+				
+				
+				
+				
+				
+				/*mobileAction.verifyElementIsDisplayed(dailyDigestNotificationsBtnOn, "Daily Digest Notifications Switch");
 				mobileAction.FuncClick(dailyDigestNotificationsBtnOn, "Daily Digest Notification Button ON");
 				mobileAction.verifyElementIsDisplayed(dailyDigestNotificationsBtnOff, "Daily Digest Notifications OFF");
 				
 				mobileAction.FuncClick(sendDailyTime, "Select Time");
 				MobileElement pickerWheel = mobileAction.mobileElementUsingXPath("//XCUIElementTypeOther/XCUIElementTypePickerWheel");
 				pickerWheel.setValue(getTestdata("Time"));
-				mobileAction.FuncClick(sendDaily, "Send daily");
-				Spending_Insight.get().clickSideMenuButton();
+				mobileAction.FuncClick(sendDaily, "Send daily");*/
+				
 			}
 			
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "Exception from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
@@ -516,29 +576,48 @@ public class MyspendPreferences extends com.td._CommonPage {
 	public void dailyDigestNotifications() throws InterruptedException {
 
 		Decorator();
-
+		String notificationStatus="";
+		String[] notificationStat=null;
+		String notiStatus=null;
 		try {
 			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-				
 				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
 				mobileAction.FuncClick(dailyDigestNotificationsAndroid, "Daily Digest Notification");
 				mobileAction.verifyElementIsDisplayed(notificationSettingsHeaderAndroid, "Notification Settings");
+				if(mobileAction.verifyElementIsPresent(dailyDigestNotificationsBtnOnAndroid)){
+					
+					mobileAction.verifyElementIsDisplayed(dailyDigestNotificationsBtnOnAndroid, "Daily Digest Notifications ON");
+					mobileAction.FuncClick(dailyDigestNotificationsBtnOnAndroid, "Daily Digest Notification Button ON");
+					mobileAction.verifyElementIsDisplayed(dailyDigestNotificationsBtnOnAndroid, "Daily Digest Notifications OFF");
+					notificationStatus=dailyDigestNotificationsBtnOnAndroid.getText();
+					
+					System.out.println("dailyDigestNotificationsBtnOnAndroid: "+notificationStatus);
+				}else{
+					mobileAction.verifyElementIsDisplayed(dailyDigestNotificationsBtnOffAndroid, "Daily Digest Notifications OFF");
+					mobileAction.FuncClick(dailyDigestNotificationsBtnOffAndroid, "Daily Digest Notifications OFF");
+					mobileAction.verifyElementIsDisplayed(dailyDigestNotificationsBtnOffAndroid, "Daily Digest Notifications ON");
+					notificationStatus=dailyDigestNotificationsBtnOffAndroid.getText();
+					
+					System.out.println("dailyDigestNotificationsBtnOffAndroid: "+notificationStatus);
+					mobileAction.FuncClick(sendDailyTimeAndroid, "Select Time");
+					Select notiTime=new Select(sendDailyTimeAndroid);
+					notiTime.selectByVisibleText(getTestdata("Time"));
+				}
 				
-				mobileAction.verifyElementIsDisplayed(spendingNotificationsBtnOnAndroid, "Spending Notifications Switch");
-				mobileAction.FuncClick(spendingNotificationsBtnOnAndroid, "Spending Notification Button OFF");
-				mobileAction.FuncClick(spendingNotificationsBtnOnAndroid, "Spending Notification Button ON");
+				  if(currentLocale.equalsIgnoreCase("EN")){
+					  notificationStat=notificationStatus.split("Notifications ");
+					  notiStatus=notificationStat[1];
+					  System.out.println("notiStatus: "+notiStatus);
+				     }else{
+				    	 notificationStat=notificationStatus.split(" les");
+				    	 notiStatus=notificationStat[0];
+				     }
 				
-				mobileAction.verifyElementIsDisplayed(dailyDigestNotificationsBtnOnAndroid, "Daily Digest Notifications Switch");
-				mobileAction.FuncClick(dailyDigestNotificationsBtnOnAndroid, "Daily Digest Notification Button OFF");
-				mobileAction.FuncClick(dailyDigestNotificationsBtnOnAndroid, "Daily Digest Notifications ON");
-				
-				
-				mobileAction.FuncClick(sendDailyTimeAndroid, "Select Time");
-				Select notiTime=new Select(sendDailyTimeAndroid);
-				notiTime.selectByVisibleText(getTestdata("Time"));
-				//mobileAction.FuncClick(saveBtnAndroid, "Save Button");
-				CL.GetAppiumDriver().context("NATIVE_APP");
-				Spending_Insight.get().clickSideMenuButton();
+				mobileAction.FuncClick(saveBtnAndroid, "Save Button");
+				System.out.println("dailyDigestNotificationsAndroid: "+dailyDigestNotificationsAndroid.getText());
+				mobileAction.verifyTextContains(dailyDigestNotificationsAndroid,notiStatus);
+				//CL.GetAppiumDriver().context("NATIVE_APP");
+				//Spending_Insight.get().clickSideMenuButton();
 				CL.GetAppiumDriver().context("NATIVE_APP");
 			//	SideMenu.get().clickSpendingInsights();
 				//CL.GetAppiumDriver().context("NATIVE_APP");
@@ -547,42 +626,101 @@ public class MyspendPreferences extends com.td._CommonPage {
 			
 				mobileAction.FuncClick(dailyDigestNotifications, "Daily Digest Notification");
 				mobileAction.verifyElementIsDisplayed(notificationSettingsHeader, "Notification Settings");
-				mobileAction.verifyElementIsDisplayed(spendingNotificationsBtnOn, "Spending Notifications Switch");
-				mobileAction.FuncClick(spendingNotificationsBtnOn, "Spending Notification Button ON");
-				mobileAction.FuncClick(spendingNotificationsBtnOff, "Spending Notification Button OFF");
 				
-				mobileAction.verifyElementIsDisplayed(dailyDigestNotificationsBtnOn, "Daily Digest Notifications Switch");
-				mobileAction.FuncClick(dailyDigestNotificationsBtnOn, "Daily Digest Notification Button ON");
-				mobileAction.verifyElementIsDisplayed(dailyDigestNotificationsBtnOff, "Daily Digest Notifications OFF");
+				if(mobileAction.verifyElementIsPresent(dailyDigestNotificationsBtnOn)){
+					mobileAction.verifyElementIsDisplayed(dailyDigestNotificationsBtnOn, "Daily Digest Notifications ON");
+					mobileAction.FuncClick(dailyDigestNotificationsBtnOn, "Daily Digest Notification Button ON");
+					mobileAction.verifyElementIsDisplayed(dailyDigestNotificationsBtnOff, "Daily Digest Notifications OFF");
+					mobileAction.verifyElementIsDisplayed(sendDailyTimeDisabled, "Send Daily Time Disabled");
+					notificationStatus=dailyDigestNotificationsBtnOff.getAttribute("name");
+				}else{
+					mobileAction.verifyElementIsDisplayed(dailyDigestNotificationsBtnOff, "Daily Digest Notifications OFF");
+				}
+					mobileAction.FuncClick(dailyDigestNotificationsBtnOff, "Daily Digest Notification Button OFF");
+					mobileAction.verifyElementIsDisplayed(dailyDigestNotificationsBtnOn, "Daily Digest Notifications ON");
+					mobileAction.verifyElementIsDisplayed(sendDailyTimeEnabled, "Send Daily Time Enabled");
+					mobileAction.FuncClick(sendDailyTimeEnabled, "Select Time");
+						MobileElement pickerWheel = mobileAction.mobileElementUsingXPath("//XCUIElementTypeOther/XCUIElementTypePickerWheel");
+						pickerWheel.setValue(getTestdata("Time"));
+						//mobileAction.FuncClick(sendDaily, "Send daily");
+						mobileAction.FuncClick(notificationSettingsHeader, "Send daily");
+					
+					
+					//Spending_Insight.get().clickSideMenuButton();
+						notificationStatus=dailyDigestNotificationsBtnOn.getAttribute("name");
 				
-				mobileAction.FuncClick(sendDailyTime, "Select Time");
-				MobileElement pickerWheel = mobileAction.mobileElementUsingXPath("//XCUIElementTypeOther/XCUIElementTypePickerWheel");
-				pickerWheel.setValue(getTestdata("Time"));
-				Thread.sleep(5000);
-				mobileAction.FuncClick(sendDaily, "Send daily");
-				Spending_Insight.get().clickSideMenuButton();
+						  if(currentLocale.equalsIgnoreCase("EN")){
+							  notificationStat=notificationStatus.split("Notifications ");
+							  notiStatus=notificationStat[1];
+						     }else{
+						    	 notificationStat=notificationStatus.split(" les");
+						    	 notiStatus=notificationStat[0];
+						     }
+				mobileAction.FuncClick(saveBtn, "Save");
+				
+				
+				  
+				//notificationStat=notificationStatus.split("Notifications ");
+				mobileAction.verifyTextContains(dailyDigestNotifications,notiStatus);
+				
+				
+				//mobileAction.FuncClick(sendDailyTime, "Select Time");
+				
 			}
 			
-		} catch (NoSuchElementException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail",
-						"NoSuchElementException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-
-				System.err.println("Failed to write in report.");
-			}
+		}  catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (Exception e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "Exception from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
+	/**
+	 * This method will verify the Home page in the Preference Page.Clicking on Home page should navigate user to TDAPP.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void verifyHomePage() throws InterruptedException {
 
+		Decorator();
+
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
+				mobileAction.FuncClick(homeBtnAndroid, "Home Button");
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				mobileAction.verifyElementIsDisplayed(quickAccess, "Home Page");
+				HomeScreen.get().clickMenu();
+				mobileAction.FuncClick(TDMySpend, "TD My Spend");
+				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
+			} else {
+				mobileAction.verifyElementIsDisplayed(homeBtn, "HomePage");
+				mobileAction.FuncClick(homeBtn, "Home Button");
+				mobileAction.verifyElementIsDisplayed(quickAccess, "Home Page");
+				mobileAction.FuncClick(menu, "Menu");
+				mobileAction.FuncClick(TDMySpend, "TD My Spend");
+				
+			}
+		}  catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
 }
