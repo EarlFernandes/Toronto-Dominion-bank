@@ -91,6 +91,7 @@ public class WebViewPage extends _CommonPage {
 
 				final WebElement form_Title = CL.GetDriver().findElement(By.xpath("//h1[@translate='FORM_TITLE']"));
 				String capturedText = form_Title.getText();
+				System.out.println("Captured title:"+ capturedText);
 				CL.GetAppiumDriver().context("NATIVE_APP");
 				mobileAction.verifyTextEquality(capturedText,
 						getTextInCurrentLocale(StringArray.ARRAY_DM_REQUEST_FORM_TITLE));

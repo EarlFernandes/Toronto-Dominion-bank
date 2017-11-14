@@ -371,7 +371,7 @@ public final class StringArray {
 	// damaged card
 	public static final String[] ARRAY_REPLACE_A_DAMAGED_CARD = { "Replace a Damaged Card",
 			"Remplacement d’une carte endommagée", "更换损坏的卡片", "更換損壞的卡片" };
-	public static final String[] ARRAY_DM_REQUEST_FORM_TITLE = { "Damaged TD Credit CardReplacement Request", "Crédit",
+	public static final String[] ARRAY_DM_REQUEST_FORM_TITLE = { "Damaged TD Credit Card Replacement Request", "Crédit",
 			"贷项", "信貸" };
 	public static final String[] ARRAY_REPLACE_A_DAMAGED_CARD_HEADER = { "Replace a Damaged Card",
 			"Remplacement une carte", "更换损坏的卡片", "更換損壞的卡片" };
