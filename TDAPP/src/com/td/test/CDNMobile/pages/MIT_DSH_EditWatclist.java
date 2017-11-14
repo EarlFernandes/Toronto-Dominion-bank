@@ -80,6 +80,69 @@ private static MIT_DSH_EditWatclist MIT_DSH_EditWatclist;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/toolbar_title']")
 	private MobileElement EditWLTitle;
 	
+	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Accessory_Button")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/watchlist_edit_button']")
+	private MobileElement EditWLCancel;
+	
+	
+	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Accessory_Button")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/delete_all']")
+	private MobileElement EditWLDeleteAll;
+	
+	
+	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Accessory_Button")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/delete_selected']")
+	private MobileElement EditWLDelete;
+	
+	
+	
+	
+	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Accessory_Button")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/toolbar_back_button']")
+	private MobileElement EditWLBckBtn;
+	
+
+	
+	@iOSFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]")
+	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
+	private MobileElement search_symbol;
+	
+	
+	@iOSFindBy(xpath = "(//*[@name='codeSearchButton'])[1]")
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id='com.td:id/img_added_in_watchlist'])[1]")
+    private MobileElement 	AddWatchlistButton;
+	
+	@iOSFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]") 
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/btn_clear_search_text']")
+    private MobileElement 	btnClear;
+	
+	@iOSXCUITFindBy(accessibility = "Button_0")
+	@AndroidFindBy(id = "com.td:id/btn_cancel")
+	private MobileElement BT_CancelHome;
+	
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@label='List 01' or @label='Liste 01' or @label='名单 01' or @label='名單 01'])[1]") 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and (@text='List 01' or @text='Liste 01' or @text='名单 01' or @text='名單 01')]")
+	private MobileElement ListViewExpand01;
+	
+	
+	@iOSFindBy(xpath = "(//*[@name='codeSearchButton'])[1]")
+    @AndroidFindBy(xpath = "(//android.widget.CheckBox[@resource-id='com.td:id/checkbox_item_watchlist_selected'])[1]")
+    private MobileElement 	SymblchckBox;
+	
+	@iOSFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]") 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
+    private MobileElement 	warningMsg;
+	
+	@iOSFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]") 
+    @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
+    private MobileElement 	okButton;
+	
+	@iOSXCUITFindBy(accessibility = "WatchListWidgetOverlayViewAction")
+	@AndroidFindBy(id = "com.td:id/watchlist_empty_card_secondmessage")
+	private MobileElement LinkEmptyWLAddSymbol;
+	
+	
+	
 	
 	
 	public void verifyUIEditWL() {
@@ -104,9 +167,7 @@ private static MIT_DSH_EditWatclist MIT_DSH_EditWatclist;
 			 mobileAction.FuncClick(ThreeDots, "ThreeDots"); 
 			 
 			 
-			 mobileAction.FuncClick(btnMore, "btnMore");
-			 
-			 
+						 
 			 mobileAction.FuncClick(EditCollapse, "EditCollapse");
 			 
 		
@@ -115,10 +176,20 @@ private static MIT_DSH_EditWatclist MIT_DSH_EditWatclist;
 			 mobileAction.FuncVerifyTextEquals(EditWLTitle,
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_EDITWL));
 				
+			 
+			 
+		
+			 mobileAction.verifyElementIsDisplayed(EditWLCancel, "EditWLCancel");	
+			 
+		
+			 mobileAction.FuncVerifyTextEquals(EditWLDeleteAll,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_EDITWLDELETEALL));
 		
 			 
-				 
-	
+			 mobileAction.FuncVerifyTextEquals(EditWLDelete,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_EDITWLDELETE));
+			 
+			 
 		}
 			catch (Exception e) {
 				e.printStackTrace();
@@ -129,13 +200,257 @@ private static MIT_DSH_EditWatclist MIT_DSH_EditWatclist;
 	
 	
 	
+	public void verifyBackButtonEditWL() {
+		Decorator();
+		try {
+	
+		//	 MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+			
+			 if (mobileAction.isObjExists(btnSwitchNow, 2)) 
+			 {
+					mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+					
+					mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
+					
+					mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+					
+					
+				}
+			 
+			 
+			 mobileAction.FuncClick(ThreeDots, "ThreeDots"); 
+			 
+			 
+						 
+			 mobileAction.FuncClick(EditCollapse, "EditCollapse");
+			 mobileAction.verifyElementIsDisplayed(EditWLBckBtn, "EditWLBckBtn");	
+			 mobileAction.FuncClick(EditWLBckBtn, "EditWLBckBtn");
+				
+			 mobileAction.verifyElementIsDisplayed(btnMore, "btnMore");	
+			 
+			 
+			 
+		}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
 	
 	
 	
+	public void verifyCancelButtonEditWL() {
+		Decorator();
+		try {
+	
+		//	 MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+			
+			 if (mobileAction.isObjExists(btnSwitchNow, 2)) 
+			 {
+					mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+					
+					mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
+					
+					mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+					
+					
+				}
+			 
+			 
+			 mobileAction.FuncClick(ThreeDots, "ThreeDots"); 
+			 
+			 
+						 
+			 mobileAction.FuncClick(EditCollapse, "EditCollapse");
+			 
+			 
+			 mobileAction.verifyElementIsDisplayed(EditWLCancel, "EditWLCancel");	
+			 
+		
+			 mobileAction.FuncClick(EditWLCancel, "EditWLCancel");
+				
+			 mobileAction.verifyElementIsDisplayed(btnMore, "btnMore");	
+			 
+			 
+			 
+		}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
 	
 	
+	public void verifyDeleteButtonEditWL() {
+		Decorator();
+		try {
+	
+		//	 MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+			
+			 if (mobileAction.isObjExists(btnSwitchNow, 2)) 
+			 {
+					mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+					
+					mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
+					
+					mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+					
+					
+				}
+			 
+			 
+			 if(mobileAction.isObjExists(searchBar, 2))
+				{
+					mobileAction.FuncClick(searchBar, "searchBar");
+					
+				}
+				else
+				
+				{
+				
+				mobileAction.FuncSwipeWhileElementNotFound(searchBar, true,7, "up");
+				
+				}
+				
+				mobileAction.verifyElementIsDisplayed(search_symbol, "Search Screen");
+				
+						
+				String sSymbol = getTestdata("Symbol", "UserIDs").split(":")[0];
+				
+				MIT_DSH_UpdateSearchPage.get().enterSymbol(search_symbol, sSymbol);
+			 
+			 
+				mobileAction.FuncClick(AddWatchlistButton, "AddWatchlistButton");
+				mobileAction.FuncClick(ListViewExpand01, "ListViewExpand01");
+				
+				
+				
+				
+				
+				mobileAction.FuncClick(btnClear, "btnClear");
+			 
+				String sSymbol1 = getTestdata("Symbol", "UserIDs").split(":")[1];
+				
+				MIT_DSH_UpdateSearchPage.get().enterSymbol(search_symbol, sSymbol1);
+			 
+			 
+				mobileAction.FuncClick(AddWatchlistButton, "AddWatchlistButton");
+				mobileAction.FuncClick(ListViewExpand01, "ListViewExpand01");
+				mobileAction.FuncClick(BT_CancelHome, "BT_CancelHome");
+				
+			 
+				 mobileAction.FuncClick(ThreeDots, "ThreeDots"); 
+				 
+				 
+				 
+				 mobileAction.FuncClick(EditCollapse, "EditCollapse");
+				 mobileAction.FuncClick(SymblchckBox, "SymblchckBox");
+			 
+			 
+				 mobileAction.FuncClick(EditWLDelete, "EditWLDelete");
+			 
+			 
+				 mobileAction.verifyElementIsDisplayed(btnMore, "btnMore");	
+			 
+			 
+		}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
 	
 	
+	public void verifyDeleteAllButtonEditWL() {
+		Decorator();
+		try {
+	
+		//	 MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+			
+			 if (mobileAction.isObjExists(btnSwitchNow, 2)) 
+			 {
+					mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+					
+					mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
+					
+					mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+					
+					
+				}
+			 
+			 
+			 if(mobileAction.isObjExists(searchBar, 2))
+				{
+					mobileAction.FuncClick(searchBar, "searchBar");
+					
+				}
+				else
+				
+				{
+				
+				mobileAction.FuncSwipeWhileElementNotFound(searchBar, true,7, "up");
+				
+				}
+				
+				mobileAction.verifyElementIsDisplayed(search_symbol, "Search Screen");
+				
+						
+				String sSymbol = getTestdata("Symbol", "UserIDs").split(":")[0];
+				
+				MIT_DSH_UpdateSearchPage.get().enterSymbol(search_symbol, sSymbol);
+			 
+			 
+				mobileAction.FuncClick(AddWatchlistButton, "AddWatchlistButton");
+				
+				mobileAction.FuncClick(ListViewExpand01, "ListViewExpand01");
+				
+				
+				mobileAction.FuncClick(btnClear, "btnClear");
+			 
+				String sSymbol1 = getTestdata("Symbol", "UserIDs").split(":")[1];
+				
+				MIT_DSH_UpdateSearchPage.get().enterSymbol(search_symbol, sSymbol1);
+			 
+			 
+				mobileAction.FuncClick(AddWatchlistButton, "AddWatchlistButton");
+				mobileAction.FuncClick(ListViewExpand01, "ListViewExpand01");
+				mobileAction.FuncClick(BT_CancelHome, "BT_CancelHome");
+				
+			 
+				 mobileAction.FuncClick(ThreeDots, "ThreeDots"); 
+				 
+				 
+				 
+				 mobileAction.FuncClick(EditCollapse, "EditCollapse");
+				 
+			 
+			 
+				 mobileAction.FuncClick(EditWLDeleteAll, "EditWLDeleteAll");
+				 
+				 
+				 mobileAction.verifyElementIsDisplayed(warningMsg, "warningMsg");	
+				 
+				 
+				 mobileAction.FuncVerifyTextEquals(EditWLDelete,
+							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_EDITWLWARNINGMESSAGE));
+				 
+				 
+				 mobileAction.FuncClick(okButton, "okButton");
+				 
+				 			 
+				 mobileAction.verifyElementIsDisplayed(LinkEmptyWLAddSymbol, "LinkEmptyWLAddSymbol");	
+			 
+			 
+		}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
 	
 	
 	
