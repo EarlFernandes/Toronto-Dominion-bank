@@ -827,7 +827,13 @@ public class PurchaseMutualFunds extends _CommonPage {
 		try {
 			String selectedFund = CL.getTestDataInstance().TCParameters.get("Accounts");
 			SelectFund(selectedFund);
-			mobileAction.FuncSwipeWhileElementNotFound(view_fundFacts, true, 5, "up");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+				String fundFactXpath = "//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_MF_FD_VIEW_PERFORMANCE)
+						+ "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(fundFactXpath, true, 5, "up");
+			} else {
+				mobileAction.FuncSwipeWhileElementNotFound(view_fundFacts, true, 5, "up");
+			}
 			// mobileAction.FuncClick(view_fundFacts, "view fund Facts");
 		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed to clickviewfundFacts.");
