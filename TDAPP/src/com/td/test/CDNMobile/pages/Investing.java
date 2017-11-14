@@ -1708,7 +1708,7 @@ public class Investing extends _CommonPage {
 	public void SelectLastTransaction() {
 		Decorator();
 		try {
-			mobileAction.FuncSwipeWhileElementNotFound(transaction_foot_note, false, 5, "up");
+			mobileAction.FuncSwipeWhileElementNotFound(transaction_foot_note, false, 50, "up");
 			List<MobileElement> transactionListContent = null;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				transactionListContent = ((MobileDriver) (CL.GetAppiumDriver())).findElementsByXPath(
