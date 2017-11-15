@@ -60,7 +60,8 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Mobile Deposit']")
 	private MobileElement mobile_Deposit_button;
 
-	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_ACCOUNTS")
+	// @iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_ACCOUNTS")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'My Accounts') or contains(@label,'Mes comptes') or contains(@label,'我的账户') or contains(@label,'我的賬戶') ]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='My Accounts' or @text='Mes comptes')]")
 	private MobileElement accounts_button;
 
@@ -107,7 +108,8 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText']")
 	private List<MobileElement> menuOpts;
 
-	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_ACCOUNTS")
+	// @iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_ACCOUNTS")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'My Accounts') or contains(@label,'Mes comptes') or contains(@label,'我的账户') or contains(@label,'我的賬戶') ]")
 	private MobileElement menuAccounts;
 
 	public synchronized static MenuPage get() {
@@ -642,6 +644,8 @@ public class MenuPage extends _CommonPage {
 						"//android.widget.TextView[@text='" + profileSettings + "']", "Profile & Setting");
 			} else {
 				mobileAction.FunctionSwipe("down", 200, 200);
+				profile_and_settings = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@label='" + profileSettings + "']", "Profile & Setting");
 			}
 			mobileAction.FuncClick(profile_and_settings, profileSettings);
 			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());

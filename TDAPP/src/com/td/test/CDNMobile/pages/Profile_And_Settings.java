@@ -28,7 +28,7 @@ public class Profile_And_Settings extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_security']/android.widget.TextView")
 	private MobileElement security_questions;
-	
+
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_notifications']/android.widget.TextView")
 	private MobileElement notifications;
 
@@ -47,13 +47,13 @@ public class Profile_And_Settings extends _CommonPage {
 
 	@AndroidFindBy(id = "com.td:id/profile_landing_nav_security")
 	private MobileElement newSecuritySetup;
-	
+
 	@AndroidFindBy(id = "com.td:id/otp_settings_button")
 	private MobileElement setUpNow;
-	
+
 	@AndroidFindBy(id = "com.td:id/profile_landing_nav_security")
 	private MobileElement securitySettings;
-	
+
 	public synchronized static Profile_And_Settings get() {
 		if (ProfileAndSettings == null) {
 			ProfileAndSettings = new Profile_And_Settings();
@@ -260,11 +260,10 @@ public class Profile_And_Settings extends _CommonPage {
 			}
 			mobileAction.FuncClick(newSecuritySetup, "New Security Setup Button");
 			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
-			
+
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 				String labelText = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_SET_UP_NOW);
-				newSecuritySetup = mobileAction.verifyElementUsingXPath("//*[@label='" + labelText + "']",
-						"Set Up Now");
+				setUpNow = mobileAction.verifyElementUsingXPath("//*[@label='" + labelText + "']", "Set Up Now");
 			}
 			mobileAction.FuncClick(setUpNow, "Set Up Now Button");
 			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
@@ -280,14 +279,14 @@ public class Profile_And_Settings extends _CommonPage {
 		} finally {
 		}
 	}
-	
+
 	public void securitySettings() {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 				String labelText = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_SECURITY_SETTINGS);
-				securitySettings = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + labelText + "']",
-						"Security Settings");
+				securitySettings = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@label='" + labelText + "']", "Security Settings");
 			}
 			mobileAction.FuncClick(securitySettings, "Security Setttings Button");
 			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());

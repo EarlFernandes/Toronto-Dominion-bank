@@ -68,12 +68,17 @@ public class OTPUpdate extends _CommonPage {
 	@FindBy(xpath = "//div[@ng-repeat='phone in spc.savedPhones'][2]//div[@class='td-row-white'][2]//span[2]")
 	private WebElement addedNickname;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[6]/XCUIElementTypeStaticText[1] |"
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1] | "
+			+ "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeStaticText[1]")
+	@FindBy(xpath = "(//div[@class='td-row-white'])[1]")
+	private WebElement phoneCard1Phone;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[6]/XCUIElementTypeStaticText[1] | "
 			+ "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='phone_1']/div/div/div[1]")
 	private WebElement phoneCard2Phone;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1] |"
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1] | "
 			+ "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[5]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='phone_1']/div/div/div[2]")
 	private WebElement phoneCard2Nickname;
@@ -106,6 +111,9 @@ public class OTPUpdate extends _CommonPage {
 	@FindBy(xpath = "//div[contains(@ng-click,'test-phone')]")
 	private WebElement testPhoneUpdateButton;
 
+	@FindBy(xpath = "//div/a[@ng-click='pd.testPhone(phone)']")
+	private WebElement verifyNumberButton;
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement testPhoneHeader;
@@ -118,7 +126,7 @@ public class OTPUpdate extends _CommonPage {
 	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement changeEmailHeader;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//span[@ng-click='spc.deleteRecord($index)' and @tabindex='0']")
 	private WebElement deletePhone1UpdateButton;
 
@@ -126,7 +134,10 @@ public class OTPUpdate extends _CommonPage {
 	@FindBy(xpath = "(//span[@ng-click='spc.deleteRecord($index)' and @tabindex='0'])[2]")
 	private WebElement deletePhone2UpdateButton;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Change Email') or contains(@label,'Modifier l’adresse courriel') or contains(@label,'更改邮箱地址') or contains(@label,'變更收件箱地址') ]")
+	// @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Change
+	// Email') or contains(@label,'Modifier l’adresse courriel') or
+	// contains(@label,'更改邮箱地址') or contains(@label,'變更收件箱地址') ]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[3]")
 	@FindBy(xpath = "//div[contains(@ng-click,'enter-security-email')]")
 	private WebElement changeEmailUpdateButton;
 
@@ -168,7 +179,7 @@ public class OTPUpdate extends _CommonPage {
 	@FindBy(xpath = "//a[@ng-click='sp.testPhone(phone)' and @tabindex='0']")
 	private WebElement firstPhoneNumber;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[4]//XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[5]//XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//button[@ng-click=\"sp.changeOptions('text')\"]")
 	private WebElement textOption;
 
@@ -234,6 +245,7 @@ public class OTPUpdate extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 			}
+			mobileAction.FuncClick(phoneCard1Phone, "First phone number");
 			mobileAction.FuncClick(deletePhone1UpdateButton, "Delete first phone number");
 
 		} catch (Exception e) {
@@ -436,7 +448,18 @@ public class OTPUpdate extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 			}
-			mobileAction.FuncClick(testPhoneUpdateButton, "Test Phone Button");
+			// mobileAction.FuncClick(testPhoneUpdateButton, "Test Phone
+			// Button");
+
+			mobileAction.FuncClick(phoneCard1Phone, "First Phone Button");
+
+			String xpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				xpath = "//XCUIElementTypeButton[contains(@label,'"
+						+ this.getTextInCurrentLocale(StringArray.ARRAY_OTP_UPDATE_VERIFY_NUMBER) + "')]";
+				verifyNumberButton = mobileAction.verifyElementUsingXPath(xpath, "Verify Number button");
+			}
+			mobileAction.FuncClick(verifyNumberButton, "Verify Number button");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -846,6 +869,17 @@ public class OTPUpdate extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 			}
+
+			String xpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				xpath = "//android.widget.Button[contains(@label,'"
+						+ this.getTextInCurrentLocale(StringArray.ARRAY_OTP_SETUP_PASSCODE_VERIFIED) + "')]";
+			} else {
+				xpath = "//XCUIElementTypeStaticText[contains(@label,'"
+						+ this.getTextInCurrentLocale(StringArray.ARRAY_OTP_SETUP_PASSCODE_VERIFIED) + "')]";
+			}
+			securityCodeVerifedField = mobileAction.verifyElementUsingXPath(xpath, "Verified text");
+
 			mobileAction.verifyElementIsDisplayed(securityCodeVerifedField, "Security Code Verified field");
 			mobileAction.verifyElementTextContains(securityCodeVerifedField,
 					getTextInCurrentLocale(StringArray.ARRAY_OTP_SETUP_PASSCODE_VERIFIED));
@@ -932,10 +966,12 @@ public class OTPUpdate extends _CommonPage {
 	public void verifyTestPhoneUpdateScreen() {
 		Decorator();
 		try {
-
-			mobileAction.verifyElementIsDisplayed(testPhoneHeader, "OTP Update Test Phone screen header");
-			mobileAction.verifyElementTextContains(testPhoneHeader,
-					getTextInCurrentLocale(StringArray.ARRAY_OTP_UPDATE_TEST_PHONE_HEADER));
+			MobileElement screenheader = PageHeader.get().getHeaderTextElement();
+			mobileAction.verifyElementIsDisplayed(screenheader, "OTP Update Test Phone screen header");
+			// mobileAction.verifyElementTextContains(testPhoneHeader,
+			// getTextInCurrentLocale(StringArray.ARRAY_OTP_UPDATE_TEST_PHONE_HEADER));
+			mobileAction.verifyElementTextContains(screenheader,
+					getTextInCurrentLocale(StringArray.ARRAY_OTP_UPDATE_VERIFY_NUMBER_SCREEN));
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1010,8 +1046,12 @@ public class OTPUpdate extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(emailUpdateField_ios_zh, "Security Email field");
 				mobileAction.verifyElementTextContains(emailUpdateField_ios_zh, email);
 			} else {
-				mobileAction.verifyElementIsDisplayed(emailUpdateField, "Security Email field");
-				mobileAction.verifyElementTextContains(emailUpdateField, email);
+				// mobileAction.verifyElementIsDisplayed(emailUpdateField,
+				// "Security Email field");
+				// mobileAction.verifyElementTextContains(emailUpdateField,
+				// email);
+				mobileAction.verifyElementIsDisplayed(changeEmailUpdateButton, "Security Email field");
+				mobileAction.verifyElementTextContains(changeEmailUpdateButton, email);
 			}
 
 		} catch (Exception e) {

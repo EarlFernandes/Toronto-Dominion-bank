@@ -3539,8 +3539,11 @@ public class MobileAction2 extends CommonLib {
 			menuXpath = "//android.widget.ImageView[@resource-id='android:id/up' and @index='0']";
 			menuSlideXpath = "//android.widget.ListView[@index='1']";
 		} else {
-			menuXpath = "//XCUIElementTypeButton[@name ='NAVIGATION_ITEM_MENU']";
-			menuSlideXpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']";
+			// menuXpath = "//XCUIElementTypeButton[@name
+			// ='NAVIGATION_ITEM_MENU']";
+			// menuSlideXpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']";
+			menuXpath = "//XCUIElementTypeButton[@name ='QuickLinkLeftNavButton']";
+			menuSlideXpath = "//XCUIElementTypeButton[@label ='Home']";
 		}
 		boolean isMenuOpened = false;
 		try {

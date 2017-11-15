@@ -37,7 +37,7 @@ public class OTPSetup extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/btn_primary")
 	private MobileElement getStartedNewButton;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeButton[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Continue') or contains(@label,'Continuer') or contains(@label,'继续') or contains(@label,'繼續') ]")
 	@AndroidFindBy(id = "com.td:id/btn_continue")
 	private MobileElement getStartedExistingButton;
 
@@ -161,15 +161,15 @@ public class OTPSetup extends _CommonPage {
 	@FindBy(id = "secretCode")
 	private WebElement securityCodeField;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='server-validation']/span[2]")
 	private WebElement cannotVerifySecurityCodeMsg;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='server-validation']/span[2]")
 	private WebElement expiredSecurityCodeMsg;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='number-ids']/span[2]")
 	private WebElement invalidPasscodeFormatMsg;
 
@@ -616,14 +616,14 @@ public class OTPSetup extends _CommonPage {
 		Decorator();
 
 		try {
-			// Scroll up every 60s to prevent session expiration after
+			// Enter incorrect passcode every 60s to prevent session expiration after
 			// 2min of inactivity
 			for (int i = 0; i < 5; i++) {
 				enterIncorrectSecurityCode();
 				mobileAction.sleep(1000 * 60);
 			}
 
-			// Passcode expires after 5mins, enter correct passcode after 600s
+			// Passcode expires after 5mins, enter incorrect passcode after 300s
 			enterIncorrectSecurityCode();
 
 		} catch (Exception e) {
