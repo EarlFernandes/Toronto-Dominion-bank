@@ -516,6 +516,10 @@ public class Transfers extends _CommonPage {
 			mobileAction.FuncClick(transferHistory, "Transfer History Link");
 
 			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
