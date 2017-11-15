@@ -340,8 +340,9 @@ public final class StringArray {
 			"Vous n’aurez besoin que de quelques minutes pour remplir une demande et vous recevrez une réponse peu de temps après.",
 			"申请只需几分钟即可完成，很快您将收到答复。", "申請只需幾分鐘即可完成，您很快會收到回覆。" };
 	public static final String[] ARRAY_CREDIT_HEADER = { "Credit", "Crédit", "贷项", "信貸" };
-	public static final String[] ARRAY_CLIP_FORM_TITLE = { "TD Credit Card Limit Increase Request", "Crédit", "贷项",
-			"信貸" };
+	public static final String[] ARRAY_CLIP_FORM_TITLE = { "TD Credit Card Limit Increase Request",
+			"Demande d’augmentation de la limite d’une carte de crédit TD", "TD Credit Card Limit Increase Request",
+			"TD Credit Card Limit Increase Request" };
 	// MAB
 	public static final String[] ARRAY_MENU_LOCATION = { "Locations", "Succursales", "分行网点", "分行地點" };
 	public static final String[] ARRAY_APPOINTMENT_BOOKING = { "Appointment Booking", "Prise de rendez-vous", "分行预约",
@@ -371,8 +372,9 @@ public final class StringArray {
 	// damaged card
 	public static final String[] ARRAY_REPLACE_A_DAMAGED_CARD = { "Replace a Damaged Card",
 			"Remplacement d’une carte endommagée", "更换损坏的卡片", "更換損壞的卡片" };
-	public static final String[] ARRAY_DM_REQUEST_FORM_TITLE = { "Damaged TD Credit Card Replacement Request", "Crédit",
-			"贷项", "信貸" };
+	public static final String[] ARRAY_DM_REQUEST_FORM_TITLE = { "Damaged TD Credit Card Replacement Request",
+			"Demande de remplacement d’une carte de crédit TD endommagée", "Damaged TD Credit Card Replacement Request",
+			"Damaged TD Credit Card Replacement Request" };
 	public static final String[] ARRAY_REPLACE_A_DAMAGED_CARD_HEADER = { "Replace a Damaged Card",
 			"Remplacement une carte", "更换损坏的卡片", "更換損壞的卡片" };
 	public static final String[] ARRAY_COPY_REPLACE_DAMAGED_CARD = {
