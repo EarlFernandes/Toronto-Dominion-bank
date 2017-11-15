@@ -3523,7 +3523,7 @@ public class MobileAction2 extends CommonLib {
 			System.out.println("Progress bar not found");
 			return;
 		}
-
+		System.out.println("Waiting for progress vanishing");
 		waitForElementToVanish(progressBar);
 	}
 
