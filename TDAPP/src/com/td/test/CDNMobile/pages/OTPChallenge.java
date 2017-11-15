@@ -72,7 +72,7 @@ public class OTPChallenge extends _CommonPage {
 	@FindBy(xpath = "//a[contains(@ng-click,'ec.redirect')]")
 	private WebElement resendCodeLink;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeOther[3]//XCUIElementTypeButton[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeOther[3]/XCUIElementTypeButton[1]")
 	@AndroidFindBy(id = "android:id/button3")
 	private MobileElement resendCodeText;
 
