@@ -358,6 +358,10 @@ public class Interac_Send_Money extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(amountVal, "Amount " + amountVal.getText());
 			mobileAction.FuncClick(continueButton, "Continue Button");
 			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
