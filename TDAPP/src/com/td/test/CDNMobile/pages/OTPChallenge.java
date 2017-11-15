@@ -44,7 +44,7 @@ public class OTPChallenge extends _CommonPage {
 	@FindBy(id = "getCode")
 	private WebElement getCodeButton;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]") // TBD
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@FindBy(id = "phone_0")
 	private WebElement firstPhoneNumber;
 
@@ -56,11 +56,11 @@ public class OTPChallenge extends _CommonPage {
 	@FindBy(id = "enter")
 	private WebElement submitCodeButton;
 
-	@iOSXCUITFindBy(xpath = "/XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "/XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='server-validation']/span[2]")
 	private WebElement cannotVerifySecurityCodeMsg;
 
-	@iOSXCUITFindBy(xpath = "/XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "/XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@id='server-validation']/span[2]")
 	private WebElement tooManySecurityCodesRequestedMsg;
 
@@ -68,8 +68,8 @@ public class OTPChallenge extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/error_message")
 	private WebElement accountDisabledMsg;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeOther[4]/XCUIElementTypeStaticText[2]")
-	@FindBy(xpath = "//a[contains(@ng-click,'ec.resendCode')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]//XCUIElementTypeButton[1]")
+	@FindBy(xpath = "//a[contains(@ng-click,'ec.redirect')]")
 	private WebElement resendCodeLink;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeOther[3]//XCUIElementTypeButton[2]")
@@ -313,8 +313,14 @@ public class OTPChallenge extends _CommonPage {
 			Thread.sleep(15000);
 			mobileAction.FuncClick(resendCodeLink, "Resend Code button click");
 
-			mobileAction.switchAppiumContext("NATIVE_APP");
-			mobileAction.FuncClick(resendCodeText, "Resend Code button click");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				clickTextOption();
+				clickGetCodeButton();
+			} else {
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.FuncClick(resendCodeText, "Resend Code button click");
+
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

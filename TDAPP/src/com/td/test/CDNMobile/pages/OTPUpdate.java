@@ -127,7 +127,7 @@ public class OTPUpdate extends _CommonPage {
 	private MobileElement changeEmailHeader;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeButton[1]")
-	@FindBy(xpath = "//span[@ng-click='spc.deleteRecord($index)' and @tabindex='0']")
+	@FindBy(xpath = "//span[@ng-click='pd.deletePhone()' and @tabindex='0']")
 	private WebElement deletePhone1UpdateButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
@@ -142,7 +142,7 @@ public class OTPUpdate extends _CommonPage {
 	private WebElement changeEmailUpdateButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Security Email') or contains(@label,'Adresse courriel de sécurité') or contains(@label,'安全信息邮箱') or contains(@label,'安全性資訊收件箱')]/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
-	@FindBy(xpath = "//div[contains(@class,'email-field')]/span")
+	@FindBy(xpath = "//div[contains(@ng-click,'enter-security-email')]")
 	private WebElement emailUpdateField;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[10]/XCUIElementTypeStaticText[1]")
@@ -870,15 +870,11 @@ public class OTPUpdate extends _CommonPage {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 			}
 
-			String xpath = "";
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				xpath = "//android.widget.Button[contains(@label,'"
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				String xpath = "//XCUIElementTypeStaticText[contains(@label,'"
 						+ this.getTextInCurrentLocale(StringArray.ARRAY_OTP_SETUP_PASSCODE_VERIFIED) + "')]";
-			} else {
-				xpath = "//XCUIElementTypeStaticText[contains(@label,'"
-						+ this.getTextInCurrentLocale(StringArray.ARRAY_OTP_SETUP_PASSCODE_VERIFIED) + "')]";
+				securityCodeVerifedField = mobileAction.verifyElementUsingXPath(xpath, "Verified text");
 			}
-			securityCodeVerifedField = mobileAction.verifyElementUsingXPath(xpath, "Verified text");
 
 			mobileAction.verifyElementIsDisplayed(securityCodeVerifedField, "Security Code Verified field");
 			mobileAction.verifyElementTextContains(securityCodeVerifedField,
@@ -1036,7 +1032,7 @@ public class OTPUpdate extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				mobileAction.FuncScrollIntoView(emailUpdateField, "Security Email field");
+				mobileAction.FuncScrollIntoView(changeEmailUpdateButton, "Security Email field");
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FunctionSwipe("up", 100, 0);
 			}

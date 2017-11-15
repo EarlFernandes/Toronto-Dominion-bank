@@ -3536,14 +3536,17 @@ public class MobileAction2 extends CommonLib {
 		String menuSlideXpath = "";
 
 		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-			menuXpath = "//android.widget.ImageView[@resource-id='android:id/up' and @index='0']";
-			menuSlideXpath = "//android.widget.ListView[@index='1']";
+			// menuXpath =
+			// "//android.widget.ImageView[@resource-id='android:id/up' and
+			// @index='0']";
+			menuXpath = "//android.widget.ImageView[@resource-id='com.td:id/hamburger']";
+			menuSlideXpath = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/flyout_menu_dashboard']";
 		} else {
 			// menuXpath = "//XCUIElementTypeButton[@name
 			// ='NAVIGATION_ITEM_MENU']";
 			// menuSlideXpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']";
 			menuXpath = "//XCUIElementTypeButton[@name ='QuickLinkLeftNavButton']";
-			menuSlideXpath = "//XCUIElementTypeButton[@label ='Home']";
+			menuSlideXpath = "//XCUIElementTypeButton[@label='Home' or @label='Accueil' or @label='主页' or @label='首頁' ]";
 		}
 		boolean isMenuOpened = false;
 		try {

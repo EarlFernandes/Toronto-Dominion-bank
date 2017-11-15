@@ -379,6 +379,7 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.FuncClick(editNicknameField, "Edit Nickname");
 				mobileAction.FuncSendKeys(editNicknameField, nickname);
 				mobileAction.FuncClickDone(); // hide iOS keyboard
+				mobileAction.sleep(2000);
 
 				mobileAction.FuncClick(addPhoneButton, "Add Phone button");
 
@@ -572,6 +573,7 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 			}
 
+			mobileAction.sleep(2000);
 			mobileAction.FuncClick(securityCodeField, "Security Code Field");
 			mobileAction.FuncSendKeys(securityCodeField, securityCode);
 
@@ -616,7 +618,8 @@ public class OTPSetup extends _CommonPage {
 		Decorator();
 
 		try {
-			// Enter incorrect passcode every 60s to prevent session expiration after
+			// Enter incorrect passcode every 60s to prevent session expiration
+			// after
 			// 2min of inactivity
 			for (int i = 0; i < 5; i++) {
 				enterIncorrectSecurityCode();

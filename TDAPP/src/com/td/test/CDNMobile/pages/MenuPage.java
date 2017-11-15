@@ -62,7 +62,7 @@ public class MenuPage extends _CommonPage {
 
 	// @iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_ACCOUNTS")
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'My Accounts') or contains(@label,'Mes comptes') or contains(@label,'我的账户') or contains(@label,'我的賬戶') ]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='My Accounts' or @text='Mes comptes')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'My Accounts') or contains(@text,'Mes comptes') or contains(@text,'我的账户') or contains(@text,'我的賬戶') ]")
 	private MobileElement accounts_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Virements'] ")
@@ -284,10 +284,10 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				accounts_button = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
-								+ mobileAction.getAppString("str_My_Accounts") + "']",
-						"My Accounts");
+//				accounts_button = mobileAction.verifyElementUsingXPath(
+//						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
+//								+ mobileAction.getAppString("str_My_Accounts") + "']",
+//						"My Accounts");
 			}
 			Thread.sleep(5000);
 			// click Menu may fail in some case. so need to check if accounts is

@@ -439,9 +439,13 @@ public class Login extends _CommonPage {
 		if (mobileAction.verifyElementIsPresent(otpWelcomeImage)) {
 			// OTP New Customer Welcome page
 			return false;
-		} else if (mobileAction.verifyTextContains(screenheader,
-				getTextInCurrentLocale(StringArray.ARRAY_OTP_CHALLENGE_HEADER_TEXT))) {
+		} else if (screenheader.getText()
+				.contains(getTextInCurrentLocale(StringArray.ARRAY_OTP_CHALLENGE_HEADER_TEXT))) {
 			// OTP Challenge page
+			return false;
+		} else if (screenheader.getText()
+				.contains(getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_SECURITY_SETTINGS))) {
+			// OTP Update page
 			return false;
 		} else if (mobileAction.verifyElementIsPresent(otpWelcomeImageExisting)) {
 			// OTP Existing Customer Welcome page
