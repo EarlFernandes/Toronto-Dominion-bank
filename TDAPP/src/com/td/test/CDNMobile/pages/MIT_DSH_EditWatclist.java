@@ -52,7 +52,6 @@ private static MIT_DSH_EditWatclist MIT_DSH_EditWatclist;
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/nav_row_left_icon']")
 	private MobileElement AccessoryGoHome;
 	
-
 	@iOSXCUITFindBy(accessibility = "SearchBarWidget")
     
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Search or add symbols' or @text='Rechercher ou ajouter des symboles' or @text='搜索或添加股票代码' or @text='搜尋或添加股票代號']")
@@ -149,7 +148,7 @@ private static MIT_DSH_EditWatclist MIT_DSH_EditWatclist;
 		Decorator();
 		try {
 	
-		//	 MIT_DSHQuickLinks.get().goToDashboardHome();
+			 MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 			
 			 if (mobileAction.isObjExists(btnSwitchNow, 2)) 
@@ -204,7 +203,7 @@ private static MIT_DSH_EditWatclist MIT_DSH_EditWatclist;
 		Decorator();
 		try {
 	
-		//	 MIT_DSHQuickLinks.get().goToDashboardHome();
+			 MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 			
 			 if (mobileAction.isObjExists(btnSwitchNow, 2)) 
@@ -244,7 +243,7 @@ private static MIT_DSH_EditWatclist MIT_DSH_EditWatclist;
 		Decorator();
 		try {
 	
-		//	 MIT_DSHQuickLinks.get().goToDashboardHome();
+			 MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 			
 			 if (mobileAction.isObjExists(btnSwitchNow, 2)) 
@@ -287,7 +286,7 @@ private static MIT_DSH_EditWatclist MIT_DSH_EditWatclist;
 		Decorator();
 		try {
 	
-		//	 MIT_DSHQuickLinks.get().goToDashboardHome();
+			 MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 			
 			 if (mobileAction.isObjExists(btnSwitchNow, 2)) 
@@ -368,7 +367,7 @@ private static MIT_DSH_EditWatclist MIT_DSH_EditWatclist;
 		Decorator();
 		try {
 	
-		//	 MIT_DSHQuickLinks.get().goToDashboardHome();
+			 MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 			
 			 if (mobileAction.isObjExists(btnSwitchNow, 2)) 
