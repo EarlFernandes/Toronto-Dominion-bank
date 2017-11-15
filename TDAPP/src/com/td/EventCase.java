@@ -212,7 +212,7 @@ public class EventCase {
 
 		// MIT Dashboard
 
-		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, goToProfileAndSettings, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI, verifyStockETFsWLSymbolRow, verifyTappingWLOptionSymbol, goToWLExpandedView, verifyTappingWLMutualFundSymbol, verifyWLOptionSymbolSellButton, verifyWLMutualFundSymbolBuyButton, verifyWLOptionSymbolBuyButton, verifyWLETFSymbolSellButton, verifyWLIndicesSymbolBuySellButton, verifyWLBackButton, verifyWLSymbolFlagCompanyName, verifyHomeScreenSettingsBlendedInvestingFocusUser,verifyQLOrderBlendedInvestingFocus,verifyFlyoutOrderBlendedInvestingFocus,logoutFromDashboard,verifyQLFlyoutBlendedInvestingFocus,
+		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, goToProfileAndSettings, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI, verifyStockETFsWLSymbolRow, verifyTappingWLOptionSymbol, goToWLExpandedView, verifyTappingWLMutualFundSymbol, verifyWLOptionSymbolSellButton, verifyWLMutualFundSymbolBuyButton, verifyWLOptionSymbolBuyButton, verifyWLETFSymbolSellButton, verifyWLIndicesSymbolBuySellButton, verifyWLBackButton, verifyWLSymbolFlagCompanyName, verifyHomeScreenSettingsBlendedInvestingFocusUser, verifyQLOrderBlendedInvestingFocus, verifyFlyoutOrderBlendedInvestingFocus, logoutFromDashboard, verifyQLBlendedInvestingFocusAfterLogout, verifyFlyoutBlendedInvestingFocusAfterLogout, verifyQLOrderBankingOnly, verifyFlyoutOrderBankingOnly, verifyQLBankingOnlyAfterLogout, verifyFlyoutBankingOnlysAfterLogout, verifyQLOrderInvestingOnly, verifyFlyoutOrderInvestingOnly, verifyQLInvestingOnlyAfterLogout, verifyFlyoutInvestingOnlyAfterLogout, verifyQLOrderBlendedNotInvestingFocus, verifyFlyoutOrderBlendedNotInvestingFocus, verifyQLBlendedNotInvestingFocusAfterLogout, verifyFlyoutBlendedNotInvestingFocusAfterLogout,
 
 		// P2P
 
@@ -2653,7 +2653,7 @@ public class EventCase {
 		case verifyHomeScreenSettingsBlendedInvestingFocusUser:
 			MIT_DSHHomeScreenSettings.get().verifyHomeScreenSettingsBlendedInvestingFocusUser();
 			break;
-			
+
 		case verifyQLOrderBlendedInvestingFocus:
 			MIT_DSHNewProfileLogic.get().verifyQLOrderBlendedInvestingFocus();
 			break;
@@ -2661,16 +2661,66 @@ public class EventCase {
 		case verifyFlyoutOrderBlendedInvestingFocus:
 			MIT_DSHNewProfileLogic.get().verifyFlyoutOrderBlendedInvestingFocus();
 			break;
-			
+
 		case logoutFromDashboard:
 			Logout.get().logoutFromDashboard();
 			break;
-			
-		case verifyQLFlyoutBlendedInvestingFocus:
-			MIT_DSHNewProfileLogic.get().verifyQLFlyoutBlendedInvestingFocus();
+
+		case verifyQLBlendedInvestingFocusAfterLogout:
+			MIT_DSHNewProfileLogic.get().verifyQLBlendedInvestingFocusAfterLogout();
 			break;
-			
-			
+
+		case verifyFlyoutBlendedInvestingFocusAfterLogout:
+			MIT_DSHNewProfileLogic.get().verifyFlyoutBlendedInvestingFocusAfterLogout();
+			break;
+
+		case verifyQLOrderBankingOnly:
+			MIT_DSHNewProfileLogic.get().verifyQLOrderBankingOnly();
+			break;
+
+		case verifyFlyoutOrderBankingOnly:
+			MIT_DSHNewProfileLogic.get().verifyFlyoutOrderBankingOnly();
+			break;
+
+		case verifyQLBankingOnlyAfterLogout:
+			MIT_DSHNewProfileLogic.get().verifyQLBankingOnlyAfterLogout();
+			break;
+
+		case verifyFlyoutBankingOnlysAfterLogout:
+			MIT_DSHNewProfileLogic.get().verifyFlyoutBankingOnlysAfterLogout();
+			break;
+
+		case verifyQLOrderInvestingOnly:
+			MIT_DSHNewProfileLogic.get().verifyQLOrderInvestingOnly();
+			break;
+
+		case verifyFlyoutOrderInvestingOnly:
+			MIT_DSHNewProfileLogic.get().verifyFlyoutOrderInvestingOnly();
+			break;
+
+		case verifyQLInvestingOnlyAfterLogout:
+			MIT_DSHNewProfileLogic.get().verifyQLInvestingOnlyAfterLogout();
+			break;
+
+		case verifyFlyoutInvestingOnlyAfterLogout:
+			MIT_DSHNewProfileLogic.get().verifyFlyoutInvestingOnlyAfterLogout();
+			break;
+
+		case verifyQLOrderBlendedNotInvestingFocus:
+			MIT_DSHNewProfileLogic.get().verifyQLOrderBlendedNotInvestingFocus();
+			break;
+
+		case verifyFlyoutOrderBlendedNotInvestingFocus:
+			MIT_DSHNewProfileLogic.get().verifyFlyoutOrderBlendedNotInvestingFocus();
+			break;
+
+		case verifyQLBlendedNotInvestingFocusAfterLogout:
+			MIT_DSHNewProfileLogic.get().verifyQLBlendedNotInvestingFocusAfterLogout();
+			break;
+
+		case verifyFlyoutBlendedNotInvestingFocusAfterLogout:
+			MIT_DSHNewProfileLogic.get().verifyFlyoutBlendedNotInvestingFocusAfterLogout();
+			break;
 
 		// MIT Dashboard END
 

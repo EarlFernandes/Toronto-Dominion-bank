@@ -235,7 +235,7 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_GIVEFEEDBACK = { "Give Feedback", "Fournir des commentaires",
 			"提供意见反馈", "提供意見回饋" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_CONTACTUS = { "Contact Us", "Contactez-nous", "联系我们", "聯絡我們" };
-	public static final String[] ARRAY_DASHBOARD_FLYOUT_FAQ = { "Frequently Asked Questions", "Foire aux questions",
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_FAQ = { "FAQ", "Foire aux questions",
 			"常见问答", "常見問題" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_PRIVACYSECURITY = { "Privacy, Security & Legal",
 			"Confidentialité, sécurité et avis juridique", "隐私、安全与法律声明", "私隱政策、安全性和法律聲明" };

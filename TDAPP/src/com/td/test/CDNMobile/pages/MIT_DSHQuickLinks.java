@@ -20,7 +20,7 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class MIT_DSHQuickLinks extends _CommonPage {
- 
+
 	private static MIT_DSHQuickLinks MIT_DSHQuickLinks;
 
 	public synchronized static MIT_DSHQuickLinks get() {
@@ -264,10 +264,11 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 			verifyQL_PAY_BILL(true);
 
-/*	    	verifyQL_WATCHLISTS(true); De-Scoped as per New Requirement	
-
-			verifyQL_QUOTE(true);De-Scoped as per New Requirement	*/
-			
+			/*
+			 * verifyQL_WATCHLISTS(true); De-Scoped as per New Requirement
+			 * 
+			 * verifyQL_QUOTE(true);De-Scoped as per New Requirement
+			 */
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -322,19 +323,19 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		}
 		return bFlag;
 	}
-	
+
 	public boolean verifyQuickLinkExistsByXpath(String xpathEle, String sDesc) {
 		Decorator();
 		boolean bFlag = false;
 		try {
 
 			CL.GetDriver().findElement(By.xpath(xpathEle));
-				// mobileAction.FunctionSwipe("Left", 200, 100);
+			// mobileAction.FunctionSwipe("Left", 200, 100);
 
-				//if (mobileAction.isObjExists(mElement))
-					bFlag = true;
-			//else
-				//bFlag = true;
+			// if (mobileAction.isObjExists(mElement))
+			bFlag = true;
+			// else
+			// bFlag = true;
 
 		} catch (Exception e) {
 			try {
@@ -343,7 +344,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-//			e.printStackTrace();
+			// e.printStackTrace();
 		}
 		if (bFlag) {
 			try {
@@ -579,8 +580,15 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE));
 
 				clickQuickLink(QL_TRADE, "TRADE");
-				mobileAction.verifyElementIsDisplayed(hdrTrade, "Header: Trade");
-				mobileAction.FuncClick(BT_Back, "< Button");
+
+				if (!bIsAuthenticatedUser) {
+					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
+					mobileAction.FuncClick(BT_Back, "< Button");
+				} else {
+					mobileAction.verifyElementIsDisplayed(hdrTrade, "Header: Trade");
+					mobileAction.FuncClick(BT_Back, "< Button");
+				}
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
