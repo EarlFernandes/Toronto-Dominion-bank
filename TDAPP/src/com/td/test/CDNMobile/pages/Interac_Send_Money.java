@@ -427,6 +427,10 @@ public class Interac_Send_Money extends _CommonPage {
 			mobileAction.waitProgressBarVanish();
 			mobileAction.waitProgressBarVanish();
 			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
 			Interac_e_Registration.get().clickGoBackHome();
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
