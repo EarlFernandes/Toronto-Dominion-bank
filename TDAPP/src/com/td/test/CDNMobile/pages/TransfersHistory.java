@@ -548,6 +548,9 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.waitProgressBarVanish();
 			mobileAction.waitProgressBarVanish();
 			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
 		
 
 		} catch (Exception e) {
@@ -1041,6 +1044,9 @@ public class TransfersHistory extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(continueBtn, "Continue Button");
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1081,6 +1087,9 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
 			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
