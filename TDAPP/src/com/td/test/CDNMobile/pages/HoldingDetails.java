@@ -17,28 +17,29 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class HoldingDetails extends _CommonPage {
 	private static HoldingDetails HoldingDetails;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Buy']")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Buy' or @label='Acheter']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/buyBtn']")
 	private MobileElement Buy;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Sell']")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Sell' or @label='Vendre']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/sellBtn']")
 	private MobileElement Sell;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
+	// @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='Négociation']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement trade_header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Holding Details']")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Holding Details']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Holding Details']")
 	private MobileElement HoldingDetails_header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Good 'til, Day')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Trade']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Day') or @label='Jour']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and (@text='Day' or @text='Jour')]")
 	private MobileElement Good;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Agree']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Agree']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Agree' or @label='Accepte']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and (@text='Agree' or @text='Accepte') ]")
 	private MobileElement AgreeButton;
 
 	public synchronized static HoldingDetails get() {
@@ -55,17 +56,67 @@ public class HoldingDetails extends _CommonPage {
 	}
 
 	public void verify_Account_CADCash() {
+		String FromAccount = getTestdata("FromAccount");
+		String accountName = null;
+		String action_buy = null;
+		String action_sell = null;
 		try {
 			Decorator();
 			mobileAction.FuncClick(Buy, "Buy");
 			Thread.sleep(3000);
+			mobileAction.waitProgressBarVanish();
 			String verify_trade = "Verifying Trade Page Header";
 			mobileAction.verifyElementIsDisplayed(trade_header, verify_trade);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				accountName = "//XCUIElementTypeStaticText[@label='" + FromAccount + "']";
+			} else {
+				accountName = "//android.widget.TextView[@resource-id='com.td:id/selectedValue' and @text='"
+						+ FromAccount + "']";
+			}
+			MobileElement accountXpath = mobileAction.mobileElementUsingXPath(accountName);
+			mobileAction.verifyElementIsDisplayed(accountXpath, "Selected Account");
+
+			String s = getTestdata("Action");
+			String s1[] = s.split(":");
+
+			mobileAction.FuncSwipeOnce("up");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				action_buy = "//XCUIElementTypeStaticText[@label='" + s1[0] + "']";
+			} else {
+				action_buy = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='" + s1[0]
+						+ "']";
+			}
+			MobileElement actionBuy = mobileAction.mobileElementUsingXPath(action_buy);
+
+			mobileAction.verifyElementIsDisplayed(actionBuy, "Action Buy");
+
+			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.verifyElementIsDisplayed(Good, "Good 'til, Day");
 			mobileAction.FuncClickBackButton();
 			mobileAction.FuncClick(AgreeButton, "Agree");
 			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(Sell, "Sell");
+			mobileAction.waitProgressBarVanish();
+			mobileAction.verifyElementIsDisplayed(accountXpath, "Selected Account");
+
+			mobileAction.FuncSwipeOnce("up");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
+				action_sell = "//XCUIElementTypeStaticText[@label='" + s1[1] + "']";
+
+			} else {
+
+				action_sell = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='" + s1[1]
+						+ "']";
+			}
+
+			MobileElement actionSell = mobileAction.mobileElementUsingXPath(action_sell);
+
+			mobileAction.verifyElementIsDisplayed(actionSell, "Action Sell");
+
+			mobileAction.FunctionSwipe("up", 200, 200);
+			mobileAction.verifyElementIsDisplayed(Good, "Good 'til, Day");
 			Thread.sleep(3000);
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -84,17 +135,78 @@ public class HoldingDetails extends _CommonPage {
 	}
 
 	public void verify_Account_US_MarginShort() {
+		String FromAccount = getTestdata("FromAccount");
+		String accountName = null;
+		String action_buy = null;
+		String action_sell = null;
 		try {
 			Decorator();
 			mobileAction.FuncClick(Buy, "Buy");
 			Thread.sleep(3000);
 			String verify_trade = "Verifying Trade Page Header";
 			mobileAction.verifyElementIsDisplayed(trade_header, verify_trade);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				accountName = "//XCUIElementTypeStaticText[@label='" + FromAccount + "']";
+			} else {
+				accountName = "//android.widget.TextView[@resource-id='com.td:id/selectedValue' and @text='"
+						+ FromAccount + "']";
+			}
+			MobileElement accountXpath = mobileAction.mobileElementUsingXPath(accountName);
+			mobileAction.verifyElementIsDisplayed(accountXpath, "Selected Account");
+			String s = getTestdata("Action");
+			String s1[] = s.split(":");
+			mobileAction.FuncSwipeOnce("up");
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
+				action_buy = "//XCUIElementTypeStaticText[@label='" + s1[0] + "']";
+
+			} else {
+
+				action_buy = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='" + s1[0]
+						+ "']";
+			}
+
+			MobileElement actionBuy = mobileAction.mobileElementUsingXPath(action_buy);
+
+			mobileAction.verifyElementIsDisplayed(actionBuy, "Action Buy");
+			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.verifyElementIsDisplayed(Good, "Good 'til, Day");
 			mobileAction.FuncClickBackButton();
-			mobileAction.FuncClick(AgreeButton, "Agree");
+
+			if (mobileAction.verifyElementIsPresent(AgreeButton)) {
+				mobileAction.FuncClick(AgreeButton, "Agree");
+			}
+
 			mobileAction.waitProgressBarVanish();
+
 			mobileAction.FuncClick(Sell, "Sell");
+			mobileAction.waitProgressBarVanish();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				accountName = "//XCUIElementTypeStaticText[@label='" + FromAccount + "']";
+			} else {
+				accountName = "//android.widget.TextView[@resource-id='com.td:id/selectedValue' and @text='"
+						+ FromAccount + "']";
+			}
+			MobileElement accountXpath1 = mobileAction.mobileElementUsingXPath(accountName);
+			mobileAction.verifyElementIsDisplayed(accountXpath1, "Selected Account");
+			mobileAction.FuncSwipeOnce("up");
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
+				action_sell = "//XCUIElementTypeStaticText[@label='" + s1[1] + "']";
+
+			} else {
+
+				action_sell = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='" + s1[1]
+						+ "']";
+			}
+
+			MobileElement actionSell = mobileAction.mobileElementUsingXPath(action_sell);
+
+			mobileAction.verifyElementIsDisplayed(actionSell, "Action Sell");
+			mobileAction.FunctionSwipe("up", 200, 200);
+			mobileAction.verifyElementIsDisplayed(Good, "Good 'til, Day");
 			Thread.sleep(3000);
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
