@@ -546,6 +546,9 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.FuncClick(moneySentSeeAll, "See All");
 			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
+		
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -707,14 +710,16 @@ public class TransfersHistory extends _CommonPage {
 
 		Decorator();
 		try {
-
+			mobileAction.waitProgressBarVanish();
 			String receiver = getTestdata("ToAccount");
 
 			if (StringUtils.isEmpty(receiver)) {
 				mobileAction.FuncClick(transaction, "Transaction");
 			} else {
 
+				System.err.println("Inside else");
 				mobileAction.FuncClick(getReceiver(), "Receiver: " + receiver);
+				System.err.println("Clicked on receiver");
 			}
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -786,6 +791,8 @@ public class TransfersHistory extends _CommonPage {
 						"//XCUIElementTypeButton[contains(@label,'" + receiver + "') and (contains(@label,'"
 								+ transStatus + "') or contains(@label,'" + transStatus.toUpperCase() + "'))]");
 
+				System.err.println("Got receiver");
+				
 			}
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

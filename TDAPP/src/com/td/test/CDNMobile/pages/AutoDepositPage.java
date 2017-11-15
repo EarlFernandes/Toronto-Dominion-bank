@@ -694,6 +694,8 @@ public class AutoDepositPage extends _CommonPage {
 				mobileAction.FuncClick(next, "Next Button");
 			}
 
+			mobileAction.waitProgressBarVanish();
+			
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -792,7 +794,8 @@ public class AutoDepositPage extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(nextReqMoney, "Request Money Button");
-
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {

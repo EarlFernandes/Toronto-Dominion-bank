@@ -161,8 +161,7 @@ public class Transfers extends _CommonPage {
 			Thread.sleep(5000);
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer Header");
 			mobileAction.FuncClick(Interac_e_Transfer_button, "Interac e_Transfer");
-
-			// mobileAction.waitForElementToVanish(progrees_Bar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -545,8 +544,11 @@ public class Transfers extends _CommonPage {
 		Decorator();
 		try {
 
+			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(requestMoney, "Request Money Link");
 
+			mobileAction.waitProgressBarVanish();
 			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
