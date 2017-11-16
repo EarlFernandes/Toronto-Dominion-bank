@@ -23,11 +23,11 @@ public class LogoutMySpend extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Logout') or contains(@label,'Fermer la session')]")
 	private MobileElement logout;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Logged Out' or @label='Terminé']")
+	@iOSFindBy(xpath = "//*[@label='Logged Out' or @label='Terminé']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement loggedOutHeader;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Success' or contains(@label,'Votre session a été fermée avec succès')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Success' or contains(@label,'Votre session a été fermée avec succès')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/success']")
 	private MobileElement successMsg;
 
@@ -74,13 +74,14 @@ public class LogoutMySpend extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(loggedOutHeader, "LoggedOut Header");
 			mobileAction.verifyElementIsDisplayed(successMsg, "Success Message");
 
-		}  catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}catch (Exception e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
