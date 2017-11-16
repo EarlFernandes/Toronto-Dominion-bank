@@ -38,12 +38,12 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Markets' or @content-desc='Markets']")
 	private MobileElement markets;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='TRANSFER']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transfers_dashboard' and @text='TRANSFERS']")
+	@iOSFindBy(xpath = "//*[@label='TRANSFER' or @label='VIREMENT' or @label='转账' or @label='轉賬']")
+	@AndroidFindBy(xpath = "//*[@text='TRANSFER' or @text='VIREMENT' or @text='转账' or @text='轉賬']")
 	private MobileElement transfer_button_dashboard;
 
-	@iOSFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
-	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access']") // This
+	@iOSFindBy(xpath = "//*[@name='NAVIGATION_ITEM_QUICK_ACCESS' or @namwe='QuickLinkRightNavButton']")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']") // This
 																		// is
 																		// sometimes
 																		// TextView
@@ -179,10 +179,6 @@ public class HomeScreen extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/acceptButton' and @text='Accept']")
 	private MobileElement accept;
-
-	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_HOME")
-	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/list_slidermenu']")
-	private MobileElement slidemenu_list;
 
 	int i = 1;
 	String Firstpart = "//XCUIElementTypeCell[";

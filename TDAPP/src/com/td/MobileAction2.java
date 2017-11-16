@@ -3536,11 +3536,11 @@ public class MobileAction2 extends CommonLib {
 		String menuSlideXpath = "";
 
 		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-			menuXpath = "//android.widget.ImageView[@resource-id='android:id/up' and @index='0']";
+			menuXpath = "//android.widget.ImageView[@resource-id='android:id/up' or @resource-id='com.td:id/hamburger']";
 			menuSlideXpath = "//android.widget.ListView[@index='1']";
 		} else {
-			menuXpath = "//XCUIElementTypeButton[@name ='NAVIGATION_ITEM_MENU']";
-			menuSlideXpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']";
+			menuXpath = "//XCUIElementTypeButton[@name ='NAVIGATION_ITEM_MENU' or @name='QuickLinkLeftNavButton']";
+			menuSlideXpath = "//*[@name='NAV_DRAWER_ITEMS_HOME' or @name='NAV_DRAWER_ITEMS_0']";
 		}
 		boolean isMenuOpened = false;
 		try {
@@ -3553,7 +3553,17 @@ public class MobileAction2 extends CommonLib {
 					isMenuOpened = true;
 					break;
 				} catch (Exception e1) {
+					// Added for R18.3
+					if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+						menuSlideXpath = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/flyout_menu_dashboard']";
+						try {
+							((AppiumDriver) GetDriver()).findElement(By.xpath(menuSlideXpath));
+							isMenuOpened = true;
+							break;
+						} catch (Exception e2) {
 
+						}
+					}
 				}
 				icnt++;
 			}
