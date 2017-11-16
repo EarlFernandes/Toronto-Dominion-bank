@@ -318,7 +318,7 @@ public class OTPChallenge extends _CommonPage {
 				clickGetCodeButton();
 			} else {
 				mobileAction.switchAppiumContext("NATIVE_APP");
-				mobileAction.FuncClick(resendCodeText, "Resend Code button click");
+				mobileAction.FuncClick(resendCodeText, "Resend Text button click");
 
 			}
 
