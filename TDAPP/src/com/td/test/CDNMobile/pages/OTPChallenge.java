@@ -287,6 +287,10 @@ public class OTPChallenge extends _CommonPage {
 				} else {
 					clickResendCode();
 				}
+				
+				// Doesn't allow immediate code requests, needs to wait some time
+				Thread.sleep(30000);
+
 			}
 
 		} catch (Exception e) {
@@ -308,17 +312,14 @@ public class OTPChallenge extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
 			}
-
-			// Doesn't allow immediate code requests, needs to wait some time
-			Thread.sleep(15000);
-			mobileAction.FuncClick(resendCodeLink, "Resend Code button click");
+			mobileAction.FuncClick(resendCodeLink, "Resend Code button");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				clickTextOption();
 				clickGetCodeButton();
 			} else {
 				mobileAction.switchAppiumContext("NATIVE_APP");
-				mobileAction.FuncClick(resendCodeText, "Resend Text button click");
+				mobileAction.FuncClick(resendCodeText, "Resend Code Dialog, Text button");
 
 			}
 
