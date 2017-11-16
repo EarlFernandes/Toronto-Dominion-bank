@@ -101,7 +101,8 @@ public class OTPChallenge extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				//mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchAppiumContext("WEBVIEW_R");
 			}
 
 			mobileAction.FuncClick(textOption, "Text option");
@@ -145,7 +146,8 @@ public class OTPChallenge extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				//mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchAppiumContext("WEBVIEW_R");
 			}
 			mobileAction.FuncClick(getCodeButton, "Get Code Button");
 
