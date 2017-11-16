@@ -29,6 +29,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 
 import java.util.Iterator;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -3574,4 +3575,14 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
+	public void switchToWebView() {
+	    Set<String> contextNames = ((AppiumDriver) GetDriver()).getContextHandles();
+	    String lastestContextView = (String) contextNames.toArray()[contextNames.size()-1];
+
+	    if (lastestContextView.contains("WEBVIEW_")){
+	    	((AppiumDriver) GetDriver()).context(lastestContextView);
+	    } else {
+	    	System.out.println("No Webview found");
+	    }
+	}
 }

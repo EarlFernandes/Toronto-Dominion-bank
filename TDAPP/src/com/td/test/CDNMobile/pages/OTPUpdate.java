@@ -243,7 +243,7 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(phoneCard1Phone, "First phone number");
 			mobileAction.FuncClick(deletePhone1UpdateButton, "Delete first phone number");
@@ -265,7 +265,7 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(deletePhone2UpdateButton, "Delete first phone number");
 
@@ -289,7 +289,7 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				mobileAction.FuncScrollIntoView(addPhoneUpdateButton, "Add Phone Update Button");
 
 			}
@@ -342,21 +342,21 @@ public class OTPUpdate extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				mobileAction.FuncClickWithActions(editPhoneField, "Edit Phone Number");
 				editPhoneField.sendKeys(phoneNumber);
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
 
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				mobileAction.FuncClickWithActions(editNicknameField, "Edit Nickname");
 				editNicknameField.sendKeys(nickname);
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
 
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				mobileAction.FuncClick(addPhoneContinueButton, "Add Phone Continue button");
 
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -398,7 +398,7 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.FuncClick(addPhoneContinueButton, "Add Phone Continue button");
@@ -421,7 +421,7 @@ public class OTPUpdate extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				mobileAction.FuncScrollIntoView(changeEmailUpdateButton, "Change Email Button");
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FunctionSwipe("up", 100, 0);
@@ -446,7 +446,7 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 			// mobileAction.FuncClick(testPhoneUpdateButton, "Test Phone
 			// Button");
@@ -478,7 +478,7 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				mobileAction.FuncScrollIntoView(changeLoginOptionUpdateButton, "Change Login Option Button");
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FunctionSwipe("up", 100, 0);
@@ -504,14 +504,14 @@ public class OTPUpdate extends _CommonPage {
 			String email = getTestdata("EmailProfile");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				mobileAction.FuncClick(securityEmailField, "Enter Security Email");
 				mobileAction.FuncSendKeys(securityEmailField, email);
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
 
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				mobileAction.FuncClick(emailContinueButton, "Email Continue button");
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
@@ -546,7 +546,7 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(otpUpdateContinueButton, "OTP Update Continue Button");
 
@@ -567,7 +567,7 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.FuncClick(testPhonesContinueButton, "Test Phones Continue button");
@@ -589,7 +589,7 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.FuncClick(firstPhoneNumber, "First phone number");
@@ -612,7 +612,7 @@ public class OTPUpdate extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.FuncClick(textOption, "Text option");
@@ -634,7 +634,7 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(getCodeButton, "Get Code Button");
 
@@ -661,7 +661,7 @@ public class OTPUpdate extends _CommonPage {
 			}
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.FuncClick(securityCodeField, "Security Code Field");
@@ -688,7 +688,7 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(submitCodeButton, "submit code button");
 
@@ -711,14 +711,14 @@ public class OTPUpdate extends _CommonPage {
 			String email = getTestdata("EmailProfile");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				mobileAction.FuncClick(securityEmailField, "Enter Security Email");
 				mobileAction.FuncSendKeys(securityEmailField, email);
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
 
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				mobileAction.FuncClick(emailContinueButton, "Email Continue button");
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
@@ -758,8 +758,7 @@ public class OTPUpdate extends _CommonPage {
 			options.addArguments("disable-notifications");
 			options.addArguments("disable-infobars");
 			options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-	        System.setProperty("webdriver.chrome.driver",
-	                "C:\\Automation\\Tools\\Browser_drivers\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "C:\\Automation\\Tools\\Browser_drivers\\chromedriver.exe");
 			WebDriver driver = new ChromeDriver(options);
 			driver.get(GOOGLE_VOICE_URL);
 
@@ -792,7 +791,7 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(passcodeContinueButton, "Passcode Verified Continue button");
 
@@ -846,7 +845,7 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.verifyElementNotPresent(deletePhone2UpdateButton, "2nd phone Deleted");
@@ -869,7 +868,7 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -900,7 +899,7 @@ public class OTPUpdate extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.verifyElementIsDisplayed(securityEmailHeader, "Security Email screen header");
@@ -941,7 +940,7 @@ public class OTPUpdate extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.verifyElementIsDisplayed(otpUpdateHeader, "OTP Update screen header");
@@ -1033,7 +1032,7 @@ public class OTPUpdate extends _CommonPage {
 			String email = getTestdata("EmailProfile");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				mobileAction.FuncScrollIntoView(changeEmailUpdateButton, "Security Email field");
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FunctionSwipe("up", 100, 0);
@@ -1073,7 +1072,7 @@ public class OTPUpdate extends _CommonPage {
 			String nickname = getTestdata("Nickname");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.verifyElementIsDisplayed(addedPhoneNumber, "Phone number");
@@ -1102,7 +1101,7 @@ public class OTPUpdate extends _CommonPage {
 			String nickname = getTestdata("Nickname");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			String phoneNumber = "1" + phoneNumbers[0].trim();

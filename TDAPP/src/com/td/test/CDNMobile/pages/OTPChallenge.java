@@ -15,6 +15,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.td.StringArray;
 import com.td._CommonPage;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -101,10 +102,9 @@ public class OTPChallenge extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				//mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				mobileAction.switchAppiumContext("WEBVIEW_R");
+				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
-
 			mobileAction.FuncClick(textOption, "Text option");
 
 		} catch (Exception e) {
@@ -124,7 +124,8 @@ public class OTPChallenge extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.FuncClick(voiceOption, "Voice option");
@@ -146,8 +147,8 @@ public class OTPChallenge extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				//mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				mobileAction.switchAppiumContext("WEBVIEW_R");
+				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(getCodeButton, "Get Code Button");
 
@@ -174,7 +175,8 @@ public class OTPChallenge extends _CommonPage {
 			}
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.FuncClick(securityCodeField, "Security Code Field");
@@ -204,7 +206,8 @@ public class OTPChallenge extends _CommonPage {
 			String securityCode = "1111";
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.FuncClick(securityCodeField, "Security Code Field");
@@ -227,7 +230,8 @@ public class OTPChallenge extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(submitCodeButton, "submit code button");
 			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
@@ -249,7 +253,8 @@ public class OTPChallenge extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.FuncClick(firstPhoneNumber, "First phone number");
@@ -274,7 +279,8 @@ public class OTPChallenge extends _CommonPage {
 			for (int i = 0; i < 5; i++) {
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-					mobileAction.switchAppiumContext("WEBVIEW_com.td");
+					// mobileAction.switchAppiumContext("WEBVIEW_com.td");
+					mobileAction.switchToWebView();
 				}
 
 				boolean hasMsg = mobileAction.verifyElementIsPresent(tooManySecurityCodesRequestedMsg);
@@ -289,8 +295,9 @@ public class OTPChallenge extends _CommonPage {
 				} else {
 					clickResendCode();
 				}
-				
-				// Doesn't allow immediate code requests, needs to wait some time
+
+				// Doesn't allow immediate code requests, needs to wait some
+				// time
 				Thread.sleep(30000);
 
 			}
@@ -312,7 +319,8 @@ public class OTPChallenge extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(resendCodeLink, "Resend Code button");
 
@@ -347,8 +355,7 @@ public class OTPChallenge extends _CommonPage {
 			options.addArguments("disable-notifications");
 			options.addArguments("disable-infobars");
 			options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-	        System.setProperty("webdriver.chrome.driver",
-	                "C:\\Automation\\Tools\\Browser_drivers\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "C:\\Automation\\Tools\\Browser_drivers\\chromedriver.exe");
 			WebDriver driver = new ChromeDriver(options);
 			driver.get(GOOGLE_VOICE_URL);
 
@@ -383,7 +390,8 @@ public class OTPChallenge extends _CommonPage {
 			for (int i = 0; i < 2; i++) {
 				Thread.sleep(1000 * 60);
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-					mobileAction.switchAppiumContext("WEBVIEW_com.td");
+					// mobileAction.switchAppiumContext("WEBVIEW_com.td");
+					mobileAction.switchToWebView();
 				} else {
 					mobileAction.switchAppiumContext("NATIVE_APP");
 				}
@@ -412,7 +420,8 @@ public class OTPChallenge extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.verifyElementIsDisplayed(cannotVerifySecurityCodeMsg, "Cannot verify security message");
@@ -435,7 +444,8 @@ public class OTPChallenge extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.verifyElementIsDisplayed(tooManySecurityCodesRequestedMsg,
