@@ -446,11 +446,9 @@ public class Transfers extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("transfer_faq_question") + "']",
 						"Transfer faq");
-				mobileAction
-						.verifyElementUsingXPath(
-								"//android.widget.TextView[@text='" + mobileAction
-										.getAppString("imtHintTextManageRecipients").replaceAll("\\<.*?>", "") + "']",
-								"Add, edit or delete");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ mobileAction.getAppString("imtHintTextManageRecipients").replaceAll("\\<.*?>", "") + "']",
+						"Add, edit or delete");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction
 						.getAppString("transfersTransfersHintTextPendingInteracETransfer").replaceAll("\\<.*?>", "")
 						+ "']", "View pending");
@@ -517,9 +515,9 @@ public class Transfers extends _CommonPage {
 
 			mobileAction.waitProgressBarVanish();
 			mobileAction.waitProgressBarVanish();
+			/*mobileAction.waitProgressBarVanish();
 			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();*/
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

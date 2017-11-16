@@ -527,6 +527,8 @@ public class Login extends _CommonPage {
 			// Even in Landscape mode, the login button is visible
 			mobileAction.FuncClick(login, "Login");
 			mobileAction.waitProgressBarVanish();
+			/*mobileAction.waitProgressBarVanish();
+			mobileAction.waitProgressBarVanish();*/
 			enterPwdifSystemError();
 
 		} catch (NoSuchElementException e) {
