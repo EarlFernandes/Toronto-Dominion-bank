@@ -23,11 +23,11 @@ public class LogoutMySpend extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Logout') or contains(@label,'Fermer la session')]")
 	private MobileElement logout;
 
-	@iOSFindBy(xpath = "//*[@label='Logged Out' or @label='Terminé']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Logged Out' or @label='Terminé']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement loggedOutHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Success' or contains(@label,'Votre session a été fermée avec succès')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Success' or contains(@label,'Votre session a été fermée avec succès')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/success']")
 	private MobileElement successMsg;
 
