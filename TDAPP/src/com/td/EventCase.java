@@ -1336,7 +1336,7 @@ public class EventCase {
 			break;
 
 		case Menu_Location:
-			HomeScreen.get().clicklocation();
+			MenuPage.get().clickFindLocations();
 			break;
 
 		case SenderList_Cancel:
@@ -1522,7 +1522,7 @@ public class EventCase {
 			break;
 
 		case MenuTrade:
-			HomeScreen.get().clickmenu_trade();
+			MenuPage.get().clickMenuTrade();
 			break;
 
 		case MenuTradeEasyWebCustomer:

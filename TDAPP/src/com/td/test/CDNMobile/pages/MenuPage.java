@@ -84,8 +84,8 @@ public class MenuPage extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Apple Pay']")
 	private MobileElement applePay;
 
-	@iOSFindBy(xpath = "//*[@label='Find Locations' or @label='Trouver une succursale' or @label='查找分行' or @label='查找分行']")
-	@AndroidFindBy(xpath = "//*[@text='Find Locations' or @text='Trouver une succursale' or @text='查找分行' or @text='查找分行']")
+	@iOSFindBy(xpath = "//*[@label='Locations' or @label='Succursales' or @label='分行网点' or @label='分行']")
+	@AndroidFindBy(xpath = "//*[@text='Locations' or @text='Succursales' or @text='分行网点' or @text='分行']")
 	private MobileElement locations;
 
 	// Profile and preference
@@ -101,8 +101,6 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText']")
 	private List<MobileElement> menuOpts;
 
-	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_ACCOUNTS")
-	private MobileElement menuAccounts;
 
 	public synchronized static MenuPage get() {
 		if (MenuPage == null) {
@@ -543,6 +541,7 @@ public class MenuPage extends _CommonPage {
 		}
 
 	}
+	
 
 	// For profile and preference
 
@@ -611,6 +610,7 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 
 		try {
+			mobileAction.FuncSwipeWhileElementNotFound(give_feedback, false, 5, "up");
 			String elementText = mobileAction.getValue(give_feedback);
 			System.out.println("elementText:" + elementText);
 			mobileAction.FuncClick(give_feedback, elementText);
