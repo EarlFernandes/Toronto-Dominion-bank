@@ -41,12 +41,12 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 
-	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='Comptes' or @label='汇款' or @label='匯款']")
-	@AndroidFindBy(xpath = "//*[@text='Accounts' or @text='Comptes' or @text='汇款' or @text='匯款']")
+	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='Comptes' or @label='账户' or @label='賬戶']")
+	@AndroidFindBy(xpath = "//*[@text='Accounts' or @text='Comptes' or @text='账户' or @text='賬戶']")
 	private MobileElement NR_Accounts;
 
-	@iOSFindBy(xpath = "//*[@label='Transfers' or @label='Virements' or @label='账单' or @label='轉賬']")
-	@AndroidFindBy(xpath = "//*[@text='Transfers' or @text='Virements' or @text='账单' or @text='轉賬']")
+	@iOSFindBy(xpath = "//*[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬']")
+	@AndroidFindBy(xpath = "//*[@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬']")
 	private MobileElement NR_Transfers;
 
 	@iOSFindBy(xpath = "//*[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單']")
@@ -77,8 +77,8 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Home' or @text='Accueil' or @text='主页' or @text='首頁']")
 	private MobileElement FLY_Home;
 
-	@iOSFindBy(xpath = "//*[@label='Transfers' or @label='Virements' or @label='账单' or @label='轉賬']")
-	@AndroidFindBy(xpath = "//*[@text='Transfers' or @text='Virements' or @text='账单' or @text='轉賬']")
+	@iOSFindBy(xpath = "//*[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬']")
+	@AndroidFindBy(xpath = "//*[@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬']")
 	private MobileElement HDR_Transfers;
 
 	@iOSFindBy(xpath = "//*[(@label='Bills' or @label='Factures' or @label='账单' or @label='賬單') and @name='TDVIEW_TITLE']")
@@ -97,20 +97,20 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Quote' or @text='Cote' or @text='报价' or @text='報價']")
 	private MobileElement NR_Quote;
 
-	@iOSFindBy(xpath = "//*[@label='Alerts' or @label='Alertes' or @label='账单' or @label='轉賬']")
-	@AndroidFindBy(xpath = "//*[@text='Alerts' or @text='Alertes' or @text='账单' or @text='轉賬']")
+	@iOSFindBy(xpath = "//*[@label='Alerts' or @label='Alertes' or @label='提醒' or @label='提醒']")
+	@AndroidFindBy(xpath = "//*[@text='Alerts' or @text='Alertes' or @text='提醒' or @text='提醒']")
 	private MobileElement NR_Alerts;
 
-	@iOSFindBy(xpath = "//*[@label='Open a Bank Account' or @label='Ouvrir un compte bancaire' or @label='账单' or @label='轉賬']")
-	@AndroidFindBy(xpath = "//*[@text='Open a Bank Account' or @text='Ouvrir un compte bancaire' or @text='账单' or @text='轉賬']")
+	@iOSFindBy(xpath = "//*[@label='Open a Bank Account' or @label='Ouvrir un compte bancaire' or @label='开设银行账户' or @label='開設銀行賬戶']")
+	@AndroidFindBy(xpath = "//*[@text='Open a Bank Account' or @text='Ouvrir un compte bancaire' or @text='开设银行账户' or @text='開設銀行賬戶']")
 	private MobileElement NR_OpenBankAccount;
 
 	@iOSFindBy(xpath = "//*[@label='Banking' or @label='Services bancaires' or @label='理财' or @label='理財']")
 	@AndroidFindBy(xpath = "//*[@text='Banking' or @text='Services bancaires' or @text='理财' or @text='理財']")
 	private MobileElement HDR_Banking;
 
-	@iOSFindBy(xpath = "//*[@label='Alerts' or @label='Alertes' or @label='账单' or @label='轉賬']")
-	@AndroidFindBy(xpath = "//*[@text='Alerts' or @text='Alertes' or @text='账单' or @text='轉賬']")
+	@iOSFindBy(xpath = "//*[@label='Alerts' or @label='Alertes' or @label='提醒' or @label='提醒']")
+	@AndroidFindBy(xpath = "//*[@text='Alerts' or @text='Alertes' or @text='提醒' or @text='提醒']")
 	private MobileElement HDR_Alerts;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter name or symbol' or @value='Entrez un nom ou un symbole' or @value='输入名称或代号' or @value='輸入名稱或代號']")
@@ -180,6 +180,8 @@ public class MIT_DSHNavRows extends _CommonPage {
 			// verifyNR_InvestingAccounts(false); //Investing Accounts removed
 			// from Nav Rows as per new requirement
 
+			verifyNR_Accounts(true);
+			
 			verifyNR_Alerts(true);
 
 			verifyNR_Markets(true);
