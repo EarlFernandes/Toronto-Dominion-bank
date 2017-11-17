@@ -32,7 +32,7 @@ public class DailyDigest extends _CommonPage{
 	private MobileElement homeBtn;
 	
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access'] | //android.widget.TextView[@resource-id='com.td:id/easy_access']")
 	private MobileElement quickAccess;
 	
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
@@ -578,9 +578,9 @@ public class DailyDigest extends _CommonPage{
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(changeCategory, "Category");
 				if(currentLocale.equalsIgnoreCase("EN")){
-					category="//*[contains(@content-desc,'"+ categoryValue[0] +"')]";
+					category="//*[contains(@content-desc,'"+ categoryValue[0] +"') or contains(@text,'"+ categoryValue[0] +"')]";
 				}else{
-					category="//*[contains(@content-desc,'"+ categoryValue[1] +"')]";
+					category="//*[contains(@content-desc,'"+ categoryValue[1] +"') or or contains(@text,'"+ categoryValue[1] +"')]";
 				}
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(category, true, 5, "Up");
 				
