@@ -43,8 +43,8 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_DISCLAIMER_INFO = {
 			"We only use your information to contact you about your purchase.Please make sure that all RSP and Tax Free Savings Account transactions do not exceed your allowed contribution limit.If a trade is rejected for any reason, we'll cancel it and notify you via email within one business day.You may be charged a short term trading fee of up to 2% of your purchase cost if you switch or redeem your Funds (except the Money Market Funds). This fee does not apply to Fund units purchased through distribution / dividend reinvestment. Short term trading fees are paid directly to the Fund. Please see the applicable fund facts or the simplified prospectus for further details.TD Asset Management Inc. (TDAM) pays TD Investment Services Inc. (TDIS) a trailing commission for as long as you hold units of TD Mutual Funds. It is for the services and advice provided to you. See the Fund Facts for more details.",
 			"Vos renseignements seront uniquement utilisés pour communiquer avec vous au sujet de votre achat.Vérifiez qu’aucune opération visant un REER ou un CELI ne vous fera dépasser votre plafond de cotisation.Si une opération est refusée pour quelque raison que ce soit, nous l’annulerons et nous vous aviserons par courriel dans un délai d’un jour ouvrable.Vous pourriez devoir payer des frais d’opérations à court terme s’élevant jusqu’à 2 % du coût d’achat si vous substituez ou rachetez des parts du fonds (sauf dans le cas d’un Fonds du marché monétaire). Ces frais ne s’appliquent pas aux parts de fonds achetés dans le cadre d’un régime de réinvestissement des distributions ou des dividendes. Les frais d’opérations à court terme sont versés directement dans le fonds. Pour plus de précisions, veuillez consulter l’aperçu du fonds ou le prospectus simplifié pertinent.Gestion de Placements TD Inc. (GPTD) verse une commission de suivi à Services d’investissement TD Inc. en contrepartie des services et des conseils qui vous sont offerts, tant et aussi longtemps que vous détenez des parts des Fonds Mutuels TD. Veuillez vous reporter à l’aperçu du fonds pertinent pour obtenir plus de précisions.",
-			"您的个人信息仅用于我们就您的基金购买情况与您联络。请确保所有注册退休储蓄计划\\(RSP\\)和免税储蓄账户\\(TFSA\\)交易不超过您允许的供款限额。如果交易出于任何原因被拒，我们将在一个工作日内取消交易并向您发送电子邮件通知。如果您转换或赎回基金\\（货币市场基金除外\\），您可能需要支付不超过购买成本2%的短期交易费。此费用不适用于通过分红/股息再投资购买的基金单位。短期交易费直接支付给基金。请参阅相关基金概况或简化招股说明书了解更多详情。*道明资产管理有限公司\\（TDAM\\）在您持有道明互惠基金单位期间向道明投资服务有限公司\\（TDIS\\）支付尾随佣金，作为其向您提供服务和咨询的费用。有关详细信息，请参阅基金概况。",
-			"我們僅在因有關您的購買時，才會使用您的資訊與您聯絡。請確保所有註冊退休儲蓄計劃(RSP)和免稅儲蓄賬戶(TFSA)交易不超過您允許的供款限額。如果交易因任何原因被拒，我們將在一個工作日內取消交易並向您發送電郵通知。如果您轉換或贖回基金（貨幣市場基金除外），您可能需要支付不超過購買成本2%的短期交易費。此費用不適用於透過分紅/股息再投資所購買的基金單位。短期交易費將直接支付給基金。請參閱相關基金概況或簡化版招股章程以了解更多詳情。道明資產管理有限公司（TDAM）在您持有道明互惠基金單位期間向道明投資服務有限公司（TDIS）支付尾隨佣金，作為其向您提供服務和諮詢的費用。有關詳細信息，請參閱基金概況。" };
+			"您的个人信息仅用于我们就您的基金购买情况与您联络。请确保所有注册退休储蓄计划\\(RSP\\)和免税储蓄账户\\(TFSA\\)\\s*交易不超过您允许的供款限额。如果交易出于任何原因被拒，我们将在一个工作日内取消交易并向您发送电子邮件通知。如果您转换或赎回基金\\（货币市场基金除外\\），您可能需要支付不超过购买成本2%\\s*的短期交易费。此费用不适用于通过分红/股息再投资购买的基金单位。短期交易费直接支付给基金。请参阅相关基金概况或简化招股说明书了解更多详情。*\\s*道明资产管理有限公司\\（TDAM\\）在您持有道明互惠基金单位期间向道明投资服务有限公司\\（TDIS\\）支付尾随佣金，作为其向您提供服务和咨询的费用。有关详细信息，请参阅基金概况。",
+			"我們僅在因有關您的購買時，才會使用您的資訊與您聯絡。請確保所有註冊退休儲蓄計劃\\(RSP\\)和免稅儲蓄賬戶\\(TFSA\\)\\s*交易不超過您允許的供款限額。如果交易因任何原因被拒，我們將在一個工作日內取消交易並向您發送電郵通知。如果您轉換或贖回基金\\（貨幣市場基金除外\\），\\s*您可能需要支付不超過購買成本2%的短期交易費。此費用不適用於透過分紅/股息再投資所購買的基金單位。短期交易費將直接支付給基金。請參閱相關基金概況或簡化版招股章程以了解更多詳情。\\s*道明資產管理有限公司\\（TDAM\\）在您持有道明互惠基金單位期間向道明投資服務有限公司\\（TDIS\\）支付尾隨佣金，作為其向您提供服務和諮詢的費用。有關詳細信息，請參閱基金概況。" };
 	public static final String[] ARRAY_TAB_BALANCE = { "Balances", "Soldes", "结余", "結餘" };
 	public static final String[] ARRAY_TAB_FUND = { "Funds", "Fonds", "基金", "基金" };
 	public static final String[] ARRAY_FUND_TAB_LEFT = { "FUND", "FONDS", "基金", "基金" };
@@ -120,7 +120,7 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_TRANSACTION_UNIT = { "Transaction Units", "Parts visées par l’opération",
 			"交易单位数量", "交易單位數" };
 	public static final String[] ARRAY_MF_NONELIGIBAL_ERROR_MSG = {
-			"Looks like you're not set up to purchase mutual funds. Let us help you by calling 1-866-568-0951.",
+			"Looks like you're not set up to purchase mutual funds. Let us help you by calling 1-888-568-0951.",
 			"Il semble que vous ne puissiez pas effectuer d’achats. Pour obtenir de l’aide, composez le 1-888-568-0952.",
 			"您似乎未启用购买互惠基金的功能。请拨打1-866-235-0002（广东话）或1-866-769-0002（普通话）获取帮助。",
 			"看來您尚未設定好購買互惠基金。請致電我們以獲得協助；廣東話：1-866-235-0002，普通話： 1-866-769-0002。" };
@@ -327,13 +327,12 @@ public final class StringArray {
 			"TD for Me 通知", "TD for Me 通知" };
 	public static final String[] ARRAY_ENABLE_NOTIFICATIONS = { "Enable Notifications", "Activer les notifications",
 			"启用通知", "启用通知" };
-	
-	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité",
-			"安全问题", "安全問題" };
-	public static final String[] ARRAY_SECURITY_LOGIN = { "Login", "Ouvrir une session",
-			"登录", "登入" };
-	public static final String[] ARRAY_MFA_ENTER_ANSWER = { "Enter your answer", "Entrez votre réponse",
-			"输入您的答案", "輸入您的答案" };
+
+	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",
+			"安全問題" };
+	public static final String[] ARRAY_SECURITY_LOGIN = { "Login", "Ouvrir une session", "登录", "登入" };
+	public static final String[] ARRAY_MFA_ENTER_ANSWER = { "Enter your answer", "Entrez votre réponse", "输入您的答案",
+			"輸入您的答案" };
 	// UA Core
 	public static final String[] ARRAY_ACCOUNT_TOTAL = { "Total", "Total", "总计", "總計" };
 	public static final String[] ARRAY_ADD_LOGIN = { "Add Login", "Ajouter une connexion", "添加登录", "新增登入" };
@@ -341,8 +340,8 @@ public final class StringArray {
 			"新增加拿大收款人" };
 	public static final String[] ARRAY_ADD_US_PAYEE = { "Add U.S. Payee", "Ajouter un preneur américain", "添加美国收款人",
 			"新增美國收款人" };
-	public static final String[] ARRAY_PAY_US_BILL_TITLE = { "Pay U.S. Bill", "Payer des factures américaines", "支付美国账单",
-	"支付美國賬單" };
+	public static final String[] ARRAY_PAY_US_BILL_TITLE = { "Pay U.S. Bill", "Payer des factures américaines",
+			"支付美国账单", "支付美國賬單" };
 	public static final String[] ARRAY_INVESTING_OPEN_ACCOUNT = { "Open a TD Direct Investing Account",
 			"Ouvrir un compte Placements directs TD", "开设道明自管投资账户", "開設道明自管投資賬戶" };
 	public static final String[] ARRAY_INVESTING_CROSS_MSG = {
@@ -351,16 +350,15 @@ public final class StringArray {
 			"立即開設道明自管投資賬戶 增強信心，駕馭全局。" };
 
 	// UA Core End
-	
-	//P2P EUF
-	
+
+	// P2P EUF
+
 	public static final String[] ARRAY_REQUEST_MONEY_HEADER = { "Request Money", "Demander des fonds", "", "" };
 	public static final String[] ARRAY_PAYMENT_AND_TRANSFER_AUTODEPOSIT = { "Manage Autodeposit", "Gérer Autodépôt", "",
 			"" };
 	public static final String[] ARRAY_AUTODEPOSIT_ALMOST_DONE = { "Almost done!", "Vous avez presque terminé!", "",
 			"" };
-	public static final String[] ARRAY_AUTODEPOSIT_EMAIL_SENT_MSG = {
-			"Check your email for instructions from INTERAC",
+	public static final String[] ARRAY_AUTODEPOSIT_EMAIL_SENT_MSG = { "Check your email for instructions from INTERAC",
 			"Consultez les instructions que vous avez reçues", "", "" };
 	public static final String[] ARRAY_AUTODEPOSIT_PENDING_STATUS = { "Pending", "En attente", "", "" };
 	public static final String[] ARRAY_AUTODEPOSIT_ACTIVE_STATUS = { "Active", "Actif", "", "" };
@@ -376,9 +374,8 @@ public final class StringArray {
 	public static final String[] ARRAY_REQUEST_MONEY_CANCELLED_STATUS = { "Cancelled", "Annulé", "", "" };
 	public static final String[] ARRAY_REQUEST_MONEY_WRONG_EMAIL_STR = { "INVALID EMAIL ADDRESS",
 			"Adresse courriel non valide", "", "" };
-	public static final String[] ARRAY_CUSTOMER_ELIGIBILITY_ERROR_MSG = {
-			"There appears to be an issue with your", "Il semble y avoir un problème avec votre compte", "",
-			"" };
+	public static final String[] ARRAY_CUSTOMER_ELIGIBILITY_ERROR_MSG = { "There appears to be an issue with your",
+			"Il semble y avoir un problème avec votre compte", "", "" };
 	public static final String[] TRADE_RESPONSE_1 = {
 			"I acknowledge the trade name displayed above IS the trade name of the business",
 			"Je confirme que le nom commercial ci‑dessus EST celui de l’entreprise.", "", "" };
@@ -409,4 +406,3 @@ public final class StringArray {
 	public static final String[] CANCEL_MONEY_RECEIPT_HEADER = { "Request Cancelled", "Demande annulée", "", "" };
 	public static final String[] SETUP_AUTODEPOSIT_STR = { "Set up Autodeposit", "Établir Autodépôt", "", "" };
 }
-
