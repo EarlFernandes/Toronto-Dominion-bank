@@ -23,6 +23,7 @@ public class Login extends _CommonPage {
 
 	private static Login Login;
 
+	
 	@iOSFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeActivityIndicator[@value='1']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' or @resource-id='com.td:id/loading_indicator_textview']")
 	public MobileElement progressBar;

@@ -3509,6 +3509,7 @@ public class MobileAction2 extends CommonLib {
 
 	}
 
+	
 	public void waitProgressBarVanish() {
 
 		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
