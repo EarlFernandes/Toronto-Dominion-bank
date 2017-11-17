@@ -147,7 +147,6 @@ public class OTPChallenge extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(getCodeButton, "Get Code Button");
@@ -279,7 +278,7 @@ public class OTPChallenge extends _CommonPage {
 			for (int i = 0; i < 5; i++) {
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-					// mobileAction.switchAppiumContext("WEBVIEW_com.td");
+					mobileAction.sleep(2000); // Webview needs more time to load
 					mobileAction.switchToWebView();
 				}
 
