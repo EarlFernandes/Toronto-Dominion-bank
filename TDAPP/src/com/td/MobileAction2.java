@@ -16,6 +16,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.td.test.CDNMobile.pages.Login;
 import com.td.test.framework.CommonLib;
 
 import io.appium.java_client.AppiumDriver;
@@ -3509,22 +3510,21 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	public void waitProgressBarVanish() {
-		MobileElement progressBar = null;
-		String progressbarXpath = "";
-		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-			progressbarXpath = "//android.widget.TextView[@resource-id='android:id/message' or @resource-id='com.td:id/loading_indicator_textview']";
-		} else {
-			progressbarXpath = "//XCUIElementTypeActivityIndicator[@value='1']";
+
+		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+
+		int counter = 0;
+		while (counter < 5 && verifyElementIsPresent(Login.get().progressBar)) {
+
+			try {
+				wait.until(ExpectedConditions.invisibilityOf(Login.get().progressBar));
+				counter++;
+
+			} catch (Exception e) {
+				counter++;
+			}
 		}
 
-		try {
-			progressBar = (MobileElement) ((AppiumDriver) GetDriver()).findElement(By.xpath(progressbarXpath));
-		} catch (Exception e) {
-			System.out.println("Progress bar not found");
-			return;
-		}
-
-		waitForElementToVanish(progressBar);
 	}
 
 	public void clickMenuButton() {
