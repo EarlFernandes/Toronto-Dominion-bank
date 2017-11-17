@@ -219,15 +219,40 @@ public class QuickAccessSettings extends _CommonPage {
 		}
 	}
 
-	public void disableFirstAccount() {
+	public void toggleSpecificAccount() {
+
 		Decorator();
 		try {
+			String card = getTestdata("ToAccount");
+			String xpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+				xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'" + card + "')]";
+			} else {
+				xpath = "//android.widget.TextView[contains(@text,'" + card + "')]";
+			}
 
-			if (mobileAction.getSwitchStatus(firstAcctToggle).equalsIgnoreCase("true")) {
-				mobileAction.FuncClick(firstAcctToggle, "First Account Toggle OFF");
-				String acctName = mobileAction.FuncGetElementText(firstAcctName);
-				// Save acct name for later verification
-				CL.getTestDataInstance().TCParameters.put("Accounts", acctName);
+			MobileElement accountFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
+			if (accountFound != null) {
+				String accountSwitchXpath = xpath + "/parent::XCUIElementTypeCell/XCUIElementTypeSwitch[1]";
+
+				MobileElement accountSwitch = mobileAction.verifyElementUsingXPath(accountSwitchXpath,
+						"Account Switch");
+				String switchCheckStatus = mobileAction.getSwitchStatus(accountSwitch);
+				if (switchCheckStatus.equalsIgnoreCase("true")) {
+					// Toggle to disable it
+					mobileAction.FuncClick(accountSwitch, "Quick Access Switch Toggle - Disabled");
+					// Save current acct balance for late verification
+					CL.getTestDataInstance().TCParameters.put("AccessCard", "OFF");
+
+				} else {
+					// Toggle to enable it
+					mobileAction.FuncClick(accountSwitch, "Quick Access Switch Toggle - Enabled");
+					// Save current acct balance for late verification
+					CL.getTestDataInstance().TCParameters.put("AccessCard", "ON");
+				}
+
+			} else {
+				mobileAction.GetReporting().FuncReport("Fail", "Cannot find specified account: " + card);
 			}
 
 		} catch (Exception e) {

@@ -260,7 +260,7 @@ public class EventCase {
 		PayBill_Canada_Button, PayBill_US_Button,
 
 		// Credit
-		Credit_GetTDPointsBalance, Credit_ClickLatestStatement, Credit_ClickPay, Credit_VerifyNoTDPointsBalance,
+		Credit_GetTDPointsBalance, Credit_ClickLatestStatement, Credit_ClickPay, Credit_VerifyNoTDPointsBalance, Credit_TestSecondCard,
 
 		// Login
 		Login_VerifyUserNotRemembered, Login_LoginUsingAccessCardNumber, Login_LoginUsingAlias, Login_DeleteAllRememberedIDs, Login_VerifyAllRememberedIDsDeleted, Login_VerifyRememberedIDs, Login_VerifyLoginMFA, Login_CloseApp,
@@ -275,15 +275,22 @@ public class EventCase {
 		PageHeader_ClickBackButton, PageHeader_GoHome,
 
 		// Pay Bill
-		PayBill_PayBill, PayBill_PayFutureBill, PayBill_PayUSBill,
+		PayBill_PayBill, PayBill_PayFutureBill, PayBill_PayUSBill, PayBill_VerifyNoPayWithRewardsLink, PayBill_VerifyPayWithRewardsLink,
+
+		// Pay With Rewards
+		PayWithRewards_EnterRedemptionAmount,
+
+		// Quick Access
+		QuickAccessSettings_ToggleSpecificAccount, QuickAccessPage_VerifyNoAccounts, QuickAccessPage_VerifyTDPoints, QuickAccessPage_VerifyEligibleTDPoints, QuickAccessPage_VerifyIneligibleTDPoints, QuickAccessPage_VerifyAccountVisibility,
 
 		// Receipt
 		Receipt_VerifyTransferReceipt, Receipt_GoBackHome, Receipt_MakeAnotherTransfer, Receipt_VerifyBillReceipt, Receipt_ScheduledPayments, Receipt_VerifyUSBillReceipt, Receipt_VerifyCancelledBillReceipt, Receipt_VerifyReceiptBanner,
 
 		// Rewards
-		Rewards_VerifyVisitTDRewards, Rewards_VerifyPayWithRewards, Rewards_ClickVisitTDRewards, Rewards_VerifyTDRewardsURL,
-		// Quick Access
-		QuickAccessSettings_DisableFirstAccount, QuickAccessPage_VerifyNoAccounts,
+		Rewards_VerifyVisitTDRewards, Rewards_VerifyPayWithRewards, Rewards_ClickVisitTDRewards, Rewards_VerifyTDRewardsURL, Rewards_ClickPayWithRewards,
+
+		// Review
+		Review_VerifyRedemptionReview,
 
 		// Scheduled Payments
 		ScheduledPayments_CancelLastPayment, ScheduledPayments_VerifyScheduledPayments,
@@ -3258,14 +3265,6 @@ public class EventCase {
 			Review.get().verifyReviewHeader();
 			break;
 
-		case ClickPayNowButton:
-			Review.get().payNowButton();
-			break;
-
-		case ClickCancelButton:
-			Review.get().cancelButton();
-			break;
-
 		case VerifyReceiptHeader:
 			Receipt.get().verifyReceiptHeader();
 			break;
@@ -3279,7 +3278,7 @@ public class EventCase {
 			break;
 
 		case ClickVisitRewards:
-			Rewards.get().clickVisitRewardsIFVisible();
+			Rewards.get().clickVisitTDRewards();
 			break;
 
 		case VerifyURL:
@@ -4164,6 +4163,10 @@ public class EventCase {
 			Credit.get().verifyNoTDPointsBalance();
 			break;
 
+		case Credit_TestSecondCard:
+			Credit.get().testSecondCard();
+			break;
+
 		// HomeScreen
 		case HomeScreen_Transfer_Button:
 			HomeScreen.get().clickDashboardTransfers();
@@ -4265,13 +4268,42 @@ public class EventCase {
 			PayBill.get().payUSBill();
 			break;
 
+		case PayBill_VerifyNoPayWithRewardsLink:
+			PayBill.get().verifyNoPayWithRewardsLink();
+			break;
+
+		case PayBill_VerifyPayWithRewardsLink:
+			PayBill.get().verifyPayWithRewardsLink();
+			break;
+
+		// Pay With Rewards
+		case PayWithRewards_EnterRedemptionAmount:
+			PayWithRewards.get().enterRedemptionAmount();
+			break;
+
 		// Quick Access
-		case QuickAccessSettings_DisableFirstAccount:
-			QuickAccessSettings.get().disableFirstAccount();
+		case QuickAccessSettings_ToggleSpecificAccount:
+			QuickAccessSettings.get().toggleSpecificAccount();
 			break;
 
 		case QuickAccessPage_VerifyNoAccounts:
 			QuickAccessPage.get().verifyNoAccounts();
+			break;
+
+		case QuickAccessPage_VerifyTDPoints:
+			QuickAccessPage.get().verifyTDRewardsPoints();
+			break;
+
+		case QuickAccessPage_VerifyEligibleTDPoints:
+			QuickAccessPage.get().verifyEligibleTDPoints();
+			break;
+
+		case QuickAccessPage_VerifyIneligibleTDPoints:
+			QuickAccessPage.get().verifyIneligibleTDPoints();
+			break;
+
+		case QuickAccessPage_VerifyAccountVisibility:
+			QuickAccessPage.get().verifyAccountVisibility();
 			break;
 
 		// Receipt
@@ -4330,6 +4362,23 @@ public class EventCase {
 
 		case Rewards_VerifyTDRewardsURL:
 			Rewards.get().verifyTDRewardsURL();
+			break;
+
+		case Rewards_ClickPayWithRewards:
+			Rewards.get().clickPayWithRewards();
+			break;
+
+		// Review
+		case Review_VerifyRedemptionReview:
+			Review.get().verifyRedemptionReview();
+			break;
+
+		case ClickPayNowButton:
+			Review.get().payNowButton();
+			break;
+
+		case ClickCancelButton:
+			Review.get().cancelButton();
 			break;
 
 		// Scheduled Payments

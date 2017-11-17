@@ -33,16 +33,12 @@ public class Rewards extends _CommonPage {
 	private MobileElement txtVisitTD;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeOther[3]/XCUIElementTypeButton[1]")
-	@AndroidFindBy(xpath = "TBD")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
 	private MobileElement visitTDContinue;
-	
+
 	@iOSXCUITFindBy(accessibility = "URL")
 	@AndroidFindBy(xpath = "TBD")
 	private MobileElement visitTDUrl;
-	
-	@iOSFindBy(xpath = "//*[@label='Continue']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
-	private MobileElement continueBtn;
 
 	@FindBy(xpath = "//*[contains(@value,'‎tdrewards.com')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Rewards']")
@@ -108,30 +104,6 @@ public class Rewards extends _CommonPage {
 			if (mobileAction.FuncISDisplayed(txtpayWithRewards, "Pay with Rewards text is Present")) {
 				mobileAction.FuncClick(txtpayWithRewards, "Pay with Rewards");
 			}
-
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-		}
-	}
-
-	/**
-	 * This method will verify and Click the Visit TD Rewards link in Rewards
-	 * Page If Visible
-	 * 
-	 * @throws NoSuchElementException
-	 * 
-	 * 
-	 */
-
-	public void clickVisitRewardsIFVisible() {
-		Decorator();
-		try {
-			if (mobileAction.FuncISDisplayed(txtVisitTD, "Visit TD Rewards is Present")) {
-				mobileAction.FuncClick(txtVisitTD, "Visit TD Rewards");
-			}
-			mobileAction.FuncClick(continueBtn, "Continue");
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -284,30 +256,7 @@ public class Rewards extends _CommonPage {
 			mobileAction.FuncClick(txtVisitTD, "Visit TDRewards.com link");
 			mobileAction.FuncClick(visitTDContinue, "Visit TDRewards.com Continue button");
 			mobileAction.sleep(5000);
-			
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-			}
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} finally {
-		}
-	}
-	
-	public void verifyTDRewardsURL() {
-		Decorator();
-		try {
-			mobileAction.verifyElementIsDisplayed(visitTDUrl, "Pay With Rewards link");
-			String url = visitTDUrl.getAttribute("value");
-			if (url.contains("tdrewards.com")){
-				CL.GetReporting().FuncReport("Pass", "TDRewards.com loaded in browser");
-			} else {
-				CL.GetReporting().FuncReport("Fail", "TDRewards.com not loaded in browser");
-			}
-			
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -320,5 +269,45 @@ public class Rewards extends _CommonPage {
 		}
 	}
 
+	public void clickPayWithRewards() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(txtpayWithRewards, "Pay with Rewards");
+			mobileAction.sleep(5000);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void verifyTDRewardsURL() {
+		Decorator();
+		try {
+			mobileAction.verifyElementIsDisplayed(visitTDUrl, "Pay With Rewards link");
+			String url = visitTDUrl.getAttribute("value");
+			if (url.contains("tdrewards.com")) {
+				CL.GetReporting().FuncReport("Pass", "TDRewards.com loaded in browser");
+			} else {
+				CL.GetReporting().FuncReport("Fail", "TDRewards.com not loaded in browser");
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
 
 }

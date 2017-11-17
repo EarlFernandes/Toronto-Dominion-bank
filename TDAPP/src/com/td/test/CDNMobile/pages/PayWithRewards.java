@@ -14,6 +14,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class PayWithRewards extends _CommonPage {
 
@@ -27,11 +28,6 @@ public class PayWithRewards extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/quick_link_item_layout_button' and @text='REWARDS']")
 	private MobileElement rewardBtn;
 
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amount_payment_value']")
-
-	// com.td:id/amount_payment_value
-	private MobileElement amountValue;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Other']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/other_payment_text']")
 	private MobileElement otherBtn;
@@ -40,8 +36,12 @@ public class PayWithRewards extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text']")
 	private MobileElement errortext;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeTextField[1]")
+	@AndroidFindBy(id = "com.td:id/amount_payment_value")
+	private MobileElement amountValue;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[3]/XCUIElementTypeButton[1]")
+	@AndroidFindBy(id = "com.td:id/btn_continue")
 	private MobileElement continueBtn;
 
 	By rewardPayee = By
@@ -281,4 +281,27 @@ public class PayWithRewards extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+
+	public void enterRedemptionAmount() {
+		Decorator();
+		try {
+
+			String amt = "25";
+			mobileAction.FuncClick(amountValue, "Amount");
+			mobileAction.FuncSendKeys(amountValue, amt);
+			mobileAction.FuncClick(continueBtn, "Continue");
+			mobileAction.sleep(5000);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
 }

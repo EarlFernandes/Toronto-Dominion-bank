@@ -35,7 +35,7 @@ public class StatementBalance extends _CommonPage {
 	private MobileElement stmtBalHeader;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeColletionView[1]/XCUIElementTypeCell[2]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='PAY WITH REWARDS']")
+	@AndroidFindBy(xpath = "(//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button'])[2]")
 	private MobileElement payWithRewardsBtn;
 
 	public synchronized static StatementBalance get() {
@@ -197,19 +197,34 @@ public class StatementBalance extends _CommonPage {
 		try {
 
 			String ptsBalance = getTestdata("Amount");
-			boolean hasPayWithRewards = mobileAction.verifyElementNotPresent(payWithRewardsBtn,
-					"Pay With Reward button not present");
+			boolean hasPayWithRewards = mobileAction.verifyElementIsPresent(payWithRewardsBtn);
 
-			if ((Integer.parseInt(ptsBalance) < 10000) && hasPayWithRewards) {
-				CL.GetReporting().FuncReport("Fail",
-						"Pay With Rewards button should not appear if less than 10000 pts");
-			} else if ((Integer.parseInt(ptsBalance) < 10000) && !hasPayWithRewards) {
-				CL.GetReporting().FuncReport("Pass",
-						"Pay With Rewards button should not appear if less than 10000 pts");
-			} else if ((Integer.parseInt(ptsBalance) >= 10000) && hasPayWithRewards) {
-				CL.GetReporting().FuncReport("Pass", "Pay With Rewards button should appear if more than 10000 pts");
-			} else if ((Integer.parseInt(ptsBalance) >= 10000) && !hasPayWithRewards) {
-				CL.GetReporting().FuncReport("Fail", "Pay With Rewards button should appear if more than 10000 pts");
+			if (!ptsBalance.contains("$")) {
+				if ((Integer.parseInt(ptsBalance) < 10000) && hasPayWithRewards) {
+					CL.GetReporting().FuncReport("Fail",
+							"Pay With Rewards button incorrectly appeared for less than 10000 pts");
+				} else if ((Integer.parseInt(ptsBalance) < 10000) && !hasPayWithRewards) {
+					CL.GetReporting().FuncReport("Pass",
+							"Pay With Rewards button should not appear for less than 10000 pts");
+				} else if ((Integer.parseInt(ptsBalance) >= 10000) && hasPayWithRewards) {
+					CL.GetReporting().FuncReport("Pass", "Pay With Rewards button appears if more than 10000 pts");
+				} else if ((Integer.parseInt(ptsBalance) >= 10000) && !hasPayWithRewards) {
+					CL.GetReporting().FuncReport("Fail",
+							"Pay With Rewards button should not appear if more than 10000 pts");
+				}
+			} else {
+				ptsBalance = ptsBalance.replace("$", "");
+				if ((Double.parseDouble(ptsBalance) < 25.00) && hasPayWithRewards) {
+					CL.GetReporting().FuncReport("Fail",
+							"Pay With Rewards button incorrectly appeared for less than $25");
+				} else if ((Double.parseDouble(ptsBalance) < 25.00) && !hasPayWithRewards) {
+					CL.GetReporting().FuncReport("Pass", "Pay With Rewards button should not appear for less than $25");
+				} else if ((Double.parseDouble(ptsBalance) >= 25.00) && hasPayWithRewards) {
+					CL.GetReporting().FuncReport("Pass", "Pay With Rewards button appears for more than $25");
+				} else if ((Double.parseDouble(ptsBalance) >= 25.00) && !hasPayWithRewards) {
+					CL.GetReporting().FuncReport("Fail", "Pay With Rewards button should not appear for more than $25");
+				}
+
 			}
 
 		} catch (Exception e) {

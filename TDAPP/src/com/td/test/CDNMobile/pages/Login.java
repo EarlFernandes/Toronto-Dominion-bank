@@ -221,7 +221,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@resource-id='android:id/action_bar_title' or @resource-id='android:id/content']")
 	private MobileElement logined_page_Header;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeScrollView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeScrollView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@AndroidFindBy(id = "com.td:id/remember_switch")
 	private MobileElement rememberMeSwitch;
 
@@ -546,8 +546,6 @@ public class Login extends _CommonPage {
 			String toRemember = getTestdata("Action");
 			if (toRemember != null && toRemember.equalsIgnoreCase("rememberOff")) {
 				setRememberMe(false);
-			} else {
-				setRememberMe(true);
 			}
 
 			// Even in Landscape mode, the login button is visible
@@ -1652,7 +1650,7 @@ public class Login extends _CommonPage {
 			mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 
 			boolean hasCardList = mobileAction.verifyElementIsPresent(cancelActionList);
-			boolean cardFound = false;
+			MobileElement cardFound = null;
 			String userID = getTestdata("UserID");
 			String maskedCard = userID.substring(0, 2) + "***" + userID.substring(userID.length() - 3, userID.length());
 
@@ -1666,7 +1664,7 @@ public class Login extends _CommonPage {
 				cardFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
 			}
 
-			if (!cardFound) {
+			if (cardFound != null) {
 				CL.GetReporting().FuncReport("Pass", "The card <b>- " + maskedCard + "</b> is not remembered.");
 			} else {
 				CL.GetReporting().FuncReport("Fail", "The card <b> " + maskedCard + "</b> is remembered");
@@ -1809,7 +1807,7 @@ public class Login extends _CommonPage {
 			String alias = getTestdata("Transfers");
 			String[] cardList = { connectID, accessCardNumber, alias };
 
-			boolean cardFound = false;
+			MobileElement cardFound = null;
 			for (int i = 0; i < cardList.length; i++) {
 				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				String card = cardList[i];
@@ -1825,13 +1823,13 @@ public class Login extends _CommonPage {
 				// List");
 				mobileAction.ClickBackButton();
 
-				if (!cardFound) {
+				if (cardFound == null) {
 					break;
 				}
 
 			}
 
-			if (cardFound) {
+			if (cardFound != null) {
 				CL.GetReporting().FuncReport("Pass", "All IDs remembered");
 			} else {
 				CL.GetReporting().FuncReport("Fail", "Not all IDs remembered");

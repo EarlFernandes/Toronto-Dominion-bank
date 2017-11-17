@@ -49,10 +49,10 @@ public class QuickAccessPage extends _CommonPage {
 
 	By iosRewardstxt = By.xpath("//XCUIElementTypeStaticText[@label='Cash Back Dollars']");
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")	//TBD
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']") // TBD
 	@AndroidFindBy(id = "com.td:id/easy_access_visit")
 	private MobileElement visitSettingsText;
-	
+
 	public synchronized static QuickAccessPage get() {
 		if (QuickAccessPage == null) {
 			QuickAccessPage = new QuickAccessPage();
@@ -205,6 +205,33 @@ public class QuickAccessPage extends _CommonPage {
 			mobileAction.verifyElementTextContains(visitSettingsText,
 					getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_VISIT_SETTINGS));
 
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyTDRewardsPoints() {
+		Decorator();
+		try {
+			String xpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+				xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_TD_REWARDS_POINTS) + "']";
+			} else {
+				xpath = "//android.widget.TextView[@text='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_TD_REWARDS_POINTS) + "']";
+			}
+
+			MobileElement rewardsPtsFound = mobileAction.swipeAndSearchByxpath(xpath, false, 10, "up");
+			mobileAction.verifyElementTextContains(rewardsPtsFound,
+					getTextInCurrentLocale(StringArray.ARRAY_TD_REWARDS_POINTS));
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -214,7 +241,120 @@ public class QuickAccessPage extends _CommonPage {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} 
+		}
 
 	}
+
+	public void verifyEligibleTDPoints() {
+		Decorator();
+		try {
+
+			String card = getTestdata("ToAccount");
+			String xpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+				xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'" + card + "')]";
+			} else {
+				xpath = "//android.widget.TextView[contains(@text,'" + card + "')]";
+			}
+
+			MobileElement rewardsPtsFound = mobileAction.swipeAndSearchByxpath(xpath, false, 10, "up");
+			if (rewardsPtsFound != null) {
+				String tdPointsXpath = xpath
+						+ "/following-sibling::XCUIElementTypeStaticText/following-sibling::XCUIElementTypeStaticText";
+				MobileElement tdPoints = mobileAction.verifyElementUsingXPath(tdPointsXpath, "TD Points element");
+				mobileAction.verifyElementIsDisplayed(tdPoints, "TD Points element");
+				mobileAction.verifyElementTextContains(tdPoints, getTextInCurrentLocale(StringArray.ARRAY_TD_POINTS));
+
+			} else {
+				mobileAction.GetReporting().FuncReport("Fail", "Cannot find specified card: " + card);
+			}
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyIneligibleTDPoints() {
+		Decorator();
+		try {
+
+			String card = getTestdata("AccessCard");
+			String xpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+				xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'" + card + "')]";
+			} else {
+				xpath = "//android.widget.TextView[contains(@text,'" + card + "')]";
+			}
+
+			MobileElement rewardsPtsFound = mobileAction.swipeAndSearchByxpath(xpath, false, 10, "up");
+			if (rewardsPtsFound != null) {
+				String tdPointsXpath = xpath
+						+ "/following-sibling::XCUIElementTypeStaticText/following-sibling::XCUIElementTypeStaticText";
+
+				boolean hasTDPoints = mobileAction.verifyElementIsPresentByXpath(tdPointsXpath);
+				if (!hasTDPoints) {
+					mobileAction.GetReporting().FuncReport("Pass", "No TD Points for ineligible card: " + card);
+				} else {
+					mobileAction.GetReporting().FuncReport("Fail",
+							"TD Points should not appear for ineligible card: " + card);
+				}
+
+			} else {
+				mobileAction.GetReporting().FuncReport("Fail", "Cannot find specified card: " + card);
+			}
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyAccountVisibility() {
+		Decorator();
+		try {
+
+			String visibility = getTestdata("AccessCard");
+			String account = getTestdata("ToAccount");
+			String xpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+				xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'" + account + "')]";
+			} else {
+				xpath = "//android.widget.TextView[contains(@text,'" + account + "')]";
+			}
+
+			mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
+			boolean accountFound = mobileAction.verifyElementIsPresentByXpath(xpath);
+			if (accountFound && visibility.equalsIgnoreCase("on")) {
+				mobileAction.GetReporting().FuncReport("Pass", "Account is visible: " + account);
+			} else if (accountFound && visibility.equalsIgnoreCase("off")) {
+				mobileAction.GetReporting().FuncReport("Fail", "Account should not be visible: " + account);
+			} else if (!accountFound && visibility.equalsIgnoreCase("on")) {
+				mobileAction.GetReporting().FuncReport("Fail", "Account should not be visible: " + account);
+			} else if (!accountFound && visibility.equalsIgnoreCase("off")) {
+				mobileAction.GetReporting().FuncReport("Pass", "Account is invisible: " + account);
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
 }

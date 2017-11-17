@@ -418,7 +418,7 @@ public class PayBill extends _CommonPage {
 			}
 			mobileAction.FuncClick(to_account_post, "Select Payee field");
 			mobileAction.swipeAndSearchByxpath(toAccountXpath, true, 10, "Up");
-			mobileAction.sleep(2000);
+			mobileAction.sleep(4000);
 
 			mobileAction.verifyElementNotPresent(payWithRewards, "Pay With Rewards link");
 

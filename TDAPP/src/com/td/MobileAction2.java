@@ -1629,22 +1629,12 @@ public class MobileAction2 extends CommonLib {
 	 */
 	public void waitForElementToVanish(MobileElement elementToVanish) {
 		try {
-			int count = 1;
-			Thread.sleep(4000);
-			boolean isElementDisplayed = elementToVanish.isDisplayed();
-			while (count <= 3) {
-				isElementDisplayed = elementToVanish.isDisplayed();
+			boolean isElementDisplayed = verifyElementIsPresent(elementToVanish);
+			while (isElementDisplayed) {
 				if (isElementDisplayed) {
-					try {
-						Thread.sleep(1000);
-						count++;
-
-					} catch (NoSuchElementException e) {
-						break;
-					}
-				} else {
-					break;
+					sleep(1000);
 				}
+				isElementDisplayed = verifyElementIsPresent(elementToVanish);
 			}
 		} catch (Exception e) {
 			System.out.println("Exception from Method " + this.getClass().toString());
@@ -3541,9 +3531,11 @@ public class MobileAction2 extends CommonLib {
 		return list;
 	}
 
-	public boolean swipeAndSearchByxpath(String xpath, boolean clickYorN, int numSwipes, String direction) {
+	public MobileElement swipeAndSearchByxpath(String xpath, boolean clickYorN, int numSwipes, String direction) {
 
 		boolean isFound = false;
+		MobileElement elementFound = null;
+
 		try {
 			Dimension size = ((AppiumDriver) GetDriver()).manage().window().getSize();
 			int startx = size.width / 2;
@@ -3573,14 +3565,16 @@ public class MobileAction2 extends CommonLib {
 			}
 			if (isFound) {
 				sEleName = FuncGetTextByxpath(xpath);
+				elementFound = verifyElementUsingXPath(xpath, "Swipe and found element");
+
 				if (clickYorN) {
-					FuncClick((MobileElement) GetDriver().findElement(By.xpath(xpath)), sEleName);
+					FuncClick(elementFound, sEleName);
 				}
 				GetReporting().FuncReport("Pass", "Swiped " + direction + " till element found. Swipes: " + count
 						+ " Element : <b>" + sEleName + "</b>");
 
 			} else if (!isFound) {
-				GetReporting().FuncReport("Fail", "Swiped " + direction + " but element not found. Xpath : " + xpath);
+				System.out.println("Swiped " + direction + " but element not found. Xpath : " + xpath);
 			}
 
 		} catch (Exception e) {
@@ -3591,7 +3585,7 @@ public class MobileAction2 extends CommonLib {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-		return isFound;
+		return elementFound;
 
 	}
 
@@ -3674,7 +3668,7 @@ public class MobileAction2 extends CommonLib {
 
 	public void runAppInBackGround() {
 		try {
-			((MobileDriver) GetAppiumDriver()).runAppInBackground(5);
+			((MobileDriver) GetAppiumDriver()).runAppInBackground(10);
 			GetReporting().FuncReport("Pass", "App pushed to background");
 
 		} catch (Exception e) {

@@ -635,7 +635,7 @@ public class MenuPage extends _CommonPage {
 						"Profile & Settings Menu button");
 			}
 			mobileAction.FuncSwipeWhileElementNotFound(profile_and_settings, true, 10, "Up");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

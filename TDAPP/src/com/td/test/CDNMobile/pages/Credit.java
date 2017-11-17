@@ -389,14 +389,15 @@ public class Credit extends _CommonPage {
 		try {
 
 			boolean hasPtsBalance = mobileAction.verifyElementIsPresent(tdPointsBalance);
+			String ptsBalance = "0";
 			if (hasPtsBalance) {
-				String ptsBalance = mobileAction.FuncGetText(tdPointsBalance);
+				ptsBalance = mobileAction.FuncGetText(tdPointsBalance);
 				ptsBalance = ptsBalance.substring(0, ptsBalance.indexOf(" "));
 				ptsBalance = ptsBalance.replace(",", "");
 				CL.getTestDataInstance().TCParameters.put("Amount", ptsBalance);
 
 			} else {
-				CL.GetReporting().FuncReport("Fail", "No TD Points in this credit card");
+				CL.getTestDataInstance().TCParameters.put("Amount", ptsBalance);
 			}
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -412,8 +413,32 @@ public class Credit extends _CommonPage {
 	public void verifyNoTDPointsBalance() {
 		Decorator();
 		try {
+			String rewardText = mobileAction.FuncGetText(tdPointsBalance);
+			boolean hasTDPoints = rewardText.contains(getTextInCurrentLocale(StringArray.ARRAY_TD_POINTS));
+			boolean hasCBDollars = rewardText.contains(getTextInCurrentLocale(StringArray.ARRAY_CASH_BACK_DOLLARS));
+			if (hasTDPoints || hasCBDollars) {
+				mobileAction.GetReporting().FuncReport("Fail", "Has TD Points or Cash Back Dollars");
+			} else {
+				mobileAction.GetReporting().FuncReport("Pass", "No TD Points or Cash Back Dollars");
+			}
 
-			mobileAction.verifyElementNotPresent(tdPointsBalance, "TD Point Balance");
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void testSecondCard() {
+		Decorator();
+		try {
+
+			String secondCard = getTestdata("AccessCard");
+			CL.getTestDataInstance().TCParameters.put("ToAccount", secondCard);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
