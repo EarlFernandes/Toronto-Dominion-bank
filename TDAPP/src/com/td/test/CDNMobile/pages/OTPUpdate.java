@@ -2,6 +2,7 @@ package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
@@ -938,8 +939,8 @@ public class OTPUpdate extends _CommonPage {
 	public void verifyOTPUpdateScreen() {
 		Decorator();
 		try {
-
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.sleep(3000);
 				mobileAction.switchToWebView();
 			}
 

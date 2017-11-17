@@ -3576,13 +3576,18 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	public void switchToWebView() {
-	    Set<String> contextNames = ((AppiumDriver) GetDriver()).getContextHandles();
-	    String lastestContextView = (String) contextNames.toArray()[contextNames.size()-1];
+		Set<String> contextNames = ((AppiumDriver) GetDriver()).getContextHandles();
+		String lastestContextView = (String) contextNames.toArray()[contextNames.size() - 1];
 
-	    if (lastestContextView.contains("WEBVIEW_")){
-	    	((AppiumDriver) GetDriver()).context(lastestContextView);
-	    } else {
-	    	System.out.println("No Webview found");
-	    }
+		if (lastestContextView.contains("WEBVIEW_")) {
+			// Switching to webview
+			for (String contextName : contextNames) {
+				System.out.println(contextNames);
+			}
+
+			((AppiumDriver) GetDriver()).context(lastestContextView);
+		} else {
+			System.out.println("No Webview found");
+		}
 	}
 }
