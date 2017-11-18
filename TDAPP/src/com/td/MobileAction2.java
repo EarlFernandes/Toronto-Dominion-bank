@@ -3573,7 +3573,7 @@ public class MobileAction2 extends CommonLib {
 			lastestContextView = (String) contextNames.toArray()[contextNames.size() - 1];
 			for (String contextName : contextNames) {
 				System.out.println(contextNames);
-				if (contextNames.contains("WEBVIEW")) {
+				if (contextName.contains("WEBVIEW")) {
 					hasWebView = true;
 					break;
 				}
