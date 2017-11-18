@@ -1627,22 +1627,12 @@ public class MobileAction2 extends CommonLib {
 	 */
 	public void waitForElementToVanish(MobileElement elementToVanish) {
 		try {
-			int count = 1;
-			Thread.sleep(4000);
-			boolean isElementDisplayed = elementToVanish.isDisplayed();
-			while (count <= 3) {
-				isElementDisplayed = elementToVanish.isDisplayed();
+			boolean isElementDisplayed = verifyElementIsPresent(elementToVanish);
+			while (isElementDisplayed) {
 				if (isElementDisplayed) {
-					try {
-						Thread.sleep(1000);
-						count++;
-
-					} catch (NoSuchElementException e) {
-						break;
-					}
-				} else {
-					break;
+					sleep(1000);
 				}
+				isElementDisplayed = verifyElementIsPresent(elementToVanish);
 			}
 		} catch (Exception e) {
 			System.out.println("Exception from Method " + this.getClass().toString());
@@ -3576,15 +3566,28 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	public void switchToWebView() {
-		Set<String> contextNames = ((AppiumDriver) GetDriver()).getContextHandles();
-		String lastestContextView = (String) contextNames.toArray()[contextNames.size() - 1];
-
-		if (lastestContextView.contains("WEBVIEW_")) {
-			// Switching to webview
+		String lastestContextView = "";
+		boolean hasWebView = false;
+		while (!hasWebView) {
+			Set<String> contextNames = ((AppiumDriver) GetDriver()).getContextHandles();
+			lastestContextView = (String) contextNames.toArray()[contextNames.size() - 1];
 			for (String contextName : contextNames) {
 				System.out.println(contextNames);
+				if (contextNames.contains("WEBVIEW")) {
+					hasWebView = true;
+					break;
+				}
 			}
 
+			// Sleep till WebView is found
+			if (hasWebView) {
+				break;
+			} else {
+				sleep(2000);
+			}
+		}
+
+		if (lastestContextView.contains("WEBVIEW")) {
 			((AppiumDriver) GetDriver()).context(lastestContextView);
 		} else {
 			System.out.println("No Webview found");

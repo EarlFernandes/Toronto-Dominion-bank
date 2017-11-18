@@ -102,7 +102,6 @@ public class OTPChallenge extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(textOption, "Text option");
@@ -124,7 +123,6 @@ public class OTPChallenge extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.switchToWebView();
 			}
 
@@ -174,7 +172,6 @@ public class OTPChallenge extends _CommonPage {
 			}
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.switchToWebView();
 			}
 
@@ -205,7 +202,6 @@ public class OTPChallenge extends _CommonPage {
 			String securityCode = "1111";
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.switchToWebView();
 			}
 
@@ -229,7 +225,6 @@ public class OTPChallenge extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(submitCodeButton, "submit code button");
@@ -252,7 +247,6 @@ public class OTPChallenge extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.switchToWebView();
 			}
 
@@ -278,7 +272,6 @@ public class OTPChallenge extends _CommonPage {
 			for (int i = 0; i < 5; i++) {
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-					mobileAction.sleep(2000); // Webview needs more time to load
 					mobileAction.switchToWebView();
 				}
 
@@ -318,7 +311,6 @@ public class OTPChallenge extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(resendCodeLink, "Resend Code button");
@@ -389,7 +381,6 @@ public class OTPChallenge extends _CommonPage {
 			for (int i = 0; i < 2; i++) {
 				Thread.sleep(1000 * 60);
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-					// mobileAction.switchAppiumContext("WEBVIEW_com.td");
 					mobileAction.switchToWebView();
 				} else {
 					mobileAction.switchAppiumContext("NATIVE_APP");
@@ -419,7 +410,6 @@ public class OTPChallenge extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.switchToWebView();
 			}
 
@@ -443,7 +433,6 @@ public class OTPChallenge extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
 				mobileAction.switchToWebView();
 			}
 

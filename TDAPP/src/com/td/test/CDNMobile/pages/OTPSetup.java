@@ -323,7 +323,6 @@ public class OTPSetup extends _CommonPage {
 
 				if (i > 0) {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-						mobileAction.sleep(4000);
 						mobileAction.switchToWebView();
 						mobileAction.FuncScrollIntoView(addAnotherPhoneButton, "Add Another Phone Button");
 					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -353,7 +352,6 @@ public class OTPSetup extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.sleep(2000); // Webview needs more time to load
 				mobileAction.switchToWebView();
 				mobileAction.FuncClickWithActions(editPhoneField, "Edit Phone Number");
 				editPhoneField.sendKeys(phoneNumber);
@@ -361,7 +359,6 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
 
-				mobileAction.sleep(2000); // Webview needs more time to load
 				mobileAction.switchToWebView();
 				mobileAction.FuncClickWithActions(editNicknameField, "Edit Nickname");
 				editNicknameField.sendKeys(nickname);
@@ -369,7 +366,6 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
 
-				mobileAction.sleep(2000); // Webview needs more time to load
 				mobileAction.switchToWebView();
 				mobileAction.FuncScrollIntoView(addPhoneButton, "Add Phone button");
 				mobileAction.FuncClick(addPhoneButton, "Add Phone button");
@@ -448,7 +444,6 @@ public class OTPSetup extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.sleep(4000); // Webview needs more time to load
 				mobileAction.switchToWebView();
 			}
 
