@@ -365,6 +365,7 @@ public class OTPSetup extends _CommonPage {
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
+				mobileAction.sleep(4000); 	//WebView needs time to load
 
 				mobileAction.switchToWebView();
 				mobileAction.FuncScrollIntoView(addPhoneButton, "Add Phone button");
@@ -445,6 +446,7 @@ public class OTPSetup extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
+				mobileAction.sleep(2000); 	//WebView needs time to load
 			}
 
 			mobileAction.FuncClick(firstPhoneNumber, "First phone number");
