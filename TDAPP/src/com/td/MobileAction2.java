@@ -1627,10 +1627,14 @@ public class MobileAction2 extends CommonLib {
 	 */
 	public void waitForElementToVanish(MobileElement elementToVanish) {
 		try {
+			int count = 0;
 			boolean isElementDisplayed = verifyElementIsPresent(elementToVanish);
 			while (isElementDisplayed) {
 				if (isElementDisplayed) {
 					sleep(1000);
+					count++;
+				} else if (count >= 45) {
+					break;
 				}
 				isElementDisplayed = verifyElementIsPresent(elementToVanish);
 			}
@@ -3568,6 +3572,7 @@ public class MobileAction2 extends CommonLib {
 	public void switchToWebView() {
 		String lastestContextView = "";
 		boolean hasWebView = false;
+		int count = 0;
 		while (!hasWebView) {
 			Set<String> contextNames = ((AppiumDriver) GetDriver()).getContextHandles();
 			lastestContextView = (String) contextNames.toArray()[contextNames.size() - 1];
@@ -3582,8 +3587,11 @@ public class MobileAction2 extends CommonLib {
 			// Sleep till WebView is found
 			if (hasWebView) {
 				break;
+			} else if (count >= 10) {
+				break;
 			} else {
 				sleep(2000);
+				count++;
 			}
 		}
 
