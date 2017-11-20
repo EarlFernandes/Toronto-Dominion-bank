@@ -445,8 +445,8 @@ public class OTPSetup extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.sleep(4000); 	//WebView needs time to load
 				mobileAction.switchToWebView();
-				mobileAction.sleep(2000); 	//WebView needs time to load
 			}
 
 			mobileAction.FuncClick(firstPhoneNumber, "First phone number");
@@ -491,6 +491,7 @@ public class OTPSetup extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.sleep(4000); 	//WebView needs time to load
 				mobileAction.switchToWebView();
 			}
 
@@ -516,7 +517,7 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(getCodeButton, "Get Code Button");
-			mobileAction.sleep(5000);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
