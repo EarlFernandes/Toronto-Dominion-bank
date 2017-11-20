@@ -352,6 +352,7 @@ public class OTPSetup extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.sleep(4000); 	//WebView needs time to load
 				mobileAction.switchToWebView();
 				mobileAction.FuncClickWithActions(editPhoneField, "Edit Phone Number");
 				editPhoneField.sendKeys(phoneNumber);
@@ -365,8 +366,8 @@ public class OTPSetup extends _CommonPage {
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
-				mobileAction.sleep(4000); 	//WebView needs time to load
 
+				mobileAction.sleep(4000); 	//WebView needs time to load
 				mobileAction.switchToWebView();
 				mobileAction.FuncScrollIntoView(addPhoneButton, "Add Phone button");
 				mobileAction.FuncClick(addPhoneButton, "Add Phone button");
