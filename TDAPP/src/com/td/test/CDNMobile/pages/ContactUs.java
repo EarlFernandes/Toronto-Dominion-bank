@@ -6,6 +6,8 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
+
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -18,8 +20,10 @@ public class ContactUs extends _CommonPage {
 
 	private static ContactUs ContactUs;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Contact Us' or @label='Contactez-nous']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Contact Us' or @text='Contactez-nous')]")
+	// @iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Contact Us' or
+	// @label='Contactez-nous']")
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement contactUs;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'TD Direct Investing')]")
@@ -61,6 +65,9 @@ public class ContactUs extends _CommonPage {
 
 	@iOSFindBy(accessibility = "CONTACTUS_CELL_0_MAIL_TITLE")
 	private MobileElement giveFeedback;
+
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/locationText']")
+	private MobileElement appointment_booking;
 
 	String t_call = "Call";
 
@@ -123,7 +130,8 @@ public class ContactUs extends _CommonPage {
 	public void VerifyContactUsPageHeader() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(contactUs, "Contact Us | Contactez-nous");
+			String contactUsText = getTextInCurrentLocale(StringArray.ARRAY_CONTACT_US_HEADER);
+			mobileAction.verifyElementTextIsDisplayed(contactUs, contactUsText);
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -198,5 +206,53 @@ public class ContactUs extends _CommonPage {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
+	}
+
+	public void VerifyContactUsMABContent() {
+		Decorator();
+		String contentText = getTextInCurrentLocale(StringArray.ARRAY_APPOINTMENT_BOOKING);
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				appointment_booking = mobileAction.verifyElementUsingXPath("//*[@label='" + contentText + "']",
+						contentText);
+			}
+			mobileAction.FuncSwipeWhileElementNotFound(appointment_booking, false, 5, "up");
+			mobileAction.verifyElementTextIsDisplayed(appointment_booking, contentText);
+
+		} catch (NoSuchElementException | IOException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail",
+						"No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
+	}
+
+	public void ClickAppointmentBooking() {
+		Decorator();
+		String contentText = getTextInCurrentLocale(StringArray.ARRAY_APPOINTMENT_BOOKING);
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				appointment_booking = mobileAction.verifyElementUsingXPath("//*[@label='" + contentText + "']",
+						contentText);
+			}
+			mobileAction.FuncSwipeWhileElementNotFound(appointment_booking, false, 5, "up");
+			mobileAction.FuncClick(appointment_booking, contentText);
+
+		} catch (NoSuchElementException | IOException | InterruptedException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail",
+						"No such element was found on screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
 	}
 }

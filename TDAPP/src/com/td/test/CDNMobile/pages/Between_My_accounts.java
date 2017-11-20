@@ -2116,6 +2116,7 @@ public class Between_My_accounts extends _CommonPage {
 						+ mobileAction.getAppString("receipt_amount") + "')]", "amount");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value, '"
 						+ mobileAction.getAppString("transfersFXExchangeRate") + "')]", "exchange rate");
+				mobileAction.FuncSwipeOnce("up");
 				mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeCell[@label='" + mobileAction.getAppString("receipt_home") + "']", "Cancel");
 				mobileAction.verifyElementUsingXPath(

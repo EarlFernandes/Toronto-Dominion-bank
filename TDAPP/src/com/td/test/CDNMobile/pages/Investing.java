@@ -1744,7 +1744,7 @@ public class Investing extends _CommonPage {
 	public void SelectLastTransaction() {
 		Decorator();
 		try {
-			mobileAction.FuncSwipeWhileElementNotFound(transaction_foot_note, false, 5, "up");
+			mobileAction.FuncSwipeWhileElementNotFound(transaction_foot_note, false, 50, "up");
 			List<MobileElement> transactionListContent = null;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				transactionListContent = ((MobileDriver) (CL.GetAppiumDriver())).findElementsByXPath(
@@ -1846,9 +1846,9 @@ public class Investing extends _CommonPage {
 					getTextInCurrentLocale(StringArray.ARRAY_TAB_ACTIVITY));
 			mobileAction.verifyElementTextIsDisplayed(table_heading_left,
 					getTextInCurrentLocale(StringArray.ARRAY_TABLE_DATE));
-			mobileAction.verifyElementTextIsDisplayed(table_heading_middle,
+			mobileAction.verifyElementTextContains(table_heading_middle,
 					getTextInCurrentLocale(StringArray.ARRAY_TABLE_TRANSACTION));
-			mobileAction.verifyElementTextIsDisplayed(table_heading_right,
+			mobileAction.verifyElementTextContains(table_heading_right,
 					getTextInCurrentLocale(StringArray.ARRAY_TABLE_AMOUNT));
 
 		} catch (NoSuchElementException | IOException e) {
