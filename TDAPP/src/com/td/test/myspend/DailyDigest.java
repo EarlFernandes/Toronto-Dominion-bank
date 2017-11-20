@@ -12,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.td._CommonPage;
 import com.td.test.CDNMobile.pages.HomeScreen;
 
+import gherkin.lexer.Th;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -31,7 +32,7 @@ public class DailyDigest extends _CommonPage{
 	private MobileElement homeBtn;
 	
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/easy_access']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access'] | //android.widget.TextView[@resource-id='com.td:id/easy_access']")
 	private MobileElement quickAccess;
 	
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
@@ -55,29 +56,40 @@ public class DailyDigest extends _CommonPage{
 	private MobileElement analyzeSpending;
 	
 	//@iOSXCUITFindBy(iOSClassChain = "**/*[`name=='TRANSFERVIEW_ETRANSFER' and label=='Request Money'`]")
-	@iOSXCUITFindBy(accessibility = "ANALYZE YOUR SPENDING")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`name=='ANALYZE YOUR SPENDING'`]")
 	private MobileElement analyzeYourSpending;
 	
 	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Spent Yesterday')]")
 	private MobileElement billerInfo;
 	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@name,'Summary') or contains(@name,'Résumé')]/following-sibling::XCUIElementTypeOther")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Double tap to change category') or contains(@content-desc,'Tapez deux fois pour changer de catégorie') or contains(@text,'Double tap to change category')]")
 	private MobileElement changeCategory;
 	
 	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Spent Yesterday')]")
 	private MobileElement categorySpikeMessage;
 	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Summary') or contains(@name,'Résumé')]")
+	@AndroidFindBy(xpath="//android.view.View[contains(@content-desc,'Summary') or contains(@content-desc,'Résumé') or contains(@text,'Summary')]")
 	private MobileElement summaryTab;
 	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@name,'Summary') or contains(@name,'Résumé')]/following-sibling::XCUIElementTypeButton")
+	@AndroidFindBy(xpath="//android.view.View[contains(@content-desc,'Summary') or contains(@content-desc,'Résumé') or contains(@text,'Summary')]/following-sibling::*")
 	private List<MobileElement> categoryTab;
 	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@name,'Summary') or contains(@name,'Résumé')]/following-sibling::XCUIElementTypeStaticText[1]")
 	private MobileElement currentCategory;
 	
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@name,'Summary') or contains(@name,'Résumé')]/following-sibling::XCUIElementTypeStaticText[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@name,'Summary') or contains(@name,'Résumé')]/following-sibling::XCUIElementTypeOther[2]")
 	private MobileElement currentCategoryDetails;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@name,'Category Spikes')]")
+	@AndroidFindBy(xpath="//android.view.View[contains(@content-desc,'Category Spikes') or contains(@text,'Category Spikes')]")
+	private MobileElement categorySpike;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@name,'Double tap to open Spending by Category')]")
+	@AndroidFindBy(xpath="//android.view.View[contains(@content-desc,'Double tap to open Spending by Category') or contains(@text,'Double tap to open Spending by Category')]")
+	private MobileElement spendingByCategory;
 	
 	@FindBy(xpath="//*[text()='Daily Digest' or text()='Sommaire quotidien']")
 	private WebElement pageHeaderAndroid;
@@ -94,22 +106,25 @@ public class DailyDigest extends _CommonPage{
 	@FindBy(xpath = "(//*[contains(@href,'dailyDigest')])[2]")
 	private WebElement dailyDigestAndroid;
 	
-	@FindBy(xpath = "(//*[contains(@id,'topSlide')])[1]")
+	//@FindBy(xpath = "(//*[contains(@id,'topSlide')])[1]/*")
+	@FindBy(xpath = "//*[contains(@class,'summary')]/../../*[1]")
 	private WebElement summaryTabAndroid;
 	
-	@FindBy(xpath = "(//*[contains(@id,'topSlide')])[2]")
+	//@FindBy(xpath = "(//*[contains(@id,'topSlide')])[2]/*")
+	@FindBy(xpath = "(//*[contains(@class,'categoryIcons')]/../*[4])[1]")
 	private WebElement categoryTabAndroid;
 	
-	@FindBy(xpath = "//*[text()='Spent Yesterday']/..//*[text()='Yesterday']/preceding-sibling::*[1]")
+	@FindBy(xpath = "//*[text()='Spent Yesterday' or contains(text(),'Hier')]/..//*[text()='Yesterday' or text()='Hier']/preceding-sibling::*[1]")
 	private WebElement yesterdaySpendingAndroid;
 	
-	@FindBy(xpath = "//*[text()='Spent Yesterday']/..//*[text()='Usual']/preceding-sibling::*[1]")
+	@FindBy(xpath = "//*[text()='Spent Yesterday' or contains(text(),'Hier')]/..//*[text()='Usual' or text()='Habituel']/preceding-sibling::*[1]")
 	private WebElement usualSpendingAndroid;
 	
 	@FindBy(xpath = "(//*[contains(@href,'dailyDigest')])[2]")
 	private WebElement billerInfoAndroid;
 	
-	@FindBy(xpath = "(//*[contains(@id,'tag-box')])[2]")
+	//@FindBy(xpath = "(//*[contains(@id,'tag-box')])[2]")
+	@FindBy(xpath = "(//*[contains(@class,'transaction-header')])[1]/following::*[4]")
 	private WebElement changeCategoryAndroid;
 	
 	@FindBy(xpath = "//*[contains(text(),'SPENDING SPIKE IN')]")
@@ -159,14 +174,15 @@ public class DailyDigest extends _CommonPage{
 			
 
 		}catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} 
+		}
 	}
 	
 	/**
@@ -204,14 +220,16 @@ public class DailyDigest extends _CommonPage{
 			
 
 		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} 
+		
+		}
 	}
 	
 	/**
@@ -237,6 +255,7 @@ public class DailyDigest extends _CommonPage{
 				mobileAction.FuncClick(dailyDigestAndroid, "Daily Digest");
 				
 			} else {
+				Thread.sleep(2000);
 				Spending_Insight.get().clickSideMenuButton();
 				mobileAction.verifyElementIsDisplayed(logoutBtn, "Menu Page");
 				mobileAction.FuncClick(dailyDigest, "Daily Digest");
@@ -244,14 +263,16 @@ public class DailyDigest extends _CommonPage{
 			
 
 		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} 
+		
+		}
 	}
 	
 	/**
@@ -268,31 +289,67 @@ public class DailyDigest extends _CommonPage{
 	 */
 	public void verifyTabs() {
 		Decorator();
+		int count=0;
 
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
-				mobileAction.verifyElementIsDisplayed(summaryTabAndroid, "Summary tab");
-				mobileAction.verifyElementIsDisplayed(categoryTabAndroid, "Category Tab");
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				mobileAction.verifyElementIsDisplayed(summaryTab, "Summary tab");
+				for(int i=0;i<categoryTab.size();i++){
+					String categoryName=categoryTab.get(i).getText();
+					String[] category=categoryName.split("-");
+					//mobileAction.FunctionSwipe("Left", 200, 200);
+					count++;
+					mobileAction.verifyElementIsDisplayed(categoryTab.get(i),"Category: "+category[0]);
+				}
+				/*for(int i=0;i<count;i++){
+					mobileAction.FunctionSwipe("Right", 200, 200);
+				}
+				if(!mobileAction.verifyElementIsPresent(categorySpike)){
+					mobileAction.FunctionSwipe("Right", 200, 200);
+				}*/
+				if(mobileAction.verifyElementIsPresent(categorySpike)){
+					mobileAction.verifyElementIsDisplayed(categorySpike, "Category Spike");
+					mobileAction.FuncClick(spendingByCategory, "Spending By Category");
+					CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
+					SpendingByCategory.get().verifySpendingByCategories();
+					Spending_Insight.get().clickSideMenuButton();
+					CL.GetAppiumDriver().context("NATIVE_APP");
+				}
 			} else {
 				mobileAction.verifyElementIsDisplayed(summaryTab, "Summary tab");
 				for(int i=0;i<categoryTab.size();i++){
 					String categoryName=categoryTab.get(i).getText();
 					String[] category=categoryName.split("-");
+						mobileAction.FunctionSwipe("Left", 200, 200);
+						count++;
 					mobileAction.verifyElementIsDisplayed(categoryTab.get(i),"Category: "+category[0]);
+				}
+				for(int i=0;i<count;i++){
+					mobileAction.FunctionSwipe("Right", 200, 200);
+				}
+				if(!mobileAction.verifyElementIsPresent(categorySpike)){
+					mobileAction.FunctionSwipe("Right", 200, 200);
+				}
+				if(mobileAction.verifyElementIsPresent(categorySpike)){
+					mobileAction.verifyElementIsDisplayed(categorySpike, "Category Spike");
+					mobileAction.FuncClick(spendingByCategory, "Spending By Category");
+					SpendingByCategory.get().verifySpendingByCategories();
+					Spending_Insight.get().clickSideMenuButton();
 				}
 			}
 			
 
 		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} 
+		}
 	}
 	
 	/**
@@ -321,13 +378,14 @@ public class DailyDigest extends _CommonPage{
 			}
 			
 
-		}catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (Exception e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} 
 	}
@@ -351,21 +409,22 @@ public class DailyDigest extends _CommonPage{
 			
 			verifyTabs();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.FuncClick(categoryTabAndroid, "Category Tab");
+				mobileAction.FuncClick(categoryTab.get(0),"Category: "+categoryTab.get(0).getText());
 			} else {
 				mobileAction.FuncClick(categoryTab.get(0),"Category: "+categoryTab.get(0).getText());
 			}
 			
 
-		}catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (Exception e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} 
+		}
 	}
 	
 	/**
@@ -386,12 +445,11 @@ public class DailyDigest extends _CommonPage{
 		try {
 			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				
+				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
 				mobileAction.verifyElementIsDisplayed(currentCategoryAndroid, currentCategoryAndroid.getText());
-				mobileAction.verifyElementIsDisplayed(currentCategoryDetailsAndroid, currentCategoryDetailsAndroid.getText());
-				//mobileAction.verifyElementIsDisplayed(billerInfoAndroid, "Biller Information");
-				mobileAction.verifyElementIsDisplayed(changeCategoryAndroid, "Change category");
 				CL.GetAppiumDriver().context("NATIVE_APP");
+				mobileAction.verifyElementIsDisplayed(changeCategory, "Change category");
+				
 				
 			} else {
 				
@@ -403,14 +461,15 @@ public class DailyDigest extends _CommonPage{
 			
 
 		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} 
+		}
 	}
 	
 	/**
@@ -431,7 +490,7 @@ public class DailyDigest extends _CommonPage{
 		try {
 			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-			
+				
 				mobileAction.verifyElementIsDisplayed(yesterdaySpendingAndroid, "Yesterday Spending" + yesterdaySpendingAndroid.getText());
 				mobileAction.verifyElementIsDisplayed(usualSpendingAndroid, "Usual Spending" +usualSpendingAndroid.getText());
 			
@@ -443,15 +502,16 @@ public class DailyDigest extends _CommonPage{
 			}
 			
 
-		}catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (Exception e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} 
+		}
 	}
 	
 	/**
@@ -484,14 +544,15 @@ public class DailyDigest extends _CommonPage{
 			
 
 		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} 
+		}
 	}
 		
 	/**
@@ -510,29 +571,40 @@ public class DailyDigest extends _CommonPage{
 
 		Decorator();
 		String category=null;
+		String categoryVal=getTestdata("Category");
+		String[] categoryValue=categoryVal.split(":");
 
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
-				mobileAction.FuncClick(changeCategoryAndroid, "Category");
-				category="//*[text()='"+getTestdata("Category")+"']";
+				mobileAction.FuncClick(changeCategory, "Category");
+				if(currentLocale.equalsIgnoreCase("EN")){
+					category="//*[contains(@content-desc,'"+ categoryValue[0] +"') or contains(@text,'"+ categoryValue[0] +"')]";
+				}else{
+					category="//*[contains(@content-desc,'"+ categoryValue[1] +"') or or contains(@text,'"+ categoryValue[1] +"')]";
+				}
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(category, true, 5, "Up");
-				CL.GetAppiumDriver().context("NATIVE_APP");
+				
 				
 			} else {
 				
 				mobileAction.FuncClick(changeCategory, "Category");
-				category="//XCUIElementTypeOther[contains(@name,'"+ getTestdata("Category")+"')]";
+				if(currentLocale.equalsIgnoreCase("EN")){
+					category="//XCUIElementTypeOther[contains(@name,'"+ categoryValue[0] +"')]";
+				}else{
+					category="//XCUIElementTypeOther[contains(@name,'"+ categoryValue[1] +"')]";
+				}
+				
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(category, true, 5, "Up");
 			}
-		}catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (Exception e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} 
 	}
 	

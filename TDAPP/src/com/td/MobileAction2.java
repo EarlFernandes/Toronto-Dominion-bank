@@ -3523,7 +3523,7 @@ public class MobileAction2 extends CommonLib {
 			System.out.println("Progress bar not found");
 			return;
 		}
-
+		System.out.println("Waiting for progress vanishing");
 		waitForElementToVanish(progressBar);
 	}
 
@@ -3537,7 +3537,7 @@ public class MobileAction2 extends CommonLib {
 
 		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 			menuXpath = "//android.widget.ImageView[@resource-id='android:id/up' and @index='0']";
-			menuSlideXpath = "//android.widget.ListView[@index='1']";
+			menuSlideXpath = "//android.widget.ListView[@index='1' or @resource-id='com.td:id/list_slidermenu']";
 		} else {
 			menuXpath = "//XCUIElementTypeButton[@name ='NAVIGATION_ITEM_MENU']";
 			menuSlideXpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']";
@@ -3553,7 +3553,17 @@ public class MobileAction2 extends CommonLib {
 					isMenuOpened = true;
 					break;
 				} catch (Exception e1) {
+					// Added for R18.3
+					if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+						menuSlideXpath = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/flyout_menu_dashboard']";
+						try {
+							((AppiumDriver) GetDriver()).findElement(By.xpath(menuSlideXpath));
+							isMenuOpened = true;
+							break;
+						} catch (Exception e2) {
 
+						}
+					}
 				}
 				icnt++;
 			}

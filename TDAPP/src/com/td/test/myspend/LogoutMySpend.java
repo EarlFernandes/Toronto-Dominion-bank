@@ -74,14 +74,16 @@ public class LogoutMySpend extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(loggedOutHeader, "LoggedOut Header");
 			mobileAction.verifyElementIsDisplayed(successMsg, "Success Message");
 
-		}  catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}catch (Exception e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
+	
 }

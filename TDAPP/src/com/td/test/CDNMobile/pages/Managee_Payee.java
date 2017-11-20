@@ -182,8 +182,10 @@ public class Managee_Payee extends _CommonPage {
 			} else {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				String mypayee = getTestdata("Payee");
+				mypayee = mypayee.replaceAll(" ", "");
 				final WebElement firstPayee = mobileAction.verifyWebElementUsingXPath(
-						"//div[@ng-if='payee.AccountNO' and text()='" + getTestdata("Payee") + "']", "Payee");
+						"//div[@ng-if='payee.AccountNO' and text()='" + mypayee + "']", "Payee");
 				firstPayee.click();
 				mobileAction.waitProgressBarVanish();
 				mobileAction.switchAppiumContext("NATIVE_APP");

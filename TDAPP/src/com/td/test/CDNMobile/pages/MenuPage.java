@@ -99,10 +99,11 @@ public class MenuPage extends _CommonPage {
 	private MobileElement profile_and_settings;
 
 	// customer feedback
-	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_FEEDBACK']/XCUIElementTypeStaticText | //*@name='NAV_DRAWER_ITEMS_FEEDBACK']")
+	@iOSFindBy(xpath = "//*[@name='NAV_DRAWER_ITEMS_FEEDBACK']/XCUIElementTypeStaticText | //*[@name='NAV_DRAWER_ITEMS_FEEDBACK']")
 	private MobileElement give_feedback;
 
-	@iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_MAIL_TITLE']")
+	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_MAIL_TITLE'] |
+	// //*[@name='Give Feedback']")
 	private MobileElement give_feedback_contact_us;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText']")
@@ -284,8 +285,7 @@ public class MenuPage extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				accounts_button = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
-								+ mobileAction.getAppString("str_My_Accounts") + "']",
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_My_Accounts") + "']",
 						"My Accounts");
 			}
 			Thread.sleep(5000);
@@ -716,6 +716,9 @@ public class MenuPage extends _CommonPage {
 				String xpath = "//android.widget.TextView[@text='" + mobileAction.getAppString("give_feedback") + "']";
 				System.out.println("xpath:" + xpath);
 				give_feedback = mobileAction.verifyElementUsingXPath(xpath, "Give Feedback");
+				give_feedback_contact_us = mobileAction.verifyElementUsingXPath(xpath, "Give Feedback_contact_us");
+			} else {
+				String xpath = "//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_CUSTOMER_FEEDBACK) + "']";
 				give_feedback_contact_us = mobileAction.verifyElementUsingXPath(xpath, "Give Feedback_contact_us");
 			}
 		} catch (NoSuchElementException | IOException e) {
