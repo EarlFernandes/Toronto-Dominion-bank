@@ -3477,6 +3477,9 @@ public class MobileAction2 extends CommonLib {
 	public void FuncScrollIntoView(WebElement objElement, String text)
 			throws InterruptedException, IOException, NoSuchElementException {
 		try {
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+			wait.until(ExpectedConditions.visibilityOf(objElement));
+
 			((JavascriptExecutor) GetDriver()).executeScript("arguments[0].scrollIntoView(true);", objElement);
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> is scrolled into view");
 		} catch (Exception e) {
@@ -3570,30 +3573,9 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	public void switchToWebView() {
-		String lastestContextView = "";
-		boolean hasWebView = false;
-		int count = 0;
-		while (!hasWebView) {
-			Set<String> contextNames = ((AppiumDriver) GetDriver()).getContextHandles();
-			lastestContextView = (String) contextNames.toArray()[contextNames.size() - 1];
-			for (String contextName : contextNames) {
-				System.out.println(contextNames);
-				if (contextName.contains("WEBVIEW")) {
-					hasWebView = true;
-					break;
-				}
-			}
-
-			// Sleep till WebView is found
-			if (hasWebView) {
-				break;
-			} else if (count >= 10) {
-				break;
-			} else {
-				sleep(2000);
-				count++;
-			}
-		}
+		Set<String> contextNames = ((AppiumDriver) GetDriver()).getContextHandles();
+		String lastestContextView = (String) contextNames.toArray()[contextNames.size() - 1];
+		System.out.println(contextNames);
 
 		if (lastestContextView.contains("WEBVIEW")) {
 			((AppiumDriver) GetDriver()).context(lastestContextView);
