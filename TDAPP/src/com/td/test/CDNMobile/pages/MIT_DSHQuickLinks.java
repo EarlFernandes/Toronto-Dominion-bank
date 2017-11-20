@@ -40,13 +40,13 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/hamburger")
 	MobileElement BT_Home_HamburgerMenu;
 
-	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
-	@AndroidFindBy(id = "android:id/up")
-	MobileElement BT_Back;
-
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_HamburgerMenu;
+	
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
+	@AndroidFindBy(id = "android:id/up")
+	MobileElement BT_Back;
 
 	@iOSXCUITFindBy(accessibility = "LOGIN_PASSWORD")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
@@ -391,10 +391,10 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				clickQuickLink(QL_SENDMONEY, "SEND MONEY");
 				if (!bIsAuthenticatedUser) {
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
-					mobileAction.FuncClick(BT_Back, "< Button");
+					mobileAction.ClickBackButton();
 				} else {
 					mobileAction.verifyElementIsDisplayed(HDR_Interac_e_Transfer, "HDR_Interac_e_Transfer");
-					mobileAction.FuncClick(BT_Back, "< Button");
+					mobileAction.ClickBackButton();
 				}
 			}
 		} catch (Exception e) {
@@ -413,14 +413,14 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				clickQuickLink(QL_TRANSFER, "TRANSFER");
 				if (!bIsAuthenticatedUser) {
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
-					mobileAction.FuncClick(BT_Back, "< Button");
+					mobileAction.ClickBackButton();
 				} else {
 					if (sUserType.equalsIgnoreCase("Investing")) {
 						mobileAction.verifyElementIsDisplayed(HDR_Banking, "HDR_Banking");
-						mobileAction.FuncClick(BT_Back, "< Button");
+						mobileAction.ClickBackButton();
 					} else {
 						mobileAction.verifyElementIsDisplayed(HDR_Between_My_Accounts, "HDR_Between_My_Accounts");
-						mobileAction.FuncClick(BT_Back, "< Button");
+						mobileAction.ClickBackButton();
 					}
 				}
 			}
@@ -460,7 +460,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 					clickQuickLink(QL_APPLEPAY, "APPLE PAY");
 					mobileAction.verifyElementIsDisplayed(HDR_ApplePay, "HDR_Apple Pay");
-					mobileAction.FuncClick(BT_Back, "< Button");
+					mobileAction.ClickBackButton();
 				}
 			}
 		} catch (Exception e) {
@@ -478,7 +478,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				clickQuickLink(QL_DEPOSIT, "DEPOSIT");
 				if (!bIsAuthenticatedUser) {
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
-					mobileAction.FuncClick(BT_Back, "< Button");
+					mobileAction.ClickBackButton();
 				} else {
 					mobileAction.verifyElementIsDisplayed(HDR_Mobile_Deposit, "HDR_Mobile_Deposit");
 					mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
@@ -500,14 +500,14 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				clickQuickLink(QL_WATCHLISTS, "WATCHLISTS");
 				if (!bIsAuthenticatedUser) {
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
-					mobileAction.FuncClick(BT_Back, "< Button");
+					mobileAction.ClickBackButton();
 				} else {
 					if (mobileAction.isObjExists(HDR_Watchlists)) {
 						mobileAction.verifyElementIsDisplayed(HDR_Watchlists, "HDR_Watchlists");
-						mobileAction.FuncClick(BT_Back, "< Button");
+						mobileAction.ClickBackButton();
 					} else {
 						mobileAction.verifyElementIsDisplayed(ED_AddSymbolToWatchlist, "ED_AddSymbolToWatchlist");
-						mobileAction.FuncClick(BT_Back, "< Button");
+						mobileAction.ClickBackButton();
 					}
 				}
 
@@ -565,7 +565,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 																							// has
 																							// different
 																							// header
-				mobileAction.FuncClick(BT_Back, "< Button");
+				mobileAction.ClickBackButton();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

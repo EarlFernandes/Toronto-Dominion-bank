@@ -2,8 +2,8 @@ package com.td;
 
 import java.io.IOException;
 import java.util.HashMap;
-import org.apache.commons.lang3.StringUtils;
 
+import org.apache.commons.lang3.StringUtils;
 import com.td.mainframe.Executor;
 
 public class MainScreen extends _CommonPage {
@@ -12,23 +12,14 @@ public class MainScreen extends _CommonPage {
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
 
-	//private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.140.135:4786/wd/hub/";
-	
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.19.17.226:4762/wd/hub/";
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.104:4776/wd/hub/";
 
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
 	private static final String APP_ANDROID = "APP_ANDROID";
-	
-	private static final String APP_ANDROID_FR = "APP_ANDROID_FR";
-	
-	private static final String APP_ANDROID_ZH_TRAD = "APP_ANDROID_ZH_TRAD";
 
 	// Change this parameter to point to the correct ipa in Setup.xls for ios
 	private static final String APP_IOS = "APP_IOS";
-
-	private static final String APP_IOS_ZH_TRAD = "APP_IOS_ZH_TRAD";
-	
 
 	public String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env",
 			"Amount", "Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount",
@@ -37,7 +28,8 @@ public class MainScreen extends _CommonPage {
 			"SecurityPassword", "TriggerDelta", "CDNMarginAccount", "QuantityType", "Dividend", "SelectLimitPrice",
 			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName",
 			"Passcode", "NewPasscode", "Email", "Name", "EmailProfile", "PhoneProfile", "PostSurveyText", "Response",
-			"ProfileType", "SecurityQuestion", "OTPSecurityCode", "UserProfileType", "SecurityQuestion", "Category" };
+			"ProfileType", "SecurityQuestion", "OTPSecurityCode", "UserProfileType", "SecurityQuestion", "Category",
+			"TransactionStatus", "Message", "Nickname" };
 
 	public void readSheet() {
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
@@ -103,20 +95,26 @@ public class MainScreen extends _CommonPage {
 			}
 
 			CL.mobileApp(appiumPath);
+			orientation = "Portrait";
 
 			// If length is 2, then second token is the locale
 			if (targetEnvVars.length >= 2) {
 				currentLocale = targetEnvVars[1];
 				appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
+
+				if (targetEnvVars.length >= 3) {
+					orientation = targetEnvVars[2];
+				}
 			} else {
-				currentLocale = "EN";
-				appStringMap = (CL.GetAppiumDriver()).getAppStringMap();
+				currentLocale = "en";
+				appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
 			}
 		} else { // Local execution
 			try { // Set udid explicitly for local execution, to handle udid
 					// with all caps, when reading from excel sheet // it seems
 					// that framework forces to lower case
 				CL.getTestDataInstance().DriversCapability.put("udid", udid);
+				orientation = "Portrait";
 				if (CL.getTestDataInstance().getAppFilePath() == null
 						|| CL.getTestDataInstance().getAppFilePath().length() < 1) {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -124,28 +122,34 @@ public class MainScreen extends _CommonPage {
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_ANDROID));
 						currentLocale = CL.LoadData("Language", CL.getTestDataInstance().getSetupFile(), "AppURL",
 								"Name", APP_ANDROID);
+
+						orientation = CL.LoadData("Orientation", CL.getTestDataInstance().getSetupFile(), "AppURL",
+								"Name", APP_ANDROID);
 					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 						CL.getTestDataInstance().SetAppFilePath(CL.LoadData("Value",
 								CL.getTestDataInstance().getSetupFile(), "AppURL", "Name", APP_IOS));
 						currentLocale = CL.LoadData("Language", CL.getTestDataInstance().getSetupFile(), "AppURL",
 								"Name", APP_IOS);
+
+						orientation = CL.LoadData("Orientation", CL.getTestDataInstance().getSetupFile(), "AppURL",
+								"Name", APP_IOS);
 					}
 				}
 				CL.mobileApp(LOCAL_EXECUTION_APPIUM_SERVER);
+
 				if (StringUtils.isEmpty(currentLocale)) {
-					appStringMap = (CL.GetAppiumDriver()).getAppStringMap();
-				} else {
-					appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
+					currentLocale = "en";
 				}
+
+				appStringMap = (CL.GetAppiumDriver()).getAppStringMap(currentLocale);
 
 			} catch (Exception e) {
 				System.err.println("Unable to load APP file Path Exiting");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
 			}
-
 		}
-
+		if (orientation.equalsIgnoreCase("Landscape"))
+			mobileAction.FuncSetLandscapeOrientation();
 	}
 
 	// Singleton object of self

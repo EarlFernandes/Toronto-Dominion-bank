@@ -1,12 +1,14 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.sun.jna.Platform;
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -14,62 +16,57 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class ManageContacts extends _CommonPage {
 
 	private static ManageContacts ManageContacts;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeSearchField[contains(@name,'Search')]")
-
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/manage_contacts_search_field' and @text='Search']")
+	@iOSFindBy(xpath = "//XCUIElementTypeSearchField[contains(@name,'Search') or contains(@name,'Rechercher')]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/manage_contacts_search_field']")
 	private MobileElement searchTextFiled;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar[@name='Manage Contacts']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Manage Contacts']")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar[@name='Manage Contacts' or @name='Gestion des destinataires']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement pageHeader;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='add recipient hdr']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/menu_item_add_contact']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/menu_item_add_contact']")
 	private MobileElement addContactSign;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Name']/following-sibling::XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Name' or @label='Nom']/following-sibling::XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amend_contacts_name_edit_text']")
 	private MobileElement contactName;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Email']/following-sibling::XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Email' or @label='Courriel']/following-sibling::XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amend_contacts_email_edit_text_field']")
 	private MobileElement email;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Confirm Email Address']/following-sibling::XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Confirm Email Address' or @label='Confirmation de l’adresse courriel']/following-sibling::XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amend_contacts_email_confirm_edit_text_field']")
 	private MobileElement confirmEmail;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Email Language Preference']/following-sibling::XCUIElementTypeStaticText")
+	// @iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Email Language
+	// Preference' or @label='Langue de
+	// préférence']/following-sibling::XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeImage[@name='td_iemt_arrow_down']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/add_contacts_language_selection']")
 	private MobileElement languageSpinner;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_footer' or @text='Continue']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue' or @label='Continuer']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_footer' or @text='Continue' or @text='Continuer']")
 	private MobileElement continueButton;
 
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.android.packageinstaller:id/permission_allow_button' or @text='ALLOW']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.android.packageinstaller:id/permission_allow_button']")
 	private MobileElement allowBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Thank you!']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subHeader' or @text='Thank you!']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Thank you!' or @label='Merci!']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subHeader' or @text='Thank you!' or @text='Merci']")
 	private MobileElement thankYou;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'contact has been  added') or contains(@name,'contact has been  added') or contains(@value,'contact has been  added')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subSubHeader' or contains(@text,'The contact has been added successfully')]")
-	private MobileElement contactCreated;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Add Contact']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Add Contact' or @label='Ajouter un destinataire']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/manage_contacts_add_contact_button']")
 	private MobileElement addContactButton;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@label,'Add a contact from your phone')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/add_contacts_row_title' or contains(@text,'Add a contact from your phone')]")
-	private MobileElement addContactFromPhone;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/list_item_recipient_name']")
@@ -83,18 +80,19 @@ public class ManageContacts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/list_item_recipient_name']")
 	private MobileElement contact;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Edit']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Edit' or @label='Modifier']")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/delete_menu_edit']")
 	private MobileElement editContact;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Question']/following-sibling::XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Question' or @label='Question de sécurité']/following-sibling::XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amend_contacts_security_question_text_field']") // updated
 	private MobileElement securityQuestion;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Answer']/following-sibling::XCUIElementTypeSecureTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Answer' or @label='Réponse à la question de sécurité']/following-sibling::XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amend_contacts_security_answer_text_field']") // updated
 	private MobileElement securityAns;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Confirm Answer' or @label='Confirmation de la réponser']/following-sibling::XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amend_contacts_security_answer_confirm_text_field']") // updated
 	private MobileElement confirmAnswer;
 
@@ -102,42 +100,38 @@ public class ManageContacts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_done' or @text='Done']")
 	private MobileElement done;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther/following-sibling::XCUIElementTypeButton[@label='Done']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_footer' or @text='Done']")
-	private MobileElement editDone;
+	@iOSFindBy(xpath = "//XCUIElementTypeOther/following-sibling::XCUIElementTypeButton[@label='Done' or @label='OK' or @label='Ok']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_footer' or @text='Done' or @text='Terminé']")
+	private List<MobileElement> editDone;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'information has been updated successfully')]")
-	private MobileElement editContactSuccessMsg;
-
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info' and contains(@text,'This contact has been deleted successfully')]")
-	private MobileElement contactDeletSuccMsg;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Delete']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/detail_menu_delete']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Delete' or @label='Supprimer']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/detail_menu_delete']")
 	private MobileElement deleteOption;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='No']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2' and @text='No']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='No' or @label='Non']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
 	private MobileElement noOption;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Yes']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Yes']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Yes' or @label='Oui']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
 	private MobileElement yesOption;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Are you sure you want to delete')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/delete_contact_body_text_view' and contains(@text,'Are you sure you want to delete')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Are you sure you want to delete') or contains(@label,'Voulez-vous vraiment supprimer')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/delete_contact_body_text_view']")
 	private MobileElement deleteWarning;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText/following-sibling::XCUIElementTypeButton[@label='Continue']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText/following-sibling::XCUIElementTypeButton[@label='Continue' or @label='Continuer']")
 	private MobileElement alertContinue;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Allow']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Allow' or @label='Autoriser']")
 	private MobileElement alertAllow;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In Progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and (@text='Loading' or @text='Chargement')]")
-	private MobileElement progressBar;
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Settings')]")
+	private MobileElement settings;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_heading']")
+	private List<MobileElement> language;
 
 	String platformName = CL.getTestDataInstance().getMobilePlatForm();
 
@@ -174,9 +168,9 @@ public class ManageContacts extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Manage Contacts Header");
 			mobileAction.verifyElementIsDisplayed(searchTextFiled, "Search Text Filed");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -197,12 +191,9 @@ public class ManageContacts extends _CommonPage {
 
 			mobileAction.FuncClick(addContactSign, "Add Contacts Sign");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -223,12 +214,9 @@ public class ManageContacts extends _CommonPage {
 
 			mobileAction.FuncClick(addContactButton, "Add Contacts Button");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -249,6 +237,10 @@ public class ManageContacts extends _CommonPage {
 		String contactNameXL = getTestdata("Name");
 		String[] contactNameTxt = contactNameXL.split(": ");
 
+		if (contactNameTxt.length == 1) {
+			contactCounter = 0;
+		}
+
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 
@@ -263,12 +255,6 @@ public class ManageContacts extends _CommonPage {
 				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(languageSpinner, "Language Drop Down");
 
-				String languageXL = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='" + getTestdata("Language")
-						+ "']";
-				MobileElement language = mobileAction.mobileElementUsingXPath(languageXL);
-				mobileAction.FuncClick(language, "Language " + getTestdata("Language"));
-				mobileAction.FuncClick(continueButton, "Continue Button");
-
 			} else {
 				mobileAction.FuncClick(contactName, "Contact Name");
 				mobileAction.FuncSendKeys(contactName, contactNameTxt[contactCounter]);
@@ -282,28 +268,25 @@ public class ManageContacts extends _CommonPage {
 				mobileAction.FuncSendKeys(confirmEmail, getTestdata("Email"));
 				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(languageSpinner, "Language Drop Down");
-				// String
-				// languageXL="//android.widget.CheckedTextView[@text='"+getTestdata("Language")+"']";
-				String languageXL = "//android.widget.TextView[@text='" + getTestdata("Language")
-						+ "']/preceding-sibling::android.widget.RadioButton";
 
-				MobileElement language = mobileAction.mobileElementUsingXPath(languageXL);
-				mobileAction.FuncClick(language, "Language " + getTestdata("Language"));
-				mobileAction.FuncClickDone();
-				mobileAction.FuncClick(continueButton, "Continue Button");
 			}
+
+			if (getTestdata("Language").equalsIgnoreCase("English")) {
+				mobileAction.FuncClick(language.get(0), language.get(0).getText());
+			} else if (getTestdata("Language").equalsIgnoreCase("French")) {
+				mobileAction.FuncClick(language.get(1), language.get(1).getText());
+			}
+
+			mobileAction.FuncClick(continueButton, "Continue Button");
 
 			contactCounter++;
 			if (contactCounter >= 3) {
 				contactCounter = 0;
 			}
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -322,12 +305,28 @@ public class ManageContacts extends _CommonPage {
 		Decorator();
 		try {
 
+			MobileElement contactCreated = null;
+
 			mobileAction.verifyElementIsDisplayed(thankYou, "Thank you!");
+
+			if (platformName.equalsIgnoreCase("Android")) {
+
+				contactCreated = mobileAction.mobileElementUsingXPath(
+						"//android.widget.TextView[@resource-id='com.td:id/receipt_subSubHeader' and contains(@text,'"
+								+ getTextInCurrentLocale(StringArray.CONTACT_ADDED_SUCCESS_MSG) + "')]");
+
+			} else {
+				contactCreated = mobileAction
+						.mobileElementUsingXPath("//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@label,'"
+								+ getTextInCurrentLocale(StringArray.CONTACT_ADDED_SUCCESS_MSG) + "')]");
+
+			}
+
 			mobileAction.verifyElementIsDisplayed(contactCreated, "The contact has been added successfully.");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -346,20 +345,28 @@ public class ManageContacts extends _CommonPage {
 		Decorator();
 		try {
 
+			MobileElement addContactFromPhone = null;
+
+			if (platformName.equalsIgnoreCase("Android")) {
+				addContactFromPhone = mobileAction.mobileElementUsingXPath(
+						"//android.widget.TextView[@resource-id='com.td:id/add_contacts_row_title' or contains(@text,'"
+								+ getTextInCurrentLocale(StringArray.ADD_CONTACT_FROM_PHONE_MSG) + "')]");
+			} else {
+				addContactFromPhone = mobileAction
+						.mobileElementUsingXPath("//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@label,'"
+								+ getTextInCurrentLocale(StringArray.ADD_CONTACT_FROM_PHONE_MSG) + "')]");
+			}
+
 			mobileAction.FuncClick(addContactFromPhone, "Add Contacts From Phone");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
 	/**
-	 * @author Ashraf This method will click on Add contact button on Manage
-	 *         Contacts
+	 * @author Ashraf This method will add contact from phone.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -385,14 +392,13 @@ public class ManageContacts extends _CommonPage {
 				mobileAction.verifyTextEquality(contactName.getText(), contactNme);
 				mobileAction.verifyTextEquality(email.getText(), contactMail);
 				mobileAction.FuncClick(languageSpinner, "Language Drop Down");
-				// String
-				// languageXL="//android.widget.CheckedTextView[@text='"+getTestdata("Language")+"']";
-				String languageXL = "//android.widget.TextView[@text='" + getTestdata("Language")
-						+ "']/preceding-sibling::android.widget.RadioButton";
 
-				MobileElement language = mobileAction.mobileElementUsingXPath(languageXL);
-				mobileAction.FuncClick(language, "Language " + getTestdata("Language"));
-				mobileAction.FuncClickDone();
+				if (getTestdata("Language").equalsIgnoreCase("English")) {
+					mobileAction.FuncClick(language.get(0), language.get(0).getText());
+				} else if (getTestdata("Language").equalsIgnoreCase("French")) {
+					mobileAction.FuncClick(language.get(1), language.get(1).getText());
+				}
+
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(continueButton, "Continue Button");
 			} else {
@@ -400,8 +406,8 @@ public class ManageContacts extends _CommonPage {
 				if (mobileAction.verifyElementIsPresent(alertContinue)) {
 					mobileAction.FuncClick(alertContinue, "Continue");
 					mobileAction.FuncClick(alertAllow, "Allow");
-					// TODO::Incomplete steps as app is not stable needs to
-					// complete
+
+					mobileAction.FuncClick(settings, "Settings");
 				}
 
 				String contactNme = mobileContact.getText();
@@ -409,7 +415,6 @@ public class ManageContacts extends _CommonPage {
 				mobileAction.FuncClick(mobileContact, "Phone Contact");
 				mobileAction.verifyTextEquality(contactName.getText(), contactNme);
 				mobileAction.verifyTextEquality(email.getText(), contactMail);
-				mobileAction.verifyTextEquality(confirmEmail.getText(), contactMail);
 				mobileAction.FuncClick(languageSpinner, "Language Drop Down");
 
 				String languageXL = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='" + getTestdata("Language")
@@ -420,12 +425,9 @@ public class ManageContacts extends _CommonPage {
 
 			}
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -445,12 +447,9 @@ public class ManageContacts extends _CommonPage {
 
 			mobileAction.FuncClick(contact, "Contact: " + contact.getText());
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -467,8 +466,6 @@ public class ManageContacts extends _CommonPage {
 	public void editContact() {
 		Decorator();
 		try {
-
-			// TODO::Update - confirm email is not required.
 
 			if (platformName.equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(editContact, "Edit Contact Button");
@@ -492,56 +489,58 @@ public class ManageContacts extends _CommonPage {
 				}
 
 				mobileAction.FuncClick(languageSpinner, "Language Drop Down");
-				// String
-				// languageXL="//android.widget.CheckedTextView[@text='"+getTestdata("Language")+"']";
-				String languageXL = "//android.widget.TextView[@text='" + getTestdata("Language")
-						+ "']/preceding-sibling::android.widget.RadioButton";
 
-				MobileElement language = mobileAction.mobileElementUsingXPath(languageXL);
-				mobileAction.FuncClick(language, "Language " + getTestdata("Language"));
-				mobileAction.FuncClickDone();
-				mobileAction.FuncClick(editDone, "Done Button");
+				if (getTestdata("Language").equalsIgnoreCase("English")) {
+					mobileAction.FuncClick(language.get(0), language.get(0).getText());
+				} else if (getTestdata("Language").equalsIgnoreCase("French")) {
+					mobileAction.FuncClick(language.get(1), language.get(1).getText());
+				}
+
+				mobileAction.FuncClick(editDone.get(0), "Done Button");
+
 			} else {
 
 				mobileAction.FuncClick(editContact, "Edit Contact Button");
 				mobileAction.FuncClick(contactName, "Contact Name");
 				mobileAction.FuncSendKeys(contactName, getTestdata("Name"));
-				mobileAction.FuncClick(editDone, "Done");
+				mobileAction.FuncClick(editDone.get(1), "Done");
 				mobileAction.FuncClick(email, "Contact Email");
 				mobileAction.FuncSendKeys(email, getTestdata("Email"));
-				mobileAction.FuncClick(editDone, "Done");
+				mobileAction.FuncClick(editDone.get(1), "Done");
 
 				if (mobileAction.verifyElementIsPresent(securityQuestion)) {
 					mobileAction.FuncClick(securityQuestion, "SecurityQuestion");
 					mobileAction.FuncSendKeys(securityQuestion, getTestdata("SecurityQuestion"));
-					mobileAction.FuncClick(editDone, "Done");
+					mobileAction.FuncClick(editDone.get(1), "Done");
 					mobileAction.FuncClick(securityAns, "Security Answer");
 					mobileAction.FuncSendKeys(securityAns, getTestdata("SecurityAnswer"));
-					mobileAction.FuncClick(editDone, "Done");
+					mobileAction.FuncClick(editDone.get(1), "Done");
+					mobileAction.FuncClick(confirmAnswer, "Security Answer");
+					mobileAction.FuncSendKeys(confirmAnswer, getTestdata("SecurityAnswer"));
+					mobileAction.FuncClick(editDone.get(1), "Done");
+
 				}
 
 				mobileAction.FuncClick(languageSpinner, "Language Drop Down");
 
-				String languageXL = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='" + getTestdata("Language")
-						+ "']";
-				MobileElement language = mobileAction.mobileElementUsingXPath(languageXL);
-				mobileAction.FuncClick(language, "Language " + getTestdata("Language"));
+				if (getTestdata("Language").equalsIgnoreCase("English")) {
+					mobileAction.FuncClick(language.get(0), language.get(0).getText());
+				} else if (getTestdata("Language").equalsIgnoreCase("French")) {
+					mobileAction.FuncClick(language.get(1), language.get(1).getText());
+				}
 
 				mobileAction.FuncClickDone();
 			}
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
 	/**
-	 * @author Ashraf This method will click on edit contact icon on Manage
-	 *         Contacts
+	 * @author Ashraf This method will verify the edit contact success message
+	 *         on success screen.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -553,18 +552,30 @@ public class ManageContacts extends _CommonPage {
 	public void verifyContactEditSuccessMsg() {
 		Decorator();
 		try {
-			// TODO::IOS xpath not taken due to app stability issue
+
+			MobileElement editContactSuccessMsg = null;
+
+			if (platformName.equalsIgnoreCase("Android")) {
+				editContactSuccessMsg = mobileAction
+						.mobileElementUsingXPath("//android.widget.TextView[contains(@text,'"
+								+ getTextInCurrentLocale(StringArray.CONTACT_EDIT_SUCCESS_MSG) + "')]");
+			} else {
+				editContactSuccessMsg = mobileAction
+						.mobileElementUsingXPath("//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@label,'"
+								+ getTextInCurrentLocale(StringArray.CONTACT_EDIT_SUCCESS_MSG) + "')]");
+			}
+
 			mobileAction.verifyElementIsDisplayed(editContactSuccessMsg, "Your Contact Has been Edited Successfully");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
 	/**
-	 * @author Ashraf This method will click on edit contact icon on Manage
-	 *         Contacts
+	 * @author Ashraf This method will click on delete contact icon but will not
+	 *         delete the contact.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -583,18 +594,15 @@ public class ManageContacts extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(yesOption, "Yes");
 			mobileAction.FuncClick(noOption, "No");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
 	/**
-	 * @author Ashraf This method will click on edit contact icon on Manage
-	 *         Contacts
+	 * @author Ashraf This method will click on delete contact icon and will
+	 *         delete the contact.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -608,23 +616,17 @@ public class ManageContacts extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(deleteOption, "Delete Contact");
-			mobileAction.verifyElementIsDisplayed(deleteWarning, "Warning: Are you sure you want to delete");
-			mobileAction.verifyElementIsDisplayed(noOption, "No");
-			mobileAction.verifyElementIsDisplayed(yesOption, "Yes");
 			mobileAction.FuncClick(yesOption, "Yes");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
 	/**
-	 * @author Ashraf This method will click on edit contact icon on Manage
-	 *         Contacts
+	 * @author Ashraf This method will verify the delete contact success
+	 *         message.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -637,17 +639,27 @@ public class ManageContacts extends _CommonPage {
 		Decorator();
 		try {
 
+			MobileElement contactDeletSuccMsg = null;
+
+			if (platformName.equalsIgnoreCase("Android")) {
+				contactDeletSuccMsg = mobileAction.mobileElementUsingXPath(
+						"//android.widget.TextView[@resource-id='com.td:id/banner_info' and contains(@text,'"
+								+ getTextInCurrentLocale(StringArray.CONTACT_DELETE_SUCCESS_MSG) + "')]");
+			} else {
+				contactDeletSuccMsg = mobileAction.mobileElementUsingXPath("//XCUIElementTypeButton[contains(@label,'"
+						+ getTextInCurrentLocale(StringArray.CONTACT_DELETE_SUCCESS_MSG) + "')]");
+			}
+
 			mobileAction.verifyElementIsDisplayed(contactDeletSuccMsg, "Contact Has been deleted successfully");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
 	/**
-	 * @author Ashraf This method will click on edit contact icon on Manage
-	 *         Contacts
+	 * @author Ashraf This method will edit the multiprofile contact.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -668,7 +680,7 @@ public class ManageContacts extends _CommonPage {
 				clickContact();
 				editContact();
 				verifyContactEditSuccessMsg();
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 
 				if (i != 2) {
 					for (int m = 0; m <= i; m++) {
@@ -679,21 +691,14 @@ public class ManageContacts extends _CommonPage {
 
 			}
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
 	/**
-	 * @author Ashraf This method will click on edit contact icon on Manage
-	 *         Contacts
+	 * @author Ashraf This method will delete the multiprofile contacts.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -713,27 +718,22 @@ public class ManageContacts extends _CommonPage {
 
 				clickContact();
 				noDeleteContact();
-				verifyPageHeader();
-				clickContact();
 				deleteContact();
 				verifyContactDeleteSuccessMsg();
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FunctionSwipe("left", 200, 200);
 
 			}
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
 	/**
-	 * @author Ashraf This method will click on edit contact icon on Manage
-	 *         Contacts
+	 * @author Ashraf This method will add contact to each profile for
+	 *         multiprofile.
 	 * 
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen
@@ -754,25 +754,28 @@ public class ManageContacts extends _CommonPage {
 				clickAddContactPlusSign();
 				addContact();
 				verifySuccessMessage();
-				Interac_e_Registration.get().clickGoBackHome();
-				Transfers.get().clickManageContactsLink();
+				// Interac_e_Registration.get().clickGoBackHome();
 
-				mobileAction.waitForElementToVanish(progressBar);
+				if (platformName.equalsIgnoreCase("Android")) {
+					mobileAction.FuncClickBackButton();
+				} else {
+					mobileAction.clickMenuButton();
+					MenuPage.get().clickMenuTransfer();
+					Transfers.get().clickManageContactsLink();
+				}
 
 				if (i != 2) {
 					for (int m = 0; m <= i; m++) {
-						mobileAction.FunctionSwipe("left", 3000, 200);
+						mobileAction.FunctionSwipe("left", 200, 100);
+						mobileAction.waitProgressBarVanish();
 					}
 				}
 
 			}
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 }

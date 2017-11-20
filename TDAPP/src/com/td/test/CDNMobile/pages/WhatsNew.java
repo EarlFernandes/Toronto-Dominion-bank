@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -17,15 +18,11 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class WhatsNew extends _CommonPage {
 
 	private static WhatsNew whatsnew;
-	String Whatsnew = "What\'s new | Nouveautés";
+	// String Whatsnew = "What\'s new | Nouveautés";
 
-	@iOSFindBy(xpath = "//*[@label='What\'s New' or @label='Nouveautés']")
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement whatsnew_title;
-
-	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progrees_bar;
 
 	public synchronized static WhatsNew get() {
 		if (whatsnew == null) {
@@ -43,8 +40,9 @@ public class WhatsNew extends _CommonPage {
 	public void VerifyWhatsNewPageHeader() {
 		Decorator();
 		try {
+			String titleText = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_WAHTS_NEW);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.verifyElementTextIsDisplayed(whatsnew_title, Whatsnew);
+				mobileAction.verifyElementTextIsDisplayed(whatsnew_title, titleText);
 			} else {
 				// do nothing. IOS not implement it yet.
 			}

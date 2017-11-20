@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -18,13 +19,9 @@ public class TDForMe extends _CommonPage {
 
 	private static TDForMe Tdforme;
 
-	@iOSFindBy(xpath = "//*[@label='TD for Me Settings' or @label='Paramètres TD et moi']")
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement tdforme_title;
-
-	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progress_bar;
 
 	@iOSFindBy(xpath = "//*[@label='Enable TD for Me' or @label='Activer TD et moi']/../XCUIElementTypeSwitch")
 	@AndroidFindBy(xpath = "//android.widget.Switch[@content-desc='TD for Me' or @content-desc='TD et moi']")
@@ -71,7 +68,8 @@ public class TDForMe extends _CommonPage {
 	public void VerifyTDForMeSettingsHeader() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(tdforme_title, "TD for Me Settings | Paramètres TD et moi");
+			mobileAction.verifyElementTextIsDisplayed(tdforme_title,
+					getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_TD_FOR_ME_SETTINGS));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -98,7 +96,7 @@ public class TDForMe extends _CommonPage {
 				// Toggle the switch to disable
 				System.out.println("Toggle to disable");
 				mobileAction.FuncClick(tdforme_enable_switch, "TD for Me Enable-Disable Switch");
-				mobileAction.waitForElementToVanish(progress_bar);
+				mobileAction.waitProgressBarVanish();
 
 				switchCheckStatus = mobileAction.getSwitchStatus(tdforme_enable_switch);
 				if (!switchCheckStatus.equalsIgnoreCase("false")) {
@@ -176,7 +174,7 @@ public class TDForMe extends _CommonPage {
 					// Toggle the switch to Enble
 				System.out.println("Toggle to Enable");
 				mobileAction.FuncClick(tdforme_enable_switch, "TD for Me Enable-Disable Switch");
-				mobileAction.waitForElementToVanish(progress_bar);
+				mobileAction.waitProgressBarVanish();
 
 				switchCheckStatus = mobileAction.getSwitchStatus(tdforme_enable_switch);
 				System.out.println("Switch Status:" + switchCheckStatus);
@@ -218,7 +216,7 @@ public class TDForMe extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(tdforme_Customize_Notifications, "Customeize Notification");
-			mobileAction.waitForElementToVanish(progress_bar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			System.err.println("TestCase has failed to ClickCustomizeNotificationlink.");

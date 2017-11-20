@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -18,8 +19,8 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class QuickAccessSettings extends _CommonPage {
 	private static QuickAccessSettings QuickAccessSettings;
 
-	@iOSFindBy(xpath = "//*[@label='Quick Access']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Quick Access Settings']")
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement QuickAccessSettingsHeader;
 
 	@iOSFindBy(xpath = "//*[@label='Turn Quick Access on or off']")
@@ -28,10 +29,6 @@ public class QuickAccessSettings extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/easy_access_rewards_on_off_switch']")
 	private MobileElement rewardsBalanceToggle;
-
-	@iOSFindBy(xpath = "//*[@label='Back']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
-	private MobileElement quickAccessSettingsBackBtn;
 
 	String cardToggle = "//XCUIElementTypeSwitch[contains(@label,'";
 	String accountXL = CL.getTestDataInstance().getPrimaryAccount();
@@ -63,7 +60,8 @@ public class QuickAccessSettings extends _CommonPage {
 	public void verifyQuickAccessSettingsHeader() {
 		Decorator();
 		try {
-			mobileAction.verifyElementIsDisplayed(QuickAccessSettingsHeader, "Quick Access Settings");
+			String titleText = getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_SETTINGS);
+			mobileAction.verifyElementTextIsDisplayed(QuickAccessSettingsHeader, titleText);
 
 		} catch (IOException e) {
 			System.err.println("TestCase has failed.");
@@ -126,7 +124,6 @@ public class QuickAccessSettings extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-
 
 	/**
 	 * This method will verify that TD Classic Travel Card Toggle is turned on
@@ -225,9 +222,9 @@ public class QuickAccessSettings extends _CommonPage {
 
 		Decorator();
 		try {
-			mobileAction.FuncClick(quickAccessSettingsBackBtn, "Quick Access Settings Back Button");
+			mobileAction.ClickBackButton();
 
-		} catch (IOException | InterruptedException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

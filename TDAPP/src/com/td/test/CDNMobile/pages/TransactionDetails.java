@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -108,7 +109,7 @@ public class TransactionDetails extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.verifyElementTextIsDisplayed(transactionDetailsHeader,
-					"Transaction Details | Détails de l’opération");
+					getTextInCurrentLocale(StringArray.ARRAY_MF_TRANSACTION_DETAIL));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -120,36 +121,39 @@ public class TransactionDetails extends _CommonPage {
 	public void verifyTransactionDetails() {
 		Decorator();
 		try {
-			// mobileAction.verifyElementTextIsDisplayed(transactionDetailsHeader,
-			// "Transaction Details | Détails de l'opération");
+
 			if (mobileAction.verifyElementIsPresent(transacDate_title)) {
-				mobileAction.verifyElementTextIsDisplayed(transacDate_title, "Date | Date");
+				mobileAction.verifyElementTextIsDisplayed(transacDate_title,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_TRANSACTION_DATE));
 			}
 			if (mobileAction.verifyElementIsPresent(ptransactionType_title)) {
 				mobileAction.verifyElementTextIsDisplayed(ptransactionType_title,
-						"Transaction Type | Type d’opération");
+						getTextInCurrentLocale(StringArray.ARRAY_MF_TRANSACTION_TYPE));
 			}
 
 			if (mobileAction.verifyElementIsPresent(grossAmount_title)) {
-				mobileAction.verifyElementTextIsDisplayed(grossAmount_title, "Gross Amount | Montant brut");
+				mobileAction.verifyElementTextIsDisplayed(grossAmount_title,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_TRANSACTION_GROSS_AMOUNT));
 			}
 
 			if (mobileAction.verifyElementIsPresent(transactionCharge_title)) {
 				mobileAction.verifyElementTextIsDisplayed(transactionCharge_title,
-						"Transaction Charge |Frais d’opération");
+						getTextInCurrentLocale(StringArray.ARRAY_MF_TRANSACTION_CHARGE));
 			}
 
 			if (mobileAction.verifyElementIsPresent(netAmount_title)) {
-				mobileAction.verifyElementTextIsDisplayed(netAmount_title, "Net Amount| Montant net");
+				mobileAction.verifyElementTextIsDisplayed(netAmount_title,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_TRANSACTION_NET_AMOUNT));
 			}
 
 			if (mobileAction.verifyElementIsPresent(unitPrice_title)) {
-				mobileAction.verifyElementTextIsDisplayed(unitPrice_title, "Unit Price| Prix par part");
+				mobileAction.verifyElementTextIsDisplayed(unitPrice_title,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_TRANSACTION_UNIT_PRICE));
 			}
 
 			if (mobileAction.verifyElementIsPresent(transactionUnit_title)) {
 				mobileAction.verifyElementTextIsDisplayed(transactionUnit_title,
-						"Transaction Units|Parts visées par l’opération");
+						getTextInCurrentLocale(StringArray.ARRAY_MF_TRANSACTION_UNIT));
 			}
 
 		} catch (NoSuchElementException | IOException e) {
@@ -162,34 +166,41 @@ public class TransactionDetails extends _CommonPage {
 	public void verifyTransactionDetailsInChinese() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(transactionDetailsHeader, "交易详情 | 交易詳情");
+			mobileAction.verifyElementTextIsDisplayed(transactionDetailsHeader,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_TRANSACTION_DETAIL));
 
 			if (mobileAction.verifyElementIsPresent(transacDate_title)) {
-				mobileAction.verifyElementTextIsDisplayed(transacDate_title, "日期  | 日期 ");
+				mobileAction.verifyElementTextIsDisplayed(transacDate_title,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_TRANSACTION_DATE));
 			}
-
 			if (mobileAction.verifyElementIsPresent(ptransactionType_title)) {
-				mobileAction.verifyElementTextIsDisplayed(ptransactionType_title, "交易类型 | 交易類型常 ");
+				mobileAction.verifyElementTextIsDisplayed(ptransactionType_title,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_TRANSACTION_TYPE));
 			}
 
 			if (mobileAction.verifyElementIsPresent(grossAmount_title)) {
-				mobileAction.verifyElementTextIsDisplayed(grossAmount_title, "总金额 | 總金額");
+				mobileAction.verifyElementTextIsDisplayed(grossAmount_title,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_TRANSACTION_GROSS_AMOUNT));
 			}
 
 			if (mobileAction.verifyElementIsPresent(transactionCharge_title)) {
-				mobileAction.verifyElementTextIsDisplayed(transactionCharge_title, "交易收费 | 交易費用");
+				mobileAction.verifyElementTextIsDisplayed(transactionCharge_title,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_TRANSACTION_CHARGE));
 			}
 
 			if (mobileAction.verifyElementIsPresent(netAmount_title)) {
-				mobileAction.verifyElementTextIsDisplayed(netAmount_title, "净额 | 淨額 ");
+				mobileAction.verifyElementTextIsDisplayed(netAmount_title,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_TRANSACTION_NET_AMOUNT));
 			}
 
 			if (mobileAction.verifyElementIsPresent(unitPrice_title)) {
-				mobileAction.verifyElementTextIsDisplayed(unitPrice_title, "单位价格 | 單位價格");
+				mobileAction.verifyElementTextIsDisplayed(unitPrice_title,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_TRANSACTION_UNIT_PRICE));
 			}
 
 			if (mobileAction.verifyElementIsPresent(transactionUnit_title)) {
-				mobileAction.verifyElementTextIsDisplayed(transactionUnit_title, "交易单位数量 | 交易單位數");
+				mobileAction.verifyElementTextIsDisplayed(transactionUnit_title,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_TRANSACTION_UNIT));
 			}
 
 		} catch (NoSuchElementException | IOException e) {

@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.MobileAction2;
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -22,10 +24,6 @@ public class Accounts_Credit extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='PAY BILL']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/payBill' and @text='PAY BILL']")
 	private MobileElement payBill_Btn;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progresssBar;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Activity']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/activityTab' and @text='Activity']")
@@ -86,10 +84,6 @@ public class Accounts_Credit extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/transferTo' and @text='TRANSFERS']")
 	private MobileElement transfer_Btn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
-
 	public synchronized static Accounts_Credit get() {
 		if (Accounts_Credit == null) {
 			Accounts_Credit = new Accounts_Credit();
@@ -99,7 +93,7 @@ public class Accounts_Credit extends _CommonPage {
 
 	private void Decorator() {
 		PageFactory.initElements(
-				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);	
 
 	}
 
@@ -121,7 +115,7 @@ public class Accounts_Credit extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(payBill_Btn, "Pay Bill");
-			mobileAction.waitForElementToVanish(progresssBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -226,6 +220,10 @@ public class Accounts_Credit extends _CommonPage {
 	public void clickSummary() {
 		Decorator();
 		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				summaryTab = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_TAB_SUMMARY) + "']", "Summary Tab");
+			}
 			mobileAction.FuncClick(summaryTab, "Summary tab");
 			Thread.sleep(3000);
 		} catch (NoSuchElementException e) {
@@ -349,7 +347,7 @@ public class Accounts_Credit extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(transfer_Btn, "Transfer");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -500,6 +498,11 @@ public class Accounts_Credit extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				summaryTab = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_TAB_SUMMARY) + "']", "Summary Tab");
+			}
+			mobileAction.FuncClick(summaryTab, "Summary Tab");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				// mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
 				// + mobileAction.getAppString("str_summary") + "']", "Summary
 				// Tab");
@@ -511,6 +514,7 @@ public class Accounts_Credit extends _CommonPage {
 				// "Available Balance");
 
 			} else {
+
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/summaryTab' and @text='"
 								+ mobileAction.getAppString("str_summary") + "']",
@@ -522,7 +526,7 @@ public class Accounts_Credit extends _CommonPage {
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_Available_Balance") + "']",
 						"Available Balance");
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			try {
 				mobileAction.GetReporting().FuncReport("Fail",
 						"No such element was found on screen: " + e.getMessage());
@@ -559,7 +563,8 @@ public class Accounts_Credit extends _CommonPage {
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("str_Activity") + "']",
 						"Summary Tab");
 				mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("rtb_statements") + "']",
+						"//android.widget.TextView[@text='"
+								+ mobileAction.getAppString("mes_statement_tab_type_statement") + "']",
 						"Statements Tab");
 			}
 		} catch (NoSuchElementException | IOException e) {

@@ -5,6 +5,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
+
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -12,63 +14,35 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Profile_And_Settings extends _CommonPage {
 
 	private static Profile_And_Settings ProfileAndSettings;
 
-	String preferences = "Profile & Settings | Profil et paramètres";
-
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
-
-	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres']")
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement profile_preferences_Header;
 
-	@iOSFindBy(xpath = "//*[@label='View profile >' or @label='Consulter le profil >']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[(@text='View profile' or @text='Consulter le profil')]")
 	private MobileElement view_profile;
 
-	@iOSFindBy(xpath = "//*[@label='View profile']")
-	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index='0']")
-	private MobileElement view_profile_individual;
-
-	@iOSFindBy(xpath = "//*[@label='View profile']")
-	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index='1']")
-	private MobileElement view_profile_business;
-
-	@iOSFindBy(xpath = "//*[@label='Click here to go to Business Profile Details :)']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='Click here to go to Business Profile Details :)']")
-	private MobileElement business_profile_details;
-
-	@iOSFindBy(xpath = "//*[@label='Security Questions' or @label ='Questions de sécurité']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_security']/android.widget.TextView")
 	private MobileElement security_questions;
 
-	@iOSFindBy(xpath = "//*[@label='Touch ID']")
-	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_security']/android.widget.TextView")
-	private MobileElement touch_id;
-
-	@iOSFindBy(xpath = "//*[@label='Notifications' or @label='Avis']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_notifications']/android.widget.TextView")
 	private MobileElement notifications;
 
-	@iOSFindBy(xpath = "//*[@label='Quick Access Settings' or @label='Paramètres Accès rapide']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_quick_access']/android.widget.TextView")
 	private MobileElement quickaccesssetting;
 
-	@iOSFindBy(xpath = "//*[@label='TD for Me Settings' or @label='Paramètres TD et moi']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_tdforme']/android.widget.TextView")
 	private MobileElement tdformesettings;
 
-	@iOSFindBy(xpath = "//*[@label=\"What's New\" or @label='Nouveautés']")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_whatsnew']/android.widget.TextView")
 	private MobileElement whatsnew;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Payments & Transfers']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Payments & Transfers']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Payments & Transfers' or @text='Paiements et virements']")
 	private MobileElement paymentsAndTransfers;
 
 	public synchronized static Profile_And_Settings get() {
@@ -101,9 +75,17 @@ public class Profile_And_Settings extends _CommonPage {
 
 		Decorator();
 		try {
-
+			String view_profile_xpath;
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				view_profile_xpath = "//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_VIEW_PROFILE_LINK_IOS)
+						+ "']";
+			} else {
+				view_profile_xpath = "//android.widget.TextView[@text='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_VIEW_PROFILE_LINK_AND) + "']";
+			}
+			view_profile = mobileAction.verifyElementUsingXPath(view_profile_xpath, "View Profile");
 			mobileAction.FuncClick(view_profile, "view profile");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -117,7 +99,8 @@ public class Profile_And_Settings extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(profile_preferences_Header, preferences);
+			mobileAction.verifyElementTextIsDisplayed(profile_preferences_Header,
+					getTextInCurrentLocale(StringArray.ARRAY_PROFILE_AND_PREFERENCE));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -130,10 +113,14 @@ public class Profile_And_Settings extends _CommonPage {
 
 		Decorator();
 		try {
+			String security = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_SECURITY_QUESTION);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				security_questions = mobileAction.verifyElementUsingXPath("//*[@label='" + security + "']",
+						"Secuirty Question");
+			}
 
-			String security = mobileAction.getValue(security_questions);
 			mobileAction.FuncClick(security_questions, security);
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -146,10 +133,12 @@ public class Profile_And_Settings extends _CommonPage {
 
 		Decorator();
 		try {
-
-			String notifi = mobileAction.getValue(notifications);
+			String notifi = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_NOTIFICATIONS);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				notifications = mobileAction.verifyElementUsingXPath("//*[@label='" + notifi + "']", "Notifications");
+			}
 			mobileAction.FuncClick(notifications, notifi);
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -162,9 +151,13 @@ public class Profile_And_Settings extends _CommonPage {
 
 		Decorator();
 		try {
-			String quickSetting = mobileAction.getValue(quickaccesssetting);
+			String quickSetting = getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_SETTINGS);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				quickaccesssetting = mobileAction.verifyElementUsingXPath("//*[@label='" + quickSetting + "']",
+						"Quick Access Settings");
+			}
 			mobileAction.FuncClick(quickaccesssetting, quickSetting);
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -178,9 +171,14 @@ public class Profile_And_Settings extends _CommonPage {
 		Decorator();
 		try {
 
-			String tdme = mobileAction.getValue(tdformesettings);
-			mobileAction.FuncClick(tdformesettings, tdme);
-			mobileAction.waitForElementToVanish(progressBar);
+			String tdme = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_TD_FOR_ME_SETTINGS);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				String tdformeXpath = "//*[@label='" + tdme + "']";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(tdformeXpath, true, 5, "up");
+			} else {
+				mobileAction.FuncClick(tdformesettings, tdme);
+			}
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -193,20 +191,17 @@ public class Profile_And_Settings extends _CommonPage {
 
 		Decorator();
 		try {
-			if (!mobileAction.isObjExists(whatsnew)) {
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-					mobileAction.SwipeWithinElement("//XCUIElementTypeTable", 2, "down");
-				} else {
-					mobileAction.SwipeWithinElement("//android.support.v4.widget.DrawerLayout", 2, "down");
-				}
-
+			String whatnew = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_WAHTS_NEW);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				String whatnewXpath = "//*[@label=\"" + whatnew + "\"]";
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(whatnewXpath, true, 5, "up");
+			} else {
+				mobileAction.FuncSwipeWhileElementNotFound(whatsnew, true, 5, "up");
 			}
 
-			String whatnew = mobileAction.getValue(whatsnew);
-			mobileAction.FuncClick(whatsnew, whatnew);
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -230,11 +225,17 @@ public class Profile_And_Settings extends _CommonPage {
 
 		Decorator();
 		try {
+			String payment_transfer_xpath;
+			String paymentTransferText = getTextInCurrentLocale(StringArray.ARRAY_PAYMENT_AND_TRANSFER);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				payment_transfer_xpath = "//*[@label='" + paymentTransferText + "']";
+			} else {
+				payment_transfer_xpath = "//*[@text='" + paymentTransferText + "']";
+			}
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(payment_transfer_xpath, true, 5, "up");
+			mobileAction.waitProgressBarVanish();
 
-			mobileAction.FuncClick(paymentsAndTransfers, "Payments & Transfers");
-			mobileAction.waitForElementToVanish(progressBar);
-
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		}
