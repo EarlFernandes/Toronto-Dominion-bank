@@ -23,15 +23,15 @@ public class MenuPage extends _CommonPage {
 	private static MenuPage MenuPage;
 
 	@iOSFindBy(xpath = "//*[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬']")
-	@AndroidFindBy(xpath = "//*[@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬']")
+	@AndroidFindBy(xpath = "//*[(@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='com.td:id/textview_flyout_menu_item' or @resource-id='com.td:id/navText')]")
 	private MobileElement transfers;
 
 	@iOSFindBy(xpath = "//*[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單']")
-	@AndroidFindBy(xpath = "//*[@text='Bills' or @text='Factures' or @text='账单' or @text='賬單']")
+	@AndroidFindBy(xpath = "//*[(@text='Bills' or @text='Factures' or @text='账单' or @text='賬單') and (@resource-id='com.td:id/textview_flyout_menu_item' or @resource-id='com.td:id/navText')]")
 	private MobileElement bills;
 
 	@iOSFindBy(xpath = "//*[@label='TD MySpend' or @label='Dépense TD']")
-	@AndroidFindBy(xpath = "//*[@text='TD MySpend' or @text='Dépense TD']")
+	@AndroidFindBy(xpath = "//*[(@text='TD MySpend' or @text='Dépense TD') and (@resource-id='com.td:id/textview_flyout_menu_item' or @resource-id='com.td:id/navText')]")
 	private MobileElement tdMySpend;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Cross-Border Banking' or @label='Services bancaires transfrontaliers' or @label='跨境理财服务' or @label='跨國理財服務']")
