@@ -79,7 +79,6 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_CONTENT_AFTER3 = {
 			"If you made your purchase after 3:00PM EST, or on the weekend, it will be processed at the next business day's closing price.",
 			"Si vous avez effectué votre achat après 15 h (HE) ou la fin de semaine, il sera traité au prix de clôture du jour ouvrable suivant.",
-
 			"如果您在东部时间下午 3 点之后或在周末购买，将按照下一个工作日的收市价交易。", "如果在東部時間下午 3 時之後或在週末購買，將按下一個工作日的收市價交易。" };
 	public static final String[] ARRAY_MF_PURCHASE_CONFIRM = { "Purchase confirmation", "Confirmation d’achat", "购买确认",
 			"購買確認" };
@@ -327,6 +326,62 @@ public final class StringArray {
 			"TD for Me 通知", "TD for Me 通知" };
 	public static final String[] ARRAY_ENABLE_NOTIFICATIONS = { "Enable Notifications", "Activer les notifications",
 			"启用通知", "启用通知" };
+	public static final String[] ARRAY_CONTACT_US_HEADER = { "Contact Us", "Contactez-nous", "联系我们", "聯絡我們" };
+
+	// CLIP
+	public static final String[] ARRAY_MORE_LINK = { "MORE", "PLUS", "更多", "更多" };
+	public static final String[] ARRAY_MORE_OPTION_HEADER = { "More Options", "Plus d’options", "更多选项", "更多選項" };
+	public static final String[] ARRAY_CREDIT_LIMIT_INCREASE_REQ = { "Request a Credit Limit Increase",
+			"Demander une augmentation de limite de crédit", "申请提高信用额度", "申請增加信用限額" };
+	public static final String[] ARRAY_CREDIT_LIMIT_INCREASE_HEADER = { "Credit Limit Increase",
+			"Augment. limite crédit", "申请提高信用额", "申請提高信用額" };
+	public static final String[] ARRAY_CREDIT_LIMIT_INCREASE_DIR = {
+			"You must be the Primary cardholder on the card to make a credit limit increase request. Requests take only a few minutes to complete.",
+			"Vous n’aurez besoin que de quelques minutes pour remplir une demande et vous recevrez une réponse peu de temps après.",
+			"申请只需几分钟即可完成，很快您将收到答复。", "申請只需幾分鐘即可完成，您很快會收到回覆。" };
+	public static final String[] ARRAY_CREDIT_HEADER = { "Credit", "Crédit", "贷项", "信貸" };
+	public static final String[] ARRAY_CLIP_FORM_TITLE = { "TD Credit Card Limit Increase Request",
+			"Demande d’augmentation de la limite d’une carte de crédit TD", "TD Credit Card Limit Increase Request",
+			"TD Credit Card Limit Increase Request" };
+	// MAB
+	public static final String[] ARRAY_MENU_LOCATION = { "Locations", "Succursales", "分行网点", "分行地點" };
+	public static final String[] ARRAY_APPOINTMENT_BOOKING = { "Appointment Booking", "Prise de rendez-vous", "分行预约",
+			"分行預約" };
+	public static final String[] ARRAY_BOOKING_APPOINTMENT_AND = { "BOOK AN APPOINTMENT", "PRENDRE RENDEZ-VOUS", "分行预约",
+			"分行預約" };
+	public static final String[] ARRAY_BOOKING_APPOINTMENT_IOS = { "BOOK A VISIT", "PRENDRE RENDEZ-VOUS", "分行预约",
+			"分行預約" };
+	public static final String[] ARRAY_MAB_COPY_TEXT = {
+			"Come in and ask us all your banking, credit card, borrowing and investing questions.To complete your appointment booking, you'll leave the TD app and go to the TD website.",
+			"Venez nous rencontrer pour obtenir des réponses à vos questions sur les opérations bancaires, les cartes de crédit, les emprunts et les placements.Pour effectuer votre prise de rendez-vous, vous serez dirigé hors de l’appli TD vers le site Web de la TD.",
+			"欢迎亲临分行了解更多有关理财、信用卡、贷款和投资的详情。要完成预约，您要退出道明应用程序并前往道明网站。",
+			"歡迎親臨分行了解更多有關理財、信用卡、借貸和投資的詳情。要完成預約，您要退出道明應用程式並前往道明網站。" };
+	public static final String[] ARRAY_BOOKING_APPOINTMENT_BTN = { "Book Appointment Now",
+			"Prendre rendez-vous maintenant", "立即预约会面", "立即預約會面" };
+	public static final String[] ARRAY_MANAGE_EXISTING_APPOINTMENT_LINK = { "Manage my existing appointments",
+			"Gérer mes rendez-vous", "管理现有预约", "管理現有預約" };
+	public static final String[] ARRAY_MAB_FAQ = {
+			"What are the benefits of scheduling an appointment online?How can I change or cancel a scheduled appointment?",
+			"Quels sont les avantages de prendre rendez-vous en ligne?Comment puis-je modifier ou annuler un rendez-vous?",
+			"在线预约有什么好处？如何更改或取消预约？", "網上預約有什麼好處？如何更改或取消預約？" };
+
+	public static final String[] ARRAY_MAB_FAQ_LINK = { "Still have questions? Check our FAQs list.",
+			"Vous avez d’autres questions? Consultez notre FAQ.", "想知道更多？看看我们的常见问题。", "想知道更多？看看我們的常見問題。" };
+	public static final String[] ARRAY_MAB_URL_LINK = { "www1.new.sys.td.com", "www1.new.sys.td.com",
+			"www1.new.sys.td.com", "www1.new.sys.td.com" };
+	// damaged card
+	public static final String[] ARRAY_REPLACE_A_DAMAGED_CARD = { "Replace a Damaged Card",
+			"Remplacement d’une carte endommagée", "更换损坏的卡片", "更換損壞的卡片" };
+	public static final String[] ARRAY_DM_REQUEST_FORM_TITLE = { "Damaged TD Credit Card Replacement Request",
+			"Demande de remplacement d’une carte de crédit TD endommagée", "Damaged TD Credit Card Replacement Request",
+			"Damaged TD Credit Card Replacement Request" };
+	public static final String[] ARRAY_REPLACE_A_DAMAGED_CARD_HEADER = { "Replace a Damaged Card",
+			"Remplacement une carte", "更换损坏的卡片", "更換損壞的卡片" };
+	public static final String[] ARRAY_COPY_REPLACE_DAMAGED_CARD = {
+			"If your existing credit card is damaged or not working, you can request a replacement card.",
+			"Si votre carte de crédit est endommagée ou ne fonctionne plus, vous pouvez demander une carte de remplacement.",
+			"如果您现有的信用卡损坏或无效，您可以申请换卡。", "如果您現有的信用卡損壞或無效，您可以申請換卡。" };
+	// End of CLIP
 
 	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",
 			"安全問題" };
