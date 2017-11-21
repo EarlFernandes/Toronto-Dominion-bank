@@ -37,10 +37,6 @@ public class LoginMIT extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id= 'android:id/button2' and @index='0']")
 	private MobileElement install;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progressBar;
-
 	@iOSFindBy(xpath = "//*[@label='Progression interrompue']")
 	@AndroidFindBy(xpath = "//android.widget.ProgressBar[@resource-id='android:id/progress']")
 	private MobileElement french_progressBar;
@@ -102,10 +98,6 @@ public class LoginMIT extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
 	private MobileElement logout;
 
-	@iOSFindBy(xpath = "//*[@label='Menu']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement menu;
-
 	@iOSFindBy(xpath = "//*[@label='Logged Out']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Logged Out']")
 	private MobileElement logoutHeader;
@@ -125,7 +117,7 @@ public class LoginMIT extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Done']")
 	private MobileElement done;
 
-	@iOSFindBy(xpath = "//*[@label='Login']")
+	@iOSFindBy(xpath = "//*[@label='Login' or @label='Ouvrir une session']")
 	// @AndroidFindBy(xpath =
 	// "//android.widget.TextView[@resource-id='com.td:id/mfa_login_btn_txt' and
 	// @text='Login']")
@@ -161,11 +153,20 @@ public class LoginMIT extends _CommonPage {
 	 * private MobileElement Investing_Trade;
 	 */
 
-	@iOSFindBy(xpath = "//*[@label='Investing' or @label='Placements' or @label='投资' or @label='投資']") // @Author
+	/*
+	 * @iOSFindBy(xpath =
+	 * "//*[@label='Investing' or @label='Placements' or @label='投资' or @label='投資']"
+	 * ) // @Author // - // Sushil // 01-Sep-2017
+	 * 
+	 * @AndroidFindBy(xpath =
+	 * "//*[@text='Investing' or @text='Placements' or @text='投资' or @text='投資']"
+	 * )
+	 */ // Investing Landing page removed as per new requirement
+	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='Comptes' or @label='账户' or @label='賬戶']") // @Author
 	// -
 	// Sushil
-	// 01-Sep-2017
-	@AndroidFindBy(xpath = "//*[@text='Investing' or @text='Placements' or @text='投资' or @text='投資']")
+	// 21-Sep-2017
+	@AndroidFindBy(xpath = "//*[@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶']")
 	private MobileElement Investing_Trade;
 
 	String verifyLogin_ios = "//*[contains(@label,'Your Login Info Please')]";

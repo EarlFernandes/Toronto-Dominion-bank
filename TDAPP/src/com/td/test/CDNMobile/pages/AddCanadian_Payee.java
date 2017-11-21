@@ -39,10 +39,6 @@ public class AddCanadian_Payee extends _CommonPage {
 
 	private MobileElement continue_Button;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
-
 	@iOSFindBy(xpath = "//*[@label='Search for Canadian payees']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@text='Search for Canadian payees']")
 	private MobileElement search_payee_editbox;
@@ -114,6 +110,8 @@ public class AddCanadian_Payee extends _CommonPage {
 			}
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(selectedPayee, true, 10, "up");
 
+			Thread.sleep(2000);
+
 			mobileAction.FuncClick(payee_AccountNum, "PayeeAccount");
 
 			mobileAction.FuncSendKeys(payee_AccountNum, newPayeeNumber);
@@ -136,7 +134,7 @@ public class AddCanadian_Payee extends _CommonPage {
 
 			mobileAction.FuncClick(continue_Button, "Continue");
 			Thread.sleep(5000);
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

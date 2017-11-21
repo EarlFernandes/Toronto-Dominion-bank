@@ -99,18 +99,18 @@ public class OrderReciept extends _CommonPage {
 																						// 18-Apr-2017
 	@AndroidFindBy(xpath = "//*[contains(@text,'Receipt') or contains(@text,'Reçu')]")
 	private MobileElement receipt_header;
+	
+	
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@content-desc='Receipt, Navigation Drawer' or @content-desc='Reçu, Tiroir de navigation' ]") 
+	private MobileElement flyoutmenu;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Home']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='GO BACK HOME' or @text='HOME']") 
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='GO BACK HOME' or @text='HOME']")
 	private MobileElement gohomeicon;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Trade']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='TRADE']") 
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='TRADE']")
 	private MobileElement tradeicon;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement menu;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Accounts']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='My Accounts']")
@@ -145,7 +145,7 @@ public class OrderReciept extends _CommonPage {
 	String stockLimitDay = actionToPerform + " " + Qty + " " + symbol + " " + searchValue + " @ Trigger $" + priceValue
 			+ " Good 'til " + goodtil_value;
 	String orderDetailsValue = "";
-	double qtyValue = Double.parseDouble(Qty);
+	//double qtyValue = Double.parseDouble(Qty);
 	DecimalFormat df = new DecimalFormat("#.00");
 
 	public synchronized static OrderReciept get() {
@@ -522,7 +522,7 @@ public class OrderReciept extends _CommonPage {
 	public void quicklinkicon() {
 		try {
 			Decorator();
-			if(!mobileAction.verifyElementIsPresent(gohomeicon)){
+			if (!mobileAction.verifyElementIsPresent(gohomeicon)) {
 				mobileAction.FuncSwipeOnce("up");
 			}
 			mobileAction.verifyElementIsDisplayed(gohomeicon, "Verify Go Back Home Icon");
@@ -559,7 +559,7 @@ public class OrderReciept extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.FuncClick(gohomeicon, "Click Go Back Home Icon");
-			mobileAction.FuncClick(menu, "Click Menu");
+			mobileAction.clickMenuButton();
 			mobileAction.FuncClick(accounts_button, "Accounts");
 			mobileAction.verifyElementIsDisplayed(accounts_header, "Verify Accounts Header");
 		} catch (NoSuchElementException e) {
@@ -596,9 +596,9 @@ public class OrderReciept extends _CommonPage {
 
 		Decorator();
 		try {
-			if(mobileAction.verifyElementIsPresent(ordersicon)){
+			if (mobileAction.verifyElementIsPresent(ordersicon)) {
 				mobileAction.FuncClick(ordersicon, "Order");
-			}else{
+			} else {
 				mobileAction.FunctionSwipe("up", 200, 100);
 				mobileAction.FuncClick(ordersicon, "Order");
 			}
@@ -712,20 +712,12 @@ public class OrderReciept extends _CommonPage {
 	// new code
 
 	// @iOSFindBy(xpath = "//*[@label='En cours']")
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Order']/../XCUIElementTypeStaticText[2]") // @Author
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Order' or @label='Ordre']/../XCUIElementTypeStaticText[2]") // @Author
 																										// -
 																										// Shahbaaz
 																										// 17-Apr-2017
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_value_main' and contains(@text,' @ ')]")
 	private MobileElement orderElement;
-
-	@iOSFindBy(xpath = "//*[@label='In Progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
-
-	@iOSFindBy(xpath = "//*[@label='En cours']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='En cours']")
-	private MobileElement progressBarFRE;
 
 	// @iOSFindBy(xpath = "//*[@label='En cours']")
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Home' or @label='Accueil']") // @Author
@@ -754,6 +746,9 @@ public class OrderReciept extends _CommonPage {
 																							// 18-Apr-2017
 	private MobileElement OrderButton;
 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/ordersTab']") 
+	private MobileElement OrderTab;
+	
 	// @iOSFindBy(xpath = "//*[@label='En cours']")
 	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation']") // @Author
 																		// -
@@ -778,7 +773,7 @@ public class OrderReciept extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/item_row_subvalue']")
 	private MobileElement timeStampZone;
 
-	@iOSFindBy(xpath = "//*[@label='Order sent successfully' or contains(@label,'Ordre transmis avec')]") // @Author
+	@iOSFindBy(xpath = "//*[@label='Order sent successfully' or contains(@label,'Ordre transmis avec') or contains(@label,'order was received')]") // @Author
 																											// -
 																											// Sushil
 																											// 18-Apr-2017
@@ -866,7 +861,7 @@ public class OrderReciept extends _CommonPage {
 
 		goodXL = setCurrentArrayValue(getTestDataStringArray("Good'til"));
 
-		mobileAction.waitForElementToVanish(progressBar);
+		mobileAction.waitProgressBarVanish();
 	}
 
 	/**
@@ -922,7 +917,7 @@ public class OrderReciept extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 
-					+ " @ Delta de déclenchement" + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
+					+ " @ Delta de déclenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
 					+ " $ Delta limite " + df.format(Double.parseDouble(limitDelta_value)).replace(".", ",")
 					+ " $ Échéance " + goodXL;
 			System.out.println(orderValue);
@@ -957,7 +952,7 @@ public class OrderReciept extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 					+ " @ Delta de déclenchement " + df.format(Double.parseDouble(triggerDelta_value)).replace(".", ",")
-					+ " $ Échéance" + goodXL;
+					+ " $ Échéance " + goodXL;
 			System.out.println(orderValue);
 
 		} else {
@@ -1025,8 +1020,8 @@ public class OrderReciept extends _CommonPage {
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
 
-					+ " @ Déclencheur" + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
-					+ " $ Échéance" + goodXL;
+					+ " @ Déclencheur " + df.format(Double.parseDouble(triggerPriceValue)).replace(".", ",")
+					+ " $ Échéance " + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value
@@ -1057,7 +1052,7 @@ public class OrderReciept extends _CommonPage {
 		String orderValue = "";
 		if (isLanguageFrench) {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value + " @ "
-					+ df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance" + goodXL;
+					+ df.format(Double.parseDouble(limitPriceValue)).replace(".", ",") + " $ Échéance " + goodXL;
 
 		} else {
 			orderValue = actionToPerformXL + " " + quantityXL + " " + searchKeyword + " " + price_value + " @ $"
@@ -1257,7 +1252,13 @@ public class OrderReciept extends _CommonPage {
 		Decorator();
 		try {
 			validateTimeStamp();
+			
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
+				mobileAction.FuncClick(OrderButton, "OrderButton");
+			}else
+			{
 			mobileAction.FuncElementSwipeWhileNotFound(listView, OrderButton, 1, "up", true);
+			}
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1334,13 +1335,42 @@ public class OrderReciept extends _CommonPage {
 	 * @throws Exception
 	 *             If there is problem while finding that element.
 	 */
+	public void verifyOrder_Flyout_quicklnk(){
+		Decorator();
+		try {
+			mobileAction.waitProgressBarVanish();
+			verifytimestamp();
+			mobileAction.verifyElementIsDisplayed(receipt_header, "Verify Receipt Header");
+			mobileAction.verifyElementIsDisplayed(confirmation_val, "Verify Confirmation Number");
+			String confirmValue = mobileAction.getText(confirmation_val);
+			System.out.println("confirm order value"+confirmValue);
+			mobileAction.verifyElementIsDisplayed(flyoutmenu, "Flyout menu is verified" );
+			mobileAction.FuncSwipeWhileElementNotFound(homeButton, false, 2, "up");
+			mobileAction.verifyElementIsDisplayed(homeButton, "Quick link Home Button");
+			mobileAction.verifyElementIsDisplayed(OrderButton, "Quick link Order Button");
+			mobileAction.verifyElementIsDisplayed(tradeButton, "Quick link Trade Button");
+			mobileAction.FuncClick(homeButton, "homebtn");
+			
+		}  catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
 
 	public void receipt() {
 		try {
 			Decorator();
 			TouchAction action2 = null;
+			mobileAction.FuncSwipeWhileElementNotFound(confirmation_val, false, 2, "down");
 			mobileAction.verifyElementIsDisplayed(receipt_header, "Verify Receipt Header");
-			mobileAction.verifyElementIsDisplayed(success_message, "Verify Success Message");
+			if(mobileAction.verifyElementIsPresent(success_message))
+				mobileAction.verifyElementIsDisplayed(success_message, "Verify Success Message");
 			mobileAction.verifyElementIsDisplayed(confirmation_val, "Verify Confirmation Number");
 			String confirmValue = mobileAction.getText(confirmation_val);
 			CL.getTestDataInstance().TCParameters.put("ConfirmValue", confirmValue);

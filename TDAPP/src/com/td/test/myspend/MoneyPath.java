@@ -15,18 +15,19 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class MoneyPath extends _CommonPage {
 
 	private static MoneyPath MoneyPath;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'typical spending') or contains(@label,'vos dépenses moyennes')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'typical spending') or contains(@label,'vos dépenses moyennes')]")
 	private MobileElement spendingDetailsFromGraph;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Spending Details') or contains(@label,'Détail des dépenses')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Spending Details') or contains(@label,'Détail des dépenses')]")
 	private MobileElement spendingDetailsHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'No transactions found') or contains(@label,'Aucune opération trouvée')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'No transactions found') or contains(@label,'Aucune opération trouvée')]")
 	private MobileElement noTransactions;
 
 	@FindBy(xpath = "//*[contains(@class,'spendingDetailsTitle')]")
@@ -77,7 +78,7 @@ public class MoneyPath extends _CommonPage {
 			MobileElement moneyPathHeader = mobileAction.mobileElementUsingXPath(header);
 			mobileAction.verifyElementIsDisplayed(moneyPathHeader, "MoneyPath Header");
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -85,10 +86,7 @@ public class MoneyPath extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -123,7 +121,7 @@ public class MoneyPath extends _CommonPage {
 				Spending_Insight.get().clickSideMenuButton();
 				CL.GetAppiumDriver().context("NATIVE_APP");
 			} else {
-				details = mobileAction.FuncGetElementText(spendingDetailsFromGraph);
+				details = spendingDetailsFromGraph.getText();
 				System.out.println(details);
 				String[] value = details.split(",");
 				for (int i = 0; i < value.length; i++) {
@@ -138,7 +136,7 @@ public class MoneyPath extends _CommonPage {
 				Spending_Insight.get().clickSideMenuButton();
 			}
 
-		} catch (NoSuchElementException e) {
+		}catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -146,10 +144,7 @@ public class MoneyPath extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

@@ -25,10 +25,6 @@ public class PreviewPurchase extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement page_title;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progress_bar;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[10]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Phone Number']/../android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement phone_number;
@@ -79,10 +75,6 @@ public class PreviewPurchase extends _CommonPage {
 	String phoneReg = "\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
 	String phoneRegFR = "\\(\\d{3}\\)\\s*\\d{3}\\s*–\\s*\\d{4}";
 
-	@iOSFindBy(accessibility = "NAVIGATION_ITEM_BACK")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
-	private MobileElement back_icon;
-
 	public synchronized static PreviewPurchase get() {
 		if (previewPurchase == null) {
 			previewPurchase = new PreviewPurchase();
@@ -119,11 +111,11 @@ public class PreviewPurchase extends _CommonPage {
 				mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView", 2, "down");
 				phone_number = mobileAction
 						.verifyElementUsingXPath(
-								"//android.widget.TextView[@text='" + mobileAction.getAppString("label_phone_number")
+								"//android.widget.TextView[@text='" + getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE)
 										+ "']/../android.widget.RelativeLayout/android.widget.TextView",
 								"Phone Number");
 			} else {
-
+				mobileAction.FuncSwipeWhileElementNotFound(phone_number, false, 5, "up");
 			}
 
 			String phoneNumber = mobileAction.getValue(phone_number);
@@ -155,7 +147,7 @@ public class PreviewPurchase extends _CommonPage {
 				// mobileAction.SwipeWithinElement("//android.support.v7.widget.RecyclerView",
 				// 2, "down");
 				String phoneNumberxpath = "//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("label_phone_number")
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE)
 						+ "']/../android.widget.RelativeLayout/android.widget.TextView";
 
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(phoneNumberxpath, false, 10, "up");
@@ -248,11 +240,20 @@ public class PreviewPurchase extends _CommonPage {
 			String disclaimerInfo = getTextInCurrentLocale(StringArray.ARRAY_MF_DISCLAIMER_INFO);
 			String capturedText = mobileAction.getValue(disclaimer_info);
 			capturedText = capturedText.trim().replaceAll("\n", "");
-//			capturedText = capturedText.replaceAll(" ", "");
-//			capturedText = capturedText.replaceAll(" ", "");// empty space of
-//															// Chinese char
+
+			String unkownEmptySpace = " "; // for french/zh/ only
+			capturedText = capturedText.trim().replaceAll(unkownEmptySpace, " ");
+
 			System.out.println("Captured:" + capturedText);
-			mobileAction.verifyTextEquality(capturedText, disclaimerInfo);
+			if (!currentLocale.equalsIgnoreCase("en") && !currentLocale.equalsIgnoreCase("fr")) {
+				if (capturedText.matches(disclaimerInfo)) {
+					mobileAction.Report_Pass_Verified(capturedText);
+				} else {
+					mobileAction.Report_Fail_Not_Verified(capturedText);
+				}
+			} else {
+				mobileAction.verifyTextEquality(capturedText, disclaimerInfo);
+			}
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -277,7 +278,7 @@ public class PreviewPurchase extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
 				String phoneNumberxpath = "//XCUIElementTypeStaticText[@label='"
-						+ mobileAction.getAppString("label_phone_number")
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE)
 						+ "']/following-sibling::XCUIElementTypeStaticText";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(phoneNumberxpath, false, 10, "up");
 				phone_number = mobileAction.verifyElementUsingXPath(
@@ -286,7 +287,7 @@ public class PreviewPurchase extends _CommonPage {
 						"Email");
 			} else {
 				String phoneNumberxpath = "//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("label_phone_number")
+						+ getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE)
 						+ "']/../android.widget.RelativeLayout/android.widget.TextView";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(phoneNumberxpath, false, 10, "up");
 				phone_number = mobileAction
@@ -316,7 +317,7 @@ public class PreviewPurchase extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(purchase_now_button, "Purchase");
-			mobileAction.waitForElementToVanish(progress_bar);
+			mobileAction.waitProgressBarVanish();
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -394,16 +395,12 @@ public class PreviewPurchase extends _CommonPage {
 		int count = 10;
 		String homeText = getTextInCurrentLocale(StringArray.ARRAY_HOME_HEADER);
 		try {
-			while (mobileAction.verifyElementIsPresent(back_icon) && count != 0) {
+			while (mobileAction.isBackButtonPresent() && count != 0) {
 				String pageText = mobileAction.getValue(page_title);
 				if (pageText.equalsIgnoreCase(homeText)) {
 					break;
 				}
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					mobileAction.FuncClickBackButton();
-				} else {
-					mobileAction.FuncClick(back_icon, "<");
-				}
+				mobileAction.ClickBackButton();
 				count--;
 				Decorator();
 			}

@@ -17,6 +17,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class SpendingByCategory extends _CommonPage {
 
@@ -38,66 +39,63 @@ public class SpendingByCategory extends _CommonPage {
 
 	}
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Spending by Category') or contains(@label,'Dépenses par catégorie')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Spending by Category') or contains(@label,'Dépenses par catégorie')]")
 	private MobileElement pageHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'ALL') or contains(@label,'Toutes')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'ALL') or contains(@label,'Toutes')]")
 	private MobileElement all;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'WANTS') or contains(@label,'Souhaits')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'WANTS') or contains(@label,'Souhaits')]")
 	@AndroidFindBy(xpath = "//android.view.View[@resource-id='wantsFilter']")
 	private MobileElement wants;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'NEEDS') or contains(@label,'Besoins')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'NEEDS') or contains(@label,'Besoins')]")
 	@AndroidFindBy(xpath = "//android.view.View[@resource-id='needsFilter']")
 	private MobileElement needs;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'All Categories. You') or contains(@label,'Toutes les catégories. Vous')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'All Categories. You') or contains(@content-desc,'Toutes les catégories. Vous')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'All Categories. You') or contains(@label,'Toutes les catégories. Vous')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'All Categories. You') or contains(@content-desc,'Toutes les catégories. Vous') or contains(@text,'All Categories. You')]")
 	private MobileElement allCategoriesInfo;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'All Categories') or contains(@label,'Toutes les catégories')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'All Categories') or contains(@label,'Toutes les catégories')]")
 	private MobileElement allCategories;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Wants') or contains(@label,'Souhaits')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Wants') or contains(@content-desc,'Souhaits')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Wants') or contains(@label,'Souhaits')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Wants') or contains(@content-desc,'Souhaits') or contains(@text,'Wants')]")
 	private MobileElement wantsCategories;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Needs') or contains(@label,'Besoins')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Needs') or contains(@content-desc,'Besoins')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Needs') or contains(@label,'Besoins')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Needs') or contains(@content-desc,'Besoins') or contains(@text,'Needs')]")
 	private MobileElement needsCategories;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'currently spending') or contains(@label,'êtes actuellement')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'currently spending') or contains(@content-desc,'êtes actuellement')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'currently spending') or contains(@label,'êtes actuellement')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'currently spending') or contains(@content-desc,'êtes actuellement') or contains(@text,'currently spending')]")
 	private MobileElement youAreCurrentlySpending;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'typical spending') or contains(@label,'vos dépenses habituelles')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'typical spending') or contains(@content-desc,'vos dépenses habituelles')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'typical spending') or contains(@label,'vos dépenses habituelles')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'typical spending') or contains(@content-desc,'vos dépenses habituelles') or contains(@text,'typical spending')]")
 	private MobileElement typicalSpending;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'You have spent') or contains(@label,'Vous avez dépensé')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'You have spent') or contains(@content-desc,'Vous avez dépensé')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'You have spent') or contains(@label,'Vous avez dépensé')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'You have spent') or contains(@content-desc,'Vous avez dépensé') or contains(@text,'You have spent')]")
 	private MobileElement YouHaveSpent;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'change category') or contains(@label,'changer de catégorie')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'change category') or contains(@label,'changer de catégorie')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie') or contains(@text,'change category')]")
 	private MobileElement transactionCategory;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'All Categories Spending Details') or contains(@label,'Wants Spending Details') or contains(@label,'Needs Spending Details')]/following-sibling::XCUIElementTypeOther[3]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie')]/following-sibling::android.view.View")
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'All Categories Spending Details') or contains(@label,'Wants Spending Details') or contains(@label,'Needs Spending Details')]/following-sibling::XCUIElementTypeOther[3]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie') or contains(@text,'change category')]/following-sibling::android.view.View")
 	private MobileElement transactionName;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'All Categories Spending Details') or contains(@label,'Wants Spending Details') or contains(@label,'Needs Spending Details')]/following-sibling::XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie')]/following-sibling::android.view.View/android.view.View[contains(@content-desc,'$')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'All Categories Spending Details') or contains(@label,'Wants Spending Details') or contains(@label,'Needs Spending Details')]/following-sibling::XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie') or contains(@text,'change category')]/following-sibling::android.view.View/android.view.View[contains(@content-desc,'$') or contains(@text,'$')]")
 	private MobileElement amount;
-
-	@AndroidFindBy(xpath = "//android.view.View[@resource-id='changeCategoryHeader' or contains(@content-desc,'Change Category')]")
-	private MobileElement changeCategoryHeader;
 
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'category')]")
 	private List<MobileElement> categories;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Spending History') or contains(@label,'Historique de dépenses')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Spending History') or contains(@label,'Historique de dépenses')]")
 	private MobileElement historicalInsightBtn;
 
 	@FindBy(id = "categoriesHeader")
@@ -153,7 +151,7 @@ public class SpendingByCategory extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(pageHeader, "Spending By Category Page Header");
 			}
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -161,16 +159,10 @@ public class SpendingByCategory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
+	
 
 	}
 
@@ -192,7 +184,7 @@ public class SpendingByCategory extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementIsDisplayed(allAndroid, "All Tab");
 				mobileAction.verifyElementIsDisplayed(allCategoriesAndroid, "All Categories Heading");
-				mobileAction.verifyElementIsDisplayed(youAreCurrentlySpendingAndroid, "You're currently spending");
+			//	mobileAction.verifyElementIsDisplayed(youAreCurrentlySpendingAndroid, "You're currently spending");
 				verifyTransactions("All");
 			} else {
 				mobileAction.verifyElementIsDisplayed(all, "All Tab");
@@ -203,7 +195,7 @@ public class SpendingByCategory extends _CommonPage {
 
 				verifyTransactions("All");
 			}
-		} catch (NoSuchElementException e) {
+		}catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -211,16 +203,10 @@ public class SpendingByCategory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
+	
 
 	}
 
@@ -268,7 +254,7 @@ public class SpendingByCategory extends _CommonPage {
 				flag = false;
 			}
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -276,16 +262,10 @@ public class SpendingByCategory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
+	
 		return flag; // Flag is being returned. Don't forget to add this line
 
 	}
@@ -356,7 +336,7 @@ public class SpendingByCategory extends _CommonPage {
 				mobileAction.stringToReport("Pass", "No Transactions Found in spending by Category");
 			}
 
-		} catch (NoSuchElementException e) {
+		}catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -364,24 +344,10 @@ public class SpendingByCategory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
+	
 	}
 
 	/**
@@ -408,7 +374,7 @@ public class SpendingByCategory extends _CommonPage {
 			verifyNeedsCategory();
 			changeCategory();
 
-		} catch (NoSuchElementException e) {
+		}catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -416,8 +382,10 @@ public class SpendingByCategory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
+	
 
 	}
 
@@ -439,13 +407,13 @@ public class SpendingByCategory extends _CommonPage {
 			mobileAction.FuncClick(wants, "WANTS Tab");
 			mobileAction.verifyElementIsDisplayed(wants, "WANTS Tab");
 			mobileAction.verifyElementIsDisplayed(wantsCategories, "Wants Categories Heading");
-			mobileAction.verifyElementIsDisplayed(youAreCurrentlySpending, "You're currently spending");
+		//	mobileAction.verifyElementIsDisplayed(youAreCurrentlySpending, "You're currently spending");
 			mobileAction.verifyElementIsDisplayed(typicalSpending, "Typical Spending Bar");
 			mobileAction.verifyElementIsDisplayed(YouHaveSpent, "Current Spending Bar");
 
 			verifyTransactions("Wants");
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -453,24 +421,10 @@ public class SpendingByCategory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
+	
 
 	}
 
@@ -492,13 +446,13 @@ public class SpendingByCategory extends _CommonPage {
 			mobileAction.FuncClick(needs, "NEEDS Tab");
 			mobileAction.verifyElementIsDisplayed(needs, "NEEDS Tab");
 			mobileAction.verifyElementIsDisplayed(needsCategories, "Needs Categories Heading");
-			mobileAction.verifyElementIsDisplayed(youAreCurrentlySpending, "You're currently spending");
+		//	mobileAction.verifyElementIsDisplayed(youAreCurrentlySpending, "You're currently spending");
 			mobileAction.verifyElementIsDisplayed(typicalSpending, "Typical Spending Bar");
 			mobileAction.verifyElementIsDisplayed(YouHaveSpent, "Current Spending Bar");
 
 			verifyTransactions("Needs");
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -506,24 +460,10 @@ public class SpendingByCategory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
+	
 
 	}
 
@@ -552,7 +492,7 @@ public class SpendingByCategory extends _CommonPage {
 			verifyWantsCategory();
 			verifyNeedsCategory();
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -560,9 +500,10 @@ public class SpendingByCategory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
-
+	
 	}
 
 	/**
@@ -592,7 +533,7 @@ public class SpendingByCategory extends _CommonPage {
 				mobileAction.FuncClick(historicalInsightBtn, "Historical Insight Button");
 			}
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -600,24 +541,10 @@ public class SpendingByCategory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
+	
 
 	}
 	
@@ -690,12 +617,12 @@ public class SpendingByCategory extends _CommonPage {
 					String[] catArr = category.split(". ");
 					mobileAction.verifyElementIsDisplayed(transactionCategory, "Transaction Category: " + catArr[0]);
 					
-					spendingDetailsTransacName="//*[contains(@label,'"+ catArr[0] +" Spending Details') or contains(@label,'Détail des dépenses "+ catArr[0] +"')]/following-sibling::XCUIElementTypeOther[3]";
+					spendingDetailsTransacName="//*[contains(@label,'Spending Details') or contains(@label,'Détail des dépenses')]/following-sibling::XCUIElementTypeOther[3]";
 					MobileElement transacName=mobileAction.mobileElementUsingXPath(spendingDetailsTransacName);
 					String TransName = transacName.getAttribute("name");
 					mobileAction.verifyElementIsDisplayed(transacName, "Transaction: " + TransName);
 	
-					spendingDetailsTransacAmount="//*[contains(@label,'"+ catArr[0] +" Spending Details') or contains(@label,'Détail des dépenses "+ catArr[0] +"')]/following-sibling::XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeStaticText";
+					spendingDetailsTransacAmount="//*[contains(@label,'Spending Details') or contains(@label,'Détail des dépenses')]/following-sibling::XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeStaticText";
 					MobileElement transacAmount=mobileAction.mobileElementUsingXPath(spendingDetailsTransacAmount);
 					String amountText = transacAmount.getAttribute("name");
 					mobileAction.verifyElementIsDisplayed(transacAmount, "Amount: " + amountText);
@@ -711,7 +638,7 @@ public class SpendingByCategory extends _CommonPage {
 				Spending_Insight.get().clickSideMenuButton();
 				Spending_Insight.get().clickSideMenuButton();
 			}
-		} catch (NoSuchElementException e) {
+		}catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -719,16 +646,10 @@ public class SpendingByCategory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		} 
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
+		}
+	
 
 	}
 

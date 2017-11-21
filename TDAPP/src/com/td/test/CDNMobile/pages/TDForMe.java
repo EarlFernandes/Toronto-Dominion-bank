@@ -23,10 +23,6 @@ public class TDForMe extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement tdforme_title;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progress_bar;
-
 	@iOSFindBy(xpath = "//*[@label='Enable TD for Me' or @label='Activer TD et moi']/../XCUIElementTypeSwitch")
 	@AndroidFindBy(xpath = "//android.widget.Switch[@content-desc='TD for Me' or @content-desc='TD et moi']")
 	private MobileElement tdforme_enable_switch;
@@ -100,7 +96,7 @@ public class TDForMe extends _CommonPage {
 				// Toggle the switch to disable
 				System.out.println("Toggle to disable");
 				mobileAction.FuncClick(tdforme_enable_switch, "TD for Me Enable-Disable Switch");
-				mobileAction.waitForElementToVanish(progress_bar);
+				mobileAction.waitProgressBarVanish();
 
 				switchCheckStatus = mobileAction.getSwitchStatus(tdforme_enable_switch);
 				if (!switchCheckStatus.equalsIgnoreCase("false")) {
@@ -178,7 +174,7 @@ public class TDForMe extends _CommonPage {
 					// Toggle the switch to Enble
 				System.out.println("Toggle to Enable");
 				mobileAction.FuncClick(tdforme_enable_switch, "TD for Me Enable-Disable Switch");
-				mobileAction.waitForElementToVanish(progress_bar);
+				mobileAction.waitProgressBarVanish();
 
 				switchCheckStatus = mobileAction.getSwitchStatus(tdforme_enable_switch);
 				System.out.println("Switch Status:" + switchCheckStatus);
@@ -220,7 +216,7 @@ public class TDForMe extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(tdforme_Customize_Notifications, "Customeize Notification");
-			mobileAction.waitForElementToVanish(progress_bar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			System.err.println("TestCase has failed to ClickCustomizeNotificationlink.");

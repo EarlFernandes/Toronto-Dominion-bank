@@ -27,6 +27,7 @@ public class _CommonPage {
 
 	protected static Map appStringMap;
 	protected static String currentLocale;
+	protected static String orientation;
 
 	// public Reporting report;// = CL.GetReporting();
 	// calculated or discovered values

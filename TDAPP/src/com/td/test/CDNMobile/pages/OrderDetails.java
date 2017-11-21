@@ -17,8 +17,8 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class OrderDetails extends _CommonPage {
 	private static OrderDetails OrderDetails;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Change Order']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='Change Order']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Change Order' or @label='Modifier l’ordre']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='Change Order' or contains(@text,'Modifier l')]")
 	private MobileElement changeOrderButton;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter your trading password']")
@@ -37,23 +37,24 @@ public class OrderDetails extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Agree']")
 	private MobileElement agreeButton;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='done']")
-	private MobileElement doneButton;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'The change to your order was received')]")
 	private MobileElement changeOrderMessage;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel Order']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/cancel_order_btn' or @resource-id='com.td:id/orderEntryPreviewButton']")
 	private MobileElement cancelOrderButton;
-
+	
+	@iOSFindBy(xpath="//XCUIElementTypeButton[@label='Retour']")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[contains(@content-desc,'Revenir en haut de la page')]")
+	private MobileElement backButton;
+	
+	@iOSFindBy(xpath="//XCUIElementTypeButton[@label='Actualiser']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/refresh_menu']")
+	private MobileElement refreshButton;
+	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Your request to cancel the order was received.']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/message' and @text='Your request to cancel the order was received.']")
 	private MobileElement verifySuccessMessageCancelOrder;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In Progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
 
 	int i = 1;
 	String price_table = "//XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]";
@@ -94,9 +95,9 @@ public class OrderDetails extends _CommonPage {
 
 		try {
 
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(changeOrderButton, "Change Order Clicked");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -107,6 +108,22 @@ public class OrderDetails extends _CommonPage {
 		} catch (IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	public void VerifyChangeorder(){
+		Decorator();
+		try{
+			mobileAction.verifyElementIsDisplayed(backButton, "back button");
+			mobileAction.verifyElementIsDisplayed(refreshButton, "refresh button");
+			mobileAction.verifyElementIsDisplayed(cancelOrderButton, "cancel order");
+			mobileAction.verifyElementIsDisplayed(changeOrderButton, "change order");
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
@@ -135,40 +152,41 @@ public class OrderDetails extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(cancelOrderButton, "Cancel Order Clicked");
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 
-				//mobileAction.FunCSwipeandScroll(tradingPasswordEditText, true);
-				if(mobileAction.verifyElementIsPresent(tradingPasswordEditText)){
-				mobileAction.FuncClick(tradingPasswordEditText, "tradingPasswordEditText");
+				// mobileAction.FunCSwipeandScroll(tradingPasswordEditText,
+				// true);
+				if (mobileAction.verifyElementIsPresent(tradingPasswordEditText)) {
+					mobileAction.FuncClick(tradingPasswordEditText, "tradingPasswordEditText");
 
-				String tradingPasswordEditText_value = getTestdata("Trading_Pwd");
-				mobileAction.FuncSendKeys(tradingPasswordEditText, tradingPasswordEditText_value);
+					String tradingPasswordEditText_value = getTestdata("Trading_Pwd");
+					mobileAction.FuncSendKeys(tradingPasswordEditText, tradingPasswordEditText_value);
 
-				mobileAction.FuncClickDone();
+					mobileAction.FuncClickDone();
 				}
 				mobileAction.FuncClick(cancelOrderButton, "Cancel order");
 
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 
 				mobileAction.verifyElementIsDisplayed(verifySuccessMessageCancelOrder, "Cancel Order");
 
 			} else {
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(cancelOrderButton, "Cancel Order Clicked");
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				if (!mobileAction.FuncIsDisplayed(tradingPasswordEditText)) {
 					mobileAction.FunctionSwipe("up", 200, 100);
 				}
-				if(mobileAction.verifyElementIsPresent(tradingPasswordEditText)){
+				if (mobileAction.verifyElementIsPresent(tradingPasswordEditText)) {
 					mobileAction.FuncClick(tradingPasswordEditText, "tradingPasswordEditText");
 					String tradingPasswordEditText_value = getTestdata("tradingPasswordEditText");
 					mobileAction.FuncSendKeys(tradingPasswordEditText, tradingPasswordEditText_value);
 					mobileAction.FuncHideKeyboard();
 				}
 				mobileAction.FuncClick(cancelOrderButton, "Cancel order");
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.verifyElementIsDisplayed(verifySuccessMessageCancelOrder, "Cancel Order");
 			}
 		} catch (NoSuchElementException e) {

@@ -9,6 +9,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -46,14 +47,11 @@ public class Managee_Payee extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement managePayees;
 
+	// For nexus addpayee class is not a button; for tab3, the class is View not
+	// ViewGroup to consolidate that, change to
+	@AndroidFindBy(xpath = "//android.view.ViewGroup/android.widget.LinearLayout[@index='1'] | //android.view.View/android.widget.LinearLayout[@index='1']")
 	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[2]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement addPayee;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-
-	private MobileElement progressBar;
 
 	public synchronized static Managee_Payee get() {
 		if (Managee_Payee == null) {
@@ -142,26 +140,16 @@ public class Managee_Payee extends _CommonPage {
 			} else {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
-				final WebElement name = mobileAction
-						.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[1]", "name");
+				mobileAction.verifyWebElementUsingXPath(
+						"//div[contains(text(),'" + mobileAction.getAppString("str_payee_name") + "')]", "name");
 				// final WebElement address =
 				// mobileAction.verifyWebElementUsingXPath("(//div[@class='column1
 				// ng-binding'])[2]", "address");
-				final WebElement account = mobileAction
-						.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[3]", "account");
-				final WebElement description = mobileAction
-						.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[4]", "description");
-				if (!mobileAction.verifyTextEquality(name.getText().trim(), mobileAction.getAppString("str_payee_name"))
-						||
-						// !mobileAction.verifyTextEquality(address.getText().trim(),
-						// mobileAction.getAppString("str_payee_address")) ||
-						!mobileAction.verifyTextEquality(account.getText().trim(),
-								mobileAction.getAppString("str_payee_account"))
-						|| !mobileAction.verifyTextEquality(description.getText().trim(),
-								mobileAction.getAppString("str_description"))) {
-					System.err.println("TestCase has failed.");
-					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				}
+				mobileAction.verifyWebElementUsingXPath(
+						"//div[contains(text(),'" + mobileAction.getAppString("str_payee_account") + "')]", "account");
+				mobileAction.verifyWebElementUsingXPath(
+						"//div[contains(text(),'" + mobileAction.getAppString("str_description") + "')]",
+						"description");
 				// Switch back to native to get proper screenshots
 				mobileAction.switchAppiumContext("NATIVE_APP");
 			}
@@ -194,10 +182,12 @@ public class Managee_Payee extends _CommonPage {
 			} else {
 				// Switching to webview
 				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				String mypayee = getTestdata("Payee");
+				mypayee = mypayee.replaceAll(" ", "");
 				final WebElement firstPayee = mobileAction.verifyWebElementUsingXPath(
-						"//div[@ng-if='payee.AccountNO' and text()='" + getTestdata("Payee") + "']", "Payee");
+						"//div[@ng-if='payee.AccountNO' and text()='" + mypayee + "']", "Payee");
 				firstPayee.click();
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
@@ -321,9 +311,9 @@ public class Managee_Payee extends _CommonPage {
 					Thread.sleep(2000);
 					mobileAction.verifyElementIsDisplayed(myPayees, "My Payees");
 					mobileAction.FuncClick(accesscard, "Accesscard");
-					mobileAction.FuncClick(thirdAccessCard, "Second Access Card");
+					mobileAction.FuncClick(thirdAccessCard, "Third Access Card");
 					Thread.sleep(2000);
-					mobileAction.verifyElementIsDisplayed(addPayee, "Add Payee");
+					mobileAction.verifyElementIsDisplayed(addCanadianPayee, "Add Payee");
 				}
 			} else {
 				// For android, using webview to handle
@@ -422,6 +412,11 @@ public class Managee_Payee extends _CommonPage {
 						"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("us") + "']",
 						"US banner button");
 				usElement.click();
+				addPayee = mobileAction
+						.verifyElementUsingXPath(
+								"//XCUIElementTypeNavigationBar/XCUIElementTypeButton[@label='"
+										+ getTextInCurrentLocale(StringArray.ARRAY_ADD_US_PAYEE) + "']",
+								"Add Canadian Payee");
 				mobileAction.FuncClick(addPayee, "Add US Payee");
 				Thread.sleep(10000);
 			} else {
@@ -434,7 +429,7 @@ public class Managee_Payee extends _CommonPage {
 				// Switch back to native to get proper screenshots
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncClick(addPayee, "Add US Payee");
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 				Thread.sleep(10000);
 			}
 		} catch (Exception e) {
@@ -475,8 +470,14 @@ public class Managee_Payee extends _CommonPage {
 		try {
 
 			mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees Header");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				addPayee = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeNavigationBar/XCUIElementTypeButton[@label='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_ADD_CANADIAN_PAYEE) + "']",
+						"Add Canadian Payee");
+			}
 			mobileAction.FuncClick(addPayee, "Add Payee");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 			Thread.sleep(10000);
 

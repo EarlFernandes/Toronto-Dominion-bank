@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
@@ -270,8 +271,10 @@ public class TradeMultiLeg extends _CommonPage {
 	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement backButton;
 
-	@iOSFindBy(xpath = "//*[@label='OK' or @label='Done']") // @Author - Sushil
-															// 08-Feb-2017
+	@iOSFindBy(xpath = "//*[@label='OK' or @label='Done' or @name='Go' or @name='Search']") // @Author
+																							// -
+																							// Sushil
+	// 08-Feb-2017
 	// @AndroidFindBy(id="android:id/button1")
 	private MobileElement iOSKybdOKButton;
 
@@ -1072,16 +1075,15 @@ public class TradeMultiLeg extends _CommonPage {
 	}
 
 	public void handleKeyboard() {
+		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				// mobileAction.FuncHideKeyboard();
 				(CL.GetAppiumDriver()).hideKeyboard();
-				// if(mobileAction.isObjExists(cancelButton,2))
-				// mobileAction.FuncClick(cancelButton, "cancelButton");
 			} else if (mobileAction.isObjExists(iOSKybdOKButton))
 				mobileAction.FuncClick(iOSKybdOKButton, "iOSKybdOKButton");
 			else
-			mobileAction.HideKeyBoard_IOS();
+
+				mobileAction.HideKeyBoard_IOS();
 
 		} catch (Exception e) {
 			e.printStackTrace();
