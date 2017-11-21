@@ -224,7 +224,7 @@ public class LoginMIT extends _CommonPage {
 				TradeMultiLeg.get().handleKeyboard();
 
 				mobileAction.FuncClick(login, "Login");
-
+				
 				if (!mobileAction.isObjExists(Investing_Trade))
 					enterPwdifError();
 
@@ -239,18 +239,21 @@ public class LoginMIT extends _CommonPage {
 
 				TradeMultiLeg.get().handleKeyboard();
 				mobileAction.FuncClick(login, "Login");
-
+			
 				if (!mobileAction.isObjExists(Investing_Trade))
 					enterPwdifError();
 
 			}
 
-			if (!mobileAction.isObjExists(Investing_Trade)) {
+			if (!mobileAction.isObjExists(Investing_Trade))
+			
+			{
 				if (mobileAction.isObjExists(enterAnswer)) {
 					mobileAction.FuncSendKeys(enterAnswer, getTestdata("SecurityPassword", XLSheetUserIDs));
 					TradeMultiLeg.get().handleKeyboard();
 
 					mobileAction.FuncClick(securityLogin, "Login");
+					
 				}
 			}
 		} catch (Exception e) {
@@ -273,7 +276,9 @@ public class LoginMIT extends _CommonPage {
 					mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 					TradeMultiLeg.get().handleKeyboard();
 					mobileAction.FuncClick(login, "Login");
+					
 					iCnt++;
+					Thread.sleep(10000);
 				} while (mobileAction.isObjExists(errorText) || iCnt > 5);
 
 				if (iCnt > 5) {

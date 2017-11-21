@@ -43,7 +43,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_HamburgerMenu;
-	
+
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
@@ -365,19 +365,19 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	public void goToDashboardHome() {
 		Decorator();
 		try {
+			Thread.sleep(1000);
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
 			mobileAction.FuncClick(flyoutMyAccountLink, "My Accounts Flyout Menu");
 			LoginMIT.get().MITLogin();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
 				mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+			} else {
+				mobileAction.FuncClick(BT_Back, "< Button");
 			}
-			mobileAction.FuncClick(BT_Back, "< Button");
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public void verifyQL_SENDMONEY(boolean bIsAuthenticatedUser) {

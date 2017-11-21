@@ -200,44 +200,52 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 				}
 
 			}
-			
-/*			mobileAction.FuncClick(BT_Back, "< Button");
 
-			//mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
+			/*
+			 * mobileAction.FuncClick(BT_Back, "< Button");
+			 * 
+			 * //mobileAction.verifyElementIsDisplayed(lblProfileSettings,
+			 * "Profile & Settings");
+			 * 
+			 * if
+			 * (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
+			 * "Android")) { mobileAction.FuncClick(BT_HamburgerMenu,
+			 * "Hamburger Menu"); mobileAction.FuncClick(FLY_Home,
+			 * "Home Flyout Menu"); } else { mobileAction.FuncClick(BT_Back,
+			 * "< Button"); }
+			 */
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-			{
-			mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
-			mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
-			}
-			else
-			{
-				mobileAction.FuncClick(BT_Back, "< Button");
-			}*/
+			// De-scoped as per new requirement - One time activity
 
-			//De-scoped as per new requirement - One time activity
-			
-/*			mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
-
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-				mobileAction.verifyElementIsDisplayed(ICON_MarketRise, "MarketRise Icon");
-
-			mobileAction.FuncVerifyTextEquals(LBL_InvestingViewIsNowOn,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_INVESTINGVIEWISON));
-
-			mobileAction.FuncVerifyTextEquals(LBL_GoHome, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_GOHOME));
-
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				if (!mobileAction.isObjExists(ICON_Chevron)) {
-					CL.GetReporting().FuncReport(PASS, "Chevron Icon should not display for Android.");
-				} else {
-					CL.GetReporting().FuncReport(FAIL, "Chevron Icon should not be displayed.");
-				}
-			} else {
-				mobileAction.verifyElementIsDisplayed(ICON_Chevron, "> Icon");
-			}
-
-			mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");*/
+			/*
+			 * mobileAction.FuncClick(BT_EnableInvestingViewSwitch,
+			 * "BT_EnableInvestingViewSwitch");
+			 * 
+			 * if
+			 * (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
+			 * "Android"))
+			 * mobileAction.verifyElementIsDisplayed(ICON_MarketRise,
+			 * "MarketRise Icon");
+			 * 
+			 * mobileAction.FuncVerifyTextEquals(LBL_InvestingViewIsNowOn,
+			 * getTextInCurrentLocale(StringArray.
+			 * ARRAY_DASHBOARD_INVESTINGVIEWISON));
+			 * 
+			 * mobileAction.FuncVerifyTextEquals(LBL_GoHome,
+			 * getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_GOHOME));
+			 * 
+			 * if
+			 * (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
+			 * "Android")) { if (!mobileAction.isObjExists(ICON_Chevron)) {
+			 * CL.GetReporting().FuncReport(PASS,
+			 * "Chevron Icon should not display for Android."); } else {
+			 * CL.GetReporting().FuncReport(FAIL,
+			 * "Chevron Icon should not be displayed."); } } else {
+			 * mobileAction.verifyElementIsDisplayed(ICON_Chevron, "> Icon"); }
+			 * 
+			 * mobileAction.FuncClick(BT_EnableInvestingViewSwitch,
+			 * "BT_EnableInvestingViewSwitch");
+			 */
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -256,64 +264,58 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
-			
+
 			mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
-			
+
 			mobileAction.FuncClick(BT_Back, "< Button");
 
 			mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-			{
-			mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
-			mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
-			}
-			else
-			{
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
+				mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+			} else {
 				mobileAction.FuncClick(BT_Back, "< Button");
 			}
-			
-			if(!mobileAction.isObjExists(LBL_Searchoraddsymbols))//, );
+
+			if (!mobileAction.isObjExists(LBL_Searchoraddsymbols))// , );
 			{
-				CL.GetReporting().FuncReport(PASS, "As expected 'Search or add symbols' is not displayed for non investing focus user");
+				CL.GetReporting().FuncReport(PASS,
+						"As expected 'Search or add symbols' is not displayed for non investing focus user");
+			} else {
+				CL.GetReporting().FuncReport(FAIL,
+						"'Search or add symbols' should not be displayed for non investing focus user");
 			}
-			else
+
+			if (!mobileAction.isObjExists(BT_More))// , );
 			{
-				CL.GetReporting().FuncReport(FAIL, "'Search or add symbols' should not be displayed for non investing focus user");
+				CL.GetReporting().FuncReport(PASS,
+						"As expected 'Watchlist Card' is not displayed for non investing focus user");
+			} else {
+				CL.GetReporting().FuncReport(FAIL,
+						"'Watchlist Card' should not be displayed for non investing focus user");
 			}
-			
-			if(!mobileAction.isObjExists(BT_More))//, );
-			{
-				CL.GetReporting().FuncReport(PASS, "As expected 'Watchlist Card' is not displayed for non investing focus user");
-			}
-			else
-			{
-				CL.GetReporting().FuncReport(FAIL, "'Watchlist Card' should not be displayed for non investing focus user");
-			}
-			
+
 			goToProfileAndSettings();
-			
+
 			mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
-			
+
 			mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
-			
+
 			mobileAction.FuncClick(BT_Back, "< Button");
 
 			mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-			{
-			mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
-			mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
-			}
-			else
-			{
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
+				mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+			} else {
 				mobileAction.FuncClick(BT_Back, "< Button");
 			}
-			
+
 			mobileAction.verifyElementIsDisplayed(LBL_Searchoraddsymbols, "Search or add symbols");
-			
-			mobileAction.FuncSwipeWhileElementNotFound(BT_More, false, 6, "up");			
+
+			mobileAction.FuncSwipeWhileElementNotFound(BT_More, false, 6, "up");
 
 		} catch (Exception e) {
 			e.printStackTrace();
