@@ -394,7 +394,7 @@ public class OTPSetup extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
-			mobileAction.switchAppiumContext("NATIVE_APP");
+			//mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 	}
 
@@ -459,7 +459,7 @@ public class OTPSetup extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
-			mobileAction.switchAppiumContext("NATIVE_APP");
+			//mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 	}
 
@@ -505,7 +505,7 @@ public class OTPSetup extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
-			mobileAction.switchAppiumContext("NATIVE_APP");
+			//mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 	}
 
@@ -513,6 +513,7 @@ public class OTPSetup extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.sleep(5000 ); 		//Webview needs time to load
 				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(getCodeButton, "Get Code Button");
@@ -527,7 +528,7 @@ public class OTPSetup extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
-			mobileAction.switchAppiumContext("NATIVE_APP");
+			//mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 	}
 
@@ -561,7 +562,7 @@ public class OTPSetup extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
-			mobileAction.switchAppiumContext("NATIVE_APP");
+			//mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 	}
 
