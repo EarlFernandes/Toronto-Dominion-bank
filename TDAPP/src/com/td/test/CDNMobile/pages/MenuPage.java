@@ -22,19 +22,19 @@ public class MenuPage extends _CommonPage {
 
 	private static MenuPage MenuPage;
 
-	@iOSFindBy(xpath = "//*[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬']")
+	@iOSFindBy(xpath = "//*[(@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬') and @name='flyout_title'] | //*[@name='NAV_DRAWER_ITEMS_TRANSFERS']")
 	@AndroidFindBy(xpath = "//*[(@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='com.td:id/textview_flyout_menu_item' or @resource-id='com.td:id/navText')]")
 	private MobileElement transfers;
 
-	@iOSFindBy(xpath = "//*[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單']")
+	@iOSFindBy(xpath = "//*[(@label='Bills' or @label='Factures' or @label='账单' or @label='賬單')  and @name='flyout_title'] | //*[@name='NAV_DRAWER_ITEMS_BILLS']")
 	@AndroidFindBy(xpath = "//*[(@text='Bills' or @text='Factures' or @text='账单' or @text='賬單') and (@resource-id='com.td:id/textview_flyout_menu_item' or @resource-id='com.td:id/navText')]")
 	private MobileElement bills;
 
-	@iOSFindBy(xpath = "//*[@label='TD MySpend' or @label='Dépense TD']")
+	@iOSFindBy(xpath = "//*[(@label='TD MySpend' or @label='Dépense TD') and @name='flyout_title'] | /*[@name='NAV_DRAWER_ITEMS_MOVEN'")
 	@AndroidFindBy(xpath = "//*[(@text='TD MySpend' or @text='Dépense TD') and (@resource-id='com.td:id/textview_flyout_menu_item' or @resource-id='com.td:id/navText')]")
 	private MobileElement tdMySpend;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Cross-Border Banking' or @label='Services bancaires transfrontaliers' or @label='跨境理财服务' or @label='跨國理財服務']")
+	@iOSFindBy(xpath = "//*[(@label='Cross-Border Banking' or @label='Services bancaires transfrontaliers' or @label='跨境理财服务' or @label='跨國理財服務') and @name='flyout_title'] | //*[@name='NAV_DRAWER_ITEMS_CROSSBORDER']")
 	@AndroidFindBy(xpath = "//*[@text='Cross-Border Banking' or @text='Services bancaires transfrontaliers' or @text='跨境理财服务' or @text='跨國理財服務']")
 	private MobileElement crossBorder;
 
@@ -46,7 +46,7 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Comptes Placements directs TD']")
 	private MobileElement investingFRE;
 
-	@iOSFindBy(xpath = "//*[@label='FAQs' or @label='FAQ' or @label='常见问答' or @label='常見問題']")
+	@iOSFindBy(xpath = "//*[(@label='FAQs' or @label='FAQ' or @label='常见问答' or @label='常見問題') and @name='flyout_title'] | //*[@name='NAV_DRAWER_ITEMS_QUESTIONS']")
 	@AndroidFindBy(xpath = "//*[@text='FAQs' or @text='FAQ' or @text='常见问答' or @text='常見問題']")
 	private MobileElement faq;
 
