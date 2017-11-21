@@ -449,8 +449,6 @@ public class OTPUpdate extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
 			}
-			// mobileAction.FuncClick(testPhoneUpdateButton, "Test Phone
-			// Button");
 
 			mobileAction.FuncClick(phoneCard1Phone, "First Phone Button");
 
@@ -458,9 +456,11 @@ public class OTPUpdate extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				xpath = "//XCUIElementTypeButton[contains(@label,'"
 						+ this.getTextInCurrentLocale(StringArray.ARRAY_OTP_UPDATE_VERIFY_NUMBER) + "')]";
-				verifyNumberButton = mobileAction.verifyElementUsingXPath(xpath, "Verify Number button");
+				verifyNumberButton = mobileAction.mobileElementUsingXPath(xpath);
 			}
-			mobileAction.FuncClick(verifyNumberButton, "Verify Number button");
+			if (mobileAction.verifyElementIsPresent(verifyNumberButton)) {
+				mobileAction.FuncClick(verifyNumberButton, "Verify Number button");
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -965,11 +965,14 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 			MobileElement screenheader = PageHeader.get().getHeaderTextElement();
+			String headerText = mobileAction.FuncGetText(screenheader);
 			mobileAction.verifyElementIsDisplayed(screenheader, "OTP Update Test Phone screen header");
-			// mobileAction.verifyElementTextContains(testPhoneHeader,
-			// getTextInCurrentLocale(StringArray.ARRAY_OTP_UPDATE_TEST_PHONE_HEADER));
-			mobileAction.verifyElementTextContains(screenheader,
-					getTextInCurrentLocale(StringArray.ARRAY_OTP_UPDATE_VERIFY_NUMBER_SCREEN));
+			if (headerText.contains(getTextInCurrentLocale(StringArray.ARRAY_OTP_UPDATE_VERIFY_NUMBER_SCREEN))) {
+				mobileAction.verifyElementTextContains(screenheader,
+						getTextInCurrentLocale(StringArray.ARRAY_OTP_UPDATE_VERIFY_NUMBER_SCREEN));
+			} else {
+				mobileAction.GetReporting().FuncReport("Pass", "Phone Number is Verified");
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

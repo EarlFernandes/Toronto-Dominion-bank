@@ -444,7 +444,6 @@ public class OTPSetup extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.sleep(4000); 	//WebView needs time to load
 				mobileAction.switchToWebView();
 			}
 
@@ -490,7 +489,7 @@ public class OTPSetup extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.sleep(4000); 	//WebView needs time to load
+				mobileAction.sleep(4000); // WebView needs time to load
 				mobileAction.switchToWebView();
 			}
 
@@ -1116,6 +1115,7 @@ public class OTPSetup extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.sleep(3000);
 				mobileAction.switchToWebView();
 			}
 
