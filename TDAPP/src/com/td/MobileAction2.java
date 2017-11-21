@@ -9,6 +9,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.html5.Location;
@@ -3575,15 +3576,20 @@ public class MobileAction2 extends CommonLib {
 	public void switchToWebView() {
 		try {
 			Set<String> contextNames = ((AppiumDriver) GetDriver()).getContextHandles();
-			sleep(5000); // WebView needs time to load
-			String lastestContextView = (String) contextNames.toArray()[contextNames.size() - 1];
+			sleep(3000); // WebView needs time to load
+			String lastContextView = (String) contextNames.toArray()[contextNames.size() - 1];
 			System.out.println(contextNames);
 
-			if (lastestContextView.contains("WEBVIEW")) {
-				System.out.println("Before Webview Switch: " + lastestContextView);
-				((AppiumDriver) GetDriver()).context("WEBVIEW_R");
-				sleep(15000); // WebView needs time to load
+			if (lastContextView.contains("WEBVIEW")) {
+				System.out.println("Before Webview Switch: " + lastContextView);
+				if (lastContextView.contains("com.td")) {
+					((AppiumDriver) GetDriver()).context(lastContextView);
+				} else if(lastContextView.contains("_R") || lastContextView.contains("_S")) {
+					((AppiumDriver) GetDriver()).context("WEBVIEW_R");
+				}
+				sleep(5000); // WebView needs time to load
 				System.out.println("After Webview Switch");
+				System.out.println(((WebDriver) GetDriver()).getPageSource());
 
 			} else {
 				System.out.println("No Webview found");
