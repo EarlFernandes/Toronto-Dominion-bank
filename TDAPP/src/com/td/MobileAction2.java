@@ -3581,7 +3581,7 @@ public class MobileAction2 extends CommonLib {
 
 		if (lastestContextView.contains("WEBVIEW")) {
 			System.out.println("Before Webview Switch: " + lastestContextView);
-			((AppiumDriver) GetDriver()).context("WEBVIEW_R");
+			((AppiumDriver) GetDriver()).context(lastestContextView);
 			sleep(5000); // WebView needs time to load
 			System.out.println("After Webview Switch");
 
