@@ -18,11 +18,11 @@ public class Logout extends _CommonPage {
 	private static Logout Logout;
 
 	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_LOGOUT")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='Logout' or @text='Fermer la session')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and (@text='Logout' or @text='Fermer la session')]")
 	private MobileElement logout;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Fermer la session']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Fermer la session']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Fermer la session']")
 	private MobileElement logout_French;
 
 	@iOSFindBy(accessibility = "TDVIEW_TITLE")

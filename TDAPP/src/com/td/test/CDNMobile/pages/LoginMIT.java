@@ -95,7 +95,7 @@ public class LoginMIT extends _CommonPage {
 	private MobileElement terms_Conditions_Msg;
 
 	@iOSFindBy(xpath = "//*[@label='Logout']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Logout']")
 	private MobileElement logout;
 
 	@iOSFindBy(xpath = "//*[@label='Logged Out']")

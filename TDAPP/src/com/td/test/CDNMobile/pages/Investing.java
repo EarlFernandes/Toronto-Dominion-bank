@@ -100,7 +100,7 @@ public class Investing extends _CommonPage {
 	private MobileElement agreeButton;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Accounts']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='My Accounts']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='My Accounts']")
 	private MobileElement my_accounts;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='BANKING']")

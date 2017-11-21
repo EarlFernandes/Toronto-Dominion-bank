@@ -138,7 +138,7 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
 	private MobileElement select_payee;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Home']")
 	private MobileElement homeBtn;
 
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']")
