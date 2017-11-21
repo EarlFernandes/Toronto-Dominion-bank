@@ -63,16 +63,16 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage   {
 	private MobileElement btnMore;
 	
 	
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 06']") // @Author
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 06']") 
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/watchlist_name_drop_down' and @text='List 06']")
 	private MobileElement FilledListExpand;
 	
 	
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='List 01']") // @Author
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='List 01']") 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and @text='List 01']")
 	private MobileElement ListView;
 	
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 01']") // @Author
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 01']") 
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/watchlist_name_drop_down' and @text='List 01']")
 	private MobileElement EmptyListExpand;
 	
@@ -81,11 +81,11 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage   {
 	MobileElement BT_Back;
 	
 	
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 01']") // @Author
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 01']") 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_watchlist_name_header' and @text='List 01']")
 	private MobileElement EmptyListCollapse;
 	
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 01']") // @Author
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 01']") 
 	@AndroidFindBy(id = "com.td:id/watchlist_empty_card_star")
 	private MobileElement EmptyWLStar;
 	
@@ -124,7 +124,7 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage   {
 					
 					mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
 					
-					
+			
 				}
 			
 			

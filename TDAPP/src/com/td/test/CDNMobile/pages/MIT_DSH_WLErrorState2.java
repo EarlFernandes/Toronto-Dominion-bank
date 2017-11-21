@@ -102,9 +102,22 @@ private static MIT_DSH_WLErrorState2 MIT_DSH_WLErrorState2;
 		Decorator();
 		try {
 	
-		//	 MIT_DSHQuickLinks.get().goToDashboardHome();
+			 MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 			
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
 			 if (mobileAction.isObjExists(btnSwitchNow, 2)) 
 			 {
 					mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
@@ -120,6 +133,21 @@ private static MIT_DSH_WLErrorState2 MIT_DSH_WLErrorState2;
 				//mobileAction.verifyElementIsDisplayed(EmptyWLDesc, "EmptyWLDesc");
 			 
 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
 				
 			 
 

@@ -1080,6 +1080,9 @@ public class TradeMultiLeg extends _CommonPage {
 				// mobileAction.FuncClick(cancelButton, "cancelButton");
 			} else if (mobileAction.isObjExists(iOSKybdOKButton))
 				mobileAction.FuncClick(iOSKybdOKButton, "iOSKybdOKButton");
+			else
+			mobileAction.HideKeyBoard_IOS();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

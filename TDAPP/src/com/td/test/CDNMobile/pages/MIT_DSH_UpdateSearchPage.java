@@ -42,9 +42,9 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 	}
 	
 	
-//	@iOSFindBy(xpath = "//*[@label='Search or add symbols' or contains(@label,'Entrez le')]") 
+
 	@iOSFindBy(accessibility = "SearchBarWidget")
-    //@AndroidFindBy(id = "com.td:id/txtSearchTitle")
+    
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Search or add symbols' or @text='Rechercher ou ajouter des symboles' or @text='搜索或添加股票代码' or @text='搜尋或添加股票代號']")
     private MobileElement searchBar;
 	
@@ -66,13 +66,11 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 	String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'US') or contains(@label,'U S') or contains(@label,'CAD') or contains(@label,'CAN') or contains(@label,'CA')  or contains(@label,'C A') or contains(@label,'加拿大') or contains(@label,'美国') or contains(@label,'加拿大') or contains(@label,'美國')]";
 	
 	@iOSFindBy(xpath = "//*[@name='CodeSearchHeaderCellTitleLabel']/../following-sibling::XCUIElementTypeCell[1]/*[1]")
-	//@AndroidFindBy(xpath = "//*[(@text='Terms of Use' or @text='Conditions d’utilisation' or @text='使用条款' or @text='使用條款') and @resource-id='android:id/action_bar_title']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[3]/*[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'The symbol you entered is not valid') or contains(@text,'Le symbole entr? nest pas valide; veuillez lentrer')]")
 	private MobileElement info;
 	
 
 	@iOSFindBy(xpath = "//*[@label='RESULTS' or @label='RÉSULTATS']")
-//	@AndroidFindBy(id = "android:id/content")
 	 @AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/classificationTexView' or @resource-id='com.td:id/txt_results') and (@text='RESULTS' or @text='RÉSULTATS' or @text='结果' or @text='結果')]")
 	private MobileElement hdrRESULTS;
 	
@@ -83,7 +81,6 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 	
 	
 	@iOSFindBy(xpath = "(//*[@name='codeSearchButton'])[1]")
-	//@iOSXCUITFindBy(accessibility = "codeSearchButton")
     @AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id='com.td:id/img_added_in_watchlist'])[1]")
     private MobileElement 	AddWatchlistButton;
 	
@@ -105,7 +102,6 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 
 	
 	@iOSFindBy(xpath = "//*[@label='RECENT SEARCHES' or @label='RÉSULTATS']")
-	//@AndroidFindBy(id = "android:id/content")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and (@text='RECENT SEARCHES' or @text='RECHERCHES RÉCENTES' or @text='最近的搜索' or @text='最近的搜尋')]")
 	private MobileElement hdrRECENT;
 	
@@ -164,7 +160,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 		
 			
 						
-			//MIT_DSHQuickLinks.get().goToDashboardHome();
+			MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 						
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -204,7 +200,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 			
 			
 			
-			//MIT_DSHQuickLinks.get().goToDashboardHome();
+			MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 			
 			
@@ -245,7 +241,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 		Decorator();
 		try {					
 				
-			//MIT_DSHQuickLinks.get().goToDashboardHome();
+			MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 				
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -310,26 +306,6 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 			
 			}
 			
-			
-			
-			
-			
-			
-				
-				/*
-				int iAbscissa = BT_Back1.getRect().getHeight();
-				int iOrdinate = BT_Back1.getRect().getY();
-				
-			
-				mobileAction.FuncClickCoordinates(iAbscissa, iOrdinate, 1);*/
-				
-			
-			
-			
-			
-		
-			
-		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -345,7 +321,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 		
 		try {				
 			
-		//	MIT_DSHQuickLinks.get().goToDashboardHome();
+			MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 				
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -423,7 +399,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 		
 		try {	
 					
-		//MIT_DSHQuickLinks.get().goToDashboardHome();
+		MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 				
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -445,7 +421,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 			String[] aSymbolArray = getTestdata("Symbol", "UserIDs").split(":");
 			String sXPathios = null;
 			String sXPathAnd = null;
-			//String sStock = aSymbolArray[0];
+		
 			
 			
 			
@@ -463,7 +439,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 		    	sXPathios = "//XCUIElementTypeOther[@label='" + aSymbolArray[i] + "' or @text='" + aSymbolArray[i] + "']/*[1]";
 		    	
 		    	sXPathAnd = "//*[@class='text-prominent symbol']";
-		    	//XCUIElementTypeOther[@label='AIM10693' or @text='AIM10693']/*[1]
+		    	
 		    	
 		    	
 		    	if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
@@ -553,7 +529,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 		
 		try {	
 					
-		//MIT_DSHQuickLinks.get().goToDashboardHome();
+		MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 				
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -574,7 +550,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 			String sXPathiOS = null;
 			String sXPathAnd = null;
 			
-			//String sStock = aSymbolArray[0];
+	
 			
 			
 			
@@ -687,7 +663,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 		
 		try {	
 					
-	//	MIT_DSHQuickLinks.get().goToDashboardHome();
+		MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 				
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -709,7 +685,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 			String[] aSymbolArray = getTestdata("Symbol", "UserIDs").split(":");
 			String sXPathiOS = null;
 			String sXPathAnd = null;
-			//String sStock = aSymbolArray[0];
+			
 			
 			
 			
@@ -770,8 +746,8 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 		Decorator();
 		
 		try {	
-			//Thread.sleep(4000);
-	//	MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+		MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 				
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -888,7 +864,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 		Decorator();
 		try {					
 				
-		//	MIT_DSHQuickLinks.get().goToDashboardHome();
+			MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 	
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -968,7 +944,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 		Decorator();
 		try {					
 			
-		//	MIT_DSHQuickLinks.get().goToDashboardHome();
+			MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 	
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -1038,7 +1014,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 		Decorator();
 		try {					
 				
-			//MIT_DSHQuickLinks.get().goToDashboardHome();
+			MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 	
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -1110,7 +1086,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 		Decorator();
 		try {					
 				
-			//MIT_DSHQuickLinks.get().goToDashboardHome();
+			MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 	
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -1158,7 +1134,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 		Decorator();
 		try {					
 				
-		//MIT_DSHQuickLinks.get().goToDashboardHome();
+		MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 	
 			if(mobileAction.isObjExists(searchBar, 2))
@@ -1249,16 +1225,13 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 	
 	public void verifySymbolUSCAD() throws Exception
 	{
-		// List<MobileElement> elementToFind = null;
+		
 		Decorator();
 		int i, temp;
 		String sSymbolName = "";
 		String property = "";
 		try {
-			//mobileAction.FuncClick(search_symbol, "search_symbol");
-			// mobileAction.FuncSendKeys(search_symbol, getTestdata("Symbol",
-			// "UserIDs") + " ");
-			//enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs"));
+		
 			String xpathFlag = "";
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				xpathFlag = xpathSymbolFlag;
@@ -1271,19 +1244,18 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 				xpathFlag = xpathSymbolFlag_ios;
 				temp = 0;
 
-				// property = "name";
+				
 				property = "label";
 
 			}
-			// US_Symbol.click();
+		
 			List<MobileElement> listItem = (List<MobileElement>) (CL.GetAppiumDriver())
 					.findElements(By.xpath(xpathFlag));
-			// listItem = (List<MobileElement>) ((AppiumDriver)
-			// CL.GetDriver()).findElements(By.xpath(xpathSymbol));
+		
 
 			for (i = temp; i < listItem.size(); i++) {
 				if (listItem.get(i).getAttribute(property).contains("U S")||listItem.get(i).getAttribute(property).contains("C A")||listItem.get(i).getAttribute(property).contains("C A N")||listItem.get(i).getAttribute(property).contains("加拿大")||listItem.get(i).getAttribute(property).contains("美国")||listItem.get(i).getAttribute(property).contains("加拿大")||listItem.get(i).getAttribute(property).contains("美國"))
-				// listItem.get(i).findElementByXPath(using)
+				
 				{
 					sSymbolName = CL.GetDriver().findElements(By.xpath("//*[@resource-id='com.td:id/market_name']"))
 							.get(i).getText();
@@ -1296,15 +1268,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 					CL.GetReporting().FuncReport("Fail", "Incorrect option found in search list.");
 			}
 
-		/*	try {
-				CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
-				// CL.GetReporting().FuncReport("Pass",
-				// listItem.get(temp).getAttribute(property) + " from symbol
-				// search list selected.");
-				CL.GetReporting().FuncReport("Pass", "First Symbol from symbol search list selected.");
-			} catch (Exception e) {
-				CL.GetReporting().FuncReport("Fail", "First Symbol from symbol search list is not selected.");
-			}*/
+		
 		} catch (Exception e) {
 			CL.GetReporting().FuncReport("Fail", "Incorrect option found in search list.");
 			e.printStackTrace();
@@ -1313,70 +1277,6 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 	
 	
 	
-/*	public void verifySymbolCAD() throws Exception
-	{
-		// List<MobileElement> elementToFind = null;
-		Decorator();
-		int i, temp;
-		String sSymbolName = "";
-		String property = "";
-		try {
-			mobileAction.FuncClick(search_symbol, "search_symbol");
-			// mobileAction.FuncSendKeys(search_symbol, getTestdata("Symbol",
-			// "UserIDs") + " ");
-			enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs"));
-			String xpathFlag = "";
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				xpathFlag = xpathSymbolFlag;
-				temp = 0;
-				if (CL.getTestDataInstance().getMobilePlatFormVersion().contains("7"))
-					property = "contentDescription";
-				else
-					property = "name";
-			} else {
-				xpathFlag = xpathSymbolFlag_ios;
-				temp = 0;
-
-				// property = "name";
-				property = "label";
-
-			}
-			// US_Symbol.click();
-			List<MobileElement> listItem = (List<MobileElement>) (CL.GetAppiumDriver())
-					.findElements(By.xpath(xpathFlag));
-			// listItem = (List<MobileElement>) ((AppiumDriver)
-			// CL.GetDriver()).findElements(By.xpath(xpathSymbol));
-
-			for (i = temp; i < listItem.size(); i++) {
-				if (listItem.get(i).getAttribute(property).contains("U S"))
-				// listItem.get(i).findElementByXPath(using)
-				{
-					sSymbolName = CL.GetDriver().findElements(By.xpath("//*[@resource-id='com.td:id/market_name']"))
-							.get(i).getText();
-					CL.GetReporting().FuncReport("Pass", "US option found in search list. Item :" + sSymbolName);
-				} else if (listItem.get(i).getAttribute("name").contains("US")) {
-
-					CL.GetReporting().FuncReport("Pass",
-							"US option found in search list. Item :" + listItem.get(i).getAttribute("name"));
-				} else
-					CL.GetReporting().FuncReport("Fail", "Incorrect option found in search list.");
-			}
-
-			try {
-				CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
-				// CL.GetReporting().FuncReport("Pass",
-				// listItem.get(temp).getAttribute(property) + " from symbol
-				// search list selected.");
-				CL.GetReporting().FuncReport("Pass", "First Symbol from symbol search list selected.");
-			} catch (Exception e) {
-				CL.GetReporting().FuncReport("Fail", "First Symbol from symbol search list is not selected.");
-			}
-		} catch (Exception e) {
-			CL.GetReporting().FuncReport("Fail", "Incorrect option found in search list.");
-			e.printStackTrace();
-		}
-	}*/
-	
 	
 	public void clickFirstSymbolUSCAD(String sSymbol)
 	{
@@ -1384,20 +1284,17 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 		try {
 			String xpathFlag = "";
 			int temp = 0;
-			//String sSymbol = getTestdata("Symbol", XLSheetUserIDs).trim();
-			//sSymbol = "";
+			
 			boolean bFound = false;
 			String sProperty = "";
 			String sSymbolName = "";
 			boolean bSymbolText = false;
 
-			//mobileAction.FuncClick(search_symbol, "search_symbol");
-			//enterSymbol(search_symbol, sSymbol);
+			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				xpathFlag = xpathSymbolFlag;
 				sProperty = "text";
-				// sSymbolName =
-				// CL.GetDriver().findElements(By.xpath("//*[@resource-id='com.td:id/market_name']")).get(i).getText();
+		
 				try {
 					CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
 					CL.GetReporting().FuncReport("Pass", "Symbol <b> " + sSymbol + "</b> Clicked.");
@@ -1407,16 +1304,11 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 				}
 			} else {
 				xpathFlag = xpathSymbolFlag_ios;
-				// temp =0;
+				
 				sProperty = "label";
 				do {
 					try {
-						/*
-						 * try{ bSymbolText =
-						 * CL.GetDriver().findElements(By.xpath(
-						 * "//*[@resource-id='com.td:id/market_name']")).get(
-						 * temp).getText().contains(sSymbol); } catch(ex)
-						 */
+					
 						if (CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).isDisplayed() && CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).getAttribute(sProperty).contains(sSymbol))
 						{
 							bFound = true;
@@ -1425,13 +1317,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 						} else
 							temp++;
 					} catch (Exception e) {
-						/*
-						 * if(CL.GetDriver().findElements(By.xpath(xpathFlag)).
-						 * get(1).isDisplayed()) {
-						 * CL.GetDriver().findElements(By.xpath(xpathFlag)).get(
-						 * 1).click(); CL.GetReporting().FuncReport("Pass",
-						 * "Symbol <b> "+ sSymbol + "</b> Clicked."); }
-						 */
+						
 						temp++;
 					}
 				} while (!bFound && temp < CL.GetDriver().findElements(By.xpath(xpathFlag)).size());
@@ -1448,28 +1334,18 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 		try {
 			String xpathFlag = "";
 			int temp = 0;
-			//String sSymbol = getTestdata("Symbol", XLSheetUserIDs).trim();
-			//sSymbol = "";
 			boolean bFound = false;
 			String sProperty = "";
 			String sSymbolName = "";
 			boolean bSymbolText = false;
-
-			//mobileAction.FuncClick(search_symbol, "search_symbol");
-			//enterSymbol(search_symbol, sSymbol);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				//xpathFlag = xpathSymbolFlag;
-				
 			
-				
-				//xpathFlag = "//android.widget.TextView[@resource-id='com.td:id/market_name' and (@content-desc='" + sSymbol + "' or @text='" + sSymbol + "')]";
 				
 				xpathFlag = "//android.widget.TextView[@resource-id='com.td:id/market_name' and (@content-desc='" + sSymbol + "' or contains(@text,'" + sSymbol + "'))]";
 				
 				
 				sProperty = "text";
-				// sSymbolName =
-				// CL.GetDriver().findElements(By.xpath("//*[@resource-id='com.td:id/market_name']")).get(i).getText();
+				
 				try {
 					CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
 					CL.GetReporting().FuncReport("Pass", "Symbol <b> " + sSymbol + "</b> Clicked.");
@@ -1478,21 +1354,16 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 					CL.GetReporting().FuncReport("Fail", "Symbol <b> " + sSymbol + "</b> not Clicked.");
 				}
 			} else {
-				//xpathFlag = xpathSymbolFlag_ios;
+				
 				
 				
 				xpathFlag = "//XCUIElementTypeCell[contains(@label,'" + sSymbol + "') or contains(@text,'" + sSymbol + "')]";
 				
-				// temp =0;
+				
 				sProperty = "label";
 				do {
 					try {
-						/*
-						 * try{ bSymbolText =
-						 * CL.GetDriver().findElements(By.xpath(
-						 * "//*[@resource-id='com.td:id/market_name']")).get(
-						 * temp).getText().contains(sSymbol); } catch(ex)
-						 */
+					
 						if (CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).isDisplayed() && CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).getAttribute(sProperty).contains(sSymbol))
 						{
 							bFound = true;
@@ -1501,13 +1372,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 						} else
 							temp++;
 					} catch (Exception e) {
-						/*
-						 * if(CL.GetDriver().findElements(By.xpath(xpathFlag)).
-						 * get(1).isDisplayed()) {
-						 * CL.GetDriver().findElements(By.xpath(xpathFlag)).get(
-						 * 1).click(); CL.GetReporting().FuncReport("Pass",
-						 * "Symbol <b> "+ sSymbol + "</b> Clicked."); }
-						 */
+					
 						temp++;
 					}
 				} while (!bFound && temp < CL.GetDriver().findElements(By.xpath(xpathFlag)).size());
@@ -1530,9 +1395,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 	public void enterSymbol(MobileElement mEle, String symbol) {
 		try {
 
-			// if
-			// (Integer.parseInt(CL.getTestDataInstance().getMobilePlatFormVersion())
-			// > 6 )//.contains("6")
+		
 			if (CL.getTestDataInstance().getMobilePlatFormVersion().contains("6")
 					|| CL.getTestDataInstance().getMobilePlatFormVersion().contains("7")) {
 				mobileAction.FuncSendKeys(mEle, symbol + " ");
@@ -1540,8 +1403,7 @@ public class MIT_DSH_UpdateSearchPage  extends _CommonPage {
 				mobileAction.FuncSendKeys(mEle, symbol + " ");
 				((RemoteWebDriver) CL.GetDriver()).getKeyboard().pressKey(Keys.BACK_SPACE);
 			}
-			// mobileAction.FuncSendKeys(mEle,"\u0008");
-			// mEle.sendKeys(Keys.DELETE);
+			
 			TradeMultiLeg.get().handleKeyboard();
 		} catch (Exception e) {
 			e.printStackTrace();

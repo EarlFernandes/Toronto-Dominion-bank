@@ -104,10 +104,10 @@ public class MIT_DSH_ActivityTab  extends _CommonPage  {
 			
 			
 			
-		//Thread.sleep(1000);
 	
 	
-		   /* MIT_DSHQuickLinks.get().goToDashboardHome();
+	
+		    MIT_DSHQuickLinks.get().goToDashboardHome();
  
 		
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
@@ -125,7 +125,7 @@ public class MIT_DSH_ActivityTab  extends _CommonPage  {
 			mobileAction.verifyElementIsDisplayed(lblDetails, "lblDetails");
 			
 			
-			mobileAction.verifyElementIsDisplayed(lblAmount, "lblAmount");*/
+			mobileAction.verifyElementIsDisplayed(lblAmount, "lblAmount");
 			
 			
 			

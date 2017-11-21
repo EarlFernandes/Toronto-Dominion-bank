@@ -132,7 +132,7 @@ private static MIT_DSH_WLErrorState1 MIT_DSH_WLErrorState1;
 		Decorator();
 		try {
 	
-			// MIT_DSHQuickLinks.get().goToDashboardHome();
+			 MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 			
 			 if (mobileAction.isObjExists(btnSwitchNow, 2))
@@ -181,7 +181,7 @@ private static MIT_DSH_WLErrorState1 MIT_DSH_WLErrorState1;
 		Decorator();
 		try {
 	
-			// MIT_DSHQuickLinks.get().goToDashboardHome();
+			 MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 			
 			 if (mobileAction.isObjExists(btnSwitchNow, 2))

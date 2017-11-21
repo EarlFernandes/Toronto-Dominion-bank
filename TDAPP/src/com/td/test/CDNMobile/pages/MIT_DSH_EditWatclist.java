@@ -102,16 +102,16 @@ private static MIT_DSH_EditWatclist MIT_DSH_EditWatclist;
 	
 
 	
-	@iOSFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]")
 	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
 	private MobileElement search_symbol;
 	
 	
-	@iOSFindBy(xpath = "(//*[@name='codeSearchButton'])[1]")
+	@iOSXCUITFindBy(xpath = "(//*[@name='codeSearchButton'])[1]")
     @AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id='com.td:id/img_added_in_watchlist'])[1]")
     private MobileElement 	AddWatchlistButton;
 	
-	@iOSFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]") 
+	@iOSXCUITFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]") 
     @AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/btn_clear_search_text']")
     private MobileElement 	btnClear;
 	
@@ -124,15 +124,15 @@ private static MIT_DSH_EditWatclist MIT_DSH_EditWatclist;
 	private MobileElement ListViewExpand01;
 	
 	
-	@iOSFindBy(xpath = "(//*[@name='codeSearchButton'])[1]")
+	@iOSXCUITFindBy(xpath = "(//*[@name='codeSearchButton'])[1]")
     @AndroidFindBy(xpath = "(//android.widget.CheckBox[@resource-id='com.td:id/checkbox_item_watchlist_selected'])[1]")
     private MobileElement 	SymblchckBox;
 	
-	@iOSFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]") 
+	@iOSXCUITFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]") 
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
     private MobileElement 	warningMsg;
 	
-	@iOSFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]") 
+	@iOSXCUITFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]") 
     @AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
     private MobileElement 	okButton;
 	

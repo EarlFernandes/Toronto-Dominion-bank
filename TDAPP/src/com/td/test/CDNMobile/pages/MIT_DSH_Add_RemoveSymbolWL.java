@@ -46,7 +46,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 	@iOSXCUITFindBy(accessibility = "ProfilePreferencesToggleTableViewCell_Toggle_Switch")
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/nav_row_switch']")
 	private MobileElement InvestingToggle;
-	//unique
+	
 	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Accessory_Button")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/nav_row_left_icon']")
 	private MobileElement AccessoryGoHome;
@@ -111,7 +111,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 	
 	By WatchlistButtonMod = By.xpath("//*[@class='btn btn-default add-to-td-watchlist icon pull-left icon-star']");
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='Push Notification' or contains(@name,'Notification')]/../following-sibling::XCUIElementTypeOther[1]/*/*[1]")
+	@iOSFindBy(xpath = "(//XCUIElementTypeImage[@name='actionsheet_checkmark'])[1]")
 	  @AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id='com.td:id/watchlist_selected_image_view'])[1]")
 	private MobileElement checkMark;
 	
@@ -212,7 +212,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 							 
 							 
 
-							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole'))])[1]"; 
+							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole') or contains(@text,'/'))])[1]"; 
 														 
 							 mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAndSymbolNumber, false, 5, "up");
 							 
@@ -378,9 +378,8 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 
 			}
 			else {
-
-				if (mobileAction.getText(checkMark).equalsIgnoreCase("true"))
-
+				if (mobileAction.isObjExists(checkMark, 2)) 
+			
 					CL.GetReporting().FuncReport("Pass", "The Element is selected : <b> " + "</b>");
 
 				else {
@@ -500,7 +499,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 							 
 							 
 
-							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole'))])[1]"; 
+							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole') or contains(@text,'/'))])[1]"; 
 														 
 							 mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAndSymbolNumber, false, 5, "up");
 							 
@@ -666,7 +665,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 			}
 			else {
 
-				if (mobileAction.getText(checkMark).equalsIgnoreCase("true"))
+				if (mobileAction.isObjExists(checkMark, 2)) 
 
 					CL.GetReporting().FuncReport("Pass", "The Element is selected : <b> " + "</b>");
 
@@ -757,7 +756,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 							 
 							 
 
-							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole'))])[1]"; 
+							 String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole') or contains(@text,'/'))])[1]"; 
 														 
 							 mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAndSymbolNumber, false, 5, "up");
 							 
@@ -874,7 +873,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage     {
 			}
 			else {
 
-				if (mobileAction.getText(checkMark).equalsIgnoreCase("true"))
+				if (mobileAction.isObjExists(checkMark, 2)) 
 
 					CL.GetReporting().FuncReport("Pass", "The Element is selected : <b> " + "</b>");
 

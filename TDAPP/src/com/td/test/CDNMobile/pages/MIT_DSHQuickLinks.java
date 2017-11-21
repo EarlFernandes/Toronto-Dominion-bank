@@ -302,19 +302,30 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		return bFlag;
 	}
 
-	public void goToDashboardHome() {
-		Decorator();
-		try {
-			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
-			mobileAction.FuncClick(InvestingAccount, "Investing Accounts Flyout Menu");
-			LoginMIT.get().MITLogin();
-			mobileAction.FuncClick(BT_Back, "< Button");
-			mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    public void goToDashboardHome() {
+        Decorator();
+        try {
+        	Thread.sleep(1000);
+               mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
+               mobileAction.FuncClick(flyoutMyAccountLink, "My Accounts Flyout Menu");
+               LoginMIT.get().MITLogin();
+               if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+                      mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
+                      mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+               }
+               else{
+               mobileAction.FuncClick(BT_Back, "< Button");
+               }
+        } catch (Exception e) {
+               e.printStackTrace();
+        }
 
-	}
+  }
+
+
+    
+    
+    
 
 	public void verifyQL_SENDMONEY(boolean bIsAuthenticatedUser) {
 		Decorator();
