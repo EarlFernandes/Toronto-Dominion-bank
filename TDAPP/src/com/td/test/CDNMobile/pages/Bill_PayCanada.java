@@ -200,7 +200,7 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement bills_header;
 
 	@iOSFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Home']")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/dashboard_scroll_view' or @resource-id='com.td:id/toolbar_dashboard']")
 	private MobileElement home;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")

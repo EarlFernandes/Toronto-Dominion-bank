@@ -132,7 +132,7 @@ public class Between_My_accounts extends _CommonPage {
 	private MobileElement txtTransfers_Header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@value, 'Quick Access') or contains(@label,'Quick Access')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Home']")
+	@AndroidFindBy(xpath = "//*[@resource-id='android:id/action_bar_title' or @resource-id='com.td:id/toolbar_dashboard']")
 	private MobileElement quickAccess;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Home']")
