@@ -53,7 +53,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/nav_row_left_icon']")
 	private MobileElement AccessoryGoHome;
 
-	@iOSFindBy(accessibility = "SearchBarWidget")
+	@iOSXCUITFindBy(accessibility = "SearchBarWidget")
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Search or add symbols' or @text='Rechercher ou ajouter des symboles' or @text='搜索或添加股票代码' or @text='搜尋或添加股票代號']")
 	private MobileElement searchBar;
@@ -90,7 +90,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶']")
 	private MobileElement flyoutMyAccountLink;
 
-	@iOSFindBy(xpath = " //*[contains(@label,'ACCOUNTS') or contains(@label,'COMPTES')]")
+	@iOSXCUITFindBy(xpath = " //*[contains(@label,'ACCOUNTS') or contains(@label,'COMPTES')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView']")
 	private MobileElement defaultTradeAccount;
 
@@ -98,17 +98,17 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage {
 
 	String xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Holdings' or @label='Avoirs' or @label='Activity' or @label='Activity']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Holdings' or @label='Avoirs' or @label='Activity' or @label='Activity']")
 	@AndroidFindBy(id = "com.td:id/holdingsTab")
 	private MobileElement holdingsTab;
 
-	@iOSFindBy(xpath = "(//*[@name='codeSearchButton'])[1]")
+	@iOSXCUITFindBy(xpath = "(//*[@name='codeSearchButton'])[1]")
 	@AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id='com.td:id/img_added_in_watchlist'])[1]")
 	private MobileElement AddWatchlistButton;
 
 	By WatchlistButtonMod = By.xpath("//*[@class='btn btn-default add-to-td-watchlist icon pull-left icon-star']");
 
-	@iOSFindBy(xpath = "(//XCUIElementTypeImage[@name='actionsheet_checkmark'])[1]")
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeImage[@name='actionsheet_checkmark'])[1]")
 	@AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id='com.td:id/watchlist_selected_image_view'])[1]")
 	private MobileElement checkMark;
 

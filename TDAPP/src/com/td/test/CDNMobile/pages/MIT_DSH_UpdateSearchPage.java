@@ -41,16 +41,16 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 				this);
 	}
 
-	@iOSFindBy(accessibility = "SearchBarWidget")
+	@iOSXCUITFindBy(accessibility = "SearchBarWidget")
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Search or add symbols' or @text='Rechercher ou ajouter des symboles' or @text='搜索或添加股票代码' or @text='搜尋或添加股票代號']")
 	private MobileElement searchBar;
 
-	@iOSFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]")
 	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
 	private MobileElement search_symbol;
 
-	@iOSFindBy(xpath = "//*[@label='Symbol then month or strike' or contains(@label,'Entrez le')]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Symbol then month or strike' or contains(@label,'Entrez le')]")
 	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
 	private MobileElement search_symbol_option;
 
@@ -58,19 +58,19 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 
 	String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'US') or contains(@label,'U S') or contains(@label,'CAD') or contains(@label,'CAN') or contains(@label,'CA')  or contains(@label,'C A') or contains(@label,'加拿大') or contains(@label,'美国') or contains(@label,'加拿大') or contains(@label,'美國')]";
 
-	@iOSFindBy(xpath = "//*[@name='CodeSearchHeaderCellTitleLabel']/../following-sibling::XCUIElementTypeCell[1]/*[1]")
+	@iOSXCUITFindBy(xpath = "//*[@name='CodeSearchHeaderCellTitleLabel']/../following-sibling::XCUIElementTypeCell[1]/*[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'The symbol you entered is not valid') or contains(@text,'Le symbole entr? nest pas valide; veuillez lentrer')]")
 	private MobileElement info;
 
-	@iOSFindBy(xpath = "//*[@label='RESULTS' or @label='RÉSULTATS']")
+	@iOSXCUITFindBy(xpath = "//*[@label='RESULTS' or @label='RÉSULTATS']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/classificationTexView' or @resource-id='com.td:id/txt_results') and (@text='RESULTS' or @text='RÉSULTATS' or @text='结果' or @text='結果')]")
 	private MobileElement hdrRESULTS;
 
-	@iOSFindBy(xpath = "//*[@label='Watchlist Button' or contains(@label,'Entrez le')]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Watchlist Button' or contains(@label,'Entrez le')]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
 	private MobileElement WatchlistButton;
 
-	@iOSFindBy(xpath = "(//*[@name='codeSearchButton'])[1]")
+	@iOSXCUITFindBy(xpath = "(//*[@name='codeSearchButton'])[1]")
 	@AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id='com.td:id/img_added_in_watchlist'])[1]")
 	private MobileElement AddWatchlistButton;
 
@@ -82,19 +82,19 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 
-	@iOSFindBy(xpath = "//*[@label='banner' or contains(@label,'Entrez le')]/*[1]")
+	@iOSXCUITFindBy(xpath = "//*[@label='banner' or contains(@label,'Entrez le')]/*[1]")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back1;
 
-	@iOSFindBy(xpath = "//*[@label='RECENT SEARCHES' or @label='RÉSULTATS']")
+	@iOSXCUITFindBy(xpath = "//*[@label='RECENT SEARCHES' or @label='RÉSULTATS']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and (@text='RECENT SEARCHES' or @text='RECHERCHES RÉCENTES' or @text='最近的搜索' or @text='最近的搜尋')]")
 	private MobileElement hdrRECENT;
 
-	@iOSFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/btn_clear_search_text']")
 	private MobileElement btnClear;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Indices' or contains(@label,'Entrez le')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Indices' or contains(@label,'Entrez le')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Indices']")
 	private MobileElement btnIndices;
 
@@ -104,15 +104,15 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/txt_tradeMutualFund")
 	private MobileElement btnMF;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Options' or contains(@label,'Entrez le')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Options' or contains(@label,'Entrez le')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Options']")
 	private MobileElement btnOption;
 
-	@iOSFindBy(xpath = "//*[@label='Watchlist Button' or contains(@label,'Entrez le')]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Watchlist Button' or contains(@label,'Entrez le')]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
 	private MobileElement symHeader;
 
-	@iOSFindBy(xpath = "//*[@label='ADD TO OR REMOVE FROM WATCHLIST' or @label='RÉSULTATS']")
+	@iOSXCUITFindBy(xpath = "//*[@label='ADD TO OR REMOVE FROM WATCHLIST' or @label='RÉSULTATS']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title' and (@text='Add to or remove from watchlist' or @text='Ajouter ou supprimer de la liste de surveillance' or @text='添加至自选股观察名单或从自选股观察名单中移除' or @text='新增至或從自選股觀察名單中移除')]")
 	private MobileElement lblAddWatchlist;
 
@@ -120,7 +120,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/btn_cancel")
 	private MobileElement BT_CancelHome;
 
-	@iOSFindBy(xpath = "//*[@name='QuickLinkLeftNavButton']/following-sibling::XCUIElementTypeImage[1]")
+	@iOSXCUITFindBy(xpath = "//*[@name='QuickLinkLeftNavButton']/following-sibling::XCUIElementTypeImage[1]")
 	@AndroidFindBy(id = "com.td:id/logo")
 	private MobileElement hdrHome;
 

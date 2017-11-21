@@ -33,7 +33,7 @@ public class MIT_DSH_TermsOfUse extends _CommonPage {
 				this);
 	}
 
-	@iOSFindBy(xpath = "//*[@label='Terms of Use' or contains(@label,'Conditions') or @label='使用条款' or @label='使用條款']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Terms of Use' or contains(@label,'Conditions') or @label='使用条款' or @label='使用條款']")
 	@AndroidFindBy(xpath = "//*[@text='Terms of Use' or contains(@text,'Conditions') or @text='使用条款' or @text='使用條款']")
 	private MobileElement btnTermsofUse;
 
@@ -41,47 +41,47 @@ public class MIT_DSH_TermsOfUse extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Terms of Use' or @text='Conditions d'utilisation' or @text='使用条款' or @text='使用條款') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblTermsofUse;
 
-	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[1]")
+	@iOSXCUITFindBy(xpath = "//*[@name='TDVIEW_TITLE']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[1]")
 	// @AndroidFindBy(xpath = "//*[(@text='Terms of Use' or @text='Conditions
 	// d’utilisation' or @text='使用条款' or @text='使用條款') and
 	// @resource-id='android:id/action_bar_title']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[3]/*[1]")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc='info icon' or @content-desc='icône info']/../*[2]")
 	private MobileElement info;
 
-	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[1]/*[1]")
+	@iOSXCUITFindBy(xpath = "//*[@name='TDVIEW_TITLE']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[1]/*[1]")
 	// @AndroidFindBy(xpath = "//*[(@text='Contact Us' or @text='Contacter nous'
 	// or @text='联系我们' or @text='聯絡我們') and
 	// @resource-id='android:id/action_bar_title']")
 	@AndroidFindBy(id = "com.td:id/financial_service_terms")
 	private MobileElement financial;
 
-	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[2]/*[1]")
+	@iOSXCUITFindBy(xpath = "//*[@name='TDVIEW_TITLE']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[2]/*[1]")
 	// @AndroidFindBy(xpath = "//*[(@text='Contact Us' or @text='Contacter nous'
 	// or @text='联系我们' or @text='聯絡我們') and
 	// @resource-id='android:id/action_bar_title']")
 	@AndroidFindBy(id = "com.td:id/cardholder_efs_terms")
 	private MobileElement cardHolder;
 
-	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[3]/*[1]")
+	@iOSXCUITFindBy(xpath = "//*[@name='TDVIEW_TITLE']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[3]/*[1]")
 	// @AndroidFindBy(xpath = "//*[(@text='Contact Us' or @text='Contacter nous'
 	// or @text='联系我们' or @text='聯絡我們') and
 	// @resource-id='android:id/action_bar_title']")
 	@AndroidFindBy(id = "com.td:id/bas_schedule")
 	private MobileElement business;
 
-	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[4]/*[1]")
+	@iOSXCUITFindBy(xpath = "//*[@name='TDVIEW_TITLE']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[4]/*[1]")
 	// @AndroidFindBy(xpath = "//*[(@text='Contact Us' or @text='Contacter nous'
 	// or @text='联系我们' or @text='聯絡我們') and
 	// @resource-id='android:id/action_bar_title']")
 	@AndroidFindBy(id = "com.td:id/terms_and_ageement")
 	private MobileElement terms;
 
-	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[5]/*[1]")
+	@iOSXCUITFindBy(xpath = "//*[@name='TDVIEW_TITLE']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[5]/*[1]")
 	@AndroidFindBy(xpath = "//*[@text='Disclosure' or @text='Déclaration' or @text='道明投资服务有限公司' or @text='道明投資服務有限公司']")
 	// @AndroidFindBy(id = "com.td:id/cardholder_efs_terms")
 	private MobileElement discloser;
 
-	@iOSFindBy(xpath = "//*[@name='TDVIEW_TITLE']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[5]/*[2]")
+	@iOSXCUITFindBy(xpath = "//*[@name='TDVIEW_TITLE']/../following-sibling::XCUIElementTypeOther[1]/*/*/*/*[5]/*[2]")
 	// @AndroidFindBy(xpath = "//*[(@text='Contact Us' or @text='Contacter nous'
 	// or @text='联系我们' or @text='聯絡我們') and
 	// @resource-id='android:id/action_bar_title']")
@@ -89,7 +89,7 @@ public class MIT_DSH_TermsOfUse extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[contains(@text,'for mutual') or contains(@text,'relative aux') or @text='所持互惠基金账户声明披露' or @text='所持互惠基金賬戶之聲明披露']")
 	private MobileElement mutual;
 
-	@iOSFindBy(accessibility = "NAVIGATION_ITEM_BACK")
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 

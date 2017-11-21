@@ -51,21 +51,21 @@ public class MIT_DSH_DisplaySearchCard extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Search or add symbols' or @text='Rechercher ou ajouter des symboles']")
 	private MobileElement searchBar;
 
-	@iOSFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]") // @Author
-																								// -
-																								// Sushil
-																								// 03-Feb-2017
+	@iOSXCUITFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]") // @Author
+																									// -
+																									// Sushil
+																									// 03-Feb-2017
 	// @iOSFindBy(xpath = "//*[@name='TextField_0']") // @Author - Sushil
 	// 03-Feb-2017
 	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
 	private MobileElement search_symbol;
 
 	// @iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
-	@iOSFindBy(xpath = "//*[@label='Cancel' or contains(@label,'Annuler')]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Cancel' or contains(@label,'Annuler')]")
 	@AndroidFindBy(id = "com.td:id/btn_cancel")
 	MobileElement btnCancel;
 
-	@iOSFindBy(xpath = "//*[@name='QuickLinkLeftNavButton']/following-sibling::XCUIElementTypeImage[1]")
+	@iOSXCUITFindBy(xpath = "//*[@name='QuickLinkLeftNavButton']/following-sibling::XCUIElementTypeImage[1]")
 	@AndroidFindBy(id = "com.td:id/logo")
 	private MobileElement hdrHome;
 

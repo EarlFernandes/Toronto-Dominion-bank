@@ -33,64 +33,65 @@ public class MIT_DSH_Contact_Location extends _CommonPage {
 				this);
 	}
 
-	@iOSFindBy(xpath = "//*[@name='QuickLinkLeftNavButton' or @name='NAVIGATION_ITEM_MENU']")
+	@iOSXCUITFindBy(xpath = "//*[@name='QuickLinkLeftNavButton' or @name='NAVIGATION_ITEM_MENU']")
 	@AndroidFindBy(id = "com.td:id/hamburger")
 	MobileElement BT_Home_HamburgerMenu;
 
-	@iOSFindBy(xpath = "//*[(@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶' or @label='Trade' or contains(@label,'Négociation') or @label='交易' or @label='交易' or @label='My Accounts' or @label='Mes comptes' or @label='我的账户' or @label='我的賬戶') and @name='Label_0']")
+	@iOSXCUITFindBy(xpath = "//*[(@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶' or @label='Trade' or contains(@label,'Négociation') or @label='交易' or @label='交易' or @label='My Accounts' or @label='Mes comptes' or @label='我的账户' or @label='我的賬戶') and @name='Label_0']")
 	@AndroidFindBy(xpath = "//*[(@text='Investing Accounts' or @text='Comptes Placements directs TD' or @text='投资账户' or @text='投資賬戶' or @text='Trade' or contains(@text,'Négociation') or @text='交易' or @text='交易' or @text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	MobileElement InvestingAccount;
 
-	@iOSFindBy(accessibility = "NAVIGATION_ITEM_BACK")
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 
-	@iOSFindBy(xpath = "(//*[@label='Contact Us' or @label='Contactez-nous' or @label='联系我们' or @label='聯絡我們'])[2]")
+	@iOSXCUITFindBy(xpath = "(//*[@label='Contact Us' or @label='Contactez-nous' or @label='联系我们' or @label='聯絡我們'])[2]")
 	@AndroidFindBy(xpath = "//*[@text='Contact Us' or @text='Contactez-nous' or @text='联系我们' or @text='聯絡我們']")
 
 	private MobileElement btnContactUs;
 
-	// @iOSFindBy(xpath = "//*[@label='Contact Us' or @label='Contacter nous' or
+	// @iOSXCUITFindBy(xpath = "//*[@label='Contact Us' or @label='Contacter
+	// nous' or
 	// @label='联系我们' or @label='聯絡我們']")
 	@iOSXCUITFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//*[(@text='Contact Us' or @text='Contactez-nous' or @text='Contacter nous' or @text='联系我们' or @text='聯絡我們') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblContactUs;
 
-	@iOSFindBy(xpath = "//*[@label='Contact Us' or @label='Contactez-nous' or @label='联系我们' or @label='聯絡我們']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Contact Us' or @label='Contactez-nous' or @label='联系我们' or @label='聯絡我們']")
 	@AndroidFindBy(xpath = "//*[(@text='Contact Us' or @text='Contactez-nous' or @text='联系我们' or @text='聯絡我們') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutContactUsLink;
 
 	// @iOSXCUITFindBy(accessibility = "NearestBranchContactUsWidget")///*/*[1]
-	@iOSFindBy(xpath = "//*[@label='Nearest Branch' or @label='Find Locations' or @label='Succursale' or @label='最近的分行' or @label='最近分行']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Nearest Branch' or @label='Find Locations' or @label='Succursale' or @label='最近的分行' or @label='最近分行']")
 	// @AndroidFindBy(xpath = "//*[@text='Nearest Branch' or @text='Find
 	// Locations' or @text='Succursale' or @text='Succursale la plus proche' or
 	// @text='联系我们' or @text='聯絡我們']")
 	@AndroidFindBy(id = "com.td:id/locationText")
 	private MobileElement btnNearestBranch;
 
-	@iOSFindBy(xpath = "//*[@label='Find Locations' or @label='Trouver une succursale' or @label='查找分行' or @label='查找分行']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Find Locations' or @label='Trouver une succursale' or @label='查找分行' or @label='查找分行']")
 	// @AndroidFindBy(xpath = "//*[@text='Find Locations' or @text='Trouver une
 	// succursale' or @text='查找分行' or @text='查找分行']")
 	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement lblFindLocation;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@name,'Filter Locations') or contains(@name,'Filtrer les succursales') or contains(@name,'筛选分行网点') or contains(@name,'篩選分行')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@name,'Filter Locations') or contains(@name,'Filtrer les succursales') or contains(@name,'筛选分行网点') or contains(@name,'篩選分行')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@content-desc='Filter Locations' or @content-desc='Filtrer les succursales' or @content-desc='筛选分行网点' or @content-desc='篩選分行' or @content-desc='篩選分行地點']")
 	private MobileElement btnFilter;
 
-	@iOSFindBy(xpath = "//*[@name='actionSheetDoneButton']/../following-sibling::XCUIElementTypeCell[1]/*[1]")
+	@iOSXCUITFindBy(xpath = "//*[@name='actionSheetDoneButton']/../following-sibling::XCUIElementTypeCell[1]/*[1]")
 	// @iOSFindBy(xpath = "//*[@label='Branches' or @label='Succursales' or
 	// @label='分行' or @label='分行']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/filter_multi_select_row_textview' and (@text='Branches' or @text='Succursales' or @text='Branches' or @text='分行')]")
 	private MobileElement filterOptions1;
 
-	@iOSFindBy(xpath = "//*[@name='actionSheetDoneButton']/../following-sibling::XCUIElementTypeCell[2]/*[1]")
+	@iOSXCUITFindBy(xpath = "//*[@name='actionSheetDoneButton']/../following-sibling::XCUIElementTypeCell[2]/*[1]")
 	// @iOSFindBy(xpath = "//*[@label='ATMs' or @label='GAB' or @label='自动柜员机'
 	// or @label='自動櫃員機']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/filter_multi_select_row_textview' and (@text='ATMs' or @text='GAB' or @text='ATMs' or @text='自動櫃員機')]")
 	private MobileElement filterOptions2;
 
-	@iOSFindBy(xpath = "//*[@name='actionSheetDoneButton']/../following-sibling::XCUIElementTypeCell[3]/*[1]")
+	@iOSXCUITFindBy(xpath = "//*[@name='actionSheetDoneButton']/../following-sibling::XCUIElementTypeCell[3]/*[1]")
 	// @iOSFindBy(xpath = "//*[@label='Investor Centres' or @label='Centres
 	// d’investissement' or @label='道明自管投资服务中心' or @label='道明自管投資服務中心']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/filter_multi_select_row_textview' and (@text='Investor Centres' or @text='Centres dinvestissement' or @text='Investor Centres' or @text='道明自管投資服務中心')]")

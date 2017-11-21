@@ -45,11 +45,11 @@ public class MIT_DSH_ActivityTab extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/hamburger")
 	MobileElement BT_Home_HamburgerMenu;
 
-	@iOSFindBy(xpath = "//*[@label='My Accounts' or @label='Mes comptes' or @label='我的账户' or @label='我的賬戶']")
+	@iOSXCUITFindBy(xpath = "//*[@label='My Accounts' or @label='Mes comptes' or @label='我的账户' or @label='我的賬戶']")
 	@AndroidFindBy(xpath = "//*[@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶']")
 	private MobileElement flyoutMyAccountLink;
 
-	@iOSFindBy(xpath = " //*[contains(@label,'ACCOUNTS') or contains(@label,'COMPTES')]") // @Author
+	@iOSXCUITFindBy(xpath = " //*[contains(@label,'ACCOUNTS') or contains(@label,'COMPTES')]") // @Author
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView']")
 	private MobileElement defaultTradeAccount;
 
@@ -57,7 +57,7 @@ public class MIT_DSH_ActivityTab extends _CommonPage {
 
 	String xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Activity' or contains(@label,'Activité')]") // @Author
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Activity' or contains(@label,'Activité')]") // @Author
 	@AndroidFindBy(id = "com.td:id/activityTab")
 	private MobileElement activityTab;
 

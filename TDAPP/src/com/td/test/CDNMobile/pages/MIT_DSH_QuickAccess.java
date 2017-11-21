@@ -33,19 +33,19 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 				this);
 	}
 
-	@iOSFindBy(xpath = "//*[@name='QuickLinkLeftNavButton' or @name='NAVIGATION_ITEM_MENU']")
+	@iOSXCUITFindBy(xpath = "//*[@name='QuickLinkLeftNavButton' or @name='NAVIGATION_ITEM_MENU']")
 	@AndroidFindBy(id = "com.td:id/hamburger")
 	MobileElement BT_Home_HamburgerMenu;
 
-	@iOSFindBy(xpath = "//*[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶' or @label='Trade' or contains(@label,'Négociation') or @label='交易' or @label='交易']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶' or @label='Trade' or contains(@label,'Négociation') or @label='交易' or @label='交易']")
 	@AndroidFindBy(xpath = "//*[(@text='Investing Accounts' or @text='Comptes Placements directs TD' or @text='投资账户' or @text='投資賬戶' or @label='Trade' or contains(@label,'Négociation') or @label='交易' or @label='交易') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	MobileElement InvestingAccount;
 
-	@iOSFindBy(accessibility = "NAVIGATION_ITEM_BACK")
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 
-	@iOSFindBy(xpath = "//*[@label='Home' or @label='Accueil' or @label='主页' or @label='首頁']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Home' or @label='Accueil' or @label='主页' or @label='首頁']")
 	@AndroidFindBy(xpath = "//*[@text='Home' or @text='Accueil' or @text='主页' or @text='首頁']")
 	private MobileElement flyoutHomeLink;
 
@@ -57,7 +57,7 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/hamburger")
 	MobileElement lblQuickAccessTitle;
 
-	@iOSFindBy(xpath = "//*[@label='Quick Access close' or @label='Accueil' or @label='主页' or @label='首頁']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Quick Access close' or @label='Accueil' or @label='主页' or @label='首頁']")
 	@AndroidFindBy(xpath = "//*[@text='Home' or @text='Accueil' or @text='主页' or @text='首頁']")
 	private MobileElement btnQuickAccessClose;
 
@@ -69,7 +69,7 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 
 	private MobileElement quickaccess_AccountToggleSwitch;
 
-	@iOSFindBy(xpath = "//*[@label='ACCOUNTS' or @label='COMPTES' or @label='账户' or @label='賬戶']")
+	@iOSXCUITFindBy(xpath = "//*[@label='ACCOUNTS' or @label='COMPTES' or @label='账户' or @label='賬戶']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title_text']")
 	private MobileElement indiviual_accounts;
 
@@ -77,47 +77,47 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/hamburger")
 	MobileElement QuickAccessTitle;
 
-	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres' or @label='个人资料和设置' or @label='個人資料和設定']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres' or @label='个人资料和设置' or @label='個人資料和設定']")
 	@AndroidFindBy(xpath = "//*[@text='Profile & Settings' or @text='Profil et paramètres' or @text='个人资料和设置' or @text='個人資料和設定']")
 	private MobileElement flyoutProfileSettings;
 
-	@iOSFindBy(xpath = "//*[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶' or @label='Trade' or contains(@label,'Négociation') or @label='交易' or @label='交易']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶' or @label='Trade' or contains(@label,'Négociation') or @label='交易' or @label='交易']")
 	@AndroidFindBy(xpath = "//*[(@text='Investing Accounts' or @text='Comptes Placements directs TD' or @text='投资账户' or @text='投資賬戶' or @label='Trade' or contains(@label,'Négociation') or @label='交易' or @label='交易') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutInvestingAccountsLink;
 
-	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres' or @label='个人资料和设置' or @label='個人資料和設定']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres' or @label='个人资料和设置' or @label='個人資料和設定']")
 	@AndroidFindBy(xpath = "//*[@text='Profile & Settings' or @text='Profil et paramètres' or @text='个人资料和设置' or @text='個人資料和設定']")
 	private MobileElement lblProfileSettings;
 
-	@iOSFindBy(xpath = "//*[@label='Quick Access Settings' or @label='Paramètres Accès rapide' or @label='特快结余查询' or @label='特快結餘查詢設定']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Quick Access Settings' or @label='Paramètres Accès rapide' or @label='特快结余查询' or @label='特快結餘查詢設定']")
 	@AndroidFindBy(xpath = "//*[@text='Quick Access Settings' or @text='Paramètres Accès rapide' or @text='特快结余查询' or @text='特快結餘查詢設定']")
 	private MobileElement QuickAccessSettingsNav;
 
-	@iOSFindBy(xpath = "(//*[contains(@label,'US MARGIN') or contains(@label,'CDN MARGIN') or contains(@label,'CDN MARGIN SHORT') or contains(@label,'US MARGIN SHORT') or contains(@label,'CANADIAN MARGIN') or contains(@label,'MARGE EN $CDN') or contains(@label,'MARGE EN $US')])[1]")
+	@iOSXCUITFindBy(xpath = "(//*[contains(@label,'US MARGIN') or contains(@label,'CDN MARGIN') or contains(@label,'CDN MARGIN SHORT') or contains(@label,'US MARGIN SHORT') or contains(@label,'CANADIAN MARGIN') or contains(@label,'MARGE EN $CDN') or contains(@label,'MARGE EN $US')])[1]")
 	@AndroidFindBy(xpath = "(//*[contains(@text,'Quick Access Settings') or contains(@text,'Paramètres Accès rapide') or contains(@text,'特快结余查询') or contains(@text,'特快結餘查詢')])[1]")
 	private MobileElement QuickAccessUserInvestment;
 
-	@iOSFindBy(xpath = "(//*[contains(@label,'CHEQUING ACCOUNT') or contains(@label,'Paramètres Accès rapide')])[1]")
+	@iOSXCUITFindBy(xpath = "(//*[contains(@label,'CHEQUING ACCOUNT') or contains(@label,'Paramètres Accès rapide')])[1]")
 	@AndroidFindBy(xpath = "(//*[contains(@text,'Quick Access Settings') or contains(@text,'Paramètres Accès rapide') or contains(@text,'特快结余查询') or contains(@text,'特快結餘查詢')])[1]")
 	private MobileElement QuickAccessUserChequing;
 
-	@iOSFindBy(xpath = "(//*[contains(@label,'CREDIT CARD') or contains(@label,'Paramètres Accès rapide')])[1]")
+	@iOSXCUITFindBy(xpath = "(//*[contains(@label,'CREDIT CARD') or contains(@label,'Paramètres Accès rapide')])[1]")
 	@AndroidFindBy(xpath = "(//*[contains(@text,'Quick Access Settings') or contains(@text,'Paramètres Accès rapide') or contains(@text,'特快结余查询') or contains(@text,'特快結餘查詢')])[1]")
 	private MobileElement QuickAccessUserCreditCard;
 
-	@iOSFindBy(xpath = "(//*[contains(@label,'LINE OF CREDIT') or contains(@label,'LIGNE DE CREDIT')])[1]")
+	@iOSXCUITFindBy(xpath = "(//*[contains(@label,'LINE OF CREDIT') or contains(@label,'LIGNE DE CREDIT')])[1]")
 	@AndroidFindBy(xpath = "(//*[contains(@text,'Quick Access Settings') or contains(@text,'Paramètres Accès rapide') or contains(@text,'特快结余查询') or contains(@text,'特快結餘查詢')])[1]")
 	private MobileElement QuickAccessUserLineOfCredit;
 
-	@iOSFindBy(xpath = "(//*[contains(@label,'SAVINGS ACCOUNT') or contains(@label,'Paramètres Accès rapide')])[1]")
+	@iOSXCUITFindBy(xpath = "(//*[contains(@label,'SAVINGS ACCOUNT') or contains(@label,'Paramètres Accès rapide')])[1]")
 	@AndroidFindBy(xpath = "(//*[contains(@text,'SAVINGS ACCOUNT') or contains(@text,'Paramètres Accès rapide') or contains(@text,'特快结余查询') or contains(@text,'特快結餘查詢')])[1]")
 	private MobileElement QuickAccessUserSavingAccount;
 
-	@iOSFindBy(xpath = "(//*[contains(@label,'BUSINESS - CHEQUING') or contains(@label,'COMPTE-CHEQUES')])[1]")
+	@iOSXCUITFindBy(xpath = "(//*[contains(@label,'BUSINESS - CHEQUING') or contains(@label,'COMPTE-CHEQUES')])[1]")
 	@AndroidFindBy(xpath = "(//*[contains(@text,'SAVINGS ACCOUNT') or contains(@text,'Paramètres Accès rapide') or contains(@text,'特快结余查询') or contains(@text,'特快結餘查詢')])[1]")
 	private MobileElement QuickAccessUserSmallBusiness;
 
-	@iOSFindBy(xpath = "(//*[contains(@label,'US DOLLAR CARD') or contains(@label,'Paramètres Accès rapide')])[1]")
+	@iOSXCUITFindBy(xpath = "(//*[contains(@label,'US DOLLAR CARD') or contains(@label,'Paramètres Accès rapide')])[1]")
 	@AndroidFindBy(xpath = "(//*[contains(@text,'SAVINGS ACCOUNT') or contains(@text,'Paramètres Accès rapide') or contains(@text,'特快结余查询') or contains(@text,'特快結餘查詢')])[1]")
 	private MobileElement QuickAccessUserUSAccount;
 

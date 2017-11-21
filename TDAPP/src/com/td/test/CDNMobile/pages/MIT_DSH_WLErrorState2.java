@@ -41,7 +41,7 @@ public class MIT_DSH_WLErrorState2 extends _CommonPage {
 				this);
 	}
 
-	@iOSFindBy(xpath = "(//*[@label='TRADE' or @label='NÉGOCIATION' or @label='交易' or @label='交易'])[2]")
+	@iOSXCUITFindBy(xpath = "(//*[@label='TRADE' or @label='NÉGOCIATION' or @label='交易' or @label='交易'])[2]")
 	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation' or @text='交易' or @text='交易']")
 	private MobileElement QL_TRADE;
 
