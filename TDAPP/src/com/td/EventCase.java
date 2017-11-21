@@ -1129,7 +1129,7 @@ public class EventCase {
 			break;
 
 		case Flyout_Location:
-			HomeScreen.get().flyoutMenu_Locations();
+			MenuPage.get().clickFindLocations();
 			break;
 
 		case Accounts_EW_WB_Functionality:
