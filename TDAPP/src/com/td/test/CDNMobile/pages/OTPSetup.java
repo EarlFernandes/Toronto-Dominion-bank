@@ -608,12 +608,15 @@ public class OTPSetup extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClickDone(); // hide iOS keyboard
+			} else {
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.FuncHideKeyboard();
 			}
 
 		} catch (Exception e) {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
-			mobileAction.switchAppiumContext("NATIVE_APP");
+			//mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 	}
 
