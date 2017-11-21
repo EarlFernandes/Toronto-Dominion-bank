@@ -3579,17 +3579,19 @@ public class MobileAction2 extends CommonLib {
 			sleep(3000); // WebView needs time to load
 			String lastContextView = (String) contextNames.toArray()[contextNames.size() - 1];
 			System.out.println(contextNames);
+			System.out.println(((WebDriver) GetDriver()).getPageSource());
 
 			if (lastContextView.contains("WEBVIEW")) {
 				System.out.println("Before Webview Switch: " + lastContextView);
 				if (lastContextView.contains("com.td")) {
 					((AppiumDriver) GetDriver()).context(lastContextView);
-				} else if(lastContextView.contains("_R") || lastContextView.contains("_S")) {
+				} else if (lastContextView.contains("_R") || lastContextView.contains("_S")) {
 					((AppiumDriver) GetDriver()).context("WEBVIEW_R");
 				}
 				sleep(5000); // WebView needs time to load
 				System.out.println("After Webview Switch");
-				System.out.println(((WebDriver) GetDriver()).getPageSource());
+				// System.out.println(((WebDriver)
+				// GetDriver()).getPageSource());
 
 			} else {
 				System.out.println("No Webview found");
@@ -3597,7 +3599,7 @@ public class MobileAction2 extends CommonLib {
 
 		} catch (Exception e) {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} 
+		}
 
 	}
 }

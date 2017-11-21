@@ -352,14 +352,12 @@ public class OTPSetup extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.sleep(5000); 	//Webview needs time to load
 				mobileAction.switchToWebView();
 				mobileAction.FuncClickWithActions(editPhoneField, "Edit Phone Number");
 				editPhoneField.sendKeys(phoneNumber);
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
-				mobileAction.sleep(2000);
 
 				mobileAction.switchToWebView();
 				mobileAction.FuncClickWithActions(editNicknameField, "Edit Nickname");
@@ -367,7 +365,6 @@ public class OTPSetup extends _CommonPage {
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
-				mobileAction.sleep(2000);
 
 				mobileAction.switchToWebView();
 				mobileAction.FuncScrollIntoView(addPhoneButton, "Add Phone button");
@@ -396,7 +393,7 @@ public class OTPSetup extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
-			//mobileAction.switchAppiumContext("NATIVE_APP");
+			mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 	}
 
@@ -461,7 +458,7 @@ public class OTPSetup extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
-			//mobileAction.switchAppiumContext("NATIVE_APP");
+			mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 	}
 
@@ -492,7 +489,6 @@ public class OTPSetup extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.sleep(5000); // WebView needs time to load
 				mobileAction.switchToWebView();
 			}
 
@@ -507,7 +503,7 @@ public class OTPSetup extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
-			//mobileAction.switchAppiumContext("NATIVE_APP");
+			mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 	}
 
@@ -515,7 +511,6 @@ public class OTPSetup extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.sleep(5000 ); 		//Webview needs time to load
 				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(getCodeButton, "Get Code Button");
@@ -530,7 +525,7 @@ public class OTPSetup extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
-			//mobileAction.switchAppiumContext("NATIVE_APP");
+			mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 	}
 
@@ -544,7 +539,6 @@ public class OTPSetup extends _CommonPage {
 			}
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.sleep(5000); 	//Webview needs time to load
 				mobileAction.switchToWebView();
 			}
 
@@ -558,7 +552,6 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.FuncHideKeyboard();
 			}
 
-
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -568,7 +561,7 @@ public class OTPSetup extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
-			//mobileAction.switchAppiumContext("NATIVE_APP");
+			mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 	}
 
@@ -625,7 +618,7 @@ public class OTPSetup extends _CommonPage {
 		} catch (Exception e) {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
-			//mobileAction.switchAppiumContext("NATIVE_APP");
+			mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 	}
 
@@ -684,7 +677,6 @@ public class OTPSetup extends _CommonPage {
 			String email = getTestdata("EmailProfile");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.sleep(5000);
 				mobileAction.switchToWebView();
 				mobileAction.FuncClick(securityEmailField, "Enter Security Email");
 				mobileAction.FuncSendKeys(securityEmailField, email);
@@ -719,7 +711,7 @@ public class OTPSetup extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
-			//mobileAction.switchAppiumContext("NATIVE_APP");
+			// mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 	}
 
@@ -823,7 +815,7 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.FuncClick(passwordGoButton, "Password GO button");
 			}
 
-			mobileAction.sleep(5000);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1131,7 +1123,6 @@ public class OTPSetup extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.sleep(3000);
 				mobileAction.switchToWebView();
 			}
 
@@ -1164,7 +1155,7 @@ public class OTPSetup extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
-			//mobileAction.switchAppiumContext("NATIVE_APP");
+			mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 	}
 
@@ -1172,7 +1163,6 @@ public class OTPSetup extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.sleep(5000);
 				mobileAction.switchToWebView();
 			}
 			mobileAction.verifyElementIsDisplayed(securityCodeFrequencyRadioButton1,
