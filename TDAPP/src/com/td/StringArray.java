@@ -342,6 +342,19 @@ public final class StringArray {
 			"Confidentialité, sécurité et avis juridique", "隐私、安全与法律声明", "私隱政策、安全性和法律聲明" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_TRADE = { "Trade", "Négociation", "交易", "交易" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_LOGOUT = { "Logout", "Fermer la session", "退出", "登出" };
+
+	public static final String[] ARRAY_DASHBOARD_REFRESHCARDCONTENT = { "Refresh Card Content", "Fermer la session",
+			"退出", "登出" };
+	public static final String[] ARRAY_DASHBOARD_UPDATEQUOTES = { "Update the quotes for your symbols",
+			"Mettre à jour les cotes associées à vos symboles", "更新股票代码的报价", "更新股票代號的報價" };
+	public static final String[] ARRAY_DASHBOARD_EDITWATCHLIST = { "Edit watchlist",
+			"Modifier la liste de surveillance", "编辑自选股观察名单", "編輯自選股觀察名單" };
+	public static final String[] ARRAY_DASHBOARD_MANAGERENAME = { "Manage, rename, and add or remove symbols",
+			"Gérer, renommer, ajouter ou supprimer des symboles", "管理、重命名、添加或移除股票代码", "管理、重新命名、新增或移除股票代號" };
+	public static final String[] ARRAY_DASHBOARD_SETTINGS = { "Settings", "Paramètres", "设置", "設定" };
+	public static final String[] ARRAY_DASHBOARD_SWITCHBETWEEN = { "Switch between a banking or investing view",
+			"Passer de l’affichage bancaire à l’affichage de placements", "切换理财或投资视图", "切換理財或投資視圖" };
+
 	// MIT Dashboard END
 
 	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE_ANSWER = { "Yes", "Oui", "是", "是" };

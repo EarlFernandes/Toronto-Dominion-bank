@@ -43,7 +43,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_HamburgerMenu;
-	
+
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
@@ -371,8 +371,9 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
 				mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+			} else {
+				mobileAction.FuncClick(BT_Back, "< Button");
 			}
-			mobileAction.FuncClick(BT_Back, "< Button");
 
 		} catch (Exception e) {
 			e.printStackTrace();
