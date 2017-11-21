@@ -265,7 +265,7 @@ public class Investing extends _CommonPage {
 	private MobileElement account_balance;
 
 	@iOSFindBy(xpath = "//*[@name='TD_ACCOUNT_FOOTER_VIEW_LABEL']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/canadianDollarNote']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tradingFeeDisclaimer']")
 	private MobileElement usd_disclaimer_foot;
 
 	@iOSFindBy(xpath = "//*[@name='FUND_BALANCE_MARKET_VALUE']/../XCUIElementTypeStaticText[2]")
