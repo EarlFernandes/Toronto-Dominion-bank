@@ -200,7 +200,6 @@ public final class StringArray {
 			"Veuillez entrer des chiffres seulement", "请仅输入数字", "請僅輸入數字" };
 	public static final String[] ARRAY_OTP_SETUP_EXPIRED_PASSCODE = { "This code has expired", "Ce code a expiré",
 			"此代码已失效", "此驗證碼已失效" };
-
 	public static final String[] ARRAY_OTP_SETUP_SECURITY_EMAIL_HEADER = {
 			"Please provide an email address to get security alerts",
 			"Veuillez fournir une adresse courriel pour recevoir les alertes de sécurité", "请提供一个用户接收安全信息的电子邮件邮箱地址",

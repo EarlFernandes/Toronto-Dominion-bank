@@ -358,6 +358,7 @@ public class OTPSetup extends _CommonPage {
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
+				mobileAction.sleep(2000);
 
 				mobileAction.switchToWebView();
 				mobileAction.FuncClickWithActions(editNicknameField, "Edit Nickname");
@@ -365,6 +366,7 @@ public class OTPSetup extends _CommonPage {
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
+				mobileAction.sleep(2000);
 
 				mobileAction.switchToWebView();
 				mobileAction.FuncScrollIntoView(addPhoneButton, "Add Phone button");
@@ -587,6 +589,7 @@ public class OTPSetup extends _CommonPage {
 			}
 
 			clickSubmitCodeButton();
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
@@ -630,12 +633,18 @@ public class OTPSetup extends _CommonPage {
 			// after
 			// 2min of inactivity
 			for (int i = 0; i < 4; i++) {
-				enterIncorrectSecurityCode();
+				if (i == 0) {
+					enterIncorrectSecurityCode();
+				} else {
+					clickSubmitCodeButton();
+				}
+
 				mobileAction.sleep(1000 * 60);
 			}
 
 			// Passcode expires after 5mins, enter incorrect passcode after 300s
-			enterIncorrectSecurityCode();
+			clickSubmitCodeButton();
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1075,6 +1084,7 @@ public class OTPSetup extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
+				mobileAction.sleep(3000);
 			}
 
 			mobileAction.verifyElementIsDisplayed(expiredSecurityCodeMsg, "Expired security message");

@@ -423,7 +423,7 @@ public class OTPUpdate extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
-				mobileAction.sleep(3000);
+				mobileAction.sleep(3000); // Webview needs time to load
 				mobileAction.FuncScrollIntoView(changeEmailUpdateButton, "Change Email Button");
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FunctionSwipe("up", 100, 0);
@@ -481,7 +481,7 @@ public class OTPUpdate extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
-				mobileAction.sleep(3000);
+				mobileAction.sleep(3000); // Webview needs time to load
 				mobileAction.FuncScrollIntoView(changeLoginOptionUpdateButton, "Change Login Option Button");
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FunctionSwipe("up", 100, 0);
@@ -943,7 +943,6 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.sleep(3000);
 				mobileAction.switchToWebView();
 			}
 
@@ -1040,7 +1039,7 @@ public class OTPUpdate extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
-				mobileAction.sleep(3000);
+				mobileAction.sleep(3000); // Webview needs time to load
 				mobileAction.FuncScrollIntoView(changeEmailUpdateButton, "Security Email field");
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FunctionSwipe("up", 100, 0);
