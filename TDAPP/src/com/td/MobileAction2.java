@@ -3582,7 +3582,7 @@ public class MobileAction2 extends CommonLib {
 			System.out.println("Before Webview Switch: " + lastContextView);
 			if (lastContextView.contains("WEBVIEW_com.td")) {
 				((AppiumDriver) GetDriver()).context(lastContextView);
-			} else if (lastContextView.contains("WEBVIEW_")) {
+			} else if (lastContextView.contains("WEBVIEW_R") || lastContextView.contains("WEBVIEW_S")) {
 				((AppiumDriver) GetDriver()).context("WEBVIEW_R");
 			} else {
 				System.out.println("No Webview found");

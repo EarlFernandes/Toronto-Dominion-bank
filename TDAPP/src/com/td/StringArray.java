@@ -232,8 +232,8 @@ public final class StringArray {
 	public static final String[] ARRAY_OTP_UPDATE_CHANGE_EMAIL_HEADER = { "Security Email",
 			"L’adresse courriel de sécurité", "安全信息邮箱", "安全性資訊收件箱" };
 
-	public static final String[] ARRAY_OTP_UPDATE_COMPLETE_HEADER = { "Security Setup Complete",
-			"Configuration de sécurité terminée", "安全设置完成", "安全設定完成" };
+	public static final String[] ARRAY_OTP_UPDATE_COMPLETE_HEADER = { "Setup Complete", "Configuration terminée",
+			"设置完成", "設定完成" };
 
 	public static final String[] ARRAY_MY_ACCOUNTS_BANKING_HEADER = { "BANKING", "SERVICES BANCAIRES", "理财", "理財" };
 

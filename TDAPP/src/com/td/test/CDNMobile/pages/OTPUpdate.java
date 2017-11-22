@@ -529,6 +529,7 @@ public class OTPUpdate extends _CommonPage {
 				mobileAction.FuncClick(confirmButton, "Email Confirm button");
 
 			}
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -877,6 +878,7 @@ public class OTPUpdate extends _CommonPage {
 				securityCodeVerifedField = mobileAction.verifyElementUsingXPath(xpath, "Verified text");
 			}
 
+			mobileAction.sleep(2000); // Wait for Verified text to appear
 			mobileAction.verifyElementIsDisplayed(securityCodeVerifedField, "Security Code Verified field");
 			mobileAction.verifyElementTextContains(securityCodeVerifedField,
 					getTextInCurrentLocale(StringArray.ARRAY_OTP_SETUP_PASSCODE_VERIFIED));

@@ -629,7 +629,7 @@ public class OTPSetup extends _CommonPage {
 			// Enter incorrect passcode every 60s to prevent session expiration
 			// after
 			// 2min of inactivity
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < 4; i++) {
 				enterIncorrectSecurityCode();
 				mobileAction.sleep(1000 * 60);
 			}
