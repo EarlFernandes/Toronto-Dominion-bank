@@ -372,7 +372,7 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.sleep(2000);
 
 				mobileAction.switchToWebView();
-				mobileAction.FuncScrollIntoView(addPhoneButton, "Add Phone button");
+				//mobileAction.FuncScrollIntoView(addPhoneButton, "Add Phone button");
 				mobileAction.FuncClick(addPhoneButton, "Add Phone button");
 
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
