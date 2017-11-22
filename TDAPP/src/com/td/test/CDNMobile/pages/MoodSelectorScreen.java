@@ -56,7 +56,7 @@ public class MoodSelectorScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.android.vending:id/question_text' or @resource-id='com.android.vending:id/user_display_name']")
 	private MobileElement google_play_rate_text;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton")
+	@iOSFindBy(xpath = "//XCUIElementTypeImage[@name='feedback_background']/../XCUIElementTypeButton")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/go_home_btn']")
 	private MobileElement go_back_home_btn;
 

@@ -18,9 +18,13 @@ public class HomeScreen extends _CommonPage {
 
 	private static HomeScreen HomeScreen;
 
-	@iOSFindBy(xpath = "//*[@name='NavRowsWidgetTableViewCell_0_1']/*[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單'] | //*[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單']")
+	@iOSFindBy(xpath = "//*[@name='NavRowsWidgetTableViewCell_0_1']/*[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單']")
 	@AndroidFindBy(xpath = "//*[@text='Bills' or @text='Factures' or @text='账单' or @text='賬單']")
 	private MobileElement bills;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單']")
+	@AndroidFindBy(xpath = "//*[@text='Bills' or @text='Factures' or @text='账单' or @text='賬單']")
+	private MobileElement bills_182;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@value='Open a Bank Account']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Open a Bank Account']")
@@ -30,11 +34,15 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Accounts' or @text='Comptes' or @text='汇款' or @text='匯款']")
 	private MobileElement my_accounts;
 
-	@iOSFindBy(xpath = "//*[@name='NavRowsWidgetTableViewCell_0_0']/*[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬'] | //*[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬'] ")
+	@iOSFindBy(xpath = "//*[@name='NavRowsWidgetTableViewCell_0_0']/*[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬']")
 	@AndroidFindBy(xpath = "//*[@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬']")
 	private MobileElement transfers;
 
-	@iOSFindBy(xpath = "//*[@name='NavRowsWidgetTableViewCell_0_1']/*[@label='Markets' or @label='Marchés' or @label='市场' or @label='市場'] | //*[@label='Markets' or @label='Marchés' or @label='市场' or @label='市場'] ")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬']")
+	@AndroidFindBy(xpath = "//*[@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬']")
+	private MobileElement transfers_182;
+
+	@iOSFindBy(xpath = "//*[@name='NavRowsWidgetTableViewCell_0_1']/*[@label='Markets' or @label='Marchés' or @label='市场' or @label='市場']")
 	@AndroidFindBy(xpath = "//*[@text='Markets' or @text='Marchés' or @text='市场' or @text='市場']")
 	private MobileElement markets;
 
@@ -105,9 +113,9 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mpay_dashboard' and @text='PAY NOW']")
 	private MobileElement pay_now_button;
 
-	@iOSFindBy(accessibility = "HomeView")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @index='0']")
-	private MobileElement home_bar;
+	@iOSFindBy(xpath = "//*[@name='NAVIGATION_ITEM_QUICK_ACCESS' or @name='QuickLinkRightNavButton']")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']")
+	private MobileElement home_bar;  //use quickaccess button to verify homepage
 
 	@iOSFindBy(xpath = "//*[@label='Contact Us' or @label='Contacter nous' or @label='联系我们' or @label='聯絡我們']")
 	@AndroidFindBy(xpath = "//*[@text='Contact Us' or @text='Contacter nous' or @text='联系我们' or @text='聯絡我們']")
@@ -155,7 +163,11 @@ public class HomeScreen extends _CommonPage {
 
 		try {
 			Decorator();
-			mobileAction.FuncClick(bills, "Bills");
+			if (mobileAction.verifyElementIsPresent(bills)) {
+				mobileAction.FuncClick(bills, "Bills");
+			} else {
+				mobileAction.FuncClick(bills_182, "Bills");
+			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -405,7 +417,12 @@ public class HomeScreen extends _CommonPage {
 	public void clickTransfers() {
 		try {
 			Decorator();
-			mobileAction.FuncClick(transfers, "Transfers");
+			if (mobileAction.verifyElementIsPresent(transfers)) {
+				mobileAction.FuncClick(transfers, "Transfers");
+			} else {
+				mobileAction.FuncClick(transfers_182, "Transfers");
+			}
+
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
