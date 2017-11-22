@@ -324,13 +324,13 @@ public class OTPSetup extends _CommonPage {
 				if (i > 0) {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 						mobileAction.switchToWebView();
+						mobileAction.sleep(3000);
 						mobileAction.FuncScrollIntoView(addAnotherPhoneButton, "Add Another Phone Button");
 					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 						mobileAction.FunctionSwipe("up", 100, 0);
 					}
 
 					mobileAction.FuncClick(addAnotherPhoneButton, "Add Another Phone Button");
-					mobileAction.sleep(5000); // Wait for page to fully load
 				}
 				addPhoneNumber(phoneNumber, nickname);
 			}
@@ -372,7 +372,6 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.sleep(2000);
 
 				mobileAction.switchToWebView();
-				//mobileAction.FuncScrollIntoView(addPhoneButton, "Add Phone button");
 				mobileAction.FuncClick(addPhoneButton, "Add Phone button");
 
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
