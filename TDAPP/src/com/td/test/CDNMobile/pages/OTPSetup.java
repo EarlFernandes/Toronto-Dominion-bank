@@ -330,6 +330,7 @@ public class OTPSetup extends _CommonPage {
 					}
 
 					mobileAction.FuncClick(addAnotherPhoneButton, "Add Another Phone Button");
+					mobileAction.sleep(5000); // Wait for page to fully load
 				}
 				addPhoneNumber(phoneNumber, nickname);
 			}
@@ -358,7 +359,6 @@ public class OTPSetup extends _CommonPage {
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
-				mobileAction.sleep(2000);
 
 				mobileAction.switchToWebView();
 				mobileAction.FuncClickWithActions(editNicknameField, "Edit Nickname");
@@ -366,7 +366,6 @@ public class OTPSetup extends _CommonPage {
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
-				mobileAction.sleep(2000);
 
 				mobileAction.switchToWebView();
 				mobileAction.FuncScrollIntoView(addPhoneButton, "Add Phone button");
