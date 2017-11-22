@@ -446,6 +446,7 @@ public class Login extends _CommonPage {
 		} else if (screenheader.getText()
 				.contains(getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_SECURITY_SETTINGS))) {
 			// OTP Update page
+			System.out.println("OTP Update page");
 			return false;
 		} else if (mobileAction.verifyElementIsPresent(otpWelcomeImageExisting)) {
 			// OTP Existing Customer Welcome page
