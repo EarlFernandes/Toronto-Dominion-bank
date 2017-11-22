@@ -205,7 +205,7 @@ public class OTPUpdate extends _CommonPage {
 	private WebElement submitCodeButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[5]/XCUIElementTypeStaticText[1]")
-	@FindBy(xpath = "//div[@id='phone_0']//span[@ng-if='!!phone.verified'][2]")
+	@FindBy(xpath = "(//div[@id='phone_0']//span[@ng-if='!!phone.verified'])[2]")
 	private WebElement securityCodeVerifedField;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
