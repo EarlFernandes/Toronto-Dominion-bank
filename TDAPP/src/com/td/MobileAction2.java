@@ -3576,26 +3576,19 @@ public class MobileAction2 extends CommonLib {
 	public void switchToWebView() {
 		try {
 			Set<String> contextNames = ((AppiumDriver) GetDriver()).getContextHandles();
-			sleep(3000); // WebView needs time to load
 			String lastContextView = (String) contextNames.toArray()[contextNames.size() - 1];
 			System.out.println(contextNames);
-			System.out.println(((WebDriver) GetDriver()).getPageSource());
 
-			if (lastContextView.contains("WEBVIEW")) {
-				System.out.println("Before Webview Switch: " + lastContextView);
-				if (lastContextView.contains("com.td")) {
-					((AppiumDriver) GetDriver()).context(lastContextView);
-				} else if (lastContextView.contains("_R") || lastContextView.contains("_S")) {
-					((AppiumDriver) GetDriver()).context("WEBVIEW_R");
-				}
-				sleep(5000); // WebView needs time to load
-				System.out.println("After Webview Switch");
-				// System.out.println(((WebDriver)
-				// GetDriver()).getPageSource());
-
+			System.out.println("Before Webview Switch: " + lastContextView);
+			if (lastContextView.contains("WEBVIEW_com.td")) {
+				((AppiumDriver) GetDriver()).context(lastContextView);
+			} else if (lastContextView.contains("WEBVIEW_")) {
+				((AppiumDriver) GetDriver()).context("WEBVIEW_R");
 			} else {
 				System.out.println("No Webview found");
 			}
+			sleep(5000); // WebView needs time to load
+			System.out.println("After Webview Switch");
 
 		} catch (Exception e) {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
