@@ -3576,6 +3576,7 @@ public class MobileAction2 extends CommonLib {
 	public void switchToWebView() {
 		try {
 			Set<String> contextNames = ((AppiumDriver) GetDriver()).getContextHandles();
+			sleep(5000); // WebView needs time to load
 			String lastContextView = (String) contextNames.toArray()[contextNames.size() - 1];
 			System.out.println(contextNames);
 
