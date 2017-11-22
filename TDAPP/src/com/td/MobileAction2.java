@@ -1630,14 +1630,11 @@ public class MobileAction2 extends CommonLib {
 		try {
 			int count = 0;
 			boolean isElementDisplayed = verifyElementIsPresent(elementToVanish);
-			while (isElementDisplayed) {
-
+			while (isElementDisplayed && count <= 45) {
+				System.out.println("Progress bar :" + isElementDisplayed);
 				if (isElementDisplayed) {
 					sleep(1000);
 					count++;
-				}
-				if (count >= 45) {
-					break;
 				}
 				isElementDisplayed = verifyElementIsPresent(elementToVanish);
 			}
@@ -3578,7 +3575,7 @@ public class MobileAction2 extends CommonLib {
 	public void switchToWebView() {
 		try {
 			Set<String> contextNames = ((AppiumDriver) GetDriver()).getContextHandles();
-			sleep(5000); // WebView needs time to load
+			sleep(3000); // WebView needs time to load
 			String lastContextView = (String) contextNames.toArray()[contextNames.size() - 1];
 			System.out.println(contextNames);
 

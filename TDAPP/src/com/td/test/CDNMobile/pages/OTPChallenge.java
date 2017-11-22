@@ -346,7 +346,6 @@ public class OTPChallenge extends _CommonPage {
 			options.addArguments("disable-notifications");
 			options.addArguments("disable-infobars");
 			options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-			System.setProperty("webdriver.chrome.driver", "C:\\Automation\\Tools\\Browser_drivers\\chromedriver.exe");
 			WebDriver driver = new ChromeDriver(options);
 			driver.get(GOOGLE_VOICE_URL);
 
