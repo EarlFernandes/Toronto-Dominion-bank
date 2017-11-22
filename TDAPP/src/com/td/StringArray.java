@@ -343,8 +343,7 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_TRADE = { "Trade", "Négociation", "交易", "交易" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_LOGOUT = { "Logout", "Fermer la session", "退出", "登出" };
 
-	public static final String[] ARRAY_DASHBOARD_REFRESHCARDCONTENT = { "Refresh Card Content", "Fermer la session",
-			"退出", "登出" };
+	public static final String[] ARRAY_DASHBOARD_REFRESH = { "Refresh", "Rafraîchir", "刷新", "刷新" };
 	public static final String[] ARRAY_DASHBOARD_UPDATEQUOTES = { "Update the quotes for your symbols",
 			"Mettre à jour les cotes associées à vos symboles", "更新股票代码的报价", "更新股票代號的報價" };
 	public static final String[] ARRAY_DASHBOARD_EDITWATCHLIST = { "Edit watchlist",

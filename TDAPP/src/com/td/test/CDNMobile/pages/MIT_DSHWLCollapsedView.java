@@ -70,28 +70,36 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 	private MobileElement LBL_ManageRename;
 
 	@iOSXCUITFindBy(xpath = "//*[@label='More' or @label='Plus' or @label='显示更多' or @label='顯示更多']")
-	@AndroidFindBy(xpath = "(//*[@resource-id='com.td:id/iv_item_more_option'])[2]")
+	@AndroidFindBy(xpath = "(//*[@resource-id='com.td:id/iv_item_more_option'])[3]")
 	private MobileElement BT_Settings;
 
 	@iOSXCUITFindBy(xpath = "//*[@label='More' or @label='Plus' or @label='显示更多' or @label='顯示更多']")
-	@AndroidFindBy(xpath = "(//*[@resource-id='com.td:id/tv_item_more_option_name'])[2]")
+	@AndroidFindBy(xpath = "(//*[@resource-id='com.td:id/tv_item_more_option_name'])[3]")
 	private MobileElement LBL_Settings;
 
 	@iOSXCUITFindBy(xpath = "//*[@label='More' or @label='Plus' or @label='显示更多' or @label='顯示更多']")
-	@AndroidFindBy(xpath = "(//*[@resource-id='com.td:id/tv_item_more_option_desp'])[2]")
+	@AndroidFindBy(xpath = "(//*[@resource-id='com.td:id/tv_item_more_option_desp'])[3]")
 	private MobileElement LBL_SwitchBetween;
 
 	@iOSXCUITFindBy(xpath = "//*[@label='Edit watchlist' or @label='Modifier la liste de surveillance' or @label='编辑自选股观察名单' or @label='編輯自選股觀察名單']")
 	@AndroidFindBy(xpath = "//*[@text='Edit watchlist' or @text='Modifier la liste de surveillance' or @text='编辑自选股观察名单' or @text='編輯自選股觀察名單']")
 	private MobileElement HDR_EditWatchlist;
-	
+
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
-	
+
 	@iOSFindBy(xpath = "//*[@label='Home Screen Settings' or @label='Paramètres de l’écran d’accueil' or @label='主屏幕设置' or @label='主屏幕設置']")
 	@AndroidFindBy(xpath = "//*[@text='Home Screen Settings' or @text='Paramètres de l’écran d’accueil' or @text='主屏幕设置' or @text='主屏幕設置']")
 	private MobileElement LBL_HomeScreenSettings;
+
+	@iOSXCUITFindBy(xpath = "//*[@label='Search or add symbols' or @label='Rechercher ou ajouter des symboles' or @label='搜索或添加股票代码' or @label='搜尋或添加股票代號']")
+	@AndroidFindBy(xpath = "//*[@text='Search or add symbols' or @text='Rechercher ou ajouter des symboles' or @text='搜索或添加股票代码' or @text='搜尋或添加股票代號']")
+	private MobileElement LBL_Searchoraddsymbols;
+	
+	@iOSXCUITFindBy(accessibility = "alert_ok_button")
+	@AndroidFindBy(id = "android:id/button1")
+	private MobileElement BT_AlertAgree;
 
 	public void verifyWLCollapsedViewUI() {
 		Decorator();
@@ -102,9 +110,11 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 			mobileAction.FuncSwipeOnce("up");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				if (CL.GetAppiumDriver().findElements(By.id("com.td:id/tv_item_watchlist_name")).size() <= 3) {
+				if (CL.GetAppiumDriver().findElements(By.id("com.td:id/tv_item_watchlist_name")).size() == 3) {
 					CL.GetReporting().FuncReport(PASS, "Max 3 symbols are displayed in watchlist collapsed view.");
-				} else
+				} else if (CL.GetAppiumDriver().findElements(By.id("com.td:id/tv_item_watchlist_name")).size() < 3)
+					CL.GetReporting().FuncReport(FAIL, "Less than 3 symbols,Correct Test Data.");
+				else
 					CL.GetReporting().FuncReport(FAIL, "Max 3 symbols are allowed in watchlist collapsed view.");
 
 			} else {
@@ -116,21 +126,28 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 			mobileAction.FuncClick(BT_MoreOptions, "More Options button");
 
 			mobileAction.FuncVerifyTextEquals(LBL_RefreshCardContent,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_REFRESHCARDCONTENT));
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_REFRESH));
 
 			mobileAction.FuncVerifyTextEquals(LBL_UpdateQuotes,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_UPDATEQUOTES));
-
-			mobileAction.FuncVerifyTextEquals(LBL_RefreshCardContent,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_REFRESHCARDCONTENT));
 
 			mobileAction.FuncVerifyTextEquals(LBL_EditWatchlist,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_EDITWATCHLIST));
 
 			mobileAction.FuncVerifyTextEquals(LBL_ManageRename,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_MANAGERENAME));
+
 			mobileAction.FuncVerifyTextEquals(LBL_Settings,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SETTINGS));
+
+			mobileAction.FuncVerifyTextEquals(LBL_SwitchBetween,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_SWITCHBETWEEN));
+
+			mobileAction.FuncClick(BT_Refresh, "Refresh Button");
+
+			mobileAction.FuncClick(BT_More, "More button");
+
+			mobileAction.verifyElementIsDisplayed(LBL_Searchoraddsymbols, "More button");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -147,20 +164,58 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 			mobileAction.FuncClick(BT_MoreOptions, "More Options button");
 
 			mobileAction.FuncClick(BT_EditWatchlist, "More Options button");
-			
+
 			mobileAction.FuncVerifyTextEquals(LBL_EditWatchlist,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_EDITWATCHLIST));
-			
+
 			mobileAction.FuncClick(BT_Back, "< Button");
-			
+
 			mobileAction.FuncClick(BT_Back, "< Button");
-			
+
 			mobileAction.FuncClick(BT_MoreOptions, "More Options button");
 
 			mobileAction.FuncClick(BT_Settings, "More Options button");
-			
+
 			mobileAction.FuncVerifyTextEquals(LBL_HomeScreenSettings,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_HOMESCREENSETTINGS));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void verifyBuySellWLCollapsedView() {
+		Decorator();
+		try {
+			/*
+			 * String sCurrentWatchlist = "Auto1";
+			 * 
+			 * String xpathWatchlistItem = "//*[@text='" + sCurrentWatchlist +
+			 * "' or @label='" + sCurrentWatchlist + "']";
+			 * 
+			 * mobileAction.FuncClick(LT_Watchlist, "Watchlist Dropdown");
+			 * 
+			 * mobileAction.FuncSwipeWhileElementNotFoundByxpath(
+			 * xpathWatchlistItem, false, 10, "up");
+			 */
+
+			String sSymbol = getTestdata("Symbol", XLSheetUserIDs);
+
+			MIT_DSHWLPopulateData.get().clickWLSymbolBuyButton(sSymbol);
+
+			MIT_DSHWLPopulateData.get().verifyStockOrderEntryScreen(sSymbol, "Buy");
+
+			mobileAction.FuncClick(BT_Back, "< Button");
+
+			mobileAction.FuncClick(BT_AlertAgree, "Agree Button");
+			
+			MIT_DSHWLPopulateData.get().clickWLSymbolSellButton(sSymbol);
+
+			MIT_DSHWLPopulateData.get().verifyStockOrderEntryScreen(sSymbol, "Sell");
+
+			mobileAction.FuncClick(BT_Back, "< Button");
+
+			mobileAction.FuncClick(BT_AlertAgree, "Agree Button");			
 
 		} catch (Exception e) {
 			e.printStackTrace();
