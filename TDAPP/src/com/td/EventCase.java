@@ -2391,7 +2391,7 @@ public class EventCase {
 		case ClickGreatLink:
 			MoodSelectorScreen.get().ClickGreatLink();
 			break;
-
+			
 		case VerifyPostSurveyScreen:
 			MoodSelectorScreen.get().VerifyPostSurveyScreen();
 			break;

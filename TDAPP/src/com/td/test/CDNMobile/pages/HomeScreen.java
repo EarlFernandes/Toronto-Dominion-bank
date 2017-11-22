@@ -18,7 +18,7 @@ public class HomeScreen extends _CommonPage {
 
 	private static HomeScreen HomeScreen;
 
-	@iOSFindBy(xpath = "//*[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單']")
+	@iOSFindBy(xpath = "//*[@name='NavRowsWidgetTableViewCell_0_1']/*[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單'] | //*[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單']")
 	@AndroidFindBy(xpath = "//*[@text='Bills' or @text='Factures' or @text='账单' or @text='賬單']")
 	private MobileElement bills;
 
@@ -30,11 +30,11 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Accounts' or @text='Comptes' or @text='汇款' or @text='匯款']")
 	private MobileElement my_accounts;
 
-	@iOSFindBy(xpath = "//*[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬']")
+	@iOSFindBy(xpath = "//*[@name='NavRowsWidgetTableViewCell_0_0']/*[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬'] | //*[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬'] ")
 	@AndroidFindBy(xpath = "//*[@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬']")
 	private MobileElement transfers;
 
-	@iOSFindBy(xpath = "//*[@label='Markets' or @label='Marchés' or @label='市场' or @label='市場']")
+	@iOSFindBy(xpath = "//*[@name='NavRowsWidgetTableViewCell_0_1']/*[@label='Markets' or @label='Marchés' or @label='市场' or @label='市場'] | //*[@label='Markets' or @label='Marchés' or @label='市场' or @label='市場'] ")
 	@AndroidFindBy(xpath = "//*[@text='Markets' or @text='Marchés' or @text='市场' or @text='市場']")
 	private MobileElement markets;
 
@@ -42,7 +42,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='TRANSFER' or @text='VIREMENT' or @text='转账' or @text='轉賬']")
 	private MobileElement transfer_button_dashboard;
 
-	@iOSFindBy(xpath = "//*[@name='NAVIGATION_ITEM_QUICK_ACCESS' or @namwe='QuickLinkRightNavButton']")
+	@iOSFindBy(xpath = "//*[@name='NAVIGATION_ITEM_QUICK_ACCESS' or @name='QuickLinkRightNavButton']")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']")
 	private MobileElement quickAccess;
 
