@@ -112,7 +112,7 @@ public class OTPUpdate extends _CommonPage {
 	@FindBy(xpath = "//div[contains(@ng-click,'test-phone')]")
 	private WebElement testPhoneUpdateButton;
 
-	@FindBy(xpath = "//div/a[@ng-click='pd.testPhone(phone)']")
+	@FindBy(xpath = "//div/a[contains(@ng-click,'pd.testPhone')]")
 	private WebElement verifyNumberButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeStaticText[1]")
