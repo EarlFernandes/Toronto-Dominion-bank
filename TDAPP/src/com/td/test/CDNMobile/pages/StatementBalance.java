@@ -35,15 +35,15 @@ public class StatementBalance extends _CommonPage {
 	private MobileElement payWithRewardsBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(id = "TBD")
+	@AndroidFindBy(id = "com.td:id/current_balance")
 	private MobileElement statementBalanceValue;
 
 	@iOSXCUITFindBy(accessibility = "RVB_DETAIL_HEADER_DATE")
-	@AndroidFindBy(id = "TBD")
+	@AndroidFindBy(id = "com.td:id/statement_balance_title")
 	private MobileElement statementDateRange;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")
-	@AndroidFindBy(id = "com.td:id/btn_pay")
+	@AndroidFindBy(xpath = "(//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button'])[1]")
 	private MobileElement statementPayButton;
 
 	public synchronized static StatementBalance get() {
@@ -203,6 +203,9 @@ public class StatementBalance extends _CommonPage {
 		try {
 
 			String ptsBalance = getTestdata("Amount");
+			if (ptsBalance.length() == 0) {
+				ptsBalance = "0";
+			}
 			boolean hasPayWithRewards = mobileAction.verifyElementIsPresent(payWithRewardsBtn);
 
 			if (!ptsBalance.contains("$")) {

@@ -281,7 +281,7 @@ public class EventCase {
 		PayWithRewards_EnterRedemptionAmount,
 
 		// Quick Access
-		QuickAccessSettings_ToggleSpecificAccount, QuickAccessPage_VerifyNoAccounts, QuickAccessPage_VerifyTDPoints, QuickAccessPage_VerifyEligibleTDPoints, QuickAccessPage_VerifyIneligibleTDPoints, QuickAccessPage_VerifyAccountVisibility, QuickAccessSettings_VerifyAccountExists, QuickAccessSettings_VerifyNoAccount, QuickAccessSettings_TestSecondUser,
+		QuickAccessSettings_ToggleSpecificAccount, QuickAccessPage_VerifyTDPoints, QuickAccessPage_VerifyEligibleTDPoints, QuickAccessPage_VerifyIneligibleTDPoints, QuickAccessPage_VerifyAccountVisibility, QuickAccessSettings_VerifyAccountExists, QuickAccessSettings_VerifyNoAccount, QuickAccessSettings_TestSecondUser,
 
 		// Receipt
 		Receipt_VerifyTransferReceipt, Receipt_GoBackHome, Receipt_MakeAnotherTransfer, Receipt_VerifyBillReceipt, Receipt_ScheduledPayments, Receipt_VerifyUSBillReceipt, Receipt_VerifyCancelledBillReceipt, Receipt_VerifyReceiptBanner, Receipt_VerifyPayWithRewardsReceipt, Credit_VerifyTDPointsBalanceUpdated,
@@ -4308,10 +4308,6 @@ public class EventCase {
 
 		case QuickAccessSettings_TestSecondUser:
 			QuickAccessSettings.get().testSecondUser();
-			break;
-
-		case QuickAccessPage_VerifyNoAccounts:
-			QuickAccessPage.get().verifyNoAccounts();
 			break;
 
 		case QuickAccessPage_VerifyTDPoints:

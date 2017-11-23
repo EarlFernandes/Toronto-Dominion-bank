@@ -23,31 +23,31 @@ public class Review extends _CommonPage {
 	private MobileElement reviewHeader;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[1]")
-	@AndroidFindBy(xpath = "//android.widget.Button[TBD]")
+	@AndroidFindBy(id = "com.td:id/btn_cancel")
 	private MobileElement cancelBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[2]")
-	@AndroidFindBy(xpath = "//android.widget.Button[TBD]")
+	@AndroidFindBy(id = "com.td:id/btn_continue")
 	private MobileElement payNowBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
-	@AndroidFindBy(xpath = "//android.widget.Button[TBD]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/item_row_value_main'])[1]")
 	private MobileElement fromAcctValue;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
-	@AndroidFindBy(xpath = "//android.widget.Button[TBD]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/item_row_value_main'])[2]")
 	private MobileElement toCardName;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[3]")
-	@AndroidFindBy(xpath = "//android.widget.Button[TBD]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/item_row_subvalue'])[1]")
 	private MobileElement toCardNum;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[2]")
-	@AndroidFindBy(xpath = "//android.widget.Button[TBD]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/item_row_value_main'])[3]")
 	private MobileElement amtValue;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeStaticText[2]")
-	@AndroidFindBy(xpath = "//android.widget.Button[TBD]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/item_row_value_main'])[4]")
 	private MobileElement dateValue;
 
 	public synchronized static Review get() {

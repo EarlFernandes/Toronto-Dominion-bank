@@ -29,23 +29,19 @@ public class Rewards extends _CommonPage {
 	private MobileElement rewardsHeader;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "TBD")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/textview_action_title'])[1]")
 	private MobileElement txtVisitTD;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeOther[3]/XCUIElementTypeButton[1]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
+	@AndroidFindBy(id = "android:id/button1")
 	private MobileElement visitTDContinue;
 
 	@iOSXCUITFindBy(accessibility = "URL")
-	@AndroidFindBy(xpath = "TBD")
+	@AndroidFindBy(id = "com.android.chrome:id/url_bar")
 	private MobileElement visitTDUrl;
 
-	@FindBy(xpath = "//*[contains(@value,'‎tdrewards.com')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Rewards']")
-	private WebElement urlName;
-
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "TBD")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/textview_action_title'])[2]")
 	private MobileElement txtpayWithRewards;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[2]")

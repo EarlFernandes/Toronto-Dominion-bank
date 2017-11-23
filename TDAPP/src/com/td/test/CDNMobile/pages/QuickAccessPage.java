@@ -49,10 +49,6 @@ public class QuickAccessPage extends _CommonPage {
 
 	By iosRewardstxt = By.xpath("//XCUIElementTypeStaticText[@label='Cash Back Dollars']");
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']") // TBD
-	@AndroidFindBy(id = "com.td:id/easy_access_visit")
-	private MobileElement visitSettingsText;
-
 	public synchronized static QuickAccessPage get() {
 		if (QuickAccessPage == null) {
 			QuickAccessPage = new QuickAccessPage();
@@ -197,26 +193,6 @@ public class QuickAccessPage extends _CommonPage {
 		}
 	}
 
-	public void verifyNoAccounts() {
-		Decorator();
-		try {
-
-			mobileAction.verifyElementIsDisplayed(visitSettingsText, "Visit Settings text");
-			mobileAction.verifyElementTextContains(visitSettingsText,
-					getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_VISIT_SETTINGS));
-
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-			}
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		}
-
-	}
-
 	public void verifyTDRewardsPoints() {
 		Decorator();
 		try {
@@ -259,8 +235,14 @@ public class QuickAccessPage extends _CommonPage {
 
 			MobileElement rewardsPtsFound = mobileAction.swipeAndSearchByxpath(xpath, false, 10, "up");
 			if (rewardsPtsFound != null) {
-				String tdPointsXpath = xpath
-						+ "/following-sibling::XCUIElementTypeStaticText/following-sibling::XCUIElementTypeStaticText";
+				String tdPointsXpath = "";
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+					tdPointsXpath = xpath
+							+ "/following-sibling::XCUIElementTypeStaticText/following-sibling::XCUIElementTypeStaticText";
+				} else {
+					tdPointsXpath = xpath
+							+ "/following-sibling::android.widget.TextView/following-sibling::android.widget.TextView";
+				}
 				MobileElement tdPoints = mobileAction.verifyElementUsingXPath(tdPointsXpath, "TD Points element");
 				mobileAction.verifyElementIsDisplayed(tdPoints, "TD Points element");
 				mobileAction.verifyElementTextContains(tdPoints, getTextInCurrentLocale(StringArray.ARRAY_TD_POINTS));
@@ -294,8 +276,14 @@ public class QuickAccessPage extends _CommonPage {
 
 			MobileElement rewardsPtsFound = mobileAction.swipeAndSearchByxpath(xpath, false, 10, "up");
 			if (rewardsPtsFound != null) {
-				String tdPointsXpath = xpath
-						+ "/following-sibling::XCUIElementTypeStaticText/following-sibling::XCUIElementTypeStaticText";
+				String tdPointsXpath = "";
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+					tdPointsXpath = xpath
+							+ "/following-sibling::XCUIElementTypeStaticText/following-sibling::XCUIElementTypeStaticText";
+				} else {
+					tdPointsXpath = xpath
+							+ "/following-sibling::android.widget.TextView/following-sibling::android.widget.TextView";
+				}
 
 				boolean hasTDPoints = mobileAction.verifyElementIsPresentByXpath(tdPointsXpath);
 				if (!hasTDPoints) {

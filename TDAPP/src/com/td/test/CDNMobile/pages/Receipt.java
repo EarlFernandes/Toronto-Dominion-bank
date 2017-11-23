@@ -153,7 +153,7 @@ public class Receipt extends _CommonPage {
 	private MobileElement bannerImage;
 
 	@iOSXCUITFindBy(accessibility = "RECEIPTHEADER_CONFIRM")
-	@AndroidFindBy(id = "TBD")
+	@AndroidFindBy(id = "com.td:id/comfirmation_val")
 	private MobileElement cnfrDetailRewards;
 
 	public synchronized static Receipt get() {

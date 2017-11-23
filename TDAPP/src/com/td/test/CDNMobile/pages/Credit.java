@@ -26,11 +26,11 @@ public class Credit extends _CommonPage {
 	private MobileElement creditHeader;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCollectionView[1]/XCUIElementTypeCell[1]")
-	@AndroidFindBy(id = "TBD")
+	@AndroidFindBy(xpath = "(//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button'])[1]")
 	private MobileElement payBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCollectionView[1]/XCUIElementTypeCell[3]")
-	@AndroidFindBy(xpath = "TBD")
+	@AndroidFindBy(xpath = "(//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button'])[2]")
 	private MobileElement rewardBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]//XCUIElementTypeButton[3]")
@@ -73,24 +73,24 @@ public class Credit extends _CommonPage {
 	By iosVerifyLang = By.xpath("//XCUIElementTypeStaticText[contains(@label,'Dollars')]");
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
-	@AndroidFindBy(id = "TBD")
+	@AndroidFindBy(id = "com.td:id/last_statement")
 	private MobileElement latestStatementDetail;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[3]")
-	@AndroidFindBy(id = "TBD")
+	@AndroidFindBy(id = "com.td:id/account_rewards_balance")
 	private MobileElement tdPointsBalance;
 
 	@iOSXCUITFindBy(accessibility = "RVB_STATEMENT_CELL_TITLE0")
-	@AndroidFindBy(id = "TBD")
-	private MobileElement statementTile1;
+	@AndroidFindBy(id = "com.td:id/last_statement")
+	private MobileElement statementTitle1;
 
 	@iOSXCUITFindBy(accessibility = "RVB_STATEMENT_CELL_TITLE3")
-	@AndroidFindBy(id = "TBD")
-	private MobileElement statementTile2;
+	@AndroidFindBy(id = "com.td:id/two_statements_ago")
+	private MobileElement statementTitle2;
 
 	@iOSXCUITFindBy(accessibility = "RVB_STATEMENT_CELL_TITLE4")
-	@AndroidFindBy(id = "TBD")
-	private MobileElement statementTile3;
+	@AndroidFindBy(id = "com.td:id/three_statements_ago")
+	private MobileElement statementTitle3;
 
 	public synchronized static Credit get() {
 		if (Credit == null) {
@@ -552,9 +552,12 @@ public class Credit extends _CommonPage {
 	public void verifyLastThreeStatements() {
 		Decorator();
 		try {
-			mobileAction.verifyElementIsDisplayed(statementTile1, "1st Statement");
-			mobileAction.verifyElementIsDisplayed(statementTile2, "2nd Statement");
-			mobileAction.verifyElementIsDisplayed(statementTile3, "3rd Statement");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.FunctionSwipe("up", 2000, 0);
+			}
+			mobileAction.verifyElementIsDisplayed(statementTitle1, "1st Statement");
+			mobileAction.verifyElementIsDisplayed(statementTitle2, "2nd Statement");
+			mobileAction.verifyElementIsDisplayed(statementTitle3, "3rd Statement");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
