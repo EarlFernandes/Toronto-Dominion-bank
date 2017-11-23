@@ -289,7 +289,7 @@ public class Profile_And_Settings extends _CommonPage {
 						"//XCUIElementTypeStaticText[@label='" + labelText + "']", "Security Settings");
 			}
 			mobileAction.FuncClick(securitySettings, "Security Setttings Button");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

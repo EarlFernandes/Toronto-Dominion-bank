@@ -213,6 +213,7 @@ public class OTPChallenge extends _CommonPage {
 			}
 
 			clickSubmitCodeButton();
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());

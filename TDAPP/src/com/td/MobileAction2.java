@@ -3474,8 +3474,7 @@ public class MobileAction2 extends CommonLib {
 	 * @throws IOException
 	 * @throws NoSuchElementException
 	 */
-	public void FuncScrollIntoView(WebElement objElement, String text)
-			throws InterruptedException, IOException, NoSuchElementException {
+	public void FuncScrollIntoView(WebElement objElement, String text) {
 		try {
 			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.visibilityOf(objElement));
@@ -3483,12 +3482,8 @@ public class MobileAction2 extends CommonLib {
 			((JavascriptExecutor) GetDriver()).executeScript("arguments[0].scrollIntoView(true);", objElement);
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> is scrolled into view");
 		} catch (Exception e) {
-			try {
-				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> is not scrolled into view");
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			throw e;
+			System.out.println(
+					"Exception from FuncScrollIntoView Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

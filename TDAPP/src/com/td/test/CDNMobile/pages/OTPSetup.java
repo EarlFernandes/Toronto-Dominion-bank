@@ -253,7 +253,7 @@ public class OTPSetup extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(agreeButton, "AGREE/Accept button");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -324,7 +324,7 @@ public class OTPSetup extends _CommonPage {
 				if (i > 0) {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 						mobileAction.switchToWebView();
-						mobileAction.sleep(3000);
+						mobileAction.sleep(3000); // Webview needs time to load
 						mobileAction.FuncScrollIntoView(addAnotherPhoneButton, "Add Another Phone Button");
 					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 						mobileAction.FunctionSwipe("up", 100, 0);
