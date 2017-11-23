@@ -3572,6 +3572,7 @@ public class MobileAction2 extends CommonLib {
 				elementFound = verifyElementUsingXPath(xpath, "Swipe and found element");
 
 				if (clickYorN) {
+					sleep(2000);
 					FuncClick(elementFound, sEleName);
 				}
 				GetReporting().FuncReport("Pass", "Swiped " + direction + " till element found. Swipes: " + count

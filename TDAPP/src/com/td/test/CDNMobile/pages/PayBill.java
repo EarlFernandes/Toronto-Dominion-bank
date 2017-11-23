@@ -98,7 +98,6 @@ public class PayBill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='2']//android.widget.TextView[@index='0']")
 	private MobileElement firstUSAcct;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "TBD")
 	private MobileElement payWithRewards;
 
@@ -436,6 +435,8 @@ public class PayBill extends _CommonPage {
 
 			} else {
 				toAccountXpath = "//XCUIElementTypeStaticText[contains(@label,'" + toAccount + "')]";
+				payWithRewards = mobileAction.mobileElementUsingXPath("//XCUIElementTypeStaticText[contains(@label,'"
+						+ getTextInCurrentLocale(StringArray.ARRAY_REWARDS_PAY_WITH_REWARDS) + "')]");
 			}
 			mobileAction.FuncClick(to_account_post, "Select Payee field");
 			mobileAction.swipeAndSearchByxpath(toAccountXpath, true, 10, "Up");

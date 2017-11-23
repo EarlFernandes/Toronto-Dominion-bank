@@ -84,7 +84,8 @@ public class Receipt extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/to_account_bal")
 	private MobileElement ToAccountValue;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[2] | "
+			+ "//XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/amount_val")
 	private MobileElement amountValue;
 
