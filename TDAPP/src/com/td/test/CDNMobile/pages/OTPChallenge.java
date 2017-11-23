@@ -103,6 +103,7 @@ public class OTPChallenge extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
+				mobileAction.sleep(5000);
 			}
 			mobileAction.FuncClick(textOption, "Text option");
 

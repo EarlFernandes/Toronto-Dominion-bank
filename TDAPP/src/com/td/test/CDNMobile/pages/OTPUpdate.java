@@ -429,6 +429,8 @@ public class OTPUpdate extends _CommonPage {
 				mobileAction.FunctionSwipe("up", 100, 0);
 
 			}
+
+			mobileAction.sleep(3000);
 			mobileAction.FuncClick(changeEmailUpdateButton, "Change Email Button");
 
 		} catch (Exception e) {

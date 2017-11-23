@@ -259,14 +259,18 @@ public class Profile_And_Settings extends _CommonPage {
 						"New Security Setup");
 			}
 			mobileAction.FuncClick(newSecuritySetup, "New Security Setup Button");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			mobileAction.waitProgressBarVanish();
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				String labelText = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_SET_UP_NOW);
-				setUpNow = mobileAction.verifyElementUsingXPath("//*[@label='" + labelText + "']", "Set Up Now");
-			}
-			mobileAction.FuncClick(setUpNow, "Set Up Now Button");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			/*
+			 * if
+			 * (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
+			 * "iOS")) { String labelText =
+			 * getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_SET_UP_NOW);
+			 * setUpNow = mobileAction.verifyElementUsingXPath("//*[@label='" +
+			 * labelText + "']", "Set Up Now"); }
+			 * mobileAction.FuncClick(setUpNow, "Set Up Now Button");
+			 * mobileAction.waitProgressBarVanish();
+			 */
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
