@@ -151,6 +151,10 @@ public class Receipt extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.webkit.WebView/android.view.View/android.view.View")
 	private MobileElement bannerImage;
 
+	@iOSXCUITFindBy(accessibility = "RECEIPTHEADER_CONFIRM")
+	@AndroidFindBy(id = "TBD")
+	private MobileElement cnfrDetailRewards;
+
 	public synchronized static Receipt get() {
 		if (Receipt == null) {
 			Receipt = new Receipt();
@@ -685,6 +689,32 @@ public class Receipt extends _CommonPage {
 			} else {
 				mobileAction.GetReporting().FuncReport("Pass", "No receipt banner in this device");
 			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyPayWithRewardsReceipt() {
+		Decorator();
+		try {
+			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
+			mobileAction.verifyElementIsDisplayed(pageHeader, "Receipt Header");
+			mobileAction.verifyElementTextContains(pageHeader,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
+
+			mobileAction.verifyElementIsDisplayed(cnfrDetailRewards, "Confirm Details");
+			mobileAction.verifyElementIsDisplayed(fromAccountValue, "From Account Value");
+			mobileAction.verifyElementIsDisplayed(payeeValue, "Payee Value");
+			mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
+			mobileAction.verifyElementIsDisplayed(dateValue, "Date Value");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

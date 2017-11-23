@@ -1147,7 +1147,7 @@ public class Accounts extends _CommonPage {
 			}
 
 			mobileAction.swipeAndSearchByxpath(acctXpath, true, 30, "Up");
-			mobileAction.verifyElementIsPresent(PageHeader.get().getProgressBar());
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

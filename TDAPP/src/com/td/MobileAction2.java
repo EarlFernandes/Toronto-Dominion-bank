@@ -1629,10 +1629,14 @@ public class MobileAction2 extends CommonLib {
 	 */
 	public void waitForElementToVanish(MobileElement elementToVanish) {
 		try {
+			int count = 0;
 			boolean isElementDisplayed = verifyElementIsPresent(elementToVanish);
 			while (isElementDisplayed) {
 				if (isElementDisplayed) {
 					sleep(1000);
+					count++;
+				} else if (count >= 45) {
+					break;
 				}
 				isElementDisplayed = verifyElementIsPresent(elementToVanish);
 			}

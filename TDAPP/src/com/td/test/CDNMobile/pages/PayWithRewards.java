@@ -289,6 +289,12 @@ public class PayWithRewards extends _CommonPage {
 			String amt = "25";
 			mobileAction.FuncClick(amountValue, "Amount");
 			mobileAction.FuncSendKeys(amountValue, amt);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.FuncClickDone(); // hide iOS keyboard
+			} else {
+				mobileAction.FuncHideKeyboard();
+			}
+
 			mobileAction.FuncClick(continueBtn, "Continue");
 			mobileAction.sleep(5000);
 

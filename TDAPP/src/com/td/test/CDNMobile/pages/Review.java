@@ -114,6 +114,7 @@ public class Review extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(payNowBtn, "Pay Now Button");
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -123,7 +124,6 @@ public class Review extends _CommonPage {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} finally {
 		}
 	}
 
@@ -142,7 +142,7 @@ public class Review extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(cancelBtn, "Cancel button");
 			mobileAction.verifyElementIsDisplayed(payNowBtn, "Pay Now button");
 
-			mobileAction.sleep(5000);
+			mobileAction.sleep(2000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -152,7 +152,6 @@ public class Review extends _CommonPage {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} finally {
 		}
 	}
 

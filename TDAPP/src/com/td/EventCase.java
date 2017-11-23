@@ -260,7 +260,7 @@ public class EventCase {
 		PayBill_Canada_Button, PayBill_US_Button,
 
 		// Credit
-		Credit_GetTDPointsBalance, Credit_ClickLatestStatement, Credit_ClickPay, Credit_VerifyNoTDPointsBalance, Credit_TestSecondCard,
+		Credit_GetTDPointsBalance, Credit_ClickLatestStatement, Credit_ClickPay, Credit_VerifyNoTDPointsBalance, Credit_TestSecondCard, Credit_VerifyTDRewardsDollarsBalanceUpdated, Credit_VerifyTDRewardsPointsBalanceUpdated, Credit_VerifyLastThreeStatements,
 
 		// Login
 		Login_VerifyUserNotRemembered, Login_LoginUsingAccessCardNumber, Login_LoginUsingAlias, Login_DeleteAllRememberedIDs, Login_VerifyAllRememberedIDsDeleted, Login_VerifyRememberedIDs, Login_VerifyLoginMFA, Login_CloseApp,
@@ -275,16 +275,16 @@ public class EventCase {
 		PageHeader_ClickBackButton, PageHeader_GoHome,
 
 		// Pay Bill
-		PayBill_PayBill, PayBill_PayFutureBill, PayBill_PayUSBill, PayBill_VerifyNoPayWithRewardsLink, PayBill_VerifyPayWithRewardsLink,
+		PayBill_PayBill, PayBill_PayFutureBill, PayBill_PayUSBill, PayBill_VerifyNoPayWithRewardsLink, PayBill_VerifyPayWithRewardsLink, PayBill_VerifyPayBillScreen,
 
 		// Pay With Rewards
 		PayWithRewards_EnterRedemptionAmount,
 
 		// Quick Access
-		QuickAccessSettings_ToggleSpecificAccount, QuickAccessPage_VerifyNoAccounts, QuickAccessPage_VerifyTDPoints, QuickAccessPage_VerifyEligibleTDPoints, QuickAccessPage_VerifyIneligibleTDPoints, QuickAccessPage_VerifyAccountVisibility,
+		QuickAccessSettings_ToggleSpecificAccount, QuickAccessPage_VerifyNoAccounts, QuickAccessPage_VerifyTDPoints, QuickAccessPage_VerifyEligibleTDPoints, QuickAccessPage_VerifyIneligibleTDPoints, QuickAccessPage_VerifyAccountVisibility, QuickAccessSettings_VerifyAccountExists, QuickAccessSettings_VerifyNoAccount, QuickAccessSettings_TestSecondUser,
 
 		// Receipt
-		Receipt_VerifyTransferReceipt, Receipt_GoBackHome, Receipt_MakeAnotherTransfer, Receipt_VerifyBillReceipt, Receipt_ScheduledPayments, Receipt_VerifyUSBillReceipt, Receipt_VerifyCancelledBillReceipt, Receipt_VerifyReceiptBanner,
+		Receipt_VerifyTransferReceipt, Receipt_GoBackHome, Receipt_MakeAnotherTransfer, Receipt_VerifyBillReceipt, Receipt_ScheduledPayments, Receipt_VerifyUSBillReceipt, Receipt_VerifyCancelledBillReceipt, Receipt_VerifyReceiptBanner, Receipt_VerifyPayWithRewardsReceipt, Credit_VerifyTDPointsBalanceUpdated,
 
 		// Rewards
 		Rewards_VerifyVisitTDRewards, Rewards_VerifyPayWithRewards, Rewards_ClickVisitTDRewards, Rewards_VerifyTDRewardsURL, Rewards_ClickPayWithRewards,
@@ -1835,10 +1835,6 @@ public class EventCase {
 
 		case AccountsCredit_VeifyStatementDetails:
 			Accounts_Credit.get().verifyStatementDetails();
-			break;
-
-		case StatementBalance_VerifyBalanceDetails:
-			StatementBalance.get().verifyStatementBalanceDetails();
 			break;
 
 		case Bill_PayCanada_verifyCurrentBalance:
@@ -4167,6 +4163,18 @@ public class EventCase {
 			Credit.get().testSecondCard();
 			break;
 
+		case Credit_VerifyTDRewardsDollarsBalanceUpdated:
+			Credit.get().verifyTDRewardsDollarsBalanceUpdated();
+			break;
+
+		case Credit_VerifyTDRewardsPointsBalanceUpdated:
+			Credit.get().verifyTDRewardsPointsBalanceUpdated();
+			break;
+
+		case Credit_VerifyLastThreeStatements:
+			Credit.get().verifyLastThreeStatements();
+			break;
+
 		// HomeScreen
 		case HomeScreen_Transfer_Button:
 			HomeScreen.get().clickDashboardTransfers();
@@ -4276,6 +4284,10 @@ public class EventCase {
 			PayBill.get().verifyPayWithRewardsLink();
 			break;
 
+		case PayBill_VerifyPayBillScreen:
+			PayBill.get().verifyPayBillScreen();
+			break;
+
 		// Pay With Rewards
 		case PayWithRewards_EnterRedemptionAmount:
 			PayWithRewards.get().enterRedemptionAmount();
@@ -4284,6 +4296,18 @@ public class EventCase {
 		// Quick Access
 		case QuickAccessSettings_ToggleSpecificAccount:
 			QuickAccessSettings.get().toggleSpecificAccount();
+			break;
+
+		case QuickAccessSettings_VerifyAccountExists:
+			QuickAccessSettings.get().verifyAccountExists();
+			break;
+
+		case QuickAccessSettings_VerifyNoAccount:
+			QuickAccessSettings.get().verifyNoAccount();
+			break;
+
+		case QuickAccessSettings_TestSecondUser:
+			QuickAccessSettings.get().testSecondUser();
 			break;
 
 		case QuickAccessPage_VerifyNoAccounts:
@@ -4347,6 +4371,10 @@ public class EventCase {
 			Receipt.get().verifyReceiptBanner();
 			break;
 
+		case Receipt_VerifyPayWithRewardsReceipt:
+			Receipt.get().verifyPayWithRewardsReceipt();
+			break;
+
 		// Rewards
 		case Rewards_VerifyVisitTDRewards:
 			Rewards.get().verifyVisitTDRewards();
@@ -4393,6 +4421,10 @@ public class EventCase {
 		// Statement Balance
 		case StatementBalance_VerifyPayWithRewardEligibility:
 			StatementBalance.get().verifyPayWithRewardEligibility();
+			break;
+
+		case StatementBalance_VerifyBalanceDetails:
+			StatementBalance.get().verifyStatementBalanceDetails();
 			break;
 
 		// Trade

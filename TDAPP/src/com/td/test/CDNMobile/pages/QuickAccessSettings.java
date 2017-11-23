@@ -266,4 +266,84 @@ public class QuickAccessSettings extends _CommonPage {
 		}
 	}
 
+	public void verifyAccountExists() {
+
+		Decorator();
+		try {
+			String card = getTestdata("ToAccount");
+			String xpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+				xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'" + card + "')]";
+			} else {
+				xpath = "//android.widget.TextView[contains(@text,'" + card + "')]";
+			}
+
+			MobileElement accountFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
+			if (accountFound != null) {
+				mobileAction.GetReporting().FuncReport("Pass", "Specified account exists: " + card);
+			} else {
+				mobileAction.GetReporting().FuncReport("Fail", "Cannot find specified account: " + card);
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void verifyNoAccount() {
+
+		Decorator();
+		try {
+			String card = getTestdata("ToAccount");
+			String xpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+				xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'" + card + "')]";
+			} else {
+				xpath = "//android.widget.TextView[contains(@text,'" + card + "')]";
+			}
+
+			MobileElement accountFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
+			if (accountFound == null) {
+				mobileAction.GetReporting().FuncReport("Pass", "Specified account exists: " + card);
+			} else {
+				mobileAction.GetReporting().FuncReport("Fail", "Cannot find specified account: " + card);
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void testSecondUser() {
+		Decorator();
+		try {
+
+			String alias = getTestdata("Transfers");
+			// Save 2nd ConnectID to UserID column for use in next Login
+			CL.getTestDataInstance().TCParameters.put("UserID", alias);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
 }

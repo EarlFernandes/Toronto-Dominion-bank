@@ -98,7 +98,7 @@ public class PayBill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='2']//android.widget.TextView[@index='0']")
 	private MobileElement firstUSAcct;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "TBD")
 	private MobileElement payWithRewards;
 
@@ -112,6 +112,27 @@ public class PayBill extends _CommonPage {
 	private void Decorator() {
 		PageFactory.initElements(
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(8, TimeUnit.SECONDS)), this);
+
+	}
+
+	public void verifyPayBillScreen() {
+		Decorator();
+		try {
+
+			mobileAction.verifyElementIsDisplayed(from_account, "From Account field");
+			mobileAction.verifyElementIsDisplayed(to_account_post, "To Account field");
+			mobileAction.verifyElementIsDisplayed(amount, "Amount field");
+			mobileAction.verifyElementIsDisplayed(continue_pay, "Continue button");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
 
 	}
 
@@ -384,7 +405,7 @@ public class PayBill extends _CommonPage {
 			}
 			mobileAction.FuncClick(to_account_post, "Select Payee field");
 			mobileAction.swipeAndSearchByxpath(toAccountXpath, true, 10, "Up");
-			mobileAction.sleep(2000);
+			mobileAction.waitProgressBarVanish();
 
 			mobileAction.verifyElementIsDisplayed(payWithRewards, "Pay With Rewards link");
 			mobileAction.verifyElementTextContains(payWithRewards,
@@ -418,7 +439,7 @@ public class PayBill extends _CommonPage {
 			}
 			mobileAction.FuncClick(to_account_post, "Select Payee field");
 			mobileAction.swipeAndSearchByxpath(toAccountXpath, true, 10, "Up");
-			mobileAction.sleep(4000);
+			mobileAction.waitProgressBarVanish();
 
 			mobileAction.verifyElementNotPresent(payWithRewards, "Pay With Rewards link");
 

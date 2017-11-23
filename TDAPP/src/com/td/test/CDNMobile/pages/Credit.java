@@ -80,6 +80,18 @@ public class Credit extends _CommonPage {
 	@AndroidFindBy(id = "TBD")
 	private MobileElement tdPointsBalance;
 
+	@iOSXCUITFindBy(accessibility = "RVB_STATEMENT_CELL_TITLE0")
+	@AndroidFindBy(id = "TBD")
+	private MobileElement statementTile1;
+
+	@iOSXCUITFindBy(accessibility = "RVB_STATEMENT_CELL_TITLE3")
+	@AndroidFindBy(id = "TBD")
+	private MobileElement statementTile2;
+
+	@iOSXCUITFindBy(accessibility = "RVB_STATEMENT_CELL_TITLE4")
+	@AndroidFindBy(id = "TBD")
+	private MobileElement statementTile3;
+
 	public synchronized static Credit get() {
 		if (Credit == null) {
 			Credit = new Credit();
@@ -388,17 +400,9 @@ public class Credit extends _CommonPage {
 		Decorator();
 		try {
 
-			boolean hasPtsBalance = mobileAction.verifyElementIsPresent(tdPointsBalance);
-			String ptsBalance = "0";
-			if (hasPtsBalance) {
-				ptsBalance = mobileAction.FuncGetText(tdPointsBalance);
-				ptsBalance = ptsBalance.substring(0, ptsBalance.indexOf(" "));
-				ptsBalance = ptsBalance.replace(",", "");
-				CL.getTestDataInstance().TCParameters.put("Amount", ptsBalance);
+			String ptsBalance = mobileAction.FuncGetText(tdPointsBalance);
+			CL.getTestDataInstance().TCParameters.put("Amount", ptsBalance);
 
-			} else {
-				CL.getTestDataInstance().TCParameters.put("Amount", ptsBalance);
-			}
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -439,6 +443,118 @@ public class Credit extends _CommonPage {
 
 			String secondCard = getTestdata("AccessCard");
 			CL.getTestDataInstance().TCParameters.put("ToAccount", secondCard);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void verifyTDRewardsDollarsBalanceUpdated() {
+		Decorator();
+		try {
+			double previousBalance = parseCashBackDollars(getTestdata("Amount"));
+			String ptsText = mobileAction.FuncGetText(tdPointsBalance);
+			double balance = parseCashBackDollars(ptsText);
+
+			// Need to round 2 decimal places after operation
+			double newBalance = (double) Math.round((previousBalance - 25.00) * 100d) / 100d;
+
+			if (Double.compare(balance, newBalance) != 0) {
+				System.out.println(balance + " != " + newBalance);
+				mobileAction.GetReporting().FuncReport("Fail",
+						"New Cash Back Dollars balance incorrect. Previous balance: " + previousBalance
+								+ " New balance: " + balance);
+			} else {
+				mobileAction.GetReporting().FuncReport("Pass", "New Cash Back Dollars balance is correct");
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void verifyTDRewardsPointsBalanceUpdated() {
+		Decorator();
+		try {
+			int previousBalance = parseRewardsPoints(getTestdata("Amount"));
+			String ptsText = mobileAction.FuncGetText(tdPointsBalance);
+			int balance = parseRewardsPoints(ptsText);
+
+			int newBalance = previousBalance - 10000;
+
+			if (Integer.compare(balance, newBalance) != 0) {
+				System.out.println(balance + " != " + newBalance);
+				mobileAction.GetReporting().FuncReport("Fail", "New Points balance incorrect. Previous balance: "
+						+ previousBalance + " New balance: " + balance);
+			} else {
+				mobileAction.GetReporting().FuncReport("Pass", "New Points balance is correct");
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	private double parseCashBackDollars(String rewardText) {
+		double result = 0.00;
+
+		if (currentLocale.equalsIgnoreCase("fr")) {
+			rewardText = rewardText.substring(0, rewardText.indexOf("$")).trim();
+			rewardText = rewardText.replace(",", ".");
+			rewardText = rewardText.replace(" ", "");
+		} else {
+			// en, chinese have same format
+			rewardText = rewardText.substring(0, rewardText.indexOf(" "));
+			rewardText = rewardText.replace(",", "");
+			rewardText = rewardText.replace("$", "");
+		}
+		result = Double.parseDouble(rewardText);
+
+		return result;
+
+	}
+
+	private int parseRewardsPoints(String rewardText) {
+		int result = 0;
+
+		if (currentLocale.equalsIgnoreCase("fr")) {
+			rewardText = rewardText.substring(0, rewardText.indexOf("Points")).trim();
+			rewardText = rewardText.replace(" ", "");
+		} else {
+			// en, chinese have same format
+			rewardText = rewardText.substring(0, rewardText.indexOf("TD")).trim();
+			rewardText = rewardText.replace(",", "");
+		}
+		result = Integer.parseInt(rewardText);
+
+		return result;
+
+	}
+
+	public void verifyLastThreeStatements() {
+		Decorator();
+		try {
+			mobileAction.verifyElementIsDisplayed(statementTile1, "1st Statement");
+			mobileAction.verifyElementIsDisplayed(statementTile2, "2nd Statement");
+			mobileAction.verifyElementIsDisplayed(statementTile3, "3rd Statement");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
