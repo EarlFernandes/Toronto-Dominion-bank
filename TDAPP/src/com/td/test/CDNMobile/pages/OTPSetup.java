@@ -309,6 +309,9 @@ public class OTPSetup extends _CommonPage {
 		String phoneNumber = getTestdata("PhoneProfile");
 		String nickname = getTestdata("Nickname");
 
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+			mobileAction.sleep(5000); // Wait for page to load
+		}
 		addPhoneNumber(phoneNumber, nickname);
 
 	}
