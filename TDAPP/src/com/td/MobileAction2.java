@@ -31,7 +31,7 @@ import io.appium.java_client.ios.IOSDriver;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -3701,6 +3701,30 @@ public class MobileAction2 extends CommonLib {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+	}
+
+	public void switchToWebView() {
+		try {
+			Set<String> contextNames = ((AppiumDriver) GetDriver()).getContextHandles();
+			sleep(3000); // WebView needs time to load
+			String lastContextView = (String) contextNames.toArray()[contextNames.size() - 1];
+			System.out.println(contextNames);
+
+			System.out.println("Before Webview Switch: " + lastContextView);
+			if (lastContextView.contains("WEBVIEW_com.td")) {
+				((AppiumDriver) GetDriver()).context(lastContextView);
+			} else if (lastContextView.contains("WEBVIEW_R") || lastContextView.contains("WEBVIEW_S")) {
+				((AppiumDriver) GetDriver()).context("WEBVIEW_R");
+			} else {
+				System.out.println("No Webview found");
+			}
+			sleep(5000); // WebView needs time to load
+			System.out.println("After Webview Switch");
+
+		} catch (Exception e) {
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
 	}
 
 }

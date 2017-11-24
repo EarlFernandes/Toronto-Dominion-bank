@@ -132,7 +132,7 @@ public class Manage_Payee extends _CommonPage {
 										+ mobileAction.getAppString("billsNavRowManagePayee") + "']",
 								"Manage Payees title");
 				// Switching to webview
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				// System.out.println("source : "+ ((AppiumDriver)
 				// CL.GetDriver()).getPageSource());
 				mobileAction.verifyWebElementUsingXPath(
@@ -183,7 +183,7 @@ public class Manage_Payee extends _CommonPage {
 						"description");
 			} else {
 				// Switching to webview
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				final WebElement name = mobileAction
 						.verifyWebElementUsingXPath("(//div[@class='column1 ng-binding'])[1]", "name");
 				// final WebElement address =
@@ -235,7 +235,7 @@ public class Manage_Payee extends _CommonPage {
 
 			} else {
 				// Switching to webview
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				final WebElement firstPayee = mobileAction.verifyWebElementUsingXPath(
 						"//div[@ng-if='payee.AccountNO' and text()='" + getTestdata("Payee") + "']", "Payee");
 				firstPayee.click();
@@ -295,7 +295,7 @@ public class Manage_Payee extends _CommonPage {
 								+ mobileAction.getAppString("add_payee_title") + "']",
 						"Add Payee title");
 				// Switching to webview
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				// System.out.println("source : "+ ((AppiumDriver)
 				// CL.GetDriver()).getPageSource());
 				mobileAction.verifyWebElementUsingXPath(
@@ -370,14 +370,14 @@ public class Manage_Payee extends _CommonPage {
 			} else {
 				// For android, using webview to handle
 
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				WebElement accessCard = CL.GetDriver().findElement(By.cssSelector("div.dropdown-holder"));
 				accessCard.click();
 				Thread.sleep(2000);
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncClick(secondAccessCard, "Second Access Card");
 				Thread.sleep(2000);
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				WebElement mypayees_android = CL.GetDriver().findElement(By.id("myPayees"));
 				mobileAction.verifyElementIsDisplayed((MobileElement) mypayees_android, "My Payees");
 				accessCard = CL.GetDriver().findElement(By.cssSelector("div.dropdown-holder"));
@@ -386,7 +386,7 @@ public class Manage_Payee extends _CommonPage {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncClick(thirdAccessCard, "Second Access Card");
 				Thread.sleep(2000);
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				WebElement addPayeeButton = CL.GetDriver()
 						.findElement(By.cssSelector("button.primary-button.ng-binding.ng-scope"));
 				mobileAction.verifyElementIsDisplayed((MobileElement) addPayeeButton, "Add Payee");
@@ -469,7 +469,7 @@ public class Manage_Payee extends _CommonPage {
 			} else {
 				mobileAction.verifyElementIsDisplayed(managePayees, "Manage Payees Header");
 				// Switch to webview and click on U.S.
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				final WebElement usWebElement = mobileAction
 						.verifyWebElementUsingXPath("(//li[@ng-repeat='label in labels'])[3]", "US banner button");
 				usWebElement.click();
@@ -546,7 +546,7 @@ public class Manage_Payee extends _CommonPage {
 
 			System.out.println("Click Payee acct: " + acctNum);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				payeeAcctNumber = mobileAction.verifyElementUsingXPath(
 						"//div[@ng-if='payee.AccountNO' and text()='" + acctNum + "']", "Payee Acct Number");
 
@@ -630,7 +630,7 @@ public class Manage_Payee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			String payee = getTestdata("Payee");
@@ -687,7 +687,7 @@ public class Manage_Payee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.verifyElementIsDisplayed(deleteMsg, "Delete Message Canadian");
@@ -713,7 +713,7 @@ public class Manage_Payee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.verifyElementIsDisplayed(deleteMsg, "Delete Message US");
@@ -739,7 +739,7 @@ public class Manage_Payee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			String payee = getTestdata("Payee");
