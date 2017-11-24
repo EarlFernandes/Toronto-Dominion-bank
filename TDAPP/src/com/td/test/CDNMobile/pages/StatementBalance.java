@@ -203,7 +203,6 @@ public class StatementBalance extends _CommonPage {
 		try {
 
 			String ptsBalance = getTestdata("Amount");
-			System.out.println("Balance:" + ptsBalance + " length:" + ptsBalance.length());
 			if (ptsBalance.equals(" ")) {
 				ptsBalance = "0";
 			}

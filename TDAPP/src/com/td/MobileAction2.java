@@ -1631,15 +1631,13 @@ public class MobileAction2 extends CommonLib {
 		try {
 			int count = 0;
 			boolean isElementDisplayed = verifyElementIsPresent(elementToVanish);
-			while (isElementDisplayed) {
-				if (isElementDisplayed) {
-					sleep(1000);
-					count++;
-				} else if (count >= 45) {
-					break;
-				}
+			while (isElementDisplayed && count <= 45) {
+				System.out.println("Progress bar :" + isElementDisplayed);
+				sleep(1000);
+				count++;
 				isElementDisplayed = verifyElementIsPresent(elementToVanish);
 			}
+			System.out.println("Progress bar wait count:" + count);
 		} catch (Exception e) {
 			System.out.println("Exception from Method " + this.getClass().toString());
 		}
