@@ -115,7 +115,7 @@ public class HomeScreen extends _CommonPage {
 
 	@iOSFindBy(xpath = "//*[@name='NAVIGATION_ITEM_QUICK_ACCESS' or @name='QuickLinkRightNavButton']")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']")
-	private MobileElement home_bar;  //use quickaccess button to verify homepage
+	private MobileElement home_bar; // use quickaccess button to verify homepage
 
 	@iOSFindBy(xpath = "//*[@label='Contact Us' or @label='Contacter nous' or @label='联系我们' or @label='聯絡我們']")
 	@AndroidFindBy(xpath = "//*[@text='Contact Us' or @text='Contacter nous' or @text='联系我们' or @text='聯絡我們']")
@@ -1085,44 +1085,13 @@ public class HomeScreen extends _CommonPage {
 	public void VerifyHomePageDashBoard() {
 		Decorator();
 
-		// try{
-		// if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-		// //for android, keep the home_bar as defined
-		// }else{
-		// String xpath = "//*[@label='" + mobileAction.getAppString("home") +
-		// "']";
-		// System.out.println("xpath:" + xpath);
-		// home_bar = mobileAction.verifyElementUsingXPath(xpath, "Home");
-		// }
-		// }catch (NoSuchElementException | IOException e) {
-		// try {
-		// mobileAction.GetReporting().FuncReport("Fail", "No such element was
-		// found on screen: " + e.getMessage());
-		// } catch (IOException ex) {
-		// System.out.print("IOException from Method " +
-		// this.getClass().toString() + " " + e.getCause());
-		// }
-		// System.err.println("TestCase has failed.");
-		// CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		// return;
-		// }
-
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				String hometitle = "";
-				hometitle = mobileAction.getValue(home_bar);
-				System.out.println("hometitle:" + hometitle);
-				mobileAction.verifyElementTextIsDisplayed(home_bar,
-						getTextInCurrentLocale(StringArray.ARRAY_HOME_HEADER));
+			if (mobileAction.verifyElementIsPresent(home_bar)) {
+				mobileAction.Report_Pass_Verified("Home View");
 			} else {
-				if (mobileAction.verifyElementIsPresent(home_bar)) {
-					mobileAction.Report_Pass_Verified("Home View");
-				} else {
-					mobileAction.Report_Fail("Home View not verified");
-					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-				}
+				mobileAction.Report_Fail("Home View not verified");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			}
-
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1233,14 +1202,31 @@ public class HomeScreen extends _CommonPage {
 						.toUpperCase() + mobileAction.getAppString("str_Accounts").toLowerCase().substring(1);
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='" + accounts + "']",
 						"Accounts");
-				mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("transfers_str") + "']",
-						"Transfers");
-				mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("bills_str") + "']",
-						"Bills");
+				// mobileAction.verifyElementUsingXPath(
+				// "//XCUIElementTypeStaticText[@value='" +
+				// mobileAction.getAppString("transfers_str") + "']",
+				// "Transfers");
+				// mobileAction.verifyElementUsingXPath(
+				// "//XCUIElementTypeStaticText[@value='" +
+				// mobileAction.getAppString("bills_str") + "']",
+				// "Bills");
+				if (mobileAction.verifyElementIsPresent(transfers)) {
+					mobileAction.Report_Pass_Verified("Transfer");
+				} else if (mobileAction.verifyElementIsPresent(transfers_182)) {
+					mobileAction.Report_Pass_Verified("Transfer");
+				} else {
+					mobileAction.Report_Fail_Not_Verified("Transfer");
+				}
 
-				final String xPathFooter = "//XCUIElementTypeStaticText[@value='"
+				if (mobileAction.verifyElementIsPresent(bills)) {
+					mobileAction.Report_Pass_Verified("Bills");
+				} else if (mobileAction.verifyElementIsPresent(bills_182)) {
+					mobileAction.Report_Pass_Verified("Bills");
+				} else {
+					mobileAction.Report_Fail_Not_Verified("Bills");
+				}
+
+				final String xPathFooter = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]//XCUIElementTypeStaticText[@value='"
 						+ mobileAction.getAppString("contact_str") + "']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xPathFooter, false, 4, "up");
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
