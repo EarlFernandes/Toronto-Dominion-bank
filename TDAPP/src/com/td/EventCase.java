@@ -3,100 +3,11 @@ package com.td;
 import java.io.IOException;
 
 import org.openqa.selenium.NoSuchElementException;
-import com.td.test.CDNMobile.pages.Accounts;
-import com.td.test.CDNMobile.pages.Accounts_Credit;
-import com.td.test.CDNMobile.pages.AddCanadian_Payee;
-import com.td.test.CDNMobile.pages.AddPayee;
-import com.td.test.CDNMobile.pages.AddRecipient;
-import com.td.test.CDNMobile.pages.ApplePay;
-import com.td.test.CDNMobile.pages.AutoDepositPage;
-import com.td.test.CDNMobile.pages.Between_My_accounts;
-import com.td.test.CDNMobile.pages.Bill_PayCanada;
-import com.td.test.CDNMobile.pages.Bills;
-import com.td.test.CDNMobile.pages.CardDetails;
-import com.td.test.CDNMobile.pages.ConfirmOrder;
-import com.td.test.CDNMobile.pages.Confirm_Payee;
-import com.td.test.CDNMobile.pages.ContactUs;
-import com.td.test.CDNMobile.pages.Credit;
-import com.td.test.CDNMobile.pages.CrossBorder;
-import com.td.test.CDNMobile.pages.DepositCheque;
-import com.td.test.CDNMobile.pages.FindLocations;
-import com.td.test.CDNMobile.pages.HoldingDetails;
-import com.td.test.CDNMobile.pages.HomeScreen;
-import com.td.test.CDNMobile.pages.Interac_Send_Money;
-import com.td.test.CDNMobile.pages.Interac_e_Registration;
-import com.td.test.CDNMobile.pages.Interac_e_Transfer;
-import com.td.test.CDNMobile.pages.Investing;
-import com.td.test.CDNMobile.pages.InvestingAccountSummary;
-import com.td.test.CDNMobile.pages.Login;
-import com.td.test.CDNMobile.pages.LoginMIT;
-import com.td.test.CDNMobile.pages.Logout;
-import com.td.test.CDNMobile.pages.MFA_ChangeAnswer;
-import com.td.test.CDNMobile.pages.MIT_DSH_FlyoutMenu;
-import com.td.test.CDNMobile.pages.MIT_DSHQuickLinks;
-import com.td.test.CDNMobile.pages.MIT_PNSAccessAlerts;
-import com.td.test.CDNMobile.pages.MIT_PNSCreateNewAlert;
-import com.td.test.CDNMobile.pages.MIT_PNSManageAlerts;
-import com.td.test.CDNMobile.pages.MIT_PNSViewAlertsLandingPage;
-import com.td.test.CDNMobile.pages.MLCancelOrderReceipt;
-import com.td.test.CDNMobile.pages.MLChangeOrder;
-import com.td.test.CDNMobile.pages.MLConfirmOrder;
-import com.td.test.CDNMobile.pages.MLConfirmOrderReceipt;
-import com.td.test.CDNMobile.pages.MLEnterOrderNegative;
-import com.td.test.CDNMobile.pages.MLOptionChainTable;
-import com.td.test.CDNMobile.pages.MLOrderDetails;
-import com.td.test.CDNMobile.pages.MLOrdersTab;
-import com.td.test.CDNMobile.pages.ManageContacts;
-import com.td.test.CDNMobile.pages.ManageRecipients;
-import com.td.test.CDNMobile.pages.ManageSettings;
-import com.td.test.CDNMobile.pages.Managee_Payee;
-import com.td.test.CDNMobile.pages.MenuPage;
-import com.td.test.CDNMobile.pages.MobileDeposit;
-import com.td.test.CDNMobile.pages.MobilePayment;
-import com.td.test.CDNMobile.pages.Multitasking_System;
-import com.td.test.CDNMobile.pages.MutualFunds;
-import com.td.test.CDNMobile.pages.Notifications;
-import com.td.test.CDNMobile.pages.OTPChallenge;
-import com.td.test.CDNMobile.pages.OTPSetup;
-import com.td.test.CDNMobile.pages.OTPUpdate;
-import com.td.test.CDNMobile.pages.Options;
-import com.td.test.CDNMobile.pages.OptionsReceiptPage;
-import com.td.test.CDNMobile.pages.OrderDetails;
-import com.td.test.CDNMobile.pages.OrderReciept;
-import com.td.test.CDNMobile.pages.PayWithRewards;
-import com.td.test.CDNMobile.pages.Pay_US_Bill;
-import com.td.test.CDNMobile.pages.PaymentsAndTransfers;
-import com.td.test.CDNMobile.pages.PendingInteracTransfer;
-import com.td.test.CDNMobile.pages.Preferences;
-import com.td.test.CDNMobile.pages.Profile;
-import com.td.test.CDNMobile.pages.Profile_And_Settings;
-import com.td.test.CDNMobile.pages.QuickAccess;
-import com.td.test.CDNMobile.pages.QuickAccessPage;
-import com.td.test.CDNMobile.pages.QuickAccessSettings;
-import com.td.test.CDNMobile.pages.Receipt;
-import com.td.test.CDNMobile.pages.Review;
-import com.td.test.CDNMobile.pages.Rewards;
-import com.td.test.CDNMobile.pages.SearchPage;
-import com.td.test.CDNMobile.pages.SearchPageMIT;
-import com.td.test.CDNMobile.pages.Security_Questions;
-import com.td.test.CDNMobile.pages.StatementBalance;
-import com.td.test.CDNMobile.pages.TDForMe;
-import com.td.test.CDNMobile.pages.MoodSelectorScreen;
-import com.td.test.CDNMobile.pages.Trade;
-import com.td.test.CDNMobile.pages.TradeMIT;
-import com.td.test.CDNMobile.pages.TradeMultiLeg;
-import com.td.test.CDNMobile.pages.Transaction;
-import com.td.test.CDNMobile.pages.Transfers;
-import com.td.test.CDNMobile.pages.TransfersHistory;
-import com.td.test.CDNMobile.pages.WatchLists;
-import com.td.test.CDNMobile.pages.WhatsNew;
-import com.td.test.CDNMobile.pages.PurchaseMutualFunds;
-import com.td.test.CDNMobile.pages.FundDetails;
-import com.td.test.CDNMobile.pages.TransactionDetails;
-import com.td.test.CDNMobile.pages.PreviewPurchase;
-import com.td.test.CDNMobile.pages.Popupwindow;
-import com.td.test.CDNMobile.pages.FundFacts;
+
+import com.td.test.CDNMobile.pages.*;
+
 import com.td.test.myspend.DailyDigest;
+
 import com.td.test.myspend.LogoutMySpend;
 import com.td.test.myspend.MoneyPath;
 import com.td.test.myspend.MyspendPreferences;
@@ -108,10 +19,6 @@ import com.td.test.myspend.Spending_Insight;
 import com.td.test.myspend.TDAppHomePage;
 import com.td.test.myspend.TourPage;
 import com.td.test.myspend.TransactionHistory;
-import com.td.test.CDNMobile.pages.MoreOptions;
-import com.td.test.CDNMobile.pages.WebViewPage;
-import com.td.test.CDNMobile.pages.AppointmentBooking;
-import com.td.test.CDNMobile.pages.Branch;
 
 public class EventCase {
 
@@ -212,11 +119,10 @@ public class EventCase {
 
 		// MIT PNS Alerts
 
-		verifyPreLoginDashboardAlerts, verifyAlertUI, tapAlerts, verifyBackandGearIcon, verifyxCancelbutton, verifycreateAlertConditionPriceRises, verifyCreateAlertConditionPricehit52Week, verifyQuoteInformation, VerifyPriceChangesOnHeavyVolume, VerifyPrimaryEmailDeliveryPreferences, VerifySecondaryEmailDeliveryPreferences, VerifyEnablingAllDeliveryPreferences, VerifyCreateSimilarAlertConditionPriceRisesFasterThanIndex, VerifyAlertConditionPriceGapAtOpeningTrade, verifyAlertIconMODQuotesPage, verifyNotificationPrefMOD, verifyNotificationPrefFlyMenu, verifyPriceDropsBelow, verifyPriceRisesAbove, verifyEditAlertUI, verifyDefaultWhenAlertConditionChange, verifyPriceChangesFromPreviousClose, verifyPriceEarningRatioDropsBelow, verifyModPagesLoaded, verifyExceedDailyVolume, navigateToQuotePage, navigateToOrderForm, VerifyDoneConditionPriceChangesFromPreviousClose, VerifyErrorConditionPriceDropsBelowStocks, CreateAlertConditionPriceChangesFromPrevious, VerifyBackButtonOnCreateNewAlertpage, VerifyChangeConditionCreateNewAlertPage, VerifyRefreshButtonOnCreateNewAlertPage, verifyFuncFlow, VerifyClientNavigateInvestingAlertsNotifcationOFF, VerifyClientNavigateInvestingPNSAndAlertsNotifcationON, VerifyClientNavigateInvestingAlertsNotifcationSuspended,
+		verifyPreLoginDashboardAlerts, verifyAlertUI, tapAlerts, verifyBackandGearIcon, verifyxCancelbutton, verifycreateAlertConditionPriceRises, verifyCreateAlertConditionPricehit52Week, verifyQuoteInformation, VerifyPriceChangesOnHeavyVolume, VerifyPrimaryEmailDeliveryPreferences, VerifySecondaryEmailDeliveryPreferences, VerifyEnablingAllDeliveryPreferences, VerifyCreateSimilarAlertConditionPriceRisesFasterThanIndex, VerifyAlertConditionPriceGapAtOpeningTrade, verifyAlertIconMODQuotesPage, verifyNotificationPrefMOD, verifyNotificationPrefFlyMenu, verifyPriceDropsBelow, verifyPriceRisesAbove, verifyEditAlertUI, verifyDefaultWhenAlertConditionChange, verifyPriceChangesFromPreviousClose, verifyPriceEarningRatioDropsBelow, verifyModPagesLoaded, verifyExceedDailyVolume, navigateToQuotePage, navigateToOrderForm, VerifyDoneConditionPriceChangesFromPreviousClose, VerifyErrorConditionPriceDropsBelowStocks, CreateAlertConditionPriceChangesFromPrevious, VerifyBackButtonOnCreateNewAlertpage, VerifyChangeConditionCreateNewAlertPage, VerifyRefreshButtonOnCreateNewAlertPage, verifyFuncFlow, VerifyClientNavigateInvestingAlertsNotifcationOFF, VerifyClientNavigateInvestingPNSAndAlertsNotifcationON, VerifyClientNavigateInvestingAlertsNotifcationSuspended, verifyErrorExpiredSymbol, verifyErrorEANotSigned, verifyActionSheetUIMOD, verifyCheckMarkMOD, verifyActionSheetUIHoldings, verifyCheckMarkHoldings, verifyActionSheetUIWLSymbolSearch, verifyCheckMarkWLSymbolSearch,
 
 		// MIT Dashboard
-
-		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyFlyoutUnauthenticated, verifyFlyoutBankingOnlyUser, verifyFlyoutInvestingOnlyUser, verifyFlyoutBlendedyUser,
+		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, goToProfileAndSettings, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI, verifyStockETFsWLSymbolRow, verifyTappingWLOptionSymbol, goToWLExpandedView, verifyTappingWLMutualFundSymbol, verifyWLOptionSymbolSellButton, verifyWLMutualFundSymbolBuyButton, verifyWLOptionSymbolBuyButton, verifyWLETFSymbolSellButton, verifyWLIndicesSymbolBuySellButton, verifyWLBackButton, verifyWLSymbolFlagCompanyName, verifyHomeScreenSettingsBlendedInvestingFocusUser, verifyQLOrderBlendedInvestingFocus, verifyFlyoutOrderBlendedInvestingFocus, logoutFromDashboard, verifyQLBlendedInvestingFocusAfterLogout, verifyFlyoutBlendedInvestingFocusAfterLogout, verifyQLOrderBankingOnly, verifyFlyoutOrderBankingOnly, verifyQLBankingOnlyAfterLogout, verifyFlyoutBankingOnlysAfterLogout, verifyQLOrderInvestingOnly, verifyFlyoutOrderInvestingOnly, verifyQLInvestingOnlyAfterLogout, verifyFlyoutInvestingOnlyAfterLogout, verifyQLOrderBlendedNotInvestingFocus, verifyFlyoutOrderBlendedNotInvestingFocus, verifyQLBlendedNotInvestingFocusAfterLogout, verifyFlyoutBlendedNotInvestingFocusAfterLogout, verifyFlyoutUnauthenticated, verifyFlyoutBankingOnlyUser, verifyFlyoutInvestingOnlyUser, verifyFlyoutBlendedyUser, verifyContactUsHomeUnAuthenticated, verifyContactUsHomeAuthenticated, verifyFlyoutContactUs, verifyLocationLandingUnAuthenticated, verifyLocationLandingAuthenticated, verifyUpdateSearch, verifyUpdateSearchInvalid, verifyNavigateQuoteSummaryIndices, verifyNavigateQuoteSummaryMF, verifyNavigateQuoteSummaryETF, verifyNavigateQuoteSummaryOption, verifyNavigateQuoteSummaryStocks, verifyAddWatchlistIndices, verifyAddWatchlistMF, verifyAddWatchlistOption, verifyAddWatchlistStocksETF, verifyHeaderResult, verifyDisplaySearchCard, verifyDisplaySearchCardUnAuthenticated, verifyDisplaySearchCardAuthenticated, verifyNavigateUnAuthenticated, verifyActivityDetailsUI, verifyCollapseEmptyWL, verifyExpandEmptyWL, verifyAddButtonEmptyWL, verifyUIEmptyWLExpand, verifyErrorEANotSignedCollapse, verifyUIEditWL, verifyBackButtonEditWL, verifyCancelButtonEditWL, verifyDeleteButtonEditWL, verifyDeleteAllButtonEditWL, verifyWLErrorWBTCNotSigned, verifyTermsOfUse, verifyQuickAccessHome, verifyQuickAccessMenu, verifyQuickAccessSettings, verifyPreferenceQuickAccess, verifyQuickAccessUnauthenticated, verifyQuickAccessUserType, verifyViewPreloginWL, verifyViewPreloginWLExpandView,
 
 		// Tetris Loyalty
 		CreditHeader, ClickAccount, VerifyPayWithRewards, ClickStatementTab, Env_ClearSavedCards, ClickReward, RewardHeader, ClickPayWithRewards, PayWithRewardsHeader, ClickStatement, VerifyStatementBalanceHeader, VerifyAndClickPayWithRewardsBtn, ValidateAmount, VerifyMinAndMaxPaymentBtn, PayWithRewardsNotVisible, ValidateMinPayment, VerifyReviewHeader, ClickPayNowButton, ClickCancelButton, VerifyReceiptHeader, VerifyAmountRedeem, ClickSummaryTab, ClickVisitRewards, VerifyURL, VerifyRedemptionText, VerifyNoRewards, VerifyRewardsText, VerifyCashbackText, VerifyRewardsBtn, VerifyTextcashBack, VerifyEarnedAndRedeemed, VerifyNoRewardsInQuickAccess, ClickQuickAccessSettings, DisableCardInQuickAccess, VerifyNoCardInQuickAccess, VerifyDollarRewardBalance, VerifyNoEarnedAndRedeemed, VerifyDollarDecimalValue, VerifyAmountAndContinueIsDisabled, VerifyPayWithRewardsText, VerifyRewardPointstxt, VerifyRewardPayee, VerifyRedemptionDetails, VerifyCashBack,
@@ -2849,6 +2755,378 @@ public class EventCase {
 			MIT_DSHQuickLinks.get().verifyQuickLinksBlendedUser();
 			break;
 
+		case verifyFlyoutUnauthenticated:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutUnauthenticated();
+			break;
+
+		case verifyFlyoutBankingOnlyUser:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutBankingOnlyUser();
+			break;
+
+		case verifyFlyoutInvestingOnlyUser:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutInvestingOnlyUser();
+			break;
+
+		case verifyFlyoutBlendedyUser:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutBlendedyUser();
+			break;
+
+		case verifyContactUsHomeUnAuthenticated:
+			MIT_DSH_Contact_Location.get().verifyContactUsHomeUnAuthenticated();
+			break;
+
+		case verifyContactUsHomeAuthenticated:
+			MIT_DSH_Contact_Location.get().verifyContactUsHomeAuthenticated();
+			break;
+
+		case verifyFlyoutContactUs:
+			MIT_DSH_Contact_Location.get().verifyFlyoutContactUs();
+			break;
+
+		case verifyLocationLandingUnAuthenticated:
+			MIT_DSH_Contact_Location.get().verifyLocationLandingUnAuthenticated();
+			break;
+
+		case verifyLocationLandingAuthenticated:
+			MIT_DSH_Contact_Location.get().verifyLocationLandingAuthenticated();
+			break;
+
+		case verifyUpdateSearch:
+			MIT_DSH_UpdateSearchPage.get().verifyUpdateSearch();
+			break;
+
+		case verifyUpdateSearchInvalid:
+			MIT_DSH_UpdateSearchPage.get().verifyUpdateSearchInvalid();
+			break;
+
+		case verifyNavigateQuoteSummaryIndices:
+			MIT_DSH_UpdateSearchPage.get().verifyNavigateQuoteSummaryIndices();
+			break;
+
+		case verifyNavigateQuoteSummaryMF:
+			MIT_DSH_UpdateSearchPage.get().verifyNavigateQuoteSummaryMF();
+			break;
+
+		case verifyNavigateQuoteSummaryETF:
+			MIT_DSH_UpdateSearchPage.get().verifyNavigateQuoteSummaryETF();
+			break;
+
+		case verifyNavigateQuoteSummaryOption:
+			MIT_DSH_UpdateSearchPage.get().verifyNavigateQuoteSummaryOption();
+			break;
+
+		case verifyNavigateQuoteSummaryStocks:
+			MIT_DSH_UpdateSearchPage.get().verifyNavigateQuoteSummaryStocks();
+			break;
+
+		case verifyAddWatchlistIndices:
+			MIT_DSH_UpdateSearchPage.get().verifyAddWatchlistIndices();
+			break;
+
+		case verifyAddWatchlistMF:
+			MIT_DSH_UpdateSearchPage.get().verifyAddWatchlistMF();
+			break;
+
+		case verifyNavigateUnAuthenticated:
+			MIT_DSH_UpdateSearchPage.get().verifyNavigateUnAuthenticated();
+			break;
+
+		case verifyAddWatchlistOption:
+			MIT_DSH_UpdateSearchPage.get().verifyAddWatchlistOption();
+			break;
+
+		case verifyHeaderResult:
+			MIT_DSH_UpdateSearchPage.get().verifyHeaderResult();
+			break;
+
+		case verifyAddWatchlistStocksETF:
+			MIT_DSH_UpdateSearchPage.get().verifyAddWatchlistStocksETF();
+			break;
+
+		case verifyDisplaySearchCard:
+			MIT_DSH_DisplaySearchCard.get().verifyDisplaySearchCard();
+			break;
+
+		case verifyDisplaySearchCardUnAuthenticated:
+			MIT_DSH_DisplaySearchCard.get().verifyDisplaySearchCardUnAuthenticated();
+			break;
+
+		case verifyDisplaySearchCardAuthenticated:
+			MIT_DSH_DisplaySearchCard.get().verifyDisplaySearchCardAuthenticated();
+			break;
+
+		case verifyActivityDetailsUI:
+			MIT_DSH_ActivityTab.get().verifyActivityDetailsUI();
+			break;
+
+		case verifyCollapseEmptyWL:
+			MIT_DSH_DisplayMessageEmptyWL.get().verifyCollapseEmptyWL();
+			break;
+
+		case verifyExpandEmptyWL:
+			MIT_DSH_DisplayMessageEmptyWL.get().verifyExpandEmptyWL();
+			break;
+
+		case verifyAddButtonEmptyWL:
+			MIT_DSH_DisplayMessageEmptyWL.get().verifyAddButtonEmptyWL();
+			break;
+
+		case verifyUIEmptyWLExpand:
+			MIT_DSH_DisplayMessageEmptyWL.get().verifyUIEmptyWLExpand();
+			break;
+
+		case verifyErrorExpiredSymbol:
+			MIT_DSH_WLErrorState1.get().verifyErrorExpiredSymbol();
+			break;
+
+		case verifyErrorEANotSigned:
+			MIT_DSH_WLErrorState1.get().verifyErrorEANotSigned();
+			break;
+
+		case verifyErrorEANotSignedCollapse:
+			MIT_DSH_WLErrorState1.get().verifyErrorEANotSignedCollapse();
+			break;
+
+		case verifyActionSheetUIMOD:
+			MIT_DSH_Add_RemoveSymbolWL.get().verifyActionSheetUIMOD();
+			break;
+
+		case verifyCheckMarkMOD:
+			MIT_DSH_Add_RemoveSymbolWL.get().verifyCheckMarkMOD();
+			break;
+
+		case verifyActionSheetUIHoldings:
+			MIT_DSH_Add_RemoveSymbolWL.get().verifyActionSheetUIHoldings();
+			break;
+
+		case verifyCheckMarkHoldings:
+			MIT_DSH_Add_RemoveSymbolWL.get().verifyCheckMarkHoldings();
+			break;
+
+		case verifyActionSheetUIWLSymbolSearch:
+			MIT_DSH_Add_RemoveSymbolWL.get().verifyActionSheetUIWLSymbolSearch();
+			break;
+
+		case verifyCheckMarkWLSymbolSearch:
+			MIT_DSH_Add_RemoveSymbolWL.get().verifyCheckMarkWLSymbolSearch();
+			break;
+
+		case verifyUIEditWL:
+			MIT_DSH_EditWatclist.get().verifyUIEditWL();
+			break;
+
+		case verifyBackButtonEditWL:
+			MIT_DSH_EditWatclist.get().verifyBackButtonEditWL();
+			break;
+
+		case verifyCancelButtonEditWL:
+			MIT_DSH_EditWatclist.get().verifyCancelButtonEditWL();
+			break;
+
+		case verifyDeleteButtonEditWL:
+			MIT_DSH_EditWatclist.get().verifyDeleteButtonEditWL();
+			break;
+
+		case verifyDeleteAllButtonEditWL:
+			MIT_DSH_EditWatclist.get().verifyDeleteAllButtonEditWL();
+			break;
+
+		case verifyWLErrorWBTCNotSigned:
+			MIT_DSH_WLErrorState2.get().verifyWLErrorWBTCNotSigned();
+			break;
+
+		case verifyTermsOfUse:
+			MIT_DSH_TermsOfUse.get().verifyTermsOfUse();
+			break;
+
+		case verifyQuickAccessHome:
+			MIT_DSH_QuickAccess.get().verifyQuickAccessHome();
+			break;
+
+		case verifyQuickAccessMenu:
+			MIT_DSH_QuickAccess.get().verifyQuickAccessMenu();
+			break;
+
+		case verifyQuickAccessSettings:
+			MIT_DSH_QuickAccess.get().verifyQuickAccessSettings();
+			break;
+
+		case verifyPreferenceQuickAccess:
+			MIT_DSH_QuickAccess.get().verifyPreferenceQuickAccess();
+			break;
+
+		case verifyQuickAccessUnauthenticated:
+			MIT_DSH_QuickAccess.get().verifyQuickAccessUnauthenticated();
+			break;
+
+		case verifyQuickAccessUserType:
+			MIT_DSH_QuickAccess.get().verifyQuickAccessUserType();
+			break;
+
+		case verifyViewPreloginWL:
+			MIT_DSH_ViewPreloginWL.get().verifyViewPreloginWL();
+			break;
+
+		case verifyViewPreloginWLExpandView:
+			MIT_DSH_ViewPreloginWL.get().verifyViewPreloginWLExpandView();
+			break;
+
+		case verifyNavRowsUnAuthenicatedUser:
+			MIT_DSHNavRows.get().verifyNavRowsUnAuthenicatedUser();
+			break;
+
+		case verifyNavRowsBankingOnlyUser:
+			MIT_DSHNavRows.get().verifyNavRowsBankingOnlyUser();
+			break;
+
+		case verifyNavRowsInvestingOnlyUser:
+			MIT_DSHNavRows.get().verifyNavRowsInvestingOnlyUser();
+			break;
+
+		case verifyNavRowsBlendedUser:
+			MIT_DSHNavRows.get().verifyNavRowsBlendedUser();
+			break;
+
+		case verifyWatchlistHeaderUI:
+			MIT_DSHWLTopNav.get().verifyWatchlistHeaderUI();
+			break;
+
+		case verifyMenuBarWatchlistDropDown:
+			MIT_DSHWLTopNav.get().verifyMenuBarWatchlistDropDown();
+			break;
+
+		case goToProfileAndSettings:
+			MIT_DSHHomeScreenSettings.get().goToProfileAndSettings();
+			break;
+
+		case verifyHomeScreenSettingsUI:
+			MIT_DSHHomeScreenSettings.get().verifyHomeScreenSettingsUI();
+			break;
+
+		case verifyHomeScreenSettingsInvestingUser:
+			MIT_DSHHomeScreenSettings.get().verifyHomeScreenSettingsInvestingUser();
+			break;
+
+		case verifyHomeScreenSettingsPageUI:
+			MIT_DSHHomeScreenSettings.get().verifyHomeScreenSettingsPageUI();
+			break;
+
+		case verifyStockETFsWLSymbolRow:
+			MIT_DSHWLPopulateData.get().verifyStockETFsWLSymbolRow();
+			break;
+
+		case verifyTappingWLOptionSymbol:
+			MIT_DSHWLPopulateData.get().verifyTappingWLOptionSymbol();
+			break;
+
+		case verifyTappingWLMutualFundSymbol:
+			MIT_DSHWLPopulateData.get().verifyTappingWLMutualFundSymbol();
+			break;
+
+		case goToWLExpandedView:
+			MIT_DSHWLPopulateData.get().goToWLExpandedView();
+			break;
+
+		case verifyWLOptionSymbolSellButton:
+			MIT_DSHWLPopulateData.get().verifyWLOptionSymbolSellButton();
+			break;
+
+		case verifyWLMutualFundSymbolBuyButton:
+			MIT_DSHWLPopulateData.get().verifyWLMutualFundSymbolBuyButton();
+			break;
+
+		case verifyWLOptionSymbolBuyButton:
+			MIT_DSHWLPopulateData.get().verifyWLOptionSymbolBuyButton();
+			break;
+
+		case verifyWLETFSymbolSellButton:
+			MIT_DSHWLPopulateData.get().verifyWLETFSymbolSellButton();
+			break;
+
+		case verifyWLIndicesSymbolBuySellButton:
+			MIT_DSHWLPopulateData.get().verifyWLIndicesSymbolBuySellButton();
+			break;
+
+		case verifyWLBackButton:
+			MIT_DSHWLPopulateData.get().verifyWLBackButton();
+			break;
+
+		case verifyWLSymbolFlagCompanyName:
+			MIT_DSHWLPopulateData.get().verifyWLSymbolFlagCompanyName();
+			break;
+
+		case verifyHomeScreenSettingsBlendedInvestingFocusUser:
+			MIT_DSHHomeScreenSettings.get().verifyHomeScreenSettingsBlendedInvestingFocusUser();
+			break;
+
+		case verifyQLOrderBlendedInvestingFocus:
+			MIT_DSHNewProfileLogic.get().verifyQLOrderBlendedInvestingFocus();
+			break;
+
+		case verifyFlyoutOrderBlendedInvestingFocus:
+			MIT_DSHNewProfileLogic.get().verifyFlyoutOrderBlendedInvestingFocus();
+			break;
+
+		case logoutFromDashboard:
+			Logout.get().logoutFromDashboard();
+			break;
+
+		case verifyQLBlendedInvestingFocusAfterLogout:
+			MIT_DSHNewProfileLogic.get().verifyQLBlendedInvestingFocusAfterLogout();
+			break;
+
+		case verifyFlyoutBlendedInvestingFocusAfterLogout:
+			MIT_DSHNewProfileLogic.get().verifyFlyoutBlendedInvestingFocusAfterLogout();
+			break;
+
+		case verifyQLOrderBankingOnly:
+			MIT_DSHNewProfileLogic.get().verifyQLOrderBankingOnly();
+			break;
+
+		case verifyFlyoutOrderBankingOnly:
+			MIT_DSHNewProfileLogic.get().verifyFlyoutOrderBankingOnly();
+			break;
+
+		case verifyQLBankingOnlyAfterLogout:
+			MIT_DSHNewProfileLogic.get().verifyQLBankingOnlyAfterLogout();
+			break;
+
+		case verifyFlyoutBankingOnlysAfterLogout:
+			MIT_DSHNewProfileLogic.get().verifyFlyoutBankingOnlysAfterLogout();
+			break;
+
+		case verifyQLOrderInvestingOnly:
+			MIT_DSHNewProfileLogic.get().verifyQLOrderInvestingOnly();
+			break;
+
+		case verifyFlyoutOrderInvestingOnly:
+			MIT_DSHNewProfileLogic.get().verifyFlyoutOrderInvestingOnly();
+			break;
+
+		case verifyQLInvestingOnlyAfterLogout:
+			MIT_DSHNewProfileLogic.get().verifyQLInvestingOnlyAfterLogout();
+			break;
+
+		case verifyFlyoutInvestingOnlyAfterLogout:
+			MIT_DSHNewProfileLogic.get().verifyFlyoutInvestingOnlyAfterLogout();
+			break;
+
+		case verifyQLOrderBlendedNotInvestingFocus:
+			MIT_DSHNewProfileLogic.get().verifyQLOrderBlendedNotInvestingFocus();
+			break;
+
+		case verifyFlyoutOrderBlendedNotInvestingFocus:
+			MIT_DSHNewProfileLogic.get().verifyFlyoutOrderBlendedNotInvestingFocus();
+			break;
+
+		case verifyQLBlendedNotInvestingFocusAfterLogout:
+			MIT_DSHNewProfileLogic.get().verifyQLBlendedNotInvestingFocusAfterLogout();
+			break;
+
+		case verifyFlyoutBlendedNotInvestingFocusAfterLogout:
+			MIT_DSHNewProfileLogic.get().verifyFlyoutBlendedNotInvestingFocusAfterLogout();
+			break;
+
 		// MIT Dashboard END
 
 		case Env_DeleteDefaultCard:
@@ -4395,23 +4673,6 @@ public class EventCase {
 
 		case MySpendPreferences_clickActiveAccounts:
 			MyspendPreferences.get().clickActiveAccounts();
-			break;
-
-		// DSh
-		case verifyFlyoutUnauthenticated:
-			MIT_DSH_FlyoutMenu.get().verifyFlyoutUnauthenticated();
-			break;
-
-		case verifyFlyoutBankingOnlyUser:
-			MIT_DSH_FlyoutMenu.get().verifyFlyoutBankingOnlyUser();
-			break;
-
-		case verifyFlyoutInvestingOnlyUser:
-			MIT_DSH_FlyoutMenu.get().verifyFlyoutInvestingOnlyUser();
-			break;
-
-		case verifyFlyoutBlendedyUser:
-			MIT_DSH_FlyoutMenu.get().verifyFlyoutBlendedyUser();
 			break;
 
 		}

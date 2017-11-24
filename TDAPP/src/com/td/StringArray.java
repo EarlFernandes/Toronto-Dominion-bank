@@ -268,6 +268,48 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_PAYBILL = { "PAY BILL", "PAIEMENT DE FACTURES", "支付账单",
 			"支付賬單" };
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_TRADE = { "TRADE", "NÉGOCIATION", "交易", "交易" };
+	public static final String[] ARRAY_DASHBOARD_QUICKLINK_HOLDINGS = { "HOLDINGS", "PLACEMENTS", "持有投资", "持有投資" };
+	public static final String[] ARRAY_DASHBOARD_QUICKLINK_ORDERS = { "ORDERS", "ORDRES", "订单", "交易訂單" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_ACCOUNTS = { "Accounts", "Comptes", "交易", "交易" }; // FIX
+	public static final String[] ARRAY_DASHBOARD_NAVROW_TRANSFERES = { "Transfers", "Virements", "账单", "轉賬" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_BILLS = { "Bills", "Factures", "账单", "賬單" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_TRADE = { "Trade", "Négociation", "交易", "交易" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_MARKETS = { "Markets", "Marchés", "市场", "市場" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_OPENTDDIRECTINVESTINGACCOUNT = {
+			"Open a Direct Investing Account", "Ouvrir un compte Placements directs TD", "市场", "市場" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_QUOTE = { "Quote", "Cote", "报价", "報價" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_ALERTS = { "Alerts", "Alertes", "报价", "報價" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_OPENABANKACCOUNT = { "Open a Bank Account",
+			"Ouvrir un compte bancaire", "报价", "報價" };
+	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGS = { "Home Screen Settings",
+			"Paramètres de l’écran d’accueil", "主屏幕设置", "主屏幕設置" };
+
+	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGSHEADERDESCRIPTION = {
+			"Choose what view to show on your home screen", "Choisir l’affichage de votre écran d’accueil", "选择主屏幕视图",
+			"選擇主屏幕視圖" };
+	public static final String[] ARRAY_DASHBOARD_ENABLEINVESTINGVIEW = { "Enable Investing View",
+			"Activer l’affichage de Placements", "启用投资视图", "啟用投資視圖" };
+	public static final String[] ARRAY_DASHBOARD_ENABLEINVESTINGVIEWDESCRIPTION = {
+			"Add a Watchlist, symbol search box and investing Quick Links.",
+			"Ajouter une liste de surveillance, une boîte de recherche de symboles et des liens rapides sur les placements",
+			"添加自选股观察名单、股票代码搜索框和投资快速连接。", "添加自選股觀察名單、股票代號搜索框和投資快速連結。" };
+	public static final String[] ARRAY_DASHBOARD_INVESTINGVIEWISON = { "Investing view is now on",
+			"Affichage Placements activé", "投资视图已开启", "投資視圖已開啟" };
+	public static final String[] ARRAY_DASHBOARD_GOHOME = { "Go home", "Aller à l’accueil", "回到主页", "回到首頁" };
+	public static final String[] ARRAY_DASHBOARD_STOCKETFs = { "Stocks & ETFs", "Actions et FNB", "股票和交易所交易基金",
+			"股票和交易所買賣基金" };
+	public static final String[] ARRAY_DASHBOARD_MUTUALFUNDS = { "Mutual Funds", "Fonds mutuels", "互惠基金", "互惠基金" };
+	public static final String[] ARRAY_DASHBOARD_OPTIONS = { "Options", "Options", "期权", "期權" };
+	public static final String[] ARRAY_DASHBOARD_ACTIONBUY = { "Buy", "Acheter", "买入", "買入" };
+	public static final String[] ARRAY_DASHBOARD_ACTIONSELL = { "Sell", "Vendre", "卖出", "賣出" };
+	public static final String[] ARRAY_DASHBOARD_ACTIONBUYTOOPEN = { "Buy to Open", "Achat pour ouvrir", "买入开仓",
+			"買入開倉" };
+	public static final String[] ARRAY_DASHBOARD_ACTIONSELLTOCLOSE = { "Sell to Close", "Vente pour fermer", "卖出平仓",
+			"賣出平倉" };
+	public static final String[] ARRAY_DASHBOARD_PRICEMARKET = { "Market", "Cours du marché", "市场", "市價" };
+	public static final String[] ARRAY_DASHBOARD_PRICELIMIT = { "Limit", "Limite", "限价", "限價" };
+	public static final String[] ARRAY_DASHBOARD_GOODTILLDAY = { "Day", "Jour", "当天有效", "當日有效" };
+	public static final String[] ARRAY_DASHBOARD_MF_REINVESTED = { "Reinvested", "Réinvestis", "再投资", "再投資" };
 
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_HOME = { "Home", "Accueil", "主页", "首頁" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS = { "My Accounts", "Mes comptes", "我的账户", "我的賬戶" };
@@ -295,12 +337,86 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_GIVEFEEDBACK = { "Give Feedback", "Fournir des commentaires",
 			"提供意见反馈", "提供意見回饋" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_CONTACTUS = { "Contact Us", "Contactez-nous", "联系我们", "聯絡我們" };
-	public static final String[] ARRAY_DASHBOARD_FLYOUT_FAQ = { "Frequently Asked Questions", "Foire aux questions",
-			"常见问答", "常見問題" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_FAQ = { "FAQ", "Foire aux questions", "常见问答", "常見問題" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_PRIVACYSECURITY = { "Privacy, Security & Legal",
 			"Confidentialité, sécurité et avis juridique", "隐私、安全与法律声明", "私隱政策、安全性和法律聲明" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_TRADE = { "Trade", "Négociation", "交易", "交易" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_LOGOUT = { "Logout", "Fermer la session", "退出", "登出" };
+
+	public static final String[] ARRAY_DASHBOARD_LOCATIONNEAREST = { "Nearest Branch", "Succursale", "最近的分行", "最近分行" };
+
+	public static final String[] ARRAY_DASHBOARD_CONTACTUS = { "Contact Us", "Contactez-nous", "联系我们", "聯絡我們" };
+
+	public static final String[] ARRAY_DASHBOARD_EmptyWLDesc = { "You haven't added any symbols to this Watchlist yet.",
+			"Vous n'avez pas encore ajouté de symbole à cette liste de surveillance.", "您尚未添加股票代码到自选股观察名单中。",
+			"您沒有添加股票代號到自選股觀察名單。" };
+	public static final String[] ARRAY_DASHBOARD_AddSymbolLink = { "Add symbols now", "Ajouter des symboles maintenant",
+			"添加股票代码", "添加股票代號" };
+
+	public static final String[] ARRAY_DASHBOARD_ExpiredSymbolError = { "Invalid Symbol ", "Symbole invalide", "股票代码无效",
+			"股票代號無效" };
+
+	public static final String[] ARRAY_DASHBOARD_EAnotSignedError = { "Exchange Agreement not signed",
+			"Contrat d’abonnement non signé", "未签署交易所协议", "未簽署交易所協議" };
+
+	public static final String[] ARRAY_DASHBOARD_ADDTOWATCHLIST = { "ADD TO OR REMOVE FROM WATCHLIST",
+			"AJOUTER OU SUPPRIMER DE LA LISTE DE SURVEILLANCE", "添加至自选股观察名单或从自选股观察名单中移除", "新增至或從自選股觀察名單中移除" };
+
+	public static final String[] ARRAY_DASHBOARD_ADDTOWATCHLISTAND = { "Add to or remove from watchlist",
+			"Ajouter ou supprimer de la liste de surveillance", "添加至自选股观察名单或从自选股观察名单中移除", "新增至或從自選股觀察名單中移除" };
+
+	public static final String[] ARRAY_DASHBOARD_EDITWL = { "Edit watchlist", "Modifier la liste de surveillance",
+			"编辑自选股观察名单", "編輯自選股觀察名單" };
+
+	public static final String[] ARRAY_DASHBOARD_EDITWLDELETEALL = { "Delete All", "Supprimer tout", "删除全部", "刪除全部" };
+
+	public static final String[] ARRAY_DASHBOARD_EDITWLDELETE = { "Delete", "Supprimer", "删除", "删除" };
+
+	public static final String[] ARRAY_DASHBOARD_EDITWLWARNINGMESSAGE = {
+			"Are you sure you want to delete all of the symbols?", "Voulez-vous vraiment supprimer tous les symboles?",
+			"您确定要删除所有代号？", "確定要刪除全部代號？" };
+
+	public static final String[] ARRAY_DASHBOARD_WLERRORMSG = {
+			"Please read and accept the WebBroker Terms & Conditions in order to view and access your brokerage accounts",
+			"Vous devez lire et accepter les modalités de CourtierWeb avant de pouvoir accéder à vos comptes de courtage.",
+			"请阅读并接受网上经纪服务条款与条件，然后方可查看及使用您的经纪账户", "請閱讀並接受網上經紀服務的條款與條件，才可查看並存取您的經紀賬戶" };
+
+	public static final String[] ARRAY_DASHBOARD_WLERRORTC = {
+			"Terms & Conditions cannot be accepted using the TD App.",
+			"Les modalités ne peuvent pas être acceptées dans l’application TD.", "您无法在道明应用程序中接受条款与条件。",
+			"無法使用道明應用程式接受條款與條件。" };
+
+	public static final String[] ARRAY_QUICK_ACCESS_ACCOUNTS = { "ACCOUNTS", "COMPTES", "账户", "賬戶" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_TERMSOFUSE = { "Terms of Use", "Conditions d'utilisation",
+			"使用条款", "使用條款" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_INFO = {
+			"By using Easy Web or the TDapp, offered by TD Canada Trust and its affiliates, you agree to the terms and conditions of the:",
+			"En utilisant BanqueNet ou l’appli TD, offerts par TD Canada Trust et ses sociétés affiliées, vous acceptez les modalités des textes suivants:",
+			"使用道明加拿大信托及其附属机构提供的易线网上理财或道明应用程序即表示，您同意以下条款与条件：", "透過使用道明加拿大信託及其附屬機構提供的易線網上理財或道明應用程式，即表示您同意以下條款與條件：" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_FINANCIALLINK = { "Financial Services Terms",
+			"Modalités des services financiers", "《金融服务条款》", "《金融服務條款》" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_CARDHOLDERLINK = {
+			"Cardholder and Electronic Financial Services Terms and Conditions",
+			"Modalités relatives à l'utilisation des cartes et des services financiers électroniques",
+			"《持卡人和电子金融服务条款与条件》", "《持卡人與電子金融服務條款與條件》" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_BUSINESSLINK = { "Business Access Services Schedule",
+			"Programme de services Accès Affaires", "《商业访问服务条款》", "《商業存取服務條款》" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_TERMSLINK = { "Terms and Agreement", "Modalités", "《条款与协议》",
+			"《條款與協議》" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_DISCLOSURELINK = { "Disclosure", "Déclaration", "道明投资服务有限公司",
+			"道明投資服務有限公司" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_MUTUALLINK = {
+			"for mutual fund accounts held with TD Investment Services Inc.",
+			"relative aux comptes de fonds communs de placement détenus auprès des Services d'investissement TD inc.",
+			"所持互惠基金账户声明披露", "所持互惠基金賬戶之聲明披露" };
 
 	// MIT Dashboard END
 

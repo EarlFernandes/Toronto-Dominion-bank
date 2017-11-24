@@ -44,7 +44,11 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_HamburgerMenu;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@label='Password']")
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
+	@AndroidFindBy(id = "android:id/up")
+	MobileElement BT_Back;
+
+	@iOSXCUITFindBy(accessibility = "LOGIN_PASSWORD")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement password;
 
@@ -103,7 +107,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	private MobileElement QL_PAY_BILL;
 
 	@iOSFindBy(xpath = "//*[@label='TRADE' or @label='NÉGOCIATION' or @label='交易' or @label='交易']")
-	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation' or @text='交易' or @text='交易']")
+	@AndroidFindBy(xpath = "//*[@text='TRADE' or @text='NÉGOCIATION' or @text='交易' or @text='交易']")
 	private MobileElement QL_TRADE;
 
 	@AndroidFindBy(xpath = "//*[@text='Mobile Payment' or @text='Paiement mobile' or @text='移动支付' or @text='流動付款']")
@@ -143,6 +147,22 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeSearchField[contains(@label,'Add symbol') or @label='Ajouter un symbole à la liste' or @label='将代号添加至自选股观察名单' or @label='新增代號至自選股觀察名單']")
 	@AndroidFindBy(xpath = "//*[@text='Add symbol to watchlist' or @text='Ajouter un symbole à la liste' or @text='将代号添加至自选股观察名单' or @text='新增代號至自選股觀察名單']")
 	private MobileElement ED_AddSymbolToWatchlist;
+
+	@iOSFindBy(xpath = "//*[@label='HOLDINGS' or @label='PLACEMENTS' or @label='持有投资' or @label='持有投資']")
+	@AndroidFindBy(xpath = "//*[@text='HOLDINGS' or @text='PLACEMENTS' or @text='持有投资' or @text='持有投資']")
+	private MobileElement QL_HOLDINGS;
+
+	@iOSFindBy(xpath = "//*[@label='ORDERS' or @label='ORDRES' or @label='订单' or @label='交易訂單']")
+	@AndroidFindBy(xpath = "//*[@text='ORDERS' or @text='ORDRES' or @text='订单' or @text='交易訂單']")
+	private MobileElement QL_ORDERS;
+
+	@iOSFindBy(xpath = "//*[@label='ORDERS' or @label='ORDRES' or @label='订单' or @label='交易訂單']")
+	@AndroidFindBy(id = "com.td:id/ordersTab")
+	private MobileElement LBL_OrdersTab;
+
+	@iOSFindBy(xpath = "//*[@label='ORDERS' or @label='ORDRES' or @label='订单' or @label='交易訂單']")
+	@AndroidFindBy(id = "com.td:id/textview_left")
+	private MobileElement LBL_HoldingsTab_SYMBOL;
 
 	private By ED_Quote_Search_Symbol = By.id("symbol-search");
 
@@ -226,6 +246,12 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		Decorator();
 		try {
 
+			verifyQL_TRADE(true);
+
+			verifyQL_HOLDINGS(true);
+
+			verifyQL_ORDERS(true);
+
 			verifyQL_SENDMONEY(true);
 
 			verifyQL_TRANSFER(true);
@@ -238,11 +264,11 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 			verifyQL_PAY_BILL(true);
 
-			verifyQL_TRADE(true);
-
-			verifyQL_WATCHLISTS(true);
-
-			verifyQL_QUOTE(true);
+			/*
+			 * verifyQL_WATCHLISTS(true); De-Scoped as per New Requirement
+			 * 
+			 * verifyQL_QUOTE(true);De-Scoped as per New Requirement
+			 */
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -284,13 +310,51 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		}
 		if (bFlag) {
 			try {
-				CL.GetReporting().FuncReport("Pass", sDesc + " Quick Link is present.");
+				CL.GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> Quick Link is present.");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else {
 			try {
-				CL.GetReporting().FuncReport("Fail", sDesc + " Quick Link does not exist.");
+				CL.GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> Quick Link does not exist.");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return bFlag;
+	}
+
+	public boolean verifyQuickLinkExistsByXpath(String xpathEle, String sDesc) {
+		Decorator();
+		boolean bFlag = false;
+		try {
+
+			CL.GetDriver().findElement(By.xpath(xpathEle));
+			// mobileAction.FunctionSwipe("Left", 200, 100);
+
+			// if (mobileAction.isObjExists(mElement))
+			bFlag = true;
+			// else
+			// bFlag = true;
+
+		} catch (Exception e) {
+			try {
+				mobileAction.SwipeQuickLinks(200, 100);
+				bFlag = true;
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			// e.printStackTrace();
+		}
+		if (bFlag) {
+			try {
+				CL.GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> Quick Link is present.");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				CL.GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> Quick Link does not exist.");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -301,21 +365,25 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	public void goToDashboardHome() {
 		Decorator();
 		try {
+			Thread.sleep(1000);
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
-			mobileAction.FuncClick(InvestingAccount, "Investing Accounts Flyout Menu");
+			mobileAction.FuncClick(flyoutMyAccountLink, "My Accounts Flyout Menu");
 			LoginMIT.get().MITLogin();
-			mobileAction.ClickBackButton();
-			mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
+				mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+			} else {
+				mobileAction.FuncClick(BT_Back, "< Button");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public void verifyQL_SENDMONEY(boolean bIsAuthenticatedUser) {
 		Decorator();
 		try {
-			// System.out.println("hi");
+
 			if (verifyQuickLinkExists(QL_SENDMONEY, "SEND MONEY")) {
 				mobileAction.FuncVerifyTextEquals(QL_SENDMONEY,
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_SENDMONEY));
@@ -463,16 +531,18 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					// Quote page WEBVIEW
 					MIT_PNSAccessAlerts.get().FuncSwitchContext(MIT_PNSAccessAlerts.get().getWebViewContextString());
-					mobileAction.verifyElementIsDisplayed(getMobileElement(ED_Quote_Search_Symbol),
+					mobileAction.verifyElementIsDisplayed(mobileAction.getMobileElement(ED_Quote_Search_Symbol),
 							"ED_Quote_Search_Symbol");
-					// Thread.sleep(10000);
-					mobileAction.FuncClick(getMobileElement(BTN_Back), "BTN_Back");
+
+					mobileAction.FuncClick(mobileAction.getMobileElement(BTN_Back), "BTN_Back");
 					MIT_PNSAccessAlerts.get().FuncSwitchContext("NATIVE_APP");
 				} else {
 					mobileAction.verifyElementIsDisplayed(ED_Quote_Search_Symbol_iOS, "ED_Quote_Search_Symbol_iOS");
 					mobileAction.FuncClick(BT_Cancel_QuoteSearchSymbolScreen, "BT_Cancel_QuoteSearchSymbolScreen");
 
 				}
+
+				mobileAction.switchAppiumContext("NATIVE_APP");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -510,19 +580,51 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE));
 
 				clickQuickLink(QL_TRADE, "TRADE");
-				mobileAction.verifyElementIsDisplayed(hdrTrade, "Header: Trade");
-				mobileAction.ClickBackButton();
+
+				if (!bIsAuthenticatedUser) {
+					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
+					mobileAction.FuncClick(BT_Back, "< Button");
+				} else {
+					mobileAction.verifyElementIsDisplayed(hdrTrade, "Header: Trade");
+					mobileAction.FuncClick(BT_Back, "< Button");
+				}
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public MobileElement getMobileElement(By element) {
+	public void verifyQL_HOLDINGS(boolean bIsAuthenticatedUser) {
+		Decorator();
 		try {
-			return (MobileElement) ((AppiumDriver) CL.GetDriver()).findElement(element);
+			if (verifyQuickLinkExists(QL_HOLDINGS, "HOLDINGS")) {
+				mobileAction.FuncVerifyTextEquals(QL_HOLDINGS,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_HOLDINGS));
+
+				clickQuickLink(QL_HOLDINGS, "HOLDINGS");
+				mobileAction.verifyElementIsDisplayed(LBL_HoldingsTab_SYMBOL,
+						"Holdings Tab under Account Details: SYMBOL Label");
+				mobileAction.FuncClick(BT_Back, "< Button");
+			}
 		} catch (Exception e) {
-			return null;
+			e.printStackTrace();
+		}
+	}
+
+	public void verifyQL_ORDERS(boolean bIsAuthenticatedUser) {
+		Decorator();
+		try {
+			if (verifyQuickLinkExists(QL_ORDERS, "ORDERS")) {
+				mobileAction.FuncVerifyTextEquals(QL_ORDERS,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_ORDERS));
+
+				clickQuickLink(QL_ORDERS, "ORDERS");
+				mobileAction.verifyElementIsDisplayed(LBL_OrdersTab, "Orders Tab under Account Details");
+				mobileAction.FuncClick(BT_Back, "< Button");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

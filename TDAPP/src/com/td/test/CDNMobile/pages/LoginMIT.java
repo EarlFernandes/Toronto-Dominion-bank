@@ -117,7 +117,7 @@ public class LoginMIT extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Done']")
 	private MobileElement done;
 
-	@iOSFindBy(xpath = "//*[@label='Login']")
+	@iOSFindBy(xpath = "//*[@label='Login' or @label='Ouvrir une session']")
 	// @AndroidFindBy(xpath =
 	// "//android.widget.TextView[@resource-id='com.td:id/mfa_login_btn_txt' and
 	// @text='Login']")
@@ -153,11 +153,20 @@ public class LoginMIT extends _CommonPage {
 	 * private MobileElement Investing_Trade;
 	 */
 
-	@iOSFindBy(xpath = "//*[@label='Investing' or @label='Placements' or @label='投资' or @label='投資']") // @Author
+	/*
+	 * @iOSFindBy(xpath =
+	 * "//*[@label='Investing' or @label='Placements' or @label='投资' or @label='投資']"
+	 * ) // @Author // - // Sushil // 01-Sep-2017
+	 * 
+	 * @AndroidFindBy(xpath =
+	 * "//*[@text='Investing' or @text='Placements' or @text='投资' or @text='投資']"
+	 * )
+	 */ // Investing Landing page removed as per new requirement
+	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='Comptes' or @label='账户' or @label='賬戶']") // @Author
 	// -
 	// Sushil
-	// 01-Sep-2017
-	@AndroidFindBy(xpath = "//*[@text='Investing' or @text='Placements' or @text='投资' or @text='投資']")
+	// 21-Sep-2017
+	@AndroidFindBy(xpath = "//*[@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶']")
 	private MobileElement Investing_Trade;
 
 	String verifyLogin_ios = "//*[contains(@label,'Your Login Info Please')]";
@@ -215,7 +224,7 @@ public class LoginMIT extends _CommonPage {
 				TradeMultiLeg.get().handleKeyboard();
 
 				mobileAction.FuncClick(login, "Login");
-
+				
 				if (!mobileAction.isObjExists(Investing_Trade))
 					enterPwdifError();
 
@@ -230,18 +239,21 @@ public class LoginMIT extends _CommonPage {
 
 				TradeMultiLeg.get().handleKeyboard();
 				mobileAction.FuncClick(login, "Login");
-
+			
 				if (!mobileAction.isObjExists(Investing_Trade))
 					enterPwdifError();
 
 			}
 
-			if (!mobileAction.isObjExists(Investing_Trade)) {
+			if (!mobileAction.isObjExists(Investing_Trade))
+			
+			{
 				if (mobileAction.isObjExists(enterAnswer)) {
 					mobileAction.FuncSendKeys(enterAnswer, getTestdata("SecurityPassword", XLSheetUserIDs));
 					TradeMultiLeg.get().handleKeyboard();
 
 					mobileAction.FuncClick(securityLogin, "Login");
+					
 				}
 			}
 		} catch (Exception e) {
@@ -264,7 +276,9 @@ public class LoginMIT extends _CommonPage {
 					mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 					TradeMultiLeg.get().handleKeyboard();
 					mobileAction.FuncClick(login, "Login");
+					
 					iCnt++;
+					Thread.sleep(10000);
 				} while (mobileAction.isObjExists(errorText) || iCnt > 5);
 
 				if (iCnt > 5) {

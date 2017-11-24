@@ -49,266 +49,270 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				this);
 	}
 
-	@iOSFindBy(xpath = "//*[@name='QuickLinkLeftNavButton' or @name='NAVIGATION_ITEM_MENU']")
+	@iOSXCUITFindBy(xpath = "//*[@name='QuickLinkLeftNavButton' or @name='NAVIGATION_ITEM_MENU']")
 	@AndroidFindBy(id = "com.td:id/hamburger")
 	MobileElement BT_Home_HamburgerMenu;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeCell[@name='Alerts' or contains(@name,'Alertes')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCell[@name='Alerts' or contains(@name,'Alertes')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title' and @text='Alerts' or @text='Alertes']")
 	private MobileElement Alerts;
 
-	@iOSFindBy(xpath = "//*[@name='QuickLinkLeftNavButton' or @name='NAVIGATION_ITEM_MENU' or @name='Home']")
+	@iOSXCUITFindBy(xpath = "//*[@name='QuickLinkLeftNavButton' or @name='NAVIGATION_ITEM_MENU' or @name='Home']")
 	@AndroidFindBy(id = "android:id/up")
 	private MobileElement MenuUp;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Home')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Home')]")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id=com.td:id/hamburger']")
 	private MobileElement MenuUp1;
 
-	@iOSFindBy(xpath = "//*[@name='QuickLinkLeftNavButton']/following-sibling::XCUIElementTypeImage[1]")
+	@iOSXCUITFindBy(xpath = "//*[@name='QuickLinkLeftNavButton']/following-sibling::XCUIElementTypeImage[1]")
 	@AndroidFindBy(id = "com.td:id/logo")
 	private MobileElement hdrHome;
 
-	@iOSFindBy(xpath = "//*[@label='Login' or contains(@label,'Ouvrir')]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Login' or contains(@label,'Ouvrir')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/loginBtnText']")
 	private MobileElement login;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeSecureTextField[@label='Password']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeSecureTextField[@label='Password']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement password;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Cross-Border Banking' or @label='Services bancaires transfrontaliers' or @label='跨境理财服务' or @label='跨國理財服務']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Cross-Border Banking' or @label='Services bancaires transfrontaliers' or @label='跨境理财服务' or @label='跨國理財服務']")
 
 	@AndroidFindBy(xpath = "//*[@text='Cross-Border Banking' or @text='Services bancaires transfrontaliers' or @text='跨境理财服务' or @text='跨國理財服務']")
 	private MobileElement lblCrossBorder;
 
-	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres' or @label='个人资料和设置' or @label='個人資料和設定']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres' or @label='个人资料和设置' or @label='個人資料和設定']")
 
 	@AndroidFindBy(xpath = "//*[@text='Profile & Settings' or @text='Profil et paramètres' or @text='个人资料和设置' or @text='個人資料和設定']")
 	private MobileElement lblProfileSettings;
 
-	@iOSFindBy(xpath = "//*[@label='Apple Watch' or @label='Services bancaires transfrontaliers'']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Apple Watch' or @label='Services bancaires transfrontaliers'']")
 	@AndroidFindBy(xpath = "//*[@text='Apple Watch' or @text='Services bancaires transfrontaliers']")
 	private MobileElement lblAppleWatch;
 
 	By Text_Condition = By.xpath("//*[@class='module enter-condition-module']/*[1]");
 
-	@iOSFindBy(xpath = "//*[@label='Find Locations' or @label='Trouver une succursale' or @label='查找分行' or @label='查找分行']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Find Locations' or @label='Trouver une succursale' or @label='查找分行' or @label='查找分行']")
 	@AndroidFindBy(xpath = "//*[@text='Find Locations' or @text='Trouver une succursale' or @text='查找分行' or @text='查找分行']")
 	private MobileElement lblFindLocation;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='How was your TD app experience today?' or @label='Services bancaires transfrontaliers']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='How was your TD app experience today?' or @label='Services bancaires transfrontaliers']")
 	@AndroidFindBy(xpath = "//*[@text='How was your TD app experience today?' or @text='']")
 	private MobileElement lblExperience;
 
-	@iOSFindBy(xpath = "//*[@label='Contact Us' or @label='Contacter nous' or @label='联系我们' or @label='聯絡我們']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Contact Us' or @label='Contacter nous' or @label='联系我们' or @label='聯絡我們']")
 	@AndroidFindBy(xpath = "//*[(@text='Contact Us' or @text='Contacter nous' or @text='联系我们' or @text='聯絡我們') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblContactUs;
 
-	@iOSFindBy(xpath = "//*[@label='FAQs' or @label='FAQ' or @label='常见问答' or @label='常見問題']")
+	@iOSXCUITFindBy(xpath = "//*[@label='FAQs' or @label='FAQ' or @label='常见问答' or @label='常見問題']")
 	@AndroidFindBy(xpath = "//*[(@text='FAQs' or @text='FAQ' or @text='常见问答' or @text='常見問題') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblFAQs;
 
-	@iOSFindBy(xpath = "//*[@label='Logged Out' or @label='Session fermée' or @label='已退出' or @label='已登出']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Logged Out' or @label='Session fermée' or @label='已退出' or @label='已登出']")
 	@AndroidFindBy(xpath = "//*[(@text='Logged Out' or @text='Session fermée' or @text='已退出' or @text='已登出') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblLoggedOut;
 
-	@iOSFindBy(xpath = "//*[@label='Trade' or @label='Négociation' or @label='交易' or @label='交易']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Trade' or @label='Négociation' or @label='交易' or @label='交易']")
 	@AndroidFindBy(xpath = "//*[(@text='Trade' or @text='Négociation' or @text='交易' or @text='交易') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblTrade;
 
-	@iOSFindBy(xpath = "//*[@label='Logout' or@label='Fermer la session' or @label='退出' or @label='登出']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Logout' or@label='Fermer la session' or @label='退出' or @label='登出']")
 	@AndroidFindBy(xpath = "//*[@text='Logout' or @text='Fermer la session' or @text='退出' or @text='登出']")
 	// @AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement flyoutLogOut;
 
-	@iOSFindBy(xpath = "//*[@label='Home' or @label='Accueil' or @label='主页' or @label='首頁']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Home' or @label='Accueil' or @label='主页' or @label='首頁']")
 	@AndroidFindBy(xpath = "//*[@text='Home' or @text='Accueil' or @text='主页' or @text='首頁']")
 	private MobileElement flyoutHomeLink;
 
-	@iOSFindBy(xpath = "//*[@label='My Accounts' or @label='Mes comptes' or @label='我的账户' or @label='我的賬戶']")
+	@iOSXCUITFindBy(xpath = "//*[@label='My Accounts' or @label='Mes comptes' or @label='我的账户' or @label='我的賬戶']")
 	@AndroidFindBy(xpath = "//*[@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶']")
 	private MobileElement flyoutMyAccountLink;
 
-	@iOSFindBy(xpath = "//*[@label='My Accounts' or @label='Mes comptes' or @label='我的账户' or @label='我的賬戶']")
+	@iOSXCUITFindBy(xpath = "//*[@label='My Accounts' or @label='Mes comptes' or @label='我的账户' or @label='我的賬戶']")
 	@AndroidFindBy(xpath = "//*[(@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblMyAccounts;
 
-	@iOSFindBy(xpath = "//*[@label='Login' or contains(@label,'Ouvrir')]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Login' or contains(@label,'Ouvrir')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/accntDescrSumt']")
 	private MobileElement accountList1;
 
 	String accountList = "//android.widget.TextView[@resource-id= 'com.td:id/accntDescrSumt']";
 
-	@iOSFindBy(xpath = "//*[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬']")
 	@AndroidFindBy(xpath = "//*[(@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblTransfers;
 
-	@iOSFindBy(xpath = "//*[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單']")
 	@AndroidFindBy(xpath = "//*[(@text='Bills' or @text='Factures' or @text='账单' or @text='賬單') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblBill;
 
-	@iOSFindBy(xpath = "//*[@label='Apple Pay' or @label='Foire aux questions']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Apple Pay' or @label='Foire aux questions']")
 	@AndroidFindBy(xpath = "//*[(@text='Apple Pay' or @text='Foire aux questions') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblApplePay;
 
-	@iOSFindBy(xpath = "//*[@label='TD MySpend' or @label='Dépense TD']")
+	@iOSXCUITFindBy(xpath = "//*[@label='TD MySpend' or @label='Dépense TD']")
 	@AndroidFindBy(xpath = "//*[(@text='TD MySpend' or @text='Dépense TD') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblTDMySpend;
 
-	@iOSFindBy(xpath = "//*[@label='Mobile Payment' or @label='Paiement mobile' or contains(@label,'移动支付') or contains(@label,'道明流動付款')]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Mobile Payment' or @label='Paiement mobile' or contains(@label,'移动支付') or contains(@label,'道明流動付款')]")
 	@AndroidFindBy(xpath = "//*[(@text='Mobile Payment' or @text='Paiement mobile' or contains(@text,'移动支付') or contains(@text,'道明流動付款')) and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblMobilePayment;
 
-	@iOSFindBy(xpath = "//*[@label='Mobile Deposit' or @label='Dépôt mobile' or @label='移动存款服务' or @label='流動存款']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Mobile Deposit' or @label='Dépôt mobile' or @label='移动存款服务' or @label='流動存款']")
 	@AndroidFindBy(xpath = "//*[(@text='Mobile Deposit' or @text='Dépôt mobile' or @text='移动存款服务' or @text='流動存款') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblMobileDepositBanking;
 
-	@iOSFindBy(xpath = "//*[@label='Banking' or @label='Services bancaires' or @label='理财' or @label='理財']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Banking' or @label='Services bancaires' or @label='理财' or @label='理財']")
 	@AndroidFindBy(xpath = "//*[(@text='Banking' or @text='Services bancaires' or @text='理财' or @text='理財') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblMobileDepositInvesting;
 
-	@iOSFindBy(xpath = "//*[@label='TD for Me' or @label='TD et moi' or @label='TD for Me' or @label='TD et moi']")
+	@iOSXCUITFindBy(xpath = "//*[@label='TD for Me' or @label='TD et moi' or @label='TD for Me' or @label='TD et moi']")
 	@AndroidFindBy(xpath = "//*[(@text='TD for Me' or @text='TD et moi' or @text='TD for Me' or @text='TD et moi') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblTDforMe;
 
-	@iOSFindBy(xpath = "//*[@label='Investing' or @label='Placements' or @label='投资' or @label='投資']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Investing' or @label='Placements' or @label='投资' or @label='投資']")
 	@AndroidFindBy(xpath = "//*[(@text='Investing' or @text='Placements' or @text='投资' or @text='投資') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblInvestingAccounts;
 
-	@iOSFindBy(xpath = "//*[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬']")
 	@AndroidFindBy(xpath = "//*[(@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutTransfersLink;
 
-	@iOSFindBy(xpath = "//*[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單']")
 	@AndroidFindBy(xpath = "//*[(@text='Bills' or @text='Factures' or @text='账单' or @text='賬單') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutBillsLink;
 
-	@iOSFindBy(xpath = "//*[@label='Apple Pay' or @label='Factures']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Apple Pay' or @label='Factures']")
 	@AndroidFindBy(xpath = "//*[@text='Apple Pay' or @text='Factures')]")
 	private MobileElement flyoutApplePay;
 
-	@iOSFindBy(xpath = "//*[@label='TD MySpend' or @label='Dépense TD']")
+	@iOSXCUITFindBy(xpath = "//*[@label='TD MySpend' or @label='Dépense TD']")
 	@AndroidFindBy(xpath = "//*[(@text='TD MySpend' or @text='Dépense TD') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutTDMySpend;
 
-	@iOSFindBy(xpath = "//*[@label='TD Mobile Payment' or @label='Paiement mobile TD' or @label='道明移动支付' or @label='道明流動付款']")
+	@iOSXCUITFindBy(xpath = "//*[@label='TD Mobile Payment' or @label='Paiement mobile TD' or @label='道明移动支付' or @label='道明流動付款']")
 	@AndroidFindBy(xpath = "//*[(@text='TD Mobile Payment' or @text='Paiement mobile TD' or @text='道明移动支付' or @text='道明流動付款') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutMobilePayment;
 
-	@iOSFindBy(xpath = "//*[@label='TD MySpend' or @label='Dépense TD']")
+	@iOSXCUITFindBy(xpath = "//*[@label='TD MySpend' or @label='Dépense TD']")
 	@AndroidFindBy(xpath = "//*[(@text='TD MySpend' or @text='Dépense TD') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutTDMySpendLink;
 
-	@iOSFindBy(xpath = "//*[@label='Mobile Deposit' or @label='Dépôt mobile' or @label='移动存款服务' or @label='流動存款']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Mobile Deposit' or @label='Dépôt mobile' or @label='移动存款服务' or @label='流動存款']")
 	@AndroidFindBy(xpath = "//*[(@text='Mobile Deposit' or @text='Dépôt mobile' or @text='移动存款服务' or @text='流動存款') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutMobileDepositLink;
 
-	@iOSFindBy(xpath = "//*[@label='TD for Me' or @label='TD et Moi']")
+	@iOSXCUITFindBy(xpath = "//*[@label='TD for Me' or @label='TD et Moi']")
 	@AndroidFindBy(xpath = "//*[(@text='TD for Me' or @text='TD et Moi') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutTDforMeLink;
 
-	@iOSFindBy(xpath = "//*[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶']")
 	@AndroidFindBy(xpath = "//*[(@text='Investing Accounts' or @text='Comptes Placements directs TD' or @text='投资账户' or @text='投資賬戶') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutInvestingAccountsLink;
 
-	@iOSFindBy(xpath = "//*[@label='Trade' or contains(@label,'Négociation') or @label='交易' or @label='交易']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Trade' or contains(@label,'Négociation') or @label='交易' or @label='交易']")
 	@AndroidFindBy(xpath = "//*[(@text='Trade' or contains(@text,'Négociation') or @text='交易' or @text='交易') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutTrade;
 
-	@iOSFindBy(xpath = "//*[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶']")
 	@AndroidFindBy(xpath = "//*[(@text='Investing Accounts' or @text='Comptes Placements directs TD' or @text='投资账户' or @text='投資賬戶') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	MobileElement InvestingAccount;
 
-	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres' or @label='个人资料和设置' or @label='個人資料和設定']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres' or @label='个人资料和设置' or @label='個人資料和設定']")
 	@AndroidFindBy(xpath = "//*[@text='Cross-Border Banking' or @text='Services bancaires transfrontaliers' or @text='跨境理财服务' or @text='跨國理財服務']")
 	private MobileElement flyoutCrossBorderBankingLink;
 
-	@iOSFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres' or @label='个人资料和设置' or @label='個人資料和設定']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres' or @label='个人资料和设置' or @label='個人資料和設定']")
 	@AndroidFindBy(xpath = "//*[@text='Profile & Settings' or @text='Profil et paramètres' or @text='个人资料和设置' or @text='個人資料和設定']")
 	private MobileElement flyoutProfileSettings;
 
-	@iOSFindBy(xpath = "//*[@label='Apple Watch')]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Apple Watch')]")
 	@AndroidFindBy(xpath = "//*[@text='Apple Watch' or contains(@text,'Services bancaires transfrontaliers')]")
 	private MobileElement flyoutAppleWatch;
 
-	@iOSFindBy(xpath = "//*[@label='Locations' or @label='Succursales' or @label='分行网点' or @label='分行']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Locations' or @label='Succursales' or @label='分行网点' or @label='分行']")
 	@AndroidFindBy(xpath = "//*[@text='Locations' or @text='Succursales' or @text='分行网点' or @text='分行']")
 	private MobileElement flyoutLocationsLink;
 
-	@iOSFindBy(xpath = "//*[@label='Give Feedback'' or @label='Fournir des commentaires' or @label='提供意见反馈' or @label='提供意見回饋']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Give Feedback'' or @label='Fournir des commentaires' or @label='提供意见反馈' or @label='提供意見回饋']")
 	@AndroidFindBy(xpath = "//*[@text='Give Feedback' or @text='Fournir des commentaires' or @text='提供意见反馈' or @text='提供意見回饋']")
 	private MobileElement flyoutGiveFeedbackLink;
 
-	@iOSFindBy(xpath = "//*[@label='Contact Us' or @label='Contactez-nous' or @label='联系我们' or @label='聯絡我們']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Contact Us' or @label='Contactez-nous' or @label='联系我们' or @label='聯絡我們']")
 	@AndroidFindBy(xpath = "//*[@text='Contact Us' or @text='Contactez-nous' or @text='联系我们' or @text='聯絡我們']")
 	private MobileElement flyoutContactUsLink;
 
-	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSXCUITFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='TD Canada Trust' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/tvTDWealthFPNumberLabele']")
 	private MobileElement contactusTD;
 
-	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_1_PHONE_TITLE']")
+	// @@iOSXCUITFindBy(xpath = "//*[@name='CONTACTUS_CELL_1_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='TD Credit Card' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/tvTDCreditNumberLabel']")
 	private MobileElement contactusCC;
 
-	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_2_PHONE_TITLE']")
+	// @iOSXCUITFindBy(xpath = "//*[@name='CONTACTUS_CELL_2_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='TD Small Business Banking' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/tvTDSmallBusinessNumberLabel']")
 	private MobileElement contactusBB;
 
-	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_3_PHONE_TITLE']")
+	// @iOSXCUITFindBy(xpath = "//*[@name='CONTACTUS_CELL_3_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='TD Direct Investing' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/tvTDWealthDINumberLabel']")
 	private MobileElement contactusDI;
 
-	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_4_PHONE_TITLE']")
+	// @iOSXCUITFindBy(xpath = "//*[@name='CONTACTUS_CELL_4_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='TD Wealth Financial Planning' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/tvTDWealthFPNumberLabele']")
 	private MobileElement contactusFP;
 
-	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSXCUITFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='Using TD Mobile Payment' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/faq_category_item_name']")
 	private MobileElement TDMobilePayment;
 
-	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSXCUITFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='Miscellaneous' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/faq_category_item_name']")
 	private MobileElement Miscellaneous;
 
-	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSXCUITFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='Getting Started' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/faq_category_item_name']")
 	private MobileElement GettingStarted;
 
-	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSXCUITFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='TD MySpend' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/faq_category_item_name']")
 	private MobileElement TDMySpend;
 
-	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSXCUITFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='Mobile Privacy' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/tvPrivacy']")
 	private MobileElement mobilePrivacy;
 
-	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSXCUITFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='Privacy & Security' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/tvSecurity']")
 	private MobileElement privacySecurity;
 
-	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSXCUITFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='Legal' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/tvLegal']")
 	private MobileElement legal;
 
-	// @iOSFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
+	// @iOSXCUITFindBy(xpath = "//*[@name='CONTACTUS_CELL_0_PHONE_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='Terms of Use' or contains(@text,'Communiquez avec nous')]")
 	private MobileElement terms;
 
-	@iOSFindBy(xpath = "//*[@label='Legal' or @label='Avis juridique' or @label='法律声明' or @label='法律聲明']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Legal' or @label='Avis juridique' or @label='法律声明' or @label='法律聲明']")
 	@AndroidFindBy(xpath = "//*[(@text='Legal' or @text='Avis juridique' or @text='法律声明' or @text='法律聲明') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblLegal;
 
-	@iOSFindBy(xpath = "//*[@label='FAQ' or @label='Foire aux questions' or @label='常见问答' or @label='常見問題']")
-	@AndroidFindBy(xpath = "//*[@text='Frequently Asked Questions' or @text='Foire aux questions' or @text='常见问答' or @text='常見問題']")
+	@iOSXCUITFindBy(xpath = "//*[@label='FAQ' or @label='Foire aux questions' or @label='常见问答' or @label='常見問題']")
+	@AndroidFindBy(xpath = "//*[@text='FAQ' or @text='Foire aux questions' or @text='常见问答' or @text='常見問題']")
 	private MobileElement flyoutFAQLink;
 
-	@iOSFindBy(xpath = "//*[@label='Privacy, Security & Legal' or @label='Confidentialité, sécurité et avis juridique' or @label='隐私、安全与法律声明' or @label='私隱政策、安全性和法律聲明']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Privacy, Security & Legal' or @label='Confidentialité, sécurité et avis juridique' or @label='隐私、安全与法律声明' or @label='私隱政策、安全性和法律聲明']")
 	@AndroidFindBy(xpath = "//*[@text='Privacy, Security & Legal' or @text='Confidentialité, sécurité et avis juridique' or @text='隐私、安全与法律声明' or @text='私隱政策、安全性和法律聲明']")
 	private MobileElement flyoutPrivacySecurityLink;
 
-	private By BTN_Back = By.xpath("//*[@class='sprite sprite-back']");
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
+	@AndroidFindBy(id = "android:id/up")
+	MobileElement backButton;
+
+	private By BTN_Back = By.xpath("//*[@src='/images/mobile/btn_back_arrow_green.png']");
 
 	public void verifyFlyoutUnauthenticated() {
 		Decorator();
@@ -331,7 +335,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 			verifyTDforMe(false);
 
-			verifyInvestingAccounts(false);
+			// verifyInvestingAccounts(false);
 
 			verifyCrossBorderBanking(false);
 
@@ -378,7 +382,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 			verifyTDforMe(true);
 
-			verifyInvestingAccounts(true);
+			// verifyInvestingAccounts(true);
 
 			verifyCrossBorderBanking(true);
 
@@ -427,7 +431,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 			verifyTDforMe(true);
 
-			verifyInvestingAccounts(true);
+			// verifyInvestingAccounts(true);
 
 			verifyTrade(true);
 
@@ -482,7 +486,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 			verifyTDforMe(true);
 
-			verifyInvestingAccounts(true);
+			// verifyInvestingAccounts(true);
 
 			verifyTrade(true);
 
@@ -890,8 +894,6 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
 
-					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
-
 				}
 
 				else
@@ -959,7 +961,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				{
 
-					mobileAction.FuncClick(lblFindLocation, "lblFindLocation");
+					mobileAction.FuncClick(backButton, "backButton");
 
 					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 
@@ -980,7 +982,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 
 				{
-					mobileAction.FuncClick(lblFindLocation, "lblFindLocation");
+					mobileAction.FuncClick(backButton, "backButton");
 
 					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 
@@ -1161,10 +1163,6 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 					mobileAction.ClickBackButton();
 
-					mobileAction.FuncClick(MenuUp, "MenuUp");
-
-					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
-
 				}
 
 				else {
@@ -1201,7 +1199,6 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				{
 					mobileAction.FuncClick(lblFAQs, "lblFAQs");
 
-					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 				}
 
 				else {
@@ -1285,7 +1282,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 
 				{
-					mobileAction.FuncClick(lblLegal, "lblLegal");
+					mobileAction.FuncClick(backButton, "backButton");
 
 					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 
@@ -1362,7 +1359,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 						mobileAction.verifyElementIsDisplayed(lblMobilePayment, "lblMobilePayment");
 
-						mobileAction.FuncClick(lblMobilePayment, "lblMobilePayment");
+						mobileAction.FuncClick(backButton, "backButton");
 
 						mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 					}
@@ -1398,7 +1395,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				{
 
-					mobileAction.FuncClick(lblProfileSettings, "lblProfileSettings");
+					mobileAction.FuncClick(backButton, "backButton");
 
 					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 
@@ -1475,9 +1472,10 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 
-					mobileAction.FuncClick(lblTrade, "lblTrade");
+					mobileAction.FuncClick(backButton, "backButton");
 
-					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
+					// mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink,
+					// true, 10, "down");
 
 				}
 
