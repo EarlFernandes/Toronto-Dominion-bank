@@ -39,11 +39,11 @@ public class StatementBalance extends _CommonPage {
 	private MobileElement statementBalanceValue;
 
 	@iOSXCUITFindBy(accessibility = "RVB_DETAIL_HEADER_DATE")
-	@AndroidFindBy(id = "com.td:id/statement_balance_title")
+	@AndroidFindBy(id = "com.td:id/statement_period")
 	private MobileElement statementDateRange;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")
-	@AndroidFindBy(xpath = "(//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button'])[1]")
+	@AndroidFindBy(id = "com.td:id/btn_pay")
 	private MobileElement statementPayButton;
 
 	public synchronized static StatementBalance get() {

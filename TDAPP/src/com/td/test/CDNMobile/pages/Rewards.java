@@ -287,7 +287,13 @@ public class Rewards extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.verifyElementIsDisplayed(visitTDUrl, "Pay With Rewards link");
-			String url = visitTDUrl.getAttribute("value");
+			String url = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				url = visitTDUrl.getAttribute("value");
+			} else {
+				url = visitTDUrl.getAttribute("text");
+			}
+
 			if (url.contains("tdrewards.com")) {
 				CL.GetReporting().FuncReport("Pass", "TDRewards.com loaded in browser");
 			} else {

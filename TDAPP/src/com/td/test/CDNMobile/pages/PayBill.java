@@ -62,7 +62,7 @@ public class PayBill extends _CommonPage {
 	private MobileElement continue_pay;
 
 	@iOSXCUITFindBy(accessibility = "PAYBILL_CONFIRMVIEW_CONTINUE")
-	@AndroidFindBy(id = "com.td:id/btn_continue")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue' or @resource-id='com.td:id/myaccounts_entry_btn_confirm']")
 	private MobileElement pay_bill;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeButton[2]")
