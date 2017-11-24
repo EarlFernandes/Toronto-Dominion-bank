@@ -316,6 +316,8 @@ public class OTPSetup extends _CommonPage {
 
 	public void addMaxPhoneNumbers() {
 		try {
+			mobileAction.sleep(5000); // Wait for page to load
+
 			String phoneNumbers[] = getTestdata("PhoneProfile").replaceAll(" ", "").split(",");
 
 			for (int i = 0; i < phoneNumbers.length; i++) {
