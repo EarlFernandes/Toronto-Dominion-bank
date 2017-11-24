@@ -43,8 +43,8 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_DISCLAIMER_INFO = {
 			"We only use your information to contact you about your purchase.Please make sure that all RSP and Tax Free Savings Account transactions do not exceed your allowed contribution limit.If a trade is rejected for any reason, we'll cancel it and notify you via email within one business day.You may be charged a short term trading fee of up to 2% of your purchase cost if you switch or redeem your Funds (except the Money Market Funds). This fee does not apply to Fund units purchased through distribution / dividend reinvestment. Short term trading fees are paid directly to the Fund. Please see the applicable fund facts or the simplified prospectus for further details.TD Asset Management Inc. (TDAM) pays TD Investment Services Inc. (TDIS) a trailing commission for as long as you hold units of TD Mutual Funds. It is for the services and advice provided to you. See the Fund Facts for more details.",
 			"Vos renseignements seront uniquement utilisés pour communiquer avec vous au sujet de votre achat.Vérifiez qu’aucune opération visant un REER ou un CELI ne vous fera dépasser votre plafond de cotisation.Si une opération est refusée pour quelque raison que ce soit, nous l’annulerons et nous vous aviserons par courriel dans un délai d’un jour ouvrable.Vous pourriez devoir payer des frais d’opérations à court terme s’élevant jusqu’à 2 % du coût d’achat si vous substituez ou rachetez des parts du fonds (sauf dans le cas d’un Fonds du marché monétaire). Ces frais ne s’appliquent pas aux parts de fonds achetés dans le cadre d’un régime de réinvestissement des distributions ou des dividendes. Les frais d’opérations à court terme sont versés directement dans le fonds. Pour plus de précisions, veuillez consulter l’aperçu du fonds ou le prospectus simplifié pertinent.Gestion de Placements TD Inc. (GPTD) verse une commission de suivi à Services d’investissement TD Inc. en contrepartie des services et des conseils qui vous sont offerts, tant et aussi longtemps que vous détenez des parts des Fonds Mutuels TD. Veuillez vous reporter à l’aperçu du fonds pertinent pour obtenir plus de précisions.",
-			"您的个人信息仅用于我们就您的基金购买情况与您联络。请确保所有注册退休储蓄计划\\(RSP\\)和免税储蓄账户\\(TFSA\\)交易不超过您允许的供款限额。如果交易出于任何原因被拒，我们将在一个工作日内取消交易并向您发送电子邮件通知。如果您转换或赎回基金\\（货币市场基金除外\\），您可能需要支付不超过购买成本2%的短期交易费。此费用不适用于通过分红/股息再投资购买的基金单位。短期交易费直接支付给基金。请参阅相关基金概况或简化招股说明书了解更多详情。*道明资产管理有限公司\\（TDAM\\）在您持有道明互惠基金单位期间向道明投资服务有限公司\\（TDIS\\）支付尾随佣金，作为其向您提供服务和咨询的费用。有关详细信息，请参阅基金概况。",
-			"我們僅在因有關您的購買時，才會使用您的資訊與您聯絡。請確保所有註冊退休儲蓄計劃(RSP)和免稅儲蓄賬戶(TFSA)交易不超過您允許的供款限額。如果交易因任何原因被拒，我們將在一個工作日內取消交易並向您發送電郵通知。如果您轉換或贖回基金（貨幣市場基金除外），您可能需要支付不超過購買成本2%的短期交易費。此費用不適用於透過分紅/股息再投資所購買的基金單位。短期交易費將直接支付給基金。請參閱相關基金概況或簡化版招股章程以了解更多詳情。道明資產管理有限公司（TDAM）在您持有道明互惠基金單位期間向道明投資服務有限公司（TDIS）支付尾隨佣金，作為其向您提供服務和諮詢的費用。有關詳細信息，請參閱基金概況。" };
+			"您的个人信息仅用于我们就您的基金购买情况与您联络。请确保所有注册退休储蓄计划\\(RSP\\)和免税储蓄账户\\(TFSA\\)\\s*交易不超过您允许的供款限额。如果交易出于任何原因被拒，我们将在一个工作日内取消交易并向您发送电子邮件通知。如果您转换或赎回基金\\（货币市场基金除外\\），您可能需要支付不超过购买成本2%\\s*的短期交易费。此费用不适用于通过分红/股息再投资购买的基金单位。短期交易费直接支付给基金。请参阅相关基金概况或简化招股说明书了解更多详情。*\\s*道明资产管理有限公司\\（TDAM\\）在您持有道明互惠基金单位期间向道明投资服务有限公司\\（TDIS\\）支付尾随佣金，作为其向您提供服务和咨询的费用。有关详细信息，请参阅基金概况。",
+			"我們僅在因有關您的購買時，才會使用您的資訊與您聯絡。請確保所有註冊退休儲蓄計劃\\(RSP\\)和免稅儲蓄賬戶\\(TFSA\\)\\s*交易不超過您允許的供款限額。如果交易因任何原因被拒，我們將在一個工作日內取消交易並向您發送電郵通知。如果您轉換或贖回基金\\（貨幣市場基金除外\\），\\s*您可能需要支付不超過購買成本2%的短期交易費。此費用不適用於透過分紅/股息再投資所購買的基金單位。短期交易費將直接支付給基金。請參閱相關基金概況或簡化版招股章程以了解更多詳情。\\s*道明資產管理有限公司\\（TDAM\\）在您持有道明互惠基金單位期間向道明投資服務有限公司\\（TDIS\\）支付尾隨佣金，作為其向您提供服務和諮詢的費用。有關詳細信息，請參閱基金概況。" };
 	public static final String[] ARRAY_TAB_BALANCE = { "Balances", "Soldes", "结余", "結餘" };
 	public static final String[] ARRAY_TAB_FUND = { "Funds", "Fonds", "基金", "基金" };
 	public static final String[] ARRAY_FUND_TAB_LEFT = { "FUND", "FONDS", "基金", "基金" };
@@ -79,7 +79,6 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_CONTENT_AFTER3 = {
 			"If you made your purchase after 3:00PM EST, or on the weekend, it will be processed at the next business day's closing price.",
 			"Si vous avez effectué votre achat après 15 h (HE) ou la fin de semaine, il sera traité au prix de clôture du jour ouvrable suivant.",
-
 			"如果您在东部时间下午 3 点之后或在周末购买，将按照下一个工作日的收市价交易。", "如果在東部時間下午 3 時之後或在週末購買，將按下一個工作日的收市價交易。" };
 	public static final String[] ARRAY_MF_PURCHASE_CONFIRM = { "Purchase confirmation", "Confirmation d’achat", "购买确认",
 			"購買確認" };
@@ -120,7 +119,7 @@ public final class StringArray {
 	public static final String[] ARRAY_MF_TRANSACTION_UNIT = { "Transaction Units", "Parts visées par l’opération",
 			"交易单位数量", "交易單位數" };
 	public static final String[] ARRAY_MF_NONELIGIBAL_ERROR_MSG = {
-			"Looks like you're not set up to purchase mutual funds. Let us help you by calling 1-866-568-0951.",
+			"Looks like you're not set up to purchase mutual funds. Let us help you by calling 1-888-568-0951.",
 			"Il semble que vous ne puissiez pas effectuer d’achats. Pour obtenir de l’aide, composez le 1-888-568-0952.",
 			"您似乎未启用购买互惠基金的功能。请拨打1-866-235-0002（广东话）或1-866-769-0002（普通话）获取帮助。",
 			"看來您尚未設定好購買互惠基金。請致電我們以獲得協助；廣東話：1-866-235-0002，普通話： 1-866-769-0002。" };
@@ -269,6 +268,48 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_PAYBILL = { "PAY BILL", "PAIEMENT DE FACTURES", "支付账单",
 			"支付賬單" };
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_TRADE = { "TRADE", "NÉGOCIATION", "交易", "交易" };
+	public static final String[] ARRAY_DASHBOARD_QUICKLINK_HOLDINGS = { "HOLDINGS", "PLACEMENTS", "持有投资", "持有投資" };
+	public static final String[] ARRAY_DASHBOARD_QUICKLINK_ORDERS = { "ORDERS", "ORDRES", "订单", "交易訂單" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_ACCOUNTS = { "Accounts", "Comptes", "交易", "交易" }; // FIX
+	public static final String[] ARRAY_DASHBOARD_NAVROW_TRANSFERES = { "Transfers", "Virements", "账单", "轉賬" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_BILLS = { "Bills", "Factures", "账单", "賬單" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_TRADE = { "Trade", "Négociation", "交易", "交易" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_MARKETS = { "Markets", "Marchés", "市场", "市場" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_OPENTDDIRECTINVESTINGACCOUNT = {
+			"Open a Direct Investing Account", "Ouvrir un compte Placements directs TD", "市场", "市場" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_QUOTE = { "Quote", "Cote", "报价", "報價" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_ALERTS = { "Alerts", "Alertes", "报价", "報價" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_OPENABANKACCOUNT = { "Open a Bank Account",
+			"Ouvrir un compte bancaire", "报价", "報價" };
+	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGS = { "Home Screen Settings",
+			"Paramètres de l’écran d’accueil", "主屏幕设置", "主屏幕設置" };
+
+	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGSHEADERDESCRIPTION = {
+			"Choose what view to show on your home screen", "Choisir l’affichage de votre écran d’accueil", "选择主屏幕视图",
+			"選擇主屏幕視圖" };
+	public static final String[] ARRAY_DASHBOARD_ENABLEINVESTINGVIEW = { "Enable Investing View",
+			"Activer l’affichage de Placements", "启用投资视图", "啟用投資視圖" };
+	public static final String[] ARRAY_DASHBOARD_ENABLEINVESTINGVIEWDESCRIPTION = {
+			"Add a Watchlist, symbol search box and investing Quick Links.",
+			"Ajouter une liste de surveillance, une boîte de recherche de symboles et des liens rapides sur les placements",
+			"添加自选股观察名单、股票代码搜索框和投资快速连接。", "添加自選股觀察名單、股票代號搜索框和投資快速連結。" };
+	public static final String[] ARRAY_DASHBOARD_INVESTINGVIEWISON = { "Investing view is now on",
+			"Affichage Placements activé", "投资视图已开启", "投資視圖已開啟" };
+	public static final String[] ARRAY_DASHBOARD_GOHOME = { "Go home", "Aller à l’accueil", "回到主页", "回到首頁" };
+	public static final String[] ARRAY_DASHBOARD_STOCKETFs = { "Stocks & ETFs", "Actions et FNB", "股票和交易所交易基金",
+			"股票和交易所買賣基金" };
+	public static final String[] ARRAY_DASHBOARD_MUTUALFUNDS = { "Mutual Funds", "Fonds mutuels", "互惠基金", "互惠基金" };
+	public static final String[] ARRAY_DASHBOARD_OPTIONS = { "Options", "Options", "期权", "期權" };
+	public static final String[] ARRAY_DASHBOARD_ACTIONBUY = { "Buy", "Acheter", "买入", "買入" };
+	public static final String[] ARRAY_DASHBOARD_ACTIONSELL = { "Sell", "Vendre", "卖出", "賣出" };
+	public static final String[] ARRAY_DASHBOARD_ACTIONBUYTOOPEN = { "Buy to Open", "Achat pour ouvrir", "买入开仓",
+			"買入開倉" };
+	public static final String[] ARRAY_DASHBOARD_ACTIONSELLTOCLOSE = { "Sell to Close", "Vente pour fermer", "卖出平仓",
+			"賣出平倉" };
+	public static final String[] ARRAY_DASHBOARD_PRICEMARKET = { "Market", "Cours du marché", "市场", "市價" };
+	public static final String[] ARRAY_DASHBOARD_PRICELIMIT = { "Limit", "Limite", "限价", "限價" };
+	public static final String[] ARRAY_DASHBOARD_GOODTILLDAY = { "Day", "Jour", "当天有效", "當日有效" };
+	public static final String[] ARRAY_DASHBOARD_MF_REINVESTED = { "Reinvested", "Réinvestis", "再投资", "再投資" };
 
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_HOME = { "Home", "Accueil", "主页", "首頁" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS = { "My Accounts", "Mes comptes", "我的账户", "我的賬戶" };
@@ -296,12 +337,86 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_GIVEFEEDBACK = { "Give Feedback", "Fournir des commentaires",
 			"提供意见反馈", "提供意見回饋" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_CONTACTUS = { "Contact Us", "Contactez-nous", "联系我们", "聯絡我們" };
-	public static final String[] ARRAY_DASHBOARD_FLYOUT_FAQ = { "Frequently Asked Questions", "Foire aux questions",
-			"常见问答", "常見問題" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_FAQ = { "FAQ", "Foire aux questions", "常见问答", "常見問題" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_PRIVACYSECURITY = { "Privacy, Security & Legal",
 			"Confidentialité, sécurité et avis juridique", "隐私、安全与法律声明", "私隱政策、安全性和法律聲明" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_TRADE = { "Trade", "Négociation", "交易", "交易" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_LOGOUT = { "Logout", "Fermer la session", "退出", "登出" };
+
+	public static final String[] ARRAY_DASHBOARD_LOCATIONNEAREST = { "Nearest Branch", "Succursale", "最近的分行", "最近分行" };
+
+	public static final String[] ARRAY_DASHBOARD_CONTACTUS = { "Contact Us", "Contactez-nous", "联系我们", "聯絡我們" };
+
+	public static final String[] ARRAY_DASHBOARD_EmptyWLDesc = { "You haven't added any symbols to this Watchlist yet.",
+			"Vous n'avez pas encore ajouté de symbole à cette liste de surveillance.", "您尚未添加股票代码到自选股观察名单中。",
+			"您沒有添加股票代號到自選股觀察名單。" };
+	public static final String[] ARRAY_DASHBOARD_AddSymbolLink = { "Add symbols now", "Ajouter des symboles maintenant",
+			"添加股票代码", "添加股票代號" };
+
+	public static final String[] ARRAY_DASHBOARD_ExpiredSymbolError = { "Invalid Symbol ", "Symbole invalide", "股票代码无效",
+			"股票代號無效" };
+
+	public static final String[] ARRAY_DASHBOARD_EAnotSignedError = { "Exchange Agreement not signed",
+			"Contrat d’abonnement non signé", "未签署交易所协议", "未簽署交易所協議" };
+
+	public static final String[] ARRAY_DASHBOARD_ADDTOWATCHLIST = { "ADD TO OR REMOVE FROM WATCHLIST",
+			"AJOUTER OU SUPPRIMER DE LA LISTE DE SURVEILLANCE", "添加至自选股观察名单或从自选股观察名单中移除", "新增至或從自選股觀察名單中移除" };
+
+	public static final String[] ARRAY_DASHBOARD_ADDTOWATCHLISTAND = { "Add to or remove from watchlist",
+			"Ajouter ou supprimer de la liste de surveillance", "添加至自选股观察名单或从自选股观察名单中移除", "新增至或從自選股觀察名單中移除" };
+
+	public static final String[] ARRAY_DASHBOARD_EDITWL = { "Edit watchlist", "Modifier la liste de surveillance",
+			"编辑自选股观察名单", "編輯自選股觀察名單" };
+
+	public static final String[] ARRAY_DASHBOARD_EDITWLDELETEALL = { "Delete All", "Supprimer tout", "删除全部", "刪除全部" };
+
+	public static final String[] ARRAY_DASHBOARD_EDITWLDELETE = { "Delete", "Supprimer", "删除", "删除" };
+
+	public static final String[] ARRAY_DASHBOARD_EDITWLWARNINGMESSAGE = {
+			"Are you sure you want to delete all of the symbols?", "Voulez-vous vraiment supprimer tous les symboles?",
+			"您确定要删除所有代号？", "確定要刪除全部代號？" };
+
+	public static final String[] ARRAY_DASHBOARD_WLERRORMSG = {
+			"Please read and accept the WebBroker Terms & Conditions in order to view and access your brokerage accounts",
+			"Vous devez lire et accepter les modalités de CourtierWeb avant de pouvoir accéder à vos comptes de courtage.",
+			"请阅读并接受网上经纪服务条款与条件，然后方可查看及使用您的经纪账户", "請閱讀並接受網上經紀服務的條款與條件，才可查看並存取您的經紀賬戶" };
+
+	public static final String[] ARRAY_DASHBOARD_WLERRORTC = {
+			"Terms & Conditions cannot be accepted using the TD App.",
+			"Les modalités ne peuvent pas être acceptées dans l’application TD.", "您无法在道明应用程序中接受条款与条件。",
+			"無法使用道明應用程式接受條款與條件。" };
+
+	public static final String[] ARRAY_QUICK_ACCESS_ACCOUNTS = { "ACCOUNTS", "COMPTES", "账户", "賬戶" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_TERMSOFUSE = { "Terms of Use", "Conditions d'utilisation",
+			"使用条款", "使用條款" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_INFO = {
+			"By using Easy Web or the TDapp, offered by TD Canada Trust and its affiliates, you agree to the terms and conditions of the:",
+			"En utilisant BanqueNet ou l’appli TD, offerts par TD Canada Trust et ses sociétés affiliées, vous acceptez les modalités des textes suivants:",
+			"使用道明加拿大信托及其附属机构提供的易线网上理财或道明应用程序即表示，您同意以下条款与条件：", "透過使用道明加拿大信託及其附屬機構提供的易線網上理財或道明應用程式，即表示您同意以下條款與條件：" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_FINANCIALLINK = { "Financial Services Terms",
+			"Modalités des services financiers", "《金融服务条款》", "《金融服務條款》" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_CARDHOLDERLINK = {
+			"Cardholder and Electronic Financial Services Terms and Conditions",
+			"Modalités relatives à l'utilisation des cartes et des services financiers électroniques",
+			"《持卡人和电子金融服务条款与条件》", "《持卡人與電子金融服務條款與條件》" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_BUSINESSLINK = { "Business Access Services Schedule",
+			"Programme de services Accès Affaires", "《商业访问服务条款》", "《商業存取服務條款》" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_TERMSLINK = { "Terms and Agreement", "Modalités", "《条款与协议》",
+			"《條款與協議》" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_DISCLOSURELINK = { "Disclosure", "Déclaration", "道明投资服务有限公司",
+			"道明投資服務有限公司" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_MUTUALLINK = {
+			"for mutual fund accounts held with TD Investment Services Inc.",
+			"relative aux comptes de fonds communs de placement détenus auprès des Services d'investissement TD inc.",
+			"所持互惠基金账户声明披露", "所持互惠基金賬戶之聲明披露" };
 
 	// MIT Dashboard END
 
@@ -327,13 +442,68 @@ public final class StringArray {
 			"TD for Me 通知", "TD for Me 通知" };
 	public static final String[] ARRAY_ENABLE_NOTIFICATIONS = { "Enable Notifications", "Activer les notifications",
 			"启用通知", "启用通知" };
-	
-	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité",
-			"安全问题", "安全問題" };
-	public static final String[] ARRAY_SECURITY_LOGIN = { "Login", "Ouvrir une session",
-			"登录", "登入" };
-	public static final String[] ARRAY_MFA_ENTER_ANSWER = { "Enter your answer", "Entrez votre réponse",
-			"输入您的答案", "輸入您的答案" };
+	public static final String[] ARRAY_CONTACT_US_HEADER = { "Contact Us", "Contactez-nous", "联系我们", "聯絡我們" };
+
+	// CLIP
+	public static final String[] ARRAY_MORE_LINK = { "MORE", "PLUS", "更多", "更多" };
+	public static final String[] ARRAY_MORE_OPTION_HEADER = { "More Options", "Plus d’options", "更多选项", "更多選項" };
+	public static final String[] ARRAY_CREDIT_LIMIT_INCREASE_REQ = { "Request a Credit Limit Increase",
+			"Demander une augmentation de limite de crédit", "申请提高信用额度", "申請增加信用限額" };
+	public static final String[] ARRAY_CREDIT_LIMIT_INCREASE_HEADER = { "Credit Limit Increase",
+			"Augment. limite crédit", "申请提高信用额", "申請提高信用額" };
+	public static final String[] ARRAY_CREDIT_LIMIT_INCREASE_DIR = {
+			"You must be the Primary cardholder on the card to make a credit limit increase request. Requests take only a few minutes to complete.",
+			"Vous n’aurez besoin que de quelques minutes pour remplir une demande et vous recevrez une réponse peu de temps après.",
+			"申请只需几分钟即可完成，很快您将收到答复。", "申請只需幾分鐘即可完成，您很快會收到回覆。" };
+	public static final String[] ARRAY_CREDIT_HEADER = { "Credit", "Crédit", "贷项", "信貸" };
+	public static final String[] ARRAY_CLIP_FORM_TITLE = { "TD Credit Card Limit Increase Request",
+			"Demande d’augmentation de la limite d’une carte de crédit TD", "TD Credit Card Limit Increase Request",
+			"TD Credit Card Limit Increase Request" };
+	// MAB
+	public static final String[] ARRAY_MENU_LOCATION = { "Locations", "Succursales", "分行网点", "分行地點" };
+	public static final String[] ARRAY_APPOINTMENT_BOOKING = { "Appointment Booking", "Prise de rendez-vous", "分行预约",
+			"分行預約" };
+	public static final String[] ARRAY_BOOKING_APPOINTMENT_AND = { "BOOK AN APPOINTMENT", "PRENDRE RENDEZ-VOUS", "分行预约",
+			"分行預約" };
+	public static final String[] ARRAY_BOOKING_APPOINTMENT_IOS = { "BOOK A VISIT", "PRENDRE RENDEZ-VOUS", "分行预约",
+			"分行預約" };
+	public static final String[] ARRAY_MAB_COPY_TEXT = {
+			"Come in and ask us all your banking, credit card, borrowing and investing questions.To complete your appointment booking, you'll leave the TD app and go to the TD website.",
+			"Venez nous rencontrer pour obtenir des réponses à vos questions sur les opérations bancaires, les cartes de crédit, les emprunts et les placements.Pour effectuer votre prise de rendez-vous, vous serez dirigé hors de l’appli TD vers le site Web de la TD.",
+			"欢迎亲临分行了解更多有关理财、信用卡、贷款和投资的详情。要完成预约，您要退出道明应用程序并前往道明网站。",
+			"歡迎親臨分行了解更多有關理財、信用卡、借貸和投資的詳情。要完成預約，您要退出道明應用程式並前往道明網站。" };
+	public static final String[] ARRAY_BOOKING_APPOINTMENT_BTN = { "Book Appointment Now",
+			"Prendre rendez-vous maintenant", "立即预约会面", "立即預約會面" };
+	public static final String[] ARRAY_MANAGE_EXISTING_APPOINTMENT_LINK = { "Manage my existing appointments",
+			"Gérer mes rendez-vous", "管理现有预约", "管理現有預約" };
+	public static final String[] ARRAY_MAB_FAQ = {
+			"What are the benefits of scheduling an appointment online?How can I change or cancel a scheduled appointment?",
+			"Quels sont les avantages de prendre rendez-vous en ligne?Comment puis-je modifier ou annuler un rendez-vous?",
+			"在线预约有什么好处？如何更改或取消预约？", "網上預約有什麼好處？如何更改或取消預約？" };
+
+	public static final String[] ARRAY_MAB_FAQ_LINK = { "Still have questions? Check our FAQs list.",
+			"Vous avez d’autres questions? Consultez notre FAQ.", "想知道更多？看看我们的常见问题。", "想知道更多？看看我們的常見問題。" };
+	public static final String[] ARRAY_MAB_URL_LINK = { "www1.new.sys.td.com", "www1.new.sys.td.com",
+			"www1.new.sys.td.com", "www1.new.sys.td.com" };
+	// damaged card
+	public static final String[] ARRAY_REPLACE_A_DAMAGED_CARD = { "Replace a Damaged Card",
+			"Remplacement d’une carte endommagée", "更换损坏的卡片", "更換損壞的卡片" };
+	public static final String[] ARRAY_DM_REQUEST_FORM_TITLE = { "Damaged TD Credit Card Replacement Request",
+			"Demande de remplacement d’une carte de crédit TD endommagée", "Damaged TD Credit Card Replacement Request",
+			"Damaged TD Credit Card Replacement Request" };
+	public static final String[] ARRAY_REPLACE_A_DAMAGED_CARD_HEADER = { "Replace a Damaged Card",
+			"Remplacement une carte", "更换损坏的卡片", "更換損壞的卡片" };
+	public static final String[] ARRAY_COPY_REPLACE_DAMAGED_CARD = {
+			"If your existing credit card is damaged or not working, you can request a replacement card.",
+			"Si votre carte de crédit est endommagée ou ne fonctionne plus, vous pouvez demander une carte de remplacement.",
+			"如果您现有的信用卡损坏或无效，您可以申请换卡。", "如果您現有的信用卡損壞或無效，您可以申請換卡。" };
+	// End of CLIP
+
+	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",
+			"安全問題" };
+	public static final String[] ARRAY_SECURITY_LOGIN = { "Login", "Ouvrir une session", "登录", "登入" };
+	public static final String[] ARRAY_MFA_ENTER_ANSWER = { "Enter your answer", "Entrez votre réponse", "输入您的答案",
+			"輸入您的答案" };
 	// UA Core
 	public static final String[] ARRAY_ACCOUNT_TOTAL = { "Total", "Total", "总计", "總計" };
 	public static final String[] ARRAY_ADD_LOGIN = { "Add Login", "Ajouter une connexion", "添加登录", "新增登入" };
@@ -341,8 +511,8 @@ public final class StringArray {
 			"新增加拿大收款人" };
 	public static final String[] ARRAY_ADD_US_PAYEE = { "Add U.S. Payee", "Ajouter un preneur américain", "添加美国收款人",
 			"新增美國收款人" };
-	public static final String[] ARRAY_PAY_US_BILL_TITLE = { "Pay U.S. Bill", "Payer des factures américaines", "支付美国账单",
-	"支付美國賬單" };
+	public static final String[] ARRAY_PAY_US_BILL_TITLE = { "Pay U.S. Bill", "Payer des factures américaines",
+			"支付美国账单", "支付美國賬單" };
 	public static final String[] ARRAY_INVESTING_OPEN_ACCOUNT = { "Open a TD Direct Investing Account",
 			"Ouvrir un compte Placements directs TD", "开设道明自管投资账户", "開設道明自管投資賬戶" };
 	public static final String[] ARRAY_INVESTING_CROSS_MSG = {
@@ -351,16 +521,15 @@ public final class StringArray {
 			"立即開設道明自管投資賬戶 增強信心，駕馭全局。" };
 
 	// UA Core End
-	
-	//P2P EUF
-	
+
+	// P2P EUF
+
 	public static final String[] ARRAY_REQUEST_MONEY_HEADER = { "Request Money", "Demander des fonds", "", "" };
 	public static final String[] ARRAY_PAYMENT_AND_TRANSFER_AUTODEPOSIT = { "Manage Autodeposit", "Gérer Autodépôt", "",
 			"" };
 	public static final String[] ARRAY_AUTODEPOSIT_ALMOST_DONE = { "Almost done!", "Vous avez presque terminé!", "",
 			"" };
-	public static final String[] ARRAY_AUTODEPOSIT_EMAIL_SENT_MSG = {
-			"Check your email for instructions from INTERAC",
+	public static final String[] ARRAY_AUTODEPOSIT_EMAIL_SENT_MSG = { "Check your email for instructions from INTERAC",
 			"Consultez les instructions que vous avez reçues", "", "" };
 	public static final String[] ARRAY_AUTODEPOSIT_PENDING_STATUS = { "Pending", "En attente", "", "" };
 	public static final String[] ARRAY_AUTODEPOSIT_ACTIVE_STATUS = { "Active", "Actif", "", "" };
@@ -376,9 +545,8 @@ public final class StringArray {
 	public static final String[] ARRAY_REQUEST_MONEY_CANCELLED_STATUS = { "Cancelled", "Annulé", "", "" };
 	public static final String[] ARRAY_REQUEST_MONEY_WRONG_EMAIL_STR = { "INVALID EMAIL ADDRESS",
 			"Adresse courriel non valide", "", "" };
-	public static final String[] ARRAY_CUSTOMER_ELIGIBILITY_ERROR_MSG = {
-			"There appears to be an issue with your", "Il semble y avoir un problème avec votre compte", "",
-			"" };
+	public static final String[] ARRAY_CUSTOMER_ELIGIBILITY_ERROR_MSG = { "There appears to be an issue with your",
+			"Il semble y avoir un problème avec votre compte", "", "" };
 	public static final String[] TRADE_RESPONSE_1 = {
 			"I acknowledge the trade name displayed above IS the trade name of the business",
 			"Je confirme que le nom commercial ci‑dessus EST celui de l’entreprise.", "", "" };
@@ -409,4 +577,3 @@ public final class StringArray {
 	public static final String[] CANCEL_MONEY_RECEIPT_HEADER = { "Request Cancelled", "Demande annulée", "", "" };
 	public static final String[] SETUP_AUTODEPOSIT_STR = { "Set up Autodeposit", "Établir Autodépôt", "", "" };
 }
-

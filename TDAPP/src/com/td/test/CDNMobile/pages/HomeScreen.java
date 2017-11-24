@@ -146,7 +146,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mpay_dashboard' and @text='PAY NOW']")
 	private MobileElement pay_now_button;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText | //XCUIElementTypeNavigationBar/XCUIElementTypeOther")
+	@iOSFindBy(accessibility = "HomeView")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @index='0']")
 	private MobileElement home_bar;
 
@@ -1222,10 +1222,20 @@ public class HomeScreen extends _CommonPage {
 		// }
 
 		try {
-			String hometitle = "";
-			hometitle = mobileAction.getValue(home_bar);
-			System.out.println("hometitle:" + hometitle);
-			mobileAction.verifyElementTextIsDisplayed(home_bar, getTextInCurrentLocale(StringArray.ARRAY_HOME_HEADER));
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				String hometitle = "";
+				hometitle = mobileAction.getValue(home_bar);
+				System.out.println("hometitle:" + hometitle);
+				mobileAction.verifyElementTextIsDisplayed(home_bar,
+						getTextInCurrentLocale(StringArray.ARRAY_HOME_HEADER));
+			} else {
+				if (mobileAction.verifyElementIsPresent(home_bar)) {
+					mobileAction.Report_Pass_Verified("Home View");
+				} else {
+					mobileAction.Report_Fail("Home View not verified");
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				}
+			}
 
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
@@ -1278,30 +1288,8 @@ public class HomeScreen extends _CommonPage {
 		Decorator();
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			mobileAction.FuncSwipeWhileElementNotFound(contact_us, true, 5, "up");
 
-				mobileAction.SwipeWithinElement("//android.widget.ScrollView", 1, "down");
-			} else {
-				// XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable
-				// homeTable =
-				// "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther";
-				mobileAction.FuncSwipeOnce("up");
-			}
-		} catch (Exception e) {
-			try {
-				mobileAction.GetReporting().FuncReport("Fail",
-						"No such element was found on screen: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-			}
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			return;
-		}
-		try {
-			String elementText = mobileAction.getValue(contact_us);
-			System.out.println("Element Text:" + elementText);
-			mobileAction.FuncClick(contact_us, elementText);
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

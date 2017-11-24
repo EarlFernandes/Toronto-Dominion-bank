@@ -181,7 +181,8 @@ public class Login extends _CommonPage {
 	String verifyLogin_android = "//*[contains(@text,'Your Login Info Please')]";
 	String login_password = getTestdata("Password");
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[1] "
+			+ " | //XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text'] | //android.widget.TextView[@resource-id='com.td:id/error_message']")
 	private MobileElement login_error;
 
@@ -211,9 +212,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/confirm_delete']")
 	private MobileElement deluser;
 
-	//@iOSFindBy(accessibility = "TDVIEW_TITLE")
-	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
-	@iOSXCUITFindBy(xpath="//*[@name='TD MySpend' or @name='Dépense TD' or @name='TDVIEW_TITLE']")
+	@iOSXCUITFindBy(xpath = "//*[@name='TDVIEW_TITLE' or @name='TD MySpend' or @name='Dépense TD']")
 	@AndroidFindBy(xpath = "//*[@resource-id='android:id/action_bar_title' or @resource-id='android:id/content']")
 	private MobileElement logined_page_Header;
 
@@ -349,11 +348,14 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				/*securityQuestionHeader = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
-								+ mobileAction.getAppString("securityQuestionPageHeader") + "']",
-						"Security Page Header!");*/
-				
+				/*
+				 * securityQuestionHeader =
+				 * mobileAction.verifyElementUsingXPath(
+				 * "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
+				 * + mobileAction.getAppString("securityQuestionPageHeader") +
+				 * "']", "Security Page Header!");
+				 */
+
 				securityQuestionHeader = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
 								+ getTextInCurrentLocale(StringArray.ARRAY_LOGIN_SECURITY_QUESTION) + "']",
@@ -363,17 +365,18 @@ public class Login extends _CommonPage {
 						"//XCUIElementTypeOther[@name='TDVIEW_TITLE' and @label='"
 								+ getTextInCurrentLocale(StringArray.ARRAY_LOGIN_SECURITY_QUESTION) + "']",
 						"Security Page Header");
-				
-				securityLogin = mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeButton[@label='" + getTextInCurrentLocale(StringArray.ARRAY_SECURITY_LOGIN) + "']",
-						"Login");
+
+				securityLogin = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_SECURITY_LOGIN) + "']", "Login");
 			}
 
 			if (mobileAction.verifyElementIsPresent(securityQuestionHeader)) {
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-					enterAnswer = mobileAction.verifyElementUsingXPath("//XCUIElementTypeSecureTextField[@value='"
-							+ getTextInCurrentLocale(StringArray.ARRAY_MFA_ENTER_ANSWER) + "']", "Enter your answer");
+					enterAnswer = mobileAction.verifyElementUsingXPath(
+							"//XCUIElementTypeSecureTextField[@value='"
+									+ getTextInCurrentLocale(StringArray.ARRAY_MFA_ENTER_ANSWER) + "']",
+							"Enter your answer");
 				}
 				mobileAction.FuncSendKeys(enterAnswer, getTestdata("SecurityAnswer"));
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -382,9 +385,8 @@ public class Login extends _CommonPage {
 					mobileAction.FuncHideKeyboard();
 				}
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-					securityLogin = mobileAction.verifyElementUsingXPath(
-							"//XCUIElementTypeButton[@label='" + getTextInCurrentLocale(StringArray.ARRAY_SECURITY_LOGIN) + "']",
-							"Login");
+					securityLogin = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+							+ getTextInCurrentLocale(StringArray.ARRAY_SECURITY_LOGIN) + "']", "Login");
 				}
 				mobileAction.FuncClick(securityLogin, "Login");
 				mobileAction.waitProgressBarVanish();
@@ -430,7 +432,8 @@ public class Login extends _CommonPage {
 			return verifyIsLoginErrorSystemError();
 
 		} else {
-			//String securityQuestionTitle = mobileAction.getAppString("securityQuestionPageHeader");
+			// String securityQuestionTitle =
+			// mobileAction.getAppString("securityQuestionPageHeader");
 			String securityQuestionTitle = getTextInCurrentLocale(StringArray.ARRAY_LOGIN_SECURITY_QUESTION);
 			String pageTitle = mobileAction.getValue(logined_page_Header);
 			String addLoginTitle = getTextInCurrentLocale(StringArray.ARRAY_ADD_LOGIN);
@@ -474,6 +477,7 @@ public class Login extends _CommonPage {
 					try {
 						System.out.println("Failed to try maximum " + (REPEAT_TIMES + 1) + " times");
 						CL.GetReporting().FuncReport("Fail", "Login Failed");
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
@@ -483,6 +487,7 @@ public class Login extends _CommonPage {
 			e.printStackTrace();
 			try {
 				CL.GetReporting().FuncReport("Fail", "Login Failed");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -1398,8 +1403,8 @@ public class Login extends _CommonPage {
 			mobileAction.FuncClick(password, "Password");
 			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.FuncHideKeyboard();			
-			} 
+				mobileAction.FuncHideKeyboard();
+			}
 			mobileAction.FuncClick(login, "Login");
 			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {
@@ -1427,8 +1432,8 @@ public class Login extends _CommonPage {
 			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.FuncHideKeyboard();			
-			} 
+				mobileAction.FuncHideKeyboard();
+			}
 			mobileAction.FuncClick(login, "Login");
 			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {

@@ -240,12 +240,12 @@ public class PreviewPurchase extends _CommonPage {
 			String disclaimerInfo = getTextInCurrentLocale(StringArray.ARRAY_MF_DISCLAIMER_INFO);
 			String capturedText = mobileAction.getValue(disclaimer_info);
 			capturedText = capturedText.trim().replaceAll("\n", "");
-			if (currentLocale.equalsIgnoreCase("fr")) {
-				String unkownEmptySpace = " "; // for french only
-				capturedText = capturedText.trim().replaceAll(unkownEmptySpace, " ");
-			}
+
+			String unkownEmptySpace = " "; // for french/zh/ only
+			capturedText = capturedText.trim().replaceAll(unkownEmptySpace, " ");
+
 			System.out.println("Captured:" + capturedText);
-			if (currentLocale.equalsIgnoreCase("zh") || currentLocale.equalsIgnoreCase("zh-Hans")) {
+			if (!currentLocale.equalsIgnoreCase("en") && !currentLocale.equalsIgnoreCase("fr")) {
 				if (capturedText.matches(disclaimerInfo)) {
 					mobileAction.Report_Pass_Verified(capturedText);
 				} else {

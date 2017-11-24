@@ -17,6 +17,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class SpendingHistory extends _CommonPage {
 
@@ -31,45 +32,45 @@ public class SpendingHistory extends _CommonPage {
 
 	String platform = null;
 
-	@iOSFindBy(xpath = "//*[contains(@value,'There is no spending history to display') or contains(@label,'There is no spending history to display')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@value,'There is no spending history to display') or contains(@label,'There is no spending history to display')]")
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'no spending history')]")
 	private MobileElement noSpendingHistory;
 
-	@iOSFindBy(xpath = "//*[@label='Spending History' or @label='Historique de dépenses']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Spending History' or @label='Historique de dépenses']")
 	private MobileElement spendingHistoryHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Spending Insights' or @label='Aperçu des dépenses']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Spending Insights' or @label='Aperçu des dépenses']")
 	private MobileElement spendingInsightsTab;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='MONEY PATH' or @label='Trajectoire financière']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='MONEY PATH' or @label='Money Path' or @label='Trajectoire financière']")
 	private MobileElement moneyPathTab;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Spending by Category' or @label='Dépenses par catégorie']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Spending by Category' or @label='Dépenses par catégorie']")
 	private MobileElement spendingByCategoryTab;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Previous Month' or @label='Mois précédent']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Previous Month' or @label='Mois précédent']")
 	private MobileElement leftArrow;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Next Month' or @label='Mois suivant']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Next Month' or @label='Mois suivant']")
 	private MobileElement RightArrow;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Spending History Dashboard' or @label='Historique de dépenses']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Spending History Dashboard' or @label='Historique de dépenses']")
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Spending History Dashboard') or contains(@content-desc,'Historique de dépenses')]")
 	private MobileElement spendingHistoryBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Home' or @label='Accueil']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Home' or @label='Accueil']")
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Home') or contains(@content-desc,'Accueil')]")
 	private MobileElement homeBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Quick Access Settings' or @label='Paramètres Accès rapide']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access' or @content-desc='Quick Access enroll']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Quick Access Settings' or @label='Paramètres Accès rapide']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access']")
 	private MobileElement TDAppHomePage;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Preferences') or contains(@label,'Préférences') or contains(@label,'préférences')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Preferences') or contains(@label,'Préférences') or contains(@label,'préférences')]")
 	@AndroidFindBy(xpath = "//*[contains(@content-desc,'Preferences') or contains(@content-desc,'Préférences.')]")
 	private MobileElement preferencesLink;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@name='Home']/../following-sibling::XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Home']/../following-sibling::XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText")
 	private MobileElement currentMonthElement;
 
 	@FindBy(id = "spendingHistoryOverviewHeader")
@@ -96,7 +97,8 @@ public class SpendingHistory extends _CommonPage {
 	@FindBy(xpath = "//*[@id='homeButton']")
 	private WebElement homeBtnAndroid;
 
-	@FindBy(xpath = "//*[contains(text(),'Preferences') or text()='Préférences.']")
+	//@FindBy(xpath = "//*[contains(text(),'Preferences') or text()='Préférences.']")
+	@FindBy(xpath="//*[@ng-click='goToSettings()']")
 	private WebElement preferencesLinkAndroid;
 
 	@FindBy(xpath = "//*[contains(@class='spend-history')]")
@@ -133,7 +135,7 @@ public class SpendingHistory extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(spendingHistoryHeader, "Spending History");
 			}
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -141,15 +143,8 @@ public class SpendingHistory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 
@@ -159,7 +154,7 @@ public class SpendingHistory extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(noSpendingHistory, "No Spending History");
 
 			mobileAction.FuncClickBackButton();
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -167,15 +162,8 @@ public class SpendingHistory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 
@@ -195,7 +183,7 @@ public class SpendingHistory extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(yearCategory, value);
 
 			mobileAction.FuncClickBackButton();
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -203,15 +191,8 @@ public class SpendingHistory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 
@@ -243,7 +224,7 @@ public class SpendingHistory extends _CommonPage {
 			}
 			MobileElement selectMonthIcon = mobileAction.mobileElementUsingXPath(monthIcon);
 			mobileAction.FuncClick(selectMonthIcon, "Month Icon");
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -251,23 +232,8 @@ public class SpendingHistory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 
@@ -322,22 +288,16 @@ public class SpendingHistory extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "Exception from Method " + this.getClass().toString());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
 			} catch (IOException e1) {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 
@@ -363,7 +323,7 @@ public class SpendingHistory extends _CommonPage {
 			}
 			mobileAction.FuncClick(homeBtn, "Home Button");
 			mobileAction.verifyElementIsDisplayed(TDAppHomePage, "Home Page");
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -371,23 +331,8 @@ public class SpendingHistory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 
@@ -409,21 +354,22 @@ public class SpendingHistory extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				CL.GetAppiumDriver().context("NATIVE_APP");
-				mobileAction.FuncClick(preferencesLink, "Preferences Link");
-				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
+			//	CL.GetAppiumDriver().context("NATIVE_APP");
+				mobileAction.FuncClick(preferencesLinkAndroid, "Preferences Link");
+			//	CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
 			} else {
 				mobileAction.FuncClick(preferencesLink, "Preferences Link");
 			}
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 
@@ -449,7 +395,7 @@ public class SpendingHistory extends _CommonPage {
 			}
 			mobileAction.FuncClick(spendingHistoryBtn, "Spending History Button");
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -457,23 +403,8 @@ public class SpendingHistory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (Exception e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "Exception from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 

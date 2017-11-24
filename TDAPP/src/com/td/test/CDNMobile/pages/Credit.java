@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -19,8 +20,8 @@ public class Credit extends _CommonPage {
 
 	private static Credit Credit;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Credit']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Credit']")
+	@iOSFindBy(xpath = "//*[@name='DVIEW_TITLE'] | //XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement creditHeader;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeCell[@label='REWARDS']")
@@ -66,6 +67,8 @@ public class Credit extends _CommonPage {
 
 	By iosVerifyLang = By.xpath("//XCUIElementTypeStaticText[contains(@label,'Dollars')]");
 
+	private MobileElement more_link;
+
 	public synchronized static Credit get() {
 		if (Credit == null) {
 			Credit = new Credit();
@@ -91,12 +94,16 @@ public class Credit extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.FuncISDisplayed(creditHeader, "Credit");
+			mobileAction.verifyElementTextIsDisplayed(creditHeader,
+					getTextInCurrentLocale(StringArray.ARRAY_CREDIT_HEADER));
 
 		} catch (NoSuchElementException e) {
 
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
@@ -328,6 +335,46 @@ public class Credit extends _CommonPage {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 
+		}
+	}
+
+	public void VerifyMoreLinkPresent() {
+		Decorator();
+		String moreText = getTextInCurrentLocale(StringArray.ARRAY_MORE_LINK);
+		String moreXpath = "";
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			moreXpath = "//*[@label='" + moreText + "']";
+		} else {
+			moreXpath = "//android.widget.Button[@text='" + moreText + "']";
+		}
+
+		try {
+			more_link = mobileAction.verifyElementUsingXPath(moreXpath, moreText);
+		} catch (NoSuchElementException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+	}
+
+	public void ClickMoreLink() {
+		Decorator();
+		String moreText = getTextInCurrentLocale(StringArray.ARRAY_MORE_LINK);
+		String moreXpath = "";
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			moreXpath = "//*[@label='" + moreText + "']";
+
+		} else {
+			moreXpath = "//android.widget.Button[@text='" + moreText + "']";
+		}
+
+		try {
+			more_link = mobileAction.verifyElementUsingXPath(moreXpath, moreText);
+			mobileAction.FuncClick(more_link, moreText);
+		} catch (NoSuchElementException | IOException | InterruptedException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
 		}
 	}
 
