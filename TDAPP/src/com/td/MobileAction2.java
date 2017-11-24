@@ -1629,12 +1629,12 @@ public class MobileAction2 extends CommonLib {
 	public void waitForElementToVanish(MobileElement elementToVanish) {
 		try {
 			int count = 0;
-			boolean isElementDisplayed = verifyElementIsPresent(elementToVanish);
+			boolean isElementDisplayed = FuncIsDisplayed(elementToVanish);
 			while (isElementDisplayed && count <= 45) {
-				System.out.println("Progress bar :" + isElementDisplayed);
-				sleep(1000);
+				sleep(2000);
 				count++;
-				isElementDisplayed = verifyElementIsPresent(elementToVanish);
+				isElementDisplayed = FuncIsDisplayed(elementToVanish);
+				System.out.println("Progress bar :" + isElementDisplayed);
 			}
 			System.out.println("Progress bar wait count:" + count);
 		} catch (Exception e) {
