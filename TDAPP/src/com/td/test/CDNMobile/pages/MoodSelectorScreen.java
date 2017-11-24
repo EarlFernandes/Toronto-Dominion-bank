@@ -20,35 +20,35 @@ public class MoodSelectorScreen extends _CommonPage {
 
 	private static MoodSelectorScreen MoodSelector;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar[@name='AccountManager.TDFBMobileFeedbackLandingView']/../XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/title']")
 	private MobileElement feedback_title;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar[@name='AccountManager.TDFBMobileFeedbackLandingView']/../XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/nav_row_profile_title']")
 	private MobileElement great_link;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar[@name='AccountManager.TDFBMobileFeedbackLandingView']/../XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/nav_row_profile_title']")
 	private MobileElement couldvebeenbetter_link;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar[@name='AccountManager.TDFBMobileFeedbackLandingView']/../XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/nav_row_profile_title' and (@text='Elle ne fonctionnait pas' or @text=\"It wasn't working\")]")
 	private MobileElement itwasntworking_link;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton")
+	@iOSFindBy(xpath = "//XCUIElementTypeImage[@name='feedback_background']/../XCUIElementTypeOther/XCUIElementTypeButton")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_primary']")
 	private MobileElement send_feedback_now;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/header' or @resource-id='com.td:id/title']")
 	private MobileElement post_survey;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar[@name='AccountManager.TDFBPostSurveyView']/../XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/header' or @resource-id='com.td:id/title']")
 	private MobileElement post_survey_great;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton")
+	@iOSFindBy(xpath = "//XCUIElementTypeImage[@name='feedback_background']/../XCUIElementTypeButton")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/google_play_btn']")
 	private MobileElement rate_us_on_google_Or_App_Store;
 
@@ -56,7 +56,7 @@ public class MoodSelectorScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.android.vending:id/question_text' or @resource-id='com.android.vending:id/user_display_name']")
 	private MobileElement google_play_rate_text;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton")
+	@iOSFindBy(xpath = "//XCUIElementTypeImage[@name='feedback_background']/../XCUIElementTypeButton")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/go_home_btn']")
 	private MobileElement go_back_home_btn;
 
@@ -76,7 +76,7 @@ public class MoodSelectorScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/description']")
 	private MobileElement error_screen_description;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/checkbox_form_container']")
 	private MobileElement check_box_container;
 
@@ -126,7 +126,7 @@ public class MoodSelectorScreen extends _CommonPage {
 				moodList = ((AppiumDriver) CL.GetDriver()).findElements(
 						By.xpath("//android.widget.TextView[@resource-id='com.td:id/nav_row_profile_title']"));
 			} else {
-				String xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText";
+				String xpath = "//XCUIElementTypeNavigationBar[@name='AccountManager.TDFBMobileFeedbackLandingView']/../XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText";
 				moodList = ((AppiumDriver) CL.GetDriver()).findElements(By.xpath(xpath));
 
 			}
@@ -190,24 +190,6 @@ public class MoodSelectorScreen extends _CommonPage {
 	}
 
 	public void VerifyPostSurveyScreen() {
-		// try{
-		// if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
-		// // for android, just use default post_survey element
-		// }else{
-		//
-		// }
-		// }catch (NoSuchElementException | IOException e) {
-		// try {
-		// mobileAction.GetReporting().FuncReport("Fail", "No such element was
-		// found on screen: " + e.getMessage());
-		// } catch (IOException ex) {
-		// System.out.print("IOException from Method " +
-		// this.getClass().toString() + " " + e.getCause());
-		// }
-		// System.err.println("TestCase has failed.");
-		// CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		// return;
-		// }
 
 		try {
 			String elementText = mobileAction.getValue(post_survey);

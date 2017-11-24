@@ -42,7 +42,7 @@ public class Accounts extends _CommonPage {
 	private MobileElement btnHome;
 
 	@iOSFindBy(xpath = "//*[@label='Profile & Settings']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Profile & Settings']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Profile & Settings']")
 	private MobileElement txtPreferences;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='BANKING']")

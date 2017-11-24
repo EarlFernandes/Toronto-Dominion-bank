@@ -25,13 +25,13 @@ public class Env_Settings extends _CommonPage {
 	private MobileElement menu;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Banking Service Configuration']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Network Settings']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Network Settings']")
 	private MobileElement network_settings;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/preference_summary_text'and @index='1']")
 	private MobileElement env_set;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText'and @text='Network Settings']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Network Settings']")
 	private MobileElement env_need_to_set;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/preference_title_text'and @text='Configuration']")
@@ -70,7 +70,7 @@ public class Env_Settings extends _CommonPage {
 
 	// @resource-id='com.td:id/title' and
 	String env_Set = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable[1]";
-	String networkSet = "//android.widget.TextView[@resource-id='com.td:id/navText'and @text='Network Settings']";
+	String networkSet = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Network Settings']";
 	String cnfgrn = "//android.widget.TextView[contains(@text,'" + env_need_set + "')]";
 
 	int i = 1;

@@ -1035,7 +1035,7 @@ public class EventCase {
 			break;
 
 		case Flyout_Location:
-			HomeScreen.get().flyoutMenu_Locations();
+			MenuPage.get().clickFindLocations();
 			break;
 
 		case Accounts_EW_WB_Functionality:
@@ -1251,7 +1251,7 @@ public class EventCase {
 			break;
 
 		case Menu_Location:
-			HomeScreen.get().clicklocation();
+			MenuPage.get().clickFindLocations();
 			break;
 
 		case SenderList_Cancel:
@@ -1437,7 +1437,7 @@ public class EventCase {
 			break;
 
 		case MenuTrade:
-			HomeScreen.get().clickmenu_trade();
+			MenuPage.get().clickMenuTrade();
 			break;
 
 		case MenuTradeEasyWebCustomer:
@@ -2297,7 +2297,7 @@ public class EventCase {
 		case ClickGreatLink:
 			MoodSelectorScreen.get().ClickGreatLink();
 			break;
-
+			
 		case VerifyPostSurveyScreen:
 			MoodSelectorScreen.get().VerifyPostSurveyScreen();
 			break;
