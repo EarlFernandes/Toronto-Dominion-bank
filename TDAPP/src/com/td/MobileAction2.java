@@ -1633,7 +1633,7 @@ public class MobileAction2 extends CommonLib {
 			boolean isElementDisplayed = verifyElementIsPresent(elementToVanish);
 			while (isElementDisplayed && count <= 45) {
 				System.out.println("Progress bar :" + isElementDisplayed);
-				sleep(1000);
+				sleep(2000);
 				count++;
 				isElementDisplayed = verifyElementIsPresent(elementToVanish);
 			}

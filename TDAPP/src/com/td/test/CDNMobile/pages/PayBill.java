@@ -98,7 +98,7 @@ public class PayBill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='2']//android.widget.TextView[@index='0']")
 	private MobileElement firstUSAcct;
 
-	@AndroidFindBy(id = "com.td:id/rewards_action_pay_with_rewards")
+	@AndroidFindBy(id = "com.td:id/textview_action_title")
 	private MobileElement payWithRewards;
 
 	public synchronized static PayBill get() {

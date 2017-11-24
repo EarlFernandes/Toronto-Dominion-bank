@@ -30,7 +30,7 @@ public class Credit extends _CommonPage {
 	private MobileElement payBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCollectionView[1]/XCUIElementTypeCell[3]")
-	@AndroidFindBy(xpath = "(//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button'])[2]")
+	@AndroidFindBy(xpath = "(//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button'])[3]")
 	private MobileElement rewardBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]//XCUIElementTypeButton[3]")
@@ -384,6 +384,7 @@ public class Credit extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(latestStatementDetail, "Latest Statement Detail button");
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -399,8 +400,11 @@ public class Credit extends _CommonPage {
 	public void getTDPointsBalance() {
 		Decorator();
 		try {
-
-			String ptsBalance = mobileAction.FuncGetText(tdPointsBalance);
+			String ptsBalance = "0";
+			boolean hasRewards = mobileAction.verifyElementIsPresent(tdPointsBalance);
+			if (hasRewards) {
+				ptsBalance = mobileAction.FuncGetText(tdPointsBalance);
+			}
 			CL.getTestDataInstance().TCParameters.put("Amount", ptsBalance);
 
 		} catch (Exception e) {
@@ -417,13 +421,18 @@ public class Credit extends _CommonPage {
 	public void verifyNoTDPointsBalance() {
 		Decorator();
 		try {
-			String rewardText = mobileAction.FuncGetText(tdPointsBalance);
-			boolean hasTDPoints = rewardText.contains(getTextInCurrentLocale(StringArray.ARRAY_TD_POINTS));
-			boolean hasCBDollars = rewardText.contains(getTextInCurrentLocale(StringArray.ARRAY_CASH_BACK_DOLLARS));
-			if (hasTDPoints || hasCBDollars) {
-				mobileAction.GetReporting().FuncReport("Fail", "Has TD Points or Cash Back Dollars");
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				String rewardText = mobileAction.FuncGetText(tdPointsBalance);
+				boolean hasTDPoints = rewardText.contains(getTextInCurrentLocale(StringArray.ARRAY_TD_POINTS));
+				boolean hasCBDollars = rewardText.contains(getTextInCurrentLocale(StringArray.ARRAY_CASH_BACK_DOLLARS));
+				if (hasTDPoints || hasCBDollars) {
+					mobileAction.GetReporting().FuncReport("Fail", "Has TD Points or Cash Back Dollars");
+				} else {
+					mobileAction.GetReporting().FuncReport("Pass", "No TD Points or Cash Back Dollars");
+				}
 			} else {
-				mobileAction.GetReporting().FuncReport("Pass", "No TD Points or Cash Back Dollars");
+				mobileAction.verifyElementNotPresent(tdPointsBalance, "TD Rewards Balance");
 			}
 
 		} catch (Exception e) {
