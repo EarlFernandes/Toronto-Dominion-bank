@@ -3513,16 +3513,16 @@ public class MobileAction2 extends CommonLib {
 	public void waitProgressBarVanish() {
 
 		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
-
 		int counter = 0;
-		while (counter < 5 && verifyElementIsPresent(Login.get().progressBar)) {
+		while (counter < 6 && verifyElementIsPresent(Login.get().progressBar)) {
 
 			try {
-				wait.until(ExpectedConditions.invisibilityOf(Login.get().progressBar));
+				wait.until(ExpectedConditions.invisibilityOf(Login.get().progressBar)); 
 				counter++;
 
 			} catch (Exception e) {
 				counter++;
+	
 			}
 		}
 

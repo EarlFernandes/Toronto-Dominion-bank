@@ -32,7 +32,11 @@ public class TransfersHistory extends _CommonPage {
 
 	// TODO:: use mobileElementUsingXPath for converting elements
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='History']")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='History']")
+	//private MobileElement pageHeader;
+	
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement pageHeader;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Money Received' or @label='Fonds reçus']/following-sibling::XCUIElementTypeButton[@label='See all']")
@@ -87,7 +91,7 @@ public class TransfersHistory extends _CommonPage {
 	private MobileElement receivedTransaction;
 
 	// @iOSXCUITFindBy(accessibility = "CTA_CANCEL")
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel Request']") // TODO::FrenchText
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel Transfer' or @label='Annuler le virement']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/history_details_footer_button']")
 	private MobileElement cancelTransferBtn;
 
@@ -163,11 +167,11 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Deposited To' or @text='Compte de destination']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement depositedToVal;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Confirmation' or @label='N° de confirmation']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Confirmation') or @label='N° de confirmation']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Confirmation #' or @text='N° de confirmation']")
 	private MobileElement confirmationNumber;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Confirmation' or @label='N° de confirmation']/following-sibling::XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Confirmation') or @label='N° de confirmation']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Confirmation #' or @text='N° de confirmation']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement confirmationNumberVal;
 
@@ -535,22 +539,12 @@ public class TransfersHistory extends _CommonPage {
 								+ "']/following-sibling::XCUIElementTypeButton[@label='"
 								+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']";
 				
-				/*moneySentSeeAll = mobileAction.mobileElementUsingXPath(
-						"//XCUIElementTypeStaticText[@label='" + getTextInCurrentLocale(StringArray.MONEY_SENT_LBL)
-								+ "']/following-sibling::XCUIElementTypeButton[@label='"
-								+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']");*/
-				
 				moneySentSeeAll = mobileAction.mobileElementUsingXPath(fistXpath+" | "+secondXpath);
 
 			}
 
 			mobileAction.FuncClick(moneySentSeeAll, "See All");
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
-		/*	mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();*/
+		
 		
 
 		} catch (Exception e) {
@@ -713,16 +707,14 @@ public class TransfersHistory extends _CommonPage {
 
 		Decorator();
 		try {
+			
 			mobileAction.waitProgressBarVanish();
 			String receiver = getTestdata("ToAccount");
 
 			if (StringUtils.isEmpty(receiver)) {
 				mobileAction.FuncClick(transaction, "Transaction");
 			} else {
-
-				System.err.println("Inside else");
 				mobileAction.FuncClick(getReceiver(), "Receiver: " + receiver);
-				System.err.println("Clicked on receiver");
 			}
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -757,6 +749,9 @@ public class TransfersHistory extends _CommonPage {
 
 				mobileAction.FuncClick(getRequester(), "Receiver: " + receiver);
 			}
+			
+			mobileAction.waitProgressBarVanish();
+			
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -1565,7 +1560,7 @@ public class TransfersHistory extends _CommonPage {
 	public void verifyCancelledTransOnActivity() {
 
 		int counter = 0;
-		
+		String CancelledFrench = "Annulé";
 		MobileElement cancelledTransaction = null;
 
 		Decorator();
@@ -1588,8 +1583,7 @@ public class TransfersHistory extends _CommonPage {
 
 				cancelledTransaction = mobileAction
 						.mobileElementUsingXPath("//XCUIElementTypeCell/XCUIElementTypeButton[contains(@label,'"
-								+ getTestdata("ToAccount") + "') and contains(@label,'CANCELLED')]"); // TODO::IOS:
-																										// CANCELLED:french
+								+ getTestdata("ToAccount") + "') and (contains(@label,'CANCELLED') or contains(@label,'"+CancelledFrench.toUpperCase()+"'))]"); 
 			}
 
 			mobileAction.verifyElementIsDisplayed(cancelledTransaction, "Cancelled Transaction");
@@ -1749,7 +1743,8 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.clickMenuButton();
 			MenuPage.get().clickMenuTransfer();
 			Transfers.get().clickTransferHistoryLink();
-			clickRequestMoneySeeAll();
+			//clickRequestMoneySeeAll(); TODO::commented due to activity error.
+			
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

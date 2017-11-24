@@ -379,7 +379,7 @@ public class EventCase {
 			break;
 			
 		case Transfers_clickRequestMoneyLink:
-			Transfers.get().clickRequestMoneyLink(); 
+			Transfers.get().clickRequestMoneyLink();
 			break;
 			
 		case iOS_back_button:
