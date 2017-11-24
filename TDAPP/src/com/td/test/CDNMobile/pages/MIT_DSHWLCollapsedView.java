@@ -33,7 +33,7 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 				this);
 	}
 
-	@iOSXCUITFindBy(accessibility = "QuickLinkRightNavButton")
+	@iOSXCUITFindBy(xpath = "//*[@label='Edit']/../*[1]")
 	@AndroidFindBy(id = "com.td:id/tv_watchlist_name_header")
 	private MobileElement LT_Watchlist;
 
