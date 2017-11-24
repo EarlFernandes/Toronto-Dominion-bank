@@ -70,7 +70,7 @@ public class OTPUpdate extends _CommonPage {
 	private WebElement addedNickname;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1] | "
-			+ "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeStaticText[1]")
+			+ "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]")
 	@FindBy(xpath = "(//div[@class='td-row-white'])[1]")
 	private WebElement phoneCard1Phone;
 
@@ -247,6 +247,7 @@ public class OTPUpdate extends _CommonPage {
 				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(phoneCard1Phone, "First phone number");
+			mobileAction.sleep(2000);
 			mobileAction.FuncClick(deletePhone1UpdateButton, "Delete first phone number");
 
 		} catch (Exception e) {
@@ -454,6 +455,7 @@ public class OTPUpdate extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(phoneCard1Phone, "First Phone Button");
+			mobileAction.sleep(3000);
 
 			String xpath = "";
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
