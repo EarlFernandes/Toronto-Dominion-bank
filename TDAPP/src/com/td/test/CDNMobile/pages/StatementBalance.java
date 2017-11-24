@@ -203,7 +203,8 @@ public class StatementBalance extends _CommonPage {
 		try {
 
 			String ptsBalance = getTestdata("Amount");
-			if (ptsBalance == " ") {
+			System.out.println("Balance:" + ptsBalance + " length:" + ptsBalance.length());
+			if (ptsBalance.equals(" ")) {
 				ptsBalance = "0";
 			}
 			boolean hasPayWithRewards = mobileAction.verifyElementIsPresent(payWithRewardsBtn);
