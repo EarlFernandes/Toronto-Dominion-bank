@@ -362,12 +362,15 @@ public class OTPSetup extends _CommonPage {
 
 				mobileAction.switchToWebView();
 				mobileAction.FuncClickWithActions(editPhoneField, "Edit Phone Number");
-				//editPhoneField.sendKeys(phoneNumber);
-				mobileAction.FuncSendKeys(phoneNumber);
+				// editPhoneField.sendKeys(phoneNumber);
+				// mobileAction.FuncSendKeys(phoneNumber);
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
 				mobileAction.sleep(2000);
+
+				mobileAction.switchToWebView();
+				editPhoneField.sendKeys(phoneNumber);
 
 				mobileAction.switchToWebView();
 				mobileAction.FuncClickWithActions(editNicknameField, "Edit Nickname");
