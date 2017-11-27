@@ -891,10 +891,11 @@ public class Accounts extends _CommonPage {
 				System.out.println("Account size:" + size);
 				for (int i = 0; i < size; i++) {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-						if (!mobileAction.verifyElementIsPresent(accountList.get(i))) {
-							mobileAction.FuncSwipeWhileElementNotFound(accountList.get(i), false, 2, "up");
-							accountList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
+						if (!mobileAction.verifyElementIsPresent(accountList.get(i))) {	
+							mobileAction.FuncSwipeOnce("up");
+							accountList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(									
 									"//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
+							
 						}
 					}
 					String accounttext = mobileAction.getValue(accountList.get(i));

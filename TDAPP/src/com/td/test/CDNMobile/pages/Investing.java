@@ -1668,6 +1668,7 @@ public class Investing extends _CommonPage {
 			if (randFund >= size) {
 				randFund = size - 1;
 			}
+			System.err.println("Funds index selected:"+ randFund);
 			if (!mobileAction.verifyElementIsPresent(fundsList.get(randFund))) {
 				mobileAction.FuncSwipeWhileElementNotFound(fundsList.get(randFund), false, 20, "up");
 			}
