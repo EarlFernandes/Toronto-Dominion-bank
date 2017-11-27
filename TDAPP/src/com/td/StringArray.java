@@ -201,7 +201,7 @@ public final class StringArray {
 	public static final String[] ARRAY_OTP_SETUP_EXPIRED_PASSCODE = { "This code has expired", "Ce code a expiré",
 			"此代码已失效", "此驗證碼已失效" };
 	public static final String[] ARRAY_OTP_SETUP_SECURITY_EMAIL_HEADER = {
-			"Please provide an email address to get security alerts",
+			"Please provide an email address where you’ll receive security alerts",
 			"Veuillez fournir une adresse courriel pour recevoir les alertes de sécurité", "请提供一个用户接收安全信息的电子邮件邮箱地址",
 			"請提供電郵地址，用來接收安全性資訊" };
 	public static final String[] ARRAY_OTP_SETUP_UNABLE_DELETE_PHONE = { "Unable to delete phone",

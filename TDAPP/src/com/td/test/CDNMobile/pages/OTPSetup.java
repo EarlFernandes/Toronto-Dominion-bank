@@ -331,6 +331,7 @@ public class OTPSetup extends _CommonPage {
 						mobileAction.FuncScrollIntoView(addAnotherPhoneButton, "Add Another Phone Button");
 					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 						mobileAction.FunctionSwipe("up", 100, 0);
+						mobileAction.sleep(2000);
 					}
 
 					mobileAction.FuncClick(addAnotherPhoneButton, "Add Another Phone Button");
@@ -1068,6 +1069,11 @@ public class OTPSetup extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
+			} else {
+				cannotVerifySecurityCodeMsg = mobileAction.verifyWebElementUsingXPath(
+						"//XCUIElementTypeStaticText[contains(@label,'"
+								+ getTextInCurrentLocale(StringArray.ARRAY_OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE) + "')]",
+						"Passcode error msg");
 			}
 
 			mobileAction.verifyElementIsDisplayed(cannotVerifySecurityCodeMsg, "Cannot verify security message");
@@ -1092,6 +1098,11 @@ public class OTPSetup extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
 				mobileAction.sleep(3000);
+			} else {
+				expiredSecurityCodeMsg = mobileAction.verifyWebElementUsingXPath(
+						"//XCUIElementTypeStaticText[contains(@label,'"
+								+ getTextInCurrentLocale(StringArray.ARRAY_OTP_SETUP_EXPIRED_PASSCODE) + "')]",
+						"Passcode error msg");
 			}
 
 			mobileAction.verifyElementIsDisplayed(expiredSecurityCodeMsg, "Expired security message");
@@ -1116,6 +1127,11 @@ public class OTPSetup extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
+			} else {
+				invalidPasscodeFormatMsg = mobileAction.verifyWebElementUsingXPath(
+						"//XCUIElementTypeStaticText[contains(@label,'"
+								+ getTextInCurrentLocale(StringArray.ARRAY_OTP_SETUP_INVALID_PASSCODE_FORMAT) + "')]",
+						"Passcode error msg");
 			}
 
 			mobileAction.verifyElementIsDisplayed(invalidPasscodeFormatMsg, "Invalid passcode format - numbers only");
