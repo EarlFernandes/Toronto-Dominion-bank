@@ -111,7 +111,7 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_sub_heading']")
 	private MobileElement depositToAccountNumber;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Done' or @label='Terminé']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Done' or @label='Terminé' or @label='Ok' or @label='OK']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_done' or @text='Done']")
 	private MobileElement done;
 
