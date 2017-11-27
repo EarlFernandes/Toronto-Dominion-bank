@@ -62,35 +62,36 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/tv_watchlist_more_footer")
 	private MobileElement btnMore;
 
-	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Accessory_Button")
+	@iOSXCUITFindBy(accessibility = "menuButton")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/iv_watchlist_dot_header']")
-	private MobileElement ThreeDots;
+	private MobileElement BT_MoreOptions;
 
-	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Accessory_Button")
+	@iOSXCUITFindBy(xpath = "//*[@label='Edit watchlist' or @label='Modifier la liste de surveillance' or @label='编辑自选股观察名单' or @label='編輯自選股觀察名單']")
 	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/tv_item_more_option_name'])[2]")
 	private MobileElement EditCollapse;
 
-	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Accessory_Button")
+		 
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/toolbar_back_button']")
 	private MobileElement BackButtonExpand;
 
-	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Accessory_Button")
+	@iOSXCUITFindBy(xpath = "//*[@label='Edit watchlist' or @label='Modifier la liste de surveillance' or @label='编辑自选股观察名单' or @label='編輯自選股觀察名單']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/toolbar_title']")
 	private MobileElement EditWLTitle;
 
-	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Accessory_Button")
+	@iOSXCUITFindBy(xpath = "//*[@label='Cancel' or @label='Annuler' or @label='致电' or @label='致電']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/watchlist_edit_button']")
 	private MobileElement EditWLCancel;
 
-	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Accessory_Button")
+	@iOSXCUITFindBy(xpath = "//*[@label='Delete All' or @label='Supprimer tout' or @label='删除全部' or @label='刪除全部']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/delete_all']")
 	private MobileElement EditWLDeleteAll;
 
-	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Accessory_Button")
+	@iOSXCUITFindBy(xpath = "//*[@label='Delete' or @label='Supprimer' or @label='删除' or @label='删除']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/delete_selected']")
 	private MobileElement EditWLDelete;
 
-	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Accessory_Button")
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/toolbar_back_button']")
 	private MobileElement EditWLBckBtn;
 
@@ -118,11 +119,11 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 	@AndroidFindBy(xpath = "(//android.widget.CheckBox[@resource-id='com.td:id/checkbox_item_watchlist_selected'])[1]")
 	private MobileElement SymblchckBox;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Are you sure you want to delete all of the symbols?' or @label='Voulez-vous vraiment supprimer tous les symboles?' or @label='您确定要删除所有代号？' or @label='確定要刪除全部代號？']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement warningMsg;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]")
+	@iOSXCUITFindBy(accessibility = "alert_ok_button")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
 	private MobileElement okButton;
 
@@ -145,7 +146,7 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 
 			}
 
-			mobileAction.FuncClick(ThreeDots, "ThreeDots");
+			mobileAction.FuncClick(BT_MoreOptions, "BT_MoreOptions");
 
 			mobileAction.FuncClick(EditCollapse, "EditCollapse");
 
@@ -180,7 +181,7 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 
 			}
 
-			mobileAction.FuncClick(ThreeDots, "ThreeDots");
+			mobileAction.FuncClick(BT_MoreOptions, "BT_MoreOptions");
 
 			mobileAction.FuncClick(EditCollapse, "EditCollapse");
 			mobileAction.verifyElementIsDisplayed(EditWLBckBtn, "EditWLBckBtn");
@@ -209,7 +210,7 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 
 			}
 
-			mobileAction.FuncClick(ThreeDots, "ThreeDots");
+			mobileAction.FuncClick(BT_MoreOptions, "BT_MoreOptions");
 
 			mobileAction.FuncClick(EditCollapse, "EditCollapse");
 
@@ -270,7 +271,7 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 			mobileAction.FuncClick(ListViewExpand01, "ListViewExpand01");
 			mobileAction.FuncClick(BT_CancelHome, "BT_CancelHome");
 
-			mobileAction.FuncClick(ThreeDots, "ThreeDots");
+			mobileAction.FuncClick(BT_MoreOptions, "BT_MoreOptions");
 
 			mobileAction.FuncClick(EditCollapse, "EditCollapse");
 			mobileAction.FuncClick(SymblchckBox, "SymblchckBox");
@@ -331,7 +332,7 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 			mobileAction.FuncClick(ListViewExpand01, "ListViewExpand01");
 			mobileAction.FuncClick(BT_CancelHome, "BT_CancelHome");
 
-			mobileAction.FuncClick(ThreeDots, "ThreeDots");
+			mobileAction.FuncClick(BT_MoreOptions, "BT_MoreOptions");
 
 			mobileAction.FuncClick(EditCollapse, "EditCollapse");
 
@@ -339,7 +340,7 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(warningMsg, "warningMsg");
 
-			mobileAction.FuncVerifyTextEquals(EditWLDelete,
+			mobileAction.FuncVerifyTextEquals(warningMsg,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_EDITWLWARNINGMESSAGE));
 
 			mobileAction.FuncClick(okButton, "okButton");

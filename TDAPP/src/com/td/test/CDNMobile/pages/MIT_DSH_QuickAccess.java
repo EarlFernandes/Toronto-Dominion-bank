@@ -50,7 +50,7 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 	private MobileElement flyoutHomeLink;
 
 	@iOSXCUITFindBy(accessibility = "QuickLinkRightNavButton")
-	@AndroidFindBy(id = "com.td:id/hamburger")
+	@AndroidFindBy(id = "com.td:id/easy_access_button")
 	MobileElement BT_Home_QuickAccess;
 
 	@iOSXCUITFindBy(accessibility = "QUICKACCESS_ACTIVATE_TITLE")
@@ -94,31 +94,31 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 	private MobileElement QuickAccessSettingsNav;
 
 	@iOSXCUITFindBy(xpath = "(//*[contains(@label,'US MARGIN') or contains(@label,'CDN MARGIN') or contains(@label,'CDN MARGIN SHORT') or contains(@label,'US MARGIN SHORT') or contains(@label,'CANADIAN MARGIN') or contains(@label,'MARGE EN $CDN') or contains(@label,'MARGE EN $US')])[1]")
-	@AndroidFindBy(xpath = "(//*[contains(@text,'Quick Access Settings') or contains(@text,'Paramètres Accès rapide') or contains(@text,'特快结余查询') or contains(@text,'特快結餘查詢')])[1]")
+	@AndroidFindBy(xpath = "(//*[contains(@text,'US MARGIN') or contains(@text,'CDN MARGIN') or contains(@text,'CDN MARGIN SHORT') or contains(@text,'US MARGIN SHORT') or contains(@text,'CANADIAN MARGIN') or contains(@text,'MARGE EN $CDN') or contains(@text,'MARGE EN $US')])[1]")
 	private MobileElement QuickAccessUserInvestment;
 
 	@iOSXCUITFindBy(xpath = "(//*[contains(@label,'CHEQUING ACCOUNT') or contains(@label,'Paramètres Accès rapide')])[1]")
-	@AndroidFindBy(xpath = "(//*[contains(@text,'Quick Access Settings') or contains(@text,'Paramètres Accès rapide') or contains(@text,'特快结余查询') or contains(@text,'特快結餘查詢')])[1]")
+	@AndroidFindBy(xpath = "(//*[contains(@text,'CHEQUING ACCOUNT') or contains(@text,'Paramètres Accès rapide')])[1]")
 	private MobileElement QuickAccessUserChequing;
 
 	@iOSXCUITFindBy(xpath = "(//*[contains(@label,'CREDIT CARD') or contains(@label,'Paramètres Accès rapide')])[1]")
-	@AndroidFindBy(xpath = "(//*[contains(@text,'Quick Access Settings') or contains(@text,'Paramètres Accès rapide') or contains(@text,'特快结余查询') or contains(@text,'特快結餘查詢')])[1]")
+	@AndroidFindBy(xpath = "(//*[contains(@text,'CREDIT CARD') or contains(@text,'Paramètres Accès rapide')])[1]")
 	private MobileElement QuickAccessUserCreditCard;
 
 	@iOSXCUITFindBy(xpath = "(//*[contains(@label,'LINE OF CREDIT') or contains(@label,'LIGNE DE CREDIT')])[1]")
-	@AndroidFindBy(xpath = "(//*[contains(@text,'Quick Access Settings') or contains(@text,'Paramètres Accès rapide') or contains(@text,'特快结余查询') or contains(@text,'特快結餘查詢')])[1]")
+	@AndroidFindBy(xpath = "(//*[contains(@text,'LINE OF CREDIT') or contains(@text,'LIGNE DE CREDIT')])[1]")
 	private MobileElement QuickAccessUserLineOfCredit;
 
 	@iOSXCUITFindBy(xpath = "(//*[contains(@label,'SAVINGS ACCOUNT') or contains(@label,'Paramètres Accès rapide')])[1]")
-	@AndroidFindBy(xpath = "(//*[contains(@text,'SAVINGS ACCOUNT') or contains(@text,'Paramètres Accès rapide') or contains(@text,'特快结余查询') or contains(@text,'特快結餘查詢')])[1]")
+	@AndroidFindBy(xpath = "(//*[contains(@text,'SAVINGS ACCOUNT') or contains(@text,'Paramètres Accès rapide')])[1]")
 	private MobileElement QuickAccessUserSavingAccount;
 
 	@iOSXCUITFindBy(xpath = "(//*[contains(@label,'BUSINESS - CHEQUING') or contains(@label,'COMPTE-CHEQUES')])[1]")
-	@AndroidFindBy(xpath = "(//*[contains(@text,'SAVINGS ACCOUNT') or contains(@text,'Paramètres Accès rapide') or contains(@text,'特快结余查询') or contains(@text,'特快結餘查詢')])[1]")
+	@AndroidFindBy(xpath = "(//*[contains(@text,'BUSINESS - CHEQUING') or contains(@text,'COMPTE-CHEQUES')])[1]")
 	private MobileElement QuickAccessUserSmallBusiness;
 
 	@iOSXCUITFindBy(xpath = "(//*[contains(@label,'US DOLLAR CARD') or contains(@label,'Paramètres Accès rapide')])[1]")
-	@AndroidFindBy(xpath = "(//*[contains(@text,'SAVINGS ACCOUNT') or contains(@text,'Paramètres Accès rapide') or contains(@text,'特快结余查询') or contains(@text,'特快結餘查詢')])[1]")
+	@AndroidFindBy(xpath = "(//*[contains(@text,'SAVINGS ACCOUNT') or contains(@text,'Paramètres Accès rapide')])[1]")
 	private MobileElement QuickAccessUserUSAccount;
 
 	public void goToDashboardHome() {

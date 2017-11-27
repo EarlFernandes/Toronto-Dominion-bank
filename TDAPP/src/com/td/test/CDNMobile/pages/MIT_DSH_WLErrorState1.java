@@ -70,7 +70,7 @@ public class MIT_DSH_WLErrorState1 extends _CommonPage {
 	private MobileElement ListEACollapseView;
 
 	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name='errorButton'])[1]")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/watchlist_name_drop_down']")
+	@AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id='com.td:id/watchlist_symbol_error'])[1]")
 	MobileElement errorSymbol;
 
 	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name='errorButton']/../../following-sibling::*[1]/*[1]/XCUIElementTypeStaticText[1])[1]")
