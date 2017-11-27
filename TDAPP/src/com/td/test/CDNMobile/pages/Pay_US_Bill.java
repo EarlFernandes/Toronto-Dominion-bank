@@ -37,7 +37,7 @@ public class Pay_US_Bill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/payee_name' and @text='Select U.S. Payee']")
 	private MobileElement select_Account;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='PAYUSBILL_VIEW_AMOUNT']/following-sibling::XCUIElementTypeTextField[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='PAYUSBILL_VIEW_AMOUNT']/../XCUIElementTypeTextField[1]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amount']")
 	private MobileElement amount;
 
@@ -615,7 +615,7 @@ public class Pay_US_Bill extends _CommonPage {
 				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
 				mobileAction.FuncClickDone();
 				MobileElement memo = (MobileElement) (CL.GetAppiumDriver()).findElement(
-						By.xpath("//*[@name='PAYUSBILL_VIEW_REASON']/following-sibling::XCUIElementTypeTextField"));
+						By.xpath("//*[@name='PAYUSBILL_VIEW_REASON']/../XCUIElementTypeTextField[1]"));
 				mobileAction.FuncClick(memo, "US memo clicked");
 				mobileAction.FuncSendKeys(memo, "us test bill pay");
 				mobileAction.FuncClickDone();

@@ -90,7 +90,7 @@ public class PendingInteracTransfer extends _CommonPage {
 	private MobileElement receiptHeader;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Home']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText'and and @text='Home']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and and @text='Home']")
 	private MobileElement home;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Quick Access']")
