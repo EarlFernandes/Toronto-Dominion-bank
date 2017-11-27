@@ -380,6 +380,7 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.FuncClick(addPhoneButton, "Add Phone button");
 
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.sleep(5000); // Wait for page to fully load
 				mobileAction.FuncClick(editPhoneField, "Edit Phone Number");
 				mobileAction.FuncSendKeys(editPhoneField, phoneNumber);
 				mobileAction.FuncClickDone(); // hide iOS keyboard
