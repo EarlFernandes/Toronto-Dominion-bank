@@ -23,6 +23,8 @@ public class Branch extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement branch_header;
 
+	private MobileElement book_appointment_icon;
+
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/text_branch_address']")
 	private MobileElement brancn_address;
@@ -106,6 +108,55 @@ public class Branch extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
+	}
+
+	public void verifyBranchBookAppointmentContent() {
+		Decorator();
+		String expectedText = "";
+		try {
+			mobileAction.FuncSwipeOnce("up");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				expectedText = getTextInCurrentLocale(StringArray.ARRAY_BOOKING_APPOINTMENT_IOS);
+				book_appointment_icon = mobileAction.verifyElementUsingXPath("//*[@label='" + expectedText + "']",
+						"Book a Visit");
+			} else {
+				expectedText = getTextInCurrentLocale(StringArray.ARRAY_BOOKING_APPOINTMENT_AND);
+				book_appointment_icon = mobileAction.verifyElementUsingXPath(
+						"//android.widget.Button[@text='" + expectedText + "']", "Book an Appointment");
+			}
+			mobileAction.verifyElementIsDisplayed(book_appointment_icon, expectedText);
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void clickBranchBookAppointmentIcon() {
+		Decorator();
+		String expectedText = "";
+		try {
+			mobileAction.FuncSwipeOnce("up");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				expectedText = getTextInCurrentLocale(StringArray.ARRAY_BOOKING_APPOINTMENT_IOS);
+				book_appointment_icon = mobileAction.verifyElementUsingXPath("//*[@label='" + expectedText + "']",
+						"Book a Visit");
+			} else {
+				expectedText = getTextInCurrentLocale(StringArray.ARRAY_BOOKING_APPOINTMENT_AND);
+				book_appointment_icon = mobileAction.verifyElementUsingXPath(
+						"//android.widget.Button[@text='" + expectedText + "']", "Book an Appointment");
+			}
+
+			mobileAction.FuncClick(book_appointment_icon, expectedText);
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
 	}
 
 }

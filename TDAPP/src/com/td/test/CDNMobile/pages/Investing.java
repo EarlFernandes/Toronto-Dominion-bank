@@ -100,7 +100,7 @@ public class Investing extends _CommonPage {
 	private MobileElement agreeButton;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Accounts']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='My Accounts']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='My Accounts']")
 	private MobileElement my_accounts;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='BANKING']")
@@ -265,7 +265,7 @@ public class Investing extends _CommonPage {
 	private MobileElement account_balance;
 
 	@iOSFindBy(xpath = "//*[@name='TD_ACCOUNT_FOOTER_VIEW_LABEL']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/canadianDollarNote']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tradingFeeDisclaimer']")
 	private MobileElement usd_disclaimer_foot;
 
 	@iOSFindBy(xpath = "//*[@name='FUND_BALANCE_MARKET_VALUE']/../XCUIElementTypeStaticText[2]")
@@ -1744,7 +1744,7 @@ public class Investing extends _CommonPage {
 	public void SelectLastTransaction() {
 		Decorator();
 		try {
-			mobileAction.FuncSwipeWhileElementNotFound(transaction_foot_note, false, 5, "up");
+			mobileAction.FuncSwipeWhileElementNotFound(transaction_foot_note, false, 50, "up");
 			List<MobileElement> transactionListContent = null;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				transactionListContent = ((MobileDriver) (CL.GetAppiumDriver())).findElementsByXPath(
@@ -1846,9 +1846,9 @@ public class Investing extends _CommonPage {
 					getTextInCurrentLocale(StringArray.ARRAY_TAB_ACTIVITY));
 			mobileAction.verifyElementTextIsDisplayed(table_heading_left,
 					getTextInCurrentLocale(StringArray.ARRAY_TABLE_DATE));
-			mobileAction.verifyElementTextIsDisplayed(table_heading_middle,
+			mobileAction.verifyElementTextContains(table_heading_middle,
 					getTextInCurrentLocale(StringArray.ARRAY_TABLE_TRANSACTION));
-			mobileAction.verifyElementTextIsDisplayed(table_heading_right,
+			mobileAction.verifyElementTextContains(table_heading_right,
 					getTextInCurrentLocale(StringArray.ARRAY_TABLE_AMOUNT));
 
 		} catch (NoSuchElementException | IOException e) {
