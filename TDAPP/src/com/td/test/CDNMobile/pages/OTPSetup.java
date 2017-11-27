@@ -38,7 +38,7 @@ public class OTPSetup extends _CommonPage {
 	private MobileElement getStartedNewButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Continue') or contains(@label,'Continuer') or contains(@label,'继续') or contains(@label,'繼續') ]")
-	@AndroidFindBy(id = "com.td:id/btn_continue")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue' or @resource-id='com.td:id/btn_primary']")
 	private MobileElement getStartedExistingButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")
