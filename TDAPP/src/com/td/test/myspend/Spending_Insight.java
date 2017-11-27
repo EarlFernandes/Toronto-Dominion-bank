@@ -9,6 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
+import com.td.test.CDNMobile.pages.HomeScreen;
+import com.td.test.CDNMobile.pages.Login;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -32,41 +34,49 @@ public class Spending_Insight extends _CommonPage {
 	String platform = null;
 
 	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Spending Insights') or contains(@label,'Aperçu des dépenses')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Spending Insights') or contains(@content-desc,'Aperçu des dépenses')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Spending Insights') or contains(@content-desc,'Aperçu des dépenses') or contains(@text,'Spending Insights')]")
 	private MobileElement spendingInsightHeader;
 
 	@AndroidFindBy(xpath = "(//*[@aria-label='Menu'])[1]")
 	private MobileElement sideMenuButton;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'0 Accounts Selected') or contains(@label,'0 Comptes sélectionnés')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'0 Accounts Selected') or contains(@label,'0 Comptes sélectionnés')]")
 	private MobileElement noAccountSelected;
 	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Daily Digest') or contains(@label,'Sommaire quotidien')]")
-	@AndroidFindBy(xpath="//android.widget.Button[@content-desc='Daily Digest']")
+	@AndroidFindBy(xpath="//android.widget.Button[@content-desc='Daily Digest' or @content-desc='Sommaire quotidien' or @text='Daily Digest']")
 	private MobileElement dailyDigest;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Accounts Selected')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Accounts Selected')]")
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Accounts Selected')]")
 	private MobileElement accountSelected;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'MONEY PATH') or contains(@label,'Trajectoire financière') or contains(@label,'Money Path')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'MONEY PATH') or contains(@label,'Trajectoire financière') or contains(@label,'Money Path')]")
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'MONEY PATH') or contains(@content-desc,'Trajectoire financière') or contains(@content-desc,'Money Path')]")
 	private MobileElement moneyPathButton;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Logout') or contains(@label,'Fermer la session')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Logout') or contains(@label,'Fermer la session')]")
 	private MobileElement logout;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Spending by Category') or contains(@label,'Dépenses par catégorie')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Spending by Category') or contains(@label,'Dépenses par catégorie')]")
 	private MobileElement spendingByCategoryBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Transaction History') or contains(@label,'Historique des opérations')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Transaction History') or contains(@label,'Historique des opérations')]")
 	private MobileElement transactionHistoryBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Spending History') or contains(@label,'Historique de dépenses')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Spending History') or contains(@label,'Historique de dépenses')]")
 	private MobileElement spendingHistoryBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Home') or contains(@label,'Accueil')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Home') or contains(@label,'Accueil')]")
 	private MobileElement homeBtn;
+	
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/easy_access']")
+	private MobileElement quickAccess;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD MySpend' or @label='Dépense TD']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='TD MySpend' or @text='Dépense TD')]")
+	private MobileElement TDMySpend;
 
 	@FindBy(xpath = "//*[text()='Spending Insights' or text()='Aperçu des dépenses']")
 	private WebElement spendingInsightHeaderAndroid;
@@ -121,11 +131,23 @@ public class Spending_Insight extends _CommonPage {
 		Decorator();
 
 		try {
+			if(mobileAction.verifyElementIsPresent(quickAccess)){
+				HomeScreen.get().clickMenu();
+				mobileAction.FuncClick(TDMySpend, "TD My Spend");
+			}				
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
+				if(!mobileAction.verifyElementIsPresent(spendingInsightHeaderAndroid)){
+					CL.GetAppiumDriver().context("NATIVE_APP");
+					Login.get().login();
+				}
 				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
 				mobileAction.verifyElementIsDisplayed(spendingInsightHeaderAndroid, "Spending Insight Header");
 				CL.GetAppiumDriver().context("NATIVE_APP");
 			} else {
+				if(!mobileAction.verifyElementIsPresent(spendingInsightHeader)){
+					Login.get().login();
+				}
 				mobileAction.verifyElementIsDisplayed(spendingInsightHeader, "Spending Insight Header");
 
 			}
@@ -137,14 +159,16 @@ public class Spending_Insight extends _CommonPage {
 			int middleY = (upperY + lowerY) / 2;
 			spendingMiddleY = middleY;
 
-		}  catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}catch (Exception e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 
@@ -171,14 +195,16 @@ public class Spending_Insight extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
 			}
-		}  catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}catch (Exception e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 
@@ -204,14 +230,16 @@ public class Spending_Insight extends _CommonPage {
 			} else {
 				mobileAction.verifyElementIsDisplayed(noAccountSelected, "0 Accounts Selected");
 			}
-		}  catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (Exception e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 
@@ -243,14 +271,16 @@ public class Spending_Insight extends _CommonPage {
 				mobileAction.stringToReport("Fail",
 						"0 accounts are enabled or accounts are not present in preferences");
 			}
-		}  catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}catch (Exception e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 
@@ -273,18 +303,23 @@ public class Spending_Insight extends _CommonPage {
 		try {
 			clickSideMenuButton();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				mobileAction.FunctionSwipe("Down", 200, 200);
+				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
 				mobileAction.FuncClick(logoutBtnAndroid, "Logout Button");
 			} else {
 				mobileAction.FuncClick(logout, "Logout Button");
 			}
-		}  catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}catch (Exception e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 
@@ -307,14 +342,16 @@ public class Spending_Insight extends _CommonPage {
 		try {
 			mobileAction.FuncClick(moneyPathButton, "Money Path Button");
 
-		}  catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (Exception e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 
@@ -344,20 +381,22 @@ public class Spending_Insight extends _CommonPage {
 				mobileAction.FuncClick(homeBtnAndroid, "Home Button");
 			} else {
 				mobileAction.verifyElementIsDisplayed(spendingByCategoryBtn, "Spending by category button");
-				mobileAction.verifyElementIsDisplayed(transactionHistoryBtn, "Transaction history Button");
+				//mobileAction.verifyElementIsDisplayed(transactionHistoryBtn, "Transaction history Button");
 				mobileAction.verifyElementIsDisplayed(moneyPathButton, "MoneyPath Button");
-				//mobileAction.verifyElementIsDisplayed(spendingHistoryBtn, "Spending History button");
+				mobileAction.verifyElementIsDisplayed(spendingHistoryBtn, "Spending History button");
 				mobileAction.FuncClick(homeBtn, "Home Button");
 			}
 
-		}  catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		} catch (Exception e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 	
@@ -387,14 +426,16 @@ public class Spending_Insight extends _CommonPage {
 			}
 			
 
-		}  catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}catch (Exception e) {
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
 			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 

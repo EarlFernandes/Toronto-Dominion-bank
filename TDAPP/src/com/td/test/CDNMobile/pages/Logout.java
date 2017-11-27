@@ -3,6 +3,7 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
@@ -14,6 +15,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Logout extends _CommonPage {
 	private static Logout Logout;
@@ -22,7 +24,7 @@ public class Logout extends _CommonPage {
 	private MobileElement logout;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Fermer la session']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Fermer la session']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Fermer la session']")
 	private MobileElement logout_French;
 
 	@iOSFindBy(accessibility = "TDVIEW_TITLE")
@@ -47,6 +49,35 @@ public class Logout extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Terminé']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/success' and @text='Terminé']")
 	private MobileElement logoutHeaderFrench;
+
+	// @iOSXCUITFindBy(iOSClassChain = "//*[@label='Logout' or @label='Fermer la
+	// session' or @label='退出' or @label='登出']")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Logout' OR label CONTAINS[cd] 'Fermer la session' OR label CONTAINS[cd] '退出'` OR label CONTAINS[cd] '登出'`]")
+	@AndroidFindBy(xpath = "//*[(@text='Logout' or @text='Fermer la session' or @text='退出' or @text='登出') and @resource-id='com.td:id/textview_flyout_menu_item']")
+	private MobileElement FLY_Logout;
+
+	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@AndroidFindBy(id = "com.td:id/hamburger")
+	MobileElement BT_Home_HamburgerMenu;
+
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
+	@AndroidFindBy(id = "android:id/up")
+	MobileElement BT_HamburgerMenu;
+
+	@iOSFindBy(xpath = "//*[@label='Home' or @label='Accueil' or @label='主页' or @label='首頁']")
+	@AndroidFindBy(xpath = "//*[@text='Home' or @text='Accueil' or @text='主页' or @text='首頁']")
+	private MobileElement FLY_Home;
+
+	// @iOSFindBy(xpath = "//*[contains(@label,'Username or Access Card') or
+	// contains(@value,'Username or Access Card') or contains(@label,'Access
+	// Card or Username')]")
+	// Use this one now!
+	// @iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Username or
+	// Access Card' OR value CONTAINS[cd] 'Username or Access Card' OR value
+	// CONTAINS[cd] 'Access Card or Username'`]")
+
+	// By.classChain('**/XCUIElementTypeTable[`name ==
+	// "table"`]/XCUIElementTypeCell[`visible == 1`]')
 
 	String platformName = CL.getTestDataInstance().getMobilePlatForm();
 
@@ -233,4 +264,16 @@ public class Logout extends _CommonPage {
 		}
 	}
 
+	public void logoutFromDashboard() {
+		Decorator();
+		try {
+			// mobileAction.FuncClick(BT_Home_HamburgerMenu,
+			// "BT_Home_HamburgerMenu");
+			mobileAction.FuncClick(FLY_Logout, "Logout");
+			mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
+			mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -98,7 +98,7 @@ public class Login extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Ajouter un nom d’utilisateur ou un numéro de carte Accès']")
 	private MobileElement french_addUser;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//*[@name='LOGIN_USERNAME' or contains(@label,'Username or Access Card') or contains(@value,'Username or Access Card') or contains(@label,'Access Card or Username')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'***')and @resource-id='com.td:id/txtAccessCard']")
 	private MobileElement Mostusername_Displayedfirst;
 
@@ -113,8 +113,8 @@ public class Login extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Thanks, I'll do this later on my computer']")
 	private MobileElement terms_Conditions_Msg;
 
-	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_LOGOUT")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
+	@iOSFindBy(xpath = "//*[(@name='NAV_DRAWER_ITEMS_LOGOUT' or @name='flyout_title') and (@label='Logout' or @label='Fermer la session' or @label='退出' or @label='登出')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Logout']")
 	private MobileElement logout;
 
 	@iOSFindBy(xpath = "//*[@label='Logged Out']")
@@ -186,7 +186,7 @@ public class Login extends _CommonPage {
 	String verifyLogin_android = "//*[contains(@text,'Your Login Info Please')]";
 	String login_password = getTestdata("Password");
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar[@name='TDOCAErrorWithCTAView']/../XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text'] | //android.widget.TextView[@resource-id='com.td:id/error_message']")
 	private MobileElement login_error;
 
@@ -214,10 +214,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/confirm_delete']")
 	private MobileElement deluser;
 
-	// @iOSFindBy(accessibility = "TDVIEW_TITLE")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
-	@iOSXCUITFindBy(xpath = "//*[@name='TD MySpend' or @name='Dépense TD' or @name='TDVIEW_TITLE']")
+	@iOSXCUITFindBy(xpath = "//*[@name='TDVIEW_TITLE' or @name='TD MySpend' or @name='Dépense TD']")
 	@AndroidFindBy(xpath = "//*[@resource-id='android:id/action_bar_title' or @resource-id='android:id/content']")
 	private MobileElement logined_page_Header;
 
@@ -486,6 +483,7 @@ public class Login extends _CommonPage {
 					try {
 						System.out.println("Failed to try maximum " + (REPEAT_TIMES + 1) + " times");
 						CL.GetReporting().FuncReport("Fail", "Login Failed");
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
@@ -495,6 +493,7 @@ public class Login extends _CommonPage {
 			e.printStackTrace();
 			try {
 				CL.GetReporting().FuncReport("Fail", "Login Failed");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -702,7 +701,7 @@ public class Login extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.FuncClick(select_accesscard, "Select AccessCard");
-				String mostUsedUser = Mostusername_Displayedfirst.getAttribute("label");
+				String mostUsedUser = Mostusername_Displayedfirst.getAttribute("value");
 				String oftenUsedUser = mostUsedUser.replace("***", "C5A");
 				mobileAction.verifyTextEquality(oftenUsedUser, CL.getTestDataInstance().Userid);
 			} else {
@@ -741,7 +740,7 @@ public class Login extends _CommonPage {
 			} else {
 				mobileAction.clickMenuButton();
 				logout = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='"
+						"//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='"
 								+ mobileAction.getAppString("logoutConfirmButtonLogout") + "']",
 						"Logout");
 				mobileAction.FuncClick(logout, "Logout");
