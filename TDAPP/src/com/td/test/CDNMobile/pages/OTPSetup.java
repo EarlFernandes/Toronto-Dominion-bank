@@ -247,7 +247,9 @@ public class OTPSetup extends _CommonPage {
 			String acctType = getTestdata("Accounts");
 			if (acctType.equalsIgnoreCase("new")) {
 				mobileAction.FuncClick(getStartedNewButton, "Get started button");
+				mobileAction.sleep(2000);
 				mobileAction.FuncClick(continueButton, "Continue button");
+				mobileAction.sleep(2000);
 			} else {
 				mobileAction.FuncClick(getStartedExistingButton, "Get started button");
 			}
