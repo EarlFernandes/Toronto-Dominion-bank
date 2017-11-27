@@ -219,7 +219,7 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header']")
 	private MobileElement cancelConfirmationMsg;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label contains[cd] 'Confirmation #' or label contains[cd] 'N° de confirmation'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label contains[cd] 'Confirmation #' or label contains[cd] 'confirmation'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subSubHeader']")
 	private MobileElement confirmationCode;
 
@@ -1533,6 +1533,8 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.verifyTextEquality(cancelledTransactionStatus.getText(),
 					getTextInCurrentLocale(StringArray.CANCEL_MONEY_RECEIPT_HEADER));
 
+			mobileAction.getPageSource();
+			
 			mobileAction.verifyElementIsDisplayed(confirmationCode, "confirmation Code " + confirmationCode.getText());
 
 			cancelFlag = true;
