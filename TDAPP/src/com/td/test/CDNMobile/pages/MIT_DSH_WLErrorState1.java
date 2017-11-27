@@ -77,6 +77,7 @@ public class MIT_DSH_WLErrorState1 extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and @text='List 01']")
 	private MobileElement price;
 
+	
 	public void verifyErrorExpiredSymbol() {
 		Decorator();
 		try {
