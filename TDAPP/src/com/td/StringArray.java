@@ -497,6 +497,7 @@ public final class StringArray {
 			"If your existing credit card is damaged or not working, you can request a replacement card.",
 			"Si votre carte de crédit est endommagée ou ne fonctionne plus, vous pouvez demander une carte de remplacement.",
 			"如果您现有的信用卡损坏或无效，您可以申请换卡。", "如果您現有的信用卡損壞或無效，您可以申請換卡。" };
+	public static final String[] ARRAY_FORM_INFORMATION = {"Personal Information","","",""};
 	// End of CLIP
 
 	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",

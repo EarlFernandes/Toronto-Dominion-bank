@@ -1693,7 +1693,7 @@ public class MobileAction2 extends CommonLib {
 			int count = 1;
 			Thread.sleep(4000);
 			boolean isElementDisplayed = elementToVanish.isDisplayed();
-			while (count <= 3) {
+			while (count <= 5) {
 				isElementDisplayed = elementToVanish.isDisplayed();
 				if (isElementDisplayed) {
 					try {
@@ -1701,9 +1701,11 @@ public class MobileAction2 extends CommonLib {
 						count++;
 
 					} catch (NoSuchElementException e) {
+						System.out.println("Element vanished");
 						break;
 					}
 				} else {
+					System.out.println("Element vanished");
 					break;
 				}
 			}
