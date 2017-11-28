@@ -124,10 +124,7 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 	public void goToDashboardHome() {
 		Decorator();
 		try {
-			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
-			mobileAction.FuncClick(InvestingAccount, "Investing Accounts Flyout Menu");
-			LoginMIT.get().MITLogin();
-			mobileAction.FuncClick(BT_Back, "< Button");
+			MIT_DSHQuickLinks.get().goToDashboardHome();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -405,13 +402,9 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 	public void verifyQuickAccessUserType() {
 		Decorator();
 		try {
-			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
+		//	mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 
-			clickFlyout(flyoutInvestingAccountsLink, "flyoutInvestingAccountsLink");
-
-			LoginMIT.get().MITLogin();
-
-			mobileAction.FuncClick(BT_Back, "< Button");
+			MIT_DSHQuickLinks.get().goToDashboardHome();
 
 			mobileAction.FuncClick(BT_Home_QuickAccess, "BT_Home_QuickAccess");
 

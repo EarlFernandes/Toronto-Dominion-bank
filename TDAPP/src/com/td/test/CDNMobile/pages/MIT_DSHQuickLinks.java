@@ -373,6 +373,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
 				mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
 			} else {
+				Thread.sleep(8000);
 				mobileAction.FuncClick(BT_Back, "< Button");
 			}
 		} catch (Exception e) {
