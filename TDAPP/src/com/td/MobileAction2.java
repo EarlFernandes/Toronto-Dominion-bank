@@ -1696,7 +1696,7 @@ public class MobileAction2 extends CommonLib {
 			int count = 0;
 			boolean isElementDisplayed = FuncIsDisplayed(elementToVanish);
 			while (isElementDisplayed && count <= 45) {
-				sleep(2000);
+				sleep(1000);
 				count++;
 				isElementDisplayed = FuncIsDisplayed(elementToVanish);
 			}

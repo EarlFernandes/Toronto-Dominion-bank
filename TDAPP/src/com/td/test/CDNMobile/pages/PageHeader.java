@@ -30,7 +30,7 @@ public class PageHeader extends _CommonPage {
 	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement screenHeader;
 
-	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
+	@iOSXCUITFindBy(xpath = "//*[@name='QuickLinkLeftNavButton' or @name='NAVIGATION_ITEM_MENU']")
 	@AndroidFindBy(id = "com.td:id/hamburger")
 	private MobileElement menuButton;
 

@@ -364,15 +364,14 @@ public class Transfers extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer");
 
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No Transfer screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

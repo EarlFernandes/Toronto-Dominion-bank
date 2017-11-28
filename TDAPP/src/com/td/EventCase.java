@@ -171,6 +171,9 @@ public class EventCase {
 		// Manage Payee
 		ManagePayee_ClickNewPayee, ManagePayees_Button, ManagePayee_AddCanadianPayee, ManagePayee_ClickPayeeByAcctNumber, ManagePayee_DeletePayee, ManagePayee_EditPayee, ManagePayee_VerifyCanadianPayeeDeleted, ManagePayee_VerifyPayeeEdited, ManagePayee_VerifyUSPayeeDeleted, ManagePayee_EditPayeeDescription,
 
+		// Menu
+		Menu_VerifyAllMenuItems,
+
 		// Mobile Payment
 		MobilePayment_AcceptIntroAndValidate,
 
@@ -4647,6 +4650,11 @@ public class EventCase {
 
 		case ManagePayee_EditPayeeDescription:
 			Manage_Payee.get().editPayeeDescription();
+			break;
+
+		// Menu
+		case Menu_VerifyAllMenuItems:
+			MenuPage.get().verifyAllMenuItems();
 			break;
 
 		// Mobile Payment

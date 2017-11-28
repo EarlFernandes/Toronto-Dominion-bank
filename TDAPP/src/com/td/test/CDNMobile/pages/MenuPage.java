@@ -34,6 +34,10 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='TD MySpend' or @text='Dépense TD') and (@resource-id='com.td:id/textview_flyout_menu_item' or @resource-id='com.td:id/navText')]")
 	private MobileElement tdMySpend;
 
+	@iOSFindBy(xpath = "//*[(@label='TD for Me' or @label='TD et Moi' or @label='TD for Me' or @label='TD for Me') and @name='flyout_title'] | //*[@name='NAV_DRAWER_ITEMS_menu_icon_locations']")
+	@AndroidFindBy(xpath = "//*[@text='TD for Me' or @text='TD et Moi' or @text='TD for Me' or @text='TD for Me']")
+	private MobileElement tdForMe;
+
 	@iOSFindBy(xpath = "//*[(@label='Cross-Border Banking' or @label='Services bancaires transfrontaliers' or @label='跨境理财服务' or @label='跨國理財服務') and @name='flyout_title'] | //*[@name='NAV_DRAWER_ITEMS_CROSSBORDER']")
 	@AndroidFindBy(xpath = "//*[@text='Cross-Border Banking' or @text='Services bancaires transfrontaliers' or @text='跨境理财服务' or @text='跨國理財服務']")
 	private MobileElement crossBorder;
@@ -720,6 +724,68 @@ public class MenuPage extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
+		}
+
+	}
+
+	private void verifyMenuItem(MobileElement menuItem, String headerText) {
+
+		Decorator();
+
+		try {
+			mobileAction.clickMenuButton();
+			mobileAction.FuncSwipeWhileElementNotFound(menuItem, true, 5, "up");
+			mobileAction.waitProgressBarVanish();
+
+			MobileElement header = PageHeader.get().getHeaderTextElement();
+			mobileAction.verifyElementIsDisplayed(header, headerText);
+
+			PageHeader.get().goHome();
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyAllMenuItems() {
+
+		Decorator();
+
+		try {
+			verifyMenuItem(accounts_button, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_ACCOUNTS));
+			verifyMenuItem(transfers, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRANSFERS));
+			verifyMenuItem(bills, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_BILLS));
+			verifyMenuItem(mobile_Deposit_button,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDMOBILEDEPOSIT));
+			verifyMenuItem(tdForMe, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDFORME));
+			verifyMenuItem(profile_and_settings,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PROFILESETTINGS));
+			verifyMenuItem(locations, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOCATIONS));
+			verifyMenuItem(contactUs, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_CONTACTUS));
+			verifyMenuItem(faq, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_FAQ));
+			verifyMenuItem(privacy, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PRIVACYSECURITY));
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				verifyMenuItem(mobilePayment, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT));
+			} else {
+				verifyMenuItem(applePay, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_APPLEPAY));
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
