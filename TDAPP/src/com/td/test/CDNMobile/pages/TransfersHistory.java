@@ -215,7 +215,7 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Message']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement messageVal;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfer Cancelled' or @label='[FR]Transfer Cancelled']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfer Cancelled' or @label='Virement annulé']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header']")
 	private MobileElement cancelConfirmationMsg;
 
