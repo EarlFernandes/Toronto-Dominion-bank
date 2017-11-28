@@ -189,15 +189,23 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 			verifyQL_TRANSFER(false);
 
+			verifyQL_DEPOSIT(false);
+
+			verifyQL_PAY_BILL(false);
+
 			verifyQL_PAYNOW(false);
 
 			verifyQL_APPLEPAY(false);
 
-			verifyQL_DEPOSIT(false);
+			verifyQL_QUOTE(false);
+
+			verifyQL_TRADE(false);
 
 			verifyQL_WATCHLISTS(false);
 
-			verifyQL_QUOTE(false);
+			verifyQL_HOLDINGS(false);
+
+			verifyQL_ORDERS(false);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -212,14 +220,13 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 			verifyQL_TRANSFER(true);
 
-			verifyQL_PAYNOW(true);
-
-			verifyQL_APPLEPAY(true);
-
 			verifyQL_DEPOSIT(true);
 
 			verifyQL_PAY_BILL(true);
 
+			verifyQL_PAYNOW(true);
+
+			verifyQL_APPLEPAY(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -229,13 +236,17 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		Decorator();
 		try {
 
-			verifyQL_TRANSFER(true);
-
 			verifyQL_TRADE(true);
 
-			verifyQL_WATCHLISTS(true);
+			verifyQL_HOLDINGS(true);
 
-			verifyQL_QUOTE(true);
+			verifyQL_ORDERS(true);
+
+			verifyQL_PAYNOW(true);
+
+			verifyQL_APPLEPAY(true);
+
+			verifyQL_TRANSFER(true);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -256,14 +267,13 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 			verifyQL_TRANSFER(true);
 
-			verifyQL_PAYNOW(true);
-
-			verifyQL_APPLEPAY(true);
-
 			verifyQL_DEPOSIT(true);
 
 			verifyQL_PAY_BILL(true);
 
+			verifyQL_PAYNOW(true);
+
+			verifyQL_APPLEPAY(true);
 			/*
 			 * verifyQL_WATCHLISTS(true); De-Scoped as per New Requirement
 			 * 
@@ -391,10 +401,10 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				clickQuickLink(QL_SENDMONEY, "SEND MONEY");
 				if (!bIsAuthenticatedUser) {
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
-					mobileAction.ClickBackButton();
+					mobileAction.FuncClick(BT_Back, "< Button");
 				} else {
 					mobileAction.verifyElementIsDisplayed(HDR_Interac_e_Transfer, "HDR_Interac_e_Transfer");
-					mobileAction.ClickBackButton();
+					mobileAction.FuncClick(BT_Back, "< Button");
 				}
 			}
 		} catch (Exception e) {
@@ -413,14 +423,14 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				clickQuickLink(QL_TRANSFER, "TRANSFER");
 				if (!bIsAuthenticatedUser) {
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
-					mobileAction.ClickBackButton();
+					mobileAction.FuncClick(BT_Back, "< Button");
 				} else {
 					if (sUserType.equalsIgnoreCase("Investing")) {
 						mobileAction.verifyElementIsDisplayed(HDR_Banking, "HDR_Banking");
-						mobileAction.ClickBackButton();
+						mobileAction.FuncClick(BT_Back, "< Button");
 					} else {
 						mobileAction.verifyElementIsDisplayed(HDR_Between_My_Accounts, "HDR_Between_My_Accounts");
-						mobileAction.ClickBackButton();
+						mobileAction.FuncClick(BT_Back, "< Button");
 					}
 				}
 			}
@@ -460,7 +470,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 					clickQuickLink(QL_APPLEPAY, "APPLE PAY");
 					mobileAction.verifyElementIsDisplayed(HDR_ApplePay, "HDR_Apple Pay");
-					mobileAction.ClickBackButton();
+					mobileAction.FuncClick(BT_Back, "< Button");
 				}
 			}
 		} catch (Exception e) {
@@ -478,7 +488,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				clickQuickLink(QL_DEPOSIT, "DEPOSIT");
 				if (!bIsAuthenticatedUser) {
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
-					mobileAction.ClickBackButton();
+					mobileAction.FuncClick(BT_Back, "< Button");
 				} else {
 					mobileAction.verifyElementIsDisplayed(HDR_Mobile_Deposit, "HDR_Mobile_Deposit");
 					mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
@@ -500,14 +510,14 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				clickQuickLink(QL_WATCHLISTS, "WATCHLISTS");
 				if (!bIsAuthenticatedUser) {
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
-					mobileAction.ClickBackButton();
+					mobileAction.FuncClick(BT_Back, "< Button");
 				} else {
 					if (mobileAction.isObjExists(HDR_Watchlists)) {
 						mobileAction.verifyElementIsDisplayed(HDR_Watchlists, "HDR_Watchlists");
-						mobileAction.ClickBackButton();
+						mobileAction.FuncClick(BT_Back, "< Button");
 					} else {
 						mobileAction.verifyElementIsDisplayed(ED_AddSymbolToWatchlist, "ED_AddSymbolToWatchlist");
-						mobileAction.ClickBackButton();
+						mobileAction.FuncClick(BT_Back, "< Button");
 					}
 				}
 
@@ -557,15 +567,21 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_PAYBILL));
 
 				clickQuickLink(QL_PAY_BILL, "PAY BILL");
-				mobileAction.verifyElementIsDisplayed(HDR_PayBills, "Header: Pay Bills"); // FIX
-																							// -
-																							// Android
-																							// &
-																							// iOS
-																							// has
-																							// different
-																							// header
-				mobileAction.ClickBackButton();
+
+				if (!bIsAuthenticatedUser) {
+					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
+					mobileAction.FuncClick(BT_Back, "< Button");
+				} else {
+					mobileAction.verifyElementIsDisplayed(HDR_PayBills, "Header: Pay Bills"); // FIX
+																								// -
+																								// Android
+																								// &
+																								// iOS
+																								// has
+																								// different
+																								// header
+					mobileAction.FuncClick(BT_Back, "< Button");
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -603,9 +619,15 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_HOLDINGS));
 
 				clickQuickLink(QL_HOLDINGS, "HOLDINGS");
-				mobileAction.verifyElementIsDisplayed(LBL_HoldingsTab_SYMBOL,
-						"Holdings Tab under Account Details: SYMBOL Label");
-				mobileAction.FuncClick(BT_Back, "< Button");
+
+				if (!bIsAuthenticatedUser) {
+					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
+					mobileAction.FuncClick(BT_Back, "< Button");
+				} else {
+					mobileAction.verifyElementIsDisplayed(LBL_HoldingsTab_SYMBOL,
+							"Holdings Tab under Account Details: SYMBOL Label");
+					mobileAction.FuncClick(BT_Back, "< Button");
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -620,8 +642,14 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_ORDERS));
 
 				clickQuickLink(QL_ORDERS, "ORDERS");
-				mobileAction.verifyElementIsDisplayed(LBL_OrdersTab, "Orders Tab under Account Details");
-				mobileAction.FuncClick(BT_Back, "< Button");
+
+				if (!bIsAuthenticatedUser) {
+					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
+					mobileAction.FuncClick(BT_Back, "< Button");
+				} else {
+					mobileAction.verifyElementIsDisplayed(LBL_OrdersTab, "Orders Tab under Account Details");
+					mobileAction.FuncClick(BT_Back, "< Button");
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
