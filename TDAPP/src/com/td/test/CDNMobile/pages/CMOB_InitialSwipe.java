@@ -20,10 +20,10 @@ public class CMOB_InitialSwipe extends _CommonPage {
 	@AndroidFindBy(xpath = "(//android.widget.Button[@resource-id='com.td:id/whatsnew_continue_button'])[2]")
 	private MobileElement lets_Go_In;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Home']")
 	private MobileElement home;
 
-	String t_home = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']";
+	String t_home = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Home']";
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1' and @text='Continue']")
 	private MobileElement continue_Screen;

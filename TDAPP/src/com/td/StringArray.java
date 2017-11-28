@@ -354,6 +354,81 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_SWITCHBETWEEN = { "Switch between a banking or investing view",
 			"Passer de l’affichage bancaire à l’affichage de placements", "切换理财或投资视图", "切換理財或投資視圖" };
 
+	public static final String[] ARRAY_DASHBOARD_LOCATIONNEAREST = { "Nearest Branch", "Succursale", "最近的分行", "最近分行" };
+
+	public static final String[] ARRAY_DASHBOARD_CONTACTUS = { "Contact Us", "Contactez-nous", "联系我们", "聯絡我們" };
+
+	public static final String[] ARRAY_DASHBOARD_EmptyWLDesc = { "You haven't added any symbols to this Watchlist yet.",
+			"Vous n'avez pas encore ajouté de symbole à cette liste de surveillance.", "您尚未添加股票代码到自选股观察名单中。",
+			"您沒有添加股票代號到自選股觀察名單。" };
+	public static final String[] ARRAY_DASHBOARD_AddSymbolLink = { "Add symbols now", "Ajouter des symboles maintenant",
+			"添加股票代码", "添加股票代號" };
+
+	public static final String[] ARRAY_DASHBOARD_ExpiredSymbolError = { "Invalid Symbol ", "Symbole invalide", "股票代码无效",
+			"股票代號無效" };
+
+	public static final String[] ARRAY_DASHBOARD_EAnotSignedError = { "Exchange Agreement not signed",
+			"Contrat d’abonnement non signé", "未签署交易所协议", "未簽署交易所協議" };
+
+	public static final String[] ARRAY_DASHBOARD_ADDTOWATCHLIST = { "ADD TO OR REMOVE FROM WATCHLIST",
+			"AJOUTER OU SUPPRIMER DE LA LISTE DE SURVEILLANCE", "添加至自选股观察名单或从自选股观察名单中移除", "新增至或從自選股觀察名單中移除" };
+
+	public static final String[] ARRAY_DASHBOARD_ADDTOWATCHLISTAND = { "Add to or remove from watchlist",
+			"Ajouter ou supprimer de la liste de surveillance", "添加至自选股观察名单或从自选股观察名单中移除", "新增至或從自選股觀察名單中移除" };
+
+	public static final String[] ARRAY_DASHBOARD_EDITWL = { "Edit watchlist", "Modifier la liste de surveillance",
+			"编辑自选股观察名单", "編輯自選股觀察名單" };
+
+	public static final String[] ARRAY_DASHBOARD_EDITWLDELETEALL = { "Delete All", "Supprimer tout", "删除全部", "刪除全部" };
+
+	public static final String[] ARRAY_DASHBOARD_EDITWLDELETE = { "Delete", "Supprimer", "删除", "删除" };
+
+	public static final String[] ARRAY_DASHBOARD_EDITWLWARNINGMESSAGE = {
+			"Are you sure you want to delete all of the symbols?", "Voulez-vous vraiment supprimer tous les symboles?",
+			"您确定要删除所有代号？", "確定要刪除全部代號？" };
+
+	public static final String[] ARRAY_DASHBOARD_WLERRORMSG = {
+			"Please read and accept the WebBroker Terms & Conditions in order to view and access your brokerage accounts",
+			"Vous devez lire et accepter les modalités de CourtierWeb avant de pouvoir accéder à vos comptes de courtage.",
+			"请阅读并接受网上经纪服务条款与条件，然后方可查看及使用您的经纪账户", "請閱讀並接受網上經紀服務的條款與條件，才可查看並存取您的經紀賬戶" };
+
+	public static final String[] ARRAY_DASHBOARD_WLERRORTC = {
+			"Terms & Conditions cannot be accepted using the TD App.",
+			"Les modalités ne peuvent pas être acceptées dans l’application TD.", "您无法在道明应用程序中接受条款与条件。",
+			"無法使用道明應用程式接受條款與條件。" };
+
+	public static final String[] ARRAY_QUICK_ACCESS_ACCOUNTS = { "ACCOUNTS", "COMPTES", "账户", "賬戶" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_TERMSOFUSE = { "Terms of Use", "Conditions d'utilisation",
+			"使用条款", "使用條款" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_INFO = {
+			"By using Easy Web or the TDapp, offered by TD Canada Trust and its affiliates, you agree to the terms and conditions of the:",
+			"En utilisant BanqueNet ou l’appli TD, offerts par TD Canada Trust et ses sociétés affiliées, vous acceptez les modalités des textes suivants:",
+			"使用道明加拿大信托及其附属机构提供的易线网上理财或道明应用程序即表示，您同意以下条款与条件：", "透過使用道明加拿大信託及其附屬機構提供的易線網上理財或道明應用程式，即表示您同意以下條款與條件：" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_FINANCIALLINK = { "Financial Services Terms",
+			"Modalités des services financiers", "《金融服务条款》", "《金融服務條款》" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_CARDHOLDERLINK = {
+			"Cardholder and Electronic Financial Services Terms and Conditions",
+			"Modalités relatives à l'utilisation des cartes et des services financiers électroniques",
+			"《持卡人和电子金融服务条款与条件》", "《持卡人與電子金融服務條款與條件》" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_BUSINESSLINK = { "Business Access Services Schedule",
+			"Programme de services Accès Affaires", "《商业访问服务条款》", "《商業存取服務條款》" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_TERMSLINK = { "Terms and Agreement", "Modalités", "《条款与协议》",
+			"《條款與協議》" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_DISCLOSURELINK = { "Disclosure", "Déclaration", "道明投资服务有限公司",
+			"道明投資服務有限公司" };
+
+	public static final String[] ARRAY_DASHBOARD_TERMS_MUTUALLINK = {
+			"for mutual fund accounts held with TD Investment Services Inc.",
+			"relative aux comptes de fonds communs de placement détenus auprès des Services d'investissement TD inc.",
+			"所持互惠基金账户声明披露", "所持互惠基金賬戶之聲明披露" };
+
 	// MIT Dashboard END
 
 	public static final String[] ARRAY_MF_ACCEPTED_FUND_DETAIL_FEE_ANSWER = { "Yes", "Oui", "是", "是" };
