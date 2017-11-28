@@ -18,8 +18,20 @@ public class MainScreen extends _CommonPage {
 	// Android
 	private static final String APP_ANDROID = "APP_ANDROID";
 
+	private static final String APP_ANDROID_FR = "APP_ANDROID_FR";
+
+	private static final String APP_ANDROID_ZH = "APP_ANDROID_ZH";
+
+	private static final String APP_ANDROID_ZH_TRAD = "APP_ANDROID_ZH_TRAD";
+
 	// Change this parameter to point to the correct ipa in Setup.xls for ios
 	private static final String APP_IOS = "APP_IOS";
+
+	private static final String APP_IOS_FR = "APP_IOS_FR";
+
+	private static final String APP_IOS_ZH = "APP_IOS_ZH";
+
+	private static final String APP_IOS_ZH_TRAD = "APP_IOS_ZH_TRAD";
 
 	public String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env",
 			"Amount", "Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount",

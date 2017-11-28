@@ -44,7 +44,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/nav_row_left_icon']/following-sibling::*/*[@resource-id='com.td:id/nav_row_title']")
 	private MobileElement LBL_WLSymbol;
 
-	@iOSFindBy(xpath = "//*[@label='More' or @label='LISTES DE SURVEILLANCE' or @label='自选股观察名单' or @label='自選股觀察名單']")
+	@iOSXCUITFindBy(xpath = "//*[@label='More' or @label='Plus' or @label='显示更多' or @label='顯示更多']")
 	@AndroidFindBy(id = "com.td:id/tv_watchlist_more_footer")
 	private MobileElement BT_More;
 
@@ -160,29 +160,22 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 			int iRow = 0;
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				/*
-				 * String xpathWLSymbol = "//*[@label='" + sSymbol +
-				 * "' or @text='" + sSymbol + "']";
-				 * mobileAction.FuncSwipeWhileElementNotFoundByxpath(
-				 * xpathWLSymbol, false, 4, "up");
-				 * 
-				 * for (WebElement meSymbol : CL.GetDriver().findElements(By.id(
-				 * "com.td:id/tv_item_watchlist_name"))) { if
-				 * (mobileAction.FuncGetElementText(meSymbol).equals(sSymbol)) {
-				 * break; } else iCnt++; }
-				 */
 				iRow = getWLSymbolRowNumber_Android(sSymbol);
 				String xpathWLSymbolBuyButton = "(//*[@text='"
 						+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY) + "'])[1]";
-				// mobileAction.FuncSwipeOnce("left");
+				mobileAction.FuncSwipeOnce("left");
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolBuyButton, false, 10, "left");
 				mobileAction.FuncClick(
 						(MobileElement) CL.GetDriver().findElements(By.id("com.td:id/button_buy")).get(iRow),
 						"Buy Button");
 
 			} else {
-				String xpathWLSymbolBuyButton = "(//*[@label='" + sSymbol
-						+ "']/../../following-sibling::*/*[1]/*[@label='"
+//				String xpathWLSymbolBuyButton = "(//*[@label='" + sSymbol
+//						+ "']/../../following-sibling::*/*[1]/*[@label='"
+//						+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY) + "'])[1]";
+				mobileAction.FuncSwipeOnce("left");				
+				String xpathWLSymbolBuyButton = "(//*[contains(@label,'" + sSymbol
+						+ "')]/../../../../following-sibling::*/*[1]/*[@label='"
 						+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY) + "'])[1]";
 
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolBuyButton, true, 10, "left");
@@ -203,17 +196,21 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 				iRow = getWLSymbolRowNumber_Android(sSymbol);
 				String xpathWLSymbolSellButton = "(//*[@text='"
 						+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL) + "'])[1]";
-				// mobileAction.FuncSwipeOnce("left");
+				mobileAction.FuncSwipeOnce("left");
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolSellButton, false, 10, "left");
 				mobileAction.FuncClick(
 						(MobileElement) CL.GetDriver().findElements(By.id("com.td:id/button_sell")).get(iRow),
 						"Sell Button");
 
 			} else {
-				String xpathWLSymbolSellButton = "(//*[@label='" + sSymbol
-						+ "']/../../following-sibling::*/*[1]/*[@label='"
+//				String xpathWLSymbolSellButton = "(//*[@label='" + sSymbol
+//						+ "']/../../following-sibling::*/*[1]/*[@label='"
+//						+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL) + "'])[1]";
+				mobileAction.FuncSwipeOnce("left");
+				String xpathWLSymbolSellButton = "(//*[contains(@label,'" + sSymbol
+						+ "')]/../../../../following-sibling::*/*[1]/*[@label='"
 						+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL) + "'])[1]";
-
+				
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolSellButton, true, 5, "left");
 			}
 		} catch (Exception e) {
