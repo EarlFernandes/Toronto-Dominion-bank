@@ -1699,9 +1699,7 @@ public class MobileAction2 extends CommonLib {
 				sleep(2000);
 				count++;
 				isElementDisplayed = FuncIsDisplayed(elementToVanish);
-				System.out.println("Progress bar :" + isElementDisplayed);
 			}
-			System.out.println("Progress bar wait count:" + count);
 		} catch (Exception e) {
 			System.out.println("Exception from Method " + this.getClass().toString());
 		}

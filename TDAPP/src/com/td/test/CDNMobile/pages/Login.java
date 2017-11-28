@@ -542,9 +542,11 @@ public class Login extends _CommonPage {
 				mobileAction.FuncHideKeyboard();
 			}
 
-			String toRemember = getTestdata("Action");
+			String toRemember = getTestdata("Search");
 			if (toRemember != null && toRemember.equalsIgnoreCase("rememberOff")) {
 				setRememberMe(false);
+			} else if (toRemember != null && toRemember.equalsIgnoreCase("rememberOn")) {
+				setRememberMe(true);
 			}
 
 			// Even in Landscape mode, the login button is visible

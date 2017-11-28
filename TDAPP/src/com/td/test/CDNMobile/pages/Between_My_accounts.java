@@ -50,11 +50,11 @@ public class Between_My_accounts extends _CommonPage {
 
 	// @iOSXCUITFindBy(iOSClassChain =
 	// "**/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]")
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]")
 	@AndroidFindBy(id = "com.td:id/edtToAccount")
 	private MobileElement txtto_Acnt;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[3]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[3]")
 	private MobileElement toAccountNum;
 
 	@iOSXCUITFindBy(accessibility = "BETWEENMYACCOUNTS_AMOUNT")
@@ -2196,7 +2196,7 @@ public class Between_My_accounts extends _CommonPage {
 			}
 			mobileAction.FuncClick(txtFrom_acnt, "From Account field");
 			mobileAction.swipeAndSearchByxpath(fromAccountXpath, true, 30, "Up");
-			mobileAction.sleep(5000); // More load time
+			mobileAction.sleep(3000); // More load time
 
 			String toAccount = getTestdata("ToAccount");
 			String toAccountXpath = "";

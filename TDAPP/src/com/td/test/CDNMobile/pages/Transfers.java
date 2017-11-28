@@ -122,10 +122,11 @@ public class Transfers extends _CommonPage {
 						"Transfer Between");
 			}
 			mobileAction.FuncClick(btw_my_accnts, "Between my Accounts");
+			mobileAction.waitProgressBarVanish();
+
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Between My Accounts header");
 			mobileAction.verifyElementTextContains(pageHeader,
 					getTextInCurrentLocale(StringArray.ARRAY_BETWEEN_MY_ACCOUNTS_HEADER));
-			mobileAction.waitProgressBarVanish();
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {

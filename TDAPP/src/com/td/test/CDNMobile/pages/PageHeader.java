@@ -31,6 +31,7 @@ public class PageHeader extends _CommonPage {
 	private MobileElement screenHeader;
 
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
+	@AndroidFindBy(id = "com.td:id/hamburger")
 	private MobileElement menuButton;
 
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
@@ -80,12 +81,7 @@ public class PageHeader extends _CommonPage {
 
 			boolean hasMenu = false;
 			while (!hasMenu) {
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-					String headerText = mobileAction.FuncGetText(screenHeader);
-					hasMenu = headerText.equalsIgnoreCase(getTextInCurrentLocale(StringArray.ARRAY_HOME_HEADER));
-				} else {
-					hasMenu = mobileAction.verifyElementIsPresent(menuButton);
-				}
+				hasMenu = mobileAction.verifyElementIsPresent(menuButton);
 
 				if (!hasMenu) {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
