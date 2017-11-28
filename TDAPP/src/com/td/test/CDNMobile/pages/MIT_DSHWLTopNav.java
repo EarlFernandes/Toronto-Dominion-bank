@@ -49,7 +49,7 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 	private MobileElement QL_WATCHLISTS;
 
 	@iOSXCUITFindBy(xpath = "//*[@label='Edit']/../*[1]")
-	@AndroidFindBy(id = "com.td:id/tv_watchlist_name_header")
+	@AndroidFindBy(id = "com.td:id/watchlist_name_drop_down")
 	private MobileElement LT_WatchListDropDown;
 
 	@iOSXCUITFindBy(accessibility = "actionSheetCancelButton")
