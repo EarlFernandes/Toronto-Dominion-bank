@@ -2196,6 +2196,7 @@ public class Between_My_accounts extends _CommonPage {
 			}
 			mobileAction.FuncClick(txtFrom_acnt, "From Account field");
 			mobileAction.swipeAndSearchByxpath(fromAccountXpath, true, 30, "Up");
+			mobileAction.sleep(5000); // More load time
 
 			String toAccount = getTestdata("ToAccount");
 			String toAccountXpath = "";
