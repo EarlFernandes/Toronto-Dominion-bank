@@ -581,7 +581,7 @@ public final class StringArray {
 	public static final String[] MONEY_REQUESTED_LBL = { "Money Requested", "Fonds demandés", "", "" };
 	public static final String[] SEE_ALL_LBL = { "See all", "Tout afficher", "", "" };
 	public static final String[] SEND_MONEY_TRANSFER_CANCELLED_RECEIPT = { "Transfer Cancelled",
-			"[FR]Transfer Cancelled", "", "" };
+			"Virement annulé", "", "" };
 	public static final String[] ADD_AUTODEPOSIT_RECEIPT_HEADER = { "Almost done!", "Vous avez presque terminé!", "",
 			"" };
 	public static final String[] ADD_AUTODEPOSIT_RECEIPT_SUB_HEADER = { "Check your email for instructions",

@@ -15,6 +15,7 @@ import org.openqa.selenium.html5.Location;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import com.td.test.CDNMobile.pages.Login;
 import com.td.test.framework.CommonLib;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy.ByIosClassChain;
@@ -3608,6 +3609,24 @@ public class MobileAction2 extends CommonLib {
 
 			return null;
 
+		}
+
+	}
+
+	public void waitP2PProgressBarVanish() {
+
+		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+		int counter = 0;
+		while (counter < 6 && verifyElementIsPresent(Login.get().progressBar)) {
+
+			try {
+				wait.until(ExpectedConditions.invisibilityOf(Login.get().progressBar));
+				counter++;
+
+			} catch (Exception e) {
+				counter++;
+
+			}
 		}
 
 	}

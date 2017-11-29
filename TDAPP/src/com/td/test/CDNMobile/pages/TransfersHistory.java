@@ -32,7 +32,13 @@ public class TransfersHistory extends _CommonPage {
 
 	// TODO:: use mobileElementUsingXPath for converting elements
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='History']")
+	// @AndroidFindBy(xpath =
+	// "//android.widget.TextView[@resource-id='android:id/action_bar_title' and
+	// @text='History']")
+	// private MobileElement pageHeader;
+
+	@iOSFindBy(accessibility = "TDVIEW_TITLE")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement pageHeader;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Money Received' or @label='Fonds reçus']/following-sibling::XCUIElementTypeButton[@label='See all']")
@@ -70,7 +76,7 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Sent' or @text='Envoyé']")
 	private List<MobileElement> pendingTransactions;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='COMPLETED' OR label=='EFFECTUÉS'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='COMPLETED' OR label=='EFFECTUÉS' OR name=='EFFECTUÉS'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='COMPLETED' or @text='EFFECTUÉS']")
 	private MobileElement completedCategory;
 
@@ -87,7 +93,7 @@ public class TransfersHistory extends _CommonPage {
 	private MobileElement receivedTransaction;
 
 	// @iOSXCUITFindBy(accessibility = "CTA_CANCEL")
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel Request']") // TODO::FrenchText
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel Transfer' or @label='Annuler le virement']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/history_details_footer_button']")
 	private MobileElement cancelTransferBtn;
 
@@ -107,7 +113,7 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_sub_heading']")
 	private MobileElement depositToAccountNumber;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Done' or @label='Terminé']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Done' or @label='Terminé' or @label='Ok' or @label='OK']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_done' or @text='Done']")
 	private MobileElement done;
 
@@ -163,11 +169,11 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Deposited To' or @text='Compte de destination']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement depositedToVal;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Confirmation' or @label='N° de confirmation']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Confirmation') or @label='N° de confirmation']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Confirmation #' or @text='N° de confirmation']")
 	private MobileElement confirmationNumber;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Confirmation' or @label='N° de confirmation']/following-sibling::XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Confirmation') or @label='N° de confirmation']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Confirmation #' or @text='N° de confirmation']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement confirmationNumberVal;
 
@@ -211,11 +217,11 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Message']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement messageVal;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfer Cancelled' or @label='[FR]Transfer Cancelled']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfer Cancelled' or @label='Virement annulé']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header']")
 	private MobileElement cancelConfirmationMsg;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label contains[cd] 'Confirmation #' or label contains[cd] 'N° de confirmation'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label contains[cd] 'Confirmation #' or label contains[cd] 'confirmation'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subSubHeader']")
 	private MobileElement confirmationCode;
 
@@ -312,7 +318,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -343,7 +355,7 @@ public class TransfersHistory extends _CommonPage {
 
 			while (!mobileAction.verifyElementIsPresent(getReceiver()) && counter < 3) {
 				mobileAction.FunctionSwipe("left", 200, 200);
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 				counter++;
 			}
 			counter = 0;
@@ -391,7 +403,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -501,7 +519,7 @@ public class TransfersHistory extends _CommonPage {
 
 			while (!mobileAction.verifyElementIsPresent(getReceiver()) && counter < 3) {
 				mobileAction.FunctionSwipe("left", 200, 200);
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 				counter++;
 			}
 			counter = 0;
@@ -514,19 +532,32 @@ public class TransfersHistory extends _CommonPage {
 								+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']");
 
 			} else {
-				moneySentSeeAll = mobileAction.mobileElementUsingXPath(
-						"//XCUIElementTypeStaticText[@label='" + getTextInCurrentLocale(StringArray.MONEY_SENT_LBL)
-								+ "']/following-sibling::XCUIElementTypeButton[@label='"
-								+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']");
+
+				String fistXpath = "//XCUIElementTypeStaticText[@label='"
+						+ getTextInCurrentLocale(StringArray.MONEY_SENT_LBL)
+						+ "']/following-sibling::XCUIElementTypeButton[@label='"
+						+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']";
+
+				String secondXpath = "//XCUIElementTypeOther[@label='"
+						+ getTextInCurrentLocale(StringArray.MONEY_SENT_LBL)
+						+ "']/following-sibling::XCUIElementTypeButton[@label='"
+						+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']";
+
+				moneySentSeeAll = mobileAction.mobileElementUsingXPath(fistXpath + " | " + secondXpath);
 
 			}
 
 			mobileAction.FuncClick(moneySentSeeAll, "See All");
-			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -547,7 +578,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -597,7 +634,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -644,7 +687,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -661,17 +710,23 @@ public class TransfersHistory extends _CommonPage {
 		Decorator();
 		try {
 
+			mobileAction.waitP2PProgressBarVanish();
 			String receiver = getTestdata("ToAccount");
 
 			if (StringUtils.isEmpty(receiver)) {
 				mobileAction.FuncClick(transaction, "Transaction");
 			} else {
-
 				mobileAction.FuncClick(getReceiver(), "Receiver: " + receiver);
 			}
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -696,9 +751,18 @@ public class TransfersHistory extends _CommonPage {
 
 				mobileAction.FuncClick(getRequester(), "Receiver: " + receiver);
 			}
+
+			mobileAction.waitP2PProgressBarVanish();
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -727,10 +791,18 @@ public class TransfersHistory extends _CommonPage {
 						"//XCUIElementTypeButton[contains(@label,'" + receiver + "') and (contains(@label,'"
 								+ transStatus + "') or contains(@label,'" + transStatus.toUpperCase() + "'))]");
 
+				System.err.println("Got receiver");
+
 			}
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 
 		return receiverName;
@@ -774,7 +846,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -802,7 +880,7 @@ public class TransfersHistory extends _CommonPage {
 
 				while (!mobileAction.verifyElementIsPresent(getSender()) && counter < 3) {
 					mobileAction.FunctionSwipe("left", 200, 200);
-					mobileAction.waitProgressBarVanish();
+					mobileAction.waitP2PProgressBarVanish();
 					mobileAction.FunctionSwipe("up", 200, 200);
 					counter++;
 				}
@@ -813,7 +891,13 @@ public class TransfersHistory extends _CommonPage {
 			}
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -844,7 +928,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 
 		return senderName;
@@ -885,7 +975,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -905,7 +1001,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -939,10 +1041,18 @@ public class TransfersHistory extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(continueBtn, "Continue Button");
+			mobileAction.waitP2PProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -973,11 +1083,18 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1012,7 +1129,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1081,7 +1204,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1112,7 +1241,13 @@ public class TransfersHistory extends _CommonPage {
 			}
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1134,7 +1269,7 @@ public class TransfersHistory extends _CommonPage {
 
 			while (!mobileAction.verifyElementIsPresent(getRequester()) && counter < 3) {
 				mobileAction.FunctionSwipe("left", 200, 200);
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 				counter++;
 			}
 			counter = 0;
@@ -1156,11 +1291,17 @@ public class TransfersHistory extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(requestMoneySentSeeAll, "See All");
-			// mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitP2PProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1207,7 +1348,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 
 		return receiverName;
@@ -1268,7 +1415,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1307,7 +1460,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1341,7 +1500,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1360,12 +1525,14 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(cancelRequest, "cancel Request");
 			mobileAction.FuncClick(cancelRequestConfirm, "Cancel Request Confirm button");
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 			mobileAction.verifyElementIsDisplayed(cancelledTransactionStatus,
 					"Transaction Status: " + cancelledTransactionStatus.getText());
 
 			mobileAction.verifyTextEquality(cancelledTransactionStatus.getText(),
 					getTextInCurrentLocale(StringArray.CANCEL_MONEY_RECEIPT_HEADER));
+
+			mobileAction.getPageSource();
 
 			mobileAction.verifyElementIsDisplayed(confirmationCode, "confirmation Code " + confirmationCode.getText());
 
@@ -1373,7 +1540,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1387,12 +1560,18 @@ public class TransfersHistory extends _CommonPage {
 	 */
 	public void verifyCancelledTransOnActivity() {
 
+		int counter = 0;
+		String CancelledFrench = "Annulé";
 		MobileElement cancelledTransaction = null;
 
 		Decorator();
 		try {
 
-			mobileAction.FunctionSwipe("up", 200, 200);
+			while (!mobileAction.verifyElementIsPresent(completedCategory) && counter < 3) {
+				mobileAction.FunctionSwipe("up", 2000, 200);
+				counter++;
+			}
+
 			mobileAction.verifyElementIsDisplayed(completedCategory, "Completed Category");
 
 			if (platform.equalsIgnoreCase("Android")) {
@@ -1404,8 +1583,8 @@ public class TransfersHistory extends _CommonPage {
 
 				cancelledTransaction = mobileAction
 						.mobileElementUsingXPath("//XCUIElementTypeCell/XCUIElementTypeButton[contains(@label,'"
-								+ getTestdata("ToAccount") + "') and contains(@label,'CANCELLED')]"); // TODO::IOS:
-																										// CANCELLED:french
+								+ getTestdata("ToAccount") + "') and (contains(@label,'CANCELLED') or contains(@label,'"
+								+ CancelledFrench.toUpperCase() + "'))]");
 			}
 
 			mobileAction.verifyElementIsDisplayed(cancelledTransaction, "Cancelled Transaction");
@@ -1413,7 +1592,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1434,7 +1619,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1482,11 +1673,17 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.FuncClick(MoneyRequestContinueBtn, "Continue Button");
 			mobileAction.FuncClick(finishBtn, "Finish");
-			// mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitP2PProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1515,7 +1712,13 @@ public class TransfersHistory extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1541,11 +1744,17 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.clickMenuButton();
 			MenuPage.get().clickMenuTransfer();
 			Transfers.get().clickTransferHistoryLink();
-			clickRequestMoneySeeAll();
+			// clickRequestMoneySeeAll(); TODO::commented due to activity error.
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
