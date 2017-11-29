@@ -153,7 +153,7 @@ public class Receipt extends _CommonPage {
 	private MobileElement bannerImage;
 
 	@iOSXCUITFindBy(accessibility = "RECEIPTHEADER_CONFIRM")
-	@AndroidFindBy(id = "com.td:id/comfirmation_val")
+	@AndroidFindBy(id = "com.td:id/confirmation_val")
 	private MobileElement cnfrDetailRewards;
 
 	public synchronized static Receipt get() {
@@ -635,6 +635,8 @@ public class Receipt extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(makeAnthTran_Button, "Make Another Transfer button");
+			mobileAction.waitProgressBarVanish();
+
 			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Confirm Header");
 

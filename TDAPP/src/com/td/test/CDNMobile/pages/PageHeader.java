@@ -26,7 +26,7 @@ public class PageHeader extends _CommonPage {
 	private static PageHeader pageHeader;
 
 	// @iOSXCUITFindBy(iOSClassChain = "**/*[`name == 'TDVIEW_TITLE'`]")
-	@iOSXCUITFindBy(xpath = "//*[@name='TDVIEW_TITLE'] | //XCUIElementTypeNavigationBar[1]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//*[@name='TDVIEW_TITLE'] | //XCUIElementTypeNavigationBar[1]/XCUIElementTypeStaticText[1] | //XCUIElementTypeNavigationBar[1]/XCUIElementTypeOther[1]")
 	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement screenHeader;
 

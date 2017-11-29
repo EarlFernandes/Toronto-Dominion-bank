@@ -1078,12 +1078,8 @@ public class HomeScreen extends _CommonPage {
 		Decorator();
 
 		try {
-			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.verifyElementIsDisplayed(pageHeader, "Home header");
-				mobileAction.verifyElementTextContains(pageHeader,
-						getTextInCurrentLocale(StringArray.ARRAY_HOME_HEADER));
 
 				mobileAction.FuncScrollIntoView(pay_now_button, "Pay Now button");
 				mobileAction.verifyElementIsDisplayed(pay_now_button, "Pay Now button");

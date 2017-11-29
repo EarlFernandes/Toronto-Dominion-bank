@@ -40,6 +40,10 @@ public class PayWithRewards extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/amount_payment_value")
 	private MobileElement amountValue;
 
+	@iOSXCUITFindBy(xpath = "TBD")
+	@AndroidFindBy(id = "com.td:id/minimum_payment_box_layout")
+	private MobileElement amountMinimum;
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[3]/XCUIElementTypeButton[1]")
 	@AndroidFindBy(id = "com.td:id/btn_continue")
 	private MobileElement continueBtn;
@@ -286,14 +290,7 @@ public class PayWithRewards extends _CommonPage {
 		Decorator();
 		try {
 
-			String amt = "25";
-			mobileAction.FuncClick(amountValue, "Amount");
-			mobileAction.FuncSendKeys(amountValue, amt);
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClickDone(); // hide iOS keyboard
-			} else {
-				mobileAction.FuncHideKeyboard();
-			}
+			mobileAction.FuncClick(amountMinimum, "Minimum Redemption Amount");
 
 			mobileAction.FuncClick(continueBtn, "Continue");
 			mobileAction.sleep(5000);

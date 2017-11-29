@@ -43,11 +43,11 @@ public class AccountDetails extends _CommonPage {
 	private MobileElement postedDate;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]//XCUIElementTypeButton[1]")
-	@AndroidFindBy(id = "TBD")
+	@AndroidFindBy(id = "com.td:id/activityTab")
 	private MobileElement activityTab;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]//XCUIElementTypeButton[2]")
-	@AndroidFindBy(id = "TBD")
+	@AndroidFindBy(id = "com.td:id/summaryTab")
 	private MobileElement summaryTab;
 
 	public synchronized static AccountDetails get() {
