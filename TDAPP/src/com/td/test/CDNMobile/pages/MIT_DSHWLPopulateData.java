@@ -88,6 +88,10 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 	@AndroidFindBy(id = "android:id/up")
 	private MobileElement BT_Back;
 
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
+	@AndroidFindBy(id = "com.td:id/toolbar_back_button")
+	private MobileElement BT_WLBack;	
+
 	@iOSXCUITFindBy(accessibility = "alert_ok_button")
 	@AndroidFindBy(id = "android:id/button1")
 	private MobileElement BT_AlertAgree;
@@ -484,7 +488,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 	public void verifyWLBackButton() {
 		Decorator();
 		try {
-			mobileAction.FuncClick(BT_Back, "< Button");
+			mobileAction.FuncClick(BT_WLBack, "< Button");
 			mobileAction.FuncSwipeWhileElementNotFound(BT_More, false, 4, "up");
 		} catch (Exception e) {
 			e.printStackTrace();
