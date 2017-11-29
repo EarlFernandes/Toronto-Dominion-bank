@@ -3396,7 +3396,7 @@ public class EventCase {
 			break;
 
 		case GoBackToHomePage:
-			PreviewPurchase.get().GoBackToHomePage();
+			(new com.td.MobileAction2()).GoBackToHomePage();
 			break;
 
 		case VerifyPreviewPurchasePhoneNotMasked:

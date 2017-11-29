@@ -15,11 +15,8 @@ import org.openqa.selenium.html5.Location;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.td.test.framework.CommonLib;
-
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.InteractsWithApps;
 import io.appium.java_client.MobileBy.ByIosClassChain;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
@@ -27,7 +24,6 @@ import io.appium.java_client.MultiTouchAction;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
-
 import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -839,10 +835,11 @@ public class MobileAction2 extends CommonLib {
 	 * @throws NoSuchElementException
 	 *             In case the element is not found over the screen.
 	 */
+	@SuppressWarnings("deprecation")
 	public void FuncRunAppInBackground(int timeout) throws IOException {
 		try {
-			((InteractsWithApps) GetDriver()).runAppInBackground(timeout);
-
+			// ((InteractsWithApps) GetDriver()).runAppInBackground(timeout);
+			GetAppiumDriver().runAppInBackground(timeout);
 		} catch (Exception e) {
 			GetReporting().FuncReport("Fail", "<b>- " + "</b> Error in running app in background.");
 			throw e;
@@ -2223,12 +2220,12 @@ public class MobileAction2 extends CommonLib {
 			int heightPer = (endy * 25 / 100);
 
 			if (sDirection.equalsIgnoreCase("up")) {
-				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2,
-						startx / 2, (int) (endy * 0.15), 2000);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2, startx / 2,
+						(int) (endy * 0.15), 2000);
 				GetReporting().FuncReport("Pass", "Swipe Up once.");
 			} else if (sDirection.equalsIgnoreCase("down")) {
-				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
-						startx / 2, (int) (endy * 0.85), 2000);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2, startx / 2,
+						(int) (endy * 0.85), 2000);
 				GetReporting().FuncReport("Pass", "Swipe Down once.");
 			} else if (sDirection.equalsIgnoreCase("left")) {
 				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.90),
@@ -3683,6 +3680,33 @@ public class MobileAction2 extends CommonLib {
 		} catch (Exception e) {
 			Report_Fail("Exception to click menau");
 		}
+	}
+
+	public void GoBackToHomePage() {
+		int count = 10;
+		String Home_dashboard_xpath = "";
+		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			Home_dashboard_xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']";
+		} else {
+			Home_dashboard_xpath = "//*[@name='NAVIGATION_ITEM_QUICK_ACCESS' or @name='QuickLinkRightNavButton']";
+		}
+
+		while (isBackButtonPresent() && count != 0) {
+			ClickBackButton();
+			try {
+				((AppiumDriver) GetDriver()).findElement(By.xpath(Home_dashboard_xpath));
+				System.out.println("Go back to home already");
+				break;
+			} catch (Exception e) {
+				count--;
+			}
+		}
+		if (count != 0) {
+			Report_Pass_Verified("Got Home Page dashboard");
+		} else {
+			Report_Fail("Failed to Home page dashboard");
+		}
+
 	}
 
 }
