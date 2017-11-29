@@ -16,6 +16,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.td.test.CDNMobile.pages.Login;
 import com.td.test.framework.CommonLib;
 
 import io.appium.java_client.AppiumDriver;
@@ -2223,12 +2224,12 @@ public class MobileAction2 extends CommonLib {
 			int heightPer = (endy * 25 / 100);
 
 			if (sDirection.equalsIgnoreCase("up")) {
-				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2,
-						startx / 2, (int) (endy * 0.15), 2000);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2, startx / 2,
+						(int) (endy * 0.15), 2000);
 				GetReporting().FuncReport("Pass", "Swipe Up once.");
 			} else if (sDirection.equalsIgnoreCase("down")) {
-				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
-						startx / 2, (int) (endy * 0.85), 2000);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2, startx / 2,
+						(int) (endy * 0.85), 2000);
 				GetReporting().FuncReport("Pass", "Swipe Down once.");
 			} else if (sDirection.equalsIgnoreCase("left")) {
 				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.90),
@@ -3611,6 +3612,24 @@ public class MobileAction2 extends CommonLib {
 
 			return null;
 
+		}
+
+	}
+
+	public void waitP2PProgressBarVanish() {
+
+		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+		int counter = 0;
+		while (counter < 6 && verifyElementIsPresent(Login.get().progressBar)) {
+
+			try {
+				wait.until(ExpectedConditions.invisibilityOf(Login.get().progressBar));
+				counter++;
+
+			} catch (Exception e) {
+				counter++;
+
+			}
 		}
 
 	}
