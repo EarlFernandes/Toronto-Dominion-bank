@@ -210,7 +210,9 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@resource-id='android:id/action_bar_title' or @resource-id='android:id/content']")
 	private MobileElement logined_page_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeImage[@name='OTPNewCustomerWelcomePage']")
+	// @iOSXCUITFindBy(xpath =
+	// "//XCUIElementTypeImage[@name='OTPNewCustomerWelcomePage']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Welcome to TD' or @name='Bienvenue à la TD' or @name='欢迎使用道明' or @name='歡迎使用道明']")
 	@AndroidFindBy(id = "com.td:id/image")
 	private MobileElement otpWelcomeImage;
 
