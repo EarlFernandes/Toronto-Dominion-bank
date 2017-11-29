@@ -1073,10 +1073,10 @@ public class OTPSetup extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
 			} else {
-				cannotVerifySecurityCodeMsg = mobileAction.verifyWebElementUsingXPath(
-						"//XCUIElementTypeStaticText[contains(@label,'"
-								+ getTextInCurrentLocale(StringArray.ARRAY_OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE) + "')]",
-						"Passcode error msg");
+				cannotVerifySecurityCodeMsg = mobileAction
+						.verifyWebElementUsingXPath("//XCUIElementTypeStaticText[contains(@label,\""
+								+ getTextInCurrentLocale(StringArray.ARRAY_OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE)
+								+ "\")]", "Passcode error msg");
 			}
 
 			mobileAction.verifyElementIsDisplayed(cannotVerifySecurityCodeMsg, "Cannot verify security message");
