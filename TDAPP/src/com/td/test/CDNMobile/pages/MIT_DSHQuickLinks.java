@@ -127,6 +127,10 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Interac e-Transfer' or @label='Virement Interac' or @label='Interac E-TRANSFER' or @label='Interac e-Transfer']")
 	@AndroidFindBy(xpath = "//*[@text='Interac e-Transfer' or @text='Virement Interac' or @text='Interac e-Transfer' or @text='Interac e-Transfer']")
 	private MobileElement HDR_Interac_e_Transfer;
+	
+	@iOSFindBy(xpath = "//*[@label='Send Money' or @label='Envoi De Fonds' or @label='汇款' or @label='匯款']")
+	@AndroidFindBy(xpath = "//*[@text='Send Money' or @text='Envoi De Fonds' or @text='汇款' or @text='匯款']")
+	private MobileElement HDR_SendMoney;
 
 	@iOSFindBy(xpath = "//*[@label='Between My Accounts' or @label='Entre mes comptes' or @label='在我的账户间转账' or @label='在賬戶之間轉賬']")
 	@AndroidFindBy(xpath = "//*[@text='Between My Accounts' or @text='Entre mes comptes' or @text='在我的账户间转账' or @text='我的賬戶之間']")
@@ -403,7 +407,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
 					mobileAction.FuncClick(BT_Back, "< Button");
 				} else {
-					mobileAction.verifyElementIsDisplayed(HDR_Interac_e_Transfer, "HDR_Interac_e_Transfer");
+					mobileAction.verifyElementIsDisplayed(HDR_SendMoney, "HDR_Send Money");
 					mobileAction.FuncClick(BT_Back, "< Button");
 				}
 			}

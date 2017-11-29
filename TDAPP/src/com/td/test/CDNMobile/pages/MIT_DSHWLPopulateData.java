@@ -259,6 +259,8 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 			 * MIT_DSHQuickLinks.get().clickQuickLink(QL_WATCHLISTS,
 			 * "WATCHLISTS"); } else {
 			 */
+			
+			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncSwipeWhileElementNotFound(BT_More, false, 4, "up");
 			mobileAction.FuncClick(BT_More, "More Button");
 			// }
