@@ -100,7 +100,7 @@ public class Investing extends _CommonPage {
 	private MobileElement agreeButton;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Accounts']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='My Accounts']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='My Accounts']")
 	private MobileElement my_accounts;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='BANKING']")
@@ -224,8 +224,8 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/symbol' and @index='0']")
 	private MobileElement first_fund;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1][contains(@label, 'US$') or contains(@label, '$US')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/symbol' and (contains(@text, 'US$') or contains(@text,'$US'))]")
+	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label, 'USD $') or contains(@label, '$ US')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/symbol' and (contains(@text, 'USD $') or contains(@text,'$ US'))]")
 	private MobileElement first_usd_fund;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
@@ -265,7 +265,7 @@ public class Investing extends _CommonPage {
 	private MobileElement account_balance;
 
 	@iOSFindBy(xpath = "//*[@name='TD_ACCOUNT_FOOTER_VIEW_LABEL']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/canadianDollarNote']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tradingFeeDisclaimer']")
 	private MobileElement usd_disclaimer_foot;
 
 	@iOSFindBy(xpath = "//*[@name='FUND_BALANCE_MARKET_VALUE']/../XCUIElementTypeStaticText[2]")
@@ -1660,7 +1660,7 @@ public class Investing extends _CommonPage {
 			int size = fundsList.size();
 			System.out.println("Funds List:" + size);
 			if (size == 0) {
-				System.err.println("TestCase has failed for no funds in list.");
+				System.out.println("TestCase has failed for no funds in list.");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				return;
 			}
@@ -1668,6 +1668,7 @@ public class Investing extends _CommonPage {
 			if (randFund >= size) {
 				randFund = size - 1;
 			}
+			System.out.println("Funds index selected:"+ randFund);
 			if (!mobileAction.verifyElementIsPresent(fundsList.get(randFund))) {
 				mobileAction.FuncSwipeWhileElementNotFound(fundsList.get(randFund), false, 20, "up");
 			}

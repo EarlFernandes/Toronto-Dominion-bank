@@ -41,7 +41,7 @@ public class Accounts extends _CommonPage {
 	private MobileElement btnHome;
 
 	@iOSFindBy(xpath = "//*[@label='Profile & Settings']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Profile & Settings']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Profile & Settings']")
 	private MobileElement txtPreferences;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='BANKING']")
@@ -890,10 +890,11 @@ public class Accounts extends _CommonPage {
 				System.out.println("Account size:" + size);
 				for (int i = 0; i < size; i++) {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-						if (!mobileAction.verifyElementIsPresent(accountList.get(i))) {
-							mobileAction.FuncSwipeWhileElementNotFound(accountList.get(i), false, 2, "up");
-							accountList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
+						if (!mobileAction.verifyElementIsPresent(accountList.get(i))) {	
+							mobileAction.FuncSwipeOnce("up");
+							accountList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(									
 									"//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
+							
 						}
 					}
 					String accounttext = mobileAction.getValue(accountList.get(i));

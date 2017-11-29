@@ -1694,7 +1694,7 @@ public class MobileAction2 extends CommonLib {
 			int count = 1;
 			Thread.sleep(4000);
 			boolean isElementDisplayed = elementToVanish.isDisplayed();
-			while (count <= 3) {
+			while (count <= 5) {
 				isElementDisplayed = elementToVanish.isDisplayed();
 				if (isElementDisplayed) {
 					try {
@@ -1702,9 +1702,11 @@ public class MobileAction2 extends CommonLib {
 						count++;
 
 					} catch (NoSuchElementException e) {
+						System.out.println("Element vanished");
 						break;
 					}
 				} else {
+					System.out.println("Element vanished");
 					break;
 				}
 			}
@@ -2222,12 +2224,12 @@ public class MobileAction2 extends CommonLib {
 			int heightPer = (endy * 25 / 100);
 
 			if (sDirection.equalsIgnoreCase("up")) {
-				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2, startx / 2,
-						endy / 2 - heightPer, 2000);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2,
+						startx / 2, (int) (endy * 0.15), 2000);
 				GetReporting().FuncReport("Pass", "Swipe Up once.");
 			} else if (sDirection.equalsIgnoreCase("down")) {
-				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2, startx / 2,
-						endy / 2 + heightPer, 2000);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
+						startx / 2, (int) (endy * 0.85), 2000);
 				GetReporting().FuncReport("Pass", "Swipe Down once.");
 			} else if (sDirection.equalsIgnoreCase("left")) {
 				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.90),
@@ -3642,11 +3644,11 @@ public class MobileAction2 extends CommonLib {
 		String menuSlideXpath = "";
 
 		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-			menuXpath = "//android.widget.ImageView[@resource-id='android:id/up' and @index='0']";
-			menuSlideXpath = "//android.widget.ListView[@index='1' or @resource-id='com.td:id/list_slidermenu']";
+			menuXpath = "//android.widget.ImageView[@resource-id='android:id/up' or @resource-id='com.td:id/hamburger']";
+			menuSlideXpath = "//android.widget.ListView[@resource-id='com.td:id/list_slidermenu' or @index='1']";
 		} else {
-			menuXpath = "//XCUIElementTypeButton[@name ='NAVIGATION_ITEM_MENU']";
-			menuSlideXpath = "//*[@name='NAV_DRAWER_ITEMS_HOME']";
+			menuXpath = "//XCUIElementTypeButton[@name ='NAVIGATION_ITEM_MENU' or @name='QuickLinkLeftNavButton']";
+			menuSlideXpath = "//*[@name='NAV_DRAWER_ITEMS_HOME' or @name='NAV_DRAWER_ITEMS_0']";
 		}
 		boolean isMenuOpened = false;
 		try {

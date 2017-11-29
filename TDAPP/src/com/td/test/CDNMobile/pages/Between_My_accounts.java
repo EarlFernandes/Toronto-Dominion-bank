@@ -73,7 +73,7 @@ public class Between_My_accounts extends _CommonPage {
 	// private MobileElement btnMenu;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Accounts']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText'and @text='My Accounts']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='My Accounts']")
 	private MobileElement txtMy_Accounts;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/current_balance']")
@@ -98,7 +98,7 @@ public class Between_My_accounts extends _CommonPage {
 	private List<MobileElement> amt_Trnsfrd;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Logout']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Logout']")
 	private MobileElement btnLogout;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Logged Out']")
@@ -132,10 +132,10 @@ public class Between_My_accounts extends _CommonPage {
 	private MobileElement txtTransfers_Header;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@value, 'Quick Access') or contains(@label,'Quick Access')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Home']")
+	@AndroidFindBy(xpath = "//*[@resource-id='android:id/action_bar_title' or @resource-id='com.td:id/toolbar_dashboard']")
 	private MobileElement quickAccess;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Home']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Home']")
 	private MobileElement homeBtn;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='CANCEL']")
