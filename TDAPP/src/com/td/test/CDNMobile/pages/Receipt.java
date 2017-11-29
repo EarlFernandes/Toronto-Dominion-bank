@@ -617,6 +617,7 @@ public class Receipt extends _CommonPage {
 		try {
 			mobileAction.FuncSwipeWhileElementNotFound(goBackHomeButton, false, 10, "up");
 			mobileAction.FuncClick(goBackHomeButton, "Go Back Home button");
+			mobileAction.sleep(3000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

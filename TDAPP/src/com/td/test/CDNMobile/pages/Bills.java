@@ -184,9 +184,7 @@ public class Bills extends _CommonPage {
 
 			mobileAction.FuncClick(pay_Cananda_Bill, "Pay Canada Bill");
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.waitProgressBarVanish();
-			}
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

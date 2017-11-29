@@ -67,6 +67,7 @@ public class AccountDetails extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(quickLinkTransferButton, "Quick Link Transfer button");
+			mobileAction.sleep(3000);
 			MobileElement headerText = PageHeader.get().getHeaderTextElement();
 			mobileAction.verifyElementIsDisplayed(headerText, "Transfer");
 
@@ -87,6 +88,7 @@ public class AccountDetails extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(quickLinkPayButton, "Quick Link Pay button");
+			mobileAction.sleep(3000);
 			MobileElement headerText = PageHeader.get().getHeaderTextElement();
 			mobileAction.verifyElementIsDisplayed(headerText, "Pay Bill");
 
