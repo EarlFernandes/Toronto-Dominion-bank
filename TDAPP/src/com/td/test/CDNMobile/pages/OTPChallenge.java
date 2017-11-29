@@ -206,11 +206,15 @@ public class OTPChallenge extends _CommonPage {
 				mobileAction.switchToWebView();
 			}
 
+			mobileAction.sleep(2000);
 			mobileAction.FuncClick(securityCodeField, "Security Code Field");
 			mobileAction.FuncSendKeys(securityCodeField, securityCode);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClickDone(); // hide iOS keyboard
+			} else {
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.FuncHideKeyboard();
 			}
 
 			clickSubmitCodeButton();

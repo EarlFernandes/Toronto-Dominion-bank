@@ -115,18 +115,6 @@ public class OTPUpdate extends _CommonPage {
 	@FindBy(xpath = "//div/a[contains(@ng-click,'pd.testPhone')]")
 	private WebElement verifyNumberButton;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(id = "android:id/action_bar_title")
-	private MobileElement testPhoneHeader;
-
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(id = "android:id/action_bar_title")
-	private MobileElement loginOptionHeader;
-
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(id = "android:id/action_bar_title")
-	private MobileElement changeEmailHeader;
-
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//span[@ng-click='pd.deletePhone()' and @tabindex='0']")
 	private WebElement deletePhone1UpdateButton;
@@ -138,7 +126,7 @@ public class OTPUpdate extends _CommonPage {
 	// @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Change
 	// Email') or contains(@label,'Modifier l’adresse courriel') or
 	// contains(@label,'更改邮箱地址') or contains(@label,'變更收件箱地址') ]")
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[3]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[2]")
 	@FindBy(xpath = "//div[contains(@ng-click,'enter-security-email')]")
 	private WebElement changeEmailUpdateButton;
 
@@ -491,6 +479,7 @@ public class OTPUpdate extends _CommonPage {
 				mobileAction.FunctionSwipe("up", 100, 0);
 			}
 			mobileAction.FuncClick(changeLoginOptionUpdateButton, "Change Login Option Button");
+			mobileAction.sleep(3000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -997,8 +986,9 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementIsDisplayed(loginOptionHeader, "OTP Update Login Option screen header");
-			mobileAction.verifyElementTextContains(loginOptionHeader,
+			MobileElement screenHeader = PageHeader.get().getHeaderTextElement();
+			mobileAction.verifyElementIsDisplayed(screenHeader, "OTP Update Login Option screen header");
+			mobileAction.verifyElementTextContains(screenHeader,
 					getTextInCurrentLocale(StringArray.ARRAY_OTP_UPDATE_LOGIN_OPTION_HEADER));
 
 		} catch (Exception e) {
@@ -1018,8 +1008,9 @@ public class OTPUpdate extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementIsDisplayed(changeEmailHeader, "OTP Update Change Email screen header");
-			mobileAction.verifyElementTextContains(changeEmailHeader,
+			MobileElement screenHeader = PageHeader.get().getHeaderTextElement();
+			mobileAction.verifyElementIsDisplayed(screenHeader, "OTP Update Change Email screen header");
+			mobileAction.verifyElementTextContains(screenHeader,
 					getTextInCurrentLocale(StringArray.ARRAY_OTP_UPDATE_CHANGE_EMAIL_HEADER));
 
 		} catch (Exception e) {
@@ -1049,18 +1040,8 @@ public class OTPUpdate extends _CommonPage {
 				mobileAction.FunctionSwipe("up", 100, 0);
 			}
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")
-					&& currentLocale.startsWith("zh")) {
-				mobileAction.verifyElementIsDisplayed(emailUpdateField_ios_zh, "Security Email field");
-				mobileAction.verifyElementTextContains(emailUpdateField_ios_zh, email);
-			} else {
-				// mobileAction.verifyElementIsDisplayed(emailUpdateField,
-				// "Security Email field");
-				// mobileAction.verifyElementTextContains(emailUpdateField,
-				// email);
-				mobileAction.verifyElementIsDisplayed(changeEmailUpdateButton, "Security Email field");
-				mobileAction.verifyElementTextContains(changeEmailUpdateButton, email);
-			}
+			mobileAction.verifyElementIsDisplayed(changeEmailUpdateButton, "Security Email field");
+			mobileAction.verifyElementTextContains(changeEmailUpdateButton, email);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
