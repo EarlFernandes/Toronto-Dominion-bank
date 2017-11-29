@@ -271,7 +271,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				mobileAction.verifyElement(interac_Etransfer_Header, "Interac e-Transfer");
 				mobileAction.FuncClick(selectSender, "Sender");
 
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 
 				// mobileAction.FuncElementSwipeWhileNotFound(acntsListSender,
 				// select_SenderValue, 0, "up", true);
@@ -282,7 +282,7 @@ public class Interac_e_Transfer extends _CommonPage {
 					mobileAction.FuncClick(cancelSender, "Cancel");
 				}
 
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 
 				mobileAction.FuncClick(fromAccount, "From Account");
 				accVal = Double.parseDouble(mobileAction.getText(fromAccountVal));
@@ -337,7 +337,7 @@ public class Interac_e_Transfer extends _CommonPage {
 		try {
 			mobileAction.verifyElementIsDisplayed(interac_Header, "Interac e-Transfer");
 			mobileAction.FuncClick(addRecipient_Interac, "AddRecipient");
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -823,7 +823,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				mobileAction.verifyElement(interac_Etransfer_Header, "Interac e-Transfer");
 				mobileAction.FuncClick(selectSender, "Sender");
 
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_SenderValue, true, 5, "up");
 				// add click cancel when cancel is still present, this is an
@@ -832,7 +832,7 @@ public class Interac_e_Transfer extends _CommonPage {
 					mobileAction.FuncClick(cancelSender, "Cancel");
 				}
 
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 				mobileAction.FuncClick(recipient, "Recipient");
 
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_Recipient, true, 2, "up");
@@ -875,7 +875,7 @@ public class Interac_e_Transfer extends _CommonPage {
 
 			mobileAction.FuncClick(selectSender, "ClickSender");
 
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 
 			if (mobileAction.verifyElementIsPresent(senderCancel)) {
 				mobileAction.FuncClick(senderCancel, "Click Cancel");
@@ -1107,7 +1107,7 @@ public class Interac_e_Transfer extends _CommonPage {
 			mobileAction.FuncHideKeyboard();
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(continueButton, "Continue Button");
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1145,7 +1145,7 @@ public class Interac_e_Transfer extends _CommonPage {
 
 			mobileAction.FuncClick(continueButton, "Continue Button");
 
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

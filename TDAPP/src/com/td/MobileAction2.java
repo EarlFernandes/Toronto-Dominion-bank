@@ -2224,12 +2224,12 @@ public class MobileAction2 extends CommonLib {
 			int heightPer = (endy * 25 / 100);
 
 			if (sDirection.equalsIgnoreCase("up")) {
-				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2,
-						startx / 2, (int) (endy * 0.15), 2000);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, starty / 2, startx / 2,
+						(int) (endy * 0.15), 2000);
 				GetReporting().FuncReport("Pass", "Swipe Up once.");
 			} else if (sDirection.equalsIgnoreCase("down")) {
-				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2,
-						startx / 2, (int) (endy * 0.85), 2000);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, endy / 2, startx / 2,
+						(int) (endy * 0.85), 2000);
 				GetReporting().FuncReport("Pass", "Swipe Down once.");
 			} else if (sDirection.equalsIgnoreCase("left")) {
 				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.90),
@@ -3616,23 +3616,41 @@ public class MobileAction2 extends CommonLib {
 
 	}
 
-	
-	public void waitProgressBarVanish() {
+	public void waitP2PProgressBarVanish() {
 
 		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 		int counter = 0;
 		while (counter < 6 && verifyElementIsPresent(Login.get().progressBar)) {
 
 			try {
-				wait.until(ExpectedConditions.invisibilityOf(Login.get().progressBar)); 
+				wait.until(ExpectedConditions.invisibilityOf(Login.get().progressBar));
 				counter++;
 
 			} catch (Exception e) {
 				counter++;
-	
+
 			}
 		}
 
+	}
+
+	public void waitProgressBarVanish() {
+		MobileElement progressBar = null;
+		String progressbarXpath = "";
+		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			progressbarXpath = "//android.widget.TextView[@resource-id='android:id/message' or @resource-id='com.td:id/loading_indicator_textview']";
+		} else {
+			progressbarXpath = "//XCUIElementTypeActivityIndicator[@value='1']";
+		}
+
+		try {
+			progressBar = (MobileElement) ((AppiumDriver) GetDriver()).findElement(By.xpath(progressbarXpath));
+		} catch (Exception e) {
+			System.out.println("Progress bar not found");
+			return;
+		}
+		System.out.println("Waiting for progress vanishing");
+		waitForElementToVanish(progressBar);
 	}
 
 	public void clickMenuButton() {

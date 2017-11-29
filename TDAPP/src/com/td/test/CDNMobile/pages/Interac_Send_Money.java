@@ -241,10 +241,7 @@ public class Interac_Send_Money extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.waitProgressBarVanish();
-			/*mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();*/
+			mobileAction.waitP2PProgressBarVanish();
 
 			mobileAction.verifyElementIsDisplayed(sendMoneyHeader, "Header " + sendMoneyHeader.getText());
 
@@ -276,9 +273,11 @@ public class Interac_Send_Money extends _CommonPage {
 			} else {
 
 				mobileAction.FuncClick(fromAccount, "from Account");
-				
-				//String fromAccountNumXL = "**/*[`label CONTAINS[cd] '" + getTestdata("FromAccount") + "'`]";
-				//MobileElement fromAccountNumber = mobileAction.mobileElementUsingIOSClassChain(fromAccountNumXL);
+
+				// String fromAccountNumXL = "**/*[`label CONTAINS[cd] '" +
+				// getTestdata("FromAccount") + "'`]";
+				// MobileElement fromAccountNumber =
+				// mobileAction.mobileElementUsingIOSClassChain(fromAccountNumXL);
 				String fromAccountNumXL = "//XCUIElementTypeCell/XCUIElementTypeStaticText";
 				MobileElement fromAccountNumber = mobileAction.mobileElementUsingXPath(fromAccountNumXL);
 				mobileAction.FuncClick(fromAccountNumber, "Account Number: " + getTestdata("FromAccount"));
@@ -311,8 +310,8 @@ public class Interac_Send_Money extends _CommonPage {
 
 			}
 
-			mobileAction.waitProgressBarVanish();
-			
+			mobileAction.waitP2PProgressBarVanish();
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -355,11 +354,7 @@ public class Interac_Send_Money extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(amountLbl, "Amount");
 			mobileAction.verifyElementIsDisplayed(amountVal, "Amount " + amountVal.getText());
 			mobileAction.FuncClick(continueButton, "Continue Button");
-			mobileAction.waitProgressBarVanish();
-			/*mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();*/
+			mobileAction.waitP2PProgressBarVanish();
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -387,12 +382,12 @@ public class Interac_Send_Money extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 			mobileAction.verifyElementIsDisplayed(thankYou, thankYou.getText());
 			mobileAction.verifyElementIsDisplayed(successMessage, successMessage.getText());
 
-			//mobileAction.verifyTextContains(successMessage.getText(),
-					//getTextInCurrentLocale(StringArray.SEND_MONEY_SUCCESS_MSG));
+			// mobileAction.verifyTextContains(successMessage.getText(),
+			// getTextInCurrentLocale(StringArray.SEND_MONEY_SUCCESS_MSG));
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -426,13 +421,8 @@ public class Interac_Send_Money extends _CommonPage {
 			sendMoney();
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(continueButton, "Continue Button");
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
-			/*mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();*/
+			mobileAction.waitP2PProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 			Interac_e_Registration.get().clickGoBackHome();
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

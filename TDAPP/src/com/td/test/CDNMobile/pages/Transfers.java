@@ -485,7 +485,7 @@ public class Transfers extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer Header");
 			mobileAction.FuncClick(manageContacts, "Manage Contacts Link");
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -513,11 +513,8 @@ public class Transfers extends _CommonPage {
 
 			mobileAction.FuncClick(transferHistory, "Transfer History Link");
 
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
-			/*mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();*/
+			mobileAction.waitP2PProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -546,12 +543,12 @@ public class Transfers extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 			mobileAction.FuncClick(requestMoney, "Request Money Link");
 
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

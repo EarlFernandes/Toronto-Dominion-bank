@@ -762,7 +762,7 @@ public class ManageContacts extends _CommonPage {
 				clickContact();
 				editContact();
 				verifyContactEditSuccessMsg();
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 
 				if (i != 2) {
 					for (int m = 0; m <= i; m++) {
@@ -808,7 +808,7 @@ public class ManageContacts extends _CommonPage {
 				noDeleteContact();
 				deleteContact();
 				verifyContactDeleteSuccessMsg();
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 				mobileAction.FunctionSwipe("left", 200, 200);
 
 			}
@@ -861,7 +861,7 @@ public class ManageContacts extends _CommonPage {
 				if (i != 2) {
 					for (int m = 0; m <= i; m++) {
 						mobileAction.FunctionSwipe("left", 200, 100);
-						mobileAction.waitProgressBarVanish();
+						mobileAction.waitP2PProgressBarVanish();
 					}
 				}
 

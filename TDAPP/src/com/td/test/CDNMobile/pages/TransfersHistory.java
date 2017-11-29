@@ -32,9 +32,11 @@ public class TransfersHistory extends _CommonPage {
 
 	// TODO:: use mobileElementUsingXPath for converting elements
 
-	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='History']")
-	//private MobileElement pageHeader;
-	
+	// @AndroidFindBy(xpath =
+	// "//android.widget.TextView[@resource-id='android:id/action_bar_title' and
+	// @text='History']")
+	// private MobileElement pageHeader;
+
 	@iOSFindBy(accessibility = "TDVIEW_TITLE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement pageHeader;
@@ -353,7 +355,7 @@ public class TransfersHistory extends _CommonPage {
 
 			while (!mobileAction.verifyElementIsPresent(getReceiver()) && counter < 3) {
 				mobileAction.FunctionSwipe("left", 200, 200);
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 				counter++;
 			}
 			counter = 0;
@@ -517,7 +519,7 @@ public class TransfersHistory extends _CommonPage {
 
 			while (!mobileAction.verifyElementIsPresent(getReceiver()) && counter < 3) {
 				mobileAction.FunctionSwipe("left", 200, 200);
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 				counter++;
 			}
 			counter = 0;
@@ -530,22 +532,22 @@ public class TransfersHistory extends _CommonPage {
 								+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']");
 
 			} else {
-				
-				String fistXpath = "//XCUIElementTypeStaticText[@label='" + getTextInCurrentLocale(StringArray.MONEY_SENT_LBL)
-								+ "']/following-sibling::XCUIElementTypeButton[@label='"
-								+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']";
-				
-				String secondXpath = "//XCUIElementTypeOther[@label='" + getTextInCurrentLocale(StringArray.MONEY_SENT_LBL)
-								+ "']/following-sibling::XCUIElementTypeButton[@label='"
-								+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']";
-				
-				moneySentSeeAll = mobileAction.mobileElementUsingXPath(fistXpath+" | "+secondXpath);
+
+				String fistXpath = "//XCUIElementTypeStaticText[@label='"
+						+ getTextInCurrentLocale(StringArray.MONEY_SENT_LBL)
+						+ "']/following-sibling::XCUIElementTypeButton[@label='"
+						+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']";
+
+				String secondXpath = "//XCUIElementTypeOther[@label='"
+						+ getTextInCurrentLocale(StringArray.MONEY_SENT_LBL)
+						+ "']/following-sibling::XCUIElementTypeButton[@label='"
+						+ getTextInCurrentLocale(StringArray.SEE_ALL_LBL) + "']";
+
+				moneySentSeeAll = mobileAction.mobileElementUsingXPath(fistXpath + " | " + secondXpath);
 
 			}
 
 			mobileAction.FuncClick(moneySentSeeAll, "See All");
-		
-		
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -707,8 +709,8 @@ public class TransfersHistory extends _CommonPage {
 
 		Decorator();
 		try {
-			
-			mobileAction.waitProgressBarVanish();
+
+			mobileAction.waitP2PProgressBarVanish();
 			String receiver = getTestdata("ToAccount");
 
 			if (StringUtils.isEmpty(receiver)) {
@@ -749,9 +751,9 @@ public class TransfersHistory extends _CommonPage {
 
 				mobileAction.FuncClick(getRequester(), "Receiver: " + receiver);
 			}
-			
-			mobileAction.waitProgressBarVanish();
-			
+
+			mobileAction.waitP2PProgressBarVanish();
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -790,7 +792,7 @@ public class TransfersHistory extends _CommonPage {
 								+ transStatus + "') or contains(@label,'" + transStatus.toUpperCase() + "'))]");
 
 				System.err.println("Got receiver");
-				
+
 			}
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -878,7 +880,7 @@ public class TransfersHistory extends _CommonPage {
 
 				while (!mobileAction.verifyElementIsPresent(getSender()) && counter < 3) {
 					mobileAction.FunctionSwipe("left", 200, 200);
-					mobileAction.waitProgressBarVanish();
+					mobileAction.waitP2PProgressBarVanish();
 					mobileAction.FunctionSwipe("up", 200, 200);
 					counter++;
 				}
@@ -1039,9 +1041,8 @@ public class TransfersHistory extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(continueBtn, "Continue Button");
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
-			//mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1082,10 +1083,8 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.FuncClick(cancelTransfer, "Cancel Transfer");
 
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
-			/*mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();*/
+			mobileAction.waitP2PProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1270,7 +1269,7 @@ public class TransfersHistory extends _CommonPage {
 
 			while (!mobileAction.verifyElementIsPresent(getRequester()) && counter < 3) {
 				mobileAction.FunctionSwipe("left", 200, 200);
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 				counter++;
 			}
 			counter = 0;
@@ -1292,7 +1291,7 @@ public class TransfersHistory extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(requestMoneySentSeeAll, "See All");
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1526,7 +1525,7 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(cancelRequest, "cancel Request");
 			mobileAction.FuncClick(cancelRequestConfirm, "Cancel Request Confirm button");
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 			mobileAction.verifyElementIsDisplayed(cancelledTransactionStatus,
 					"Transaction Status: " + cancelledTransactionStatus.getText());
 
@@ -1534,7 +1533,7 @@ public class TransfersHistory extends _CommonPage {
 					getTextInCurrentLocale(StringArray.CANCEL_MONEY_RECEIPT_HEADER));
 
 			mobileAction.getPageSource();
-			
+
 			mobileAction.verifyElementIsDisplayed(confirmationCode, "confirmation Code " + confirmationCode.getText());
 
 			cancelFlag = true;
@@ -1568,12 +1567,11 @@ public class TransfersHistory extends _CommonPage {
 		Decorator();
 		try {
 
-			
-			while(!mobileAction.verifyElementIsPresent(completedCategory) && counter<3){
-			mobileAction.FunctionSwipe("up", 2000, 200);
-			counter++;
+			while (!mobileAction.verifyElementIsPresent(completedCategory) && counter < 3) {
+				mobileAction.FunctionSwipe("up", 2000, 200);
+				counter++;
 			}
-			
+
 			mobileAction.verifyElementIsDisplayed(completedCategory, "Completed Category");
 
 			if (platform.equalsIgnoreCase("Android")) {
@@ -1585,7 +1583,8 @@ public class TransfersHistory extends _CommonPage {
 
 				cancelledTransaction = mobileAction
 						.mobileElementUsingXPath("//XCUIElementTypeCell/XCUIElementTypeButton[contains(@label,'"
-								+ getTestdata("ToAccount") + "') and (contains(@label,'CANCELLED') or contains(@label,'"+CancelledFrench.toUpperCase()+"'))]"); 
+								+ getTestdata("ToAccount") + "') and (contains(@label,'CANCELLED') or contains(@label,'"
+								+ CancelledFrench.toUpperCase() + "'))]");
 			}
 
 			mobileAction.verifyElementIsDisplayed(cancelledTransaction, "Cancelled Transaction");
@@ -1674,7 +1673,7 @@ public class TransfersHistory extends _CommonPage {
 
 			mobileAction.FuncClick(MoneyRequestContinueBtn, "Continue Button");
 			mobileAction.FuncClick(finishBtn, "Finish");
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1745,8 +1744,7 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.clickMenuButton();
 			MenuPage.get().clickMenuTransfer();
 			Transfers.get().clickTransferHistoryLink();
-			//clickRequestMoneySeeAll(); TODO::commented due to activity error.
-			
+			// clickRequestMoneySeeAll(); TODO::commented due to activity error.
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -23,11 +23,14 @@ public class Login extends _CommonPage {
 
 	private static Login Login;
 
-	
+	/*
+	 * This progressbar is special for P2P tests only, do not delete, it is
+	 * called from p2p tests
+	 */
 	@iOSFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeActivityIndicator[@value='1']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' or @resource-id='com.td:id/loading_indicator_textview']")
 	public MobileElement progressBar;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Remember me on']")
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/remember_switch' and @index='1']")
 	private MobileElement rememberMe;
@@ -523,13 +526,10 @@ public class Login extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
-
 			}
 			// Even in Landscape mode, the login button is visible
 			mobileAction.FuncClick(login, "Login");
 			mobileAction.waitProgressBarVanish();
-			/*mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();*/
 			enterPwdifSystemError();
 
 		} catch (NoSuchElementException e) {

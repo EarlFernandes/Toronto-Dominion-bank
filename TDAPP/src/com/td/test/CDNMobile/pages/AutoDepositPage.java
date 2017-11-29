@@ -305,7 +305,7 @@ public class AutoDepositPage extends _CommonPage {
 			MobileElement accountNumberToDeposit = mobileAction.mobileElementUsingXPath(AccToDeposit);
 			mobileAction.FuncClick(accountNumberToDeposit, "Account Number " + getTestdata("ToAccount"));
 			mobileAction.FuncClick(continueBtn, "Continue Button");
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 
 			emailCounter++;
 			if (emailCounter == emailArr.length) {
@@ -549,7 +549,7 @@ public class AutoDepositPage extends _CommonPage {
 			MobileElement accountToSelect = null;
 
 
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 
 
 			if (autodepositAcc.getText().contains(accounts[0])) {
@@ -662,7 +662,7 @@ public class AutoDepositPage extends _CommonPage {
 			if (platform.equalsIgnoreCase("iOS")) {
 
 				if(!mobileAction.verifyElementIsPresent(requestMoneyFrom)){
-					mobileAction.waitProgressBarVanish();
+					mobileAction.waitP2PProgressBarVanish();
 				}
 				
 				mobileAction.FuncClick(requestMoneyFrom, "Request Money To DropDown");
@@ -694,7 +694,7 @@ public class AutoDepositPage extends _CommonPage {
 				mobileAction.FuncClick(next, "Next Button");
 			}
 
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 			
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -794,8 +794,8 @@ public class AutoDepositPage extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(nextReqMoney, "Request Money Button");
-			mobileAction.waitProgressBarVanish();
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -825,7 +825,7 @@ public class AutoDepositPage extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 
 			if (platform.equalsIgnoreCase("iOS")) {
 
