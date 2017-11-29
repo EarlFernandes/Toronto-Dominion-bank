@@ -121,6 +121,25 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 	@AndroidFindBy(xpath = "(//*[contains(@text,'SAVINGS ACCOUNT') or contains(@text,'Paramètres Accès rapide')])[1]")
 	private MobileElement QuickAccessUserUSAccount;
 
+	//@iOSFindBy(xpath = "//*[@label='Get Started' or @label='Compte' or @label='Get Started' or @label='Compte']") 
+	@iOSXCUITFindBy(accessibility = "QUICKBALANCE_ONBOARDING_START_BUTTON")
+	@AndroidFindBy(xpath = "//*[@text='Get Started' or @text='Get Started' or @text='主页' or @text='首頁']")
+	private MobileElement btnGetStarted;
+	
+
+
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Agree' or @label='Compte' or @label='同意' or @label='同意']") 
+	@AndroidFindBy(xpath = "//*[@text='Agree' or @text='Accepte' or @text='同意' or @text='同意']")
+	private MobileElement btnAgree;
+	
+	
+	@iOSFindBy(xpath = "//*[@label='Get Started' or @label='Compte' or @label='Get Started' or @label='Compte']") 
+	@AndroidFindBy(xpath = "//*[@text='Get Started' or @text='Get Started' or @text='主页' or @text='首頁']")
+	private MobileElement btnGetStartedSuccess;
+	
+	
+	
+	
 	public void goToDashboardHome() {
 		Decorator();
 		try {
@@ -361,7 +380,22 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.FuncClick(BT_Home_QuickAccess, "BT_Home_QuickAccess");
+				mobileAction.FuncClick(BT_Home_QuickAccess, "BT_Home_QuickAccess");
+			if (mobileAction.isObjExists(btnGetStarted, 2))
+			{
+				mobileAction.FuncClick(btnGetStarted, "btnGetStarted");
+				mobileAction.FuncSwipeOnce("up");
+				mobileAction.FuncSwipeOnce("up");
+				mobileAction.FuncSwipeOnce("up");
+				mobileAction.FuncClick(btnAgree, "btnAgree");
+				
+				
+				
+				mobileAction.FuncClick(btnGetStartedSuccess, "btnGetStartedSuccess");
+				mobileAction.FuncClick(BT_Home_QuickAccess, "BT_Home_QuickAccess");
+			}
+			
+			
 			mobileAction.FuncClick(BtnQuickAccessSettings, "BtnQuickAccessSettings");
 
 			LoginMIT.get().MITLogin();
@@ -408,6 +442,25 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 
 			mobileAction.FuncClick(BT_Home_QuickAccess, "BT_Home_QuickAccess");
 
+			
+			if (mobileAction.isObjExists(btnGetStarted, 2))
+			{
+				mobileAction.FuncClick(btnGetStarted, "btnGetStarted");
+				mobileAction.FuncSwipeOnce("up");
+				mobileAction.FuncSwipeOnce("up");
+				mobileAction.FuncSwipeOnce("up");
+				mobileAction.FuncClick(btnAgree, "btnAgree");
+				
+				
+				
+				mobileAction.FuncClick(btnGetStartedSuccess, "btnGetStartedSuccess");
+				mobileAction.FuncClick(BT_Home_QuickAccess, "BT_Home_QuickAccess");
+			}
+			
+			
+			
+			
+			
 			String UserRole = getTestdata("UserRole", XLSheetUserIDs);
 
 			switch (UserRole) {
