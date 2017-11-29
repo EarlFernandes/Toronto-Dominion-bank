@@ -116,8 +116,8 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Apple Pay' or @label='Paiement mobile' or @label='移动支付' or @label='流動付款']")
 	private MobileElement HDR_ApplePay;
 
-	@iOSFindBy(xpath = "//*[@label='Pay Bill' or @label='Payer une facture' or @label='支付账单' or @label='支付賬單']")
-	@AndroidFindBy(xpath = "//*[@text='Pay Bill' or @text='Payer une facture' or @text='支付账单' or @text='支付賬單']")
+	@iOSFindBy(xpath = "//*[@label='Pay Bill' or @label='Payer des factures' or @label='支付账单' or @label='支付賬單']")
+	@AndroidFindBy(xpath = "//*[@text='Pay Bill' or @text='Payer des factures' or @text='支付账单' or @text='支付賬單']")
 	private MobileElement HDR_PayBills;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='Négociation' or @label='交易' or @label='交易']")
@@ -127,9 +127,9 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Interac e-Transfer' or @label='Virement Interac' or @label='Interac E-TRANSFER' or @label='Interac e-Transfer']")
 	@AndroidFindBy(xpath = "//*[@text='Interac e-Transfer' or @text='Virement Interac' or @text='Interac e-Transfer' or @text='Interac e-Transfer']")
 	private MobileElement HDR_Interac_e_Transfer;
-	
-	@iOSFindBy(xpath = "//*[@label='Send Money' or @label='Envoi De Fonds' or @label='汇款' or @label='匯款']")
-	@AndroidFindBy(xpath = "//*[@text='Send Money' or @text='Envoi De Fonds' or @text='汇款' or @text='匯款']")
+
+	@iOSFindBy(xpath = "//*[@label='Send Money' or @label='Virer des fonds' or @label='汇款' or @label='匯款']")
+	@AndroidFindBy(xpath = "//*[@text='Send Money' or @text='Virer des fonds' or @text='汇款' or @text='匯款']")
 	private MobileElement HDR_SendMoney;
 
 	@iOSFindBy(xpath = "//*[@label='Between My Accounts' or @label='Entre mes comptes' or @label='在我的账户间转账' or @label='在賬戶之間轉賬']")
@@ -180,6 +180,18 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel' or @label='Listes' or @label='自选股观察名单' or @label='自選股觀察名單']")
 	private MobileElement BT_Cancel_QuoteSearchSymbolScreen;
+
+	@iOSXCUITFindBy(accessibility = "switchNowButton")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/investing_welcome_switch']")
+	private MobileElement btnSwitchNow;
+
+	@iOSXCUITFindBy(accessibility = "ProfilePreferencesToggleTableViewCell_Toggle_Switch")
+	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/nav_row_switch']")
+	private MobileElement InvestingToggle;
+
+	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Title_Label")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/nav_row_left_icon']")
+	private MobileElement AccessoryGoHome;
 
 	public void verifyQuickLinksUnAuthenicatedUser() {
 		Decorator();
@@ -392,6 +404,28 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void turnInvestingFocusOn() {
+
+		Decorator();
+
+		try {
+
+			if (mobileAction.isObjExists(btnSwitchNow, 2)) {
+
+				mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+
+				mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
+
+				mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	public void verifyQL_SENDMONEY(boolean bIsAuthenticatedUser) {

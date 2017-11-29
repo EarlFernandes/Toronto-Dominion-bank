@@ -108,6 +108,7 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 	public void verifyWLCollapsedViewUI() {
 		Decorator();
 		try {
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			mobileAction.verifyElementIsDisplayed(LT_Watchlist, "Watchlist Dropdown");
 			mobileAction.verifyElementIsDisplayed(BT_MoreOptions, "More Options button");
 
@@ -161,6 +162,8 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 	public void verifyWLMoreOptions() {
 		Decorator();
 		try {
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
+			
 			mobileAction.FuncClick(BT_MoreOptions, "More Options button");
 
 			mobileAction.FuncClick(BT_Refresh, "Refresh button");
@@ -202,7 +205,7 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 			 * mobileAction.FuncSwipeWhileElementNotFoundByxpath(
 			 * xpathWatchlistItem, false, 10, "up");
 			 */
-
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (!CL.getTestDataInstance().getMobileDeviceType().equalsIgnoreCase("Tablet")) {
 				mobileAction.FuncSwipeOnce("up");
 			}
