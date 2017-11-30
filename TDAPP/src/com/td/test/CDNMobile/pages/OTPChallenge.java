@@ -216,8 +216,10 @@ public class OTPChallenge extends _CommonPage {
 				MobileElement hasDone = mobileAction.verifyElementUsingXPath(donePath, "Keyboard Done button");
 
 				if (hasDone == null) {
+					System.out.println("no done button");
 					mobileAction.HideKeyBoard_IOS();
 				} else {
+					System.out.println("has done button");
 					mobileAction.FuncClickDone();
 				}
 
