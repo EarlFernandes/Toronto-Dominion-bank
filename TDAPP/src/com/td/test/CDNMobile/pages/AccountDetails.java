@@ -212,7 +212,7 @@ public class AccountDetails extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(activityTab, "Activity Tab");
 			mobileAction.verifyElementTextIsDisplayed(activityTab,
-					getTextInCurrentLocale(StringArray.ARRAY_TAB_SUMMARY));
+					getTextInCurrentLocale(StringArray.ARRAY_TAB_ACTIVITY));
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

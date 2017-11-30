@@ -1078,19 +1078,25 @@ public class HomeScreen extends _CommonPage {
 		Decorator();
 
 		try {
-
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-
-				mobileAction.FuncScrollIntoView(pay_now_button, "Pay Now button");
-				mobileAction.verifyElementIsDisplayed(pay_now_button, "Pay Now button");
-				mobileAction.verifyElementTextContains(pay_now_button,
-						getTextInCurrentLocale(StringArray.ARRAY_HOMESCREEN_DASHBOARD_PAYNOW));
-			} else {
-
-				mobileAction.verifyElementIsDisplayed(pay_now_button, "Apple Pay button");
-				mobileAction.verifyElementTextContains(pay_now_button,
-						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_APPLEPAY));
-			}
+			/*
+			 * if
+			 * (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
+			 * "android")) {
+			 * 
+			 * mobileAction.FuncScrollIntoView(pay_now_button,
+			 * "Pay Now button");
+			 * mobileAction.verifyElementIsDisplayed(pay_now_button,
+			 * "Pay Now button");
+			 * mobileAction.verifyElementTextContains(pay_now_button,
+			 * getTextInCurrentLocale(StringArray.
+			 * ARRAY_HOMESCREEN_DASHBOARD_PAYNOW)); } else {
+			 * 
+			 * mobileAction.verifyElementIsDisplayed(pay_now_button,
+			 * "Apple Pay button");
+			 * mobileAction.verifyElementTextContains(pay_now_button,
+			 * getTextInCurrentLocale(StringArray.
+			 * ARRAY_DASHBOARD_FLYOUT_APPLEPAY)); }
+			 */
 
 			if (mobileAction.verifyElementIsPresent(home_bar)) {
 				mobileAction.Report_Pass_Verified("Home View");

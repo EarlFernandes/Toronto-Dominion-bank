@@ -233,7 +233,13 @@ public class QuickAccessSettings extends _CommonPage {
 
 			MobileElement accountFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
 			if (accountFound != null) {
-				String accountSwitchXpath = xpath + "/parent::XCUIElementTypeCell/XCUIElementTypeSwitch[1]";
+
+				String accountSwitchXpath = "";
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+					accountSwitchXpath = xpath + "/parent::XCUIElementTypeCell/XCUIElementTypeSwitch[1]";
+				} else {
+					accountSwitchXpath = xpath + "//following-sibling::android.widget.Switch";
+				}
 
 				MobileElement accountSwitch = mobileAction.verifyElementUsingXPath(accountSwitchXpath,
 						"Account Switch");

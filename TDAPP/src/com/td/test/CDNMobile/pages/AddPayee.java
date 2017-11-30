@@ -776,7 +776,9 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
+				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
+
 			}
 
 			mobileAction.FuncClick(tabCanada, "Canada tab");
@@ -813,7 +815,7 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.FuncClick(tabUS, "US tab");
@@ -874,18 +876,20 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
+				mobileAction.sleep(3000);
 				mobileAction.FuncClick(firstPayeeFound, "First Payee Address found");
+				mobileAction.sleep(3000);
 				mobileAction.FuncClick(addPayeeContinueBtn, "Add Payee Continue");
 
 			} else {
 				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
-				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(firstPayeeFound, "First Payee Address found");
-				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(addPayeeContinueBtn, "Add Payee Continue");
-				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				mobileAction.waitProgressBarVanish();
 
 			}
 
