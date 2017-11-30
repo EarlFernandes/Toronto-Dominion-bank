@@ -1532,8 +1532,6 @@ public class TransfersHistory extends _CommonPage {
 			mobileAction.verifyTextEquality(cancelledTransactionStatus.getText(),
 					getTextInCurrentLocale(StringArray.CANCEL_MONEY_RECEIPT_HEADER));
 
-			mobileAction.getPageSource();
-
 			mobileAction.verifyElementIsDisplayed(confirmationCode, "confirmation Code " + confirmationCode.getText());
 
 			cancelFlag = true;

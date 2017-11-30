@@ -11,7 +11,6 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.html5.Location;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -24,7 +23,6 @@ import io.appium.java_client.InteractsWithApps;
 import io.appium.java_client.MobileBy.ByIosClassChain;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.MultiTouchAction;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
@@ -43,34 +41,6 @@ public class MobileAction2 extends CommonLib {
 	public static final int TYPE_YYYY_MM_DD_TODAY = 4;
 	public static final int TYPE_YYYY_MM_DD_HOUR = 5;
 	public static final int TYPE_YYYY_MM_DD_RANGE = 6;
-
-	public void findElementByXpathAndClick(String xpath) throws IOException {
-		try {
-			((AppiumDriver) GetDriver()).findElementByXPath(xpath).click();
-			GetReporting().FuncReport("Pass", "The element Clicked");
-		} catch (IllegalArgumentException e) {
-			try {
-				GetReporting().FuncReport("Fail", "IllegalArgumentException");
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			throw e;
-		} catch (NoSuchElementException n) {
-			try {
-				GetReporting().FuncReport("Fail", "Element not displayed");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			throw n;
-		} catch (Exception e) {
-			try {
-				GetReporting().FuncReport("Fail", "The element not present in current page");
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			throw e;
-		}
-	}
 
 	/**
 	 * This method will look for an element on the screen to be clickable within
@@ -96,8 +66,6 @@ public class MobileAction2 extends CommonLib {
 			objElement.click();
 
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
-			// } catch (WebDriverException e) {
-			// System.out.println("WebDriverException, ignor it");
 		} catch (Exception e) {
 			try {
 				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
@@ -237,66 +205,6 @@ public class MobileAction2 extends CommonLib {
 			throw n;
 		} catch (Exception e) {
 			GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
-			throw e;
-		}
-	}
-
-	/**
-	 * This method will long press over the fromElement and then drag and drop
-	 * it to the toElement.
-	 * 
-	 * @param fromElement
-	 *            The element that has to be dragged.
-	 * @param toElement
-	 *            The element to which the dragged element has to be dropped.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 */
-	public void FuncDragElementToElement(MobileElement fromElement, MobileElement toElement) throws IOException {
-		try {
-			new TouchAction(((MobileDriver) GetDriver())).longPress(fromElement).moveTo(toElement).release().perform();
-			GetReporting().FuncReport("Pass", "Successfully dragged element '" + fromElement.getTagName()
-					+ "' to Element '" + toElement.getTagName() + "'.");
-		} catch (IllegalArgumentException e) {
-			GetReporting().FuncReport("Fail", "IllegalArgumentException Exception occurred");
-			throw e;
-		} catch (Exception e) {
-			GetReporting().FuncReport("Fail",
-					"Exception <b>- " + e.toString() + "</b> occured while trying to drag element '"
-							+ fromElement.getTagName() + "' to Element '" + toElement.getTagName() + "'.");
-			throw e;
-		}
-	}
-
-	/**
-	 * This method will long press over the first coordinate sets and then move
-	 * second set of coordinates and the release. This can also be used to swipe
-	 * from one coordinates set to another.
-	 * 
-	 * @param X1
-	 *            The abscissa for the starting coordinates.
-	 * @param Y1
-	 *            The ordinate for the ending coordinates.
-	 * @param xOffSet
-	 *            The abscissa for the ending coordinates.
-	 * @param yOffSet
-	 *            The ordinate for the ending coordinates.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 */
-	public void FuncDragUsingCoordinates(int X1, int Y1, int xOffSet, int yOffSet) throws IOException {
-		try {
-			new TouchAction(((MobileDriver) GetDriver())).longPress(X1, Y1).waitAction(200).moveTo(xOffSet, yOffSet)
-					.waitAction(200).release().perform();
-			GetReporting().FuncReport("Pass", "Successfully dragged from (" + X1 + "," + Y1 + ") to (" + X1 + xOffSet
-					+ "," + Y1 + yOffSet + ").");
-		} catch (IllegalArgumentException e) {
-			GetReporting().FuncReport("Fail", "IllegalArgumentException Exception occurred");
-			throw e;
-		} catch (Exception e) {
-			GetReporting().FuncReport("Fail",
-					"Exception <b>- " + e.toString() + "</b> occured while trying to drag from (" + X1 + "," + Y1
-							+ ") to (" + X1 + xOffSet + "," + Y1 + yOffSet + ").");
 			throw e;
 		}
 	}
@@ -654,35 +562,6 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This will look for an element and return the text of that element to the
-	 * report. This function doesn't return the text.
-	 * 
-	 * @param objElement
-	 *            The element for which the text is to be printed in the report.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 */
-	public void FuncGetTextToReport(MobileElement objElement) throws IOException {
-		try {
-			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
-			wait.until(ExpectedConditions.visibilityOf(objElement));
-			String textOfElement = objElement.getText();
-			GetReporting().FuncReport("Pass",
-					"Text of the element " + objElement.getTagName() + " is '" + textOfElement + "'.");
-		} catch (IllegalArgumentException e) {
-			GetReporting().FuncReport("Fail", "IllegalArgumentException");
-			throw e;
-		} catch (NoSuchElementException n) {
-			GetReporting().FuncReport("Fail", "Element not displayed" + objElement.getTagName());
-			throw n;
-		} catch (Exception e) {
-			GetReporting().FuncReport("Fail",
-					"The element <b>- " + objElement.getTagName() + "</b> not present in current page");
-			throw e;
-		}
-	}
-
-	/**
 	 * This method will close the keyboard if it is open. <br>
 	 * <p>
 	 * <b> Please use this method only when the keyboard is open as it used
@@ -758,74 +637,6 @@ public class MobileAction2 extends CommonLib {
 			elementToFind.click();
 		}
 
-	}
-
-	/**
-	 * This method will pinch over the device depending on the value of the
-	 * boolean inside.
-	 * 
-	 * @param inside
-	 *            true if you want to zoom out and false if you want to zoom in.
-	 * @param X1
-	 *            The stating ordinate of the pinch.
-	 * @param Y1
-	 *            The starting abscissa of the pinch.
-	 * @param radius
-	 *            The radius in pixels for the pinch to be performed.
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 */
-	public void FuncPinch(boolean inside, int X1, int Y1, int radius) throws IOException {
-		try {
-			TouchAction action1 = null;
-			TouchAction action2 = null;
-			if (inside) {
-				action1 = new TouchAction(((MobileDriver) GetDriver())).longPress(X1, Y1 + radius).moveTo(0, -radius)
-						.release();
-				action2 = new TouchAction(((MobileDriver) GetDriver())).longPress(X1, Y1 - radius).moveTo(0, radius)
-						.release();
-			} else {
-				action1 = new TouchAction(((MobileDriver) GetDriver())).longPress(X1, Y1).moveTo(0, radius).release();
-				action2 = new TouchAction(((MobileDriver) GetDriver())).longPress(X1, Y1).moveTo(0, -radius).release();
-			}
-			MultiTouchAction pinching = new MultiTouchAction(((MobileDriver) GetDriver()));
-			pinching.add(action1).add(action2).perform();
-			GetReporting().FuncReport("Pass", "Pinch is successful.");
-		} catch (IllegalArgumentException e) {
-			GetReporting().FuncReport("Fail", "IllegalArgumentException Exception occurred");
-			throw e;
-		} catch (NoSuchElementException n) {
-			GetReporting().FuncReport("Fail", "Element not displayed");
-			throw n;
-		} catch (Exception e) {
-			GetReporting().FuncReport("Fail",
-					"Exception <b>- " + e.toString() + "</b> occured while executing pinch command.");
-			throw e;
-		}
-	}
-
-	/**
-	 * This method will reset the application Which means that it will clear the
-	 * application data and the application cache files.
-	 * 
-	 * @throws Exception
-	 *             If there is problem while reporting.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If there is problem while reporting.
-	 */
-	public void FuncResetApplicaiton() throws IOException {
-		try {
-			((AppiumDriver) GetDriver()).resetApp();
-			GetReporting().FuncReport("Pass", "The application has been successfully reset.");
-		} catch (IllegalArgumentException e) {
-			GetReporting().FuncReport("Fail", "IllegalArgumentException");
-			throw e;
-		} catch (Exception e) {
-			GetReporting().FuncReport("Fail",
-					"Exception '" + e.toString() + "' occurred while resetting the application.");
-			throw e;
-		}
 	}
 
 	/**
@@ -995,37 +806,6 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	/**
-	 * This method will set the device location to a specific location that is
-	 * specified in the method. For android make sure that in developer setting,
-	 * mock location has been checked for API level>21, otherwise it will throw
-	 * an exception. This will work only on iOS emulators and not on real iOS
-	 * devices until the device is jailbroken which is not recommended.
-	 * 
-	 * @param latitude
-	 *            The latitude..
-	 * @param longitude
-	 *            The longitude.
-	 * @param altitude
-	 *            The altitude.
-	 * @throws IOException
-	 *             If there is a problem while reporting.
-	 */
-	public void FuncSetLocation(double latitude, double longitude, double altitude) throws IOException {
-		try {
-			Location locationToSet = new Location(latitude, longitude, altitude);
-			((AppiumDriver) GetDriver()).setLocation(locationToSet);
-		} catch (WebDriverException e) {
-			GetReporting().FuncReport("Fail",
-					"WebDriverException '" + e.toString() + "' occurred while setting Location.");
-			throw e;
-		} catch (Exception e) {
-			GetReporting().FuncReport("Fail", "Exception '" + e.toString() + "' occurred while setting Location.");
-			throw e;
-		}
-
-	}
-
-	/**
 	 * Force change the Orientation of the device to Potrait.
 	 * 
 	 * @throws IOException
@@ -1068,88 +848,6 @@ public class MobileAction2 extends CommonLib {
 			} catch (IOException e1) {
 				throw e1;
 			}
-			throw e;
-		}
-	}
-
-	/**
-	 * This function will swipe through the screen until an element is found on
-	 * the screen and click over it if the clickOnElement parameter is given as
-	 * true.
-	 * 
-	 * @param elementToFind
-	 *            The element that has to be found with the swipes.
-	 * @param maxSwipes
-	 *            The maximum number of times you want to swipe until the
-	 *            element has been found.
-	 * @param direction
-	 *            The direction of swipe. It is either 'up', 'down', 'left' or
-	 *            'right'. If the direction is something else, an
-	 *            IllegalArgumentException is thrown and the test will fail.
-	 * @param offset
-	 *            The offset for the swipe. It will be useful in devices in
-	 *            which the back home buttons are present on the screen itself,
-	 *            eg in motorola devices. You need to give offset so that the
-	 *            swipe starts above it.
-	 * @param clickOnElement
-	 *            A boolean value specifying weather you want to click on the
-	 *            element after it has been found.
-	 * 
-	 * @throws IOException
-	 *             If some error comes in reporting.
-	 */
-	public void FuncSwipeScreenWhileNotFound(MobileElement elementToFind, int maxSwipes, String direction, int offset,
-			boolean clickOnElement) throws IOException {
-		try {
-			int startx, starty, endx, endy;
-			Dimension screenDimensions = ((AppiumDriver) GetDriver()).manage().window().getSize();
-			if (direction.equalsIgnoreCase("down")) {
-				startx = screenDimensions.width / 2;
-				starty = screenDimensions.height - 20 - offset;
-				endx = startx;
-				endy = 20;
-			} else if (direction.equalsIgnoreCase("up")) {
-				startx = screenDimensions.width / 2;
-				starty = 20 + offset;
-				endx = startx;
-				endy = screenDimensions.height - 20;
-			} else if (direction.equalsIgnoreCase("right")) {
-				startx = 10 + offset;
-				starty = screenDimensions.height / 2;
-				endx = screenDimensions.width - 10;
-				endy = starty;
-			} else if (direction.equalsIgnoreCase("left")) {
-				startx = screenDimensions.width - 10 - offset;
-				starty = screenDimensions.height / 2;
-				endx = 10;
-				endy = starty;
-			} else {
-				throw new IllegalArgumentException("The direction given is '" + direction
-						+ "' is wrong. Please give either 'up', 'down', 'left' or 'right'.");
-			}
-			for (int i = 0; i < maxSwipes; i++) {
-				boolean elementFound = false;
-				try {
-					elementFound = elementToFind.isDisplayed();
-				} catch (NoSuchElementException e) {
-					((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 3000);
-				}
-				if (elementFound) {
-					if (clickOnElement)
-						elementToFind.click();
-					break;
-				}
-			}
-		} catch (IllegalArgumentException e) {
-			GetReporting().FuncReport("Fail", "Error occured in swipeWhileNotFound. \n" + e.toString());
-			throw e;
-		} catch (NoSuchElementException e) {
-			GetReporting().FuncReport("Fail",
-					"Could not find element: '" + elementToFind.toString() + "' in '" + maxSwipes + "' swipes.");
-			throw e;
-		} catch (Exception e) {
-			GetReporting().FuncReport("Fail",
-					"Exception '" + e.toString() + "' occurred while trying to use swipeWhileNotFound.");
 			throw e;
 		}
 	}
@@ -1379,16 +1077,6 @@ public class MobileAction2 extends CommonLib {
 			// e.printStackTrace(); //commented
 			throw e;
 		}
-
-		/*
-		 * } catch (IllegalArgumentException e) {
-		 * GetReporting().FuncReport("Fail", "IllegalArgumentException"); throw
-		 * e; } catch (NoSuchElementException n) {
-		 * GetReporting().FuncReport("Fail", "Element not displayed" +
-		 * expectedText); throw n; } catch (Exception e) {
-		 * GetReporting().FuncReport("Fail", "The element <b>- " + expectedText
-		 * + "</b> not present in current page"); throw e; }
-		 */
 	}
 
 	/**
@@ -1422,16 +1110,6 @@ public class MobileAction2 extends CommonLib {
 			// e.printStackTrace(); //commented
 			throw e;
 		}
-
-		/*
-		 * } catch (IllegalArgumentException e) {
-		 * GetReporting().FuncReport("Fail", "IllegalArgumentException"); throw
-		 * e; } catch (NoSuchElementException n) {
-		 * GetReporting().FuncReport("Fail", "Element not displayed" +
-		 * expectedText); throw n; } catch (Exception e) {
-		 * GetReporting().FuncReport("Fail", "The element <b>- " + expectedText
-		 * + "</b> not present in current page"); throw e; }
-		 */
 	}
 
 	public boolean verifyElementNotPresent(WebElement mobileElement, String expectedText) {
@@ -2102,9 +1780,9 @@ public class MobileAction2 extends CommonLib {
 	 * 
 	 * @param expectedText
 	 *            The expected text in this format like: "CONTACT INFORMATION |
-	 *            COORDONNÃ‰ES" if language is English then "CONTACT INFORMATION
+	 *            COORDONNES" if language is English then "CONTACT INFORMATION
 	 *            "to be printed in report if language is French then
-	 *            "COORDONNÃ‰ES" to be printed in report
+	 *            "COORDONNES" to be printed in report
 	 * 
 	 * @return nothing
 	 * 
@@ -3616,6 +3294,9 @@ public class MobileAction2 extends CommonLib {
 
 	}
 
+	/**
+	 * This is specifically for P2P related pages only
+	 */
 	public void waitP2PProgressBarVanish() {
 
 		WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
