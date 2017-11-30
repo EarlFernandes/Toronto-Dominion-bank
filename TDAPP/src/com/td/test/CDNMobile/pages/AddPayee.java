@@ -852,10 +852,10 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(firstPayeeFound, "First Payee found");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -878,9 +878,9 @@ public class AddPayee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
 				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
-				mobileAction.sleep(3000);
+				mobileAction.sleep(10000);
 				mobileAction.FuncClick(firstPayeeFound, "First Payee Address found");
-				mobileAction.sleep(3000);
+				mobileAction.sleep(10000);
 				mobileAction.FuncClick(addPayeeContinueBtn, "Add Payee Continue");
 
 			} else {
