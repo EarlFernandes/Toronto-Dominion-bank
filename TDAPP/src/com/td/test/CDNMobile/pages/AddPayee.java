@@ -932,9 +932,9 @@ public class AddPayee extends _CommonPage {
 			} else {
 				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
-				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
-				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				mobileAction.waitProgressBarVanish();
 
 			}
 
@@ -957,7 +957,7 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.waitProgressBarVanish();
 			}
 
 			// String acctNum = getTestdata("FromAccount");
@@ -969,16 +969,16 @@ public class AddPayee extends _CommonPage {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
 
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
 
 			} else {
 				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
-				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
-				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				mobileAction.waitProgressBarVanish();
 
 			}
 
@@ -1001,7 +1001,7 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.waitProgressBarVanish();
 			}
 
 			mobileAction.FuncClick(goHomeBtn, "Go Back Home btn");
@@ -1026,7 +1026,7 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(addAnotherPayeeBtn, "Add Another Payee btn");
 			} else {
 				mobileAction.FuncClick(addAnotherPayeeBtn, "Add Another Payee btn");
@@ -1052,7 +1052,7 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("WEBVIEW_com.td");
+				mobileAction.waitProgressBarVanish();
 			}
 
 			mobileAction.verifyElementIsDisplayed(addPayeeReceiptHeader, "Add Payee Receipt header");
