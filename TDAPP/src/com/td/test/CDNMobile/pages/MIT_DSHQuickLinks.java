@@ -308,9 +308,8 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 			if (mobileAction.isObjExists(mElement)) {
 				mobileAction.FuncClick(mElement, sDesc);
 			} else {
-				// mobileAction.FunctionSwipe("Left", 200, 100);
-				mobileAction.SwipeQuickLinks(200, 100);
-				mobileAction.FuncClick(mElement, sDesc);
+				mobileAction.SwipeWhileQuickLinkNotFound(mElement, true, 10, "left");
+				//mobileAction.FuncClick(mElement, sDesc);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -325,7 +324,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 			if (!mobileAction.isObjExists(mElement)) {
 				// mobileAction.FunctionSwipe("Left", 200, 100);
-				mobileAction.SwipeQuickLinks(200, 100);
+				mobileAction.SwipeWhileQuickLinkNotFound(mElement, false, 10, "left");
 				if (mobileAction.isObjExists(mElement))
 					bFlag = true;
 			} else

@@ -197,8 +197,16 @@ public class MIT_DSHNavRows extends _CommonPage {
 	public void verifyNavRowsBlendedUser() {
 		Decorator();
 		try {
+			
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 
 			verifyNR_Accounts(true);
+			
+			mobileAction.FuncSwipeOnce("up");
+			
+			verifyNR_Alerts(true);
+			
+			verifyNR_Markets(true);
 
 			verifyNR_Transfers(true);
 
@@ -206,10 +214,6 @@ public class MIT_DSHNavRows extends _CommonPage {
 
 			// verifyNR_InvestingAccounts(false); //Investing Accounts removed
 			// from Nav Rows as per new requirement
-
-			verifyNR_Alerts(true);
-
-			verifyNR_Markets(true);
 
 		} catch (Exception e) {
 			e.printStackTrace();
