@@ -389,25 +389,4 @@ public class PreviewPurchase extends _CommonPage {
 			return;
 		}
 	}
-
-	public void GoBackToHomePage() {
-		Decorator();
-		int count = 10;
-		String homeText = getTextInCurrentLocale(StringArray.ARRAY_HOME_HEADER);
-		try {
-			while (mobileAction.isBackButtonPresent() && count != 0) {
-				String pageText = mobileAction.getValue(page_title);
-				if (pageText.equalsIgnoreCase(homeText)) {
-					break;
-				}
-				mobileAction.ClickBackButton();
-				count--;
-				Decorator();
-			}
-			System.out.println("Go back to home already");
-		} catch (Exception e) {
-			System.out.println("Exception: back to home");
-		}
-	}
-
 }
