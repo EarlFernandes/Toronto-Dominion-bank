@@ -234,7 +234,9 @@ public final class StringArray {
 	public static final String[] ARRAY_OTP_UPDATE_COMPLETE_HEADER = { "Setup Complete", "Configuration terminée",
 			"设置完成", "設定完成" };
 
-	public static final String[] ARRAY_MY_ACCOUNTS_BANKING_HEADER = { "BANKING", "COMPTES BANCAIRES", "理财", "理財" };
+	public static final String[] ARRAY_MY_ACCOUNTS_BANKING_HEADER_ANDROID = { "BANKING", "COMPTES BANCAIRES", "理财",
+			"理財" };
+	public static final String[] ARRAY_MY_ACCOUNTS_BANKING_HEADER_IOS = { "BANKING", "SERVICES BANCAIRES", "理财", "理財" };
 
 	public static final String[] ARRAY_INVESTING_ACCOUNTS = { "Investing Accounts", "Comptes Placements directs TD",
 			"投资账户", "投資賬戶" };

@@ -465,18 +465,23 @@ public class Accounts extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				String labelText = getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER);
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER_IOS);
 				sectionHeader = mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[contains(@label,'" + labelText + "')]",
 						"My Accounts Banking header");
 				// sectionHeader = mobileAction.mobileElementUsingIOSClassChain(
 				// "**/XCUIElementTypeStaticText[`label CONTAINS[cd] '" +
 				// labelText + "'`]");
+				mobileAction.verifyElementIsDisplayed(sectionHeader, "My Accounts Banking header");
+				mobileAction.verifyElementTextContains(sectionHeader,
+						getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER_IOS));
+
+			} else {
+				mobileAction.verifyElementIsDisplayed(sectionHeader, "My Accounts Banking header");
+				mobileAction.verifyElementTextContains(sectionHeader,
+						getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER_ANDROID));
 
 			}
-			mobileAction.verifyElementIsDisplayed(sectionHeader, "My Accounts Banking header");
-			mobileAction.verifyElementTextContains(sectionHeader,
-					getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER));
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
