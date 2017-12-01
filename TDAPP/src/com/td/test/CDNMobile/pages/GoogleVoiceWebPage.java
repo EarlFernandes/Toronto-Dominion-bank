@@ -88,7 +88,10 @@ public class GoogleVoiceWebPage extends _CommonPage {
 			// currentLocale = "en";
 			if (currentLocale.equalsIgnoreCase("fr")) {
 				String msg = this.gv_first_message.getText().replaceAll(".", "");
-				passcode = this.gv_first_message.getText().substring(msg.length() - 6, msg.length()).trim();
+				System.out.println(msg);
+				System.out.println(msg.length() - 6 + " " + msg.length());
+
+				passcode = msg.substring(msg.length() - 6, msg.length()).trim();
 
 			} else {
 				int firstSpace = this.gv_first_message.getText().indexOf(" ");
