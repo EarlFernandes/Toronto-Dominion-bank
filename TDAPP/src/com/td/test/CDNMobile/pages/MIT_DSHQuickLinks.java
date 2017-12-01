@@ -116,7 +116,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Apple Pay' or @label='Paiement mobile' or @label='移动支付' or @label='流動付款']")
 	private MobileElement HDR_ApplePay;
 
-	@iOSFindBy(xpath = "//*[@label='Pay Bill' or @label='Payer des factures' or @label='支付账单' or @label='支付賬單']")
+	@iOSFindBy(xpath = "//*[@label='Pay Bill' or @label='Payer une factures' or @label='支付账单' or @label='支付賬單']")
 	@AndroidFindBy(xpath = "//*[@text='Pay Bill' or @text='Payer des factures' or @text='支付账单' or @text='支付賬單']")
 	private MobileElement HDR_PayBills;
 
@@ -140,7 +140,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Banking' or @text='Services bancaires' or @text='理财' or @text='理財']")
 	private MobileElement HDR_Banking;
 
-	@iOSFindBy(xpath = "//*[@label='Mobile Deposit' or @label='Dépôt mobile' or @label='移动存款服务' or @label='流動存款']")
+	@iOSFindBy(xpath = "//*[@label='Mobile Deposit' or @name='Dépôt mobile' or @label='移动存款服务' or @label='流動存款']")
 	@AndroidFindBy(xpath = "//*[@text='Mobile Deposit' or @text='Dépôt mobile' or @text='移动存款服务' or @text='流動存款']")
 	private MobileElement HDR_Mobile_Deposit;
 
@@ -156,15 +156,15 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='HOLDINGS' or @text='PLACEMENTS' or @text='持有投资' or @text='持有投資']")
 	private MobileElement QL_HOLDINGS;
 
-	@iOSFindBy(xpath = "//*[@label='ORDERS' or @label='ORDRES' or @label='订单' or @label='交易訂單']")
-	@AndroidFindBy(xpath = "//*[@text='ORDERS' or @text='ORDRES' or @text='订单' or @text='交易訂單']")
+	@iOSFindBy(xpath = "//*[@label='ORDERS' or @label='ORDRES' or @label='订单' or @label='訂單']")
+	@AndroidFindBy(xpath = "//*[@text='ORDERS' or @text='ORDRES' or @text='订单' or @text='訂單']")
 	private MobileElement QL_ORDERS;
 
-	@iOSFindBy(xpath = "//*[@label='ORDERS' or @label='ORDRES' or @label='订单' or @label='交易訂單']")
+	@iOSFindBy(xpath = "//*[@label='Orders' or @label='Ordres' or @label='订单' or @label='訂單']")
 	@AndroidFindBy(id = "com.td:id/ordersTab")
 	private MobileElement LBL_OrdersTab;
 
-	@iOSFindBy(xpath = "//*[@label='ORDERS' or @label='ORDRES' or @label='订单' or @label='交易訂單']")
+	@iOSXCUITFindBy(accessibility = "INVESTING_HOKDING_TABLE_SYMBOL_BUTTON")
 	@AndroidFindBy(id = "com.td:id/textview_left")
 	private MobileElement LBL_HoldingsTab_SYMBOL;
 
@@ -609,7 +609,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
 					mobileAction.FuncClick(BT_Back, "< Button");
 				} else {
-					mobileAction.verifyElementIsDisplayed(HDR_PayBills, "Header: Pay Bills"); // FIX
+					mobileAction.verifyElementIsDisplayed(HDR_PayBills, "Header: Pay Bill"); // FIX
 																								// -
 																								// Android
 																								// &

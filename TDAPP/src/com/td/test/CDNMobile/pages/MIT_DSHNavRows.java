@@ -285,6 +285,8 @@ public class MIT_DSHNavRows extends _CommonPage {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 						mobileAction.FuncClick(BT_HamburgerMenu, "BT_Home_HamburgerMenu");
 						mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+					} else {
+						mobileAction.FuncClick(BT_Back, "< Button");
 					}
 				}
 			}
