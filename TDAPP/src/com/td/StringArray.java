@@ -227,7 +227,7 @@ public final class StringArray {
 	// My Accounts
 	public static final String[] ARRAY_MY_ACCOUNTS_CREDIT_HEADER_IOS = { "CREDIT", "CRÉDIT", "信用", "信用" };
 	public static final String[] ARRAY_MY_ACCOUNTS_CREDIT_HEADER_ANDROID = { "CREDIT", "CRÉDIT", "信贷", "信貸" };
-	public static final String[] ARRAY_MY_ACCOUNTS_BANKING_HEADER = { "BANKING", "SERVICES BANCAIRES", "理财", "理財" };
+	public static final String[] ARRAY_MY_ACCOUNTS_BANKING_HEADER = { "BANKING", "BANCAIRES", "理财", "理財" };
 	public static final String[] ARRAY_TRANSACTION_PENDING = { "Pending", "En attente", "待处理", "尚待處理" };
 	public static final String[] ARRAY_MY_ACCOUNTS_QUICKLINK_PAY = { "PAY", "PAYER", "付款", "付款" };
 
@@ -251,10 +251,13 @@ public final class StringArray {
 	// Login
 	public static final String[] ARRAY_LOGIN_USERNAME_OR_ACCESS_CARD_IOS = { "Username or Access Card",
 			"Nom d’utilisateur ou numéro de carte Accès", "用户名或易通卡", "用戶名稱或易通卡" };
-	public static final String[] ARRAY_LOGIN_REMEMBER_ME_ON = { "Remember Me on",
+	public static final String[] ARRAY_LOGIN_REMEMBER_ME_ON = { "Remember me on",
 			"Mémorisation des renseignements activée", "“记住我”已开启", "「記住我」已開啟" };
 	public static final String[] ARRAY_LOGIN_REMEMBER_ME_OFF = { "Remember Me off",
 			"Mémorisation des renseignements désactivée", "“记住我”已关闭", "「記住我」已關閉" };
+
+	// Logout
+	public static final String[] ARRAY_LOGOUT_GO_BACK_HOME = { "GO BACK", "RETOUR À", "返回主页", "返回首頁" };
 
 	// Manage Payees
 	public static final String[] ARRAY_CANADIAN_PAYEE_DELETED = { "Canadian payee has been deleted",

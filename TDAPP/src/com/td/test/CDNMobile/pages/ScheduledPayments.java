@@ -67,12 +67,11 @@ public class ScheduledPayments extends _CommonPage {
 				lastPaymentTitleXpath = "//android.widget.TextView[@resource-id='com.td:id/amountText' and (contains(@text,'"
 						+ amt + "') or contains(@text,'" + amtLastHr + "'))]";
 			} else {
-				String paymentCell = "//XCUIElementTypeTable[1]/XCUIElementTypeCell";
+				String paymentCell = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell";
 				List<MobileElement> paymentList = (List<MobileElement>) mobileAction.getElementsList(paymentCell);
 
 				int lastPaymentIndex = paymentList.size();
-				lastPaymentTitleXpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[" + (lastPaymentIndex)
-						+ "]/XCUIElementTypeStaticText[1]";
+				lastPaymentTitleXpath = paymentCell + "[" + (lastPaymentIndex) + "]/XCUIElementTypeStaticText[1]";
 			}
 			mobileAction.swipeAndSearchByxpath(lastPaymentTitleXpath, true, 10, "Up");
 			mobileAction.FuncClick(cancelPaymentBtn, "Cancel Payment Button");
@@ -82,7 +81,7 @@ public class ScheduledPayments extends _CommonPage {
 				cancelPaymentDialogYesBtn = cancelPaymentDialogYesBtnFR;
 			}
 			mobileAction.FuncClick(cancelPaymentDialogYesBtn, "Cancel Payment Dialog Yes Button");
-			mobileAction.verifyElementIsPresent(PageHeader.get().getProgressBar());
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -122,31 +121,37 @@ public class ScheduledPayments extends _CommonPage {
 				mobileAction.verifyElementTextContains(lastPaymentAmt, amt);
 
 			} else {
-				String paymentCell = "//XCUIElementTypeTable[1]/XCUIElementTypeCell";
+				// Full path to each cell
+				String paymentCell = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell";
 				List<MobileElement> paymentList = (List<MobileElement>) mobileAction.getElementsList(paymentCell);
 
 				int lastPaymentIndex = paymentList.size();
-				String lastPaymentTitleXpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[" + (lastPaymentIndex)
+				String lastPaymentTitleXpath = paymentCell + "[" + (lastPaymentIndex)
 						+ "]/XCUIElementTypeStaticText[1]";
-				String lastPaymentDescXpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[" + (lastPaymentIndex)
-						+ "]/XCUIElementTypeStaticText[2]";
-				String lastPaymentAmtXpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[" + (lastPaymentIndex)
-						+ "]/XCUIElementTypeStaticText[3]";
+				String lastPaymentDescXpath = paymentCell + "[" + (lastPaymentIndex) + "]/XCUIElementTypeStaticText[2]";
+				String lastPaymentAmtXpath = paymentCell + "[" + (lastPaymentIndex) + "]/XCUIElementTypeStaticText[3]";
 
+				System.out.println(lastPaymentAmtXpath);
 				mobileAction.swipeAndSearchByxpath(lastPaymentTitleXpath, false, 10, "Up");
 				MobileElement lastPaymentTitle = mobileAction.verifyElementUsingXPath(lastPaymentTitleXpath,
 						"Last Payment Title");
-				mobileAction.verifyElementTextContains(lastPaymentTitle, toAccount);
 				MobileElement lastPaymentDesc = mobileAction.verifyElementUsingXPath(lastPaymentDescXpath,
 						"Last Payment Description");
-				mobileAction.verifyElementTextContains(lastPaymentDesc, fromAccount);
 				MobileElement lastPaymentAmt = mobileAction.verifyElementUsingXPath(lastPaymentAmtXpath,
 						"Last Payment Amt");
 
-				if (cal.get(Calendar.MINUTE) <= 1) {
-					amt = amtLastHr;
-				}
-				mobileAction.verifyElementTextContains(lastPaymentAmt, amt);
+				mobileAction.verifyElementIsDisplayed(lastPaymentTitle, "Last Payment Title");
+				mobileAction.verifyElementIsDisplayed(lastPaymentDesc, "Last Payment Description");
+				mobileAction.verifyElementIsDisplayed(lastPaymentAmt, "Last Payment Amt");
+
+				/*
+				 * mobileAction.verifyElementTextContains(lastPaymentTitle,
+				 * toAccount);
+				 * mobileAction.verifyElementTextContains(lastPaymentDesc,
+				 * fromAccount); if (cal.get(Calendar.MINUTE) <= 1) { amt =
+				 * amtLastHr; }
+				 * mobileAction.verifyElementTextContains(lastPaymentAmt, amt);
+				 */
 
 			}
 

@@ -168,6 +168,9 @@ public class EventCase {
 		// Login
 		Login_VerifyUserNotRemembered, Login_LoginUsingAccessCardNumber, Login_LoginUsingAlias, Login_DeleteAllRememberedIDs, Login_VerifyAllRememberedIDsDeleted, Login_VerifyRememberedIDs, Login_VerifyLoginMFA, Login_CloseApp,
 
+		// Logout
+		Logout_GoBackHome,
+
 		// Manage Payee
 		ManagePayee_ClickNewPayee, ManagePayees_Button, ManagePayee_AddCanadianPayee, ManagePayee_ClickPayeeByAcctNumber, ManagePayee_DeletePayee, ManagePayee_EditPayee, ManagePayee_VerifyCanadianPayeeDeleted, ManagePayee_VerifyPayeeEdited, ManagePayee_VerifyUSPayeeDeleted, ManagePayee_EditPayeeDescription,
 
@@ -4609,6 +4612,11 @@ public class EventCase {
 
 		case Login_VerifyLoginMFA:
 			Login.get().verifyLoginMFA();
+			break;
+
+		// Logout
+		case Logout_GoBackHome:
+			Logout.get().goBackHome();
 			break;
 
 		// Manage Payees

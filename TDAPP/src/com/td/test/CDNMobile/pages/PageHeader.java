@@ -34,7 +34,7 @@ public class PageHeader extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/hamburger")
 	private MobileElement menuButton;
 
-	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='NAVIGATION_ITEM_BACK' or @label='p2p header caret']")
 	@AndroidFindBy(id = "android:id/up")
 	private MobileElement backButton;
 
@@ -116,4 +116,10 @@ public class PageHeader extends _CommonPage {
 
 	}
 
+	public MobileElement getBackButton() {
+		Decorator();
+
+		return backButton;
+
+	}
 }

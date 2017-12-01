@@ -37,13 +37,13 @@ public class Logout extends _CommonPage {
 	@iOSFindBy(accessibility = "LOGOUT_SUC_MESSAGE")
 	private MobileElement successMsg;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell[1]")
 	private MobileElement goBackHome;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell[2]")
 	private MobileElement contactUs;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell[3]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell[3]")
 	private MobileElement locations;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Terminé']")
@@ -276,4 +276,29 @@ public class Logout extends _CommonPage {
 			e.printStackTrace();
 		}
 	}
+
+	public void goBackHome() {
+		Decorator();
+
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				String xpath = "//android.widget.Button[contains(@text,'"
+						+ getTextInCurrentLocale(StringArray.ARRAY_LOGOUT_GO_BACK_HOME) + "')]";
+				goBackHome = mobileAction.verifyElementUsingXPath(xpath, "Go Back Home button");
+			} else {
+				mobileAction.FuncClick(goBackHome, "Go Back Home button");
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
 }

@@ -142,7 +142,7 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/classificationTexView")
 	private MobileElement sectionHeader;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/summaryContent']/android.widget.LinearLayout[2]")
 	private MobileElement firstAcct;
 
@@ -1056,16 +1056,12 @@ public class Accounts extends _CommonPage {
 		Decorator();
 		try {
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				String labelText = getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER);
-				sectionHeader = mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeStaticText[contains(@label,'" + labelText + "')]",
-						"My Accounts Banking header");
-				// sectionHeader = mobileAction.mobileElementUsingIOSClassChain(
-				// "**/XCUIElementTypeStaticText[`label CONTAINS[cd] '" +
-				// labelText + "'`]");
-
-			}
+			String labelText = getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER);
+			sectionHeader = mobileAction.verifyElementUsingXPath(
+					"//XCUIElementTypeStaticText[contains(@label,'" + labelText + "')]", "My Accounts Banking header");
+			// sectionHeader = mobileAction.mobileElementUsingIOSClassChain(
+			// "**/XCUIElementTypeStaticText[`label CONTAINS[cd] '" +
+			// labelText + "'`]");
 			mobileAction.verifyElementIsDisplayed(sectionHeader, "My Accounts Banking header");
 			mobileAction.verifyElementTextContains(sectionHeader,
 					getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER));

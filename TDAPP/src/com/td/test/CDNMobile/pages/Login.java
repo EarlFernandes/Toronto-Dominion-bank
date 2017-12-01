@@ -218,7 +218,8 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@resource-id='android:id/action_bar_title' or @resource-id='android:id/content']")
 	private MobileElement logined_page_Header;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeScrollView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeScrollView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1] | "
+			+ "//XCUIElementTypeScrollView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]")
 	@AndroidFindBy(id = "com.td:id/remember_switch")
 	private MobileElement rememberMeSwitch;
 
@@ -733,12 +734,13 @@ public class Login extends _CommonPage {
 			Decorator();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				mobileAction.ClickBackButton();
-				Thread.sleep(1000);
+				// To make the logout behaviour consistent between iOS & Android
+				// mobileAction.ClickBackButton();
+				// Thread.sleep(1000);
 				mobileAction.clickMenuButton();
 				mobileAction.FuncClick(logout, "Logout");
-				mobileAction.ClickBackButton();
-				Thread.sleep(1000);
+				// mobileAction.ClickBackButton();
+				// Thread.sleep(1000);
 			} else {
 				mobileAction.clickMenuButton();
 				logout = mobileAction.verifyElementUsingXPath(
@@ -747,17 +749,13 @@ public class Login extends _CommonPage {
 						"Logout");
 				mobileAction.FuncClick(logout, "Logout");
 			}
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
@@ -1627,8 +1625,9 @@ public class Login extends _CommonPage {
 					}
 				} else {
 					String currentState = mobileAction.FuncGetText(rememberMeSwitch);
-					if (currentState.equals("Remember Me")
-							|| currentState.equals(getTextInCurrentLocale(StringArray.ARRAY_LOGIN_REMEMBER_ME_ON))) {
+					System.out.println(currentState);
+					if (currentState.contains("Remember me")
+							|| currentState.contains(getTextInCurrentLocale(StringArray.ARRAY_LOGIN_REMEMBER_ME_ON))) {
 						mobileAction.FuncClick(rememberMeSwitch, "Remember Me Switch OFF");
 					}
 				}
@@ -1822,7 +1821,7 @@ public class Login extends _CommonPage {
 				cardFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
 				// mobileAction.FuncClick(cancelActionList, "Cancel Action
 				// List");
-				mobileAction.ClickBackButton();
+				mobileAction.FuncClickBackButton();
 
 				if (cardFound == null) {
 					break;
