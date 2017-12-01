@@ -210,7 +210,7 @@ public final class StringArray {
 			"Before you can delete this phone, you must add another number so you can always get your security codes",
 			"Avant de supprimer ce téléphone, vous devez ajouter un autre numéro sur lequel recevoir des codes de sécurité",
 			"删除此电话号码前，您必须添加一个其他电话号码以确保始终可接收安全码", "刪除此電話號碼前，您必須新增另一個電話號碼以確保您可隨時接收驗證碼" };
-	public static final String[] ARRAY_OTP_SETUP_PASSCODE_VERIFIED = { "Verified", "Vérifié", "已验证", "已驗證" };
+	public static final String[] ARRAY_OTP_SETUP_PASSCODE_VERIFIED = { "Verified", "Validé", "已验证", "已驗證" };
 	public static final String[] ARRAY_OTP_SETUP_SETUP_COMPLETE_HEADER = { "Setup Complete", "Configuration terminée",
 			"设置完成", "設定完成" };
 
