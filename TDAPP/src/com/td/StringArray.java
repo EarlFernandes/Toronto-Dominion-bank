@@ -210,7 +210,7 @@ public final class StringArray {
 			"Before you can delete this phone, you must add another number so you can always get your security codes",
 			"Avant de supprimer ce téléphone, vous devez ajouter un autre numéro sur lequel recevoir des codes de sécurité",
 			"删除此电话号码前，您必须添加一个其他电话号码以确保始终可接收安全码", "刪除此電話號碼前，您必須新增另一個電話號碼以確保您可隨時接收驗證碼" };
-	public static final String[] ARRAY_OTP_SETUP_PASSCODE_VERIFIED = { "Verified", "Validé", "验证成功", "驗證成功" };
+	public static final String[] ARRAY_OTP_SETUP_PASSCODE_VERIFIED = { "Verified", "Vérifié", "已验证", "已驗證" };
 	public static final String[] ARRAY_OTP_SETUP_SETUP_COMPLETE_HEADER = { "Setup Complete", "Configuration terminée",
 			"设置完成", "設定完成" };
 
@@ -229,12 +229,12 @@ public final class StringArray {
 	public static final String[] ARRAY_OTP_UPDATE_CHANGE_EMAIL_HEADER_OLD = { "Change Security Email",
 			"Modifier l’adresse courriel de sécurité", "更改安全信息邮箱", "變更安全性資訊收件箱" };
 	public static final String[] ARRAY_OTP_UPDATE_CHANGE_EMAIL_HEADER = { "Security Email",
-			"L’adresse courriel de sécurité", "安全信息邮箱", "安全性資訊收件箱" };
+			"Courriel de sécurité", "安全电子邮件", "安全電子郵件" };
 
 	public static final String[] ARRAY_OTP_UPDATE_COMPLETE_HEADER = { "Setup Complete", "Configuration terminée",
 			"设置完成", "設定完成" };
 
-	public static final String[] ARRAY_MY_ACCOUNTS_BANKING_HEADER = { "BANKING", "SERVICES BANCAIRES", "理财", "理財" };
+	public static final String[] ARRAY_MY_ACCOUNTS_BANKING_HEADER = { "BANKING", "COMPTES BANCAIRES", "理财", "理財" };
 
 	public static final String[] ARRAY_INVESTING_ACCOUNTS = { "Investing Accounts", "Comptes Placements directs TD",
 			"投资账户", "投資賬戶" };
