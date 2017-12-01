@@ -94,7 +94,8 @@ public class MobileAction2 extends CommonLib {
 			wait.until(ExpectedConditions.visibilityOf(objElement));
 
 			objElement.click();
-
+			Thread.sleep(1000); // sleep 1s so that screenshot is that after
+								// element clicked
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
 			// } catch (WebDriverException e) {
 			// System.out.println("WebDriverException, ignor it");

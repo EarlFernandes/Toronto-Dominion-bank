@@ -221,6 +221,10 @@ public class Bill_PayCanada extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='PAYBILL_VIEW_PAYEE']/following-sibling::XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
 	private MobileElement payeeValue;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Start Date']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/date_Label']")
+	private MobileElement startDate;
 
 	String accesscardTable = " //XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
 	String Firstpart = "//XCUIElementTypeCell[";
@@ -1282,4 +1286,14 @@ public class Bill_PayCanada extends _CommonPage {
 
 	}
 
+	public void clickStartDate() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(startDate, "Start Date");
+		}catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
+	}
 }
