@@ -326,6 +326,7 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(LBL_Searchoraddsymbols, "Search or add symbols");
 
+			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncSwipeWhileElementNotFound(BT_More, false, 6, "up");
 
 		} catch (Exception e) {

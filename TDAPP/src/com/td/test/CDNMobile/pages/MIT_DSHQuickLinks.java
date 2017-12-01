@@ -65,14 +65,14 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	MobileElement InvestingAccount;
 
 	@iOSFindBy(xpath = "//*[@label='SEND MONEY' or @label='ENVOI DE FONDS' or @label='汇款' or @label='匯款']")
-	@AndroidFindBy(xpath = "//*[@text='SEND MONEY' or contains(@text,'ENVOI') or @text='汇款' or @text='匯款']")
+	@AndroidFindBy(xpath = "//*[(@text='SEND MONEY' or contains(@text,'ENVOI') or @text='汇款' or @text='匯款') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_SENDMONEY;
 
 	@iOSFindBy(xpath = "//*[@label='TRANSFER' or @label='VIREMENT' or @label='转账' or @label='轉賬']")
-	@AndroidFindBy(xpath = "//*[@text='TRANSFER' or @text='VIREMENT' or @text='转账' or @text='轉賬']")
+	@AndroidFindBy(xpath = "//*[(@text='TRANSFER' or @text='VIREMENT' or @text='转账' or @text='轉賬') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_TRANSFER;
 
-	@AndroidFindBy(xpath = "//*[@text='PAY NOW' or @text='PAYER MAINTENANT' or @text='马上付款' or @text='即刻付款']")
+	@AndroidFindBy(xpath = "//*[(@text='PAY NOW' or @text='PAYER MAINTENANT' or @text='马上付款' or @text='即刻付款') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_PAYNOW;
 
 	@iOSFindBy(xpath = "//*[@label='Apple Pay' or @label='APPLE PAY']") // French/CH_SM/CH_TD
@@ -91,23 +91,23 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	private MobileElement QL_APPLEPAY;
 
 	@iOSFindBy(xpath = "//*[@label='DEPOSIT' or @label='DÉPÔT' or @label='存款' or @label='存款']")
-	@AndroidFindBy(xpath = "//*[@text='DEPOSIT' or @text='DÉPÔT' or @text='存款' or @text='存款']")
+	@AndroidFindBy(xpath = "//*[(@text='DEPOSIT' or @text='DÉPÔT' or @text='存款' or @text='存款') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_DEPOSIT;
 
 	@iOSFindBy(xpath = "//*[@label='WATCHLISTS' or @label='LISTES DE SURVEILLANCE' or @label='自选股观察名单' or @label='自選股觀察名單']")
-	@AndroidFindBy(xpath = "//*[@text='WATCHLISTS' or @text='LISTES DE SURVEILLANCE' or @text='自选股观察名单' or @text='自選股觀察名單']")
+	@AndroidFindBy(xpath = "//*[(@text='WATCHLISTS' or @text='LISTES DE SURVEILLANCE' or @text='自选股观察名单' or @text='自選股觀察名單') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_WATCHLISTS;
 
 	@iOSFindBy(xpath = "//*[@label='QUOTE' or @label='COTE' or @label='报价' or @label='報價']")
-	@AndroidFindBy(xpath = "//*[@text='QUOTE' or @text='COTE' or @text='报价' or @text='報價']")
+	@AndroidFindBy(xpath = "//*[(@text='QUOTE' or @text='COTE' or @text='报价' or @text='報價') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_QUOTE;
 
 	@iOSFindBy(xpath = "//*[@label='PAY BILL' or @label='PAIEMENT DE FACTURES' or @label='支付账单' or @label='支付賬單']")
-	@AndroidFindBy(xpath = "//*[@text='PAY BILL' or @text='PAIEMENT DE FACTURES' or @text='支付账单' or @text='支付賬單']")
+	@AndroidFindBy(xpath = "//*[(@text='PAY BILL' or @text='PAIEMENT DE FACTURES' or @text='支付账单' or @text='支付賬單') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_PAY_BILL;
 
 	@iOSFindBy(xpath = "//*[@label='TRADE' or @label='NÉGOCIATION' or @label='交易' or @label='交易']")
-	@AndroidFindBy(xpath = "//*[@text='TRADE' or @text='NÉGOCIATION' or @text='交易' or @text='交易']")
+	@AndroidFindBy(xpath = "//*[(@text='TRADE' or @text='NÉGOCIATION' or @text='交易' or @text='交易') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_TRADE;
 
 	@AndroidFindBy(xpath = "//*[@text='Mobile Payment' or @text='Paiement mobile' or @text='移动支付' or @text='流動付款']")
