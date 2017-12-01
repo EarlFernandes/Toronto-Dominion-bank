@@ -170,7 +170,13 @@ public class ManageContacts extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -193,7 +199,13 @@ public class ManageContacts extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -212,11 +224,21 @@ public class ManageContacts extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.FuncClick(addContactButton, "Add Contacts Button");
+			if (mobileAction.verifyElementIsPresent(addContactButton)) {
+				mobileAction.FuncClick(addContactButton, "Add Contacts Button");
+			} else {
+				mobileAction.FuncClick(addContactSign, "Add contact plus button");
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -286,7 +308,13 @@ public class ManageContacts extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -326,7 +354,13 @@ public class ManageContacts extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -361,7 +395,13 @@ public class ManageContacts extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -427,7 +467,13 @@ public class ManageContacts extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -449,7 +495,13 @@ public class ManageContacts extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -534,7 +586,13 @@ public class ManageContacts extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -569,7 +627,13 @@ public class ManageContacts extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -596,7 +660,13 @@ public class ManageContacts extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -620,7 +690,13 @@ public class ManageContacts extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -654,7 +730,13 @@ public class ManageContacts extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -680,7 +762,7 @@ public class ManageContacts extends _CommonPage {
 				clickContact();
 				editContact();
 				verifyContactEditSuccessMsg();
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 
 				if (i != 2) {
 					for (int m = 0; m <= i; m++) {
@@ -693,7 +775,13 @@ public class ManageContacts extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -720,14 +808,20 @@ public class ManageContacts extends _CommonPage {
 				noDeleteContact();
 				deleteContact();
 				verifyContactDeleteSuccessMsg();
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 				mobileAction.FunctionSwipe("left", 200, 200);
 
 			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -767,7 +861,7 @@ public class ManageContacts extends _CommonPage {
 				if (i != 2) {
 					for (int m = 0; m <= i; m++) {
 						mobileAction.FunctionSwipe("left", 200, 100);
-						mobileAction.waitProgressBarVanish();
+						mobileAction.waitP2PProgressBarVanish();
 					}
 				}
 
@@ -775,7 +869,13 @@ public class ManageContacts extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 }

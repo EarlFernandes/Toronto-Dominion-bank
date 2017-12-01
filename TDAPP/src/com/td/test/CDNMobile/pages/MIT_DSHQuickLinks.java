@@ -309,7 +309,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				mobileAction.FuncClick(mElement, sDesc);
 			} else {
 				mobileAction.SwipeWhileQuickLinkNotFound(mElement, true, 10, "left");
-				//mobileAction.FuncClick(mElement, sDesc);
+				// mobileAction.FuncClick(mElement, sDesc);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -398,7 +398,10 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
 				mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
 			} else {
+				Thread.sleep(8000);
 				mobileAction.FuncClick(BT_Back, "< Button");
+				Thread.sleep(5000);
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -406,9 +409,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	}
 
 	public void turnInvestingFocusOn() {
-
 		Decorator();
-
 		try {
 
 			if (mobileAction.isObjExists(btnSwitchNow, 2)) {
@@ -418,7 +419,6 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
 
 				mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
-
 			}
 
 		} catch (Exception e) {
