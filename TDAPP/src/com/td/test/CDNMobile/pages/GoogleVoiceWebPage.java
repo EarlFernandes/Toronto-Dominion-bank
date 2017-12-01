@@ -86,7 +86,7 @@ public class GoogleVoiceWebPage extends _CommonPage {
 			this.waitForElementVisible(this.gv_first_message);
 
 			// currentLocale = "en";
-			if (currentLocale.equals("fr")) {
+			if (currentLocale.equalsIgnoreCase("fr")) {
 				String msg = this.gv_first_message.getText().replaceAll(".", "");
 				passcode = this.gv_first_message.getText().substring(msg.length() - 6, msg.length()).trim();
 
