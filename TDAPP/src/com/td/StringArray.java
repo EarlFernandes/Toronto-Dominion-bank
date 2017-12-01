@@ -343,6 +343,17 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_TRADE = { "Trade", "Négociation", "交易", "交易" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_LOGOUT = { "Logout", "Fermer la session", "退出", "登出" };
 
+	public static final String[] ARRAY_DASHBOARD_REFRESH = { "Refresh", "Rafraîchir", "刷新", "刷新" };
+	public static final String[] ARRAY_DASHBOARD_UPDATEQUOTES = { "Update the quotes for your symbols",
+			"Mettre à jour les cotes associées à vos symboles", "更新股票代码的报价", "更新股票代號的報價" };
+	public static final String[] ARRAY_DASHBOARD_EDITWATCHLIST = { "Edit watchlist",
+			"Modifier la liste de surveillance", "编辑自选股观察名单", "編輯自選股觀察名單" };
+	public static final String[] ARRAY_DASHBOARD_MANAGERENAME = { "Manage, rename, and add or remove symbols",
+			"Gérer, renommer, ajouter ou supprimer des symboles", "管理、重命名、添加或移除股票代码", "管理、重新命名、新增或移除股票代號" };
+	public static final String[] ARRAY_DASHBOARD_SETTINGS = { "Settings", "Paramètres", "设置", "設定" };
+	public static final String[] ARRAY_DASHBOARD_SWITCHBETWEEN = { "Switch between a banking or investing view",
+			"Passer de l’affichage bancaire à l’affichage de placements", "切换理财或投资视图", "切換理財或投資視圖" };
+
 	public static final String[] ARRAY_DASHBOARD_LOCATIONNEAREST = { "Nearest Branch", "Succursale", "最近的分行", "最近分行" };
 
 	public static final String[] ARRAY_DASHBOARD_CONTACTUS = { "Contact Us", "Contactez-nous", "联系我们", "聯絡我們" };
@@ -497,6 +508,7 @@ public final class StringArray {
 			"If your existing credit card is damaged or not working, you can request a replacement card.",
 			"Si votre carte de crédit est endommagée ou ne fonctionne plus, vous pouvez demander une carte de remplacement.",
 			"如果您现有的信用卡损坏或无效，您可以申请换卡。", "如果您現有的信用卡損壞或無效，您可以申請換卡。" };
+	public static final String[] ARRAY_FORM_INFORMATION = { "Personal Information", "", "", "" };
 	// End of CLIP
 
 	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",
@@ -569,7 +581,7 @@ public final class StringArray {
 	public static final String[] MONEY_REQUESTED_LBL = { "Money Requested", "Fonds demandés", "", "" };
 	public static final String[] SEE_ALL_LBL = { "See all", "Tout afficher", "", "" };
 	public static final String[] SEND_MONEY_TRANSFER_CANCELLED_RECEIPT = { "Transfer Cancelled",
-			"[FR]Transfer Cancelled", "", "" };
+			"Virement annulé", "", "" };
 	public static final String[] ADD_AUTODEPOSIT_RECEIPT_HEADER = { "Almost done!", "Vous avez presque terminé!", "",
 			"" };
 	public static final String[] ADD_AUTODEPOSIT_RECEIPT_SUB_HEADER = { "Check your email for instructions",

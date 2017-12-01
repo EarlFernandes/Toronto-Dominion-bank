@@ -38,7 +38,7 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement sendMoneyHeader;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Select Recipient' or label CONTAINS[cd] 'Virer des fonds'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Select Recipient' or label CONTAINS[cd] 'Sélectionnez le destinataire'`]")
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/recipient_view']")
 	private MobileElement selectRecipient;
 
@@ -50,7 +50,7 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/send_money_amount_value_view']")
 	private MobileElement amount;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label=='Continue' or label=='Send Money' or label=='Continuer' or label=='Envoyer ces fonds'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label=='Continue' or label=='Send Money' or label=='Continuer' or label=='Envoyer ces fonds' or label=='Virer des fonds'`]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button' or @resource-id='com.td:id/btn_footer' or @text='Continue' or @text='Continuer']")
 	private MobileElement continueButton;
 
@@ -65,7 +65,7 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/send_money_security_answer_edit_text']")
 	private MobileElement securityAnswer;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Confirm Answer' or @label='Confirmation de la réponser']/following-sibling::XCUIElementTypeTextField")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Confirm Answer' or @label='Confirmation de la réponse']/following-sibling::XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/send_money_security_confirm_answer_edit_text']")
 	private MobileElement confirmAnswer;
 
@@ -125,7 +125,7 @@ public class Interac_Send_Money extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_title' and (@text='Amount' or @text='Montant')]/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement amountVal;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Money Sent' or label CONTAINS[cd] 'Merci!'`]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Money Sent' or label CONTAINS[cd] 'Fonds virés!'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header']")
 	private MobileElement thankYou;
 
@@ -216,7 +216,13 @@ public class Interac_Send_Money extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -235,7 +241,7 @@ public class Interac_Send_Money extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 
 			mobileAction.verifyElementIsDisplayed(sendMoneyHeader, "Header " + sendMoneyHeader.getText());
 
@@ -268,11 +274,13 @@ public class Interac_Send_Money extends _CommonPage {
 
 				mobileAction.FuncClick(fromAccount, "from Account");
 
-				String fromAccountNumXL = "**/*[`label CONTAINS[cd] '" + getTestdata("FromAccount") + "'`]";
-				MobileElement fromAccountNumber = mobileAction.mobileElementUsingIOSClassChain(fromAccountNumXL);
-
+				// String fromAccountNumXL = "**/*[`label CONTAINS[cd] '" +
+				// getTestdata("FromAccount") + "'`]";
+				// MobileElement fromAccountNumber =
+				// mobileAction.mobileElementUsingIOSClassChain(fromAccountNumXL);
+				String fromAccountNumXL = "//XCUIElementTypeCell/XCUIElementTypeStaticText";
+				MobileElement fromAccountNumber = mobileAction.mobileElementUsingXPath(fromAccountNumXL);
 				mobileAction.FuncClick(fromAccountNumber, "Account Number: " + getTestdata("FromAccount"));
-
 				mobileAction.FuncClick(selectRecipient, "Select Recipient");
 
 				// String recipientXpath = "**/*[`label CONTAINS[cd]
@@ -302,9 +310,17 @@ public class Interac_Send_Money extends _CommonPage {
 
 			}
 
+			mobileAction.waitP2PProgressBarVanish();
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -338,10 +354,16 @@ public class Interac_Send_Money extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(amountLbl, "Amount");
 			mobileAction.verifyElementIsDisplayed(amountVal, "Amount " + amountVal.getText());
 			mobileAction.FuncClick(continueButton, "Continue Button");
-
+			mobileAction.waitP2PProgressBarVanish();
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -360,16 +382,22 @@ public class Interac_Send_Money extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 			mobileAction.verifyElementIsDisplayed(thankYou, thankYou.getText());
 			mobileAction.verifyElementIsDisplayed(successMessage, successMessage.getText());
 
-			mobileAction.verifyTextContains(successMessage.getText(),
-					getTextInCurrentLocale(StringArray.SEND_MONEY_SUCCESS_MSG));
+			// mobileAction.verifyTextContains(successMessage.getText(),
+			// getTextInCurrentLocale(StringArray.SEND_MONEY_SUCCESS_MSG));
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -393,11 +421,18 @@ public class Interac_Send_Money extends _CommonPage {
 			sendMoney();
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(continueButton, "Continue Button");
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 			Interac_e_Registration.get().clickGoBackHome();
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 
 	}
