@@ -222,14 +222,14 @@ public final class StringArray {
 			"Test de téléphone (facultatif)", "测试电话号码（可选）", "測試電話號碼（非必要）" };
 	public static final String[] ARRAY_OTP_UPDATE_VERIFY_NUMBER_SCREEN = { "Verify Number", "Vérifier le numéro",
 			"验证号码", "驗證號碼" };
-	public static final String[] ARRAY_OTP_UPDATE_VERIFY_NUMBER = { "Verify number", "Vérifier le numéro", "验证号码",
+	public static final String[] ARRAY_OTP_UPDATE_VERIFY_NUMBER = { "Verify number", "Tester le téléphone", "验证号码",
 			"驗證號碼" };
 	public static final String[] ARRAY_OTP_UPDATE_LOGIN_OPTION_HEADER = { "Security Code Login Option",
 			"Option d’ouverture de session", "安全码登录选项", "安全碼登入選項" };
 	public static final String[] ARRAY_OTP_UPDATE_CHANGE_EMAIL_HEADER_OLD = { "Change Security Email",
 			"Modifier l’adresse courriel de sécurité", "更改安全信息邮箱", "變更安全性資訊收件箱" };
-	public static final String[] ARRAY_OTP_UPDATE_CHANGE_EMAIL_HEADER = { "Security Email",
-			"Courriel de sécurité", "安全电子邮件", "安全電子郵件" };
+	public static final String[] ARRAY_OTP_UPDATE_CHANGE_EMAIL_HEADER = { "Security Email", "Courriel de sécurité",
+			"安全电子邮件", "安全電子郵件" };
 
 	public static final String[] ARRAY_OTP_UPDATE_COMPLETE_HEADER = { "Setup Complete", "Configuration terminée",
 			"设置完成", "設定完成" };
