@@ -73,7 +73,7 @@ public class OTPSetup extends _CommonPage {
 	@AndroidFindBy(id = "android:id/button1")
 	private MobileElement confirmButton;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Add Another Number') or contains(@label,'Ajouter un autre téléphone') or contains(@label,'添加其他号码') or contains(@label,'新增另一個號碼') ]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Add Another Number') or contains(@label,'Ajouter un autre numéro') or contains(@label,'添加其他号码') or contains(@label,'新增另一個號碼') ]")
 	@FindBy(xpath = "//a[contains(@ng-click,'add-phone')]")
 	private WebElement addAnotherPhoneButton;
 
@@ -854,7 +854,7 @@ public class OTPSetup extends _CommonPage {
 		try {
 			// Verify new phone numbers in Phone Card section
 			String phoneNumber = getTestdata("PhoneProfile");
-			phoneNumber = "1 (" + phoneNumber.substring(0, 3) + ") " + phoneNumber.substring(3, 6) + " - "
+			phoneNumber = "(" + phoneNumber.substring(0, 3) + ") " + phoneNumber.substring(3, 6) + " - "
 					+ phoneNumber.substring(6);
 			String nickname = getTestdata("Nickname");
 
@@ -884,7 +884,7 @@ public class OTPSetup extends _CommonPage {
 		try {
 			// Verify new phone numbers in Phone Card section
 			String phoneNumber = getTestdata("PhoneProfile");
-			phoneNumber = "1 (" + phoneNumber.substring(0, 3) + ") " + phoneNumber.substring(3, 6) + " - "
+			phoneNumber = "(" + phoneNumber.substring(0, 3) + ") " + phoneNumber.substring(3, 6) + " - "
 					+ phoneNumber.substring(6);
 			String nickname = getTestdata("Nickname");
 

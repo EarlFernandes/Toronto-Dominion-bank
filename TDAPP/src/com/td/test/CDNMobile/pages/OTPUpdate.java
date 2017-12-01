@@ -546,6 +546,7 @@ public class OTPUpdate extends _CommonPage {
 				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(otpUpdateContinueButton, "OTP Update Continue Button");
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -809,8 +810,7 @@ public class OTPUpdate extends _CommonPage {
 		try {
 			// Verify new phone numbers in Phone Card section
 			String phoneNumber = getTestdata("PhoneProfile");
-			phoneNumber = "1 (" + phoneNumber.substring(0, 3) + ") " + phoneNumber.substring(3, 6) + " - "
-					+ phoneNumber.substring(6);
+			phoneNumber = "(***) *** - " + phoneNumber.substring(6);
 			String nickname = getTestdata("Nickname");
 
 			mobileAction.verifyElementTextContains(deletePhoneFailTitle,

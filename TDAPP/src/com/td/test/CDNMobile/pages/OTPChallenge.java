@@ -16,6 +16,7 @@ import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -211,17 +212,7 @@ public class OTPChallenge extends _CommonPage {
 			mobileAction.FuncSendKeys(securityCodeField, securityCode);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// mobileAction.FuncClickDone(); // hide iOS keyboard
-				String donePath = "//*[@name='Go' or @label='Done' or @label='OK']";
-				MobileElement hasDone = mobileAction.verifyElementUsingXPath(donePath, "Keyboard Done button");
-
-				if (hasDone == null) {
-					System.out.println("no done button");
-					mobileAction.HideKeyBoard_IOS();
-				} else {
-					System.out.println("has done button");
-					mobileAction.FuncClickDone();
-				}
+				mobileAction.FuncClickDone(); // hide iOS keyboard
 
 			} else {
 				mobileAction.switchAppiumContext("NATIVE_APP");

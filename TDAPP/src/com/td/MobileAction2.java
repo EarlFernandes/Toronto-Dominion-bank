@@ -3328,7 +3328,7 @@ public class MobileAction2 extends CommonLib {
 				HideKeyBoard_IOS();
 				GetReporting().FuncReport("Pass", "The Key board was hidden");
 			} else {
-				String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
+				String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='Toolbar Done Button' or @label='"
 						+ getAppString("secureLoginEditButtonDone") + "']";
 				MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
 				Done.click();

@@ -465,7 +465,7 @@ public class Accounts extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				String labelText = getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER_IOS);
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER);
 				sectionHeader = mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeStaticText[contains(@label,'" + labelText + "')]",
 						"My Accounts Banking header");
@@ -474,12 +474,12 @@ public class Accounts extends _CommonPage {
 				// labelText + "'`]");
 				mobileAction.verifyElementIsDisplayed(sectionHeader, "My Accounts Banking header");
 				mobileAction.verifyElementTextContains(sectionHeader,
-						getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER_IOS));
+						getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER));
 
 			} else {
 				mobileAction.verifyElementIsDisplayed(sectionHeader, "My Accounts Banking header");
 				mobileAction.verifyElementTextContains(sectionHeader,
-						getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER_ANDROID));
+						getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER));
 
 			}
 
