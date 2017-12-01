@@ -142,7 +142,7 @@ public class MIT_DSH_ActivityTab extends _CommonPage {
 
 			{
 
-				FuncSwipeWhileElementNotFoundByxpathOnActivityTab(sXPathAnd, false, 20, "up");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpathOnActivityTab(sXPathAnd, false, 20, "up");
 
 				String saction = CL.GetDriver().findElement(By.xpath(sXPathAnd)).getText().split("@")[0];
 				String sprice = CL.GetDriver().findElement(By.xpath(sXPathAnd)).getText().split("@")[1];
@@ -181,7 +181,7 @@ public class MIT_DSH_ActivityTab extends _CommonPage {
 
 			else {
 
-				FuncSwipeWhileElementNotFoundByxpathOnActivityTab(sXPathiOS, false, 5, "up");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpathOnActivityTab(sXPathiOS, false, 5, "up");
 
 				String saction = CL.GetDriver().findElement(By.xpath(sXPathiOS)).getText().split("@")[0];
 				String sprice = CL.GetDriver().findElement(By.xpath(sXPathiOS)).getText().split("@")[1];
@@ -314,97 +314,4 @@ public class MIT_DSH_ActivityTab extends _CommonPage {
 
 	}
 
-				public void FuncSwipeWhileElementNotFoundByxpathOnActivityTab(String xpathEle, boolean clickYorN, int swipes, String direction) {// throws
-					// Exception
-					// {//@Author
-					// -
-					// Shahbaaz
-					// 30-Nov-2017
-			
-			Dimension size = ((AppiumDriver) CL.GetDriver()).manage().window().getSize();
-			int startx = size.width;
-			int starty = size.height;
-			int endy = size.height;
-			int heightPer = (endy * 25 / 100);
-			boolean flag = true;
-			int count = 0;
-			String sEleName = "";
-			try {
-			while (flag && count <= swipes) {
-			
-			try {
-			/*
-			* if
-			* (GetDriver().findElement(By.xpath(xpathEle)).isDisplayed(
-			* )) { flag = false; sEleName =
-			* FuncGetTextByxpath(xpathEle); } else {
-			* if(direction.equalsIgnoreCase("up")) ((MobileDriver)
-			* GetDriver()).swipe(startx / 2, starty/2, startx / 2,
-			* endy/2 - heightPer, 2000); else
-			* if(direction.equalsIgnoreCase("down")) ((MobileDriver)
-			* GetDriver()).swipe(startx / 2, endy/2, startx / 2,endy/2
-			* + heightPer , 2000); count++; }
-			*/
-			WebDriverWait wait = new WebDriverWait(CL.GetDriver(), 2L);
-			wait.until(ExpectedConditions.visibilityOf(CL.GetDriver().findElement(By.xpath(xpathEle))));
-			
-			flag = false;
-			sEleName = mobileAction.FuncGetTextByxpath(xpathEle);
-			
-			} catch (Exception e) {
-			if (direction.equalsIgnoreCase("up"))
-			((AppiumDriver<WebElement>) ((AppiumDriver) CL.GetDriver())).swipe((int) (startx *0.25), starty / 2,
-			startx / 2, endy / 2 - heightPer, 2000);
-			else if (direction.equalsIgnoreCase("down"))
-			((AppiumDriver<WebElement>) ((AppiumDriver) CL.GetDriver())).swipe(startx / 2, endy / 2,
-			startx / 2, endy / 2 + heightPer, 2000);
-			count++;
-			}
-			
-			}
-			
-			if (!flag) {
-			CL.GetReporting().FuncReport("Pass",
-			"Swiped " + direction + " till element found. Element : <b>" + sEleName + "</b>");
-			if (clickYorN)
-			mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(xpathEle)), sEleName);
-			} else
-			CL.GetReporting().FuncReport("Fail", "Swiped " + direction + " but element not found. Swipes : " + count);
-			
-			} catch (Exception e) {
-			try {
-			CL.GetReporting().FuncReport("Fail",
-			"Exception: Swiped " + direction + " but element not found. Swipes : " + count);
-			} catch (IOException e1) {
-			
-			e1.printStackTrace();
-			}
-			}
-
-}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

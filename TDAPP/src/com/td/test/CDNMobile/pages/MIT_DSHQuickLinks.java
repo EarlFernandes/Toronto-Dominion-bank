@@ -35,6 +35,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)),
 				this);
 	}
+
 	@iOSXCUITFindBy(accessibility = "switchNowButton")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/investing_welcome_switch']")
 	private MobileElement btnSwitchNow;
@@ -46,7 +47,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Title_Label")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/nav_row_left_icon']")
 	private MobileElement AccessoryGoHome;
-	
+
 	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
 	@AndroidFindBy(id = "com.td:id/hamburger")
 	MobileElement BT_Home_HamburgerMenu;
@@ -387,7 +388,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				Thread.sleep(8000);
 				mobileAction.FuncClick(BT_Back, "< Button");
 				Thread.sleep(5000);
-				
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -405,14 +406,13 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
 
 			}
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-	
+
 	public void verifyQL_SENDMONEY(boolean bIsAuthenticatedUser) {
 		Decorator();
 		try {
@@ -660,11 +660,5 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
-	
-	
 
 }

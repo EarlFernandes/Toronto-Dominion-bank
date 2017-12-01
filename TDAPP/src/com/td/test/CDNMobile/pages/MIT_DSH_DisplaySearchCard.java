@@ -112,8 +112,6 @@ public class MIT_DSH_DisplaySearchCard extends _CommonPage {
 				mobileAction.FuncClick(searchBar, "searchBar");
 			}
 
-			
-
 			mobileAction.verifyElementIsDisplayed(search_symbol, "Landed on Watchlist Search Screen");
 
 			mobileAction.FuncClick(btnCancel, "< btnCancel");
