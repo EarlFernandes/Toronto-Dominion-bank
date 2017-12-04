@@ -330,7 +330,7 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_CROSSBORDERBANKING = { "Cross-Border Banking",
 			"Services bancaires transfrontaliers", "跨境理财服务", "跨國理財服務" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_PROFILESETTINGS = { "Profile & Settings",
-			"Profil et paramètres transfrontaliers", "个人资料和设置", "個人資料和設定" };
+			"Profil et paramètres", "个人资料和设置", "個人資料和設定" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_APPLEWATCH = { "Apple Watch", "Apple Watch", "Apple Watch",
 			"Apple Watch" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_LOCATIONS = { "Locations", "Succursales", "分行网点", "分行" };
