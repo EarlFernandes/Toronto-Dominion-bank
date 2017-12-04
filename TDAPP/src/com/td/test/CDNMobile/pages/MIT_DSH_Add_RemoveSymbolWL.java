@@ -550,7 +550,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage {
 		Decorator();
 		try {
 
-			// MIT_DSHQuickLinks.get().goToDashboardHome();
+			 MIT_DSHQuickLinks.get().goToDashboardHome();
 
 			if (mobileAction.isObjExists(btnSwitchNow, 2)) {
 				mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");

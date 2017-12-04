@@ -313,7 +313,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement backButton;
 
-	private By BTN_Back = By.xpath("//*[@src='/images/mobile/btn_back_arrow_green.png']");
+	private By BTN_Back = By.xpath("//*[@alt='Back']");
 
 	public void verifyFlyoutUnauthenticated() {
 		Decorator();

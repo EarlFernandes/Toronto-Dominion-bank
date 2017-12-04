@@ -319,7 +319,7 @@ public final class StringArray {
 			"Apple Pay" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_TDMYSPEND = { "TD MySpend", "Dépense TD", "TD MySpend",
 			"TD MySpend" };
-	public static final String[] ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT = { "TD Mobile Payment", "Factures", "道明移动支付",
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT = { "TD Mobile Payment", "Paiement mobile TD", "道明移动支付",
 			"道明流動付款" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_TDMOBILEDEPOSIT = { "Mobile Deposit", "Dépôt mobile", "移动存款服务",
 			"流動存款" };
@@ -358,7 +358,7 @@ public final class StringArray {
 
 	public static final String[] ARRAY_DASHBOARD_CONTACTUS = { "Contact Us", "Contactez-nous", "联系我们", "聯絡我們" };
 
-	public static final String[] ARRAY_DASHBOARD_EmptyWLDesc = { "You haven't added any symbols to this Watchlist yet.",
+	public static final String[] ARRAY_DASHBOARD_EmptyWLDesc = { "You haven't added any symbols to this watchlist yet.",
 			"Vous n'avez pas encore ajouté de symbole à cette liste de surveillance.", "您尚未添加股票代码到自选股观察名单中。",
 			"您沒有添加股票代號到自選股觀察名單。" };
 	public static final String[] ARRAY_DASHBOARD_AddSymbolLink = { "Add symbols now", "Ajouter des symboles maintenant",
@@ -428,6 +428,9 @@ public final class StringArray {
 			"for mutual fund accounts held with TD Investment Services Inc.",
 			"relative aux comptes de fonds communs de placement détenus auprès des Services d'investissement TD inc.",
 			"所持互惠基金账户声明披露", "所持互惠基金賬戶之聲明披露" };
+	
+	public static final String[] ARRAY_DASHBOARD_ACTIVITYTAB_ACTIONBUY = { "BUY", "BUY", "BUY", "BUY" };
+	public static final String[] ARRAY_DASHBOARD_ACTIVITYTAB_ACTIONSELL = { "SELL", "SELL", "SELL", "SELL" };
 
 	// MIT Dashboard END
 

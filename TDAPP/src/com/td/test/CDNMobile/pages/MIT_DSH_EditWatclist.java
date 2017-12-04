@@ -184,7 +184,7 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 
 			mobileAction.FuncClick(BT_MoreOptions, "BT_MoreOptions");
 
-			mobileAction.FuncClick(EditCollapse, "EditCollapse");
+			mobileAction.FuncClick(EditCollapse, "Edit watchlist");
 			mobileAction.verifyElementIsDisplayed(EditWLBckBtn, "EditWLBckBtn");
 			mobileAction.FuncClick(EditWLBckBtn, "EditWLBckBtn");
 
