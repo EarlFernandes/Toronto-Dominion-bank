@@ -270,15 +270,15 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_TRADE = { "TRADE", "NÉGOCIATION", "交易", "交易" };
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_HOLDINGS = { "HOLDINGS", "PLACEMENTS", "持有投资", "持有投資" };
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_ORDERS = { "ORDERS", "ORDRES", "订单", "交易訂單" };
-	public static final String[] ARRAY_DASHBOARD_NAVROW_ACCOUNTS = { "Accounts", "Comptes", "交易", "交易" }; // FIX
-	public static final String[] ARRAY_DASHBOARD_NAVROW_TRANSFERES = { "Transfers", "Virements", "账单", "轉賬" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_ACCOUNTS = { "Accounts", "Comptes", "账户", "賬戶" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_TRANSFERES = { "Transfers", "Virements", "转账", "轉賬" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_BILLS = { "Bills", "Factures", "账单", "賬單" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_TRADE = { "Trade", "Négociation", "交易", "交易" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_MARKETS = { "Markets", "Marchés", "市场", "市場" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_OPENTDDIRECTINVESTINGACCOUNT = {
 			"Open a Direct Investing Account", "Ouvrir un compte Placements directs TD", "市场", "市場" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_QUOTE = { "Quote", "Cote", "报价", "報價" };
-	public static final String[] ARRAY_DASHBOARD_NAVROW_ALERTS = { "Alerts", "Alertes", "报价", "報價" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_ALERTS = { "Alerts", "Alertes", "报价", "提醒" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_OPENABANKACCOUNT = { "Open a Bank Account",
 			"Ouvrir un compte bancaire", "报价", "報價" };
 	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGS = { "Home Screen Settings",
@@ -581,7 +581,7 @@ public final class StringArray {
 	public static final String[] MONEY_REQUESTED_LBL = { "Money Requested", "Fonds demandés", "", "" };
 	public static final String[] SEE_ALL_LBL = { "See all", "Tout afficher", "", "" };
 	public static final String[] SEND_MONEY_TRANSFER_CANCELLED_RECEIPT = { "Transfer Cancelled",
-			"Virement annulé", "", "" };
+			"[FR]Transfer Cancelled", "", "" };
 	public static final String[] ADD_AUTODEPOSIT_RECEIPT_HEADER = { "Almost done!", "Vous avez presque terminé!", "",
 			"" };
 	public static final String[] ADD_AUTODEPOSIT_RECEIPT_SUB_HEADER = { "Check your email for instructions",

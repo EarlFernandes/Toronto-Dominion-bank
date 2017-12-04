@@ -3447,4 +3447,63 @@ public class MobileAction2 extends CommonLib {
 		}
 	}
 
+	public void SwipeWhileQuickLinkNotFound(MobileElement elementToFind, boolean clickYorN, int swipes,
+			String direction) throws IOException {
+
+		Dimension size;
+		size = ((AppiumDriver) GetDriver()).manage().window().getSize();
+
+		int startx = size.width;
+		int endx = size.width;
+		int starty = size.height;
+		int endy = size.height;
+
+		boolean flag = true;
+		int count = 0;
+		String sEleName = "";
+		boolean isSwiped = false;
+		try {
+			while (flag && count <= swipes) {
+
+				try {
+					WebDriverWait wait = new WebDriverWait(GetDriver(), 2L);
+					wait.until(ExpectedConditions.visibilityOf(elementToFind));
+
+					flag = false;
+					sEleName = FuncGetElementText(elementToFind);
+
+				} catch (Exception e) {
+					if (direction.equalsIgnoreCase("left"))
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.5),
+								(int) (starty * 0.20), (int) (endx * 0.35), (int) (endy * 0.20), 2000);
+					else if (direction.equalsIgnoreCase("right"))
+						((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.5),
+								(int) (starty * 0.20), (int) (endx * 0.65), (int) (endy * 0.20), 2000);
+					count++;
+					isSwiped = true;
+				}
+
+			}
+
+			if (!flag) {
+				GetReporting().FuncReport("Pass",
+						"Swiped " + direction + " till element found. Element : <b>" + sEleName + "</b>");
+				if (clickYorN)
+					FuncClick(elementToFind, sEleName);
+			} else
+				GetReporting().FuncReport("Fail",
+						"Exception: Swiped " + direction + " but element not found. Swipes : " + count);
+
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail",
+						"Exception: Swiped " + direction + " but element not found. Swipes : " + count);
+			} catch (IOException e1) {
+
+				e1.printStackTrace();
+			}
+		}
+
+	}
+
 }
