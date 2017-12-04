@@ -856,6 +856,7 @@ public class AddPayee extends _CommonPage {
 			}
 			mobileAction.FuncClick(firstPayeeFound, "First Payee found");
 			mobileAction.waitProgressBarVanish();
+			mobileAction.sleep(5000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
