@@ -61,7 +61,8 @@ public class AddPayee extends _CommonPage {
 	private WebElement payeeContinueBtn;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
-	@FindBy(xpath = "//div[@class='button-row']")
+	@FindBy(xpath = "//button[@ng-click='addPayee()' and @tabindex='0']")
+	// @FindBy(xpath = "//div[@class='button-row']")
 	private WebElement addPayeeBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
@@ -927,10 +928,12 @@ public class AddPayee extends _CommonPage {
 				mobileAction.sleep(5000);
 
 				mobileAction.switchToWebView();
-				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
-				mobileAction.sleep(5000);
+				//mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+				addPayeeBtn.click();
+				Thread.sleep(5000);
 				mobileAction.switchToWebView();
-				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+				//mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+				addPayeeBtn.click();
 				mobileAction.sleep(5000);
 
 			} else {
