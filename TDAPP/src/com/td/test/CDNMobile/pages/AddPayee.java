@@ -41,15 +41,14 @@ public class AddPayee extends _CommonPage {
 	@FindBy(xpath = "//td-switch//li[2]")
 	private WebElement tabUS;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1] | "
-			+ "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeLink[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@FindBy(id = "result0")
 	private WebElement firstPayeeFound;
 
-	// @iOSXCUITFindBy(xpath =
-	// "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeLink[1]/XCUIElementTypeLink[1]")
-	// @FindBy(id = "result0")
-	// private WebElement firstUSPayeeFound;
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeLink[1]")
+	@FindBy(id = "result0")
+	private WebElement firstUSAddressFound;
+
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[5]/XCUIElementTypeTextField[1] | "
 			+ "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[6]/XCUIElementTypeTextField[1]")
@@ -888,7 +887,7 @@ public class AddPayee extends _CommonPage {
 				mobileAction.sleep(5000);
 				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
 				mobileAction.waitProgressBarVanish();
-				mobileAction.FuncClick(firstPayeeFound, "First Payee Address found");
+				mobileAction.FuncClick(firstUSAddressFound, "First Payee Address found");
 				// mobileAction.waitProgressBarVanish();
 				mobileAction.sleep(5000);
 				mobileAction.FuncClick(addPayeeContinueBtn, "Add Payee Continue");
