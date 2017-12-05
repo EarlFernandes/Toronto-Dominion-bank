@@ -930,6 +930,7 @@ public class AddPayee extends _CommonPage {
 				mobileAction.switchToWebView();
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
 				Thread.sleep(2000);
+				mobileAction.switchToWebView();
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
 				mobileAction.sleep(5000);
 
