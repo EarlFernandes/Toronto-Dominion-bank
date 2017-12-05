@@ -193,6 +193,10 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/nav_row_left_icon']")
 	private MobileElement AccessoryGoHome;
 
+	@iOSXCUITFindBy(accessibility = "dropdownButton")
+	@AndroidFindBy(id = "com.td:id/tv_watchlist_name_header")
+	private MobileElement LT_Watchlist;
+
 	public void verifyQuickLinksUnAuthenicatedUser() {
 		Decorator();
 		try {
@@ -419,10 +423,10 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
 
 				mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
-			}
-			else
-			{
-				MIT_DSHHomeScreenSettings.get().turnInvestingfocusONfromProfilePreference();
+			} else {
+				if (!mobileAction.isObjExists(LT_Watchlist)) {
+					MIT_DSHHomeScreenSettings.get().turnInvestingfocusONfromProfilePreference();
+				}
 			}
 
 		} catch (Exception e) {
