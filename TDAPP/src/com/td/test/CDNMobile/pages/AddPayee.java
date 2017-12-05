@@ -831,9 +831,9 @@ public class AddPayee extends _CommonPage {
 				}
 				mobileAction.FuncClickDone();
 			}
-			
+
 			mobileAction.waitProgressBarVanish();
-			
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -889,7 +889,8 @@ public class AddPayee extends _CommonPage {
 				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
 				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(firstPayeeFound, "First Payee Address found");
-				mobileAction.waitProgressBarVanish();
+				// mobileAction.waitProgressBarVanish();
+				mobileAction.sleep(5000);
 				mobileAction.FuncClick(addPayeeContinueBtn, "Add Payee Continue");
 				mobileAction.waitProgressBarVanish();
 
