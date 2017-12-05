@@ -830,8 +830,7 @@ public class AddPayee extends _CommonPage {
 				mobileAction.FuncClickDone();
 			}
 
-			// mobileAction.waitProgressBarVanish();
-			mobileAction.sleep(5000);
+			mobileAction.sleep(3000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -855,8 +854,7 @@ public class AddPayee extends _CommonPage {
 				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(firstPayeeFound, "First Payee found");
-			// mobileAction.waitProgressBarVanish();
-			mobileAction.sleep(5000);
+			mobileAction.sleep(3000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -885,16 +883,13 @@ public class AddPayee extends _CommonPage {
 				mobileAction.FuncClick(addPayeeContinueBtn, "Add Payee Continue");
 
 			} else {
-				mobileAction.sleep(5000);
+				mobileAction.sleep(3000);
 				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
-				// mobileAction.waitProgressBarVanish();
-				mobileAction.sleep(5000);
+				mobileAction.sleep(3000);
 				mobileAction.FuncClick(firstUSAddressFound, "First Payee Address found");
-				// mobileAction.waitProgressBarVanish();
-				mobileAction.sleep(5000);
+				mobileAction.sleep(3000);
 				mobileAction.FuncClick(addPayeeContinueBtn, "Add Payee Continue");
-				// mobileAction.waitProgressBarVanish();
-				mobileAction.sleep(5000);
+				mobileAction.sleep(3000);
 
 			}
 
@@ -930,7 +925,7 @@ public class AddPayee extends _CommonPage {
 
 				mobileAction.switchToWebView();
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
-				mobileAction.sleep(5000);
+				mobileAction.sleep(3000);
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 
@@ -946,11 +941,9 @@ public class AddPayee extends _CommonPage {
 			} else {
 				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
-				// mobileAction.waitProgressBarVanish();
-				mobileAction.sleep(5000);
+				mobileAction.sleep(3000);
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
-				// mobileAction.waitProgressBarVanish();
-				mobileAction.sleep(5000);
+				mobileAction.sleep(3000);
 
 			}
 
@@ -985,19 +978,16 @@ public class AddPayee extends _CommonPage {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
 
-				// mobileAction.waitProgressBarVanish();
-				mobileAction.sleep(5000);
+				mobileAction.sleep(3000);
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
 
 			} else {
 				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
-				// mobileAction.waitProgressBarVanish();
-				mobileAction.sleep(5000);
+				mobileAction.sleep(3000);
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
-				// mobileAction.waitProgressBarVanish();
-				mobileAction.sleep(5000);
+				mobileAction.sleep(3000);
 
 			}
 
@@ -1020,12 +1010,11 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				// mobileAction.waitProgressBarVanish();
-				mobileAction.sleep(5000);
+				mobileAction.sleep(3000);
 			}
 
 			mobileAction.FuncClick(goHomeBtn, "Go Back Home btn");
-			mobileAction.sleep(5000);
+			mobileAction.sleep(3000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

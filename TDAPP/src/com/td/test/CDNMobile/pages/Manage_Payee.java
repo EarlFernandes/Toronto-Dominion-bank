@@ -519,8 +519,7 @@ public class Manage_Payee extends _CommonPage {
 			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Manage Payees Header");
 			mobileAction.FuncClick(addPayee, "Add Payee");
-			// mobileAction.waitProgressBarVanish();
-			mobileAction.sleep(5000);
+			mobileAction.sleep(3000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -562,8 +561,7 @@ public class Manage_Payee extends _CommonPage {
 
 				String payeeAcctXpath = "//XCUIElementTypeLink[@name='" + acctNumIos.trim() + "']";
 				mobileAction.swipeAndSearchByxpath(payeeAcctXpath, true, 10, "up");
-				// mobileAction.waitProgressBarVanish();
-				mobileAction.sleep(5000);
+				mobileAction.sleep(3000);
 			}
 
 		} catch (Exception e) {
@@ -585,15 +583,13 @@ public class Manage_Payee extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(editPayeeBtn, "Edit Payee button");
-				// mobileAction.waitProgressBarVanish();
-				mobileAction.sleep(5000);
+				mobileAction.sleep(3000);
 			}
 
 			mobileAction.FuncClick(deletePayeeBtn, "Delete Payee button");
 			mobileAction.FuncClick(confirmYes, "Confirm dialog, Yes button");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// mobileAction.waitProgressBarVanish();
-				mobileAction.sleep(5000);
+				mobileAction.sleep(3000);
 			}
 
 		} catch (Exception e) {
@@ -614,8 +610,7 @@ public class Manage_Payee extends _CommonPage {
 
 			mobileAction.FuncClick(editPayeeBtn, "Edit Payee button");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				// mobileAction.waitProgressBarVanish();
-				mobileAction.sleep(5000);
+				mobileAction.sleep(3000);
 			}
 
 		} catch (Exception e) {
@@ -658,18 +653,18 @@ public class Manage_Payee extends _CommonPage {
 				// US account, click Check button twice
 				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					mobileAction.sleep(5000);
+					mobileAction.sleep(3000);
 				}
 
 				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					mobileAction.sleep(5000);
+					mobileAction.sleep(3000);
 				}
 
 			} else {
 				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					mobileAction.sleep(5000);
+					mobileAction.sleep(3000);
 				}
 			}
 
