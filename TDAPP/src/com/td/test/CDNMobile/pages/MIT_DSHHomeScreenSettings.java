@@ -354,27 +354,44 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 				if (BT_EnableInvestingViewSwitch.getAttribute("checked").equalsIgnoreCase("true")) {
 					CL.GetReporting().FuncReport(PASS,
 							"Enable Investing View is bydefault ON for investing focus user.");
+					goToDashboardHomeFromHomeScreenSettings();
+
 				} else {
 					mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
 
-					mobileAction.FuncClick(BT_Back, "< Button");
-
-					mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
-					mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+					goToDashboardHomeFromHomeScreenSettings();
 				}
 			} else {
 				if (BT_EnableInvestingViewSwitch.getAttribute("value").equalsIgnoreCase("true")) {
 					CL.GetReporting().FuncReport(PASS,
 							"Enable Investing View is bydefault ON for investing focus user.");
+					goToDashboardHomeFromHomeScreenSettings();
 				} else {
 					mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
 
-					mobileAction.FuncClick(BT_Back, "< Button");
-
-					mobileAction.FuncClick(BT_Back, "< Button");
+					goToDashboardHomeFromHomeScreenSettings();
 				}
 			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void goToDashboardHomeFromHomeScreenSettings() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(BT_Back, "< Button");
+
+			// mobileAction.verifyElementIsDisplayed(lblProfileSettings,
+			// "Profile & Settings");
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
+				mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+			} else {
+				mobileAction.FuncClick(BT_Back, "< Button");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
