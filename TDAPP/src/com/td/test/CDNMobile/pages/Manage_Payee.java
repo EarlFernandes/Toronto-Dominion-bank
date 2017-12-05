@@ -653,18 +653,18 @@ public class Manage_Payee extends _CommonPage {
 				// US account, click Check button twice
 				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+					mobileAction.sleep(5000);
 				}
 
 				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+					mobileAction.sleep(5000);
 				}
 
 			} else {
 				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+					mobileAction.sleep(5000);
 				}
 			}
 
