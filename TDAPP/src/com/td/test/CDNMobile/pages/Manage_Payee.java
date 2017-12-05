@@ -519,7 +519,8 @@ public class Manage_Payee extends _CommonPage {
 			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Manage Payees Header");
 			mobileAction.FuncClick(addPayee, "Add Payee");
-			mobileAction.waitProgressBarVanish();
+			// mobileAction.waitProgressBarVanish();
+			mobileAction.sleep(5000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -561,7 +562,8 @@ public class Manage_Payee extends _CommonPage {
 
 				String payeeAcctXpath = "//XCUIElementTypeLink[@name='" + acctNumIos.trim() + "']";
 				mobileAction.swipeAndSearchByxpath(payeeAcctXpath, true, 10, "up");
-				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				// mobileAction.waitProgressBarVanish();
+				mobileAction.sleep(5000);
 			}
 
 		} catch (Exception e) {
@@ -583,13 +585,15 @@ public class Manage_Payee extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(editPayeeBtn, "Edit Payee button");
-				mobileAction.waitProgressBarVanish();
+				// mobileAction.waitProgressBarVanish();
+				mobileAction.sleep(5000);
 			}
 
 			mobileAction.FuncClick(deletePayeeBtn, "Delete Payee button");
 			mobileAction.FuncClick(confirmYes, "Confirm dialog, Yes button");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.waitProgressBarVanish();
+				// mobileAction.waitProgressBarVanish();
+				mobileAction.sleep(5000);
 			}
 
 		} catch (Exception e) {
@@ -610,7 +614,8 @@ public class Manage_Payee extends _CommonPage {
 
 			mobileAction.FuncClick(editPayeeBtn, "Edit Payee button");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+				// mobileAction.waitProgressBarVanish();
+				mobileAction.sleep(5000);
 			}
 
 		} catch (Exception e) {
@@ -747,7 +752,6 @@ public class Manage_Payee extends _CommonPage {
 			String usAccount = getTestdata("USAccount");
 			if (acctNum == null && usAccount != null) {
 				// US account
-				System.out.println("US payee description: " + mobileAction.FuncGetElementText(this.viewDescriptionUSField));
 				mobileAction.verifyElementIsDisplayed(viewDescriptionUSField, "View Description US field");
 				mobileAction.verifyElementTextContains(viewDescriptionUSField, payee);
 			} else {
