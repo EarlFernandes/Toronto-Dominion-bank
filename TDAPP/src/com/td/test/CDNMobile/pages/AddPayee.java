@@ -1060,6 +1060,7 @@ public class AddPayee extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.waitProgressBarVanish();
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.verifyElementIsDisplayed(addPayeeReceiptHeader, "Add Payee Receipt header");
