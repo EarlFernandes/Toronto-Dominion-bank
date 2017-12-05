@@ -344,4 +344,40 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 		}
 	}
 
+	public void turnInvestingfocusONfromProfilePreference() {
+		Decorator();
+		try {
+			goToProfileAndSettings();
+			mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				if (BT_EnableInvestingViewSwitch.getAttribute("checked").equalsIgnoreCase("true")) {
+					CL.GetReporting().FuncReport(PASS,
+							"Enable Investing View is bydefault ON for investing focus user.");
+				} else {
+					mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
+
+					mobileAction.FuncClick(BT_Back, "< Button");
+
+					mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
+					mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+				}
+			} else {
+				if (BT_EnableInvestingViewSwitch.getAttribute("value").equalsIgnoreCase("true")) {
+					CL.GetReporting().FuncReport(PASS,
+							"Enable Investing View is bydefault ON for investing focus user.");
+				} else {
+					mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
+
+					mobileAction.FuncClick(BT_Back, "< Button");
+
+					mobileAction.FuncClick(BT_Back, "< Button");
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

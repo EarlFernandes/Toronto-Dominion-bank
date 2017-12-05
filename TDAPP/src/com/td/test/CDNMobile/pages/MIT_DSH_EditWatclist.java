@@ -112,8 +112,12 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/btn_cancel")
 	private MobileElement BT_CancelHome;
 
-	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@label='List 01' or @label='Liste 01' or @label='名单 01' or @label='名單 01'])[1]")
+/*	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@label='List 01' or @label='Liste 01' or @label='名单 01' or @label='名單 01'])[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and (@text='List 01' or @text='Liste 01' or @text='名单 01' or @text='名單 01')]")
+	private MobileElement ListViewExpand01;*/
+	
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[contains(@label,'01'))[1]")
+	@AndroidFindBy(xpath = "//*[contains(@text,'01')]")
 	private MobileElement ListViewExpand01;
 
 	@iOSXCUITFindBy(xpath = "(//*[@name='codeSearchButton'])[1]")
