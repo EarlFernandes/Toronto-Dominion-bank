@@ -61,7 +61,7 @@ public class AddPayee extends _CommonPage {
 	private WebElement payeeContinueBtn;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
-	//@FindBy(xpath = "//button[@ng-click='addPayee()' and @tabindex='0']")
+	// @FindBy(xpath = "//button[@ng-click='addPayee()' and @tabindex='0']")
 	@FindBy(xpath = "//div[@class='button-row']")
 	private WebElement addPayeeBtn;
 
@@ -855,7 +855,6 @@ public class AddPayee extends _CommonPage {
 			}
 			mobileAction.FuncClick(firstPayeeFound, "First Payee found");
 			mobileAction.waitProgressBarVanish();
-			mobileAction.sleep(5000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -928,13 +927,23 @@ public class AddPayee extends _CommonPage {
 				mobileAction.sleep(5000);
 
 				mobileAction.switchToWebView();
-				//mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+				// mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
 				addPayeeBtn.click();
-				Thread.sleep(5000);
+				Thread.sleep(3000);
 				mobileAction.switchToWebView();
-				//mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+				// mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
 				addPayeeBtn.click();
-				mobileAction.sleep(5000);
+				mobileAction.sleep(3000);
+
+				mobileAction.switchToWebView();
+				// mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+				addPayeeBtn.click();
+				mobileAction.sleep(3000);
+
+				mobileAction.switchToWebView();
+				// mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+				addPayeeBtn.click();
+				mobileAction.sleep(3000);
 
 			} else {
 				mobileAction.FuncClickDone();
