@@ -778,8 +778,6 @@ public class AddPayee extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
-				// mobileAction.switchAppiumContext("WEBVIEW_com.td");
-
 			}
 
 			mobileAction.FuncClick(tabCanada, "Canada tab");
@@ -929,6 +927,7 @@ public class AddPayee extends _CommonPage {
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
 				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+				mobileAction.waitProgressBarVanish();
 
 			} else {
 				mobileAction.FuncClickDone();
