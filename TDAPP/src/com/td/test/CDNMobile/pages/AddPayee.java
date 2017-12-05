@@ -925,11 +925,11 @@ public class AddPayee extends _CommonPage {
 
 				mobileAction.switchToWebView();
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
-				mobileAction.waitProgressBarVanish();
+				mobileAction.sleep(10000);
 
 				mobileAction.switchToWebView();
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
-				mobileAction.waitProgressBarVanish();
+				mobileAction.sleep(10000);
 
 			} else {
 				mobileAction.FuncClickDone();
