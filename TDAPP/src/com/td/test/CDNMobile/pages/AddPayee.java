@@ -928,15 +928,8 @@ public class AddPayee extends _CommonPage {
 				mobileAction.sleep(3000);
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
-
-				// mobileAction.switchToWebView();
-				// mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
-				addPayeeBtn.click();
-				Thread.sleep(3000);
-				// mobileAction.switchToWebView();
-				// mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
-				addPayeeBtn.click();
-				mobileAction.sleep(3000);
+				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+				mobileAction.sleep(10000);
 
 			} else {
 				mobileAction.FuncClickDone();
@@ -978,9 +971,13 @@ public class AddPayee extends _CommonPage {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
 
-				mobileAction.sleep(3000);
+				mobileAction.switchToWebView();
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
+				mobileAction.sleep(3000);
+
+				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+				mobileAction.sleep(3000);
 
 			} else {
 				mobileAction.FuncClickDone();
