@@ -747,6 +747,7 @@ public class Manage_Payee extends _CommonPage {
 			String usAccount = getTestdata("USAccount");
 			if (acctNum == null && usAccount != null) {
 				// US account
+				System.out.println("US payee description: " + mobileAction.FuncGetElementText(this.viewDescriptionUSField));
 				mobileAction.verifyElementIsDisplayed(viewDescriptionUSField, "View Description US field");
 				mobileAction.verifyElementTextContains(viewDescriptionUSField, payee);
 			} else {
