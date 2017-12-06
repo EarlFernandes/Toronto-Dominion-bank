@@ -943,7 +943,7 @@ public class AddPayee extends _CommonPage {
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
 
 			}
-			mobileAction.waitProgressBarVanish();
+			mobileAction.sleep(5000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -954,7 +954,6 @@ public class AddPayee extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
-			mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 
 	}
@@ -988,7 +987,7 @@ public class AddPayee extends _CommonPage {
 				mobileAction.sleep(3000);
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
 			}
-			mobileAction.waitProgressBarVanish();
+			mobileAction.sleep(5000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -999,7 +998,6 @@ public class AddPayee extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
-			mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 
 	}
@@ -1010,10 +1008,11 @@ public class AddPayee extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.sleep(3000);
+				mobileAction.switchToWebView();
 			}
 
 			mobileAction.FuncClick(goHomeBtn, "Go Back Home btn");
-			mobileAction.waitProgressBarVanish();
+			mobileAction.sleep(5000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1039,7 +1038,7 @@ public class AddPayee extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(addAnotherPayeeBtn, "Add Another Payee btn");
-			mobileAction.waitProgressBarVanish();
+			mobileAction.sleep(5000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
