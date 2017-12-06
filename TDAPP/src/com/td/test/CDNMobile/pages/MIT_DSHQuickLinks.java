@@ -282,6 +282,8 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		Decorator();
 		try {
 
+			turnInvestingFocusOn();
+
 			verifyQL_TRADE(true);
 
 			verifyQL_HOLDINGS(true);
