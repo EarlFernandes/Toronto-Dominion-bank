@@ -882,20 +882,20 @@ public class AddPayee extends _CommonPage {
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncClick(firstUSAddressFound, "First Payee Address found");
-				mobileAction.sleep(3000);
+				mobileAction.sleep(5000);
 
 				mobileAction.switchToWebView();
 				mobileAction.FuncClick(addPayeeContinueBtn, "Add Payee Continue");
-				mobileAction.sleep(3000);
+				mobileAction.sleep(5000);
 
 			} else {
 				mobileAction.sleep(3000);
 				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
 				mobileAction.sleep(3000);
 				mobileAction.FuncClick(firstUSAddressFound, "First Payee Address found");
-				mobileAction.sleep(3000);
+				mobileAction.sleep(5000);
 				mobileAction.FuncClick(addPayeeContinueBtn, "Add Payee Continue");
-				mobileAction.sleep(3000);
+				mobileAction.sleep(5000);
 
 			}
 
@@ -931,20 +931,19 @@ public class AddPayee extends _CommonPage {
 
 				mobileAction.switchToWebView();
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
-				mobileAction.sleep(3000);
+				mobileAction.sleep(5000);
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
-				mobileAction.sleep(10000);
 
 			} else {
 				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
 				mobileAction.sleep(3000);
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
-				mobileAction.sleep(3000);
 
 			}
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -978,20 +977,18 @@ public class AddPayee extends _CommonPage {
 
 				mobileAction.switchToWebView();
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
-				mobileAction.sleep(3000);
+				mobileAction.sleep(5000);
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
-				mobileAction.sleep(3000);
 
 			} else {
 				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
 				mobileAction.sleep(3000);
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
-				mobileAction.sleep(3000);
-
 			}
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1062,7 +1059,6 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.waitProgressBarVanish();
 				mobileAction.switchToWebView();
 			}
 
