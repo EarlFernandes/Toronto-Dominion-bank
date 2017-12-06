@@ -47,7 +47,7 @@ public class AddPayee extends _CommonPage {
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeLink[1]/XCUIElementTypeLink[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(id = "result0")
-	private WebElement firstUSAddressFound;
+	private MobileElement firstUSAddressFound;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[5]/XCUIElementTypeTextField[1] | "
 			+ "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[6]/XCUIElementTypeTextField[1]")
@@ -879,8 +879,12 @@ public class AddPayee extends _CommonPage {
 				mobileAction.switchToWebView();
 				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
 				mobileAction.sleep(3000);
+
+				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncClick(firstUSAddressFound, "First Payee Address found");
 				mobileAction.sleep(3000);
+
+				mobileAction.switchToWebView();
 				mobileAction.FuncClick(addPayeeContinueBtn, "Add Payee Continue");
 				mobileAction.sleep(3000);
 
