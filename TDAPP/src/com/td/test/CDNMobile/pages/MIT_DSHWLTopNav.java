@@ -79,7 +79,7 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(BT_WatchListBack, "Back");
 			mobileAction.verifyElementIsDisplayed(ED_Searchoraddsymbols, "Search or add symbols");
 			mobileAction.FuncClick(BT_WatchListBack, "< Button");
-			mobileAction.verifyElementIsDisplayed(BT_Home_HamburgerMenu, "Dashboard Home Screen");
+			mobileAction.verifyElementIsDisplayed(BT_More, "Dashboard Home Screen");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
