@@ -2261,12 +2261,10 @@ public class Between_My_accounts extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(btncontinue_Transfer, "Continue");
-			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
-			mobileAction.verifyElementIsDisplayed(pageHeader, "Confirm Header");
-			mobileAction.verifyElementTextContains(pageHeader, getTextInCurrentLocale(StringArray.ARRAY_CONFIRM));
+			mobileAction.sleep(2000);
 
 			mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
-			mobileAction.verifyElementIsPresent(PageHeader.get().getProgressBar());
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -773,6 +773,12 @@ public class MenuPage extends _CommonPage {
 			verifyMenuItem(privacy, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PRIVACYSECURITY));
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT);
+				mobilePayment = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@resource-id='com.td:id/textview_flyout_menu_item' and @text='"
+								+ labelText + "']",
+						"Mobile Payment Menu button");
+
 				verifyMenuItem(mobilePayment, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT));
 			} else {
 				verifyMenuItem(applePay, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_APPLEPAY));

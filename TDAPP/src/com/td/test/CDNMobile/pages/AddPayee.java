@@ -1059,6 +1059,7 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.sleep(5000);
 				mobileAction.switchToWebView();
 			}
 

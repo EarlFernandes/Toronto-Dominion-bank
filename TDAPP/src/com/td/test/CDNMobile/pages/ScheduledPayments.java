@@ -56,32 +56,63 @@ public class ScheduledPayments extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Scheduled Payments");
 
 			String lastPaymentTitleXpath = "";
+			boolean canCancel = false;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 
-				Calendar cal = Calendar.getInstance();
-				String amt = String.valueOf(cal.get(Calendar.MONTH) + 1 + cal.get(Calendar.DATE)) + "."
-						+ String.valueOf(cal.get(Calendar.HOUR_OF_DAY));
-				String amtLastHr = String.valueOf(cal.get(Calendar.MONTH) + 1 + cal.get(Calendar.DATE)) + "."
-						+ String.valueOf(cal.get(Calendar.HOUR_OF_DAY) - 1);
+				// Swipe to bottom of screen
+				for (int i = 0; i < 5; i++) {
+					mobileAction.FunctionSwipe("up", 2000, 0);
+				}
 
-				lastPaymentTitleXpath = "//android.widget.TextView[@resource-id='com.td:id/amountText' and (contains(@text,'"
-						+ amt + "') or contains(@text,'" + amtLastHr + "'))]";
+				String paymentCell = "//android.widget.TextView[@resource-id='com.td:id/secondaryText']";
+				List<MobileElement> paymentList = (List<MobileElement>) mobileAction.getElementsList(paymentCell);
+
+				for (int i = paymentList.size(); i > 0; i--) {
+					lastPaymentTitleXpath = "(" + paymentCell + ")" + "[" + (i) + "]";
+					MobileElement lastPaymentCell = mobileAction.verifyElementUsingXPath(lastPaymentTitleXpath,
+							"Last Payment Cell");
+					mobileAction.FuncClick(lastPaymentCell, "Last Payment Cell");
+
+					boolean notCancelled = mobileAction.verifyElementIsPresent(cancelPaymentBtn);
+					if (notCancelled) {
+						mobileAction.FuncClick(cancelPaymentBtn, "Cancel Payment Button");
+						canCancel = true;
+						break;
+					} else {
+						mobileAction.ClickBackButton();
+						mobileAction.sleep(1000);
+					}
+				}
+
 			} else {
 				String paymentCell = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell";
 				List<MobileElement> paymentList = (List<MobileElement>) mobileAction.getElementsList(paymentCell);
 
-				int lastPaymentIndex = paymentList.size();
-				lastPaymentTitleXpath = paymentCell + "[" + (lastPaymentIndex) + "]/XCUIElementTypeStaticText[1]";
-			}
-			mobileAction.swipeAndSearchByxpath(lastPaymentTitleXpath, true, 10, "Up");
-			mobileAction.FuncClick(cancelPaymentBtn, "Cancel Payment Button");
+				for (int i = paymentList.size(); i > 0; i--) {
+					lastPaymentTitleXpath = paymentCell + "[" + (i) + "]";
+					mobileAction.swipeAndSearchByxpath(lastPaymentTitleXpath, true, 5, "Up");
+					boolean notCancelled = mobileAction.verifyElementIsPresent(cancelPaymentBtn);
+					if (notCancelled) {
+						mobileAction.FuncClick(cancelPaymentBtn, "Cancel Payment Button");
+						canCancel = true;
+						break;
+					} else {
+						mobileAction.ClickBackButton();
+					}
+				}
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")
-					&& currentLocale.equalsIgnoreCase("fr")) {
-				cancelPaymentDialogYesBtn = cancelPaymentDialogYesBtnFR;
 			}
-			mobileAction.FuncClick(cancelPaymentDialogYesBtn, "Cancel Payment Dialog Yes Button");
-			mobileAction.waitProgressBarVanish();
+
+			if (canCancel) {
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")
+						&& currentLocale.equalsIgnoreCase("fr")) {
+					cancelPaymentDialogYesBtn = cancelPaymentDialogYesBtnFR;
+				}
+				mobileAction.FuncClick(cancelPaymentDialogYesBtn, "Cancel Payment Dialog Yes Button");
+				mobileAction.waitProgressBarVanish();
+			} else {
+				mobileAction.GetReporting().FuncReport("Fail", "All scheduled payments already cancelled");
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

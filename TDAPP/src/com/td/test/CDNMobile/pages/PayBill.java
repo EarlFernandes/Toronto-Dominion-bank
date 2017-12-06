@@ -347,6 +347,7 @@ public class PayBill extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(continue_pay, "Continue_pay");
+			mobileAction.sleep(2000);
 			mobileAction.FuncClick(pay_bill, "Pay Bill");
 			mobileAction.sleep(2000);
 

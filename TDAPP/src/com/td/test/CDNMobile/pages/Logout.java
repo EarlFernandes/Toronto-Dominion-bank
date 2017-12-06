@@ -286,9 +286,9 @@ public class Logout extends _CommonPage {
 				String xpath = "//android.widget.Button[contains(@text,'"
 						+ getTextInCurrentLocale(StringArray.ARRAY_LOGOUT_GO_BACK_HOME) + "')]";
 				goBackHome = mobileAction.verifyElementUsingXPath(xpath, "Go Back Home button");
-			} else {
-				mobileAction.FuncClick(goBackHome, "Go Back Home button");
 			}
+
+			mobileAction.FuncClick(goBackHome, "Go Back Home button");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
