@@ -46,7 +46,7 @@ public class AddPayee extends _CommonPage {
 	private WebElement firstPayeeFound;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeLink[1]/XCUIElementTypeLink[1]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.view.View[@resource-id='result0' and @index='1']")
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='result0']")
 	private MobileElement firstUSAddressFound;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[5]/XCUIElementTypeTextField[1] | "
@@ -965,10 +965,9 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.waitProgressBarVanish();
+				mobileAction.switchToWebView();
 			}
 
-			// String acctNum = getTestdata("FromAccount");
 			String acctNum = getRandomAccountNumber("FromAccount");
 			mobileAction.FuncClick(payeeAcctNumber, "Payee Acct Number");
 			mobileAction.FuncSendKeys(payeeAcctNumber, acctNum);
