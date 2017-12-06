@@ -59,28 +59,34 @@ public class ScheduledPayments extends _CommonPage {
 			boolean canCancel = false;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 
-				// Swipe to bottom of screen
-				for (int i = 0; i < 5; i++) {
-					mobileAction.FunctionSwipe("up", 2000, 0);
-				}
+				for (int j = 0; j < 5; j++) {
 
-				String paymentCell = "//android.widget.TextView[@resource-id='com.td:id/secondaryText']";
-				List<MobileElement> paymentList = (List<MobileElement>) mobileAction.getElementsList(paymentCell);
+					String paymentCell = "//android.widget.TextView[@resource-id='com.td:id/secondaryText']";
+					List<MobileElement> paymentList = (List<MobileElement>) mobileAction.getElementsList(paymentCell);
+					for (int i = paymentList.size(); i > 0; i--) {
 
-				for (int i = paymentList.size(); i > 0; i--) {
-					lastPaymentTitleXpath = "(" + paymentCell + ")" + "[" + (i) + "]";
-					MobileElement lastPaymentCell = mobileAction.verifyElementUsingXPath(lastPaymentTitleXpath,
-							"Last Payment Cell");
-					mobileAction.FuncClick(lastPaymentCell, "Last Payment Cell");
+						for (int k = 0; k < j; k++) {
+							mobileAction.FunctionSwipe("up", 2000, 0);
+						}
 
-					boolean notCancelled = mobileAction.verifyElementIsPresent(cancelPaymentBtn);
-					if (notCancelled) {
-						mobileAction.FuncClick(cancelPaymentBtn, "Cancel Payment Button");
-						canCancel = true;
+						lastPaymentTitleXpath = "(" + paymentCell + ")" + "[" + (i) + "]";
+						MobileElement lastPaymentCell = mobileAction.verifyElementUsingXPath(lastPaymentTitleXpath,
+								"Last Payment Cell");
+						mobileAction.FuncClick(lastPaymentCell, "Last Payment Cell");
+
+						boolean notCancelled = mobileAction.verifyElementIsPresent(cancelPaymentBtn);
+						if (notCancelled) {
+							mobileAction.FuncClick(cancelPaymentBtn, "Cancel Payment Button");
+							canCancel = true;
+							break;
+						} else {
+							mobileAction.ClickBackButton();
+							mobileAction.sleep(1000);
+						}
+					}
+
+					if (canCancel) {
 						break;
-					} else {
-						mobileAction.ClickBackButton();
-						mobileAction.sleep(1000);
 					}
 				}
 
