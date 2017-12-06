@@ -1056,12 +1056,13 @@ public class Accounts extends _CommonPage {
 		Decorator();
 		try {
 
-			String labelText = getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER);
-			sectionHeader = mobileAction.verifyElementUsingXPath(
-					"//XCUIElementTypeStaticText[contains(@label,'" + labelText + "')]", "My Accounts Banking header");
-			// sectionHeader = mobileAction.mobileElementUsingIOSClassChain(
-			// "**/XCUIElementTypeStaticText[`label CONTAINS[cd] '" +
-			// labelText + "'`]");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER);
+				sectionHeader = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[contains(@label,'" + labelText + "')]",
+						"My Accounts Banking header");
+			}
+
 			mobileAction.verifyElementIsDisplayed(sectionHeader, "My Accounts Banking header");
 			mobileAction.verifyElementTextContains(sectionHeader,
 					getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER));
