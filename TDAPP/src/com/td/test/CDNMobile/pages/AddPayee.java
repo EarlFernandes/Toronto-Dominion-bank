@@ -1013,7 +1013,7 @@ public class AddPayee extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(goHomeBtn, "Go Back Home btn");
-			mobileAction.sleep(3000);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1034,6 +1034,7 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.sleep(10000);
 				mobileAction.switchToWebView();
 			}
 
