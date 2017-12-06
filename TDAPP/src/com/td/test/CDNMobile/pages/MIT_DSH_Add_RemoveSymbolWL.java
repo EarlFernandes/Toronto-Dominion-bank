@@ -121,7 +121,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage {
 	private MobileElement checkMark;*/
 
 	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeImage[@name='actionsheet_checkmark'])[1]")
-	@AndroidFindBy(xpath = "//*[contains(@text,'01')/../android.widget.ImageView[1]]")
+	@AndroidFindBy(xpath = "//*[contains(@text,'01')]/../android.widget.ImageView[@resource-id='com.td:id/imgActionCheckMark']")
 	private MobileElement checkMark;
 	
 
