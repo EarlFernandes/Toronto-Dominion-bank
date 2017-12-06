@@ -289,6 +289,7 @@ public class Logout extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(goBackHome, "Go Back Home button");
+			mobileAction.sleep(2000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
