@@ -196,6 +196,9 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "dropdownButton")
 	@AndroidFindBy(id = "com.td:id/tv_watchlist_name_header")
 	private MobileElement LT_Watchlist;
+	
+	@AndroidFindBy(id = "android:id/button2")
+	MobileElement BT_AppPermissionNotNow;
 
 	public void verifyQuickLinksUnAuthenicatedUser() {
 		Decorator();
@@ -493,6 +496,12 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_PAYNOW));
 
 					clickQuickLink(QL_PAYNOW, "PAY NOW");
+					
+					if(mobileAction.isObjExists(BT_AppPermissionNotNow))
+					{
+						mobileAction.FuncClick(BT_AppPermissionNotNow, "Not Now");
+					}
+					
 					mobileAction.verifyElementIsDisplayed(HDR_MobilePayment, "Header:Mobile Payment");
 					mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
 					mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");

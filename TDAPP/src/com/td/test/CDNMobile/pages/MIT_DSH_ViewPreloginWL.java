@@ -66,10 +66,8 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 	@AndroidFindBy(xpath = "(//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button'])[1]")
 	private MobileElement btn_home;
 
-	
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'List 06')]")
-	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 06']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_watchlist_name_header' and @text='List 06']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'06')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_watchlist_name_header' and contains(@text,'06')]")
 	private MobileElement FilledListCollapse;
 
 	@iOSXCUITFindBy(accessibility = "expandButton")
@@ -87,21 +85,20 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Home' or @label='Accueil' or @label='主页' or @label='首頁']")
 	@AndroidFindBy(xpath = "//*[@text='Home' or @text='Accueil' or @text='主页' or @text='首頁']")
 	private MobileElement FLY_Home;
-	
+
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_HamburgerMenu;
-	
 
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
-	
+
 	public void verifyViewPreloginWL() {
 		Decorator();
 		try {
 
-			 MIT_DSHQuickLinks.get().goToDashboardHome();
+			MIT_DSHQuickLinks.get().goToDashboardHome();
 
 			if (mobileAction.isObjExists(btnSwitchNow, 2)) {
 				mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
@@ -173,6 +170,5 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 		}
 
 	}
-	
 
 }

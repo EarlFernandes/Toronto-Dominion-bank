@@ -312,6 +312,9 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement backButton;
+	
+	@AndroidFindBy(id = "android:id/button2")
+	MobileElement BT_AppPermissionNotNow;
 
 	private By BTN_Back = By.xpath("//*[@alt='Back' or contains(@src,'/images/mobile/btn_back_arrow_green.png')]");
 
@@ -1367,6 +1370,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 					{
 						clickFlyout(flyoutMobilePayment, "flyoutMobileDepositLink");
+						
+						if(mobileAction.isObjExists(BT_AppPermissionNotNow))
+						{
+							mobileAction.FuncClick(BT_AppPermissionNotNow, "Not Now");
+						}
 
 						mobileAction.verifyElementIsDisplayed(lblMobilePayment, "lblMobilePayment");
 

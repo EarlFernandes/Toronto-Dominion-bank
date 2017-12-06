@@ -53,8 +53,8 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/nav_row_left_icon']")
 	private MobileElement AccessoryGoHome;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 06']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_watchlist_name_header' and @text='List 06']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'06')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_watchlist_name_header' and contains(@text,'06')]")
 	private MobileElement FilledListCollapse;
 
 	@iOSXCUITFindBy(accessibility = "expandButton")

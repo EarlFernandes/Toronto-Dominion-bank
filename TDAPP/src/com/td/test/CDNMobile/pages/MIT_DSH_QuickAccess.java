@@ -426,7 +426,7 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 	public void verifyQuickAccessUserType() {
 		Decorator();
 		try {
-			// mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
+			//mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
 

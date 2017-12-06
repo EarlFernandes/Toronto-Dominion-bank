@@ -70,7 +70,6 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/tv_item_more_option_name'])[2]")
 	private MobileElement EditCollapse;
 
-		 
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/toolbar_back_button']")
 	private MobileElement BackButtonExpand;
@@ -79,7 +78,6 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/toolbar_title']")
 	private MobileElement EditWLTitle;
 
-	
 	@iOSXCUITFindBy(xpath = "//*[@label='Cancel' or @label='Annuler' or @label='致电' or @label='致電']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/watchlist_edit_button']")
 	private MobileElement EditWLCancel;
@@ -112,10 +110,16 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/btn_cancel")
 	private MobileElement BT_CancelHome;
 
-/*	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@label='List 01' or @label='Liste 01' or @label='名单 01' or @label='名單 01'])[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and (@text='List 01' or @text='Liste 01' or @text='名单 01' or @text='名單 01')]")
-	private MobileElement ListViewExpand01;*/
-	
+	/*
+	 * @iOSXCUITFindBy(xpath =
+	 * "(//XCUIElementTypeStaticText[@label='List 01' or @label='Liste 01' or @label='名单 01' or @label='名單 01'])[1]"
+	 * )
+	 * 
+	 * @AndroidFindBy(xpath =
+	 * "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and (@text='List 01' or @text='Liste 01' or @text='名单 01' or @text='名單 01')]"
+	 * ) private MobileElement ListViewExpand01;
+	 */
+
 	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[contains(@label,'01'))[1]")
 	@AndroidFindBy(xpath = "//*[contains(@text,'01')]")
 	private MobileElement ListViewExpand01;
@@ -283,7 +287,11 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 
 			mobileAction.FuncClick(EditWLDelete, "EditWLDelete");
 
-			mobileAction.verifyElementIsDisplayed(btnMore, "btnMore");
+			mobileAction.FuncClick(EditWLBckBtn, "EditWLBckBtn");
+
+			mobileAction.FuncSwipeOnce("up");
+
+			mobileAction.FuncSwipeWhileElementNotFound(btnMore, false, 4, "up");
 
 		} catch (Exception e) {
 			e.printStackTrace();
