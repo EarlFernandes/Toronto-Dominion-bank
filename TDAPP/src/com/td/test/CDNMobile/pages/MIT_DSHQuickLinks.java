@@ -75,19 +75,19 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='PAY NOW' or @text='PAYER MAINTENANT' or @text='马上付款' or @text='立即付款') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_PAYNOW;
 
-	@iOSFindBy(xpath = "//*[@label='Apple Pay' or @label='APPLE PAY']") // French/CH_SM/CH_TD
-																		// APPLE
-																		// PAY
-																		// ??
-																		// Verify
-																		// >>
-																		// APPLE
-																		// PAY
-																		// is
-																		// same
-																		// for
-																		// all
-																		// <<
+	@iOSFindBy(xpath = "//*[@label='APPLE PAY']") // French/CH_SM/CH_TD
+													// APPLE
+													// PAY
+													// ??
+													// Verify
+													// >>
+													// APPLE
+													// PAY
+													// is
+													// same
+													// for
+													// all
+													// <<
 	private MobileElement QL_APPLEPAY;
 
 	@iOSFindBy(xpath = "//*[@label='DEPOSIT' or @label='DÉPÔT' or @label='存款' or @label='存款']")
@@ -113,7 +113,9 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Mobile Payment' or @text='Paiement mobile' or @text='移动支付' or @text='流動付款']")
 	private MobileElement HDR_MobilePayment;
 
-	@iOSFindBy(xpath = "//*[@label='Apple Pay' or @label='Paiement mobile' or @label='移动支付' or @label='流動付款']")
+	// @iOSFindBy(xpath = "//*[@label='Apple Pay' or @label='Paiement mobile' or
+	// @label='移动支付' or @label='流動付款']")
+	@iOSFindBy(xpath = "//*[@label='Apple Pay']")
 	private MobileElement HDR_ApplePay;
 
 	@iOSFindBy(xpath = "//*[@label='Pay Bill' or @label='Payer une factures' or @label='支付账单' or @label='支付賬單']")
@@ -196,7 +198,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "dropdownButton")
 	@AndroidFindBy(id = "com.td:id/tv_watchlist_name_header")
 	private MobileElement LT_Watchlist;
-	
+
 	@AndroidFindBy(id = "android:id/button2")
 	MobileElement BT_AppPermissionNotNow;
 
@@ -408,7 +410,9 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				Thread.sleep(8000);
 				mobileAction.FuncClick(BT_Back, "< Button");
 				Thread.sleep(5000);
-
+				if (mobileAction.isObjExists(BT_Back)) {
+					mobileAction.FuncClick(BT_Back, "< Button");
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -496,12 +500,11 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_PAYNOW));
 
 					clickQuickLink(QL_PAYNOW, "PAY NOW");
-					
-					if(mobileAction.isObjExists(BT_AppPermissionNotNow))
-					{
+
+					if (mobileAction.isObjExists(BT_AppPermissionNotNow)) {
 						mobileAction.FuncClick(BT_AppPermissionNotNow, "Not Now");
 					}
-					
+
 					mobileAction.verifyElementIsDisplayed(HDR_MobilePayment, "Header:Mobile Payment");
 					mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
 					mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");

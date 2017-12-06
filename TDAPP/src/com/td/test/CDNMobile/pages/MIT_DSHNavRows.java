@@ -85,10 +85,10 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Bills' or @text='Factures' or @text='账单' or @text='賬單']")
 	private MobileElement HDR_Bills;
 
-	@iOSFindBy(xpath = "//*[@label='Open a Direct Investing Account' or @label='Ouvrir un compte Placements directs TD' or @label='投资账户' or @label='投資賬戶']")
-	@AndroidFindBy(xpath = "//*[@text='Open a TD Direct Investing Account' or @text='Ouvrir un compte Placements directs TD' or @text='投资账户' or @text='投資賬戶']")
+	@iOSFindBy(xpath = "//*[@label='Open a TD Direct Investing Account' or @label='Ouvrir un compte Placements directs TD' or @label='开设道明自管投资账户' or @label='開設道明自管投資賬戶']")
+	@AndroidFindBy(xpath = "//*[@text='Open a TD Direct Investing Account' or @text='Ouvrir un compte Placements directs TD' or @text='开设道明自管投资账户' or @text='開設道明自管投資賬戶']")
 	private MobileElement NR_TDDirectInvestingAccounts;
-
+	
 	@iOSFindBy(xpath = "//*[@label='Investing' or @label='Placements' or @label='投资' or @label='投資']")
 	@AndroidFindBy(xpath = "//*[@text='Investing' or @text='Placements' or @text='投资' or @text='投資']")
 	private MobileElement HDR_Investing;
