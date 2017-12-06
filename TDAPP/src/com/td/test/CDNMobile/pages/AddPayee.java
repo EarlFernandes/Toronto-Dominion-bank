@@ -1037,13 +1037,11 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.waitProgressBarVanish();
-				mobileAction.FuncClick(addAnotherPayeeBtn, "Add Another Payee btn");
-			} else {
-				mobileAction.FuncClick(addAnotherPayeeBtn, "Add Another Payee btn");
-				mobileAction.waitProgressBarVanish();
-
+				mobileAction.switchToWebView();
 			}
+
+			mobileAction.FuncClick(addAnotherPayeeBtn, "Add Another Payee btn");
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
