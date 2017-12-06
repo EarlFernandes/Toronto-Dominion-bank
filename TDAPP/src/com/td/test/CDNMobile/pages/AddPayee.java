@@ -46,6 +46,7 @@ public class AddPayee extends _CommonPage {
 	private WebElement firstPayeeFound;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeLink[1]/XCUIElementTypeLink[1]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(id = "result0")
 	private WebElement firstUSAddressFound;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[5]/XCUIElementTypeTextField[1] | "
@@ -877,10 +878,11 @@ public class AddPayee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
 				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
-				mobileAction.sleep(10000);
-				mobileAction.FuncClick(firstPayeeFound, "First Payee Address found");
-				mobileAction.sleep(10000);
+				mobileAction.sleep(3000);
+				mobileAction.FuncClick(firstUSAddressFound, "First Payee Address found");
+				mobileAction.sleep(3000);
 				mobileAction.FuncClick(addPayeeContinueBtn, "Add Payee Continue");
+				mobileAction.sleep(3000);
 
 			} else {
 				mobileAction.sleep(3000);
