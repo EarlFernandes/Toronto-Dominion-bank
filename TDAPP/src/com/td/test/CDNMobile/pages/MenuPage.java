@@ -83,7 +83,7 @@ public class MenuPage extends _CommonPage {
 	private MobileElement trade;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD Mobile Payment']")
-	@AndroidFindBy(xpath = "//*[@text='Using TD Mobile Payment' or contains(@text,'Communiquez avec nous') and @resource-id='com.td:id/faq_category_item_name']")
+	@AndroidFindBy(xpath = "//*[@text='TD Mobile Payment' or @text='Paiement mobile TD' or @text='道明移动支付' or @text='道明移動支付']")
 	private MobileElement mobilePayment;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Apple Pay']")
@@ -443,9 +443,10 @@ public class MenuPage extends _CommonPage {
 				mobilePayment = mobileAction.verifyElementUsingXPath("//*[@label='" + labelText + "']",
 						"Mobile Payment Menu button");
 			} else {
-				String labelText = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT);
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_MOBILE_PAYMENT);
 				mobilePayment = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@resource-id='com.td:id/navText' and @text='" + labelText + "']",
+						"//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and  @text='"
+								+ labelText + "']",
 						"Mobile Payment Menu button");
 			}
 
@@ -763,20 +764,6 @@ public class MenuPage extends _CommonPage {
 			verifyMenuItem(accounts_button, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_ACCOUNTS));
 			verifyMenuItem(transfers, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRANSFERS));
 			verifyMenuItem(bills, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_BILLS));
-
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				String labelText = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT);
-				mobilePayment = mobileAction.verifyElementUsingXPath(
-						"//*[(@resource-id='com.td:id/textview_flyout_menu_item' or @resource-id='com.td:id/navText') and @text='"
-								+ labelText + "']",
-						"Mobile Payment Menu button");
-
-				// verifyMenuItem(mobilePayment,
-				// getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT));
-			} else {
-				verifyMenuItem(applePay, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_APPLEPAY));
-			}
-
 			verifyMenuItem(mobile_Deposit_button,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDMOBILEDEPOSIT));
 			verifyMenuItem(tdForMe, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDFORME));
@@ -786,6 +773,12 @@ public class MenuPage extends _CommonPage {
 			verifyMenuItem(contactUs, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_CONTACTUS));
 			verifyMenuItem(faq, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_FAQ));
 			verifyMenuItem(privacy, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PRIVACYSECURITY));
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				verifyMenuItem(mobilePayment, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT));
+			} else {
+				verifyMenuItem(applePay, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_APPLEPAY));
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
