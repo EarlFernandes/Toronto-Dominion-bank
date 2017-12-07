@@ -766,7 +766,7 @@ public class MenuPage extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				String labelText = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT);
 				mobilePayment = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[(@resource-id='com.td:id/textview_flyout_menu_item' or @resource-id='com.td:id/navText') and @text='"
+						"//*[(@resource-id='com.td:id/textview_flyout_menu_item' or @resource-id='com.td:id/navText') and @text='"
 								+ labelText + "']",
 						"Mobile Payment Menu button");
 
