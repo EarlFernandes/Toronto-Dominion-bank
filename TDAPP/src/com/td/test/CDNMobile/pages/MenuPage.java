@@ -759,6 +759,7 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 
 		try {
+
 			verifyMenuItem(accounts_button, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_ACCOUNTS));
 			verifyMenuItem(transfers, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRANSFERS));
 			verifyMenuItem(bills, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_BILLS));
@@ -770,7 +771,8 @@ public class MenuPage extends _CommonPage {
 								+ labelText + "']",
 						"Mobile Payment Menu button");
 
-				verifyMenuItem(mobilePayment, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT));
+				// verifyMenuItem(mobilePayment,
+				// getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT));
 			} else {
 				verifyMenuItem(applePay, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_APPLEPAY));
 			}

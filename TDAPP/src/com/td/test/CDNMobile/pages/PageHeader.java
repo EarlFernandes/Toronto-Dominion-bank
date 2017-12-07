@@ -89,6 +89,7 @@ public class PageHeader extends _CommonPage {
 					} else {
 						mobileAction.FuncClick(backButton, "Back button clicked");
 					}
+					mobileAction.sleep(500);
 				}
 			}
 
@@ -120,6 +121,13 @@ public class PageHeader extends _CommonPage {
 		Decorator();
 
 		return backButton;
+
+	}
+
+	public MobileElement getMenuButton() {
+		Decorator();
+
+		return menuButton;
 
 	}
 }
