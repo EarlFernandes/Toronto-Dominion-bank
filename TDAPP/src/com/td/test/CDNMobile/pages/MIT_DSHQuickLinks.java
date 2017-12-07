@@ -44,7 +44,8 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_HamburgerMenu;
 
-	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
+	//@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
+	@iOSXCUITFindBy(xpath ="//*[@name = 'NAVIGATION_ITEM_BACK' or @label='Back']")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 
@@ -142,7 +143,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Banking' or @text='Services bancaires' or @text='理财' or @text='理財']")
 	private MobileElement HDR_Banking;
 
-	@iOSFindBy(xpath = "//*[@label='Mobile Deposit' or @name='Dépôt mobile' or @label='移动存款服务' or @label='流動存款']")
+	@iOSFindBy(xpath = "//*[@name='Mobile Deposit' or @name='Dépôt mobile' or @name='移动存款服务' or @name='流動存款']")
 	@AndroidFindBy(xpath = "//*[@text='Mobile Deposit' or @text='Dépôt mobile' or @text='移动存款服务' or @text='流動存款']")
 	private MobileElement HDR_Mobile_Deposit;
 

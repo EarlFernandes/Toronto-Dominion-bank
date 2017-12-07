@@ -177,7 +177,7 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 
 			mobileAction.FuncClick(BT_EditWatchlist_Back, "< Button");
 
-			mobileAction.FuncClick(BT_EditWatchlist_Back, "< Button");
+			//mobileAction.FuncClick(BT_EditWatchlist_Back, "< Button");
 
 			mobileAction.FuncClick(BT_MoreOptions, "More Options button");
 
