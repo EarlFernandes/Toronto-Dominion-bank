@@ -658,13 +658,13 @@ public class Manage_Payee extends _CommonPage {
 
 				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					mobileAction.sleep(3000);
+					mobileAction.sleep(5000);
 				}
 
 			} else {
 				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					mobileAction.sleep(3000);
+					mobileAction.sleep(5000);
 				}
 			}
 
