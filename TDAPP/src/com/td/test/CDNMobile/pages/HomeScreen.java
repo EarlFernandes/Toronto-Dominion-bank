@@ -514,9 +514,9 @@ public class HomeScreen extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				String labelText = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRANSFER);
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_TRANSFERES);
 				transfer_button_dashboard = mobileAction.verifyElementUsingXPath("//*[@label='" + labelText + "']",
-						"Transfer Quick Link");
+						"Transfer dashboard");
 			}
 
 			mobileAction.FuncClick(transfer_button_dashboard, "TRANSFER");
