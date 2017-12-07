@@ -131,7 +131,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶']")
 	private MobileElement flyoutMyAccountLink;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='My Accounts' or @label='Comptes' or @label='账户' or @label='賬戶']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Accounts' or @label='Comptes' or @label='账户' or @label='賬戶']")
 	@AndroidFindBy(xpath = "//*[(@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblMyAccounts;
 
