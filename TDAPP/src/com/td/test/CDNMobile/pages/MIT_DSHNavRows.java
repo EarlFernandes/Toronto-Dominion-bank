@@ -113,10 +113,10 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Alerts' or @text='Alertes' or @text='提醒' or @text='提醒']")
 	private MobileElement HDR_Alerts;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter name or symbol' or @value='Entrez un nom ou un symbole' or @value='输入名称或代号' or @value='輸入名稱或代號']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter name or symbol' or contains(@value,'symbole') or @value='输入名称或代号' or @value='輸入名稱或代號']")
 	private MobileElement ED_Quote_Search_Symbol_iOS;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel' or @label='Listes' or @label='自选股观察名单' or @label='自選股觀察名單']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel' or @label='Annuler' or @label='取消' or @label='取消']")
 	private MobileElement BT_Cancel_QuoteSearchSymbolScreen;
 
 	private By ED_Markets_symbolSearch = By.id("symbol-search");
