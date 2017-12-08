@@ -57,7 +57,7 @@ public class OTPSetup extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/btn_continue")
 	private MobileElement agreeButton;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[contains(@value,'Phone number') or contains(@value,'Numéro de téléphone') or contains(@value,'电话号码') or contains(@value,'電話號碼') ]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[contains(@value,'area code') or contains(@value,'indicatif régional') or contains(@value,'包含区号') or contains(@value,'包含區號') ]")
 	@FindBy(id = "numberPhone")
 	private WebElement editPhoneField;
 
@@ -248,8 +248,8 @@ public class OTPSetup extends _CommonPage {
 			if (acctType.equalsIgnoreCase("new")) {
 				mobileAction.FuncClick(getStartedNewButton, "Get started button");
 				mobileAction.sleep(2000);
-				mobileAction.FuncClick(continueButton, "Continue button");
-				mobileAction.sleep(2000);
+				// mobileAction.FuncClick(continueButton, "Continue button");
+				// mobileAction.sleep(2000);
 			} else {
 				mobileAction.FuncClick(getStartedExistingButton, "Get started button");
 			}

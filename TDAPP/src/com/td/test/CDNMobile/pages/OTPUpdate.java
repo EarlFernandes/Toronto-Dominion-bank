@@ -49,7 +49,7 @@ public class OTPUpdate extends _CommonPage {
 	@FindBy(xpath = "//a[contains(@ng-click,'displayAddPhoneForm')]")
 	private WebElement addAnotherPhoneButton;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[contains(@value,'Phone number') or contains(@value,'Numéro de téléphone') or contains(@value,'电话号码') or contains(@value,'電話號碼') ]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[contains(@value,'area code') or contains(@value,'indicatif régional') or contains(@value,'包含区号') or contains(@value,'包含區號') ]")
 	@FindBy(id = "numberPhone")
 	private WebElement editPhoneField;
 
@@ -310,6 +310,20 @@ public class OTPUpdate extends _CommonPage {
 		String nickname = getTestdata("Nickname");
 
 		clickAddPhoneUpdateButton();
+		addPhoneNumber(phoneNumber, nickname);
+
+	}
+
+	public void addSinglePhoneNumberFromPref() {
+		String phoneNumber = getTestdata("PhoneProfile");
+		String nickname = getTestdata("Nickname");
+
+		clickAddPhoneUpdateButton();
+		OTPChallenge.get().clickTextOption();
+		OTPChallenge.get().clickGetCodeButton();
+		OTPChallenge.get().enterSecurityCode();
+		OTPChallenge.get().clickSubmitCodeButton();
+		mobileAction.sleep(4000);
 		addPhoneNumber(phoneNumber, nickname);
 
 	}
@@ -810,7 +824,7 @@ public class OTPUpdate extends _CommonPage {
 		try {
 			// Verify new phone numbers in Phone Card section
 			String phoneNumber = getTestdata("PhoneProfile");
-			phoneNumber = "(***) *** - " + phoneNumber.substring(6);
+			phoneNumber = "(•••) ••• - " + phoneNumber.substring(6);
 			String nickname = getTestdata("Nickname");
 
 			mobileAction.verifyElementTextContains(deletePhoneFailTitle,

@@ -1492,16 +1492,18 @@ public class MobileAction2 extends CommonLib {
 			if (sEleText != null) {
 				if (sEleText.contains(text))
 					GetReporting().FuncReport("Pass",
-							"Element contains text<b> " + text + "</b> .Element text:" + sEleText);
+							"Element contains expected text<b> " + text + "</b> .Element text:" + sEleText);
 				else
-					GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
+					GetReporting().FuncReport("Fail",
+							"Element text <b>" + sEleText + "</b> does not contain expected text. <b>" + text + "</b>");
 			} else {
 				sEleText = "";
 				if (sEleText.contains(text))
 					GetReporting().FuncReport("Pass",
 							"Element contains text<b> " + text + "</b> .Element text:" + sEleText);
 				else
-					GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
+					GetReporting().FuncReport("Fail",
+							"Element text <b>" + sEleText + "</b> does not contain expected text. <b>" + text + "</b>");
 			}
 		} catch (IOException e) {
 			try {

@@ -220,7 +220,7 @@ public class OTPChallenge extends _CommonPage {
 			}
 
 			clickSubmitCodeButton();
-			mobileAction.waitProgressBarVanish();
+			mobileAction.sleep(3000);
 
 		} catch (Exception e) {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
@@ -236,7 +236,7 @@ public class OTPChallenge extends _CommonPage {
 				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(submitCodeButton, "submit code button");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
