@@ -119,6 +119,9 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel' or @label='Annuler' or @label='取消' or @label='取消']")
 	private MobileElement BT_Cancel_QuoteSearchSymbolScreen;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel' or @label='Annuler' or @label='取消' or @label='取消']")
+	private MobileElement BT_Back_QuoteSearchSymbolScreen_Markets;
+	
 	private By ED_Markets_symbolSearch = By.id("symbol-search");
 
 	private By ED_Quote_Search_Symbol = By.id("symbol-search");
@@ -477,7 +480,7 @@ public class MIT_DSHNavRows extends _CommonPage {
 					MIT_PNSAccessAlerts.get().FuncSwitchContext("NATIVE_APP");
 				} else {
 					mobileAction.verifyElementIsDisplayed(ED_Quote_Search_Symbol_iOS, "ED_Quote_Search_Symbol_iOS");
-					mobileAction.FuncClick(BT_Cancel_QuoteSearchSymbolScreen, "BT_Cancel_QuoteSearchSymbolScreen");
+					mobileAction.FuncClick(BT_Back_QuoteSearchSymbolScreen_Markets, "BT_Back_QuoteSearchSymbolScreen_Markets");
 
 				}
 

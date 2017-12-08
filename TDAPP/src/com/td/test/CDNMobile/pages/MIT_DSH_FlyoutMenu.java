@@ -180,7 +180,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Investing' or @text='Placements' or @text='投资' or @text='投資') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblInvestingAccounts;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[(@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬') and @name='flyout_title']")
 	@AndroidFindBy(xpath = "//*[(@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutTransfersLink;
 

@@ -280,7 +280,9 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 
 			mobileAction.FuncClick(BT_Back, "< Button");
 
-			mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
+			}
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
@@ -315,7 +317,9 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 
 			mobileAction.FuncClick(BT_Back, "< Button");
 
-			mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
+			}
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
