@@ -9,6 +9,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.html5.Location;
@@ -30,7 +31,6 @@ import io.appium.java_client.ios.IOSDriver;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -1493,16 +1493,18 @@ public class MobileAction2 extends CommonLib {
 			if (sEleText != null) {
 				if (sEleText.contains(text))
 					GetReporting().FuncReport("Pass",
-							"Element contains text<b> " + text + "</b> .Element text:" + sEleText);
+							"Element contains expected text<b> " + text + "</b> .Element text:" + sEleText);
 				else
-					GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
+					GetReporting().FuncReport("Fail",
+							"Element text <b>" + sEleText + "</b> does not contain expected text. <b>" + text + "</b>");
 			} else {
 				sEleText = "";
 				if (sEleText.contains(text))
 					GetReporting().FuncReport("Pass",
 							"Element contains text<b> " + text + "</b> .Element text:" + sEleText);
 				else
-					GetReporting().FuncReport("Fail", "Element does not contain expected text. <b>" + text + "</b>");
+					GetReporting().FuncReport("Fail",
+							"Element text <b>" + sEleText + "</b> does not contain expected text. <b>" + text + "</b>");
 			}
 		} catch (IOException e) {
 			try {
@@ -3588,18 +3590,16 @@ public class MobileAction2 extends CommonLib {
 	 * @throws IOException
 	 * @throws NoSuchElementException
 	 */
-	public void FuncScrollIntoView(WebElement objElement, String text)
-			throws InterruptedException, IOException, NoSuchElementException {
+	public void FuncScrollIntoView(WebElement objElement, String text) {
 		try {
+			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+			wait.until(ExpectedConditions.visibilityOf(objElement));
+
 			((JavascriptExecutor) GetDriver()).executeScript("arguments[0].scrollIntoView(true);", objElement);
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> is scrolled into view");
 		} catch (Exception e) {
-			try {
-				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> is not scrolled into view");
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			throw e;
+			System.out.println(
+					"Exception from FuncScrollIntoView Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

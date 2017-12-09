@@ -130,19 +130,19 @@ public class EventCase {
 		AccountsCredit_VerifyActivityText, AccountsCredit_VerifyCreditText, AccountsCredit_VerifySummaryText, Accounts_VerifyTextOpenNewAccount, AccountsCredit_VerifyTabTextElements, AddPayee_VerifyTextReview, AddPayee_VerifyTextReviewUS, AddPayee_VerifyTextConfirmation, AddPayee_VerifyTextSuccess, AddPayee_VerifyTextSelectUSAddress, Between_My_accounts_VerifyTextElements, Between_My_accounts_performTransferToConfirmation, Between_My_accounts_performTransferToSuccess, Between_My_accounts_VerifyConfirmationText, Between_My_accounts_VerifySuccessText, Bills_ScheduledPayments_VerifyText, Bills_VerifyTextElements, Bills_VerifyTextConfirmCancelScheduledPayment, Bills_VerifyTextNoCanadianPayeesAdded, CrossBorderBanking_ClickLogin, CrossBorderBanking_VerifyTextLoginPopup, CrossBorderBanking_VerifyTextWelcomePage, ClickCrossBorderBanking, ClickTDForMe, ClickTDMySpend, ClickChequeDepositHistory, ClickAddRecipientFromContactsList, ContactUs_VerifyTextElements, HomeScreen_VerifyTextElements, HomeScreen_ClickOpenNewAccount, LoginScreen_VerifyTextElements, HomeScreenDashboardButtons_VerifyTextEelements, Interac_VerifyTextElements, Interac_e_Transfer_VerifyConfirmationText, PendingInterac_e_Transfer_cancel_confirmation_VerifyText, Interac_e_Transfer_VerifySuccessText, Investing_VerifyTextOpenNewAccount, Logout_VerifyTextElements, ManagePayee_AddUSPayee, ManagePayee_VerifyTextSearchPayee, ManagePayees_VerifySpecificPayeeTextElements, ManagePayees_VerifyTextElements, ManageRecipient_ClickAddRecipient, ManageRecipient_VerifyTextEditRecipientInfo, ManageRecipient_VerifyTextAddRecipientConfirmation, ManageRecipient_VerifyTextAddRecipientSuccess, ManageRecipient_ClickYesAddRecipientFromContacts, ManageRecipient_VerifyTextAddRecipientFromContactsList, ManageRecipients_VerifyTextElements, ManageRecipient_VerifyTextAddRecipient, ManageRecipient_VerifyTextRecipientInfo, ManageRecipient_VerifyTextContactsPopUp, Menu_VerifyTextElements, MobileDeposit_VerifyTextElements, MobileDeposit_VerifyTextElementsIneligible, MobileDeposit_VerifyTextDepositCheque, MobileDeposit_VerifyTextDepositChequeHistory, MobileDeposit_VerifyTextChequeDetails, PayBill_US_VerifyTextElements, PayBill_US_VerifyTextElementsNeverRegistered, PayBill_US_VerifyTextElementsSuccess, PayBill_Canada_VerifyTextElementsConfirmation, PayBill_US_VerifyTextElementsConfirmation, PayBill_Canada_VerifyTextElements, PendingInterac_e_Transfer_VerifyText, PendingInterac_e_Transfer_cancel_deposit_to_VerifyText, QuickAccess_VerifyActivateText, QuickAccess_VerifyFTEText, Transfer_VerifyTextElements, InvestingAccountSummary_verifyDetails, InvestingAccountSummary_verifyCreditCardSummaryDetails, InvestingAccountSummary_verifyCreditCardActivityDetails, InvestingAccountSummary_verifyCreditCardPaymentDetails, InvestingAccountSummary_verifyCreditCardPaymentPurchaseDetails, InvestingAccountSummary_verifyCreditCardStatementDetails, InvestingAccountSummary_verifyCreditCardStatementTabDetails, InvestingAccountSummary_verifyHoldingsDetails, InvestingAccountSummary_verifyListedHoldingsDetails, InvestingAccountSummary_verifyInvestingOrderDetails, InvestingAccountSummary_verifyOrdersDetails, InvestingAccountSummary_verifyActivityTabDetails, Investing_verifyPageDetails, Investing_clickAccount, MutualFunds_verifyMutualFundDetails, clickInvestingAccounts,
 
 		// P2P EUF
-
 		AutoDepositPage_deleteQuickAutodeposit, iOS_back_button, AutoDepositPage_clickAutoDeposit, AutoDepositPage_setupQuickAutoDeposit, AutoDepositPage_verifyRequestMoneySuccessMsg, AutoDepositPage_clickRequestMoneyVerifyScreen, AutoDepositPage_performRequestMoney, Transfers_clickRequestMoneyLink, AutoDepositPage_verifyPageheader, AutoDepositPage_clickAutoDepositBanner, AutoDepositPage_editAutoDeposit, AutoDepositPage_deleteAutoDeposit, AutoDepositPage_clickAccept, AutoDepositPage_setupAutoDeposit, AutoDepositPage_verifyAutoDepositSuccessMsg, AutoDepositPage_clickSetUpAutoDepositBtn, PaymentsAndTransfers_clickManageAutoDeposit, Transfers_clickManageContactsLink, ManageContacts_verifyPageHEader, Interac_e_Transfer_clickContinueButton, Profile_And_Settings_clickPaymentsAndTransfers, Interac_e_Transfer_verifyErrorText, Interac_e_Transfer_registerUser, Interac_e_Transfer_verifyDetails, Interac_e_Transfer_verifyRegSuccessMessage, AutoDepositPage_clickRequestMoneyCTAOption, AutoDepositPage_requestMoneyRegisterAnotherProfile, Interac_e_Registration_registerMultiProfileNoCondition, AutoDepositPage_verifyCustomerEligibilityFailErrorMsg, TransfersHistory_clickBackToActivity, TransfersHistory_verifyRequestUpdateSuccessMsg, TransfersHistory_updateMoneyRequest, TransfersHistory_clickUpdateRequestOnActivity, TransfersHistory_verifyCancelledTransOnActivity, TransfersHistory_clickcancelrequest, TransfersHistory_verifyWrongEmailTransDetails, TransfersHistory_clickWrongEmailTransaction, TransfersHistory_verifyRequestedTransDetails, TransfersHistory_clickRequestTransaction, TransfersHistory_clickRequestMoneySeeAll, TransfersHistory_verifyRequestMoneyCards, Interac_e_Registration_verifyErrorMessage, Interac_e_Registration_registerMultiProfileUser, Interac_e_Registration_clickRegisterAnotherProfile, Interac_e_Registration_registerBusinessUser, TransfersHistory_clickMoneyReceivedSeeAll, Transfers_clickTransferHistoryLink, Interac_e_Registration_clickGoBackHome, TransfersHistory_verifySentMoneyCard, TransfersHistory_clickMoneySentSeeAll, TransfersHistory_verifyPendingTransaction, TransfersHistory_verifyTransactionDetails, TransfersHistory_clickTransaction, TransfersHistory_verifyActivityPage, TransfersHistory_clickReceivedTransaction, TransfersHistory_verifyReceivedTransDetails, TransfersHistory_clickCancelTransferBtn, TransfersHistory_cancelTransfer, TransfersHistory_verifyCancelDetails, TransfersHistory_verifyCancelConfirmation, TransfersHistory_verifyTransactionOnActivity, ManageContacts_verifyContactDeleteSuccessMsg, ManageContacts_noDeleteContact, ManageContacts_deleteContact, ManageContacts_clickContact, ManageContacts_AddContactfromPhone, ManageContacts_clickAddContactfromPhone, ManageContacts_MultiProfileDeleteContact, Interac_e_Registration_registerPersonalUser, Interac_e_Registration_clickContinueButton, ManageContacts_verifySuccessMessage, ManageContacts_clickAddContactPlusSign, ManageContacts_clickAddContactButton, ManageContacts_editContact, ManageContacts_verifyContactEditSuccessMsg, ManageContacts_MultiProfileAddContact, ManageContacts_addContact, ManageContacts_MultiProfileEditContact, HomeScreen_clickSendMoney, Interac_Send_Money_quickSendMoney, Interac_Send_Money_sendMoneyVerifyDetails, Interac_Send_Money_sendMoney, Interac_Send_Money_sendMoneyVerifySuccessMsg, Interac_Send_Money_sendMoneyWithError, Interac_e_Registration_verifyDetails, Interac_e_Registration_verifyBusinessDetails, Interac_e_Registration_verifyRegSuccessMessage,
 
-		// OTP
-
-		OTP_Challenge_ClickTextOption, OTP_Challenge_ClickVoiceOption, OTP_Challenge_ClickGetCodeButton, OTP_Challenge_ClickSubmitCodeButton, OTP_Challenge_EnterSecurityCode, OTP_Challenge_WaitForOTPProgressBarToVanish, OTP_Challenge_VerifyInvalidSecurityCode, OTP_Challenge_ResendCode, OTP_Challenge_VerifyTooManySecurityCodesRequested,
+		// OTP Challenge
+		OTP_Challenge_ClickTextOption, OTP_Challenge_ClickVoiceOption, OTP_Challenge_ClickGetCodeButton, OTP_Challenge_ClickSubmitCodeButton, OTP_Challenge_EnterSecurityCode, OTP_Challenge_WaitForOTPProgressBarToVanish, OTP_Challenge_VerifyInvalidSecurityCode, OTP_Challenge_ClickFirstPhoneNumber, OTP_Challenge_ResendCode, OTP_Challenge_VerifyTooManySecurityCodesRequested, OTP_Challenge_IdleTillLoggedOut, OTP_Challenge_RequestMaxPassCodes, OTP_Challenge_EnterIncorrectSecurityCode,
 
 		// OTP Setup
-
-		OTP_Setup_AcceptWelcomeTCScreens, OTP_Setup_VerifyGetStartedOptionOnly, OTP_Setup_AddPhoneNumber, OTP_Setup_VerifyAddedPhoneNumber, OTP_Setup_AddPhoneContinue, OTP_Setup_VerifyAddAnotherPhoneNumberDialog, OTP_Setup_DeleteFirstPhoneNumber, OTP_Setup_VerifyDeletePhoneNumberFail, OTP_Setup_VerifyMaxPhoneNumbers, OTP_Setup_VerifyInvalidSecurityCodeFormatMsg, OTP_Setup_ClickTextOption, OTP_Setup_ClickVoiceOption, OTP_Setup_ClickFirstPhoneNumber, OTP_Setup_ClickGetCodeButton, OTP_Setup_ClickSubmitCodeButton, OTP_Setup_EnterSecurityCode, OTP_Setup_WaitForOTPProgressBarToVanish, OTP_Setup_VerifyInvalidSecurityCode, OTP_Setup_ClickAnotherPhoneNo, OTP_Setup_VerifySecurityCodeSent, OTP_Setup_TestPhonesContinue, OTP_Setup_VerifySecurityEmailScreen, OTP_Setup_EnterSecurityEmail, OTP_Setup_VerifySecurityCodeFrequencyScreen, OTP_Setup_VerifyCorrectSecurityCode, OTP_Setup_PasscodeContinue, OTP_Setup_CodeFrequencyContinue, OTP_Setup_VerifySetupComplete, OTP_Setup_EnterExpiredSecurityCode, OTP_Setup_VerifyExpiredSecurityCodeMsg, OTP_Setup_EnterIncorrectSecurityCode,
+		OTP_Setup_AcceptWelcomeTCScreens, OTP_Setup_ContinueNotNowScreen, OTP_Setup_AcceptTCScreen, OTP_Setup_VerifyGetStartedOptionOnly, OTP_Setup_AddPhoneNumber, OTP_Setup_AddMaxPhoneNumber, OTP_Setup_VerifyAddedPhoneNumber, OTP_Setup_TestPhonesContinue, OTP_Setup_VerifyAddAnotherPhoneNumberDialog, OTP_Setup_DeleteFirstPhoneNumber, OTP_Setup_VerifyDeletePhoneNumberFail, OTP_Setup_VerifyMaxPhoneNumbers, OTP_Setup_VerifyInvalidSecurityCodeFormatMsg, OTP_Setup_ClickTextOption, OTP_Setup_ClickVoiceOption, OTP_Setup_ClickFirstPhoneNumber, OTP_Setup_ClickGetCodeButton, OTP_Setup_ClickSubmitCodeButton, OTP_Setup_EnterSecurityCode, OTP_Setup_WaitForOTPProgressBarToVanish, OTP_Setup_VerifyInvalidSecurityCode, OTP_Setup_VerifySecurityCodeSent, OTP_Setup_VerifySecurityEmailScreen, OTP_Setup_EnterSecurityEmail, OTP_Setup_VerifySecurityCodeFrequencyScreen, OTP_Setup_VerifyCorrectSecurityCode, OTP_Setup_CodeFrequencyContinue, OTP_Setup_VerifySetupComplete, OTP_Setup_EnterExpiredSecurityCode, OTP_Setup_VerifyExpiredSecurityCodeMsg, OTP_Setup_EnterIncorrectSecurityCode, OTP_Setup_EnterNonNumericSecurityCode, OTP_Setup_CreateNewPassword,
 
 		// OTP Update
-		OTP_Update_VerifyOTPUpdateScreen, OTP_Update_VerifyTestPhoneUpdateScreen, OTP_Update_ClickTestPhoneButton, OTP_Update_VerifyLoginOptionUpdateScreen, OTP_Update_ClickLoginOptionButton, OTP_Update_VerifyChangeEmailScreen, OTP_Update_ClickChangeEmailButton, OTP_Update_UpdateSecurityEmail, OTP_Update_ClickOTPUpdateContinueButton, OTP_Update_VerifyOTPUpdateCompleteScreen, OTP_Update_ClickAddPhoneUpdateButton, OTP_Update_AddSinglePhoneNumber, OTP_Update_AddMaxPhoneNumbers, OTP_Update_DeleteFirstPhoneNumber, OTP_Update_VerifyDeletePhoneNumberFail, OTP_Update_VerifyAddedPhoneNumber, OTP_Update_VerifyMaxPhoneNumbers, OTP_Update_VerifyUpdatedSecurityEmail, OTP_Update_ClickFirstPhoneNumber, OTP_Update_ClickTextOption, OTP_Update_ClickSubmitCodeButton, OTP_Update_EnterSecurityCode, OTP_Update_VerifyCorrectSecurityCode, OTP_Update_ClickGetCodeButton,
+		OTP_Update_VerifyOTPUpdateScreen, OTP_Update_VerifyTestPhoneUpdateScreen, OTP_Update_ClickTestPhoneButton, OTP_Update_VerifyLoginOptionUpdateScreen, OTP_Update_ClickLoginOptionButton, OTP_Update_VerifyChangeEmailScreen, OTP_Update_ClickChangeEmailButton, OTP_Update_UpdateSecurityEmail, OTP_Update_ClickOTPUpdateContinueButton, OTP_Update_VerifyOTPUpdateCompleteScreen, OTP_Update_ClickAddPhoneUpdateButton, OTP_Update_AddSinglePhoneNumber, OTP_Update_AddSinglePhoneNumberFromPref, OTP_Update_AddMaxPhoneNumbers, OTP_Update_DeleteFirstPhoneNumber, OTP_Update_VerifyDeletePhoneNumberFail, OTP_Update_VerifyAddedPhoneNumber, OTP_Update_VerifyMaxPhoneNumbers, OTP_Update_VerifyUpdatedSecurityEmail, OTP_Update_ClickFirstPhoneNumber, OTP_Update_ClickTextOption, OTP_Update_ClickSubmitCodeButton, OTP_Update_EnterSecurityCode, OTP_Update_VerifyCorrectSecurityCode, OTP_Update_ClickGetCodeButton, OTP_Update_DeleteSecondPhoneNumber, OTP_Update_VerifyDeleteSecondPhoneNumber,
+
+		// Profile & Settings
+		NewSecuritySetup, SecuritySettings,
 
 		// App
 		CloseApp, RunAppInBackGround, ReopenApp,
@@ -2068,6 +2068,14 @@ public class EventCase {
 
 		case Profile_And_Settings_clickPaymentsAndTransfers:
 			Profile_And_Settings.get().clickPaymentsAndTransfers();
+			break;
+
+		case NewSecuritySetup:
+			Profile_And_Settings.get().newSecuritySetup();
+			break;
+
+		case SecuritySettings:
+			Profile_And_Settings.get().securitySettings();
 			break;
 
 		case PaymentsAndTransfers_clickManageAutoDeposit:
@@ -4171,6 +4179,7 @@ public class EventCase {
 			Investing.get().clickAccount();
 			break;
 
+		// OTP Challenge
 		case OTP_Challenge_ClickTextOption:
 			OTPChallenge.get().clickTextOption();
 			break;
@@ -4195,16 +4204,28 @@ public class EventCase {
 			OTPChallenge.get().verifyInvalidSecurityCodeMsg();
 			break;
 
-		case OTP_Challenge_WaitForOTPProgressBarToVanish:
-			OTPChallenge.get().waitForOTPProgressBarToVanish();
+		case OTP_Challenge_ClickFirstPhoneNumber:
+			OTPChallenge.get().clickFirstPhoneNumber();
 			break;
 
 		case OTP_Challenge_ResendCode:
 			OTPChallenge.get().clickResendCode();
 			break;
 
+		case OTP_Challenge_RequestMaxPassCodes:
+			OTPChallenge.get().requestMaxPassCodes();
+			break;
+
 		case OTP_Challenge_VerifyTooManySecurityCodesRequested:
 			OTPChallenge.get().verifyTooManySecurityCodesRequestedMsg();
+			break;
+
+		case OTP_Challenge_IdleTillLoggedOut:
+			OTPChallenge.get().idleTillLoggedOut();
+			break;
+
+		case OTP_Challenge_EnterIncorrectSecurityCode:
+			OTPChallenge.get().enterIncorrectSecurityCode();
 			break;
 
 		// OTP Setup
@@ -4216,24 +4237,32 @@ public class EventCase {
 			OTPSetup.get().acceptWelcomeTCScreens();
 			break;
 
+		case OTP_Setup_ContinueNotNowScreen:
+			OTPSetup.get().continueNotNowScreen();
+			break;
+
+		case OTP_Setup_AcceptTCScreen:
+			OTPSetup.get().acceptTCScreen();
+			break;
+
 		case OTP_Setup_AddPhoneNumber:
-			OTPSetup.get().addPhoneNumber();
+			OTPSetup.get().addSinglePhoneNumber();
+			break;
+
+		case OTP_Setup_AddMaxPhoneNumber:
+			OTPSetup.get().addMaxPhoneNumbers();
 			break;
 
 		case OTP_Setup_VerifyAddedPhoneNumber:
 			OTPSetup.get().verifyAddedPhoneNumber();
 			break;
 
-		case OTP_Setup_AddPhoneContinue:
-			OTPSetup.get().addPhoneContinue();
+		case OTP_Setup_TestPhonesContinue:
+			OTPSetup.get().testPhoneContinue();
 			break;
 
 		case OTP_Setup_VerifyAddAnotherPhoneNumberDialog:
 			OTPSetup.get().verifyAddAnotherPhoneNumberDialog();
-			break;
-
-		case OTP_Setup_ClickAnotherPhoneNo:
-			OTPSetup.get().clickAnotherPhoneNo();
 			break;
 
 		case OTP_Setup_DeleteFirstPhoneNumber:
@@ -4272,6 +4301,10 @@ public class EventCase {
 			OTPSetup.get().enterIncorrectSecurityCode();
 			break;
 
+		case OTP_Setup_EnterNonNumericSecurityCode:
+			OTPSetup.get().enterNonNumericSecurityCode();
+			break;
+
 		case OTP_Setup_ClickGetCodeButton:
 			OTPSetup.get().clickGetCodeButton();
 			break;
@@ -4286,14 +4319,6 @@ public class EventCase {
 
 		case OTP_Setup_VerifyInvalidSecurityCode:
 			OTPSetup.get().verifyInvalidSecurityCodeMsg();
-			break;
-
-		case OTP_Setup_WaitForOTPProgressBarToVanish:
-			OTPSetup.get().waitForOTPProgressBarToVanish();
-			break;
-
-		case OTP_Setup_TestPhonesContinue:
-			OTPSetup.get().testPhonesContinue();
 			break;
 
 		case OTP_Setup_VerifySecurityEmailScreen:
@@ -4312,10 +4337,6 @@ public class EventCase {
 			OTPSetup.get().verifySecurityCodeFrequencyScreen();
 			break;
 
-		case OTP_Setup_PasscodeContinue:
-			OTPSetup.get().passcodeContinue();
-			break;
-
 		case OTP_Setup_CodeFrequencyContinue:
 			OTPSetup.get().codeFrequencyContinue();
 			break;
@@ -4329,7 +4350,11 @@ public class EventCase {
 			break;
 
 		case OTP_Setup_VerifyExpiredSecurityCodeMsg:
-			OTPSetup.get().enterExpiredSecurityCode();
+			OTPSetup.get().verifyExpiredSecurityCodeMsg();
+			break;
+
+		case OTP_Setup_CreateNewPassword:
+			OTPSetup.get().createNewPassword();
 			break;
 
 		// OTP Update
@@ -4377,12 +4402,24 @@ public class EventCase {
 			OTPUpdate.get().addSinglePhoneNumber();
 			break;
 
+		case OTP_Update_AddSinglePhoneNumberFromPref:
+			OTPUpdate.get().addSinglePhoneNumberFromPref();
+			break;
+
 		case OTP_Update_AddMaxPhoneNumbers:
 			OTPUpdate.get().addMaxPhoneNumbers();
 			break;
 
 		case OTP_Update_DeleteFirstPhoneNumber:
 			OTPUpdate.get().deleteFirstPhoneNumber();
+			break;
+
+		case OTP_Update_DeleteSecondPhoneNumber:
+			OTPUpdate.get().deleteSecondPhoneNumber();
+			break;
+
+		case OTP_Update_VerifyDeleteSecondPhoneNumber:
+			OTPUpdate.get().verifyDeleteSecondPhoneNumber();
 			break;
 
 		case OTP_Update_VerifyDeletePhoneNumberFail:

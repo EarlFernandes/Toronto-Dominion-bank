@@ -214,7 +214,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/confirm_delete']")
 	private MobileElement deluser;
 
-	@iOSXCUITFindBy(xpath = "//*[@name='TDVIEW_TITLE' or @name='TD MySpend' or @name='Dépense TD']")
+	@iOSXCUITFindBy(xpath = "//*[@name='TDVIEW_TITLE' or @name='TD MySpend' or @name='Dépense TD'] | //XCUIElementTypeNavigationBar[1]/XCUIElementTypeStaticText[1] | //XCUIElementTypeNavigationBar[1]/XCUIElementTypeOther[1]")
 	@AndroidFindBy(xpath = "//*[@resource-id='android:id/action_bar_title' or @resource-id='android:id/content']")
 	private MobileElement logined_page_Header;
 
@@ -226,6 +226,16 @@ public class Login extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "actionSheetCancelButton")
 	@AndroidFindBy(id = "com.td:id/dialog_button")
 	private MobileElement cancelActionList;
+
+	// @iOSXCUITFindBy(xpath =
+	// "//XCUIElementTypeImage[@name='OTPNewCustomerWelcomePage']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Welcome to TD' or @name='Bienvenue à la TD' or @name='欢迎使用道明' or @name='歡迎使用道明']")
+	@AndroidFindBy(id = "com.td:id/image")
+	private MobileElement otpWelcomeImage;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeImage[@name='OTPLandingPage1']")
+	@AndroidFindBy(id = "com.td:id/image")
+	private MobileElement otpWelcomeImageExisting;
 
 	String session = "//XCUIElementTypeStaticText[@label='Session Expired']";
 	String session1 = "//android.widget.TextView[contains(@text,'Session Expired')]";
@@ -435,12 +445,23 @@ public class Login extends _CommonPage {
 	}
 
 	private boolean isSystemErrorStillFound() {
-		if (!mobileAction.verifyElementIsPresent(logined_page_Header)) {
-			return verifyIsLoginErrorSystemError();
 
+		MobileElement screenheader = PageHeader.get().getHeaderTextElement();
+
+		// No screen header
+		if (!mobileAction.verifyElementIsPresent(logined_page_Header)) {
+			if (mobileAction.verifyElementIsPresent(otpWelcomeImage)) {
+				// OTP New Customer Welcome page
+				return false;
+			} else if (mobileAction.verifyElementIsPresent(otpWelcomeImageExisting)) {
+				// OTP Existing Customer Welcome page
+				return false;
+			} else {
+				return verifyIsLoginErrorSystemError();
+			}
+
+			// Has screen header
 		} else {
-			// String securityQuestionTitle =
-			// mobileAction.getAppString("securityQuestionPageHeader");
 			String securityQuestionTitle = getTextInCurrentLocale(StringArray.ARRAY_LOGIN_SECURITY_QUESTION);
 			String pageTitle = mobileAction.getValue(logined_page_Header);
 			String addLoginTitle = getTextInCurrentLocale(StringArray.ARRAY_ADD_LOGIN);
@@ -451,6 +472,15 @@ public class Login extends _CommonPage {
 			} else if (pageTitle.contentEquals(addLoginTitle)) {
 				// still in login page
 				return verifyIsLoginErrorSystemError();
+			} else if (screenheader.getText()
+					.contains(getTextInCurrentLocale(StringArray.ARRAY_OTP_CHALLENGE_HEADER_TEXT))) {
+				// OTP Challenge page
+				return false;
+			} else if (screenheader.getText()
+					.contains(getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_SECURITY_SETTINGS))) {
+				// OTP Update page
+				return false;
+
 			} else {
 				System.out.println("Login successfully to page " + pageTitle);
 				return false;
