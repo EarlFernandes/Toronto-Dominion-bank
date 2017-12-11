@@ -88,7 +88,7 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Open a TD Direct Investing Account' or @label='Ouvrir un compte Placements directs TD' or @label='开设道明自管投资账户' or @label='開設道明自管投資賬戶']")
 	@AndroidFindBy(xpath = "//*[@text='Open a TD Direct Investing Account' or @text='Ouvrir un compte Placements directs TD' or @text='开设道明自管投资账户' or @text='開設道明自管投資賬戶']")
 	private MobileElement NR_TDDirectInvestingAccounts;
-	
+
 	@iOSFindBy(xpath = "//*[@label='Investing' or @label='Placements' or @label='投资' or @label='投資']")
 	@AndroidFindBy(xpath = "//*[@text='Investing' or @text='Placements' or @text='投资' or @text='投資']")
 	private MobileElement HDR_Investing;
@@ -121,7 +121,7 @@ public class MIT_DSHNavRows extends _CommonPage {
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel' or @label='Annuler' or @label='取消' or @label='取消']")
 	private MobileElement BT_Back_QuoteSearchSymbolScreen_Markets;
-	
+
 	private By ED_Markets_symbolSearch = By.id("symbol-search");
 
 	private By ED_Quote_Search_Symbol = By.id("symbol-search");
@@ -290,6 +290,10 @@ public class MIT_DSHNavRows extends _CommonPage {
 						mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
 					} else {
 						mobileAction.FuncClick(BT_Back, "< Button");
+
+						if (mobileAction.isObjExists(BT_Back)) {
+							mobileAction.FuncClick(BT_Back, "< Button");
+						}
 					}
 				}
 			}
@@ -480,7 +484,8 @@ public class MIT_DSHNavRows extends _CommonPage {
 					MIT_PNSAccessAlerts.get().FuncSwitchContext("NATIVE_APP");
 				} else {
 					mobileAction.verifyElementIsDisplayed(ED_Quote_Search_Symbol_iOS, "ED_Quote_Search_Symbol_iOS");
-					mobileAction.FuncClick(BT_Back_QuoteSearchSymbolScreen_Markets, "BT_Back_QuoteSearchSymbolScreen_Markets");
+					mobileAction.FuncClick(BT_Back_QuoteSearchSymbolScreen_Markets,
+							"BT_Back_QuoteSearchSymbolScreen_Markets");
 
 				}
 

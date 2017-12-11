@@ -136,7 +136,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 		Decorator();
 		try {
 
-			String xpathWLSymbol = "//*[@label='" + sSymbol + "' or @text='" + sSymbol + "']";
+			String xpathWLSymbol = "//*[contains(@label,'" + sSymbol + "') or @text='" + sSymbol + "']";
 			String xpathWLSymbolQuotePage = "//*[contains(@label,'" + sSymbol + "')]";
 
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbol, true, 4, "up");
