@@ -65,7 +65,7 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Markets' or @text='Marchés' or @text='市场' or @text='市場']")
 	private MobileElement NR_Markets;
 
-	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='Comptes' or @label='我的账户' or @label='我的賬戶']")
+	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='Comptes' or @label='账户' or @label='賬戶']")
 	@AndroidFindBy(xpath = "//*[@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶']")
 	private MobileElement HDR_MyAccounts;
 

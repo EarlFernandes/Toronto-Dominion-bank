@@ -54,7 +54,6 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage {
 	private MobileElement AccessoryGoHome;
 
 	@iOSXCUITFindBy(accessibility = "SearchBarWidget")
-
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Search or add symbols' or @text='Rechercher ou ajouter des symboles' or @text='搜索或添加股票代码' or @text='搜尋或添加股票代號']")
 	private MobileElement searchBar;
 

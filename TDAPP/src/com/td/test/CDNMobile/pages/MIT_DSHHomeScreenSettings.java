@@ -42,8 +42,8 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Profile & Settings' or @text='Profil et paramètres' or @text='个人资料和设置' or @text='個人資料和設定']")
 	private MobileElement lblProfileSettings;
 
-	@iOSFindBy(xpath = "//*[@label='Home Screen Settings' or @label='Paramètres de l’écran d’accueil' or @label='主屏幕设置' or @label='首頁設定']")
-	@AndroidFindBy(xpath = "//*[@text='Home Screen Settings' or @text='Paramètres de l’écran d’accueil' or @text='主屏幕设置' or @text='首頁設定']")
+	@iOSFindBy(xpath = "//*[@label='Home Screen Settings' or @label='Paramètres de l’écran d’accueil' or @label='主页设置' or @label='首頁設定']")
+	@AndroidFindBy(xpath = "//*[@text='Home Screen Settings' or @text='Paramètres de l’écran d’accueil' or @text='主页设置' or @text='首頁設定']")
 	private MobileElement LBL_HomeScreenSettings;
 
 	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
