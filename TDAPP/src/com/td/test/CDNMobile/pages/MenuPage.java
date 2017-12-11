@@ -103,6 +103,9 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText']")
 	private List<MobileElement> menuOpts;
 
+	@iOSXCUITFindBy(xpath = "//*[(@label='TD Talk to Me' or @label='TD Talk to Me(FR)' or @label='TD Talk to Me' or @label='TD Talk to Me') and @name='flyout_title']")
+	private MobileElement chatBot;
+
 	public synchronized static MenuPage get() {
 		if (MenuPage == null) {
 			MenuPage = new MenuPage();
@@ -633,6 +636,24 @@ public class MenuPage extends _CommonPage {
 		}
 	}
 
+	public void clickFAQ() {
+
+		Decorator();
+		try {
+			mobileAction.FuncClick(faq, "FAQ menu button");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
 	/**
 	 * This method will verify text within elements for the fly out menu
 	 * 
@@ -725,6 +746,24 @@ public class MenuPage extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
+	}
+
+	public void clickChatBot() {
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(chatBot, "Chat Bot");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
 	}
 
 }
