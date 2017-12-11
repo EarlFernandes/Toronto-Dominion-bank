@@ -94,7 +94,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='banner' or contains(@label,'Entrez le')]/*[1]")
+	@iOSXCUITFindBy(xpath = "//*[@label='banner' or contains(@label,'bannière')]/*[1]")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back1;
 
@@ -102,7 +102,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and (@text='RECENT SEARCHES' or @text='RECHERCHES RÉCENTES' or @text='最近的搜索' or @text='最近的搜尋')]")
 	private MobileElement hdrRECENT;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Effacer le texte')]")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/btn_clear_search_text']")
 	private MobileElement btnClear;
 
@@ -124,7 +124,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
 	private MobileElement symHeader;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='ADD TO OR REMOVE FROM WATCHLIST' or @label='RÉSULTATS']")
+	@iOSXCUITFindBy(xpath = "//*[@label='ADD TO OR REMOVE FROM WATCHLIST' or @label='AJOUTER OU SUPPRIMER DE LA LISTE DE SURVEILLANCE' or @label='添加至自选股观察名单或从自选股观察名单中移除' or @label='新增至或從自選股觀察名單中移除']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title' and (@text='Add to or remove from watchlist' or @text='Ajouter ou supprimer de la liste de surveillance' or @text='添加至自选股观察名单或从自选股观察名单中移除' or @text='新增至或從自選股觀察名單中移除')]")
 	private MobileElement lblAddWatchlist;
 
