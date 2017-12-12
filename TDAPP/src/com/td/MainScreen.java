@@ -41,7 +41,7 @@ public class MainScreen extends _CommonPage {
 			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName",
 			"Passcode", "NewPasscode", "Email", "Name", "EmailProfile", "PhoneProfile", "PostSurveyText", "Response",
 			"ProfileType", "SecurityQuestion", "OTPSecurityCode", "UserProfileType", "SecurityQuestion", "Category",
-			"TransactionStatus", "Message", "Nickname" };
+			"TransactionStatus", "Message", "Nickname", "Time" };
 
 	public void readSheet() {
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();

@@ -54,42 +54,42 @@ public class SpendingByCategory extends _CommonPage {
 	private MobileElement needs;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'All Categories. You') or contains(@label,'Toutes les catégories. Vous')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'All Categories. You') or contains(@content-desc,'Toutes les catégories. Vous') or contains(@text,'All Categories. You')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'All Categories. You') or contains(@content-desc,'Toutes les catégories. Vous') or contains(@text,'All Categories. You') or contains(@text,'Toutes les catégories. Vous')]")
 	private MobileElement allCategoriesInfo;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'All Categories') or contains(@label,'Toutes les catégories')]")
 	private MobileElement allCategories;
 
 	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Wants') or contains(@label,'Souhaits')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Wants') or contains(@content-desc,'Souhaits') or contains(@text,'Wants')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Wants') or contains(@content-desc,'Souhaits') or contains(@text,'Wants') or contains(@text'Souhaits')]")
 	private MobileElement wantsCategories;
 
 	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Needs') or contains(@label,'Besoins')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Needs') or contains(@content-desc,'Besoins') or contains(@text,'Needs')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Needs') or contains(@content-desc,'Besoins') or contains(@text,'Needs') or contains(@text,'Besoins')]")
 	private MobileElement needsCategories;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'currently spending') or contains(@label,'êtes actuellement')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'currently spending') or contains(@content-desc,'êtes actuellement') or contains(@text,'currently spending')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'currently spending') or contains(@content-desc,'êtes actuellement') or contains(@text,'currently spending') or or contains(@text,'êtes actuellement')]")
 	private MobileElement youAreCurrentlySpending;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'typical spending') or contains(@label,'vos dépenses habituelles')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'typical spending') or contains(@content-desc,'vos dépenses habituelles') or contains(@text,'typical spending')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'typical spending') or contains(@content-desc,'vos dépenses habituelles') or contains(@text,'typical spending') or contains(@text,'vos dépenses habituelles')]")
 	private MobileElement typicalSpending;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'You have spent') or contains(@label,'Vous avez dépensé')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'You have spent') or contains(@content-desc,'Vous avez dépensé') or contains(@text,'You have spent')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'You have spent') or contains(@content-desc,'Vous avez dépensé') or contains(@text,'You have spent') or contains(@text,'Vous avez dépensé')]")
 	private MobileElement YouHaveSpent;
 
 	@iOSXCUITFindBy(xpath = "//*[contains(@label,'change category') or contains(@label,'changer de catégorie')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie') or contains(@text,'change category')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie') or contains(@text,'change category') or contains(@text,'changer de catégorie')]")
 	private MobileElement transactionCategory;
 
 	@iOSXCUITFindBy(xpath = "//*[contains(@label,'All Categories Spending Details') or contains(@label,'Wants Spending Details') or contains(@label,'Needs Spending Details')]/following-sibling::XCUIElementTypeOther[3]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie') or contains(@text,'change category')]/following-sibling::android.view.View")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie') or contains(@text,'change category') or contains(@text,'changer de catégorie')]/following-sibling::android.view.View")
 	private MobileElement transactionName;
 
 	@iOSXCUITFindBy(xpath = "//*[contains(@label,'All Categories Spending Details') or contains(@label,'Wants Spending Details') or contains(@label,'Needs Spending Details')]/following-sibling::XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie') or contains(@text,'change category')]/following-sibling::android.view.View/android.view.View[contains(@content-desc,'$') or contains(@text,'$')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie') or contains(@text,'change category') or contains(@text,'changer de catégorie')]/following-sibling::android.view.View/android.view.View[contains(@content-desc,'$') or contains(@text,'$')]")
 	private MobileElement amount;
 
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'category')]")
@@ -183,12 +183,12 @@ public class SpendingByCategory extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementIsDisplayed(allAndroid, "All Tab");
-				mobileAction.verifyElementIsDisplayed(allCategoriesAndroid, "All Categories Heading");
-			//	mobileAction.verifyElementIsDisplayed(youAreCurrentlySpendingAndroid, "You're currently spending");
+			//	mobileAction.verifyElementIsDisplayed(allCategoriesAndroid, "All Categories Heading");
+				mobileAction.verifyElementIsDisplayed(youAreCurrentlySpendingAndroid, "You're currently spending");
 				verifyTransactions("All");
 			} else {
 				mobileAction.verifyElementIsDisplayed(all, "All Tab");
-				mobileAction.verifyElementIsDisplayed(allCategories, "All Categories Heading");
+			//	mobileAction.verifyElementIsDisplayed(allCategories, "All Categories Heading");
 				mobileAction.verifyElementIsDisplayed(youAreCurrentlySpending, "You're currently spending");
 				mobileAction.verifyElementIsDisplayed(typicalSpending, "Typical Spending Bar");
 				mobileAction.verifyElementIsDisplayed(YouHaveSpent, "Current Spending Bar");

@@ -10,6 +10,7 @@ import com.td.test.myspend.DailyDigest;
 
 import com.td.test.myspend.LogoutMySpend;
 import com.td.test.myspend.MoneyPath;
+import com.td.test.myspend.MySpendTransfers;
 import com.td.test.myspend.MyspendPreferences;
 import com.td.test.myspend.SideMenu;
 import com.td.test.myspend.SpendingByCategory;
@@ -157,7 +158,7 @@ public class EventCase {
 		verifyReplaceDamagedCardHeader, ClickReplaceDamagedCardBtn, verifyReplaceDamagedCardDirectionalCopy, verifyDamagedCardForm,
 
 		// myspend
-		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_verifyCategoryMessage, DailyDigest_changeCategory, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, MySpendPreferences_clickActiveAccounts, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, Preferences_verifyHomePage, TourPage_clickConnectTDApp, TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickGetTDAppButton, click_PreferencesLink
+		DailyDigest_verifyHeader,DailyDigest_verifyHomePage,DailyDigest_verifyBackButton,DailyDigest_verifySpending,DailyDigest_verifyCategorySpike,DailyDigest_clickCategoryTab,DailyDigest_changeCategory,DailyDigest_verifyCategoryMessage,Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality,MySpendPreferences_clickActiveAccounts,MySpendTransfers_clickBetweenMyAccounts,MySpendTransfers_PerformTransfer,MySpendPrefernces_disableAccounts,Preferences_verifyPreferenceTabs,Preferences_verifyRealTimeNotifications,Preferences_verifyDailyDigestNotifications,Preferences_verifyHomePage, TourPage_clickConnectTDApp,TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks,SideMenu_clickSideMenu,SideMenu_verifyNavigationWithinMySpend, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes,SpendingInsight_clickDailyDigest,SpendingInsight_verifyAccountsSelected,TransactionHistory_verifySelectedAccounts,SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts,SideMenu_clickTransfers, SideMenu_clickGetTDAppButton, click_PreferencesLink
 
 	}
 
@@ -2756,22 +2757,6 @@ public class EventCase {
 			MIT_DSHQuickLinks.get().verifyQuickLinksBlendedUser();
 			break;
 
-		case verifyFlyoutUnauthenticated:
-			MIT_DSH_FlyoutMenu.get().verifyFlyoutUnauthenticated();
-			break;
-
-		case verifyFlyoutBankingOnlyUser:
-			MIT_DSH_FlyoutMenu.get().verifyFlyoutBankingOnlyUser();
-			break;
-
-		case verifyFlyoutInvestingOnlyUser:
-			MIT_DSH_FlyoutMenu.get().verifyFlyoutInvestingOnlyUser();
-			break;
-
-		case verifyFlyoutBlendedyUser:
-			MIT_DSH_FlyoutMenu.get().verifyFlyoutBlendedyUser();
-			break;
-
 		case verifyContactUsHomeUnAuthenticated:
 			MIT_DSH_Contact_Location.get().verifyContactUsHomeUnAuthenticated();
 			break;
@@ -4551,6 +4536,10 @@ public class EventCase {
 		case SideMenu_clickMyAccounts:
 			SideMenu.get().clickMyAccounts();
 			break;
+			
+		case SideMenu_clickTransfers:
+			SideMenu.get().clickTransfers();
+			break;
 
 		case SideMenu_clickGetTDAppButton:
 			SideMenu.get().clickGetTDAppButton();
@@ -4690,6 +4679,47 @@ public class EventCase {
 
 		case MySpendPreferences_clickActiveAccounts:
 			MyspendPreferences.get().clickActiveAccounts();
+			break;
+			
+		case SideMenu_verifyNavigationWithinMySpend:
+			SideMenu.get().verifyNavigationWithinMySpend();
+			break;
+			
+		case MySpendTransfers_clickBetweenMyAccounts:
+			MySpendTransfers.get().clickBetweenMyAccounts();
+			break;
+			
+		case MySpendTransfers_PerformTransfer:
+			MySpendTransfers.get().performTransfer();
+			break;
+			
+		case SpendingInsight_verifyAccountsSelected:
+			Spending_Insight.get().verifyActiveAccounts();
+			break;
+			
+		case TransactionHistory_verifySelectedAccounts:
+			TransactionHistory.get().verifySelectedAccounts();
+			break;
+			
+		case MySpendPrefernces_disableAccounts:
+			MyspendPreferences.get().disableAccounts();
+			break;
+
+		// DSh
+		case verifyFlyoutUnauthenticated:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutUnauthenticated();
+			break;
+
+		case verifyFlyoutBankingOnlyUser:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutBankingOnlyUser();
+			break;
+
+		case verifyFlyoutInvestingOnlyUser:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutInvestingOnlyUser();
+			break;
+
+		case verifyFlyoutBlendedyUser:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutBlendedyUser();
 			break;
 
 		}
