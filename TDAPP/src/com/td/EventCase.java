@@ -147,6 +147,21 @@ public class EventCase {
 		// OTP Update
 		OTP_Update_VerifyOTPUpdateScreen, OTP_Update_VerifyTestPhoneUpdateScreen, OTP_Update_ClickTestPhoneButton, OTP_Update_VerifyLoginOptionUpdateScreen, OTP_Update_ClickLoginOptionButton, OTP_Update_VerifyChangeEmailScreen, OTP_Update_ClickChangeEmailButton, OTP_Update_UpdateSecurityEmail, OTP_Update_ClickOTPUpdateContinueButton, OTP_Update_VerifyOTPUpdateCompleteScreen, OTP_Update_ClickAddPhoneUpdateButton, OTP_Update_AddSinglePhoneNumber, OTP_Update_AddMaxPhoneNumbers, OTP_Update_DeleteFirstPhoneNumber, OTP_Update_VerifyDeletePhoneNumberFail, OTP_Update_VerifyAddedPhoneNumber, OTP_Update_VerifyMaxPhoneNumbers, OTP_Update_VerifyUpdatedSecurityEmail, OTP_Update_ClickFirstPhoneNumber, OTP_Update_ClickTextOption, OTP_Update_ClickSubmitCodeButton, OTP_Update_EnterSecurityCode, OTP_Update_VerifyCorrectSecurityCode, OTP_Update_ClickGetCodeButton,
 
+		// Chatbot
+		Chatbot_EnterQuestion, Chatbot_VerifyHeader, Chatbot_VerifyIneligibleUser,
+
+		// Contact Us
+		ContactUs_ClickChatbot,
+
+		// FAQ
+		FAQ_ClickChatbot,
+
+		// Homescreen
+		HomeScreen_QuickLink_Chatbot, HomeScreen_Dashboard_Chatbot,
+
+		// Menu
+		Menu_ClickChatBot, Menu_ClickFAQ,
+
 		// CLIP
 		VerifyMoreLinkPresent, ClickMoreLink, verifyMoreOptionHeader, ClickCardlimitIncreaseBtn, verifyCreditLimitIncreaseHeader, verifyMoreOptionsDirectionalCopy, verifyCreditCardContent, Click_GetStarted, verifyLimitIncreaseForm,
 
@@ -579,10 +594,6 @@ public class EventCase {
 
 		case Add_Recipient_ErrorPage:
 			AddRecipient.get().addRecipient_ErrorMessage();
-			break;
-
-		case ClickContact:
-			MenuPage.get().clickContactUs();
 			break;
 
 		case TDDirectInvestingContact:
@@ -4428,6 +4439,51 @@ public class EventCase {
 
 		case OTP_Update_VerifyCorrectSecurityCode:
 			OTPUpdate.get().verifyCorrectSecurityCode();
+			break;
+
+		// Chat Bot
+		case Chatbot_EnterQuestion:
+			Chatbot.get().enterQuestion();
+			break;
+
+		case Chatbot_VerifyHeader:
+			Chatbot.get().verifyHeader();
+			break;
+
+		case Chatbot_VerifyIneligibleUser:
+			Chatbot.get().verifyIneligibleUser();
+			break;
+
+		// Contact US
+		case ContactUs_ClickChatbot:
+			ContactUs.get().clickChatbot();
+			break;
+
+		// FAQ
+		case FAQ_ClickChatbot:
+			FAQ.get().clickChatbot();
+			break;
+
+		// HomeScreen
+		case HomeScreen_QuickLink_Chatbot:
+			HomeScreen.get().clickChatBotQuickLink();
+			break;
+
+		case HomeScreen_Dashboard_Chatbot:
+			HomeScreen.get().clickChatBotDashboard();
+			break;
+
+		// Menu
+		case ClickContact:
+			MenuPage.get().clickContactUs();
+			break;
+
+		case Menu_ClickChatBot:
+			MenuPage.get().clickChatBot();
+			break;
+
+		case Menu_ClickFAQ:
+			MenuPage.get().clickFAQ();
 			break;
 
 		// MySpend
