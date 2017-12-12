@@ -117,8 +117,8 @@ public class Transfers extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				btw_my_accnts = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='"
-								+ mobileAction.getAppString("transfersTransfersNavRowHeaderBetweenMyAccounts") + "']",
+						"//android.widget.TextView[contains(@text,'"
+								+ getTextInCurrentLocale(StringArray.ARRAY_BETWEEN_MY_ACCOUNTS_HEADER) + "')]",
 						"Transfer Between");
 			}
 			mobileAction.FuncClick(btw_my_accnts, "Between my Accounts");

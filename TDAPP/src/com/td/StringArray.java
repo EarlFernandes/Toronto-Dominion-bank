@@ -250,7 +250,7 @@ public final class StringArray {
 
 	// Between My Accounts
 	public static final String[] ARRAY_BETWEEN_MY_ACCOUNTS_HEADER = { "Between My Accounts", "Entre mes comptes",
-			"在我的账户间转账", "賬戶之間" };
+			"我的账户间", "我的賬戶之間" };
 
 	// Credit
 	public static final String[] ARRAY_TD_POINTS = { "TD Points", "Points TD", "TD Points", "TD Points" };
