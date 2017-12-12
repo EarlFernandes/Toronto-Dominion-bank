@@ -484,9 +484,10 @@ public class MIT_DSHNavRows extends _CommonPage {
 					MIT_PNSAccessAlerts.get().FuncSwitchContext("NATIVE_APP");
 				} else {
 					mobileAction.verifyElementIsDisplayed(ED_Quote_Search_Symbol_iOS, "ED_Quote_Search_Symbol_iOS");
-					mobileAction.FuncClick(BT_Back_QuoteSearchSymbolScreen_Markets,
+					// mobileAction.FuncClick(BT_Back_QuoteSearchSymbolScreen_Markets,
+					// "BT_Back_QuoteSearchSymbolScreen_Markets");
+					mobileAction.FuncClickElementCoordinates(BT_Back_QuoteSearchSymbolScreen_Markets,
 							"BT_Back_QuoteSearchSymbolScreen_Markets");
-
 				}
 
 				mobileAction.switchAppiumContext("NATIVE_APP");

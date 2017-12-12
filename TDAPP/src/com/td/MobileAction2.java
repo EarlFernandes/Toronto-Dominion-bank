@@ -1096,8 +1096,8 @@ public class MobileAction2 extends CommonLib {
 																												// 03-Feb-2017
 																												// (Modified)
 		try {
-			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
-			wait.until(ExpectedConditions.visibilityOf(mobileElement));
+/*			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+			wait.until(ExpectedConditions.visibilityOf(mobileElement));*/
 			if (mobileElement.isDisplayed())
 				GetReporting().FuncReport("Pass", "The element <b>- " + expectedText + "</b> is displayed.");
 			else

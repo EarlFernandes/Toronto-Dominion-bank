@@ -283,7 +283,7 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_NAVROW_OPENABANKACCOUNT = { "Open a Bank Account",
 			"Ouvrir un compte bancaire", "报价", "報價" };
 	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGS = { "Home Screen Settings",
-			"Paramètres de l’écran d’accueil", "主屏幕设置", "主屏幕設置" };
+			"Paramètres de l’écran d’accueil", "主页设置", "首頁設定" };
 
 	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGSHEADERDESCRIPTION = {
 			"Choose what view to show on your home screen", "Choisir l’affichage de votre écran d’accueil", "选择主屏幕视图",
@@ -293,7 +293,8 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_ENABLEINVESTINGVIEWDESCRIPTION = {
 			"Add a Watchlist, symbol search box and investing Quick Links.",
 			"Ajouter une liste de surveillance, une boîte de recherche de symboles et des liens rapides sur les placements",
-			"添加自选股观察名单、股票代码搜索框和投资快速连接。", "添加自選股觀察名單、股票代號搜索框和投資快速連結。" };
+			"添加自选股观察名单、股票代码搜索框和投资快速连接。", "新增自選股觀察名單、股票代號搜尋框和投資快速連結。" };
+	
 	public static final String[] ARRAY_DASHBOARD_INVESTINGVIEWISON = { "Investing view is now on",
 			"Affichage Placements activé", "投资视图已开启", "投資視圖已開啟" };
 	public static final String[] ARRAY_DASHBOARD_GOHOME = { "Go home", "Aller à l’accueil", "回到主页", "回到首頁" };

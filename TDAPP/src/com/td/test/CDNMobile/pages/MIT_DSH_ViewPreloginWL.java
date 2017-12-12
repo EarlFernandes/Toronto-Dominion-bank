@@ -148,7 +148,7 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 
 			mobileAction.FuncClick(btn_home, "Home Button");
 
-			mobileAction.FuncSwipeWhileElementNotFound(btnMore, true, 3, "up");
+			mobileAction.FuncSwipeWhileElementNotFound(btnMore, false, 3, "up");
 
 			mobileAction.verifyElementIsDisplayed(btnMore, "btnMore");
 
