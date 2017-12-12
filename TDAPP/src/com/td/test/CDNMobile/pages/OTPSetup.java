@@ -966,28 +966,28 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.switchToWebView();
 			}
 
-			String phoneNumber = "1 (" + phoneNumbers[0].substring(0, 3) + ") " + phoneNumbers[0].substring(3, 6)
-					+ " - " + phoneNumbers[0].substring(6);
+			String phoneNumber = "(" + phoneNumbers[0].substring(0, 3) + ") " + phoneNumbers[0].substring(3, 6) + " - "
+					+ phoneNumbers[0].substring(6);
 			mobileAction.verifyElementIsDisplayed(phoneCard1Phone, "Phone number 1");
 			mobileAction.verifyElementTextContains(phoneCard1Phone, phoneNumber);
 			mobileAction.verifyElementIsDisplayed(phoneCard1Nickname, "Phone nickname 1");
 			mobileAction.verifyElementTextContains(phoneCard1Nickname, nickname);
 
-			phoneNumber = "1 (" + phoneNumbers[1].substring(0, 3) + ") " + phoneNumbers[1].substring(3, 6) + " - "
+			phoneNumber = "(" + phoneNumbers[1].substring(0, 3) + ") " + phoneNumbers[1].substring(3, 6) + " - "
 					+ phoneNumbers[1].substring(6);
 			mobileAction.verifyElementIsDisplayed(phoneCard2Phone, "Phone number 2");
 			mobileAction.verifyElementTextContains(phoneCard2Phone, phoneNumber);
 			mobileAction.verifyElementIsDisplayed(phoneCard2Nickname, "Phone nickname 2");
 			mobileAction.verifyElementTextContains(phoneCard2Nickname, nickname);
 
-			phoneNumber = "1 (" + phoneNumbers[2].substring(0, 3) + ") " + phoneNumbers[2].substring(3, 6) + " - "
+			phoneNumber = "(" + phoneNumbers[2].substring(0, 3) + ") " + phoneNumbers[2].substring(3, 6) + " - "
 					+ phoneNumbers[2].substring(6);
 			mobileAction.verifyElementIsDisplayed(phoneCard3Phone, "Phone number 3");
 			mobileAction.verifyElementTextContains(phoneCard3Phone, phoneNumber);
 			mobileAction.verifyElementIsDisplayed(phoneCard3Nickname, "Phone nickname 3");
 			mobileAction.verifyElementTextContains(phoneCard3Nickname, nickname);
 
-			phoneNumber = "1 (" + phoneNumbers[3].substring(0, 3) + ") " + phoneNumbers[3].substring(3, 6) + " - "
+			phoneNumber = "(" + phoneNumbers[3].substring(0, 3) + ") " + phoneNumbers[3].substring(3, 6) + " - "
 					+ phoneNumbers[3].substring(6);
 			mobileAction.verifyElementIsDisplayed(phoneCard4Phone, "Phone number 4");
 			mobileAction.verifyElementTextContains(phoneCard4Phone, phoneNumber);
@@ -1000,7 +1000,7 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.FunctionSwipe("up", 100, 0);
 			}
 
-			phoneNumber = "1 (" + phoneNumbers[4].substring(0, 3) + ") " + phoneNumbers[4].substring(3, 6) + " - "
+			phoneNumber = "(" + phoneNumbers[4].substring(0, 3) + ") " + phoneNumbers[4].substring(3, 6) + " - "
 					+ phoneNumbers[4].substring(6);
 			mobileAction.verifyElementIsDisplayed(phoneCard5Phone, "Phone number 5");
 			mobileAction.verifyElementTextContains(phoneCard5Phone, phoneNumber);
