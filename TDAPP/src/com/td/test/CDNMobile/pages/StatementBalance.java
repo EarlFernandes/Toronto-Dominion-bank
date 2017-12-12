@@ -209,28 +209,29 @@ public class StatementBalance extends _CommonPage {
 			boolean hasPayWithRewards = mobileAction.verifyElementIsPresent(payWithRewardsBtn);
 
 			if (!ptsBalance.contains("$")) {
-				if ((Integer.parseInt(ptsBalance) < 10000) && hasPayWithRewards) {
+				int travelBalance = parseRewardsPoints(ptsBalance);
+				if ((travelBalance < 10000) && hasPayWithRewards) {
 					CL.GetReporting().FuncReport("Fail",
 							"Pay With Rewards button incorrectly appeared for less than 10000 pts");
-				} else if ((Integer.parseInt(ptsBalance) < 10000) && !hasPayWithRewards) {
+				} else if ((travelBalance < 10000) && !hasPayWithRewards) {
 					CL.GetReporting().FuncReport("Pass",
 							"Pay With Rewards button should not appear for less than 10000 pts");
-				} else if ((Integer.parseInt(ptsBalance) >= 10000) && hasPayWithRewards) {
+				} else if ((travelBalance >= 10000) && hasPayWithRewards) {
 					CL.GetReporting().FuncReport("Pass", "Pay With Rewards button appears if more than 10000 pts");
-				} else if ((Integer.parseInt(ptsBalance) >= 10000) && !hasPayWithRewards) {
+				} else if ((travelBalance >= 10000) && !hasPayWithRewards) {
 					CL.GetReporting().FuncReport("Fail",
 							"Pay With Rewards button should not appear if more than 10000 pts");
 				}
 			} else {
-				ptsBalance = ptsBalance.replace("$", "");
-				if ((Double.parseDouble(ptsBalance) < 25.00) && hasPayWithRewards) {
+				double cbDollarsBalance = parseCashBackDollars(ptsBalance);
+				if ((cbDollarsBalance < 25.00) && hasPayWithRewards) {
 					CL.GetReporting().FuncReport("Fail",
 							"Pay With Rewards button incorrectly appeared for less than $25");
-				} else if ((Double.parseDouble(ptsBalance) < 25.00) && !hasPayWithRewards) {
+				} else if ((cbDollarsBalance < 25.00) && !hasPayWithRewards) {
 					CL.GetReporting().FuncReport("Pass", "Pay With Rewards button should not appear for less than $25");
-				} else if ((Double.parseDouble(ptsBalance) >= 25.00) && hasPayWithRewards) {
+				} else if ((cbDollarsBalance >= 25.00) && hasPayWithRewards) {
 					CL.GetReporting().FuncReport("Pass", "Pay With Rewards button appears for more than $25");
-				} else if ((Double.parseDouble(ptsBalance) >= 25.00) && !hasPayWithRewards) {
+				} else if ((cbDollarsBalance >= 25.00) && !hasPayWithRewards) {
 					CL.GetReporting().FuncReport("Fail", "Pay With Rewards button should not appear for more than $25");
 				}
 
@@ -246,6 +247,42 @@ public class StatementBalance extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
 		}
+	}
+
+	private double parseCashBackDollars(String rewardText) {
+		double result = 0.00;
+
+		if (currentLocale.equalsIgnoreCase("fr")) {
+			rewardText = rewardText.substring(0, rewardText.indexOf("$")).trim();
+			rewardText = rewardText.replace(",", ".");
+			rewardText = rewardText.replace(" ", "");
+		} else {
+			// en, chinese have same format
+			rewardText = rewardText.substring(0, rewardText.indexOf(" "));
+			rewardText = rewardText.replace(",", "");
+			rewardText = rewardText.replace("$", "");
+		}
+		result = Double.parseDouble(rewardText);
+
+		return result;
+
+	}
+
+	private int parseRewardsPoints(String rewardText) {
+		int result = 0;
+
+		if (currentLocale.equalsIgnoreCase("fr")) {
+			rewardText = rewardText.substring(0, rewardText.indexOf("Points")).trim();
+			rewardText = rewardText.replace(" ", "");
+		} else {
+			// en, chinese have same format
+			rewardText = rewardText.substring(0, rewardText.indexOf("TD")).trim();
+			rewardText = rewardText.replace(",", "");
+		}
+		result = Integer.parseInt(rewardText);
+
+		return result;
+
 	}
 
 }

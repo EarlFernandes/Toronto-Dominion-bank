@@ -447,10 +447,14 @@ public class Credit extends _CommonPage {
 	public void getTDPointsBalance() {
 		Decorator();
 		try {
+			// Wait while page loads
+			mobileAction.sleep(5000);
+
 			String ptsBalance = "0";
 			boolean hasRewards = mobileAction.verifyElementIsPresent(tdPointsBalance);
 			if (hasRewards) {
 				ptsBalance = mobileAction.FuncGetText(tdPointsBalance);
+				System.out.println("Points balance: " + ptsBalance);
 			}
 			CL.getTestDataInstance().TCParameters.put("Amount", ptsBalance);
 
