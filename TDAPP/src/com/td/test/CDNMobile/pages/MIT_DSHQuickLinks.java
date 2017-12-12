@@ -69,7 +69,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='SEND MONEY' or contains(@text,'ENVOI') or @text='汇款' or @text='匯款') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_SENDMONEY;
 
-	@iOSFindBy(xpath = "//*[@label='TRANSFER' or @label='VIREMENT' or @label='转账' or @label='轉賬']")
+	@iOSFindBy(xpath = "//*[(@label='TRANSFER' or @label='VIREMENT' or @label='转账' or @label='轉賬']) and contains(@name,'QuickLink')")
 	@AndroidFindBy(xpath = "//*[(@text='TRANSFER' or @text='VIREMENT' or @text='转账' or @text='轉賬') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_TRANSFER;
 
