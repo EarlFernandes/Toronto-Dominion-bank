@@ -402,14 +402,16 @@ public class PayBill extends _CommonPage {
 
 			} else {
 				toAccountXpath = "//XCUIElementTypeStaticText[contains(@label,'" + toAccount + "')]";
-				payWithRewards = mobileAction.mobileElementUsingXPath("//XCUIElementTypeStaticText[contains(@label,'"
-						+ getTextInCurrentLocale(StringArray.ARRAY_REWARDS_PAY_WITH_REWARDS) + "')]");
 
 			}
 			mobileAction.FuncClick(to_account_post, "Select Payee field");
 			mobileAction.swipeAndSearchByxpath(toAccountXpath, true, 10, "Up");
 			mobileAction.waitProgressBarVanish();
 
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				payWithRewards = mobileAction.mobileElementUsingXPath("//XCUIElementTypeStaticText[contains(@label,'"
+						+ getTextInCurrentLocale(StringArray.ARRAY_REWARDS_PAY_WITH_REWARDS) + "')]");
+			}
 			mobileAction.verifyElementIsDisplayed(payWithRewards, "Pay With Rewards link");
 			mobileAction.verifyElementTextContains(payWithRewards,
 					getTextInCurrentLocale(StringArray.ARRAY_REWARDS_PAY_WITH_REWARDS));

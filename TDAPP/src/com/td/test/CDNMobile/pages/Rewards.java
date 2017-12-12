@@ -28,7 +28,7 @@ public class Rewards extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement rewardsHeader;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/textview_action_title'])[1]")
 	private MobileElement txtVisitTD;
 
@@ -40,7 +40,7 @@ public class Rewards extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.android.chrome:id/url_bar' or @resource-id='com.sec.android.app.sbrowser:id/location_bar_edit_text']")
 	private MobileElement visitTDUrl;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/textview_action_title'])[2]")
 	private MobileElement txtpayWithRewards;
 

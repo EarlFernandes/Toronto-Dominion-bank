@@ -316,9 +316,9 @@ public class QuickAccessSettings extends _CommonPage {
 
 			MobileElement accountFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
 			if (accountFound == null) {
-				mobileAction.GetReporting().FuncReport("Pass", "Specified account exists: " + card);
+				mobileAction.GetReporting().FuncReport("Pass", "Specified account does not exist: " + card);
 			} else {
-				mobileAction.GetReporting().FuncReport("Fail", "Cannot find specified account: " + card);
+				mobileAction.GetReporting().FuncReport("Fail", "Specified account exists: " + card);
 			}
 
 		} catch (Exception e) {

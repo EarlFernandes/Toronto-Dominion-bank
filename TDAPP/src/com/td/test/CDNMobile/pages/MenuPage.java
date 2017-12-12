@@ -774,12 +774,6 @@ public class MenuPage extends _CommonPage {
 			verifyMenuItem(faq, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_FAQ));
 			verifyMenuItem(privacy, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PRIVACYSECURITY));
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				verifyMenuItem(mobilePayment, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT));
-			} else {
-				verifyMenuItem(applePay, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_APPLEPAY));
-			}
-
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {

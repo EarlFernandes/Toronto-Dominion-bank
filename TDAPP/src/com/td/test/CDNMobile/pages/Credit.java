@@ -72,7 +72,7 @@ public class Credit extends _CommonPage {
 
 	By iosVerifyLang = By.xpath("//XCUIElementTypeStaticText[contains(@label,'Dollars')]");
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/last_statement")
 	private MobileElement latestStatementDetail;
 
@@ -162,6 +162,7 @@ public class Credit extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(rewardBtn, "Rewards");
+			mobileAction.sleep(3000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -513,6 +514,8 @@ public class Credit extends _CommonPage {
 	public void verifyTDRewardsDollarsBalanceUpdated() {
 		Decorator();
 		try {
+			mobileAction.sleep(5000);
+
 			double previousBalance = parseCashBackDollars(getTestdata("Amount"));
 			String ptsText = mobileAction.FuncGetText(tdPointsBalance);
 			double balance = parseCashBackDollars(ptsText);
