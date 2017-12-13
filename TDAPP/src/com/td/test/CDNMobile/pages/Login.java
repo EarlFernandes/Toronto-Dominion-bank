@@ -446,22 +446,17 @@ public class Login extends _CommonPage {
 
 	private boolean isSystemErrorStillFound() {
 
-		MobileElement screenheader = PageHeader.get().getHeaderTextElement();
+		if (mobileAction.verifyElementIsPresent(otpWelcomeImage)) {
+			// OTP New Customer Welcome page
+			return false;
 
-		// No screen header
-		if (!mobileAction.verifyElementIsPresent(logined_page_Header)) {
-			if (mobileAction.verifyElementIsPresent(otpWelcomeImage)) {
-				// OTP New Customer Welcome page
-				return false;
-			} else if (mobileAction.verifyElementIsPresent(otpWelcomeImageExisting)) {
-				// OTP Existing Customer Welcome page
-				return false;
-			} else {
-				return verifyIsLoginErrorSystemError();
-			}
+		} else if (!mobileAction.verifyElementIsPresent(logined_page_Header)) {
+			// No screen header
+			return verifyIsLoginErrorSystemError();
 
-			// Has screen header
 		} else {
+			// Has screen header
+			MobileElement screenheader = PageHeader.get().getHeaderTextElement();
 			String securityQuestionTitle = getTextInCurrentLocale(StringArray.ARRAY_LOGIN_SECURITY_QUESTION);
 			String pageTitle = mobileAction.getValue(logined_page_Header);
 			String addLoginTitle = getTextInCurrentLocale(StringArray.ARRAY_ADD_LOGIN);
