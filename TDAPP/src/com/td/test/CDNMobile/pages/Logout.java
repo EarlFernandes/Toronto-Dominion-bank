@@ -50,9 +50,10 @@ public class Logout extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/success' and @text='Terminé']")
 	private MobileElement logoutHeaderFrench;
 
-	// @iOSXCUITFindBy(iOSClassChain = "//*[@label='Logout' or @label='Fermer la
-	// session' or @label='退出' or @label='登出']")
-	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Logout' OR label CONTAINS[cd] 'Fermer la session' OR label CONTAINS[cd] '退出'` OR label CONTAINS[cd] '登出'`]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Logout' or @label='Fermer la session' or @label='退出' or @label='登出']")
+	// @iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Logout' OR
+	// label CONTAINS[cd] 'Fermer la session' OR label CONTAINS[cd] '退出'` OR
+	// label CONTAINS[cd] '登出'`]")
 	@AndroidFindBy(xpath = "//*[(@text='Logout' or @text='Fermer la session' or @text='退出' or @text='登出') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement FLY_Logout;
 
@@ -260,10 +261,11 @@ public class Logout extends _CommonPage {
 	public void logoutFromDashboard() {
 		Decorator();
 		try {
-//			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
-			
-			//mobileAction.FuncClick(FLY_Logout, "Logout");
-			
+			// mobileAction.FuncClick(BT_Home_HamburgerMenu,
+			// "BT_Home_HamburgerMenu");
+
+			// mobileAction.FuncClick(FLY_Logout, "Logout");
+
 			MIT_DSH_FlyoutMenu.get().clickFlyout(FLY_Logout, "logOut");
 			mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
 			mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
