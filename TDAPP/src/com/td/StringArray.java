@@ -281,7 +281,7 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_NAVROW_QUOTE = { "Quote", "Cote", "报价", "報價" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_ALERTS = { "Alerts", "Alertes", "提醒", "提醒" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_OPENABANKACCOUNT = { "Open a Bank Account",
-			"Ouvrir un compte bancaire", "开设银行账户", "開設銀行賬戶'" };
+			"Ouvrir un compte bancaire", "开设银行账户", "開設銀行賬戶" };
 	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGS = { "Home Screen Settings",
 			"Paramètres de l’écran d’accueil", "主页设置", "首頁設定" };
 
