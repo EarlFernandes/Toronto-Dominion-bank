@@ -74,7 +74,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'The symbol you entered is not valid') or contains(@text,'Le symbole entr? nest pas valide; veuillez lentrer')]")
 	private MobileElement info;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='RESULTS' or @label='RÉSULTATS']")
+	@iOSXCUITFindBy(xpath = "//*[@label='RESULTS' or @label='RÉSULTATS'] or @label='结果' or @label='結果'")
 	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/classificationTexView' or @resource-id='com.td:id/txt_results') and (@text='RESULTS' or @text='RÉSULTATS' or @text='结果' or @text='結果')]")
 	private MobileElement hdrRESULTS;
 
@@ -98,7 +98,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back1;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='RECENT SEARCHES' or @label='RÉSULTATS']")
+	@iOSXCUITFindBy(xpath = "//*[@label='RECENT SEARCHES' or @label='RECHERCHES RÉCENTES' or @label='最近的搜索' or @label='最近的搜尋']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and (@text='RECENT SEARCHES' or @text='RECHERCHES RÉCENTES' or @text='最近的搜索' or @text='最近的搜尋')]")
 	private MobileElement hdrRECENT;
 
