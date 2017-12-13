@@ -69,7 +69,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='SEND MONEY' or contains(@text,'ENVOI') or @text='汇款' or @text='匯款') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_SENDMONEY;
 
-	@iOSFindBy(xpath = "//*[(@label='TRANSFER' or @label='VIREMENT' or @label='转账' or @label='轉賬']) and contains(@name,'QuickLink')")
+	@iOSFindBy(xpath = "//*[(@label='TRANSFER' or @label='VIREMENT' or @label='转账' or @label='轉賬') and contains(@name,'QuickLink')]")
 	@AndroidFindBy(xpath = "//*[(@text='TRANSFER' or @text='VIREMENT' or @text='转账' or @text='轉賬') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_TRANSFER;
 
@@ -116,7 +116,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 	// @iOSFindBy(xpath = "//*[@label='Apple Pay' or @label='Paiement mobile' or
 	// @label='移动支付' or @label='流動付款']")
-	@iOSFindBy(xpath = "//*[@label='Apple Pay']")
+	@iOSFindBy(xpath = "//*[@label='Apple Pay' and @name='TDVIEW_TITLE']")
 	private MobileElement HDR_ApplePay;
 
 	@iOSFindBy(xpath = "//*[@label='Pay Bill' or @label='Payer une factures' or @label='支付账单' or @label='支付賬單']")
@@ -131,8 +131,8 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Interac e-Transfer' or @text='Virement Interac' or @text='Interac e-Transfer' or @text='Interac e-Transfer']")
 	private MobileElement HDR_Interac_e_Transfer;
 
-	@iOSFindBy(xpath = "//*[@label='Send Money' or @label='Virer des fonds' or @label='汇款' or @label='匯款']")
-	@AndroidFindBy(xpath = "//*[@text='Send Money' or @text='Virer des fonds' or @text='汇款' or @text='匯款']")
+	@iOSFindBy(xpath = "//*[@label='Send Money' or @label='Virer des fonds' or @label='Send Money' or @label='Send Money']")
+	@AndroidFindBy(xpath = "//*[@text='Send Money' or @text='Virer des fonds' or @text='Send Money' or @text='Send Money']")
 	private MobileElement HDR_SendMoney;
 
 	@iOSFindBy(xpath = "//*[@label='Between My Accounts' or @label='Entre mes comptes' or @label='在我的账户间转账' or @label='在賬戶之間轉賬']")
