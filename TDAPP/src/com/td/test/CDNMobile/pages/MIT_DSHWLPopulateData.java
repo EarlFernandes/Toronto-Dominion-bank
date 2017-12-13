@@ -141,7 +141,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbol, true, 4, "up");
 
-			Thread.sleep(10000);
+			Thread.sleep(20000);
 			if (!CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementTextContainsReverse(
 						mobileAction.mobileElementUsingXPath(xpathWLSymbolQuotePage), sSymbol);

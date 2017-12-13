@@ -44,8 +44,8 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_HamburgerMenu;
 
-	//@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
-	@iOSXCUITFindBy(xpath ="//*[@name = 'NAVIGATION_ITEM_BACK' or @label='Back']")
+	// @iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
+	@iOSXCUITFindBy(xpath = "//*[@name = 'NAVIGATION_ITEM_BACK' or @label='Back']")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 
@@ -459,7 +459,11 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 					mobileAction.FuncClick(BT_Back, "< Button");
 				} else {
 					mobileAction.verifyElementIsDisplayed(HDR_SendMoney, "HDR_Send Money");
+
 					mobileAction.FuncClick(BT_Back, "< Button");
+					if (mobileAction.isObjExists(BT_Back)) {
+						mobileAction.FuncClick(BT_Back, "< Button");
+					}
 				}
 			}
 		} catch (Exception e) {
