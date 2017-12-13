@@ -69,7 +69,7 @@ public class SpendingByCategory extends _CommonPage {
 	private MobileElement needsCategories;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'currently spending') or contains(@label,'êtes actuellement')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'currently spending') or contains(@content-desc,'êtes actuellement') or contains(@text,'currently spending') or or contains(@text,'êtes actuellement')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'currently spending') or contains(@content-desc,'êtes actuellement') or contains(@text,'currently spending') or contains(@text,'êtes actuellement')]")
 	private MobileElement youAreCurrentlySpending;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'typical spending') or contains(@label,'vos dépenses habituelles')]")
