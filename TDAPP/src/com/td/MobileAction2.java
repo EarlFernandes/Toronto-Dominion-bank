@@ -571,13 +571,20 @@ public class MobileAction2 extends CommonLib {
 
 		try {
 			// ((AppiumDriver) GetDriver()).navigate().back();
+			if(getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 			(GetAppiumDriver()).hideKeyboard();
+			else
+				FuncClickDone();
 			GetReporting().FuncReport("Pass", "Keyboard has been closed.");
 		} catch (WebDriverException e) {
 			System.out.println("WebDriverException occured while while closing keyboard, but ignor it");
 		} catch (Exception e) {
 			GetReporting().FuncReport("Fail", "Exception '" + e.toString() + "' occurred while closing keyboard.");
-			throw e;
+			try {
+				throw e;
+			} catch (Exception e1) {
+				System.out.println("Exception caught: "+e1.toString());
+			}
 		}
 	}
 
@@ -2678,6 +2685,49 @@ public class MobileAction2 extends CommonLib {
 		}
 
 	}
+	
+	
+	
+	public void SwipeQuickLinksInDirection(String direction,int swipeTime, int Offset) throws IOException {
+		try {
+
+			Dimension size;
+			size = ((AppiumDriver) GetDriver()).manage().window().getSize();
+
+			if(direction.equalsIgnoreCase("left")){
+			
+			int starty = (int) (size.height * 0.20);
+			int endy = (int) (size.height * 0.20);
+			int startx = (int) (size.width * 0.90);
+			int endx = (int) (size.width * 0.10);
+			((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx - Offset, starty, endx, endy,
+					swipeTime);
+
+			GetReporting().FuncReport("Pass", "Swipe <b> left </b> Successful");
+
+			}
+			
+			if(direction.equalsIgnoreCase("right")){
+				
+				int starty = (int) (size.height * 0.20);
+				int endy = (int) (size.height * 0.20);
+				int startx = (int) (size.width * 0.80);
+				int endx = (int) (size.width * 0.10);
+				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(endx , starty, startx - Offset , endy,
+						swipeTime);
+
+				GetReporting().FuncReport("Pass", "Swipe <b> right </b> Successful");
+
+				}
+			
+			
+		} catch (Exception e) {
+			GetReporting().FuncReport("Fail", "<b>- " + "</b> not present in current page");
+			throw e;
+		}
+
+	}
+	
 
 	/**
 	 * This method will verify the text contained in another String.
@@ -3014,7 +3064,7 @@ public class MobileAction2 extends CommonLib {
 				HideKeyBoard_IOS();
 				GetReporting().FuncReport("Pass", "The Key board was hidden");
 			} else {
-				String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
+				String donePath = "//*[@name='Go' or @name='Toolbar Done Button' or @label='Done' or @label='OK' or @label='"
 						+ getAppString("secureLoginEditButtonDone") + "']";
 				MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
 				Done.click();
