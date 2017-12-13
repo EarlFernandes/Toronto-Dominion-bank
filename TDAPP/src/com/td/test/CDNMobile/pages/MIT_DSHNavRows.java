@@ -119,7 +119,7 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel' or @label='Annuler' or @label='取消' or @label='取消']")
 	private MobileElement BT_Cancel_QuoteSearchSymbolScreen;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel' or @label='Annuler' or @label='取消' or @label='取消']")
+	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour' or @name='NAVIGATION_ITEM_BACK']")
 	private MobileElement BT_Back_QuoteSearchSymbolScreen_Markets;
 
 	private By ED_Markets_symbolSearch = By.id("symbol-search");
@@ -472,7 +472,7 @@ public class MIT_DSHNavRows extends _CommonPage {
 
 				clickNavRow(NR_Markets, "Markets");
 
-				Thread.sleep(10000);
+				Thread.sleep(20000);
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					// Quote page WEBVIEW
