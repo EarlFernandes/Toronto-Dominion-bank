@@ -304,9 +304,7 @@ public class Bills extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(pay_US_Bills, "Pay US Bills");
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.waitProgressBarVanish();
-			}
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

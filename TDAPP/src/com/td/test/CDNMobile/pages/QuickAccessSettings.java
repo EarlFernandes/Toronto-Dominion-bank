@@ -225,6 +225,12 @@ public class QuickAccessSettings extends _CommonPage {
 		try {
 			String card = getTestdata("ToAccount");
 			String xpath = "";
+
+			if (currentLocale.equalsIgnoreCase("fr")) {
+				// Acct names translated in FR
+				card = getTestdata("FromAccount");
+			}
+
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
 				xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'" + card + "')]";
 			} else {

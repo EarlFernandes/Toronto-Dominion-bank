@@ -220,6 +220,7 @@ public class PayBill extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(continue_pay, "Continue_pay");
+			mobileAction.sleep(3000);
 			mobileAction.FuncClick(pay_bill, "Pay Bill");
 
 		} catch (Exception e) {
@@ -237,6 +238,7 @@ public class PayBill extends _CommonPage {
 	public void payUSBill() {
 		Decorator();
 		try {
+
 			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Pay Bill");
 
