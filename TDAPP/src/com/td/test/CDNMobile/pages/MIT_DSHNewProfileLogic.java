@@ -57,6 +57,7 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 		Decorator();
 
 		try {
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				String[] aQuickLinksAndroid = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_HOLDINGS),
