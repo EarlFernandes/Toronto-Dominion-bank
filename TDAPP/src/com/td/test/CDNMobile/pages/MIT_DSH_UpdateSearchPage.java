@@ -74,7 +74,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'The symbol you entered is not valid') or contains(@text,'Le symbole entr? nest pas valide; veuillez lentrer')]")
 	private MobileElement info;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='RESULTS' or @label='RÉSULTATS'] or @label='结果' or @label='結果'")
+	@iOSXCUITFindBy(xpath = "//*[@label='RESULTS' or @label='RÉSULTATS' or @label='结果' or @label='結果']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/classificationTexView' or @resource-id='com.td:id/txt_results') and (@text='RESULTS' or @text='RÉSULTATS' or @text='结果' or @text='結果')]")
 	private MobileElement hdrRESULTS;
 
@@ -94,12 +94,14 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 
-//	@iOSXCUITFindBy(xpath = "//*[@label='banner' or contains(@label,'bannière')]/*[1]")
-//	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@label='banner' or contains(@label,'bannière')]/*[1]/*[1]/*[1]")
+	// @iOSXCUITFindBy(xpath = "//*[@label='banner' or
+	// contains(@label,'bannière')]/*[1]")
+	// @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@label='banner' or
+	// contains(@label,'bannière')]/*[1]/*[1]/*[1]")
 	@iOSXCUITFindBy(xpath = "//*[@label='Back' or @label='Retour' or @name='NAVIGATION_ITEM_BACK']")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back1;
-	
+
 	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour' or @name='NAVIGATION_ITEM_BACK']")
 	private MobileElement BT_Back_QuoteSearchSymbolScreen_Markets;
 

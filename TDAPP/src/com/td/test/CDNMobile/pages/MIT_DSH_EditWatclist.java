@@ -106,7 +106,7 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/btn_clear_search_text']")
 	private MobileElement btnClear;
 
-	@iOSXCUITFindBy(accessibility = "Button_0")
+	@iOSXCUITFindBy(xpath = "//*[@label='Cancel' or contains(@label,'Annuler') or @label='取消' or @label='取消']")
 	@AndroidFindBy(id = "com.td:id/btn_cancel")
 	private MobileElement BT_CancelHome;
 
@@ -120,11 +120,11 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 	 * ) private MobileElement ListViewExpand01;
 	 */
 
-	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[contains(@label,'01'))[1]")
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[contains(@label,'01')])[1]")
 	@AndroidFindBy(xpath = "//*[contains(@text,'01')]")
 	private MobileElement ListViewExpand01;
 
-	@iOSXCUITFindBy(xpath = "(//*[@name='codeSearchButton'])[1]")
+	@iOSXCUITFindBy(xpath = "(//*[@name='editControlButton'])[1]")
 	@AndroidFindBy(xpath = "(//android.widget.CheckBox[@resource-id='com.td:id/checkbox_item_watchlist_selected'])[1]")
 	private MobileElement SymblchckBox;
 
