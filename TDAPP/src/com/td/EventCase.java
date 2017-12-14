@@ -148,7 +148,7 @@ public class EventCase {
 		CloseApp, RunAppInBackGround, ReopenApp,
 
 		// Account Details
-		AccountDetails_QuickLinkTransfer, AccountDetails_QuickLinkPay, AccountDetails_GetAccountBalance, AccountDetails_VerifyAccountBalance, AccountDetails_VerifyTransactionPosted, AccountDetails_VerifyActivityTab, AccountDetails_VerifySummaryTab,
+		AccountDetails_QuickLinkTransfer, AccountDetails_QuickLinkPay, AccountDetails_GetAccountBalance, AccountDetails_VerifyAccountBalance, AccountDetails_VerifyTransactionPosted, AccountDetails_VerifyActivityTab, AccountDetails_VerifySummaryTab, AccountDetails_VerifyBankAccountBalance,
 
 		// Accounts
 		Accounts_VerifyCreditHeader, Accounts_SelectFirstAccount, Accounts_SelectToAccount,
@@ -193,7 +193,7 @@ public class EventCase {
 		QuickAccessSettings_ToggleSpecificAccount, QuickAccessPage_VerifyTDPoints, QuickAccessPage_VerifyEligibleTDPoints, QuickAccessPage_VerifyIneligibleTDPoints, QuickAccessPage_VerifyAccountVisibility, QuickAccessSettings_VerifyAccountExists, QuickAccessSettings_VerifyNoAccount, QuickAccessSettings_TestSecondUser,
 
 		// Receipt
-		Receipt_VerifyTransferReceipt, Receipt_GoBackHome, Receipt_MakeAnotherTransfer, Receipt_VerifyBillReceipt, Receipt_ScheduledPayments, Receipt_VerifyUSBillReceipt, Receipt_VerifyCancelledBillReceipt, Receipt_VerifyReceiptBanner, Receipt_VerifyPayWithRewardsReceipt, Credit_VerifyTDPointsBalanceUpdated,
+		Receipt_VerifyTransferReceipt, Receipt_GoBackHome, Receipt_MakeAnotherTransfer, Receipt_VerifyBillReceipt, Receipt_ScheduledPayments, Receipt_VerifyUSBillReceipt, Receipt_VerifyCancelledBillReceipt, Receipt_VerifyReceiptBanner, Receipt_VerifyPayWithRewardsReceipt, Credit_VerifyTDPointsBalanceUpdated, Receipt_SaveReceiptInfoUSTransfer,
 
 		// Rewards
 		Rewards_VerifyVisitTDRewards, Rewards_VerifyPayWithRewards, Rewards_ClickVisitTDRewards, Rewards_VerifyTDRewardsURL, Rewards_ClickPayWithRewards,
@@ -4525,6 +4525,10 @@ public class EventCase {
 			AccountDetails.get().verifySummaryTab();
 			break;
 
+		case AccountDetails_VerifyBankAccountBalance:
+			AccountDetails.get().verifyBankAccountBalance();
+			break;
+
 		// Add Payee
 		case AddPayee_SearchCdnPayees:
 			AddPayee.get().searchCdnPayees();
@@ -4821,6 +4825,10 @@ public class EventCase {
 
 		case Receipt_VerifyPayWithRewardsReceipt:
 			Receipt.get().verifyPayWithRewardsReceipt();
+			break;
+
+		case Receipt_SaveReceiptInfoUSTransfer:
+			Receipt.get().saveReceiptInfoUSTransfer();
 			break;
 
 		// Rewards

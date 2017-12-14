@@ -35,8 +35,16 @@ public class AccountDetails extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/current_balance")
 	private MobileElement acctBalance;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/current_balance")
+	private MobileElement acctBankBalance;
+
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/amount']")
 	private MobileElement lastTransactionAmt;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/amount'])[1]")
+	private MobileElement lastBankTransactionAmt;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/posted_date_val")
@@ -183,7 +191,7 @@ public class AccountDetails extends _CommonPage {
 				lastTrxnXpath = "//XCUIElementTypeTable[1]//XCUIElementTypeCell[contains(@label,'" + amt + "')]";
 			}
 
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(lastTrxnXpath, false, 10, "up");
+			mobileAction.swipeAndSearchByxpath(lastTrxnXpath, false, 10, "up");
 			lastTransactionAmt = mobileAction.verifyElementUsingXPath(lastTrxnXpath,
 					"Last Posted Transaction Amount field");
 			mobileAction.verifyElementTextContains(lastTransactionAmt, amt);
@@ -213,6 +221,7 @@ public class AccountDetails extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(activityTab, "Activity Tab");
 			mobileAction.verifyElementTextIsDisplayed(activityTab,
 					getTextInCurrentLocale(StringArray.ARRAY_TAB_ACTIVITY));
+			mobileAction.verifyElementIsDisplayed(lastBankTransactionAmt, "Last transaction amt");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -233,6 +242,28 @@ public class AccountDetails extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(summaryTab, "Summary Tab");
 			mobileAction.verifyElementTextIsDisplayed(summaryTab,
 					getTextInCurrentLocale(StringArray.ARRAY_TAB_SUMMARY));
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void verifyBankAccountBalance() {
+		Decorator();
+		try {
+			// Verify ToAccount balance
+			String receiptBalance = getTestdata("SecondTimeout");
+			String receiptValue = getTestdata("MerchantName");
+
+			mobileAction.verifyElementTextContains(acctBankBalance, receiptBalance);
+			mobileAction.verifyElementTextContains(lastBankTransactionAmt, receiptValue);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

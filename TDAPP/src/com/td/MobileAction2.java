@@ -3742,7 +3742,7 @@ public class MobileAction2 extends CommonLib {
 				} catch (Exception e1) {
 					// Added for R18.3
 					if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-						menuSlideXpath = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/flyout_menu_dashboard']";
+						menuSlideXpath = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/flyout_menu_dashboard' or @resource-id='com.td:id/flyout_menu']";
 						try {
 							((AppiumDriver) GetDriver()).findElement(By.xpath(menuSlideXpath));
 							isMenuOpened = true;

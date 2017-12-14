@@ -89,6 +89,10 @@ public class Receipt extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/amount_val")
 	private MobileElement amountValue;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/second_amount_val")
+	private MobileElement amountValueBank;
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/amount_val")
 	private MobileElement amountValueCB;
@@ -127,6 +131,10 @@ public class Receipt extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/amount")
 	private MobileElement fromAccountValueUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/from_account_bal")
+	private MobileElement fromBankAccountValueUS;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/payee_details")
@@ -720,6 +728,38 @@ public class Receipt extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(payeeValue, "Payee Value");
 			mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
 			mobileAction.verifyElementIsDisplayed(dateValue, "Date Value");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void saveReceiptInfoUSTransfer() {
+		Decorator();
+		try {
+			String fromBalance = mobileAction.FuncGetElementText(fromBankAccountValueUS);
+			String toBalance = mobileAction.FuncGetElementText(ToAccountValue);
+			String fxamt = mobileAction.FuncGetElementText(amountValueBank);
+
+			fromBalance = fromBalance.substring(fromBalance.lastIndexOf(" ") + 1);
+			toBalance = toBalance.substring(toBalance.lastIndexOf(" ") + 1);
+			fxamt = fxamt.substring(fxamt.lastIndexOf(" ") + 1);
+
+			System.out.println(fromBalance + " " + toBalance + " " + fxamt);
+
+			CL.getTestDataInstance().TCParameters.put("Timeout", fromBalance);
+			CL.getTestDataInstance().TCParameters.put("SecondTimeout", toBalance);
+			CL.getTestDataInstance().TCParameters.put("MerchantName", fxamt);
+
+			// Takes time to update bank accts after transactions
+			// mobileAction.sleep(10000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
