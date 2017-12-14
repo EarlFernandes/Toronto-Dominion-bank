@@ -79,7 +79,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement password;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Cross-Border Banking' or @label='Services bancaires transfrontaliers' or @label='跨境理财服务' or @label='跨國理財服務']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[(@label='Cross-Border Banking' or @label='Services bancaires transfrontaliers' or @label='跨境理财服务' or @label='跨國理財服務') and @name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//*[@text='Cross-Border Banking' or @text='Services bancaires transfrontaliers' or @text='跨境理财服务' or @text='跨國理財服務']")
 	private MobileElement lblCrossBorder;
 
@@ -105,11 +105,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='How was your TD app experience today?' or @text='']")
 	private MobileElement lblExperience;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Contact Us' or @label='Contacter nous' or @label='联系我们' or @label='聯絡我們']")
+	@iOSXCUITFindBy(xpath = "//*[(@label='Contact Us' or @label='Contacter nous' or @label='联系我们' or @label='聯絡我們') and @name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//*[(@text='Contact Us' or @text='Contacter nous' or @text='联系我们' or @text='聯絡我們') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblContactUs;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='FAQs' or @label='FAQ' or @label='常见问答' or @label='常見問題']")
+	@iOSXCUITFindBy(xpath = "//*[(@label='FAQs' or @label='FAQ' or @label='常见问答' or @label='常見問題') and @name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//*[(@text='FAQs' or @text='FAQ' or @text='常见问答' or @text='常見問題') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblFAQs;
 
@@ -144,19 +144,18 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 	String accountList = "//android.widget.TextView[@resource-id= 'com.td:id/accntDescrSumt']";
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬']")
+	@iOSXCUITFindBy(xpath = "//*[(@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬') and @name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//*[(@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblTransfers;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單']")
+	@iOSXCUITFindBy(xpath = "//*[(@label='Bills' or @label='Factures' or @label='账单' or @label='賬單') and @name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//*[(@text='Bills' or @text='Factures' or @text='账单' or @text='賬單') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblBill;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Apple Pay' or @label='Foire aux questions']")
-	@AndroidFindBy(xpath = "//*[(@text='Apple Pay' or @text='Foire aux questions') and @resource-id='android:id/action_bar_title']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Apple Pay' and @name='TDVIEW_TITLE']")
 	private MobileElement lblApplePay;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='TD MySpend' or @label='Dépense TD']")
+	@iOSXCUITFindBy(xpath = "//*[(@label='TD MySpend' or @label='Dépense TD') and @name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//*[(@text='TD MySpend' or @text='Dépense TD') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblTDMySpend;
 
@@ -164,7 +163,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Mobile Payment' or @text='Paiement mobile' or contains(@text,'移动支付') or contains(@text,'流動付款')) and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblMobilePayment;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Mobile Deposit' or @label='Dépôt mobile' or @label='移动存款服务' or @label='流動存款']")
+	@iOSXCUITFindBy(xpath = "//*[(@label='Mobile Deposit' or @label='Dépôt mobile' or @label='移动存款服务' or @label='流動存款') and @name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//*[(@text='Mobile Deposit' or @text='Dépôt mobile' or @text='移动存款服务' or @text='流動存款') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblMobileDepositBanking;
 
@@ -172,7 +171,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Banking' or @text='Services bancaires' or @text='理财' or @text='理財') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblMobileDepositInvesting;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='TD for Me' or @label='TD et moi' or @label='TD for Me' or @label='TD et moi']")
+	@iOSXCUITFindBy(xpath = "//*[(@label='TD for Me' or @label='TD et moi' or @label='TD for Me' or @label='TD et moi') and @name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//*[(@text='TD for Me' or @text='TD et moi' or @text='TD for Me' or @text='TD et moi') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblTDforMe;
 
@@ -184,7 +183,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutTransfersLink;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[(@label='Bills' or @label='Factures' or @label='账单' or @label='賬單') and @name='flyout_title']")
 	@AndroidFindBy(xpath = "//*[(@text='Bills' or @text='Factures' or @text='账单' or @text='賬單') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutBillsLink;
 
@@ -200,7 +199,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='TD Mobile Payment' or @text='Paiement mobile TD' or @text='道明移动支付' or @text='道明流動付款') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutMobilePayment;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD MySpend' or @label='Dépense TD']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[(@label='TD MySpend' or @label='Dépense TD') and @name='flyout_title']")
 	@AndroidFindBy(xpath = "//*[(@text='TD MySpend' or @text='Dépense TD') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutTDMySpendLink;
 
@@ -208,7 +207,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Mobile Deposit' or @text='Dépôt mobile' or @text='移动存款服务' or @text='流動存款') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutMobileDepositLink;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD for Me' or @label='TD et Moi']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[(@label='TD for Me' or @label='TD et Moi') and @name='flyout_title']")
 	@AndroidFindBy(xpath = "//*[(@text='TD for Me' or @text='TD et Moi') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutTDforMeLink;
 
@@ -224,7 +223,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Investing Accounts' or @text='Comptes Placements directs TD' or @text='投资账户' or @text='投資賬戶') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	MobileElement InvestingAccount;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Profile & Settings' or @label='Profil et paramètres' or @label='个人资料和设置' or @label='個人資料和設定']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Cross-Border Banking' or @label='Services bancaires transfrontaliers' or @label='跨境理财服务' or @label='跨國理財服務']")
 	@AndroidFindBy(xpath = "//*[@text='Cross-Border Banking' or @text='Services bancaires transfrontaliers' or @text='跨境理财服务' or @text='跨國理財服務']")
 	private MobileElement flyoutCrossBorderBankingLink;
 
@@ -232,7 +231,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Profile & Settings' or @text='Profil et paramètres' or @text='个人资料和设置' or @text='個人資料和設定']")
 	private MobileElement flyoutProfileSettings;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Apple Watch')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Apple Watch']")
 	@AndroidFindBy(xpath = "//*[@text='Apple Watch' or contains(@text,'Services bancaires transfrontaliers')]")
 	private MobileElement flyoutAppleWatch;
 
@@ -320,6 +319,13 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	MobileElement BT_AppPermissionNotNow;
 
 	private By BTN_Back = By.xpath("//*[@alt='Back' or contains(@src,'/images/mobile/btn_back_arrow_green.png')]");
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@label='banner']/*[1]/*[1]/*[1]")
+	MobileElement BTN_Back_iOS_MOD;
+
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
+	@AndroidFindBy(id = "android:id/up")
+	MobileElement BT_HamburgerMenu;
 
 	public void verifyFlyoutUnauthenticated() {
 		Decorator();
@@ -644,7 +650,8 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 					mobileAction.verifyElementIsDisplayed(lblTransfers, "lblTransfers");
 
-					mobileAction.FuncClick(lblTransfers, "lblTransfers");
+					// mobileAction.FuncClick(lblTransfers, "lblTransfers");
+					mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
 
 					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 
@@ -663,7 +670,8 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 					mobileAction.verifyElementIsDisplayed(lblTransfers, "lblTransfers");
 
-					mobileAction.FuncClick(lblTransfers, "lblTransfers");
+					// mobileAction.FuncClick(lblTransfers, "lblTransfers");
+					mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
 
 					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 
@@ -707,7 +715,8 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				mobileAction.verifyElementIsDisplayed(lblBill, "lblBill");
 
-				mobileAction.FuncClick(lblBill, "lblBill");
+				// mobileAction.FuncClick(lblBill, "lblBill");
+				mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
 
 				mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 
@@ -744,7 +753,8 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				mobileAction.verifyElementIsDisplayed(lblTDMySpend, "lblTDMySpend");
 
-				mobileAction.FuncClick(lblTDMySpend, "lblTDMySpend");
+				// mobileAction.FuncClick(lblTDMySpend, "lblTDMySpend");
+				mobileAction.ClickBackButton();
 
 			}
 		} catch (Exception e) {
@@ -784,7 +794,9 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 					mobileAction.verifyElementIsDisplayed(lblMobileDepositBanking, "lblMobileDeposit");
 
-					mobileAction.FuncClick(lblMobileDepositBanking, "lblMobileDeposit");
+					// mobileAction.FuncClick(lblMobileDepositBanking,
+					// "lblMobileDeposit");
+					mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
 
 					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 
@@ -973,7 +985,9 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				{
 					mobileAction.verifyElementIsDisplayed(lblCrossBorder, "lblCrossBorder");
-					mobileAction.ClickBackButton();
+					// mobileAction.ClickBackButton();
+					mobileAction.FuncClick(BTN_Back_iOS_MOD, "BTN_Back_iOS_MOD");
+
 				}
 
 			}
@@ -1293,8 +1307,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 					mobileAction.FuncClick(MenuUp, "MenuUp");
 
-					// mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink,
-					// true, 10, "down");
+					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 
 				}
 
@@ -1388,34 +1401,31 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 		Decorator();
 
 		try {
-			mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
-			mobileAction.FuncSwipeWhileElementNotFound(flyoutMobilePayment, false, 10, "up");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncClick(BT_Home_HamburgerMenu, "MenuUp");
+				mobileAction.FuncSwipeWhileElementNotFound(flyoutMobilePayment, false, 10, "up");
 
-			mobileAction.FuncVerifyTextEquals(flyoutMobilePayment,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT));
+				mobileAction.FuncVerifyTextEquals(flyoutMobilePayment,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT));
 
-			if (!bIsAuthenticated) {
+				if (!bIsAuthenticated) {
 
-				// do nothing
-			} else {
+					// do nothing
+				} else {
 
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+					clickFlyout(flyoutMobilePayment, "flyoutMobileDepositLink");
 
-					{
-						clickFlyout(flyoutMobilePayment, "flyoutMobileDepositLink");
-
-						if (mobileAction.isObjExists(BT_AppPermissionNotNow)) {
-							mobileAction.FuncClick(BT_AppPermissionNotNow, "Not Now");
-						}
-
-						mobileAction.verifyElementIsDisplayed(lblMobilePayment, "lblMobilePayment");
-
-						mobileAction.FuncClick(backButton, "backButton");
-
-						mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
+					if (mobileAction.isObjExists(BT_AppPermissionNotNow)) {
+						mobileAction.FuncClick(BT_AppPermissionNotNow, "Not Now");
 					}
-				}
 
+					mobileAction.verifyElementIsDisplayed(lblMobilePayment, "lblMobilePayment");
+
+					mobileAction.FuncClick(backButton, "backButton");
+
+					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
+
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1487,7 +1497,8 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 					clickFlyout(flyoutAppleWatch, "flyoutAppleWatch");
 
-					mobileAction.verifyElementIsDisplayed(lblAppleWatch, "lblAppleWatch");
+					// mobileAction.verifyElementIsDisplayed(lblAppleWatch,
+					// "lblAppleWatch");
 
 					mobileAction.FuncClick(MenuUp, "MenuUp");
 
