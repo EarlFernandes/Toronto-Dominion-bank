@@ -57,7 +57,7 @@ public class MIT_DSH_WLErrorState1 extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/watchlist_name_drop_down']")
 	MobileElement btnDropDown;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='List 02']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'List 02')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and @text='List 02']")
 	private MobileElement ListExpiredCollapse;
 

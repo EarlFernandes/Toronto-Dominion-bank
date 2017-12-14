@@ -320,7 +320,8 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 	private By BTN_Back = By.xpath("//*[@alt='Back' or contains(@src,'/images/mobile/btn_back_arrow_green.png')]");
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@label='banner']/*[1]/*[1]/*[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@label='banner' or contains(@label,'bannière')]/*[1]/*[1]/*[1]")
+//	@iOSXCUITFindBy(xpath = "//*[@label='banner' or contains(@label,'bannière')]/*[1]")
 	MobileElement BTN_Back_iOS_MOD;
 
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
@@ -659,10 +660,12 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				case "Investing":
 
-					mobileAction.verifyElementIsDisplayed(lblMobileDepositInvesting, "lblMobileDeposit");
+					mobileAction.verifyElementIsDisplayed(lblMobileDepositInvesting, "Banking");
 
-					mobileAction.FuncClick(lblMobileDepositInvesting, "Banking");
+					//mobileAction.FuncClick(lblMobileDepositInvesting, "Banking");
 
+					mobileAction.ClickBackButton();
+					mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
 					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 					break;
 
@@ -710,6 +713,9 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 			} else {
+				String UserRole = getTestdata("UserRole", XLSheetUserIDs);
+				if(!UserRole.equalsIgnoreCase("Investing"))
+				{
 
 				clickFlyout(flyoutBillsLink, "flyoutBillsLink");
 
@@ -719,6 +725,18 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
 
 				mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
+				}
+				else
+				{
+					mobileAction.verifyElementIsDisplayed(lblMobileDepositInvesting, "Banking");
+
+					//mobileAction.FuncClick(lblMobileDepositInvesting, "Banking");
+
+					mobileAction.ClickBackButton();
+					mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
+					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
+
+				}
 
 			}
 		} catch (Exception e) {

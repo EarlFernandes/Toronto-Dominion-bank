@@ -2302,8 +2302,8 @@ public class MobileAction2 extends CommonLib {
 		String textToReturn = null;
 		try {
 
-			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
-			wait.until(ExpectedConditions.visibilityOf(objElement));
+/*			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
+			wait.until(ExpectedConditions.visibilityOf(objElement));*/
 
 			if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				try {

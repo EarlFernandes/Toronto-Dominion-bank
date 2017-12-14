@@ -267,8 +267,19 @@ public class Logout extends _CommonPage {
 			// mobileAction.FuncClick(FLY_Logout, "Logout");
 
 			MIT_DSH_FlyoutMenu.get().clickFlyout(FLY_Logout, "logOut");
-			mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
-			mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
+//				mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+				mobileAction.FuncSwipeWhileElementNotFound(FLY_Home, true, 10, "down");
+			}
+
+			else {
+
+				mobileAction.ClickBackButton();
+
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

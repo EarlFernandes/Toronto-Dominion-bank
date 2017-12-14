@@ -366,7 +366,7 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_AddSymbolLink = { "Add symbols now", "Ajouter des symboles maintenant",
 			"添加股票代码", "添加股票代號" };
 
-	public static final String[] ARRAY_DASHBOARD_ExpiredSymbolError = { "Invalid Symbol ", "Symbole invalide", "股票代码无效",
+	public static final String[] ARRAY_DASHBOARD_ExpiredSymbolError = { "Invalid Symbol", "Symbole invalide", "股票代码无效",
 			"股票代號無效" };
 
 	public static final String[] ARRAY_DASHBOARD_EAnotSignedError = { "Exchange Agreement not signed",

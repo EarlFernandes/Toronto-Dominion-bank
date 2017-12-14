@@ -94,9 +94,14 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='banner' or contains(@label,'bannière')]/*[1]")
+//	@iOSXCUITFindBy(xpath = "//*[@label='banner' or contains(@label,'bannière')]/*[1]")
+//	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@label='banner' or contains(@label,'bannière')]/*[1]/*[1]/*[1]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Back' or @label='Retour' or @name='NAVIGATION_ITEM_BACK']")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back1;
+	
+	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour' or @name='NAVIGATION_ITEM_BACK']")
+	private MobileElement BT_Back_QuoteSearchSymbolScreen_Markets;
 
 	@iOSXCUITFindBy(xpath = "//*[@label='RECENT SEARCHES' or @label='RECHERCHES RÉCENTES' or @label='最近的搜索' or @label='最近的搜尋']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and (@text='RECENT SEARCHES' or @text='RECHERCHES RÉCENTES' or @text='最近的搜索' or @text='最近的搜尋')]")
