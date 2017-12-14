@@ -503,10 +503,10 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 			String[] aSymbolList = getTestdata("Symbol", XLSheetUserIDs).split(",");
 
 			for (String sSymbol : aSymbolList) {
-				String xpathWLSymbol = "//*[@label='" + sSymbol + "' or @text='" + sSymbol + "']";
-				String xpathWLSymbolFlag = "//*[@label='" + sSymbol + "' or @text='" + sSymbol
+				String xpathWLSymbol = "//*[contains(@label,'" + sSymbol + "') or @text='" + sSymbol + "']";
+				String xpathWLSymbolFlag = "//*[contains(@label,'" + sSymbol + "') or @text='" + sSymbol
 						+ "']/../*[@name='flagImageView' or @resource-id='com.td:id/iv_item_watchlist_flag']";
-				String xpathWLSymbolCompanyName = "//*[@label='" + sSymbol + "' or @text='" + sSymbol
+				String xpathWLSymbolCompanyName = "//*[contains(@label,'" + sSymbol + "') or @text='" + sSymbol
 						+ "']/../*[@name='companyLabel' or @resource-id='com.td:id/tv_item_watchlist_desp']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbol, false, 10, "up");
 
