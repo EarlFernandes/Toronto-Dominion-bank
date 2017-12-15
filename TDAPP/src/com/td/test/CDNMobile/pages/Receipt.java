@@ -623,7 +623,9 @@ public class Receipt extends _CommonPage {
 	public void clickGoBackHome() {
 		Decorator();
 		try {
-			mobileAction.FuncSwipeWhileElementNotFound(goBackHomeButton, false, 10, "up");
+			// mobileAction.FuncSwipeWhileElementNotFound(goBackHomeButton,
+			// false, 3, "up");
+			mobileAction.FunctionSwipe("up", 1000, 0);
 			mobileAction.FuncClick(goBackHomeButton, "Go Back Home button");
 			mobileAction.sleep(3000);
 
