@@ -50,8 +50,8 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Comptes Placements directs TD']")
 	private MobileElement investingFRE;
 
-	@iOSXCUITFindBy(xpath = "//*[(@label='FAQs' or @label='Foire aux questions' or @label='常见问答' or @label='常見問題') and @name='flyout_title'] | //*[@name='NAV_DRAWER_ITEMS_QUESTIONS']")
-	@AndroidFindBy(xpath = "//*[@text='FAQs' or @text='Foire aux questions' or @text='常见问答' or @text='常見問題']")
+	@iOSXCUITFindBy(xpath = "//*[(@label='FAQ' or @label='Foire aux questions' or @label='常见问答' or @label='常見問題') and @name='flyout_title'] | //*[@name='NAV_DRAWER_ITEMS_QUESTIONS']")
+	@AndroidFindBy(xpath = "//*[@text='FAQ' or @text='Foire aux questions' or @text='常见问答' or @text='常見問題']")
 	private MobileElement faq;
 
 	@iOSXCUITFindBy(xpath = "//*[@label='Give Feedback'' or @label='Fournir des commentaires' or @label='提供意见反馈' or @label='提供意見回饋']")
