@@ -186,6 +186,8 @@ public class MIT_DSHNavRows extends _CommonPage {
 			// from Nav Rows as per new requirement
 
 			verifyNR_Accounts(true);
+			
+			mobileAction.FuncSwipeOnce("up");
 
 			verifyNR_Alerts(true);
 
