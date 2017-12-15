@@ -261,17 +261,12 @@ public class Logout extends _CommonPage {
 	public void logoutFromDashboard() {
 		Decorator();
 		try {
-			// mobileAction.FuncClick(BT_Home_HamburgerMenu,
-			// "BT_Home_HamburgerMenu");
 
-			// mobileAction.FuncClick(FLY_Logout, "Logout");
+			mobileAction.FuncSwipeWhileElementNotFound(FLY_Logout, true, 10, "down");
 
-			MIT_DSH_FlyoutMenu.get().clickFlyout(FLY_Logout, "logOut");
-
-			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
-//				mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+
 				mobileAction.FuncSwipeWhileElementNotFound(FLY_Home, true, 10, "down");
 			}
 
