@@ -631,7 +631,8 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 
 					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
 
-					mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+					//mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+					mobileAction.verifyElementIsDisplayed(hdrRESULTS, "hdrRESULTS");  //New requirement
 
 					clickFirstSymbolUSCAD(aSymbolArray[i]);
 
@@ -655,7 +656,8 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 
 					mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
 
-					mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+					//mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+					mobileAction.verifyElementIsDisplayed(hdrRESULTS, "hdrRESULTS");  //New requirement
 
 					clickFirstSymbolUSCAD(aSymbolArray[i]);
 

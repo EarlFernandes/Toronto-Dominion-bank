@@ -362,7 +362,7 @@ public final class StringArray {
 
 	public static final String[] ARRAY_DASHBOARD_EmptyWLDesc = { "You haven't added any symbols to this watchlist yet.",
 			"Vous n'avez pas encore ajouté de symbole à cette liste de surveillance.", "您尚未添加股票代码到自选股观察名单中。",
-			"您沒有添加股票代號到自選股觀察名單。" };
+			"您尚未新增股票代號到自選股觀察名單中。" };
 	public static final String[] ARRAY_DASHBOARD_AddSymbolLink = { "Add symbols now", "Ajouter des symboles maintenant",
 			"添加股票代码", "添加股票代號" };
 
