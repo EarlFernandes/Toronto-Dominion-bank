@@ -767,4 +767,76 @@ public class MyspendPreferences extends com.td._CommonPage {
 		}
 	}
 	
+	
+	/**
+	 * This method will disable few accounts in the preference page
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void disableAccounts() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				if (onButtonsAndroid.isEmpty()) {
+					enableAllAccounts();
+					Spending_Insight.get().clickSideMenuButton();
+					SideMenu.get().clickPreferences();
+				}
+				System.out.println(onButtonsAndroid.size());
+				for (int i = 0; i < onButtonsAndroid.size()-2; i++) {
+					mobileAction.FuncClick(onButtonsAndroid.get(i), "Clicked on toggle Button");
+				}
+			} else {
+				if (onButtons.isEmpty()) {
+					enableAllAccounts();
+					Spending_Insight.get().clickSideMenuButton();
+					SideMenu.get().clickPreferences();
+				}
+				
+				System.out.println(onButtons.size());
+
+				while (onButtons.size() != 2) {
+					mobileAction.FuncClick(onButtons.get(0), "Clicked on toggle Button");
+					
+				}
+				
+			}
+
+			if (platform.equalsIgnoreCase("Android")) {
+				// mobileAction.FuncClickBackButton();
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickSideMenuButton();
+				if(mobileAction.verifyElementIsPresent(activeAccountsNoAndroid)){
+					CL.GetAppiumDriver().context("NATIVE_APP");
+					Spending_Insight.get().clickSideMenuButton();
+				}
+				SideMenu.get().clickSpendingInsights();
+			} else {
+				Spending_Insight.get().clickSideMenuButton();
+				if(mobileAction.verifyElementIsPresent(activeAccounts)){
+					Spending_Insight.get().clickSideMenuButton();
+				}
+				SideMenu.get().clickSpendingInsights();
+			}
+
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	
 }

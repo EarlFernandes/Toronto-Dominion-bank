@@ -62,8 +62,8 @@ public class SpendingHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Home') or contains(@content-desc,'Accueil')]")
 	private MobileElement homeBtn;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Quick Access Settings' or @label='Paramètres Accès rapide']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access']")
+	@iOSFindBy(xpath = "//*[@name='NAVIGATION_ITEM_QUICK_ACCESS' or @name='QuickLinkRightNavButton']")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']")
 	private MobileElement TDAppHomePage;
 
 	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Preferences') or contains(@label,'Préférences') or contains(@label,'préférences')]")
