@@ -130,4 +130,25 @@ public class PageHeader extends _CommonPage {
 		return menuButton;
 
 	}
+
+	public void clickBackButtonIfIOS() {
+		Decorator();
+
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.ClickBackButton();
+				mobileAction.sleep(1000);
+			}
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
 }

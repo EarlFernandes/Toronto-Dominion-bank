@@ -59,12 +59,14 @@ public class OTPUpdate extends _CommonPage {
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[8]/XCUIElementTypeStaticText[1] | "
 			+ "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[5]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
-	@FindBy(xpath = "//div[@ng-repeat='phone in spc.savedPhones'][2]//div[@class='td-row'][1]//div[2]/span")
+	@FindBy(xpath = "//div[@ng-repeat='phone in spc.savedPhones'][2]//div[@class='td-row'][1]//div[2]/span | "
+			+ "//div[@ng-repeat='phone in spc.savedPhones'][2]//div[@class='td-row'][1]/a/div[1]")
 	private WebElement addedPhoneNumber;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[9]/XCUIElementTypeStaticText[2] | "
 			+ "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[5]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
-	@FindBy(xpath = "//div[@ng-repeat='phone in spc.savedPhones'][2]//div[@class='td-row-white'][2]//span[2]")
+	@FindBy(xpath = "//div[@ng-repeat='phone in spc.savedPhones'][2]//div[@class='td-row-white'][2]//span[2] | "
+			+ "//div[@ng-repeat='phone in spc.savedPhones'][2]//div[@class='td-row'][1]/div/span")
 	private WebElement addedNickname;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1] | "
@@ -163,6 +165,9 @@ public class OTPUpdate extends _CommonPage {
 	@FindBy(xpath = "//button[@ng-click=\"sp.changeOptions('text')\"]")
 	private WebElement textOption;
 
+	@AndroidFindBy(id = "com.td:id/text_button")
+	private WebElement textOptionNative;
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[5]//XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//button[@ng-click=\"sp.changeOptions('voice')\"]")
 	private WebElement voiceOption;
@@ -170,6 +175,9 @@ public class OTPUpdate extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
 	@FindBy(id = "getCode")
 	private WebElement getCodeButton;
+
+	@AndroidFindBy(id = "com.td:id/btn_continue")
+	private WebElement getCodeButtonNative;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[3]")
 	@FindBy(id = "getCode")
@@ -179,9 +187,15 @@ public class OTPUpdate extends _CommonPage {
 	@FindBy(id = "secretCode")
 	private WebElement securityCodeField;
 
+	@AndroidFindBy(id = "com.td:id/enter_code")
+	private WebElement securityCodeFieldNative;
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
 	@FindBy(id = "enter")
 	private WebElement submitCodeButton;
+
+	@AndroidFindBy(id = "com.td:id/btn_primary")
+	private WebElement submitCodeButtonNative;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[5]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "(//div[@ng-show='!!phone.verified']/span)[2]")
@@ -310,16 +324,45 @@ public class OTPUpdate extends _CommonPage {
 	}
 
 	public void addSinglePhoneNumberWithPasscode() {
-		String phoneNumber = getTestdata("PhoneProfile");
-		String nickname = getTestdata("Nickname");
+		Decorator();
+		try {
+			String phoneNumber = getTestdata("PhoneProfile");
+			String nickname = getTestdata("Nickname");
 
-		clickAddPhoneUpdateButton();
-		OTPChallenge.get().clickTextOption();
-		OTPChallenge.get().clickGetCodeButton();
-		OTPChallenge.get().enterSecurityCode();
-		OTPChallenge.get().clickSubmitCodeButton();
-		mobileAction.sleep(4000);
-		addPhoneNumber(phoneNumber, nickname);
+			clickAddPhoneUpdateButton();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				OTPChallenge.get().clickTextOption();
+				OTPChallenge.get().clickGetCodeButton();
+				OTPChallenge.get().enterSecurityCode();
+				OTPChallenge.get().clickSubmitCodeButton();
+			} else {
+				// Native screens only for this OTP Challenge screen
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.FuncClick(textOptionNative, "Text option Native");
+				mobileAction.FuncClick(getCodeButtonNative, "Get Code option Native");
+
+				String securityCode = retrievePasscode();
+
+				mobileAction.FuncClick(securityCodeFieldNative, "Security Code Field Native");
+				mobileAction.FuncSendKeys(securityCodeFieldNative, securityCode);
+				mobileAction.FuncHideKeyboard();
+
+				mobileAction.FuncClick(submitCodeButtonNative, "Submit Code Native");
+
+			}
+			mobileAction.sleep(4000);
+			addPhoneNumber(phoneNumber, nickname);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
 
 	}
 

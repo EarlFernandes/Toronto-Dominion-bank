@@ -293,7 +293,7 @@ public class OTPSetup extends _CommonPage {
 		try {
 			mobileAction.FuncClick(getStartedExistingButton, "Get started button");
 			mobileAction.FuncClick(agreeButton, "AGREE/Accept button");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -779,7 +779,7 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(this.codeFrequencyContinueButton, "Passcode Frequency Continue button");
-			mobileAction.waitForElementToVanish(PageHeader.get().getProgressBar());
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

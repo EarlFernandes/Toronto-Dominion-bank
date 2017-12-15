@@ -181,7 +181,7 @@ public class EventCase {
 		MobilePayment_AcceptIntroAndValidate,
 
 		// Page Header
-		PageHeader_ClickBackButton, PageHeader_GoHome,
+		PageHeader_ClickBackButton, PageHeader_GoHome, PageHeader_ClickBackButtonIfIOS,
 
 		// Pay Bill
 		PayBill_PayBill, PayBill_PayFutureBill, PayBill_PayUSBill, PayBill_VerifyNoPayWithRewardsLink, PayBill_VerifyPayWithRewardsLink, PayBill_VerifyPayBillScreen,
@@ -4717,6 +4717,10 @@ public class EventCase {
 
 		case PageHeader_GoHome:
 			PageHeader.get().goHome();
+			break;
+
+		case PageHeader_ClickBackButtonIfIOS:
+			PageHeader.get().clickBackButtonIfIOS();
 			break;
 
 		// Pay Bill
