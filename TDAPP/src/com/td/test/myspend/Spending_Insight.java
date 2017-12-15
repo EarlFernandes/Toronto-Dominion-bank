@@ -52,10 +52,11 @@ public class Spending_Insight extends _CommonPage {
 	private MobileElement accountSelected;
 
 	@iOSXCUITFindBy(xpath = "//*[contains(@label,'MONEY PATH') or contains(@label,'Trajectoire financière') or contains(@label,'Money Path')]")
-	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'MONEY PATH') or contains(@content-desc,'Trajectoire financière') or contains(@content-desc,'Money Path')]")
+	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'MONEY PATH') or contains(@content-desc,'Trajectoire financière') or contains(@content-desc,'Money Path') or contains(@text,'Money Path')]")
 	private MobileElement moneyPathButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Logout') or contains(@label,'Fermer la session')]")
+	@AndroidFindBy(xpath = "(//android.view.View[contains(@content-desc,'Logout')])[2]")
 	private MobileElement logout;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Spending by Category') or contains(@label,'Dépenses par catégorie')]")
@@ -71,12 +72,23 @@ public class Spending_Insight extends _CommonPage {
 	private MobileElement homeBtn;
 	
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/easy_access']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access'] | //android.widget.TextView[@resource-id='com.td:id/easy_access']")
 	private MobileElement quickAccess;
 	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD MySpend' or @label='Dépense TD']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='TD MySpend' or @text='Dépense TD')]")
 	private MobileElement TDMySpend;
+	
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Session Expired')]")
+	@AndroidFindBy(xpath = "//*[contains(@text,'Session Expired')]")
+	private MobileElement sessionExpired;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'OK')]")
+	@AndroidFindBy(xpath = "//*[contains(@text,'OK')]")
+	private MobileElement okBtn;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@name,'Accounts Selected') or contains(@name,'Comptes sélectionnés')]")
+	private MobileElement accountsSelected;
 
 	@FindBy(xpath = "//*[text()='Spending Insights' or text()='Aperçu des dépenses']")
 	private WebElement spendingInsightHeaderAndroid;
@@ -131,6 +143,9 @@ public class Spending_Insight extends _CommonPage {
 		Decorator();
 
 		try {
+			if(mobileAction.verifyElementIsPresent(sessionExpired)){
+				mobileAction.FuncClick(okBtn, "Ok");
+			}
 			if(mobileAction.verifyElementIsPresent(quickAccess)){
 				HomeScreen.get().clickMenu();
 				mobileAction.FuncClick(TDMySpend, "TD My Spend");
@@ -427,6 +442,81 @@ public class Spending_Insight extends _CommonPage {
 			
 
 		}catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
+		}
+	}
+	
+	/**
+	 * This method will verify the number of accounts selected below the wheel in Spending Insights page
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void verifyAccountSelected() {
+		Decorator();
+
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				mobileAction.FuncClick(dailyDigest, "Daily Digest");
+				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
+				//mobileAction.FuncClick(dailyDigestAndroid, "Daily Digest");
+			} else {
+				mobileAction.FuncClick(dailyDigest, "Daily Digest");
+			}
+			
+
+		}catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
+		}
+	}
+	
+	/**
+	 * This method will verify the number of active accounts
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void verifyActiveAccounts() {
+
+		Decorator();
+
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.verifyElementIsDisplayed(noAccountSelectedAndroid, "No. of Accounts Selected: " + noAccountSelectedAndroid.getText());
+				CL.GetAppiumDriver().context("NATIVE_APP");
+			} else {
+				mobileAction.verifyElementIsDisplayed(accountsSelected, "No. of Accounts Selected: " + accountsSelected.getText());
+			}
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());

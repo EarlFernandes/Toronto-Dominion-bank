@@ -252,6 +252,11 @@ public final class StringArray {
 	public static final String[] ARRAY_BETWEEN_MY_ACCOUNTS_HEADER = { "Between My Accounts", "Entre mes comptes",
 			"我的账户间", "我的賬戶之間" };
 
+	// Chatbot
+	public static final String[] ARRAY_CHATBOT_HEADER = { "TD ChatBot", "TBD", "TBD", "TBD" };
+	public static final String[] ARRAY_CHATBOT_ERROR_INELIGIBLE = { "You are not eligible to use TD Chat", "TBD", "TBD",
+			"TBD" };
+
 	// Credit
 	public static final String[] ARRAY_TD_POINTS = { "TD Points", "Points TD", "TD Points", "TD Points" };
 	public static final String[] ARRAY_CASH_BACK_DOLLARS = { "Cash Back Dollars", "dollars de remise",
@@ -355,15 +360,15 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_TRADE = { "TRADE", "NÉGOCIATION", "交易", "交易" };
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_HOLDINGS = { "HOLDINGS", "PLACEMENTS", "持有投资", "持有投資" };
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_ORDERS = { "ORDERS", "ORDRES", "订单", "交易訂單" };
-	public static final String[] ARRAY_DASHBOARD_NAVROW_ACCOUNTS = { "Accounts", "Comptes", "交易", "交易" }; // FIX
-	public static final String[] ARRAY_DASHBOARD_NAVROW_TRANSFERES = { "Transfers", "Virements", "账单", "轉賬" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_ACCOUNTS = { "Accounts", "Comptes", "账户", "賬戶" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_TRANSFERES = { "Transfers", "Virements", "转账", "轉賬" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_BILLS = { "Bills", "Factures", "账单", "賬單" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_TRADE = { "Trade", "Négociation", "交易", "交易" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_MARKETS = { "Markets", "Marchés", "市场", "市場" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_OPENTDDIRECTINVESTINGACCOUNT = {
 			"Open a Direct Investing Account", "Ouvrir un compte Placements directs TD", "市场", "市場" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_QUOTE = { "Quote", "Cote", "报价", "報價" };
-	public static final String[] ARRAY_DASHBOARD_NAVROW_ALERTS = { "Alerts", "Alertes", "报价", "報價" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_ALERTS = { "Alerts", "Alertes", "报价", "提醒" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_OPENABANKACCOUNT = { "Open a Bank Account",
 			"Ouvrir un compte bancaire", "报价", "報價" };
 	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGS = { "Home Screen Settings",
@@ -404,8 +409,8 @@ public final class StringArray {
 			"Apple Pay" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_TDMYSPEND = { "TD MySpend", "Dépense TD", "TD MySpend",
 			"TD MySpend" };
-	public static final String[] ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT = { "TD Mobile Payment", "Paiement mobile TD",
-			"道明移动支付", "道明流動付款" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT = { "TD Mobile Payment", "Factures", "道明移动支付",
+			"道明流動付款" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_TDMOBILEDEPOSIT = { "Mobile Deposit", "Dépôt mobile", "移动存款服务",
 			"流動存款" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_TDFORME = { "TD for Me", "TD et Moi", "TD for Me",
@@ -427,6 +432,17 @@ public final class StringArray {
 			"Confidentialité, sécurité et avis juridique", "隐私、安全与法律声明", "私隱政策、安全性和法律聲明" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_TRADE = { "Trade", "Négociation", "交易", "交易" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_LOGOUT = { "Logout", "Fermer la session", "退出", "登出" };
+
+	public static final String[] ARRAY_DASHBOARD_REFRESH = { "Refresh", "Rafraîchir", "刷新", "刷新" };
+	public static final String[] ARRAY_DASHBOARD_UPDATEQUOTES = { "Update the quotes for your symbols",
+			"Mettre à jour les cotes associées à vos symboles", "更新股票代码的报价", "更新股票代號的報價" };
+	public static final String[] ARRAY_DASHBOARD_EDITWATCHLIST = { "Edit watchlist",
+			"Modifier la liste de surveillance", "编辑自选股观察名单", "編輯自選股觀察名單" };
+	public static final String[] ARRAY_DASHBOARD_MANAGERENAME = { "Manage, rename, and add or remove symbols",
+			"Gérer, renommer, ajouter ou supprimer des symboles", "管理、重命名、添加或移除股票代码", "管理、重新命名、新增或移除股票代號" };
+	public static final String[] ARRAY_DASHBOARD_SETTINGS = { "Settings", "Paramètres", "设置", "設定" };
+	public static final String[] ARRAY_DASHBOARD_SWITCHBETWEEN = { "Switch between a banking or investing view",
+			"Passer de l’affichage bancaire à l’affichage de placements", "切换理财或投资视图", "切換理財或投資視圖" };
 
 	public static final String[] ARRAY_DASHBOARD_LOCATIONNEAREST = { "Nearest Branch", "Succursale", "最近的分行", "最近分行" };
 
@@ -509,12 +525,8 @@ public final class StringArray {
 	public static final String[] ARRAY_BRABCH_HEADER = { "Branch", "Succursale", "分行", "分行" };
 	public static final String[] ARRAY_FIND_LOCATION = { "Find Locations", "Trouver une succursale", "查找分行", "查找分行" };
 	public static final String[] ARRAY_CONFIRM = { "Confirm", "Confirm", "确认", "確認" };
-	public static final String[] ARRAY_PREFERENCE_NEW_SECURITY_SETUP = { "New Security Setup",
-			"Nouvelle configuration de sécurité", "新的安全设置", "新的安全設定" };
 	public static final String[] ARRAY_PREFERENCE_SECURITY_SETTINGS = { "Security Settings", "Paramètres de sécurité",
 			"安全设置", "安全設定" };
-	public static final String[] ARRAY_PREFERENCE_SET_UP_NOW = { "Set Up Now", "Configurer maintenant", "立即设置",
-			"立即設定" };
 	public static final String[] ARRAY_PREFERENCE_NOTIFICATIONS = { "Notifications", "Avis", "通知", "通知" };
 	public static final String[] ARRAY_PREFERENCE_TD_FOR_ME_SETTINGS = { "TD for Me Settings", "Paramètres TD et moi",
 			"TD for Me 设置", "TD for Me 設置" };
@@ -588,6 +600,7 @@ public final class StringArray {
 			"If your existing credit card is damaged or not working, you can request a replacement card.",
 			"Si votre carte de crédit est endommagée ou ne fonctionne plus, vous pouvez demander une carte de remplacement.",
 			"如果您现有的信用卡损坏或无效，您可以申请换卡。", "如果您現有的信用卡損壞或無效，您可以申請換卡。" };
+	public static final String[] ARRAY_FORM_INFORMATION = { "Personal Information", "", "", "" };
 	// End of CLIP
 
 	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",

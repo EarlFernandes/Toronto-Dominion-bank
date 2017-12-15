@@ -90,7 +90,7 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 
-	@iOSFindBy(xpath = "//*[@label='More' or @label='LISTES DE SURVEILLANCE' or @label='自选股观察名单' or @label='自選股觀察名單']")
+	@iOSXCUITFindBy(xpath = "//*[@label='More' or @label='Plus' or @label='显示更多' or @label='顯示更多']")
 	@AndroidFindBy(id = "com.td:id/tv_watchlist_more_footer")
 	private MobileElement BT_More;
 
@@ -98,11 +98,11 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_HamburgerMenu;
 
-	@iOSFindBy(xpath = "//*[@label='Home' or @label='Accueil' or @label='主页' or @label='首頁']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Home' or @label='Accueil' or @label='主页' or @label='首頁']")
 	@AndroidFindBy(xpath = "//*[@text='Home' or @text='Accueil' or @text='主页' or @text='首頁']")
 	private MobileElement FLY_Home;
 
-	@iOSFindBy(xpath = "//*[@label='Search or add symbols' or @label='Rechercher ou ajouter des symboles' or @label='搜索或添加股票代码' or @label='搜尋或添加股票代號']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Search or add symbols' or @label='Rechercher ou ajouter des symboles' or @label='搜索或添加股票代码' or @label='搜尋或添加股票代號']")
 	@AndroidFindBy(xpath = "//*[@text='Search or add symbols' or @text='Rechercher ou ajouter des symboles' or @text='搜索或添加股票代码' or @text='搜尋或添加股票代號']")
 	private MobileElement LBL_Searchoraddsymbols;
 
@@ -256,14 +256,25 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
-			if (BT_EnableInvestingViewSwitch.isSelected()) {
-				CL.GetReporting().FuncReport(PASS, "Enable Investing View is bydefault ON for investing focus user.");
-			} else {
-				CL.GetReporting().FuncReport(FAIL,
-						"Enable Investing View is not bydefault ON for investing focus user.");
-			}
 
-			mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				if (BT_EnableInvestingViewSwitch.getAttribute("checked").equalsIgnoreCase("true")) {
+					CL.GetReporting().FuncReport(PASS,
+							"Enable Investing View is bydefault ON for investing focus user.");
+				} else {
+					CL.GetReporting().FuncReport(FAIL,
+							"Enable Investing View is not bydefault ON for investing focus user.");
+				}
+			} else {
+				if (BT_EnableInvestingViewSwitch.getAttribute("value").equalsIgnoreCase("true")) {
+					CL.GetReporting().FuncReport(PASS,
+							"Enable Investing View is bydefault ON for investing focus user.");
+				} else {
+					CL.GetReporting().FuncReport(FAIL,
+							"Enable Investing View is not bydefault ON for investing focus user.");
+				}
+
+			}
 
 			mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
 
@@ -315,6 +326,7 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(LBL_Searchoraddsymbols, "Search or add symbols");
 
+			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncSwipeWhileElementNotFound(BT_More, false, 6, "up");
 
 		} catch (Exception e) {

@@ -44,11 +44,11 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/hamburger")
 	private MobileElement BT_Home_HamburgerMenu;
 
-	@iOSFindBy(xpath = "//*[@label='WATCHLISTS' or @label='LISTES DE SURVEILLANCE' or @label='自选股观察名单' or @label='自選股觀察名單']")
+	@iOSXCUITFindBy(xpath = "//*[@label='WATCHLISTS' or @label='LISTES DE SURVEILLANCE' or @label='自选股观察名单' or @label='自選股觀察名單']")
 	@AndroidFindBy(xpath = "//*[@text='WATCHLISTS' or @text='LISTES DE SURVEILLANCE' or @text='自选股观察名单' or @text='自選股觀察名單']")
 	private MobileElement QL_WATCHLISTS;
 
-	@iOSFindBy(xpath = "//*[@label='Edit']/../*[1]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Edit']/../*[1]")
 	@AndroidFindBy(id = "com.td:id/watchlist_name_drop_down")
 	private MobileElement LT_WatchListDropDown;
 
@@ -60,24 +60,21 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/watchlist_name']")
 	private List<MobileElement> LBL_WatchListItems;
 
-	@iOSFindBy(xpath = "//*[@label='Edit' or @label='LISTES DE SURVEILLANCE' or @label='自选股观察名单' or @label='自選股觀察名單']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Edit' or @label='LISTES DE SURVEILLANCE' or @label='自选股观察名单' or @label='自選股觀察名單']")
 	@AndroidFindBy(id = "com.td:id/watchlist_edit_button")
 	private MobileElement BT_Watchlist_Edit;
 
-	@iOSFindBy(xpath = "//*[@label='More' or @label='LISTES DE SURVEILLANCE' or @label='自选股观察名单' or @label='自選股觀察名單']")
-	@AndroidFindBy(xpath = "//*[@text='More' or @text='LISTES DE SURVEILLANCE' or @text='自选股观察名单' or @text='自選股觀察名單']")
+	@iOSXCUITFindBy(xpath = "//*[@label='More' or @label='Plus' or @label='显示更多' or @label='顯示更多']")
+	@AndroidFindBy(id = "com.td:id/tv_watchlist_more_footer")
 	private MobileElement BT_More;
 
 	public void verifyWatchlistHeaderUI() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				MIT_DSHQuickLinks.get().clickQuickLink(QL_WATCHLISTS, "WATCHLISTS");
 
-			} else {
-
-				mobileAction.FuncClick(BT_More, "More Button");
-			}
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
+			mobileAction.FuncSwipeOnce("up");
+			mobileAction.FuncClick(BT_More, "More Button");
 
 			mobileAction.verifyElementIsDisplayed(BT_WatchListBack, "Back");
 			mobileAction.verifyElementIsDisplayed(ED_Searchoraddsymbols, "Search or add symbols");
@@ -93,12 +90,11 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 		String sCurrentWatchlist = null;
 		String sNewWatchList = null;
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				MIT_DSHQuickLinks.get().clickQuickLink(QL_WATCHLISTS, "WATCHLISTS");
+			
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
+			mobileAction.FuncSwipeOnce("up");
+			mobileAction.FuncClick(BT_More, "More Button");
 
-			} else {
-				mobileAction.FuncClick(BT_More, "More Button");
-			}
 			sCurrentWatchlist = mobileAction.FuncGetText(LT_WatchListDropDown);
 			mobileAction.FuncClick(LT_WatchListDropDown, "LT_WatchListDropDown");
 
@@ -113,7 +109,7 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWatchlistItem, false, 10, "up");
 
 			for (MobileElement sWatchListItem : LBL_WatchListItems) {
-				sNewWatchList = mobileAction.FuncGetText(sWatchListItem);
+				sNewWatchList = mobileAction.FuncGetElementText(sWatchListItem);
 				if (!sNewWatchList.equals(sCurrentWatchlist)) {
 					mobileAction.FuncClick(sWatchListItem, sNewWatchList);
 					break;
@@ -128,5 +124,9 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 			e.printStackTrace();
 		}
 	}
+	
+
+
+
 
 }

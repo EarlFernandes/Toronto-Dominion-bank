@@ -24,6 +24,7 @@ public class MenuPage extends _CommonPage {
 
 	@iOSXCUITFindBy(xpath = "//*[(@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬') and @name='flyout_title'] | //*[@name='NAV_DRAWER_ITEMS_TRANSFERS']")
 	@AndroidFindBy(xpath = "//*[(@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='com.td:id/textview_flyout_menu_item' or @resource-id='com.td:id/navText')]")
+
 	private MobileElement transfers;
 
 	@iOSXCUITFindBy(xpath = "//*[(@label='Bills' or @label='Factures' or @label='账单' or @label='賬單')  and @name='flyout_title'] | //*[@name='NAV_DRAWER_ITEMS_BILLS']")
@@ -105,6 +106,9 @@ public class MenuPage extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText']")
 	private List<MobileElement> menuOpts;
+
+	@iOSXCUITFindBy(xpath = "//*[(@label='TD Talk to Me' or @label='TD Talk to Me(FR)' or @label='TD Talk to Me' or @label='TD Talk to Me') and @name='flyout_title']")
+	private MobileElement chatBot;
 
 	public synchronized static MenuPage get() {
 		if (MenuPage == null) {
@@ -629,6 +633,24 @@ public class MenuPage extends _CommonPage {
 		}
 	}
 
+	public void clickFAQ() {
+
+		Decorator();
+		try {
+			mobileAction.FuncClick(faq, "FAQ menu button");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
 	/**
 	 * This method will verify text within elements for the fly out menu
 	 * 
@@ -785,6 +807,24 @@ public class MenuPage extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
+	}
+
+	public void clickChatBot() {
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(chatBot, "Chat Bot");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
 	}
 
 }

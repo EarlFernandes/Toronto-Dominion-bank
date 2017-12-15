@@ -120,13 +120,46 @@ public class WebViewPage extends _CommonPage {
 			return;
 		}
 	}
+	
+	private boolean verifyFormInfo(String formtitle) {
+		if (setWebViewContext()) {
+			try {
+				final WebElement form_Title = CL.GetDriver().findElement(By.xpath("//h1[@translate='FORM_TITLE']"));
+				String capturedText = form_Title.getText();				
+				mobileAction.verifyTextEquality(capturedText,formtitle);
+				final WebElement personal_info = CL.GetDriver().findElement(By.xpath("//h3[@translate='ABOUT_YOU.PERSONAL_TITLE']/strong"));
+				capturedText = personal_info.getText();
+				mobileAction.verifyTextEquality(capturedText,
+						getTextInCurrentLocale(StringArray.ARRAY_FORM_INFORMATION));
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				return true;
+			} catch (Exception e) {
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				mobileAction.Report_Fail("Failed to find Form Title");
+				return false;
+			}
+		} else {
+			System.out.println("Failed to set context");
+			return false;
+		}
+	}
 
 	public void verifyLimitIncreaseForm() {
-		if (setWebViewContext()) {
-			mobileAction.Report_Pass_Verified("prefilled Form Verified");
+		String CLIP_Form_Title = getTextInCurrentLocale(StringArray.ARRAY_CLIP_FORM_TITLE);
+		if(verifyFormInfo(CLIP_Form_Title)) {
+			mobileAction.Report_Pass_Verified("CLIP Prefilled Form");
 		} else {
-			mobileAction.Report_Fail_Not_Verified("prefilled Form Verified");
-		}
+			mobileAction.Report_Fail_Not_Verified("CLIP prefilled Form");
+		}		
+	}
+	
+	public void verifyDamagedCardForm() {
+		String DC_Form_Title = getTextInCurrentLocale(StringArray.ARRAY_DM_REQUEST_FORM_TITLE);
+		if(verifyFormInfo(DC_Form_Title)) {
+			mobileAction.Report_Pass_Verified("DC Prefilled Form");
+		} else {
+			mobileAction.Report_Fail_Not_Verified("DC prefilled Form");
+		}		
 	}
 
 }

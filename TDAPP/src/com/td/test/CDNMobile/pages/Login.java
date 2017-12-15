@@ -25,6 +25,14 @@ public class Login extends _CommonPage {
 
 	private static Login Login;
 
+	/*
+	 * This progressbar is special for P2P tests only, do not delete, it is
+	 * called from p2p tests
+	 */
+	@iOSFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeActivityIndicator[@value='1']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' or @resource-id='com.td:id/loading_indicator_textview']")
+	public MobileElement progressBar;
+
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Remember me on']")
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/remember_switch' and @index='1']")
 	private MobileElement rememberMe;
@@ -62,10 +70,6 @@ public class Login extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id= 'android:id/button2' and @index='0']")
 	private MobileElement install;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='Progression interrompue']")
-	@AndroidFindBy(xpath = "//android.widget.ProgressBar[@resource-id='android:id/progress']")
-	private MobileElement french_progressBar;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeButton[1]")
 	@AndroidFindBy(id = "com.td:id/loginEditText")
@@ -186,7 +190,8 @@ public class Login extends _CommonPage {
 	String verifyLogin_android = "//*[contains(@text,'Your Login Info Please')]";
 	String login_password = getTestdata("Password");
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar[@name='TDOCAErrorWithCTAView']/../XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeStaticText[1] | "
+			+ "//XCUIElementTypeNavigationBar[@name='TDOCAErrorWithCTAView']/../XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text'] | //android.widget.TextView[@resource-id='com.td:id/error_message']")
 	private MobileElement login_error;
 
@@ -726,17 +731,19 @@ public class Login extends _CommonPage {
 		try {
 			Decorator();
 
+			String userID = CL.getTestDataInstance().Userid;
+			String maskedChars = userID.substring(2, 5);
+			String maskeduserID = userID.replace(maskedChars, "***");
+			System.out.println("Verify masked user:" + maskeduserID);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				mobileAction.FuncClick(select_accesscard, "Select AccessCard");
-				String mostUsedUser = Mostusername_Displayedfirst.getAttribute("value");
-				String oftenUsedUser = mostUsedUser.replace("***", "C5A");
-				mobileAction.verifyTextEquality(oftenUsedUser, CL.getTestDataInstance().Userid);
+				mobileAction.verifyElementUsingXPath("//*[@label='" + maskeduserID + "']", maskeduserID);
 			} else {
 
 				mobileAction.FuncClick(username, "Username");
-				mobileAction.verifyElementIsDisplayed(Mostusername_Displayedfirst,
-						"Verify The Most User Name Displayed First");
+				mobileAction.verifyElementUsingXPath(
+						"//*[@text='" + maskeduserID + "' and @resource-id='com.td:id/txtAccessCard']", maskeduserID);
 			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

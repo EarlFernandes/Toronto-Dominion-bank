@@ -271,7 +271,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				mobileAction.verifyElement(interac_Etransfer_Header, "Interac e-Transfer");
 				mobileAction.FuncClick(selectSender, "Sender");
 
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 
 				// mobileAction.FuncElementSwipeWhileNotFound(acntsListSender,
 				// select_SenderValue, 0, "up", true);
@@ -282,7 +282,7 @@ public class Interac_e_Transfer extends _CommonPage {
 					mobileAction.FuncClick(cancelSender, "Cancel");
 				}
 
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 
 				mobileAction.FuncClick(fromAccount, "From Account");
 				accVal = Double.parseDouble(mobileAction.getText(fromAccountVal));
@@ -337,7 +337,7 @@ public class Interac_e_Transfer extends _CommonPage {
 		try {
 			mobileAction.verifyElementIsDisplayed(interac_Header, "Interac e-Transfer");
 			mobileAction.FuncClick(addRecipient_Interac, "AddRecipient");
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -823,7 +823,7 @@ public class Interac_e_Transfer extends _CommonPage {
 				mobileAction.verifyElement(interac_Etransfer_Header, "Interac e-Transfer");
 				mobileAction.FuncClick(selectSender, "Sender");
 
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_SenderValue, true, 5, "up");
 				// add click cancel when cancel is still present, this is an
@@ -832,7 +832,7 @@ public class Interac_e_Transfer extends _CommonPage {
 					mobileAction.FuncClick(cancelSender, "Cancel");
 				}
 
-				mobileAction.waitProgressBarVanish();
+				mobileAction.waitP2PProgressBarVanish();
 				mobileAction.FuncClick(recipient, "Recipient");
 
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(select_Recipient, true, 2, "up");
@@ -875,7 +875,7 @@ public class Interac_e_Transfer extends _CommonPage {
 
 			mobileAction.FuncClick(selectSender, "ClickSender");
 
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 
 			if (mobileAction.verifyElementIsPresent(senderCancel)) {
 				mobileAction.FuncClick(senderCancel, "Click Cancel");
@@ -1012,12 +1012,15 @@ public class Interac_e_Transfer extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(registrationPageHeader, "Interac e-Transfer® - Registration");
 			mobileAction.FuncClick(continueButton, "Continue");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1037,12 +1040,15 @@ public class Interac_e_Transfer extends _CommonPage {
 
 			mobileAction.FuncClick(openAnAccount, "Open An Account");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1065,9 +1071,15 @@ public class Interac_e_Transfer extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(openAnAccount, "Open An Account");
 			mobileAction.verifyElementIsDisplayed(findABranch, "Find A Branch");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1095,14 +1107,17 @@ public class Interac_e_Transfer extends _CommonPage {
 			mobileAction.FuncHideKeyboard();
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(continueButton, "Continue Button");
-			mobileAction.waitProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1129,13 +1144,20 @@ public class Interac_e_Transfer extends _CommonPage {
 			mobileAction.verifyTextEquality(reviewEmailId.getText(), email);
 
 			mobileAction.FuncClick(continueButton, "Continue Button");
-			mobileAction.waitProgressBarVanish();
+
+			mobileAction.waitP2PProgressBarVanish();
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -1157,9 +1179,15 @@ public class Interac_e_Transfer extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(thankYou, "Thank You");
 			mobileAction.verifyElementIsDisplayed(successMag, "You're now registered for Interac e-Transfer");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 

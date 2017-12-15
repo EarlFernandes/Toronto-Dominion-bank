@@ -74,7 +74,7 @@ public class MIT_DSH_DisplaySearchCard extends _CommonPage {
 		try {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (mobileAction.isObjExists(searchBar, 2)) {
 
 				mobileAction.verifyElementIsDisplayed(searchBar, "searchBar");
@@ -96,7 +96,8 @@ public class MIT_DSH_DisplaySearchCard extends _CommonPage {
 	public void verifyDisplaySearchCardUnAuthenticated() {
 		Decorator();
 		try {
-
+			MIT_DSHQuickLinks.get().goToDashboardHome();
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (mobileAction.isObjExists(searchBar, 2)) {
 
 				mobileAction.verifyElementIsDisplayed(searchBar, "searchBar");
@@ -110,8 +111,6 @@ public class MIT_DSH_DisplaySearchCard extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(searchBar, "searchBar");
 				mobileAction.FuncClick(searchBar, "searchBar");
 			}
-
-			LoginMIT.get().MITLogin();
 
 			mobileAction.verifyElementIsDisplayed(search_symbol, "Landed on Watchlist Search Screen");
 
@@ -130,7 +129,7 @@ public class MIT_DSH_DisplaySearchCard extends _CommonPage {
 		try {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (mobileAction.isObjExists(searchBar, 2)) {
 
 				mobileAction.FuncClick(searchBar, "< searchBar");

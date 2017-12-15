@@ -249,8 +249,10 @@ public class DailyDigest extends _CommonPage{
 
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				//mobileAction.FuncClick(backBtnAndroid, "Back Button");
+				Thread.sleep(2000);
+				Spending_Insight.get().clickSideMenuButton();
 				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
-				mobileAction.FuncClick(backBtnAndroid, "Back Button");
 				mobileAction.verifyElementIsDisplayed(logoutBtnAndroid, "Menu Page");
 				mobileAction.FuncClick(dailyDigestAndroid, "Daily Digest");
 				

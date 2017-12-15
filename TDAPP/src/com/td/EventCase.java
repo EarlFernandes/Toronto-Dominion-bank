@@ -8,6 +8,7 @@ import com.td.test.myspend.DailyDigest;
 
 import com.td.test.myspend.LogoutMySpend;
 import com.td.test.myspend.MoneyPath;
+import com.td.test.myspend.MySpendTransfers;
 import com.td.test.myspend.MyspendPreferences;
 import com.td.test.myspend.SideMenu;
 import com.td.test.myspend.SpendingByCategory;
@@ -120,7 +121,8 @@ public class EventCase {
 		verifyPreLoginDashboardAlerts, verifyAlertUI, tapAlerts, verifyBackandGearIcon, verifyxCancelbutton, verifycreateAlertConditionPriceRises, verifyCreateAlertConditionPricehit52Week, verifyQuoteInformation, VerifyPriceChangesOnHeavyVolume, VerifyPrimaryEmailDeliveryPreferences, VerifySecondaryEmailDeliveryPreferences, VerifyEnablingAllDeliveryPreferences, VerifyCreateSimilarAlertConditionPriceRisesFasterThanIndex, VerifyAlertConditionPriceGapAtOpeningTrade, verifyAlertIconMODQuotesPage, verifyNotificationPrefMOD, verifyNotificationPrefFlyMenu, verifyPriceDropsBelow, verifyPriceRisesAbove, verifyEditAlertUI, verifyDefaultWhenAlertConditionChange, verifyPriceChangesFromPreviousClose, verifyPriceEarningRatioDropsBelow, verifyModPagesLoaded, verifyExceedDailyVolume, navigateToQuotePage, navigateToOrderForm, VerifyDoneConditionPriceChangesFromPreviousClose, VerifyErrorConditionPriceDropsBelowStocks, CreateAlertConditionPriceChangesFromPrevious, VerifyBackButtonOnCreateNewAlertpage, VerifyChangeConditionCreateNewAlertPage, VerifyRefreshButtonOnCreateNewAlertPage, verifyFuncFlow, VerifyClientNavigateInvestingAlertsNotifcationOFF, VerifyClientNavigateInvestingPNSAndAlertsNotifcationON, VerifyClientNavigateInvestingAlertsNotifcationSuspended, verifyErrorExpiredSymbol, verifyErrorEANotSigned, verifyActionSheetUIMOD, verifyCheckMarkMOD, verifyActionSheetUIHoldings, verifyCheckMarkHoldings, verifyActionSheetUIWLSymbolSearch, verifyCheckMarkWLSymbolSearch,
 
 		// MIT Dashboard
-		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, goToProfileAndSettings, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI, verifyStockETFsWLSymbolRow, verifyTappingWLOptionSymbol, goToWLExpandedView, verifyTappingWLMutualFundSymbol, verifyWLOptionSymbolSellButton, verifyWLMutualFundSymbolBuyButton, verifyWLOptionSymbolBuyButton, verifyWLETFSymbolSellButton, verifyWLIndicesSymbolBuySellButton, verifyWLBackButton, verifyWLSymbolFlagCompanyName, verifyHomeScreenSettingsBlendedInvestingFocusUser, verifyQLOrderBlendedInvestingFocus, verifyFlyoutOrderBlendedInvestingFocus, logoutFromDashboard, verifyQLBlendedInvestingFocusAfterLogout, verifyFlyoutBlendedInvestingFocusAfterLogout, verifyQLOrderBankingOnly, verifyFlyoutOrderBankingOnly, verifyQLBankingOnlyAfterLogout, verifyFlyoutBankingOnlysAfterLogout, verifyQLOrderInvestingOnly, verifyFlyoutOrderInvestingOnly, verifyQLInvestingOnlyAfterLogout, verifyFlyoutInvestingOnlyAfterLogout, verifyQLOrderBlendedNotInvestingFocus, verifyFlyoutOrderBlendedNotInvestingFocus, verifyQLBlendedNotInvestingFocusAfterLogout, verifyFlyoutBlendedNotInvestingFocusAfterLogout, verifyFlyoutUnauthenticated, verifyFlyoutBankingOnlyUser, verifyFlyoutInvestingOnlyUser, verifyFlyoutBlendedyUser, verifyContactUsHomeUnAuthenticated, verifyContactUsHomeAuthenticated, verifyFlyoutContactUs, verifyLocationLandingUnAuthenticated, verifyLocationLandingAuthenticated, verifyUpdateSearch, verifyUpdateSearchInvalid, verifyNavigateQuoteSummaryIndices, verifyNavigateQuoteSummaryMF, verifyNavigateQuoteSummaryETF, verifyNavigateQuoteSummaryOption, verifyNavigateQuoteSummaryStocks, verifyAddWatchlistIndices, verifyAddWatchlistMF, verifyAddWatchlistOption, verifyAddWatchlistStocksETF, verifyHeaderResult, verifyDisplaySearchCard, verifyDisplaySearchCardUnAuthenticated, verifyDisplaySearchCardAuthenticated, verifyNavigateUnAuthenticated, verifyActivityDetailsUI, verifyCollapseEmptyWL, verifyExpandEmptyWL, verifyAddButtonEmptyWL, verifyUIEmptyWLExpand, verifyErrorEANotSignedCollapse, verifyUIEditWL, verifyBackButtonEditWL, verifyCancelButtonEditWL, verifyDeleteButtonEditWL, verifyDeleteAllButtonEditWL, verifyWLErrorWBTCNotSigned, verifyTermsOfUse, verifyQuickAccessHome, verifyQuickAccessMenu, verifyQuickAccessSettings, verifyPreferenceQuickAccess, verifyQuickAccessUnauthenticated, verifyQuickAccessUserType, verifyViewPreloginWL, verifyViewPreloginWLExpandView,
+
+		verifyQuickLinksUnAuthenicatedUser, goToDashboardHome, verifyQuickLinksBankingOnlyUser, verifyQuickLinksInvestingOnlyUser, verifyQuickLinksBlendedUser, verifyNavRowsUnAuthenicatedUser, verifyNavRowsBankingOnlyUser, verifyNavRowsInvestingOnlyUser, verifyNavRowsBlendedUser, verifyWatchlistHeaderUI, verifyMenuBarWatchlistDropDown, goToProfileAndSettings, verifyHomeScreenSettingsUI, verifyHomeScreenSettingsInvestingUser, verifyHomeScreenSettingsPageUI, verifyStockETFsWLSymbolRow, verifyTappingWLOptionSymbol, goToWLExpandedView, verifyTappingWLMutualFundSymbol, verifyWLOptionSymbolSellButton, verifyWLMutualFundSymbolBuyButton, verifyWLOptionSymbolBuyButton, verifyWLETFSymbolSellButton, verifyWLIndicesSymbolBuySellButton, verifyWLBackButton, verifyWLSymbolFlagCompanyName, verifyHomeScreenSettingsBlendedInvestingFocusUser, verifyQLOrderBlendedInvestingFocus, verifyFlyoutOrderBlendedInvestingFocus, logoutFromDashboard, verifyQLBlendedInvestingFocusAfterLogout, verifyFlyoutBlendedInvestingFocusAfterLogout, verifyQLOrderBankingOnly, verifyFlyoutOrderBankingOnly, verifyQLBankingOnlyAfterLogout, verifyFlyoutBankingOnlysAfterLogout, verifyQLOrderInvestingOnly, verifyFlyoutOrderInvestingOnly, verifyQLInvestingOnlyAfterLogout, verifyFlyoutInvestingOnlyAfterLogout, verifyQLOrderBlendedNotInvestingFocus, verifyFlyoutOrderBlendedNotInvestingFocus, verifyQLBlendedNotInvestingFocusAfterLogout, verifyFlyoutBlendedNotInvestingFocusAfterLogout, verifyWLCollapsedViewUI, verifyWLMoreOptions, verifyBuySellWLCollapsedView, verifyFlyoutUnauthenticated, verifyFlyoutBankingOnlyUser, verifyFlyoutInvestingOnlyUser, verifyFlyoutBlendedyUser, verifyContactUsHomeUnAuthenticated, verifyContactUsHomeAuthenticated, verifyFlyoutContactUs, verifyLocationLandingUnAuthenticated, verifyLocationLandingAuthenticated, verifyUpdateSearch, verifyUpdateSearchInvalid, verifyNavigateQuoteSummaryIndices, verifyNavigateQuoteSummaryMF, verifyNavigateQuoteSummaryETF, verifyNavigateQuoteSummaryOption, verifyNavigateQuoteSummaryStocks, verifyAddWatchlistIndices, verifyAddWatchlistMF, verifyAddWatchlistOption, verifyAddWatchlistStocksETF, verifyHeaderResult, verifyDisplaySearchCard, verifyDisplaySearchCardUnAuthenticated, verifyDisplaySearchCardAuthenticated, verifyNavigateUnAuthenticated, verifyActivityDetailsUI, verifyCollapseEmptyWL, verifyExpandEmptyWL, verifyAddButtonEmptyWL, verifyUIEmptyWLExpand, verifyErrorEANotSignedCollapse, verifyUIEditWL, verifyBackButtonEditWL, verifyCancelButtonEditWL, verifyDeleteButtonEditWL, verifyDeleteAllButtonEditWL, verifyWLErrorWBTCNotSigned, verifyTermsOfUse, verifyQuickAccessHome, verifyQuickAccessMenu, verifyQuickAccessSettings, verifyPreferenceQuickAccess, verifyQuickAccessUnauthenticated, verifyQuickAccessUserType, verifyViewPreloginWL, verifyViewPreloginWLExpandView,
 
 		// Tetris Loyalty
 		CreditHeader, ClickAccount, VerifyPayWithRewards, ClickStatementTab, Env_ClearSavedCards, ClickReward, RewardHeader, ClickPayWithRewards, PayWithRewardsHeader, ClickStatement, VerifyStatementBalanceHeader, VerifyAndClickPayWithRewardsBtn, ValidateAmount, VerifyMinAndMaxPaymentBtn, PayWithRewardsNotVisible, ValidateMinPayment, VerifyReviewHeader, ClickPayNowButton, ClickCancelButton, VerifyReceiptHeader, VerifyAmountRedeem, ClickSummaryTab, ClickVisitRewards, VerifyURL, VerifyRedemptionText, VerifyNoRewards, VerifyRewardsText, VerifyCashbackText, VerifyRewardsBtn, VerifyTextcashBack, VerifyEarnedAndRedeemed, VerifyNoRewardsInQuickAccess, ClickQuickAccessSettings, DisableCardInQuickAccess, VerifyNoCardInQuickAccess, VerifyDollarRewardBalance, VerifyNoEarnedAndRedeemed, VerifyDollarDecimalValue, VerifyAmountAndContinueIsDisabled, VerifyPayWithRewardsText, VerifyRewardPointstxt, VerifyRewardPayee, VerifyRedemptionDetails, VerifyCashBack,
@@ -141,9 +143,6 @@ public class EventCase {
 		// OTP Update
 		OTP_Update_VerifyOTPUpdateScreen, OTP_Update_VerifyTestPhoneUpdateScreen, OTP_Update_ClickTestPhoneButton, OTP_Update_VerifyLoginOptionUpdateScreen, OTP_Update_ClickLoginOptionButton, OTP_Update_VerifyChangeEmailScreen, OTP_Update_ClickChangeEmailButton, OTP_Update_UpdateSecurityEmail, OTP_Update_ClickOTPUpdateContinueButton, OTP_Update_VerifyOTPUpdateCompleteScreen, OTP_Update_ClickAddPhoneUpdateButton, OTP_Update_AddSinglePhoneNumber, OTP_Update_AddMaxPhoneNumbers, OTP_Update_DeleteFirstPhoneNumber, OTP_Update_VerifyDeletePhoneNumberFail, OTP_Update_VerifyAddedPhoneNumber, OTP_Update_VerifyMaxPhoneNumbers, OTP_Update_VerifyUpdatedSecurityEmail, OTP_Update_ClickFirstPhoneNumber, OTP_Update_ClickTextOption, OTP_Update_ClickSubmitCodeButton, OTP_Update_EnterSecurityCode, OTP_Update_VerifyCorrectSecurityCode, OTP_Update_ClickGetCodeButton, OTP_Update_DeleteSecondPhoneNumber, OTP_Update_VerifyDeleteSecondPhoneNumber, OTP_Update_AddSinglePhoneNumberWithPasscode,
 
-		// Profile & Settings
-		NewSecuritySetup, SecuritySettings,
-
 		// App
 		CloseApp, RunAppInBackGround, ReopenApp,
 
@@ -162,8 +161,20 @@ public class EventCase {
 		// Bills
 		PayBill_Canada_Button, PayBill_US_Button,
 
+		// Chatbot
+		Chatbot_EnterQuestion, Chatbot_VerifyHeader, Chatbot_VerifyIneligibleUser,
+
+		// Contact Us
+		ContactUs_ClickChatbot,
+
 		// Credit
 		Credit_GetTDPointsBalance, Credit_ClickLatestStatement, Credit_ClickPay, Credit_VerifyNoTDPointsBalance, Credit_TestSecondCard, Credit_VerifyTDRewardsDollarsBalanceUpdated, Credit_VerifyTDRewardsPointsBalanceUpdated, Credit_VerifyLastThreeStatements,
+
+		// FAQ
+		FAQ_ClickChatbot,
+
+		// Homescreen
+		HomeScreen_QuickLink_Chatbot, HomeScreen_Dashboard_Chatbot,
 
 		// Login
 		Login_VerifyUserNotRemembered, Login_LoginUsingAccessCardNumber, Login_LoginUsingAlias, Login_DeleteAllRememberedIDs, Login_VerifyAllRememberedIDsDeleted, Login_VerifyRememberedIDs, Login_VerifyLoginMFA, Login_CloseApp,
@@ -175,7 +186,7 @@ public class EventCase {
 		ManagePayee_ClickNewPayee, ManagePayees_Button, ManagePayee_AddCanadianPayee, ManagePayee_ClickPayeeByAcctNumber, ManagePayee_DeletePayee, ManagePayee_EditPayee, ManagePayee_VerifyCanadianPayeeDeleted, ManagePayee_VerifyPayeeEdited, ManagePayee_VerifyUSPayeeDeleted, ManagePayee_EditPayeeDescription,
 
 		// Menu
-		Menu_VerifyAllMenuItems,
+		Menu_VerifyAllMenuItems, Menu_ClickChatBot, Menu_ClickFAQ,
 
 		// Mobile Payment
 		MobilePayment_AcceptIntroAndValidate,
@@ -188,6 +199,9 @@ public class EventCase {
 
 		// Pay With Rewards
 		PayWithRewards_EnterRedemptionAmount,
+
+		// Profile & Settings
+		NewSecuritySetup, SecuritySettings,
 
 		// Quick Access
 		QuickAccessSettings_ToggleSpecificAccount, QuickAccessPage_VerifyTDPoints, QuickAccessPage_VerifyEligibleTDPoints, QuickAccessPage_VerifyIneligibleTDPoints, QuickAccessPage_VerifyAccountVisibility, QuickAccessSettings_VerifyAccountExists, QuickAccessSettings_VerifyNoAccount, QuickAccessSettings_TestSecondUser,
@@ -217,10 +231,10 @@ public class EventCase {
 		VerifyContactUsMABContent, verifyAppointmentBookingHeader, ClickAppointmentBooking, SelectBranchLocation, verifyBranchHeader, verifyBranchBookAppointmentContent, clickBranchBookAppointmentIcon, verifyMABLandingPageContent, clickBookAppointmentNowbtn, verifyAppointmentURLLink,
 
 		// Damaged Card
-		verifyReplaceDamagedCardHeader, ClickReplaceDamagedCardBtn, verifyReplaceDamagedCardDirectionalCopy,
+		verifyReplaceDamagedCardHeader, ClickReplaceDamagedCardBtn, verifyReplaceDamagedCardDirectionalCopy, verifyDamagedCardForm,
 
 		// myspend
-		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_verifyCategoryMessage, DailyDigest_changeCategory, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, MySpendPreferences_clickActiveAccounts, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, Preferences_verifyHomePage, TourPage_clickConnectTDApp, TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickGetTDAppButton, click_PreferencesLink
+		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_changeCategory, DailyDigest_verifyCategoryMessage, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, MySpendPreferences_clickActiveAccounts, MySpendTransfers_clickBetweenMyAccounts, MySpendTransfers_PerformTransfer, MySpendPrefernces_disableAccounts, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, Preferences_verifyHomePage, TourPage_clickConnectTDApp, TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SideMenu_verifyNavigationWithinMySpend, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SpendingInsight_verifyAccountsSelected, TransactionHistory_verifySelectedAccounts, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickTransfers, SideMenu_clickGetTDAppButton, click_PreferencesLink
 
 	}
 
@@ -638,10 +652,6 @@ public class EventCase {
 
 		case Add_Recipient_ErrorPage:
 			AddRecipient.get().addRecipient_ErrorMessage();
-			break;
-
-		case ClickContact:
-			MenuPage.get().clickContactUs();
 			break;
 
 		case TDDirectInvestingContact:
@@ -2795,22 +2805,6 @@ public class EventCase {
 			MIT_DSHQuickLinks.get().verifyQuickLinksBlendedUser();
 			break;
 
-		case verifyFlyoutUnauthenticated:
-			MIT_DSH_FlyoutMenu.get().verifyFlyoutUnauthenticated();
-			break;
-
-		case verifyFlyoutBankingOnlyUser:
-			MIT_DSH_FlyoutMenu.get().verifyFlyoutBankingOnlyUser();
-			break;
-
-		case verifyFlyoutInvestingOnlyUser:
-			MIT_DSH_FlyoutMenu.get().verifyFlyoutInvestingOnlyUser();
-			break;
-
-		case verifyFlyoutBlendedyUser:
-			MIT_DSH_FlyoutMenu.get().verifyFlyoutBlendedyUser();
-			break;
-
 		case verifyContactUsHomeUnAuthenticated:
 			MIT_DSH_Contact_Location.get().verifyContactUsHomeUnAuthenticated();
 			break;
@@ -3167,6 +3161,18 @@ public class EventCase {
 			MIT_DSHNewProfileLogic.get().verifyFlyoutBlendedNotInvestingFocusAfterLogout();
 			break;
 
+		case verifyWLCollapsedViewUI:
+			MIT_DSHWLCollapsedView.get().verifyWLCollapsedViewUI();
+			break;
+
+		case verifyWLMoreOptions:
+			MIT_DSHWLCollapsedView.get().verifyWLMoreOptions();
+			break;
+
+		case verifyBuySellWLCollapsedView:
+			MIT_DSHWLCollapsedView.get().verifyBuySellWLCollapsedView();
+			break;
+
 		// MIT Dashboard END
 
 		case Env_DeleteDefaultCard:
@@ -3423,7 +3429,7 @@ public class EventCase {
 			break;
 
 		case GoBackToHomePage:
-			PreviewPurchase.get().GoBackToHomePage();
+			(new com.td.MobileAction2()).GoBackToHomePage();
 			break;
 
 		case VerifyPreviewPurchasePhoneNotMasked:
@@ -3578,6 +3584,10 @@ public class EventCase {
 
 		case verifyLimitIncreaseForm:
 			WebViewPage.get().verifyLimitIncreaseForm();
+			break;
+
+		case verifyDamagedCardForm:
+			WebViewPage.get().verifyDamagedCardForm();
 			break;
 
 		case verifyMoreOptionsDirectionalCopy:
@@ -4588,6 +4598,24 @@ public class EventCase {
 			Between_My_accounts.get().transferFirstAccounts();
 			break;
 
+		// Chat Bot
+		case Chatbot_EnterQuestion:
+			Chatbot.get().enterQuestion();
+			break;
+
+		case Chatbot_VerifyHeader:
+			Chatbot.get().verifyHeader();
+			break;
+
+		case Chatbot_VerifyIneligibleUser:
+			Chatbot.get().verifyIneligibleUser();
+			break;
+
+		// Contact US
+		case ContactUs_ClickChatbot:
+			ContactUs.get().clickChatbot();
+			break;
+
 		// Credit
 		case Credit_GetTDPointsBalance:
 			Credit.get().getTDPointsBalance();
@@ -4621,9 +4649,22 @@ public class EventCase {
 			Credit.get().verifyLastThreeStatements();
 			break;
 
+		// FAQ
+		case FAQ_ClickChatbot:
+			FAQ.get().clickChatbot();
+			break;
+
 		// HomeScreen
 		case HomeScreen_Transfer_Button:
 			HomeScreen.get().clickDashboardTransfers();
+			break;
+
+		case HomeScreen_QuickLink_Chatbot:
+			HomeScreen.get().clickChatBotQuickLink();
+			break;
+
+		case HomeScreen_Dashboard_Chatbot:
+			HomeScreen.get().clickChatBotDashboard();
 			break;
 
 		// Login
@@ -4704,6 +4745,18 @@ public class EventCase {
 		// Menu
 		case Menu_VerifyAllMenuItems:
 			MenuPage.get().verifyAllMenuItems();
+			break;
+
+		case ClickContact:
+			MenuPage.get().clickContactUs();
+			break;
+
+		case Menu_ClickChatBot:
+			MenuPage.get().clickChatBot();
+			break;
+
+		case Menu_ClickFAQ:
+			MenuPage.get().clickFAQ();
 			break;
 
 		// Mobile Payment
@@ -5013,6 +5066,10 @@ public class EventCase {
 			SideMenu.get().clickMyAccounts();
 			break;
 
+		case SideMenu_clickTransfers:
+			SideMenu.get().clickTransfers();
+			break;
+
 		case SideMenu_clickGetTDAppButton:
 			SideMenu.get().clickGetTDAppButton();
 			break;
@@ -5151,6 +5208,47 @@ public class EventCase {
 
 		case MySpendPreferences_clickActiveAccounts:
 			MyspendPreferences.get().clickActiveAccounts();
+			break;
+
+		case SideMenu_verifyNavigationWithinMySpend:
+			SideMenu.get().verifyNavigationWithinMySpend();
+			break;
+
+		case MySpendTransfers_clickBetweenMyAccounts:
+			MySpendTransfers.get().clickBetweenMyAccounts();
+			break;
+
+		case MySpendTransfers_PerformTransfer:
+			MySpendTransfers.get().performTransfer();
+			break;
+
+		case SpendingInsight_verifyAccountsSelected:
+			Spending_Insight.get().verifyActiveAccounts();
+			break;
+
+		case TransactionHistory_verifySelectedAccounts:
+			TransactionHistory.get().verifySelectedAccounts();
+			break;
+
+		case MySpendPrefernces_disableAccounts:
+			MyspendPreferences.get().disableAccounts();
+			break;
+
+		// DSh
+		case verifyFlyoutUnauthenticated:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutUnauthenticated();
+			break;
+
+		case verifyFlyoutBankingOnlyUser:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutBankingOnlyUser();
+			break;
+
+		case verifyFlyoutInvestingOnlyUser:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutInvestingOnlyUser();
+			break;
+
+		case verifyFlyoutBlendedyUser:
+			MIT_DSH_FlyoutMenu.get().verifyFlyoutBlendedyUser();
 			break;
 
 		}

@@ -41,6 +41,18 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 				this);
 	}
 
+	@iOSXCUITFindBy(accessibility = "switchNowButton")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/investing_welcome_switch']")
+	private MobileElement btnSwitchNow;
+
+	@iOSXCUITFindBy(accessibility = "ProfilePreferencesToggleTableViewCell_Toggle_Switch")
+	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/nav_row_switch']")
+	private MobileElement InvestingToggle;
+
+	@iOSXCUITFindBy(accessibility = "ProfilePreferencesSubtitleTableViewCell_Title_Label")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/nav_row_left_icon']")
+	private MobileElement AccessoryGoHome;
+
 	@iOSXCUITFindBy(accessibility = "SearchBarWidget")
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Search or add symbols' or @text='Rechercher ou ajouter des symboles' or @text='搜索或添加股票代码' or @text='搜尋或添加股票代號']")
@@ -133,7 +145,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 		try {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (mobileAction.isObjExists(searchBar, 2)) {
 				mobileAction.FuncClick(searchBar, "searchBar");
 
@@ -162,7 +174,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 		try {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (mobileAction.isObjExists(searchBar, 2)) {
 				mobileAction.FuncClick(searchBar, "searchBar");
 
@@ -193,7 +205,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 		try {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (mobileAction.isObjExists(searchBar, 2)) {
 				mobileAction.FuncClick(searchBar, "searchBar");
 
@@ -251,7 +263,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 		try {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (mobileAction.isObjExists(searchBar, 2)) {
 				mobileAction.FuncClick(searchBar, "searchBar");
 
@@ -295,6 +307,8 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 				else {
 
 					mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
+					Thread.sleep(8000);
+
 				}
 
 			}
@@ -310,7 +324,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 		try {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (mobileAction.isObjExists(searchBar, 2)) {
 				mobileAction.FuncClick(searchBar, "searchBar");
 
@@ -407,7 +421,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 		try {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (mobileAction.isObjExists(searchBar, 2)) {
 				mobileAction.FuncClick(searchBar, "searchBar");
 
@@ -500,7 +514,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 		try {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (mobileAction.isObjExists(searchBar, 2)) {
 				mobileAction.FuncClick(searchBar, "searchBar");
 
@@ -567,7 +581,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 		try {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (mobileAction.isObjExists(searchBar, 2)) {
 				mobileAction.FuncClick(searchBar, "searchBar");
 
@@ -658,7 +672,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 		try {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (mobileAction.isObjExists(searchBar, 2)) {
 				mobileAction.FuncClick(searchBar, "searchBar");
 
@@ -713,7 +727,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 		try {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (mobileAction.isObjExists(searchBar, 2)) {
 				mobileAction.FuncClick(searchBar, "searchBar");
 
@@ -759,7 +773,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 		try {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (mobileAction.isObjExists(searchBar, 2)) {
 				mobileAction.FuncClick(searchBar, "searchBar");
 
@@ -803,7 +817,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 		try {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (mobileAction.isObjExists(searchBar, 2)) {
 				mobileAction.FuncClick(searchBar, "searchBar");
 
@@ -839,7 +853,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 		try {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
-
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (mobileAction.isObjExists(searchBar, 2)) {
 				mobileAction.FuncClick(searchBar, "searchBar");
 
