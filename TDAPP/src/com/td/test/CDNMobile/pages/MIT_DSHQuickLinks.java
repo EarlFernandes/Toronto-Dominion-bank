@@ -119,8 +119,8 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Apple Pay' and @name='TDVIEW_TITLE']")
 	private MobileElement HDR_ApplePay;
 
-	@iOSFindBy(xpath = "//*[@label='Pay Bill' or @label='Payer une facture' or @label='支付账单' or @label='支付賬單']")
-	@AndroidFindBy(xpath = "//*[@text='Pay Bill' or @text='Payer une facture' or @text='支付账单' or @text='支付賬單']")
+	@iOSFindBy(xpath = "//*[contains(@label,'Pay Bill') or contains(@label,'Payer') or contains(@label,'支付账单') or contains(@label,'支付賬單')]")
+	@AndroidFindBy(xpath = "//*[contains(@text,'Pay Bill') or contains(@text,'Payer') or contains(@text,'支付账单') or contains(@text,'支付賬單')]")
 	private MobileElement HDR_PayBills;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Trade' or @label='Négociation' or @label='交易' or @label='交易']")
