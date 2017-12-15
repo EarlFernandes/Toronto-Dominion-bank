@@ -120,8 +120,8 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 	 * ) private MobileElement ListViewExpand01;
 	 */
 
-	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[contains(@label,'01')])[1]")
-	@AndroidFindBy(xpath = "//*[contains(@text,'01')]")
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[contains(@label,'01') or contains(@label,'List1')])[1]")
+	@AndroidFindBy(xpath = "//*[contains(@text,'01') or contains(@text,'List1')]")
 	private MobileElement ListViewExpand01;
 
 	@iOSXCUITFindBy(xpath = "(//*[@name='editControlButton'])[1]")
