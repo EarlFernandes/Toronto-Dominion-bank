@@ -742,6 +742,7 @@ public class MenuPage extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(header, headerText);
 
 			PageHeader.get().goHome();
+			mobileAction.sleep(3000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
