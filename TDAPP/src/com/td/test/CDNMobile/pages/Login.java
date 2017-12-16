@@ -765,14 +765,12 @@ public class Login extends _CommonPage {
 		try {
 			Decorator();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-
-				// To make the logout behaviour consistent between iOS & Android
-				// mobileAction.ClickBackButton();
-				// Thread.sleep(1000);
+				mobileAction.ClickBackButton();
+				Thread.sleep(1000);
 				mobileAction.clickMenuButton();
 				mobileAction.FuncClick(logout, "Logout");
-				// mobileAction.ClickBackButton();
-				// Thread.sleep(1000);
+				mobileAction.ClickBackButton();
+				Thread.sleep(1000);
 			} else {
 				mobileAction.clickMenuButton();
 				logout = mobileAction.verifyElementUsingXPath(

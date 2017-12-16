@@ -20,7 +20,8 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 public class Logout extends _CommonPage {
 	private static Logout Logout;
 
-	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_LOGOUT")
+	@iOSFindBy(xpath = "//*[(@name='NAV_DRAWER_ITEMS_LOGOUT' or @name='flyout_title') and (@label='Logout' or @label='Fermer la session' or @label='退出' or @label='登出')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Logout']")
 	private MobileElement logout;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Fermer la session']")
