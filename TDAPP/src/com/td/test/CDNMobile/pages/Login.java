@@ -777,7 +777,7 @@ public class Login extends _CommonPage {
 				mobileAction.clickMenuButton();
 				logout = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='"
-								+ mobileAction.getAppString("logoutConfirmButtonLogout") + "']",
+								+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOGOUT) + "']",
 						"Logout");
 				mobileAction.FuncClick(logout, "Logout");
 			}
