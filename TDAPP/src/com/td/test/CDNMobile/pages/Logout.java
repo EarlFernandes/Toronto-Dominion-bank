@@ -191,7 +191,7 @@ public class Logout extends _CommonPage {
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='" + labelText + "')]",
 						"Menu Logout");
 			}
-
+			mobileAction.clickMenuButton();
 			mobileAction.FuncClick(logout, "Logout");
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
