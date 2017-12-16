@@ -185,13 +185,15 @@ public class Logout extends _CommonPage {
 		Decorator();
 		try {
 
+			mobileAction.clickMenuButton();
+			mobileAction.sleep(1000);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				String labelText = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOGOUT);
 				logout = mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='" + labelText + "')]",
 						"Menu Logout");
 			}
-			mobileAction.clickMenuButton();
+
 			mobileAction.FuncClick(logout, "Logout");
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

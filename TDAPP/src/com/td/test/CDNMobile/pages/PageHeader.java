@@ -80,7 +80,8 @@ public class PageHeader extends _CommonPage {
 		try {
 
 			boolean hasMenu = false;
-			while (!hasMenu) {
+			int count = 0;
+			while (!hasMenu && count < 5) {
 				hasMenu = mobileAction.verifyElementIsPresent(menuButton);
 
 				if (!hasMenu) {
@@ -90,6 +91,7 @@ public class PageHeader extends _CommonPage {
 						mobileAction.FuncClick(backButton, "Back button clicked");
 					}
 					mobileAction.sleep(500);
+					count++;
 				}
 			}
 
