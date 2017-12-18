@@ -788,13 +788,13 @@ public class TradeMIT extends _CommonPage {
 
 	public void clickInvestingTrade() // @Author - Sushil 02-Feb-2017
 	{
-		Decorator();
+/*		Decorator();
 		try {
 			mobileAction.waitForElement(Investing_Trade);
 			mobileAction.FuncClick(Investing_Trade, "Investing_Trade");
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	public void verifyDefaultStrategies() // @Author - Sushil 02-Feb-2017
@@ -883,8 +883,9 @@ public class TradeMIT extends _CommonPage {
 
 			xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
 
-			mobileAction.waitForElement(defaultTradeAccount);
-			mobileAction.FuncClick(defaultTradeAccount, "defaultTradeAccount");
+//			mobileAction.waitForElement(defaultTradeAccount);
+			//mobileAction.FuncClick(defaultTradeAccount, "defaultTradeAccount");
+			defaultTradeAccount.click();
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount, true, 60, "up");
 			mobileAction.selectItemFromList(stocks_ETFs, getTestdata("OrderType", "UserIDs"));
 		} catch (Exception e) {

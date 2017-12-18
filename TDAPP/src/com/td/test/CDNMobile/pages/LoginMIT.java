@@ -161,11 +161,11 @@ public class LoginMIT extends _CommonPage {
 	 * private MobileElement Investing_Trade;
 	 */
 
-	@iOSFindBy(xpath = "//*[@label='Investing' or @label='Placements' or @label='投资' or @label='投資']") // @Author
+	@iOSFindBy(xpath = "//*[(@label='Trade' or @label='Négociation' or @label='交易' or @label='交易') and @name='TDVIEW_TITLE']") // @Author
 	// -
 	// Sushil
-	// 01-Sep-2017
-	@AndroidFindBy(xpath = "//*[@text='Investing' or @text='Placements' or @text='投资' or @text='投資']")
+	// 18-Dec-2017
+	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation' or @text='交易' or @text='交易']")
 	private MobileElement Investing_Trade;
 
 	String verifyLogin_ios = "//*[contains(@label,'Your Login Info Please')]";
