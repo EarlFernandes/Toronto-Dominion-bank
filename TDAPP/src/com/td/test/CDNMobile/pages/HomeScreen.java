@@ -3,11 +3,15 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import com.gargoylesoftware.htmlunit.javascript.host.geo.Coordinates;
 import com.td.StringArray;
+
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 import com.td._CommonPage;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -63,7 +67,7 @@ public class HomeScreen extends _CommonPage {
 	MobileElement investing_button;
 
 	@iOSFindBy(xpath = "//*[@label='TRADE' or @label='NÉGOCIATION' or @label='交易' or @label='交易']")
-	@AndroidFindBy(xpath = "//*[@text='TRADE' or @text='Négociation' or @text='交易' or @text='交易']")
+	@AndroidFindBy(xpath = "//*[@text='TRADE' or @text='Négociation' or @text='NÉGOCIATION' or @text='交易' or @text='交易']")
 	private MobileElement trade;
 
 	@iOSFindBy(xpath = "//*[@label='Find Locations' or @label='Trouver une succursale' or @label='查找分行' or @label='查找分行']")
@@ -1373,6 +1377,41 @@ public class HomeScreen extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	
+	
+	/**
+	 * This method will verify
+	 * 
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             If there is problem while reporting. In case the element is
+	 *             not found over the screen.
+	 */
+	public void clickQuoteQuickLink() {
+
+		Decorator();
+		try {
+
+			
+			mobileAction.SwipeQuickLinksInDirection("right", 200, 200);
+			mobileAction.SwipeQuickLinksInDirection("left", 2000, 200);
+			
+		
+			mobileAction.FuncClick(quote, "Quote quick link");
+			
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+	
 
 	public void clickChatBotQuickLink() {
 		Decorator();
