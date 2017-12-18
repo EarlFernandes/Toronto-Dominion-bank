@@ -12,6 +12,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
+import io.appium.java_client.pagefactory.iOSFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Investing_MIT_REF extends _CommonPage {
@@ -33,76 +34,102 @@ public class Investing_MIT_REF extends _CommonPage {
 
 	}
 
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Balances']")
 	@AndroidFindBy(id = "com.td:id/balancesTab")
 	private MobileElement balanceTab;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Holdings']")
 	@AndroidFindBy(id = "com.td:id/holdingsTab")
 	private MobileElement HoldingsTab;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Activity']")
 	@AndroidFindBy(id = "com.td:id/activityTab")
 	private MobileElement activityTab;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Orders']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@content-desc='Orders button']")
 	// @AndroidFindBy(id = "com.td:id/ordersTab")
 	private MobileElement ordersTab;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Cash']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Cash']")
 	private MobileElement cash;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Cash']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(id = "com.td:id/cashBalance")
 	private MobileElement cashValue;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Book Value']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Book Value']")
 	private MobileElement bookValues;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Book Value']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(id = "com.td:id/bookValue")
 	private MobileElement bookValuesValue;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investments']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Investments']")
 	private MobileElement investments;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investments']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(id = "com.td:id/investments")
 	private MobileElement investmentsValue;
 
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Gain/Loss']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Gain/Loss']")
 	private MobileElement gainLoss;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Gain/Loss']/following-sibling::XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/gainLoss")
 	private MobileElement gainLossValue;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Gain/Loss']/following-sibling::XCUIElementTypeStaticText[3]")
 	@AndroidFindBy(id = "com.td:id/gainLossPercent")
 	private MobileElement gainLossPrecentage;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Unrealized']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Unrealized']")
 	private MobileElement unrealized;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Total Value']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Total Value']")
 	private MobileElement totalValue;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Total Value']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(id = "com.td:id/totalValue")
 	private MobileElement totalValue_Value;
 
+	@iOSFindBy(accessibility = "INVESTING_HOKDING_TABLE_SYMBOL_BUTTON")
 	@AndroidFindBy(id = "com.td:id/textview_left")
 	private MobileElement symbol;
 
+	@iOSFindBy(accessibility = "INVESTING_HOKDING_TABLE_PRICE_BUTTON")
 	@AndroidFindBy(id = "com.td:id/textview_center")
 	private MobileElement price_chg;
 
+	@iOSFindBy(accessibility = "INVESTING_HOKDING_TABLE_GAINLOSS_BUTTON")
 	@AndroidFindBy(id = "com.td:id/textview_right")
 	private MobileElement gain_loss_holdings;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@name='Label_2' or @name='Label_0' or @name='Label_1' or @name='Label_3']")
 	@AndroidFindBy(id = "com.td:id/date_settle")
 	private MobileElement activity_Transaction;
 
+	@iOSFindBy(accessibility = "TD_ACCOUNT_FOOTER_VIEW_LABEL")
 	@AndroidFindBy(id = "com.td:id/status")
 	private MobileElement as_of_timeStamp;
-
+	
+	@iOSFindBy(accessibility = "COMPLEX_ORDER_CELL_SYMBOL_NAME")
 	@AndroidFindBy(id = "com.td:id/symbol")
 	private MobileElement ordersSymbol;
 	
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Orders']")
 	@AndroidFindBy(id = "com.td:id/current_balance")
 	private MobileElement currentBalance;
 	
+	
+	@iOSFindBy(id = "INVESTING_QUOTE_BASE_BUY")
 	@AndroidFindBy(id = "com.td:id/buyBtn")
 	private MobileElement buyETF;
 	
@@ -232,20 +259,18 @@ public class Investing_MIT_REF extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(activityTab, "Activity Tab");
 
 			while (mobileAction.verifyElementIsPresent(activity_Transaction)
-					&& !mobileAction.verifyElementIsPresent(as_of_timeStamp)) {
+					&& !mobileAction.verifyElementIsPresent(as_of_timeStamp) && activityTransactionCounter<3) {
 
 				activityTransactionCounter++;
 				mobileAction.FunctionSwipe("up", 1000, 200);
 			}
-
-			mobileAction.verifyElementIsDisplayed(activity_Transaction,
-					activityTransactionCounter + " Activity Transactions");
-
 			
-			while(mobileAction.verifyElementIsPresent(currentBalance)){
+			mobileAction.stringToReport("PASS", activityTransactionCounter+" Transactions verified");
+			
+			while(!mobileAction.verifyElementIsPresent(currentBalance)){
 				mobileAction.FunctionSwipe("down", 200, 200);
 			}
-			
+			mobileAction.FunctionSwipe("down", 200, 200);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -277,18 +302,21 @@ public class Investing_MIT_REF extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(ordersTab, "Orders Tab");
 
 			while (mobileAction.verifyElementIsPresent(ordersSymbol)
-					&& !mobileAction.verifyElementIsPresent(as_of_timeStamp)) {
+					&& !mobileAction.verifyElementIsPresent(as_of_timeStamp) && OrdersCounter<3) {
 
 				OrdersCounter++;
 				mobileAction.FunctionSwipe("up", 1000, 200);
 			}
 
-			mobileAction.verifyElementIsDisplayed(ordersSymbol, OrdersCounter + " Orders");
+			mobileAction.stringToReport("PASS", OrdersCounter+" Orders");
+			
+			//mobileAction.verifyElementIsDisplayed(ordersSymbol, OrdersCounter + " Orders");
 
-			while(mobileAction.verifyElementIsPresent(currentBalance)){
+			while(!mobileAction.verifyElementIsPresent(currentBalance)){
 				mobileAction.FunctionSwipe("down", 200, 200);
 			}
-
+			mobileAction.FunctionSwipe("down", 200, 200);
+			
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -358,7 +386,9 @@ public class Investing_MIT_REF extends _CommonPage {
 
 			if(platform.equalsIgnoreCase("Android")){
 				
-				ETF = "//android.widget.TextView[@text='SPY']";
+				ETF = "//android.widget.TextView[@text='"+getTestdata("Symbol")+"']";
+			}else{
+				ETF = "//XCUIElementTypeStaticText[@value='"+getTestdata("Symbol")+"']";
 			}
 			
 			mobileAction.FuncClick(HoldingsTab, "Holdings Tab");

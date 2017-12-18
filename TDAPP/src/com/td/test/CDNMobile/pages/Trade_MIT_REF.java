@@ -109,31 +109,36 @@ public class Trade_MIT_REF extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Good') or @text='Échéance']/following-sibling::android.widget.TextView")
 	private MobileElement goodTill;
 
-	@iOSXCUITFindBy(accessibility = "TRADING_PASSWORD_CELL_3")
+	@iOSXCUITFindBy(accessibility = "passwordTextField")
 	@AndroidFindBy(id = "com.td:id/editTextPassword")
 	private MobileElement tradingPassword;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeSecureTextField[@name='passwordTextField']")
+	@iOSXCUITFindBy(accessibility = "passwordTextField")
 	@AndroidFindBy(id = "com.td:id/editTextPassword")
 	private MobileElement tradingPasswordCancelPage;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='previewOrderButton']")
+	@iOSXCUITFindBy(accessibility = "previewOrderButton")
+	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='previewOrderButton']")
 	@AndroidFindBy(id = "com.td:id/orderEntryPreviewButton")
 	private MobileElement previewOrder;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='sendOrderButton']")
+	@iOSXCUITFindBy(accessibility = "sendOrderButton")
+	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='sendOrderButton']")
 	@AndroidFindBy(id = "com.td:id/btn_continue")
 	private MobileElement sendOrder;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='titleLabel']")
+	@iOSXCUITFindBy(accessibility = "titleLabel")
+	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='titleLabel']")
 	@AndroidFindBy(id = "com.td:id/thank_you")
 	private MobileElement thankYou;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='confirmationNumberLabel']")
+	@iOSXCUITFindBy(accessibility = "confirmationNumberLabel")
+	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='confirmationNumberLabel']")
 	@AndroidFindBy(id = "com.td:id/confirmation")
 	private MobileElement confirmation;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='confirmationNumberLabel']")
+	@iOSXCUITFindBy(accessibility = "confirmationNumberLabel")
+	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='confirmationNumberLabel']")
 	@AndroidFindBy(id = "com.td:id/confirmation_val")
 	private MobileElement confirmationVal;
 
@@ -149,7 +154,8 @@ public class Trade_MIT_REF extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/change_order_btn")
 	private MobileElement changeOrderBtn;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name='inputTextField']")
+	@iOSXCUITFindBy(accessibility = "inputTextField")
+	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name='inputTextField']")
 	@AndroidFindBy(id = "com.td:id/amountEditText")
 	private MobileElement quantity;
 
@@ -157,18 +163,20 @@ public class Trade_MIT_REF extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/cancel_order_btn")
 	private MobileElement cancelOrder;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='cancelOrderButton']")
+	@iOSXCUITFindBy(accessibility = "cancelOrderButton")
+	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='cancelOrderButton']")
 	@AndroidFindBy(id = "com.td:id/orderEntryPreviewButton")
 	private MobileElement cancelOrderConfirm;
 
-	// TODO::IOS Xpath
+	@iOSXCUITFindBy(accessibility = "alert_ok_button")
 	@AndroidFindBy(id = "com.td:id/positiveButton")
 	private MobileElement acceptBtn;
 
-	// TODO::IOS Xpath
+	@iOSXCUITFindBy(accessibility = "alert_cancel_button")
 	@AndroidFindBy(id = "com.td:id/btn_cancel")
 	private MobileElement cancelbtn;
 
+	@iOSXCUITFindBy(accessibility = "alert_ok_button")
 	@AndroidFindBy(id = "android:id/button1")
 	private MobileElement agreebtnTradeBack;
 
@@ -283,7 +291,7 @@ public class Trade_MIT_REF extends _CommonPage {
 			String symbolImgStr = null;
 			mobileAction.FuncClick(trade_enter_Name_or_symbol, "Enter name or symbol");
 			mobileAction.FuncClick(searchSymbolField, "Search symbol field");
-			mobileAction.FuncSendKeys(searchSymbolField, getTestdata("Symbol"));
+			mobileAction.FuncSendKeys(searchSymbolField, getTestdata("Symbol")+" ");
 			mobileAction.waitP2PProgressBarVanish();
 
 			if (platform.equalsIgnoreCase("Android")) {
@@ -331,6 +339,10 @@ public class Trade_MIT_REF extends _CommonPage {
 			mobileAction.ClickBackButton();
 			if (mobileAction.verifyElementIsPresent(agreebtnTradeBack))
 				mobileAction.FuncClick(agreebtnTradeBack, "Agree Button");
+			
+			Thread.sleep(3000);
+			mobileAction.ClickBackButton();//TODO::Defect - need to remove it 
+			mobileAction.ClickBackButton();//TODO::Defect - need to remove it 
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -388,6 +400,9 @@ public class Trade_MIT_REF extends _CommonPage {
 				nxtSymbol = nxtSymbol + " " + quoteNameSaver;
 				mobileAction.FuncSendKeys(searchSymbolField, nxtSymbol);
 
+				Thread.sleep(2000);
+
+				mobileAction.getPageSource();
 				if (platform.equalsIgnoreCase("Android")) {
 
 					symbol = mobileAction.mobileElementUsingXPath("//android.widget.ImageView[@content-desc='"
@@ -680,7 +695,6 @@ public class Trade_MIT_REF extends _CommonPage {
 
 				mobileAction.FuncClick(amountField, "Amount");
 				mobileAction.FuncSendKeys(amountField, getTestdata("Amount"));
-				mobileAction.getPageSource();
 				mobileAction.FuncClickDone();
 
 				mobileAction.FuncClick(price, "price");
