@@ -227,9 +227,10 @@ public class MainScreenMIT extends _CommonPage {
 		 */
 		Decorator();
 		try {
+			
+			String sTrade = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE);
 
-			String xpathTradeQL = "//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE)
-					+ "']";
+			String xpathTradeQL = "//*[@label='" + sTrade + "' or @text='" + sTrade + "']";
 			if (verifyQuickLinkExistsByXpath(xpathTradeQL, "TRADE")) {
 				CL.GetAppiumDriver().findElement(By.xpath(xpathTradeQL)).click();
 			}
