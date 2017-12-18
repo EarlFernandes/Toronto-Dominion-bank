@@ -80,7 +80,8 @@ public class PageHeader extends _CommonPage {
 		try {
 
 			boolean hasMenu = false;
-			while (!hasMenu) {
+			int count = 0;
+			while (!hasMenu && count < 5) {
 				hasMenu = mobileAction.verifyElementIsPresent(menuButton);
 
 				if (!hasMenu) {
@@ -90,6 +91,7 @@ public class PageHeader extends _CommonPage {
 						mobileAction.FuncClick(backButton, "Back button clicked");
 					}
 					mobileAction.sleep(500);
+					count++;
 				}
 			}
 
@@ -130,4 +132,25 @@ public class PageHeader extends _CommonPage {
 		return menuButton;
 
 	}
+
+	public void clickBackButtonIfIOS() {
+		Decorator();
+
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.ClickBackButton();
+				mobileAction.sleep(1000);
+			}
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
 }

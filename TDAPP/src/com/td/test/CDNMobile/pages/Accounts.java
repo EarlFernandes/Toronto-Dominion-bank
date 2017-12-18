@@ -16,6 +16,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Accounts extends _CommonPage {
 
@@ -137,6 +138,13 @@ public class Accounts extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='ACCOUNT_SUMMARY_BALANCE_FOOTER_TITLE']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/footer_text']")
 	private MobileElement foot_text;
+
+	@AndroidFindBy(id = "com.td:id/classificationTexView")
+	private MobileElement sectionHeader;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
+	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/summaryContent']/android.widget.LinearLayout[2]")
+	private MobileElement firstAcct;
 
 	private MobileElement total_accounts_and_cad;
 	private MobileElement total_accounts_and_usd;
@@ -445,35 +453,6 @@ public class Accounts extends _CommonPage {
 	}
 
 	/**
-	 * This method will verify the Account page and banking Header is present .
-	 * 
-	 * @return void
-	 * 
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 * @throws Exception
-	 *             If there is problem while finding that element.
-	 */
-	public void verify_Banking_Header() {
-		Decorator();
-		try {
-			mobileAction.verifyElementIsDisplayed(txtMy_Account_Header, account_Header);
-			mobileAction.verifyElementIsDisplayed(txtAccount_Banking_header, "BANKING");
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		}
-	}
-
-	/**
 	 * This method will verify the Account page and Investing Header is present
 	 * .
 	 * 
@@ -529,7 +508,6 @@ public class Accounts extends _CommonPage {
 	public void verify_accounts_Header() {
 		Decorator();
 		try {
-
 			mobileAction.waitProgressBarVanish();
 			String myAccountText;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -720,10 +698,10 @@ public class Accounts extends _CommonPage {
 	public void selectAccount() {
 		Decorator();
 
-		String from_Account = getTestdata("FromAccount");
-		String verify_Acnt = "//android.widget.TextView[contains(@text,'" + from_Account + "')]";
+		String fromAccount = getTestdata("FromAccount");
+		String verify_Acnt = "//android.widget.TextView[contains(@text,'" + fromAccount + "')]";
 
-		String account_Value = "//XCUIElementTypeStaticText[contains(@label,'" + from_Account + "')]";
+		String account_Value = "//XCUIElementTypeStaticText[contains(@label,'" + fromAccount + "')]";
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -999,6 +977,7 @@ public class Accounts extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
 				total_xpath = "//*[@label='" + totalStr.toUpperCase() + "']";
+
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(total_xpath, false, 20, "up");
 
 				List<MobileElement> total_List = CL.GetAppiumDriver().findElements(
@@ -1028,13 +1007,13 @@ public class Accounts extends _CommonPage {
 				total_xpath = "//android.widget.TextView[@text='" + totalStr + "']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(total_xpath, false, 20, "up");
 
-				total_accounts_and_cad = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + totalStr
-								+ "']/../following-sibling::android.widget.LinearLayout/*[@resource-id='com.td:id/canTotal']",
+				total_accounts_and_cad = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ totalStr
+						+ "']/../following-sibling::android.widget.LinearLayout/*[@resource-id='com.td:id/canTotal']",
 						"Total Account CAD");
-				total_accounts_and_usd = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + totalStr
-								+ "']/../following-sibling::android.widget.LinearLayout/*[@resource-id='com.td:id/usTotal']",
+				total_accounts_and_usd = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ totalStr
+						+ "']/../following-sibling::android.widget.LinearLayout/*[@resource-id='com.td:id/usTotal']",
 						"Total Account USD");
 				total_Account_value_cad = mobileAction.getValue(total_accounts_and_cad);
 				total_Account_value_usd = mobileAction.getValue(total_accounts_and_usd);
@@ -1061,4 +1040,123 @@ public class Accounts extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+
+	/**
+	 * This method will verify the Account page and banking Header is present .
+	 * 
+	 * @return void
+	 * 
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * @throws Exception
+	 *             If there is problem while finding that element.
+	 */
+	public void verifyBankingHeader() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER);
+				sectionHeader = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[contains(@label,'" + labelText + "')]",
+						"My Accounts Banking header");
+			}
+
+			mobileAction.verifyElementIsDisplayed(sectionHeader, "My Accounts Banking header");
+			mobileAction.verifyElementTextContains(sectionHeader,
+					getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER));
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void verifyCreditHeader() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_CREDIT_HEADER_IOS);
+				sectionHeader = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[contains(@label,'" + labelText + "')]",
+						"My Accounts Credit header");
+				// sectionHeader = mobileAction.mobileElementUsingIOSClassChain(
+				// "**/XCUIElementTypeStaticText[`label CONTAINS[cd] '" +
+				// labelText + "'`]");
+
+				mobileAction.verifyElementIsDisplayed(sectionHeader, "My Accounts Credit header");
+				mobileAction.verifyElementTextContains(sectionHeader,
+						getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_CREDIT_HEADER_IOS));
+
+			} else {
+				mobileAction.verifyElementIsDisplayed(sectionHeader, "My Accounts Credit header");
+				mobileAction.verifyElementTextContains(sectionHeader,
+						getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_CREDIT_HEADER_ANDROID));
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void selectFirstAccount() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(firstAcct, "1st Account in List");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void selectToAccount() {
+		Decorator();
+		try {
+
+			String account = getTestdata("ToAccount");
+			String acctXpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				acctXpath = "//XCUIElementTypeStaticText[contains(@label,'" + account + "')]";
+			} else {
+				acctXpath = "//android.widget.TextView[contains(@text,'" + account + "')]";
+			}
+
+			mobileAction.swipeAndSearchByxpath(acctXpath, true, 30, "Up");
+			mobileAction.waitProgressBarVanish();
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
 }

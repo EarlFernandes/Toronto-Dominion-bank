@@ -3,9 +3,7 @@ package com.td;
 import java.io.IOException;
 
 import org.openqa.selenium.NoSuchElementException;
-
 import com.td.test.CDNMobile.pages.*;
-
 import com.td.test.myspend.DailyDigest;
 
 import com.td.test.myspend.LogoutMySpend;
@@ -69,7 +67,7 @@ public class EventCase {
 
 		Login, Login_and_Logout, Login_clearPasswordField, Login_Error, Login_Ntimes, Login_PasswordFieldDelete, Login_usernameFieldDelete, Login_verifyPasswordField, Login_verifyUsernameField, login_without_tandc, LoginFrench, Loginverify, LoginWithRemember, Logout, LogoutFrench,
 
-		ManagePayee_AddCanadianPayee, ManagePayee_MutlipleAccesscard, ManagePayee_VerifyAddCanadianPayeeBtn, ManagePayees_Button, ManageRecipient_EditManageRecipient, ManageRecipient_ModifyRecipient, ManageRecipients_VerifyRegisterButton, mask_user,
+		ManagePayee_MutlipleAccesscard, ManagePayee_VerifyAddCanadianPayeeBtn, ManageRecipient_EditManageRecipient, ManageRecipient_ModifyRecipient, ManageRecipients_VerifyRegisterButton, mask_user,
 
 		Menu_Accounts, Menu_ClickTransfersFrench, Menu_Investing, Menu_Investing_French, Menu_Location, Menu_Mobile_deposit, MenuBills, MenuTrade, MenuTradeEasyWebCustomer, MenuTransfer, Menu_ClickMobilePayment, MobilePayment_SwipeMobilePayment, MobilePayment_AddACard, MobilePayment_ClickSettings, ManagePayment_ManageSettings, ManageSettings_Changepasscode, ManageTDMobilePayment_Selectcard, CardDetails_ToggleButton, MobilePayment_InitialSwipe, MobilePayment_SecurityQuestion, MW_verifycard, MW_expire, MobilePayment_Settingsicon, MobilePayment_SetPasscode, ManagePayment_clickcard, MenuApplePay, MenuPage_FindLocations, Menu_Profile_And_Settings,
 
@@ -79,7 +77,7 @@ public class EventCase {
 
 		OpenApp, OrderDetails_CancelOrder, OrderDetails_clickChangeorder, OrderDetailsLimitPrice, OrderDetailsPage_orderConfirmDetails, OrderDetailsPage_verifyStockChangeorderConfirmScreen, OrderDetailsTriggerPrice, OrderReciept_CancelOrderReceipt, OrderReciept_French, OrderReciept_orderdetailMutualfund, OrderReciept_orderDetails, OrderReciept_orders, OrderReciept_OrdersIcon, OrderReciept_ordertab, OrderReciept_updatemsg, OrderReciept_verifyOrderScreen, VerifyTradePage, Ordertype_Cancel, OptionOrderChangeQuantity, Options_verifyOptionsForNewOrder, Options_Changeprice, Options_ChangeGoodTil, Options_CancelOrder, Options_CancelOrderConfirmScreen, Options_VerifytradingPassword, Options_Verifybackbutton, Options_VerifyImportantInformation, Options_VerifyCancelReceipt,
 
-		Pay_US_bill_From_US_Account, Pay_US_bill_FromCanada_Account, PayBill_Canada_Button, PayBill_US_Button, PayBill_VerifyAddCanadianPayeeBtn, PayBillCanada_Add_Canadian_Payee, PayCanada_NegativeTestingBillPayment, PayCanadaBill_Post_Dated, PayCanadaBillP_Pay_Candadian_Bill, PayCanadianBill_InvalidAmount,
+		Pay_US_bill_From_US_Account, Pay_US_bill_FromCanada_Account, PayBill_VerifyAddCanadianPayeeBtn, PayBillCanada_Add_Canadian_Payee, PayCanada_NegativeTestingBillPayment, PayCanadaBill_Post_Dated, PayCanadaBillP_Pay_Candadian_Bill, PayCanadianBill_InvalidAmount,
 
 		PendingInterac_e_Transfer, PendingInterac_e_Transfer_cancel, PendingInterac_e_Transfer_canceltransfer, PendingInterac_e_Transfer_confirm, PendingInterac_e_Transfer_confirmscreen, PendingInterac_e_Transfer_verifyconfirmation, PendingInterac_e_Transfer_verifylist, PendingInterac_e_Transfer_verifystatus, PendingInteracTransfer_verify_CancelPendingTransfer, passcode_Ntimes, Addicon,
 
@@ -87,7 +85,7 @@ public class EventCase {
 
 		TDDirectInvestingContact, Trade_changeAccountTypeLongtoShortFre_French, Trade_clickAction, Trade_clickCross, Trade_clickFundFactLink, Trade_clickMutualFunds, Trade_clickMutualPreviewOrder, Trade_clickOnAgree, Trade_clickOnPreviewOrderBtn, Trade_clickOptions, Trade_clickOrderType, Trade_clickOrderType_French, Trade_clickQuantity, Trade_clickStockETFs, Trade_clickSymbol, Trade_clickSymbol_French, Trade_confirmCancelOrder, Trade_ConfirmSendOrder, Trade_createMutualfund, Trade_Details, Trade_enterAmount, Trade_enterAndSearch, Trade_enterTradingPassword, Trade_includesComission, Trade_Limit, Trade_nosearch, Trade_placeStockOrder, Trade_selectAccount, Trade_selectAcknowledgement, Trade_selectDividendOption, Trade_selectMutualQuantity, Trade_selectMutualSymbol, Trade_selectQuantity, Trade_sendOrder, Trade_trade_account, Trade_Trigger, Trade_verifyMutualConfirmDetails, Trade_verify_MutualConfirmDetails, Tab_OrderReciept_ordermenu, Trade_verifymutualconfirmsell, Trade_verifyRelaventMatchInResult, Trade_verifysearchbar, Trade_verifySendOrderDisplayed, Trade_verifySendOrderState, Trade_verifySuccessMessage, Trade_verifySwitchMutualConfirmDetails, Trade_verifyMutualFundDetails, Trade_verifySymbol, Trade_verifyTrade, Trade_verifyTradeActionShortAccountFre_French, TradeAccount, changeAccount, TradeAccount_French, TradeAction, TradeAction_French, TradeAgree, TradeAgree_French, TradeDate, TradeGoodTill, TradeGoodTill_French, TradeHeader, TradeIcon, TradeLimitPrice, TradeMarginAccount, TradePreviewOrder, TradePreviewOrder_French, TradePrice, TradePrice_French, TradeQuantity, TradeQuantity_French, TradeShareHolder, TradeTriggerDelta, TradeTriggerPrice, TradeTriggerPrice_French, TradingPassword, TradingPassword_French,
 
-		Trans_TFSA_To_Othr_Accounts, Transfer_InteracTransfer, TransferHeader, Transfers, Transfers_Click_Between_My_Accounts, Transfers_clickInterac_e_Transfer, Transfers_clickPendingInterac_e_Transfer, Transfers_ManageRecipients,
+		Trans_TFSA_To_Othr_Accounts, Transfer_InteracTransfer, TransferHeader, Transfers, Transfers_clickInterac_e_Transfer, Transfers_clickPendingInterac_e_Transfer, Transfers_ManageRecipients,
 
 		Trade_click_MutualFunds, Transfers_Click_PendingTransfer,
 
@@ -134,19 +132,34 @@ public class EventCase {
 		AccountsCredit_VerifyActivityText, AccountsCredit_VerifyCreditText, AccountsCredit_VerifySummaryText, Accounts_VerifyTextOpenNewAccount, AccountsCredit_VerifyTabTextElements, AddPayee_VerifyTextReview, AddPayee_VerifyTextReviewUS, AddPayee_VerifyTextConfirmation, AddPayee_VerifyTextSuccess, AddPayee_VerifyTextSelectUSAddress, Between_My_accounts_VerifyTextElements, Between_My_accounts_performTransferToConfirmation, Between_My_accounts_performTransferToSuccess, Between_My_accounts_VerifyConfirmationText, Between_My_accounts_VerifySuccessText, Bills_ScheduledPayments_VerifyText, Bills_VerifyTextElements, Bills_VerifyTextConfirmCancelScheduledPayment, Bills_VerifyTextNoCanadianPayeesAdded, CrossBorderBanking_ClickLogin, CrossBorderBanking_VerifyTextLoginPopup, CrossBorderBanking_VerifyTextWelcomePage, ClickCrossBorderBanking, ClickTDForMe, ClickTDMySpend, ClickChequeDepositHistory, ClickAddRecipientFromContactsList, ContactUs_VerifyTextElements, HomeScreen_VerifyTextElements, HomeScreen_ClickOpenNewAccount, LoginScreen_VerifyTextElements, HomeScreenDashboardButtons_VerifyTextEelements, Interac_VerifyTextElements, Interac_e_Transfer_VerifyConfirmationText, PendingInterac_e_Transfer_cancel_confirmation_VerifyText, Interac_e_Transfer_VerifySuccessText, Investing_VerifyTextOpenNewAccount, Logout_VerifyTextElements, ManagePayee_AddUSPayee, ManagePayee_VerifyTextSearchPayee, ManagePayees_VerifySpecificPayeeTextElements, ManagePayees_VerifyTextElements, ManageRecipient_ClickAddRecipient, ManageRecipient_VerifyTextEditRecipientInfo, ManageRecipient_VerifyTextAddRecipientConfirmation, ManageRecipient_VerifyTextAddRecipientSuccess, ManageRecipient_ClickYesAddRecipientFromContacts, ManageRecipient_VerifyTextAddRecipientFromContactsList, ManageRecipients_VerifyTextElements, ManageRecipient_VerifyTextAddRecipient, ManageRecipient_VerifyTextRecipientInfo, ManageRecipient_VerifyTextContactsPopUp, Menu_VerifyTextElements, MobileDeposit_VerifyTextElements, MobileDeposit_VerifyTextElementsIneligible, MobileDeposit_VerifyTextDepositCheque, MobileDeposit_VerifyTextDepositChequeHistory, MobileDeposit_VerifyTextChequeDetails, PayBill_US_VerifyTextElements, PayBill_US_VerifyTextElementsNeverRegistered, PayBill_US_VerifyTextElementsSuccess, PayBill_Canada_VerifyTextElementsConfirmation, PayBill_US_VerifyTextElementsConfirmation, PayBill_Canada_VerifyTextElements, PendingInterac_e_Transfer_VerifyText, PendingInterac_e_Transfer_cancel_deposit_to_VerifyText, QuickAccess_VerifyActivateText, QuickAccess_VerifyFTEText, Transfer_VerifyTextElements, InvestingAccountSummary_verifyDetails, InvestingAccountSummary_verifyCreditCardSummaryDetails, InvestingAccountSummary_verifyCreditCardActivityDetails, InvestingAccountSummary_verifyCreditCardPaymentDetails, InvestingAccountSummary_verifyCreditCardPaymentPurchaseDetails, InvestingAccountSummary_verifyCreditCardStatementDetails, InvestingAccountSummary_verifyCreditCardStatementTabDetails, InvestingAccountSummary_verifyHoldingsDetails, InvestingAccountSummary_verifyListedHoldingsDetails, InvestingAccountSummary_verifyInvestingOrderDetails, InvestingAccountSummary_verifyOrdersDetails, InvestingAccountSummary_verifyActivityTabDetails, Investing_verifyPageDetails, Investing_clickAccount, MutualFunds_verifyMutualFundDetails, clickInvestingAccounts,
 
 		// P2P EUF
-
 		AutoDepositPage_deleteQuickAutodeposit, iOS_back_button, AutoDepositPage_clickAutoDeposit, AutoDepositPage_setupQuickAutoDeposit, AutoDepositPage_verifyRequestMoneySuccessMsg, AutoDepositPage_clickRequestMoneyVerifyScreen, AutoDepositPage_performRequestMoney, Transfers_clickRequestMoneyLink, AutoDepositPage_verifyPageheader, AutoDepositPage_clickAutoDepositBanner, AutoDepositPage_editAutoDeposit, AutoDepositPage_deleteAutoDeposit, AutoDepositPage_clickAccept, AutoDepositPage_setupAutoDeposit, AutoDepositPage_verifyAutoDepositSuccessMsg, AutoDepositPage_clickSetUpAutoDepositBtn, PaymentsAndTransfers_clickManageAutoDeposit, Transfers_clickManageContactsLink, ManageContacts_verifyPageHEader, Interac_e_Transfer_clickContinueButton, Profile_And_Settings_clickPaymentsAndTransfers, Interac_e_Transfer_verifyErrorText, Interac_e_Transfer_registerUser, Interac_e_Transfer_verifyDetails, Interac_e_Transfer_verifyRegSuccessMessage, AutoDepositPage_clickRequestMoneyCTAOption, AutoDepositPage_requestMoneyRegisterAnotherProfile, Interac_e_Registration_registerMultiProfileNoCondition, AutoDepositPage_verifyCustomerEligibilityFailErrorMsg, TransfersHistory_clickBackToActivity, TransfersHistory_verifyRequestUpdateSuccessMsg, TransfersHistory_updateMoneyRequest, TransfersHistory_clickUpdateRequestOnActivity, TransfersHistory_verifyCancelledTransOnActivity, TransfersHistory_clickcancelrequest, TransfersHistory_verifyWrongEmailTransDetails, TransfersHistory_clickWrongEmailTransaction, TransfersHistory_verifyRequestedTransDetails, TransfersHistory_clickRequestTransaction, TransfersHistory_clickRequestMoneySeeAll, TransfersHistory_verifyRequestMoneyCards, Interac_e_Registration_verifyErrorMessage, Interac_e_Registration_registerMultiProfileUser, Interac_e_Registration_clickRegisterAnotherProfile, Interac_e_Registration_registerBusinessUser, TransfersHistory_clickMoneyReceivedSeeAll, Transfers_clickTransferHistoryLink, Interac_e_Registration_clickGoBackHome, TransfersHistory_verifySentMoneyCard, TransfersHistory_clickMoneySentSeeAll, TransfersHistory_verifyPendingTransaction, TransfersHistory_verifyTransactionDetails, TransfersHistory_clickTransaction, TransfersHistory_verifyActivityPage, TransfersHistory_clickReceivedTransaction, TransfersHistory_verifyReceivedTransDetails, TransfersHistory_clickCancelTransferBtn, TransfersHistory_cancelTransfer, TransfersHistory_verifyCancelDetails, TransfersHistory_verifyCancelConfirmation, TransfersHistory_verifyTransactionOnActivity, ManageContacts_verifyContactDeleteSuccessMsg, ManageContacts_noDeleteContact, ManageContacts_deleteContact, ManageContacts_clickContact, ManageContacts_AddContactfromPhone, ManageContacts_clickAddContactfromPhone, ManageContacts_MultiProfileDeleteContact, Interac_e_Registration_registerPersonalUser, Interac_e_Registration_clickContinueButton, ManageContacts_verifySuccessMessage, ManageContacts_clickAddContactPlusSign, ManageContacts_clickAddContactButton, ManageContacts_editContact, ManageContacts_verifyContactEditSuccessMsg, ManageContacts_MultiProfileAddContact, ManageContacts_addContact, ManageContacts_MultiProfileEditContact, HomeScreen_clickSendMoney, Interac_Send_Money_quickSendMoney, Interac_Send_Money_sendMoneyVerifyDetails, Interac_Send_Money_sendMoney, Interac_Send_Money_sendMoneyVerifySuccessMsg, Interac_Send_Money_sendMoneyWithError, Interac_e_Registration_verifyDetails, Interac_e_Registration_verifyBusinessDetails, Interac_e_Registration_verifyRegSuccessMessage,
 
-		// OTP
-
-		OTP_Challenge_ClickTextOption, OTP_Challenge_ClickVoiceOption, OTP_Challenge_ClickGetCodeButton, OTP_Challenge_ClickSubmitCodeButton, OTP_Challenge_EnterSecurityCode, OTP_Challenge_WaitForOTPProgressBarToVanish, OTP_Challenge_VerifyInvalidSecurityCode, OTP_Challenge_ResendCode, OTP_Challenge_VerifyTooManySecurityCodesRequested,
+		// OTP Challenge
+		OTP_Challenge_ClickTextOption, OTP_Challenge_ClickVoiceOption, OTP_Challenge_ClickGetCodeButton, OTP_Challenge_ClickSubmitCodeButton, OTP_Challenge_EnterSecurityCode, OTP_Challenge_WaitForOTPProgressBarToVanish, OTP_Challenge_VerifyInvalidSecurityCode, OTP_Challenge_ClickFirstPhoneNumber, OTP_Challenge_ResendCode, OTP_Challenge_VerifyTooManySecurityCodesRequested, OTP_Challenge_IdleTillLoggedOut, OTP_Challenge_RequestMaxPassCodes, OTP_Challenge_EnterIncorrectSecurityCode,
 
 		// OTP Setup
-
-		OTP_Setup_AcceptWelcomeTCScreens, OTP_Setup_VerifyGetStartedOptionOnly, OTP_Setup_AddPhoneNumber, OTP_Setup_VerifyAddedPhoneNumber, OTP_Setup_AddPhoneContinue, OTP_Setup_VerifyAddAnotherPhoneNumberDialog, OTP_Setup_DeleteFirstPhoneNumber, OTP_Setup_VerifyDeletePhoneNumberFail, OTP_Setup_VerifyMaxPhoneNumbers, OTP_Setup_VerifyInvalidSecurityCodeFormatMsg, OTP_Setup_ClickTextOption, OTP_Setup_ClickVoiceOption, OTP_Setup_ClickFirstPhoneNumber, OTP_Setup_ClickGetCodeButton, OTP_Setup_ClickSubmitCodeButton, OTP_Setup_EnterSecurityCode, OTP_Setup_WaitForOTPProgressBarToVanish, OTP_Setup_VerifyInvalidSecurityCode, OTP_Setup_ClickAnotherPhoneNo, OTP_Setup_VerifySecurityCodeSent, OTP_Setup_TestPhonesContinue, OTP_Setup_VerifySecurityEmailScreen, OTP_Setup_EnterSecurityEmail, OTP_Setup_VerifySecurityCodeFrequencyScreen, OTP_Setup_VerifyCorrectSecurityCode, OTP_Setup_PasscodeContinue, OTP_Setup_CodeFrequencyContinue, OTP_Setup_VerifySetupComplete, OTP_Setup_EnterExpiredSecurityCode, OTP_Setup_VerifyExpiredSecurityCodeMsg, OTP_Setup_EnterIncorrectSecurityCode,
+		OTP_Setup_AcceptWelcomeTCScreens, OTP_Setup_ContinueNotNowScreen, OTP_Setup_AcceptTCScreen, OTP_Setup_VerifyGetStartedOptionOnly, OTP_Setup_AddPhoneNumber, OTP_Setup_AddMaxPhoneNumber, OTP_Setup_VerifyAddedPhoneNumber, OTP_Setup_TestPhonesContinue, OTP_Setup_VerifyAddAnotherPhoneNumberDialog, OTP_Setup_DeleteFirstPhoneNumber, OTP_Setup_VerifyDeletePhoneNumberFail, OTP_Setup_VerifyMaxPhoneNumbers, OTP_Setup_VerifyInvalidSecurityCodeFormatMsg, OTP_Setup_ClickTextOption, OTP_Setup_ClickVoiceOption, OTP_Setup_ClickFirstPhoneNumber, OTP_Setup_ClickGetCodeButton, OTP_Setup_ClickSubmitCodeButton, OTP_Setup_EnterSecurityCode, OTP_Setup_WaitForOTPProgressBarToVanish, OTP_Setup_VerifyInvalidSecurityCode, OTP_Setup_VerifySecurityCodeSent, OTP_Setup_VerifySecurityEmailScreen, OTP_Setup_EnterSecurityEmail, OTP_Setup_VerifySecurityCodeFrequencyScreen, OTP_Setup_VerifyCorrectSecurityCode, OTP_Setup_CodeFrequencyContinue, OTP_Setup_VerifySetupComplete, OTP_Setup_EnterExpiredSecurityCode, OTP_Setup_VerifyExpiredSecurityCodeMsg, OTP_Setup_EnterIncorrectSecurityCode, OTP_Setup_EnterNonNumericSecurityCode, OTP_Setup_CreateNewPassword,
 
 		// OTP Update
-		OTP_Update_VerifyOTPUpdateScreen, OTP_Update_VerifyTestPhoneUpdateScreen, OTP_Update_ClickTestPhoneButton, OTP_Update_VerifyLoginOptionUpdateScreen, OTP_Update_ClickLoginOptionButton, OTP_Update_VerifyChangeEmailScreen, OTP_Update_ClickChangeEmailButton, OTP_Update_UpdateSecurityEmail, OTP_Update_ClickOTPUpdateContinueButton, OTP_Update_VerifyOTPUpdateCompleteScreen, OTP_Update_ClickAddPhoneUpdateButton, OTP_Update_AddSinglePhoneNumber, OTP_Update_AddMaxPhoneNumbers, OTP_Update_DeleteFirstPhoneNumber, OTP_Update_VerifyDeletePhoneNumberFail, OTP_Update_VerifyAddedPhoneNumber, OTP_Update_VerifyMaxPhoneNumbers, OTP_Update_VerifyUpdatedSecurityEmail, OTP_Update_ClickFirstPhoneNumber, OTP_Update_ClickTextOption, OTP_Update_ClickSubmitCodeButton, OTP_Update_EnterSecurityCode, OTP_Update_VerifyCorrectSecurityCode, OTP_Update_ClickGetCodeButton,
+		OTP_Update_VerifyOTPUpdateScreen, OTP_Update_VerifyTestPhoneUpdateScreen, OTP_Update_ClickTestPhoneButton, OTP_Update_VerifyLoginOptionUpdateScreen, OTP_Update_ClickLoginOptionButton, OTP_Update_VerifyChangeEmailScreen, OTP_Update_ClickChangeEmailButton, OTP_Update_UpdateSecurityEmail, OTP_Update_ClickOTPUpdateContinueButton, OTP_Update_VerifyOTPUpdateCompleteScreen, OTP_Update_ClickAddPhoneUpdateButton, OTP_Update_AddSinglePhoneNumber, OTP_Update_AddMaxPhoneNumbers, OTP_Update_DeleteFirstPhoneNumber, OTP_Update_VerifyDeletePhoneNumberFail, OTP_Update_VerifyAddedPhoneNumber, OTP_Update_VerifyMaxPhoneNumbers, OTP_Update_VerifyUpdatedSecurityEmail, OTP_Update_ClickFirstPhoneNumber, OTP_Update_ClickTextOption, OTP_Update_ClickSubmitCodeButton, OTP_Update_EnterSecurityCode, OTP_Update_VerifyCorrectSecurityCode, OTP_Update_ClickGetCodeButton, OTP_Update_DeleteSecondPhoneNumber, OTP_Update_VerifyDeleteSecondPhoneNumber, OTP_Update_AddSinglePhoneNumberWithPasscode,
+
+		// App
+		CloseApp, RunAppInBackGround, ReopenApp,
+
+		// Account Details
+		AccountDetails_QuickLinkTransfer, AccountDetails_QuickLinkPay, AccountDetails_GetAccountBalance, AccountDetails_VerifyAccountBalance, AccountDetails_VerifyTransactionPosted, AccountDetails_VerifyActivityTab, AccountDetails_VerifySummaryTab, AccountDetails_VerifyBankAccountBalance,
+
+		// Accounts
+		Accounts_VerifyCreditHeader, Accounts_SelectFirstAccount, Accounts_SelectToAccount,
+
+		// Add Payee
+		AddPayee_SearchCdnPayees, AddPayee_SearchUSPayees, AddPayee_ClickFirstPayeeFound, AddPayee_EnterPayeeDetails, AddPayee_EnterUSPayeeDetails, AddPayee_ClickGoBackHomeBtn, AddPayee_ClickFirstUSPayeeFound, AddPayee_ClickAddAnotherPayeeBtn, AddPayee_VerifyAddPayeeReceipt,
+
+		// Between My Accounts
+		BetweenMyAccounts_SpecifiedAccountsTransfer, Transfers_Click_Between_My_Accounts, BetweenMyAccounts_1stAccountsTransfer,
+
+		// Bills
+		PayBill_Canada_Button, PayBill_US_Button,
 
 		// Chatbot
 		Chatbot_EnterQuestion, Chatbot_VerifyHeader, Chatbot_VerifyIneligibleUser,
@@ -154,14 +167,62 @@ public class EventCase {
 		// Contact Us
 		ContactUs_ClickChatbot,
 
+		// Credit
+		Credit_GetTDPointsBalance, Credit_ClickLatestStatement, Credit_ClickPay, Credit_VerifyNoTDPointsBalance, Credit_TestSecondCard, Credit_VerifyTDRewardsDollarsBalanceUpdated, Credit_VerifyTDRewardsPointsBalanceUpdated, Credit_VerifyLastThreeStatements,
+
 		// FAQ
 		FAQ_ClickChatbot,
 
 		// Homescreen
 		HomeScreen_QuickLink_Chatbot, HomeScreen_Dashboard_Chatbot,
 
+		// Login
+		Login_VerifyUserNotRemembered, Login_LoginUsingAccessCardNumber, Login_LoginUsingAlias, Login_DeleteAllRememberedIDs, Login_VerifyAllRememberedIDsDeleted, Login_VerifyRememberedIDs, Login_VerifyLoginMFA, Login_CloseApp,
+
+		// Logout
+		Logout_GoBackHome,
+
+		// Manage Payee
+		ManagePayee_ClickNewPayee, ManagePayees_Button, ManagePayee_AddCanadianPayee, ManagePayee_ClickPayeeByAcctNumber, ManagePayee_DeletePayee, ManagePayee_EditPayee, ManagePayee_VerifyCanadianPayeeDeleted, ManagePayee_VerifyPayeeEdited, ManagePayee_VerifyUSPayeeDeleted, ManagePayee_EditPayeeDescription,
+
 		// Menu
-		Menu_ClickChatBot, Menu_ClickFAQ,
+		Menu_VerifyAllMenuItems, Menu_ClickChatBot, Menu_ClickFAQ,
+
+		// Mobile Payment
+		MobilePayment_AcceptIntroAndValidate,
+
+		// Page Header
+		PageHeader_ClickBackButton, PageHeader_GoHome, PageHeader_ClickBackButtonIfIOS,
+
+		// Pay Bill
+		PayBill_PayBill, PayBill_PayFutureBill, PayBill_PayUSBill, PayBill_VerifyNoPayWithRewardsLink, PayBill_VerifyPayWithRewardsLink, PayBill_VerifyPayBillScreen,
+
+		// Pay With Rewards
+		PayWithRewards_EnterRedemptionAmount,
+
+		// Profile & Settings
+		NewSecuritySetup, SecuritySettings,
+
+		// Quick Access
+		QuickAccessSettings_ToggleSpecificAccount, QuickAccessPage_VerifyTDPoints, QuickAccessPage_VerifyEligibleTDPoints, QuickAccessPage_VerifyIneligibleTDPoints, QuickAccessPage_VerifyAccountVisibility, QuickAccessSettings_VerifyAccountExists, QuickAccessSettings_VerifyNoAccount, QuickAccessSettings_TestSecondUser,
+
+		// Receipt
+		Receipt_VerifyTransferReceipt, Receipt_GoBackHome, Receipt_MakeAnotherTransfer, Receipt_VerifyBillReceipt, Receipt_ScheduledPayments, Receipt_VerifyUSBillReceipt, Receipt_VerifyCancelledBillReceipt, Receipt_VerifyReceiptBanner, Receipt_VerifyPayWithRewardsReceipt, Credit_VerifyTDPointsBalanceUpdated, Receipt_SaveReceiptInfoUSTransfer,
+
+		// Rewards
+		Rewards_VerifyVisitTDRewards, Rewards_VerifyPayWithRewards, Rewards_ClickVisitTDRewards, Rewards_VerifyTDRewardsURL, Rewards_ClickPayWithRewards,
+
+		// Review
+		Review_VerifyRedemptionReview,
+
+		// Scheduled Payments
+		ScheduledPayments_CancelLastPayment, ScheduledPayments_VerifyScheduledPayments,
+
+		// StatementBalance
+		StatementBalance_VerifyPayWithRewardEligibility,
+
+		// Trade
+		Trade_VerifyTradePage,
 
 		// CLIP
 		VerifyMoreLinkPresent, ClickMoreLink, verifyMoreOptionHeader, ClickCardlimitIncreaseBtn, verifyCreditLimitIncreaseHeader, verifyMoreOptionsDirectionalCopy, verifyCreditCardContent, Click_GetStarted, verifyLimitIncreaseForm,
@@ -173,7 +234,7 @@ public class EventCase {
 		verifyReplaceDamagedCardHeader, ClickReplaceDamagedCardBtn, verifyReplaceDamagedCardDirectionalCopy, verifyDamagedCardForm,
 
 		// myspend
-		DailyDigest_verifyHeader,DailyDigest_verifyHomePage,DailyDigest_verifyBackButton,DailyDigest_verifySpending,DailyDigest_verifyCategorySpike,DailyDigest_clickCategoryTab,DailyDigest_changeCategory,DailyDigest_verifyCategoryMessage,Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality,MySpendPreferences_clickActiveAccounts,MySpendTransfers_clickBetweenMyAccounts,MySpendTransfers_PerformTransfer,MySpendPrefernces_disableAccounts,Preferences_verifyPreferenceTabs,Preferences_verifyRealTimeNotifications,Preferences_verifyDailyDigestNotifications,Preferences_verifyHomePage, TourPage_clickConnectTDApp,TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks,SideMenu_clickSideMenu,SideMenu_verifyNavigationWithinMySpend, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes,SpendingInsight_clickDailyDigest,SpendingInsight_verifyAccountsSelected,TransactionHistory_verifySelectedAccounts,SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts,SideMenu_clickTransfers, SideMenu_clickGetTDAppButton, click_PreferencesLink
+		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_changeCategory, DailyDigest_verifyCategoryMessage, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, MySpendPreferences_clickActiveAccounts, MySpendTransfers_clickBetweenMyAccounts, MySpendTransfers_PerformTransfer, MySpendPrefernces_disableAccounts, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, Preferences_verifyHomePage, TourPage_clickConnectTDApp, TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SideMenu_verifyNavigationWithinMySpend, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SpendingInsight_verifyAccountsSelected, TransactionHistory_verifySelectedAccounts, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickTransfers, SideMenu_clickGetTDAppButton, click_PreferencesLink
 
 	}
 
@@ -490,12 +551,8 @@ public class EventCase {
 			Accounts.get().selectItemFromList();
 			break;
 
-		case Banking_Header:
-			Accounts.get().verify_Banking_Header();
-			break;
-
 		case HomeScreen_ClickMarkets:
-			Accounts.get().verify_Banking_Header();
+			Accounts.get().verifyBankingHeader();
 			break;
 
 		case Account_Home_Button:
@@ -781,16 +838,8 @@ public class EventCase {
 			Between_My_accounts.get().mobile_expiry_rate();
 			break;
 
-		case Transfers_Click_Between_My_Accounts:
-			Transfers.get().clickBetweenMyAccountsTransfers();
-			break;
-
 		case Between_My_accounts_transfer:
 			Between_My_accounts.get().transfer_between_my_accounts();
-			break;
-
-		case HomeScreen_Transfer_Button:
-			HomeScreen.get().clickDashboardTransfers();
 			break;
 
 		case Multitasking_System:
@@ -903,24 +952,12 @@ public class EventCase {
 			// Trade.get().tradeDetails_marginAccount();
 			break;
 
-		case PayBill_Canada_Button:
-			Bills.get().clickPayCanadianBill();
-			break;
-
 		case ManageRecipient_ModifyRecipient:
 			ManageRecipients.get().modifyRecipient();
 			break;
 
 		case CanadianPayee_ConfirmPage:
 			Confirm_Payee.get().verifyConfirmPage();
-			break;
-
-		case PayBill_US_Button:
-			Bills.get().click_pay_US_bill();
-			break;
-
-		case ManagePayees_Button:
-			Bills.get().click_ManagePayees();
 			break;
 
 		case PayBillCanada_Add_Canadian_Payee:
@@ -960,7 +997,7 @@ public class EventCase {
 			break;
 
 		case ManagePayee_MutlipleAccesscard:
-			Managee_Payee.get().verifyMultipleAccessCard();
+			Manage_Payee.get().verifyMultipleAccessCard();
 			break;
 
 		case Confirm_order:
@@ -1144,7 +1181,7 @@ public class EventCase {
 			break;
 
 		case ManagePayee_VerifyAddCanadianPayeeBtn:
-			Managee_Payee.get().verifyAddCanadianPayeeButton();
+			Manage_Payee.get().verifyAddCanadianPayeeButton();
 			break;
 
 		case PayBill_VerifyAddCanadianPayeeBtn:
@@ -1185,10 +1222,6 @@ public class EventCase {
 
 		case Accounts_VerifyAccountsPage:
 			Accounts.get().verifyAccountsPage();
-			break;
-
-		case ManagePayee_AddCanadianPayee:
-			Managee_Payee.get().addPayee();
 			break;
 
 		case AddPayee_SearchPayee:
@@ -1740,10 +1773,6 @@ public class EventCase {
 			Accounts_Credit.get().verifyStatementDetails();
 			break;
 
-		case StatementBalance_VerifyBalanceDetails:
-			StatementBalance.get().verifyStatementBalanceDetails();
-			break;
-
 		case Bill_PayCanada_verifyCurrentBalance:
 			Bill_PayCanada.get().verifyCurrentBalance();
 			break;
@@ -2049,6 +2078,14 @@ public class EventCase {
 
 		case Profile_And_Settings_clickPaymentsAndTransfers:
 			Profile_And_Settings.get().clickPaymentsAndTransfers();
+			break;
+
+		case NewSecuritySetup:
+			Profile_And_Settings.get().newSecuritySetup();
+			break;
+
+		case SecuritySettings:
+			Profile_And_Settings.get().securitySettings();
 			break;
 
 		case PaymentsAndTransfers_clickManageAutoDeposit:
@@ -3444,19 +3481,11 @@ public class EventCase {
 			break;
 
 		case VerifyConfirmationPageHeader:
-			Receipt.get().VerifyConfirmationPageHeader();
+			Receipt.get().verifyConfirmationPageHeader();
 			break;
 
 		case ClickPurchaseNowBtn:
 			PreviewPurchase.get().ClickPurchaseNowBtn();
-			break;
-
-		case ClickGoBackHomeBtn:
-			Receipt.get().ClickGoBackHomeBtn();
-			break;
-
-		case ClickViewMyAccountsBtn:
-			Receipt.get().ClickViewMyAccountsBtn();
 			break;
 
 		case VerifyQuickLinkPurchaseChineseContent:
@@ -3655,14 +3684,6 @@ public class EventCase {
 			Review.get().verifyReviewHeader();
 			break;
 
-		case ClickPayNowButton:
-			Review.get().payNowButton();
-			break;
-
-		case ClickCancelButton:
-			Review.get().cancelButton();
-			break;
-
 		case VerifyReceiptHeader:
 			Receipt.get().verifyReceiptHeader();
 			break;
@@ -3676,7 +3697,7 @@ public class EventCase {
 			break;
 
 		case ClickVisitRewards:
-			Rewards.get().clickVisitRewardsIFVisible();
+			Rewards.get().clickVisitTDRewards();
 			break;
 
 		case VerifyURL:
@@ -3994,10 +4015,10 @@ public class EventCase {
 			break;
 
 		case ManagePayees_VerifyTextElements:
-			Managee_Payee.get().verifyMyPayeesTextElements();
+			Manage_Payee.get().verifyMyPayeesTextElements();
 			break;
 		case ManagePayees_VerifySpecificPayeeTextElements:
-			Managee_Payee.get().verifySpecificPayeeTextElements();
+			Manage_Payee.get().verifySpecificPayeeTextElements();
 			break;
 		case Interac_VerifyTextElements:
 			Interac_e_Transfer.get().verifyInteracETransferTextElements();
@@ -4017,11 +4038,11 @@ public class EventCase {
 			ManageRecipients.get().verifyMyRecipientsTextElements();
 			break;
 		case ManagePayee_AddUSPayee:
-			Managee_Payee.get().addUSPayee();
+			Manage_Payee.get().addUSPayee();
 			break;
 
 		case ManagePayee_VerifyTextSearchPayee:
-			Managee_Payee.get().verifySearchPayeesTextElements();
+			Manage_Payee.get().verifySearchPayeesTextElements();
 			break;
 
 		case Accounts_VerifyTextOpenNewAccount:
@@ -4168,6 +4189,7 @@ public class EventCase {
 			Investing.get().clickAccount();
 			break;
 
+		// OTP Challenge
 		case OTP_Challenge_ClickTextOption:
 			OTPChallenge.get().clickTextOption();
 			break;
@@ -4192,16 +4214,28 @@ public class EventCase {
 			OTPChallenge.get().verifyInvalidSecurityCodeMsg();
 			break;
 
-		case OTP_Challenge_WaitForOTPProgressBarToVanish:
-			OTPChallenge.get().waitForOTPProgressBarToVanish();
+		case OTP_Challenge_ClickFirstPhoneNumber:
+			OTPChallenge.get().clickFirstPhoneNumber();
 			break;
 
 		case OTP_Challenge_ResendCode:
 			OTPChallenge.get().clickResendCode();
 			break;
 
+		case OTP_Challenge_RequestMaxPassCodes:
+			OTPChallenge.get().requestMaxPassCodes();
+			break;
+
 		case OTP_Challenge_VerifyTooManySecurityCodesRequested:
 			OTPChallenge.get().verifyTooManySecurityCodesRequestedMsg();
+			break;
+
+		case OTP_Challenge_IdleTillLoggedOut:
+			OTPChallenge.get().idleTillLoggedOut();
+			break;
+
+		case OTP_Challenge_EnterIncorrectSecurityCode:
+			OTPChallenge.get().enterIncorrectSecurityCode();
 			break;
 
 		// OTP Setup
@@ -4213,24 +4247,32 @@ public class EventCase {
 			OTPSetup.get().acceptWelcomeTCScreens();
 			break;
 
+		case OTP_Setup_ContinueNotNowScreen:
+			OTPSetup.get().continueNotNowScreen();
+			break;
+
+		case OTP_Setup_AcceptTCScreen:
+			OTPSetup.get().acceptTCScreen();
+			break;
+
 		case OTP_Setup_AddPhoneNumber:
-			OTPSetup.get().addPhoneNumber();
+			OTPSetup.get().addSinglePhoneNumber();
+			break;
+
+		case OTP_Setup_AddMaxPhoneNumber:
+			OTPSetup.get().addMaxPhoneNumbers();
 			break;
 
 		case OTP_Setup_VerifyAddedPhoneNumber:
 			OTPSetup.get().verifyAddedPhoneNumber();
 			break;
 
-		case OTP_Setup_AddPhoneContinue:
-			OTPSetup.get().addPhoneContinue();
+		case OTP_Setup_TestPhonesContinue:
+			OTPSetup.get().testPhoneContinue();
 			break;
 
 		case OTP_Setup_VerifyAddAnotherPhoneNumberDialog:
 			OTPSetup.get().verifyAddAnotherPhoneNumberDialog();
-			break;
-
-		case OTP_Setup_ClickAnotherPhoneNo:
-			OTPSetup.get().clickAnotherPhoneNo();
 			break;
 
 		case OTP_Setup_DeleteFirstPhoneNumber:
@@ -4269,6 +4311,10 @@ public class EventCase {
 			OTPSetup.get().enterIncorrectSecurityCode();
 			break;
 
+		case OTP_Setup_EnterNonNumericSecurityCode:
+			OTPSetup.get().enterNonNumericSecurityCode();
+			break;
+
 		case OTP_Setup_ClickGetCodeButton:
 			OTPSetup.get().clickGetCodeButton();
 			break;
@@ -4283,14 +4329,6 @@ public class EventCase {
 
 		case OTP_Setup_VerifyInvalidSecurityCode:
 			OTPSetup.get().verifyInvalidSecurityCodeMsg();
-			break;
-
-		case OTP_Setup_WaitForOTPProgressBarToVanish:
-			OTPSetup.get().waitForOTPProgressBarToVanish();
-			break;
-
-		case OTP_Setup_TestPhonesContinue:
-			OTPSetup.get().testPhonesContinue();
 			break;
 
 		case OTP_Setup_VerifySecurityEmailScreen:
@@ -4309,10 +4347,6 @@ public class EventCase {
 			OTPSetup.get().verifySecurityCodeFrequencyScreen();
 			break;
 
-		case OTP_Setup_PasscodeContinue:
-			OTPSetup.get().passcodeContinue();
-			break;
-
 		case OTP_Setup_CodeFrequencyContinue:
 			OTPSetup.get().codeFrequencyContinue();
 			break;
@@ -4326,7 +4360,11 @@ public class EventCase {
 			break;
 
 		case OTP_Setup_VerifyExpiredSecurityCodeMsg:
-			OTPSetup.get().enterExpiredSecurityCode();
+			OTPSetup.get().verifyExpiredSecurityCodeMsg();
+			break;
+
+		case OTP_Setup_CreateNewPassword:
+			OTPSetup.get().createNewPassword();
 			break;
 
 		// OTP Update
@@ -4382,6 +4420,14 @@ public class EventCase {
 			OTPUpdate.get().deleteFirstPhoneNumber();
 			break;
 
+		case OTP_Update_DeleteSecondPhoneNumber:
+			OTPUpdate.get().deleteSecondPhoneNumber();
+			break;
+
+		case OTP_Update_VerifyDeleteSecondPhoneNumber:
+			OTPUpdate.get().verifyDeleteSecondPhoneNumber();
+			break;
+
 		case OTP_Update_VerifyDeletePhoneNumberFail:
 			OTPUpdate.get().verifyDeletePhoneNumberFail();
 			break;
@@ -4426,6 +4472,132 @@ public class EventCase {
 			OTPUpdate.get().verifyCorrectSecurityCode();
 			break;
 
+		case OTP_Update_AddSinglePhoneNumberWithPasscode:
+			OTPUpdate.get().addSinglePhoneNumberWithPasscode();
+			break;
+
+		// App
+		case CloseApp:
+			(new com.td.MobileAction2()).closeApp();
+			break;
+
+		case RunAppInBackGround:
+			(new com.td.MobileAction2()).runAppInBackGround();
+			break;
+
+		case ReopenApp:
+			(new com.td.MobileAction2()).reopenApp();
+			break;
+
+		// Accounts
+		case Accounts_VerifyCreditHeader:
+			Accounts.get().verifyCreditHeader();
+			break;
+
+		case Banking_Header:
+			Accounts.get().verifyBankingHeader();
+			break;
+
+		case Accounts_SelectFirstAccount:
+			Accounts.get().selectFirstAccount();
+			break;
+
+		case Accounts_SelectToAccount:
+			Accounts.get().selectToAccount();
+			break;
+
+		// Account Details
+		case AccountDetails_QuickLinkTransfer:
+			AccountDetails.get().clickQuickLinkTransfer();
+			break;
+
+		case AccountDetails_QuickLinkPay:
+			AccountDetails.get().clickQuickLinkPay();
+			break;
+
+		case AccountDetails_GetAccountBalance:
+			AccountDetails.get().getAccountBalance();
+			break;
+
+		case AccountDetails_VerifyAccountBalance:
+			AccountDetails.get().verifyAccountBalance();
+			break;
+
+		case AccountDetails_VerifyTransactionPosted:
+			AccountDetails.get().verifyTransactionPosted();
+			break;
+
+		case AccountDetails_VerifyActivityTab:
+			AccountDetails.get().verifyActivityTab();
+			break;
+
+		case AccountDetails_VerifySummaryTab:
+			AccountDetails.get().verifySummaryTab();
+			break;
+
+		case AccountDetails_VerifyBankAccountBalance:
+			AccountDetails.get().verifyBankAccountBalance();
+			break;
+
+		// Add Payee
+		case AddPayee_SearchCdnPayees:
+			AddPayee.get().searchCdnPayees();
+			break;
+
+		case AddPayee_SearchUSPayees:
+			AddPayee.get().searchUSPayees();
+			break;
+
+		case AddPayee_ClickFirstPayeeFound:
+			AddPayee.get().clickFirstPayeeFound();
+			break;
+
+		case AddPayee_ClickFirstUSPayeeFound:
+			AddPayee.get().clickFirstUSPayeeFound();
+			break;
+
+		case AddPayee_EnterPayeeDetails:
+			AddPayee.get().enterPayeeDetails();
+			break;
+
+		case AddPayee_EnterUSPayeeDetails:
+			AddPayee.get().enterUSPayeeDetails();
+			break;
+
+		case AddPayee_ClickGoBackHomeBtn:
+			AddPayee.get().clickGoBackHomeBtn();
+			break;
+
+		case AddPayee_ClickAddAnotherPayeeBtn:
+			AddPayee.get().clickAddAnotherPayeeBtn();
+			break;
+
+		case AddPayee_VerifyAddPayeeReceipt:
+			AddPayee.get().verifyAddPayeeReceipt();
+			break;
+
+		// Bills
+		case PayBill_Canada_Button:
+			Bills.get().clickPayCanadianBill();
+			break;
+
+		case PayBill_US_Button:
+			Bills.get().clickPayUSBill();
+			break;
+
+		// Between My Accounts
+		case Transfers_Click_Between_My_Accounts:
+			Transfers.get().clickBetweenMyAccountsTransfers();
+			break;
+
+		case BetweenMyAccounts_SpecifiedAccountsTransfer:
+			Between_My_accounts.get().transferSpecifiedAccounts();
+			break;
+
+		case BetweenMyAccounts_1stAccountsTransfer:
+			Between_My_accounts.get().transferFirstAccounts();
+			break;
+
 		// Chat Bot
 		case Chatbot_EnterQuestion:
 			Chatbot.get().enterQuestion();
@@ -4444,12 +4616,49 @@ public class EventCase {
 			ContactUs.get().clickChatbot();
 			break;
 
+		// Credit
+		case Credit_GetTDPointsBalance:
+			Credit.get().getTDPointsBalance();
+			break;
+
+		case Credit_ClickLatestStatement:
+			Credit.get().clickLatestStatement();
+			break;
+
+		case Credit_ClickPay:
+			Credit.get().clickPay();
+			break;
+
+		case Credit_VerifyNoTDPointsBalance:
+			Credit.get().verifyNoTDPointsBalance();
+			break;
+
+		case Credit_TestSecondCard:
+			Credit.get().testSecondCard();
+			break;
+
+		case Credit_VerifyTDRewardsDollarsBalanceUpdated:
+			Credit.get().verifyTDRewardsDollarsBalanceUpdated();
+			break;
+
+		case Credit_VerifyTDRewardsPointsBalanceUpdated:
+			Credit.get().verifyTDRewardsPointsBalanceUpdated();
+			break;
+
+		case Credit_VerifyLastThreeStatements:
+			Credit.get().verifyLastThreeStatements();
+			break;
+
 		// FAQ
 		case FAQ_ClickChatbot:
 			FAQ.get().clickChatbot();
 			break;
 
 		// HomeScreen
+		case HomeScreen_Transfer_Button:
+			HomeScreen.get().clickDashboardTransfers();
+			break;
+
 		case HomeScreen_QuickLink_Chatbot:
 			HomeScreen.get().clickChatBotQuickLink();
 			break;
@@ -4458,7 +4667,86 @@ public class EventCase {
 			HomeScreen.get().clickChatBotDashboard();
 			break;
 
+		// Login
+		case Login_VerifyUserNotRemembered:
+			Login.get().verifyUserNotRemembered();
+			break;
+
+		case Login_LoginUsingAccessCardNumber:
+			Login.get().loginUsingAccessCardNumber();
+			break;
+
+		case Login_LoginUsingAlias:
+			Login.get().loginUsingAlias();
+			break;
+
+		case Login_DeleteAllRememberedIDs:
+			Login.get().deleteAllRememberedIDs();
+			break;
+
+		case Login_VerifyAllRememberedIDsDeleted:
+			Login.get().verifyAllRememberedIDsDeleted();
+			break;
+
+		case Login_VerifyRememberedIDs:
+			Login.get().verifyRememberedIDs();
+			break;
+
+		case Login_VerifyLoginMFA:
+			Login.get().verifyLoginMFA();
+			break;
+
+		// Logout
+		case Logout_GoBackHome:
+			Logout.get().goBackHome();
+			break;
+
+		// Manage Payees
+		case ManagePayees_Button:
+			Bills.get().clickManagePayees();
+			break;
+
+		case ManagePayee_AddCanadianPayee:
+			Manage_Payee.get().addPayee();
+			break;
+
+		case ManagePayee_ClickNewPayee:
+			Manage_Payee.get().addPayee();
+			break;
+
+		case ManagePayee_ClickPayeeByAcctNumber:
+			Manage_Payee.get().clickPayeeByAcctNumber();
+			break;
+
+		case ManagePayee_DeletePayee:
+			Manage_Payee.get().deletePayee();
+			break;
+
+		case ManagePayee_EditPayee:
+			Manage_Payee.get().editPayee();
+			break;
+
+		case ManagePayee_VerifyCanadianPayeeDeleted:
+			Manage_Payee.get().verifyCanadianPayeeDeleted();
+			break;
+
+		case ManagePayee_VerifyUSPayeeDeleted:
+			Manage_Payee.get().verifyUSPayeeDeleted();
+			break;
+
+		case ManagePayee_VerifyPayeeEdited:
+			Manage_Payee.get().verifyPayeeEdited();
+			break;
+
+		case ManagePayee_EditPayeeDescription:
+			Manage_Payee.get().editPayeeDescription();
+			break;
+
 		// Menu
+		case Menu_VerifyAllMenuItems:
+			MenuPage.get().verifyAllMenuItems();
+			break;
+
 		case ClickContact:
 			MenuPage.get().clickContactUs();
 			break;
@@ -4471,8 +4759,193 @@ public class EventCase {
 			MenuPage.get().clickFAQ();
 			break;
 
-		// MySpend
+		// Mobile Payment
+		case MobilePayment_AcceptIntroAndValidate:
+			MobilePayment.get().acceptIntroAndValidate();
+			break;
 
+		case PageHeader_ClickBackButton:
+			PageHeader.get().clickBackButton();
+			break;
+
+		case PageHeader_GoHome:
+			PageHeader.get().goHome();
+			break;
+
+		case PageHeader_ClickBackButtonIfIOS:
+			PageHeader.get().clickBackButtonIfIOS();
+			break;
+
+		// Pay Bill
+		case PayBill_PayBill:
+			PayBill.get().payBill();
+			break;
+
+		case PayBill_PayFutureBill:
+			PayBill.get().payFutureBill();
+			break;
+
+		case PayBill_PayUSBill:
+			PayBill.get().payUSBill();
+			break;
+
+		case PayBill_VerifyNoPayWithRewardsLink:
+			PayBill.get().verifyNoPayWithRewardsLink();
+			break;
+
+		case PayBill_VerifyPayWithRewardsLink:
+			PayBill.get().verifyPayWithRewardsLink();
+			break;
+
+		case PayBill_VerifyPayBillScreen:
+			PayBill.get().verifyPayBillScreen();
+			break;
+
+		// Pay With Rewards
+		case PayWithRewards_EnterRedemptionAmount:
+			PayWithRewards.get().enterRedemptionAmount();
+			break;
+
+		// Quick Access
+		case QuickAccessSettings_ToggleSpecificAccount:
+			QuickAccessSettings.get().toggleSpecificAccount();
+			break;
+
+		case QuickAccessSettings_VerifyAccountExists:
+			QuickAccessSettings.get().verifyAccountExists();
+			break;
+
+		case QuickAccessSettings_VerifyNoAccount:
+			QuickAccessSettings.get().verifyNoAccount();
+			break;
+
+		case QuickAccessSettings_TestSecondUser:
+			QuickAccessSettings.get().testSecondUser();
+			break;
+
+		case QuickAccessPage_VerifyTDPoints:
+			QuickAccessPage.get().verifyTDRewardsPoints();
+			break;
+
+		case QuickAccessPage_VerifyEligibleTDPoints:
+			QuickAccessPage.get().verifyEligibleTDPoints();
+			break;
+
+		case QuickAccessPage_VerifyIneligibleTDPoints:
+			QuickAccessPage.get().verifyIneligibleTDPoints();
+			break;
+
+		case QuickAccessPage_VerifyAccountVisibility:
+			QuickAccessPage.get().verifyAccountVisibility();
+			break;
+
+		// Receipt
+		case Receipt_VerifyTransferReceipt:
+			Receipt.get().verifyTransferReceipt();
+			break;
+
+		case Receipt_VerifyBillReceipt:
+			Receipt.get().verifyBillReceipt();
+			break;
+
+		case Receipt_VerifyCancelledBillReceipt:
+			Receipt.get().verifyCancelledBillReceipt();
+			break;
+
+		case Receipt_VerifyUSBillReceipt:
+			Receipt.get().verifyUSBillReceipt();
+			break;
+
+		case Receipt_GoBackHome:
+			Receipt.get().clickGoBackHome();
+			break;
+
+		case Receipt_MakeAnotherTransfer:
+			Receipt.get().clickMakeAnotherTransfer();
+			break;
+
+		case ClickGoBackHomeBtn:
+			Receipt.get().clickGoBackHomeBtn();
+			break;
+
+		case ClickViewMyAccountsBtn:
+			Receipt.get().clickViewMyAccountsBtn();
+			break;
+
+		case Receipt_ScheduledPayments:
+			Receipt.get().clickScheduledPaymentsBtn();
+			break;
+
+		case Receipt_VerifyReceiptBanner:
+			Receipt.get().verifyReceiptBanner();
+			break;
+
+		case Receipt_VerifyPayWithRewardsReceipt:
+			Receipt.get().verifyPayWithRewardsReceipt();
+			break;
+
+		case Receipt_SaveReceiptInfoUSTransfer:
+			Receipt.get().saveReceiptInfoUSTransfer();
+			break;
+
+		// Rewards
+		case Rewards_VerifyVisitTDRewards:
+			Rewards.get().verifyVisitTDRewards();
+			break;
+
+		case Rewards_VerifyPayWithRewards:
+			Rewards.get().verifyPayWithRewards();
+			break;
+
+		case Rewards_ClickVisitTDRewards:
+			Rewards.get().clickVisitTDRewards();
+			break;
+
+		case Rewards_VerifyTDRewardsURL:
+			Rewards.get().verifyTDRewardsURL();
+			break;
+
+		case Rewards_ClickPayWithRewards:
+			Rewards.get().clickPayWithRewards();
+			break;
+
+		// Review
+		case Review_VerifyRedemptionReview:
+			Review.get().verifyRedemptionReview();
+			break;
+
+		case ClickPayNowButton:
+			Review.get().payNowButton();
+			break;
+
+		case ClickCancelButton:
+			Review.get().cancelButton();
+			break;
+
+		// Scheduled Payments
+		case ScheduledPayments_CancelLastPayment:
+			ScheduledPayments.get().cancelLastPayment();
+			break;
+
+		case ScheduledPayments_VerifyScheduledPayments:
+			ScheduledPayments.get().verifyScheduledPayments();
+			break;
+
+		// Statement Balance
+		case StatementBalance_VerifyPayWithRewardEligibility:
+			StatementBalance.get().verifyPayWithRewardEligibility();
+			break;
+
+		case StatementBalance_VerifyBalanceDetails:
+			StatementBalance.get().verifyStatementBalanceDetails();
+			break;
+
+		// Trade
+		case Trade_VerifyTradePage:
+			Trade.get().verifyTradePage();
+			break;
+
+		// MySpend
 		case TourPage_clickConnectTDApp:
 			TourPage.get().clickConnectTDApp();
 			break;
@@ -4592,7 +5065,7 @@ public class EventCase {
 		case SideMenu_clickMyAccounts:
 			SideMenu.get().clickMyAccounts();
 			break;
-			
+
 		case SideMenu_clickTransfers:
 			SideMenu.get().clickTransfers();
 			break;
@@ -4736,27 +5209,27 @@ public class EventCase {
 		case MySpendPreferences_clickActiveAccounts:
 			MyspendPreferences.get().clickActiveAccounts();
 			break;
-			
+
 		case SideMenu_verifyNavigationWithinMySpend:
 			SideMenu.get().verifyNavigationWithinMySpend();
 			break;
-			
+
 		case MySpendTransfers_clickBetweenMyAccounts:
 			MySpendTransfers.get().clickBetweenMyAccounts();
 			break;
-			
+
 		case MySpendTransfers_PerformTransfer:
 			MySpendTransfers.get().performTransfer();
 			break;
-			
+
 		case SpendingInsight_verifyAccountsSelected:
 			Spending_Insight.get().verifyActiveAccounts();
 			break;
-			
+
 		case TransactionHistory_verifySelectedAccounts:
 			TransactionHistory.get().verifySelectedAccounts();
 			break;
-			
+
 		case MySpendPrefernces_disableAccounts:
 			MyspendPreferences.get().disableAccounts();
 			break;

@@ -17,12 +17,13 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Receipt extends _CommonPage {
 	private static Receipt Receipt;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
+	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement receiptHeader;
 
 	@iOSFindBy(accessibility = "QUICKACCESS_CELL_MENU_ICON_HOME")
@@ -68,6 +69,100 @@ public class Receipt extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[12]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/footer_txt_note']")
 	private MobileElement foot_note;
+
+	@AndroidFindBy(id = "com.td:id/thank_you")
+	private MobileElement thankYouTitle;
+
+	@AndroidFindBy(id = "com.td:id/confirmation_val")
+	private MobileElement cnfrDetail;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/from_account_bal")
+	private MobileElement fromAccountValue;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/to_account_bal")
+	private MobileElement ToAccountValue;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[2] | "
+			+ "//XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/amount_val")
+	private MobileElement amountValue;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/second_amount_val")
+	private MobileElement amountValueBank;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/amount_val")
+	private MobileElement amountValueCB;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/payee_val")
+	private MobileElement payeeValue;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/date_val")
+	private MobileElement dateValue;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/date_val")
+	private MobileElement dateValueCB;
+
+	@iOSXCUITFindBy(accessibility = "QUICKACCESS_CELL_UPCOMINGBILLS_OFF")
+	@AndroidFindBy(id = "com.td:id/upcomingbills")
+	private MobileElement scheduledPaymentsBtn;
+
+	@iOSXCUITFindBy(xpath = "//*[@name='QUICKACCESS_CELL_BACKHOME_ON' or @name='QUICKACCESS_CELL_QUICKLINKS_BACKHOME_ON']")
+	@AndroidFindBy(id = "com.td:id/home")
+	private MobileElement goBackHomeButton;
+
+	@iOSXCUITFindBy(accessibility = "QUICKACCESS_CELL_QUICKLINKS_TRANSFER")
+	@AndroidFindBy(id = "com.td:id/transfers_make_another")
+	private MobileElement makeAnthTran_Button;
+
+	@AndroidFindBy(id = "com.td:id/confirmation_no")
+	private MobileElement confirmNumberUS;
+
+	@iOSXCUITFindBy(accessibility = "COMMON_RECEIPT_CELL_TITLE_0")
+	@AndroidFindBy(id = "com.td:id/account_name")
+	private MobileElement fromAccountUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/amount")
+	private MobileElement fromAccountValueUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/from_account_bal")
+	private MobileElement fromBankAccountValueUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/payee_details")
+	private MobileElement payeeDetailsUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/confirm_amount")
+	private MobileElement amountValueUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[7]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/total_amount")
+	private MobileElement amountTotalValueUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[8]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/reason_for_payment")
+	private MobileElement paymentReasonUS;
+
+	@iOSXCUITFindBy(accessibility = "automation_title_0")
+	@AndroidFindBy(id = "com.td:id/thank_you_label")
+	private MobileElement thankYouTitleUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]//XCUIElementTypeLink[1]")
+	@AndroidFindBy(xpath = "//android.webkit.WebView/android.view.View/android.view.View")
+	private MobileElement bannerImage;
+
+	@iOSXCUITFindBy(accessibility = "RECEIPTHEADER_CONFIRM")
+	@AndroidFindBy(id = "com.td:id/confirmation_val")
+	private MobileElement cnfrDetailRewards;
 
 	public synchronized static Receipt get() {
 		if (Receipt == null) {
@@ -176,7 +271,7 @@ public class Receipt extends _CommonPage {
 
 	}
 
-	public void ClickGoBackHomeBtn() {
+	public void clickGoBackHomeBtn() {
 		Decorator();
 		try {
 
@@ -191,13 +286,18 @@ public class Receipt extends _CommonPage {
 			}
 
 		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
 
-	public void ClickViewMyAccountsBtn() {
+	public void clickViewMyAccountsBtn() {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -211,20 +311,40 @@ public class Receipt extends _CommonPage {
 			}
 
 		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
 	}
 
-	public void VerifyConfirmationPageHeader() {
+	public void verifyConfirmationPageHeader() {
 		Decorator();
 		try {
 			mobileAction.verifyElementTextIsDisplayed(receiptHeader,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
-		} catch (NoSuchElementException | IOException e) {
-			System.err.println("TestCase has failed.");
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_MF_THANKYOU);
+				thankYouTitle = mobileAction.verifyElementUsingXPath("//*[@label='" + labelText + "']",
+						"Thank You title");
+			}
+			mobileAction.verifyElementIsDisplayed(thankYouTitle, "Thank You title");
+			mobileAction.verifyElementTextIsDisplayed(thankYouTitle,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_THANKYOU));
+
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -364,6 +484,295 @@ public class Receipt extends _CommonPage {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
+	}
+
+	public void verifyTransferReceipt() {
+		Decorator();
+		try {
+
+			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
+			mobileAction.verifyElementIsDisplayed(pageHeader, "Receipt Header");
+			mobileAction.verifyElementTextContains(pageHeader,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				cnfrDetail = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RECEIPT_DETAIL) + "']", "Confirm text");
+			}
+
+			mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
+			mobileAction.verifyElementIsDisplayed(fromAccountValue, "From Account Value");
+			mobileAction.verifyElementIsDisplayed(ToAccountValue, "To Account Value");
+			mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyBillReceipt() {
+		Decorator();
+		try {
+			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
+			mobileAction.verifyElementIsDisplayed(pageHeader, "Receipt Header");
+			mobileAction.verifyElementTextContains(pageHeader,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				cnfrDetail = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RECEIPT_DETAIL) + "']", "Confirm text");
+			}
+
+			mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
+			mobileAction.verifyElementIsDisplayed(fromAccountValue, "From Account Value");
+			mobileAction.verifyElementIsDisplayed(payeeValue, "Payee Value");
+			mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
+			mobileAction.verifyElementIsDisplayed(dateValue, "Date Value");
+
+			// For bill payment, takes some time to update acct balance
+			String specificAccts = getTestdata("Description");
+			if (specificAccts != null && specificAccts.equalsIgnoreCase("specified")) {
+				mobileAction.sleep(60000);
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyUSBillReceipt() {
+		Decorator();
+		try {
+
+			mobileAction.verifyElementIsDisplayed(thankYouTitleUS, "Thank You title");
+			mobileAction.verifyElementTextContains(thankYouTitleUS,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_THANKYOU));
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				confirmNumberUS = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RECEIPT_DETAIL) + "']", "Confirm text");
+			}
+
+			mobileAction.verifyElementIsDisplayed(confirmNumberUS, "Confirm Details");
+			mobileAction.verifyElementIsDisplayed(fromAccountUS, "From Account US");
+			mobileAction.verifyElementIsDisplayed(fromAccountValueUS, "From Account Value US");
+			mobileAction.verifyElementIsDisplayed(payeeDetailsUS, "Payee Details US");
+			mobileAction.verifyElementIsDisplayed(amountValueUS, "Amount Value US");
+
+			mobileAction.FunctionSwipe("up", 2000, 0);
+			mobileAction.verifyElementIsDisplayed(amountTotalValueUS, "Amount Total Value US");
+			mobileAction.verifyElementIsDisplayed(paymentReasonUS, "Payment Reason US");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyCancelledBillReceipt() {
+		Decorator();
+		try {
+			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
+			mobileAction.verifyElementIsDisplayed(pageHeader, "Receipt Header");
+			mobileAction.verifyElementTextContains(pageHeader,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				cnfrDetail = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@name='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RECEIPT_DETAIL) + "']", "Confirm text");
+			}
+
+			mobileAction.verifyElementIsDisplayed(cnfrDetail, "Confirm Details");
+			mobileAction.verifyElementIsDisplayed(fromAccountValue, "From Account Value");
+			mobileAction.verifyElementIsDisplayed(payeeValue, "Payee Value");
+			mobileAction.verifyElementIsDisplayed(amountValueCB, "Amount Value");
+			mobileAction.verifyElementIsDisplayed(dateValueCB, "Date Value");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void clickGoBackHome() {
+		Decorator();
+		try {
+			// mobileAction.FuncSwipeWhileElementNotFound(goBackHomeButton,
+			// false, 3, "up");
+			mobileAction.FunctionSwipe("up", 1000, 0);
+			mobileAction.FuncClick(goBackHomeButton, "Go Back Home button");
+			mobileAction.sleep(3000);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void clickMakeAnotherTransfer() {
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(makeAnthTran_Button, "Make Another Transfer button");
+			mobileAction.waitProgressBarVanish();
+
+			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
+			mobileAction.verifyElementIsDisplayed(pageHeader, "Confirm Header");
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.verifyElementTextContains(pageHeader,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRANSFERS));
+			} else {
+				mobileAction.verifyElementTextContains(pageHeader,
+						getTextInCurrentLocale(StringArray.ARRAY_BETWEEN_MY_ACCOUNTS_HEADER));
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void clickScheduledPaymentsBtn() {
+		Decorator();
+		try {
+
+			mobileAction.FunctionSwipe("up", 100, 100);
+			mobileAction.FuncSwipeWhileElementNotFound(scheduledPaymentsBtn, true, 10, "up");
+			mobileAction.waitProgressBarVanish();
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyReceiptBanner() {
+		Decorator();
+		try {
+
+			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
+			mobileAction.verifyElementIsDisplayed(pageHeader, "Receipt Header");
+
+			boolean hasBanner = mobileAction.verifyElementIsPresent(bannerImage);
+			if (hasBanner) {
+				mobileAction.verifyElementIsDisplayed(bannerImage, "Receipt Banner");
+			} else {
+				mobileAction.GetReporting().FuncReport("Pass", "No receipt banner in this device");
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyPayWithRewardsReceipt() {
+		Decorator();
+		try {
+			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
+			mobileAction.verifyElementIsDisplayed(pageHeader, "Receipt Header");
+			mobileAction.verifyElementTextContains(pageHeader,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
+
+			mobileAction.verifyElementIsDisplayed(cnfrDetailRewards, "Confirm Details");
+			mobileAction.verifyElementIsDisplayed(fromAccountValue, "From Account Value");
+			mobileAction.verifyElementIsDisplayed(payeeValue, "Payee Value");
+			mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
+			mobileAction.verifyElementIsDisplayed(dateValue, "Date Value");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void saveReceiptInfoUSTransfer() {
+		Decorator();
+		try {
+			String fromBalance = mobileAction.FuncGetElementText(fromBankAccountValueUS);
+			String toBalance = mobileAction.FuncGetElementText(ToAccountValue);
+			String fxamt = mobileAction.FuncGetElementText(amountValueBank);
+
+			fromBalance = fromBalance.substring(fromBalance.lastIndexOf(" ") + 1);
+			toBalance = toBalance.substring(toBalance.lastIndexOf(" ") + 1);
+			fxamt = fxamt.substring(fxamt.lastIndexOf(" ") + 1);
+
+			System.out.println(fromBalance + " " + toBalance + " " + fxamt);
+
+			CL.getTestDataInstance().TCParameters.put("Timeout", fromBalance);
+			CL.getTestDataInstance().TCParameters.put("SecondTimeout", toBalance);
+			CL.getTestDataInstance().TCParameters.put("MerchantName", fxamt);
+
+			// Takes time to update bank accts after transactions
+			// mobileAction.sleep(10000);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
 	}
 
 }
