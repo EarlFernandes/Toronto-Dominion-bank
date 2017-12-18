@@ -15,6 +15,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class ContactUs extends _CommonPage {
 
@@ -68,6 +69,9 @@ public class ContactUs extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/locationText']")
 	private MobileElement appointment_booking;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
+	private MobileElement optionChatbot;
 
 	String t_call = "Call";
 
@@ -255,4 +259,23 @@ public class ContactUs extends _CommonPage {
 		}
 
 	}
+
+	public void clickChatbot() {
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(optionChatbot, "Chatbot option");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
 }

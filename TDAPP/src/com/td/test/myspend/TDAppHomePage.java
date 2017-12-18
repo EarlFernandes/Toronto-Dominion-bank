@@ -66,9 +66,7 @@ public class TDAppHomePage extends _CommonPage {
 
 			mobileAction.FuncClick(menu, "Side Menu Bar");
 			mobileAction.FuncClick(home, "Home");
-			// Thread.sleep(3000);
-
-			// System.out.println(CL.GetDriver().getPageSource());
+			
 
 			mobileAction.verifyElementIsDisplayed(homePageheader, "Home Page Header");
 

@@ -69,6 +69,12 @@ public class SideMenu extends com.td._CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Featured']")
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Featured')]")
 	private MobileElement featuresBtn;
+	
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[contains(@name,'Home') or contains(@name,'Accueil')])[1]")
+	private MobileElement homeBtn;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Logout') or contains(@label,'Fermer la session')]")
+	private MobileElement logout;
 
 	@FindBy(xpath = "(//*[contains(@href,'spendHistoryOverview')])[2]")
 	private WebElement spendingHistoryAndroid;
@@ -99,6 +105,9 @@ public class SideMenu extends com.td._CommonPage {
 	
 	@FindBy(xpath = "(//*[contains(@href,'dailyDigest')])[2]")
 	private WebElement dailyDigestAndroid;
+	
+	@FindBy(xpath="(//*[@id='homeButton'])[1]")
+	private WebElement homeBtnAndroid;
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -472,7 +481,10 @@ public class SideMenu extends com.td._CommonPage {
 			}
 			MyspendPreferences.get().verifyPageHeader();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncClick(homeBtnAndroid, "Home Button");
 				CL.GetAppiumDriver().context("NATIVE_APP");
+			}else{
+				mobileAction.FuncClick(homeBtn, "Home Button");
 			}
 
 		}catch (Exception e) {
@@ -583,6 +595,91 @@ public class SideMenu extends com.td._CommonPage {
 			} else {
 				
 				Spending_Insight.get().clickSideMenuButton();
+				if(!mobileAction.verifyElementIsPresent(logout)){
+					Spending_Insight.get().clickSideMenuButton();
+				}
+			}
+			
+
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	/**
+	 * This method will verify navigation within my spend app 
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void verifyNavigationWithinMySpend() {
+		Decorator();
+
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				clickTransactionHistory();
+				TransactionHistory.get().verifyPageHeader();
+
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickSideMenuButton();
+				
+				clickSpendingByCategory();
+				SpendingByCategory.get().verifyPageHeader();
+				SpendingByCategory.get().verifySpendingByCategories();
+				
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickSideMenuButton();
+				
+				clickPreferences();
+				
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickSideMenuButton();
+				
+				clickSpendingInsights();
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickMoneyPathButton();
+				MoneyPath.get().verifyPageHeader();
+				
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickSideMenuButton();
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				
+				
+
+			} else {
+				
+				clickTransactionHistory();
+				TransactionHistory.get().verifyPageHeader();
+
+				Spending_Insight.get().clickSideMenuButton();
+				
+				clickSpendingByCategory();
+				SpendingByCategory.get().verifyPageHeader();
+				SpendingByCategory.get().verifySpendingByCategories();
+				
+				Spending_Insight.get().clickSideMenuButton();
+				
+				clickPreferences();
+				
+				Spending_Insight.get().clickSideMenuButton();
+				
+				clickSpendingInsights();
+				Spending_Insight.get().clickMoneyPathButton();
+				MoneyPath.get().verifyPageHeader();
+				
 				Spending_Insight.get().clickSideMenuButton();
 			}
 			

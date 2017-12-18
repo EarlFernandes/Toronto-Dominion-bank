@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.td.StringArray;
 import com.td._CommonPage;
 import com.td.test.framework.MobileAction;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -139,7 +142,7 @@ public class MIT_DSH_ActivityTab extends _CommonPage {
 
 			{
 
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXPathAnd, false, 20, "up");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpathOnActivityTab(sXPathAnd, false, 20, "up");
 
 				String saction = CL.GetDriver().findElement(By.xpath(sXPathAnd)).getText().split("@")[0];
 				String sprice = CL.GetDriver().findElement(By.xpath(sXPathAnd)).getText().split("@")[1];
@@ -178,7 +181,7 @@ public class MIT_DSH_ActivityTab extends _CommonPage {
 
 			else {
 
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXPathiOS, false, 5, "up");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpathOnActivityTab(sXPathiOS, false, 5, "up");
 
 				String saction = CL.GetDriver().findElement(By.xpath(sXPathiOS)).getText().split("@")[0];
 				String sprice = CL.GetDriver().findElement(By.xpath(sXPathiOS)).getText().split("@")[1];

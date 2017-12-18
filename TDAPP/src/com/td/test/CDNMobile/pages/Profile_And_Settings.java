@@ -32,7 +32,7 @@ public class Profile_And_Settings extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_notifications']/android.widget.TextView")
 	private MobileElement notifications;
 
-	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_quick_access']/android.widget.TextView")
+	@AndroidFindBy(id = "com.td:id/profile_landing_nav_quick_access")
 	private MobileElement quickaccesssetting;
 
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_tdforme']/android.widget.TextView")
@@ -44,6 +44,15 @@ public class Profile_And_Settings extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Payments & Transfers']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Payments & Transfers' or @text='Paiements et virements']")
 	private MobileElement paymentsAndTransfers;
+
+	@AndroidFindBy(id = "com.td:id/profile_landing_nav_security")
+	private MobileElement newSecuritySetup;
+
+	@AndroidFindBy(id = "com.td:id/otp_settings_button")
+	private MobileElement setUpNow;
+
+	@AndroidFindBy(id = "com.td:id/profile_landing_nav_security")
+	private MobileElement securitySettings;
 
 	public synchronized static Profile_And_Settings get() {
 		if (ProfileAndSettings == null) {
@@ -159,10 +168,14 @@ public class Profile_And_Settings extends _CommonPage {
 			mobileAction.FuncClick(quickaccesssetting, quickSetting);
 			mobileAction.waitProgressBarVanish();
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -238,6 +251,63 @@ public class Profile_And_Settings extends _CommonPage {
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void newSecuritySetup() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_NEW_SECURITY_SETUP);
+				newSecuritySetup = mobileAction.verifyElementUsingXPath("//*[@label='" + labelText + "']",
+						"New Security Setup");
+			}
+			mobileAction.FuncClick(newSecuritySetup, "New Security Setup Button");
+			mobileAction.waitProgressBarVanish();
+
+			/*
+			 * if
+			 * (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
+			 * "iOS")) { String labelText =
+			 * getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_SET_UP_NOW);
+			 * setUpNow = mobileAction.verifyElementUsingXPath("//*[@label='" +
+			 * labelText + "']", "Set Up Now"); }
+			 * mobileAction.FuncClick(setUpNow, "Set Up Now Button");
+			 * mobileAction.waitProgressBarVanish();
+			 */
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void securitySettings() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_SECURITY_SETTINGS);
+				securitySettings = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@label='" + labelText + "']", "Security Settings");
+			}
+			mobileAction.FuncClick(securitySettings, "Security Setttings Button");
+			mobileAction.waitProgressBarVanish();
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 

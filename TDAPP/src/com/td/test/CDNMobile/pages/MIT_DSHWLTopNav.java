@@ -72,6 +72,8 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 		Decorator();
 		try {
 
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
+			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncClick(BT_More, "More Button");
 
 			mobileAction.verifyElementIsDisplayed(BT_WatchListBack, "Back");
@@ -88,6 +90,9 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 		String sCurrentWatchlist = null;
 		String sNewWatchList = null;
 		try {
+			
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
+			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncClick(BT_More, "More Button");
 
 			sCurrentWatchlist = mobileAction.FuncGetText(LT_WatchListDropDown);
@@ -119,5 +124,9 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 			e.printStackTrace();
 		}
 	}
+	
+
+
+
 
 }

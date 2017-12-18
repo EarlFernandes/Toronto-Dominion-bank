@@ -256,14 +256,25 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
-			if (BT_EnableInvestingViewSwitch.isSelected()) {
-				CL.GetReporting().FuncReport(PASS, "Enable Investing View is bydefault ON for investing focus user.");
-			} else {
-				CL.GetReporting().FuncReport(FAIL,
-						"Enable Investing View is not bydefault ON for investing focus user.");
-			}
 
-			mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				if (BT_EnableInvestingViewSwitch.getAttribute("checked").equalsIgnoreCase("true")) {
+					CL.GetReporting().FuncReport(PASS,
+							"Enable Investing View is bydefault ON for investing focus user.");
+				} else {
+					CL.GetReporting().FuncReport(FAIL,
+							"Enable Investing View is not bydefault ON for investing focus user.");
+				}
+			} else {
+				if (BT_EnableInvestingViewSwitch.getAttribute("value").equalsIgnoreCase("true")) {
+					CL.GetReporting().FuncReport(PASS,
+							"Enable Investing View is bydefault ON for investing focus user.");
+				} else {
+					CL.GetReporting().FuncReport(FAIL,
+							"Enable Investing View is not bydefault ON for investing focus user.");
+				}
+
+			}
 
 			mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
 
@@ -315,6 +326,7 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(LBL_Searchoraddsymbols, "Search or add symbols");
 
+			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncSwipeWhileElementNotFound(BT_More, false, 6, "up");
 
 		} catch (Exception e) {
