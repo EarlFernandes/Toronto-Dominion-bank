@@ -32,7 +32,7 @@ public class Profile_And_Settings extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_notifications']/android.widget.TextView")
 	private MobileElement notifications;
 
-	@AndroidFindBy(id = "com.td:id/profile_landing_nav_quick_access")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/profile_landing_nav_quick_access']")
 	private MobileElement quickaccesssetting;
 
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/profile_landing_nav_tdforme']/android.widget.TextView")
@@ -163,6 +163,9 @@ public class Profile_And_Settings extends _CommonPage {
 			String quickSetting = getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_SETTINGS);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 				quickaccesssetting = mobileAction.verifyElementUsingXPath("//*[@label='" + quickSetting + "']",
+						"Quick Access Settings");
+			} else {
+				quickaccesssetting = mobileAction.verifyElementUsingXPath("//*[@text='" + quickSetting + "']",
 						"Quick Access Settings");
 			}
 			mobileAction.FuncClick(quickaccesssetting, quickSetting);
