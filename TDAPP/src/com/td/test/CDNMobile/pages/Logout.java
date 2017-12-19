@@ -195,6 +195,8 @@ public class Logout extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(logout, "Logout");
+			mobileAction.waitP2PProgressBarVanish();
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
