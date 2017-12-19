@@ -47,9 +47,8 @@ public class Manage_Payee extends _CommonPage {
 	private MobileElement managePayees;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[2] | "
-			+ "//XCUIElementTypeNavigationBar/XCUIElementTypeOther[@name='PAYBILL_VIEW_ADD_PAYEE'] | "
-			+ "//XCUIElementTypeNavigationBar/XCUIElementTypeOther[@name='PAYUSBILL_VIEW_ADD_PAYEE']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
+			+ "//XCUIElementTypeNavigationBar/XCUIElementTypeOther[@name='PAYBILL_VIEW_ADD_PAYEE' or @name='PAYUSBILL_VIEW_ADD_PAYEE']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='0'] | //android.widget.TextView[@index='0' and @text='']")
 	private MobileElement addPayee;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeActivityIndicator[1]")
