@@ -736,7 +736,7 @@ public class Manage_Payee extends _CommonPage {
 	public void verifyPayeeEdited() {
 		Decorator();
 		try {
-
+			mobileAction.sleep(5000);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
 			}
