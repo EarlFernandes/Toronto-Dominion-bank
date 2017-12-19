@@ -785,13 +785,24 @@ public class TradeMIT extends _CommonPage {
 
 	public void clickInvestingTrade() // @Author - Sushil 02-Feb-2017
 	{
-		Decorator();
+/*		Decorator();
 		try {
 			mobileAction.waitForElement(Investing_Trade);
 			mobileAction.FuncClick(Investing_Trade, "Investing_Trade");
 		} catch (Exception e) {
 			e.printStackTrace();
+		}*/
+/*		Decorator();
+		try
+		{
+			//mobileAction.FuncClick(BT_Back, "< Button");
+			mobileAction.ClickBackButton();
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}*/
 	}
 
 	public void verifyDefaultStrategies() // @Author - Sushil 02-Feb-2017

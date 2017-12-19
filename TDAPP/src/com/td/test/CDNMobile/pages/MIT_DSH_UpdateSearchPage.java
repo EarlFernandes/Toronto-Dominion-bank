@@ -117,7 +117,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Indices']")
 	private MobileElement btnIndices;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Mutual Funds' or contains(@label,'Entrez le')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Mutual Funds' or contains(@label,'Fonds mutuels') or @label='互惠基金' or @label='互惠基金']")
 	// @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mutual ?
 	// Funds']")
 	@AndroidFindBy(id = "com.td:id/txt_tradeMutualFund")
