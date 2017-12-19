@@ -43,7 +43,7 @@ public class Interac_Send_Money extends _CommonPage {
 	private MobileElement selectRecipient;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_done' or @text='Done']")
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done' or @label='OK' or @label='Ok']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done' or @label='OK' or @label='Ok' or @label='Toolbar Done Button']")
 	private MobileElement done;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount' or @label='Montant']/following-sibling::XCUIElementTypeTextField")
@@ -273,12 +273,8 @@ public class Interac_Send_Money extends _CommonPage {
 			} else {
 
 				mobileAction.FuncClick(fromAccount, "from Account");
-
-				// String fromAccountNumXL = "**/*[`label CONTAINS[cd] '" +
-				// getTestdata("FromAccount") + "'`]";
-				// MobileElement fromAccountNumber =
-				// mobileAction.mobileElementUsingIOSClassChain(fromAccountNumXL);
-				String fromAccountNumXL = "//XCUIElementTypeCell/XCUIElementTypeStaticText";
+				
+				String fromAccountNumXL = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@value,'"+getTestdata("FromAccount")+"')]"; // changed by vishal
 				MobileElement fromAccountNumber = mobileAction.mobileElementUsingXPath(fromAccountNumXL);
 				mobileAction.FuncClick(fromAccountNumber, "Account Number: " + getTestdata("FromAccount"));
 				mobileAction.FuncClick(selectRecipient, "Select Recipient");
