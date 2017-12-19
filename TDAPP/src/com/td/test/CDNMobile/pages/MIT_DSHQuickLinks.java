@@ -95,7 +95,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='DEPOSIT' or @text='DÉPÔT' or @text='存款' or @text='存款') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_DEPOSIT;
 
-	@iOSFindBy(xpath = "//*[@label='WATCHLISTS' or @label='LISTES DE SURVEILLANCE' or @label='自选股观察名单' or @label='自選股觀察名單']")
+	@iOSFindBy(xpath = "//*[@label='WATCHLISTS' or contains(@label,'LISTES DE') or @label='自选股观察名单' or @label='自選股觀察名單']")
 	@AndroidFindBy(xpath = "//*[(@text='WATCHLISTS' or @text='LISTES DE SURVEILLANCE' or @text='自选股观察名单' or @text='自選股觀察名單') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_WATCHLISTS;
 
@@ -377,6 +377,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 		} catch (Exception e) {
 			try {
 				mobileAction.SwipeQuickLinks(200, 100);
+				CL.GetDriver().findElement(By.xpath(xpathEle));
 				bFlag = true;
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -433,6 +434,10 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
 
 				mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+
+				if (mobileAction.isObjExists(AccessoryGoHome)) {
+					mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+				}
 			} else {
 				if (!mobileAction.isObjExists(LT_Watchlist)) {
 					MIT_DSHHomeScreenSettings.get().turnInvestingfocusONfromProfilePreference();
@@ -714,6 +719,20 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(LBL_OrdersTab, "Orders Tab under Account Details");
 					mobileAction.FuncClick(BT_Back, "< Button");
 				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void tapInvesting() {
+		Decorator();
+		try {
+
+			String xpathTradeQL = "//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE)
+					+ "']";
+			if (verifyQuickLinkExistsByXpath(xpathTradeQL, "TRADE")) {
+				CL.GetAppiumDriver().findElement(By.xpath(xpathTradeQL)).click();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

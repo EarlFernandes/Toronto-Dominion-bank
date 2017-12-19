@@ -2372,7 +2372,7 @@ public class EventCase {
 			break;
 
 		case tapInvesting:
-			MainScreenMIT.get().tapInvesting();
+			MIT_DSHQuickLinks.get().tapInvesting();
 			break;
 		case clickInvestingTrade:
 			TradeMIT.get().clickInvestingTrade();

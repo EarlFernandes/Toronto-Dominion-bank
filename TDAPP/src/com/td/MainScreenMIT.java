@@ -206,7 +206,7 @@ public class MainScreenMIT extends _CommonPage {
 		 */
 	}
 
-	public void tapInvesting() {
+/*	public void tapInvesting() {
 		try {
 			// System.out.println(CL.GetDriver().getPageSource());
 			Decorator();
@@ -224,7 +224,7 @@ public class MainScreenMIT extends _CommonPage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/*
 	 * ********* ********* ********* ********* ********* ********* *********

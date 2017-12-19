@@ -270,7 +270,7 @@ public class Options extends _CommonPage {
 				TradeMultiLeg.get().FuncEnterText(editTextPassword, getTestdata("Trading_Pwd"));
 			}
 			mobileAction.FuncClick(cancel_btn, "Cancel Order");
-			MainScreenMIT.get().tapInvesting();
+			MIT_DSHQuickLinks.get().tapInvesting();
 			Investing.get().verifyInvestingHeader();
 
 		} catch (NoSuchElementException e) {

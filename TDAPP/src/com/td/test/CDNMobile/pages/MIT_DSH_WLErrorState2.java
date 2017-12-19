@@ -105,10 +105,9 @@ public class MIT_DSH_WLErrorState2 extends _CommonPage {
 
 			}
 
-			// mobileAction.verifyElementIsDisplayed(EmptyWLDesc,
-			// "EmptyWLDesc");
+			//mobileAction.verifyElementIsDisplayed(EmptyWLDesc,"EmptyWLDesc");
 
-			//mobileAction.FuncSwipeWhileElementNotFound(btnMore, true, 3, "up");
+			mobileAction.FuncSwipeWhileElementNotFound(btnMore, true, 3, "up");
 
 			mobileAction.verifyElementIsDisplayed(TandCicon, "TandCicon");
 
@@ -152,7 +151,7 @@ public class MIT_DSH_WLErrorState2 extends _CommonPage {
 			mobileAction.FuncVerifyTextEquals(TandCTDApp,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_WLERRORTC));
 
-			//mobileAction.verifyElementIsDisplayed(CTAbutton, "CTAbutton");
+			mobileAction.verifyElementIsDisplayed(CTAbutton, "CTAbutton");
 
 		} catch (Exception e) {
 			e.printStackTrace();
