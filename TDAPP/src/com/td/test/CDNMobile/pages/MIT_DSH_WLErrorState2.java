@@ -105,9 +105,11 @@ public class MIT_DSH_WLErrorState2 extends _CommonPage {
 
 			}
 
-			//mobileAction.verifyElementIsDisplayed(EmptyWLDesc,"EmptyWLDesc");
+			// mobileAction.verifyElementIsDisplayed(EmptyWLDesc,"EmptyWLDesc");
 
-			mobileAction.FuncSwipeWhileElementNotFound(btnMore, true, 3, "up");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				mobileAction.FuncSwipeWhileElementNotFound(btnMore, true, 3, "up");
+			}
 
 			mobileAction.verifyElementIsDisplayed(TandCicon, "TandCicon");
 
@@ -115,10 +117,12 @@ public class MIT_DSH_WLErrorState2 extends _CommonPage {
 
 			mobileAction.FuncVerifyTextEquals(TandCTDApp,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_WLERRORTC));
+			
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				mobileAction.verifyElementIsDisplayed(CTAbutton, "CTAbutton");
 
-			mobileAction.verifyElementIsDisplayed(CTAbutton, "CTAbutton");
-
-			mobileAction.FuncClick(BT_Back, "BT_Back");
+				mobileAction.FuncClick(BT_Back, "BT_Back");
+			}
 
 			mobileAction.FuncClick(QL_TRADE, "QL_TRADE");
 

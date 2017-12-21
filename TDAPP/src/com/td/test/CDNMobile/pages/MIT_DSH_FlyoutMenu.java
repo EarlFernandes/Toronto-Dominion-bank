@@ -662,7 +662,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				case "Investing":
 
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-						
+
 						mobileAction.verifyElementIsDisplayed(lblTransfers, "lblTransfers");
 						mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
 						mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
@@ -1373,8 +1373,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				else {
 					mobileAction.FuncClick(MenuUp, "MenuUp");
 
-					// mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink,
-					// true, 10, "down");
+					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 
 				}
 
