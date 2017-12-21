@@ -760,8 +760,20 @@ public class MenuPage extends _CommonPage {
 			mobileAction.FuncSwipeWhileElementNotFound(menuItem, true, 5, "up");
 			mobileAction.sleep(5000);
 
-			MobileElement header = PageHeader.get().getHeaderTextElement();
-			mobileAction.verifyElementIsDisplayed(header, headerText);
+			if (headerText.equals(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_GIVEFEEDBACK))) {
+				// Feedback screen has no header
+				Feedback.get().verifyTitle();
+			} else {
+				MobileElement header = PageHeader.get().getHeaderTextElement();
+				mobileAction.verifyElementIsDisplayed(header, headerText);
+
+				if (headerText.contains(header.getText()) || header.getText().contains(headerText)) {
+					mobileAction.GetReporting().FuncReport("Pass", "Header text: " + header.getText());
+				} else {
+					mobileAction.GetReporting().FuncReport("Fail",
+							"Header text: " + header.getText() + " Menu text: " + headerText);
+				}
+			}
 
 			PageHeader.get().goHome();
 			mobileAction.sleep(3000);
@@ -783,7 +795,6 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 
 		try {
-
 			verifyMenuItem(accounts_button, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_ACCOUNTS));
 			verifyMenuItem(transfers, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRANSFERS));
 			verifyMenuItem(bills, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_BILLS));
@@ -793,6 +804,7 @@ public class MenuPage extends _CommonPage {
 			verifyMenuItem(profile_and_settings,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PROFILESETTINGS));
 			verifyMenuItem(locations, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOCATIONS));
+			verifyMenuItem(give_feedback, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_GIVEFEEDBACK));
 			verifyMenuItem(contactUs, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_CONTACTUS));
 			verifyMenuItem(faq, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_FAQ));
 			verifyMenuItem(privacy, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PRIVACYSECURITY));

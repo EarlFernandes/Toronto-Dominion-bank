@@ -221,6 +221,7 @@ public class AccountDetails extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(activityTab, "Activity Tab");
 			mobileAction.verifyElementTextIsDisplayed(activityTab,
 					getTextInCurrentLocale(StringArray.ARRAY_TAB_ACTIVITY));
+			mobileAction.waitProgressBarVanish();
 			mobileAction.verifyElementIsDisplayed(lastBankTransactionAmt, "Last transaction amt");
 
 		} catch (Exception e) {
