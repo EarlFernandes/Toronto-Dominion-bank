@@ -130,14 +130,18 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
 
-			if (mobileAction.isObjExists(btnSwitchNow, 2)) {
-				mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+			/*
+			 * if (mobileAction.isObjExists(btnSwitchNow, 2)) {
+			 * mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+			 * 
+			 * mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
+			 * 
+			 * mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+			 * 
+			 * }
+			 */
 
-				mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
-
-				mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
-
-			}
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 
 			mobileAction.verifyElementIsDisplayed(FilledListCollapse, "FilledListCollapse");
 
@@ -173,7 +177,7 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 				mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
 
 				mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
-				
+
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 					if (mobileAction.isObjExists(AccessoryGoHome)) {
 						mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
