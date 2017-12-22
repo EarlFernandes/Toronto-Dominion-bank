@@ -286,8 +286,8 @@ public final class StringArray {
 			"Paramètres de l’écran d’accueil", "主页设置", "首頁設定" };
 
 	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGSHEADERDESCRIPTION = {
-			"Choose what view to show on your home screen", "Choisir l’affichage de votre écran d’accueil", "选择主屏幕视图",
-			"選擇主屏幕視圖" };
+			"Choose what view to show on your home screen", "Choisir l’affichage de votre écran d’accueil", "选择主页要显示的视图",
+			"選擇首頁要顯示的視圖" };
 	public static final String[] ARRAY_DASHBOARD_ENABLEINVESTINGVIEW = { "Enable Investing View",
 			"Activer l’affichage de Placements", "启用投资视图", "啟用投資視圖" };
 	public static final String[] ARRAY_DASHBOARD_ENABLEINVESTINGVIEWDESCRIPTION = {

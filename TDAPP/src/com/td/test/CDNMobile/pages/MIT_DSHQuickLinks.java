@@ -435,9 +435,12 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 				mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
 
-				if (mobileAction.isObjExists(AccessoryGoHome)) {
-					mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+					if (mobileAction.isObjExists(AccessoryGoHome)) {
+						mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+					}
 				}
+
 			} else {
 				if (!mobileAction.isObjExists(LT_Watchlist)) {
 					MIT_DSHHomeScreenSettings.get().turnInvestingfocusONfromProfilePreference();
