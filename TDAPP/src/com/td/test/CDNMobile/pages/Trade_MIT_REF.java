@@ -12,6 +12,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
+import io.appium.java_client.pagefactory.iOSFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Trade_MIT_REF extends _CommonPage {
@@ -52,6 +53,11 @@ public class Trade_MIT_REF extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "SYMBOL_SEARCH_CELL_1")
 	@AndroidFindBy(id = "com.td:id/txtSearchTitle")
 	private MobileElement trade_enter_Name_or_symbol;
+
+	// @iOSXCUITFindBy(accessibility = "SYMBOL_SEARCH_CELL_1")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField")
+	@AndroidFindBy(id = "symbol-search")
+	private MobileElement quote_enter_Name_or_symbol;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeSearchField")
 	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
@@ -118,27 +124,32 @@ public class Trade_MIT_REF extends _CommonPage {
 	private MobileElement tradingPasswordCancelPage;
 
 	@iOSXCUITFindBy(accessibility = "previewOrderButton")
-	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='previewOrderButton']")
+	// @iOSXCUITFindBy(xpath =
+	// "//XCUIElementTypeButton[@name='previewOrderButton']")
 	@AndroidFindBy(id = "com.td:id/orderEntryPreviewButton")
 	private MobileElement previewOrder;
 
 	@iOSXCUITFindBy(accessibility = "sendOrderButton")
-	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='sendOrderButton']")
+	// @iOSXCUITFindBy(xpath =
+	// "//XCUIElementTypeButton[@name='sendOrderButton']")
 	@AndroidFindBy(id = "com.td:id/btn_continue")
 	private MobileElement sendOrder;
 
 	@iOSXCUITFindBy(accessibility = "titleLabel")
-	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='titleLabel']")
+	// @iOSXCUITFindBy(xpath =
+	// "//XCUIElementTypeStaticText[@name='titleLabel']")
 	@AndroidFindBy(id = "com.td:id/thank_you")
 	private MobileElement thankYou;
 
 	@iOSXCUITFindBy(accessibility = "confirmationNumberLabel")
-	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='confirmationNumberLabel']")
+	// @iOSXCUITFindBy(xpath =
+	// "//XCUIElementTypeStaticText[@name='confirmationNumberLabel']")
 	@AndroidFindBy(id = "com.td:id/confirmation")
 	private MobileElement confirmation;
 
 	@iOSXCUITFindBy(accessibility = "confirmationNumberLabel")
-	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='confirmationNumberLabel']")
+	// @iOSXCUITFindBy(xpath =
+	// "//XCUIElementTypeStaticText[@name='confirmationNumberLabel']")
 	@AndroidFindBy(id = "com.td:id/confirmation_val")
 	private MobileElement confirmationVal;
 
@@ -155,7 +166,8 @@ public class Trade_MIT_REF extends _CommonPage {
 	private MobileElement changeOrderBtn;
 
 	@iOSXCUITFindBy(accessibility = "inputTextField")
-	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[@name='inputTextField']")
+	// @iOSXCUITFindBy(xpath =
+	// "//XCUIElementTypeTextField[@name='inputTextField']")
 	@AndroidFindBy(id = "com.td:id/amountEditText")
 	private MobileElement quantity;
 
@@ -164,7 +176,8 @@ public class Trade_MIT_REF extends _CommonPage {
 	private MobileElement cancelOrder;
 
 	@iOSXCUITFindBy(accessibility = "cancelOrderButton")
-	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='cancelOrderButton']")
+	// @iOSXCUITFindBy(xpath =
+	// "//XCUIElementTypeButton[@name='cancelOrderButton']")
 	@AndroidFindBy(id = "com.td:id/orderEntryPreviewButton")
 	private MobileElement cancelOrderConfirm;
 
@@ -179,6 +192,19 @@ public class Trade_MIT_REF extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "alert_ok_button")
 	@AndroidFindBy(id = "android:id/button1")
 	private MobileElement agreebtnTradeBack;
+
+	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='Comptes' or @label='汇款' or @label='匯款']")
+	@AndroidFindBy(xpath = "//*[@text='Accounts' or @text='Comptes' or @text='汇款' or @text='匯款']")
+	private MobileElement my_accounts;
+
+	@iOSXCUITFindBy(xpath = "//*[@name='Back']")
+	private MobileElement quoteBackBtn;
+
+	@AndroidFindBy(id = "android:id/button1")
+	private MobileElement exchangeAgreementError;
+
+	@AndroidFindBy(id = "Buy_Entity_Button")
+	private MobileElement buyMarket;
 
 	int quoteCounter = 0;
 
@@ -240,9 +266,6 @@ public class Trade_MIT_REF extends _CommonPage {
 		}
 	}
 
-	
-	
-	
 	/**
 	 * This method will verify
 	 * 
@@ -256,9 +279,8 @@ public class Trade_MIT_REF extends _CommonPage {
 		Decorator();
 		try {
 
-		
 			mobileAction.FuncClick(trade_enter_Name_or_symbol, "Enter name or symbol");
-			
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -271,9 +293,6 @@ public class Trade_MIT_REF extends _CommonPage {
 		}
 	}
 
-	
-	
-	
 	/**
 	 * This method will verify
 	 * 
@@ -289,21 +308,23 @@ public class Trade_MIT_REF extends _CommonPage {
 
 			MobileElement symbol = null;
 			String symbolImgStr = null;
+			String symbolShortName = getTestdata("SymbolShortName");
 			mobileAction.FuncClick(trade_enter_Name_or_symbol, "Enter name or symbol");
 			mobileAction.FuncClick(searchSymbolField, "Search symbol field");
-			mobileAction.FuncSendKeys(searchSymbolField, getTestdata("Symbol")+" ");
+			mobileAction.FuncSendKeys(searchSymbolField, getTestdata("Symbol") + " ");
 			mobileAction.waitP2PProgressBarVanish();
 
 			if (platform.equalsIgnoreCase("Android")) {
 
 				symbol = mobileAction.mobileElementUsingXPath("//android.widget.ImageView[@content-desc='"
 						+ getTestdata("SymbolImage") + "']/following-sibling::android.widget.TextView[@text='"
-						+ getTestdata("Symbol") + "']");
+						+ getTestdata("Symbol") + "' or @text='" + symbolShortName + "']");
 			} else {
 
 				symbolImgStr = getTestdata("SymbolImage").replaceAll("\\s+", "");
-				symbol = mobileAction.mobileElementUsingXPath("//XCUIElementTypeCell[contains(@name,'"
-						+ getTestdata("Symbol") + "') and contains(@name,'" + symbolImgStr + "')]");
+				symbol = mobileAction.mobileElementUsingXPath(
+						"//XCUIElementTypeCell[(contains(@name,'" + getTestdata("Symbol") + "') or contains(@name,'"
+								+ symbolShortName + "')) and contains(@name,'" + symbolImgStr + "')]");
 			}
 
 			mobileAction.FuncClick(symbol, "Symbol: " + getTestdata("Symbol"));
@@ -328,7 +349,7 @@ public class Trade_MIT_REF extends _CommonPage {
 	 *             If there is problem while reporting. In case the element is
 	 *             not found over the screen.
 	 */
-	public void goBack() {
+	public void goBackToHome() {
 
 		Decorator();
 		try {
@@ -336,13 +357,16 @@ public class Trade_MIT_REF extends _CommonPage {
 			if (mobileAction.verifyElementIsPresent(cancelbtn))
 				mobileAction.FuncClick(cancelbtn, "Cancel");
 
-			mobileAction.ClickBackButton();
-			if (mobileAction.verifyElementIsPresent(agreebtnTradeBack))
-				mobileAction.FuncClick(agreebtnTradeBack, "Agree Button");
-			
-			Thread.sleep(3000);
-			mobileAction.ClickBackButton();//TODO::Defect - need to remove it 
-			mobileAction.ClickBackButton();//TODO::Defect - need to remove it 
+			while (!mobileAction.verifyElementIsPresent(my_accounts)) {
+
+				if (mobileAction.verifyElementIsPresent(quoteBackBtn))
+					mobileAction.FuncClick(quoteBackBtn, "Back Button");
+				else
+					mobileAction.ClickBackButton();
+
+				if (mobileAction.verifyElementIsPresent(agreebtnTradeBack))
+					mobileAction.FuncClick(agreebtnTradeBack, "Agree Button");
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -400,9 +424,6 @@ public class Trade_MIT_REF extends _CommonPage {
 				nxtSymbol = nxtSymbol + " " + quoteNameSaver;
 				mobileAction.FuncSendKeys(searchSymbolField, nxtSymbol);
 
-				Thread.sleep(2000);
-
-				mobileAction.getPageSource();
 				if (platform.equalsIgnoreCase("Android")) {
 
 					symbol = mobileAction.mobileElementUsingXPath("//android.widget.ImageView[@content-desc='"
@@ -419,7 +440,7 @@ public class Trade_MIT_REF extends _CommonPage {
 
 				mobileAction.FuncClick(symbol, "Symbol: " + getTestdata("nxtSymbol"));
 
-				goBack();
+				HomeScreen.get().back_button();
 
 				verifyQuoteSymbol();
 			}
@@ -567,7 +588,6 @@ public class Trade_MIT_REF extends _CommonPage {
 
 				mobileAction.FuncClick(amountField, "Amount");
 				mobileAction.FuncSendKeys(amountField, getTestdata("Amount"));
-				mobileAction.getPageSource();
 				mobileAction.FuncClickDone();
 
 				mobileAction.FuncClick(price, "price");
@@ -760,6 +780,13 @@ public class Trade_MIT_REF extends _CommonPage {
 		Decorator();
 		try {
 
+			mobileAction.verifyElementIsDisplayed(timestamp, "Time Stamp");
+			String thisDate = Integer.toString(GetDate.get().getTodaysDate());
+			String thisMonth = GetDate.get().getCurrentMonthShort();
+
+			mobileAction.verifyElementTextContains(timestamp, thisDate);
+			mobileAction.verifyElementTextContains(timestamp, thisMonth);
+
 			mobileAction.FuncClick(sendOrder, "Send Order Button");
 			mobileAction.waitP2PProgressBarVanish();
 
@@ -820,6 +847,8 @@ public class Trade_MIT_REF extends _CommonPage {
 			mobileAction.FunctionSwipe("up", 200, 200);
 			mobileAction.FuncClick(ordersLink, "Orders Link");
 
+			mobileAction.waitP2PProgressBarVanish();
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -846,6 +875,53 @@ public class Trade_MIT_REF extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(firstOrder, "Recent Order");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	/**
+	 * This method will verify
+	 * 
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             If there is problem while reporting. In case the element is
+	 *             not found over the screen.
+	 */
+	public void verifyFirstOrderPlaced() {
+
+		Decorator();
+		try {
+
+			String symbol = getTestdata("Symbol");
+			String symbolShortName = getTestdata("SymbolShortName");
+			String symbolImage = getTestdata("SymbolImage");
+
+			MobileElement placedOrder = null;
+
+			if (platform.equalsIgnoreCase("Android")) {
+
+				placedOrder = mobileAction.mobileElementUsingXPath(
+						"//android.widget.TextView[@resource-id='com.td:id/symbol' and (@text='" + symbol
+								+ "' or @text='" + symbolShortName + "')]");
+
+			} else {
+
+				symbolImage = symbolImage.replaceAll("\\s+", "");
+				placedOrder = mobileAction
+						.mobileElementUsingXPath("//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@value,'"
+								+ symbolShortName + "') and contains(@value,'" + symbolImage + "')]");
+			}
+
+			mobileAction.verifyElementIsDisplayed(placedOrder, "Recent order: " + placedOrder.getText());
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -962,18 +1038,183 @@ public class Trade_MIT_REF extends _CommonPage {
 		try {
 
 			MobileElement symbol = null;
-			String symbolImgStr = null;
 			String nxtSymbol = getTestdata("NxtSymbol");
 			String nxtSymbolImageArr = getTestdata("NxtSymbolImage");
 			String[] nxtSymbolImage = nxtSymbolImageArr.split(": ");
-			String quoteNameSaver = null;
+			String quoteNameSaver = nxtSymbolImage[quoteCounter].replaceAll("\\s+", "");
+			String symbolImgStr = getTestdata("SymbolImage").replaceAll("\\s+", "");
 
+			// Verify TD CDN Symbol
+			mobileAction.waitP2PProgressBarVanish();
+			if (platform.equalsIgnoreCase("Android")) {
+
+				symbol = mobileAction.mobileElementUsingXPath("//android.view.View[contains(@text,'" + symbolImgStr
+						+ "')]/following-sibling::android.view.View[@text='" + getTestdata("Symbol") + "']");
+
+			} else {
+
+				symbol = mobileAction.mobileElementUsingXPath(
+						"//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@name,'" + symbolImgStr
+								+ "')]/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[@name='"
+								+ getTestdata("Symbol") + "']");
+
+			}
+
+			mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("Symbol"));
+
+			// Verify RY Symbol
+			if (platform.equalsIgnoreCase("Android")) {
+
+				symbol = mobileAction.mobileElementUsingXPath("//android.view.View[contains(@text,'" + quoteNameSaver
+						+ "')]/following-sibling::android.view.View[@text='" + nxtSymbol + "']");
+
+			} else {
+
+				symbol = mobileAction.mobileElementUsingXPath(
+						"//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@name,'" + quoteNameSaver
+								+ "')]/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[@name='"
+								+ nxtSymbol + "']");
+			}
+
+			mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("nxtSymbol"));
+
+			quoteCounter++;
+			if (quoteCounter >= nxtSymbolImage.length)
+				quoteCounter = 0;
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	/**
+	 * This method will verify
+	 * 
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             If there is problem while reporting. In case the element is
+	 *             not found over the screen.
+	 */
+	public void QuoteverifyRecentSearchSymbol() {
+
+		Decorator();
+		try {
+
+			MobileElement symbol = null;
+			String symbolImgStr = getTestdata("SymbolImage").replaceAll("\\s+", "");
+			String nxtSymbol = getTestdata("NxtSymbol");
+			String nxtSymbolImageArr = getTestdata("NxtSymbolImage");
+			String[] nxtSymbolImage = nxtSymbolImageArr.split(": ");
+
+			String quoteNameSaver = nxtSymbolImage[quoteCounter].replaceAll("\\s+", "");
+
+			mobileAction.waitP2PProgressBarVanish();
+
+			// Verifying TD CDN is present
+			if (platform.equalsIgnoreCase("Android")) {
+
+				symbol = mobileAction.mobileElementUsingXPath("//android.view.View[contains(@text,'" + symbolImgStr
+						+ "')]/following-sibling::android.view.View[@text='" + getTestdata("Symbol") + "']");
+			} else {
+
+				symbol = mobileAction.mobileElementUsingXPath(
+						"//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@name,'" + symbolImgStr
+								+ "')]/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[@name='"
+								+ getTestdata("Symbol") + "']");
+
+			}
+
+			mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("Symbol"));
+
+			nxtSymbol = nxtSymbol + " ";
+
+			for (int i = 0; i < symbolImgStr.length(); i++) {
+				// Entering second symbol
+				mobileAction.FuncClick(quote_enter_Name_or_symbol, "Search symbol field");
+
+				mobileAction.FuncSendKeys(quote_enter_Name_or_symbol, nxtSymbol);
+
+				if (platform.equalsIgnoreCase("Android")) {
+
+					symbol = mobileAction.mobileElementUsingXPath("//android.view.View[contains(@text,'"
+							+ quoteNameSaver + "')]/following-sibling::android.view.View[@text='"
+							+ getTestdata("NxtSymbol") + "']");
+				} else {
+
+					symbol = mobileAction.mobileElementUsingXPath(
+							"//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@name,'" + quoteNameSaver
+									+ "')]/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[@name='"
+									+ getTestdata("NxtSymbol") + "']");
+				}
+
+				mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("nxtSymbol"));
+
+				mobileAction.FuncClick(symbol, "Symbol: " + getTestdata("nxtSymbol"));
+
+				if (platform.equalsIgnoreCase("Android")) {
+					HomeScreen.get().back_button();
+				} else {
+					mobileAction.FuncClick(quoteBackBtn, "Back Button");// TODO::Back
+																		// button
+																		// is
+																		// not
+																		// working
+																		// on
+																		// quotes
+																		// pages
+																		// its a
+																		// webview
+																		// part
+				}
+				verifyQuoteSymbol();
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	/**
+	 * This method will verify
+	 * 
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             If there is problem while reporting. In case the element is
+	 *             not found over the screen.
+	 */
+	public void verifyTradeSymbols() {
+
+		Decorator();
+		try {
+
+			MobileElement symbol = null;
+			String nxtSymbol = getTestdata("NxtSymbol");
+			String nxtSymbolImageArr = getTestdata("NxtSymbolImage");
+			String[] nxtSymbolImage = nxtSymbolImageArr.split(": ");
+			String symbolImgStr = getTestdata("SymbolImage").replaceAll("\\s+", "");
+
+			// Verify TD CDN Symbol
 			mobileAction.waitP2PProgressBarVanish();
 			if (platform.equalsIgnoreCase("Android")) {
 
 				symbol = mobileAction.mobileElementUsingXPath("//android.widget.ImageView[@content-desc='"
 						+ getTestdata("SymbolImage") + "']/following-sibling::android.widget.TextView[@text='"
 						+ getTestdata("Symbol") + "']");
+
 			} else {
 
 				symbolImgStr = getTestdata("SymbolImage").replaceAll("\\s+", "");
@@ -983,27 +1224,151 @@ public class Trade_MIT_REF extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("Symbol"));
 
-			quoteNameSaver = nxtSymbolImage[quoteCounter].replaceAll("\\s+", "");
-			nxtSymbol = nxtSymbol + " " + quoteNameSaver;
-			mobileAction.FuncSendKeys(searchSymbolField, nxtSymbol);
+			// Verify RY Symbol
+			for (int i = 0; i < nxtSymbolImage.length; i++) {
+
+				if (platform.equalsIgnoreCase("Android")) {
+
+					symbol = mobileAction.mobileElementUsingXPath(
+							"//android.widget.ImageView[@content-desc='" + nxtSymbolImage[quoteCounter]
+									+ "']/following-sibling::android.widget.TextView[@text='" + nxtSymbol + "']");
+
+				} else {
+
+					symbolImgStr = nxtSymbolImage[quoteCounter].replaceAll("\\s+", "");
+					symbol = mobileAction.mobileElementUsingXPath("//XCUIElementTypeCell[contains(@name,'" + nxtSymbol
+							+ "') and contains(@name,'" + symbolImgStr + "')]");
+				}
+
+				mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("nxtSymbol"));
+
+				quoteCounter++;
+				if (quoteCounter >= nxtSymbolImage.length)
+					quoteCounter = 0;
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	/**
+	 * This method will verify
+	 * 
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             If there is problem while reporting. In case the element is
+	 *             not found over the screen.
+	 */
+	public void verifyExchangeAgreementErrorDetails() {
+
+		Decorator();
+		try {
+
+			mobileAction.verifyElementIsDisplayed(exchangeAgreementError, "Exchange Agreement Error message");
+
+			if (lastPrice.getText().equalsIgnoreCase(null)) {
+				mobileAction.stringToReport("Pass", "Last Price is null");
+			} else {
+				mobileAction.stringToReport("Fail", "Last Price is not null: " + lastPrice.getText());
+			}
+
+			if (dollarChange.getText().equalsIgnoreCase(null)) {
+				mobileAction.stringToReport("Pass", "Dollar Change is null");
+			} else {
+				mobileAction.stringToReport("Fail", "Dollar Change is not null: " + dollarChange.getText());
+			}
+
+			if (dollarChangePercent.getText().equalsIgnoreCase(null)) {
+				mobileAction.stringToReport("Pass", "Dollar Change % is null");
+			} else {
+				mobileAction.stringToReport("Fail", "Dollar Change % is not null: " + dollarChangePercent.getText());
+			}
+
+			if (bidPrice.getText().equalsIgnoreCase(null)) {
+				mobileAction.stringToReport("Pass", "Bid Price is null");
+			} else {
+				mobileAction.stringToReport("Fail", "Bid Price is not null: " + bidPrice.getText());
+			}
+
+			if (askPrice.getText().equalsIgnoreCase(null)) {
+				mobileAction.stringToReport("Pass", "Ask Price is null");
+			} else {
+				mobileAction.stringToReport("Fail", "Ask Price is not null: " + askPrice.getText());
+			}
+
+			if (bidSize.getText().equalsIgnoreCase(null)) {
+				mobileAction.stringToReport("Pass", "Bid Size is null");
+			} else {
+				mobileAction.stringToReport("Fail", "Bid Size is not null: " + bidSize.getText());
+			}
+
+			if (askSize.getText().equalsIgnoreCase(null)) {
+				mobileAction.stringToReport("Pass", "Ask Size is null");
+			} else {
+				mobileAction.stringToReport("Fail", "Ask Size is not null: " + askSize.getText());
+			}
+
+			mobileAction.verifyElementIsDisplayed(symbol, "Symbol " + symbol.getText());
+			mobileAction.verifyElementIsDisplayed(companyName, "Company name " + companyName.getText());
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	/**
+	 * This method will verify
+	 * 
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             If there is problem while reporting. In case the element is
+	 *             not found over the screen.
+	 */
+	public void searchAndClickMarketSymbol() {
+
+		Decorator();
+		try {
+
+			MobileElement symbol = null;
+			String symbolImgStr = getTestdata("SymbolImage").replaceAll("\\s+", "");
+			String exlSymbol = getTestdata("Symbol");
+
+			mobileAction.FuncClick(quote_enter_Name_or_symbol, "Search symbol field");
+
+			mobileAction.FuncSendKeys(quote_enter_Name_or_symbol, exlSymbol);
 
 			if (platform.equalsIgnoreCase("Android")) {
 
-				symbol = mobileAction.mobileElementUsingXPath("//android.widget.ImageView[@content-desc='"
-						+ nxtSymbolImage[quoteCounter] + "']/following-sibling::android.widget.TextView[@text='"
-						+ getTestdata("nxtSymbol") + "']");
+				symbol = mobileAction.mobileElementUsingXPath("//android.view.View[contains(@text,'" + symbolImgStr
+						+ "')]/following-sibling::android.view.View[@text='" + exlSymbol + "']");
 			} else {
 
-				symbolImgStr = nxtSymbolImage[quoteCounter].replaceAll("\\s+", "");
-				symbol = mobileAction.mobileElementUsingXPath("//XCUIElementTypeCell[contains(@name,'"
-						+ getTestdata("nxtSymbol") + "') and contains(@name,'" + symbolImgStr + "')]");
+				symbol = mobileAction.mobileElementUsingXPath(
+						"//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@name,'" + symbolImgStr
+								+ "')]/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[@name='"
+								+ exlSymbol + "']");
 			}
 
-			mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("nxtSymbol"));
+			mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + exlSymbol);
 
-			quoteCounter++;
-			if (quoteCounter >= nxtSymbolImage.length)
-				quoteCounter = 0;
+			mobileAction.FuncClick(symbol, "Symbol: " + exlSymbol);
+
+			mobileAction.FuncClick(buyMarket, "Buy");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

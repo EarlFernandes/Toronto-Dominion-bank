@@ -2583,7 +2583,7 @@ public class MobileAction2 extends CommonLib {
 			back_xpath = "//XCUIElementTypeButton[@name='NAVIGATION_ITEM_BACK' or @label='p2p header caret']";
 			try {
 				MobileElement back_arrow = (MobileElement) GetDriver().findElement(By.xpath(back_xpath));
-				FuncClick(back_arrow, "<");
+				FuncClick(back_arrow, "Back Arrow : <");
 
 			} catch (Exception ex) {
 				ex.printStackTrace();

@@ -75,7 +75,6 @@ public class Investing_MIT_REF extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/investments")
 	private MobileElement investmentsValue;
 
-	
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Gain/Loss']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Gain/Loss']")
 	private MobileElement gainLoss;
@@ -119,20 +118,25 @@ public class Investing_MIT_REF extends _CommonPage {
 	@iOSFindBy(accessibility = "TD_ACCOUNT_FOOTER_VIEW_LABEL")
 	@AndroidFindBy(id = "com.td:id/status")
 	private MobileElement as_of_timeStamp;
-	
+
 	@iOSFindBy(accessibility = "COMPLEX_ORDER_CELL_SYMBOL_NAME")
 	@AndroidFindBy(id = "com.td:id/symbol")
 	private MobileElement ordersSymbol;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Orders']")
 	@AndroidFindBy(id = "com.td:id/current_balance")
 	private MobileElement currentBalance;
-	
-	
+
 	@iOSFindBy(id = "INVESTING_QUOTE_BASE_BUY")
 	@AndroidFindBy(id = "com.td:id/buyBtn")
 	private MobileElement buyETF;
-	
+
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='TRADE']")
+	private MobileElement tradeQuickLink;
+
+	@iOSFindBy(id = "NAVIGATION_ITEM_RIGHT_MENU")
+	@AndroidFindBy(id = "com.td:id/refresh_menu")
+	private MobileElement refreshBtn;
 
 	int accountCounter = 0;
 
@@ -219,6 +223,88 @@ public class Investing_MIT_REF extends _CommonPage {
 	 *             If there is problem while reporting. In case the element is
 	 *             not found over the screen.
 	 */
+	public void clickHoldingsTab() {
+
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(HoldingsTab, "Holdings Tab");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	/**
+	 * This method will verify
+	 * 
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             If there is problem while reporting. In case the element is
+	 *             not found over the screen.
+	 */
+	public void verifyHoldingsDetails() {
+
+		String ETF = null;
+		String symbol = getTestdata("Symbol");
+		String[] symbolArr = symbol.split(": ");
+		Decorator();
+		try {
+
+			for (int i = 0; i < symbolArr.length; i++) {
+
+				Investing_MIT_REF.clickAccount_Multiple();
+				mobileAction.waitP2PProgressBarVanish();
+				mobileAction.FunctionSwipe("down", 200, 200);
+				mobileAction.FunctionSwipe("down", 200, 200);
+
+				if (platform.equalsIgnoreCase("Android")) {
+
+					ETF = "//android.widget.TextView[@resource-id='com.td:id/symbol' and @text='" + symbolArr[i] + "']";
+				} else {
+					ETF = "//XCUIElementTypeStaticText[@value='" + symbolArr[i] + "']";
+				}
+
+				mobileAction.FuncClick(HoldingsTab, "Holdings Tab");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(ETF, true, 30, "Up");
+
+				Trade_MIT_REF.get().verifyQuoteDetails();
+
+				mobileAction.verifyElementIsDisplayed(refreshBtn, "Refresh");
+
+				HomeScreen.get().back_button();
+
+				// Alternative Solution
+				HomeScreen.get().back_button();
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	/**
+	 * This method will verify
+	 * 
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             If there is problem while reporting. In case the element is
+	 *             not found over the screen.
+	 */
 	public void verifyHoldingsTab() {
 
 		Decorator();
@@ -259,15 +345,15 @@ public class Investing_MIT_REF extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(activityTab, "Activity Tab");
 
 			while (mobileAction.verifyElementIsPresent(activity_Transaction)
-					&& !mobileAction.verifyElementIsPresent(as_of_timeStamp) && activityTransactionCounter<3) {
+					&& !mobileAction.verifyElementIsPresent(as_of_timeStamp) && activityTransactionCounter < 3) {
 
 				activityTransactionCounter++;
 				mobileAction.FunctionSwipe("up", 1000, 200);
 			}
-			
-			mobileAction.stringToReport("PASS", activityTransactionCounter+" Transactions verified");
-			
-			while(!mobileAction.verifyElementIsPresent(currentBalance)){
+
+			mobileAction.stringToReport("PASS", activityTransactionCounter + " Transactions verified");
+
+			while (!mobileAction.verifyElementIsPresent(currentBalance)) {
 				mobileAction.FunctionSwipe("down", 200, 200);
 			}
 			mobileAction.FunctionSwipe("down", 200, 200);
@@ -302,21 +388,22 @@ public class Investing_MIT_REF extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(ordersTab, "Orders Tab");
 
 			while (mobileAction.verifyElementIsPresent(ordersSymbol)
-					&& !mobileAction.verifyElementIsPresent(as_of_timeStamp) && OrdersCounter<3) {
+					&& !mobileAction.verifyElementIsPresent(as_of_timeStamp) && OrdersCounter < 3) {
 
 				OrdersCounter++;
 				mobileAction.FunctionSwipe("up", 1000, 200);
 			}
 
-			mobileAction.stringToReport("PASS", OrdersCounter+" Orders");
-			
-			//mobileAction.verifyElementIsDisplayed(ordersSymbol, OrdersCounter + " Orders");
+			mobileAction.stringToReport("PASS", OrdersCounter + " Orders");
 
-			while(!mobileAction.verifyElementIsPresent(currentBalance)){
+			// mobileAction.verifyElementIsDisplayed(ordersSymbol, OrdersCounter
+			// + " Orders");
+
+			while (!mobileAction.verifyElementIsPresent(currentBalance)) {
 				mobileAction.FunctionSwipe("down", 200, 200);
 			}
 			mobileAction.FunctionSwipe("down", 200, 200);
-			
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -355,6 +442,9 @@ public class Investing_MIT_REF extends _CommonPage {
 			}
 
 			accountCounter++;
+			if (accountCounter >= accountArr.length) {
+				accountCounter = 0;
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -367,8 +457,7 @@ public class Investing_MIT_REF extends _CommonPage {
 		} finally {
 		}
 	}
-	
-	
+
 	/**
 	 * This method will verify
 	 * 
@@ -384,16 +473,15 @@ public class Investing_MIT_REF extends _CommonPage {
 		Decorator();
 		try {
 
-			if(platform.equalsIgnoreCase("Android")){
-				
-				ETF = "//android.widget.TextView[@text='"+getTestdata("Symbol")+"']";
-			}else{
-				ETF = "//XCUIElementTypeStaticText[@value='"+getTestdata("Symbol")+"']";
+			if (platform.equalsIgnoreCase("Android")) {
+
+				ETF = "//android.widget.TextView[@text='" + getTestdata("Symbol") + "']";
+			} else {
+				ETF = "//XCUIElementTypeStaticText[@value='" + getTestdata("Symbol") + "']";
 			}
-			
+
 			mobileAction.FuncClick(HoldingsTab, "Holdings Tab");
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(ETF, true, 30, "Up");
-			
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -406,8 +494,7 @@ public class Investing_MIT_REF extends _CommonPage {
 		} finally {
 		}
 	}
-	
-	
+
 	/**
 	 * This method will verify
 	 * 
@@ -426,7 +513,6 @@ public class Investing_MIT_REF extends _CommonPage {
 			mobileAction.FuncClick(buyETF, "BUY");
 			mobileAction.waitP2PProgressBarVanish();
 			mobileAction.FunctionSwipe("up", 200, 200);
-			
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -439,8 +525,7 @@ public class Investing_MIT_REF extends _CommonPage {
 		} finally {
 		}
 	}
-	
-	
+
 	/**
 	 * This method will verify
 	 * 
@@ -457,7 +542,6 @@ public class Investing_MIT_REF extends _CommonPage {
 			Trade_MIT_REF.get().sendETFOrder();
 			Trade_MIT_REF.get().clickSendOrder();
 			Trade_MIT_REF.get().verify_StockOrderSent_Msg();
-			
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -470,6 +554,32 @@ public class Investing_MIT_REF extends _CommonPage {
 		} finally {
 		}
 	}
-	
+
+	/**
+	 * This method will verify
+	 * 
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             If there is problem while reporting. In case the element is
+	 *             not found over the screen.
+	 */
+	public void clickTradeQuickLink() {
+
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(tradeQuickLink, "Trade Quick Link");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
 
 }
