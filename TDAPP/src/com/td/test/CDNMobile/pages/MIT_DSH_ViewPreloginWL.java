@@ -154,9 +154,16 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 
 			mobileAction.FuncClick(btnMore, "btnMore");
 
-			mobileAction.verifyElementIsDisplayed(login, "Login");
+			// mobileAction.verifyElementIsDisplayed(login, "Login"); As per new
+			// requirement In Pre-logined when tap on More it will go to
+			// Expanded mode
 
-			LoginMIT.get().MITLogin();
+			mobileAction.FuncClick(BT_Back, "< Button");
+
+			// LoginMIT.get().MITLogin();
+
+			MIT_DSHQuickLinks.get().goToDashboardHome();
+			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
 				mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
