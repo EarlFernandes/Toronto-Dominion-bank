@@ -196,7 +196,7 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(EditWLBckBtn, "EditWLBckBtn");
 
 			mobileAction.FuncClick(EditWLBckBtn, "EditWLBckBtn");
-			mobileAction.FuncClick(EditWLBckBtn, "EditWLBckBtn");
+			//mobileAction.FuncClick(EditWLBckBtn, "EditWLBckBtn");
 			mobileAction.verifyElementIsDisplayed(btnMore, "btnMore");
 
 		} catch (Exception e) {

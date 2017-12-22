@@ -93,7 +93,7 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/watchlist_empty_card_secondmessage")
 	private MobileElement LinkEmptyWLAddSymbol;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeSearchField[@label='Search or add symbols' or contains(@label,'des symboles') or @label='搜索或添加股票代码' or @label='搜尋或添加股票代號']")
 	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
 	private MobileElement search_symbol;
 
