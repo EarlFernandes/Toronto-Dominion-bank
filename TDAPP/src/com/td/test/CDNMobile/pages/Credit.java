@@ -419,6 +419,7 @@ public class Credit extends _CommonPage {
 		try {
 			more_link = mobileAction.verifyElementUsingXPath(moreXpath, moreText);
 			mobileAction.FuncClick(more_link, moreText);
+			mobileAction.sleep(3000);
 		} catch (NoSuchElementException | IOException | InterruptedException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
