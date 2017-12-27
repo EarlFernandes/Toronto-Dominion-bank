@@ -272,6 +272,7 @@ public class Login extends _CommonPage {
 					try {
 						mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 						mobileAction.FuncClick(addUser, "AddUser");
+						mobileAction.sleep(1000);
 						flag = true;
 					} catch (NoSuchElementException e) {
 						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
