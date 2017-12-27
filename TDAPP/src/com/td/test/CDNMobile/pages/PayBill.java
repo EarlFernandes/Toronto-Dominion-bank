@@ -269,6 +269,7 @@ public class PayBill extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(payUSbillButton, "Continue_pay");
+			mobileAction.sleep(3000);
 			mobileAction.FuncClick(payUSbillButton, "Pay Bill");
 
 		} catch (Exception e) {
