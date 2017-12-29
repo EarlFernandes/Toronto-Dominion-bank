@@ -329,7 +329,7 @@ public class Receipt extends _CommonPage {
 	public void verifyConfirmationPageHeader() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(receiptHeader,
+			mobileAction.verifyElementTextIsDisplayed(PageHeader.get().getHeaderTextElement(),
 					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
@@ -627,9 +627,8 @@ public class Receipt extends _CommonPage {
 	public void clickGoBackHome() {
 		Decorator();
 		try {
-			// mobileAction.FuncSwipeWhileElementNotFound(goBackHomeButton,
-			// false, 3, "up");
 			mobileAction.FunctionSwipe("up", 1000, 0);
+			mobileAction.sleep(2000);
 			mobileAction.FuncClick(goBackHomeButton, "Go Back Home button");
 			mobileAction.sleep(3000);
 

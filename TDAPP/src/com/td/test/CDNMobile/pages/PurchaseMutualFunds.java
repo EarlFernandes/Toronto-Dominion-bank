@@ -236,7 +236,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(page_title,
+			mobileAction.verifyElementTextIsDisplayed(PageHeader.get().getHeaderTextElement(),
 					getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_HEADER));
 
 		} catch (NoSuchElementException | IOException e) {
@@ -534,7 +534,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			} else {
 				System.out.println("Phone populated:" + ori_phone);
 			}
-			//mobileAction.FuncSwipeOnce("up");
+			// mobileAction.FuncSwipeOnce("up");
 			if (!mobileAction.verifyElementIsPresent(consent_checkbox)) {
 				mobileAction.FuncSwipeWhileElementNotFound(consent_checkbox, false, 5, "up");
 			}
@@ -643,7 +643,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			enterAmount(MIN_AMOUNT);
 			clickpreview();
 
-			String pageTitle = mobileAction.getValue(page_title);
+			String pageTitle = mobileAction.getValue(PageHeader.get().getHeaderTextElement());
 			String expectedTitle = getTextInCurrentLocale(StringArray.ARRAY_MF_PREVIEW_PURCHASE_HEADER);
 
 			if (!expectedTitle.contains(pageTitle)) {

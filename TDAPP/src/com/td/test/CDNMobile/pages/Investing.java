@@ -221,7 +221,7 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/activityText")
 	private MobileElement activity_tab;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/symbol' and @index='0']")
 	private MobileElement first_fund;
 
@@ -1548,7 +1548,6 @@ public class Investing extends _CommonPage {
 			System.out.println("Fund:" + firstFundName);
 			mobileAction.FuncClick(first_fund, firstFundName);
 			mobileAction.waitProgressBarVanish();
-
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1666,7 +1665,7 @@ public class Investing extends _CommonPage {
 			if (randFund >= size) {
 				randFund = size - 1;
 			}
-			System.out.println("Funds index selected:"+ randFund);
+			System.out.println("Funds index selected:" + randFund);
 			if (!mobileAction.verifyElementIsPresent(fundsList.get(randFund))) {
 				mobileAction.FuncSwipeWhileElementNotFound(fundsList.get(randFund), false, 20, "up");
 			}

@@ -48,7 +48,8 @@ public class Manage_Payee extends _CommonPage {
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[2] | "
 			+ "//XCUIElementTypeNavigationBar/XCUIElementTypeOther[@name='PAYBILL_VIEW_ADD_PAYEE' or @name='PAYUSBILL_VIEW_ADD_PAYEE']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@index='0'] | //android.widget.TextView[not(@resource-id)]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='0'] | //android.widget.TextView[not(@resource-id)] | "
+			+ "//android.widget.TextView[starts-with(@content-desc, 'Add') and contains(@content-desc, 'Payee')]")
 	private MobileElement addPayee;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeActivityIndicator[1]")
@@ -58,11 +59,11 @@ public class Manage_Payee extends _CommonPage {
 	private WebElement payeeAcctNumber;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='0'] | //android.widget.TextView[contains(@content-desc, 'Delete')]")
 	private MobileElement deletePayeeBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeButton[2]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@index='1']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='1'] | //android.widget.TextView[contains(@content-desc, 'Edit')]")
 	private MobileElement editPayeeBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
@@ -87,7 +88,7 @@ public class Manage_Payee extends _CommonPage {
 	private WebElement payeeDescriptionField;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeButton[2]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='0'] | //android.widget.TextView[contains(@content-desc, 'Done')]")
 	private MobileElement editPayeeCheckButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[2]")
