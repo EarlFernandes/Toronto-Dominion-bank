@@ -93,6 +93,10 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
+	
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
+	@AndroidFindBy(id = "com.td:id/toolbar_back_button")
+	private MobileElement BT_WLBack;
 
 	public void verifyViewPreloginWL() {
 		Decorator();
@@ -158,7 +162,7 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 			// requirement In Pre-logined when tap on More it will go to
 			// Expanded mode
 
-			mobileAction.FuncClick(BT_Back, "< Button");
+			mobileAction.FuncClick(BT_WLBack, "< Button");
 
 			// LoginMIT.get().MITLogin();
 
