@@ -509,7 +509,8 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	public void verifyQL_PAYNOW(boolean bIsAuthenticatedUser) {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
+					&& CL.getTestDataInstance().getMobileDeviceType().equalsIgnoreCase("Smartphone")) {
 				if (verifyQuickLinkExists(QL_PAYNOW, "PAY NOW")) {
 					mobileAction.FuncVerifyTextEquals(QL_PAYNOW,
 							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_PAYNOW));
