@@ -203,15 +203,15 @@ public final class StringArray {
 
 	public static final String[] ARRAY_OTP_SETUP_SECURITY_EMAIL_HEADER = {
 			"Please provide an email address where you’ll receive security alerts",
-			"Veuillez fournir une adresse courriel pour recevoir les alertes de sécurité", "请提供一个用户接收安全信息的电子邮件邮箱地址",
-			"請提供電郵地址，用來接收安全性資訊" };
+			"Veuillez fournir une adresse courriel pour recevoir les alertes de sécurité", "请提供一个您用于接收安全提醒的电子邮件地址",
+			"請提供一個您用來接收安全提醒的電郵地址" };
 	public static final String[] ARRAY_OTP_SETUP_UNABLE_DELETE_PHONE = { "Please add another number",
 			"Veuillez ajouter un autre numéro", "请添加另一个号码", "請新增另一個號碼" };
 	public static final String[] ARRAY_OTP_SETUP_UNABLE_DELETE_PHONE_MSG = {
 			"You can’t delete your last phone number. Please add another number first, so you can get your one-time security codes for Two-Step Verification",
 			"Vous ne pouvez pas supprimer votre dernier numéro de téléphone. Ajoutez d’abord un autre numéro afin de pouvoir obtenir vos codes de sécurité à usage unique pour la vérification en deux temps",
 			"不允许删除上一个电话号码。请先添加另一个号码，用以接收双重认证所需的一次性验证码", "不允許刪除上一個電話號碼。請先新增另一個號碼，用以接收雙重認證所需的一次性驗證碼" };
-	public static final String[] ARRAY_OTP_SETUP_PASSCODE_VERIFIED = { "Verified", "Validé", "已验证", "已驗證" };
+	public static final String[] ARRAY_OTP_SETUP_PASSCODE_VERIFIED = { "Verified", "Validé", "验证成功", "驗證成功" };
 	public static final String[] ARRAY_OTP_SETUP_SETUP_COMPLETE_HEADER = { "Setup Complete", "Configuration terminée",
 			"设置完成", "設定完成" };
 
