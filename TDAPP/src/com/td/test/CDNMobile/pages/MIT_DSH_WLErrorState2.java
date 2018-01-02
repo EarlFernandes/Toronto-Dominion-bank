@@ -114,11 +114,11 @@ public class MIT_DSH_WLErrorState2 extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(TandCicon, "TandCicon");
 
 			mobileAction.FuncVerifyTextEquals(TandCMsg, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_WLERRORMSG));
-
-			mobileAction.FuncVerifyTextEquals(TandCTDApp,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_WLERRORTC));
 			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				mobileAction.FuncVerifyTextEquals(TandCTDApp,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_WLERRORTC));
+
 				mobileAction.verifyElementIsDisplayed(CTAbutton, "CTAbutton");
 
 				mobileAction.FuncClick(BT_Back, "BT_Back");

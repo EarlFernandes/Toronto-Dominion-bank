@@ -98,7 +98,7 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 	private MobileElement search_symbol;
 
 	@iOSXCUITFindBy(accessibility = "dropdownButton")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/watchlist_name_drop_down']")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/watchlist_name_drop_down_button']")
 	MobileElement btnDropDown;
 
 	public void verifyCollapseEmptyWL() {
