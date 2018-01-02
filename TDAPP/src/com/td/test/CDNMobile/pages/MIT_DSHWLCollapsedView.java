@@ -163,7 +163,7 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 		Decorator();
 		try {
 			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
-			
+
 			mobileAction.FuncClick(BT_MoreOptions, "More Options button");
 
 			mobileAction.FuncClick(BT_Refresh, "Refresh button");
@@ -177,7 +177,8 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 
 			mobileAction.FuncClick(BT_EditWatchlist_Back, "< Button");
 
-			//mobileAction.FuncClick(BT_EditWatchlist_Back, "< Button");
+/*			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) // BA accepts the 
+				mobileAction.FuncClick(BT_EditWatchlist_Back, "< Button");*/
 
 			mobileAction.FuncClick(BT_MoreOptions, "More Options button");
 

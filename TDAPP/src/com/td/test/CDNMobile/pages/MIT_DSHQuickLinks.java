@@ -73,7 +73,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='TRANSFER' or @text='VIREMENT' or @text='转账' or @text='轉賬') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_TRANSFER;
 
-	@AndroidFindBy(xpath = "//*[(@text='PAY NOW' or @text='PAYER MAINTENANT' or @text='马上付款' or @text='立即付款') and @resource-id='com.td:id/text_view']")
+	@AndroidFindBy(xpath = "//*[(@text='PAY NOW' or @text='PAYER MAINTENANT' or @text='现在付款' or @text='立即付款') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_PAYNOW;
 
 	@iOSFindBy(xpath = "//*[@label='APPLE PAY']") // French/CH_SM/CH_TD
