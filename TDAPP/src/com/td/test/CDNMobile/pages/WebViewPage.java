@@ -65,7 +65,7 @@ public class WebViewPage extends _CommonPage {
 	}
 
 	public void verifyCreditLimitIncreaseFormTitle() {
-
+		mobileAction.sleep(10000); 	//Browser loading time
 		if (setWebViewContext()) {
 			try {
 
