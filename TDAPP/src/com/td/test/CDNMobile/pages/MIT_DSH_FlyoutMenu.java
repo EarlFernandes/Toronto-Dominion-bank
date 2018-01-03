@@ -978,7 +978,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				else
 
 				{
-					mobileAction.verifyElementIsDisplayed(lblCrossBorder, "lblCrossBorder");
+					//mobileAction.verifyElementIsDisplayed(lblCrossBorder, "lblCrossBorder");
 					mobileAction.ClickBackButton();
 
 				}
@@ -1007,7 +1007,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				else
 
 				{
-					mobileAction.verifyElementIsDisplayed(lblCrossBorder, "lblCrossBorder");
+					//mobileAction.verifyElementIsDisplayed(lblCrossBorder, "lblCrossBorder");
 					// mobileAction.ClickBackButton();
 					mobileAction.FuncClick(BTN_Back_iOS_MOD, "BTN_Back_iOS_MOD");
 
