@@ -209,14 +209,16 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 			MIT_DSHQuickLinks.get().goToDashboardHome();
 
 			Thread.sleep(1000);
-			if (mobileAction.isObjExists(btnSwitchNow, 2)) {
+/*			if (mobileAction.isObjExists(btnSwitchNow, 2)) {
 				mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
 
 				mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
 
 				mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
 
-			}
+			}*/
+			
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 
 			mobileAction.FuncVerifyTextEquals(EmptyWLDesc,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_EmptyWLDesc));

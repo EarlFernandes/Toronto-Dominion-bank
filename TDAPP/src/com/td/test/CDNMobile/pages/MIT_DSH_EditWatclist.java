@@ -196,7 +196,7 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(EditWLBckBtn, "EditWLBckBtn");
 
 			mobileAction.FuncClick(EditWLBckBtn, "EditWLBckBtn");
-			//mobileAction.FuncClick(EditWLBckBtn, "EditWLBckBtn");
+			// mobileAction.FuncClick(EditWLBckBtn, "EditWLBckBtn");
 			mobileAction.verifyElementIsDisplayed(btnMore, "btnMore");
 
 		} catch (Exception e) {
@@ -309,14 +309,18 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
 
-			if (mobileAction.isObjExists(btnSwitchNow, 2)) {
-				mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+			/*
+			 * if (mobileAction.isObjExists(btnSwitchNow, 2)) {
+			 * mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+			 * 
+			 * mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
+			 * 
+			 * mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+			 * 
+			 * }
+			 */
 
-				mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
-
-				mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
-
-			}
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 
 			if (mobileAction.isObjExists(searchBar, 2)) {
 				mobileAction.FuncClick(searchBar, "searchBar");
