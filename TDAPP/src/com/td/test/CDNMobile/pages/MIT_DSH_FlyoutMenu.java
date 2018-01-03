@@ -109,7 +109,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Contact Us' or @text='Contacter nous' or @text='联系我们' or @text='聯絡我們') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblContactUs;
 
-	@iOSXCUITFindBy(xpath = "//*[(@label='FAQs' or @label='FAQ' or @label='常见问答' or @label='常見問題') and @name='TDVIEW_TITLE']")
+	@iOSXCUITFindBy(xpath = "//*[(@label='FAQs' or @label='Foire aux questions' or @label='常见问答' or @label='常見問題') and @name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//*[(@text='FAQs' or @text='FAQ' or @text='常见问答' or @text='常見問題') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblFAQs;
 
@@ -828,8 +828,10 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 					mobileAction.verifyElementIsDisplayed(lblMobileDepositInvesting, "lblMobileDeposit");
 
-					mobileAction.FuncClick(lblMobileDepositInvesting, "lblMobileDeposit");
+					//mobileAction.FuncClick(lblMobileDepositInvesting, "lblMobileDeposit");
 
+					mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
+					
 					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 					break;
 
@@ -837,8 +839,10 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 					mobileAction.verifyElementIsDisplayed(lblMobileDepositBanking, "lblMobileDeposit");
 
-					mobileAction.FuncClick(lblMobileDepositBanking, "lblMobileDeposit");
+				//	mobileAction.FuncClick(lblMobileDepositBanking, "lblMobileDeposit");
 
+					mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
+					
 					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 
 					break;
