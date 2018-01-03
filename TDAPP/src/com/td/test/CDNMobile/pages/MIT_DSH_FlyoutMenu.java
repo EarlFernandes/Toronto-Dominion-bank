@@ -187,8 +187,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Bills' or @text='Factures' or @text='账单' or @text='賬單') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutBillsLink;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Apple Pay' or @label='Factures']")
-	@AndroidFindBy(xpath = "//*[@text='Apple Pay' or @text='Factures')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Apple Pay']")
 	private MobileElement flyoutApplePay;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD MySpend' or @label='Dépense TD']")
@@ -978,7 +977,8 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				else
 
 				{
-					//mobileAction.verifyElementIsDisplayed(lblCrossBorder, "lblCrossBorder");
+					// mobileAction.verifyElementIsDisplayed(lblCrossBorder,
+					// "lblCrossBorder");
 					mobileAction.ClickBackButton();
 
 				}
@@ -1007,7 +1007,8 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				else
 
 				{
-					//mobileAction.verifyElementIsDisplayed(lblCrossBorder, "lblCrossBorder");
+					// mobileAction.verifyElementIsDisplayed(lblCrossBorder,
+					// "lblCrossBorder");
 					// mobileAction.ClickBackButton();
 					mobileAction.FuncClick(BTN_Back_iOS_MOD, "BTN_Back_iOS_MOD");
 

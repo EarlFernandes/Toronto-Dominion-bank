@@ -117,7 +117,7 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage {
 
 	String xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Holdings' or @label='Avoirs' or @label='Activity' or @label='Activity']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Holdings' or @label='Avoirs' or @label='持有投资' or @label='持有投資']")
 	@AndroidFindBy(id = "com.td:id/holdingsTab")
 	private MobileElement holdingsTab;
 
