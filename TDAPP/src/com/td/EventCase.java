@@ -155,9 +155,9 @@ public class EventCase {
 
 		// Damaged Card
 		verifyReplaceDamagedCardHeader, ClickReplaceDamagedCardBtn, verifyReplaceDamagedCardDirectionalCopy, verifyDamagedCardForm,
-		
-		//RBP
-		clickStartDate, selectDate,
+
+		// RBP
+		clickStartDate, selectDate, verifyPayCanadianBillContent, verifyHowOftenDropdownDefault, verifyStartDateDefaultToToday, verifyFieldsArePrefilledAfterBackFromAddPayee, verifyFrequencyOptions, verifyRBPFootNoteContent, selectOngoingFromHowOftenDropDown, verifyAndClickRewardBanner, FillPayBillWithOnce, continuePayBill, verifyReviewContent, FillPayBillWithOngoing, verifyAndClickCancelButton, verifyAndClickPayBillButton, verifyRBPReceiptContent, verifyPayee_FromAccountMaskedInReceipt, verifyPayBillHeader, ClickPayAnotherBillBtn, ClickSchedulePaymentsBtn, ClickQuickLinkBillsBtn,verifyScheduledPaymentsHeader,VerifyRBPReceipt,VerifyRBPErrorMessage,
 
 		// myspend
 		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_verifyCategoryMessage, DailyDigest_changeCategory, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, MySpendPreferences_clickActiveAccounts, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, Preferences_verifyHomePage, TourPage_clickConnectTDApp, TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickGetTDAppButton, click_PreferencesLink
@@ -3633,16 +3633,107 @@ public class EventCase {
 			WebViewPage.get().verifyDamagedCardReplacementFormTitle();
 			break;
 		// End of Damaged card
+
+		// RBP
 			
-		//RBP			
 		case clickStartDate:
 			Bill_PayCanada.get().clickStartDate();
 			break;
 			
-		case selectDate:
-			Calendar.get().selectDate();
-			break;	
-		//End of RBP	
+		case VerifyRBPErrorMessage:
+			Bill_PayCanada.get().VerifyRBPErrorMessage();
+			break;		
+		case verifyScheduledPaymentsHeader:
+			ScheduledPayments.get().verifyScheduledPaymentsHeader();
+			break;
+			
+		case verifyPayBillHeader:
+			Bill_PayCanada.get().verifyPayBillHeader();
+			break;
+
+		case verifyPayCanadianBillContent:
+			Bill_PayCanada.get().verifyPayCanadianBillContent();
+			break;
+
+		case verifyHowOftenDropdownDefault:
+			Bill_PayCanada.get().verifyHowOftenDropdownDefault();
+			break;
+
+		case verifyStartDateDefaultToToday:
+			Bill_PayCanada.get().verifyStartDateDefaultToToday();
+			break;
+
+		case verifyFieldsArePrefilledAfterBackFromAddPayee:
+			Bill_PayCanada.get().verifyFieldsArePrefilledAfterBackFromAddPayee();
+			break;
+
+		case verifyFrequencyOptions:
+			Bill_PayCanada.get().verifyFrequencyOptions();
+			break;
+
+		case verifyRBPFootNoteContent:
+			Bill_PayCanada.get().verifyRBPFootNoteContent();
+			break;
+
+		case selectOngoingFromHowOftenDropDown:
+			Bill_PayCanada.get().selectOngoingFromHowOftenDropDown();
+			break;
+
+		case verifyAndClickRewardBanner:
+			Bill_PayCanada.get().verifyAndClickRewardBanner();
+			break;
+
+		case FillPayBillWithOnce:
+			Bill_PayCanada.get().FillPayBillWithOnce();
+			break;
+
+		case continuePayBill:
+			Bill_PayCanada.get().continuePayBill();
+			break;
+
+		case verifyReviewContent:
+			Review.get().verifyReviewContent();
+			break;
+
+		case verifyAndClickCancelButton:
+			Review.get().verifyAndClickCancelButton();
+			break;
+
+		case FillPayBillWithOngoing:
+			Bill_PayCanada.get().FillPayBillWithOngoing();
+			break;
+
+		case verifyAndClickPayBillButton:
+			Review.get().verifyAndClickPayBillButton();
+			break;
+
+		case verifyRBPReceiptContent:
+			Receipt.get().verifyRBPReceiptContent();
+			break;
+			
+		case VerifyRBPReceipt:
+			Receipt.get().VerifyRBPReceipt();
+			break;
+			
+		case verifyPayee_FromAccountMaskedInReceipt:
+			Receipt.get().verifyPayee_FromAccountMaskedInReceipt();
+			break;
+
+		case ClickPayAnotherBillBtn:
+			Receipt.get().ClickPayAnotherBillBtn();
+			break;
+
+		case ClickSchedulePaymentsBtn:
+			Receipt.get().ClickSchedulePaymentsBtn();
+			break;
+
+		case ClickQuickLinkBillsBtn:
+			Receipt.get().ClickQuickLinkBillsBtn();
+			break;
+		// case selectDate:
+		// Calendar.get().selectDate();
+		// break;
+		// End of RBP
 
 		case VerifyStatementBalanceHeader:
 			StatementBalance.get().verifyStatementBalanceHeader();

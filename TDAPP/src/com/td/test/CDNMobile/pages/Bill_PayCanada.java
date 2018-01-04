@@ -1,6 +1,9 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -8,6 +11,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.MobileAction2;
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -15,6 +19,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Bill_PayCanada extends _CommonPage {
 
@@ -60,8 +65,8 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee' and @text='TD CLASSIC TRAVEL VIS... 4520020000005323']")
 	private MobileElement select_to_account;
 
-	@iOSFindBy(xpath = "//*[@name='PAYBILL_VIEW_AMOUNT']/../XCUIElementTypeTextField")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edtAmt' and @index='1']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Amount' or @label='Montant' or @label='金额' or @label='金額']/../XCUIElementTypeTextField")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText' or (@resource-id='com.td:id/edtAmt' and @index='1')]")
 	private MobileElement amount;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay Bill']")
@@ -72,8 +77,8 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/error_text' and contains(@text,'Invalid transaction amount')]")
 	private MobileElement verify_msg;
 
-	@iOSFindBy(accessibility = "PAYBILL_VIEW_CONTINUE")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue']")
+	@iOSFindBy(xpath = "//*[@name='PAYBILL_VIEW_CONTINUE'] | //XCUIElementTypeButton[@label='Continue']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue' or @resource-id='com.td:id/continue_button']")
 	private MobileElement continue_pay;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Pay Bill']")
@@ -92,7 +97,7 @@ public class Bill_PayCanada extends _CommonPage {
 	// "//android.widget.ImageView[@resource-id='android:id/up']")
 	// private MobileElement menu;
 
-	@iOSFindBy(accessibility = "TDVIEW_TITLE")
+	@iOSXCUITFindBy(xpath = "//*[@name='TDVIEW_TITLE'] | //XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement payBill_Header;
 
@@ -105,8 +110,8 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@text='' and @index='0']//android.widget.TextView[@resource-id='com.td:id/description']")
 	private MobileElement last_transaction;
 
-	@iOSFindBy(xpath = "//*[@label='Done' or @label='完成']")
-	private MobileElement done;
+	// @iOSFindBy(xpath = "//*[@label='Done' or @label='完成']")
+	// private MobileElement done;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Add Canadian Payee']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtPayee'and @text='Add Canadian Payee']")
@@ -135,7 +140,7 @@ public class Bill_PayCanada extends _CommonPage {
 	private MobileElement confirmation_text;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='PAYBILL_VIEW_PAYEE' or @label='Select Payee']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee' or (@resource-id='com.td:id/selectedText' and @text='Select Payee')]")
 	private MobileElement select_payee;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Home']")
@@ -221,10 +226,97 @@ public class Bill_PayCanada extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='PAYBILL_VIEW_PAYEE']/following-sibling::XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtPayee']")
 	private MobileElement payeeValue;
-	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Start Date']")
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='Select from account'`]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='Select From Account']")
+	private MobileElement from_account_dropdown;
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='From Account'`]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/orderDropdownCaption' and @text='From Account']")
+	private MobileElement from_account_caption;
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='Payee'`]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/orderDropdownCaption' and @text='Payee']")
+	private MobileElement payee_caption;
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='Select Payee'`]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='Select Payee']")
+	private MobileElement payee_dropdown;
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='Amount'`]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/captionTextView' and @text='Amount']")
+	private MobileElement amount_caption;
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='How Often' OR label=='Type de paiement'`]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/orderDropdownCaption' and @text='How Often']")
+	private MobileElement howOften;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Start Date' or @label='End Date']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/date_Label']")
-	private MobileElement startDate;
+	private List<MobileElement> start_end_Date_List;
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label='Start Date' OR label='End Date'`]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dateText']")
+	private List<MobileElement> dateText_List;
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label='Frequency'`]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/orderDropdownCaption' and @text='Frequency']")
+	private MobileElement frequency;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Payment Will End']/../XCUIElementTypeButton")
+	@AndroidFindBy(xpath = "//android.widget.RadioGroup[@resource-id='com.td:id/radioGroup']/android.widget.RadioButton")
+	private List<MobileElement> payment_end_list;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView//android.widget.TextView[@index='0']")
+	private List<MobileElement> paybill_caption_list;
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label='On a specific date'`]")
+	private MobileElement on_a_specific_date;
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label='After a number of payments'`]")
+	private MobileElement after_a_number_of_payments;
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label='When I decide to cancel'`]")
+	private MobileElement when_I_decide_to_cancel;
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label='When I decide to cancel'`]")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/imgActionCheckMark']/../android.widget.TextView")
+	private MobileElement checked_howoften_selection;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[3]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText']")
+	private List<MobileElement> prefilled_text_List;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedSubText']")
+	private List<MobileElement> prefilled_digit_List;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther[4]/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/footer_text']")
+	private MobileElement footer_text;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/background_view']/android.widget.LinearLayout/android.widget.TextView[@index='0']")
+	private MobileElement rewards_banner;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/background_view']/android.widget.LinearLayout/android.widget.TextView[@index='1']")
+	private MobileElement rewards_content;
+
+	String[] paymentOption = { getTextInCurrentLocale(StringArray.ARRAY_RBP_SPECIFIC_DATE),
+			getTextInCurrentLocale(StringArray.ARRAY_RBP_AFTER_NEMBER_PAYMENT),
+			getTextInCurrentLocale(StringArray.ARRAY_RBP_DECIDE_CANCEL) };
+
+	MobileElement[] Payment_End_Item = { null, null, null };
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Number of Payments']/../XCUIElementTypeTextField")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Number of Payments']/../android.widget.EditText")
+	private MobileElement numer_of_payment;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar/following-sibling::XCUIElementTypeOther[1]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
+	private MobileElement rbp_error_message;
 
 	String accesscardTable = " //XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable";
 	String Firstpart = "//XCUIElementTypeCell[";
@@ -250,14 +342,31 @@ public class Bill_PayCanada extends _CommonPage {
 
 	}
 
-	private void selectPayee() {
+	private void init_Payment_End_Item() {
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			Payment_End_Item[0] = on_a_specific_date;
+			Payment_End_Item[1] = after_a_number_of_payments;
+			Payment_End_Item[2] = when_I_decide_to_cancel;
+		} else {
+			Payment_End_Item[0] = payment_end_list.get(0);
+			Payment_End_Item[1] = payment_end_list.get(1);
+			Payment_End_Item[2] = payment_end_list.get(2);
+		}
+	}
+
+	private String selectPayee() {
 
 		String payeeAccount = getTestdata("Payee");
 		System.out.println("Payee account:" + payeeAccount);
+		String payeeNumber = mobileAction.FuncGetValByRegx(payeeAccount, "\\d+");
+		String payeeName = payeeAccount.replaceAll(payeeNumber, "").trim();
+		System.out.println("Payee name:" + payeeName);
 		try {
-			String payeeNumber = mobileAction.FuncGetValByRegx(payeeAccount, "\\d+");
-			String payeeName = payeeAccount.replaceAll(payeeNumber, "").trim();
-			System.out.println("Payee name:" + payeeName);
+			if (!mobileAction.verifyElementIsPresent(select_payee)) {
+				System.out.println("Payee is prefilled");
+				return payeeName;
+			}
+
 			mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
 			// select payee
 			mobileAction.FuncClick(select_payee, "Select Payee");
@@ -269,8 +378,80 @@ public class Bill_PayCanada extends _CommonPage {
 				payeeAccountxpath = "//android.widget.TextView[contains(@text,'" + payeeName + "')]";
 			}
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(payeeAccountxpath, true, 10, "up");
+			return payeeName;
 		} catch (Exception e) {
 			System.out.println("Failed to select payee:" + payeeAccount);
+			return "";
+		}
+
+	}
+
+	private String fillAmount() {
+		// Fill amount
+		String amount_num = getTestdata("Amount");
+		try {
+			String defaultAmount = mobileAction.getValue(amount);
+			if (!defaultAmount.equals("$0.00") && !defaultAmount.contains("Amount")) {
+				System.out.println("Amount is prefilled");
+				return defaultAmount;
+			}
+			mobileAction.FuncClick(amount, "Amount button clicked");
+			amount.clear();
+			amount.sendKeys(amount_num);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.FuncClickDone();
+			} else {
+				mobileAction.FuncHideKeyboard();
+			}
+			return amount_num;
+		} catch (Exception e) {
+			System.out.println("Failed to fill amount:" + amount_num);
+			return "";
+		}
+	}
+
+	private String selectFromAccount() {
+		// select from account
+		String from_Account = getTestdata("FromAccount");
+		// in case from account include account name
+		if (!from_Account.matches(".*\\d+")) {
+			System.out.println("From account is re-used. must be prefilled");
+			return from_Account;
+		}
+		String AccountNum = mobileAction.FuncGetValByRegx(from_Account, "\\d+");
+		String accountName = from_Account.replaceAll(AccountNum, "").trim();
+		try {
+			if (mobileAction.verifyElementIsPresent(from_account_dropdown)) {
+
+				mobileAction.FuncClick(from_account_dropdown, "From Account clicked");
+				String fromAccountxPath = "";
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					fromAccountxPath = "//XCUIElementTypeStaticText[contains(@label,'" + AccountNum + "')]";
+				} else {
+					fromAccountxPath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNoValue' and @text='"
+							+ AccountNum + "']";
+				}
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(fromAccountxPath, true, 5, "up");
+				return accountName;
+			} else {
+				System.out.println("From Account is prefilled");
+				return accountName;
+			}
+		} catch (Exception e) {
+			System.out.println("Failed to select account:" + from_Account);
+			return "";
+		}
+	}
+
+	public void verifyPayBillHeader() {
+		Decorator();
+		try {
+			mobileAction.verifyElementTextIsDisplayed(payBill_Header,
+					getTextInCurrentLocale(StringArray.ARRAY_PAY_CANDIAN_BILL_TITLE));
+		} catch (NoSuchElementException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 
 	}
@@ -279,20 +460,12 @@ public class Bill_PayCanada extends _CommonPage {
 
 		try {
 			Decorator();
+			selectPayee();
+			fillAmount();
+			selectFromAccount();
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 
-				mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
-				selectPayee();
-				Decorator();
-				Thread.sleep(2000);
-				mobileAction.FuncClick(amount, "Amount button clicked");
-				String Amount = getTestdata("Amount");
-				// mobileAction.FuncSendKeys(amount, Amount);
-				Decorator();
-				Thread.sleep(2000);
-				amount.sendKeys(Amount);
-				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
 				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(pay_bill, "Pay Bill");
@@ -309,24 +482,6 @@ public class Bill_PayCanada extends _CommonPage {
 
 			else {
 
-				// String payee=getTestdata("Payee");
-				// String ToPostAccountXpath =
-				// "//android.widget.TextView[@resource-id='com.td:id/txtPayee'
-				// and contains(@text,'"
-				// + payee + "')]";
-				//
-				// if (mobileAction.verifyElementIsPresent(payeeValue)) {
-				//
-				// } else {
-				// mobileAction.FuncClick(to_account_post, "Select Payee");
-				// mobileAction.FuncElementSwipeWhileNotFound(ListViewToAccount,
-				// ToPostAccountXpath, 1, "up", true);
-				// mobileAction.waitForElementToDisappear(t_select_to_account);
-				// }
-				selectPayee();
-				mobileAction.FuncClick(amount, "Amount button clicked");
-				mobileAction.FuncSendKeys(amount, getTestdata("Amount"));
-				mobileAction.FuncHideKeyboard();
 				mobileAction.FuncClick(continue_pay, "Continue_pay");
 				mobileAction.FuncClick(pay_bill, "Pay Bill");
 				mobileAction.verifyElement(confirmationText, txtconfirmationText);
@@ -1289,11 +1444,682 @@ public class Bill_PayCanada extends _CommonPage {
 	public void clickStartDate() {
 		Decorator();
 		try {
-			mobileAction.FuncClick(startDate, "Start Date");
-		}catch (Exception e) {
+			mobileAction.FuncClick(start_end_Date_List.get(0), "Start Date");
+		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
+	}
+
+	public void verifyPayCanadianBillContent() {
+		Decorator();
+		try {
+			String[] expectedCaption = { getTextInCurrentLocale(StringArray.ARRAY_RBP_ACESS_CARD),
+					getTextInCurrentLocale(StringArray.ARRAY_PAYEE_CAPTION),
+					getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT),
+					getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT),
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN),
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_START_DATE),
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_FREQUENCY),
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_PAYMENT_END), };
+			selectOngoingFromHowOftenDropDown();
+			mobileAction.verifyElementTextIsDisplayed(payBill_Header,
+					getTextInCurrentLocale(StringArray.ARRAY_PAY_CANDIAN_BILL_TITLE));
+
+			int capturedListSize = paybill_caption_list.size();
+			System.out.println("Caption list size:" + capturedListSize);
+			if (capturedListSize == expectedCaption.length - 1) {
+				for (int i = 0; i < capturedListSize; i++) {
+					mobileAction.verifyElementTextIsDisplayed(paybill_caption_list.get(i), expectedCaption[i + 1]);
+				}
+			} else if (capturedListSize == expectedCaption.length) {
+				for (int i = 0; i < capturedListSize; i++) {
+					mobileAction.verifyElementTextIsDisplayed(paybill_caption_list.get(i), expectedCaption[i]);
+				}
+			} else {
+				System.out.println("Something wrong......");
+			}
+
+			init_Payment_End_Item();
+
+			if (!mobileAction.verifyElementIsPresent(payment_end_list.get(0))) {
+				mobileAction.FuncSwipeWhileElementNotFound(payment_end_list.get(0), false, 3, "up");
+			}
+
+			// if
+			// (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios"))
+			// {
+			// mobileAction.verifyElementTextIsDisplayed(on_a_specific_date,
+			// getTextInCurrentLocale(StringArray.ARRAY_RBP_SPECIFIC_DATE));
+			// mobileAction.verifyElementTextIsDisplayed(after_a_number_of_payments,
+			// getTextInCurrentLocale(StringArray.ARRAY_RBP_AFTER_NEMBER_PAYMENT));
+			// mobileAction.verifyElementTextIsDisplayed(when_I_decide_to_cancel,
+			// getTextInCurrentLocale(StringArray.ARRAY_RBP_DECIDE_CANCEL));
+			//
+			// } else {
+			// mobileAction.verifyElementTextIsDisplayed(payment_end_list.get(0),
+			// getTextInCurrentLocale(StringArray.ARRAY_RBP_SPECIFIC_DATE));
+			// mobileAction.verifyElementTextIsDisplayed(payment_end_list.get(1),
+			// getTextInCurrentLocale(StringArray.ARRAY_RBP_AFTER_NEMBER_PAYMENT));
+			// mobileAction.verifyElementTextIsDisplayed(payment_end_list.get(2),
+			// getTextInCurrentLocale(StringArray.ARRAY_RBP_DECIDE_CANCEL));
+			// }
+			mobileAction.verifyElementTextIsDisplayed(Payment_End_Item[0],
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_SPECIFIC_DATE));
+			mobileAction.verifyElementTextIsDisplayed(Payment_End_Item[1],
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_AFTER_NEMBER_PAYMENT));
+			mobileAction.verifyElementTextIsDisplayed(Payment_End_Item[2],
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_DECIDE_CANCEL));
+
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void verifyHowOftenDropdownDefault() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(howOften, "How Often");
+			if (mobileAction.verifyElementIsPresent(checked_howoften_selection)) {
+				mobileAction.verifyElementTextIsDisplayed(checked_howoften_selection,
+						getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN_ONCE));
+			} else {
+				mobileAction.Report_Fail("Failed to find checked howoften selection");
+			}
+
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void verifyStartDateDefaultToToday() {
+		Decorator();
+		try {
+			LocalDate localDate = LocalDate.now();
+			String currentDate = DateTimeFormatter.ofPattern("MMM dd, yyyy").format(localDate);
+			currentDate = currentDate.replace(" 0", " ");
+			System.out.println("Today is:" + currentDate);
+
+			if (mobileAction.verifyElementIsPresent(dateText_List.get(0))) {
+				mobileAction.verifyElementTextIsDisplayed(dateText_List.get(0), currentDate);
+			} else {
+				mobileAction.Report_Fail("Failed to default Start Date");
+			}
+
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void selectOngoingFromHowOftenDropDown() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(howOften, "How Often");
+			// select ongoing
+			String ongoingXpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				ongoingXpath = "//XCUIElementTypeStaticText[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN_ONGOING) + "']";
+			} else {
+				ongoingXpath = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN_ONGOING) + "']";
+			}
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(ongoingXpath, true, 5, "up");
+
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void verifyFieldsArePrefilledAfterBackFromAddPayee() {
+		Decorator();
+		try {
+			String payeeText = selectPayee();
+			String amount_num = fillAmount();
+			String from_Account = selectFromAccount();
+
+			if (payeeText.isEmpty() || amount_num.isEmpty() || from_Account.isEmpty()) {
+				mobileAction.Report_Fail("Failed to fill pay bill");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				return;
+			}
+
+			// clicking add payee button
+			mobileAction.FuncClick(addCanadianPayee, "Add Payee button clicked");
+			mobileAction.waitProgressBarVanish();
+			mobileAction.ClickBackButton();
+
+			// verify prefilled text
+
+			String capturedPayee = mobileAction.getValue(prefilled_text_List.get(0));
+			String capturedPayee_num = mobileAction.getValue(prefilled_digit_List.get(0));
+			if (payeeText.contains(capturedPayee) && payeeText.contains(capturedPayee_num)) {
+				mobileAction.Report_Pass_Verified(payeeText);
+			} else {
+				mobileAction.Report_Fail(payeeText + " is not prefilled");
+			}
+
+			String capturedAmount = mobileAction.getValue(amount);
+			capturedAmount = capturedAmount.replace("$", "");
+			if (capturedAmount.equals(amount_num)) {
+				mobileAction.Report_Pass_Verified(capturedAmount);
+			} else {
+				mobileAction.Report_Fail(amount_num + " is not prefilled");
+			}
+
+			mobileAction.verifyElementTextIsDisplayed(prefilled_digit_List.get(1), from_Account);
+
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void verifyFrequencyOptions() {
+		Decorator();
+		try {
+			selectOngoingFromHowOftenDropDown();
+
+			if (mobileAction.verifyElementIsPresent(frequency)) {
+
+				mobileAction.FuncClick(frequency, "Frequency");
+				int frequencySize = StringArray.ARRAY_RBP_FREQUENCY_OPTION.length;
+				System.out.println("Number of frequency option:" + frequencySize);
+				String optionXpath = "";
+				for (int i = 0; i < frequencySize; i++) {
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+						optionXpath = "//XCUIElementTypeStaticText[@label='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_RBP_FREQUENCY_OPTION_IOS[i]) + "']";
+					} else {
+						optionXpath = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_RBP_FREQUENCY_OPTION[i]) + "']";
+					}
+					mobileAction.FuncSwipeWhileElementNotFoundByxpath(optionXpath, false, 5, "up");
+				}
+
+			} else {
+				mobileAction.Report_Fail("Frequency is not present");
+			}
+
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void verifyRBPFootNoteContent() {
+		Decorator();
+		try {
+			selectOngoingFromHowOftenDropDown();
+
+			init_Payment_End_Item();
+			if (mobileAction.verifyElementIsPresent(payment_end_list.get(0))) {
+				// if
+				// (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios"))
+				// {
+				// mobileAction.FuncClick(on_a_specific_date, "'On a specific
+				// date' is clicked");
+				// } else {
+				// mobileAction.FuncClick(payment_end_list.get(0), "'On a
+				// specific date' is clicked");
+				// }
+				mobileAction.FuncClick(Payment_End_Item[0], "'On a specific date' is clicked");
+				mobileAction.verifyElementTextIsDisplayed(footer_text,
+						getTextInCurrentLocale(StringArray.ARRAY_RBP_ON_SPECIFIC_DATE_FOOTNOTE));
+
+			} else {
+				mobileAction.Report_Fail("'On a specific date' is not present");
+			}
+
+			if (mobileAction.verifyElementIsPresent(payment_end_list.get(2))) {
+				// if
+				// (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios"))
+				// {
+				// mobileAction.FuncClick(when_I_decide_to_cancel, "'When I
+				// decide to cancel' is clicked");
+				// } else {
+				// mobileAction.FuncClick(payment_end_list.get(2), "'When I
+				// decide to cancel' is clicked");
+				// }
+				mobileAction.FuncClick(Payment_End_Item[2], "'When I decide to cancel' is clicked");
+				mobileAction.verifyElementTextIsDisplayed(footer_text,
+						getTextInCurrentLocale(StringArray.ARRAY_RBP_DECIDE_TO_CANCEL_FOOTNOTE));
+
+			} else {
+				mobileAction.Report_Fail("'When I decide to cancel' is not present");
+			}
+
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void verifyAndClickRewardBanner() {
+		Decorator();
+		try {
+			selectPayee();
+			//
+			if (mobileAction.verifyElementIsPresent(rewards_banner)) {
+				mobileAction.FuncClick(rewards_banner, "Pay With Rewards clicked");
+				mobileAction.waitProgressBarVanish();
+			} else {
+				mobileAction.Report_Fail("Rewards banner is not present");
+			}
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void verifyRewardsContent() {
+		Decorator();
+		try {
+			selectPayee();
+			//
+			if (mobileAction.verifyElementIsPresent(rewards_banner)) {
+				mobileAction.verifyElementTextIsDisplayed(rewards_content,
+						getTextInCurrentLocale(StringArray.ARRAY_RBP_REWARDS_CONTENT));
+			} else {
+				mobileAction.Report_Fail("Rewards banner is not present");
+			}
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	private String getFrequencymapping(String freqencyInDataSheet) {
+		// freqencyInDataSheet : fre-0, ... frq-5
+		if (!freqencyInDataSheet.matches("fre\\-\\d{1}")) {
+			System.out.println("Frequency format is wrong...:" + freqencyInDataSheet);
+			return "";
+		}
+		int index = Integer.parseInt(freqencyInDataSheet.substring(4, 5));
+		if (index > 6) {
+			index = index % 6;
+		}
+		String realFreq = "";
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			realFreq = getTextInCurrentLocale(StringArray.ARRAY_RBP_FREQUENCY_OPTION_IOS[index]);
+		} else {
+			realFreq = getTextInCurrentLocale(StringArray.ARRAY_RBP_FREQUENCY_OPTION[index]);
+		}
+		System.out.println("Frequency mapping:" + realFreq);
+		return realFreq;
+	}
+
+	public void FillPayBillWithOnce() {
+		Decorator();
+		String payeeText = selectPayee();
+		String amount_num = fillAmount();
+		String from_Account = selectFromAccount();
+
+		// Save how often in "Price"
+		CL.getTestDataInstance().TCParameters.put("Price", "Once");
+
+		// Save start date in "Timeout"
+		try {
+			String startDate_text = mobileAction.getValue(dateText_List.get(0));
+			System.out.println("Start Date:" + startDate_text);
+			CL.getTestDataInstance().TCParameters.put("Timeout", startDate_text);
+		} catch (Exception e) {
+			mobileAction.Report_Fail("Failed to get 'start date'");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+
+		if (payeeText.isEmpty() || amount_num.isEmpty() || from_Account.isEmpty()) {
+			mobileAction.Report_Fail("Failed to fill pay bill");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		} else {
+			CL.getTestDataInstance().TCParameters.put("Payee", payeeText);
+			CL.getTestDataInstance().TCParameters.put("Amount", amount_num);
+			CL.getTestDataInstance().TCParameters.put("FromAccount", from_Account);
+			mobileAction.Report_Pass_Verified("Pay bill is filled");
+		}
+	}
+
+	public void continuePayBill() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(continue_pay, "Continue_pay");
+
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	private void selectFrequency(String frequencyOption) {
+		try {
+			mobileAction.FuncClick(frequency, "Frequency");
+
+			String optionXpath = "";
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				optionXpath = "//XCUIElementTypeStaticText[@label='" + frequencyOption + "']";
+			} else {
+				optionXpath = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue' and @text='"
+						+ frequencyOption + "']";
+			}
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(optionXpath, true, 5, "up");
+
+		} catch (Exception e) {
+
+		}
+	}
+
+	private String randomSelectFrequency() {
+		int frequencySize = StringArray.ARRAY_RBP_FREQUENCY_OPTION.length;
+		int randFund = getRandomInRange(0, frequencySize - 1);
+		String freqOption = "";
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			freqOption = getTextInCurrentLocale(StringArray.ARRAY_RBP_FREQUENCY_OPTION_IOS[randFund]);
+		} else {
+			freqOption = getTextInCurrentLocale(StringArray.ARRAY_RBP_FREQUENCY_OPTION[randFund]);
+		}
+
+		System.out.println("Selected frequency: " + freqOption);
+		selectFrequency(freqOption);
+		return freqOption;
+	}
+
+	public void FillPayBillWithOngoingRandomly() {
+		Decorator();
+		String payeeText = selectPayee();
+		String amount_num = fillAmount();
+		String from_Account = selectFromAccount();
+
+		if (payeeText.isEmpty() || amount_num.isEmpty() || from_Account.isEmpty()) {
+			mobileAction.Report_Fail("Failed to fill pay bill");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+		CL.getTestDataInstance().TCParameters.put("Payee", payeeText);
+		CL.getTestDataInstance().TCParameters.put("Amount", amount_num);
+		CL.getTestDataInstance().TCParameters.put("FromAccount", from_Account);
+
+		selectOngoingFromHowOftenDropDown();
+		init_Payment_End_Item();
+		// Save how often in "Price"
+		CL.getTestDataInstance().TCParameters.put("Price", "Ongoing");
+
+		String startDate_day = Calendar.get().selectTodaysFollowingWorkDay();
+		System.out.println("Today's following working day:" + startDate_day);
+		try {
+			mobileAction.FuncClick(start_end_Date_List.get(0), "Start Date");
+		} catch (Exception e) {
+			mobileAction.Report_Fail("Failed to click 'Start Date'");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+		String[] startDate_day_Array = startDate_day.split(" ");
+		String yearOfDay = startDate_day_Array[0];
+		String monthOfDay = startDate_day_Array[1];
+		String dayOfDay = startDate_day_Array[2];
+
+		// Save start date in "Timeout"
+		CL.getTestDataInstance().TCParameters.put("Timeout", monthOfDay + " " + dayOfDay + ", " + yearOfDay);
+		Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
+		String freq = randomSelectFrequency();
+		CL.getTestDataInstance().TCParameters.put("MerchantName", freq);
+
+		mobileAction.FuncSwipeOnce("up");
+		// RandomSelect on option of "Payment will end"
+		int paymentSize = payment_end_list.size();
+		System.out.println("Payment size:" + paymentSize);
+		int randFund = getRandomInRange(0, paymentSize - 1);
+		System.out.println("Payment Will End is selected:" + paymentOption[randFund]);
+		try {
+			mobileAction.FuncClick(Payment_End_Item[randFund], paymentOption[randFund]);
+		} catch (Exception e) {
+			mobileAction.Report_Fail("Failed to click '" + paymentOption[randFund] + "'");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+
+		try {
+			switch (randFund) {
+			case 0:
+				mobileAction.FuncClick(start_end_Date_List.get(1), "End Date");
+				String endDate_day = Calendar.get().selectRandomDayInXmonthLater(yearOfDay, monthOfDay, dayOfDay, 2);
+				System.out.println("Random working day:" + endDate_day);
+				String[] endDate_day_Array = endDate_day.split(" ");
+				yearOfDay = endDate_day_Array[0];
+				monthOfDay = endDate_day_Array[1];
+				dayOfDay = endDate_day_Array[2];
+				Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
+				CL.getTestDataInstance().TCParameters.put("SecondTimeout",
+						monthOfDay + " " + dayOfDay + ", " + yearOfDay);
+				break;
+			case 1:
+				mobileAction.FuncSwipeWhileElementNotFound(numer_of_payment, true, 3, "up");
+				numer_of_payment.clear();
+				String numpayments = "4";
+				numer_of_payment.sendKeys(numpayments);
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					mobileAction.FuncClickDone();
+				} else {
+					mobileAction.FuncHideKeyboard();
+				}
+				mobileAction.FuncSwipeOnce("down");
+				CL.getTestDataInstance().TCParameters.put("SecondTimeout", numpayments);
+				break;
+			case 2:
+
+				break;
+			}
+
+		} catch (Exception e) {
+			mobileAction.Report_Fail("Failed to click 'End Date'");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+
+		mobileAction.Report_Pass_Verified("Pay bill is filled");
 
 	}
+
+	// startDate_day: Mar 3, 2018
+	public void FillPayBillWithOngoing(String startDate_day, String frequency, String endDateOrnumberOfPayment) {
+		Decorator();
+		String payeeText = selectPayee();
+		String amount_num = fillAmount();
+		String from_Account = selectFromAccount();
+
+		if (payeeText.isEmpty() || amount_num.isEmpty() || from_Account.isEmpty()) {
+			mobileAction.Report_Fail("Failed to fill pay bill");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+		CL.getTestDataInstance().TCParameters.put("Payee", payeeText);
+		CL.getTestDataInstance().TCParameters.put("Amount", amount_num);
+		CL.getTestDataInstance().TCParameters.put("FromAccount", from_Account);
+
+		selectOngoingFromHowOftenDropDown();
+		init_Payment_End_Item();
+		// Save how often in "Price"
+		CL.getTestDataInstance().TCParameters.put("Price", "Ongoing");
+
+		try {
+			mobileAction.FuncClick(start_end_Date_List.get(0), "Start Date");
+		} catch (Exception e) {
+			mobileAction.Report_Fail("Failed to click 'Start Date'");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+
+		// get current date
+		LocalDate localDate = LocalDate.now();
+		String currentDate = DateTimeFormatter.ofPattern("MMM dd, yyyy").format(localDate);
+		currentDate = currentDate.replace(" 0", " ");
+		currentDate = currentDate.replace(",", "");
+		System.out.println("Today is:" + currentDate);
+		String[] todayStr = currentDate.split(" ");
+		String yearOfToday = todayStr[2];
+		String monthOfToday = todayStr[0];
+		String dayOfToday = todayStr[1];
+
+		if (startDate_day.matches("randomly \\d+ months later")) {
+			try {
+				String xMonthLater = mobileAction.FuncGetValByRegx(startDate_day, "\\d+");
+
+				int xMonthLater_int = Integer.parseInt(xMonthLater);
+
+				String startDateDay = Calendar.get().selectRandomDayInXmonthLater(yearOfToday, monthOfToday, dayOfToday,
+						xMonthLater_int);
+				System.out.println("Random working day:" + startDateDay);
+				String[] endDate_day_Array = startDateDay.split(" ");
+				String yearOfDay = endDate_day_Array[0];
+				String monthOfDay = endDate_day_Array[1];
+				String dayOfDay = endDate_day_Array[2];
+				Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
+				CL.getTestDataInstance().TCParameters.put("Timeout", monthOfDay + " " + dayOfDay + ", " + yearOfDay);
+
+			} catch (Exception e) {
+
+			}
+		} else {
+			System.out.println("Start Date format is wrong");
+			mobileAction.Report_Fail("'Start Date' format is wrong");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+
+		// String[] startDate_day_Array = startDate_day.split("-");
+		// String yearOfDay = startDate_day_Array[2];
+		// String monthOfDay = startDate_day_Array[1];
+		// String dayOfDay = startDate_day_Array[0];
+		//
+		// // Save start date in "Timeout"
+		// CL.getTestDataInstance().TCParameters.put("Timeout", monthOfDay + " "
+		// + dayOfDay + ", " + yearOfDay);
+		// Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
+		String realFrequency = getFrequencymapping(frequency);
+		selectFrequency(realFrequency);
+		CL.getTestDataInstance().TCParameters.put("MerchantName", realFrequency);
+
+		mobileAction.FuncSwipeOnce("up");
+		// RandomSelect on option of "Payment will end"
+		int randFund = 0;
+		if (endDateOrnumberOfPayment.contains("cancel")) {
+			// When I decide to cancel selected
+			randFund = 2;
+		} else if (endDateOrnumberOfPayment.matches("\\d+")) {
+			// number of payment is selected
+			randFund = 1;
+		} else if (endDateOrnumberOfPayment.matches("randomly \\d+ months later")) {
+			randFund = 0;
+		} else {
+			System.out.println("Wrong format:" + endDateOrnumberOfPayment);
+			return;
+		}
+
+		System.out.println("Payment Will End is selected:" + paymentOption[randFund]);
+		try {
+			mobileAction.FuncClick(Payment_End_Item[randFund], paymentOption[randFund]);
+		} catch (Exception e) {
+			mobileAction.Report_Fail("Failed to click '" + paymentOption[randFund] + "'");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+
+		try {
+			switch (randFund) {
+			case 0:
+				mobileAction.FuncClick(start_end_Date_List.get(1), "End Date");
+
+				try {
+					String xMonthLater = mobileAction.FuncGetValByRegx(endDateOrnumberOfPayment, "\\d+");
+
+					int xMonthLater_int = Integer.parseInt(xMonthLater);
+
+					String endDateDay = Calendar.get().selectRandomDayInXmonthLater(yearOfToday, monthOfToday,
+							dayOfToday, xMonthLater_int);
+					System.out.println("Random working day:" + endDateDay);
+					String[] endDate_day_Array = endDateDay.split(" ");
+					String yearOfDay = endDate_day_Array[0];
+					String monthOfDay = endDate_day_Array[1];
+					String dayOfDay = endDate_day_Array[2];
+					Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
+					CL.getTestDataInstance().TCParameters.put("SecondTimeout",
+							monthOfDay + " " + dayOfDay + ", " + yearOfDay);
+
+				} catch (Exception e) {
+
+				}
+
+				// String[] endDate_day_Array =
+				// endDateOrnumberOfPayment.split("-");
+				// yearOfDay = endDate_day_Array[2];
+				// monthOfDay = endDate_day_Array[1];
+				// dayOfDay = endDate_day_Array[0];
+				// Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
+				// CL.getTestDataInstance().TCParameters.put("SecondTimeout",
+				// monthOfDay + " " + dayOfDay + ", " + yearOfDay);
+				break;
+			case 1:
+				// mobileAction.FuncClick(numer_of_payment, "Number of
+				// payment");
+				mobileAction.FuncSwipeWhileElementNotFound(numer_of_payment, true, 3, "up");
+				numer_of_payment.clear();
+				numer_of_payment.sendKeys(endDateOrnumberOfPayment);
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					mobileAction.FuncClickDone();
+				} else {
+					mobileAction.FuncHideKeyboard();
+				}
+				Thread.sleep(1000);
+				// workaround: click how often
+				mobileAction.FuncSwipeOnce("down");
+				CL.getTestDataInstance().TCParameters.put("SecondTimeout", endDateOrnumberOfPayment);
+				break;
+			case 2:
+
+				break;
+			}
+
+		} catch (Exception e) {
+			mobileAction.Report_Fail("Failed to click 'End Date'");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+
+		mobileAction.Report_Pass_Verified("Pay bill is filled");
+	}
+
+	public void FillPayBillWithOngoing() {
+		String startDate_day = getTestdata("Timeout");
+		String endDateOrNumPayment = getTestdata("SecondTimeout");
+		String freq = getTestdata("MerchantName");
+
+		if (startDate_day == null || endDateOrNumPayment == null || freq == null) {
+			FillPayBillWithOngoingRandomly();
+		} else {
+			System.out.println("Start Date:" + startDate_day);
+			System.out.println("Frequency:" + freq);
+			System.out.println("endDateOrNumPayments:" + endDateOrNumPayment);
+			FillPayBillWithOngoing(startDate_day, freq, endDateOrNumPayment);
+		}
+
+	}
+
+	public void VerifyRBPErrorMessage() {
+		Decorator();
+		try {
+			String expectedError = getTextInCurrentLocale(StringArray.ARRAY_RBP_PAY_BILL_ERROR_MSG);
+			mobileAction.verifyElementTextIsDisplayed(rbp_error_message, expectedError);
+
+		} catch (Exception e) {
+			mobileAction.Report_Fail("Failed to verify error message");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
 }

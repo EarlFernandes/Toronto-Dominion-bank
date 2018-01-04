@@ -3,6 +3,7 @@ package com.td;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -171,6 +172,12 @@ public class _CommonPage {
 		}
 
 		return text;
+	}
+	
+	public int getRandomInRange(int min, int max) {
+		Random rand = new Random();
+		int randomNum = rand.nextInt((max - min) + 1) + min;
+		return randomNum;
 	}
 
 }

@@ -163,7 +163,7 @@
 		<dependency>
 			<groupId>com.td.test.framework</groupId>
 			<artifactId>com.td.test.framework</artifactId>
-			<version>0.0.3h</version>
+			<version>0.0.3k</version>
 		</dependency>
 		<dependency>
 			<groupId>io.appium</groupId>

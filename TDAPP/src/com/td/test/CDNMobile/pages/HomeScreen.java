@@ -1087,9 +1087,9 @@ public class HomeScreen extends _CommonPage {
 
 		try {
 			if (mobileAction.verifyElementIsPresent(home_bar)) {
-				mobileAction.Report_Pass_Verified("Home View");
+				mobileAction.Report_Pass_Verified("Home Dashboard");
 			} else {
-				mobileAction.Report_Fail("Home View not verified");
+				mobileAction.Report_Fail("Home Dashboard not verified");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			}
 		} catch (Exception e) {

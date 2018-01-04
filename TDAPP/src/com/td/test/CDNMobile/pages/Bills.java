@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.MobileAction2;
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -272,7 +273,7 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementIsDisplayed(bills_Header, "bills_Header");
+			mobileAction.verifyElementTextIsDisplayed(bills_Header, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_BILLS));
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

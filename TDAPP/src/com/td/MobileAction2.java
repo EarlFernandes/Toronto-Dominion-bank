@@ -2997,7 +2997,7 @@ public class MobileAction2 extends CommonLib {
 				HideKeyBoard_IOS();
 				GetReporting().FuncReport("Pass", "The Key board was hidden");
 			} else {
-				String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @label='"
+				String donePath = "//*[@name='Go' or @name='Toolbar Done Button' or @label='Done' or @label='OK' or @label='"
 						+ getAppString("secureLoginEditButtonDone") + "']";
 				MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
 				Done.click();
@@ -3342,7 +3342,7 @@ public class MobileAction2 extends CommonLib {
 				} catch (Exception e1) {
 					// Added for R18.3
 					if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-						menuSlideXpath = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/flyout_menu_dashboard']";
+						menuSlideXpath = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/flyout_menu_dashboard' or @resource-id='com.td:id/flyout_menu']";
 						try {
 							((AppiumDriver) GetDriver()).findElement(By.xpath(menuSlideXpath));
 							isMenuOpened = true;

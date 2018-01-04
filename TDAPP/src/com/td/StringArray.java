@@ -511,6 +511,62 @@ public final class StringArray {
 	public static final String[] ARRAY_FORM_INFORMATION = { "Personal Information", "", "", "" };
 	// End of CLIP
 
+	// RBP
+	public static final String[] ARRAY_RBP_ACESS_CARD = { "Access Card", "Type De Paiement", "添加美国收款人", "新增美國收款人" };
+	public static final String[] ARRAY_RBP_HOWOFTEN = { "How Often", "Type De Paiement", "添加美国收款人", "新增美國收款人" };
+	public static final String[] ARRAY_RBP_HOWOFTEN_ONCE = { "Once", "Unique", "添加美国收款人", "新增美國收款人" };
+	public static final String[] ARRAY_RBP_HOWOFTEN_ONGOING = { "Ongoing", "Récurrent", "添加美国收款人", "新增美國收款人" };
+	public static final String[] ARRAY_RBP_FREQUENCY = { "Frequency", "Fréquence", "添加美国收款人", "新增美國收款人" };
+	public static final String[] ARRAY_RBP_PAYMENT_END = { "Payment Will End", "Arr?ter les paiements?", "添加美国收款人",
+			"新增美國收款人" };
+	public static final String[] ARRAY_RBP_START_DATE = { "Start Date", "Ajouter un preneur américain", "添加美国收款人",
+			"新增美國收款人" };
+	public static final String[] ARRAY_RBP_END_DATE = { "End Date", "Ajouter un preneur américain", "添加美国收款人",
+			"新增美國收款人" };
+	public static final String[] ARRAY_RBP_NUMBER_OF_PAYMENTS = { "Number of Payments", "Ajouter un preneur américain",
+			"添加美国收款人", "新增美國收款人" };
+	public static final String[] ARRAY_RBP_SPECIFIC_DATE = { "On a specific date", "? une date pr?cise", "添加美国收款人",
+			"新增美國收款人" };
+	public static final String[] ARRAY_RBP_AFTER_NEMBER_PAYMENT = { "After a number of payments",
+			"Apr?s plusieurs paiements", "添加美国收款人", "新增美國收款人" };
+	public static final String[] ARRAY_RBP_DECIDE_CANCEL = { "When I decide to cancel", "Lorsque je le d?ciderai",
+			"添加美国收款人", "新增美國收款人" };
+	public static final String[][] ARRAY_RBP_FREQUENCY_OPTION = { { "Weekly", "", "", "" }, { "Bi-Weekly", "", "", "" },
+			{ "Month-end", "", "", "" }, { "Monthly", "", "", "" }, { "Semi-Monthly", "", "", "" },
+			{ "Quarterly", "", "", "" }
+
+	};
+
+	public static final String[] ARRAY_REVIEW_HEADER = { "Review", "", "", "" };
+	public static final String[][] ARRAY_RBP_FREQUENCY_OPTION_IOS = { { "Weekly", "", "", "" },
+			{ "Bi-weekly", "", "", "" }, { "Month-end", "", "", "" }, { "Monthly", "", "", "" },
+			{ "Semi-monthly", "", "", "" }, { "Quarterly", "", "", "" }
+
+	};
+
+	public static final String[] ARRAY_RBP_ON_SPECIFIC_DATE_FOOTNOTE = {
+			"Payments scheduled for a weekend or statutory holiday are withdrawn immediately, and then sent to the payee the next business day. It may take a few days for the payment to appear on your bill.",
+			"", "", "" };
+
+	public static final String[] ARRAY_RBP_DECIDE_TO_CANCEL_FOOTNOTE = {
+			"When you select this option, payments will continue until you go to the bill details screen for this bill payment and select cancel.",
+			"", "", "" };
+
+	public static final String[] ARRAY_RBP_REWARDS_CONTENT = {
+			"Redeem up to $197 in TD Rewards Points to pay down your credit card balance", "", "", "" };
+	public static final String[] ARRAY_RBP_REVIEW_BANNER = { "Please review the details and confirm your bill payment",
+			"", "", "" };
+	public static final String[] ARRAY_SCHEDULED_PAYMENTS_TITLE = { "Scheduled Payments", "", "", "" };
+	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG = {
+			"You're not able to schedule that many payments within a 5-year period. Please type in a lower number of payments.",
+			"", "不允许在 5 年内安排太多次数的付款。请输入较少付款次数", "" };
+	// public static final String[] ARRAY_RBP_FREQUENCY_SEMI_MONTHLY = {
+	// "Semi-Monthly","","",""};
+	// public static final String[] ARRAY_RBP_FREQUENCY_QUARTERLY = {
+	// "Quarterly","","",""};
+	//
+
+	// End of RBP
 	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",
 			"安全問題" };
 	public static final String[] ARRAY_SECURITY_LOGIN = { "Login", "Ouvrir une session", "登录", "登入" };
@@ -525,6 +581,8 @@ public final class StringArray {
 			"新增美國收款人" };
 	public static final String[] ARRAY_PAY_US_BILL_TITLE = { "Pay U.S. Bill", "Payer des factures américaines",
 			"支付美国账单", "支付美國賬單" };
+	public static final String[] ARRAY_PAYEE_CAPTION = { "Payee", "Preneur", "收款人", "收款人" };
+	public static final String[] ARRAY_PAY_CANDIAN_BILL_TITLE = { "Pay Bill", "Paiement de factures", "支付账单", "支付賬單" };
 	public static final String[] ARRAY_INVESTING_OPEN_ACCOUNT = { "Open a TD Direct Investing Account",
 			"Ouvrir un compte Placements directs TD", "开设道明自管投资账户", "開設道明自管投資賬戶" };
 	public static final String[] ARRAY_INVESTING_CROSS_MSG = {
@@ -580,8 +638,8 @@ public final class StringArray {
 	public static final String[] MONEY_SENT_LBL = { "Money Sent", "Fonds virés", "", "" };
 	public static final String[] MONEY_REQUESTED_LBL = { "Money Requested", "Fonds demandés", "", "" };
 	public static final String[] SEE_ALL_LBL = { "See all", "Tout afficher", "", "" };
-	public static final String[] SEND_MONEY_TRANSFER_CANCELLED_RECEIPT = { "Transfer Cancelled",
-			"Virement annulé", "", "" };
+	public static final String[] SEND_MONEY_TRANSFER_CANCELLED_RECEIPT = { "Transfer Cancelled", "Virement annulé", "",
+			"" };
 	public static final String[] ADD_AUTODEPOSIT_RECEIPT_HEADER = { "Almost done!", "Vous avez presque terminé!", "",
 			"" };
 	public static final String[] ADD_AUTODEPOSIT_RECEIPT_SUB_HEADER = { "Check your email for instructions",
