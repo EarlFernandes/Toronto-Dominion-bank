@@ -56,7 +56,8 @@ public class AppointmentBooking extends _CommonPage {
 		Decorator();
 		String expectedText = getTextInCurrentLocale(StringArray.ARRAY_APPOINTMENT_BOOKING);
 		try {
-			mobileAction.verifyTextEquality(mobileAction.getValue(appointmentbooking_header), expectedText);
+			mobileAction.verifyTextEquality(mobileAction.getValue(PageHeader.get().getHeaderTextElement()),
+					expectedText);
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
