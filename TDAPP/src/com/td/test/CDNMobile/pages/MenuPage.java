@@ -67,7 +67,7 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶']")
 	private MobileElement accounts_button;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Contact Us' or @label='Contactez-nous' or @label='联系我们' or @label='聯絡我們']")
+	@iOSXCUITFindBy(xpath = "//*[(@label='Contact Us' or @label='Contactez-nous' or @label='联系我们' or @label='聯絡我們') and @name='flyout_title']")
 	@AndroidFindBy(xpath = "//*[@text='Contact Us' or @text='Contactez-nous' or @text='联系我们' or @text='聯絡我們']")
 	private MobileElement contactUs;
 
