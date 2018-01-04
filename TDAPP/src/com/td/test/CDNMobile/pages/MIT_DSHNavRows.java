@@ -101,8 +101,8 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Alerts' or @text='Alertes' or @text='提醒' or @text='提醒']")
 	private MobileElement NR_Alerts;
 
-	@iOSFindBy(xpath = "//*[@label='Open a Bank Account' or @label='Ouvrir un compte bancaire' or @label='开设银行账户' or @label='開設銀行賬戶']")
-	@AndroidFindBy(xpath = "//*[@text='Open a Bank Account' or @text='Ouvrir un compte bancaire' or @text='开设银行账户' or @text='開設銀行賬戶']")
+	@iOSFindBy(xpath = "//*[@label='Open a Bank Account' or @label='Ouvrir un compte bancaire' or @label='开立银行账户' or @label='開設銀行賬戶']")
+	@AndroidFindBy(xpath = "//*[@text='Open a Bank Account' or @text='Ouvrir un compte bancaire' or @text='开立银行账户' or @text='開設銀行賬戶']")
 	private MobileElement NR_OpenBankAccount;
 
 	@iOSFindBy(xpath = "//*[@label='Banking' or @label='Services bancaires' or @label='理财' or @label='理財']")

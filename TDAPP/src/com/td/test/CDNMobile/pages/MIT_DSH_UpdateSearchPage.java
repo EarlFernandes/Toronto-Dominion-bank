@@ -109,7 +109,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and (@text='RECENT SEARCHES' or @text='RECHERCHES RÉCENTES' or @text='最近的搜索' or @text='最近的搜尋')]")
 	private MobileElement hdrRECENT;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Clear text' or contains(@label,'Effacer le texte')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Clear text' or contains(@label,'Effacer le texte') or contains(@label,'清除文本')]")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/btn_clear_search_text']")
 	private MobileElement btnClear;
 

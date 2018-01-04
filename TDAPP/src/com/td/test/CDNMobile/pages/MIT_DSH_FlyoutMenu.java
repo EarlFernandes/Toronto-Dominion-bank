@@ -171,8 +171,8 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Banking' or @text='Services bancaires' or @text='理财' or @text='理財') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblMobileDepositInvesting;
 
-	@iOSXCUITFindBy(xpath = "//*[(@label='TD for Me' or @label='TD et moi' or @label='TD for Me' or @label='TD et moi') and @name='TDVIEW_TITLE']")
-	@AndroidFindBy(xpath = "//*[(@text='TD for Me' or @text='TD et moi' or @text='TD for Me' or @text='TD et moi') and @resource-id='android:id/action_bar_title']")
+	@iOSXCUITFindBy(xpath = "//*[(@label='TD For Me' or @label='TD et moi' or @label='TD for Me' or @label='TD et moi') and @name='TDVIEW_TITLE']")
+	@AndroidFindBy(xpath = "//*[(@text='TD For Me' or @text='TD et moi' or @text='TD for Me' or @text='TD et moi') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblTDforMe;
 
 	@iOSXCUITFindBy(xpath = "//*[@label='Investing' or @label='Placements' or @label='投资' or @label='投資']")

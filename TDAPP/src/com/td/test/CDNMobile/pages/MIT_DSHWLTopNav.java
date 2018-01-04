@@ -90,7 +90,7 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 		String sCurrentWatchlist = null;
 		String sNewWatchList = null;
 		try {
-			
+
 			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncClick(BT_More, "More Button");
@@ -98,7 +98,8 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 			sCurrentWatchlist = mobileAction.FuncGetText(LT_WatchListDropDown);
 			mobileAction.FuncClick(LT_WatchListDropDown, "LT_WatchListDropDown");
 
-			String xpathWatchlistItem = "//*[@text='" + sCurrentWatchlist + "' or @label='" + sCurrentWatchlist + "']";
+			String xpathWatchlistItem = "//*[@text='" + sCurrentWatchlist + "' or contains(@label,'" + sCurrentWatchlist
+					+ "')]";
 
 			mobileAction.FuncClick(BT_WatchListCancel, "CANCEL Button");
 
@@ -124,9 +125,5 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 			e.printStackTrace();
 		}
 	}
-	
-
-
-
 
 }
