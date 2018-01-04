@@ -340,6 +340,7 @@ public class PayBill extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				// Select 1st of next month as future payment date
 				mobileAction.FuncClick(nextMonthButton, "Calendar Next Month clicked");
+				mobileAction.sleep(2000);
 				int nextWeekDay = getNextWeekDate();
 				nextDate = mobileAction.verifyElementUsingXPath(
 						"//android.view.View[@content-desc='" + nextWeekDay + "']", "Next Week Day Calendar button");
