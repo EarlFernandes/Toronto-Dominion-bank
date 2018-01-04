@@ -280,7 +280,7 @@ public class Bill_PayCanada extends _CommonPage {
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label='When I decide to cancel'`]")
 	private MobileElement when_I_decide_to_cancel;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label='When I decide to cancel'`]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name='actionsheet_checkmark']/../XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/imgActionCheckMark']/../android.widget.TextView")
 	private MobileElement checked_howoften_selection;
 
