@@ -347,6 +347,7 @@ public class PayBill extends _CommonPage {
 			} else {
 				// Click midpoint in next month calendar grid
 				mobileAction.FuncClick(nextMonthButton, "Calendar Next Month clicked");
+				mobileAction.sleep(2000);
 				Point midPoint = calendarGrid.getCenter();
 				mobileAction.TapCoOrdinates(midPoint.getX(), midPoint.getY(), "Calendar midpoint");
 			}

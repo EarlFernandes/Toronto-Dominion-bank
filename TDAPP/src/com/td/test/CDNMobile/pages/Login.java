@@ -1656,7 +1656,7 @@ public class Login extends _CommonPage {
 				} else {
 					String currentState = mobileAction.FuncGetText(rememberMeSwitch);
 					System.out.println(currentState);
-					if (currentState.contains("Remember me")
+					if (currentState.contains("Remember me") || currentState.contains("Remember Me")
 							|| currentState.contains(getTextInCurrentLocale(StringArray.ARRAY_LOGIN_REMEMBER_ME_ON))) {
 						mobileAction.FuncClick(rememberMeSwitch, "Remember Me Switch OFF");
 					}

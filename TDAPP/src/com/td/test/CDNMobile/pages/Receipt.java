@@ -118,7 +118,7 @@ public class Receipt extends _CommonPage {
 	private MobileElement scheduledPaymentsBtn;
 
 	@iOSXCUITFindBy(xpath = "//*[@name='QUICKACCESS_CELL_BACKHOME_ON' or @name='QUICKACCESS_CELL_QUICKLINKS_BACKHOME_ON']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/home' or @resource-id='com.td:id/quick_link_item_layout_button']")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/home' or @resource-id='com.td:id/quick_link_item_layout_button']")
 	private MobileElement goBackHomeButton;
 
 	@iOSXCUITFindBy(accessibility = "QUICKACCESS_CELL_QUICKLINKS_TRANSFER")
