@@ -197,7 +197,7 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 			mobileAction.FuncVerifyTextEquals(lblQuickAccessTitle,
 					getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_SWITCH_AND));
 
-			mobileAction.verifyElementIsDisplayed(btnQuickAccessClose, "btnQuickAccessClose");
+			//mobileAction.verifyElementIsDisplayed(btnQuickAccessClose, "btnQuickAccessClose");
 
 			mobileAction.verifyElementIsDisplayed(BtnQuickAccessSettings, "BtnQuickAccessSettings");
 

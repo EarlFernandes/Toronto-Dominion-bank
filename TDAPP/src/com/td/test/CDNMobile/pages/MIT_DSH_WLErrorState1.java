@@ -58,7 +58,7 @@ public class MIT_DSH_WLErrorState1 extends _CommonPage {
 	MobileElement btnDropDown;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'List 02')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and @text='List 02']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and contains(@text,'02')]")
 	private MobileElement ListExpiredCollapse;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Liste 09']")
@@ -77,7 +77,10 @@ public class MIT_DSH_WLErrorState1 extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and @text='List 01']")
 	private MobileElement price;
 
-	
+	@iOSXCUITFindBy(accessibility = "dropdownButton")
+	@AndroidFindBy(id = "com.td:id/tv_watchlist_name_header")
+	private MobileElement LT_Watchlist;
+
 	public void verifyErrorExpiredSymbol() {
 		Decorator();
 		try {
@@ -93,7 +96,7 @@ public class MIT_DSH_WLErrorState1 extends _CommonPage {
 
 			}
 
-			mobileAction.FuncClick(btnDropDown, "btnDropDown");
+			mobileAction.FuncClick(LT_Watchlist, "LT_Watchlist");
 
 			mobileAction.FuncClick(ListExpiredCollapse, "ListExpiredCollapse");
 
@@ -125,7 +128,7 @@ public class MIT_DSH_WLErrorState1 extends _CommonPage {
 
 			}
 
-			mobileAction.FuncClick(btnDropDown, "btnDropDown");
+			mobileAction.FuncClick(LT_Watchlist, "LT_Watchlist");
 
 			mobileAction.FuncClick(ListEACollapse, "ListEACollapse");
 

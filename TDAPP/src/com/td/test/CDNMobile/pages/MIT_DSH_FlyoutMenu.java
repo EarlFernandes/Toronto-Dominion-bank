@@ -878,7 +878,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				// mobileAction.verifyElementIsDisplayed(password, "password");
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					mobileAction.FuncClick(lblTDforMe, "backButton");
+					mobileAction.ClickBackButton();
 
 				} else {
 
@@ -889,10 +889,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 			} else {
 				clickFlyout(flyoutTDforMeLink, "flyoutTDforMeLink");
 
-				mobileAction.verifyElementIsDisplayed(lblTDforMe, "lblTDforMe");
+				//mobileAction.verifyElementIsDisplayed(lblTDforMe, "lblTDforMe");
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					mobileAction.FuncClick(lblTDforMe, "lblTDforMe");
+					//mobileAction.FuncClick(lblTDforMe, "lblTDforMe");
+					mobileAction.ClickBackButton();
 
 				}
 
