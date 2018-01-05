@@ -563,7 +563,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(
 							(mobileAction.verifyElementUsingXPath(sXPathAnd, aSymbolArray[i])), aSymbolArray[i]);
 
-					mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(BTN_BackMod), "BTN_BackMod");
+					//mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(BTN_BackMod), "BTN_BackMod");
 
 					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
 

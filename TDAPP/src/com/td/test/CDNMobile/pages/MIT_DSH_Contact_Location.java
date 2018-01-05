@@ -179,9 +179,9 @@ public class MIT_DSH_Contact_Location extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(lblFindLocation, "lblFindLocation");
 
-			mobileAction.verifyElementIsDisplayed(btnFilter, "btnFilter");
+			/*mobileAction.verifyElementIsDisplayed(btnFilter, "btnFilter");
 			mobileAction.FuncClick(btnFilter, "btnFilter");
-
+*/
 			mobileAction.verifyElementIsDisplayed(filterOptions1, "filterOptions1");
 			mobileAction.verifyElementIsDisplayed(filterOptions2, "filterOptions2");
 

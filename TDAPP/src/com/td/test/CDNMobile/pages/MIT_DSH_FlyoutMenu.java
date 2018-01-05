@@ -731,7 +731,9 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 				} else {
-					mobileAction.verifyElementIsDisplayed(lblMobileDepositInvesting, "Banking");
+
+					clickFlyout(flyoutBillsLink, "flyoutBillsLink");
+					mobileAction.verifyElementIsDisplayed(lblBill, "lblBill");
 
 					// mobileAction.FuncClick(lblMobileDepositInvesting,
 					// "Banking");
@@ -828,10 +830,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 					mobileAction.verifyElementIsDisplayed(lblMobileDepositInvesting, "lblMobileDeposit");
 
-					//mobileAction.FuncClick(lblMobileDepositInvesting, "lblMobileDeposit");
+					// mobileAction.FuncClick(lblMobileDepositInvesting,
+					// "lblMobileDeposit");
 
 					mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
-					
+
 					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 					break;
 
@@ -839,10 +842,11 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 					mobileAction.verifyElementIsDisplayed(lblMobileDepositBanking, "lblMobileDeposit");
 
-				//	mobileAction.FuncClick(lblMobileDepositBanking, "lblMobileDeposit");
+					// mobileAction.FuncClick(lblMobileDepositBanking,
+					// "lblMobileDeposit");
 
 					mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
-					
+
 					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 
 					break;

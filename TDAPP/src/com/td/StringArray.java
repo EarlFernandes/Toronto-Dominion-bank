@@ -246,7 +246,7 @@ public final class StringArray {
 	// MIT Dashboard START
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_SENDMONEY = { "SEND MONEY", "ENVOI DE FONDS", "汇款", "匯款" };
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_TRANSFER = { "TRANSFER", "VIREMENT", "转账", "轉賬" };
-	public static final String[] ARRAY_DASHBOARD_QUICKLINK_PAYNOW = { "PAY NOW", "PAYER MAINTENANT", "马上付款", "立即付款" };
+	public static final String[] ARRAY_DASHBOARD_QUICKLINK_PAYNOW = { "PAY NOW", "PAYER MAINTENANT", "现在付款", "立即付款" };
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_DEPOSIT = { "DEPOSIT", "DÉPÔT", "存款", "存款" };
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_WATCHLISTS = { "WATCHLISTS", "LISTES DE SURVEILLANCE",
 			"自选股观察名单", "自選股觀察名單" };
@@ -281,7 +281,7 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_NAVROW_QUOTE = { "Quote", "Cote", "报价", "報價" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_ALERTS = { "Alerts", "Alertes", "提醒", "提醒" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_OPENABANKACCOUNT = { "Open a Bank Account",
-			"Ouvrir un compte bancaire", "开设银行账户", "開設銀行賬戶" };
+			"Ouvrir un compte bancaire", "开立银行账户", "開設銀行賬戶" };
 	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGS = { "Home Screen Settings",
 			"Paramètres de l’écran d’accueil", "主页设置", "首頁設定" };
 
