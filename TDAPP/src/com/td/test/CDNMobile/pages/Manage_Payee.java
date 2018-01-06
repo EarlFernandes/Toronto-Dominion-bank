@@ -78,7 +78,8 @@ public class Manage_Payee extends _CommonPage {
 	@FindBy(xpath = "//div[@class='column2']/span")
 	private WebElement viewDescriptionField;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[8]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[9]/XCUIElementTypeStaticText[1] | "
+			+ "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[8]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "(//div[@class='column2'])[2]/span")
 	private WebElement viewDescriptionUSField;
 

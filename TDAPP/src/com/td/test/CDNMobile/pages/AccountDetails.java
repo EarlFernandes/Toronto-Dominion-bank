@@ -35,7 +35,8 @@ public class AccountDetails extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/current_balance")
 	private MobileElement acctBalance;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2] | "
+			+ "//XCUIElementTypeTable[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(id = "com.td:id/current_balance")
 	private MobileElement acctBankBalance;
 
