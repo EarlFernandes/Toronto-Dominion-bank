@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,23 +19,23 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
-import io.appium.java_client.pagefactory.iOSFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
-/**
- * OTP Setup is a webview, try not use native components, instead use webview
- * components to identify key components
- * 
- * @author hochil5
- *
- */
 public class TDIOTPSetup extends _CommonPage {
 
 	private static TDIOTPSetup OneTimePasswordSetup;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")
-	@AndroidFindBy(id = "com.td:id/btn_primary")
-	private MobileElement getStartedNewButton;
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@FindBy(xpath = "//button[contains(@ng-click,'retrieveConsent')]")
+	private WebElement getStartedNewButton;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeSwitch[1]")
+	@FindBy(id = "cb-consent")
+	private MobileElement agreeCheckbox;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
+	@FindBy(xpath = "//button[contains(@translate,'BUTTON.AGREE')]")
+	private MobileElement agreeButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Continue') or contains(@label,'Continuer') or contains(@label,'继续') or contains(@label,'繼續') ]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue' or @resource-id='com.td:id/btn_primary']")
@@ -54,33 +53,29 @@ public class TDIOTPSetup extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/btn_primary")
 	private MobileElement continueButton;
 
-	@iOSXCUITFindBy(accessibility = "TDTERMS_BASE_ACCEPT_BTN")
-	@AndroidFindBy(id = "com.td:id/btn_continue")
-	private MobileElement agreeButton;
-
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField[contains(@value,'area code') or contains(@value,'indicatif régional') or contains(@value,'包含区号') or contains(@value,'包含區號') ]")
-	@FindBy(id = "numberPhone")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTextField[1]")
+	@FindBy(id = "phoneNumber")
 	private WebElement editPhoneField;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeTextField[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTextField[2]")
 	@FindBy(id = "nickname")
 	private WebElement editNicknameField;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Continue') or contains(@label,'Continuer') or contains(@label,'继续') or contains(@label,'繼續') ]")
-	@FindBy(id = "addPhoneEnter")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@FindBy(xpath = "//button[contains(@ng-click,'submitForm')]")
 	private WebElement addPhoneButton;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeOther[3]/XCUIElementTypeButton[1]")
-	@AndroidFindBy(id = "android:id/button1")
-	private MobileElement confirmButton;
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
+	@FindBy(xpath = "//button[contains(@ng-click,'openConfirmTestPhone')]")
+	private WebElement confirmButton;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Add Another Number') or contains(@label,'Ajouter un autre numéro') or contains(@label,'添加其他号码') or contains(@label,'新增另一個號碼') ]")
-	@FindBy(xpath = "//a[contains(@ng-click,'add-phone')]")
-	private WebElement addAnotherPhoneButton;
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@FindBy(xpath = "//button[contains(@ng-click,'nextStep')]")
+	private WebElement addAnotherPhoneNoButton;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Continue') or contains(@label,'Continuer') or contains(@label,'继续') or contains(@label,'繼續') ]")
-	@FindBy(id = "addPhoneSubmit")
-	private WebElement addPhoneContinueButton;
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
+	@FindBy(xpath = "//button[contains(@ng-click,'openAddPhoneFormModal')]")
+	private WebElement addAnotherPhoneYesButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(id = "com.td:id/alertTitle")
@@ -154,9 +149,13 @@ public class TDIOTPSetup extends _CommonPage {
 	@FindBy(id = "getCode")
 	private WebElement getCodeButton;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Continue') or contains(@label,'Continuer') or contains(@label,'继续') or contains(@label,'繼續') ]")
-	@FindBy(id = "getCode")
-	private WebElement testPhonesContinueButton;
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")
+	@FindBy(xpath = "//button[contains(@ng-click,'closeModal')]")
+	private WebElement testPhonesNoThanksButton;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[3]")
+	@FindBy(xpath = "//button[contains(@ng-click,'proceed')]")
+	private WebElement addPhoneContinueButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeTextField[1]")
 	@FindBy(id = "secretCode")
@@ -186,12 +185,12 @@ public class TDIOTPSetup extends _CommonPage {
 	@FindBy(id = "getCode")
 	private WebElement passcodeContinueButton;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeTextField[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTextField[1]")
 	@FindBy(id = "securityEmail")
 	private WebElement securityEmailField;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Continue') or contains(@label,'Continuer') or contains(@label,'继续') or contains(@label,'繼續') ]")
-	@FindBy(id = "enter")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@FindBy(id = "nextStep")
 	private WebElement emailContinueButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
@@ -246,14 +245,20 @@ public class TDIOTPSetup extends _CommonPage {
 		Decorator();
 		try {
 			String acctType = getTestdata("Accounts");
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchToWebView();
+				mobileAction.sleep(3000); // Webview needs time to load
+			}
+
 			if (acctType.equalsIgnoreCase("new")) {
 				mobileAction.FuncClick(getStartedNewButton, "Get started button");
 				mobileAction.sleep(2000);
-				// mobileAction.FuncClick(continueButton, "Continue button");
-				// mobileAction.sleep(2000);
 			} else {
 				mobileAction.FuncClick(getStartedExistingButton, "Get started button");
 			}
+
+			mobileAction.FuncClick(agreeCheckbox, "AGREE/Accept checkbox");
 
 			mobileAction.FuncClick(agreeButton, "AGREE/Accept button");
 			mobileAction.waitProgressBarVanish();
@@ -331,13 +336,13 @@ public class TDIOTPSetup extends _CommonPage {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 						mobileAction.switchToWebView();
 						mobileAction.sleep(3000); // Webview needs time to load
-						mobileAction.FuncScrollIntoView(addAnotherPhoneButton, "Add Another Phone Button");
+						mobileAction.FuncScrollIntoView(addAnotherPhoneYesButton, "Add Another Phone Button");
 					} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 						mobileAction.FunctionSwipe("up", 100, 0);
 						mobileAction.sleep(2000);
 					}
 
-					mobileAction.FuncClick(addAnotherPhoneButton, "Add Another Phone Button");
+					mobileAction.FuncClick(addAnotherPhoneYesButton, "Add Another Phone Button");
 					mobileAction.sleep(3000);
 				}
 				addPhoneNumber(phoneNumber, nickname);
@@ -380,6 +385,8 @@ public class TDIOTPSetup extends _CommonPage {
 				mobileAction.sleep(2000);
 
 				mobileAction.switchToWebView();
+				mobileAction.FuncScrollIntoView(addPhoneButton, "Add Phone button");
+				mobileAction.sleep(3000);
 				mobileAction.FuncClick(addPhoneButton, "Add Phone button");
 
 			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -417,7 +424,7 @@ public class TDIOTPSetup extends _CommonPage {
 				mobileAction.switchToWebView();
 			}
 
-			mobileAction.FuncClick(testPhonesContinueButton, "Add Phone Continue button");
+			mobileAction.FuncClick(testPhonesNoThanksButton, "No Thanks button");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1009,7 +1016,7 @@ public class TDIOTPSetup extends _CommonPage {
 			mobileAction.verifyElementTextContains(phoneCard5Nickname, nickname);
 
 			// Verify Add Phone button not displayed
-			mobileAction.verifyElementNotPresent(addAnotherPhoneButton, "Add Another Phone button");
+			mobileAction.verifyElementNotPresent(addAnotherPhoneYesButton, "Add Another Phone button");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
