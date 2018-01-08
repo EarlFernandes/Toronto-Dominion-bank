@@ -78,12 +78,10 @@ public class Manage_Payee extends _CommonPage {
 	@FindBy(xpath = "//div[@class='column2']/span")
 	private WebElement viewDescriptionField;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[8]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[8]/XCUIElementTypeStaticText[1] | "
+			+ "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[9]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "(//div[@class='column2'])[2]/span")
 	private WebElement viewDescriptionUSField;
-
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[9]/XCUIElementTypeStaticText[1]")
-	private WebElement viewDescriptionUSFieldiPad;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[8]/XCUIElementTypeTextField[1] | "
 			+ "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[9]/XCUIElementTypeTextField[1]")
@@ -750,16 +748,8 @@ public class Manage_Payee extends _CommonPage {
 			String usAccount = getTestdata("USAccount");
 			if (acctNum == null && usAccount != null) {
 				// US account
-
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")
-						&& mobileAction.verifyElementIsPresent(viewDescriptionUSFieldiPad)) {
-					mobileAction.verifyElementIsDisplayed(viewDescriptionUSFieldiPad, "View Description US field");
-					mobileAction.verifyElementTextContains(viewDescriptionUSFieldiPad, payee);
-				} else {
-					mobileAction.verifyElementIsDisplayed(viewDescriptionUSField, "View Description US field");
-					mobileAction.verifyElementTextContains(viewDescriptionUSField, payee);
-				}
-
+				mobileAction.verifyElementIsDisplayed(viewDescriptionUSField, "View Description US field");
+				mobileAction.verifyElementTextContains(viewDescriptionUSField, payee);
 			} else {
 				// Cdn account
 				mobileAction.verifyElementIsDisplayed(viewDescriptionField, "View Description field");
