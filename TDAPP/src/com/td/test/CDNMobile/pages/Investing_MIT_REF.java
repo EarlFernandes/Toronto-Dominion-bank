@@ -275,7 +275,7 @@ public class Investing_MIT_REF extends _CommonPage {
 				mobileAction.FuncClick(HoldingsTab, "Holdings Tab");
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(ETF, true, 30, "Up");
 
-				Trade_MIT_REF.get().verifyQuoteDetails();
+				Trade_MIT_REF.get().verifyMultiQuoteDetails();
 
 				mobileAction.verifyElementIsDisplayed(refreshBtn, "Refresh");
 

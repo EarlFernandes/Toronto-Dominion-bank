@@ -3,6 +3,8 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.pdfbox.util.StringUtil;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.StringArray;
@@ -200,7 +202,7 @@ public class Trade_MIT_REF extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//*[@name='Back']")
 	private MobileElement quoteBackBtn;
 
-	@AndroidFindBy(id = "android:id/button1")
+	@AndroidFindBy(id = "com.td:id/error_text")
 	private MobileElement exchangeAgreementError;
 
 	@AndroidFindBy(id = "Buy_Entity_Button")
@@ -428,17 +430,17 @@ public class Trade_MIT_REF extends _CommonPage {
 
 					symbol = mobileAction.mobileElementUsingXPath("//android.widget.ImageView[@content-desc='"
 							+ nxtSymbolImage[quoteCounter] + "']/following-sibling::android.widget.TextView[@text='"
-							+ getTestdata("nxtSymbol") + "']");
+							+ getTestdata("NxtSymbol") + "']");
 				} else {
 
 					symbolImgStr = nxtSymbolImage[quoteCounter].replaceAll("\\s+", "");
 					symbol = mobileAction.mobileElementUsingXPath("//XCUIElementTypeCell[contains(@name,'"
-							+ getTestdata("nxtSymbol") + "') and contains(@name,'" + symbolImgStr + "')]");
+							+ getTestdata("NxtSymbol") + "') and contains(@name,'" + symbolImgStr + "')]");
 				}
 
-				mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("nxtSymbol"));
+				mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("NxtSymbol"));
 
-				mobileAction.FuncClick(symbol, "Symbol: " + getTestdata("nxtSymbol"));
+				mobileAction.FuncClick(symbol, "Symbol: " + getTestdata("NxtSymbol"));
 
 				HomeScreen.get().back_button();
 
@@ -493,6 +495,41 @@ public class Trade_MIT_REF extends _CommonPage {
 		}
 	}
 
+	
+	
+	
+	/**
+	 * This method will verify
+	 * 
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             If there is problem while reporting. In case the element is
+	 *             not found over the screen.
+	 */
+	public void verifyMultiQuoteDetails() {
+
+		Decorator();
+		try {
+
+			mobileAction.verifyElementIsDisplayed(symbol, "Symbol " + symbol.getText());
+			mobileAction.verifyElementIsDisplayed(companyName, "Company name " + companyName.getText());
+			mobileAction.verifyElementIsDisplayed(lastPrice, "Last Price " + lastPrice.getText());
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	
+	
+	
 	/**
 	 * This method will verify
 	 * 
@@ -511,9 +548,11 @@ public class Trade_MIT_REF extends _CommonPage {
 			String actionToPerform = null;
 			MobileElement priceElement = null;
 			MobileElement goodTillElement = null;
+			String accountType=getTestdata("AccountType");
 
 			if (platform.equalsIgnoreCase("Android")) {
 
+				mobileAction.FunctionSwipe("down", 200, 200);
 				mobileAction.FuncClick(accountFieldTxt, "Account drop down");
 
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(
@@ -539,7 +578,7 @@ public class Trade_MIT_REF extends _CommonPage {
 				mobileAction.FuncClick(amountField, "Amount");
 				mobileAction.FuncSendKeys(amountField, getTestdata("Amount"));
 				mobileAction.FuncHideKeyboard();
-
+				mobileAction.FunctionSwipe("up", 2000, 200);
 				mobileAction.FuncClick(price, "price");
 
 				priceElement = mobileAction.mobileElementUsingXPath("//android.widget.TextView[@text='"
@@ -556,9 +595,11 @@ public class Trade_MIT_REF extends _CommonPage {
 
 				mobileAction.FunctionSwipe("up", 200, 200);
 
+				if(StringUtils.isEmpty(accountType)){
 				mobileAction.FuncClick(tradingPassword, "Trading Password");
 				mobileAction.FuncSendKeys(tradingPassword, getTestdata("Trading_Pwd"));
 				mobileAction.FuncHideKeyboard();
+				}
 
 				mobileAction.FuncClick(previewOrder, "Preview Order Button");
 
@@ -1076,7 +1117,7 @@ public class Trade_MIT_REF extends _CommonPage {
 								+ nxtSymbol + "']");
 			}
 
-			mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("nxtSymbol"));
+			mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("NxtSymbol"));
 
 			quoteCounter++;
 			if (quoteCounter >= nxtSymbolImage.length)
@@ -1135,7 +1176,7 @@ public class Trade_MIT_REF extends _CommonPage {
 
 			nxtSymbol = nxtSymbol + " ";
 
-			for (int i = 0; i < symbolImgStr.length(); i++) {
+			for (int i = 0; i < nxtSymbolImage.length; i++) {
 				// Entering second symbol
 				mobileAction.FuncClick(quote_enter_Name_or_symbol, "Search symbol field");
 
@@ -1144,19 +1185,19 @@ public class Trade_MIT_REF extends _CommonPage {
 				if (platform.equalsIgnoreCase("Android")) {
 
 					symbol = mobileAction.mobileElementUsingXPath("//android.view.View[contains(@text,'"
-							+ quoteNameSaver + "')]/following-sibling::android.view.View[@text='"
+							+ nxtSymbolImage[i].replaceAll("\\s+", "") + "')]/following-sibling::android.view.View[@text='"
 							+ getTestdata("NxtSymbol") + "']");
 				} else {
 
 					symbol = mobileAction.mobileElementUsingXPath(
-							"//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@name,'" + quoteNameSaver
+							"//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@name,'" + nxtSymbolImage[i]
 									+ "')]/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[@name='"
 									+ getTestdata("NxtSymbol") + "']");
 				}
 
-				mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("nxtSymbol"));
+				mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("NxtSymbol"));
 
-				mobileAction.FuncClick(symbol, "Symbol: " + getTestdata("nxtSymbol"));
+				mobileAction.FuncClick(symbol, "Symbol: " + getTestdata("NxtSymbol"));
 
 				if (platform.equalsIgnoreCase("Android")) {
 					HomeScreen.get().back_button();
@@ -1240,7 +1281,7 @@ public class Trade_MIT_REF extends _CommonPage {
 							+ "') and contains(@name,'" + symbolImgStr + "')]");
 				}
 
-				mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("nxtSymbol"));
+				mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("NxtSymbol"));
 
 				quoteCounter++;
 				if (quoteCounter >= nxtSymbolImage.length)
@@ -1274,43 +1315,35 @@ public class Trade_MIT_REF extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(exchangeAgreementError, "Exchange Agreement Error message");
 
-			if (lastPrice.getText().equalsIgnoreCase(null)) {
+			mobileAction.FunctionSwipe("up", 2000, 200);
+			
+			if (lastPrice.getText().equalsIgnoreCase("–")) {
 				mobileAction.stringToReport("Pass", "Last Price is null");
 			} else {
 				mobileAction.stringToReport("Fail", "Last Price is not null: " + lastPrice.getText());
 			}
 
-			if (dollarChange.getText().equalsIgnoreCase(null)) {
-				mobileAction.stringToReport("Pass", "Dollar Change is null");
-			} else {
-				mobileAction.stringToReport("Fail", "Dollar Change is not null: " + dollarChange.getText());
-			}
-
-			if (dollarChangePercent.getText().equalsIgnoreCase(null)) {
-				mobileAction.stringToReport("Pass", "Dollar Change % is null");
-			} else {
-				mobileAction.stringToReport("Fail", "Dollar Change % is not null: " + dollarChangePercent.getText());
-			}
-
-			if (bidPrice.getText().equalsIgnoreCase(null)) {
+			
+		
+			if (bidPrice.getText().equalsIgnoreCase("–")) {
 				mobileAction.stringToReport("Pass", "Bid Price is null");
 			} else {
 				mobileAction.stringToReport("Fail", "Bid Price is not null: " + bidPrice.getText());
 			}
 
-			if (askPrice.getText().equalsIgnoreCase(null)) {
+			if (askPrice.getText().equalsIgnoreCase("–")) {
 				mobileAction.stringToReport("Pass", "Ask Price is null");
 			} else {
 				mobileAction.stringToReport("Fail", "Ask Price is not null: " + askPrice.getText());
 			}
 
-			if (bidSize.getText().equalsIgnoreCase(null)) {
+			if (bidSize.getText().equalsIgnoreCase("(–)")) {
 				mobileAction.stringToReport("Pass", "Bid Size is null");
 			} else {
 				mobileAction.stringToReport("Fail", "Bid Size is not null: " + bidSize.getText());
 			}
 
-			if (askSize.getText().equalsIgnoreCase(null)) {
+			if (askSize.getText().equalsIgnoreCase("(–)")) {
 				mobileAction.stringToReport("Pass", "Ask Size is null");
 			} else {
 				mobileAction.stringToReport("Fail", "Ask Size is not null: " + askSize.getText());
