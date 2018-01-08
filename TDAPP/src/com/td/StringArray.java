@@ -215,16 +215,14 @@ public final class StringArray {
 	public static final String[] ARRAY_OTP_SETUP_SETUP_COMPLETE_HEADER = { "Setup Complete", "Configuration terminée",
 			"设置完成", "設定完成" };
 
-	public static final String[] ARRAY_OTP_UPDATE_HEADER = {
-			"You can review and manage your current security settings below",
-			"Vous pouvez consulter et gérer vos paramètres de sécurité ci-dessous", "您可在下方查看并管理您目前的安全设置",
-			"您可在下方查看並管理您目前的安全設定" };
+	public static final String[] ARRAY_OTP_UPDATE_HEADER = { "See and change your security settings",
+			"Consultez et modifiez vos paramètres de sécurité", "查看并更改安全设置", "查看並更改安全設定" };
 	public static final String[] ARRAY_OTP_UPDATE_TEST_PHONE_HEADER = { "Test Phones (optional)",
 			"Test de téléphone (facultatif)", "测试电话号码（可选）", "測試電話號碼（非必要）" };
 	public static final String[] ARRAY_OTP_UPDATE_VERIFY_NUMBER_SCREEN = { "Verify Number", "Vérifier le numéro",
 			"验证号码", "驗證號碼" };
-	public static final String[] ARRAY_OTP_UPDATE_VERIFY_NUMBER = { "Verify number", "Tester le téléphone", "验证号码",
-			"驗證號碼" };
+	public static final String[] ARRAY_OTP_UPDATE_VERIFY_NUMBER = { "Verify number", "Tester le téléphone", "测试电话",
+			"測試電話" };
 	public static final String[] ARRAY_OTP_UPDATE_LOGIN_OPTION_HEADER = { "Security Code Login Option",
 			"Option d’ouverture de session", "安全码登录选项", "安全碼登入選項" };
 	public static final String[] ARRAY_OTP_UPDATE_CHANGE_EMAIL_HEADER_OLD = { "Change Security Email",

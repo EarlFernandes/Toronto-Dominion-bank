@@ -225,6 +225,9 @@ public class OTPSetup extends _CommonPage {
 	@FindBy(id = "TBD")
 	private WebElement passwordGoButton;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[6]")
+	private WebElement hideKeyboardIpad;
+
 	private String GOOGLE_VOICE_URL = "https://voice.google.com";
 	private String GOOGLE_VOICE_login = "tdmobileqa1@gmail.com";
 	private String GOOGLE_VOICE_password = "mobileqa1234";
@@ -256,6 +259,7 @@ public class OTPSetup extends _CommonPage {
 
 			mobileAction.FuncClick(agreeButton, "AGREE/Accept button");
 			mobileAction.waitProgressBarVanish();
+			mobileAction.sleep(5000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -779,6 +783,7 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(this.codeFrequencyContinueButton, "Passcode Frequency Continue button");
+			mobileAction.sleep(5000);
 			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {

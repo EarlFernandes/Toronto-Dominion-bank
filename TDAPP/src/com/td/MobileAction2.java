@@ -3391,7 +3391,6 @@ public class MobileAction2 extends CommonLib {
 			return;
 		}
 		System.out.println("Waiting for progress vanishing");
-		sleep(5000);
 		waitForElementToVanish(progressBar);
 	}
 

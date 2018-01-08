@@ -148,6 +148,7 @@ public class OTPChallenge extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
+				mobileAction.sleep(5000);
 			}
 			mobileAction.FuncClick(getCodeButton, "Get Code Button");
 
@@ -175,6 +176,7 @@ public class OTPChallenge extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
+				mobileAction.sleep(5000);
 			}
 
 			mobileAction.FuncClick(securityCodeField, "Security Code Field");
