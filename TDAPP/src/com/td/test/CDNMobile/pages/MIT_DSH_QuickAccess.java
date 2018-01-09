@@ -377,6 +377,7 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 			mobileAction.FuncClick(BT_Home_QuickAccess, "BT_Home_QuickAccess");
 			if (mobileAction.isObjExists(btnGetStarted, 2)) {
 				mobileAction.FuncClick(btnGetStarted, "btnGetStarted");
+				LoginMIT.get().MITLogin();
 				mobileAction.FuncSwipeOnce("up");
 				mobileAction.FuncSwipeOnce("up");
 				mobileAction.FuncSwipeOnce("up");
@@ -388,7 +389,7 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 
 			mobileAction.FuncClick(BtnQuickAccessSettings, "BtnQuickAccessSettings");
 
-			LoginMIT.get().MITLogin();
+			//LoginMIT.get().MITLogin();
 			Thread.sleep(10000);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				quickaccess_switch = mobileAction.verifyElementUsingXPath(

@@ -49,6 +49,14 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 
+	@iOSXCUITFindBy(xpath = "//*[@name = 'NAVIGATION_ITEM_BACK' or @label='Back']")
+	@AndroidFindBy(id = "com.td:id/toolbar_back_button")
+	MobileElement BT_WLBack;
+
+	@iOSXCUITFindBy(accessibility = "WatchListWidgetOverlayViewAction")
+	@AndroidFindBy(id = "com.td:id/watchlist_empty_card_secondmessage")
+	MobileElement BT_WLLoginNow;
+
 	@iOSXCUITFindBy(accessibility = "LOGIN_PASSWORD")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement password;
@@ -582,8 +590,8 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 				clickQuickLink(QL_WATCHLISTS, "WATCHLISTS");
 				if (!bIsAuthenticatedUser) {
-					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
-					mobileAction.FuncClick(BT_Back, "< Button");
+					mobileAction.verifyElementIsDisplayed(BT_WLLoginNow, "Watchlist Login Now");
+					mobileAction.FuncClick(BT_WLBack, "< Button");
 				} else {
 					if (mobileAction.isObjExists(HDR_Watchlists)) {
 						mobileAction.verifyElementIsDisplayed(HDR_Watchlists, "HDR_Watchlists");

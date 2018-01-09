@@ -79,7 +79,7 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 	private MobileElement login;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 06']")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/watchlist_name_drop_down' and @text='List 06']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/watchlist_name_drop_down' and contains(@text,'List 06')]")
 	private MobileElement FilledListExpand;
 
 	@iOSFindBy(xpath = "//*[@label='Home' or @label='Accueil' or @label='主页' or @label='首頁']")
@@ -168,12 +168,12 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
 			
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			/*if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
 				mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
 			} else {
 				mobileAction.FuncClick(BT_Back, "< Button");
-			}
+			}*/
 			mobileAction.verifyElementIsDisplayed(FilledListExpand, "FilledListExpand");
 
 		} catch (Exception e) {

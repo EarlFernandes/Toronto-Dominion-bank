@@ -206,8 +206,8 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Mobile Deposit' or @text='Dépôt mobile' or @text='移动存款服务' or @text='流動存款') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutMobileDepositLink;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[(@label='TD for Me' or @label='TD et Moi') and @name='flyout_title']")
-	@AndroidFindBy(xpath = "//*[(@text='TD for Me' or @text='TD et Moi') and @resource-id='com.td:id/textview_flyout_menu_item']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[(@label='TD for Me' or @label='TD et Moi' or @label='TD et moi') and @name='flyout_title']")
+	@AndroidFindBy(xpath = "//*[(@text='TD for Me' or @text='TD et Moi'or @text='TD et moi') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement flyoutTDforMeLink;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Investing Accounts' or @label='Comptes Placements directs TD' or @label='投资账户' or @label='投資賬戶']")
@@ -639,7 +639,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				mobileAction.ClickBackButton();
 
-				mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
+				//mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 			} else {
 
 				clickFlyout(flyoutTransfersLink, "flyoutTransfersLink");
@@ -717,7 +717,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				mobileAction.ClickBackButton();
 
-				mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
+				//mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 			} else {
 				String UserRole = getTestdata("UserRole", XLSheetUserIDs);
 				if (!UserRole.equalsIgnoreCase("Investing")) {
@@ -770,7 +770,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				mobileAction.ClickBackButton();
 
-				mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
+				//mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 			} else {
 
 				clickFlyout(flyoutTDMySpendLink, "flyoutMobilePayment");
@@ -806,7 +806,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				mobileAction.ClickBackButton();
 
-				mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
+			//	mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 			} else {
 
 				clickFlyout(flyoutMobileDepositLink, "flyoutMobileDepositLink");
@@ -927,7 +927,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				mobileAction.ClickBackButton();
 
-				mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
+				//mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 			} else {
 				clickFlyout(flyoutInvestingAccountsLink, "flyoutInvestingAccountsLink");
 
