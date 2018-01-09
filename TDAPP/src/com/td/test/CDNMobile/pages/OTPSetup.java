@@ -399,6 +399,7 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.FuncClick(addPhoneButton, "Add Phone button");
 
 			}
+			mobileAction.sleep(5000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
