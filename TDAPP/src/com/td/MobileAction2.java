@@ -1,6 +1,8 @@
 package com.td;
 
 import java.io.IOException;
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.ScreenOrientation;
@@ -3464,7 +3466,8 @@ public class MobileAction2 extends CommonLib {
 
 	public void runAppInBackGround() {
 		try {
-			((MobileDriver) GetAppiumDriver()).runAppInBackground(10);
+			// ((MobileDriver) GetAppiumDriver()).runrunAppInBackground(10);
+			((MobileDriver) GetAppiumDriver()).runAppInBackground(Duration.ofSeconds(MaxTimeoutInSec));
 			GetReporting().FuncReport("Pass", "App pushed to background");
 
 		} catch (Exception e) {
