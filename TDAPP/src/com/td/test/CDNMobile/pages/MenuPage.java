@@ -768,7 +768,8 @@ public class MenuPage extends _CommonPage {
 				MobileElement header = PageHeader.get().getHeaderTextElement();
 				mobileAction.verifyElementIsDisplayed(header, headerText);
 
-				if (headerText.contains(header.getText()) || header.getText().contains(headerText)) {
+				if (headerText.contains(header.getText()) || header.getText().contains(headerText)
+						|| header.getText().toLowerCase().contains(headerText.toLowerCase())) {
 					mobileAction.GetReporting().FuncReport("Pass", "Header text: " + header.getText());
 				} else {
 					mobileAction.GetReporting().FuncReport("Fail",

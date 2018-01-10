@@ -749,7 +749,7 @@ public class Manage_Payee extends _CommonPage {
 			if (acctNum == null && usAccount != null) {
 				// US account
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					String descXpath = "XCUIElementTypeStaticText[@label='" + payee + "']";
+					String descXpath = "//XCUIElementTypeStaticText[@label='" + payee + "']";
 					viewDescriptionUSField = mobileAction.verifyWebElementUsingXPath(descXpath, "US Payee Description");
 				}
 
