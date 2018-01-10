@@ -1,4 +1,4 @@
-package com.td.test.CDNMobile.pages;
+package com.td.test.TDI;
 
 import java.io.IOException;
 import java.util.List;
