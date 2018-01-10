@@ -21,9 +21,13 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class FundDetails extends _CommonPage {
 	private static FundDetails fundDetails;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText | //XCUIElementTypeNavigationBar/XCUIElementTypeOther")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement FundDetails_header;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeWebView/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
+	private MobileElement quote_FundDetails_header;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/purchaseBtn']")
 	private MobileElement Purchase;
@@ -128,6 +132,20 @@ public class FundDetails extends _CommonPage {
 		try {
 
 			mobileAction.verifyElementTextIsDisplayed(FundDetails_header,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_DETAIL_HEADER));
+
+		} catch (NoSuchElementException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	public void VerifyQuoteFundDetailsPageHeader() {
+		Decorator();
+		try {
+
+			mobileAction.verifyElementTextIsDisplayed(quote_FundDetails_header,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_DETAIL_HEADER));
 
 		} catch (NoSuchElementException | IOException e) {
@@ -373,6 +391,27 @@ public class FundDetails extends _CommonPage {
 			} else {
 				mobileAction.Report_Fail_Not_Verified(timeStamp);
 			}
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+	
+	public void ClickQuoteButton() {
+		try {
+			Decorator();
+
+			String quoteText = getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_DETAIL_QUOTE);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				QuoteBtn = mobileAction.verifyElementUsingXPath("//*[@label='" + quoteText + "']", "Quote");
+			}
+			mobileAction.FuncClick(QuoteBtn, quoteText);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

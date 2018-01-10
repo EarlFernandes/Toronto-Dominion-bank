@@ -22,7 +22,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	private static String MIN_AMOUNT = "100.00";
 	private static String MAX_AMOUNT = "999999.99";
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText | //XCUIElementTypeNavigationBar/XCUIElementTypeOther")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement page_title;
 
@@ -699,7 +699,35 @@ public class PurchaseMutualFunds extends _CommonPage {
 			mobileAction.Report_Fail("Exception for VerifyMaxmumAmount");
 		}
 	}
+	
+	public void VerifyMaximumAmountError() {
+		Decorator();
+		try {
+			String amounGreaterthanMaximum = "1000000.00";
+			fillPurchaseForm(amounGreaterthanMaximum);
+			clickpreview();
 
+			if (!mobileAction.verifyElementIsPresent(error_message)) {
+				System.out.println("No error message for amount:" + amounGreaterthanMaximum);
+				mobileAction.Report_Fail("Failed to find error message for amount:" + amounGreaterthanMaximum);
+				return;
+			}
+			String errorMessage = checkErrorMessageIsFound();
+			if (errorMessage.isEmpty()) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				mobileAction.Report_Fail("No error message for amount " + amounGreaterthanMaximum);
+				return;
+			} else {
+				System.out.println("Found error message:" + errorMessage);
+				mobileAction.Report_Pass_Verified(errorMessage);
+			}
+
+		} catch (Exception e) {
+			System.err.println("TestCase has failed to VerifyMaxmumAmount.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			mobileAction.Report_Fail("Exception for VerifyMaxmumAmount");
+		}
+	}
 	public void VerifyFromCADAccountToUSDMFAccountIsNotAllowed() {
 		Decorator();
 		try {

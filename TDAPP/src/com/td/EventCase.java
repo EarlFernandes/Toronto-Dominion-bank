@@ -47,7 +47,7 @@ public class EventCase {
 
 		ConfirmOrderCancel, ValidateChangeConfirmOrderBuy_Sell, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, ChangeDefaultCard, CardDetails_deleteicon, ConfirmPayee_InvalidAmount, EditEmailAddressWithInvalidChar,
 
-		Dashboard_Authentication, Dashboard_UnAuthentication, selectFirstLocation,
+		Dashboard_Authentication, Dashboard_UnAuthentication, selectFirstLocation, VerifyUSDConversionRate,ClickQuoteButton,VerifyMaximumAmountError,clickManageAppointmentLink,VerifyBookAppointmentIconNotDisplayed,VerifyQuoteFundDetailsPageHeader,
 
 		Delete_usr, Deposit_Header, DepositChequeHeader, END,
 
@@ -238,7 +238,7 @@ public class EventCase {
 
 		// MIT Refactor
 
-		HomeScreen_click_Markets,Trade_MIT_REF_searchAndClickMarketSymbol,Trade_MIT_REF_verifyTradeSymbols,Trade_MIT_REF_QuoteverifyRecentSearchSymbol,Investing_MIT_REF_verifyHoldingsDetails,Investing_MIT_REF_clickHoldingsTab,Trade_MIT_REF_verifyExchangeAgreementErrorDetails,Investing_MIT_REF_clickTradeQuickLink,Trade_MIT_REF_ClickEnterNameOrSymbol,Trade_MIT_REF_verifyFirstOrderPlaced, Trade_MIT_REF_verifyQuoteSymbol, HomeScreen_clickQuoteQuickLink, Trade_MIT_REF_goBack, Trade_MIT_REF_verifyRecentSearchSymbol,Trade_MIT_REF_goBackToHome, Investing_MIT_REF_buyHoldingsETF, Investing_MIT_REF_sendETFOrder, Investing_MIT_REF_clickHoldingsETF, Investing_MIT_REF_clickAccount_Multiple, Investing_MIT_REF_verifyTabs, Trade_MIT_REF_cancelOrder, Trade_MIT_REF_changeOrder, Trade_MIT_REF_click_RecentOrder, Trade_MIT_REF_click_Orders_Link, Trade_MIT_REF_verify_StockOrderSent_Msg, Trade_MIT_REF_clickSendOrder, Trade_MIT_REF_sendStockOrder, Trade_MIT_REF_verifyTradeHeader, Trade_MIT_REF_verifyTradeElements, Trade_MIT_REF_EnterNameOrSymbol, Trade_MIT_REF_verifyQuoteDetails,
+		HomeScreen_click_Markets, Trade_MIT_REF_searchAndClickMarketSymbol, Trade_MIT_REF_verifyTradeSymbols, Trade_MIT_REF_QuoteverifyRecentSearchSymbol, Investing_MIT_REF_verifyHoldingsDetails, Investing_MIT_REF_clickHoldingsTab, Trade_MIT_REF_verifyExchangeAgreementErrorDetails, Investing_MIT_REF_clickTradeQuickLink, Trade_MIT_REF_ClickEnterNameOrSymbol, Trade_MIT_REF_verifyFirstOrderPlaced, Trade_MIT_REF_verifyQuoteSymbol, HomeScreen_clickQuoteQuickLink, Trade_MIT_REF_goBack, Trade_MIT_REF_verifyRecentSearchSymbol, Trade_MIT_REF_goBackToHome, Investing_MIT_REF_buyHoldingsETF, Investing_MIT_REF_sendETFOrder, Investing_MIT_REF_clickHoldingsETF, Investing_MIT_REF_clickAccount_Multiple, Investing_MIT_REF_verifyTabs, Trade_MIT_REF_cancelOrder, Trade_MIT_REF_changeOrder, Trade_MIT_REF_click_RecentOrder, Trade_MIT_REF_click_Orders_Link, Trade_MIT_REF_verify_StockOrderSent_Msg, Trade_MIT_REF_clickSendOrder, Trade_MIT_REF_sendStockOrder, Trade_MIT_REF_verifyTradeHeader, Trade_MIT_REF_verifyTradeElements, Trade_MIT_REF_EnterNameOrSymbol, Trade_MIT_REF_verifyQuoteDetails,
 
 	}
 
@@ -262,19 +262,19 @@ public class EventCase {
 		//// Trade.get().verifyActionShortSellandBuyToCover();
 		//// break;
 		//
-			
+
 		case HomeScreen_click_Markets:
-		HomeScreen.get().clickMarkets();
+			HomeScreen.get().clickMarkets();
 			break;
-			
+
 		case Trade_MIT_REF_searchAndClickMarketSymbol:
 			Trade_MIT_REF.get().searchAndClickMarketSymbol();
 			break;
-			
+
 		case Trade_MIT_REF_verifyTradeSymbols:
 			Trade_MIT_REF.get().verifyTradeSymbols();
 			break;
-			
+
 		case Investing_MIT_REF_verifyHoldingsDetails:
 			Investing_MIT_REF.get().verifyHoldingsDetails();
 			break;
@@ -282,15 +282,15 @@ public class EventCase {
 		case Investing_MIT_REF_clickHoldingsTab:
 			Investing_MIT_REF.get().clickHoldingsTab();
 			break;
-			
+
 		case Trade_MIT_REF_verifyExchangeAgreementErrorDetails:
 			Trade_MIT_REF.get().verifyExchangeAgreementErrorDetails();
 			break;
-			
+
 		case Investing_MIT_REF_clickTradeQuickLink:
 			Investing_MIT_REF.get().clickTradeQuickLink();
 			break;
-			
+
 		case Trade_MIT_REF_verifyQuoteSymbol:
 			Trade_MIT_REF.get().verifyQuoteSymbol();
 			break;
@@ -330,11 +330,11 @@ public class EventCase {
 		case Trade_MIT_REF_click_RecentOrder:
 			Trade_MIT_REF.get().click_RecentOrder();
 			break;
-			
+
 		case Trade_MIT_REF_verifyFirstOrderPlaced:
 			Trade_MIT_REF.get().verifyFirstOrderPlaced();
 			break;
-			
+
 		case Trade_MIT_REF_verifyQuoteDetails:
 			Trade_MIT_REF.get().verifyQuoteDetails();
 			break;
@@ -374,17 +374,17 @@ public class EventCase {
 		case Trade_MIT_REF_verifyRecentSearchSymbol:
 			Trade_MIT_REF.get().verifyRecentSearchSymbol();
 			break;
-			
+
 		case Trade_MIT_REF_QuoteverifyRecentSearchSymbol:
 			Trade_MIT_REF.get().QuoteverifyRecentSearchSymbol();
 			break;
-			
+
 		case Trade_MIT_REF_goBackToHome:
 			Trade_MIT_REF.get().goBackToHome();
 			break;
-			
-			//Trade_MIT_REF_goBack TODO::
-			
+
+		// Trade_MIT_REF_goBack TODO::
+
 		case TransfersHistory_clickUpdateRequestOnActivity:
 			TransfersHistory.get().clickUpdateRequestOnActivity();
 			break;
@@ -3466,6 +3466,10 @@ public class EventCase {
 			FundDetails.get().VerifyFundDetailsPageHeader();
 			break;
 
+		case VerifyQuoteFundDetailsPageHeader:
+			FundDetails.get().VerifyQuoteFundDetailsPageHeader();
+			break;		
+			
 		case VerifyFundCategory:
 			FundDetails.get().VerifyFundCategory();
 			break;
@@ -3681,8 +3685,19 @@ public class EventCase {
 			PreviewPurchase.get().VerifyFundfactsAcknowledgement();
 			break;
 
+		case VerifyUSDConversionRate:
+			Investing.get().VerifyUSDConversionRate();
+			break;
+			
+		case ClickQuoteButton:
+			FundDetails.get().ClickQuoteButton();
+			break;
+			
+		case VerifyMaximumAmountError:
+			PurchaseMutualFunds.get().VerifyMaximumAmountError();
+			break;		
 		// End of Purchase Mutual funds
-
+			
 		// CLIP
 		case VerifyMoreLinkPresent:
 			Credit.get().VerifyMoreLinkPresent();
@@ -3766,6 +3781,10 @@ public class EventCase {
 		case verifyAppointmentURLLink:
 			AppointmentBooking.get().verifyAppointmentURLLink();
 			break;
+			
+		case VerifyBookAppointmentIconNotDisplayed:
+			Branch.get().VerifyBookAppointmentIconNotDisplayed();
+			break;			
 		// End of MAB
 
 		// Damaged Card
@@ -3780,6 +3799,10 @@ public class EventCase {
 		case verifyReplaceDamagedCardHeader:
 			WebViewPage.get().verifyDamagedCardReplacementFormTitle();
 			break;
+			
+		case clickManageAppointmentLink:
+			AppointmentBooking.get().clickManageAppointmentLink();
+			break;			
 		// End of Damaged card
 
 		case VerifyStatementBalanceHeader:
