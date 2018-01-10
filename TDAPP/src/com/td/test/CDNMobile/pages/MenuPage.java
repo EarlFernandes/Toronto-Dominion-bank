@@ -59,7 +59,7 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Give Feedback' or @text='Fournir des commentaires' or @text='提供意见反馈' or @text='提供意見回饋']")
 	private MobileElement feedback;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Mobile Deposit' or @label='Dépôt mobile' or @label='移动存款服务' or @label='流動存款']")
+	@iOSXCUITFindBy(xpath = "//*[(@label='Mobile Deposit' or @label='Dépôt mobile' or @label='移动存款服务' or @label='流動存款') and @name='flyout_title']")
 	@AndroidFindBy(xpath = "//*[@text='Mobile Deposit' or @text='Dépôt mobile' or @text='移动存款服务' or @text='流動存款']")
 	private MobileElement mobile_Deposit_button;
 
@@ -757,6 +757,7 @@ public class MenuPage extends _CommonPage {
 
 		try {
 			mobileAction.clickMenuButton();
+			mobileAction.sleep(3000);
 			mobileAction.FuncSwipeWhileElementNotFound(menuItem, true, 5, "up");
 			mobileAction.sleep(5000);
 
