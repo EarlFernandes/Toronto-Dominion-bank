@@ -70,7 +70,7 @@ public class OTPUpdate extends _CommonPage {
 	private WebElement addedNickname;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1] | "
-			+ "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[5]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
+			+ "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "(//div[@class='td-row-white'])[1]")
 	private WebElement phoneCard1Phone;
 
@@ -333,13 +333,14 @@ public class OTPUpdate extends _CommonPage {
 			String nickname = getTestdata("Nickname");
 
 			clickAddPhoneUpdateButton();
+			mobileAction.sleep(5000);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				OTPChallenge.get().clickTextOption();
 				OTPChallenge.get().clickGetCodeButton();
 				OTPChallenge.get().enterSecurityCode();
 				OTPChallenge.get().clickSubmitCodeButton();
 			} else {
-				// Native screens only for this OTP Challenge screen
+				// Native screens only for this OTP Challenge screen for Android
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncClick(textOptionNative, "Text option Native");
 				mobileAction.FuncClick(getCodeButtonNative, "Get Code option Native");
