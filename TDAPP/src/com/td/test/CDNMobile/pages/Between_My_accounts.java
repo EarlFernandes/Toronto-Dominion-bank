@@ -2222,6 +2222,7 @@ public class Between_My_accounts extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(btncontinue_Transfer, "Continue");
+			mobileAction.sleep(2000);
 			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Confirm Header");
 			mobileAction.verifyElementTextContains(pageHeader, getTextInCurrentLocale(StringArray.ARRAY_CONFIRM));
