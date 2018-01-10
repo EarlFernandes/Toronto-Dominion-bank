@@ -2584,7 +2584,7 @@ public class MobileAction2 extends CommonLib {
 				ex.printStackTrace();
 			}
 		}
-
+		sleep(1000);
 	}
 
 	public boolean verifyElementIsPresentByXpath(String elementXpath) {
