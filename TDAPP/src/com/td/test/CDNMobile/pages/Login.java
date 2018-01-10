@@ -1852,6 +1852,7 @@ public class Login extends _CommonPage {
 				// mobileAction.FuncClick(cancelActionList, "Cancel Action
 				// List");
 				mobileAction.FuncClickBackButton();
+				mobileAction.sleep(5000);
 
 				if (cardFound == null) {
 					break;
