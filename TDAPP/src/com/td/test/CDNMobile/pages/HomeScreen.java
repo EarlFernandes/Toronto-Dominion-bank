@@ -138,6 +138,14 @@ public class HomeScreen extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeStaticText[(@label='TD Talk to Me' or @label='TD Talk to Me(FR)' or @label='TD Talk to Me' or @label='TD Talk to Me')]")
 	private MobileElement chatBotDashboard;
 
+	@iOSXCUITFindBy(accessibility = "QuickLinkRightNavButton")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']")
+	private MobileElement quickAccessPerf;
+
+	@iOSXCUITFindBy(accessibility = "d0***701")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']")
+	private MobileElement acctNamePerf;
+
 	int i = 1;
 	String Firstpart = "//XCUIElementTypeCell[";
 	String Secondpart = "]/XCUIElementTypeButton[1]";
@@ -1377,9 +1385,7 @@ public class HomeScreen extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
-	
-	
+
 	/**
 	 * This method will verify
 	 * 
@@ -1393,13 +1399,11 @@ public class HomeScreen extends _CommonPage {
 		Decorator();
 		try {
 
-			
 			mobileAction.SwipeQuickLinksInDirection("right", 200, 200);
 			mobileAction.SwipeQuickLinksInDirection("left", 2000, 200);
-			
-		
+
 			mobileAction.FuncClick(quote, "Quote quick link");
-			
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -1411,7 +1415,6 @@ public class HomeScreen extends _CommonPage {
 		} finally {
 		}
 	}
-	
 
 	public void clickChatBotQuickLink() {
 		Decorator();
@@ -1447,6 +1450,25 @@ public class HomeScreen extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
+		}
+	}
+
+	public void clickQuickAccessPERF() {
+		Decorator();
+
+		try {
+
+			performance.click(quickAccessPerf, "Quick Access");
+			performance.verifyElementIsDisplayed(acctNamePerf, "Acct ID in Quick Access");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

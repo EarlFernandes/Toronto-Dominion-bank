@@ -147,7 +147,7 @@ public class EventCase {
 		CloseApp, RunAppInBackGround, ReopenApp,
 
 		// Account Details
-		AccountDetails_QuickLinkTransfer, AccountDetails_QuickLinkPay, AccountDetails_GetAccountBalance, AccountDetails_VerifyAccountBalance, AccountDetails_VerifyTransactionPosted, AccountDetails_VerifyActivityTab, AccountDetails_VerifySummaryTab, AccountDetails_VerifyBankAccountBalance,
+		AccountDetails_QuickLinkTransfer, AccountDetails_QuickLinkPay, AccountDetails_GetAccountBalance, AccountDetails_VerifyAccountBalance, AccountDetails_VerifyTransactionPosted, AccountDetails_VerifyActivityTab, AccountDetails_VerifySummaryTab, AccountDetails_VerifyBankAccountBalance, AccountDetails_ClickSummaryTab,
 
 		// Accounts
 		Accounts_VerifyCreditHeader, Accounts_SelectFirstAccount, Accounts_SelectToAccount,
@@ -238,8 +238,10 @@ public class EventCase {
 
 		// MIT Refactor
 
-		HomeScreen_click_Markets,Trade_MIT_REF_searchAndClickMarketSymbol,Trade_MIT_REF_verifyTradeSymbols,Trade_MIT_REF_QuoteverifyRecentSearchSymbol,Investing_MIT_REF_verifyHoldingsDetails,Investing_MIT_REF_clickHoldingsTab,Trade_MIT_REF_verifyExchangeAgreementErrorDetails,Investing_MIT_REF_clickTradeQuickLink,Trade_MIT_REF_ClickEnterNameOrSymbol,Trade_MIT_REF_verifyFirstOrderPlaced, Trade_MIT_REF_verifyQuoteSymbol, HomeScreen_clickQuoteQuickLink, Trade_MIT_REF_goBack, Trade_MIT_REF_verifyRecentSearchSymbol,Trade_MIT_REF_goBackToHome, Investing_MIT_REF_buyHoldingsETF, Investing_MIT_REF_sendETFOrder, Investing_MIT_REF_clickHoldingsETF, Investing_MIT_REF_clickAccount_Multiple, Investing_MIT_REF_verifyTabs, Trade_MIT_REF_cancelOrder, Trade_MIT_REF_changeOrder, Trade_MIT_REF_click_RecentOrder, Trade_MIT_REF_click_Orders_Link, Trade_MIT_REF_verify_StockOrderSent_Msg, Trade_MIT_REF_clickSendOrder, Trade_MIT_REF_sendStockOrder, Trade_MIT_REF_verifyTradeHeader, Trade_MIT_REF_verifyTradeElements, Trade_MIT_REF_EnterNameOrSymbol, Trade_MIT_REF_verifyQuoteDetails,
+		HomeScreen_click_Markets, Trade_MIT_REF_searchAndClickMarketSymbol, Trade_MIT_REF_verifyTradeSymbols, Trade_MIT_REF_QuoteverifyRecentSearchSymbol, Investing_MIT_REF_verifyHoldingsDetails, Investing_MIT_REF_clickHoldingsTab, Trade_MIT_REF_verifyExchangeAgreementErrorDetails, Investing_MIT_REF_clickTradeQuickLink, Trade_MIT_REF_ClickEnterNameOrSymbol, Trade_MIT_REF_verifyFirstOrderPlaced, Trade_MIT_REF_verifyQuoteSymbol, HomeScreen_clickQuoteQuickLink, Trade_MIT_REF_goBack, Trade_MIT_REF_verifyRecentSearchSymbol, Trade_MIT_REF_goBackToHome, Investing_MIT_REF_buyHoldingsETF, Investing_MIT_REF_sendETFOrder, Investing_MIT_REF_clickHoldingsETF, Investing_MIT_REF_clickAccount_Multiple, Investing_MIT_REF_verifyTabs, Trade_MIT_REF_cancelOrder, Trade_MIT_REF_changeOrder, Trade_MIT_REF_click_RecentOrder, Trade_MIT_REF_click_Orders_Link, Trade_MIT_REF_verify_StockOrderSent_Msg, Trade_MIT_REF_clickSendOrder, Trade_MIT_REF_sendStockOrder, Trade_MIT_REF_verifyTradeHeader, Trade_MIT_REF_verifyTradeElements, Trade_MIT_REF_EnterNameOrSymbol, Trade_MIT_REF_verifyQuoteDetails,
 
+		// Performance Metrics
+		Transfers_ClickBetweenMyAccountsPERF, BetweenMyAccounts_TransferFirstAccountsPERF, Bills_ClickPayCanadianBillPERF, PayBill_PayBillPERF, AccountDetails_ClickActivityTabPERF, Homescreen_ClickQuickAccessPERF, MenuPage_ClickMenuAccountsPERF, Performance_Summary,
 	}
 
 	public void FuncCOREEventCase(String sFunctionname)
@@ -262,19 +264,19 @@ public class EventCase {
 		//// Trade.get().verifyActionShortSellandBuyToCover();
 		//// break;
 		//
-			
+
 		case HomeScreen_click_Markets:
-		HomeScreen.get().clickMarkets();
+			HomeScreen.get().clickMarkets();
 			break;
-			
+
 		case Trade_MIT_REF_searchAndClickMarketSymbol:
 			Trade_MIT_REF.get().searchAndClickMarketSymbol();
 			break;
-			
+
 		case Trade_MIT_REF_verifyTradeSymbols:
 			Trade_MIT_REF.get().verifyTradeSymbols();
 			break;
-			
+
 		case Investing_MIT_REF_verifyHoldingsDetails:
 			Investing_MIT_REF.get().verifyHoldingsDetails();
 			break;
@@ -282,15 +284,15 @@ public class EventCase {
 		case Investing_MIT_REF_clickHoldingsTab:
 			Investing_MIT_REF.get().clickHoldingsTab();
 			break;
-			
+
 		case Trade_MIT_REF_verifyExchangeAgreementErrorDetails:
 			Trade_MIT_REF.get().verifyExchangeAgreementErrorDetails();
 			break;
-			
+
 		case Investing_MIT_REF_clickTradeQuickLink:
 			Investing_MIT_REF.get().clickTradeQuickLink();
 			break;
-			
+
 		case Trade_MIT_REF_verifyQuoteSymbol:
 			Trade_MIT_REF.get().verifyQuoteSymbol();
 			break;
@@ -330,11 +332,11 @@ public class EventCase {
 		case Trade_MIT_REF_click_RecentOrder:
 			Trade_MIT_REF.get().click_RecentOrder();
 			break;
-			
+
 		case Trade_MIT_REF_verifyFirstOrderPlaced:
 			Trade_MIT_REF.get().verifyFirstOrderPlaced();
 			break;
-			
+
 		case Trade_MIT_REF_verifyQuoteDetails:
 			Trade_MIT_REF.get().verifyQuoteDetails();
 			break;
@@ -374,17 +376,17 @@ public class EventCase {
 		case Trade_MIT_REF_verifyRecentSearchSymbol:
 			Trade_MIT_REF.get().verifyRecentSearchSymbol();
 			break;
-			
+
 		case Trade_MIT_REF_QuoteverifyRecentSearchSymbol:
 			Trade_MIT_REF.get().QuoteverifyRecentSearchSymbol();
 			break;
-			
+
 		case Trade_MIT_REF_goBackToHome:
 			Trade_MIT_REF.get().goBackToHome();
 			break;
-			
-			//Trade_MIT_REF_goBack TODO::
-			
+
+		// Trade_MIT_REF_goBack TODO::
+
 		case TransfersHistory_clickUpdateRequestOnActivity:
 			TransfersHistory.get().clickUpdateRequestOnActivity();
 			break;
@@ -4665,6 +4667,10 @@ public class EventCase {
 			AccountDetails.get().verifyBankAccountBalance();
 			break;
 
+		case AccountDetails_ClickSummaryTab:
+			AccountDetails.get().clickSummaryTab();
+			break;
+
 		// Add Payee
 		case AddPayee_SearchCdnPayees:
 			AddPayee.get().searchCdnPayees();
@@ -5377,6 +5383,38 @@ public class EventCase {
 			MIT_DSH_FlyoutMenu.get().verifyFlyoutBlendedyUser();
 			break;
 
+		// Performance metrics
+		case Transfers_ClickBetweenMyAccountsPERF:
+			Transfers.get().clickBetweenMyAccountsPERF();
+			break;
+
+		case BetweenMyAccounts_TransferFirstAccountsPERF:
+			Between_My_accounts.get().transferFirstAccountsPERF();
+			break;
+
+		case Bills_ClickPayCanadianBillPERF:
+			Bills.get().clickPayCanadianBillPERF();
+			break;
+
+		case PayBill_PayBillPERF:
+			PayBill.get().payBillPERF();
+			break;
+
+		case AccountDetails_ClickActivityTabPERF:
+			AccountDetails.get().clickActivityTabPERF();
+			break;
+
+		case Homescreen_ClickQuickAccessPERF:
+			HomeScreen.get().clickQuickAccessPERF();
+			break;
+
+		case MenuPage_ClickMenuAccountsPERF:
+			MenuPage.get().clickMenuAccountsPERF();
+			break;
+
+		case Performance_Summary:
+			(new com.td.Performance()).durationSummary();
+			break;
 		}
 	}
 

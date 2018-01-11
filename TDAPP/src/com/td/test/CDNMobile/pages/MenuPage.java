@@ -110,6 +110,9 @@ public class MenuPage extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//*[(@label='TD Talk to Me' or @label='TD Talk to Me(FR)' or @label='TD Talk to Me' or @label='TD Talk to Me') and @name='flyout_title']")
 	private MobileElement chatBot;
 
+	@iOSXCUITFindBy(accessibility = "BANKING")
+	private MobileElement bankingTitlePerf;
+
 	public synchronized static MenuPage get() {
 		if (MenuPage == null) {
 			MenuPage = new MenuPage();
@@ -842,6 +845,25 @@ public class MenuPage extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
 		}
+	}
+
+	public void clickMenuAccountsPERF() {
+
+		Decorator();
+		try {
+			performance.click(accounts_button, "Menu Accounts");
+			performance.verifyElementIsDisplayed(bankingTitlePerf, "BANKING title in Accounts");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
 	}
 
 }

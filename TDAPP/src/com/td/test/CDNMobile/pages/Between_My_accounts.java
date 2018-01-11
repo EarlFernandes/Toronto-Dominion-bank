@@ -286,6 +286,14 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement screenHeader;
 
+	@iOSXCUITFindBy(accessibility = "BETWEEN_ACCOUNTS_CONFIRM_TO")
+	@AndroidFindBy(id = "android:id/action_bar_title")
+	private MobileElement toAccountConfirmPerf;
+
+	@iOSXCUITFindBy(accessibility = "COMMON_RECEIPT_CELL_TITLE_1")
+	@AndroidFindBy(id = "android:id/action_bar_title")
+	private MobileElement toAccountReceiptPerf;
+
 	private void Decorator() {
 		PageFactory.initElements(new AppiumFieldDecorator((CL.GetDriver()), new TimeOutDuration(10, TimeUnit.SECONDS)),
 				this);
@@ -2265,6 +2273,44 @@ public class Between_My_accounts extends _CommonPage {
 
 			mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
 			mobileAction.waitProgressBarVanish();
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void transferFirstAccountsPERF() {
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(txtFrom_acnt, "From Account field");
+			mobileAction.FuncClick(firstAcct, "1st Account in List");
+
+			mobileAction.FuncClick(txtto_Acnt, "To Account field");
+			mobileAction.FuncClick(firstAcct, "1st Account in List");
+
+			String amt = getTestdata("Amount");
+			mobileAction.FuncClick(txtAmount, "Amount");
+			mobileAction.FuncSendKeys(txtAmount, amt);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.FuncClickDone();
+			} else {
+				mobileAction.FuncHideKeyboard();
+			}
+
+			performance.click(btncontinue_Transfer, "Continue");
+			performance.verifyElementIsDisplayed(toAccountConfirmPerf, "To Account in Confirm");
+
+			performance.click(btnFinish_transfer, "Finish Transfer");
+			performance.verifyElementIsDisplayed(toAccountReceiptPerf, "To Account in Receipt");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

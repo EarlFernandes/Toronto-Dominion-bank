@@ -92,6 +92,9 @@ public class Transfers extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/interac_request_money']")
 	private MobileElement requestMoney;
 
+	@iOSXCUITFindBy(accessibility = "BETWEENMYACCOUNTS_TO")
+	private MobileElement toAccountPerf;
+
 	/**
 	 * This method will click on Between my accounts button
 	 * 
@@ -542,6 +545,32 @@ public class Transfers extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
 		}
+	}
+
+	public void clickBetweenMyAccountsPERF() {
+		try {
+			Decorator();
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				btw_my_accnts = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[contains(@text,'"
+								+ getTextInCurrentLocale(StringArray.ARRAY_BETWEEN_MY_ACCOUNTS_HEADER) + "')]",
+						"Transfer Between");
+			}
+
+			performance.click(btw_my_accnts, "Between My Accounts");
+			performance.verifyElementIsDisplayed(toAccountPerf, "To Account label");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
 	}
 
 }

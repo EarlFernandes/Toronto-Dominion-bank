@@ -58,6 +58,22 @@ public class AccountDetails extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/summaryTab")
 	private MobileElement summaryTab;
 
+	@iOSXCUITFindBy(accessibility = "Activity")
+	@AndroidFindBy(id = "com.td:id/activityTab")
+	private MobileElement activityTabPerf;
+
+	@iOSXCUITFindBy(accessibility = "Summary")
+	@AndroidFindBy(id = "com.td:id/summaryTab")
+	private MobileElement summaryTabPerf;
+
+	@iOSXCUITFindBy(accessibility = "ACCOUNT_DETAIL_SUMMARY_ACCOUNT")
+	@AndroidFindBy(id = "com.td:id/summaryTab")
+	private MobileElement summaryAcctNumPerf;
+
+	@iOSXCUITFindBy(accessibility = "ACCOUNT_DETAIL_DATE_CELL_0")
+	@AndroidFindBy(id = "com.td:id/summaryTab")
+	private MobileElement todayLabel;
+
 	public synchronized static AccountDetails get() {
 		if (accountDetails == null) {
 			accountDetails = new AccountDetails();
@@ -264,6 +280,44 @@ public class AccountDetails extends _CommonPage {
 
 			mobileAction.verifyElementTextContains(acctBankBalance, receiptBalance);
 			mobileAction.verifyElementTextContains(lastBankTransactionAmt, receiptValue);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void clickSummaryTab() {
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(summaryTab, "Account Summary tab");
+			mobileAction.sleep(2000);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void clickActivityTabPERF() {
+		Decorator();
+		try {
+
+			performance.click(this.activityTabPerf, "Account Activity tab");
+			performance.verifyElementIsDisplayed(todayLabel, "Today label in trxn list");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
