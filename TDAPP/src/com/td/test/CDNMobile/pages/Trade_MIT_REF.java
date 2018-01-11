@@ -56,7 +56,6 @@ public class Trade_MIT_REF extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/txtSearchTitle")
 	private MobileElement trade_enter_Name_or_symbol;
 
-	// @iOSXCUITFindBy(accessibility = "SYMBOL_SEARCH_CELL_1")
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField")
 	@AndroidFindBy(id = "symbol-search")
 	private MobileElement quote_enter_Name_or_symbol;
@@ -199,12 +198,14 @@ public class Trade_MIT_REF extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Accounts' or @text='Comptes' or @text='汇款' or @text='匯款']")
 	private MobileElement my_accounts;
 
-	@iOSXCUITFindBy(xpath = "//*[@name='Back']")
+	@iOSXCUITFindBy(xpath = "//*[@name='Back' or @label='Back' or @value='Back']")
 	private MobileElement quoteBackBtn;
 
+	@iOSXCUITFindBy(accessibility = "error-circle")
 	@AndroidFindBy(id = "com.td:id/error_text")
 	private MobileElement exchangeAgreementError;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Buy']")
 	@AndroidFindBy(id = "Buy_Entity_Button")
 	private MobileElement buyMarket;
 
@@ -495,9 +496,6 @@ public class Trade_MIT_REF extends _CommonPage {
 		}
 	}
 
-	
-	
-	
 	/**
 	 * This method will verify
 	 * 
@@ -527,9 +525,6 @@ public class Trade_MIT_REF extends _CommonPage {
 		}
 	}
 
-	
-	
-	
 	/**
 	 * This method will verify
 	 * 
@@ -548,7 +543,7 @@ public class Trade_MIT_REF extends _CommonPage {
 			String actionToPerform = null;
 			MobileElement priceElement = null;
 			MobileElement goodTillElement = null;
-			String accountType=getTestdata("AccountType");
+			String accountType = getTestdata("AccountType");
 
 			if (platform.equalsIgnoreCase("Android")) {
 
@@ -595,16 +590,18 @@ public class Trade_MIT_REF extends _CommonPage {
 
 				mobileAction.FunctionSwipe("up", 200, 200);
 
-				if(StringUtils.isEmpty(accountType)){
-				mobileAction.FuncClick(tradingPassword, "Trading Password");
-				mobileAction.FuncSendKeys(tradingPassword, getTestdata("Trading_Pwd"));
-				mobileAction.FuncHideKeyboard();
+				if (StringUtils.isEmpty(accountType)) {
+					System.err.println("Inside Trading Password");
+					mobileAction.FuncClick(tradingPassword, "Trading Password");
+					mobileAction.FuncSendKeys(tradingPassword, getTestdata("Trading_Pwd"));
+					mobileAction.FuncHideKeyboard();
 				}
 
 				mobileAction.FuncClick(previewOrder, "Preview Order Button");
 
 			} else {
 
+				mobileAction.FunctionSwipe("down", 200, 200);
 				mobileAction.FuncClick(accountFieldTxt, "Account drop down");
 
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(
@@ -649,9 +646,11 @@ public class Trade_MIT_REF extends _CommonPage {
 
 				mobileAction.FunctionSwipe("up", 200, 200);
 
-				mobileAction.FuncClick(tradingPassword, "Trading Password");
-				mobileAction.FuncSendKeys(tradingPassword, getTestdata("Trading_Pwd"));
-				mobileAction.FuncClickDone();
+				if (StringUtils.isEmpty(accountType)) {
+					mobileAction.FuncClick(tradingPassword, "Trading Password");
+					mobileAction.FuncSendKeys(tradingPassword, getTestdata("Trading_Pwd"));
+					mobileAction.FuncClickDone();
+				}
 
 				mobileAction.FuncClick(previewOrder, "Preview Order Button");
 
@@ -825,7 +824,7 @@ public class Trade_MIT_REF extends _CommonPage {
 			String thisDate = Integer.toString(GetDate.get().getTodaysDate());
 			String thisMonth = GetDate.get().getCurrentMonthShort();
 
-			mobileAction.verifyElementTextContains(timestamp, thisDate);
+			//mobileAction.verifyElementTextContains(timestamp, thisDate);
 			mobileAction.verifyElementTextContains(timestamp, thisMonth);
 
 			mobileAction.FuncClick(sendOrder, "Send Order Button");
@@ -1185,12 +1184,13 @@ public class Trade_MIT_REF extends _CommonPage {
 				if (platform.equalsIgnoreCase("Android")) {
 
 					symbol = mobileAction.mobileElementUsingXPath("//android.view.View[contains(@text,'"
-							+ nxtSymbolImage[i].replaceAll("\\s+", "") + "')]/following-sibling::android.view.View[@text='"
-							+ getTestdata("NxtSymbol") + "']");
+							+ nxtSymbolImage[i].replaceAll("\\s+", "")
+							+ "')]/following-sibling::android.view.View[@text='" + getTestdata("NxtSymbol") + "']");
 				} else {
 
-					symbol = mobileAction.mobileElementUsingXPath(
-							"//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@name,'" + nxtSymbolImage[i]
+					symbol = mobileAction
+							.mobileElementUsingXPath("//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@name,'"
+									+ nxtSymbolImage[i].replaceAll("\\s+", "")
 									+ "')]/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[@name='"
 									+ getTestdata("NxtSymbol") + "']");
 				}
@@ -1202,6 +1202,7 @@ public class Trade_MIT_REF extends _CommonPage {
 				if (platform.equalsIgnoreCase("Android")) {
 					HomeScreen.get().back_button();
 				} else {
+					System.err.println("Context :" + CL.GetAppiumDriver().getContextHandles());
 					mobileAction.FuncClick(quoteBackBtn, "Back Button");// TODO::Back
 																		// button
 																		// is
@@ -1277,8 +1278,8 @@ public class Trade_MIT_REF extends _CommonPage {
 				} else {
 
 					symbolImgStr = nxtSymbolImage[quoteCounter].replaceAll("\\s+", "");
-					symbol = mobileAction.mobileElementUsingXPath("//XCUIElementTypeCell[contains(@name,'" + nxtSymbol
-							+ "') and contains(@name,'" + symbolImgStr + "')]");
+					symbol = mobileAction.mobileElementUsingXPath("//XCUIElementTypeCell[contains(@name,'"
+							+ nxtSymbolImage[quoteCounter] + "') and contains(@name,'" + nxtSymbol + "')]");
 				}
 
 				mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("NxtSymbol"));
@@ -1316,34 +1317,32 @@ public class Trade_MIT_REF extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(exchangeAgreementError, "Exchange Agreement Error message");
 
 			mobileAction.FunctionSwipe("up", 2000, 200);
-			
-			if (lastPrice.getText().equalsIgnoreCase("–")) {
+
+			if (lastPrice.getText().equalsIgnoreCase("–") || lastPrice.getText().equalsIgnoreCase("-")) {
 				mobileAction.stringToReport("Pass", "Last Price is null");
 			} else {
 				mobileAction.stringToReport("Fail", "Last Price is not null: " + lastPrice.getText());
 			}
 
-			
-		
-			if (bidPrice.getText().equalsIgnoreCase("–")) {
+			if (bidPrice.getText().equalsIgnoreCase("–") || bidPrice.getText().equalsIgnoreCase("- (-)")) {
 				mobileAction.stringToReport("Pass", "Bid Price is null");
 			} else {
 				mobileAction.stringToReport("Fail", "Bid Price is not null: " + bidPrice.getText());
 			}
 
-			if (askPrice.getText().equalsIgnoreCase("–")) {
+			if (askPrice.getText().equalsIgnoreCase("–") || askPrice.getText().equalsIgnoreCase("- (-)")) {
 				mobileAction.stringToReport("Pass", "Ask Price is null");
 			} else {
 				mobileAction.stringToReport("Fail", "Ask Price is not null: " + askPrice.getText());
 			}
 
-			if (bidSize.getText().equalsIgnoreCase("(–)")) {
+			if (bidSize.getText().equalsIgnoreCase("(–)") || bidSize.getText().equalsIgnoreCase("- (-)")) {
 				mobileAction.stringToReport("Pass", "Bid Size is null");
 			} else {
 				mobileAction.stringToReport("Fail", "Bid Size is not null: " + bidSize.getText());
 			}
 
-			if (askSize.getText().equalsIgnoreCase("(–)")) {
+			if (askSize.getText().equalsIgnoreCase("(–)") || askSize.getText().equalsIgnoreCase("- (-)")) {
 				mobileAction.stringToReport("Pass", "Ask Size is null");
 			} else {
 				mobileAction.stringToReport("Fail", "Ask Size is not null: " + askSize.getText());
@@ -1380,27 +1379,44 @@ public class Trade_MIT_REF extends _CommonPage {
 			MobileElement symbol = null;
 			String symbolImgStr = getTestdata("SymbolImage").replaceAll("\\s+", "");
 			String exlSymbol = getTestdata("Symbol");
-
+			String exlSymbolShortName = getTestdata("SymbolShortName");
+	
+			CL.GetDriver().getPageSource();
+			
 			mobileAction.FuncClick(quote_enter_Name_or_symbol, "Search symbol field");
-
-			mobileAction.FuncSendKeys(quote_enter_Name_or_symbol, exlSymbol);
+			
 
 			if (platform.equalsIgnoreCase("Android")) {
 
+				mobileAction.FuncSendKeys(quote_enter_Name_or_symbol, exlSymbolShortName);
+				
 				symbol = mobileAction.mobileElementUsingXPath("//android.view.View[contains(@text,'" + symbolImgStr
 						+ "')]/following-sibling::android.view.View[@text='" + exlSymbol + "']");
 			} else {
+				exlSymbolShortName = exlSymbolShortName+" ";
+				mobileAction.FuncSendKeys(quote_enter_Name_or_symbol, exlSymbolShortName);
+				
 
+				/*
+				 * symbol = mobileAction.mobileElementUsingXPath(
+				 * "//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@name,'"
+				 * + symbolImgStr +
+				 * "')]/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[@name='"
+				 * + exlSymbol + "']");
+				 */
+				
+				CL.GetDriver().getPageSource();
+				
 				symbol = mobileAction.mobileElementUsingXPath(
-						"//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@name,'" + symbolImgStr
-								+ "')]/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[@name='"
-								+ exlSymbol + "']");
+						"//XCUIElementTypeOther/XCUIElementTypeStaticText[@label='"+exlSymbol+"']");
 			}
 
 			mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + exlSymbol);
 
 			mobileAction.FuncClick(symbol, "Symbol: " + exlSymbol);
 
+			CL.GetDriver().getPageSource();
+			
 			mobileAction.FuncClick(buyMarket, "Buy");
 
 		} catch (Exception e) {

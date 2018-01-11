@@ -127,14 +127,16 @@ public class Investing_MIT_REF extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/current_balance")
 	private MobileElement currentBalance;
 
-	@iOSFindBy(id = "INVESTING_QUOTE_BASE_BUY")
+	@iOSFindBy(accessibility = "INVESTING_QUOTE_BASE_BUY")
 	@AndroidFindBy(id = "com.td:id/buyBtn")
 	private MobileElement buyETF;
 
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='TRADE']")
+	
+	@iOSFindBy(accessibility = "QUICKLINKS_TRADE")
+	@AndroidFindBy(xpath = "//*[@text='TRADE' or @text='Négociation' or @text='NÉGOCIATION' or @text='交易' or @text='交易']")
 	private MobileElement tradeQuickLink;
 
-	@iOSFindBy(id = "NAVIGATION_ITEM_RIGHT_MENU")
+	@iOSFindBy(accessibility = "NAVIGATION_ITEM_RIGHT_MENU")
 	@AndroidFindBy(id = "com.td:id/refresh_menu")
 	private MobileElement refreshBtn;
 
