@@ -1849,6 +1849,7 @@ public class Login extends _CommonPage {
 					xpath = "//XCUIElementTypeStaticText[@label='" + maskedCard + "']";
 				}
 				cardFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
+				mobileAction.sleep(5000);
 				// mobileAction.FuncClick(cancelActionList, "Cancel Action
 				// List");
 				mobileAction.FuncClickBackButton();
