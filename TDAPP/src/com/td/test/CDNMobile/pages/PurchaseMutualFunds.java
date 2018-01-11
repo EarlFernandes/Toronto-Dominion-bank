@@ -86,7 +86,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/checkbox_description']")
 	private MobileElement consent_checkbox_description;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther[10]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther[10]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer' and @index='7']/android.widget.TextView")
 	private MobileElement legal_text;
 
@@ -102,7 +102,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	String phoneReg = "\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
 	String emailReg = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/../XCUIElementTypeOther[1]/XCUIElementTypeButton")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/../XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton")
 	@AndroidFindBy(id = "com.td:id/purchasePreviewButton")
 	private MobileElement preview_purchase_button;
 
@@ -723,7 +723,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			}
 
 		} catch (Exception e) {
-			System.err.println("TestCase has failed to VerifyMaxmumAmount.");
+			System.err.println("TestCase has failed to VerifyMaximumAmountError.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			mobileAction.Report_Fail("Exception for VerifyMaxmumAmount");
 		}

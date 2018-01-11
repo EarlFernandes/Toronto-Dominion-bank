@@ -19,7 +19,7 @@ public class MoreOptions extends _CommonPage {
 
 	private static MoreOptions moreOptions;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText | //XCUIElementTypeNavigationBar/XCUIElementTypeOther")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement moreOptions_header;
 
@@ -35,19 +35,19 @@ public class MoreOptions extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/credit_limit']")
 	private MobileElement credit_card_limit;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/background_view' and @index='1']/android.widget.LinearLayout/android.widget.TextView[@resource-id='com.td:id/title']")
 	private MobileElement limit_increase_request_btn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/background_view' and @index='1']/android.widget.LinearLayout/android.widget.TextView[@resource-id='com.td:id/description']")
 	private MobileElement limit_increase_direction;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/background_view' and @index='2']/android.widget.LinearLayout/android.widget.TextView[@resource-id='com.td:id/title']")
 	private MobileElement replace_a_damaged_card_btn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/background_view' and @index='2']/android.widget.LinearLayout/android.widget.TextView[@resource-id='com.td:id/description']")
 	private MobileElement replace_a_damaged_card_direction;
 
