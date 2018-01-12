@@ -571,7 +571,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
 					mobileAction.FuncClick(BT_Back, "< Button");
 				} else {
-					mobileAction.verifyElementIsDisplayed(HDR_Mobile_Deposit, "HDR_Mobile_Deposit");
+					//mobileAction.verifyElementIsDisplayed(HDR_Mobile_Deposit, "HDR_Mobile_Deposit");
 					mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
 					mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
 				}
