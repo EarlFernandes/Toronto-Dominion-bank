@@ -22,8 +22,8 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 public class Receipt extends _CommonPage {
 	private static Receipt Receipt;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText | //XCUIElementTypeNavigationBar/XCUIElementTypeOther")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText | //XCUIElementTypeNavigationBar/XCUIElementTypeOther")
+	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement receiptHeader;
 
 	@iOSXCUITFindBy(xpath = "//*[@name='QUICKACCESS_CELL_MENU_ICON_HOME' or @name='QUICKACCESS_CELL_QUICKLINKS_BACKHOME_ON']")

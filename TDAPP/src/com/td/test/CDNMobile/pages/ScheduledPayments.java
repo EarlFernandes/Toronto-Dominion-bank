@@ -26,7 +26,7 @@ public class ScheduledPayments extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText | //*[@name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement scheduledpaymentsHeader;
-	
+
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mainText'][1]")
 	private MobileElement firstPayment;
 
@@ -52,7 +52,7 @@ public class ScheduledPayments extends _CommonPage {
 		PageFactory.initElements(
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(8, TimeUnit.SECONDS)), this);
 	}
-	
+
 	public void verifyScheduledPaymentsHeader() {
 
 		Decorator();
@@ -60,7 +60,7 @@ public class ScheduledPayments extends _CommonPage {
 
 			mobileAction.verifyElementTextIsDisplayed(scheduledpaymentsHeader,
 					getTextInCurrentLocale(StringArray.ARRAY_SCHEDULED_PAYMENTS_TITLE));
-			
+
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
