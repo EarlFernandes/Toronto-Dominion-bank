@@ -21,7 +21,7 @@ public class Credit extends _CommonPage {
 
 	private static Credit Credit;
 
-	@iOSFindBy(xpath = "//*[@name='DVIEW_TITLE'] | //XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText | XCUIElementTypeNavigationBar/XCUIElementTypeOther")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement creditHeader;
 
