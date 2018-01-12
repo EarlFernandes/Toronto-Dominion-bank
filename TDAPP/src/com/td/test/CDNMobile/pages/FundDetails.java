@@ -144,9 +144,19 @@ public class FundDetails extends _CommonPage {
 	public void VerifyQuoteFundDetailsPageHeader() {
 		Decorator();
 		try {
-
-			mobileAction.verifyElementTextIsDisplayed(quote_FundDetails_header,
-					getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_DETAIL_HEADER));
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				//Web view page, need to handle when page is available
+				String myheader = mobileAction.getValue(quote_FundDetails_header);
+				if(myheader != null && myheader.equals("System Unavailable")) {
+					mobileAction.Report_Fail("Failed with 'System Unavailable'");
+				} else {
+					mobileAction.Report_Pass_Verified("Quote Fund Details");
+				}
+				
+			} else {
+				mobileAction.verifyElementTextIsDisplayed(quote_FundDetails_header,
+						getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_DETAIL_HEADER));
+			}
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
