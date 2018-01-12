@@ -234,7 +234,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 
 			mobileAction.FuncClick(btnClear, "btnClear");
 
-			mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+			//mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
 
 			enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs"));
 

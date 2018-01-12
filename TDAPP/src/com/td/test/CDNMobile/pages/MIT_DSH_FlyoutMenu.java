@@ -741,7 +741,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 					// mobileAction.FuncClick(lblMobileDepositInvesting,
 					// "Banking");
 
-					mobileAction.ClickBackButton();
+					//mobileAction.ClickBackButton();
 					mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
 					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 
