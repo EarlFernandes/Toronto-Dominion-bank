@@ -2,7 +2,11 @@ package com.td.test.CDNMobile.pages;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
@@ -35,6 +39,10 @@ public class Calendar extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeCollectionView")
 	@AndroidFindBy(xpath = "//com.prolificinteractive.materialcalendarview.e[@content-desc='Calendar']")
 	private MobileElement calendarGrid;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/negative_button']")
+	private MobileElement calendar_Cancel;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
 	private MobileElement calendar_confirm_btn;
@@ -130,6 +138,9 @@ public class Calendar extends _CommonPage {
 		}
 	};
 
+	static int[] holiday_array = { 20180101, 20180219, 20180223, 20180330, 20180402, 20180521, 20180621, 20180625,
+			20180702, 20180806, 20180903, 20181008, 20181112, 20181225, 20181226 };
+
 	static Integer[] DigitTorNumber = { 0, // 0 mapping empty
 			31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
@@ -147,6 +158,18 @@ public class Calendar extends _CommonPage {
 		PageFactory.initElements(
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(8, TimeUnit.SECONDS)), this);
 
+	}
+
+	private boolean foundHoliday(int expectedDay) {
+		Arrays.sort(holiday_array);
+		for (int i = 0; i < holiday_array.length; i++) {
+			if (holiday_array[i] == expectedDay) {
+				return true;
+			} else if (holiday_array[i] > expectedDay) {
+				return false;
+			}
+		}
+		return false;
 	}
 
 	private String getCurrentMonthYear() {
@@ -292,6 +315,43 @@ public class Calendar extends _CommonPage {
 		}
 		int gap = 12 * (selectedYear_int - currentYear_int) + selectedMonth_int - currentmonth_int;
 		return gap;
+	}
+
+	public String selectTodaysFollowingHoliday() {
+		LocalDate localDate = LocalDate.now();
+		String currentDate = DateTimeFormatter.ofPattern("MMM dd, yyyy").format(localDate);
+		currentDate = currentDate.replace(" 0", " ");
+		currentDate = currentDate.replace(",", "");
+		System.out.println("Today is:" + currentDate);
+		String[] todayStr = currentDate.split(" ");
+		String yearOfToday = todayStr[2];
+		String monthOfToday = todayStr[0];
+		String dayOfToday = todayStr[1];
+
+		String sToday = yearOfToday + add0iflengthOfStrIs1(Integer.toString(stringToMonthMap.get(monthOfToday)))
+				+ add0iflengthOfStrIs1(dayOfToday);
+		int iToday = Integer.parseInt(sToday);
+		Arrays.sort(holiday_array);
+		boolean foundHoliday = false;
+		int iHoliday = 0;
+		for (int i = 0; i < holiday_array.length; i++) {
+			if (holiday_array[i] > iToday) {
+				foundHoliday = true;
+				iHoliday = holiday_array[i];
+				break;
+			}
+		}
+
+		if (foundHoliday) {
+			String sHoliday = Integer.toString(iHoliday);
+			String sHolidayYear = sHoliday.substring(0, 4);
+			String sHolidayMonth = sHoliday.substring(4, 6);
+			String sHolidayDay = sHoliday.substring(6, 8);
+
+			return sHolidayYear + " " + DigitToStr[Integer.parseInt(sHolidayMonth)] + " "
+					+ Integer.parseInt(sHolidayDay);
+		}
+		return "";
 	}
 
 	// return day: 2018 Mar 2; input has the same format
@@ -551,11 +611,8 @@ public class Calendar extends _CommonPage {
 		case Bi_weekly:
 		case Monthly:
 		case Quarterly:
-			if(thisDay.length() == 1) {
-				return DigitToStr[thisMonth_int] + " " + "0"+thisDay + ", " + thisYear;
-			} else {
-				return DigitToStr[thisMonth_int] + " " + thisDay + ", " + thisYear;
-			}
+			return selectFollowingWorkDayIfGivenDayisNot(Integer.parseInt(thisYear), thisMonth_int,
+					Integer.parseInt(thisDay));
 		case Month_end:
 			return getStartDateInmonthEnd(thisYear, thisMonth, thisDay);
 		case Semi_monthly:
@@ -993,10 +1050,15 @@ public class Calendar extends _CommonPage {
 		String thisMonth = thisMonthDay_Array[0].trim();
 		String thisYear = thisMonthDay_Array[2].trim();
 		String lastdayThisMonth = monthDaysMap.get(thisMonth).toString();
-		String workingDay = selectFollowingWorkDayIfGivenDayisNot(thisYear, thisMonth, lastdayThisMonth);
-		String[] workingDay_Array = workingDay.split(" ");
+		return selectFollowingWorkDayIfGivenDayisNot(thisYear, thisMonth, lastdayThisMonth);
+	}
 
-		return workingDay_Array[1] + " " + workingDay_Array[2] + "," + workingDay_Array[0];
+	private String add0iflengthOfStrIs1(String monthOrDay) {
+		if (monthOrDay.length() == 1) {
+			return "0" + monthOrDay;
+		} else {
+			return monthOrDay;
+		}
 	}
 
 	// return day: 2018 Mar 2; input has the same format
@@ -1004,21 +1066,38 @@ public class Calendar extends _CommonPage {
 	public String selectFollowingWorkDayIfGivenDayisNot(int yearOfDay, int monthOfDay, int dayOfDay) {
 
 		int expectedMonth = monthOfDay;
-		int colOfToday = getColOfSomeDay(Integer.toString(yearOfDay), Integer.toString(expectedMonth),
-				Integer.toString(dayOfDay));
+		int expectedDay = dayOfDay;
+		int expectedYear = yearOfDay;
+		int colOfToday = getColOfSomeDay(Integer.toString(expectedYear), Integer.toString(expectedMonth),
+				Integer.toString(expectedDay));
+
+		int maxDayOfThisMonth = maxDayOfMonth(Integer.toString(expectedYear), DigitToStr[expectedMonth]);
 
 		if (colOfToday != 1 && colOfToday != COLUMN_CALENDAR) {
-			return (DigitToStr[expectedMonth] + " " + dayOfDay + ", " + yearOfDay);
+			String expectedworkingday = expectedYear + add0iflengthOfStrIs1(Integer.toString(expectedMonth))
+					+ add0iflengthOfStrIs1(Integer.toString(expectedDay));
+
+			if (foundHoliday(Integer.parseInt(expectedworkingday))) {
+				expectedDay = expectedDay + 1;
+				if (expectedDay > maxDayOfThisMonth) {
+					expectedDay = expectedDay % maxDayOfThisMonth;
+					expectedMonth = expectedMonth + 1;
+				}
+				if (expectedMonth > 12) {
+					expectedMonth = 1;
+					expectedYear = expectedYear + 1;
+				}
+				return selectFollowingWorkDayIfGivenDayisNot(expectedYear, expectedMonth, expectedDay);
+			} else {
+				return (DigitToStr[expectedMonth] + " " + add0iflengthOfStrIs1(Integer.toString(expectedDay)) + ", "
+						+ expectedYear);
+			}
 		}
 
-		int maxDayOfThisMonth = maxDayOfMonth(Integer.toString(yearOfDay), DigitToStr[monthOfDay]);
-		int expectedDay;
-		int expectedYear = yearOfDay;
-		int today_int = dayOfDay;
 		if (colOfToday == COLUMN_CALENDAR) {
-			expectedDay = today_int + 2;
+			expectedDay = expectedDay + 2;
 		} else {
-			expectedDay = today_int + 1;
+			expectedDay = expectedDay + 1;
 		}
 
 		if (expectedDay > maxDayOfThisMonth) {
@@ -1026,17 +1105,29 @@ public class Calendar extends _CommonPage {
 			expectedMonth = expectedMonth + 1;
 		}
 		if (expectedMonth > 12) {
-			expectedMonth = expectedMonth % 12;
+			expectedMonth = 1;
 			expectedYear = expectedYear + 1;
 		}
-		
-		String expectedDay_str = Integer.toString(expectedDay);
-		if(expectedDay_str.length() == 1) {
-			System.out.println("Day is less then 10, add 0 in front of the digit");
-			expectedDay_str = "0" +expectedDay_str;
+
+		String expectedworkingday = expectedYear + add0iflengthOfStrIs1(Integer.toString(expectedMonth))
+				+ add0iflengthOfStrIs1(Integer.toString(expectedDay));
+
+		if (foundHoliday(Integer.parseInt(expectedworkingday))) {
+			expectedDay = expectedDay + 1;
+			if (expectedDay > maxDayOfMonth(Integer.toString(expectedYear), DigitToStr[expectedMonth])) {
+				expectedDay = 1;
+				expectedMonth = expectedMonth + 1;
+			}
+			if (expectedMonth > 12) {
+				expectedMonth = 1;
+				expectedYear = expectedYear + 1;
+			}
+
+			return selectFollowingWorkDayIfGivenDayisNot(expectedYear, expectedMonth, expectedDay);
 		}
-		
-		String expected = DigitToStr[expectedMonth] + " " + expectedDay_str + ", " + expectedYear;
+
+		String expected = DigitToStr[expectedMonth] + " " + add0iflengthOfStrIs1(Integer.toString(expectedDay)) + ", "
+				+ expectedYear;
 		return expected;
 	}
 
@@ -1045,52 +1136,31 @@ public class Calendar extends _CommonPage {
 	public String selectFollowingWorkDayIfGivenDayisNot(String yearOfDay, String monthOfDay, String dayOfDay) {
 
 		int expectedMonth = stringToMonthMap.get(monthOfDay);
-		int colOfToday = getColOfSomeDay(yearOfDay, Integer.toString(expectedMonth), dayOfDay);
-
-		if (colOfToday != 1 && colOfToday != COLUMN_CALENDAR) {
-			return (yearOfDay + " " + monthOfDay + " " + dayOfDay);
-		}
-
-		int maxDayOfThisMonth = maxDayOfMonth(yearOfDay, monthOfDay);
-		int expectedDay;
 		int expectedYear = Integer.parseInt(yearOfDay);
-		int today_int = Integer.parseInt(dayOfDay);
-		if (colOfToday == COLUMN_CALENDAR) {
-			expectedDay = today_int + 2;
-		} else {
-			expectedDay = today_int + 1;
-		}
+		int expectedDay = Integer.parseInt(dayOfDay);
 
-		if (expectedDay > maxDayOfThisMonth) {
-			expectedDay = expectedDay % maxDayOfThisMonth;
-			expectedMonth = expectedMonth + 1;
-		}
-		if (expectedMonth > 12) {
-			expectedMonth = expectedMonth % 12;
-			expectedYear = expectedYear + 1;
-		}
-		String expected = expectedYear + " " + DigitToStr[expectedMonth] + " " + expectedDay;
-		return expected;
+		return selectFollowingWorkDayIfGivenDayisNot(expectedYear, expectedMonth, expectedDay);
 	}
 
 	// currentYear :2017; currentMonth: Dec; xMonthLater: 5;
 	// return should be: someday in May 2018
-	public String selectRandomDayInXmonthLater(String currentYear, String currentMonth, String currentDay, int xMonthLater) {
-		
+	public String selectRandomDayInXmonthLater(String currentYear, String currentMonth, String currentDay,
+			int xMonthLater) {
+
 		int calculateMonthLater = xMonthLater;
-		int startDayIndex =1 ;
-		if(xMonthLater == 0) {
+		int startDayIndex = 1;
+		if (xMonthLater == 0) {
 
 			int day_int = Integer.parseInt(currentDay);
-			if(day_int == maxDayOfMonth(currentYear, currentMonth)) {
+			if (day_int == maxDayOfMonth(currentYear, currentMonth)) {
 				// Today is the end day of the month
-				System.out.println("Today is end of the month:" +currentDay );
-				calculateMonthLater = calculateMonthLater +1;
+				System.out.println("Today is end of the month:" + currentDay);
+				calculateMonthLater = calculateMonthLater + 1;
 			} else {
-				startDayIndex = day_int +1;
-			}			
+				startDayIndex = day_int + 1;
+			}
 		}
-		
+
 		int requiredMonth_int = stringToMonthMap.get(currentMonth) + calculateMonthLater;
 		int requiredYear_int = Integer.parseInt(currentYear);
 		if (requiredMonth_int > 12) {
@@ -1101,8 +1171,7 @@ public class Calendar extends _CommonPage {
 
 		int randFund = getRandomInRange(startDayIndex, maxDayOfMonth);
 
-		return selectFollowingWorkDayIfGivenDayisNot(Integer.toString(requiredYear_int), DigitToStr[requiredMonth_int],
-				Integer.toString(randFund));
+		return selectFollowingWorkDayIfGivenDayisNot(requiredYear_int, requiredMonth_int, randFund);
 	}
 
 	public void selectDate(String requiredYear, String requiredMonth, String requireddate) {
@@ -1117,8 +1186,8 @@ public class Calendar extends _CommonPage {
 			String currentYear = currentMonthYear_Array[1].trim();
 
 			String currentMonth_Abbr = currentMonth.substring(0, 3);
-			String requiredMonth_Abbr = requiredMonth.substring(0, 3);
-			int monthGap = getMonthGap(currentYear, currentMonth_Abbr, requiredYear, requiredMonth_Abbr);
+			//String requiredMonth_Abbr = requiredMonth.substring(0, 3);
+			int monthGap = getMonthGap(currentYear, currentMonth_Abbr, requiredYear, requiredMonth);
 			if (monthGap == -1) {
 				mobileAction.Report_Fail("Selected year is not correct");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1138,9 +1207,9 @@ public class Calendar extends _CommonPage {
 				// (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios"))
 				// {
 
-				Point checkPoint = getPositionInCalendar(requiredYear, requiredMonth_Abbr, requireddate);
+				Point checkPoint = getPositionInCalendar(requiredYear, requiredMonth, requireddate);
 				mobileAction.TapCoOrdinates(checkPoint.getX(), checkPoint.getY(),
-						"Calendar date:" + requiredMonth_Abbr + "-" + requireddate + " clicked");
+						"Calendar date:" + requiredMonth + "-" + requireddate + " clicked");
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					mobileAction.FuncClick(calendar_confirm_btn, "Confirm");
 				}
@@ -1182,6 +1251,16 @@ public class Calendar extends _CommonPage {
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void clickCalendarCancel() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(calendar_Cancel, "Canlendar Cancel Cliked");
+
+		} catch (Exception e) {
+
 		}
 	}
 

@@ -560,6 +560,10 @@ public final class StringArray {
 	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG = {
 			"You're not able to schedule that many payments within a 5-year period. Please type in a lower number of payments.",
 			"", "不允许在 5 年内安排太多次数的付款。请输入较少付款次数", "" };
+	
+	public static final String[] ARRAY_RBP_1_NUM_PAYMENT_ERROR_MSG = {
+			"Please select a number higher than 1.",
+			"", "不允许在 5 年内安排太多次数的付款。请输入较少付款次数", "" };
 	// public static final String[] ARRAY_RBP_FREQUENCY_SEMI_MONTHLY = {
 	// "Semi-Monthly","","",""};
 	// public static final String[] ARRAY_RBP_FREQUENCY_QUARTERLY = {

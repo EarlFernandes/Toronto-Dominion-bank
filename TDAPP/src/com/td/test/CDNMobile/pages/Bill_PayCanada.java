@@ -97,7 +97,7 @@ public class Bill_PayCanada extends _CommonPage {
 	// "//android.widget.ImageView[@resource-id='android:id/up']")
 	// private MobileElement menu;
 
-	@iOSXCUITFindBy(xpath = "//*[@name='TDVIEW_TITLE'] | //XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText | //XCUIElementTypeNavigationBar/XCUIElementTypeOther")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement payBill_Header;
 
@@ -255,7 +255,7 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/date_Label']")
 	private List<MobileElement> start_end_Date_List;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label='Start Date' OR label='End Date'`]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Start Date' or label='End Date']/../XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dateText']")
 	private List<MobileElement> dateText_List;
 
@@ -284,11 +284,11 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/imgActionCheckMark']/../android.widget.TextView")
 	private MobileElement checked_howoften_selection;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[3]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText']")
 	private List<MobileElement> prefilled_text_List;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedSubText']")
 	private List<MobileElement> prefilled_digit_List;
 
@@ -311,7 +311,7 @@ public class Bill_PayCanada extends _CommonPage {
 	MobileElement[] Payment_End_Item = { null, null, null };
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Number of Payments']/../XCUIElementTypeTextField")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Number of Payments']/../android.widget.EditText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Number of Payments']/..//android.widget.EditText")
 	private MobileElement numer_of_payment;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar/following-sibling::XCUIElementTypeOther[1]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
@@ -343,6 +343,7 @@ public class Bill_PayCanada extends _CommonPage {
 	}
 
 	private void init_Payment_End_Item() {
+		mobileAction.FuncSwipeOnce("up");
 		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 			Payment_End_Item[0] = on_a_specific_date;
 			Payment_End_Item[1] = after_a_number_of_payments;
@@ -358,7 +359,10 @@ public class Bill_PayCanada extends _CommonPage {
 
 		String payeeAccount = getTestdata("Payee");
 		System.out.println("Payee account:" + payeeAccount);
-		String payeeNumber = mobileAction.FuncGetValByRegx(payeeAccount, "\\d+");
+		String payeeNumber = "";
+		if (payeeAccount.matches(".*\\d+")) {
+			payeeNumber = mobileAction.FuncGetValByRegx(payeeAccount, "\\d+");
+		}
 		String payeeName = payeeAccount.replaceAll(payeeNumber, "").trim();
 		System.out.println("Payee name:" + payeeName);
 		try {
@@ -1470,11 +1474,22 @@ public class Bill_PayCanada extends _CommonPage {
 			System.out.println("Caption list size:" + capturedListSize);
 			if (capturedListSize == expectedCaption.length - 1) {
 				for (int i = 0; i < capturedListSize; i++) {
-					mobileAction.verifyElementTextIsDisplayed(paybill_caption_list.get(i), expectedCaption[i + 1]);
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+						String xpath = "//XCUIElementTypeStaticText[@label='" + expectedCaption[i + 1] + "']";
+						mobileAction.verifyElementUsingXPath(xpath, expectedCaption[i + 1]);
+					} else {
+						mobileAction.verifyElementTextIsDisplayed(paybill_caption_list.get(i), expectedCaption[i + 1]);
+					}
+
 				}
 			} else if (capturedListSize == expectedCaption.length) {
 				for (int i = 0; i < capturedListSize; i++) {
-					mobileAction.verifyElementTextIsDisplayed(paybill_caption_list.get(i), expectedCaption[i]);
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+						String xpath = "//XCUIElementTypeStaticText[@label='" + expectedCaption[i] + "']";
+						mobileAction.verifyElementUsingXPath(xpath, expectedCaption[i]);
+					} else {
+						mobileAction.verifyElementTextIsDisplayed(paybill_caption_list.get(i), expectedCaption[i]);
+					}
 				}
 			} else {
 				System.out.println("Something wrong......");
@@ -1596,22 +1611,27 @@ public class Bill_PayCanada extends _CommonPage {
 			// verify prefilled text
 
 			String capturedPayee = mobileAction.getValue(prefilled_text_List.get(0));
-			String capturedPayee_num = mobileAction.getValue(prefilled_digit_List.get(0));
-			if (payeeText.contains(capturedPayee) && payeeText.contains(capturedPayee_num)) {
+			// String capturedPayee_num =
+			// mobileAction.getValue(prefilled_digit_List.get(0));
+			if (payeeText.contains(capturedPayee)) {
 				mobileAction.Report_Pass_Verified(payeeText);
 			} else {
 				mobileAction.Report_Fail(payeeText + " is not prefilled");
 			}
 
 			String capturedAmount = mobileAction.getValue(amount);
-			capturedAmount = capturedAmount.replace("$", "");
-			if (capturedAmount.equals(amount_num)) {
+			// capturedAmount = capturedAmount.replace("$", "");
+			if (capturedAmount.contains(amount_num)) {
 				mobileAction.Report_Pass_Verified(capturedAmount);
 			} else {
 				mobileAction.Report_Fail(amount_num + " is not prefilled");
 			}
-
-			mobileAction.verifyElementTextIsDisplayed(prefilled_digit_List.get(1), from_Account);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				String accountPath = "//XCUIElementTypeStaticText[@label='" + from_Account + "']";
+				mobileAction.verifyElementUsingXPath(accountPath, "From Account");
+			} else {
+				mobileAction.verifyElementTextIsDisplayed(prefilled_text_List.get(1), from_Account);
+			}
 
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
@@ -1850,7 +1870,14 @@ public class Bill_PayCanada extends _CommonPage {
 		// Save how often in "Price"
 		CL.getTestDataInstance().TCParameters.put("Price", "Ongoing");
 
-		String startDate_day = Calendar.get().selectTodaysFollowingWorkDay();
+		String startdate_input = CL.getTestDataInstance().TCParameters.get("Timeout");
+		String startDate_day = "";
+		if (startdate_input != null && startdate_input.equals("Holiday")) {
+			startDate_day = Calendar.get().selectTodaysFollowingHoliday();
+		} else {
+			startDate_day = Calendar.get().selectTodaysFollowingWorkDay();
+		}
+
 		System.out.println("Today's following working day:" + startDate_day);
 		try {
 			mobileAction.FuncClick(start_end_Date_List.get(0), "Start Date");
@@ -1890,7 +1917,7 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.FuncClick(start_end_Date_List.get(1), "End Date");
 				String endDate_day = Calendar.get().selectRandomDayInXmonthLater(yearOfDay, monthOfDay, dayOfDay, 2);
 				System.out.println("Random working day:" + endDate_day);
-				String[] endDate_day_Array = endDate_day.split(" ");
+				String[] endDate_day_Array = endDate_day.replaceAll(",", "").split(" ");
 				yearOfDay = endDate_day_Array[0];
 				monthOfDay = endDate_day_Array[1];
 				dayOfDay = endDate_day_Array[2];
@@ -1908,8 +1935,17 @@ public class Bill_PayCanada extends _CommonPage {
 				} else {
 					mobileAction.FuncHideKeyboard();
 				}
-				mobileAction.FuncSwipeOnce("down");
 				CL.getTestDataInstance().TCParameters.put("SecondTimeout", numpayments);
+				// workaround: click start date to get Continue button
+				// highlighted
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+					try {
+						mobileAction.FuncClick(start_end_Date_List.get(0), "Start Date");
+						Calendar.get().clickCalendarCancel();
+					} catch (Exception e) {
+
+					}
+				}
 				break;
 			case 2:
 
@@ -1966,21 +2002,17 @@ public class Bill_PayCanada extends _CommonPage {
 		String monthOfToday = todayStr[0];
 		String dayOfToday = todayStr[1];
 
-		if (startDate_day.matches("randomly \\d+ months later")) {
+		String startDateDay = "";
+		if (startDate_day.equals("Holiday")) {
+			startDateDay = Calendar.get().selectTodaysFollowingHoliday();
+		} else if (startDate_day.matches("randomly \\d+ months later")) {
 			try {
 				String xMonthLater = mobileAction.FuncGetValByRegx(startDate_day, "\\d+");
 
 				int xMonthLater_int = Integer.parseInt(xMonthLater);
 
-				String startDateDay = Calendar.get().selectRandomDayInXmonthLater(yearOfToday, monthOfToday, dayOfToday,
+				startDateDay = Calendar.get().selectRandomDayInXmonthLater(yearOfToday, monthOfToday, dayOfToday,
 						xMonthLater_int);
-				System.out.println("Random working day:" + startDateDay);
-				String[] endDate_day_Array = startDateDay.split(" ");
-				String yearOfDay = endDate_day_Array[0];
-				String monthOfDay = endDate_day_Array[1];
-				String dayOfDay = endDate_day_Array[2];
-				Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
-				CL.getTestDataInstance().TCParameters.put("Timeout", monthOfDay + " " + dayOfDay + ", " + yearOfDay);
 
 			} catch (Exception e) {
 
@@ -1991,16 +2023,14 @@ public class Bill_PayCanada extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			return;
 		}
+		System.out.println("Random working day:" + startDateDay);
+		String[] startDate_day_Array = startDateDay.replaceAll(",", "").split(" ");
+		String yearOfDay = startDate_day_Array[2];
+		String monthOfDay = startDate_day_Array[0];
+		String dayOfDay = startDate_day_Array[1];
+		Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
+		CL.getTestDataInstance().TCParameters.put("Timeout", monthOfDay + " " + dayOfDay + ", " + yearOfDay);
 
-		// String[] startDate_day_Array = startDate_day.split("-");
-		// String yearOfDay = startDate_day_Array[2];
-		// String monthOfDay = startDate_day_Array[1];
-		// String dayOfDay = startDate_day_Array[0];
-		//
-		// // Save start date in "Timeout"
-		// CL.getTestDataInstance().TCParameters.put("Timeout", monthOfDay + " "
-		// + dayOfDay + ", " + yearOfDay);
-		// Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
 		String realFrequency = getFrequencymapping(frequency);
 		selectFrequency(realFrequency);
 		CL.getTestDataInstance().TCParameters.put("MerchantName", realFrequency);
@@ -2043,10 +2073,10 @@ public class Bill_PayCanada extends _CommonPage {
 					String endDateDay = Calendar.get().selectRandomDayInXmonthLater(yearOfToday, monthOfToday,
 							dayOfToday, xMonthLater_int);
 					System.out.println("Random working day:" + endDateDay);
-					String[] endDate_day_Array = endDateDay.split(" ");
-					String yearOfDay = endDate_day_Array[0];
-					String monthOfDay = endDate_day_Array[1];
-					String dayOfDay = endDate_day_Array[2];
+					String[] endDate_day_Array = endDateDay.replaceAll(",", "").split(" ");
+					yearOfDay = endDate_day_Array[0];
+					monthOfDay = endDate_day_Array[1];
+					dayOfDay = endDate_day_Array[2];
 					Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
 					CL.getTestDataInstance().TCParameters.put("SecondTimeout",
 							monthOfDay + " " + dayOfDay + ", " + yearOfDay);
@@ -2076,9 +2106,17 @@ public class Bill_PayCanada extends _CommonPage {
 					mobileAction.FuncHideKeyboard();
 				}
 				Thread.sleep(1000);
-				// workaround: click how often
-				mobileAction.FuncSwipeOnce("down");
 				CL.getTestDataInstance().TCParameters.put("SecondTimeout", endDateOrnumberOfPayment);
+				// workaround: click start date to get Continue button
+				// highlighted
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+					try {
+						mobileAction.FuncClick(start_end_Date_List.get(0), "Start Date");
+						Calendar.get().clickCalendarCancel();
+					} catch (Exception e) {
+
+					}
+				}
 				break;
 			case 2:
 
@@ -2114,6 +2152,18 @@ public class Bill_PayCanada extends _CommonPage {
 		Decorator();
 		try {
 			String expectedError = getTextInCurrentLocale(StringArray.ARRAY_RBP_PAY_BILL_ERROR_MSG);
+			mobileAction.verifyElementTextIsDisplayed(rbp_error_message, expectedError);
+
+		} catch (Exception e) {
+			mobileAction.Report_Fail("Failed to verify error message");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void VerifyRBP1NumberOfPaymentErrorMessage() {
+		Decorator();
+		try {
+			String expectedError = getTextInCurrentLocale(StringArray.ARRAY_RBP_1_NUM_PAYMENT_ERROR_MSG);
 			mobileAction.verifyElementTextIsDisplayed(rbp_error_message, expectedError);
 
 		} catch (Exception e) {

@@ -485,7 +485,7 @@ public class Receipt extends _CommonPage {
 				// End of payment is select: number of payments
 				expectedNumberOfpayments = Integer.parseInt(secondTimeout);
 				expectedStartOfDate = Calendar.get().getStartDateInAnyCase(inputStartdate, expectedFrequency);
-				expectedEndOfDate = Calendar.get().getEndOfDateWhenNumberOfPaymentSelected(inputStartdate,
+				expectedEndOfDate = Calendar.get().getEndOfDateWhenNumberOfPaymentSelected(expectedStartOfDate,
 						expectedNumberOfpayments, expectedFrequency);
 			} else {
 				// End of payment is select: On a specific day
@@ -494,7 +494,7 @@ public class Receipt extends _CommonPage {
 				expectedStartOfDate = Calendar.get().getStartDateInAnyCase(inputStartdate, expectedFrequency);
 				expectedNumberOfpayments = Calendar.get().getNumberOfpaymentsWhenOnSpecificDayClicked(inputStartdate,
 						inputEndOfDate, expectedFrequency);
-				expectedEndOfDate = Calendar.get().geEndOfDateWhenOnSpecificDayClicked(inputStartdate, inputEndOfDate,
+				expectedEndOfDate = Calendar.get().geEndOfDateWhenOnSpecificDayClicked(expectedStartOfDate, inputEndOfDate,
 						expectedFrequency);
 			}
 
