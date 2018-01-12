@@ -39,6 +39,11 @@ public class WebViewPage extends _CommonPage {
 	// }
 
 	public boolean setWebViewContext() {
+		try{
+			Thread.sleep(10000); //Wait 10 second for web page to load
+		} catch (Exception e) {
+			
+		}
 		Set<String> allContexthandles = (Set<String>) CL.GetAppiumDriver().getContextHandles();
 		System.out.println("Context:" + allContexthandles.toString());
 		boolean isSetcontextDone = false;
