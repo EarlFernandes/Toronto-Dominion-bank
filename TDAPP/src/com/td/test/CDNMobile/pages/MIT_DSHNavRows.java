@@ -138,7 +138,7 @@ public class MIT_DSHNavRows extends _CommonPage {
 			// verifyNR_InvestingAccounts(false); //Investing Accounts removed
 			// from Nav Rows as per new requirement
 
-			verifyNR_Trade(false);
+			verifyNR_Alerts(false);
 
 			verifyNR_Markets(false);
 
@@ -161,6 +161,8 @@ public class MIT_DSHNavRows extends _CommonPage {
 			// verifyNR_InvestingAccounts(false); //Investing Accounts removed
 			// from Nav Rows as per new requirement
 
+			mobileAction.FuncSwipeOnce("up");
+
 			verifyNR_OpenTDDirectInvestingAccount(true);
 
 			verifyNR_Quote(true);
@@ -181,7 +183,7 @@ public class MIT_DSHNavRows extends _CommonPage {
 			// from Nav Rows as per new requirement
 
 			verifyNR_Accounts(true);
-			
+
 			verifyNR_Alerts(true);
 
 			verifyNR_Markets(true);
@@ -198,7 +200,15 @@ public class MIT_DSHNavRows extends _CommonPage {
 		Decorator();
 		try {
 
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
+
 			verifyNR_Accounts(true);
+
+			mobileAction.FuncSwipeOnce("up");
+
+			verifyNR_Alerts(true);
+
+			verifyNR_Markets(true);
 
 			verifyNR_Transfers(true);
 
@@ -206,10 +216,6 @@ public class MIT_DSHNavRows extends _CommonPage {
 
 			// verifyNR_InvestingAccounts(false); //Investing Accounts removed
 			// from Nav Rows as per new requirement
-
-			verifyNR_Alerts(true);
-
-			verifyNR_Markets(true);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -279,8 +285,9 @@ public class MIT_DSHNavRows extends _CommonPage {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 						mobileAction.FuncClick(BT_HamburgerMenu, "BT_Home_HamburgerMenu");
 						mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+					} else {
+						mobileAction.FuncClick(BT_Back, "< Button");
 					}
-					mobileAction.FuncClick(BT_Back, "< Button");
 				}
 			}
 		} catch (Exception e) {
@@ -322,9 +329,7 @@ public class MIT_DSHNavRows extends _CommonPage {
 					 * "BT_Home_HamburgerMenu");
 					 * mobileAction.FuncClick(FLY_Home, "Home Flyout Menu"); }
 					 */
-				}
-				else
-				{
+				} else {
 					CL.GetReporting().FuncReport(FAIL, "Transfers Nav row not present.");
 				}
 			}
@@ -361,9 +366,7 @@ public class MIT_DSHNavRows extends _CommonPage {
 					 * "HDR_Bills"); mobileAction.FuncClick(BT_Back,
 					 * "< Button");
 					 */
-				}
-				else
-				{
+				} else {
 					CL.GetReporting().FuncReport(FAIL, "Bills Nav row not present.");
 				}
 			}
@@ -399,9 +402,7 @@ public class MIT_DSHNavRows extends _CommonPage {
 				if (NR_TDDirectInvestingAccounts.getAttribute("label").equals(
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_OPENTDDIRECTINVESTINGACCOUNT))) {
 					CL.GetReporting().FuncReport(PASS, "Open a TD Direct Investing Account Nav row present.");
-				}
-				else
-				{
+				} else {
 					CL.GetReporting().FuncReport(FAIL, "Open a TD Direct Investing Account Nav row not present.");
 				}
 
@@ -527,26 +528,27 @@ public class MIT_DSHNavRows extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_ALERTS));
 
 				clickNavRow(NR_Alerts, "Alerts");
-				/*
-				 * if (!bIsAuthenticatedUser) {
-				 * mobileAction.verifyElementIsDisplayed(password,
-				 * "Login Screen"); mobileAction.FuncClick(BT_Back, "< Button");
-				 * } else {
-				 */
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					if (mobileAction.isObjExists(HDR_Alerts)) {
-						mobileAction.verifyElementIsDisplayed(HDR_Alerts, "Alerts");
-						mobileAction.FuncClick(BT_Back, "< Button");
-					} else {
-						MIT_PNSAccessAlerts.get()
-								.FuncSwitchContext(MIT_PNSAccessAlerts.get().getWebViewContextString());
-						MIT_PNSAccessAlerts.get().verifyAlertLandingPage();
-						mobileAction.switchAppiumContext("NATIVE_APP");
-					}
+
+				if (!bIsAuthenticatedUser) {
+					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
+					mobileAction.FuncClick(BT_Back, "< Button");
 				} else {
-					if (mobileAction.isObjExists(HDR_Alerts)) {
-						mobileAction.verifyElementIsDisplayed(HDR_Alerts, "Alerts");
-						mobileAction.FuncClick(BT_Back, "< Button");
+
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+						if (mobileAction.isObjExists(HDR_Alerts)) {
+							mobileAction.verifyElementIsDisplayed(HDR_Alerts, "Alerts");
+							mobileAction.FuncClick(BT_Back, "< Button");
+						} else {
+							MIT_PNSAccessAlerts.get()
+									.FuncSwitchContext(MIT_PNSAccessAlerts.get().getWebViewContextString());
+							MIT_PNSAccessAlerts.get().verifyAlertLandingPage();
+							mobileAction.switchAppiumContext("NATIVE_APP");
+						}
+					} else {
+						if (mobileAction.isObjExists(HDR_Alerts)) {
+							mobileAction.verifyElementIsDisplayed(HDR_Alerts, "Alerts");
+							mobileAction.FuncClick(BT_Back, "< Button");
+						}
 					}
 				}
 			}

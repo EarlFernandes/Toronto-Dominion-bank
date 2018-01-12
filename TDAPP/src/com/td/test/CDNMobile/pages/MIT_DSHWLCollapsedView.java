@@ -62,7 +62,7 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 	private MobileElement BT_EditWatchlist;
 
 	@iOSXCUITFindBy(xpath = "//*[@label='Edit watchlist' or @label='Modifier la liste de surveillance' or @label='编辑自选股观察名单' or @label='編輯自選股觀察名單']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/toolbar_title']")
+	@AndroidFindBy(xpath = "(//*[@resource-id='com.td:id/tv_item_more_option_name'])[2]")
 	private MobileElement LBL_EditWatchlist;
 
 	@iOSXCUITFindBy(xpath = "//*[@label='Manage, rename, and add or remove symbols' or @label='Gérer, renommer, ajouter ou supprimer des symboles' or @label='管理、重命名、添加或移除股票代码' or @label='管理、重新命名、新增或移除股票代號']")
@@ -108,6 +108,7 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 	public void verifyWLCollapsedViewUI() {
 		Decorator();
 		try {
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			mobileAction.verifyElementIsDisplayed(LT_Watchlist, "Watchlist Dropdown");
 			mobileAction.verifyElementIsDisplayed(BT_MoreOptions, "More Options button");
 
@@ -161,6 +162,8 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 	public void verifyWLMoreOptions() {
 		Decorator();
 		try {
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
+			
 			mobileAction.FuncClick(BT_MoreOptions, "More Options button");
 
 			mobileAction.FuncClick(BT_Refresh, "Refresh button");
@@ -169,7 +172,7 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 
 			mobileAction.FuncClick(BT_EditWatchlist, "Edit Watchlist button");
 
-			mobileAction.FuncVerifyTextEquals(LBL_EditWatchlist,
+			mobileAction.FuncVerifyTextEquals(HDR_EditWatchlist,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_EDITWATCHLIST));
 
 			mobileAction.FuncClick(BT_EditWatchlist_Back, "< Button");
@@ -202,7 +205,7 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 			 * mobileAction.FuncSwipeWhileElementNotFoundByxpath(
 			 * xpathWatchlistItem, false, 10, "up");
 			 */
-
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			if (!CL.getTestDataInstance().getMobileDeviceType().equalsIgnoreCase("Tablet")) {
 				mobileAction.FuncSwipeOnce("up");
 			}

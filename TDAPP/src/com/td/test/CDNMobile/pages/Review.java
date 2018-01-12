@@ -24,25 +24,50 @@ public class Review extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement reviewHeader;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar/following-sibling::XCUIElementTypeOther[1]//XCUIElementTypeButton[1]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel']")
+	// @iOSXCUITFindBy(xpath =
+	// "//XCUIElementTypeNavigationBar/following-sibling::XCUIElementTypeOther[1]//XCUIElementTypeButton[1]")
+	// @AndroidFindBy(xpath =
+	// "//android.widget.Button[@resource-id='com.td:id/btn_cancel']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[1]")
+	@AndroidFindBy(id = "com.td:id/btn_cancel")
 	private MobileElement cancelBtn;
-	
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar/following-sibling::XCUIElementTypeOther[1]//XCUIElementTypeButton[2]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue']")
 	private MobileElement payBillBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Pay Now']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='Pay Now']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[2]")
+	@AndroidFindBy(id = "com.td:id/btn_continue")
 	private MobileElement payNowBtn;
-	
+
 	@iOSFindBy(accessibility = "TDVIEW_MESSAGE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
 	private MobileElement review_banner_info;
-	
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/review_row_label']")
 	private List<MobileElement> review_info_list;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/item_row_value_main'])[1]")
+	private MobileElement fromAcctValue;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/item_row_value_main'])[2]")
+	private MobileElement toCardName;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[3]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/item_row_subvalue'])[1]")
+	private MobileElement toCardNum;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/item_row_value_main'])[3]")
+	private MobileElement amtValue;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/item_row_value_main'])[4]")
+	private MobileElement dateValue;
 
 	public synchronized static Review get() {
 		if (Review == null) {
@@ -60,7 +85,8 @@ public class Review extends _CommonPage {
 	public void verifyReviewHeader() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(reviewHeader, getTextInCurrentLocale(StringArray.ARRAY_REVIEW_HEADER));
+			mobileAction.verifyElementTextIsDisplayed(reviewHeader,
+					getTextInCurrentLocale(StringArray.ARRAY_REVIEW_HEADER));
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -108,16 +134,47 @@ public class Review extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(payNowBtn, "Pay Now Button");
+			mobileAction.waitProgressBarVanish();
 
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-
 	}
-	
-	
+
+	public void verifyRedemptionReview() {
+		Decorator();
+		try {
+
+			String amt = "25";
+			mobileAction.verifyElementIsDisplayed(fromAcctValue, "From Account Value");
+			mobileAction.verifyElementIsDisplayed(toCardName, "To Card Name");
+			mobileAction.verifyElementIsDisplayed(toCardNum, "To Card Number");
+			mobileAction.verifyElementIsDisplayed(amtValue, "Amount Value");
+			mobileAction.verifyElementTextContains(amtValue, amt);
+			mobileAction.verifyElementIsDisplayed(dateValue, "Date Value");
+
+			mobileAction.verifyElementIsDisplayed(cancelBtn, "Cancel button");
+			mobileAction.verifyElementIsDisplayed(payNowBtn, "Pay Now button");
+
+			mobileAction.sleep(2000);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
 	public void verifyReviewContent() {
 		Decorator();
 		String[] expectedReviewInfo = { getTextInCurrentLocale(StringArray.ARRAY_PAYEE_CAPTION),
@@ -126,20 +183,20 @@ public class Review extends _CommonPage {
 				getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN),
 				getTextInCurrentLocale(StringArray.ARRAY_RBP_START_DATE),
 				getTextInCurrentLocale(StringArray.ARRAY_RBP_FREQUENCY),
-				getTextInCurrentLocale(StringArray.ARRAY_RBP_END_DATE) +"|" +getTextInCurrentLocale(StringArray.ARRAY_RBP_NUMBER_OF_PAYMENTS)			
-		};
+				getTextInCurrentLocale(StringArray.ARRAY_RBP_END_DATE) + "|"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RBP_NUMBER_OF_PAYMENTS) };
 		try {
-			mobileAction.verifyElementTextIsDisplayed(review_banner_info, getTextInCurrentLocale(StringArray.ARRAY_RBP_REVIEW_BANNER));
+			mobileAction.verifyElementTextIsDisplayed(review_banner_info,
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_REVIEW_BANNER));
 			int sizeOfInfo = review_info_list.size();
 			if (sizeOfInfo > expectedReviewInfo.length) {
 				System.out.println("Failing........");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				return;
 			}
-			for ( int i=0; i< sizeOfInfo; i ++) {
+			for (int i = 0; i < sizeOfInfo; i++) {
 				mobileAction.verifyElementTextIsDisplayed(review_info_list.get(i), expectedReviewInfo[i]);
 			}
-			
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -147,7 +204,7 @@ public class Review extends _CommonPage {
 
 		}
 	}
-	
+
 	public void verifyAndClickCancelButton() {
 		Decorator();
 		try {
@@ -158,9 +215,9 @@ public class Review extends _CommonPage {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 
-		} 		
+		}
 	}
-	
+
 	public void verifyAndClickPayBillButton() {
 		Decorator();
 		try {
@@ -171,7 +228,7 @@ public class Review extends _CommonPage {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 
-		} 		
+		}
 	}
-	
+
 }
