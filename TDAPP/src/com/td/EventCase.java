@@ -19,6 +19,8 @@ import com.td.test.myspend.TDAppHomePage;
 import com.td.test.myspend.TourPage;
 import com.td.test.myspend.TransactionHistory;
 
+import com.td.test.TDI.*;
+
 public class EventCase {
 
 	private enum functionNames {
