@@ -204,7 +204,7 @@ public class EventCase {
 		NewSecuritySetup, SecuritySettings,
 
 		// Quick Access
-		QuickAccessSettings_ToggleSpecificAccount, QuickAccessPage_VerifyTDPoints, QuickAccessPage_VerifyEligibleTDPoints, QuickAccessPage_VerifyIneligibleTDPoints, QuickAccessPage_VerifyAccountVisibility, QuickAccessSettings_VerifyAccountExists, QuickAccessSettings_VerifyNoAccount, QuickAccessSettings_TestSecondUser,
+		QuickAccessSettings_ToggleSpecificAccount, QuickAccessPage_VerifyTDPoints, QuickAccessPage_VerifyEligibleTDPoints, QuickAccessPage_VerifyIneligibleTDPoints, QuickAccessPage_VerifyAccountVisibility, QuickAccessSettings_VerifyAccountExists, QuickAccessSettings_VerifyNoAccount, QuickAccessSettings_TestSecondUser, QuickAccessPage_CloseQuickAccess,
 
 		// Receipt
 		Receipt_VerifyTransferReceipt, Receipt_GoBackHome, Receipt_MakeAnotherTransfer, Receipt_VerifyBillReceipt, Receipt_ScheduledPayments, Receipt_VerifyUSBillReceipt, Receipt_VerifyCancelledBillReceipt, Receipt_VerifyReceiptBanner, Receipt_VerifyPayWithRewardsReceipt, Credit_VerifyTDPointsBalanceUpdated, Receipt_SaveReceiptInfoUSTransfer,
@@ -4837,6 +4837,10 @@ public class EventCase {
 
 		case QuickAccessPage_VerifyAccountVisibility:
 			QuickAccessPage.get().verifyAccountVisibility();
+			break;
+
+		case QuickAccessPage_CloseQuickAccess:
+			QuickAccessPage.get().closeQuickAccess();
 			break;
 
 		// Receipt

@@ -33,7 +33,7 @@ public class OTPSetup extends _CommonPage {
 
 	private static OTPSetup OneTimePasswordSetup;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@AndroidFindBy(id = "com.td:id/btn_primary")
 	private MobileElement getStartedNewButton;
 
@@ -465,6 +465,7 @@ public class OTPSetup extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(firstPhoneNumber, "First phone number");
+			mobileAction.sleep(5000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

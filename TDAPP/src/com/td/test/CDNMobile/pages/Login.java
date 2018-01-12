@@ -1837,9 +1837,10 @@ public class Login extends _CommonPage {
 			String alias = getTestdata("Transfers");
 			String[] cardList = { connectID, accessCardNumber, alias };
 
-			MobileElement cardFound = null;
+			mobileAction.FuncClick(select_accesscard, "Select Accesscard");
+
+			boolean cardFound = false;
 			for (int i = 0; i < cardList.length; i++) {
-				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				String card = cardList[i];
 				String maskedCard = card.substring(0, 2) + "***" + card.substring(card.length() - 3, card.length());
 				String xpath = "";
@@ -1848,20 +1849,17 @@ public class Login extends _CommonPage {
 				} else {
 					xpath = "//XCUIElementTypeStaticText[@label='" + maskedCard + "']";
 				}
-				cardFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
-				mobileAction.sleep(5000);
-				// mobileAction.FuncClick(cancelActionList, "Cancel Action
-				// List");
-				mobileAction.FuncClickBackButton();
+
+				cardFound = mobileAction.verifyElementIsPresentByXpath(xpath);
 				mobileAction.sleep(5000);
 
-				if (cardFound == null) {
+				if (!cardFound) {
 					break;
 				}
 
 			}
 
-			if (cardFound != null) {
+			if (cardFound) {
 				CL.GetReporting().FuncReport("Pass", "All IDs remembered");
 			} else {
 				CL.GetReporting().FuncReport("Fail", "Not all IDs remembered");

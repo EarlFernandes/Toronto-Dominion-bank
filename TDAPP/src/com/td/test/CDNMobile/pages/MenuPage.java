@@ -555,6 +555,7 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncSwipeWhileElementNotFound(profile_and_settings, true, 10, "up");
+			mobileAction.sleep(5000);
 			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {

@@ -301,6 +301,7 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.FuncClick(quickAccess, "Quick Access");
+			mobileAction.sleep(5000);
 			mobileAction.waitProgressBarVanish();
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

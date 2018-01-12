@@ -222,7 +222,7 @@ public class PayBill extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(continue_pay, "Continue_pay");
-			mobileAction.sleep(3000);
+			mobileAction.sleep(5000);
 			mobileAction.FuncClick(pay_bill, "Pay Bill");
 
 		} catch (Exception e) {
