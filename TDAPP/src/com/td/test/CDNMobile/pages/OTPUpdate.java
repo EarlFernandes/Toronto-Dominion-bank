@@ -217,6 +217,12 @@ public class OTPUpdate extends _CommonPage {
 	@FindBy(xpath = "//enter-security-email//span")
 	private WebElement securityEmailHeader;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[6]")
+	private MobileElement hideKeyboardIpad1;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[5]")
+	private MobileElement hideKeyboardIpad2;
+
 	private String GOOGLE_VOICE_URL = "https://voice.google.com";
 	private String GOOGLE_VOICE_login = "tdmobileqa1@gmail.com";
 	private String GOOGLE_VOICE_password = "mobileqa1234";
@@ -265,6 +271,7 @@ public class OTPUpdate extends _CommonPage {
 			}
 			mobileAction.FuncClick(addedPhoneNumber, "2nd Phone Number");
 			mobileAction.sleep(2000);
+			// System.out.println(((WebDriver) CL.GetDriver()).getPageSource());
 			mobileAction.FuncClick(deletePhoneUpdateButton, "Delete Phone Number");
 
 			mobileAction.switchAppiumContext("NATIVE_APP");
@@ -412,11 +419,11 @@ public class OTPUpdate extends _CommonPage {
 
 				mobileAction.FuncClick(editPhoneField, "Edit Phone Number");
 				mobileAction.FuncSendKeys(editPhoneField, phoneNumber);
-				mobileAction.FuncClickDone(); // hide iOS keyboard
+				this.hideIOSKeyboardOTP(); // hide iOS keyboard
 
 				mobileAction.FuncClick(editNicknameField, "Edit Nickname");
 				mobileAction.FuncSendKeys(editNicknameField, nickname);
-				mobileAction.FuncClickDone(); // hide iOS keyboard
+				this.hideIOSKeyboardOTP(); // hide iOS keyboard
 
 				mobileAction.FuncClick(addPhoneContinueButton, "Add Phone Continue button");
 
@@ -569,7 +576,7 @@ public class OTPUpdate extends _CommonPage {
 				mobileAction.FuncClick(securityEmailField, "Enter Security Email");
 				mobileAction.FuncSendKeys(securityEmailField, email);
 
-				mobileAction.FuncClickDone(); // hide iOS keyboard
+				this.hideIOSKeyboardOTP(); // hide iOS keyboard
 
 				mobileAction.FuncClick(emailContinueButton, "Email Continue button");
 
@@ -1249,4 +1256,31 @@ public class OTPUpdate extends _CommonPage {
 			mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 	}
+
+	private void hideIOSKeyboardOTP() {
+		Decorator();
+		try {
+
+			if (mobileAction.FuncIsDisplayed(hideKeyboardIpad1)) {
+				// Only to dismiss iPad keyboard because Go button is a submit
+				// button
+				mobileAction.FuncClick(hideKeyboardIpad1, "Hide iPad keyboard");
+			} else if (mobileAction.FuncIsDisplayed(hideKeyboardIpad2)) {
+				// Only to dismiss iPad keyboard because Go button is a submit
+				// button
+				mobileAction.FuncClick(hideKeyboardIpad2, "Hide iPad keyboard");
+			} else {
+				mobileAction.FuncClickDone();
+			}
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
 }
