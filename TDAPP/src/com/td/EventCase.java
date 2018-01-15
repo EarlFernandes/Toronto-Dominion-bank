@@ -49,7 +49,7 @@ public class EventCase {
 
 		ConfirmOrderCancel, ValidateChangeConfirmOrderBuy_Sell, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, ChangeDefaultCard, CardDetails_deleteicon, ConfirmPayee_InvalidAmount, EditEmailAddressWithInvalidChar,
 
-		Dashboard_Authentication, Dashboard_UnAuthentication, selectFirstLocation, VerifyUSDConversionRate,ClickQuoteButton,VerifyMaximumAmountError,clickManageAppointmentLink,VerifyBookAppointmentIconNotDisplayed,VerifyQuoteFundDetailsPageHeader,
+		Dashboard_Authentication, Dashboard_UnAuthentication, selectFirstLocation, VerifyUSDConversionRate, ClickQuoteButton, VerifyMaximumAmountError, clickManageAppointmentLink, VerifyBookAppointmentIconNotDisplayed, VerifyQuoteFundDetailsPageHeader,
 
 		Delete_usr, Deposit_Header, DepositChequeHeader, END,
 
@@ -236,7 +236,7 @@ public class EventCase {
 		verifyReplaceDamagedCardHeader, ClickReplaceDamagedCardBtn, verifyReplaceDamagedCardDirectionalCopy, verifyDamagedCardForm,
 
 		// RBP
-		clickStartDate, selectDate, verifyPayCanadianBillContent, verifyHowOftenDropdownDefault, verifyStartDateDefaultToToday, verifyFieldsArePrefilledAfterBackFromAddPayee, verifyFrequencyOptions, verifyRBPFootNoteContent, selectOngoingFromHowOftenDropDown, verifyAndClickRewardBanner, FillPayBillWithOnce, continuePayBill, verifyReviewContent, FillPayBillWithOngoing, verifyAndClickCancelButton, verifyAndClickPayBillButton, verifyRBPReceiptContent, verifyPayee_FromAccountMaskedInReceipt, verifyPayBillHeader, ClickPayAnotherBillBtn, ClickSchedulePaymentsBtn, ClickQuickLinkBillsBtn,verifyScheduledPaymentsHeader,VerifyRBPReceipt,VerifyRBPErrorMessage,VerifyRBP1NumberOfPaymentErrorMessage,
+		clickStartDate, selectDate, verifyPayCanadianBillContent, verifyHowOftenDropdownDefault, verifyStartDateDefaultToToday, verifyFieldsArePrefilledAfterBackFromAddPayee, verifyFrequencyOptions, verifyRBPFootNoteContent, selectOngoingFromHowOftenDropDown, verifyAndClickRewardBanner, FillPayBillWithOnce, continuePayBill, verifyReviewContent, FillPayBillWithOngoing, verifyAndClickCancelButton, verifyAndClickPayBillButton, verifyRBPReceiptContent, verifyPayee_FromAccountMaskedInReceipt, verifyPayBillHeader, ClickPayAnotherBillBtn, ClickSchedulePaymentsBtn, ClickQuickLinkBillsBtn, verifyScheduledPaymentsHeader, VerifyRBPReceipt, VerifyRBPErrorMessage, VerifyRBP1NumberOfPaymentErrorMessage, verifyPayeeFilterContents, clickViewpaymentFor, clickScheduledPayment_Link, selectStartdateAgain, VerifyEndOfDateIsBlank, VerifyEndOfDateReamins, FillPayBillWithOngoingWithoutStartDate,
 
 		// myspend
 		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_changeCategory, DailyDigest_verifyCategoryMessage, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, MySpendPreferences_clickActiveAccounts, MySpendTransfers_clickBetweenMyAccounts, MySpendTransfers_PerformTransfer, MySpendPrefernces_disableAccounts, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, Preferences_verifyHomePage, TourPage_clickConnectTDApp, TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SideMenu_verifyNavigationWithinMySpend, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SpendingInsight_verifyAccountsSelected, TransactionHistory_verifySelectedAccounts, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickTransfers, SideMenu_clickGetTDAppButton, click_PreferencesLink,
@@ -3473,8 +3473,8 @@ public class EventCase {
 
 		case VerifyQuoteFundDetailsPageHeader:
 			FundDetails.get().VerifyQuoteFundDetailsPageHeader();
-			break;		
-			
+			break;
+
 		case VerifyFundCategory:
 			FundDetails.get().VerifyFundCategory();
 			break;
@@ -3693,16 +3693,16 @@ public class EventCase {
 		case VerifyUSDConversionRate:
 			Investing.get().VerifyUSDConversionRate();
 			break;
-			
+
 		case ClickQuoteButton:
 			FundDetails.get().ClickQuoteButton();
 			break;
-			
+
 		case VerifyMaximumAmountError:
 			PurchaseMutualFunds.get().VerifyMaximumAmountError();
-			break;		
+			break;
 		// End of Purchase Mutual funds
-			
+
 		// CLIP
 		case VerifyMoreLinkPresent:
 			Credit.get().VerifyMoreLinkPresent();
@@ -3786,10 +3786,10 @@ public class EventCase {
 		case verifyAppointmentURLLink:
 			AppointmentBooking.get().verifyAppointmentURLLink();
 			break;
-			
+
 		case VerifyBookAppointmentIconNotDisplayed:
 			Branch.get().VerifyBookAppointmentIconNotDisplayed();
-			break;			
+			break;
 		// End of MAB
 
 		// Damaged Card
@@ -3804,26 +3804,38 @@ public class EventCase {
 		case verifyReplaceDamagedCardHeader:
 			WebViewPage.get().verifyDamagedCardReplacementFormTitle();
 			break;
-			
+
 		case clickManageAppointmentLink:
 			AppointmentBooking.get().clickManageAppointmentLink();
-			break;			
+			break;
 		// End of Damaged card
 
 		// RBP
-			
+
 		case clickStartDate:
 			Bill_PayCanada.get().clickStartDate();
 			break;
-			
+
 		case VerifyRBPErrorMessage:
 			Bill_PayCanada.get().VerifyRBPErrorMessage();
-			break;	
-			
+			break;
+
 		case verifyScheduledPaymentsHeader:
 			ScheduledPayments.get().verifyScheduledPaymentsHeader();
 			break;
-			
+
+		case clickScheduledPayment_Link:
+			Bills.get().clickScheduledPayment_Link();
+			break;
+
+		case clickViewpaymentFor:
+			ScheduledPayments.get().clickViewpaymentFor();
+			break;
+
+		case verifyPayeeFilterContents:
+			ScheduledPayments.get().verifyPayeeFilterContents();
+			break;
+
 		case verifyPayBillHeader:
 			Bill_PayCanada.get().verifyPayBillHeader();
 			break;
@@ -3831,10 +3843,10 @@ public class EventCase {
 		case verifyPayCanadianBillContent:
 			Bill_PayCanada.get().verifyPayCanadianBillContent();
 			break;
-			
+
 		case VerifyRBP1NumberOfPaymentErrorMessage:
 			Bill_PayCanada.get().VerifyRBP1NumberOfPaymentErrorMessage();
-			break;			
+			break;
 
 		case verifyHowOftenDropdownDefault:
 			Bill_PayCanada.get().verifyHowOftenDropdownDefault();
@@ -3891,11 +3903,11 @@ public class EventCase {
 		case verifyRBPReceiptContent:
 			Receipt.get().verifyRBPReceiptContent();
 			break;
-			
+
 		case VerifyRBPReceipt:
 			Receipt.get().VerifyRBPReceipt();
 			break;
-			
+
 		case verifyPayee_FromAccountMaskedInReceipt:
 			Receipt.get().verifyPayee_FromAccountMaskedInReceipt();
 			break;
@@ -3908,8 +3920,24 @@ public class EventCase {
 			Receipt.get().ClickSchedulePaymentsBtn();
 			break;
 
+		case FillPayBillWithOngoingWithoutStartDate:
+			Bill_PayCanada.get().FillPayBillWithOngoingWithoutStartDate();
+			break;
+
 		case ClickQuickLinkBillsBtn:
 			Receipt.get().ClickQuickLinkBillsBtn();
+			break;
+
+		case selectStartdateAgain:
+			Bill_PayCanada.get().selectStartdateAgain();
+			break;
+
+		case VerifyEndOfDateIsBlank:
+			Bill_PayCanada.get().VerifyEndOfDateIsBlank();
+			break;
+
+		case VerifyEndOfDateReamins:
+			Bill_PayCanada.get().VerifyEndOfDateReamins();
 			break;
 		// case selectDate:
 		// Calendar.get().selectDate();

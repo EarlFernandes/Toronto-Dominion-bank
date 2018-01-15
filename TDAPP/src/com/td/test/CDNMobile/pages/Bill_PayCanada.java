@@ -255,7 +255,7 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/date_Label']")
 	private List<MobileElement> start_end_Date_List;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Start Date' or label='End Date']/../XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Start Date' or @label='End Date']/../XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dateText']")
 	private List<MobileElement> dateText_List;
 
@@ -1850,7 +1850,7 @@ public class Bill_PayCanada extends _CommonPage {
 		return freqOption;
 	}
 
-	public void FillPayBillWithOngoingRandomly() {
+	public void FillPayBillWithOngoingRandomly(boolean noStartDateSelected) {
 		Decorator();
 		String payeeText = selectPayee();
 		String amount_num = fillAmount();
@@ -1870,30 +1870,44 @@ public class Bill_PayCanada extends _CommonPage {
 		// Save how often in "Price"
 		CL.getTestDataInstance().TCParameters.put("Price", "Ongoing");
 
-		String startdate_input = CL.getTestDataInstance().TCParameters.get("Timeout");
-		String startDate_day = "";
-		if (startdate_input != null && startdate_input.equals("Holiday")) {
-			startDate_day = Calendar.get().selectTodaysFollowingHoliday();
-		} else {
-			startDate_day = Calendar.get().selectTodaysFollowingWorkDay();
-		}
+		// get current date
+		LocalDate localDate = LocalDate.now();
+		String currentDate = DateTimeFormatter.ofPattern("MMM dd, yyyy").format(localDate);
+		currentDate = currentDate.replace(" 0", " ");
+		currentDate = currentDate.replace(",", "");
+		System.out.println("Today is:" + currentDate);
+		String[] todayStr = currentDate.split(" ");
+		String yearOfDay = todayStr[2];
+		String monthOfDay = todayStr[0];
+		String dayOfDay = todayStr[1];
 
-		System.out.println("Today's following working day:" + startDate_day);
-		try {
-			mobileAction.FuncClick(start_end_Date_List.get(0), "Start Date");
-		} catch (Exception e) {
-			mobileAction.Report_Fail("Failed to click 'Start Date'");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			return;
-		}
-		String[] startDate_day_Array = startDate_day.split(" ");
-		String yearOfDay = startDate_day_Array[0];
-		String monthOfDay = startDate_day_Array[1];
-		String dayOfDay = startDate_day_Array[2];
+		if (!noStartDateSelected) {
 
-		// Save start date in "Timeout"
-		CL.getTestDataInstance().TCParameters.put("Timeout", monthOfDay + " " + dayOfDay + ", " + yearOfDay);
-		Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
+			String startdate_input = CL.getTestDataInstance().TCParameters.get("Timeout");
+			String startDate_day = "";
+			if (startdate_input != null && startdate_input.equals("Holiday")) {
+				startDate_day = Calendar.get().selectTodaysFollowingHoliday();
+			} else {
+				startDate_day = Calendar.get().selectTodaysFollowingWorkDay();
+			}
+
+			System.out.println("Today's following working day:" + startDate_day);
+			try {
+				mobileAction.FuncClick(start_end_Date_List.get(0), "Start Date");
+			} catch (Exception e) {
+				mobileAction.Report_Fail("Failed to click 'Start Date'");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				return;
+			}
+			String[] startDate_day_Array = startDate_day.split(" ");
+			yearOfDay = startDate_day_Array[0];
+			monthOfDay = startDate_day_Array[1];
+			dayOfDay = startDate_day_Array[2];
+
+			// Save start date in "Timeout"
+			CL.getTestDataInstance().TCParameters.put("Timeout", monthOfDay + " " + dayOfDay + ", " + yearOfDay);
+			Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
+		}
 		String freq = randomSelectFrequency();
 		CL.getTestDataInstance().TCParameters.put("MerchantName", freq);
 
@@ -1918,9 +1932,9 @@ public class Bill_PayCanada extends _CommonPage {
 				String endDate_day = Calendar.get().selectRandomDayInXmonthLater(yearOfDay, monthOfDay, dayOfDay, 2);
 				System.out.println("Random working day:" + endDate_day);
 				String[] endDate_day_Array = endDate_day.replaceAll(",", "").split(" ");
-				yearOfDay = endDate_day_Array[0];
-				monthOfDay = endDate_day_Array[1];
-				dayOfDay = endDate_day_Array[2];
+				yearOfDay = endDate_day_Array[2];
+				monthOfDay = endDate_day_Array[0];
+				dayOfDay = endDate_day_Array[1];
 				Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
 				CL.getTestDataInstance().TCParameters.put("SecondTimeout",
 						monthOfDay + " " + dayOfDay + ", " + yearOfDay);
@@ -1961,9 +1975,65 @@ public class Bill_PayCanada extends _CommonPage {
 		mobileAction.Report_Pass_Verified("Pay bill is filled");
 
 	}
+	
+	private void selectStartDate() {
+		String startDate_day = getTestdata("Timeout");
+		try {
+			mobileAction.FuncClick(start_end_Date_List.get(0), "Start Date");
+		} catch (Exception e) {
+			mobileAction.Report_Fail("Failed to click 'Start Date'");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+
+		String startDateDay = "";
+		if (startDate_day.equals("Holiday")) {
+			startDateDay = Calendar.get().selectTodaysFollowingHoliday();
+		} else if (startDate_day.matches("randomly \\d+ months later")) {
+			try {
+				String xMonthLater = mobileAction.FuncGetValByRegx(startDate_day, "\\d+");
+
+				int xMonthLater_int = Integer.parseInt(xMonthLater);
+				// get current date
+				LocalDate localDate = LocalDate.now();
+				String currentDate = DateTimeFormatter.ofPattern("MMM dd, yyyy").format(localDate);
+				currentDate = currentDate.replace(" 0", " ");
+				currentDate = currentDate.replace(",", "");
+				System.out.println("Today is:" + currentDate);
+				String[] todayStr = currentDate.split(" ");
+				String yearOfToday = todayStr[2];
+				String monthOfToday = todayStr[0];
+				String dayOfToday = todayStr[1];
+
+				startDateDay = Calendar.get().selectRandomDayInXmonthLater(yearOfToday, monthOfToday, dayOfToday,
+						xMonthLater_int);
+
+			} catch (Exception e) {
+
+			}
+		} else if(startDate_day.matches("[a-zA-Z]{3} //d{1,2}, //d{4}")) {
+			startDateDay = startDate_day;
+			
+		} else {
+			System.out.println("Start Date format is wrong");
+			mobileAction.Report_Fail("'Start Date' format is wrong");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+		System.out.println("Random working day:" + startDateDay);
+		String[] startDate_day_Array = startDateDay.replaceAll(",", "").split(" ");
+		String yearOfDay = startDate_day_Array[2];
+		String monthOfDay = startDate_day_Array[0];
+		String dayOfDay = startDate_day_Array[1];
+		Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
+		CL.getTestDataInstance().TCParameters.put("Timeout", monthOfDay + " " + dayOfDay + ", " + yearOfDay);
+	}
+
+
 
 	// startDate_day: Mar 3, 2018
-	public void FillPayBillWithOngoing(String startDate_day, String frequency, String endDateOrnumberOfPayment) {
+	public void FillPayBillWithOngoing(String startDate_day, String frequency, String endDateOrnumberOfPayment,
+			boolean noStartDateSelected) {
 		Decorator();
 		String payeeText = selectPayee();
 		String amount_num = fillAmount();
@@ -1983,53 +2053,11 @@ public class Bill_PayCanada extends _CommonPage {
 		// Save how often in "Price"
 		CL.getTestDataInstance().TCParameters.put("Price", "Ongoing");
 
-		try {
-			mobileAction.FuncClick(start_end_Date_List.get(0), "Start Date");
-		} catch (Exception e) {
-			mobileAction.Report_Fail("Failed to click 'Start Date'");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			return;
+
+
+		if (!noStartDateSelected) {
+			selectStartDate();
 		}
-
-		// get current date
-		LocalDate localDate = LocalDate.now();
-		String currentDate = DateTimeFormatter.ofPattern("MMM dd, yyyy").format(localDate);
-		currentDate = currentDate.replace(" 0", " ");
-		currentDate = currentDate.replace(",", "");
-		System.out.println("Today is:" + currentDate);
-		String[] todayStr = currentDate.split(" ");
-		String yearOfToday = todayStr[2];
-		String monthOfToday = todayStr[0];
-		String dayOfToday = todayStr[1];
-
-		String startDateDay = "";
-		if (startDate_day.equals("Holiday")) {
-			startDateDay = Calendar.get().selectTodaysFollowingHoliday();
-		} else if (startDate_day.matches("randomly \\d+ months later")) {
-			try {
-				String xMonthLater = mobileAction.FuncGetValByRegx(startDate_day, "\\d+");
-
-				int xMonthLater_int = Integer.parseInt(xMonthLater);
-
-				startDateDay = Calendar.get().selectRandomDayInXmonthLater(yearOfToday, monthOfToday, dayOfToday,
-						xMonthLater_int);
-
-			} catch (Exception e) {
-
-			}
-		} else {
-			System.out.println("Start Date format is wrong");
-			mobileAction.Report_Fail("'Start Date' format is wrong");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			return;
-		}
-		System.out.println("Random working day:" + startDateDay);
-		String[] startDate_day_Array = startDateDay.replaceAll(",", "").split(" ");
-		String yearOfDay = startDate_day_Array[2];
-		String monthOfDay = startDate_day_Array[0];
-		String dayOfDay = startDate_day_Array[1];
-		Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
-		CL.getTestDataInstance().TCParameters.put("Timeout", monthOfDay + " " + dayOfDay + ", " + yearOfDay);
 
 		String realFrequency = getFrequencymapping(frequency);
 		selectFrequency(realFrequency);
@@ -2069,14 +2097,25 @@ public class Bill_PayCanada extends _CommonPage {
 					String xMonthLater = mobileAction.FuncGetValByRegx(endDateOrnumberOfPayment, "\\d+");
 
 					int xMonthLater_int = Integer.parseInt(xMonthLater);
+					
+					// get current date
+					LocalDate localDate = LocalDate.now();
+					String currentDate = DateTimeFormatter.ofPattern("MMM dd, yyyy").format(localDate);
+					currentDate = currentDate.replace(" 0", " ");
+					currentDate = currentDate.replace(",", "");
+					System.out.println("Today is:" + currentDate);
+					String[] todayStr = currentDate.split(" ");
+					String yearOfToday = todayStr[2];
+					String monthOfToday = todayStr[0];
+					String dayOfToday = todayStr[1];
 
 					String endDateDay = Calendar.get().selectRandomDayInXmonthLater(yearOfToday, monthOfToday,
 							dayOfToday, xMonthLater_int);
 					System.out.println("Random working day:" + endDateDay);
 					String[] endDate_day_Array = endDateDay.replaceAll(",", "").split(" ");
-					yearOfDay = endDate_day_Array[0];
-					monthOfDay = endDate_day_Array[1];
-					dayOfDay = endDate_day_Array[2];
+					String yearOfDay = endDate_day_Array[2];
+					String monthOfDay = endDate_day_Array[0];
+					String dayOfDay = endDate_day_Array[1];
 					Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
 					CL.getTestDataInstance().TCParameters.put("SecondTimeout",
 							monthOfDay + " " + dayOfDay + ", " + yearOfDay);
@@ -2138,12 +2177,28 @@ public class Bill_PayCanada extends _CommonPage {
 		String freq = getTestdata("MerchantName");
 
 		if (startDate_day == null || endDateOrNumPayment == null || freq == null) {
-			FillPayBillWithOngoingRandomly();
+			FillPayBillWithOngoingRandomly(false);
 		} else {
 			System.out.println("Start Date:" + startDate_day);
 			System.out.println("Frequency:" + freq);
 			System.out.println("endDateOrNumPayments:" + endDateOrNumPayment);
-			FillPayBillWithOngoing(startDate_day, freq, endDateOrNumPayment);
+			FillPayBillWithOngoing(startDate_day, freq, endDateOrNumPayment, false);
+		}
+
+	}
+
+	public void FillPayBillWithOngoingWithoutStartDate() {
+		String startDate_day = getTestdata("Timeout");
+		String endDateOrNumPayment = getTestdata("SecondTimeout");
+		String freq = getTestdata("MerchantName");
+
+		if (startDate_day == null || endDateOrNumPayment == null || freq == null) {
+			FillPayBillWithOngoingRandomly(true);
+		} else {
+			System.out.println("Start Date:" + startDate_day);
+			System.out.println("Frequency:" + freq);
+			System.out.println("endDateOrNumPayments:" + endDateOrNumPayment);
+			FillPayBillWithOngoing(startDate_day, freq, endDateOrNumPayment, true);
 		}
 
 	}
@@ -2168,6 +2223,52 @@ public class Bill_PayCanada extends _CommonPage {
 
 		} catch (Exception e) {
 			mobileAction.Report_Fail("Failed to verify error message");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void selectStartdateAgain() {
+		Decorator();
+		selectStartDate();
+	}
+
+	public void VerifyEndOfDateIsBlank() {
+		Decorator();
+		String endDate_day = getTestdata("SecondTimeout");
+		System.out.println("Previous end of date:" + endDate_day);
+		try {
+			String currentEndOfdate = mobileAction.getValue(dateText_List.get(1));
+			if (currentEndOfdate.equals(getTextInCurrentLocale(StringArray.ARRAY_RBP_END_DATE_PLACEHOLDER))) {
+				mobileAction.Report_Pass_Verified("End of date is blank");
+			} else {
+				System.out.println("Current end of date:" + currentEndOfdate);
+				mobileAction.Report_Fail_Not_Verified("End of date is blank");
+			}
+
+		} catch (Exception e) {
+			mobileAction.Report_Fail("Failed to VerifyEndOfDateIsBlank");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void VerifyEndOfDateReamins() {
+		Decorator();
+		String endDate_day = getTestdata("SecondTimeout");
+		if(endDate_day.contains(" 0")) {
+			endDate_day = endDate_day.replace(" 0", " ");
+		}
+		System.out.println("Previous end of date:" + endDate_day);
+		try {
+			String currentEndOfdate = mobileAction.getValue(dateText_List.get(1));
+			if (currentEndOfdate.equals(endDate_day)) {
+				mobileAction.Report_Pass_Verified("End of date remains");
+			} else {
+				System.out.println("Current end of date:" + currentEndOfdate);
+				mobileAction.Report_Fail_Not_Verified("End of date remains");
+			}
+
+		} catch (Exception e) {
+			mobileAction.Report_Fail("Failed to selectStartdateAgain");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}

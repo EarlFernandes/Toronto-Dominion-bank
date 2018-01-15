@@ -23,10 +23,6 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 public class ScheduledPayments extends _CommonPage {
 	private static ScheduledPayments scheduledPayments;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText | //*[@name='TDVIEW_TITLE']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
-	private MobileElement scheduledpaymentsHeader;
-
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mainText'][1]")
 	private MobileElement firstPayment;
 
@@ -40,6 +36,22 @@ public class ScheduledPayments extends _CommonPage {
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	private MobileElement cancelPaymentDialogYesBtnFR;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(id = "com.td:id/caret_view")
+	private MobileElement view_payments_for;
+	
+	@iOSXCUITFindBy(accessibility = "actionSheetCancelButton")
+	@AndroidFindBy(id = "com.td:id/dialog_button")
+	private MobileElement cancel_button;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='actionSheetCancelButton']/../XCUIElementTypeStaticText")
+	@AndroidFindBy(id = "com.td:id/dialog_title")
+	private MobileElement view_payments_for_title;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/imgActionCheckMark']/..//android.widget.TextView[@resource-id='com.td:id/txtDescriptionValue']")
+	private MobileElement all_payee_title;
 
 	public synchronized static ScheduledPayments get() {
 		if (scheduledPayments == null) {
@@ -58,7 +70,7 @@ public class ScheduledPayments extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(scheduledpaymentsHeader,
+			mobileAction.verifyElementTextIsDisplayed(PageHeader.get().getHeaderTextElement(),
 					getTextInCurrentLocale(StringArray.ARRAY_SCHEDULED_PAYMENTS_TITLE));
 
 		} catch (NoSuchElementException e) {
@@ -228,5 +240,55 @@ public class ScheduledPayments extends _CommonPage {
 		}
 
 	}
+	
+	public void clickViewpaymentFor() {
+
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(view_payments_for, "'View Payments For' is clicked");
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+		
+	public void verifyPayeeFilterContents() {
+
+		Decorator();
+		try {
+			
+			String expected_View_Payments = getTextInCurrentLocale(StringArray.ARRAY_RBP_PAYEE_FILTER_VIEW_PAYMENT_FOR);
+			String expected_cancel = getTextInCurrentLocale(StringArray.ARRAY_RBP_PAYEE_FILTER_CANCEL_BUTTON);
+		
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				expected_View_Payments = expected_View_Payments.toUpperCase();
+				expected_cancel = expected_cancel.toUpperCase();
+			}
+			mobileAction.verifyElementTextIsDisplayed(view_payments_for_title, expected_View_Payments);
+			mobileAction.verifyElementTextIsDisplayed(all_payee_title, getTextInCurrentLocale(StringArray.ARRAY_RBP_PAYEE_FILTER_ALL_PAYEE));
+			mobileAction.verifyElementTextIsDisplayed(cancel_button, expected_cancel);
+			
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
 
 }

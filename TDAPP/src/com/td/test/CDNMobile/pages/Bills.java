@@ -51,6 +51,10 @@ public class Bills extends _CommonPage {
 	@iOSFindBy(accessibility = "BILLVIEW_SCHEDULE")
 	@AndroidFindBy(xpath = "//*[@text='Scheduled Payments']")
 	private MobileElement scheduledPayments;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[4]/XCUIElementTypeButton")
+	@AndroidFindBy(id= "com.td:id/payments_card_header")
+	private MobileElement scheduledPayments_link;
 
 	@iOSFindBy(accessibility = "BILLVIEW_SCHEDULE_DES")
 	private MobileElement scheduledPaymentsDes;
@@ -914,6 +918,26 @@ public class Bills extends _CommonPage {
 			}
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+	public void clickScheduledPayment_Link() {
+
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(scheduledPayments_link, "'Scheduled Payments Link' is clicked");
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 }
