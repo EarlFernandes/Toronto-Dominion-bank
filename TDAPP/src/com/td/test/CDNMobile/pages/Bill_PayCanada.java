@@ -1900,9 +1900,9 @@ public class Bill_PayCanada extends _CommonPage {
 				return;
 			}
 			String[] startDate_day_Array = startDate_day.split(" ");
-			yearOfDay = startDate_day_Array[0];
-			monthOfDay = startDate_day_Array[1];
-			dayOfDay = startDate_day_Array[2];
+			yearOfDay = startDate_day_Array[2];
+			monthOfDay = startDate_day_Array[0];
+			dayOfDay = startDate_day_Array[1];
 
 			// Save start date in "Timeout"
 			CL.getTestDataInstance().TCParameters.put("Timeout", monthOfDay + " " + dayOfDay + ", " + yearOfDay);

@@ -299,7 +299,7 @@ public class Receipt extends _CommonPage {
 	public void clickGoBackHomeBtn() {
 		Decorator();
 		try {
-
+			mobileAction.FuncSwipeOnce("up");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncSwipeWhileElementNotFound(quickLink_Btn_List.get(0), true, 10, "up");
 			} else {

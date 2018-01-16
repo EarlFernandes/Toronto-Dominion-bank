@@ -348,8 +348,8 @@ public class Calendar extends _CommonPage {
 			String sHolidayMonth = sHoliday.substring(4, 6);
 			String sHolidayDay = sHoliday.substring(6, 8);
 
-			return sHolidayYear + " " + DigitToStr[Integer.parseInt(sHolidayMonth)] + " "
-					+ Integer.parseInt(sHolidayDay);
+			return DigitToStr[Integer.parseInt(sHolidayMonth)] + " "
+					+ Integer.parseInt(sHolidayDay) +  ", " + sHolidayYear ;
 		}
 		return "";
 	}
@@ -391,8 +391,8 @@ public class Calendar extends _CommonPage {
 			expectedMonth = expectedMonth % 12;
 			expectedYear = expectedYear + 1;
 		}
-		String expected = expectedYear + " " + DigitToStr[expectedMonth] + " " + expectedDay;
-		return expected;
+//		String expected = expectedYear + " " + DigitToStr[expectedMonth] + " " + expectedDay;
+		return selectFollowingWorkDayIfGivenDayisNot(expectedYear, expectedMonth, expectedDay);
 	}
 
 	private int getMonthDays(int month_int, int month_year) {
