@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -228,7 +229,7 @@ public class OTPSetup extends _CommonPage {
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[6]")
 	private MobileElement hideKeyboardIpad1;
-	
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[5]")
 	private MobileElement hideKeyboardIpad2;
 
@@ -445,8 +446,14 @@ public class OTPSetup extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
+				mobileAction.sleep(3000);
+				mobileAction.FuncClick(deletePhone1Button, "Delete first phone number");
+			} else {
+				// Appium cannot recognize button object in iOS, so use
+				// coordinates for click
+				Point deleteButton = deletePhone1Button.getLocation();
+				mobileAction.TapCoOrdinates(deleteButton.getX(), deleteButton.getY(), "Delete button midpoint");
 			}
-			mobileAction.FuncClick(deletePhone1Button, "Delete first phone number");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -466,9 +473,16 @@ public class OTPSetup extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
+				mobileAction.sleep(3000);
+				mobileAction.FuncClick(firstPhoneNumber, "First phone number");
+			} else {
+				// Appium cannot recognize button object where visible=false in
+				// iOS, so use coordinates for click
+				Point verifyButton = firstPhoneNumber.getLocation();
+				mobileAction.TapCoOrdinates(verifyButton.getX(), verifyButton.getY(), "verifyButton button midpoint");
+
 			}
 
-			mobileAction.FuncClick(firstPhoneNumber, "First phone number");
 			mobileAction.sleep(5000);
 
 		} catch (Exception e) {
@@ -1262,7 +1276,7 @@ public class OTPSetup extends _CommonPage {
 				// Only to dismiss iPad keyboard because Go button is a submit
 				// button
 				mobileAction.FuncClick(hideKeyboardIpad1, "Hide iPad keyboard");
-			} else if (mobileAction.FuncIsDisplayed(hideKeyboardIpad2)){
+			} else if (mobileAction.FuncIsDisplayed(hideKeyboardIpad2)) {
 				// Only to dismiss iPad keyboard because Go button is a submit
 				// button
 				mobileAction.FuncClick(hideKeyboardIpad2, "Hide iPad keyboard");
