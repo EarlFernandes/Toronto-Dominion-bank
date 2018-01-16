@@ -21,7 +21,7 @@ public class Credit extends _CommonPage {
 
 	private static Credit Credit;
 
-	@iOSFindBy(xpath = "//*[@name='DVIEW_TITLE'] | //XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText | XCUIElementTypeNavigationBar/XCUIElementTypeOther")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement creditHeader;
 
@@ -620,6 +620,22 @@ public class Credit extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(statementTitle1, "1st Statement");
 			mobileAction.verifyElementIsDisplayed(statementTitle2, "2nd Statement");
 			mobileAction.verifyElementIsDisplayed(statementTitle3, "3rd Statement");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void clickCreditScore() {
+		Decorator();
+		try {
+			// click Credit Score quicklink on page
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

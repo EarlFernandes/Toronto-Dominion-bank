@@ -221,15 +221,15 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/activityText")
 	private MobileElement activity_tab;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/symbol' and @index='0']")
 	private MobileElement first_fund;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label, 'USD $') or contains(@label, '$ US')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label, 'USD $') or contains(@label, '$ US')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/symbol' and (contains(@text, 'USD $') or contains(@text,'$ US'))]")
 	private MobileElement first_usd_fund;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/activityContent']/android.widget.LinearLayout[@index='0']/android.widget.LinearLayout/android.widget.TextView[@index='1']")
 	private MobileElement first_transaction;
 
@@ -1919,6 +1919,52 @@ public class Investing extends _CommonPage {
 			} else {
 				mobileAction.Report_Fail("Failed: US disclaimer note not found");
 			}
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	public void VerifyUSDConversionRate() {
+		try {
+			Decorator();
+			String selectedFund = CL.getTestDataInstance().TCParameters.get("Accounts");
+			String[] selectedFundArray = selectedFund.split("\\|");
+			int lengthOfArray = selectedFundArray.length;
+			String USD_MarketValue, CAN_MarketValue;
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				USD_MarketValue = "//android.widget.TextView[@resource-id='com.td:id/usd_market_value']";
+				CAN_MarketValue = "//android.widget.TextView[@resource-id='com.td:id/usd_market_value']/../*[@resource-id='com.td:id/market_value']";
+				
+			} else {
+				USD_MarketValue = "//XCUIElementTypeStaticText[@label='";
+				for (int i = 0; i < lengthOfArray; i++) {
+					USD_MarketValue = USD_MarketValue + selectedFundArray[i].trim() + "'";
+					if (i < lengthOfArray - 1) {
+						USD_MarketValue = USD_MarketValue + " or @label='";
+					}
+				}
+				USD_MarketValue = USD_MarketValue + "]/../XCUIElementTypeStaticText[contains(@label, 'USD $')]";
+				
+				CAN_MarketValue = "//XCUIElementTypeStaticText[@label='";
+				for (int i = 0; i < lengthOfArray; i++) {
+					CAN_MarketValue = CAN_MarketValue + selectedFundArray[i].trim() + "'";
+					if (i < lengthOfArray - 1) {
+						CAN_MarketValue = CAN_MarketValue + " or @label='";
+					}
+				}
+				CAN_MarketValue = CAN_MarketValue + "]/../XCUIElementTypeStaticText[1]";
+			}
+			
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(USD_MarketValue, false, 10, "up");
+			mobileAction.verifyElementUsingXPath(USD_MarketValue, "USD market value");
+			mobileAction.verifyElementUsingXPath(CAN_MarketValue, "CAN market value");
+			
+			
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
