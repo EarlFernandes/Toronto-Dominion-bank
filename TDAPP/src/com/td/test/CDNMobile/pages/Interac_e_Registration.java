@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -15,135 +15,156 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Interac_e_Registration extends _CommonPage {
 
 	private static Interac_e_Registration Interac_e_Registration;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Interac e-Transfer') or contains(@label,'Registration') or contains(@label,'Inscription')]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Interac e-Transfer' OR label CONTAINS[cd] 'Registration' OR label CONTAINS[cd] 'Inscription'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement registrationPageHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue' or @label='Continuer']")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='Continue' OR label=='Continuer'`]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/continue_button' or @resource-id='com.td:id/btn_footer']")
 	private MobileElement continueButton;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Name' or @label='Mon nom']/following-sibling::XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label=='Accept'`]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/acceptButton']")
+	private MobileElement acceptBtn;
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label=='Choose an account'`]")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/auto_deposit_account_selection']")
+	private MobileElement autodepositDropDown;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable/following::XCUIElementTypeCell/XCUIElementTypeStaticText[1]") 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_sub_heading']")
+	private MobileElement autodepositAcc;
+
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'TEST' OR label CONTAINS[cd] 'TEST'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_name']")
 	private MobileElement name;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter email address']")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`value=='Enter email address' or value=='Entrer l’adresse courriel'`]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_interac_registration_email']")
 	private MobileElement emailId;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Should match email address above']")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeTextField[`value=='Re-enter email address' or value=='Entrez l’adresse à nouveau'`]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edt_interac_registration_confirm_email']")
 	private MobileElement confirmEmailId;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Name' or @label='Mon nom']")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='My Name' OR label=='Mon nom'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Name' or @text='Mon nom']")
 	private MobileElement myName;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Name' or @label='Mon nom']/following-sibling::XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Name' or @label='Mon nom']/following-sibling::XCUIElementTypeStaticText")
 	private MobileElement myNameVal;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='My Name']/following-sibling::android.widget.TextView[1]")
 	private MobileElement reviewName;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Business Name']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Business Name' or @text='Nom dentreprise']")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='Business Name' or label=='Nom d’entreprise'`]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Business Name' or @text='Nom d’entreprise']")
 	private MobileElement BusinessName;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Business Name']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Business Name' or @label='Nom d’entreprise']/following-sibling::XCUIElementTypeStaticText")
 	private MobileElement BusinessNameVal;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade Name']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade Name' or @label='Nom commercial']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trade Name' or @text='Nom commercial']")
 	private MobileElement tradeNameReview;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade Name']/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Trade Name' or @label='Nom commercial']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Trade Name']")
 	private MobileElement tradeNameReviewVal;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_value_item1']")
 	private List<MobileElement> confirmationRowValues;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Email Address') or @label='Adresse courriel pour Virement Interac']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Email Address for Interac e-Transfer' or @text='Adresse courriel pour Virement Interac']")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Email Address' OR label CONTAINS[cd] 'Adresse courriel pour Virement Interac'`]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Email Address for Interac') or contains(@text,'Adresse courriel pour Virement')]")
 	private MobileElement emailAddress;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Email Address') or @label='Adresse courriel pour Virement Interac']/following-sibling::XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Email Address') or @label='Adresse courriel pour Virement Interac']/following-sibling::XCUIElementTypeStaticText")
 	private MobileElement emailAddressVal;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Email Address for Interac e-Transfer']/following-sibling::android.widget.TextView[3]")
 	private MobileElement reviewEmailId;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Thank you!' or @label='Merci!']")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='Thank you!' OR label=='Merci!'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_header']")
 	private MobileElement thankYou;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'now registered for') or contains(@label,'Vous êtes maintenant inscrit au service Virement Interac')]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'now registered for' or label CONTAINS[cd] 'Vous êtes maintenant inscrit au service Virement Interac'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/receipt_subHeader']")
 	private MobileElement successMag;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress' or @label='en cours']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@value,'Please choose which profile')]")
 
+	// @iOSXCUITFindBy(xpath =
+	// "//XCUIElementTypeStaticText[contains(@value,'Please choose which
+	// profile')]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Please choose which profile' or label CONTAINS[cd] 'Veuillez choisir un profil pour l’inscription'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_multi_profile']")
 	private MobileElement chooseProfile;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Business Name')]/following-sibling::XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Business Name') or contains(@label,'Nom d’entreprise')]/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_name']")
 	private MobileElement businessName;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Trade Name')]/following-sibling::XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Trade Name') or contains(@label,'Nom commercial')]/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_trade_name']")
 	private MobileElement tradeName;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@value,'I acknowledge the trade name displayed')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeStaticText[@label='Confirm Trade Name']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_interac_registration_trade_name_response']")
 	private MobileElement tradeResponse;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_done' or @text='Done']")
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
 	private MobileElement done;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Interac e-Transfer is a great way to send money')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Interac e‑Transfer is a great way to send money') or contains(@label,'excellent moyen')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/errorMessage']")
 	private MobileElement errorText;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Find a Branch')]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/errorButton2' or @text='Find a Branch']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Find a Branch') or contains(@label,'Trouver une succursale')]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/errorButton2' or @text='Find a Branch' or @text='Trouver une succursale']")
 	private MobileElement findABranch;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Open an Account Online')]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/errorButton1' or @text='Open an Account']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Open an Account') or contains(@label,'Ouvrir un compte')]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/errorButton1' or @text='Open an Account' or @text='Ouvrir un compte']")
 	private MobileElement openAnAccount;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Go Back Home')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Go Back Home')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/quick_access_go_home' or @text='Go Back Home']")
 	private MobileElement goBackHome;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Register anohter profile')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Register another profile' or @label='Ajouter un autre profil']")
+	// @iOSXCUITFindBy(iOSClassChain = "**/*[`name CONTAINS[cd] 'Register
+	// anohter profile' or name CONTAINS[cd] 'Ajouter un autre profil'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_payments_and_transfers_register_account']")
 	private MobileElement registerAnotherProfile;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Send Money')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Send Money') or contains(@label,'Virer des fonds')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Send Money' or @text='Virer des fonds']")
 	private MobileElement sendMoney;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
-	@AndroidFindBy(xpath = "//android.widget.LinearLayout[contains(@content-desc,'Navigate up') or contains(@content-desc,'Parcourir vers le haut')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Back' or @label='Retour']")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[contains(@content-desc,'Navigate up') or contains(@content-desc,'Parcourir vers le haut') or contains(@content-desc,'Revenir en haut de la page')]")
 	private MobileElement backButton;
-	
+
 	@AndroidFindBy(xpath = "//*[@text='Done' or @text='Annuler']")
 	private MobileElement doneButton;
 
-	String tradeResponseTxt = null;
+	// @iOSXCUITFindBy(xpath =
+	// "//XCUIElementTypeStaticText[contains(@label,'Send Money')]")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Check your email for instructions from'`]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
+	private MobileElement autoDepositSuccmsg;
 
+	String tradeResponseTxt = null;
+	boolean AutoDepositDoneWhileReg = false;
 	int profileCount = 0;
 
 	String platformName = CL.getTestDataInstance().getMobilePlatForm();
@@ -178,16 +199,17 @@ public class Interac_e_Registration extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(registrationPageHeader, "Interac e-Transfer® - Registration");
 			mobileAction.FuncClick(continueButton, "Continue");
+			mobileAction.waitP2PProgressBarVanish();
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -217,8 +239,6 @@ public class Interac_e_Registration extends _CommonPage {
 				mobileAction.FuncClick(confirmEmailId, "Confirm Email");
 				mobileAction.FuncSendKeys(confirmEmailId, email);
 				mobileAction.FuncClickDone();
-				mobileAction.FunctionSwipe("up", 200, 200);
-				mobileAction.FuncClick(continueButton, "Continue Button");
 
 			} else {
 
@@ -229,16 +249,26 @@ public class Interac_e_Registration extends _CommonPage {
 				mobileAction.FuncClick(confirmEmailId, "Confirm Email");
 				mobileAction.FuncSendKeys(confirmEmailId, email);
 				mobileAction.FuncHideKeyboard();
-				mobileAction.FunctionSwipe("up", 200, 200);
-				mobileAction.FuncClick(continueButton, "Continue Button");
 
 			}
-		} catch (NoSuchElementException | IOException e) {
+
+			mobileAction.FunctionSwipe("up", 200, 200);
+			mobileAction.FuncClick(autodepositDropDown, "Auto Deposit Drop down");
+			mobileAction.FuncClick(autodepositAcc, autodepositAcc.getText());
+			mobileAction.FuncClick(continueButton, "Continue Button");
+			mobileAction.FuncClick(acceptBtn, "Accept Button");
+
+			AutoDepositDoneWhileReg = true;
+
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -265,6 +295,8 @@ public class Interac_e_Registration extends _CommonPage {
 
 			} else {
 
+				myName = mobileAction.mobileElementUsingXPath("//android.widget.TextView[@text='"
+						+ mobileAction.getAppString("interac_registration_confirmation_personal_name") + "']");
 				mobileAction.verifyElementIsDisplayed(myName, "My Name");
 				mobileAction.verifyElementIsDisplayed(confirmationRowValues.get(0),
 						confirmationRowValues.get(0).getText());
@@ -274,14 +306,17 @@ public class Interac_e_Registration extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(continueButton, "Continue Button");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitP2PProgressBarVanish();
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -303,9 +338,25 @@ public class Interac_e_Registration extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(thankYou, "Thank You");
 			mobileAction.verifyElementIsDisplayed(successMag, "You're now registered for Interac e-Transfer");
 
-		} catch (NoSuchElementException | IOException e) {
+			if (AutoDepositDoneWhileReg) {
+
+				mobileAction.verifyElementIsDisplayed(autoDepositSuccmsg, "Auto Deposit Success Message");
+
+				mobileAction.verifyTextContains(autoDepositSuccmsg.getText(),
+						getTextInCurrentLocale(StringArray.ARRAY_AUTODEPOSIT_EMAIL_SENT_MSG));
+
+				AutoDepositDoneWhileReg = false;
+			}
+
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -333,12 +384,20 @@ public class Interac_e_Registration extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(tradeName, tradeName.getText());
 				mobileAction.FuncClick(tradeResponse, "Trade Response");
 
-				String response = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@name,'" + tradeResponseTxt
-						+ "')]";
-				MobileElement tradeResponse = mobileAction.mobileElementUsingXPath(response);
+				/*
+				 * String response =
+				 * "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@name,'"
+				 * + tradeResponseTxt + "')]";
+				 */
+
+				String response = "**/*[`label CONTAINS[cd] '" + tradeResponseTxt + "' OR name CONTAINS[cd] '"
+						+ tradeResponseTxt + "' OR value CONTAINS[cd] '" + tradeResponseTxt + "'`]";
+				// MobileElement tradeResponse =
+				// mobileAction.mobileElementUsingXPath(response);
+				MobileElement tradeResponse = mobileAction.mobileElementUsingIOSClassChain(response);
 
 				mobileAction.FuncClick(tradeResponse, "Trade Response Option");
-				mobileAction.FunctionSwipe("up", 200, 200);
+				mobileAction.FunctionSwipe("up", 2000, 200);
 				mobileAction.FuncClick(emailId, "Email");
 				mobileAction.FuncSendKeys(emailId, email);
 				mobileAction.FuncClickDone();
@@ -351,15 +410,16 @@ public class Interac_e_Registration extends _CommonPage {
 
 				mobileAction.verifyElementIsDisplayed(businessName, businessName.getText());
 				mobileAction.verifyElementIsDisplayed(tradeName, tradeName.getText());
+				mobileAction.FunctionSwipe("up", 9000, 600);
 				mobileAction.FuncClick(tradeResponse, "Trade Response");
-				String response = "//android.widget.TextView[@text='" + tradeResponseTxt + "']";
+				String response = "//android.widget.TextView[contains(@text,'" + tradeResponseTxt + "')]";
 
 				MobileElement tradeResponse = mobileAction.mobileElementUsingXPath(response);
 
 				mobileAction.FuncClick(tradeResponse, "Trade Response Option");
-				mobileAction.FuncClick(doneButton, "Done");
+				// mobileAction.FuncClick(doneButton, "Done");
 
-				mobileAction.FunctionSwipe("up", 200, 200);
+				mobileAction.FunctionSwipe("up", 8000, 600);
 
 				mobileAction.FuncClick(emailId, "Email");
 				mobileAction.FuncSendKeys(emailId, email);
@@ -371,12 +431,15 @@ public class Interac_e_Registration extends _CommonPage {
 				mobileAction.FuncClick(continueButton, "Continue Button");
 
 			}
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -389,15 +452,15 @@ public class Interac_e_Registration extends _CommonPage {
 
 		switch (getTestdata("Response")) {
 		case "I acknowledge the trade name displayed above is the trade name of the business":
-			tradeResponseTxt = mobileAction.getAppString("interac_registration_trade_name_option_1");
+			tradeResponseTxt = getTextInCurrentLocale(StringArray.TRADE_RESPONSE_1);
 			break;
 
 		case "I acknowledge the trade name displayed above is not the trade name of the business":
-			tradeResponseTxt = mobileAction.getAppString("interac_registration_trade_name_option_2");
+			tradeResponseTxt = getTextInCurrentLocale(StringArray.TRADE_RESPONSE_2);
 			break;
 
 		case "I acknowledge the business does not operate under a trade name":
-			tradeResponseTxt = mobileAction.getAppString("interac_registration_trade_name_option_3");
+			tradeResponseTxt = getTextInCurrentLocale(StringArray.TRADE_RESPONSE_3);
 			break;
 
 		default:
@@ -443,14 +506,17 @@ public class Interac_e_Registration extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(continueButton, "Continue Button");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitP2PProgressBarVanish();
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -468,6 +534,7 @@ public class Interac_e_Registration extends _CommonPage {
 		Decorator();
 
 		try {
+			String profileText = null;
 			String nameText = getTestdata("Name");
 			String[] nameArr = nameText.split(": ");
 
@@ -477,12 +544,19 @@ public class Interac_e_Registration extends _CommonPage {
 
 			for (int i = 0; i < nameArr.length; i++) {
 
+				if (profileArr[i].equalsIgnoreCase("Business")) {
+					profileText = " INC";
+				} else {
+					profileText = "TEST ";
+				}
+
 				if (platformName.equalsIgnoreCase("iOS")) {
 
 					if (i != (nameArr.length - 1)) {
 
 						mobileAction.FuncClick(chooseProfile, "Select Profile");
-						String profileStr = "//XCUIElementTypeStaticText[@label='" + nameArr[i] + "']";
+						String profileStr = "//XCUIElementTypeStaticText[@label='" + nameArr[i]
+								+ "' or contains(@label,'" + profileText + "')]";
 						MobileElement profile = mobileAction.mobileElementUsingXPath(profileStr);
 
 						mobileAction.FuncClick(profile, "Profile Name " + nameArr[i]);
@@ -503,14 +577,15 @@ public class Interac_e_Registration extends _CommonPage {
 
 				} else {
 
-					if (i != (nameArr.length - 1)) {
+					if (i != (nameArr.length - 1) || i == 0) {
 						mobileAction.FuncClick(chooseProfile, "Select Profile");
-						String profileStr = "//android.widget.TextView[@text='" + nameArr[i] + "']";
+						String profileStr = "//android.widget.TextView[@text='" + nameArr[i] + "' or contains(@text,'"
+								+ profileText + "')]";
 
 						MobileElement profile = mobileAction.mobileElementUsingXPath(profileStr);
 
 						mobileAction.FuncClick(profile, nameArr[i]);
-						mobileAction.FuncClick(doneButton, "Done");
+						// mobileAction.FuncClick(doneButton, "Done");
 					}
 
 					if (profileArr[i].equalsIgnoreCase("Business")) {
@@ -546,20 +621,135 @@ public class Interac_e_Registration extends _CommonPage {
 							MenuPage.get().clickProfileAndSettings();
 							Profile_And_Settings.get().clickPaymentsAndTransfers();
 						}
-					} else {
-						Transfers.get().clickInterac_e_Transfer();
 					}
 					clickRegisterAnotherProfile();
 				}
 
 			}
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+
+	}
+
+	/**
+	 * @author Ashraf This method will register the Multiprofile Users.
+	 * 
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen
+	 * @throws IOException
+	 *             If there is problem while reporting
+	 * @return void
+	 * 
+	 */
+	public void registerMultiProfileNoCondition() {
+		Decorator();
+
+		try {
+			String profileText = null;
+			String nameText = getTestdata("Name");
+			String[] nameArr = nameText.split(": ");
+
+			String profileType = getTestdata("UserProfileType");
+
+			String[] profileArr = profileType.split(": ");
+
+			for (int i = 0; i < nameArr.length; i++) {
+
+				if (profileArr[i].equalsIgnoreCase("Business")) {
+					profileText = " INC";
+				} else {
+					profileText = "TEST ";
+				}
+
+				if (platformName.equalsIgnoreCase("iOS")) {
+
+					mobileAction.FuncClick(chooseProfile, "Select Profile");
+					String profileStr = "//XCUIElementTypeStaticText[@label='" + nameArr[i] + "' or contains(@label,'"
+							+ profileText + "')]";
+					MobileElement profile = mobileAction.mobileElementUsingXPath(profileStr);
+
+					mobileAction.FuncClick(profile, "Profile Name " + nameArr[i]);
+
+					if (profileArr[i].equalsIgnoreCase("Business")) {
+
+						registerBusinessUser();
+						verifyBusinessDetails();
+						verifyRegSuccessMsg();
+
+					} else {
+
+						registerPersonalUser();
+						verifyDetails();
+						verifyRegSuccessMsg();
+					}
+
+				} else {
+
+					mobileAction.FuncClick(chooseProfile, "Select Profile");
+					String profileStr = "//android.widget.TextView[@text='" + nameArr[i] + "' or contains(@text,'"
+							+ profileText + "')]";
+					MobileElement profile = mobileAction.mobileElementUsingXPath(profileStr);
+
+					mobileAction.FuncClick(profile, nameArr[i]);
+					// mobileAction.FuncClick(doneButton, "Done");
+
+					if (profileArr[i].equalsIgnoreCase("Business")) {
+
+						registerBusinessUser();
+						verifyBusinessDetails();
+						verifyRegSuccessMsg();
+
+					} else {
+
+						registerPersonalUser();
+						verifyDetails();
+						verifyRegSuccessMsg();
+					}
+
+				}
+
+				if (i != (nameArr.length - 1)) {
+
+					clickGoBackHome();
+
+					if (platformName.equalsIgnoreCase("Android")) {
+						if (i < 1 && !mobileAction.verifyElementIsPresent(registerAnotherProfile)) {
+
+							if (platformName.equalsIgnoreCase("iOS")) {
+
+								if (mobileAction.verifyElementIsPresent(backButton)) {
+									mobileAction.FuncClick(backButton, "Back Button");
+								}
+							}
+
+							HomeScreen.get().clickMenu();
+							MenuPage.get().clickProfileAndSettings();
+							Profile_And_Settings.get().clickPaymentsAndTransfers();
+						}
+					}
+					clickRegisterAnotherProfile();
+				}
+
+			}
+
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 
 	}
@@ -583,9 +773,15 @@ public class Interac_e_Registration extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(openAnAccount, "Open An Account");
 			mobileAction.verifyElementIsDisplayed(findABranch, "Find A Branch");
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -607,9 +803,15 @@ public class Interac_e_Registration extends _CommonPage {
 			HomeScreen.get().clickMenu();
 			MenuPage.get().clickMenuTransfer();
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -628,20 +830,27 @@ public class Interac_e_Registration extends _CommonPage {
 		Decorator();
 		try {
 
-			if (platformName.equalsIgnoreCase("Android")) {
-				if (mobileAction.verifyElementIsPresent(sendMoney)) {
+			if (mobileAction.verifyElementIsPresent(sendMoney)) {
+
+				if (platformName.equalsIgnoreCase("Android")) {
 					mobileAction.FuncClick(backButton, "Back Button");
-					HomeScreen.get().clickMenu();
-					MenuPage.get().clickProfileAndSettings();
-					Profile_And_Settings.get().clickPaymentsAndTransfers();
 				}
+				HomeScreen.get().clickMenu();
+				MenuPage.get().clickProfileAndSettings();
+				Profile_And_Settings.get().clickPaymentsAndTransfers();
 			}
 
 			mobileAction.FuncClick(registerAnotherProfile, "Register Another Profile");
 
-		} catch (NoSuchElementException | IOException | InterruptedException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 

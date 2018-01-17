@@ -16,6 +16,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class TransactionHistory extends _CommonPage {
 
@@ -30,51 +31,55 @@ public class TransactionHistory extends _CommonPage {
 
 	String platform = null;
 
-	@iOSFindBy(xpath = "//*[contains(@value,'No transactions found') or contains(@label,'No transactions found')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'No transactions found')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@value,'No transactions found') or contains(@label,'No transactions found') or contains(@label,'Aucune opération trouvée.')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'No transactions found') or contains(@text,'Aucune opération trouvée')]")
 	private MobileElement noTransactionFound;
 
-	@iOSFindBy(xpath = "//*[contains(@value,'All Accounts') or contains(@label,'All Accounts')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@value,'All Accounts') or contains(@label,'All Accounts')]")
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'All Accounts')]")
 	private MobileElement allAccounts;
 
-	@iOSFindBy(xpath = "//*[contains(@value,'Account Transfers') or contains(@label,'Account Transfers')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@value,'Account Transfers') or contains(@label,'Account Transfers')]")
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'All Accounts')]")
 	private MobileElement accountTransfers;
 
-	@iOSFindBy(xpath = "//*[contains(@value,'Income') or contains(@label,'Income')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@value,'Income') or contains(@label,'Income')]")
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'All Accounts')]")
 	private MobileElement income;
 
-	@iOSFindBy(xpath = "//*[contains(@value,'Fees') or contains(@label,'Fees')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@value,'Fees') or contains(@label,'Fees')]")
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'All Accounts')]")
 	private MobileElement fees;
 
-	@iOSFindBy(xpath = "//*[contains(@value,'Uncategorized') or contains(@label,'Uncategorized')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@value,'Uncategorized') or contains(@label,'Uncategorized')]")
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'All Accounts')]")
 	private MobileElement unCategorized;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Uncategorized') or contains(@label,'Account Transfers') or contains(@label,'Income') or contains(@label,'Fees')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Uncategorized') or contains(@label,'Account Transfers') or contains(@label,'Income') or contains(@label,'Fees')]")
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Uncategorized') or contains(@content-desc,'Fees') or contains(@content-desc,'Payments') or contains(@content-desc,'Income')]")
 	private MobileElement presentAccounts;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Transaction History') or contains(@label,'Historique des opérations')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Transaction History') or contains(@label,'Historique des opérations')]")
 	private MobileElement pageHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Filter by Accounts') or contains(@label,'Filtrer par compte')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Filter by Accounts') or contains(@content-desc,'Filtrer par compte')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Filter by Accounts') or contains(@label,'Filtrer par compte')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Filter by Accounts') or contains(@content-desc,'Filtrer par compte') or contains(@text,'Filter by Accounts') or contains(@text,'Filtrer par compte')]")
 	private MobileElement filterAccount;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Filter by Category') or contains(@label,'Filtrer par catégorie')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Filter by Category') or contains(@content-desc,'Filtrer par catégorie')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Filter by Category') or contains(@label,'Filtrer par catégorie')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Filter by Category') or contains(@content-desc,'Filtrer par catégorie') or contains(@text,'Filter by Category') or contains(@text,'Filtrer par catégorie')]")
 	private MobileElement filterCategory;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@name,'No transactions found') or contains(@label,'No transactions found')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@name,'No transactions found') or contains(@label,'No transactions found')]")
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'No transactions found')]")
 	private MobileElement noTransac;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@name,'Home') or contains(@label,'Home')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@name,'Home') or contains(@label,'Home')]")
 	private MobileElement homeBtn;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@name,'All Accounts') or contains(@name,'Tous les comptes')][2]/following-sibling::XCUIElementTypeOther")
+	@AndroidFindBy(xpath ="(//android.view.View[contains(@text,'All Accounts') or contains(@text,'Tous les comptes')])[2]/following-sibling::android.view.View")
+	private List<MobileElement> selectedAccounts;
 
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Filter by Accounts')]/../following-sibling::android.view.View[contains(@content-desc,'ON')]")
 	private List<MobileElement> filteredAccountss;
@@ -107,7 +112,7 @@ public class TransactionHistory extends _CommonPage {
 			} else {
 				mobileAction.verifyElementIsDisplayed(pageHeader, "Transaction History Page Header");
 			}
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -115,15 +120,8 @@ public class TransactionHistory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 
@@ -143,7 +141,7 @@ public class TransactionHistory extends _CommonPage {
 				Spending_Insight.get().clickSideMenuButton();
 				SideMenu.get().clickSpendingInsights();
 			}
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -151,23 +149,8 @@ public class TransactionHistory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 
@@ -195,7 +178,7 @@ public class TransactionHistory extends _CommonPage {
 				Spending_Insight.get().clickSideMenuButton();
 				SideMenu.get().clickSpendingInsights();
 			}
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -203,15 +186,8 @@ public class TransactionHistory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 
@@ -240,6 +216,8 @@ public class TransactionHistory extends _CommonPage {
 		String category = "";
 		String accountVal = getTestdata("Accounts");
 		String categoryVal = getTestdata("Category");
+		String[] accountValue = accountVal.split(":");
+		String[] categoryValue = categoryVal.split(":");
 		try {
 			verifyPageHeader();
 
@@ -247,19 +225,41 @@ public class TransactionHistory extends _CommonPage {
 				// Verify by Filtering Account
 				CL.GetAppiumDriver().context("NATIVE_APP");
 				mobileAction.FuncClick(filterAccount, "Filter Account");
-				account = "//*[contains(@content-desc,'" + accountVal + "')]";
+				if(currentLocale.equalsIgnoreCase("EN")){
+					account = "//*[contains(@content-desc,'" + accountValue[0] + "') or contains(@text,'" + accountValue[0] + "')]";
+				}else{
+					account = "//*[contains(@content-desc,'" + accountValue[1] + "') or contains(@text,'" + accountValue[1] + "')]";
+				}
+				
 				MobileElement selectAccount = mobileAction.mobileElementUsingXPath(account);
 				mobileAction.FuncClick(selectAccount, "Account");
-				filteredAccount = "(//*[contains(@content-desc,'" + accountVal + "')])[1]";
+				
+				if(currentLocale.equalsIgnoreCase("EN")){
+					filteredAccount = "(//*[contains(@content-desc,'" + accountValue[0] + "') or contains(@text,'" + accountValue[0] + "')])[1]";
+				}else{
+					filteredAccount = "(//*[contains(@content-desc,'" + accountValue[1] + "') or contains(@text,'" + accountValue[1] + "')])[1]";
+				}
 				MobileElement filteredAccounts = mobileAction.mobileElementUsingXPath(filteredAccount);
 				mobileAction.verifyElementIsDisplayed(filteredAccounts, "Filtered Account");
 
 				// Verify by Filtering Categoty
 				mobileAction.FuncClick(filterCategory, "Filter Category");
-				category = "//*[contains(@content-desc,'" + categoryVal + "')]";
-				MobileElement selectCategory = mobileAction.mobileElementUsingXPath(category);
-				mobileAction.FuncClick(selectCategory, "Category");
-				filteredCategory = "(//*[contains(@content-desc,'" + categoryVal + "')])[1]";
+				
+				if(currentLocale.equalsIgnoreCase("EN")){
+					category = "//*[contains(@content-desc,'" + categoryValue[0] + "') or contains(@text,'" + categoryValue[0] + "')]";
+				}else{
+					category = "//*[contains(@content-desc,'" + categoryValue[1] + "') or contains(@text,'" + categoryValue[1] + "')]";
+				}
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(category, true, 10, "Up");
+				//MobileElement selectCategory = mobileAction.mobileElementUsingXPath(category);
+				//mobileAction.FuncClick(selectCategory, "Category");
+				
+				if(currentLocale.equalsIgnoreCase("EN")){
+					filteredCategory = "(//*[contains(@content-desc,'" + categoryValue[0] + "') or contains(@text,'" + categoryValue[0] + "')])[1]";
+				}else{
+					filteredCategory = "(//*[contains(@content-desc,'" + categoryValue[1] + "') or contains(@text,'" + categoryValue[1] + "')])[1]";
+				}
+				
 				MobileElement filterCategory = mobileAction.mobileElementUsingXPath(filteredCategory);
 				if (mobileAction.verifyElementIsPresent(filterCategory)) {
 					mobileAction.verifyElementIsDisplayed(filterCategory, "Filtered Category");
@@ -270,7 +270,12 @@ public class TransactionHistory extends _CommonPage {
 			} else {
 				// Verify by Filtering Account
 				mobileAction.FuncClick(filterAccount, "Filter Account");
-				account = "//*[contains(@label,'" + accountVal + "') or contains(@name,'" + accountVal + "')]";
+				if(currentLocale.equalsIgnoreCase("EN")){
+					account = "//*[contains(@label,'" + accountValue[0] + "') or contains(@name,'" + accountValue[0] + "')]";
+				}else{
+					account = "//*[contains(@label,'" + accountValue[1] + "') or contains(@name,'" + accountValue[1] + "')]";
+				}
+				
 				MobileElement selectAccount = mobileAction.mobileElementUsingXPath(account);
 				mobileAction.FuncClick(selectAccount, "Account");
 				filteredAccount = "//XCUIElementTypeOther[contains(@label,'Filter by Accounts') or contains(@label,'Filtrer par compte')]/following-sibling::XCUIElementTypeOther[2]/XCUIElementTypeOther[3]";
@@ -280,9 +285,14 @@ public class TransactionHistory extends _CommonPage {
 				// Verify by Filtering Categoty
 
 				mobileAction.FuncClick(filterCategory, "Filter Category");
-				category = "//*[contains(@label,'" + categoryVal + "') or contains(@name,'" + categoryVal + "')]";
-				MobileElement selectCategory = mobileAction.mobileElementUsingXPath(category);
-				mobileAction.FuncClick(selectCategory, "Category");
+				if(currentLocale.equalsIgnoreCase("EN")){
+					category = "//*[contains(@label,'" + categoryValue[0] + "') or contains(@name,'" + categoryValue[0] + "')]";
+				}else{
+					category = "//*[contains(@label,'" + categoryValue[1] + "') or contains(@name,'" + categoryValue[1] + "')]";
+				}
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(category, true, 10, "Up");
+			//	MobileElement selectCategory = mobileAction.mobileElementUsingXPath(category);
+			//	mobileAction.FuncClick(selectCategory, "Category");
 				filteredCategory = "//XCUIElementTypeOther[contains(@label,'Filter by Category') or contains(@label,'Filtrer par catégorie')]/following-sibling::XCUIElementTypeOther[3]/XCUIElementTypeOther[2]";
 				MobileElement filterCategory = mobileAction.mobileElementUsingXPath(filteredCategory);
 				if (mobileAction.verifyElementIsPresent(filterCategory)) {
@@ -292,7 +302,7 @@ public class TransactionHistory extends _CommonPage {
 				}
 			}
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -300,23 +310,49 @@ public class TransactionHistory extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
+		}
+	}
+	/**
+	 * This method will verify the selected accounts in the transaction History Page
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void verifySelectedAccounts() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				CL.GetAppiumDriver().context("NATIVE_APP");
+			}
+			mobileAction.FuncClick(filterAccount, "Filter Account");
+			if(mobileAction.verifyElementIsPresent(noTransactionFound)){
+				mobileAction.verifyElementIsPresent(noTransactionFound);
+			}else{
+				for(int i=0;i<selectedAccounts.size()-1; i++){
+					mobileAction.verifyElementIsDisplayed(selectedAccounts.get(i), "Accounts: " +selectedAccounts.get(i).getText());
+					
+				}
+			}
+		
+			
+		} catch (Exception e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
 			} catch (IOException e1) {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 

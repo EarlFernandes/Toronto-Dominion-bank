@@ -13,6 +13,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class SideMenu extends com.td._CommonPage {
 
@@ -27,44 +28,53 @@ public class SideMenu extends com.td._CommonPage {
 
 	String platform = null;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@label,'Preferences') or contains(@label,'Préférences')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@label,'Preferences') or contains(@label,'Préférences')]")
 	private MobileElement preferences;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@name,'Spending Spikes') or contains(@label,'Pics de dépenses')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@name,'Spending Spikes') or contains(@label,'Pics de dépenses')]")
 	private MobileElement spendingSpikes;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@name,'Daily Digest') or contains(@label,'Sommaire quotidien')]")
+	private MobileElement dailyDigest;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@name,'Spending History') or contains(@name,'Historique de dépenses')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@name,'Spending History') or contains(@name,'Historique de dépenses')]")
 	private MobileElement spendingHistory;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@label,'Transaction History') or contains(@label,'Historique des opérations')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@label,'Transaction History') or contains(@label,'Historique des opérations')]")
 	private MobileElement transactionHistory;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'My Accounts') or contains(@label,'Mes comptes')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'My Accounts') or contains(@label,'Mes comptes')]")
 	private MobileElement myAccounts;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Transfers') or contains(@label,'Virements')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Transfers') or contains(@label,'Virements')]")
 	private MobileElement transfers;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Bills') or contains(@label,'Factures')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Bills') or contains(@label,'Factures')]")
 	private MobileElement bills;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@label,'Spending by Category') or contains(@label,'Dépenses par catégorie')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@label,'Spending by Category') or contains(@label,'Dépenses par catégorie')]")
 	private MobileElement spendingByCategory;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@label,'Spending Insights') or contains(@label,'Aperçu des dépenses')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@label,'Spending Insights') or contains(@label,'Aperçu des dépenses')]")
 	private MobileElement spendingInsights;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Go back to TD MySpend') or contains(@label,'Go back') or contains(@label,'Retourner à Dépense TD')]")
-	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Go back to TD MySpend') or contains(@content-desc,'Retourner à Dépense TD')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Go back to TD MySpend') or contains(@label,'Go back') or contains(@label,'Retourner à Dépense TD')]")
+	@AndroidFindBy(xpath = "//*[contains(@content-desc,'Go back to TD MySpend') or contains(@content-desc,'Retourner à Dépense TD')]")
 	private MobileElement quickLink;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Get the TD app' or contains(@label,'Obtenir l')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Get the TD app' or contains(@label,'Obtenir l')]")
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Get the TD app') or contains(@content-desc,'Obtenir l')]")
 	private MobileElement getTDApp;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Featured']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Featured']")
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Featured')]")
 	private MobileElement featuresBtn;
+	
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[contains(@name,'Home') or contains(@name,'Accueil')])[1]")
+	private MobileElement homeBtn;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Logout') or contains(@label,'Fermer la session')]")
+	private MobileElement logout;
 
 	@FindBy(xpath = "(//*[contains(@href,'spendHistoryOverview')])[2]")
 	private WebElement spendingHistoryAndroid;
@@ -92,6 +102,12 @@ public class SideMenu extends com.td._CommonPage {
 
 	@FindBy(xpath = "//*[contains(@ng-click,'billpay')]")
 	private WebElement billsAndroid;
+	
+	@FindBy(xpath = "(//*[contains(@href,'dailyDigest')])[2]")
+	private WebElement dailyDigestAndroid;
+	
+	@FindBy(xpath="(//*[@id='homeButton'])[1]")
+	private WebElement homeBtnAndroid;
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -125,7 +141,7 @@ public class SideMenu extends com.td._CommonPage {
 
 			}
 			MyspendPreferences.get().verifyPageHeader();
-		} catch (NoSuchElementException e) {
+		}catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -133,23 +149,7 @@ public class SideMenu extends com.td._CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -177,7 +177,7 @@ public class SideMenu extends com.td._CommonPage {
 				mobileAction.FuncClick(spendingSpikes, "Spending Spike");
 			}
 			SpendingSpikes.get().verifyPageheader();
-		} catch (NoSuchElementException e) {
+		}catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -185,23 +185,7 @@ public class SideMenu extends com.td._CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -229,7 +213,7 @@ public class SideMenu extends com.td._CommonPage {
 			} else {
 				mobileAction.FuncClick(spendingByCategory, "Spending By Category");
 			}
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -237,23 +221,7 @@ public class SideMenu extends com.td._CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -281,9 +249,9 @@ public class SideMenu extends com.td._CommonPage {
 			} else {
 				mobileAction.FuncClick(spendingInsights, "Spending Insights");
 			}
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 
-		} catch (NoSuchElementException e) {
+		}catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -291,23 +259,7 @@ public class SideMenu extends com.td._CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -335,7 +287,7 @@ public class SideMenu extends com.td._CommonPage {
 
 			}
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -343,23 +295,7 @@ public class SideMenu extends com.td._CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -385,7 +321,7 @@ public class SideMenu extends com.td._CommonPage {
 			} else {
 				mobileAction.FuncClick(transactionHistory, "Transaction History");
 			}
-		} catch (NoSuchElementException e) {
+		}catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -393,23 +329,7 @@ public class SideMenu extends com.td._CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -437,7 +357,7 @@ public class SideMenu extends com.td._CommonPage {
 			} else {
 				mobileAction.FuncClick(myAccounts, "My Accounts");
 			}
-		} catch (NoSuchElementException e) {
+		}catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -445,23 +365,7 @@ public class SideMenu extends com.td._CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -484,12 +388,13 @@ public class SideMenu extends com.td._CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
 				mobileAction.FuncClick(transfersAndroid, "Transfers");
 				CL.GetAppiumDriver().context("NATIVE_APP");
 			} else {
 				mobileAction.FuncClick(transfers, "Transfers");
 			}
-		} catch (NoSuchElementException e) {
+		}catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -497,23 +402,7 @@ public class SideMenu extends com.td._CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -541,7 +430,7 @@ public class SideMenu extends com.td._CommonPage {
 				mobileAction.FuncClick(bills, "Bills");
 			}
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -549,23 +438,7 @@ public class SideMenu extends com.td._CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -594,6 +467,10 @@ public class SideMenu extends com.td._CommonPage {
 			clickMyAccounts();
 			mobileAction.FuncClick(quickLink, "Quick Link");
 			Spending_Insight.get().clickSideMenuButton();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				mobileAction.FunctionSwipe("Up", 200, 200);
+			}
 			clickTransfers();
 			mobileAction.FuncClick(quickLink, "Quick Link");
 			Spending_Insight.get().clickSideMenuButton();
@@ -604,10 +481,13 @@ public class SideMenu extends com.td._CommonPage {
 			}
 			MyspendPreferences.get().verifyPageHeader();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncClick(homeBtnAndroid, "Home Button");
 				CL.GetAppiumDriver().context("NATIVE_APP");
+			}else{
+				mobileAction.FuncClick(homeBtn, "Home Button");
 			}
 
-		} catch (NoSuchElementException e) {
+		}catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -615,23 +495,7 @@ public class SideMenu extends com.td._CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -654,7 +518,7 @@ public class SideMenu extends com.td._CommonPage {
 
 		try {
 			mobileAction.FuncClick(getTDApp, "Get the TD app");
-		} catch (NoSuchElementException e) {
+		}catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -662,23 +526,173 @@ public class SideMenu extends com.td._CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	/**
+	 * This method will click on the Daily Digest button and verify the page
+	 * header.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void clickDailyDigest() {
+		Decorator();
+
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
+				mobileAction.FuncClick(dailyDigestAndroid, "Daily Digest");
+			} else {
+				mobileAction.FuncClick(dailyDigest, "Daily Digest");
+			}
+			DailyDigest.get().verifyPageheader();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				CL.GetAppiumDriver().context("NATIVE_APP");
+			}
+			
+		}catch (Exception e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
 			} catch (IOException e1) {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	/**
+	 * This method will click on the Side Menu twice
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void clickSideMenu() {
+		Decorator();
+
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickSideMenuButton();
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickSideMenuButton();
+
+			} else {
+				
+				Spending_Insight.get().clickSideMenuButton();
+				if(!mobileAction.verifyElementIsPresent(logout)){
+					Spending_Insight.get().clickSideMenuButton();
+				}
+			}
+			
+
+		} catch (Exception e) {
 			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
 			} catch (IOException e1) {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	/**
+	 * This method will verify navigation within my spend app 
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void verifyNavigationWithinMySpend() {
+		Decorator();
+
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				clickTransactionHistory();
+				TransactionHistory.get().verifyPageHeader();
+
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickSideMenuButton();
+				
+				clickSpendingByCategory();
+				SpendingByCategory.get().verifyPageHeader();
+				SpendingByCategory.get().verifySpendingByCategories();
+				
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickSideMenuButton();
+				
+				clickPreferences();
+				
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickSideMenuButton();
+				
+				clickSpendingInsights();
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickMoneyPathButton();
+				MoneyPath.get().verifyPageHeader();
+				
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				Spending_Insight.get().clickSideMenuButton();
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				
+				
+
+			} else {
+				
+				clickTransactionHistory();
+				TransactionHistory.get().verifyPageHeader();
+
+				Spending_Insight.get().clickSideMenuButton();
+				
+				clickSpendingByCategory();
+				SpendingByCategory.get().verifyPageHeader();
+				SpendingByCategory.get().verifySpendingByCategories();
+				
+				Spending_Insight.get().clickSideMenuButton();
+				
+				clickPreferences();
+				
+				Spending_Insight.get().clickSideMenuButton();
+				
+				clickSpendingInsights();
+				Spending_Insight.get().clickMoneyPathButton();
+				MoneyPath.get().verifyPageHeader();
+				
+				Spending_Insight.get().clickSideMenuButton();
+			}
+			
+
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

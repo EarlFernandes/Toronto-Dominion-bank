@@ -188,9 +188,6 @@ public class TradeMIT extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Mutual Funds']")
 	private MobileElement mutualfunds;
 
-	@iOSFindBy(xpath = "//*[@label='In Progress']")
-	private MobileElement progresssBar;
-
 	@iOSFindBy(xpath = "//*[contains(@label,'Action')]")
 	@AndroidFindBy(xpath = "//android.view.View[@resource-id='com.td:id/spinnerLine' and @index='3']")
 	private MobileElement selectAction;
@@ -701,7 +698,7 @@ public class TradeMIT extends _CommonPage {
 			if (platformName.equalsIgnoreCase("ios")) {
 				String searchKeyword = getTestdata("Search", "UserIDs");
 
-				mobileAction.waitForElementToVanish(progresssBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(selectAccount, "AccountSelected");
 				String accountno = "//*[contains(@label,'" + trade_account_no + "')]";
 
@@ -748,12 +745,12 @@ public class TradeMIT extends _CommonPage {
 				mobileAction.FuncSendKeys(trading_pwd, trading_pwd_value);
 				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(preview_order, "preview_Order");
-				mobileAction.waitForElementToVanish(progresssBar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction.FuncClick(AgreeButton, "Clicked on agree button");
 				// mobileAction.FunCSwipeandScroll(importantInfo, false);
 				// mobileAction.FuncClick(confirmMessage, "Confirm Message");
 				mobileAction.FuncClick(Send_Order, "Send Order");
-				mobileAction.waitForElementToVanish(progresssBar);
+				mobileAction.waitProgressBarVanish();
 
 			} else {
 

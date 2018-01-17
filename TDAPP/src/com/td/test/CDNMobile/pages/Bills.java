@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.MobileAction2;
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -16,6 +17,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Bills extends _CommonPage {
 
@@ -34,9 +36,9 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay a Canadian bill' and @index='1']")
 	private MobileElement pay_Cananda_Bill;
 
-	@iOSFindBy(accessibility = "BILLVIEW_PAYEE")
+	@iOSXCUITFindBy(accessibility = "BILLVIEW_PAYEE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Payees']")
-	private MobileElement manage_Payees;
+	private MobileElement managePayees;
 
 	@iOSFindBy(accessibility = "BILLVIEW_PAYUSBILL")
 	@AndroidFindBy(xpath = "//android.widget.TextView[ @text='Pay U.S. Bills' and @index='0']")
@@ -86,28 +88,16 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Scheduled Payments']")
 	private MobileElement scheduled_Payments_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Menu']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement menu;
-
 	@iOSFindBy(accessibility = "PAYBILL_VIEW_DATE_VALUE")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/edtDate']")
 	private MobileElement datePicker;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Logout']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Logout']")
 	private MobileElement logout;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
-	private MobileElement back_Button;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/upcomingbill_date_value']")
 	private MobileElement upcomingBillDate;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progrees_bar;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/headerDate']")
 	private List<MobileElement> dateHeaders;
@@ -117,25 +107,6 @@ public class Bills extends _CommonPage {
 			Bills = new Bills();
 		}
 		return Bills;
-	}
-
-	private void initElementPayCanadaBill() {
-		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				pay_Cananda_Bill = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowPayBill") + "']",
-						"Pay bills");
-			}
-		} catch (NoSuchElementException | IOException e) {
-			try {
-				mobileAction.GetReporting().FuncReport("Fail",
-						"No such element was found on screen: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-			}
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
 	}
 
 	private void initElementPayUSBill() {
@@ -161,7 +132,7 @@ public class Bills extends _CommonPage {
 	private void initElementManagePayees() {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				manage_Payees = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+				managePayees = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("billsNavRowManagePayee") + "']", "Manage Payees");
 			}
 		} catch (NoSuchElementException | IOException e) {
@@ -205,21 +176,23 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 
-			initElementPayCanadaBill();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				pay_Cananda_Bill = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowPayBill") + "']",
+						"Pay Canada bill");
+			}
+
 			mobileAction.FuncClick(pay_Cananda_Bill, "Pay Canada Bill");
-			mobileAction.waitForElementToVanish(progrees_bar);
-			Thread.sleep(2000);
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+
+			mobileAction.waitProgressBarVanish();
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
@@ -240,24 +213,26 @@ public class Bills extends _CommonPage {
 	 *             If there is problem while finding that element.
 	 */
 
-	public void click_ManagePayees() {
+	public void clickManagePayees() {
 		Decorator();
 		try {
 			Decorator();
-			initElementManagePayees();
-			mobileAction.FuncClick(manage_Payees, "Manage Payees");
-			mobileAction.waitForElementToVanish(progrees_bar);
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				managePayees = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ mobileAction.getAppString("billsNavRowManagePayee") + "']", "Manage Payees");
+			}
+
+			mobileAction.FuncClick(managePayees, "Manage Payees");
+			mobileAction.waitProgressBarVanish();
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
@@ -284,16 +259,19 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementIsDisplayed(bills_Header, "bills_Header");
+			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
 
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			mobileAction.verifyElementIsDisplayed(pageHeader, "Bills Header");
+			mobileAction.verifyElementTextContains(pageHeader,
+					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_BILLS));
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
@@ -313,25 +291,28 @@ public class Bills extends _CommonPage {
 	 * @throws Exception
 	 *             If there is problem while finding that element.
 	 */
-	public void click_pay_US_bill() {
+	public void clickPayUSBill() {
 
 		try {
 			Decorator();
-			initElementPayUSBill();
-			mobileAction.FuncClick(pay_US_Bills, "Pay US Bills");
-			mobileAction.waitForElementToVanish(progrees_bar);
 
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				pay_US_Bills = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='"
+								+ mobileAction.getAppString("billsNavRowPayUSBill").replaceAll("\\<.*?>", "") + "']",
+						"Pay US bills");
+			}
+
+			mobileAction.FuncClick(pay_US_Bills, "Pay US Bills");
+			mobileAction.waitProgressBarVanish();
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
@@ -354,22 +335,24 @@ public class Bills extends _CommonPage {
 	public void scheduledPayments() {
 		Decorator();
 		try {
-			initElementScheduledPayments();
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				scheduledPayments = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text = '" + mobileAction.getAppString("str_Scheduled_Bills")
+								+ "' or " + "@text='" + mobileAction.getAppString("billsNavRowUpcomingBills") + "']",
+						"Scheduled Payments");
+			}
+
 			mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
-			mobileAction.waitForElementToVanish(progrees_bar);
-			// mobileAction.verifyElementIsDisplayed(scheduledPayments,"No
-			// Upcoming Bills to display in this account");
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			mobileAction.waitProgressBarVanish();
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
@@ -398,10 +381,10 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(bills_Header, "Verifyipay_US_Bills_Headerng Bill Page Header");
 				mobileAction.FuncClick(pay_Bills, "Pay Bills");
 				mobileAction.verifyElementIsDisplayed(pay_Bills_Header, "Pay Bill Functionality Page Displayed");
-				mobileAction.FuncClick(back_Button, "Back");
+				mobileAction.ClickBackButton();
 				mobileAction.FuncClick(pay_US_Bills, "Pay US Bills");
 				mobileAction.verifyElementIsDisplayed(pay_US_Bills_Header, "Pay US Bill Functionality Page Displayed");
-				mobileAction.FuncClick(back_Button, "Back");
+				mobileAction.ClickBackButton();
 				mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
 				mobileAction.verifyElementIsDisplayed(scheduled_Payments_Header,
 						"Scheduled Payments Functionality Page Displayed");
@@ -412,14 +395,15 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(bills_Header, "Verifying Bill Page Header");
 				mobileAction.FuncClick(pay_Bills, "Pay Bills");
 				mobileAction.verifyElementIsDisplayed(pay_Bills_Header, "Pay Bill Functionality Page Displayed");
-				mobileAction.FuncClick(back_Button, "back arrow button clicked");
+				mobileAction.ClickBackButton();
 				mobileAction.FuncClick(pay_US_Bills, "Pay US Bills");
 				mobileAction.verifyElementIsDisplayed(pay_US_Bills_Header, "Pay US Bill Functionality Page Displayed");
-				mobileAction.FuncClick(back_Button, "back arrow button clicked");
-				mobileAction.FuncClick(manage_Payees, "Manage Payees");
+
+				mobileAction.ClickBackButton();
+				mobileAction.FuncClick(managePayees, "Manage Payees");
 
 				mobileAction.verifyElementIsDisplayed(manage_Payees_Header, "Manage Payees Page Displayed");
-				mobileAction.FuncClick(back_Button, "back arrow button clicked");
+				mobileAction.ClickBackButton();
 				mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
 				mobileAction.verifyElementIsDisplayed(scheduled_Payments_Header,
 						"Scheduled Payments Functionality Page Displayed");
@@ -460,16 +444,13 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.FuncClick(back_Button, "BACK");
+				mobileAction.ClickBackButton();
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -597,7 +578,7 @@ public class Bills extends _CommonPage {
 				mobileAction.verifyTextEquality(pay_US_Bills.getText(), mobileAction.getAppString("usbpNavRowTitle"));
 				mobileAction.verifyTextEquality(pay_us_bills_desc.getText(),
 						mobileAction.getAppString("usbpNavRowHint"));
-				mobileAction.verifyTextEquality(manage_Payees.getText(),
+				mobileAction.verifyTextEquality(managePayees.getText(),
 						mobileAction.getAppString("manage_payees_title"));
 				mobileAction.verifyTextEquality(manage_payees_desc.getText(),
 						mobileAction.getAppString("billsHintTextManagePayee"));
@@ -660,7 +641,7 @@ public class Bills extends _CommonPage {
 			initElementScheduledPayments();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
-				mobileAction.waitForElementToVanish(progrees_bar);
+				mobileAction.waitProgressBarVanish();
 				MobileElement header = mobileAction
 						.verifyElementUsingXPath("//XCUIElementTypeOther[@name='TDVIEW_TITLE']", "header");
 				mobileAction.verifyTextEquality(header.getText(),
@@ -672,7 +653,7 @@ public class Bills extends _CommonPage {
 
 			} else {
 				mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
-				mobileAction.waitForElementToVanish(progrees_bar);
+				mobileAction.waitProgressBarVanish();
 				mobileAction
 						.verifyElementUsingXPath(
 								"//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='"
@@ -832,11 +813,9 @@ public class Bills extends _CommonPage {
 						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("disclaimer") + "']",
 						"Disclaimer");
 
-				mobileAction
-						.verifyElementUsingXPath(
-								"//XCUIElementTypeStaticText[@value='" + mobileAction
-										.getAppString("payBillDropdownHeaderFromAccount").replace(" ", "\n") + "']",
-								"From Account");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
+						+ mobileAction.getAppString("payBillDropdownHeaderFromAccount").replace(" ", "\n") + "']",
+						"From Account");
 
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
 						+ mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");

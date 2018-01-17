@@ -24,13 +24,12 @@ public class FundFacts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@package='com.google.android.apps.docs']")
 	private MobileElement view_fundFacts_page_header;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progress_bar;
-	
-	//@iOSFindBy(xpath = "//*[@label='In progress']")
+	// @iOSFindBy(xpath = "//*[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/alertTitle'] | //android.widget.Button[@resource-id='android:id/button1']")
 	private MobileElement popup_alert;
+	
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.android.packageinstaller:id/permission_allow_button']")
+	private MobileElement permission_allow_button;
 
 	public synchronized static FundFacts get() {
 		if (Fundfacts == null) {
@@ -47,27 +46,29 @@ public class FundFacts extends _CommonPage {
 
 	public void VerifyFundfactsPageheader() {
 		Decorator();
-		
+
 		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-			try{
-				if(mobileAction.verifyElementIsPresent(popup_alert)){
+			try {
+				if (mobileAction.verifyElementIsPresent(popup_alert)) {
 					System.out.println("Need to set TD app to access the PDF file manually");
 					mobileAction.Report_Pass_Verified("Need to set TD app to access the PDF file manually");
 					return;
+				} else if(mobileAction.verifyElementIsPresent(permission_allow_button)) {
+					mobileAction.FuncClick(permission_allow_button, "Allow");
 				}
-			}catch(Exception e){
-				
+			} catch (Exception e) {
+
 			}
 		}
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementTextIsDisplayed(view_fundFacts_page_header,
 						getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_FACT_PDF));
-			}else{
+			} else {
 				mobileAction.verifyElementTextIsDisplayed(view_fundFacts_page_header,
 						getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_FACT));
 			}
-			
+
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

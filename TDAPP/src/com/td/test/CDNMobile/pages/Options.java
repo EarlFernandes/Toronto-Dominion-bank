@@ -231,10 +231,6 @@ public class Options extends _CommonPage {
 																								// rashmi
 	private MobileElement clickOptions;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
-
 	@iOSFindBy(xpath = "//*[@label='Buy' or @label='Achat']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='Buy_Entity_Button' and (@content-desc='Buy' or @content-desc='Achat')]") // changed
 																																			// by
@@ -534,7 +530,7 @@ public class Options extends _CommonPage {
 			MobileElement searchSymbol = mobileAction.verifyElementUsingXPath(xpathSymbolFlag, "Symbol");
 			mobileAction.FuncClick(searchSymbol, "Search symbol");
 			mobileAction.FuncClick(clickOptions, "click on Options");
-			mobileAction.waitForElementToVanished(progressBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncSwipeOnce("up");
 			mobileAction.clickCoOrdinatesPercentage(0.90f, 0.70f, 1);

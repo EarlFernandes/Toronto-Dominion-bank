@@ -12,6 +12,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class TDAppHomePage extends _CommonPage {
 
@@ -26,16 +27,16 @@ public class TDAppHomePage extends _CommonPage {
 
 	String platform = null;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'TD for Me')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'TD for Me')]")
 	private MobileElement homePageheader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'TD MySpend')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'TD MySpend')]")
 	private MobileElement tdMySpend;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Menu') or contains(@name,'Menu')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Menu') or contains(@name,'Menu')]")
 	private MobileElement menu;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Home') or contains(@name,'Home')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Home') or contains(@name,'Home')]")
 	private MobileElement home;
 
 	private void Decorator() {
@@ -65,13 +66,11 @@ public class TDAppHomePage extends _CommonPage {
 
 			mobileAction.FuncClick(menu, "Side Menu Bar");
 			mobileAction.FuncClick(home, "Home");
-			// Thread.sleep(3000);
-
-			// System.out.println(CL.GetDriver().getPageSource());
+			
 
 			mobileAction.verifyElementIsDisplayed(homePageheader, "Home Page Header");
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -79,15 +78,8 @@ public class TDAppHomePage extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 
@@ -110,7 +102,7 @@ public class TDAppHomePage extends _CommonPage {
 		try {
 			mobileAction.FuncClick(tdMySpend, "TD My Spend");
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -118,23 +110,8 @@ public class TDAppHomePage extends _CommonPage {
 				System.err.println("Failed to write in report.");
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "InterruptedException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			try {
-				CL.GetReporting().FuncReport("Fail", "IOException from Method " + this.getClass().toString());
-			} catch (IOException e1) {
-				System.err.println("Failed to write in report.");
-			}
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
 		}
 	}
 

@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -13,6 +14,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class MobilePayment extends _CommonPage {
 
@@ -63,9 +65,6 @@ public class MobilePayment extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/carousel_card_nickname' and @text='Add a Card']")
 	private MobileElement add_Card_Mobile_Payment;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	private MobileElement progresssBar;
-
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Set up Passcode']")
 	private MobileElement setup_Passcode_Header;
 
@@ -86,10 +85,6 @@ public class MobilePayment extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/nickname_box']")
 	private MobileElement nickname_Edit_Text;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Back']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement backButton;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/pay_button']")
 	private MobileElement pay_Button;
@@ -118,18 +113,19 @@ public class MobilePayment extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/default_card_image_view' and @index = '1']")
 	private MobileElement default_Card;
 
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/button_continue' and @text='Continue']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Continue']")
+	@AndroidFindBy(id = "com.td:id/button_continue")
 	private MobileElement mobilePaymentContinue;
 
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/button_add_card' and @text='Add a Card']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@AndroidFindBy(id = "com.td:id/button_add_card")
 	private MobileElement mobilePaymentAddACard;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Login Now']")
+	private MobileElement loginNowIOS;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/add_cards_button' and @text='Add to TD Mobile Payment']")
 	private MobileElement addMobilePayment;
-
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' and @text='Loading']")
-	private MobileElement progressBar;
 
 	@AndroidFindBy(xpath = "//android.widget.ProgressBar[@resource-id='com.td:id/content_loader']")
 	private MobileElement progressBarAddCard;
@@ -192,6 +188,10 @@ public class MobilePayment extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/carousel_card_image' and @content-desc='Add a Card']")
 	private MobileElement addIcon;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeButton[1]")
+	@AndroidFindBy(id = "com.td:id/loginEditText")
+	private MobileElement selectAccessCard;
+
 	String passcode = getTestdata("Passcode");
 
 	String newpasscode = getTestdata("NewPasscode");
@@ -224,7 +224,7 @@ public class MobilePayment extends _CommonPage {
 			if (mobileAction.verifyElementIsPresent(mobilepayment_Header)) {
 				mobileAction.FuncClick(continue_Button, "Continue");
 				mobileAction.FuncClick(add_Card_Button, "Add a Card");
-				mobileAction.waitForElementToVanish(progresssBar);
+				mobileAction.waitProgressBarVanish();
 			}
 
 		} catch (NoSuchElementException e) {
@@ -248,7 +248,7 @@ public class MobilePayment extends _CommonPage {
 			Decorator();
 
 			String add_to_mobilePayment_path = "//*[label='Add to TD Mobile Payment']";
-			mobileAction.waitForElementToVanish(progresssBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.waitForElementToAppear(add_to_mobilePayment_path, "Add To Mobile Payment");
 			mobileAction.FuncClick(add_To_MobilePayment_Button, "Add to TD Mobile Payment");
 
@@ -279,7 +279,7 @@ public class MobilePayment extends _CommonPage {
 					Decorator();
 					mobileAction.FuncClick(set_Default_Card, "Set As Default Card");
 					mobileAction.FuncClick(save_Button, "Save");
-					mobileAction.FuncClick(backButton, "Back");
+					mobileAction.ClickBackButton();
 
 				}
 
@@ -345,7 +345,7 @@ public class MobilePayment extends _CommonPage {
 			Decorator();
 
 			String add_to_mobilePayment_path = "//XCUIElementTypeStaticText[label='Add to TD Mobile Payment']";
-			mobileAction.waitForElementToVanish(progresssBar);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.waitForElementToAppear(add_to_mobilePayment_path, "Add To Mobile Payment");
 			mobileAction.FuncClick(add_To_MobilePayment_Button, "Add to TD Mobile Payment");
 
@@ -390,7 +390,7 @@ public class MobilePayment extends _CommonPage {
 				mobileAction.FuncSendKeys(passcode);
 				mobileAction.FuncClick(setting_Button, "Setting");
 				mobileAction.FuncClick(add_Card_Button, "Add a Card");
-				mobileAction.waitForElementToVanish(progresssBar);
+				mobileAction.waitProgressBarVanish();
 
 			}
 
@@ -413,7 +413,7 @@ public class MobilePayment extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncClick(pay_Button, "Pay Button");
-			mobileAction.waitForElementToVanish(cancel_Button);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.verifyElementIsDisplayed(timer_Text, msg);
 			mobileAction.verifyElementIsDisplayed(timer_Time, time);
 			mobileAction.FuncClick(restart_Timer, "Restart timer");
@@ -476,17 +476,13 @@ public class MobilePayment extends _CommonPage {
 			mobileAction.FuncClick(mobilePaymentContinue, "Continue");
 			mobileAction.FuncClick(mobilePaymentAddACard, "Add A Card");
 
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
@@ -519,7 +515,7 @@ public class MobilePayment extends _CommonPage {
 					mobileAction.FuncHideKeyboard();
 				}
 				mobileAction.FuncClick(securityLogin, "Login");
-				mobileAction.waitForElementToVanish(progressBar);
+				mobileAction.waitProgressBarVanish();
 			}
 
 		} catch (NoSuchElementException e) {
@@ -556,9 +552,9 @@ public class MobilePayment extends _CommonPage {
 		try {
 			Decorator();
 
-			mobileAction.waitForElementToVanish(progressBarCompatabilityCheck);
+			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(addMobilePayment, "Add To Mobile Payment");
-			mobileAction.waitForElementToVanish(progressBarAddCard);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -953,5 +949,70 @@ public class MobilePayment extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+
 	}
+
+	public void acceptIntroAndValidate() {
+
+		try {
+			Decorator();
+
+			boolean continueVisible = false;
+			boolean isLoginScreen = false;
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				isLoginScreen = mobileAction.verifyElementIsPresent(selectAccessCard);
+				if (isLoginScreen) {
+					Login.get().login();
+				}
+
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_BUTTON_CONTINUE);
+				String mobilePaymentContinueXpath = "//*[contains(@label,'" + labelText + "')]";
+				continueVisible = mobileAction.verifyElementIsPresentByXpath(mobilePaymentContinueXpath);
+
+				if (continueVisible) {
+					mobilePaymentContinue = mobileAction.verifyElementUsingXPath(mobilePaymentContinueXpath,
+							"Continue button");
+					mobileAction.FuncClick(mobilePaymentContinue, "Continue");
+					mobileAction.FuncClick(mobilePaymentAddACard, "Add A Card");
+
+					if (!isLoginScreen) {
+						Login.get().verifyLoginScreenTextElements();
+					}
+
+				} else {
+					labelText = getTextInCurrentLocale(StringArray.ARRAY_APPLE_PAY_LOGIN_NOW);
+					String loginNowIOSXpath = "//*[contains(@label,'" + labelText + "')]";
+					boolean loginNowVisible = mobileAction.verifyElementIsPresentByXpath(loginNowIOSXpath);
+
+					if (loginNowVisible) {
+						loginNowIOS = mobileAction.verifyElementUsingXPath(loginNowIOSXpath, "Login Now button");
+						mobileAction.FuncClick(loginNowIOS, "Login Now button clicked");
+
+						Login.get().verifyLoginScreenTextElements();
+					} else {
+						MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
+						mobileAction.verifyElementIsDisplayed(pageHeader, "Apple Pay header");
+						mobileAction.verifyElementTextContains(pageHeader,
+								getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_APPLEPAY));
+					}
+				}
+
+			}
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.FuncClick(mobilePaymentContinue, "Continue");
+				mobileAction.verifyElementIsDisplayed(mobilePaymentAddACard, "Add A Card screen");
+
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
 }

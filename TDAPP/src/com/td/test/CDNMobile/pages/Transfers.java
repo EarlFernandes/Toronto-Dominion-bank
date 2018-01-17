@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -14,20 +15,11 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Transfers extends _CommonPage {
 
 	private static Transfers Transfers;
-
-	/*
-	 * @iOSFindBy(xpath =
-	 * "//*[@label='Pending Interac e-Transfer View pending and cancelled Interac e-']"
-	 * )
-	 * 
-	 * @AndroidFindBy(xpath =
-	 * "//android.widget.TextView[@resource-id='com.td:id/canTotal' and @text='View pending and cancelled Interac e-Transfers']"
-	 * ) private MobileElement pending_transfer;
-	 */
 
 	public synchronized static Transfers get() {
 		if (Transfers == null) {
@@ -55,15 +47,15 @@ public class Transfers extends _CommonPage {
 	@iOSFindBy(accessibility = "TRANSFERVIEW_ETRANSFER_DES")
 	private MobileElement Interac_e_Transfer_button_desc;
 
-	@iOSFindBy(accessibility = "TRANSFERVIEW_BETWEENACCOUNTS")
+	@iOSXCUITFindBy(accessibility = "TRANSFERVIEW_BETWEENACCOUNTS")
 	private MobileElement btw_my_accnts;
 
 	@iOSFindBy(accessibility = "TRANSFERVIEW_BETWEENACCOUNTS_DES")
 	private MobileElement btw_my_accnts_desc;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progrees_bar;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/progress']")
+	private MobileElement progress_bar;
 
 	@iOSFindBy(accessibility = "TRANSFERVIEW_RECIPIENTS")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Recipients']")
@@ -78,22 +70,27 @@ public class Transfers extends _CommonPage {
 	@iOSFindBy(accessibility = "TRANSFERVIEW_RECIPIENTS_DES")
 	private MobileElement manageRecipientDesc;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeActivityIndicator[@value='1']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progressBar;
-
 	String transfer_Header_Value = "Transfers";
 	String confirm_Header = "Confirm";
 
 	String confirm_transfer_value = "Thank you!";
 
 	@iOSFindBy(accessibility = "TRANSFERVIEW_RECIPIENTS")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Contacts' or @text='Gérer les destinataires']")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/transfer_manage_contacts']")
 	private MobileElement manageContacts;
 
 	@iOSFindBy(accessibility = "TRANSFERVIEW_PENDING")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='History' or @text='Historique']")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/transfers_history']")
 	private MobileElement transferHistory;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Between My Accounts']")
+	@AndroidFindBy(id = "android:id/action_bar_title")
+	private MobileElement betweenMyAccountsHeader;
+
+	@iOSFindBy(accessibility = "TRANSFERVIEW_ETRANSFER")
+	@iOSXCUITFindBy(iOSClassChain = "**/*[`name=='TRANSFERVIEW_ETRANSFER' and (label=='Request Money' or label=='Demander des fonds')`]")
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/interac_request_money']")
+	private MobileElement requestMoney;
 
 	/**
 	 * This method will click on Between my accounts button
@@ -114,23 +111,29 @@ public class Transfers extends _CommonPage {
 	public void clickBetweenMyAccountsTransfers() {
 		try {
 			Decorator();
-			initElementBetweenMyAccounts();
-			// mobileAction.FuncClick(TD, "TDAPP");
-			// mobileAction.FuncClick(alwaysBtn, "Always");
-			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer");
+
+			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
+			mobileAction.verifyElementIsDisplayed(pageHeader, "Transfer header");
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				btw_my_accnts = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[contains(@text,'"
+								+ getTextInCurrentLocale(StringArray.ARRAY_BETWEEN_MY_ACCOUNTS_HEADER) + "')]",
+						"Transfer Between");
+			}
 			mobileAction.FuncClick(btw_my_accnts, "Between my Accounts");
-			mobileAction.waitForElementToVanish(progressBar);
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			mobileAction.waitProgressBarVanish();
+
+			mobileAction.verifyElementIsDisplayed(pageHeader, "Between My Accounts header");
+			mobileAction.verifyElementTextContains(pageHeader,
+					getTextInCurrentLocale(StringArray.ARRAY_BETWEEN_MY_ACCOUNTS_HEADER));
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
@@ -159,8 +162,7 @@ public class Transfers extends _CommonPage {
 			Thread.sleep(5000);
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer Header");
 			mobileAction.FuncClick(Interac_e_Transfer_button, "Interac e_Transfer");
-
-			// mobileAction.waitForElementToVanish(progrees_Bar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -199,7 +201,7 @@ public class Transfers extends _CommonPage {
 			initElementManageRecipients();
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer Header");
 			mobileAction.FuncClick(manageRecipient, "Manage Recipients Link");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -236,7 +238,7 @@ public class Transfers extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer");
 			mobileAction.FuncClick(pending_Transfer, "Pending Transfers");
 			Thread.sleep(5000);
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -335,30 +337,9 @@ public class Transfers extends _CommonPage {
 		}
 	}
 
-	private void initElementBetweenMyAccounts() {
-		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				btw_my_accnts = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='"
-								+ mobileAction.getAppString("transfersTransfersNavRowHeaderBetweenMyAccounts") + "']",
-						"Transfer Between");
-			}
-		} catch (NoSuchElementException | IOException e) {
-			try {
-				mobileAction.GetReporting().FuncReport("Fail",
-						"No such element was found on screen: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-			}
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		}
-	}
-
 	private void Decorator() {
 		PageFactory.initElements(
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
-
 	}
 
 	/**
@@ -382,15 +363,14 @@ public class Transfers extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer");
 
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "No Transfer screen: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -484,14 +464,17 @@ public class Transfers extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer Header");
 			mobileAction.FuncClick(manageContacts, "Manage Contacts Link");
-			mobileAction.waitForElementToVanish(progressBar);
+			mobileAction.waitP2PProgressBarVanish();
 
-		} catch (NoSuchElementException | IOException e) {
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 
@@ -508,13 +491,56 @@ public class Transfers extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(transferHistory, "Transfer History Link");
-			mobileAction.waitForElementToVanish(progressBar);
+
+			mobileAction.waitP2PProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
 		} catch (NoSuchElementException | IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (InterruptedException e) {
+
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	/**
+	 * @author Ashraf This method will click on Transfer History Link.
+	 * 
+	 * 
+	 * @return NoSuchElementException
+	 * @return IOException
+	 */
+	public void clickRequestMoneyLink() {
+
+		Decorator();
+		try {
+
+			mobileAction.waitP2PProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
+			mobileAction.FuncClick(requestMoney, "Request Money Link");
+
+			mobileAction.waitP2PProgressBarVanish();
+			mobileAction.waitP2PProgressBarVanish();
+		} catch (NoSuchElementException | IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 

@@ -37,10 +37,6 @@ public class LoginMIT extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id= 'android:id/button2' and @index='0']")
 	private MobileElement install;
 
-	@iOSFindBy(xpath = "//*[@label='In progress']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement progressBar;
-
 	@iOSFindBy(xpath = "//*[@label='Progression interrompue']")
 	@AndroidFindBy(xpath = "//android.widget.ProgressBar[@resource-id='android:id/progress']")
 	private MobileElement french_progressBar;
@@ -99,12 +95,8 @@ public class LoginMIT extends _CommonPage {
 	private MobileElement terms_Conditions_Msg;
 
 	@iOSFindBy(xpath = "//*[@label='Logout']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and @text='Logout']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Logout']")
 	private MobileElement logout;
-
-	@iOSFindBy(xpath = "//*[@label='Menu']")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up'and @index='0']")
-	private MobileElement menu;
 
 	@iOSFindBy(xpath = "//*[@label='Logged Out']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Logged Out']")
@@ -161,11 +153,20 @@ public class LoginMIT extends _CommonPage {
 	 * private MobileElement Investing_Trade;
 	 */
 
-	@iOSFindBy(xpath = "//*[(@label='Trade' or @label='Négociation' or @label='交易' or @label='交易') and @name='TDVIEW_TITLE']") // @Author
+	/*
+	 * @iOSFindBy(xpath =
+	 * "//*[@label='Investing' or @label='Placements' or @label='投资' or @label='投資']"
+	 * ) // @Author // - // Sushil // 01-Sep-2017
+	 * 
+	 * @AndroidFindBy(xpath =
+	 * "//*[@text='Investing' or @text='Placements' or @text='投资' or @text='投資']"
+	 * )
+	 */ // Investing Landing page removed as per new requirement
+	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='Comptes' or @label='账户' or @label='賬戶']") // @Author
 	// -
 	// Sushil
-	// 18-Dec-2017
-	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation' or @text='交易' or @text='交易']")
+	// 21-Sep-2017
+	@AndroidFindBy(xpath = "//*[@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶']")
 	private MobileElement Investing_Trade;
 
 	String verifyLogin_ios = "//*[contains(@label,'Your Login Info Please')]";
@@ -222,7 +223,9 @@ public class LoginMIT extends _CommonPage {
 				mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 				TradeMultiLeg.get().handleKeyboard();
 
-				mobileAction.FuncClick(login, "Login");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+					mobileAction.FuncClick(login, "Login");
+				}
 
 				if (!mobileAction.isObjExists(Investing_Trade))
 					enterPwdifError();
@@ -237,19 +240,27 @@ public class LoginMIT extends _CommonPage {
 				mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 
 				TradeMultiLeg.get().handleKeyboard();
-				mobileAction.FuncClick(login, "Login");
+
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+					mobileAction.FuncClick(login, "Login");
+				}
 
 				if (!mobileAction.isObjExists(Investing_Trade))
 					enterPwdifError();
 
 			}
 
-			if (!mobileAction.isObjExists(Investing_Trade)) {
+			if (!mobileAction.isObjExists(Investing_Trade))
+
+			{
 				if (mobileAction.isObjExists(enterAnswer)) {
 					mobileAction.FuncSendKeys(enterAnswer, getTestdata("SecurityPassword", XLSheetUserIDs));
 					TradeMultiLeg.get().handleKeyboard();
 
-					mobileAction.FuncClick(securityLogin, "Login");
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+						mobileAction.FuncClick(securityLogin, "Login");
+					}
+
 				}
 			}
 		} catch (Exception e) {
@@ -271,8 +282,13 @@ public class LoginMIT extends _CommonPage {
 
 					mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 					TradeMultiLeg.get().handleKeyboard();
-					mobileAction.FuncClick(login, "Login");
+
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+						mobileAction.FuncClick(login, "Login");
+					}
+
 					iCnt++;
+					Thread.sleep(10000);
 				} while (mobileAction.isObjExists(errorText) || iCnt > 5);
 
 				if (iCnt > 5) {

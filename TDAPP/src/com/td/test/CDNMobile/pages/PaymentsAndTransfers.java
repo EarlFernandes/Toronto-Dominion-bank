@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -25,8 +26,8 @@ public class PaymentsAndTransfers extends _CommonPage{
 		return PaymentsAndTransfers;
 	}
 
+	String platfrom=null;
 	
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Manage Autodeposit']") //TODO::IOSXpath
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/payments_and_transfers_auto_deposit_title']")
 	private MobileElement autoDepositLnk;
 	
@@ -34,6 +35,8 @@ public class PaymentsAndTransfers extends _CommonPage{
 		PageFactory.initElements(
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 
+		platfrom=CL.getTestDataInstance().getMobilePlatForm();
+		
 	}
 
 	
@@ -55,12 +58,21 @@ public class PaymentsAndTransfers extends _CommonPage{
 		Decorator();
 		try {
 
+			if(platfrom.equalsIgnoreCase("iOS")){
+				autoDepositLnk = mobileAction.mobileElementUsingXPath("//XCUIElementTypeStaticText[@label='"+getTextInCurrentLocale(StringArray.ARRAY_PAYMENT_AND_TRANSFER_AUTODEPOSIT)+"']");
+			}
+			
 			mobileAction.FuncClick(autoDepositLnk, "Manage Autodeposit Link");
 		
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
 		}
 	}
 	
