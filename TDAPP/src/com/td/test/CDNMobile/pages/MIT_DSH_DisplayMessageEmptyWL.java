@@ -61,7 +61,7 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/tv_watchlist_more_footer")
 	private MobileElement btnMore;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 06']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'List 06')]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/watchlist_name_drop_down' and contains(@text,'List 06')]")
 	private MobileElement FilledListExpand;
 
@@ -234,21 +234,21 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 			mobileAction.FuncVerifyTextEquals(LinkEmptyWLAddSymbol,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_AddSymbolLink));
 
-			for (int i = 1; i <= 10; i++)
+			//for (int i = 1; i <= 10; i++)
 
-			{
+			//{
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 
 				{
 					mobileAction.FuncClick(btnDropDown, "btnDropDown");
 
-					String sXpathiAnd = "(//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and contains(@text,'"
+					/*String sXpathiAnd = "(//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and contains(@text,'"
 							+ i + "')])[1]";
 
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAnd, false, 5, "up");
 
 					mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(sXpathiAnd)),
-							"Empy List Number clicked" + i);
+							"Empy List Number clicked" + i);*/
 
 					mobileAction.FuncVerifyTextEquals(EmptyWLDesc,
 							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_EmptyWLDesc));
@@ -262,10 +262,10 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 
 					mobileAction.FuncClick(btnDropDown, "btnDropDown");
 
-					String sXpathiOS = "(//XCUIElementTypeStaticText[contains(@label,'" + i + "')])[1]";
+					/*String sXpathiOS = "(//XCUIElementTypeStaticText[contains(@label,'" + i + "')])[1]";
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiOS, false, 5, "up");
 					mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(By.xpath(sXpathiOS)),
-							"Empy List Number clicked" + i);
+							"Empy List Number clicked" + i);*/
 
 					mobileAction.FuncVerifyTextEquals(EmptyWLDesc,
 							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_EmptyWLDesc));
@@ -275,7 +275,7 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 
 				}
 
-			}
+			//}
 
 		} catch (Exception e) {
 			e.printStackTrace();

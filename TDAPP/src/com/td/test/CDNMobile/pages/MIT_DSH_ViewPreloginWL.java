@@ -78,7 +78,7 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/loginBtnText']")
 	private MobileElement login;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 06']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'List 06')]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/watchlist_name_drop_down' and contains(@text,'List 06')]")
 	private MobileElement FilledListExpand;
 
@@ -162,11 +162,11 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 			// requirement In Pre-logined when tap on More it will go to
 			// Expanded mode
 
-			mobileAction.FuncClick(BT_WLBack, "< Button");
+			//mobileAction.FuncClick(BT_WLBack, "< Button");
 
 			// LoginMIT.get().MITLogin();
 
-			MIT_DSHQuickLinks.get().goToDashboardHome();
+			//MIT_DSHQuickLinks.get().goToDashboardHome();
 			
 			/*if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");

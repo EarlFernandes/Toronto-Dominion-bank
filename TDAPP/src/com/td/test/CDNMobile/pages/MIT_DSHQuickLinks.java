@@ -36,8 +36,8 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				this);
 	}
 
-	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
-	@AndroidFindBy(id = "com.td:id/hamburger")
+	@iOSXCUITFindBy(xpath = "//*[@name = 'QuickLinkLeftNavButton' or @name = 'NAVIGATION_ITEM_MENU']")
+	@AndroidFindBy(xpath = "//*[@resource-id = 'com.td:id/hamburger' or @resource-id='android:id/up']")
 	MobileElement BT_Home_HamburgerMenu;
 
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
@@ -571,7 +571,8 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(password, "Login Screen");
 					mobileAction.FuncClick(BT_Back, "< Button");
 				} else {
-					//mobileAction.verifyElementIsDisplayed(HDR_Mobile_Deposit, "HDR_Mobile_Deposit");
+					// mobileAction.verifyElementIsDisplayed(HDR_Mobile_Deposit,
+					// "HDR_Mobile_Deposit");
 					mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
 					mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
 				}
@@ -740,12 +741,8 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	public void tapInvesting() {
 		Decorator();
 		try {
+			MIT_DSHQuickLinks.get().goToDashboardHome();
 
-			String xpathTradeQL = "//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE)
-					+ "']";
-			if (verifyQuickLinkExistsByXpath(xpathTradeQL, "TRADE")) {
-				CL.GetAppiumDriver().findElement(By.xpath(xpathTradeQL)).click();
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
