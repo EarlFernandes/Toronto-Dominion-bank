@@ -255,7 +255,7 @@ public class Interac_Send_Money extends _CommonPage {
 				mobileAction.FuncClick(selectRecipient, "Select Recipient");
 				String recipientXpath = "//android.widget.TextView[@text='" + getTestdata("ToAccount") + "']";
 				MobileElement recipient = mobileAction.mobileElementUsingXPath(recipientXpath);
-				mobileAction.FuncClick(recipient, "Recipient " + recipient.getText());
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(recipientXpath, true, 1, "up");  
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(securityQuestion, "Security Question");
 				mobileAction.FuncSendKeys(securityQuestion, getTestdata("SecurityQuestion"));
