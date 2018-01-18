@@ -147,7 +147,7 @@ public class Accounts extends _CommonPage {
 	private MobileElement firstAcct;
 
 	@iOSXCUITFindBy(accessibility = "ACCOUNT_DETAIL_DATE_CELL_0")
-	@AndroidFindBy(id = "com.td:id/summaryTab")
+	@AndroidFindBy(id = "com.td:id/date")
 	private MobileElement todayLabel;
 
 	@iOSXCUITFindBy(accessibility = "RVB_DETAIL_ACTIVITY_CELL_TITLE_1")

@@ -139,7 +139,7 @@ public class HomeScreen extends _CommonPage {
 	private MobileElement chatBotDashboard;
 
 	@iOSXCUITFindBy(accessibility = "QuickLink 7")
-	@AndroidFindBy(xpath = "TBD")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/text_view' and @text='WATCHLISTS']")
 	private MobileElement watchlistQuickLink;
 
 	@iOSXCUITFindBy(accessibility = "QuickLinkRightNavButton")
@@ -147,11 +147,11 @@ public class HomeScreen extends _CommonPage {
 	private MobileElement quickAccessPerf;
 
 	@iOSXCUITFindBy(accessibility = "d0***701")
-	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']")
+	@AndroidFindBy(id = "com.td:id/easy_access_account_description")
 	private MobileElement acctNamePerf;
 
 	@iOSXCUITFindBy(accessibility = "dropdownButton")
-	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']")
+	@AndroidFindBy(id = "com.td:id/watchlist_name_drop_down_button")
 	private MobileElement watchlistDropDownPerf;
 
 	int i = 1;

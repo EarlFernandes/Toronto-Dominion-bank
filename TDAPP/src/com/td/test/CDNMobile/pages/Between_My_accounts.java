@@ -287,11 +287,11 @@ public class Between_My_accounts extends _CommonPage {
 	private MobileElement screenHeader;
 
 	@iOSXCUITFindBy(accessibility = "BETWEEN_ACCOUNTS_CONFIRM_TO")
-	@AndroidFindBy(id = "android:id/action_bar_title")
+	@AndroidFindBy(id = "com.td:id/myaccounts_to_account_name")
 	private MobileElement toAccountConfirmPerf;
 
 	@iOSXCUITFindBy(accessibility = "COMMON_RECEIPT_CELL_TITLE_1")
-	@AndroidFindBy(id = "android:id/action_bar_title")
+	@AndroidFindBy(id = "com.td:id/to_account_val")
 	private MobileElement toAccountReceiptPerf;
 
 	private void Decorator() {

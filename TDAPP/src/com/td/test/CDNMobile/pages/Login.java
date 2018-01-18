@@ -243,10 +243,11 @@ public class Login extends _CommonPage {
 	private MobileElement otpWelcomeImageExisting;
 
 	@iOSXCUITFindBy(accessibility = "descriptionLabel")
-	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/selectedText'])[1]")
+	@AndroidFindBy(id = "com.td:id/accountCaption")
 	private MobileElement accountNameTradePerf;
 
 	@iOSXCUITFindBy(accessibility = "CREDIT")
+	@AndroidFindBy(id = "com.td:id/classificationTexView")
 	private MobileElement bankingTitlePerf;
 
 	String session = "//XCUIElementTypeStaticText[@label='Session Expired']";

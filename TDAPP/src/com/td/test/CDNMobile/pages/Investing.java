@@ -1255,11 +1255,11 @@ public class Investing extends _CommonPage {
 	private MobileElement ordersButton;
 
 	@iOSXCUITFindBy(accessibility = "Orders")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/ordersTab']")
+	@AndroidFindBy(id = "com.td:id/ordersTab")
 	private MobileElement ordersButtonPerf;
 
 	@iOSXCUITFindBy(accessibility = "COMPLEX_ORDER_CELL_SYMBOL_NAME")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/ordersTab']")
+	@AndroidFindBy(id = "TBD")
 	private MobileElement ordersFirstSymbolPerf;
 
 	/**

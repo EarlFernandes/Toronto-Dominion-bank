@@ -103,6 +103,7 @@ public class Bills extends _CommonPage {
 	private List<MobileElement> dateHeaders;
 
 	@iOSFindBy(accessibility = "PAYBILL_VIEW_PAYEE")
+	@AndroidFindBy(id = "com.td:id/payeeLabel")
 	private MobileElement payeePerf;
 
 	public synchronized static Bills get() {

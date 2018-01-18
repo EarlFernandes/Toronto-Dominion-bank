@@ -416,11 +416,11 @@ public class Trade extends _CommonPage {
 	private MobileElement tradeOrderType;
 
 	@iOSXCUITFindBy(accessibility = "tradingSymbol")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='Send Order' or contains(@text,'Envoyer l')]")
-	private MobileElement tradingSymbol;
+	@AndroidFindBy(id = "TBD")
+	private MobileElement tradingSymbolPerf;
 
 	@iOSXCUITFindBy(accessibility = "td_investing_account_0_0")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='Send Order' or contains(@text,'Envoyer l')]")
+	@AndroidFindBy(id = "TBD")
 	private MobileElement investingAccMFPerf;
 
 	@iOSXCUITFindBy(accessibility = "sendOrderButton")
@@ -428,29 +428,35 @@ public class Trade extends _CommonPage {
 	private MobileElement send_order;
 
 	@iOSXCUITFindBy(accessibility = "confirmationNumberLabel")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='Send Order' or contains(@text,'Envoyer l')]")
-	private MobileElement tradeConfirmationNumber;
+	@AndroidFindBy(id = "TBD")
+	private MobileElement tradeConfirmationNumberPerf;
 
 	@iOSXCUITFindBy(accessibility = "ACCOUNT")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='Send Order' or contains(@text,'Envoyer l')]")
+	@AndroidFindBy(id = "com.td:id/dialog_title")
 	private MobileElement acctListHeaderPerf;
 
 	@iOSXCUITFindBy(accessibility = "TextField_0")
+	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
 	private MobileElement symbolEditFieldPerf;
 
 	@iOSXCUITFindBy(accessibility = "tradePrice")
+	@AndroidFindBy(id = "com.td:id/txt_price")
 	private MobileElement symbolTradePricePerf;
 
 	@iOSXCUITFindBy(accessibility = "lastPriceLabel")
+	@AndroidFindBy(id = "com.td:id/current_price")
 	private MobileElement symbolLastPricePerf;
 
 	@iOSXCUITFindBy(accessibility = "MARKET")
+	@AndroidFindBy(id = "com.td:id/dialog_title")
 	private MobileElement tradePriceTypePerf;
 
 	@iOSXCUITFindBy(accessibility = "Bid (Lots)")
+	@AndroidFindBy(id = "com.td:id/select-option-type")
 	private MobileElement bidLotsPerf;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[12]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "(//android.view.View[contains(@content-desc,'In The Money')])[2]")
 	private MobileElement firstAskCallOption;
 
 	public synchronized static Trade get() {
@@ -2499,10 +2505,10 @@ public class Trade extends _CommonPage {
 			mobileAction.waitProgressBarVanish();
 
 			performance.click(agreeButton, "Agree");
-			performance.verifyElementIsDisplayed(tradingSymbol, "Trading Symbol in Confirm Order");
+			performance.verifyElementIsDisplayed(tradingSymbolPerf, "Trading Symbol in Confirm Order");
 
 			performance.click(send_order, "Send Order");
-			performance.verifyElementIsDisplayed(tradeConfirmationNumber, "Trade Confirmation Number in Receipt");
+			performance.verifyElementIsDisplayed(tradeConfirmationNumberPerf, "Trade Confirmation Number in Receipt");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -2562,7 +2568,7 @@ public class Trade extends _CommonPage {
 			performance.verifyElementIsDisplayed(investingAccMFPerf, "Account in Confirm Order");
 
 			performance.click(send_order, "Send Order");
-			performance.verifyElementIsDisplayed(tradeConfirmationNumber, "Trade Confirmation Number in Receipt");
+			performance.verifyElementIsDisplayed(tradeConfirmationNumberPerf, "Trade Confirmation Number in Receipt");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -2618,7 +2624,7 @@ public class Trade extends _CommonPage {
 			performance.verifyElementIsDisplayed(investingAccMFPerf, "Account in Confirm Order");
 
 			performance.click(send_order, "Send Order");
-			performance.verifyElementIsDisplayed(tradeConfirmationNumber, "Trade Confirmation Number in Receipt");
+			performance.verifyElementIsDisplayed(tradeConfirmationNumberPerf, "Trade Confirmation Number in Receipt");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

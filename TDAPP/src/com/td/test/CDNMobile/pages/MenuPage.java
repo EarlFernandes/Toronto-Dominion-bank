@@ -111,10 +111,11 @@ public class MenuPage extends _CommonPage {
 	private MobileElement chatBot;
 
 	@iOSXCUITFindBy(accessibility = "CREDIT")
+	@AndroidFindBy(id = "com.td:id/classificationTexView")
 	private MobileElement bankingTitlePerf;
 
 	@iOSXCUITFindBy(accessibility = "descriptionLabel")
-	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/selectedText'])[1]")
+	@AndroidFindBy(id = "com.td:id/accountCaption")
 	private MobileElement accountNameTradePerf;
 
 	public synchronized static MenuPage get() {

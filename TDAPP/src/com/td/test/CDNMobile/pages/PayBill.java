@@ -102,11 +102,11 @@ public class PayBill extends _CommonPage {
 	private MobileElement payWithRewards;
 
 	@iOSXCUITFindBy(accessibility = "PAYBILL_CONFIRMVIEW_TO")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue' or @resource-id='com.td:id/myaccounts_entry_btn_confirm']")
+	@AndroidFindBy(id = "com.td:id/txt_payee")
 	private MobileElement payeeConfirmPerf;
 
 	@iOSXCUITFindBy(accessibility = "COMMON_RECEIPT_CELL_TITLE_1")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue' or @resource-id='com.td:id/myaccounts_entry_btn_confirm']")
+	@AndroidFindBy(id = "com.td:id/payee")
 	private MobileElement payeeReceiptPerf;
 
 	public synchronized static PayBill get() {
