@@ -761,6 +761,7 @@ public class MenuPage extends _CommonPage {
 			mobileAction.sleep(3000);
 			mobileAction.FuncSwipeWhileElementNotFound(menuItem, true, 5, "up");
 			mobileAction.sleep(5000);
+			mobileAction.waitProgressBarVanish();
 
 			if (headerText.equals(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_GIVEFEEDBACK))) {
 				// Feedback screen has no header
