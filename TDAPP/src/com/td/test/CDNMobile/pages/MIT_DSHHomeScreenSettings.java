@@ -255,6 +255,7 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	public void verifyHomeScreenSettingsBlendedInvestingFocusUser() {
 		Decorator();
 		try {
+
 			mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -341,6 +342,9 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	public void goToProfileAndSettings() {
 		Decorator();
 		try {
+
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
+
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "Home HamburgerMenu");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings, true, 5, "up");
 		} catch (Exception e) {
