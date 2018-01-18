@@ -138,6 +138,10 @@ public class HomeScreen extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeStaticText[(@label='TD Talk to Me' or @label='TD Talk to Me(FR)' or @label='TD Talk to Me' or @label='TD Talk to Me')]")
 	private MobileElement chatBotDashboard;
 
+	@iOSXCUITFindBy(accessibility = "QuickLink 7")
+	@AndroidFindBy(xpath = "TBD")
+	private MobileElement watchlistQuickLink;
+
 	@iOSXCUITFindBy(accessibility = "QuickLinkRightNavButton")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']")
 	private MobileElement quickAccessPerf;
@@ -145,6 +149,10 @@ public class HomeScreen extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "d0***701")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']")
 	private MobileElement acctNamePerf;
+
+	@iOSXCUITFindBy(accessibility = "dropdownButton")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']")
+	private MobileElement watchlistDropDownPerf;
 
 	int i = 1;
 	String Firstpart = "//XCUIElementTypeCell[";
@@ -1460,6 +1468,43 @@ public class HomeScreen extends _CommonPage {
 
 			performance.click(quickAccessPerf, "Quick Access");
 			performance.verifyElementIsDisplayed(acctNamePerf, "Acct ID in Quick Access");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void showWatchlistsQuickLink() {
+		Decorator();
+
+		try {
+
+			mobileAction.SwipeWhileQuickLinkNotFound(watchlistQuickLink, false, 5, "left");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void clickWatchlistsQuickLinkPERF() {
+		Decorator();
+
+		try {
+
+			performance.click(watchlistQuickLink, "Watchlists quicklink");
+			performance.verifyElementIsDisplayed(watchlistDropDownPerf, "Wathclists drop-down button");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

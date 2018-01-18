@@ -174,7 +174,7 @@ public class EventCase {
 		FAQ_ClickChatbot,
 
 		// Homescreen
-		HomeScreen_QuickLink_Chatbot, HomeScreen_Dashboard_Chatbot,
+		HomeScreen_QuickLink_Chatbot, HomeScreen_Dashboard_Chatbot, HomeScreen_QuickLink_ShowWatchlists,
 
 		// Login
 		Login_VerifyUserNotRemembered, Login_LoginUsingAccessCardNumber, Login_LoginUsingAlias, Login_DeleteAllRememberedIDs, Login_VerifyAllRememberedIDsDeleted, Login_VerifyRememberedIDs, Login_VerifyLoginMFA, Login_CloseApp,
@@ -241,7 +241,7 @@ public class EventCase {
 		HomeScreen_click_Markets, Trade_MIT_REF_searchAndClickMarketSymbol, Trade_MIT_REF_verifyTradeSymbols, Trade_MIT_REF_QuoteverifyRecentSearchSymbol, Investing_MIT_REF_verifyHoldingsDetails, Investing_MIT_REF_clickHoldingsTab, Trade_MIT_REF_verifyExchangeAgreementErrorDetails, Investing_MIT_REF_clickTradeQuickLink, Trade_MIT_REF_ClickEnterNameOrSymbol, Trade_MIT_REF_verifyFirstOrderPlaced, Trade_MIT_REF_verifyQuoteSymbol, HomeScreen_clickQuoteQuickLink, Trade_MIT_REF_goBack, Trade_MIT_REF_verifyRecentSearchSymbol, Trade_MIT_REF_goBackToHome, Investing_MIT_REF_buyHoldingsETF, Investing_MIT_REF_sendETFOrder, Investing_MIT_REF_clickHoldingsETF, Investing_MIT_REF_clickAccount_Multiple, Investing_MIT_REF_verifyTabs, Trade_MIT_REF_cancelOrder, Trade_MIT_REF_changeOrder, Trade_MIT_REF_click_RecentOrder, Trade_MIT_REF_click_Orders_Link, Trade_MIT_REF_verify_StockOrderSent_Msg, Trade_MIT_REF_clickSendOrder, Trade_MIT_REF_sendStockOrder, Trade_MIT_REF_verifyTradeHeader, Trade_MIT_REF_verifyTradeElements, Trade_MIT_REF_EnterNameOrSymbol, Trade_MIT_REF_verifyQuoteDetails,
 
 		// Performance Metrics
-		Transfers_ClickBetweenMyAccountsPERF, BetweenMyAccounts_TransferFirstAccountsPERF, Bills_ClickPayCanadianBillPERF, PayBill_PayBillPERF, AccountDetails_ClickActivityTabPERF, Homescreen_ClickQuickAccessPERF, MenuPage_ClickMenuAccountsPERF, Performance_Summary,
+		Transfers_ClickBetweenMyAccountsPERF, BetweenMyAccounts_TransferFirstAccountsPERF, Bills_ClickPayCanadianBillPERF, PayBill_PayBillPERF, Homescreen_ClickQuickAccessPERF, MenuPage_ClickMenuAccountsPERF, Performance_Summary, Trade_EnterTradePERF, Investing_ClickOrdersPERF, MenuPage_ClickMenuTradePERF, Trade_EnterTradeMFPERF, Homescreen_ClickWatchlistsQuickLinkPERF, Trade_EnterTradeOptionsPERF, Login_LoginTradePERF, Login_LoginAccountPERF, AccountDetails_SelectToAccountPERF, AccountDetails_SelectToCreditPERF, Credit_ClickRewardPERF, Rewards_ClickPayWithRewardsPERF,
 	}
 
 	public void FuncCOREEventCase(String sFunctionname)
@@ -4799,6 +4799,10 @@ public class EventCase {
 			HomeScreen.get().clickChatBotDashboard();
 			break;
 
+		case HomeScreen_QuickLink_ShowWatchlists:
+			HomeScreen.get().showWatchlistsQuickLink();
+			break;
+
 		// Login
 		case Login_VerifyUserNotRemembered:
 			Login.get().verifyUserNotRemembered();
@@ -5400,16 +5404,60 @@ public class EventCase {
 			PayBill.get().payBillPERF();
 			break;
 
-		case AccountDetails_ClickActivityTabPERF:
-			AccountDetails.get().clickActivityTabPERF();
+		case AccountDetails_SelectToAccountPERF:
+			Accounts.get().selectToAccountPERF();
+			break;
+
+		case AccountDetails_SelectToCreditPERF:
+			Accounts.get().selectToCreditPERF();
+			break;
+
+		case Credit_ClickRewardPERF:
+			Credit.get().clickRewardPERF();
+			break;
+
+		case Rewards_ClickPayWithRewardsPERF:
+			Rewards.get().clickPayWithRewardsPERF();
+			break;
+
+		case Investing_ClickOrdersPERF:
+			Investing.get().clickOrdersPERF();
 			break;
 
 		case Homescreen_ClickQuickAccessPERF:
 			HomeScreen.get().clickQuickAccessPERF();
 			break;
 
+		case Homescreen_ClickWatchlistsQuickLinkPERF:
+			HomeScreen.get().clickWatchlistsQuickLinkPERF();
+			break;
+
 		case MenuPage_ClickMenuAccountsPERF:
 			MenuPage.get().clickMenuAccountsPERF();
+			break;
+
+		case MenuPage_ClickMenuTradePERF:
+			MenuPage.get().clickMenuTradePERF();
+			break;
+
+		case Trade_EnterTradePERF:
+			Trade.get().enterTradePERF();
+			break;
+
+		case Trade_EnterTradeMFPERF:
+			Trade.get().enterTradeMFPERF();
+			break;
+
+		case Trade_EnterTradeOptionsPERF:
+			Trade.get().enterTradeOptionsPERF();
+			break;
+
+		case Login_LoginTradePERF:
+			Login.get().loginTradePERF();
+			break;
+
+		case Login_LoginAccountPERF:
+			Login.get().loginAccountPERF();
 			break;
 
 		case Performance_Summary:

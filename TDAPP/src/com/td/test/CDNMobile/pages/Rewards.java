@@ -48,6 +48,10 @@ public class Rewards extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textview_action_description']")
 	private List<MobileElement> redeem_text_list;
 
+	@iOSXCUITFindBy(accessibility = "Amount to Redeem")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/textview_action_title'])[2]")
+	private MobileElement amountToRedeemPerf;
+
 	By iosRedemptValue = By.xpath("//XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]");
 
 	By iosRewardValue = By.xpath("//XCUIElementTypeStaticText[contains(@label,'Dollars')]");
@@ -299,6 +303,24 @@ public class Rewards extends _CommonPage {
 			} else {
 				CL.GetReporting().FuncReport("Fail", "TDRewards.com not loaded in browser");
 			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void clickPayWithRewardsPERF() {
+		Decorator();
+		try {
+			performance.click(txtpayWithRewards, "Pay with Rewards");
+			performance.verifyElementIsDisplayed(amountToRedeemPerf, "Amount to Redeem label in Pay With Rewards");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

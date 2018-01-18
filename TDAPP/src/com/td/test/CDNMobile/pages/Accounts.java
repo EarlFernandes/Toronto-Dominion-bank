@@ -146,6 +146,14 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/summaryContent']/android.widget.LinearLayout[2]")
 	private MobileElement firstAcct;
 
+	@iOSXCUITFindBy(accessibility = "ACCOUNT_DETAIL_DATE_CELL_0")
+	@AndroidFindBy(id = "com.td:id/summaryTab")
+	private MobileElement todayLabel;
+
+	@iOSXCUITFindBy(accessibility = "RVB_DETAIL_ACTIVITY_CELL_TITLE_1")
+	@AndroidFindBy(id = "com.td:id/summaryTab")
+	private MobileElement postedTrxnLabel;
+
 	private MobileElement total_accounts_and_cad;
 	private MobileElement total_accounts_and_usd;
 
@@ -868,11 +876,11 @@ public class Accounts extends _CommonPage {
 				System.out.println("Account size:" + size);
 				for (int i = 0; i < size; i++) {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-						if (!mobileAction.verifyElementIsPresent(accountList.get(i))) {	
+						if (!mobileAction.verifyElementIsPresent(accountList.get(i))) {
 							mobileAction.FuncSwipeOnce("up");
-							accountList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(									
+							accountList = ((MobileDriver) CL.GetDriver()).findElementsByXPath(
 									"//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]");
-							
+
 						}
 					}
 					String accounttext = mobileAction.getValue(accountList.get(i));
@@ -1146,6 +1154,66 @@ public class Accounts extends _CommonPage {
 
 			mobileAction.swipeAndSearchByxpath(acctXpath, true, 30, "Up");
 			mobileAction.waitProgressBarVanish();
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void selectToAccountPERF() {
+		Decorator();
+		try {
+
+			String account = getTestdata("ToAccount");
+			String acctXpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				acctXpath = "//XCUIElementTypeStaticText[contains(@label,'" + account + "')]";
+			} else {
+				acctXpath = "//android.widget.TextView[contains(@text,'" + account + "')]";
+			}
+
+			mobileAction.swipeAndSearchByxpath(acctXpath, false, 30, "Up");
+			mobileAction.sleep(2000);
+			MobileElement e = mobileAction.verifyElementUsingXPath(acctXpath, "To Account element");
+			performance.click(e, "To Account element");
+			performance.verifyElementIsDisplayed(todayLabel, "Today label in trxn list");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void selectToCreditPERF() {
+		Decorator();
+		try {
+
+			String account = getTestdata("ToAccount");
+			String acctXpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				acctXpath = "//XCUIElementTypeStaticText[contains(@label,'" + account + "')]";
+			} else {
+				acctXpath = "//android.widget.TextView[contains(@text,'" + account + "')]";
+			}
+
+			mobileAction.swipeAndSearchByxpath(acctXpath, false, 30, "Up");
+			mobileAction.sleep(2000);
+			MobileElement e = mobileAction.verifyElementUsingXPath(acctXpath, "To Credit element");
+			performance.click(e, "To Credit element");
+			performance.verifyElementIsDisplayed(postedTrxnLabel, "POSTED TRANSACTIONS label in trxn list");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

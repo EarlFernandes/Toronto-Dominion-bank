@@ -242,6 +242,13 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/image")
 	private MobileElement otpWelcomeImageExisting;
 
+	@iOSXCUITFindBy(accessibility = "descriptionLabel")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/selectedText'])[1]")
+	private MobileElement accountNameTradePerf;
+
+	@iOSXCUITFindBy(accessibility = "CREDIT")
+	private MobileElement bankingTitlePerf;
+
 	String session = "//XCUIElementTypeStaticText[@label='Session Expired']";
 	String session1 = "//android.widget.TextView[contains(@text,'Session Expired')]";
 	String message = "Session Expired";
@@ -2005,6 +2012,54 @@ public class Login extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
+	}
+
+	public void loginTradePERF() {
+
+		Decorator();
+		try {
+			Thread.sleep(2000);
+			verifyAccessCard();
+
+			mobileAction.FuncSendKeys(getTestdata("UserID"));
+			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+			}
+
+			// Even in Landscape mode, the login button is visible
+			performance.click(login, "Login");
+			performance.verifyElementIsDisplayed(accountNameTradePerf, "Account Name in Trade");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void loginAccountPERF() {
+
+		Decorator();
+		try {
+			Thread.sleep(2000);
+			verifyAccessCard();
+
+			mobileAction.FuncSendKeys(getTestdata("UserID"));
+			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+			}
+
+			// Even in Landscape mode, the login button is visible
+			performance.click(login, "Login");
+			performance.verifyElementIsDisplayed(bankingTitlePerf, "CREDIT title in Accounts");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
 	}
 
 }

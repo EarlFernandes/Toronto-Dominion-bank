@@ -1254,6 +1254,14 @@ public class Investing extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/ordersTab']")
 	private MobileElement ordersButton;
 
+	@iOSXCUITFindBy(accessibility = "Orders")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/ordersTab']")
+	private MobileElement ordersButtonPerf;
+
+	@iOSXCUITFindBy(accessibility = "COMPLEX_ORDER_CELL_SYMBOL_NAME")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/ordersTab']")
+	private MobileElement ordersFirstSymbolPerf;
+
 	/**
 	 * This method will click on the Place order
 	 * 
@@ -1666,7 +1674,7 @@ public class Investing extends _CommonPage {
 			if (randFund >= size) {
 				randFund = size - 1;
 			}
-			System.out.println("Funds index selected:"+ randFund);
+			System.out.println("Funds index selected:" + randFund);
 			if (!mobileAction.verifyElementIsPresent(fundsList.get(randFund))) {
 				mobileAction.FuncSwipeWhileElementNotFound(fundsList.get(randFund), false, 20, "up");
 			}
@@ -2122,6 +2130,24 @@ public class Investing extends _CommonPage {
 			}
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void clickOrdersPERF() {
+
+		Decorator();
+		try {
+			performance.click(ordersButtonPerf, "Orders tab");
+			performance.verifyElementIsDisplayed(ordersFirstSymbolPerf, "1st Order Symbol");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

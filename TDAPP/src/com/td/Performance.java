@@ -42,7 +42,7 @@ public class Performance extends CommonLib {
 	private long endTime = 0L;
 	private ArrayList<Double> durations = new ArrayList<Double>();
 
-	public void click(WebElement objElement, String text) {
+	public void click(WebElement objElement, String text) throws Exception {
 		try {
 
 			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
@@ -54,36 +54,28 @@ public class Performance extends CommonLib {
 			System.out.println("The element <b>  " + text + " </b> Clicked at time: " + startTime);
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked at time: " + startTime);
 		} catch (Exception e) {
-			try {
-				GetReporting().FuncReport("Fail", "The element <b>- " + text + "</b> not present in current page");
-			} catch (IOException e1) {
-
-				e1.printStackTrace();
-			}
+			GetReporting().FuncReport("Fail", "Exception for Click on element <b>" + text + " </b>");
 
 		}
 	}
 
-	public void verifyElementIsDisplayed(MobileElement mobileElement, String expectedText) {
+	public void verifyElementIsDisplayed(MobileElement mobileElement, String expectedText) throws Exception {
 		try {
 
 			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.visibilityOf(mobileElement));
-
 			endTime = Instant.now().toEpochMilli();
-			System.out.println("The element <b> " + expectedText + "</b> is displayed at time: " + endTime);
-			System.out.println("processing took: " + this.getDuration());
+
+			System.out.println("The element <b> " + expectedText + " </b> is displayed at time: " + endTime);
+			double dur = this.getDuration();
+			System.out.println("processing took: " + dur);
 
 			GetReporting().FuncReport("Pass",
-					"The element <b>- " + expectedText + "</b> is displayed at time: " + endTime);
+					"The element <b>" + expectedText + " </b> is displayed at time: " + endTime);
+			GetReporting().FuncReport("Pass", "Duration is: " + dur);
+
 		} catch (Exception e) {
-
-			try {
-				GetReporting().FuncReport("Fail", "The element <b>- " + expectedText + "</b> is not displayed");
-			} catch (IOException e1) {
-
-				e1.printStackTrace();
-			}
+			GetReporting().FuncReport("Fail", "Exception for Verify Visibility on element <b>" + expectedText + "</b>");
 		}
 	}
 

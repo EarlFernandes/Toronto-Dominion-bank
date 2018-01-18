@@ -2307,10 +2307,10 @@ public class Between_My_accounts extends _CommonPage {
 			}
 
 			performance.click(btncontinue_Transfer, "Continue");
-			performance.verifyElementIsDisplayed(toAccountConfirmPerf, "To Account in Confirm");
+			performance.verifyElementIsDisplayed(toAccountConfirmPerf, "To Account in Confirm screen");
 
 			performance.click(btnFinish_transfer, "Finish Transfer");
-			performance.verifyElementIsDisplayed(toAccountReceiptPerf, "To Account in Receipt");
+			performance.verifyElementIsDisplayed(toAccountReceiptPerf, "To Account in Receipt screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

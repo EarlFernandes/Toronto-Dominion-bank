@@ -110,8 +110,12 @@ public class MenuPage extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//*[(@label='TD Talk to Me' or @label='TD Talk to Me(FR)' or @label='TD Talk to Me' or @label='TD Talk to Me') and @name='flyout_title']")
 	private MobileElement chatBot;
 
-	@iOSXCUITFindBy(accessibility = "BANKING")
+	@iOSXCUITFindBy(accessibility = "CREDIT")
 	private MobileElement bankingTitlePerf;
+
+	@iOSXCUITFindBy(accessibility = "descriptionLabel")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/selectedText'])[1]")
+	private MobileElement accountNameTradePerf;
 
 	public synchronized static MenuPage get() {
 		if (MenuPage == null) {
@@ -852,7 +856,26 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 			performance.click(accounts_button, "Menu Accounts");
-			performance.verifyElementIsDisplayed(bankingTitlePerf, "BANKING title in Accounts");
+			performance.verifyElementIsDisplayed(bankingTitlePerf, "CREDIT title in Accounts");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void clickMenuTradePERF() {
+
+		Decorator();
+		try {
+			performance.click(trade, "Menu Trade");
+			performance.verifyElementIsDisplayed(accountNameTradePerf, "Account Name in Trade");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
