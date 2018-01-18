@@ -3,7 +3,7 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import com.gargoylesoftware.htmlunit.javascript.host.geo.Coordinates;
+//import com.gargoylesoftware.htmlunit.javascript.host.geo.Coordinates;
 import com.td.StringArray;
 
 import org.openqa.selenium.Dimension;
