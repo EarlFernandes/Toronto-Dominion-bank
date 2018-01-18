@@ -1851,6 +1851,8 @@ public class Login extends _CommonPage {
 				}
 
 				cardFound = mobileAction.verifyElementIsPresentByXpath(xpath);
+				MobileElement e = mobileAction.verifyElementUsingXPath(xpath, "Card: " + card);
+				mobileAction.verifyElementIsDisplayed(e, "Card: " + card);
 				mobileAction.sleep(5000);
 
 				if (!cardFound) {
@@ -1864,6 +1866,8 @@ public class Login extends _CommonPage {
 			} else {
 				CL.GetReporting().FuncReport("Fail", "Not all IDs remembered");
 			}
+
+			mobileAction.FuncClick(cancelActionList, "User list Cancel button");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
