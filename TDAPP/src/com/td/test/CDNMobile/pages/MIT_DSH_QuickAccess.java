@@ -121,9 +121,8 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 	@AndroidFindBy(xpath = "(//*[contains(@text,'SAVINGS ACCOUNT') or contains(@text,'Paramètres Accès rapide')])[1]")
 	private MobileElement QuickAccessUserUSAccount;
 
-	// @iOSFindBy(xpath = "//*[@label='Get Started' or @label='Compte' or
-	// @label='Get Started' or @label='Compte']")
-	@iOSXCUITFindBy(accessibility = "QUICKBALANCE_ONBOARDING_START_BUTTON")
+	@iOSFindBy(xpath = "//*[@label='Get Started' or @label='Compte' or @label='Get Started' or @label='Compte']")
+//	@iOSXCUITFindBy(accessibility = "QUICKBALANCE_ONBOARDING_START_BUTTON")
 	@AndroidFindBy(xpath = "//*[@text='Get Started' or @text='Get Started' or @text='主页' or @text='首頁']")
 	private MobileElement btnGetStarted;
 

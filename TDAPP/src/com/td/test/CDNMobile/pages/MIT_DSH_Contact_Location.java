@@ -76,9 +76,10 @@ public class MIT_DSH_Contact_Location extends _CommonPage {
 	private MobileElement lblFindLocation;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@name,'Filter Locations') or contains(@name,'Filtrer les succursales') or contains(@name,'筛选分行网点') or contains(@name,'篩選分行')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@content-desc='Filter Locations' or @content-desc='Filtrer les succursales' or @content-desc='筛选分行网点' or @content-desc='篩選分行' or @content-desc='篩選分行地點']")
+	//@AndroidFindBy(xpath = "//android.widget.TextView[@content-desc='Filter Locations' or @content-desc='Filtrer les succursales' or @content-desc='筛选分行网点' or @content-desc='篩選分行' or @content-desc='篩選分行地點']")
+	@AndroidFindBy(xpath = "//*[@resource-id='android:id/action_bar']/android.widget.LinearLayout[2]/android.widget.Button[1]")
 	private MobileElement btnFilter;
-
+	
 	@iOSXCUITFindBy(xpath = "//*[@name='actionSheetDoneButton']/../following-sibling::XCUIElementTypeCell[1]/*[1]")
 	// @iOSFindBy(xpath = "//*[@label='Branches' or @label='Succursales' or
 	// @label='分行' or @label='分行']")
@@ -100,8 +101,6 @@ public class MIT_DSH_Contact_Location extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "actionSheetDoneButton")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/filter_multi_select_done' and @text='Done']")
 	private MobileElement btnDone;
-	
-	
 
 	public void verifyContactUsHomeUnAuthenticated() {
 		Decorator();
@@ -170,6 +169,8 @@ public class MIT_DSH_Contact_Location extends _CommonPage {
 
 		try {
 
+			mobileAction.FuncSwipeOnce("up");
+
 			mobileAction.FuncSwipeWhileElementNotFound(btnNearestBranch, false, 10, "up");
 
 			// mobileAction.FuncVerifyTextEquals(btnNearestBranch,
@@ -179,9 +180,9 @@ public class MIT_DSH_Contact_Location extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(lblFindLocation, "lblFindLocation");
 
-			/*mobileAction.verifyElementIsDisplayed(btnFilter, "btnFilter");
+			// mobileAction.verifyElementIsDisplayed(btnFilter, "btnFilter");
 			mobileAction.FuncClick(btnFilter, "btnFilter");
-*/
+
 			mobileAction.verifyElementIsDisplayed(filterOptions1, "filterOptions1");
 			mobileAction.verifyElementIsDisplayed(filterOptions2, "filterOptions2");
 
