@@ -256,7 +256,7 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 		Decorator();
 		try {
 
-			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
+			//MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			
 			mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
 
