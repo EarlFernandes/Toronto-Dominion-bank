@@ -258,7 +258,22 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 
 			mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
 
-			mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
+			//
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				if (BT_EnableInvestingViewSwitch.getAttribute("checked").equalsIgnoreCase("true")) {
+					// Do nothing
+				} else {
+					mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
+				}
+			} else {
+				if (BT_EnableInvestingViewSwitch.getAttribute("value").equalsIgnoreCase("true")) {
+					// Do nothing
+				} else {
+					mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
+				}
+
+			}
+			//
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				if (BT_EnableInvestingViewSwitch.getAttribute("checked").equalsIgnoreCase("true")) {
