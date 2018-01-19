@@ -424,7 +424,18 @@ public class Bill_PayCanada extends _CommonPage {
 			return from_Account;
 		}
 		String AccountNum = mobileAction.FuncGetValByRegx(from_Account, "\\d+");
+
 		String accountName = from_Account.replaceAll(AccountNum, "").trim();
+		
+		if(accountName.contains("\\|")) {
+			String [] s_AccountName = accountName.split("\\|");
+			if(currentLocale.equalsIgnoreCase("fr")) {
+				accountName = s_AccountName[1];
+			} else {
+				accountName = s_AccountName[0];
+			}
+		}
+		
 		try {
 			if (mobileAction.verifyElementIsPresent(from_account_dropdown)) {
 
@@ -1585,7 +1596,7 @@ public class Bill_PayCanada extends _CommonPage {
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(ongoingXpath, true, 5, "up");
 
 		} catch (Exception e) {
-			System.err.println("TestCase has failed.");
+			System.err.println("TestCase has failed to selectOngoingFromHowOftenDropDown.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
@@ -1678,15 +1689,7 @@ public class Bill_PayCanada extends _CommonPage {
 
 			init_Payment_End_Item();
 			if (mobileAction.verifyElementIsPresent(payment_end_list.get(0))) {
-				// if
-				// (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios"))
-				// {
-				// mobileAction.FuncClick(on_a_specific_date, "'On a specific
-				// date' is clicked");
-				// } else {
-				// mobileAction.FuncClick(payment_end_list.get(0), "'On a
-				// specific date' is clicked");
-				// }
+
 				mobileAction.FuncClick(Payment_End_Item[0], "'On a specific date' is clicked");
 				mobileAction.verifyElementTextIsDisplayed(footer_text,
 						getTextInCurrentLocale(StringArray.ARRAY_RBP_ON_SPECIFIC_DATE_FOOTNOTE));
@@ -1696,15 +1699,7 @@ public class Bill_PayCanada extends _CommonPage {
 			}
 
 			if (mobileAction.verifyElementIsPresent(payment_end_list.get(2))) {
-				// if
-				// (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios"))
-				// {
-				// mobileAction.FuncClick(when_I_decide_to_cancel, "'When I
-				// decide to cancel' is clicked");
-				// } else {
-				// mobileAction.FuncClick(payment_end_list.get(2), "'When I
-				// decide to cancel' is clicked");
-				// }
+
 				mobileAction.FuncClick(Payment_End_Item[2], "'When I decide to cancel' is clicked");
 				mobileAction.verifyElementTextIsDisplayed(footer_text,
 						getTextInCurrentLocale(StringArray.ARRAY_RBP_DECIDE_TO_CANCEL_FOOTNOTE));
@@ -2202,11 +2197,46 @@ public class Bill_PayCanada extends _CommonPage {
 		}
 
 	}
+	
+	private String getErrorMapping(String errorSheet) {
+		
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			return getTextInCurrentLocale(StringArray.ARRAY_RBP_PAY_BILL_ERROR_MSG);
+		}
+		
+		if(!errorSheet.matches("error\\-fre\\-\\d{1}")) {
+			System.out.println("Error data from sheet is wrong:" + errorSheet);
+			return "";
+		}
+		
+		switch (errorSheet) {
+		case "error-fre-0":
+			return getTextInCurrentLocale(StringArray.ARRAY_RBP_PAY_BILL_ERROR_MSG_WEEKLY);
+		case "error-fre-1":
+			return getTextInCurrentLocale(StringArray.ARRAY_RBP_PAY_BILL_ERROR_MSG_BI_WEEKLY);
+		case "error-fre-2":
+			return getTextInCurrentLocale(StringArray.ARRAY_RBP_PAY_BILL_ERROR_MSG_MONTHEND);
+		case "error-fre-3":
+			return getTextInCurrentLocale(StringArray.ARRAY_RBP_PAY_BILL_ERROR_MSG_MONTHLY_);
+		case "error-fre-4":
+			return getTextInCurrentLocale(StringArray.ARRAY_RBP_PAY_BILL_ERROR_MSG_SEMIMONTHLY);
+		case "error-fre-5":
+			return getTextInCurrentLocale(StringArray.ARRAY_RBP_PAY_BILL_ERROR_MSG_QUARTERLY);		
+		}
+		return "";
+	}
 
 	public void VerifyRBPErrorMessage() {
 		Decorator();
+		
+		String errorSheet = getTestdata("Security_Question");
+		
 		try {
-			String expectedError = getTextInCurrentLocale(StringArray.ARRAY_RBP_PAY_BILL_ERROR_MSG);
+			String expectedError = getErrorMapping(errorSheet);
+			if(expectedError.isEmpty()) {
+				mobileAction.Report_Fail("Failed to verify error message since data sheet is not correct");
+				return;
+			}
 			mobileAction.verifyElementTextIsDisplayed(rbp_error_message, expectedError);
 
 		} catch (Exception e) {
@@ -2268,9 +2298,25 @@ public class Bill_PayCanada extends _CommonPage {
 			}
 
 		} catch (Exception e) {
-			mobileAction.Report_Fail("Failed to selectStartdateAgain");
+			mobileAction.Report_Fail("Failed to VerifyEndOfDateReamins");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+	public void verifyRBPScreen() {
+		Decorator();
 
+		try {
+			mobileAction.verifyElementTextIsDisplayed(payBill_Header,
+					getTextInCurrentLocale(StringArray.ARRAY_PAY_CANDIAN_BILL_TITLE));
+			selectOngoingFromHowOftenDropDown();
+			
+			mobileAction.verifyElementIsDisplayed(frequency, "Frequency");
+			
+		} catch (Exception e) {
+			mobileAction.Report_Fail("Failed to verifyRBPScreen");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
 }

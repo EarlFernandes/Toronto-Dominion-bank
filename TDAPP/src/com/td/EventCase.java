@@ -236,7 +236,7 @@ public class EventCase {
 		verifyReplaceDamagedCardHeader, ClickReplaceDamagedCardBtn, verifyReplaceDamagedCardDirectionalCopy, verifyDamagedCardForm,
 
 		// RBP
-		clickStartDate, selectDate, verifyPayCanadianBillContent, verifyHowOftenDropdownDefault, verifyStartDateDefaultToToday, verifyFieldsArePrefilledAfterBackFromAddPayee, verifyFrequencyOptions, verifyRBPFootNoteContent, selectOngoingFromHowOftenDropDown, verifyAndClickRewardBanner, FillPayBillWithOnce, continuePayBill, verifyReviewContent, FillPayBillWithOngoing, verifyAndClickCancelButton, verifyAndClickPayBillButton, verifyRBPReceiptContent, verifyPayee_FromAccountMaskedInReceipt, verifyPayBillHeader, ClickPayAnotherBillBtn, ClickSchedulePaymentsBtn, ClickQuickLinkBillsBtn, verifyScheduledPaymentsHeader, VerifyRBPReceipt, VerifyRBPErrorMessage, VerifyRBP1NumberOfPaymentErrorMessage, verifyPayeeFilterContents, clickViewpaymentFor, clickScheduledPayment_Link, selectStartdateAgain, VerifyEndOfDateIsBlank, VerifyEndOfDateReamins, FillPayBillWithOngoingWithoutStartDate,
+		clickStartDate, selectDate, verifyPayCanadianBillContent, verifyHowOftenDropdownDefault, verifyStartDateDefaultToToday, verifyFieldsArePrefilledAfterBackFromAddPayee, verifyFrequencyOptions, verifyRBPFootNoteContent, selectOngoingFromHowOftenDropDown, verifyAndClickRewardBanner, FillPayBillWithOnce, continuePayBill, verifyReviewContent, FillPayBillWithOngoing, verifyAndClickCancelButton, verifyAndClickPayBillButton, verifyRBPReceiptContent, verifyPayee_FromAccountMaskedInReceipt, verifyPayBillHeader, ClickPayAnotherBillBtn, ClickSchedulePaymentsBtn, ClickQuickLinkBillsBtn, verifyScheduledPaymentsHeader, VerifyRBPReceipt, VerifyRBPErrorMessage, VerifyRBP1NumberOfPaymentErrorMessage, verifyPayeeFilterContents, clickViewpaymentFor, clickScheduledPayment_Link, selectStartdateAgain, VerifyEndOfDateIsBlank, VerifyEndOfDateReamins, FillPayBillWithOngoingWithoutStartDate,clickPayBillDashboard,verifyRBPScreen,verifyBankingHeader,clickPayBillQuickLink,confirmAddPayeeAndPayThisPayee,
 
 		// myspend
 		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_changeCategory, DailyDigest_verifyCategoryMessage, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, MySpendPreferences_clickActiveAccounts, MySpendTransfers_clickBetweenMyAccounts, MySpendTransfers_PerformTransfer, MySpendPrefernces_disableAccounts, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, Preferences_verifyHomePage, TourPage_clickConnectTDApp, TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SideMenu_verifyNavigationWithinMySpend, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SpendingInsight_verifyAccountsSelected, TransactionHistory_verifySelectedAccounts, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickTransfers, SideMenu_clickGetTDAppButton, click_PreferencesLink,
@@ -1106,7 +1106,11 @@ public class EventCase {
 		case ConfirmPayee:
 			Confirm_Payee.get().verifyConfirmPage();
 			break;
-
+			
+		case confirmAddPayeeAndPayThisPayee:
+			Confirm_Payee.get().confirmAddPayeeAndPayThisPayee();
+			break;
+			
 		case PayCanadaBill_Post_Dated:
 			Bill_PayCanada.get().pay_candadian_bill_post_dated();
 			break;
@@ -3939,9 +3943,23 @@ public class EventCase {
 		case VerifyEndOfDateReamins:
 			Bill_PayCanada.get().VerifyEndOfDateReamins();
 			break;
-		// case selectDate:
-		// Calendar.get().selectDate();
-		// break;
+
+		case clickPayBillDashboard:
+			HomeScreen.get().clickPayBillDashboard();
+			break;
+			
+		case verifyRBPScreen:
+			Bill_PayCanada.get().verifyRBPScreen();
+			break;
+
+		case verifyBankingHeader:
+			Banking.get().verifyBankingHeader();
+			break;
+			
+		case clickPayBillQuickLink:
+			Banking.get().clickPayBillQuickLink();
+			break;
+			
 		// End of RBP
 
 		case VerifyStatementBalanceHeader:
@@ -4119,7 +4137,6 @@ public class EventCase {
 
 		case OptionOrderChangeQuantity:
 			Options.get().changeQuantity();
-			;
 			break;
 
 		case Options_verifyOptionsForNewOrder:
@@ -4160,7 +4177,6 @@ public class EventCase {
 
 		case Options_VerifyCancelReceipt:
 			OptionsReceiptPage.get().verifyOptionCancelOrderReceipt();
-			;
 			break;
 
 		// Chinese on Mobile

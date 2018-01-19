@@ -29,11 +29,11 @@ public class Confirm_Payee extends _CommonPage {
 	private MobileElement access_Card;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Add Payee']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Payee']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Payee' or @text='Add Payee']")
 	private MobileElement addPayee_Btn;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Pay This Payee']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Pay This Payee']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='Pay This Payee']")
 	private MobileElement payThisPayee;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Thank You!')]")
@@ -169,6 +169,38 @@ public class Confirm_Payee extends _CommonPage {
 			mobileAction.waitProgressBarVanish();
 			String err = mobileAction.getValue(errorMsg);
 			mobileAction.verifyElementIsDisplayed(errorMsg, err);
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+	
+	public void confirmAddPayeeAndPayThisPayee() {
+		Decorator();
+		try {
+
+			mobileAction.verifyElementIsDisplayed(confirm_Header, "Confirm");
+			// mobileAction.verifyElementIsDisplayed(payee_Name, "Payee Name");
+			// mobileAction.verifyElementIsDisplayed(access_card, "Access
+			// Card");
+			mobileAction.FuncClick(addPayee_Btn, "AddPayee");
+			mobileAction.waitProgressBarVanish();
+
+			// mobileAction.verifyElementIsDisplayed(successMsg, "Thank You!");
+
+			mobileAction.FuncSwipeWhileElementNotFound(payThisPayee, true, 5, "up");
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

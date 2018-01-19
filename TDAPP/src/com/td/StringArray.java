@@ -651,10 +651,27 @@ public final class StringArray {
 	public static final String[] ARRAY_RBP_REVIEW_BANNER = { "Please review the details and confirm your bill payment",
 			"", "", "" };
 	public static final String[] ARRAY_SCHEDULED_PAYMENTS_TITLE = { "Scheduled Payments", "", "", "" };
+	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG_WEEKLY = {
+			"You're not able to schedule more than 260 payments within a 5-year period. Please type in a lower number of payments.",
+			"", "不允许在 5 年内安排太多次数的付款。请输入较少付款次数", "" };
+	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG_BI_WEEKLY = {
+			"You're not able to schedule more than 130 payments within a 5-year period. Please type in a lower number of payments.",
+			"", "不允许在 5 年内安排太多次数的付款。请输入较少付款次数", "" };
+	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG_MONTHLY_ = {
+			"You're not able to schedule more than 60 payments within a 5-year period. Please type in a lower number of payments.",
+			"", "不允许在 5 年内安排太多次数的付款。请输入较少付款次数", "" };
+	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG_SEMIMONTHLY = {
+			"You're not able to schedule more than 120 payments within a 5-year period. Please type in a lower number of payments.",
+			"", "不允许在 5 年内安排太多次数的付款。请输入较少付款次数", "" };
+	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG_MONTHEND = {
+			"You're not able to schedule more than 60 payments within a 5-year period. Please type in a lower number of payments.",
+			"", "不允许在 5 年内安排太多次数的付款。请输入较少付款次数", "" };
+	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG_QUARTERLY = {
+			"You're not able to schedule more than 20 payments within a 5-year period. Please type in a lower number of payments.",
+			"", "不允许在 5 年内安排太多次数的付款。请输入较少付款次数", "" };
 	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG = {
 			"You're not able to schedule that many payments within a 5-year period. Please type in a lower number of payments.",
 			"", "不允许在 5 年内安排太多次数的付款。请输入较少付款次数", "" };
-	
 	public static final String[] ARRAY_RBP_1_NUM_PAYMENT_ERROR_MSG = {
 			"Please select a number higher than 1.",
 			"", "不允许在 5 年内安排太多次数的付款。请输入较少付款次数", "" };
@@ -666,8 +683,7 @@ public final class StringArray {
 			 "Cancel","","",""}; //IOS, capital 
 	public static final String[] ARRAY_RBP_END_DATE_PLACEHOLDER = {
 			 "Select an end date","","",""}; //IOS, capital 
-	// public static final String[] ARRAY_RBP_FREQUENCY_QUARTERLY = {
-	// "Quarterly","","",""};
+	 public static final String[] ARRAY_BANKING_HEADER = { "Banking","","",""};
 	//
 
 	// End of RBP

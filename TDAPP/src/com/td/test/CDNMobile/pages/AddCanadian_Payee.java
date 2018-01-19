@@ -106,7 +106,7 @@ public class AddCanadian_Payee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				selectedPayee = "//*[@label='" + payee_name + "']";
 			} else {
-				selectedPayee = "//android.widget.Button[@content-desc='" + payee_name + "']";
+				selectedPayee = "//android.widget.Button[@content-desc='" + payee_name + "' or @text='"+payee_name +"']";
 			}
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(selectedPayee, true, 10, "up");
 

@@ -137,6 +137,10 @@ public class HomeScreen extends _CommonPage {
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeStaticText[(@label='TD Talk to Me' or @label='TD Talk to Me(FR)' or @label='TD Talk to Me' or @label='TD Talk to Me')]")
 	private MobileElement chatBotDashboard;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCell[@name='QuickLink 3']")
+	@AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/recycler_view_quick_link']/android.widget.LinearLayout[@index='3']")
+	private MobileElement PayBill_Dashboard;
 
 	int i = 1;
 	String Firstpart = "//XCUIElementTypeCell[";
@@ -1437,6 +1441,24 @@ public class HomeScreen extends _CommonPage {
 
 			mobileAction.FunctionSwipe("up", 500, 0);
 			mobileAction.FuncClick(chatBotDashboard, "Chat Bot Dashboard button");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+	
+	public void clickPayBillDashboard() {
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(PayBill_Dashboard, "Pay Bill Dashboard");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

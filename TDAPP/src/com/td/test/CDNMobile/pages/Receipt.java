@@ -81,7 +81,7 @@ public class Receipt extends _CommonPage {
 	private MobileElement payee_account_number;
 	private MobileElement frome_account_number;
 
-	@iOSXCUITFindBy(accessibility = "QUICKACCESS_CELL_QUICKLINKS_PAY_ANOTHER_BILL")
+	@iOSXCUITFindBy(accessibility = "QUICKACCESS_CELL_PAYANOTHERBILL_ICON")
 	private MobileElement quickLink_payAnotherBillBtn;
 
 	@iOSXCUITFindBy(accessibility = "QUICKACCESS_CELL_UPCOMINGBILLS_OFF")
@@ -92,6 +92,9 @@ public class Receipt extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button']")
 	private List<MobileElement> quickLink_Btn_List;
+	
+	@AndroidFindBy(xpath = "//android.widget.HorizontalScrollView[@resource-id='com.td:id/quick_links']")
+	private MobileElement quickLinks_view;
 
 	String accountReg = "\\•{4}\\s?\\d{4}";
 
@@ -813,9 +816,12 @@ public class Receipt extends _CommonPage {
 	public void ClickPayAnotherBillBtn() {
 		Decorator();
 		try {
-
+			
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.FuncSwipeWhileElementNotFound(quickLink_Btn_List.get(1), true, 3, "up");
+
+				mobileAction.FuncSwipeWhileElementNotFound(quickLinks_view, false, 3, "up");
+				mobileAction.FuncClick(quickLink_Btn_List.get(1), "Quick Link Pay another Bill");
+				
 
 			} else {
 				mobileAction.FuncSwipeWhileElementNotFound(quickLink_payAnotherBillBtn, true, 3, "up");
@@ -903,7 +909,8 @@ public class Receipt extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.FuncSwipeWhileElementNotFound(quickLink_Btn_List.get(2), true, 3, "up");
+				mobileAction.FuncSwipeWhileElementNotFound(quickLinks_view, false, 3, "up");
+				mobileAction.FuncClick(quickLink_Btn_List.get(2), "Quick Link Schedule Payments");
 
 			} else {
 				mobileAction.FuncSwipeWhileElementNotFound(quickLink_scheduledPaymentsBtn, true, 3, "up");
@@ -946,7 +953,8 @@ public class Receipt extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.FuncSwipeWhileElementNotFound(quickLink_Btn_List.get(3), true, 3, "up");
+				mobileAction.FuncSwipeWhileElementNotFound(quickLinks_view, false, 3, "up");
+				mobileAction.FuncClick(quickLink_Btn_List.get(3), "Quick Link Bills");
 
 			} else {
 				mobileAction.FuncSwipeWhileElementNotFound(quickLink_BillsBtn, true, 3, "up");
