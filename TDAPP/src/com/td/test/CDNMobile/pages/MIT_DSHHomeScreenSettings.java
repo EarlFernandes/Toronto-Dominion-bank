@@ -256,9 +256,9 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 		Decorator();
 		try {
 
-			//MIT_DSHQuickLinks.get().turnInvestingFocusOn();
-			
 			mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
+
+			mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				if (BT_EnableInvestingViewSwitch.getAttribute("checked").equalsIgnoreCase("true")) {
