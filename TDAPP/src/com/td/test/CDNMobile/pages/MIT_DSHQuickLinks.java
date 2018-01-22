@@ -575,6 +575,9 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 					// "HDR_Mobile_Deposit");
 					if (mobileAction.isObjExists(BT_Back)) {
 						mobileAction.FuncClick(BT_Back, "< Button");
+						if (mobileAction.isObjExists(FLY_Home))
+							mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+
 					} else {
 						mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
 						mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
