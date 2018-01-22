@@ -573,8 +573,12 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 				} else {
 					// mobileAction.verifyElementIsDisplayed(HDR_Mobile_Deposit,
 					// "HDR_Mobile_Deposit");
-					mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
-					mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+					if (mobileAction.isObjExists(BT_Back)) {
+						mobileAction.FuncClick(BT_Back, "< Button");
+					} else {
+						mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
+						mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+					}
 				}
 			}
 		} catch (Exception e) {

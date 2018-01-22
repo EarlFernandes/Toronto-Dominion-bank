@@ -765,7 +765,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 			mobileAction.FuncVerifyTextEquals(flyoutTDMySpendLink,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDMYSPEND));
 
-			if (!bIsAuthenticated) {
+/*			if (!bIsAuthenticated) {
 
 				clickFlyout(flyoutTDMySpendLink, "flyoutTDMySpendLink");
 
@@ -783,7 +783,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				// mobileAction.FuncClick(lblTDMySpend, "lblTDMySpend");
 				mobileAction.ClickBackButton();
 
-			}
+			}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
