@@ -1894,7 +1894,7 @@ public class Bill_PayCanada extends _CommonPage {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				return;
 			}
-			String[] startDate_day_Array = startDate_day.split(" ");
+			String[] startDate_day_Array = startDate_day.replace(",", "").split(" ");
 			yearOfDay = startDate_day_Array[2];
 			monthOfDay = startDate_day_Array[0];
 			dayOfDay = startDate_day_Array[1];
@@ -1973,6 +1973,13 @@ public class Bill_PayCanada extends _CommonPage {
 	
 	private void selectStartDate() {
 		String startDate_day = getTestdata("Timeout");
+		
+		if(startDate_day == null || startDate_day.isEmpty()) {
+			System.out.println("Start Date is not configured in data sheet");
+			mobileAction.Report_Fail("'Start Date' is not configured in data sheet");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
 		try {
 			mobileAction.FuncClick(start_end_Date_List.get(0), "Start Date");
 		} catch (Exception e) {
