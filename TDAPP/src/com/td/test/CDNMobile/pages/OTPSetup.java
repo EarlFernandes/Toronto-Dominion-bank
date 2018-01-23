@@ -35,7 +35,8 @@ public class OTPSetup extends _CommonPage {
 	private static OTPSetup OneTimePasswordSetup;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1] | "
-			+ "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")
+			+ "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeButton[1] | "
+			+ "//XCUIElementTypeOther[3]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@AndroidFindBy(id = "com.td:id/btn_primary")
 	private MobileElement getStartedNewButton;
 
