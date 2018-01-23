@@ -36,7 +36,7 @@ public class Rewards extends _CommonPage {
 	@AndroidFindBy(id = "android:id/button1")
 	private MobileElement visitTDContinue;
 
-	@iOSXCUITFindBy(accessibility = "URL")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='URL']")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.android.chrome:id/url_bar' or @resource-id='com.sec.android.app.sbrowser:id/location_bar_edit_text']")
 	private MobileElement visitTDUrl;
 

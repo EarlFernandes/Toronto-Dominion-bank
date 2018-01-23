@@ -551,6 +551,7 @@ public class Credit extends _CommonPage {
 	public void verifyTDRewardsPointsBalanceUpdated() {
 		Decorator();
 		try {
+			mobileAction.sleep(10000);
 			int previousBalance = parseRewardsPoints(getTestdata("Amount"));
 			String ptsText = mobileAction.FuncGetText(tdPointsBalance);
 			int balance = parseRewardsPoints(ptsText);
