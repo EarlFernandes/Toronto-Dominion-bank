@@ -93,9 +93,9 @@ public class Credit extends _CommonPage {
 	private MobileElement statementTitle3;
 
 	@iOSXCUITFindBy(accessibility = "Cash Back Dollars")
-	@AndroidFindBy(id = "com.td:id/three_statements_ago")
+	@AndroidFindBy(id = "com.td:id/rewards_currency_description")
 	private MobileElement cashBackDollarsPerf;
-	
+
 	private MobileElement more_link;
 
 	public synchronized static Credit get() {
@@ -670,5 +670,4 @@ public class Credit extends _CommonPage {
 
 	}
 
-	
 }

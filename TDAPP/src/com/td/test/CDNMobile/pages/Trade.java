@@ -62,6 +62,10 @@ public class Trade extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/orderDropdownCaption' and @text='Action']")
 	private MobileElement selectActionMF;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[6]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/orderDropdownCaption' and @text='Action']")
+	private MobileElement selectActionOptions;
+
 	// @iOSFindBy(xpath =
 	// "//XCUIElementTypeStaticText[contains(@label,'Action')]")//Need to check
 	// for iOS
@@ -74,11 +78,11 @@ public class Trade extends _CommonPage {
 	private MobileElement selectActionFRE;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/accountCaption' and (@text='Account' or @text='Compte')]")
+	@AndroidFindBy(id = "com.td:id/accountCaption")
 	private MobileElement selectAccount;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/accountCaption' and (@text='Account' or @text='Compte')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/orderDropdownCaption' and (contains(@text,'ordre') or @text='Order Type')]")
 	private MobileElement selectOrderType;
 
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']")
@@ -92,15 +96,15 @@ public class Trade extends _CommonPage {
 	private MobileElement trade_header;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtSearchTitle' and (@text='Enter name or symbol' or @text='Entrez le nom ou le symbole')]")
+	@AndroidFindBy(id = "com.td:id/txtSearchTitle")
 	private MobileElement symbol;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtSearchTitle' and (@text='Enter name or symbol' or @text='Entrez le nom ou le symbole')]")
+	@AndroidFindBy(id = "com.td:id/txtSearchTitle")
 	private MobileElement symbolMF;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtSearchTitle' and (@text='Enter name or symbol' or @text='Entrez le nom ou le symbole')]")
+	@AndroidFindBy(id = "com.td:id/txtSearchTitle")
 	private MobileElement symbolOptions;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeSearchField[@label='Enter name or symbol' or contains(@label,'Entrez le')]") // @Author
@@ -172,15 +176,15 @@ public class Trade extends _CommonPage {
 	// "//android.widget.EditText[@resource-id='com.td:id/editTextPassword' and
 	// (@content-desc='Enter your trading password' or @content-desc='Entrer
 	// votre mot de passe')]")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/editTextPassword']")
+	@AndroidFindBy(id = "com.td:id/editTextPassword")
 	private MobileElement trading_pwd;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[10]/XCUIElementTypeSecureTextField[1]")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/editTextPassword']")
+	@AndroidFindBy(id = "com.td:id/editTextPassword")
 	private MobileElement trading_pwdMF;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[11]/XCUIElementTypeSecureTextField[1]")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/editTextPassword']")
+	@AndroidFindBy(id = "com.td:id/editTextPassword")
 	private MobileElement trading_pwdOptions;
 
 	// for french
@@ -228,33 +232,26 @@ public class Trade extends _CommonPage {
 															// -
 															// Shahbaaz
 															// 25-May-2017
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/orderEntryPreviewButton']") // @Author
-																										// -
-																										// Sushil
-																										// 18-Apr-2017
+	@AndroidFindBy(id = "com.td:id/orderEntryPreviewButton") // @Author
+																// -
+																// Sushil
+																// 18-Apr-2017
 	private MobileElement preview_order;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Agree' or @label='Accepte']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='Agree' or @text='Accepte']")
+	@AndroidFindBy(id = "com.td:id/positiveButton")
 	private MobileElement agreeButton;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[9]/XCUIElementTypeSecureTextField[1]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='Agree' or @text='Accepte']")
-	private MobileElement consentMFButton;
-
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Do not agree' or contains(@label='accepte pas')]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='Do not agree' or contains(@text='accepte pas')]")
+	@AndroidFindBy(id = "com.td:id/negativeButton")
 	private MobileElement doNotAgreeButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[6]/XCUIElementTypeTextField[1]")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.EditText[@resource-id='com.td:id/amountEditText' and
-	// (contains(@text,'Quantity') or contains(@text,'Quantit�'))]")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText']")
+	@AndroidFindBy(id = "com.td:id/amountEditText")
 	private MobileElement selectQuantity;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[7]/XCUIElementTypeTextField[1]")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText']")
+	@AndroidFindBy(id = "com.td:id/amountEditText")
 	private MobileElement selectQuantityMF;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[7]/XCUIElementTypeStaticText[1]")
@@ -262,7 +259,7 @@ public class Trade extends _CommonPage {
 	private MobileElement selectPrice;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[6]/XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[(@text='Market' or @text='Cours du marché')and @resource-id='com.td:id/selectedText']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@text='Quantity Type')and @resource-id='com.td:id/orderDropdownCaption']")
 	private MobileElement quantityTypeMF;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Cours')]")
@@ -368,6 +365,7 @@ public class Trade extends _CommonPage {
 	String trading_pwd_XL = getTestdata("Trading_Pwd");
 	String triggerDelta_value = getTestdata("TriggerDelta");
 	String limitDelta_value = getTestdata("LimitDelta");
+	String tradeAccount = getTestdata("CDNMarginAccount");
 	String currentPricePath = null;
 	String trade_account_no = setCurrentArrayValue(getTestDataStringArray("CDNMarginAccount"));
 	String accountToSelect = "//*[contains(@label,'" + trade_account_no + "')]";
@@ -416,19 +414,23 @@ public class Trade extends _CommonPage {
 	private MobileElement tradeOrderType;
 
 	@iOSXCUITFindBy(accessibility = "tradingSymbol")
-	@AndroidFindBy(id = "TBD")
+	@AndroidFindBy(id = "com.td:id/symbol_layout")
 	private MobileElement tradingSymbolPerf;
 
 	@iOSXCUITFindBy(accessibility = "td_investing_account_0_0")
-	@AndroidFindBy(id = "TBD")
+	@AndroidFindBy(id = "com.td:id/accountRow2")
 	private MobileElement investingAccMFPerf;
 
+	@iOSXCUITFindBy(accessibility = "TBD")
+	@AndroidFindBy(id = "com.td:id/selected_icon")
+	private MobileElement consentMF;
+
 	@iOSXCUITFindBy(accessibility = "sendOrderButton")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='Send Order' or contains(@text,'Envoyer l')]")
+	@AndroidFindBy(id = "com.td:id/btn_continue")
 	private MobileElement send_order;
 
 	@iOSXCUITFindBy(accessibility = "confirmationNumberLabel")
-	@AndroidFindBy(id = "TBD")
+	@AndroidFindBy(id = "com.td:id/confirmation_val")
 	private MobileElement tradeConfirmationNumberPerf;
 
 	@iOSXCUITFindBy(accessibility = "ACCOUNT")
@@ -452,7 +454,7 @@ public class Trade extends _CommonPage {
 	private MobileElement tradePriceTypePerf;
 
 	@iOSXCUITFindBy(accessibility = "Bid (Lots)")
-	@AndroidFindBy(id = "com.td:id/select-option-type")
+	@AndroidFindBy(id = "com.td:id/optionDescription")
 	private MobileElement bidLotsPerf;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[12]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
@@ -2461,12 +2463,37 @@ public class Trade extends _CommonPage {
 
 		Decorator();
 		try {
+
+			String orderValue = "";
+			String actionValue = "";
+			String priceValue = "";
+			String goodTillValue = "";
+			tradeAccount = getTestdata("CDNMarginAccount");
+			orderValueXL = getTestdata("Ordervalue");
+			searchKeyword = getTestdata("Search");
+			Action = getTestdata("Action");
+			price_value = getTestdata("Price");
+			goodXL = getTestdata("Good'til");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				accountno = "//XCUIElementTypeStaticText[contains(@label,'" + tradeAccount + "')]";
+				orderValue = "//XCUIElementTypeStaticText[contains(@label,'" + orderValueXL + "')]";
+				actionValue = "//XCUIElementTypeStaticText[contains(@label,'" + Action + "')]";
+				priceValue = "//XCUIElementTypeStaticText[contains(@label,'" + price_value + "')]";
+				goodTillValue = "//XCUIElementTypeStaticText[contains(@label,'" + goodXL + "')]";
+
+			} else {
+				accountno = "//android.widget.TextView[contains(@text,'" + tradeAccount + "')]";
+				orderValue = "//android.widget.TextView[contains(@text,'" + orderValueXL + "')]";
+				actionValue = "//android.widget.TextView[contains(@text,'" + Action + "')]";
+				priceValue = "//android.widget.TextView[contains(@text,'" + price_value + "')]";
+				goodTillValue = "//android.widget.TextView[contains(@text,'" + goodXL + "')]";
+			}
+
 			performance.click(selectAccount, "Account");
 			performance.verifyElementIsDisplayed(acctListHeaderPerf, "Account List Header in Trade");
 			mobileAction.swipeAndSearchByxpath(accountno, true, 10, "Up");
 
 			mobileAction.FuncClick(selectOrderType, "Order Type");
-			String orderValue = "//XCUIElementTypeStaticText[contains(@label,'" + orderValueXL + "')]";
 			mobileAction.swipeAndSearchByxpath(orderValue, true, 1, "Up");
 
 			performance.click(symbol, "Enter name or symbol");
@@ -2480,26 +2507,23 @@ public class Trade extends _CommonPage {
 
 			mobileAction.FunctionSwipe("up", 500, 0);
 			mobileAction.FuncClick(selectAction, "Action");
-			String actionValue = "//XCUIElementTypeStaticText[contains(@label,'" + Action + "')]";
 			mobileAction.swipeAndSearchByxpath(actionValue, true, 1, "Up");
 
 			String quantity = getTestdata("Quantity");
 			mobileAction.FuncClick(selectQuantity, "Quantity");
 			mobileAction.FuncSendKeys(selectQuantity, quantity);
-			mobileAction.FuncClickDone();
+			mobileAction.FuncHideKeyboard();
 
 			performance.click(selectPrice, "Price Type Selected");
 			performance.verifyElementIsDisplayed(tradePriceTypePerf, "Market Price in Trade");
-			String priceValue = "//XCUIElementTypeStaticText[contains(@label,'" + price_value + "')]";
 			mobileAction.swipeAndSearchByxpath(priceValue, true, 1, "Up");
 
 			mobileAction.FuncClick(btngood, "Good 'til");
-			String goodTillValue = "//XCUIElementTypeStaticText[contains(@label,'" + goodXL + "')]";
 			mobileAction.swipeAndSearchByxpath(goodTillValue, true, 1, "Up");
 
 			mobileAction.FuncClick(trading_pwd, "Trading Password");
 			mobileAction.FuncSendKeys(trading_pwd, trading_pwd_XL);
-			mobileAction.FuncClickDone();
+			mobileAction.FuncHideKeyboard();
 
 			mobileAction.FuncClick(preview_order, "Preview Order");
 			mobileAction.waitProgressBarVanish();
@@ -2526,16 +2550,36 @@ public class Trade extends _CommonPage {
 
 		Decorator();
 		try {
+
+			String orderValue = "";
+			String actionValue = "";
+			String priceValue = "";
+			tradeAccount = getTestdata("CDNMarginAccount");
+			orderValueXL = getTestdata("Ordervalue");
+			searchKeyword = getTestdata("Search");
+			Action = getTestdata("Action");
+			price_value = getTestdata("Price");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				accountno = "//XCUIElementTypeStaticText[contains(@label,'" + tradeAccount + "')]";
+				orderValue = "//XCUIElementTypeStaticText[contains(@label,'" + orderValueXL + "')]";
+				actionValue = "//XCUIElementTypeStaticText[contains(@label,'" + Action + "')]";
+				priceValue = "//XCUIElementTypeStaticText[contains(@label,'" + price_value + "')]";
+
+			} else {
+				accountno = "//android.widget.TextView[contains(@text,'" + tradeAccount + "')]";
+				orderValue = "//android.widget.TextView[contains(@text,'" + orderValueXL + "')]";
+				actionValue = "//android.widget.TextView[contains(@text,'" + Action + "')]";
+				priceValue = "//android.widget.TextView[contains(@text,'" + price_value + "')]";
+			}
+
 			performance.click(selectAccount, "Account");
 			performance.verifyElementIsDisplayed(acctListHeaderPerf, "Account List Header in Trade");
 			mobileAction.swipeAndSearchByxpath(accountno, true, 10, "Up");
 
 			mobileAction.FuncClick(selectOrderType, "Order Type");
-			String orderValue = "//XCUIElementTypeStaticText[contains(@label,'" + orderValueXL + "')]";
 			mobileAction.swipeAndSearchByxpath(orderValue, true, 1, "Up");
 
 			mobileAction.FuncClick(selectActionMF, "Action");
-			String actionValue = "//XCUIElementTypeStaticText[contains(@label,'" + Action + "')]";
 			mobileAction.swipeAndSearchByxpath(actionValue, true, 1, "Up");
 
 			performance.click(symbolMF, "Enter name or symbol");
@@ -2549,17 +2593,16 @@ public class Trade extends _CommonPage {
 
 			mobileAction.FunctionSwipe("up", 500, 0);
 			mobileAction.FuncClick(quantityTypeMF, "Quantity Type Selected");
-			String priceValue = "//XCUIElementTypeStaticText[contains(@label,'" + price_value + "')]";
 			mobileAction.swipeAndSearchByxpath(priceValue, true, 1, "Up");
 
 			String quantity = getTestdata("Quantity");
 			mobileAction.FuncClick(selectQuantityMF, "Quantity");
 			mobileAction.FuncSendKeys(selectQuantityMF, quantity);
-			mobileAction.FuncClickDone();
+			mobileAction.FuncHideKeyboard();
 
 			mobileAction.FuncClick(trading_pwdMF, "Trading Password");
 			mobileAction.FuncSendKeys(trading_pwdMF, trading_pwd_XL);
-			mobileAction.FuncClickDone();
+			mobileAction.FuncHideKeyboard();
 
 			mobileAction.FuncClick(preview_order, "Preview Order");
 			mobileAction.waitProgressBarVanish();
@@ -2567,6 +2610,10 @@ public class Trade extends _CommonPage {
 			performance.click(agreeButton, "Agree");
 			performance.verifyElementIsDisplayed(investingAccMFPerf, "Account in Confirm Order");
 
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.FunctionSwipe("up", 500, 0);
+				mobileAction.FuncClick(consentMF, "Consent in Confirm Order");
+			}
 			performance.click(send_order, "Send Order");
 			performance.verifyElementIsDisplayed(tradeConfirmationNumberPerf, "Trade Confirmation Number in Receipt");
 
@@ -2586,12 +2633,28 @@ public class Trade extends _CommonPage {
 
 		Decorator();
 		try {
+
+			String orderValue = "";
+			String actionValue = "";
+			tradeAccount = getTestdata("CDNMarginAccount");
+			orderValueXL = getTestdata("Ordervalue");
+			searchKeyword = getTestdata("Search");
+			Action = getTestdata("Action");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				accountno = "//XCUIElementTypeStaticText[contains(@label,'" + tradeAccount + "')]";
+				actionValue = "//XCUIElementTypeStaticText[contains(@label,'" + Action + "')]";
+				orderValue = "//XCUIElementTypeStaticText[contains(@label,'" + orderValueXL + "')]";
+			} else {
+				accountno = "//android.widget.TextView[contains(@text,'" + tradeAccount + "')]";
+				actionValue = "//android.widget.TextView[contains(@text,'" + Action + "')]";
+				orderValue = "//android.widget.TextView[contains(@text,'" + orderValueXL + "')]";
+			}
+
 			performance.click(selectAccount, "Account");
 			performance.verifyElementIsDisplayed(acctListHeaderPerf, "Account List Header in Trade");
 			mobileAction.swipeAndSearchByxpath(accountno, true, 10, "Up");
 
 			mobileAction.FuncClick(selectOrderType, "Order Type");
-			String orderValue = "//XCUIElementTypeStaticText[contains(@label,'" + orderValueXL + "')]";
 			mobileAction.swipeAndSearchByxpath(orderValue, true, 1, "Up");
 
 			performance.click(symbolOptions, "Enter name or symbol");
@@ -2600,22 +2663,24 @@ public class Trade extends _CommonPage {
 			mobileAction.FuncClick(symbolEditText, "Enter name or symbol");
 			mobileAction.FuncSendKeys(symbolEditText, searchKeyword);
 			mobileAction.sleep(3000);
-			performance.click(selectSymbolValue, "1st Symbol");
+			mobileAction.FuncClick(selectSymbolValue, "1st Symbol");
+			mobileAction.waitProgressBarVanish();
+			performance.click(firstAskCallOption, "1st Ask Call Option in Symbol Quotes");
 			performance.verifyElementIsDisplayed(bidLotsPerf, "Bid Lots in Symbol Quotes");
 
-			mobileAction.FuncClick(firstAskCallOption, "1st Ask Call Option in Symbol Quotes");
-			mobileAction.sleep(5000);
-
 			mobileAction.FunctionSwipe("up", 500, 0);
+			mobileAction.FuncClick(selectActionOptions, "Action");
+			mobileAction.swipeAndSearchByxpath(actionValue, true, 1, "Up");
+
 			String quantity = getTestdata("Quantity");
 			mobileAction.FuncClick(selectQuantityMF, "Quantity");
 			mobileAction.FuncSendKeys(selectQuantityMF, quantity);
-			mobileAction.FuncClickDone();
+			mobileAction.FuncHideKeyboard();
 
 			mobileAction.FunctionSwipe("up", 500, 0);
 			mobileAction.FuncClick(trading_pwdOptions, "Trading Password");
 			mobileAction.FuncSendKeys(trading_pwdOptions, trading_pwd_XL);
-			mobileAction.FuncClickDone();
+			mobileAction.FuncHideKeyboard();
 
 			mobileAction.FuncClick(preview_order, "Preview Order");
 			mobileAction.waitProgressBarVanish();

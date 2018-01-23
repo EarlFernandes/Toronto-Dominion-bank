@@ -41,7 +41,8 @@ public class Transfers extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement transfers_header;
 
-	@iOSFindBy(accessibility = "TRANSFERVIEW_ETRANSFER")
+	@iOSXCUITFindBy(accessibility = "TRANSFERVIEW_ETRANSFER")
+	@AndroidFindBy(id = "com.td:id/interac_etransfer")
 	private MobileElement Interac_e_Transfer_button;
 
 	@iOSFindBy(accessibility = "TRANSFERVIEW_ETRANSFER_DES")
@@ -96,6 +97,10 @@ public class Transfers extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "BETWEENMYACCOUNTS_TO")
 	@AndroidFindBy(id = "com.td:id/toAccountRow")
 	private MobileElement toAccountPerf;
+
+	@iOSXCUITFindBy(accessibility = "Interac e-Transfer®")
+	@AndroidFindBy(id = "com.td:id/txt_interac_etransfer_title")
+	private MobileElement sendMoneyPerf;
 
 	/**
 	 * This method will click on Between my accounts button
@@ -550,11 +555,32 @@ public class Transfers extends _CommonPage {
 	}
 
 	public void clickBetweenMyAccountsPERF() {
+		Decorator();
+
 		try {
-			Decorator();
 
 			performance.click(btw_my_accnts, "Between My Accounts");
 			performance.verifyElementIsDisplayed(toAccountPerf, "To Account label");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void clickSendMoneyPERF() {
+		Decorator();
+
+		try {
+
+			performance.click(Interac_e_Transfer_button, "Send Money");
+			performance.verifyElementIsDisplayed(sendMoneyPerf, "Interac e-Transfer label");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

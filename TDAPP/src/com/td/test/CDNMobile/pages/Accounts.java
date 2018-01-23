@@ -150,8 +150,12 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/date")
 	private MobileElement todayLabel;
 
+	@iOSXCUITFindBy(accessibility = "Balances")
+	@AndroidFindBy(id = "com.td:id/balancesTab")
+	private MobileElement balancesTab;
+
 	@iOSXCUITFindBy(accessibility = "RVB_DETAIL_ACTIVITY_CELL_TITLE_1")
-	@AndroidFindBy(id = "com.td:id/summaryTab")
+	@AndroidFindBy(id = "com.td:id/quick_link_item_layout_button")
 	private MobileElement postedTrxnLabel;
 
 	private MobileElement total_accounts_and_cad;
@@ -1210,10 +1214,40 @@ public class Accounts extends _CommonPage {
 			}
 
 			mobileAction.swipeAndSearchByxpath(acctXpath, false, 30, "Up");
-			mobileAction.sleep(2000);
+			mobileAction.sleep(5000);
 			MobileElement e = mobileAction.verifyElementUsingXPath(acctXpath, "To Credit element");
 			performance.click(e, "To Credit element");
 			performance.verifyElementIsDisplayed(postedTrxnLabel, "POSTED TRANSACTIONS label in trxn list");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void selectToInvestPERF() {
+		Decorator();
+		try {
+
+			String account = getTestdata("ToAccount");
+			String acctXpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				acctXpath = "//XCUIElementTypeStaticText[contains(@label,'" + account + "')]";
+			} else {
+				acctXpath = "//android.widget.TextView[contains(@text,'" + account + "')]";
+			}
+
+			mobileAction.swipeAndSearchByxpath(acctXpath, false, 30, "Up");
+			mobileAction.sleep(2000);
+			MobileElement e = mobileAction.verifyElementUsingXPath(acctXpath, "To Account element");
+			performance.click(e, "To Account element");
+			performance.verifyElementIsDisplayed(balancesTab, "Balances Tab in Investing Account");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -49,7 +49,7 @@ public class Rewards extends _CommonPage {
 	private List<MobileElement> redeem_text_list;
 
 	@iOSXCUITFindBy(accessibility = "Amount to Redeem")
-	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/textview_action_title'])[2]")
+	@AndroidFindBy(id = "com.td:id/amount_label")
 	private MobileElement amountToRedeemPerf;
 
 	By iosRedemptValue = By.xpath("//XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]");

@@ -1259,7 +1259,7 @@ public class Investing extends _CommonPage {
 	private MobileElement ordersButtonPerf;
 
 	@iOSXCUITFindBy(accessibility = "COMPLEX_ORDER_CELL_SYMBOL_NAME")
-	@AndroidFindBy(id = "TBD")
+	@AndroidFindBy(id = "com.td:id/symbol")
 	private MobileElement ordersFirstSymbolPerf;
 
 	/**

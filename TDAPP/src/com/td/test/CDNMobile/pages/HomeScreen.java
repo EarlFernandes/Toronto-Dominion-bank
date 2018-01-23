@@ -1504,7 +1504,7 @@ public class HomeScreen extends _CommonPage {
 		try {
 
 			performance.click(watchlistQuickLink, "Watchlists quicklink");
-			performance.verifyElementIsDisplayed(watchlistDropDownPerf, "Wathclists drop-down button");
+			performance.verifyElementIsDisplayed(watchlistDropDownPerf, "Watchlists drop-down button");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
