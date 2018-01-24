@@ -56,17 +56,17 @@ public class MIT_DSH_WLErrorState1 extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "dropdownButton")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/watchlist_name_drop_down']")
 	MobileElement btnDropDown;
-
+	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'List 02')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and contains(@text,'02')]")
 	private MobileElement ListExpiredCollapse;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Liste 09']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and @text='Liste 09']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='List 09']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and @text='List 09']")
 	private MobileElement ListEACollapse;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='名單 10']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and @text='名單 10']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='List 10']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and @text='List 10']")
 	private MobileElement ListEACollapseView;
 
 	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name='errorButton'])[1]")
@@ -160,7 +160,7 @@ public class MIT_DSH_WLErrorState1 extends _CommonPage {
 
 			}
 
-			mobileAction.FuncClick(btnDropDown, "btnDropDown");
+			mobileAction.FuncClick(LT_Watchlist, "Collpsed View WL dropdown");
 
 			mobileAction.FuncClick(ListEACollapseView, "ListEACollapseView");
 

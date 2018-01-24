@@ -429,7 +429,7 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_TERMS_MUTUALLINK = {
 			"for mutual fund accounts held with TD Investment Services Inc.",
 			"relative aux comptes de fonds communs de placement détenus auprès des Services d'investissement TD inc.",
-			"所持互惠基金账户声明披露", "所持互惠基金賬戶之聲明披露" };
+			"所持互惠基金账户声明披露", "所持互惠基金賬戶聲明披露" };
 
 	public static final String[] ARRAY_DASHBOARD_ACTIVITYTAB_ACTIONBUY = { "BUY", "BUY", "BUY", "BUY" };
 	public static final String[] ARRAY_DASHBOARD_ACTIVITYTAB_ACTIONSELL = { "SELL", "SELL", "SELL", "SELL" };
