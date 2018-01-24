@@ -65,7 +65,7 @@ public class MLEnterOrderNegative extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/textview_info' and @index=1]")
 	private MobileElement firstAskCALLS;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeImage[contains(@name,'error')]/../*[1]") // @Author
+	@iOSFindBy(xpath = "//XCUIElementTypeImage[contains(@name,'error')]/../*[2]") // @Author
 																					// -
 																					// Sushil
 																					// 29-Mar-2017

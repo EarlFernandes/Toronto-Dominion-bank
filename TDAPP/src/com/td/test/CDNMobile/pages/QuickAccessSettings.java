@@ -33,6 +33,14 @@ public class QuickAccessSettings extends _CommonPage {
 	String cardToggle = "//XCUIElementTypeSwitch[contains(@label,'";
 	String accountXL = CL.getTestDataInstance().getPrimaryAccount();
 
+	@iOSFindBy(xpath = "//*[@label='Turn Quick Access on or off']") // TBD
+	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/easy_access_account_on_off_switch'][1]")
+	private MobileElement firstAcctToggle;
+
+	@iOSFindBy(xpath = "//*[@label='Turn Quick Access on or off']") // TBD
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/easy_access_account_name_on_off'][1]")
+	private MobileElement firstAcctName;
+
 	public synchronized static QuickAccessSettings get() {
 		if (QuickAccessSettings == null) {
 			QuickAccessSettings = new QuickAccessSettings();
@@ -86,14 +94,18 @@ public class QuickAccessSettings extends _CommonPage {
 		Decorator();
 		try {
 
-			if (QuickAccessToggle.isEnabled())
-				System.out.println("Toggle is enabled");
-			else
-				mobileAction.FuncClick(QuickAccessToggle, "Quick Access Toggle");
+			if (mobileAction.getSwitchStatus(QuickAccessToggle).equalsIgnoreCase("false")) {
+				mobileAction.FuncClick(QuickAccessToggle, "Quick Access Toggle ON");
+			}
 
-		} catch (InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 
@@ -207,25 +219,143 @@ public class QuickAccessSettings extends _CommonPage {
 		}
 	}
 
-	/**
-	 * This method will click the Back Button in Quick Access Settings Page
-	 * 
-	 * @return void
-	 * @throws InterruptedException
-	 * 
-	 * @throws IOException
-	 *             If there is problem while reporting.
-	 * @throws NoSuchElementException
-	 *             In case the element is not found over the screen.
-	 */
-	public void verifyQuickAccessSettingsBackBtn() {
+	public void toggleSpecificAccount() {
 
 		Decorator();
 		try {
-			mobileAction.ClickBackButton();
+			String card = getTestdata("ToAccount");
+			String xpath = "";
+
+			if (currentLocale.equalsIgnoreCase("fr")) {
+				// Acct names translated in FR
+				card = getTestdata("FromAccount");
+			}
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+				xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'" + card + "')]";
+			} else {
+				xpath = "//android.widget.TextView[contains(@text,'" + card + "')]";
+			}
+
+			MobileElement accountFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
+			if (accountFound != null) {
+
+				String accountSwitchXpath = "";
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+					accountSwitchXpath = xpath + "/parent::XCUIElementTypeCell/XCUIElementTypeSwitch[1]";
+				} else {
+					accountSwitchXpath = xpath + "//following-sibling::android.widget.Switch";
+				}
+
+				MobileElement accountSwitch = mobileAction.verifyElementUsingXPath(accountSwitchXpath,
+						"Account Switch");
+				String switchCheckStatus = mobileAction.getSwitchStatus(accountSwitch);
+				if (switchCheckStatus.equalsIgnoreCase("true")) {
+					// Toggle to disable it
+					mobileAction.FuncClick(accountSwitch, "Quick Access Switch Toggle - Disabled");
+					// Save current acct balance for late verification
+					CL.getTestDataInstance().TCParameters.put("AccessCard", "OFF");
+
+				} else {
+					// Toggle to enable it
+					mobileAction.FuncClick(accountSwitch, "Quick Access Switch Toggle - Enabled");
+					// Save current acct balance for late verification
+					CL.getTestDataInstance().TCParameters.put("AccessCard", "ON");
+				}
+
+			} else {
+				mobileAction.GetReporting().FuncReport("Fail", "Cannot find specified account: " + card);
+			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
+
+	public void verifyAccountExists() {
+
+		Decorator();
+		try {
+			String card = getTestdata("ToAccount");
+			String xpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+				xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'" + card + "')]";
+			} else {
+				xpath = "//android.widget.TextView[contains(@text,'" + card + "')]";
+			}
+
+			MobileElement accountFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
+			if (accountFound != null) {
+				mobileAction.GetReporting().FuncReport("Pass", "Specified account exists: " + card);
+			} else {
+				mobileAction.GetReporting().FuncReport("Fail", "Cannot find specified account: " + card);
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void verifyNoAccount() {
+
+		Decorator();
+		try {
+			String card = getTestdata("ToAccount");
+			String xpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+				xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'" + card + "')]";
+			} else {
+				xpath = "//android.widget.TextView[contains(@text,'" + card + "')]";
+			}
+
+			MobileElement accountFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
+			if (accountFound == null) {
+				mobileAction.GetReporting().FuncReport("Pass", "Specified account does not exist: " + card);
+			} else {
+				mobileAction.GetReporting().FuncReport("Fail", "Specified account exists: " + card);
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void testSecondUser() {
+		Decorator();
+		try {
+
+			String alias = getTestdata("Transfers");
+			// Save 2nd ConnectID to UserID column for use in next Login
+			CL.getTestDataInstance().TCParameters.put("UserID", alias);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
 }

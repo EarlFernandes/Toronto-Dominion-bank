@@ -113,7 +113,7 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_sub_heading']")
 	private MobileElement depositToAccountNumber;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Done' or @label='Terminé' or @label='Ok' or @label='OK']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Done' or @label='Terminé' or @label='Ok' or @label='OK' or @label='Toolbar Done Button']") 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_done' or @text='Done']")
 	private MobileElement done;
 
@@ -137,14 +137,14 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Date Sent' or @text='Date du virement']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement dateSentVal;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Date Deposited' or @label='Date du dépôt']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Date Deposited' or @text='Date du dépôt']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Date Deposited' or @label='Date du dépôt' or @label='Date Sent']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Date Deposited' or @text='Date du dépôt' or @text='Date Sent']") 
 	private MobileElement dateDeposited;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Date Deposited' or @label='Date du dépôt']/following-sibling::XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Date Deposited' or @text='Date du dépôt']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
-	private MobileElement dateDepositedVal;
-
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Date Deposited' or @label='Date du dépôt' or @label='Date Sent']/following-sibling::XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Date Deposited' or @text='Date du dépôt' or @text='Date Sent']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
+	private MobileElement dateDepositedVal;	
+	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account' or @label='Compte de provenance']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='From Account' or @text='Compte de provenance']")
 	private MobileElement fromAccount;
@@ -281,7 +281,10 @@ public class TransfersHistory extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Message']/following-sibling::android.widget.EditText")
 	private MobileElement messageRqstMoney;
-
+	
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='Go Back Home' or @text='GO BACK HOME']")
+	private MobileElement goBackHome;
+	
 	String platform = CL.getTestDataInstance().getMobilePlatForm();
 
 	MobileElement initialsCircle = null;
@@ -776,14 +779,18 @@ public class TransfersHistory extends _CommonPage {
 		Decorator();
 		String receiver = getTestdata("ToAccount");
 		getTransactionStatus();
-
+		String TextStatus = null;
+		
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-
+if(transStatus.equals("Sent") || transStatus.equals("Envoyé")){
+		TextStatus = "@text= '"+transStatus+"' or @text='"+ transStatus.toUpperCase() + "' or @text='initiated' or @text='INITIATED' or @text='amorcé' or @text='AMORCÉ'";
+}
+else
+	TextStatus = "@text= '"+transStatus+"' or @text='"+ transStatus.toUpperCase() + "'";
 				receiverName = mobileAction
-						.mobileElementUsingXPath("//android.widget.TextView[@text='" + transStatus + "' or @text='"
-								+ transStatus.toUpperCase() + "']/preceding-sibling::android.widget.TextView[@text='"
+						.mobileElementUsingXPath("//android.widget.TextView["+TextStatus+"]/preceding-sibling::android.widget.TextView[@text='"
 								+ receiver + "' or @text='" + receiver.toUpperCase() + "']");
 			} else {
 
@@ -838,11 +845,11 @@ public class TransfersHistory extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(completedTransactions.get(i),
 							"Completed Transaction " + (i + 1));
 				}
-			} else {
+			} 
 
 				for (int i = 0; i < 4; i++)
 					mobileAction.FunctionSwipe("down", 200, 200);
-			}
+			
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1738,7 +1745,9 @@ public class TransfersHistory extends _CommonPage {
 
 		Decorator();
 		try {
-
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				mobileAction.FuncClick(goBackHome,"home button"); 
+			}
 			mobileAction.clickMenuButton();
 			MenuPage.get().clickMenuTransfer();
 			Transfers.get().clickTransferHistoryLink();

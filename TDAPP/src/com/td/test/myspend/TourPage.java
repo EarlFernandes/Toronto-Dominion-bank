@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
@@ -70,7 +72,7 @@ public class TourPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Save') or contains(@content-desc,'Enregistrer') or contains(@text,'Save')]")
 	private MobileElement saveBtn;
 	
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Allow' or @label='Autoriser']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Allow' or @label='Autoriser' or @label='OK']")
 	private MobileElement allowBtn;
 	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Like to Send You Notifications') or contains(@label,'à vous envoyer des notifications')]")
@@ -85,7 +87,7 @@ public class TourPage extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Login']")
 	private MobileElement login;
 	
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeButton[@name='Select AccessCard']")
 	private MobileElement select_accesscard;
 	
 	@iOSXCUITFindBy(xpath= "//XCUIElementTypeStaticText[@name='Add Username or Access Card']")
@@ -99,6 +101,9 @@ public class TourPage extends _CommonPage {
 	
 	@iOSXCUITFindBy(xpath = "//*[@name='Go' or @label='Done' or @label='OK']")
 	private MobileElement doneBtn;
+	
+	@FindBy(xpath = "//*[contains(text(),'Save') or contains(text(),'Enregistrer')]")
+	private WebElement saveBtnAndroid;
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -176,10 +181,19 @@ public class TourPage extends _CommonPage {
 			}
 			if (mobileAction.verifyElementIsPresent(fxMsgHeader)) {
 				mobileAction.FuncClick(okBtn, "OK");
-			}			
-			if(mobileAction.verifyElementIsPresent(saveBtn)){
-					mobileAction.FuncClick(saveBtn, "Save");
+			}
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")){
+				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
+				if(mobileAction.verifyElementIsPresent(saveBtnAndroid)){
+					mobileAction.FuncClick(saveBtnAndroid, "Save");
+					CL.GetAppiumDriver().context("NATIVE_APP");
 				
+			}
+			}else{
+				if(mobileAction.verifyElementIsPresent(saveBtn)){
+						mobileAction.FuncClick(saveBtn, "Save");
+					
+				}
 			}
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")){
 				if(mobileAction.verifyElementIsPresent(sendNotification)){

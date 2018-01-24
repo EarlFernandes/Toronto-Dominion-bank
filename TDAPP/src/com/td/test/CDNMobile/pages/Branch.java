@@ -158,5 +158,29 @@ public class Branch extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
+	
+	public void VerifyBookAppointmentIconNotDisplayed() {
+		Decorator();
+		String expectedText = "";
+		try {
+			mobileAction.FuncSwipeOnce("up");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				expectedText = getTextInCurrentLocale(StringArray.ARRAY_BOOKING_APPOINTMENT_IOS);
+				book_appointment_icon = mobileAction.verifyElementUsingXPath("//*[@label='" + expectedText + "']",
+						"Book a Visit");
+			} else {
+				expectedText = getTextInCurrentLocale(StringArray.ARRAY_BOOKING_APPOINTMENT_AND);
+				book_appointment_icon = mobileAction.verifyElementUsingXPath(
+						"//android.widget.Button[@text='" + expectedText + "']", "Book an Appointment");
+			}
 
+			mobileAction.verifyElementNotPresent(book_appointment_icon, "Book Appointment");
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
 }

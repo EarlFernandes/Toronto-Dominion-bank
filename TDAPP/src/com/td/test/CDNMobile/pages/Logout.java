@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -19,8 +20,8 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 public class Logout extends _CommonPage {
 	private static Logout Logout;
 
-	@iOSFindBy(accessibility = "NAV_DRAWER_ITEMS_LOGOUT")
-	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and (@text='Logout' or @text='Fermer la session')]")
+	@iOSFindBy(xpath = "//*[(@name='NAV_DRAWER_ITEMS_LOGOUT' or @name='flyout_title') and (@label='Logout' or @label='Fermer la session' or @label='退出' or @label='登出')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='Logout']")
 	private MobileElement logout;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Fermer la session']")
@@ -37,13 +38,13 @@ public class Logout extends _CommonPage {
 	@iOSFindBy(accessibility = "LOGOUT_SUC_MESSAGE")
 	private MobileElement successMsg;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell[1]")
 	private MobileElement goBackHome;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell[2]")
 	private MobileElement contactUs;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell[3]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell[3]")
 	private MobileElement locations;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Terminé']")
@@ -184,15 +185,25 @@ public class Logout extends _CommonPage {
 
 		Decorator();
 		try {
+
+			mobileAction.clickMenuButton();
+			mobileAction.sleep(1000);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				logout = mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='"
+										+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOGOUT) + "']",
+								"Logout");
+			}
+
 			mobileAction.FuncClick(logout, "Logout");
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
@@ -279,4 +290,30 @@ public class Logout extends _CommonPage {
 			e.printStackTrace();
 		}
 	}
+
+	public void goBackHome() {
+		Decorator();
+
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				String xpath = "//android.widget.Button[contains(@text,'"
+						+ getTextInCurrentLocale(StringArray.ARRAY_LOGOUT_GO_BACK_HOME) + "')]";
+				goBackHome = mobileAction.verifyElementUsingXPath(xpath, "Go Back Home button");
+			}
+
+			mobileAction.FuncClick(goBackHome, "Go Back Home button");
+			mobileAction.sleep(2000);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
 }

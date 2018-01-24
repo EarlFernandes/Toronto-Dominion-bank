@@ -676,6 +676,9 @@ public class AutoDepositPage extends _CommonPage {
 				mobileAction.FuncClickDone();
 
 				mobileAction.FuncClick(depositTo, "Deposit To Drop Down");
+				String DTA = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@value,'"+ getTestdata("FromAccount") +"')]";
+				depositToAccount = mobileAction.mobileElementUsingXPath(DTA);   // editted by Vishal
+				
 				mobileAction.FuncClick(depositToAccount, "Deposit To Account " + depositToAccount.getText());
 				mobileAction.FuncClick(nextAutoDep, "Next Button");
 

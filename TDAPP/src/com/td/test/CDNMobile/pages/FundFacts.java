@@ -27,6 +27,9 @@ public class FundFacts extends _CommonPage {
 	// @iOSFindBy(xpath = "//*[@label='In progress']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/alertTitle'] | //android.widget.Button[@resource-id='android:id/button1']")
 	private MobileElement popup_alert;
+	
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.android.packageinstaller:id/permission_allow_button']")
+	private MobileElement permission_allow_button;
 
 	public synchronized static FundFacts get() {
 		if (Fundfacts == null) {
@@ -50,6 +53,8 @@ public class FundFacts extends _CommonPage {
 					System.out.println("Need to set TD app to access the PDF file manually");
 					mobileAction.Report_Pass_Verified("Need to set TD app to access the PDF file manually");
 					return;
+				} else if(mobileAction.verifyElementIsPresent(permission_allow_button)) {
+					mobileAction.FuncClick(permission_allow_button, "Allow");
 				}
 			} catch (Exception e) {
 

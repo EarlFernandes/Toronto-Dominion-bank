@@ -5,7 +5,10 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSFindBy;
 import io.appium.java_client.pagefactory.*;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
+
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class MainScreenMIT extends _CommonPage {
@@ -206,25 +209,75 @@ public class MainScreenMIT extends _CommonPage {
 		 */
 	}
 
-/*	public void tapInvesting() {
+	public void tapInvesting() {
+		/*
+		 * try { // System.out.println(CL.GetDriver().getPageSource());
+		 * Decorator();
+		 * 
+		 * if
+		 * (CL.getTestDataInstance().getMobilePlatFormVersion().contains("9"))
+		 * mobileAction.FuncClick(InvestingAccount, "InvestingAccount"); else {
+		 * mobileAction.FuncClick(MenuUp, "MenuUp"); //
+		 * mobileAction.FuncClick(Home, "Home"); //
+		 * System.out.println(CL.GetDriver().getPageSource());
+		 * mobileAction.FuncClick(InvestingAccount, "InvestingAccount"); //
+		 * CL.GetDriver().getPageSource(); }
+		 * 
+		 * } catch (Exception e) { e.printStackTrace(); }
+		 */
+		Decorator();
+
 		try {
-			// System.out.println(CL.GetDriver().getPageSource());
-			Decorator();
 
-			if (CL.getTestDataInstance().getMobilePlatFormVersion().contains("9"))
-				mobileAction.FuncClick(InvestingAccount, "InvestingAccount");
-			else {
-				mobileAction.FuncClick(MenuUp, "MenuUp");
-				// mobileAction.FuncClick(Home, "Home");
-				// System.out.println(CL.GetDriver().getPageSource());
-				mobileAction.FuncClick(InvestingAccount, "InvestingAccount");
-				// CL.GetDriver().getPageSource();
+			String sTrade = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE);
+
+			String xpathTradeQL = "//*[@label='" + sTrade + "' or @text='" + sTrade + "']";
+			if (verifyQuickLinkExistsByXpath(xpathTradeQL, "TRADE")) {
+				CL.GetAppiumDriver().findElement(By.xpath(xpathTradeQL)).click();
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
+
+	public boolean verifyQuickLinkExistsByXpath(String xpathEle, String sDesc) {
+		Decorator();
+		boolean bFlag = false;
+		try {
+
+			CL.GetDriver().findElement(By.xpath(xpathEle));
+			// mobileAction.FunctionSwipe("Left", 200, 100);
+
+			// if (mobileAction.isObjExists(mElement))
+			bFlag = true;
+			// else
+			// bFlag = true;
+
+		} catch (Exception e) {
+			try {
+				mobileAction.SwipeQuickLinks(200, 100);
+				CL.GetDriver().findElement(By.xpath(xpathEle));
+				bFlag = true;
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			// e.printStackTrace();
+		}
+		if (bFlag) {
+			try {
+				CL.GetReporting().FuncReport("Pass", "<b>" + sDesc + "</b> Quick Link is present.");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				CL.GetReporting().FuncReport("Fail", "<b>" + sDesc + "</b> Quick Link does not exist.");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return bFlag;
+	}
 
 	/*
 	 * ********* ********* ********* ********* ********* ********* *********

@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -13,6 +14,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class MobilePayment extends _CommonPage {
 
@@ -111,11 +113,16 @@ public class MobilePayment extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/default_card_image_view' and @index = '1']")
 	private MobileElement default_Card;
 
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/button_continue' and @text='Continue']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Continue']")
+	@AndroidFindBy(id = "com.td:id/button_continue")
 	private MobileElement mobilePaymentContinue;
 
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/button_add_card' and @text='Add a Card']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@AndroidFindBy(id = "com.td:id/button_add_card")
 	private MobileElement mobilePaymentAddACard;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Login Now']")
+	private MobileElement loginNowIOS;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/add_cards_button' and @text='Add to TD Mobile Payment']")
 	private MobileElement addMobilePayment;
@@ -180,6 +187,10 @@ public class MobilePayment extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/carousel_card_image' and @content-desc='Add a Card']")
 	private MobileElement addIcon;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeButton[1]")
+	@AndroidFindBy(id = "com.td:id/loginEditText")
+	private MobileElement selectAccessCard;
 
 	String passcode = getTestdata("Passcode");
 
@@ -465,17 +476,13 @@ public class MobilePayment extends _CommonPage {
 			mobileAction.FuncClick(mobilePaymentContinue, "Continue");
 			mobileAction.FuncClick(mobilePaymentAddACard, "Add A Card");
 
-		} catch (NoSuchElementException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (InterruptedException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
-		} catch (IOException e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
@@ -942,5 +949,70 @@ public class MobilePayment extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+
 	}
+
+	public void acceptIntroAndValidate() {
+
+		try {
+			Decorator();
+
+			boolean continueVisible = false;
+			boolean isLoginScreen = false;
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				isLoginScreen = mobileAction.verifyElementIsPresent(selectAccessCard);
+				if (isLoginScreen) {
+					Login.get().login();
+				}
+
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_BUTTON_CONTINUE);
+				String mobilePaymentContinueXpath = "//*[contains(@label,'" + labelText + "')]";
+				continueVisible = mobileAction.verifyElementIsPresentByXpath(mobilePaymentContinueXpath);
+
+				if (continueVisible) {
+					mobilePaymentContinue = mobileAction.verifyElementUsingXPath(mobilePaymentContinueXpath,
+							"Continue button");
+					mobileAction.FuncClick(mobilePaymentContinue, "Continue");
+					mobileAction.FuncClick(mobilePaymentAddACard, "Add A Card");
+
+					if (!isLoginScreen) {
+						Login.get().verifyLoginScreenTextElements();
+					}
+
+				} else {
+					labelText = getTextInCurrentLocale(StringArray.ARRAY_APPLE_PAY_LOGIN_NOW);
+					String loginNowIOSXpath = "//*[contains(@label,'" + labelText + "')]";
+					boolean loginNowVisible = mobileAction.verifyElementIsPresentByXpath(loginNowIOSXpath);
+
+					if (loginNowVisible) {
+						loginNowIOS = mobileAction.verifyElementUsingXPath(loginNowIOSXpath, "Login Now button");
+						mobileAction.FuncClick(loginNowIOS, "Login Now button clicked");
+
+						Login.get().verifyLoginScreenTextElements();
+					} else {
+						MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
+						mobileAction.verifyElementIsDisplayed(pageHeader, "Apple Pay header");
+						mobileAction.verifyElementTextContains(pageHeader,
+								getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_APPLEPAY));
+					}
+				}
+
+			}
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.FuncClick(mobilePaymentContinue, "Continue");
+				mobileAction.verifyElementIsDisplayed(mobilePaymentAddACard, "Add A Card screen");
+
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
 }

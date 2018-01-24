@@ -31,8 +31,8 @@ public class TransactionHistory extends _CommonPage {
 
 	String platform = null;
 
-	@iOSXCUITFindBy(xpath = "//*[contains(@value,'No transactions found') or contains(@label,'No transactions found')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'No transactions found')]")
+	@iOSXCUITFindBy(xpath = "//*[contains(@value,'No transactions found') or contains(@label,'No transactions found') or contains(@label,'Aucune opération trouvée.')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'No transactions found') or contains(@text,'Aucune opération trouvée')]")
 	private MobileElement noTransactionFound;
 
 	@iOSXCUITFindBy(xpath = "//*[contains(@value,'All Accounts') or contains(@label,'All Accounts')]")
@@ -63,11 +63,11 @@ public class TransactionHistory extends _CommonPage {
 	private MobileElement pageHeader;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Filter by Accounts') or contains(@label,'Filtrer par compte')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Filter by Accounts') or contains(@content-desc,'Filtrer par compte')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Filter by Accounts') or contains(@content-desc,'Filtrer par compte') or contains(@text,'Filter by Accounts') or contains(@text,'Filtrer par compte')]")
 	private MobileElement filterAccount;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@label,'Filter by Category') or contains(@label,'Filtrer par catégorie')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Filter by Category') or contains(@content-desc,'Filtrer par catégorie')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Filter by Category') or contains(@content-desc,'Filtrer par catégorie') or contains(@text,'Filter by Category') or contains(@text,'Filtrer par catégorie')]")
 	private MobileElement filterCategory;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@name,'No transactions found') or contains(@label,'No transactions found')]")
@@ -76,6 +76,10 @@ public class TransactionHistory extends _CommonPage {
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@name,'Home') or contains(@label,'Home')]")
 	private MobileElement homeBtn;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[contains(@name,'All Accounts') or contains(@name,'Tous les comptes')][2]/following-sibling::XCUIElementTypeOther")
+	@AndroidFindBy(xpath ="(//android.view.View[contains(@text,'All Accounts') or contains(@text,'Tous les comptes')])[2]/following-sibling::android.view.View")
+	private List<MobileElement> selectedAccounts;
 
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Filter by Accounts')]/../following-sibling::android.view.View[contains(@content-desc,'ON')]")
 	private List<MobileElement> filteredAccountss;
@@ -222,18 +226,18 @@ public class TransactionHistory extends _CommonPage {
 				CL.GetAppiumDriver().context("NATIVE_APP");
 				mobileAction.FuncClick(filterAccount, "Filter Account");
 				if(currentLocale.equalsIgnoreCase("EN")){
-					account = "//*[contains(@content-desc,'" + accountValue[0] + "')]";
+					account = "//*[contains(@content-desc,'" + accountValue[0] + "') or contains(@text,'" + accountValue[0] + "')]";
 				}else{
-					account = "//*[contains(@content-desc,'" + accountValue[1] + "')]";
+					account = "//*[contains(@content-desc,'" + accountValue[1] + "') or contains(@text,'" + accountValue[1] + "')]";
 				}
 				
 				MobileElement selectAccount = mobileAction.mobileElementUsingXPath(account);
 				mobileAction.FuncClick(selectAccount, "Account");
 				
 				if(currentLocale.equalsIgnoreCase("EN")){
-					filteredAccount = "(//*[contains(@content-desc,'" + accountValue[0] + "')])[1]";
+					filteredAccount = "(//*[contains(@content-desc,'" + accountValue[0] + "') or contains(@text,'" + accountValue[0] + "')])[1]";
 				}else{
-					filteredAccount = "(//*[contains(@content-desc,'" + accountValue[1] + "')])[1]";
+					filteredAccount = "(//*[contains(@content-desc,'" + accountValue[1] + "') or contains(@text,'" + accountValue[1] + "')])[1]";
 				}
 				MobileElement filteredAccounts = mobileAction.mobileElementUsingXPath(filteredAccount);
 				mobileAction.verifyElementIsDisplayed(filteredAccounts, "Filtered Account");
@@ -242,18 +246,18 @@ public class TransactionHistory extends _CommonPage {
 				mobileAction.FuncClick(filterCategory, "Filter Category");
 				
 				if(currentLocale.equalsIgnoreCase("EN")){
-					category = "//*[contains(@content-desc,'" + categoryValue[0] + "')]";
+					category = "//*[contains(@content-desc,'" + categoryValue[0] + "') or contains(@text,'" + categoryValue[0] + "')]";
 				}else{
-					category = "//*[contains(@content-desc,'" + categoryValue[1] + "')]";
+					category = "//*[contains(@content-desc,'" + categoryValue[1] + "') or contains(@text,'" + categoryValue[1] + "')]";
 				}
-				
-				MobileElement selectCategory = mobileAction.mobileElementUsingXPath(category);
-				mobileAction.FuncClick(selectCategory, "Category");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(category, true, 10, "Up");
+				//MobileElement selectCategory = mobileAction.mobileElementUsingXPath(category);
+				//mobileAction.FuncClick(selectCategory, "Category");
 				
 				if(currentLocale.equalsIgnoreCase("EN")){
-					filteredCategory = "(//*[contains(@content-desc,'" + categoryValue[0] + "')])[1]";
+					filteredCategory = "(//*[contains(@content-desc,'" + categoryValue[0] + "') or contains(@text,'" + categoryValue[0] + "')])[1]";
 				}else{
-					filteredCategory = "(//*[contains(@content-desc,'" + categoryValue[1] + "')])[1]";
+					filteredCategory = "(//*[contains(@content-desc,'" + categoryValue[1] + "') or contains(@text,'" + categoryValue[1] + "')])[1]";
 				}
 				
 				MobileElement filterCategory = mobileAction.mobileElementUsingXPath(filteredCategory);
@@ -286,9 +290,9 @@ public class TransactionHistory extends _CommonPage {
 				}else{
 					category = "//*[contains(@label,'" + categoryValue[1] + "') or contains(@name,'" + categoryValue[1] + "')]";
 				}
-				
-				MobileElement selectCategory = mobileAction.mobileElementUsingXPath(category);
-				mobileAction.FuncClick(selectCategory, "Category");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(category, true, 10, "Up");
+			//	MobileElement selectCategory = mobileAction.mobileElementUsingXPath(category);
+			//	mobileAction.FuncClick(selectCategory, "Category");
 				filteredCategory = "//XCUIElementTypeOther[contains(@label,'Filter by Category') or contains(@label,'Filtrer par catégorie')]/following-sibling::XCUIElementTypeOther[3]/XCUIElementTypeOther[2]";
 				MobileElement filterCategory = mobileAction.mobileElementUsingXPath(filteredCategory);
 				if (mobileAction.verifyElementIsPresent(filterCategory)) {
@@ -298,6 +302,47 @@ public class TransactionHistory extends _CommonPage {
 				}
 			}
 
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		
+		}
+	}
+	/**
+	 * This method will verify the selected accounts in the transaction History Page
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void verifySelectedAccounts() {
+		Decorator();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				CL.GetAppiumDriver().context("NATIVE_APP");
+			}
+			mobileAction.FuncClick(filterAccount, "Filter Account");
+			if(mobileAction.verifyElementIsPresent(noTransactionFound)){
+				mobileAction.verifyElementIsPresent(noTransactionFound);
+			}else{
+				for(int i=0;i<selectedAccounts.size()-1; i++){
+					mobileAction.verifyElementIsDisplayed(selectedAccounts.get(i), "Accounts: " +selectedAccounts.get(i).getText());
+					
+				}
+			}
+		
+			
 		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",

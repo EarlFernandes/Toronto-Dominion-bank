@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -17,6 +18,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Rewards extends _CommonPage {
 
@@ -26,20 +28,20 @@ public class Rewards extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement rewardsHeader;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Visit TDRewards.com']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textview_action_title' and @text='Visit TDRewards.com']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/textview_action_title'])[1]")
 	private MobileElement txtVisitTD;
 
-	@iOSFindBy(xpath = "//*[@label='Continue']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
-	private MobileElement continueBtn;
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeOther[3]/XCUIElementTypeButton[1]")
+	@AndroidFindBy(id = "android:id/button1")
+	private MobileElement visitTDContinue;
 
-	@FindBy(xpath = "//*[contains(@value,'‎tdrewards.com')]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and @text='Rewards']")
-	private WebElement urlName;
+	@iOSXCUITFindBy(accessibility = "URL")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.android.chrome:id/url_bar' or @resource-id='com.sec.android.app.sbrowser:id/location_bar_edit_text']")
+	private MobileElement visitTDUrl;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Pay With Rewards']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay With Rewards']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/textview_action_title'])[2]")
 	private MobileElement txtpayWithRewards;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[2]")
@@ -98,30 +100,6 @@ public class Rewards extends _CommonPage {
 			if (mobileAction.FuncISDisplayed(txtpayWithRewards, "Pay with Rewards text is Present")) {
 				mobileAction.FuncClick(txtpayWithRewards, "Pay with Rewards");
 			}
-
-		} catch (NoSuchElementException | InterruptedException | IOException e) {
-			System.err.println("TestCase has failed.");
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-
-		}
-	}
-
-	/**
-	 * This method will verify and Click the Visit TD Rewards link in Rewards
-	 * Page If Visible
-	 * 
-	 * @throws NoSuchElementException
-	 * 
-	 * 
-	 */
-
-	public void clickVisitRewardsIFVisible() {
-		Decorator();
-		try {
-			if (mobileAction.FuncISDisplayed(txtVisitTD, "Visit TD Rewards is Present")) {
-				mobileAction.FuncClick(txtVisitTD, "Visit TD Rewards");
-			}
-			mobileAction.FuncClick(continueBtn, "Continue");
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -229,4 +207,109 @@ public class Rewards extends _CommonPage {
 
 		}
 	}
+
+	public void verifyVisitTDRewards() {
+		Decorator();
+		try {
+			mobileAction.verifyElementIsDisplayed(txtVisitTD, "Visit TDRewards.com link");
+			mobileAction.verifyElementTextContains(txtVisitTD,
+					getTextInCurrentLocale(StringArray.ARRAY_REWARDS_VISIT_TDREWARDS));
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void verifyPayWithRewards() {
+		Decorator();
+		try {
+			mobileAction.verifyElementIsDisplayed(txtpayWithRewards, "Pay With Rewards link");
+			mobileAction.verifyElementTextContains(txtpayWithRewards,
+					getTextInCurrentLocale(StringArray.ARRAY_REWARDS_PAY_WITH_REWARDS));
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void clickVisitTDRewards() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(txtVisitTD, "Visit TDRewards.com link");
+			mobileAction.FuncClick(visitTDContinue, "Visit TDRewards.com Continue button");
+			mobileAction.sleep(5000);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void clickPayWithRewards() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(txtpayWithRewards, "Pay with Rewards");
+			mobileAction.sleep(5000);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void verifyTDRewardsURL() {
+		Decorator();
+		try {
+			mobileAction.verifyElementIsDisplayed(visitTDUrl, "Pay With Rewards link");
+			String url = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				url = visitTDUrl.getAttribute("value");
+			} else {
+				url = visitTDUrl.getAttribute("text");
+			}
+
+			if (url.contains("tdrewards.com")) {
+				CL.GetReporting().FuncReport("Pass", "TDRewards.com loaded in browser");
+			} else {
+				CL.GetReporting().FuncReport("Fail", "TDRewards.com not loaded in browser");
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
 }

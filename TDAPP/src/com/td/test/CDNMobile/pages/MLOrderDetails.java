@@ -14,6 +14,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class MLOrderDetails extends _CommonPage {
 
@@ -57,7 +58,7 @@ public class MLOrderDetails extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/ordersTab")
 	private MobileElement ordersTab;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[1]") // @Author
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[1])[1]") // @Author
 																								// -
 																								// Sushil
 																								// 21-Mar-2017
@@ -78,9 +79,11 @@ public class MLOrderDetails extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/editTextPassword")
 	private MobileElement editTextPassword;
 
-	@iOSFindBy(xpath = "//*[@label='Back' or @label='Précédent']") // @Author -
-																	// Sushil
-																	// 07-Mar-2017
+	/*
+	 * @iOSFindBy(xpath = "//*[@label='Back' or @label='Précédent']") // @Author
+	 * - // Sushil // 07-Mar-2017
+	 */
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement backButton;
 
@@ -91,7 +94,7 @@ public class MLOrderDetails extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/warning_text")
 	private MobileElement messageWarning;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]") // @Author
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')])[1]") // @Author
 																				// -
 																				// Sushil
 																				// 21-Mar-2017
