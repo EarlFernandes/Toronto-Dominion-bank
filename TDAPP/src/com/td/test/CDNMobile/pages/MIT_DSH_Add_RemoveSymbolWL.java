@@ -215,8 +215,8 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage {
 							(MobileElement) CL.GetDriver().findElement(By.xpath(sXpathiAnd)),
 							"Empy List Number is Displayed " + i);
 
-					String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole') or contains(@text,'/'))])[1]";
-
+					//String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole') or contains(@text,'/'))])[1]";
+					String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole') or contains(@text,'symboles') or contains(@text,'/'))])[i]";
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAndSymbolNumber, false, 5, "up");
 
 					mobileAction.verifyElementIsDisplayed(
@@ -235,8 +235,8 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage {
 							(MobileElement) CL.GetDriver().findElement(By.xpath(sXpathiOS)),
 							"Empy List Number is Displayed" + i);
 
-					String sXpathiOSSymbolNumber = "(//XCUIElementTypeStaticText[contains(@label,'" + i + "')])[2]";
-
+					//String sXpathiOSSymbolNumber = "(//XCUIElementTypeStaticText[contains(@label,'" + i + "')])[2]";
+					String sXpathiOSSymbolNumber = "(//XCUIElementTypeStaticText[contains(@label,'symbols') or contains(@label,'symbole') or contains(@label,'symboles') or contains(@label,'/')])[i]";
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiOSSymbolNumber, false, 5, "up");
 
 					mobileAction.verifyElementIsDisplayed(
@@ -429,8 +429,8 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage {
 							(MobileElement) CL.GetDriver().findElement(By.xpath(sXpathiAnd)),
 							"Empy List Number is Displayed" + i);
 
-					String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole') or contains(@text,'/'))])[1]";
-
+					//String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole') or contains(@text,'/'))])[1]";
+					String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole') or contains(@text,'symboles') or contains(@text,'/'))])[i]";
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAndSymbolNumber, false, 5, "up");
 
 					mobileAction.verifyElementIsDisplayed(
@@ -449,8 +449,8 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage {
 							(MobileElement) CL.GetDriver().findElement(By.xpath(sXpathiOS)),
 							"Empy List Number is Displayed" + i);
 
-					String sXpathiOSSymbolNumber = "(//XCUIElementTypeStaticText[contains(@label,'" + i + "')])[2]";
-
+					//String sXpathiOSSymbolNumber = "(//XCUIElementTypeStaticText[contains(@label,'" + i + "')])[2]";
+					String sXpathiOSSymbolNumber = "(//XCUIElementTypeStaticText[contains(@label,'symbols') or contains(@label,'symbole') or contains(@label,'symboles') or contains(@label,'/')])[i]";
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiOSSymbolNumber, false, 5, "up");
 
 					mobileAction.verifyElementIsDisplayed(
@@ -636,8 +636,8 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage {
 							(MobileElement) CL.GetDriver().findElement(By.xpath(sXpathiAnd)),
 							"Empy List Number is Displayed" + i);
 
-					String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole') or contains(@text,'/'))])[1]";
-
+					//String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole') or contains(@text,'/'))])[1]";
+					String sXpathiAndSymbolNumber = "(//android.widget.TextView[@resource-id='com.td:id/txtWatchlistCount' and (contains(@text,'symbols') or contains(@text,'symbole') or contains(@text,'symboles') or contains(@text,'/'))])[i]";
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiAndSymbolNumber, false, 5, "up");
 
 					mobileAction.verifyElementIsDisplayed(
@@ -656,8 +656,8 @@ public class MIT_DSH_Add_RemoveSymbolWL extends _CommonPage {
 							(MobileElement) CL.GetDriver().findElement(By.xpath(sXpathiOS)),
 							"Empy List Number is Displayed" + i);
 
-					String sXpathiOSSymbolNumber = "(//XCUIElementTypeStaticText[contains(@label,'" + i + "')])[2]";
-
+				//	String sXpathiOSSymbolNumber = "(//XCUIElementTypeStaticText[contains(@label,'" + i + "')])[2]";
+					String sXpathiOSSymbolNumber = "(//XCUIElementTypeStaticText[contains(@label,'symbols') or contains(@label,'symbole') or contains(@label,'/')])[i]";
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(sXpathiOSSymbolNumber, false, 5, "up");
 
 					mobileAction.verifyElementIsDisplayed(

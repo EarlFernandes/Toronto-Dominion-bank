@@ -121,17 +121,18 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 	@AndroidFindBy(xpath = "(//*[contains(@text,'SAVINGS ACCOUNT') or contains(@text,'Paramètres Accès rapide')])[1]")
 	private MobileElement QuickAccessUserUSAccount;
 
-	@iOSFindBy(xpath = "//*[@label='Get Started' or @label='Compte' or @label='Get Started' or @label='Compte']")
+	@iOSFindBy(xpath = "//*[@label='Get Started' or @label='Commencer' or @label='立即开始' or @label='立即開始']")
 //	@iOSXCUITFindBy(accessibility = "QUICKBALANCE_ONBOARDING_START_BUTTON")
-	@AndroidFindBy(xpath = "//*[@text='Get Started' or @text='Get Started' or @text='主页' or @text='首頁']")
+	@AndroidFindBy(xpath = "//*[@text='Get Started' or @text='Commencer' or @text='立即开始' or @text='立即開始']")
 	private MobileElement btnGetStarted;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Agree' or @label='Compte' or @label='同意' or @label='同意']")
-	@AndroidFindBy(xpath = "//*[@text='Agree' or @text='Accepte' or @text='同意' or @text='同意']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Agree' or @label='ACCEPTER' or @label='同意' or @label='同意' or @label='Accepter']")
+	@AndroidFindBy(xpath = "//*[@text='Agree' or @text='ACCEPTER' or @text='同意' or @text='同意' or @text='Accepter']")
 	private MobileElement btnAgree;
 
-	@iOSFindBy(xpath = "//*[@label='Get Started' or @label='Compte' or @label='Get Started' or @label='Compte']")
-	@AndroidFindBy(xpath = "//*[@text='Get Started' or @text='Get Started' or @text='主页' or @text='首頁']")
+	@iOSFindBy(xpath = "//*[@label='Get Started' or @label='Commencer' or @label='立即开始' or @label='立即開始']")
+//	@iOSXCUITFindBy(accessibility = "QUICKBALANCE_ONBOARDING_START_BUTTON")
+	@AndroidFindBy(xpath = "//*[@text='Get Started' or @text='Commencer' or @text='立即开始' or @text='立即開始']")
 	private MobileElement btnGetStartedSuccess;
 
 	public void goToDashboardHome() {

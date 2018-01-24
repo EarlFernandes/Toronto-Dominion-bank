@@ -784,6 +784,8 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				mobileAction.ClickBackButton();
 
 			}*/
+			
+			mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -834,8 +836,10 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(lblMobileDepositInvesting, "lblMobileDeposit");
 
 					//mobileAction.FuncClick(lblMobileDepositInvesting, "lblMobileDeposit");
-					mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
-					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
+					//mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
+					//mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
+					mobileAction.ClickBackButton();
+					Thread.sleep(2000);
 					break;
 
 				case "Blended":
@@ -881,7 +885,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				} else {
 
 					mobileAction.ClickBackButton();
-
+					Thread.sleep(2000);
 				}
 
 			} else {
@@ -892,6 +896,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					//mobileAction.FuncClick(lblTDforMe, "lblTDforMe");
 					mobileAction.ClickBackButton();
+					Thread.sleep(2000);
 
 				}
 
@@ -978,6 +983,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 					// "BTN_Back");
 
 					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+					Thread.sleep(2000);
 
 				}
 

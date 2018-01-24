@@ -168,7 +168,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 				String xpathWLSymbolBuyButton = "(//*[@text='"
 						+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY) + "'])[1]";
 				mobileAction.FuncSwipeOnce("left");
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolBuyButton, false, 10, "left");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolBuyButton, false, 20, "left");
 				mobileAction.FuncClick(
 						(MobileElement) CL.GetDriver().findElements(By.id("com.td:id/button_buy")).get(iRow),
 						"Buy Button");
@@ -201,7 +201,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 				String xpathWLSymbolSellButton = "(//*[@text='"
 						+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL) + "'])[1]";
 				mobileAction.FuncSwipeOnce("left");
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolSellButton, false, 10, "left");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolSellButton, false, 20, "left");
 				mobileAction.FuncClick(
 						(MobileElement) CL.GetDriver().findElements(By.id("com.td:id/button_sell")).get(iRow),
 						"Sell Button");
