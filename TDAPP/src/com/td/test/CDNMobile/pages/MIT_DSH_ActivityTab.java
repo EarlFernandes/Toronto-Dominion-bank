@@ -183,8 +183,8 @@ public class MIT_DSH_ActivityTab extends _CommonPage {
 
 				mobileAction.FuncSwipeWhileElementNotFoundByxpathOnActivityTab(sXPathiOS, false, 5, "up");
 
-				String saction = CL.GetDriver().findElement(By.xpath(sXPathiOS)).getText().split("@")[0];
-				String sprice = CL.GetDriver().findElement(By.xpath(sXPathiOS)).getText().split("@")[1];
+				String saction = CL.GetDriver().findElement(By.xpath(sXPathiOS)).getText().split(" @")[0];
+				String sprice = CL.GetDriver().findElement(By.xpath(sXPathiOS)).getText().split(" @")[1];
 
 				String sbuy = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIVITYTAB_ACTIONBUY);
 				String ssell = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIVITYTAB_ACTIONSELL);
