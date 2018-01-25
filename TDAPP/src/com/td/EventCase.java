@@ -49,7 +49,7 @@ public class EventCase {
 
 		ConfirmOrderCancel, ValidateChangeConfirmOrderBuy_Sell, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, ChangeDefaultCard, CardDetails_deleteicon, ConfirmPayee_InvalidAmount, EditEmailAddressWithInvalidChar,
 
-		Dashboard_Authentication, Dashboard_UnAuthentication, selectFirstLocation, VerifyUSDConversionRate,ClickQuoteButton,VerifyMaximumAmountError,clickManageAppointmentLink,VerifyBookAppointmentIconNotDisplayed,VerifyQuoteFundDetailsPageHeader,
+		Dashboard_Authentication, Dashboard_UnAuthentication, selectFirstLocation, VerifyUSDConversionRate, ClickQuoteButton, VerifyMaximumAmountError, clickManageAppointmentLink, VerifyBookAppointmentIconNotDisplayed, VerifyQuoteFundDetailsPageHeader,
 
 		Delete_usr, Deposit_Header, DepositChequeHeader, END,
 
@@ -2549,7 +2549,7 @@ public class EventCase {
 			break;
 
 		case tapInvesting:
-			MainScreenMIT.get().tapInvesting();
+			MIT_DSHQuickLinks.get().tapInvesting();
 			break;
 		case clickInvestingTrade:
 			TradeMIT.get().clickInvestingTrade();
@@ -3470,8 +3470,8 @@ public class EventCase {
 
 		case VerifyQuoteFundDetailsPageHeader:
 			FundDetails.get().VerifyQuoteFundDetailsPageHeader();
-			break;		
-			
+			break;
+
 		case VerifyFundCategory:
 			FundDetails.get().VerifyFundCategory();
 			break;
@@ -3690,16 +3690,16 @@ public class EventCase {
 		case VerifyUSDConversionRate:
 			Investing.get().VerifyUSDConversionRate();
 			break;
-			
+
 		case ClickQuoteButton:
 			FundDetails.get().ClickQuoteButton();
 			break;
-			
+
 		case VerifyMaximumAmountError:
 			PurchaseMutualFunds.get().VerifyMaximumAmountError();
-			break;		
+			break;
 		// End of Purchase Mutual funds
-			
+
 		// CLIP
 		case VerifyMoreLinkPresent:
 			Credit.get().VerifyMoreLinkPresent();
@@ -3783,10 +3783,10 @@ public class EventCase {
 		case verifyAppointmentURLLink:
 			AppointmentBooking.get().verifyAppointmentURLLink();
 			break;
-			
+
 		case VerifyBookAppointmentIconNotDisplayed:
 			Branch.get().VerifyBookAppointmentIconNotDisplayed();
-			break;			
+			break;
 		// End of MAB
 
 		// Damaged Card
@@ -3801,10 +3801,10 @@ public class EventCase {
 		case verifyReplaceDamagedCardHeader:
 			WebViewPage.get().verifyDamagedCardReplacementFormTitle();
 			break;
-			
+
 		case clickManageAppointmentLink:
 			AppointmentBooking.get().clickManageAppointmentLink();
-			break;			
+			break;
 		// End of Damaged card
 
 		case VerifyStatementBalanceHeader:

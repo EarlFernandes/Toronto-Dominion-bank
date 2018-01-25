@@ -53,24 +53,24 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/nav_row_left_icon']")
 	private MobileElement AccessoryGoHome;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 06']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_watchlist_name_header' and @text='List 06']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'06')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_watchlist_name_header' and contains(@text,'06')]")
 	private MobileElement FilledListCollapse;
 
 	@iOSXCUITFindBy(accessibility = "expandButton")
 	@AndroidFindBy(id = "com.td:id/tv_watchlist_more_footer")
 	private MobileElement btnMore;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 06']")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/watchlist_name_drop_down' and @text='List 06']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'List 06')]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/watchlist_name_drop_down' and contains(@text,'List 06')]")
 	private MobileElement FilledListExpand;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='List 01']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and @text='List 01']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and contains(@text,'List 01')]")
 	private MobileElement ListView;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 01']")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/watchlist_name_drop_down' and @text='List 01']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/watchlist_name_drop_down' and contains(@text,'List 01')]")
 	private MobileElement EmptyListExpand;
 
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
@@ -78,7 +78,7 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 	MobileElement BT_Back;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 01']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_watchlist_name_header' and @text='List 01']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_watchlist_name_header' and contains(@text,'List 01')]")
 	private MobileElement EmptyListCollapse;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 01']")
@@ -93,12 +93,12 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/watchlist_empty_card_secondmessage")
 	private MobileElement LinkEmptyWLAddSymbol;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeSearchField[@label='Search or add symbols' or contains(@label,'des symboles') or @label='搜索或添加股票代码' or @label='搜尋或添加股票代號']")
 	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
 	private MobileElement search_symbol;
 
 	@iOSXCUITFindBy(accessibility = "dropdownButton")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/watchlist_name_drop_down']")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/watchlist_name_drop_down_button']")
 	MobileElement btnDropDown;
 
 	public void verifyCollapseEmptyWL() {
@@ -130,14 +130,18 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
 
-			if (mobileAction.isObjExists(btnSwitchNow, 2)) {
-				mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+			/*
+			 * if (mobileAction.isObjExists(btnSwitchNow, 2)) {
+			 * mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+			 * 
+			 * mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
+			 * 
+			 * mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+			 * 
+			 * }
+			 */
 
-				mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
-
-				mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
-
-			}
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 
 			mobileAction.verifyElementIsDisplayed(FilledListCollapse, "FilledListCollapse");
 
@@ -174,6 +178,12 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 
 				mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
 
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+					if (mobileAction.isObjExists(AccessoryGoHome)) {
+						mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+					}
+				}
+
 			}
 
 			mobileAction.FuncVerifyTextEquals(EmptyWLDesc,
@@ -199,14 +209,16 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 			MIT_DSHQuickLinks.get().goToDashboardHome();
 
 			Thread.sleep(1000);
-			if (mobileAction.isObjExists(btnSwitchNow, 2)) {
+/*			if (mobileAction.isObjExists(btnSwitchNow, 2)) {
 				mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
 
 				mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
 
 				mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
 
-			}
+			}*/
+			
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 
 			mobileAction.FuncVerifyTextEquals(EmptyWLDesc,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_EmptyWLDesc));
@@ -222,10 +234,10 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 			mobileAction.FuncVerifyTextEquals(LinkEmptyWLAddSymbol,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_AddSymbolLink));
 
-			for (int i = 1; i <= 10; i++)
+			//for (int i = 1; i <= 10; i++)
 
-			{
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+			//{
+				/*if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
 
 				{
 					mobileAction.FuncClick(btnDropDown, "btnDropDown");
@@ -261,9 +273,9 @@ public class MIT_DSH_DisplayMessageEmptyWL extends _CommonPage {
 					mobileAction.FuncVerifyTextEquals(LinkEmptyWLAddSymbol,
 							getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_AddSymbolLink));
 
-				}
+				}*/
 
-			}
+			//}
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 //import com.td.test.CDNMobile._CommonPage;
@@ -785,13 +786,19 @@ public class TradeMIT extends _CommonPage {
 
 	public void clickInvestingTrade() // @Author - Sushil 02-Feb-2017
 	{
-/*		Decorator();
+		Decorator();
 		try {
-			mobileAction.waitForElement(Investing_Trade);
-			mobileAction.FuncClick(Investing_Trade, "Investing_Trade");
+			// clickQuickLink(QL_TRADE, "TRADE");
+			String strTradeQL = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE);
+			String xpathTradeQL = "//*[@label='" + strTradeQL + "' or @text='" + strTradeQL
+					+ "' or @text='Trade' or @text='Négociation']";
+			if (MIT_DSHQuickLinks.get().verifyQuickLinkExistsByXpath(xpathTradeQL, "TRADE")) {
+				CL.GetAppiumDriver().findElement(By.xpath(xpathTradeQL)).click();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}*/
+		}
+
 	}
 
 	public void verifyDefaultStrategies() // @Author - Sushil 02-Feb-2017
@@ -880,9 +887,8 @@ public class TradeMIT extends _CommonPage {
 
 			xpathAccount = "//*[contains(@text,'" + accNumber + "') or contains(@label,'" + accNumber + "')]";
 
-//			mobileAction.waitForElement(defaultTradeAccount);
-			//mobileAction.FuncClick(defaultTradeAccount, "defaultTradeAccount");
-			defaultTradeAccount.click();
+			mobileAction.waitForElement(defaultTradeAccount);
+			mobileAction.FuncClick(defaultTradeAccount, "defaultTradeAccount");
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathAccount, true, 60, "up");
 			mobileAction.selectItemFromList(stocks_ETFs, getTestdata("OrderType", "UserIDs"));
 		} catch (Exception e) {

@@ -226,8 +226,9 @@ public class MainScreenMIT extends _CommonPage {
 		 * } catch (Exception e) { e.printStackTrace(); }
 		 */
 		Decorator();
+
 		try {
-			
+
 			String sTrade = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE);
 
 			String xpathTradeQL = "//*[@label='" + sTrade + "' or @text='" + sTrade + "']";

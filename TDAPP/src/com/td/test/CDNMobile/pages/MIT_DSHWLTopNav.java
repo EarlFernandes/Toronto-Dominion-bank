@@ -79,7 +79,7 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(BT_WatchListBack, "Back");
 			mobileAction.verifyElementIsDisplayed(ED_Searchoraddsymbols, "Search or add symbols");
 			mobileAction.FuncClick(BT_WatchListBack, "< Button");
-			mobileAction.verifyElementIsDisplayed(BT_Home_HamburgerMenu, "Dashboard Home Screen");
+			mobileAction.verifyElementIsDisplayed(BT_More, "Dashboard Home Screen");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -90,7 +90,7 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 		String sCurrentWatchlist = null;
 		String sNewWatchList = null;
 		try {
-			
+
 			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncClick(BT_More, "More Button");
@@ -98,7 +98,8 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 			sCurrentWatchlist = mobileAction.FuncGetText(LT_WatchListDropDown);
 			mobileAction.FuncClick(LT_WatchListDropDown, "LT_WatchListDropDown");
 
-			String xpathWatchlistItem = "//*[@text='" + sCurrentWatchlist + "' or @label='" + sCurrentWatchlist + "']";
+			String xpathWatchlistItem = "//*[@text='" + sCurrentWatchlist + "' or contains(@label,'" + sCurrentWatchlist
+					+ "')]";
 
 			mobileAction.FuncClick(BT_WatchListCancel, "CANCEL Button");
 
@@ -124,9 +125,5 @@ public class MIT_DSHWLTopNav extends _CommonPage {
 			e.printStackTrace();
 		}
 	}
-	
-
-
-
 
 }
