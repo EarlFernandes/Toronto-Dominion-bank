@@ -130,7 +130,7 @@ public class Profile extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(profile_Header,
+			mobileAction.verifyElementTextIsDisplayed(PageHeader.get().getHeaderTextElement(),
 					getTextInCurrentLocale(StringArray.ARRAY_PROFILE_HEADER));
 
 			String initial_name = "";
