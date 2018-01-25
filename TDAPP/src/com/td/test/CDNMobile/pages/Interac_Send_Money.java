@@ -495,7 +495,7 @@ public class Interac_Send_Money extends _CommonPage {
 
 			mobileAction.FuncClick(selectRecipient, "Select Recipient");
 			performance.click(firstAcct, "1st Account in List");
-			performance.verifyElementIsDisplayed(securityQuestionPerf, "Security Question label");
+			performance.verifyElementIsDisplayed(securityQuestionPerf, "Metric - Recipient Selected screen");
 
 			mobileAction.FuncClick(securityQuestion, "Security Question");
 			String question = getTestdata("Security_Question");
@@ -521,7 +521,7 @@ public class Interac_Send_Money extends _CommonPage {
 
 			performance.click(sendMoney, "Send Money button");
 			mobileAction.sleep(5000);
-			performance.verifyElementIsDisplayed(fromAcctReceiptPerf, "From Account label in Receipt");
+			performance.verifyElementIsDisplayed(fromAcctReceiptPerf, "Metric - P2P Receipt screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -557,10 +557,10 @@ public class PayBill extends _CommonPage {
 			}
 
 			performance.click(continue_pay, "Continue_pay");
-			performance.verifyElementIsDisplayed(payeeConfirmPerf, "Payee label in Confirm");
+			performance.verifyElementIsDisplayed(payeeConfirmPerf, "Metric - Confirm screen");
 
 			performance.click(pay_bill, "Pay Bill");
-			performance.verifyElementIsDisplayed(payeeReceiptPerf, "Payee label in Confirm");
+			performance.verifyElementIsDisplayed(payeeReceiptPerf, "Metric - Bill Receipt screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -2490,20 +2490,20 @@ public class Trade extends _CommonPage {
 			}
 
 			performance.click(selectAccount, "Account");
-			performance.verifyElementIsDisplayed(acctListHeaderPerf, "Account List Header in Trade");
+			performance.verifyElementIsDisplayed(acctListHeaderPerf, "Metric - From Account list");
 			mobileAction.swipeAndSearchByxpath(accountno, true, 10, "Up");
 
 			mobileAction.FuncClick(selectOrderType, "Order Type");
 			mobileAction.swipeAndSearchByxpath(orderValue, true, 1, "Up");
 
 			performance.click(symbol, "Enter name or symbol");
-			performance.verifyElementIsDisplayed(symbolEditFieldPerf, "Symbol Search field in Trade");
+			performance.verifyElementIsDisplayed(symbolEditFieldPerf, "Metric - Stock Symbol Search screen");
 
 			mobileAction.FuncClick(symbolEditText, "Enter name or symbol");
 			mobileAction.FuncSendKeys(symbolEditText, searchKeyword);
 			mobileAction.sleep(3000);
 			performance.click(selectSymbolValue, "1st Symbol");
-			performance.verifyElementIsDisplayed(symbolTradePricePerf, "Trade Price in Trade");
+			performance.verifyElementIsDisplayed(symbolTradePricePerf, "Metric - Stock Symbol Selected screen");
 
 			mobileAction.FunctionSwipe("up", 500, 0);
 			mobileAction.FuncClick(selectAction, "Action");
@@ -2515,7 +2515,7 @@ public class Trade extends _CommonPage {
 			mobileAction.FuncHideKeyboard();
 
 			performance.click(selectPrice, "Price Type Selected");
-			performance.verifyElementIsDisplayed(tradePriceTypePerf, "Market Price in Trade");
+			performance.verifyElementIsDisplayed(tradePriceTypePerf, "Metric - Price Type list");
 			mobileAction.swipeAndSearchByxpath(priceValue, true, 1, "Up");
 
 			mobileAction.FuncClick(btngood, "Good 'til");
@@ -2529,10 +2529,10 @@ public class Trade extends _CommonPage {
 			mobileAction.waitProgressBarVanish();
 
 			performance.click(agreeButton, "Agree");
-			performance.verifyElementIsDisplayed(tradingSymbolPerf, "Trading Symbol in Confirm Order");
+			performance.verifyElementIsDisplayed(tradingSymbolPerf, "Metric - Confirm Order screen");
 
 			performance.click(send_order, "Send Order");
-			performance.verifyElementIsDisplayed(tradeConfirmationNumberPerf, "Trade Confirmation Number in Receipt");
+			performance.verifyElementIsDisplayed(tradeConfirmationNumberPerf, "Metric - Trade Receipt screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -2573,7 +2573,7 @@ public class Trade extends _CommonPage {
 			}
 
 			performance.click(selectAccount, "Account");
-			performance.verifyElementIsDisplayed(acctListHeaderPerf, "Account List Header in Trade");
+			performance.verifyElementIsDisplayed(acctListHeaderPerf, "Metric - From Account list");
 			mobileAction.swipeAndSearchByxpath(accountno, true, 10, "Up");
 
 			mobileAction.FuncClick(selectOrderType, "Order Type");
@@ -2583,13 +2583,13 @@ public class Trade extends _CommonPage {
 			mobileAction.swipeAndSearchByxpath(actionValue, true, 1, "Up");
 
 			performance.click(symbolMF, "Enter name or symbol");
-			performance.verifyElementIsDisplayed(symbolEditFieldPerf, "Symbol Search field in Trade");
+			performance.verifyElementIsDisplayed(symbolEditFieldPerf, "Metric - Stock Symbol Search screen");
 
 			mobileAction.FuncClick(symbolEditText, "Enter name or symbol");
 			mobileAction.FuncSendKeys(symbolEditText, searchKeyword);
 			mobileAction.sleep(3000);
 			performance.click(selectSymbolValue, "1st Symbol");
-			performance.verifyElementIsDisplayed(symbolLastPricePerf, "Last Trade Price in Trade");
+			performance.verifyElementIsDisplayed(symbolLastPricePerf, "Metric - Stock Symbol Selected screen");
 
 			mobileAction.FunctionSwipe("up", 500, 0);
 			mobileAction.FuncClick(quantityTypeMF, "Quantity Type Selected");
@@ -2608,14 +2608,14 @@ public class Trade extends _CommonPage {
 			mobileAction.waitProgressBarVanish();
 
 			performance.click(agreeButton, "Agree");
-			performance.verifyElementIsDisplayed(investingAccMFPerf, "Account in Confirm Order");
+			performance.verifyElementIsDisplayed(investingAccMFPerf, "Metric - Confirm Order screen");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.FunctionSwipe("up", 500, 0);
 				mobileAction.FuncClick(consentMF, "Consent in Confirm Order");
 			}
 			performance.click(send_order, "Send Order");
-			performance.verifyElementIsDisplayed(tradeConfirmationNumberPerf, "Trade Confirmation Number in Receipt");
+			performance.verifyElementIsDisplayed(tradeConfirmationNumberPerf, "Metric - Trade Receipt screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -2651,14 +2651,14 @@ public class Trade extends _CommonPage {
 			}
 
 			performance.click(selectAccount, "Account");
-			performance.verifyElementIsDisplayed(acctListHeaderPerf, "Account List Header in Trade");
+			performance.verifyElementIsDisplayed(acctListHeaderPerf, "Metric - From Account list");
 			mobileAction.swipeAndSearchByxpath(accountno, true, 10, "Up");
 
 			mobileAction.FuncClick(selectOrderType, "Order Type");
 			mobileAction.swipeAndSearchByxpath(orderValue, true, 1, "Up");
 
 			performance.click(symbolOptions, "Enter name or symbol");
-			performance.verifyElementIsDisplayed(symbolEditFieldPerf, "Symbol Search field in Trade");
+			performance.verifyElementIsDisplayed(symbolEditFieldPerf, "Metric - Stock Symbol Search screen");
 
 			mobileAction.FuncClick(symbolEditText, "Enter name or symbol");
 			mobileAction.FuncSendKeys(symbolEditText, searchKeyword);
@@ -2666,7 +2666,7 @@ public class Trade extends _CommonPage {
 			mobileAction.FuncClick(selectSymbolValue, "1st Symbol");
 			mobileAction.waitProgressBarVanish();
 			performance.click(firstAskCallOption, "1st Ask Call Option in Symbol Quotes");
-			performance.verifyElementIsDisplayed(bidLotsPerf, "Bid Lots in Symbol Quotes");
+			performance.verifyElementIsDisplayed(bidLotsPerf, "Metric - Option Selected screen");
 
 			mobileAction.FunctionSwipe("up", 500, 0);
 			mobileAction.FuncClick(selectActionOptions, "Action");
@@ -2686,10 +2686,10 @@ public class Trade extends _CommonPage {
 			mobileAction.waitProgressBarVanish();
 
 			performance.click(agreeButton, "Agree");
-			performance.verifyElementIsDisplayed(investingAccMFPerf, "Account in Confirm Order");
+			performance.verifyElementIsDisplayed(investingAccMFPerf, "Metric - Confirm Order screen");
 
 			performance.click(send_order, "Send Order");
-			performance.verifyElementIsDisplayed(tradeConfirmationNumberPerf, "Trade Confirmation Number in Receipt");
+			performance.verifyElementIsDisplayed(tradeConfirmationNumberPerf, "Metric - Trade Receipt screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

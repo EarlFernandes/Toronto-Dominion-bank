@@ -560,7 +560,7 @@ public class Transfers extends _CommonPage {
 		try {
 
 			performance.click(btw_my_accnts, "Between My Accounts");
-			performance.verifyElementIsDisplayed(toAccountPerf, "To Account label");
+			performance.verifyElementIsDisplayed(toAccountPerf, "Metric - Between My Account screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -580,7 +580,7 @@ public class Transfers extends _CommonPage {
 		try {
 
 			performance.click(Interac_e_Transfer_button, "Send Money");
-			performance.verifyElementIsDisplayed(sendMoneyPerf, "Interac e-Transfer label");
+			performance.verifyElementIsDisplayed(sendMoneyPerf, "Metric - Send Money screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -2138,7 +2138,7 @@ public class Investing extends _CommonPage {
 		Decorator();
 		try {
 			performance.click(ordersButtonPerf, "Orders tab");
-			performance.verifyElementIsDisplayed(ordersFirstSymbolPerf, "1st Order Symbol");
+			performance.verifyElementIsDisplayed(ordersFirstSymbolPerf, "Metric - Orders tab");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

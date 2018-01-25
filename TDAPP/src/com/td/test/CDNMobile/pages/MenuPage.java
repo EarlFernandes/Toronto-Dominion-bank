@@ -857,7 +857,8 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 			performance.click(accounts_button, "Menu Accounts");
-			performance.verifyElementIsDisplayed(bankingTitlePerf, "CREDIT title in Accounts");
+			performance.verifyElementIsDisplayed(bankingTitlePerf,
+					"Metric - Login without authentication My Accounts screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -876,7 +877,8 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 			performance.click(trade, "Menu Trade");
-			performance.verifyElementIsDisplayed(accountNameTradePerf, "Account Name in Trade");
+			performance.verifyElementIsDisplayed(accountNameTradePerf,
+					"Metric - Login without authentication Trade screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -929,7 +929,7 @@ public class Bills extends _CommonPage {
 			}
 
 			performance.click(pay_Cananda_Bill, "Pay Canada Bill");
-			performance.verifyElementIsDisplayed(payeePerf, "Payee label");
+			performance.verifyElementIsDisplayed(payeePerf, "Metric - Pay Canadian Bill screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

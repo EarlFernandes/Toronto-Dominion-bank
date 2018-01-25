@@ -656,7 +656,7 @@ public class Credit extends _CommonPage {
 		Decorator();
 		try {
 			performance.click(rewardBtn, "Rewards");
-			performance.verifyElementIsDisplayed(cashBackDollarsPerf, "Cash Back Dollars label in Rewards");
+			performance.verifyElementIsDisplayed(cashBackDollarsPerf, "Metric - Rewards screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -1187,7 +1187,7 @@ public class Accounts extends _CommonPage {
 			mobileAction.sleep(2000);
 			MobileElement e = mobileAction.verifyElementUsingXPath(acctXpath, "To Account element");
 			performance.click(e, "To Account element");
-			performance.verifyElementIsDisplayed(todayLabel, "Today label in trxn list");
+			performance.verifyElementIsDisplayed(todayLabel, "Metric - Account Activity tab");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1215,9 +1215,9 @@ public class Accounts extends _CommonPage {
 
 			mobileAction.swipeAndSearchByxpath(acctXpath, false, 30, "Up");
 			mobileAction.sleep(5000);
-			MobileElement e = mobileAction.verifyElementUsingXPath(acctXpath, "To Credit element");
-			performance.click(e, "To Credit element");
-			performance.verifyElementIsDisplayed(postedTrxnLabel, "POSTED TRANSACTIONS label in trxn list");
+			MobileElement e = mobileAction.verifyElementUsingXPath(acctXpath, "To Credit Account");
+			performance.click(e, "To Credit Account");
+			performance.verifyElementIsDisplayed(postedTrxnLabel, "Metric - Credit Account screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1247,7 +1247,7 @@ public class Accounts extends _CommonPage {
 			mobileAction.sleep(2000);
 			MobileElement e = mobileAction.verifyElementUsingXPath(acctXpath, "To Account element");
 			performance.click(e, "To Account element");
-			performance.verifyElementIsDisplayed(balancesTab, "Balances Tab in Investing Account");
+			performance.verifyElementIsDisplayed(balancesTab, "Metric - Investing Account screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

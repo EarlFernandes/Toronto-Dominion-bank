@@ -2031,7 +2031,8 @@ public class Login extends _CommonPage {
 
 			// Even in Landscape mode, the login button is visible
 			performance.click(login, "Login");
-			performance.verifyElementIsDisplayed(accountNameTradePerf, "Account Name in Trade");
+			performance.verifyElementIsDisplayed(accountNameTradePerf,
+					"Metric - Login with authentication Trade screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -2055,7 +2056,8 @@ public class Login extends _CommonPage {
 
 			// Even in Landscape mode, the login button is visible
 			performance.click(login, "Login");
-			performance.verifyElementIsDisplayed(bankingTitlePerf, "CREDIT title in Accounts");
+			performance.verifyElementIsDisplayed(bankingTitlePerf,
+					"Metric - Login with authentication My Accounts screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

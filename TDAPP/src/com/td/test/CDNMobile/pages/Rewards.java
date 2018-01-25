@@ -320,7 +320,7 @@ public class Rewards extends _CommonPage {
 		Decorator();
 		try {
 			performance.click(txtpayWithRewards, "Pay with Rewards");
-			performance.verifyElementIsDisplayed(amountToRedeemPerf, "Amount to Redeem label in Pay With Rewards");
+			performance.verifyElementIsDisplayed(amountToRedeemPerf, "Metric - Pay with Rewards screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

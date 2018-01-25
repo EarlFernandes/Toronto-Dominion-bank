@@ -5473,7 +5473,7 @@ public class EventCase {
 			break;
 
 		case Performance_Summary:
-			(new com.td.Performance()).durationSummary();
+			PerformanceSummary.get().getDurationSummary();
 			break;
 		}
 	}

@@ -1467,7 +1467,7 @@ public class HomeScreen extends _CommonPage {
 		try {
 
 			performance.click(quickAccessPerf, "Quick Access");
-			performance.verifyElementIsDisplayed(acctNamePerf, "Acct ID in Quick Access");
+			performance.verifyElementIsDisplayed(acctNamePerf, "Metric - Quick Access screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1504,7 +1504,7 @@ public class HomeScreen extends _CommonPage {
 		try {
 
 			performance.click(watchlistQuickLink, "Watchlists quicklink");
-			performance.verifyElementIsDisplayed(watchlistDropDownPerf, "Watchlists drop-down button");
+			performance.verifyElementIsDisplayed(watchlistDropDownPerf, "Metric - Watchlists screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
