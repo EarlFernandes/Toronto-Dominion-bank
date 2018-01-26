@@ -75,7 +75,7 @@ public class PayBill extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]")
 	private MobileElement calendarGrid;
 
-	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeTable[1]//XCUIElementTypeTextField[1])[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[5]/XCUIElementTypeTextField[1]")
 	@AndroidFindBy(id = "com.td:id/reason_for_payment")
 	private MobileElement reasonField;
 
