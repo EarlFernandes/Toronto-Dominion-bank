@@ -86,8 +86,8 @@ public class Profile_And_Settings extends _CommonPage {
 		try {
 			String view_profile_xpath;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				view_profile_xpath = "//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_VIEW_PROFILE_LINK_IOS)
-						+ "']";
+				view_profile_xpath = "//XCUIElementTypeButton[contains(@label,'"
+						+ getTextInCurrentLocale(StringArray.ARRAY_VIEW_PROFILE_LINK_AND) + "')]";
 			} else {
 				view_profile_xpath = "//android.widget.TextView[@text='"
 						+ getTextInCurrentLocale(StringArray.ARRAY_VIEW_PROFILE_LINK_AND) + "']";

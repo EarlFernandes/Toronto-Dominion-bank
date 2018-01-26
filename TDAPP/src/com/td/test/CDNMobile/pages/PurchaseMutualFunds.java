@@ -474,7 +474,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 				}
 				FundInListText = FundInListText + "]";
 			} else {
-				FundInListText = "//XCUIElementTypeStaticText[@label='";
+				FundInListText = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[@label='";
 				for (int i = 0; i < lengthOfArray; i++) {
 					FundInListText = FundInListText + selectedFundArray[i].trim() + "'";
 					if (i < lengthOfArray - 1) {
@@ -534,7 +534,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			} else {
 				System.out.println("Phone populated:" + ori_phone);
 			}
-			//mobileAction.FuncSwipeOnce("up");
+			// mobileAction.FuncSwipeOnce("up");
 			if (!mobileAction.verifyElementIsPresent(consent_checkbox)) {
 				mobileAction.FuncSwipeWhileElementNotFound(consent_checkbox, false, 5, "up");
 			}
@@ -699,7 +699,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			mobileAction.Report_Fail("Exception for VerifyMaxmumAmount");
 		}
 	}
-	
+
 	public void VerifyMaximumAmountError() {
 		Decorator();
 		try {
@@ -728,6 +728,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			mobileAction.Report_Fail("Exception for VerifyMaxmumAmount");
 		}
 	}
+
 	public void VerifyFromCADAccountToUSDMFAccountIsNotAllowed() {
 		Decorator();
 		try {
