@@ -40,4 +40,7 @@ public class PerformanceSummary extends _CommonPage {
 		performance.durationSummary();
 	}
 
+	public void generateReport() {
+		performance.generateReport();
+	}
 }

@@ -1,16 +1,23 @@
 package com.td;
 
 import java.time.Instant;
+import java.util.Arrays;
+import java.util.Date;
 
 import org.bson.Document;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.mongodb.AggregationOutput;
 import com.mongodb.MongoClient;
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Accumulators;
+import com.mongodb.client.model.Aggregates;
+import com.mongodb.client.model.Filters;
 import com.td.test.framework.CommonLib;
 import io.appium.java_client.MobileElement;
 
@@ -101,24 +108,62 @@ public class Performance extends CommonLib {
 			MongoDatabase database = mongoClient.getDatabase(MONGODB_DB);
 			MongoCollection<Document> collection = database.getCollection(MONGODB_COLLECTION);
 
+			Document doc = new Document("Testcase ID", getTestDataInstance().TestCaseID);
 			String timestamp = new java.text.SimpleDateFormat("yyyyMMddHHmmss")
 					.format(new java.util.Date(Instant.now().toEpochMilli()));
-			Document doc = new Document("Testcase ID", getTestDataInstance().TestCaseID);
 			doc.append("Timestamp", Double.parseDouble(timestamp));
 			String[] durations = getTestDataInstance().TCParameters.get("Timeout").split(";");
 			for (String dur : durations) {
 				String[] metric = dur.split(":");
 				doc.append(metric[0], Double.parseDouble(metric[1]));
 			}
-			// doc.append("Durations",
-			// getTestDataInstance().TCParameters.get("Timeout"));
 			collection.insertOne(doc);
 
+			this.listAllDocs();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			mongoClient.close();
+		}
+	}
+
+	public void generateReport() {
+		MongoClient mongoClient = null;
+		MongoCursor<Document> cursor = null;
+		String[] testcaseIDs = { "Test1 Transfer" };
+		try {
+			mongoClient = new MongoClient(MONGODB_IP, MONGODB_PORT);
+			MongoDatabase database = mongoClient.getDatabase(MONGODB_DB);
+			MongoCollection<Document> collection = database.getCollection(MONGODB_COLLECTION);
+
+			String doc = "";
 			cursor = collection.find().iterator();
 			while (cursor.hasNext()) {
-				System.out.println(cursor.next().toJson());
+				doc += cursor.next().toJson() + "<br>\n";
 			}
+			System.out.println(doc);
 			System.out.println(collection.count());
+			GetReporting().FuncReport("Pass", doc);
+
+			for (String id : testcaseIDs) {
+				String[] metricList = this.getMetricNames(id);
+				String firstDoc = "";
+				for (String metric : metricList) {
+					AggregateIterable<Document> output = collection.aggregate(Arrays.asList(
+							Aggregates.match(Filters.eq("Testcase ID", id)),
+							Aggregates.match(Filters.lte("Timestamp", new Date())),
+							// Aggregates.match(Filters.lte("Timestamp",
+							// "ISODate(\"2018-01-26T01:16:22.223Z\"")),
+							Aggregates.group("$Testcase ID", Accumulators.avg("AVG: " + metric, "$" + metric))));
+
+					firstDoc += output.first().toJson() + "<br>\n";
+				}
+
+				System.out.println(firstDoc);
+				GetReporting().FuncReport("Pass", firstDoc);
+
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -206,4 +251,30 @@ public class Performance extends CommonLib {
 		return result;
 
 	}
+
+	public void listAllDocs() {
+		MongoClient mongoClient = null;
+		MongoCursor<Document> cursor = null;
+		try {
+			mongoClient = new MongoClient(MONGODB_IP, MONGODB_PORT);
+			MongoDatabase database = mongoClient.getDatabase(MONGODB_DB);
+			MongoCollection<Document> collection = database.getCollection(MONGODB_COLLECTION);
+
+			String doc = "";
+			cursor = collection.find().iterator();
+			while (cursor.hasNext()) {
+				doc += cursor.next().toJson() + "<br>\n";
+			}
+			System.out.println(doc);
+			System.out.println(collection.count());
+			GetReporting().FuncReport("Pass", doc);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			cursor.close();
+			mongoClient.close();
+		}
+	}
+
 }
