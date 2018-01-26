@@ -36,6 +36,14 @@ public class PerformanceSummary extends _CommonPage {
 		return performanceSummary;
 	}
 
+	public void setStartTime() {
+		performance.setStartTime();
+	}
+
+	public void setEndTime() {
+		performance.setEndTime();
+	}
+
 	public void getDurationSummary() {
 		performance.durationSummary();
 	}

@@ -30,7 +30,8 @@ public class Performance extends CommonLib {
 	// private String MONGODB_IP = "49.21.140.247"; //Macbook
 	private String MONGODB_IP = "49.21.15.29"; // Jenkins
 	private String MONGODB_DB = "performance";
-	private String MONGODB_COLLECTION = "cmob_performance";
+	private String COLLECTION_PEFORMANCE = "cmob_performance";
+	private String COLLECTION_EXECUTIONS = "executions";
 
 	public void click(WebElement objElement, String text) throws Exception {
 		try {
@@ -57,11 +58,11 @@ public class Performance extends CommonLib {
 			endTime = Instant.now().toEpochMilli();
 
 			System.out.println("The element <b> " + expectedText + " </b> is displayed at time: " + endTime);
-			double dur = this.getDuration(expectedText);
-			System.out.println("processing took: " + dur);
-
 			GetReporting().FuncReport("Pass",
 					"The element <b>" + expectedText + " </b> is displayed at time: " + endTime);
+
+			double dur = this.getDuration(expectedText);
+			System.out.println("processing took: " + dur);
 			GetReporting().FuncReport("Pass", "Duration is: " + dur);
 
 		} catch (Exception e) {
@@ -106,20 +107,19 @@ public class Performance extends CommonLib {
 		try {
 			mongoClient = new MongoClient(MONGODB_IP, MONGODB_PORT);
 			MongoDatabase database = mongoClient.getDatabase(MONGODB_DB);
-			MongoCollection<Document> collection = database.getCollection(MONGODB_COLLECTION);
+			MongoCollection<Document> coll_performance = database.getCollection(COLLECTION_PEFORMANCE);
+			MongoCollection<Document> coll_executions = database.getCollection(COLLECTION_EXECUTIONS);
 
 			Document doc = new Document("Testcase ID", getTestDataInstance().TestCaseID);
-			String timestamp = new java.text.SimpleDateFormat("yyyyMMddHHmmss")
-					.format(new java.util.Date(Instant.now().toEpochMilli()));
-			doc.append("Timestamp", Double.parseDouble(timestamp));
+			doc.append("Timestamp", new java.util.Date(Instant.now().toEpochMilli()));
 			String[] durations = getTestDataInstance().TCParameters.get("Timeout").split(";");
 			for (String dur : durations) {
 				String[] metric = dur.split(":");
 				doc.append(metric[0], Double.parseDouble(metric[1]));
 			}
-			collection.insertOne(doc);
+			coll_performance.insertOne(doc);
 
-			this.listAllDocs();
+			this.listAllDocs(this.COLLECTION_PEFORMANCE);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -135,26 +135,29 @@ public class Performance extends CommonLib {
 		try {
 			mongoClient = new MongoClient(MONGODB_IP, MONGODB_PORT);
 			MongoDatabase database = mongoClient.getDatabase(MONGODB_DB);
-			MongoCollection<Document> collection = database.getCollection(MONGODB_COLLECTION);
+			MongoCollection<Document> coll_performance = database.getCollection(COLLECTION_PEFORMANCE);
+			MongoCollection<Document> coll_executions = database.getCollection(COLLECTION_EXECUTIONS);
 
-			String doc = "";
-			cursor = collection.find().iterator();
-			while (cursor.hasNext()) {
-				doc += cursor.next().toJson() + "<br>\n";
-			}
-			System.out.println(doc);
-			System.out.println(collection.count());
+			cursor = coll_executions.find().sort(new Document("start_time", -1)).limit(1).iterator();
+			Document d = cursor.next();
+			Date startDate = (Date) d.get("start_time");
+			Date endDate = (Date) d.get("end_time");
+			System.out.println("Start date: " + startDate + " End date: " + endDate);
+
+			String doc = "Start time: " + startDate + "<br>\n";
+			doc += "End time: " + endDate + "<br>\n";
 			GetReporting().FuncReport("Pass", doc);
 
 			for (String id : testcaseIDs) {
+				this.listAllPerformancesByExec(id, startDate, endDate);
+
 				String[] metricList = this.getMetricNames(id);
 				String firstDoc = "";
 				for (String metric : metricList) {
-					AggregateIterable<Document> output = collection.aggregate(Arrays.asList(
+					AggregateIterable<Document> output = coll_performance.aggregate(Arrays.asList(
 							Aggregates.match(Filters.eq("Testcase ID", id)),
-							Aggregates.match(Filters.lte("Timestamp", new Date())),
-							// Aggregates.match(Filters.lte("Timestamp",
-							// "ISODate(\"2018-01-26T01:16:22.223Z\"")),
+							Aggregates.match(Filters.gte("Timestamp", new java.util.Date(startDate.getTime()))),
+							Aggregates.match(Filters.lte("Timestamp", new java.util.Date(endDate.getTime()))),
 							Aggregates.group("$Testcase ID", Accumulators.avg("AVG: " + metric, "$" + metric))));
 
 					firstDoc += output.first().toJson() + "<br>\n";
@@ -169,6 +172,58 @@ public class Performance extends CommonLib {
 			e.printStackTrace();
 		} finally {
 			cursor.close();
+			mongoClient.close();
+		}
+	}
+
+	public void setStartTime() {
+		// send results to file or DB
+		MongoClient mongoClient = null;
+		try {
+			mongoClient = new MongoClient(MONGODB_IP, MONGODB_PORT);
+			MongoDatabase database = mongoClient.getDatabase(MONGODB_DB);
+			MongoCollection<Document> coll_executions = database.getCollection(COLLECTION_EXECUTIONS);
+
+			Date startTime = new java.util.Date(Instant.now().toEpochMilli());
+			Document doc = new Document("start_time", startTime);
+			doc.append("end_time", startTime);
+			coll_executions.insertOne(doc);
+
+			this.listAllDocs(this.COLLECTION_EXECUTIONS);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			mongoClient.close();
+		}
+	}
+
+	public void setEndTime() {
+		// send results to file or DB
+		MongoClient mongoClient = null;
+		MongoCursor<Document> cursor = null;
+
+		try {
+			mongoClient = new MongoClient(MONGODB_IP, MONGODB_PORT);
+			MongoDatabase database = mongoClient.getDatabase(MONGODB_DB);
+			MongoCollection<Document> coll_executions = database.getCollection(COLLECTION_EXECUTIONS);
+
+			cursor = coll_executions.find().sort(new Document("start_time", -1)).limit(1).iterator();
+			Document d = cursor.next();
+			Date startDate = (Date) d.get("start_time");
+			String doc = d.toJson() + "<br>\n";
+			doc += "Start time: " + startDate + "<br>\n";
+			System.out.print(doc);
+			cursor.close();
+
+			coll_executions.updateOne(Filters.eq("start_time", startDate),
+					new Document("$set", new Document("end_time", new java.util.Date())));
+
+			this.listAllDocs(this.COLLECTION_EXECUTIONS);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
 			mongoClient.close();
 		}
 	}
@@ -252,13 +307,13 @@ public class Performance extends CommonLib {
 
 	}
 
-	public void listAllDocs() {
+	public void listAllDocs(String collectionName) {
 		MongoClient mongoClient = null;
 		MongoCursor<Document> cursor = null;
 		try {
 			mongoClient = new MongoClient(MONGODB_IP, MONGODB_PORT);
 			MongoDatabase database = mongoClient.getDatabase(MONGODB_DB);
-			MongoCollection<Document> collection = database.getCollection(MONGODB_COLLECTION);
+			MongoCollection<Document> collection = database.getCollection(collectionName);
 
 			String doc = "";
 			cursor = collection.find().iterator();
@@ -267,6 +322,37 @@ public class Performance extends CommonLib {
 			}
 			System.out.println(doc);
 			System.out.println(collection.count());
+			GetReporting().FuncReport("Pass", doc);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			cursor.close();
+			mongoClient.close();
+		}
+	}
+
+	public void listAllPerformancesByExec(String testcaseID, Date startDate, Date endDate) {
+		MongoClient mongoClient = null;
+		MongoCursor<Document> cursor = null;
+		try {
+			mongoClient = new MongoClient(MONGODB_IP, MONGODB_PORT);
+			MongoDatabase database = mongoClient.getDatabase(MONGODB_DB);
+			MongoCollection<Document> collection = database.getCollection(this.COLLECTION_PEFORMANCE);
+
+			String doc = "";
+			cursor = collection
+					.find(new Document("Testcase ID", testcaseID).append("Timestamp", new Document("$gte", startDate))
+							.append("Timestamp", new Document("$lte", endDate)))
+					.iterator();
+
+			int count = 0;
+			while (cursor.hasNext()) {
+				doc += cursor.next().toJson() + "<br>\n";
+				count++;
+			}
+			doc += "Number of iterations: " + count;
+			System.out.println(doc);
 			GetReporting().FuncReport("Pass", doc);
 
 		} catch (Exception e) {
