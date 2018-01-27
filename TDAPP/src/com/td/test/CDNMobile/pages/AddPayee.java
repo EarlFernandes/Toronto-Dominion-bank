@@ -881,6 +881,7 @@ public class AddPayee extends _CommonPage {
 				mobileAction.sleep(5000);
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.sleep(5000);
 				mobileAction.FuncClick(firstUSAddressFound, "First Payee Address found");
 				mobileAction.sleep(5000);
 
