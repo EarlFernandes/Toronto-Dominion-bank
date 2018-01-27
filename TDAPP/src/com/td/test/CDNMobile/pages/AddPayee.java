@@ -46,8 +46,8 @@ public class AddPayee extends _CommonPage {
 	private WebElement firstPayeeFound;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeLink[1]/XCUIElementTypeLink[1]/XCUIElementTypeStaticText[1]")
-	// @AndroidFindBy(xpath = "//android.view.View[@resource-id='result0']")
-	@AndroidFindBy(id = "result0")
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='result0']")
+	// @AndroidFindBy(id = "result0")
 	// @FindBy(id = "result0")
 	private MobileElement firstUSAddressFound;
 
