@@ -342,8 +342,7 @@ public class PayBill extends _CommonPage {
 				mobileAction.FuncClick(nextMonthButton, "Calendar Next Month clicked");
 				mobileAction.sleep(2000);
 				int nextWeekDay = getNextWeekDate();
-				nextDate = mobileAction.verifyElementUsingXPath(
-						"(//android.view.View[@content-desc='" + nextWeekDay + "'])[1]",
+				nextDate = mobileAction.verifyElementUsingXPath("(//android.view.View[@text='" + nextWeekDay + "'])[1]",
 						"Next Week Day Calendar button");
 				mobileAction.FuncClick(nextDate, "Next Date clicked");
 			} else {
