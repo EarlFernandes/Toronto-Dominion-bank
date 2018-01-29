@@ -1013,7 +1013,7 @@ public class Trade_MIT_REF extends _CommonPage {
 			mobileAction.waitP2PProgressBarVanish();
 
 			mobileAction.FuncClick(sendOrder, "Send Order");
-
+			mobileAction.waitP2PProgressBarVanish();
 			verify_StockOrderSent_Msg();
 
 		} catch (Exception e) {
