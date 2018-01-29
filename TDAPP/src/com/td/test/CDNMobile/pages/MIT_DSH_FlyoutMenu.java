@@ -118,7 +118,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Logged Out' or @text='Session fermée' or @text='已退出' or @text='已登出') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblLoggedOut;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Trade' or @label='Négociation' or @label='交易' or @label='交易']")
+	@iOSXCUITFindBy(xpath = "//*[(@label='Trade' or @label='Négociation' or @label='交易' or @label='交易') and @name='TDVIEW_TITLE']")
 	@AndroidFindBy(xpath = "//*[(@text='Trade' or @text='Négociation' or @text='交易' or @text='交易') and @resource-id='android:id/action_bar_title']")
 	private MobileElement lblTrade;
 
@@ -718,9 +718,14 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				clickFlyout(flyoutBillsLink, "flyoutBillsLink");
 
 				mobileAction.verifyElementIsDisplayed(password, "password");
-
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.ClickBackButton();
 				mobileAction.ClickBackButton();
+				}
+				else{
+					mobileAction.ClickBackButton();
+					
+				}
 				//mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 			} else {
 				String UserRole = getTestdata("UserRole", XLSheetUserIDs);
@@ -728,12 +733,12 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 					clickFlyout(flyoutBillsLink, "flyoutBillsLink");
 
-					mobileAction.verifyElementIsDisplayed(lblBill, "lblBill");
-
+					//mobileAction.verifyElementIsDisplayed(lblBill, "lblBill");
+					mobileAction.ClickBackButton();
 					// mobileAction.FuncClick(lblBill, "lblBill");
-					mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
+					/*mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
 
-					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
+					mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");*/
 				} else {
 					clickFlyout(flyoutBillsLink, "flyoutBillsLink");
 					//mobileAction.verifyElementIsDisplayed(lblMobileDepositInvesting, "Banking");
