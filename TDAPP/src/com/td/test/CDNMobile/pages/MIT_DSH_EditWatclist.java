@@ -70,7 +70,6 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/tv_item_more_option_name'])[2]")
 	private MobileElement EditCollapse;
 
-		 
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/toolbar_back_button']")
 	private MobileElement BackButtonExpand;
@@ -79,8 +78,7 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/toolbar_title']")
 	private MobileElement EditWLTitle;
 
-	
-	@iOSXCUITFindBy(xpath = "//*[@label='Cancel' or @label='Annuler' or @label='致电' or @label='致電']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Cancel' or @label='Annuler' or @label='取消' or @label='取消']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/watchlist_edit_button']")
 	private MobileElement EditWLCancel;
 
@@ -96,7 +94,7 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/toolbar_back_button']")
 	private MobileElement EditWLBckBtn;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeSearchField[@label='Search or add symbols' or contains(@label,'des symboles') or @label='搜索或添加股票代码' or @label='搜尋或添加股票代號']")
 	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
 	private MobileElement search_symbol;
 
@@ -108,15 +106,25 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/btn_clear_search_text']")
 	private MobileElement btnClear;
 
-	@iOSXCUITFindBy(accessibility = "Button_0")
+	@iOSXCUITFindBy(xpath = "//*[@label='Cancel' or contains(@label,'Annuler') or @label='取消' or @label='取消']")
 	@AndroidFindBy(id = "com.td:id/btn_cancel")
 	private MobileElement BT_CancelHome;
 
-	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@label='List 01' or @label='Liste 01' or @label='名单 01' or @label='名單 01'])[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and (@text='List 01' or @text='Liste 01' or @text='名单 01' or @text='名單 01')]")
+	/*
+	 * @iOSXCUITFindBy(xpath =
+	 * "(//XCUIElementTypeStaticText[@label='List 01' or @label='Liste 01' or @label='名单 01' or @label='名單 01'])[1]"
+	 * )
+	 * 
+	 * @AndroidFindBy(xpath =
+	 * "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and (@text='List 01' or @text='Liste 01' or @text='名单 01' or @text='名單 01')]"
+	 * ) private MobileElement ListViewExpand01;
+	 */
+
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[contains(@label,'01') or contains(@label,'List1')])[1]")
+	@AndroidFindBy(xpath = "//*[contains(@text,'01') or contains(@text,'List1')]")
 	private MobileElement ListViewExpand01;
 
-	@iOSXCUITFindBy(xpath = "(//*[@name='codeSearchButton'])[1]")
+	@iOSXCUITFindBy(xpath = "(//*[@name='editControlButton'])[1]")
 	@AndroidFindBy(xpath = "(//android.widget.CheckBox[@resource-id='com.td:id/checkbox_item_watchlist_selected'])[1]")
 	private MobileElement SymblchckBox;
 
@@ -184,10 +192,11 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 
 			mobileAction.FuncClick(BT_MoreOptions, "BT_MoreOptions");
 
-			mobileAction.FuncClick(EditCollapse, "EditCollapse");
+			mobileAction.FuncClick(EditCollapse, "Edit watchlist");
 			mobileAction.verifyElementIsDisplayed(EditWLBckBtn, "EditWLBckBtn");
-			mobileAction.FuncClick(EditWLBckBtn, "EditWLBckBtn");
 
+			mobileAction.FuncClick(EditWLBckBtn, "EditWLBckBtn");
+			// mobileAction.FuncClick(EditWLBckBtn, "EditWLBckBtn");
 			mobileAction.verifyElementIsDisplayed(btnMore, "btnMore");
 
 		} catch (Exception e) {
@@ -219,6 +228,9 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 
 			mobileAction.FuncClick(EditWLCancel, "EditWLCancel");
 
+			mobileAction.FuncClick(EditWLBckBtn, "EditWLBckBtn");
+
+			mobileAction.FuncSwipeOnce("up");
 			mobileAction.verifyElementIsDisplayed(btnMore, "btnMore");
 
 		} catch (Exception e) {
@@ -279,7 +291,11 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 
 			mobileAction.FuncClick(EditWLDelete, "EditWLDelete");
 
-			mobileAction.verifyElementIsDisplayed(btnMore, "btnMore");
+			mobileAction.FuncClick(EditWLBckBtn, "EditWLBckBtn");
+
+			mobileAction.FuncSwipeOnce("up");
+
+			mobileAction.FuncSwipeWhileElementNotFound(btnMore, false, 4, "up");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -293,14 +309,18 @@ public class MIT_DSH_EditWatclist extends _CommonPage {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
 
-			if (mobileAction.isObjExists(btnSwitchNow, 2)) {
-				mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+			/*
+			 * if (mobileAction.isObjExists(btnSwitchNow, 2)) {
+			 * mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+			 * 
+			 * mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
+			 * 
+			 * mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+			 * 
+			 * }
+			 */
 
-				mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
-
-				mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
-
-			}
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 
 			if (mobileAction.isObjExists(searchBar, 2)) {
 				mobileAction.FuncClick(searchBar, "searchBar");

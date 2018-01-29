@@ -60,31 +60,31 @@ public class MLOrdersTab extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/ordersTab")
 	private MobileElement ordersTab;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]") // @Author
-																				// -
-																				// Sushil
-																				// 21-Mar-2017
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')])[1]") // @Author
+	// -
+	// Sushil
+	// 21-Mar-2017
 	@AndroidFindBy(id = "com.td:id/txtTimeStamp")
 	private MobileElement lbltimestamp;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../following-sibling::XCUIElementTypeCell[1]/*[1]") // @Author
-																																	// -
-																																	// Sushil
-																																	// 21-Mar-2017
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../following-sibling::XCUIElementTypeCell[1]/*[1])[1]") // @Author
+	// -
+	// Sushil
+	// 21-Mar-2017
 	@AndroidFindBy(id = "com.td:id/order_type")
 	private MobileElement lblMultiLeg;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[1]") // @Author
-																								// -
-																								// Sushil
-																								// 21-Mar-2017
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[1])[1]") // @Author
+	// -
+	// Sushil
+	// 21-Mar-2017
 	@AndroidFindBy(xpath = "//*[@text='1st Leg' or @text='1re Volet']")
 	private MobileElement lbl1stleg;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[2]") // @Author
-																								// -
-																								// Sushil
-																								// 21-Mar-2017
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[2])[1]") // @Author
+	// -
+	// Sushil
+	// 21-Mar-2017
 	@AndroidFindBy(xpath = "//*[@text='1st Leg' or @text='1re Volet']/../*[2]/*[@resource-id='com.td:id/symbol']")
 	private MobileElement leg1Details;
 
@@ -94,80 +94,80 @@ public class MLOrdersTab extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[contains(@text,'1st Leg') or contains(@text,'1re Volet')]")
 	private MobileElement us;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[3]") // @Author
-																								// -
-																								// Sushil
-																								// 21-Mar-2017
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[3])[1]") // @Author
+	// -
+	// Sushil
+	// 21-Mar-2017
 	@AndroidFindBy(xpath = "//*[@text='1st Leg' or @text='1re Volet']/../*[3]/*[@resource-id='com.td:id/txtFilledQty']")
 	private MobileElement leg1QuantityFilled;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[4]") // @Author
-																								// -
-																								// Sushil
-																								// 21-Mar-2017
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[4])[1]") // @Author
+	// -
+	// Sushil
+	// 21-Mar-2017
 	@AndroidFindBy(xpath = "//*[@text='2nd Leg' or @text='2e Volet']")
 	private MobileElement lbl2ndleg;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[5]") // @Author
-																								// -
-																								// Sushil
-																								// 21-Mar-2017
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[5])[1]") // @Author
+	// -
+	// Sushil
+	// 21-Mar-2017
 	@AndroidFindBy(xpath = "//*[@text='2nd Leg' or @text='2e Volet']/../*[2]/*[@resource-id='com.td:id/symbol']")
 	private MobileElement leg2Details;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[6]") // @Author
-																								// -
-																								// Sushil
-																								// 21-Mar-2017
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[6])[1]") // @Author
+	// -
+	// Sushil
+	// 21-Mar-2017
 	@AndroidFindBy(xpath = "//*[@text='2nd Leg' or @text='2e Volet']/../*[3]/*[@resource-id='com.td:id/txtFilledQty']")
 	private MobileElement leg2QuantityFilled;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[7]") // @Author
-																								// -
-																								// Sushil
-																								// 21-Mar-2017
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[7])[1]") // @Author
+	// -
+	// Sushil
+	// 21-Mar-2017
 	@AndroidFindBy(id = "com.td:id/txtOrderType")
 	private MobileElement price;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[8]") // @Author
-																								// -
-																								// Sushil
-																								// 21-Mar-2017
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[8])[1]") // @Author
+	// -
+	// Sushil
+	// 21-Mar-2017
 	@AndroidFindBy(xpath = "//*[contains(@text,'1st Leg') or contains(@text,'1re volet')]")
 	private MobileElement goodtill;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[9]") // @Author
-																								// -
-																								// Sushil
-																								// 21-Mar-2017
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[9])[1]") // @Author
+	// -
+	// Sushil
+	// 21-Mar-2017
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/txtOrderStatus']")
 	private MobileElement orderStatus;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[10]") // @Author
-																								// -
-																								// Sushil
-																								// 21-Mar-2017
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[10])[1]") // @Author
+	// -
+	// Sushil
+	// 21-Mar-2017
 	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]")
 	private MobileElement lbllegNumber1;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[11]") // @Author
-																								// -
-																								// Sushil
-																								// 21-Mar-2017
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[11])[1]") // @Author
+	// -
+	// Sushil
+	// 21-Mar-2017
 	@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]")
 	private MobileElement lbllegNumber2;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[12]") // @Author
-																								// -
-																								// Sushil
-																								// 21-Mar-2017
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[12])[1]") // @Author
+	// -
+	// Sushil
+	// 21-Mar-2017
 	@AndroidFindBy(id = "com.td:id/txtOrderActionLeg1")
 	private MobileElement leg1Action;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[13]") // @Author
-																								// -
-																								// Sushil
-																								// 21-Mar-2017
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[13])[1]") // @Author
+	// -
+	// Sushil
+	// 21-Mar-2017
 	@AndroidFindBy(id = "com.td:id/txtOrderActionLeg2")
 	private MobileElement leg2Action;
 
