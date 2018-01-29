@@ -61,6 +61,10 @@ public class MIT_PNSCreateNewAlert extends _CommonPage {
 	// @AndroidFindBy(id="android:id/action_bar_title")
 	private MobileElement backButton;
 
+	@iOSFindBy(xpath = "//*[@label='Allow' or @label='Autoriser']")
+	@AndroidFindBy(id = "com.td:id/btn_bottom_right")
+	private MobileElement BT_AllowAlert;
+
 	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour']")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up']")
 	// @AndroidFindBy(id="android:id/action_bar_title")
@@ -433,11 +437,12 @@ public class MIT_PNSCreateNewAlert extends _CommonPage {
 				System.out.println(contextNames);
 			}
 
-			// Thread.sleep(1000);
-			// mobileAction.FuncClick(MenuUp, "MenuUp");
-			// mobileAction.FuncClick(Home, "Home");
-			// System.out.println(CL.GetDriver().getPageSource());
 			mobileAction.FuncClick(Alerts, "Alerts");
+			if (mobileAction.isObjExists(BT_AllowAlert)) {
+				mobileAction.FuncClick(BT_AllowAlert, "Allow");
+			}
+			Thread.sleep(7000);
+
 			// CL.GetDriver().getPageSource();
 		} catch (Exception e) {
 			e.printStackTrace();

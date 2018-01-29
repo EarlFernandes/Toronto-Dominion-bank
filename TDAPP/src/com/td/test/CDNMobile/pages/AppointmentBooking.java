@@ -31,11 +31,11 @@ public class AppointmentBooking extends _CommonPage {
 	private MobileElement book_appointment_now_btn;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[2]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.android.chrome:id/url_bar']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mab_cancel_text_link']")
 	private MobileElement manage_existing_appointment_link;
 
 	@iOSFindBy(xpath = "//*[@name='URL']")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.android.chrome:id/url_bar' or @resource-id='com.sec.android.app.sbrowser:id/location_bar_edit_text']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.sec.android.app.sbrowser:id/location_bar_edit_text']")
 	private MobileElement appointment_url_link;
 
 	public synchronized static AppointmentBooking get() {
@@ -101,7 +101,34 @@ public class AppointmentBooking extends _CommonPage {
 		Decorator();
 
 		try {
+			String book_Text = getTextInCurrentLocale(StringArray.ARRAY_BOOKING_APPOINTMENT_BTN);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				book_appointment_now_btn = mobileAction
+						.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + book_Text + "']", book_Text);
+			}
 			mobileAction.FuncClick(book_appointment_now_btn, "Book Appointment Now");
+			mobileAction.waitProgressBarVanish();
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void clickManageAppointmentLink() {
+		Decorator();
+
+		try {
+
+			String manage_Text = getTextInCurrentLocale(StringArray.ARRAY_MANAGE_EXISTING_APPOINTMENT_LINK);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				manage_existing_appointment_link = mobileAction
+						.verifyElementUsingXPath("//XCUIElementTypeButton[@label='" + manage_Text + "']", manage_Text);
+			}
+			mobileAction.FuncClick(manage_existing_appointment_link, "Manage my existing appointments");
 			mobileAction.waitProgressBarVanish();
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

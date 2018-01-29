@@ -37,6 +37,9 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 				this);
 	}
 
+	String sPlatform = CL.getTestDataInstance().getMobilePlatForm();
+	String sDeviceType = CL.getTestDataInstance().getMobileDeviceType();
+
 	@iOSXCUITFindBy(xpath = "//*[@name='actionSheetCancelButton']/../../XCUIElementTypeCell/*[1]")
 	@AndroidFindBy(xpath = "//*[@resource-id='android.widget.LinearLayout']")
 	private List<MobileElement> LST_WLFlyout;
@@ -57,7 +60,9 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 		Decorator();
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aQuickLinksAndroid = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_HOLDINGS),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_ORDERS),
@@ -69,7 +74,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 
 				verifyQuickLinksOrder(aQuickLinksAndroid);
 
-			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aQuickLinksiOS = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_HOLDINGS),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_ORDERS),
@@ -114,7 +120,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 		Decorator();
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aFlyoutAndroid = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOGOUT),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
@@ -135,7 +142,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 
 				verifyFlyoutOrder(aFlyoutAndroid);
 
-			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aFlyoutiOS = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOGOUT),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
@@ -222,7 +230,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 	public void verifyFlyoutBlendedInvestingFocusAfterLogout() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aFlyoutAndroid = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRANSFERS),
@@ -242,7 +251,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 
 				verifyFlyoutOrder(aFlyoutAndroid);
 
-			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aFlyoutiOS = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRANSFERS),
@@ -314,7 +324,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 		Decorator();
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aQuickLinksAndroid = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_SENDMONEY),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRANSFER),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_DEPOSIT),
@@ -323,7 +334,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 
 				verifyQuickLinksOrder(aQuickLinksAndroid);
 
-			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aQuickLinksiOS = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_SENDMONEY),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRANSFER),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_DEPOSIT),
@@ -361,7 +373,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 		Decorator();
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aFlyoutAndroid = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOGOUT),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
@@ -381,7 +394,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 
 				verifyFlyoutOrder(aFlyoutAndroid);
 
-			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aFlyoutiOS = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOGOUT),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
@@ -465,7 +479,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 	public void verifyFlyoutBankingOnlysAfterLogout() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aFlyoutAndroid = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRANSFERS),
@@ -484,7 +499,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 
 				verifyFlyoutOrder(aFlyoutAndroid);
 
-			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aFlyoutiOS = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRANSFERS),
@@ -554,7 +570,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 		Decorator();
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aQuickLinksAndroid = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_HOLDINGS),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_ORDERS),
@@ -563,7 +580,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 
 				verifyQuickLinksOrder(aQuickLinksAndroid);
 
-			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aQuickLinksiOS = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRADE),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_HOLDINGS),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_ORDERS),
@@ -600,7 +618,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 		Decorator();
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aFlyoutAndroid = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOGOUT),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
@@ -621,7 +640,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 
 				verifyFlyoutOrder(aFlyoutAndroid);
 
-			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aFlyoutiOS = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOGOUT),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
@@ -708,7 +728,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 	public void verifyFlyoutInvestingOnlyAfterLogout() {
 		Decorator();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aFlyoutAndroid = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRANSFERS),
@@ -728,7 +749,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 
 				verifyFlyoutOrder(aFlyoutAndroid);
 
-			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aFlyoutiOS = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRANSFERS),
@@ -800,7 +822,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 		Decorator();
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aQuickLinksAndroid = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_SENDMONEY),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRANSFER),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_DEPOSIT),
@@ -814,7 +837,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 
 				verifyQuickLinksOrder(aQuickLinksAndroid);
 
-			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aQuickLinksiOS = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_SENDMONEY),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_TRANSFER),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_QUICKLINK_DEPOSIT),
@@ -865,7 +889,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 		Decorator();
 
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aFlyoutAndroid = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOGOUT),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
@@ -886,7 +911,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 
 				verifyFlyoutOrder(aFlyoutAndroid);
 
-			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aFlyoutiOS = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOGOUT),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
@@ -972,7 +998,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 
 	public void verifyFlyoutBlendedNotInvestingFocusAfterLogout() {
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aFlyoutAndroid = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRANSFERS),
@@ -992,7 +1019,8 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 
 				verifyFlyoutOrder(aFlyoutAndroid);
 
-			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+			} else if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				String[] aFlyoutiOS = { getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_HOME),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_MYACCOUNTS),
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRANSFERS),
@@ -1052,9 +1080,9 @@ public class MIT_DSHNewProfileLogic extends _CommonPage {
 						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PRIVACYSECURITY) };
 
 				verifyFlyoutOrder(aFlyoutiOSTab);
-				
+
 			}
-			
+
 			// Trade flyout ?? //FIXME
 
 		} catch (Exception e) {

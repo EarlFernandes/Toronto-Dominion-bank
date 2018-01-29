@@ -58,11 +58,11 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Search or add symbols' or @text='Rechercher ou ajouter des symboles' or @text='搜索或添加股票代码' or @text='搜尋或添加股票代號']")
 	private MobileElement searchBar;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeSearchField[@label='Search or add symbols' or contains(@label,'des symboles') or @label='搜索或添加股票代码' or @label='搜尋或添加股票代號']")
 	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
 	private MobileElement search_symbol;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Symbol then month or strike' or contains(@label,'Entrez le')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeSearchField[@label='Search or add symbols' or contains(@label,'des symboles') or @label='搜索或添加股票代码' or @label='搜尋或添加股票代號']")
 	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
 	private MobileElement search_symbol_option;
 
@@ -74,7 +74,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'The symbol you entered is not valid') or contains(@text,'Le symbole entr? nest pas valide; veuillez lentrer')]")
 	private MobileElement info;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='RESULTS' or @label='RÉSULTATS']")
+	@iOSXCUITFindBy(xpath = "//*[@label='RESULTS' or @label='RÉSULTATS' or @label='结果' or @label='結果']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/classificationTexView' or @resource-id='com.td:id/txt_results') and (@text='RESULTS' or @text='RÉSULTATS' or @text='结果' or @text='結果')]")
 	private MobileElement hdrRESULTS;
 
@@ -94,15 +94,22 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='banner' or contains(@label,'Entrez le')]/*[1]")
+	// @iOSXCUITFindBy(xpath = "//*[@label='banner' or
+	// contains(@label,'bannière')]/*[1]")
+	// @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@label='banner' or
+	// contains(@label,'bannière')]/*[1]/*[1]/*[1]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Back' or @label='Retour' or @name='NAVIGATION_ITEM_BACK']")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back1;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='RECENT SEARCHES' or @label='RÉSULTATS']")
+	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour' or @name='NAVIGATION_ITEM_BACK']")
+	private MobileElement BT_Back_QuoteSearchSymbolScreen_Markets;
+
+	@iOSXCUITFindBy(xpath = "//*[@label='RECENT SEARCHES' or @label='RECHERCHES RÉCENTES' or @label='最近的搜索' or @label='最近的搜尋']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/classificationTexView' and (@text='RECENT SEARCHES' or @text='RECHERCHES RÉCENTES' or @text='最近的搜索' or @text='最近的搜尋')]")
 	private MobileElement hdrRECENT;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Clear text' or contains(@label,'Entrez le')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Clear text' or contains(@label,'Effacer le texte') or contains(@label,'清除文本')]")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/btn_clear_search_text']")
 	private MobileElement btnClear;
 
@@ -110,7 +117,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Indices']")
 	private MobileElement btnIndices;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Mutual Funds' or contains(@label,'Entrez le')]")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Mutual Funds' or contains(@label,'Fonds mutuels') or @label='互惠基金' or @label='互惠基金']")
 	// @AndroidFindBy(xpath = "//android.widget.TextView[@text='Mutual ?
 	// Funds']")
 	@AndroidFindBy(id = "com.td:id/txt_tradeMutualFund")
@@ -124,11 +131,11 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/edit_search_quote' and @text='Enter name or symbol']")
 	private MobileElement symHeader;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='ADD TO OR REMOVE FROM WATCHLIST' or @label='RÉSULTATS']")
+	@iOSXCUITFindBy(xpath = "//*[@label='ADD TO OR REMOVE FROM WATCHLIST' or @label='AJOUTER OU SUPPRIMER DE LA LISTE DE SURVEILLANCE' or @label='添加至自选股观察名单或从自选股观察名单中移除' or @label='新增至或從自選股觀察名單中移除']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title' and (@text='Add to or remove from watchlist' or @text='Ajouter ou supprimer de la liste de surveillance' or @text='添加至自选股观察名单或从自选股观察名单中移除' or @text='新增至或從自選股觀察名單中移除')]")
 	private MobileElement lblAddWatchlist;
 
-	@iOSXCUITFindBy(accessibility = "Button_0")
+	@iOSXCUITFindBy(xpath = "//*[@label='Cancel' or @label='Annuler' or @label='取消' or @label='取消']")
 	@AndroidFindBy(id = "com.td:id/btn_cancel")
 	private MobileElement BT_CancelHome;
 
@@ -227,7 +234,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 
 			mobileAction.FuncClick(btnClear, "btnClear");
 
-			mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+			//mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
 
 			enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs"));
 
@@ -379,7 +386,9 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 
 					mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
 
-					mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+					// mobileAction.verifyElementIsDisplayed(hdrRECENT,
+					// "hdrRECENT");
+					mobileAction.verifyElementIsDisplayed(hdrRESULTS, "hdrRESULTS");
 
 				}
 				clickOtherSymbolUSCAD(aSymbolArray[i]);
@@ -464,7 +473,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 
 					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
 
-					mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+					mobileAction.verifyElementIsDisplayed(hdrRESULTS, "hdrRESULTS");
 
 					clickFirstSymbolUSCAD(aSymbolArray[i]);
 
@@ -488,7 +497,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 
 					mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
 
-					mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+					mobileAction.verifyElementIsDisplayed(hdrRESULTS, "hdrRESULTS");
 
 					clickFirstSymbolUSCAD(aSymbolArray[i]);
 
@@ -554,7 +563,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 					mobileAction.verifyElementIsDisplayed(
 							(mobileAction.verifyElementUsingXPath(sXPathAnd, aSymbolArray[i])), aSymbolArray[i]);
 
-					mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(BTN_BackMod), "BTN_BackMod");
+					//mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(BTN_BackMod), "BTN_BackMod");
 
 					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
 
@@ -624,7 +633,10 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 
 					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
 
-					mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+					// mobileAction.verifyElementIsDisplayed(hdrRECENT,
+					// "hdrRECENT");
+					mobileAction.verifyElementIsDisplayed(hdrRESULTS, "hdrRESULTS"); // New
+																						// requirement
 
 					clickFirstSymbolUSCAD(aSymbolArray[i]);
 
@@ -648,7 +660,10 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 
 					mobileAction.FuncClickElementCoordinates(BT_Back1, "BT_Back1");
 
-					mobileAction.verifyElementIsDisplayed(hdrRECENT, "hdrRECENT");
+					// mobileAction.verifyElementIsDisplayed(hdrRECENT,
+					// "hdrRECENT");
+					mobileAction.verifyElementIsDisplayed(hdrRESULTS, "hdrRESULTS"); // New
+																						// requirement
 
 					clickFirstSymbolUSCAD(aSymbolArray[i]);
 

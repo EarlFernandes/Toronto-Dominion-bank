@@ -14,6 +14,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class MLConfirmOrderReceipt extends _CommonPage {
 
@@ -46,7 +47,7 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Multi-Leg') or contains(@text,'Composantes multiples')]")
 	private MobileElement lblOrderMultiLeg;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[1]") // @Author
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[1])[1]") // @Author
 																								// -
 																								// Sushil
 																								// 21-Mar-2017
@@ -74,7 +75,8 @@ public class MLConfirmOrderReceipt extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[contains(@text,'Receipt') or contains(@text,'Reçu')]")
 	private MobileElement hdrReceipt;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'Menu')]")
+//	@iOSFindBy(xpath = "//*[contains(@label,'Menu')]")
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement MenuUp;
 

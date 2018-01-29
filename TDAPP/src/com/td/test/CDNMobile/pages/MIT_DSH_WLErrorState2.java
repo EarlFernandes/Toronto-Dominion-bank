@@ -41,8 +41,8 @@ public class MIT_DSH_WLErrorState2 extends _CommonPage {
 				this);
 	}
 
-	@iOSXCUITFindBy(xpath = "(//*[@label='TRADE' or @label='NÉGOCIATION' or @label='交易' or @label='交易'])[2]")
-	@AndroidFindBy(xpath = "//*[@text='Trade' or @text='Négociation' or @text='交易' or @text='交易']")
+	@iOSFindBy(xpath = "//*[@label='TRADE' or @label='NÉGOCIATION' or @label='交易' or @label='交易']")
+	@AndroidFindBy(xpath = "//*[(@text='TRADE' or @text='NÉGOCIATION' or @text='交易' or @text='交易') and @resource-id='com.td:id/text_view']")
 	private MobileElement QL_TRADE;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name='icon_lrg_legal']")
@@ -105,25 +105,32 @@ public class MIT_DSH_WLErrorState2 extends _CommonPage {
 
 			}
 
-			// mobileAction.verifyElementIsDisplayed(EmptyWLDesc,
-			// "EmptyWLDesc");
+			// mobileAction.verifyElementIsDisplayed(EmptyWLDesc,"EmptyWLDesc");
 
-			mobileAction.FuncSwipeWhileElementNotFound(btnMore, true, 3, "up");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				mobileAction.FuncSwipeWhileElementNotFound(btnMore, true, 3, "up");
+			}
 
-			mobileAction.verifyElementIsDisplayed(TandCicon, "TandCicon");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.verifyElementIsDisplayed(TandCicon, "TandCicon");
+			}
 
 			mobileAction.FuncVerifyTextEquals(TandCMsg, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_WLERRORMSG));
 
-			mobileAction.FuncVerifyTextEquals(TandCTDApp,
-					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_WLERRORTC));
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				mobileAction.FuncVerifyTextEquals(TandCTDApp,
+						getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_WLERRORTC));
 
-			mobileAction.verifyElementIsDisplayed(CTAbutton, "CTAbutton");
+				mobileAction.verifyElementIsDisplayed(CTAbutton, "CTAbutton");
 
-			mobileAction.FuncClick(BT_Back, "BT_Back");
+				mobileAction.FuncClick(BT_Back, "BT_Back");
+			}
 
 			mobileAction.FuncClick(QL_TRADE, "QL_TRADE");
 
-			mobileAction.verifyElementIsDisplayed(TandCicon, "TandCicon");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.verifyElementIsDisplayed(TandCicon, "TandCicon");
+			}
 
 			mobileAction.FuncVerifyTextEquals(TandCMsg, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_WLERRORMSG));
 
@@ -145,7 +152,9 @@ public class MIT_DSH_WLErrorState2 extends _CommonPage {
 
 			}
 
-			mobileAction.verifyElementIsDisplayed(TandCicon, "TandCicon");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.verifyElementIsDisplayed(TandCicon, "TandCicon");
+			}
 
 			mobileAction.FuncVerifyTextEquals(TandCMsg, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_WLERRORMSG));
 

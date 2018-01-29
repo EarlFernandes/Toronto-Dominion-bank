@@ -44,7 +44,7 @@ public class MLConfirmOrder extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/warning_text")
 	private MobileElement warning_text;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]") // @Author
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')])[1]") // @Author
 																				// -
 																				// Sushil
 																				// 21-Mar-2017
@@ -245,6 +245,12 @@ public class MLConfirmOrder extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/positiveButton")
 	private MobileElement agreeButton;
 
+	@iOSFindBy(xpath = "//*[@label='Agree' or @label='Accepte']") // @Author -
+	// Sushil
+	// 08-Feb-2017
+	@AndroidFindBy(id = "com.tdbank:id/quick_link_item_layout_button")
+	private MobileElement usQLAccounts;
+
 	public void verifyStockOptionConfirmOrder() {
 		Decorator();
 		try {
@@ -399,6 +405,13 @@ public class MLConfirmOrder extends _CommonPage {
 	}
 
 	public void Test() {
-		System.out.println(CL.GetDriver().getPageSource());
+		Decorator();
+		try {
+			usQLAccounts.click();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// System.out.println(CL.GetDriver().getPageSource());
+
 	}
 }

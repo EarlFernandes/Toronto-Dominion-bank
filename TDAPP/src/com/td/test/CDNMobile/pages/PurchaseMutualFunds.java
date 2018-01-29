@@ -22,7 +22,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	private static String MIN_AMOUNT = "100.00";
 	private static String MAX_AMOUNT = "999999.99";
 
-	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText | //XCUIElementTypeNavigationBar/XCUIElementTypeOther")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement page_title;
 
@@ -86,7 +86,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/checkbox_description']")
 	private MobileElement consent_checkbox_description;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeOther[10]/XCUIElementTypeStaticText[1]")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther[10]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer' and @index='7']/android.widget.TextView")
 	private MobileElement legal_text;
 
@@ -102,7 +102,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	String phoneReg = "\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
 	String emailReg = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTable/../XCUIElementTypeOther[1]/XCUIElementTypeButton")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/../XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton")
 	@AndroidFindBy(id = "com.td:id/purchasePreviewButton")
 	private MobileElement preview_purchase_button;
 
@@ -474,7 +474,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 				}
 				FundInListText = FundInListText + "]";
 			} else {
-				FundInListText = "//XCUIElementTypeStaticText[@label='";
+				FundInListText = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[@label='";
 				for (int i = 0; i < lengthOfArray; i++) {
 					FundInListText = FundInListText + selectedFundArray[i].trim() + "'";
 					if (i < lengthOfArray - 1) {
@@ -695,6 +695,35 @@ public class PurchaseMutualFunds extends _CommonPage {
 
 		} catch (Exception e) {
 			System.err.println("TestCase has failed to VerifyMaxmumAmount.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			mobileAction.Report_Fail("Exception for VerifyMaxmumAmount");
+		}
+	}
+
+	public void VerifyMaximumAmountError() {
+		Decorator();
+		try {
+			String amounGreaterthanMaximum = "1000000.00";
+			fillPurchaseForm(amounGreaterthanMaximum);
+			clickpreview();
+
+			if (!mobileAction.verifyElementIsPresent(error_message)) {
+				System.out.println("No error message for amount:" + amounGreaterthanMaximum);
+				mobileAction.Report_Fail("Failed to find error message for amount:" + amounGreaterthanMaximum);
+				return;
+			}
+			String errorMessage = checkErrorMessageIsFound();
+			if (errorMessage.isEmpty()) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				mobileAction.Report_Fail("No error message for amount " + amounGreaterthanMaximum);
+				return;
+			} else {
+				System.out.println("Found error message:" + errorMessage);
+				mobileAction.Report_Pass_Verified(errorMessage);
+			}
+
+		} catch (Exception e) {
+			System.err.println("TestCase has failed to VerifyMaximumAmountError.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			mobileAction.Report_Fail("Exception for VerifyMaxmumAmount");
 		}

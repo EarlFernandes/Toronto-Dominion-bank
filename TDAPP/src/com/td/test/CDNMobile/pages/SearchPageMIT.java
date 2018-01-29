@@ -64,6 +64,7 @@ public class SearchPageMIT extends _CommonPage {
 	// String xpathSymbolFlag_ios =
 	// "//XCUIElementTypeStaticText[contains(@label,'RESULTS')]/../XCUIElementTypeCell[contains(@label,'US')]";
 	String xpathSymbolFlag_ios = "//XCUIElementTypeCell[contains(@label,'US')]";
+	String xpathSymbolFlag_ios_SearchResults = "//XCUIElementTypeTable[@name='Search results' or @name='Résultats de la recherche']/*/following-sibling::XCUIElementTypeCell[contains(@label,'US')]";
 	String xpathSymbolFlag_ios1 = "//XCUIElementTypeCell[contains(@label,'CA') or @label='Comptant CAN']";
 	String xpathSymbolName = "//*[@id='com.td:id/market_name']";
 
@@ -182,9 +183,17 @@ public class SearchPageMIT extends _CommonPage {
 	{
 		Decorator();
 		try {
-			mobileAction.verifyElementIsDisplayed(search_symbol, "Search Screen");
+			// mobileAction.verifyElementIsDisplayed(search_symbol, "Search
+			// Screen");
+			search_symbol.isDisplayed();
+			CL.GetReporting().FuncReport(PASS, "Search Screen displayed.");
 		} catch (Exception e) {
 			e.printStackTrace();
+			try {
+				CL.GetReporting().FuncReport(FAIL, "Search Screen displayed.");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 
@@ -196,8 +205,11 @@ public class SearchPageMIT extends _CommonPage {
 		String sSymbolName = "";
 		String property = "";
 		try {
-			mobileAction.FuncClick(search_symbol, "search_symbol");
-			mobileAction.FuncSendKeys(search_symbol, getTestdata("Symbol", "UserIDs") + " ");
+			/*
+			 * mobileAction.FuncClick(search_symbol, "search_symbol");
+			 * mobileAction.FuncSendKeys(search_symbol, getTestdata("Symbol",
+			 * "UserIDs") + " ");
+			 */
 			enterSymbol(search_symbol, getTestdata("Symbol", "UserIDs"));
 			String xpathFlag = "";
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -208,7 +220,7 @@ public class SearchPageMIT extends _CommonPage {
 				else
 					property = "name";
 			} else {
-				xpathFlag = xpathSymbolFlag_ios;
+				xpathFlag = xpathSymbolFlag_ios_SearchResults;
 				temp = 0;
 
 				// property = "name";

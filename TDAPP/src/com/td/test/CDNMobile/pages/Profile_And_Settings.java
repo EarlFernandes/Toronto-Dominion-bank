@@ -86,8 +86,8 @@ public class Profile_And_Settings extends _CommonPage {
 		try {
 			String view_profile_xpath;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				view_profile_xpath = "//*[@label='" + getTextInCurrentLocale(StringArray.ARRAY_VIEW_PROFILE_LINK_IOS)
-						+ "']";
+				view_profile_xpath = "//XCUIElementTypeButton[contains(@label,'"
+						+ getTextInCurrentLocale(StringArray.ARRAY_VIEW_PROFILE_LINK_AND) + "')]";
 			} else {
 				view_profile_xpath = "//android.widget.TextView[@text='"
 						+ getTextInCurrentLocale(StringArray.ARRAY_VIEW_PROFILE_LINK_AND) + "']";
@@ -301,6 +301,23 @@ public class Profile_And_Settings extends _CommonPage {
 			}
 			mobileAction.FuncClick(securitySettings, "Security Setttings Button");
 			mobileAction.waitProgressBarVanish();
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void clickCreditScoreSettings() {
+		Decorator();
+		try {
+			// click credit score settings
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

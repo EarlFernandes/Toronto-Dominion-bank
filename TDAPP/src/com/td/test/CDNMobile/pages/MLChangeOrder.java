@@ -46,7 +46,7 @@ public class MLChangeOrder extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/btn_order")
 	private MobileElement btn_ORDERS;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]/../*[4]/*[1]") // @Author
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')]/../*[4]/*[1])[1]") // @Author
 																								// -
 																								// Sushil
 																								// 21-Mar-2017
@@ -112,7 +112,7 @@ public class MLChangeOrder extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/warning_text")
 	private MobileElement messageWarning;
 
-	@iOSFindBy(xpath = "//*[contains(@label,'EDT') or contains(@label,'HAE')]") // @Author
+	@iOSFindBy(xpath = "(//*[contains(@label,'EDT') or contains(@label,'EST') or contains(@label,'HNE') or contains(@label,'HAE')])[1]") // @Author
 																				// -
 																				// Sushil
 																				// 21-Mar-2017
@@ -200,9 +200,8 @@ public class MLChangeOrder extends _CommonPage {
 																															// -
 																															// Sushil
 																															// 16-Feb-2017
-	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/ticker_layout']/android.widget.TextView")
-	// @AndroidFindBy(xpath = "//*[contains(@text,'1st') or
-	// contains(@text,'1re')]/../following-sibling::*/*/*[@resource-id='com.td:id/amountEditText']")
+//	@AndroidFindBy(xpath = "//*[contains(@text,'1st') or contains(@text,'1re')]/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/ticker_layout']/android.widget.TextView")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/multi_leg1_ticker']/*[1]")
 	private MobileElement leg1Option;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'1st') or contains(@label,'1re')]/../following-sibling::XCUIElementTypeCell[2]/*[2]") // @Author
@@ -236,9 +235,8 @@ public class MLChangeOrder extends _CommonPage {
 																															// -
 																															// Sushil
 																															// 16-Feb-2017
-	@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/ticker_layout']/android.widget.TextView")
-	// @AndroidFindBy(xpath = "//*[contains(@text,'1st') or
-	// contains(@text,'1re')]/../following-sibling::*/*/*[@resource-id='com.td:id/amountEditText']")
+//	@AndroidFindBy(xpath = "//*[contains(@text,'2nd') or contains(@text,'2e')]/../following-sibling::android.widget.LinearLayout[@resource-id='com.td:id/ticker_layout']/android.widget.TextView")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/multi_leg2_ticker']/*[1]")
 	private MobileElement leg2Option;
 
 	@iOSFindBy(xpath = "//*[contains(@label,'2nd') or contains(@label,'2e')]/../following-sibling::XCUIElementTypeCell[2]/*[2]") // @Author

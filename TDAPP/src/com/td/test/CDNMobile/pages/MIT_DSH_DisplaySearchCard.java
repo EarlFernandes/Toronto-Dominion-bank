@@ -51,12 +51,7 @@ public class MIT_DSH_DisplaySearchCard extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Search or add symbols' or @text='Rechercher ou ajouter des symboles']")
 	private MobileElement searchBar;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Enter name or symbol' or contains(@label,'Entrez le')]") // @Author
-																									// -
-																									// Sushil
-																									// 03-Feb-2017
-	// @iOSFindBy(xpath = "//*[@name='TextField_0']") // @Author - Sushil
-	// 03-Feb-2017
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeSearchField[@label='Search or add symbols' or contains(@label,'des symboles') or @label='搜索或添加股票代码' or @label='搜尋或添加股票代號']")
 	@AndroidFindBy(id = "com.td:id/edt_search_field_search_mode")
 	private MobileElement search_symbol;
 
@@ -146,7 +141,7 @@ public class MIT_DSH_DisplaySearchCard extends _CommonPage {
 
 			mobileAction.FuncClick(btnCancel, "< btnCancel");
 
-			mobileAction.verifyElementIsDisplayed(hdrHome, "hdrHome on Dashboard");
+			mobileAction.verifyElementIsDisplayed(searchBar, "hdrHome on Dashboard");
 
 		} catch (Exception e) {
 			e.printStackTrace();

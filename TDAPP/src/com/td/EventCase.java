@@ -19,6 +19,8 @@ import com.td.test.myspend.TDAppHomePage;
 import com.td.test.myspend.TourPage;
 import com.td.test.myspend.TransactionHistory;
 
+import com.td.test.TDI.*;
+
 public class EventCase {
 
 	private enum functionNames {
@@ -47,7 +49,7 @@ public class EventCase {
 
 		ConfirmOrderCancel, ValidateChangeConfirmOrderBuy_Sell, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, ChangeDefaultCard, CardDetails_deleteicon, ConfirmPayee_InvalidAmount, EditEmailAddressWithInvalidChar,
 
-		Dashboard_Authentication, Dashboard_UnAuthentication, selectFirstLocation,
+		Dashboard_Authentication, Dashboard_UnAuthentication, selectFirstLocation, VerifyUSDConversionRate, ClickQuoteButton, VerifyMaximumAmountError, clickManageAppointmentLink, VerifyBookAppointmentIconNotDisplayed, VerifyQuoteFundDetailsPageHeader,
 
 		Delete_usr, Deposit_Header, DepositChequeHeader, END,
 
@@ -234,7 +236,11 @@ public class EventCase {
 		verifyReplaceDamagedCardHeader, ClickReplaceDamagedCardBtn, verifyReplaceDamagedCardDirectionalCopy, verifyDamagedCardForm,
 
 		// myspend
-		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_changeCategory, DailyDigest_verifyCategoryMessage, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, MySpendPreferences_clickActiveAccounts, MySpendTransfers_clickBetweenMyAccounts, MySpendTransfers_PerformTransfer, MySpendPrefernces_disableAccounts, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, Preferences_verifyHomePage, TourPage_clickConnectTDApp, TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SideMenu_verifyNavigationWithinMySpend, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SpendingInsight_verifyAccountsSelected, TransactionHistory_verifySelectedAccounts, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickTransfers, SideMenu_clickGetTDAppButton, click_PreferencesLink
+		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_changeCategory, DailyDigest_verifyCategoryMessage, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, MySpendPreferences_clickActiveAccounts, MySpendTransfers_clickBetweenMyAccounts, MySpendTransfers_PerformTransfer, MySpendPrefernces_disableAccounts, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, Preferences_verifyHomePage, TourPage_clickConnectTDApp, TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SideMenu_verifyNavigationWithinMySpend, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SpendingInsight_verifyAccountsSelected, TransactionHistory_verifySelectedAccounts, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickTransfers, SideMenu_clickGetTDAppButton, click_PreferencesLink,
+
+		// MIT Refactor
+
+		HomeScreen_click_Markets, Trade_MIT_REF_searchAndClickMarketSymbol, Trade_MIT_REF_verifyTradeSymbols, Trade_MIT_REF_QuoteverifyRecentSearchSymbol, Investing_MIT_REF_verifyHoldingsDetails, Investing_MIT_REF_clickHoldingsTab, Trade_MIT_REF_verifyExchangeAgreementErrorDetails, Investing_MIT_REF_clickTradeQuickLink, Trade_MIT_REF_ClickEnterNameOrSymbol, Trade_MIT_REF_verifyFirstOrderPlaced, Trade_MIT_REF_verifyQuoteSymbol, HomeScreen_clickQuoteQuickLink, Trade_MIT_REF_goBack, Trade_MIT_REF_verifyRecentSearchSymbol, Trade_MIT_REF_goBackToHome, Investing_MIT_REF_buyHoldingsETF, Investing_MIT_REF_sendETFOrder, Investing_MIT_REF_clickHoldingsETF, Investing_MIT_REF_clickAccount_Multiple, Investing_MIT_REF_verifyTabs, Trade_MIT_REF_cancelOrder, Trade_MIT_REF_changeOrder, Trade_MIT_REF_click_RecentOrder, Trade_MIT_REF_click_Orders_Link, Trade_MIT_REF_verify_StockOrderSent_Msg, Trade_MIT_REF_clickSendOrder, Trade_MIT_REF_sendStockOrder, Trade_MIT_REF_verifyTradeHeader, Trade_MIT_REF_verifyTradeElements, Trade_MIT_REF_EnterNameOrSymbol, Trade_MIT_REF_verifyQuoteDetails,
 
 	}
 
@@ -258,6 +264,128 @@ public class EventCase {
 		//// Trade.get().verifyActionShortSellandBuyToCover();
 		//// break;
 		//
+
+		case HomeScreen_click_Markets:
+			HomeScreen.get().clickMarkets();
+			break;
+
+		case Trade_MIT_REF_searchAndClickMarketSymbol:
+			Trade_MIT_REF.get().searchAndClickMarketSymbol();
+			break;
+
+		case Trade_MIT_REF_verifyTradeSymbols:
+			Trade_MIT_REF.get().verifyTradeSymbols();
+			break;
+
+		case Investing_MIT_REF_verifyHoldingsDetails:
+			Investing_MIT_REF.get().verifyHoldingsDetails();
+			break;
+
+		case Investing_MIT_REF_clickHoldingsTab:
+			Investing_MIT_REF.get().clickHoldingsTab();
+			break;
+
+		case Trade_MIT_REF_verifyExchangeAgreementErrorDetails:
+			Trade_MIT_REF.get().verifyExchangeAgreementErrorDetails();
+			break;
+
+		case Investing_MIT_REF_clickTradeQuickLink:
+			Investing_MIT_REF.get().clickTradeQuickLink();
+			break;
+
+		case Trade_MIT_REF_verifyQuoteSymbol:
+			Trade_MIT_REF.get().verifyQuoteSymbol();
+			break;
+
+		case HomeScreen_clickQuoteQuickLink:
+			HomeScreen.get().clickQuoteQuickLink();
+			break;
+
+		case Investing_MIT_REF_buyHoldingsETF:
+			Investing_MIT_REF.get().buyHoldingsETF();
+			break;
+
+		case Investing_MIT_REF_sendETFOrder:
+			Investing_MIT_REF.get().sendETFOrder();
+			break;
+
+		case Investing_MIT_REF_clickHoldingsETF:
+			Investing_MIT_REF.get().clickHoldingsETF();
+			break;
+
+		case Investing_MIT_REF_verifyTabs:
+			Investing_MIT_REF.get().verifyTabs();
+			break;
+
+		case Investing_MIT_REF_clickAccount_Multiple:
+			Investing_MIT_REF.get().clickAccount_Multiple();
+			break;
+
+		case Trade_MIT_REF_cancelOrder:
+			Trade_MIT_REF.get().cancelOrder();
+			break;
+
+		case Trade_MIT_REF_changeOrder:
+			Trade_MIT_REF.get().changeOrder();
+			break;
+
+		case Trade_MIT_REF_click_RecentOrder:
+			Trade_MIT_REF.get().click_RecentOrder();
+			break;
+
+		case Trade_MIT_REF_verifyFirstOrderPlaced:
+			Trade_MIT_REF.get().verifyFirstOrderPlaced();
+			break;
+
+		case Trade_MIT_REF_verifyQuoteDetails:
+			Trade_MIT_REF.get().verifyQuoteDetails();
+			break;
+
+		case Trade_MIT_REF_click_Orders_Link:
+			Trade_MIT_REF.get().click_Orders_Link();
+			break;
+
+		case Trade_MIT_REF_clickSendOrder:
+			Trade_MIT_REF.get().clickSendOrder();
+			break;
+
+		case Trade_MIT_REF_verify_StockOrderSent_Msg:
+			Trade_MIT_REF.get().verify_StockOrderSent_Msg();
+			break;
+
+		case Trade_MIT_REF_sendStockOrder:
+			Trade_MIT_REF.get().sendStockOrder();
+			break;
+
+		case Trade_MIT_REF_EnterNameOrSymbol:
+			Trade_MIT_REF.get().EnterNameOrSymbol();
+			break;
+
+		case Trade_MIT_REF_ClickEnterNameOrSymbol:
+			Trade_MIT_REF.get().ClickEnterNameOrSymbol();
+			break;
+
+		case Trade_MIT_REF_verifyTradeHeader:
+			Trade_MIT_REF.get().verifyTradeHeader();
+			break;
+
+		case Trade_MIT_REF_verifyTradeElements:
+			Trade_MIT_REF.get().verifyTradeElements();
+			break;
+
+		case Trade_MIT_REF_verifyRecentSearchSymbol:
+			Trade_MIT_REF.get().verifyRecentSearchSymbol();
+			break;
+
+		case Trade_MIT_REF_QuoteverifyRecentSearchSymbol:
+			Trade_MIT_REF.get().QuoteverifyRecentSearchSymbol();
+			break;
+
+		case Trade_MIT_REF_goBackToHome:
+			Trade_MIT_REF.get().goBackToHome();
+			break;
+
+		// Trade_MIT_REF_goBack TODO::
 
 		case TransfersHistory_clickUpdateRequestOnActivity:
 			TransfersHistory.get().clickUpdateRequestOnActivity();
@@ -2421,7 +2549,7 @@ public class EventCase {
 			break;
 
 		case tapInvesting:
-			MainScreenMIT.get().tapInvesting();
+			MIT_DSHQuickLinks.get().tapInvesting();
 			break;
 		case clickInvestingTrade:
 			TradeMIT.get().clickInvestingTrade();
@@ -3340,6 +3468,10 @@ public class EventCase {
 			FundDetails.get().VerifyFundDetailsPageHeader();
 			break;
 
+		case VerifyQuoteFundDetailsPageHeader:
+			FundDetails.get().VerifyQuoteFundDetailsPageHeader();
+			break;
+
 		case VerifyFundCategory:
 			FundDetails.get().VerifyFundCategory();
 			break;
@@ -3555,6 +3687,17 @@ public class EventCase {
 			PreviewPurchase.get().VerifyFundfactsAcknowledgement();
 			break;
 
+		case VerifyUSDConversionRate:
+			Investing.get().VerifyUSDConversionRate();
+			break;
+
+		case ClickQuoteButton:
+			FundDetails.get().ClickQuoteButton();
+			break;
+
+		case VerifyMaximumAmountError:
+			PurchaseMutualFunds.get().VerifyMaximumAmountError();
+			break;
 		// End of Purchase Mutual funds
 
 		// CLIP
@@ -3640,6 +3783,10 @@ public class EventCase {
 		case verifyAppointmentURLLink:
 			AppointmentBooking.get().verifyAppointmentURLLink();
 			break;
+
+		case VerifyBookAppointmentIconNotDisplayed:
+			Branch.get().VerifyBookAppointmentIconNotDisplayed();
+			break;
 		// End of MAB
 
 		// Damaged Card
@@ -3653,6 +3800,10 @@ public class EventCase {
 
 		case verifyReplaceDamagedCardHeader:
 			WebViewPage.get().verifyDamagedCardReplacementFormTitle();
+			break;
+
+		case clickManageAppointmentLink:
+			AppointmentBooking.get().clickManageAppointmentLink();
 			break;
 		// End of Damaged card
 

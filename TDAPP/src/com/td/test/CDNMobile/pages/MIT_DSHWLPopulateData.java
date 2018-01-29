@@ -136,12 +136,12 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 		Decorator();
 		try {
 
-			String xpathWLSymbol = "//*[@label='" + sSymbol + "' or @text='" + sSymbol + "']";
+			String xpathWLSymbol = "//*[contains(@label,'" + sSymbol + "') or @text='" + sSymbol + "']";
 			String xpathWLSymbolQuotePage = "//*[contains(@label,'" + sSymbol + "')]";
 
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbol, true, 4, "up");
 
-			Thread.sleep(10000);
+			Thread.sleep(20000);
 			if (!CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementTextContainsReverse(
 						mobileAction.mobileElementUsingXPath(xpathWLSymbolQuotePage), sSymbol);
@@ -168,7 +168,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 				String xpathWLSymbolBuyButton = "(//*[@text='"
 						+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY) + "'])[1]";
 				mobileAction.FuncSwipeOnce("left");
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolBuyButton, false, 10, "left");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolBuyButton, false, 20, "left");
 				mobileAction.FuncClick(
 						(MobileElement) CL.GetDriver().findElements(By.id("com.td:id/button_buy")).get(iRow),
 						"Buy Button");
@@ -201,7 +201,7 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 				String xpathWLSymbolSellButton = "(//*[@text='"
 						+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL) + "'])[1]";
 				mobileAction.FuncSwipeOnce("left");
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolSellButton, false, 10, "left");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbolSellButton, false, 20, "left");
 				mobileAction.FuncClick(
 						(MobileElement) CL.GetDriver().findElements(By.id("com.td:id/button_sell")).get(iRow),
 						"Sell Button");
@@ -503,10 +503,10 @@ public class MIT_DSHWLPopulateData extends _CommonPage {
 			String[] aSymbolList = getTestdata("Symbol", XLSheetUserIDs).split(",");
 
 			for (String sSymbol : aSymbolList) {
-				String xpathWLSymbol = "//*[@label='" + sSymbol + "' or @text='" + sSymbol + "']";
-				String xpathWLSymbolFlag = "//*[@label='" + sSymbol + "' or @text='" + sSymbol
+				String xpathWLSymbol = "//*[contains(@label,'" + sSymbol + "') or @text='" + sSymbol + "']";
+				String xpathWLSymbolFlag = "//*[contains(@label,'" + sSymbol + "') or @text='" + sSymbol
 						+ "']/../*[@name='flagImageView' or @resource-id='com.td:id/iv_item_watchlist_flag']";
-				String xpathWLSymbolCompanyName = "//*[@label='" + sSymbol + "' or @text='" + sSymbol
+				String xpathWLSymbolCompanyName = "//*[contains(@label,'" + sSymbol + "') or @text='" + sSymbol
 						+ "']/../*[@name='companyLabel' or @resource-id='com.td:id/tv_item_watchlist_desp']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(xpathWLSymbol, false, 10, "up");
 

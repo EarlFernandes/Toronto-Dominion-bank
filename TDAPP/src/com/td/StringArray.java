@@ -334,7 +334,7 @@ public final class StringArray {
 	// MIT Dashboard START
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_SENDMONEY = { "SEND MONEY", "ENVOI DE FONDS", "汇款", "匯款" };
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_TRANSFER = { "TRANSFER", "VIREMENT", "转账", "轉賬" };
-	public static final String[] ARRAY_DASHBOARD_QUICKLINK_PAYNOW = { "PAY NOW", "PAYER MAINTENANT", "马上付款", "即刻付款" };
+	public static final String[] ARRAY_DASHBOARD_QUICKLINK_PAYNOW = { "PAY NOW", "PAYER MAINTENANT", "现在付款", "立即付款" };
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_DEPOSIT = { "DEPOSIT", "DÉPÔT", "存款", "存款" };
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_WATCHLISTS = { "WATCHLISTS", "LISTES DE SURVEILLANCE",
 			"自选股观察名单", "自選股觀察名單" };
@@ -357,30 +357,32 @@ public final class StringArray {
 			"支付賬單" };
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_TRADE = { "TRADE", "NÉGOCIATION", "交易", "交易" };
 	public static final String[] ARRAY_DASHBOARD_QUICKLINK_HOLDINGS = { "HOLDINGS", "PLACEMENTS", "持有投资", "持有投資" };
-	public static final String[] ARRAY_DASHBOARD_QUICKLINK_ORDERS = { "ORDERS", "ORDRES", "订单", "交易訂單" };
+	public static final String[] ARRAY_DASHBOARD_QUICKLINK_ORDERS = { "ORDERS", "ORDRES", "订单", "訂單" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_ACCOUNTS = { "Accounts", "Comptes", "账户", "賬戶" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_TRANSFERES = { "Transfers", "Virements", "转账", "轉賬" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_BILLS = { "Bills", "Factures", "账单", "賬單" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_TRADE = { "Trade", "Négociation", "交易", "交易" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_MARKETS = { "Markets", "Marchés", "市场", "市場" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_OPENTDDIRECTINVESTINGACCOUNT = {
-			"Open a Direct Investing Account", "Ouvrir un compte Placements directs TD", "市场", "市場" };
+			"Open a TD Direct Investing Account", "Ouvrir un compte Placements directs TD", "开设道明自管投资账户",
+			"開設道明自管投資賬戶" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_QUOTE = { "Quote", "Cote", "报价", "報價" };
-	public static final String[] ARRAY_DASHBOARD_NAVROW_ALERTS = { "Alerts", "Alertes", "报价", "提醒" };
+	public static final String[] ARRAY_DASHBOARD_NAVROW_ALERTS = { "Alerts", "Alertes", "提醒", "提醒" };
 	public static final String[] ARRAY_DASHBOARD_NAVROW_OPENABANKACCOUNT = { "Open a Bank Account",
-			"Ouvrir un compte bancaire", "报价", "報價" };
+			"Ouvrir un compte bancaire", "开立银行账户", "開設銀行賬戶" };
 	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGS = { "Home Screen Settings",
-			"Paramètres de l’écran d’accueil", "主屏幕设置", "主屏幕設置" };
+			"Paramètres de l’écran d’accueil", "主页设置", "首頁設定" };
 
 	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGSHEADERDESCRIPTION = {
-			"Choose what view to show on your home screen", "Choisir l’affichage de votre écran d’accueil", "选择主屏幕视图",
-			"選擇主屏幕視圖" };
+			"Choose what view to show on your home screen", "Choisir l’affichage de votre écran d’accueil", "选择主页要显示的视图",
+			"選擇首頁要顯示的視圖" };
 	public static final String[] ARRAY_DASHBOARD_ENABLEINVESTINGVIEW = { "Enable Investing View",
 			"Activer l’affichage de Placements", "启用投资视图", "啟用投資視圖" };
 	public static final String[] ARRAY_DASHBOARD_ENABLEINVESTINGVIEWDESCRIPTION = {
 			"Add a Watchlist, symbol search box and investing Quick Links.",
 			"Ajouter une liste de surveillance, une boîte de recherche de symboles et des liens rapides sur les placements",
-			"添加自选股观察名单、股票代码搜索框和投资快速连接。", "添加自選股觀察名單、股票代號搜索框和投資快速連結。" };
+			"添加自选股观察名单、股票代码搜索框和投资快速连接。", "新增自選股觀察名單、股票代號搜尋框和投資快速連結。" };
+	
 	public static final String[] ARRAY_DASHBOARD_INVESTINGVIEWISON = { "Investing view is now on",
 			"Affichage Placements activé", "投资视图已开启", "投資視圖已開啟" };
 	public static final String[] ARRAY_DASHBOARD_GOHOME = { "Go home", "Aller à l’accueil", "回到主页", "回到首頁" };
@@ -407,8 +409,8 @@ public final class StringArray {
 			"Apple Pay" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_TDMYSPEND = { "TD MySpend", "Dépense TD", "TD MySpend",
 			"TD MySpend" };
-	public static final String[] ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT = { "TD Mobile Payment", "Factures", "道明移动支付",
-			"道明流動付款" };
+	public static final String[] ARRAY_DASHBOARD_FLYOUT_MOBILEPAYMENT = { "TD Mobile Payment", "Paiement mobile TD",
+			"道明移动支付", "道明流動付款" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_TDMOBILEDEPOSIT = { "Mobile Deposit", "Dépôt mobile", "移动存款服务",
 			"流動存款" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_TDFORME = { "TD for Me", "TD et Moi", "TD for Me",
@@ -418,7 +420,7 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_CROSSBORDERBANKING = { "Cross-Border Banking",
 			"Services bancaires transfrontaliers", "跨境理财服务", "跨國理財服務" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_PROFILESETTINGS = { "Profile & Settings",
-			"Profil et paramètres transfrontaliers", "个人资料和设置", "個人資料和設定" };
+			"Profil et paramètres", "个人资料和设置", "個人資料和設定" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_APPLEWATCH = { "Apple Watch", "Apple Watch", "Apple Watch",
 			"Apple Watch" };
 	public static final String[] ARRAY_DASHBOARD_FLYOUT_LOCATIONS = { "Locations", "Succursales", "分行网点", "分行" };
@@ -446,13 +448,13 @@ public final class StringArray {
 
 	public static final String[] ARRAY_DASHBOARD_CONTACTUS = { "Contact Us", "Contactez-nous", "联系我们", "聯絡我們" };
 
-	public static final String[] ARRAY_DASHBOARD_EmptyWLDesc = { "You haven't added any symbols to this Watchlist yet.",
+	public static final String[] ARRAY_DASHBOARD_EmptyWLDesc = { "You haven't added any symbols to this watchlist yet.",
 			"Vous n'avez pas encore ajouté de symbole à cette liste de surveillance.", "您尚未添加股票代码到自选股观察名单中。",
-			"您沒有添加股票代號到自選股觀察名單。" };
+			"您尚未新增股票代號到自選股觀察名單中。" };
 	public static final String[] ARRAY_DASHBOARD_AddSymbolLink = { "Add symbols now", "Ajouter des symboles maintenant",
 			"添加股票代码", "添加股票代號" };
 
-	public static final String[] ARRAY_DASHBOARD_ExpiredSymbolError = { "Invalid Symbol ", "Symbole invalide", "股票代码无效",
+	public static final String[] ARRAY_DASHBOARD_ExpiredSymbolError = { "Invalid symbol", "Symbole invalide", "股票代码无效",
 			"股票代號無效" };
 
 	public static final String[] ARRAY_DASHBOARD_EAnotSignedError = { "Exchange Agreement not signed",
@@ -515,7 +517,10 @@ public final class StringArray {
 	public static final String[] ARRAY_DASHBOARD_TERMS_MUTUALLINK = {
 			"for mutual fund accounts held with TD Investment Services Inc.",
 			"relative aux comptes de fonds communs de placement détenus auprès des Services d'investissement TD inc.",
-			"所持互惠基金账户声明披露", "所持互惠基金賬戶之聲明披露" };
+			"所持互惠基金账户声明披露", "所持互惠基金賬戶聲明披露" };
+
+	public static final String[] ARRAY_DASHBOARD_ACTIVITYTAB_ACTIONBUY = { "BUY", "BUY", "BUY", "BUY" };
+	public static final String[] ARRAY_DASHBOARD_ACTIVITYTAB_ACTIONSELL = { "SELL", "SELL", "SELL", "SELL" };
 
 	// MIT Dashboard END
 
