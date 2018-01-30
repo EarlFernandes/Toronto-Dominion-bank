@@ -111,7 +111,7 @@ public class MIT_DSH_DisplaySearchCard extends _CommonPage {
 
 			mobileAction.FuncClick(btnCancel, "< btnCancel");
 
-			mobileAction.verifyElementIsDisplayed(hdrHome, "hdrHome on Dashboard");
+			//mobileAction.verifyElementIsDisplayed(hdrHome, "hdrHome on Dashboard");
 
 		} catch (Exception e) {
 			e.printStackTrace();

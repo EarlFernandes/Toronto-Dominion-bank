@@ -563,7 +563,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 			clickFlyout(flyoutHomeLink, "homeLink");
 
-			mobileAction.verifyElementIsDisplayed(hdrHome, "hdrHome");
+			//mobileAction.verifyElementIsDisplayed(hdrHome, "hdrHome");
 
 		}
 
