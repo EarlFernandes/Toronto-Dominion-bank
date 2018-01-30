@@ -877,7 +877,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 			mobileAction.FuncVerifyTextEquals(flyoutTDforMeLink,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDFORME));
 
-			if (!bIsAuthenticated) {
+/*			if (!bIsAuthenticated) {
 
 				clickFlyout(flyoutTDforMeLink, "flyoutTDforMeLink");
 
@@ -910,7 +910,8 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				}
 
-			}
+			}*/
+			mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -972,7 +973,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 			mobileAction.FuncVerifyTextEquals(flyoutCrossBorderBankingLink,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_CROSSBORDERBANKING));
 
-			if (!bIsAuthenticated) {
+/*			if (!bIsAuthenticated) {
 
 				clickFlyout(flyoutCrossBorderBankingLink, "flyoutCrossBorderBankingLink");
 
@@ -1031,7 +1032,9 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				}
 
-			}
+			}*/
+			
+			mobileAction.FuncSwipeWhileElementNotFound(flyoutHomeLink, true, 10, "down");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
