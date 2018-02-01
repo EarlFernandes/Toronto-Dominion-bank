@@ -74,8 +74,7 @@ public class Manage_Payee extends _CommonPage {
 	@FindBy(xpath = "//div[contains(@ng-repeat,'alerts.S')]")
 	private WebElement deleteMsg;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[6]/XCUIElementTypeStaticText[1] | "
-			+ "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@class='column2']/span")
 	private WebElement viewDescriptionField;
 
