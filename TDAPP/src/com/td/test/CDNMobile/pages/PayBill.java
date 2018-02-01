@@ -75,7 +75,7 @@ public class PayBill extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]")
 	private MobileElement calendarGrid;
 
-	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeTable[1]//XCUIElementTypeTextField[1])[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[5]/XCUIElementTypeTextField[1]")
 	@AndroidFindBy(id = "com.td:id/reason_for_payment")
 	private MobileElement reasonField;
 
@@ -90,11 +90,13 @@ public class PayBill extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[3]")
 	private MobileElement payeeAcctNum;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1] | "
+			+ "//XCUIElementTypeOther[3]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']/android.widget.LinearLayout[@index='0']")
 	private MobileElement firstAcct;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1] | "
+			+ "//XCUIElementTypeOther[3]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='2']//android.widget.TextView[@index='0']")
 	private MobileElement firstUSAcct;
 
@@ -220,7 +222,7 @@ public class PayBill extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(continue_pay, "Continue_pay");
-			mobileAction.sleep(3000);
+			mobileAction.sleep(5000);
 			mobileAction.FuncClick(pay_bill, "Pay Bill");
 
 		} catch (Exception e) {
@@ -267,6 +269,7 @@ public class PayBill extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(payUSbillButton, "Continue_pay");
+			mobileAction.sleep(3000);
 			mobileAction.FuncClick(payUSbillButton, "Pay Bill");
 
 		} catch (Exception e) {
@@ -337,13 +340,17 @@ public class PayBill extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				// Select 1st of next month as future payment date
 				mobileAction.FuncClick(nextMonthButton, "Calendar Next Month clicked");
+				mobileAction.sleep(2000);
 				int nextWeekDay = getNextWeekDate();
 				nextDate = mobileAction.verifyElementUsingXPath(
-						"//android.view.View[@content-desc='" + nextWeekDay + "']", "Next Week Day Calendar button");
+						"(//android.view.View[@text='" + nextWeekDay + "'])[1] | "
+								+ "//android.view.View[@content-desc='" + nextWeekDay + "'])[1]",
+						"Next Week Day Calendar button");
 				mobileAction.FuncClick(nextDate, "Next Date clicked");
 			} else {
 				// Click midpoint in next month calendar grid
 				mobileAction.FuncClick(nextMonthButton, "Calendar Next Month clicked");
+				mobileAction.sleep(2000);
 				Point midPoint = calendarGrid.getCenter();
 				mobileAction.TapCoOrdinates(midPoint.getX(), midPoint.getY(), "Calendar midpoint");
 			}

@@ -262,7 +262,7 @@ public class QuickAccessSettings extends _CommonPage {
 					// Save current acct balance for late verification
 					CL.getTestDataInstance().TCParameters.put("AccessCard", "ON");
 				}
-
+				mobileAction.sleep(2000);
 			} else {
 				mobileAction.GetReporting().FuncReport("Fail", "Cannot find specified account: " + card);
 			}

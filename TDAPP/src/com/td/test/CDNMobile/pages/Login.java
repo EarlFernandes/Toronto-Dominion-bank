@@ -1656,7 +1656,7 @@ public class Login extends _CommonPage {
 				} else {
 					String currentState = mobileAction.FuncGetText(rememberMeSwitch);
 					System.out.println(currentState);
-					if (currentState.contains("Remember me")
+					if (currentState.contains("Remember me") || currentState.contains("Remember Me")
 							|| currentState.contains(getTextInCurrentLocale(StringArray.ARRAY_LOGIN_REMEMBER_ME_ON))) {
 						mobileAction.FuncClick(rememberMeSwitch, "Remember Me Switch OFF");
 					}
@@ -1837,9 +1837,10 @@ public class Login extends _CommonPage {
 			String alias = getTestdata("Transfers");
 			String[] cardList = { connectID, accessCardNumber, alias };
 
-			MobileElement cardFound = null;
+			mobileAction.FuncClick(select_accesscard, "Select Accesscard");
+
+			boolean cardFound = false;
 			for (int i = 0; i < cardList.length; i++) {
-				mobileAction.FuncClick(select_accesscard, "Select Accesscard");
 				String card = cardList[i];
 				String maskedCard = card.substring(0, 2) + "***" + card.substring(card.length() - 3, card.length());
 				String xpath = "";
@@ -1848,22 +1849,25 @@ public class Login extends _CommonPage {
 				} else {
 					xpath = "//XCUIElementTypeStaticText[@label='" + maskedCard + "']";
 				}
-				cardFound = mobileAction.swipeAndSearchByxpath(xpath, false, 5, "up");
-				// mobileAction.FuncClick(cancelActionList, "Cancel Action
-				// List");
-				mobileAction.FuncClickBackButton();
 
-				if (cardFound == null) {
+				cardFound = mobileAction.verifyElementIsPresentByXpath(xpath);
+				MobileElement e = mobileAction.verifyElementUsingXPath(xpath, "Card: " + card);
+				mobileAction.verifyElementIsDisplayed(e, "Card: " + card);
+				mobileAction.sleep(5000);
+
+				if (!cardFound) {
 					break;
 				}
 
 			}
 
-			if (cardFound != null) {
+			if (cardFound) {
 				CL.GetReporting().FuncReport("Pass", "All IDs remembered");
 			} else {
 				CL.GetReporting().FuncReport("Fail", "Not all IDs remembered");
 			}
+
+			mobileAction.FuncClick(cancelActionList, "User list Cancel button");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -40,7 +40,7 @@ public class PayWithRewards extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/amount_payment_value")
 	private MobileElement amountValue;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='$25' or @label='25$']")
 	@AndroidFindBy(id = "com.td:id/minimum_payment_box_layout")
 	private MobileElement amountMinimum;
 

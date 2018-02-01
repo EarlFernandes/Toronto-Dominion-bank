@@ -203,28 +203,26 @@ public final class StringArray {
 
 	public static final String[] ARRAY_OTP_SETUP_SECURITY_EMAIL_HEADER = {
 			"Please provide an email address where you’ll receive security alerts",
-			"Veuillez fournir une adresse courriel pour recevoir les alertes de sécurité", "请提供一个用户接收安全信息的电子邮件邮箱地址",
-			"請提供電郵地址，用來接收安全性資訊" };
+			"Veuillez fournir une adresse courriel pour recevoir les alertes de sécurité", "请提供一个您用于接收安全提醒的电子邮件地址",
+			"請提供一個您用來接收安全提醒的電郵地址" };
 	public static final String[] ARRAY_OTP_SETUP_UNABLE_DELETE_PHONE = { "Please add another number",
 			"Veuillez ajouter un autre numéro", "请添加另一个号码", "請新增另一個號碼" };
 	public static final String[] ARRAY_OTP_SETUP_UNABLE_DELETE_PHONE_MSG = {
 			"You can’t delete your last phone number. Please add another number first, so you can get your one-time security codes for Two-Step Verification",
 			"Vous ne pouvez pas supprimer votre dernier numéro de téléphone. Ajoutez d’abord un autre numéro afin de pouvoir obtenir vos codes de sécurité à usage unique pour la vérification en deux temps",
 			"不允许删除上一个电话号码。请先添加另一个号码，用以接收双重认证所需的一次性验证码", "不允許刪除上一個電話號碼。請先新增另一個號碼，用以接收雙重認證所需的一次性驗證碼" };
-	public static final String[] ARRAY_OTP_SETUP_PASSCODE_VERIFIED = { "Verified", "Validé", "已验证", "已驗證" };
+	public static final String[] ARRAY_OTP_SETUP_PASSCODE_VERIFIED = { "Verified", "Validé", "验证成功", "驗證成功" };
 	public static final String[] ARRAY_OTP_SETUP_SETUP_COMPLETE_HEADER = { "Setup Complete", "Configuration terminée",
 			"设置完成", "設定完成" };
 
-	public static final String[] ARRAY_OTP_UPDATE_HEADER = {
-			"You can review and manage your current security settings below",
-			"Vous pouvez consulter et gérer vos paramètres de sécurité ci-dessous", "您可在下方查看并管理您目前的安全设置",
-			"您可在下方查看並管理您目前的安全設定" };
+	public static final String[] ARRAY_OTP_UPDATE_HEADER = { "See and change your security settings",
+			"Consultez et modifiez vos paramètres de sécurité", "查看并更改安全设置", "查看並更改安全設定" };
 	public static final String[] ARRAY_OTP_UPDATE_TEST_PHONE_HEADER = { "Test Phones (optional)",
 			"Test de téléphone (facultatif)", "测试电话号码（可选）", "測試電話號碼（非必要）" };
 	public static final String[] ARRAY_OTP_UPDATE_VERIFY_NUMBER_SCREEN = { "Verify Number", "Vérifier le numéro",
 			"验证号码", "驗證號碼" };
-	public static final String[] ARRAY_OTP_UPDATE_VERIFY_NUMBER = { "Verify number", "Tester le téléphone", "验证号码",
-			"驗證號碼" };
+	public static final String[] ARRAY_OTP_UPDATE_VERIFY_NUMBER = { "Verify number", "Tester le téléphone", "测试电话",
+			"測試電話" };
 	public static final String[] ARRAY_OTP_UPDATE_LOGIN_OPTION_HEADER = { "Security Code Login Option",
 			"Option d’ouverture de session", "安全码登录选项", "安全碼登入選項" };
 	public static final String[] ARRAY_OTP_UPDATE_CHANGE_EMAIL_HEADER_OLD = { "Change Security Email",
