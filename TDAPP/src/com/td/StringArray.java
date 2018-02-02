@@ -674,9 +674,9 @@ public final class StringArray {
 			"", "不允许在 5 年内安排太多次数的付款。请输入较少付款次数", "" };
 	public static final String[] ARRAY_RBP_1_NUM_PAYMENT_ERROR_MSG = { "Please select a number higher than 1.", "",
 			"不允许在 5 年内安排太多次数的付款。请输入较少付款次数", "" };
-	public static final String[] ARRAY_RBP_PAYEE_FILTER_VIEW_PAYMENT_FOR = { "View Payments For", "", "", "" }; //// IOS,
+	public static final String[] ARRAY_RBP_PAYEE_FILTER_VIEW_PAYMENT_FOR = { "View Payments For", "Afficher les paiements pour", "查看针对下列收款人的付款：", "查看對以下收款人的付款：" }; //// IOS,
 																												//// capital
-	public static final String[] ARRAY_RBP_PAYEE_FILTER_ALL_PAYEE = { "All Payees", "", "", "" };
+	public static final String[] ARRAY_RBP_PAYEE_FILTER_ALL_PAYEE = { "All Payees", "Tous les preneurs", "全部收款人", "全部收款人" };
 	public static final String[] ARRAY_RBP_PAYEE_FILTER_CANCEL_BUTTON = { "Cancel", "", "", "" }; // IOS,
 																									// capital
 	public static final String[] ARRAY_RBP_END_DATE_PLACEHOLDER = { "Select an end date", "", "", "" }; // IOS,
@@ -687,6 +687,9 @@ public final class StringArray {
 			"尚餘付款" };
 	public static final String[] ARRAY_RBP_CANCEL_BILL_PAYMENT = { "Cancel Bill Payment", "Annuler paiement de facture",
 			"取消账单付款", "取消賬單付款" };
+	public static final String[] ARRAY_RBP_SCHEDULED_PAYMENT_COPY_NOTE = { "Any pre-authorized credit card payments you may have setup are not included in the scheduled payments list.", "Tout paiement préautorisé sur votre carte de crédit n’est pas inclus dans la liste des paiements prévus.",
+			"定期付款列表不包括任何您可能已设定的预先授权信用卡付款。", "定期付款列表不包括任何您可能已設置的預先授權信用卡付款。" };
+	
 	// End of RBP
 	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",
 			"安全問題" };
