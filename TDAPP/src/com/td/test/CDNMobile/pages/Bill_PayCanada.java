@@ -1881,9 +1881,9 @@ public class Bill_PayCanada extends _CommonPage {
 			String startdate_input = CL.getTestDataInstance().TCParameters.get("Timeout");
 			String startDate_day = "";
 			if (startdate_input != null && startdate_input.equals("Holiday")) {
-				startDate_day = Calendar.get().selectTodaysFollowingHoliday();
+				startDate_day = MyCalendar.get().selectTodaysFollowingHoliday();
 			} else {
-				startDate_day = Calendar.get().selectTodaysFollowingWorkDay();
+				startDate_day = MyCalendar.get().selectTodaysFollowingWorkDay();
 			}
 
 			System.out.println("Today's following working day:" + startDate_day);
@@ -1901,7 +1901,7 @@ public class Bill_PayCanada extends _CommonPage {
 
 			// Save start date in "Timeout"
 			CL.getTestDataInstance().TCParameters.put("Timeout", monthOfDay + " " + dayOfDay + ", " + yearOfDay);
-			Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
+			MyCalendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
 		}
 		String freq = randomSelectFrequency();
 		CL.getTestDataInstance().TCParameters.put("MerchantName", freq);
@@ -1924,13 +1924,13 @@ public class Bill_PayCanada extends _CommonPage {
 			switch (randFund) {
 			case 0:
 				mobileAction.FuncClick(start_end_Date_List.get(1), "End Date");
-				String endDate_day = Calendar.get().selectRandomDayInXmonthLater(yearOfDay, monthOfDay, dayOfDay, 2);
+				String endDate_day = MyCalendar.get().selectRandomDayInXmonthLater(yearOfDay, monthOfDay, dayOfDay, 2);
 				System.out.println("Random working day:" + endDate_day);
 				String[] endDate_day_Array = endDate_day.replaceAll(",", "").split(" ");
 				yearOfDay = endDate_day_Array[2];
 				monthOfDay = endDate_day_Array[0];
 				dayOfDay = endDate_day_Array[1];
-				Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
+				MyCalendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
 				CL.getTestDataInstance().TCParameters.put("SecondTimeout",
 						monthOfDay + " " + dayOfDay + ", " + yearOfDay);
 				break;
@@ -1950,7 +1950,7 @@ public class Bill_PayCanada extends _CommonPage {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 					try {
 						mobileAction.FuncClick(start_end_Date_List.get(0), "Start Date");
-						Calendar.get().clickCalendarCancel();
+						MyCalendar.get().clickCalendarCancel();
 					} catch (Exception e) {
 
 					}
@@ -1990,7 +1990,7 @@ public class Bill_PayCanada extends _CommonPage {
 
 		String startDateDay = "";
 		if (startDate_day.equals("Holiday")) {
-			startDateDay = Calendar.get().selectTodaysFollowingHoliday();
+			startDateDay = MyCalendar.get().selectTodaysFollowingHoliday();
 		} else if (startDate_day.matches("randomly \\d+ months later")) {
 			try {
 				String xMonthLater = mobileAction.FuncGetValByRegx(startDate_day, "\\d+");
@@ -2007,7 +2007,7 @@ public class Bill_PayCanada extends _CommonPage {
 				String monthOfToday = todayStr[0];
 				String dayOfToday = todayStr[1];
 
-				startDateDay = Calendar.get().selectRandomDayInXmonthLater(yearOfToday, monthOfToday, dayOfToday,
+				startDateDay = MyCalendar.get().selectRandomDayInXmonthLater(yearOfToday, monthOfToday, dayOfToday,
 						xMonthLater_int);
 
 			} catch (Exception e) {
@@ -2027,7 +2027,7 @@ public class Bill_PayCanada extends _CommonPage {
 		String yearOfDay = startDate_day_Array[2];
 		String monthOfDay = startDate_day_Array[0];
 		String dayOfDay = startDate_day_Array[1];
-		Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
+		MyCalendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
 		CL.getTestDataInstance().TCParameters.put("Timeout", monthOfDay + " " + dayOfDay + ", " + yearOfDay);
 	}
 
@@ -2111,14 +2111,14 @@ public class Bill_PayCanada extends _CommonPage {
 					String monthOfToday = todayStr[0];
 					String dayOfToday = todayStr[1];
 
-					String endDateDay = Calendar.get().selectRandomDayInXmonthLater(yearOfToday, monthOfToday,
+					String endDateDay = MyCalendar.get().selectRandomDayInXmonthLater(yearOfToday, monthOfToday,
 							dayOfToday, xMonthLater_int);
 					System.out.println("Random working day:" + endDateDay);
 					String[] endDate_day_Array = endDateDay.replaceAll(",", "").split(" ");
 					String yearOfDay = endDate_day_Array[2];
 					String monthOfDay = endDate_day_Array[0];
 					String dayOfDay = endDate_day_Array[1];
-					Calendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
+					MyCalendar.get().selectDate(yearOfDay, monthOfDay, dayOfDay);
 					CL.getTestDataInstance().TCParameters.put("SecondTimeout",
 							monthOfDay + " " + dayOfDay + ", " + yearOfDay);
 
@@ -2153,7 +2153,7 @@ public class Bill_PayCanada extends _CommonPage {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 					try {
 						mobileAction.FuncClick(start_end_Date_List.get(0), "Start Date");
-						Calendar.get().clickCalendarCancel();
+						MyCalendar.get().clickCalendarCancel();
 					} catch (Exception e) {
 
 					}

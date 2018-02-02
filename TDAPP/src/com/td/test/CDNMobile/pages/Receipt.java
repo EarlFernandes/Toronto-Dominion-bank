@@ -533,6 +533,7 @@ public class Receipt extends _CommonPage {
 				getTextInCurrentLocale(StringArray.ARRAY_RBP_NUMBER_OF_PAYMENTS),
 				getTextInCurrentLocale(StringArray.ARRAY_RBP_END_DATE) };
 
+		mobileAction.FuncSwipeOnce("up");
 		for (int i = 0; i < caption_size; i++) {
 			try {
 				mobileAction.verifyElementTextIsDisplayed(rbp_receipt_caption_list.get(i), expectedInfo[i]);
@@ -589,7 +590,7 @@ public class Receipt extends _CommonPage {
 
 		// How often is Ongoing and "When I decide to cancel" is selected
 		if (info_size == 6) {
-			expectedStartOfDate = Calendar.get().getStartDateInAnyCase(inputStartdate, expectedFrequency);
+			expectedStartOfDate = MyCalendar.get().getStartDateInAnyCase(inputStartdate, expectedFrequency);
 			expectedInfo[4] = expectedStartOfDate;
 			for (int i = 0; i < info_size; i++) {
 				try {
@@ -606,17 +607,17 @@ public class Receipt extends _CommonPage {
 			if (secondTimeout.matches("\\d+")) {
 				// End of payment is select: number of payments
 				expectedNumberOfpayments = Integer.parseInt(secondTimeout);
-				expectedStartOfDate = Calendar.get().getStartDateInAnyCase(inputStartdate, expectedFrequency);
-				expectedEndOfDate = Calendar.get().getEndOfDateWhenNumberOfPaymentSelected(expectedStartOfDate,
+				expectedStartOfDate = MyCalendar.get().getStartDateInAnyCase(inputStartdate, expectedFrequency);
+				expectedEndOfDate = MyCalendar.get().getEndOfDateWhenNumberOfPaymentSelected(expectedStartOfDate,
 						expectedNumberOfpayments, expectedFrequency);
 			} else {
 				// End of payment is select: On a specific day
 				String inputEndOfDate = secondTimeout;
 
-				expectedStartOfDate = Calendar.get().getStartDateInAnyCase(inputStartdate, expectedFrequency);
-				expectedNumberOfpayments = Calendar.get().getNumberOfpaymentsWhenOnSpecificDayClicked(inputStartdate,
+				expectedStartOfDate = MyCalendar.get().getStartDateInAnyCase(inputStartdate, expectedFrequency);
+				expectedNumberOfpayments = MyCalendar.get().getNumberOfpaymentsWhenOnSpecificDayClicked(inputStartdate,
 						inputEndOfDate, expectedFrequency);
-				expectedEndOfDate = Calendar.get().geEndOfDateWhenOnSpecificDayClicked(expectedStartOfDate,
+				expectedEndOfDate = MyCalendar.get().geEndOfDateWhenOnSpecificDayClicked(expectedStartOfDate,
 						inputEndOfDate, expectedFrequency);
 			}
 

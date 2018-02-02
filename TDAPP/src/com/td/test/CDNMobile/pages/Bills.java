@@ -52,9 +52,13 @@ public class Bills extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Scheduled Payments']")
 	private MobileElement scheduledPayments;
 	
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[4]/XCUIElementTypeButton")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[4]/XCUIElementTypeButton[1]")
 	@AndroidFindBy(id= "com.td:id/payments_card_header")
 	private MobileElement scheduledPayments_link;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[4]/XCUIElementTypeButton[2]")
+	@AndroidFindBy(id= "com.td:id/payments_card_action")
+	private MobileElement view_all_link;
 
 	@iOSFindBy(accessibility = "BILLVIEW_SCHEDULE_DES")
 	private MobileElement scheduledPaymentsDes;
@@ -940,4 +944,28 @@ public class Bills extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
+	
+	public void clickViewAll_Link() {
+
+		Decorator();
+		try {
+
+//			String allScheduledPayments = mobileAction.getValue(scheduledPayments_link);
+//			String number_allScheduledPayments = mobileAction.FuncGetValByRegx(allScheduledPayments, "\\d+");
+//			CL.getTestDataInstance().TCParameters.put("Amount", number_allScheduledPayments);
+			mobileAction.FuncSwipeWhileElementNotFound(view_all_link, true, 5, "up");
+			//mobileAction.FuncClick(view_all_link, "'View All' is clicked");
+			mobileAction.waitProgressBarVanish();
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	
 }

@@ -3704,5 +3704,66 @@ public class MobileAction2 extends CommonLib {
 		}
 
 	}
+	
+	public void FuncSwipeOneScreenWithInElement(MobileElement swipeWithinElement,String sDirection) {
+		
+		Point elementWithinLocation = swipeWithinElement.getLocation();
+		Dimension elementWithinDimension = swipeWithinElement.getSize();
+		int locationX = elementWithinLocation.getX();
+		int locationY = elementWithinLocation.getY();
+		int dimensionX = elementWithinDimension.width;
+		int dimensionY = elementWithinDimension.height;
+
+		int startx, starty, endx, endy;
+		if (sDirection.equalsIgnoreCase("up")) {
+			startx = locationX + dimensionX / 2;
+			endx = startx;
+			starty = locationY + (int) (dimensionY*0.95);
+			endy = locationY + (int) (dimensionY*0.083);
+		} else {
+			startx = locationX + dimensionX / 2;
+			endx = startx;
+			starty = locationY + (int) (dimensionY*0.08);
+			endy = locationY + (int) (dimensionY*0.95);
+		}
+		try {
+//			Dimension size = (GetDriver()).manage().window().getSize();
+//			int startx = size.width;
+//			int starty = size.height;
+//			int endy = size.height;
+//			int endx = size.width;
+//			int heightPer = (endy * 25 / 100);
+
+//			if (sDirection.equalsIgnoreCase("up")) {
+//				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, (int)(starty*0.95), startx / 2,
+//						(int) (endy * 0.05), 2000);
+//				GetReporting().FuncReport("Pass", "Swipe Up one screen.");
+//			} else if (sDirection.equalsIgnoreCase("down")) {
+//				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, (int)(endy*0.05), startx / 2,
+//						(int) (endy*0.95), 2000);
+//				GetReporting().FuncReport("Pass", "Swipe Down one screen.");
+//			} else if (sDirection.equalsIgnoreCase("left")) {
+//				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.90),
+//						(int) (starty * 0.50), (int) (endx * 0.15), (int) (endy * 0.50), 200);
+//				GetReporting().FuncReport("Pass", "Swiped extreme Left.");
+//			} else if (sDirection.equalsIgnoreCase("right")) {
+//				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.15),
+//						(int) (starty * 0.50), (int) (endx * 0.90), (int) (endy * 0.50), 200);
+//				GetReporting().FuncReport("Pass", "Swiped extreme Right.");
+//			} else
+//				GetReporting().FuncReport("Fail", "Invalid direction given.");
+			
+			((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx , starty, endx,
+					endy , 2000);
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "Exception occurred.Swiped failed.");
+				e.printStackTrace();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+
+	}
 
 }

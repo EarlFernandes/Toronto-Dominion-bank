@@ -19,9 +19,9 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
-public class Calendar extends _CommonPage {
+public class MyCalendar extends _CommonPage {
 
-	private static Calendar myCalendar;
+	private static MyCalendar myCalendar;
 	private final int COLUMN_CALENDAR = 7;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
@@ -144,12 +144,15 @@ public class Calendar extends _CommonPage {
 	static Integer[] DigitTorNumber = { 0, // 0 mapping empty
 			31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-	static final String[] DigitToStr = { "", // 0 mapping empty
+	final String[] DigitToStr = { "", // 0 mapping empty
 			"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+	
+	Set<String> monthSet = new HashSet<String> (Arrays.asList("january", "february", "march", "april", "may", "june", "july", 
+			"august", "september", "october", "november", "december","jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"));
 
-	public synchronized static Calendar get() {
+	public synchronized static MyCalendar get() {
 		if (myCalendar == null) {
-			myCalendar = new Calendar();
+			myCalendar = new MyCalendar();
 		}
 		return myCalendar;
 	}
@@ -1262,6 +1265,70 @@ public class Calendar extends _CommonPage {
 		} catch (Exception e) {
 
 		}
+	}
+	
+	//originalDate is Today, Tomorrow, Due in x days, or February 01, 2018
+	public String dateConversion(String originalDate) {
+		LocalDate localDate = LocalDate.now();
+		String currentDate = DateTimeFormatter.ofPattern("MMM dd, yyyy").format(localDate);
+		currentDate = currentDate.replace(" 0", " ");
+		currentDate = currentDate.replace(",", "");
+		System.out.println("Today is:" + currentDate);
+		String[] todayStr = currentDate.split(" ");
+		String yearOfToday = todayStr[2];
+		String monthOfToday = todayStr[0];
+		String dayOfToday = todayStr[1];
+		
+		int yearOfToday_int = Integer.parseInt(yearOfToday);
+		int monthOfToday_int = stringToMonthMap.get(monthOfToday);
+		int dayOfToday_int = Integer.parseInt(dayOfToday);
+		
+		String expectedStr ="";
+		if(originalDate.equalsIgnoreCase("Today")) {
+			expectedStr = yearOfToday + add0iflengthOfStrIs1(Integer.toString(monthOfToday_int)) + add0iflengthOfStrIs1(dayOfToday);
+			return expectedStr;
+		}
+		
+		if(originalDate.equalsIgnoreCase("Tomorrow")) {
+			int targetDay = dayOfToday_int + 1;
+			int MaxMonthDay = getMonthDays(monthOfToday_int, yearOfToday_int);
+			if(targetDay> MaxMonthDay) {
+				targetDay =1;
+				monthOfToday_int = monthOfToday_int +1;
+				if(monthOfToday_int>12) {
+					monthOfToday_int =1;
+					yearOfToday_int = yearOfToday_int +1;
+				}
+			}
+			expectedStr = yearOfToday_int + add0iflengthOfStrIs1(Integer.toString(monthOfToday_int)) + add0iflengthOfStrIs1(Integer.toString(targetDay));
+			return expectedStr;
+		}
+		
+		if(originalDate.matches("Due in \\d+ days")) {
+			String days = mobileAction.FuncGetValByRegx(originalDate, "\\d+");
+			int targetDay = dayOfToday_int + Integer.parseInt(days);
+			int MaxMonthDay = getMonthDays(monthOfToday_int,yearOfToday_int);
+			if(targetDay> MaxMonthDay) {
+				targetDay = targetDay % MaxMonthDay;
+				monthOfToday_int = monthOfToday_int +1;
+				if(monthOfToday_int>12) {
+					monthOfToday_int =1;
+					yearOfToday_int = yearOfToday_int +1;
+				}
+			}
+			expectedStr = yearOfToday_int + add0iflengthOfStrIs1(Integer.toString(monthOfToday_int)) + add0iflengthOfStrIs1(Integer.toString(targetDay));
+			return expectedStr;
+		}
+		
+		//originalDate must be format like February 01, 2018
+		String[] capturedDateStr = originalDate.replace(",", "").split(" ");
+		String capturedYear = capturedDateStr[2];
+		String capturedMonth = capturedDateStr[0];
+		String capturedDay = capturedDateStr[1];
+		int capturedMonth_int = stringToMonthMap.get(capturedMonth.substring(0, 3));
+		
+		expectedStr = capturedYear + add0iflengthOfStrIs1(Integer.toString(capturedMonth_int)) + add0iflengthOfStrIs1(capturedDay);
+		return expectedStr;
 	}
 
 }

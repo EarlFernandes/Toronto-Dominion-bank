@@ -38,11 +38,14 @@ public class Popupwindow extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='alert_ok_button']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeTextView")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	private MobileElement popup_message;
+	
+	@iOSFindBy(accessibility = "alert_ok_button")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/positive_button']")
+	private MobileElement bill_cancel_button;
 
-	@iOSFindBy(xpath = "//*[@label='Allow' or @label='Oui']")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.TextView[@resource-id='android:id/message']")
-	private MobileElement allow_send_notification;
+	@iOSFindBy(accessibility = "alert_cancel_button")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/negative_button']")
+	private MobileElement bill_dont_cancel_button;
 
 	public synchronized static Popupwindow get() {
 		if (popup == null) {
@@ -105,6 +108,28 @@ public class Popupwindow extends _CommonPage {
 			// }
 			String expectedMsg = "Are you sure you want to cancel this order? |Êtes-vous certain de vouloir annuler cet ordre? |您确定要取消该订单？ | 確定要取消此訂單？";
 			mobileAction.verifyElementTextIsDisplayed(popup_message, expectedMsg);
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+	}
+	
+	public void ClickRBPPopupCancelButton() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(bill_cancel_button, "Cancel Bill");
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+	}
+	
+	public void ClickRBPPopupDontCancelButton() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(bill_dont_cancel_button, "Don't Cancel Bill");
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

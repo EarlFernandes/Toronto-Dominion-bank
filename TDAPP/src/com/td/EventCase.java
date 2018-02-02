@@ -236,7 +236,7 @@ public class EventCase {
 		verifyReplaceDamagedCardHeader, ClickReplaceDamagedCardBtn, verifyReplaceDamagedCardDirectionalCopy, verifyDamagedCardForm,
 
 		// RBP
-		clickStartDate, selectDate, verifyPayCanadianBillContent, verifyHowOftenDropdownDefault, verifyStartDateDefaultToToday, verifyFieldsArePrefilledAfterBackFromAddPayee, verifyFrequencyOptions, verifyRBPFootNoteContent, selectOngoingFromHowOftenDropDown, verifyAndClickRewardBanner, FillPayBillWithOnce, continuePayBill, verifyReviewContent, FillPayBillWithOngoing, verifyAndClickCancelButton, verifyAndClickPayBillButton, verifyRBPReceiptContent, verifyPayee_FromAccountMaskedInReceipt, verifyPayBillHeader, ClickPayAnotherBillBtn, ClickSchedulePaymentsBtn, ClickQuickLinkBillsBtn, verifyScheduledPaymentsHeader, VerifyRBPReceipt, VerifyRBPErrorMessage, VerifyRBP1NumberOfPaymentErrorMessage, verifyPayeeFilterContents, clickViewpaymentFor, clickScheduledPayment_Link, selectStartdateAgain, VerifyEndOfDateIsBlank, VerifyEndOfDateReamins, FillPayBillWithOngoingWithoutStartDate,clickPayBillDashboard,verifyRBPScreen,verifyBankingHeader,clickPayBillQuickLink,confirmAddPayeeAndPayThisPayee,
+		clickStartDate, selectDate, verifyPayCanadianBillContent, verifyHowOftenDropdownDefault, verifyStartDateDefaultToToday, verifyFieldsArePrefilledAfterBackFromAddPayee, verifyFrequencyOptions, verifyRBPFootNoteContent, selectOngoingFromHowOftenDropDown, verifyAndClickRewardBanner, FillPayBillWithOnce, continuePayBill, verifyReviewContent, FillPayBillWithOngoing, verifyAndClickCancelButton, verifyAndClickPayBillButton, verifyRBPReceiptContent, verifyPayee_FromAccountMaskedInReceipt, verifyPayBillHeader, ClickPayAnotherBillBtn, ClickSchedulePaymentsBtn, ClickQuickLinkBillsBtn, verifyScheduledPaymentsHeader, VerifyRBPReceipt, VerifyRBPErrorMessage, VerifyRBP1NumberOfPaymentErrorMessage, verifyPayeeFilterContents, clickViewpaymentFor, clickScheduledPayment_Link, selectStartdateAgain, VerifyEndOfDateIsBlank, VerifyEndOfDateReamins, FillPayBillWithOngoingWithoutStartDate,clickPayBillDashboard,verifyRBPScreen,verifyBankingHeader,clickPayBillQuickLink,confirmAddPayeeAndPayThisPayee,verifyPayeeOrder,verifyDefaultPayeeFilter,verifyListOfPaymentsAreWithSamePayee,clickViewpaymentForSelectPayee,verifyPaymentListByDate, clickViewAll_Link,verifyScheduledPaymentsContent,verifyMonthGrouping,verifyPaymentDue7Date,verifyBillDetailsPageHeader,selectFirstPayment,verifyBillDetailsContent,verifyCancelButtonDisplayed,selectFirstActivePayment,verifyCancelButtonNotDisplayed,selectFirstCancelledPayment,clickRBPCancelButton,ClickRBPPopupCancelButton,ClickRBPPopupDontCancelButton,
 
 		// myspend
 		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_changeCategory, DailyDigest_verifyCategoryMessage, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, MySpendPreferences_clickActiveAccounts, MySpendTransfers_clickBetweenMyAccounts, MySpendTransfers_PerformTransfer, MySpendPrefernces_disableAccounts, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, Preferences_verifyHomePage, TourPage_clickConnectTDApp, TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SideMenu_verifyNavigationWithinMySpend, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SpendingInsight_verifyAccountsSelected, TransactionHistory_verifySelectedAccounts, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickTransfers, SideMenu_clickGetTDAppButton, click_PreferencesLink,
@@ -3960,6 +3960,81 @@ public class EventCase {
 			Banking.get().clickPayBillQuickLink();
 			break;
 			
+		case verifyPayeeOrder:
+			ScheduledPayments.get().verifyPayeeOrder();
+			break;
+			
+		case verifyDefaultPayeeFilter:
+			ScheduledPayments.get().verifyDefaultPayeeFilter();
+			break;
+			
+		case verifyListOfPaymentsAreWithSamePayee:
+			ScheduledPayments.get().verifyListOfPaymentsAreWithSamePayee();
+			break;
+			
+		case clickViewpaymentForSelectPayee:
+			ScheduledPayments.get().clickViewpaymentForSelectPayee();
+			break;
+
+		case verifyPaymentListByDate:
+			ScheduledPayments.get().verifyPaymentListByDate();
+			break;			
+			
+		case clickViewAll_Link:
+			Bills.get().clickViewAll_Link();
+			break;
+			
+		case verifyScheduledPaymentsContent:
+			ScheduledPayments.get().verifyScheduledPaymentsContent();
+			break;
+			
+		case verifyMonthGrouping:
+			ScheduledPayments.get().verifyMonthGrouping();
+			break;
+			
+		case verifyPaymentDue7Date:
+			ScheduledPayments.get().verifyPaymentDue7Date();
+			break;	
+			
+		case selectFirstPayment:
+			ScheduledPayments.get().selectFirstPayment();
+			break;	
+			
+		case verifyBillDetailsPageHeader:
+			BillDetails.get().verifyBillDetailsPageHeader();
+			break;
+			
+		case verifyBillDetailsContent:
+			BillDetails.get().verifyBillDetailsContent();
+			break;
+			
+		case verifyCancelButtonDisplayed:
+			BillDetails.get().verifyCancelButtonDisplayed();
+			break;
+			
+		case selectFirstActivePayment:
+			ScheduledPayments.get().selectFirstActivePayment();
+			break;	
+
+		case verifyCancelButtonNotDisplayed:
+			BillDetails.get().verifyCancelButtonNotDisplayed();
+			break;
+			
+		case selectFirstCancelledPayment:
+			ScheduledPayments.get().selectFirstCancelledPayment();
+			break;
+			
+		case clickRBPCancelButton:
+			BillDetails.get().clickRBPCancelButton();
+			break;
+			
+		case ClickRBPPopupCancelButton:
+			Popupwindow.get().ClickRBPPopupCancelButton();
+			break;
+			
+		case ClickRBPPopupDontCancelButton:
+			Popupwindow.get().ClickRBPPopupDontCancelButton();
+			break;			
 		// End of RBP
 
 		case VerifyStatementBalanceHeader:
