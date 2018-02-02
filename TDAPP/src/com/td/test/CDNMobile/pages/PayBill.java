@@ -343,8 +343,7 @@ public class PayBill extends _CommonPage {
 				mobileAction.sleep(2000);
 				int nextWeekDay = getNextWeekDate();
 				nextDate = mobileAction.verifyElementUsingXPath(
-						"(//android.view.View[@text='" + nextWeekDay + "'])[1] | "
-								+ "//android.view.View[@content-desc='" + nextWeekDay + "'])[1]",
+						"(//android.view.View[@text='" + nextWeekDay + "' or @content-desc='" + nextWeekDay + "'])[1]",
 						"Next Week Day Calendar button");
 				mobileAction.FuncClick(nextDate, "Next Date clicked");
 			} else {
