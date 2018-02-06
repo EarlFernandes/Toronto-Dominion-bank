@@ -290,6 +290,9 @@ public final class StringArray {
 
 	// Pay Bill
 	public static final String[] ARRAY_PAYBILL = { "Pay Bill", "Paiement de Factures", "支付账单", "支付賬單" };
+	public static final String[] ARRAY_CANCELLEDBILL = { "Cancelled", "Annulé", "已取消", "已取消" };
+	public static final String[] ARRAY_PENDINGBILL = { "Pending", "En attente", "待处理", "尚待處理" };
+	public static final String[] ARRAY_ACTIVEBILL = { "Active", "Actif", "启用中", "啟用中" };
 
 	// Quick Access
 	public static final String[] ARRAY_QUICK_ACCESS_VISIT_SETTINGS = { "visit Settings to activate Accounts",
@@ -374,15 +377,15 @@ public final class StringArray {
 			"Paramètres de l’écran d’accueil", "主页设置", "首頁設定" };
 
 	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGSHEADERDESCRIPTION = {
-			"Choose what view to show on your home screen", "Choisir l’affichage de votre écran d’accueil", "选择主页要显示的视图",
-			"選擇首頁要顯示的視圖" };
+			"Choose what view to show on your home screen", "Choisir l’affichage de votre écran d’accueil",
+			"选择主页要显示的视图", "選擇首頁要顯示的視圖" };
 	public static final String[] ARRAY_DASHBOARD_ENABLEINVESTINGVIEW = { "Enable Investing View",
 			"Activer l’affichage de Placements", "启用投资视图", "啟用投資視圖" };
 	public static final String[] ARRAY_DASHBOARD_ENABLEINVESTINGVIEWDESCRIPTION = {
 			"Add a Watchlist, symbol search box and investing Quick Links.",
 			"Ajouter une liste de surveillance, une boîte de recherche de symboles et des liens rapides sur les placements",
 			"添加自选股观察名单、股票代码搜索框和投资快速连接。", "新增自選股觀察名單、股票代號搜尋框和投資快速連結。" };
-	
+
 	public static final String[] ARRAY_DASHBOARD_INVESTINGVIEWISON = { "Investing view is now on",
 			"Affichage Placements activé", "投资视图已开启", "投資視圖已開啟" };
 	public static final String[] ARRAY_DASHBOARD_GOHOME = { "Go home", "Aller à l’accueil", "回到主页", "回到首頁" };
