@@ -1,6 +1,8 @@
 package com.td;
 
 import java.io.IOException;
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.ScreenOrientation;
@@ -17,6 +19,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.td.test.CDNMobile.pages.Login;
 import com.td.test.framework.CommonLib;
+import com.td.test.framework.MobileAction;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy.ByIosClassChain;
 import io.appium.java_client.MobileDriver;
@@ -3509,7 +3513,8 @@ public class MobileAction2 extends CommonLib {
 
 	public void runAppInBackGround() {
 		try {
-			((MobileDriver) GetAppiumDriver()).runAppInBackground(10);
+			// ((MobileDriver) GetAppiumDriver()).runrunAppInBackground(10);
+			((MobileDriver) GetAppiumDriver()).runAppInBackground(Duration.ofSeconds(MaxTimeoutInSec));
 			GetReporting().FuncReport("Pass", "App pushed to background");
 
 		} catch (Exception e) {
@@ -3705,4 +3710,6 @@ public class MobileAction2 extends CommonLib {
 
 	}
 
+
 }
+
