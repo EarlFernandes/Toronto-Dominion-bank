@@ -438,9 +438,9 @@ public class MIT_DSH_QuickAccess extends _CommonPage {
 				mobileAction.FuncSwipeOnce("up");
 				mobileAction.FuncSwipeOnce("up");
 				mobileAction.FuncSwipeOnce("up");
-				mobileAction.FuncClick(btnAgree, "btnAgree");
+	/*			mobileAction.FuncClick(btnAgree, "btnAgree");
 
-				mobileAction.FuncClick(btnGetStartedSuccess, "btnGetStartedSuccess");
+				mobileAction.FuncClick(btnGetStartedSuccess, "btnGetStartedSuccess");*/
 				mobileAction.FuncClick(BT_Home_QuickAccess, "BT_Home_QuickAccess");
 			}
 

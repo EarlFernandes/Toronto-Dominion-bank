@@ -738,7 +738,9 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 					// mobileAction.verifyElementIsDisplayed(lblBill,
 					// "lblBill");
+					
 					mobileAction.ClickBackButton();
+					
 					// mobileAction.FuncClick(lblBill, "lblBill");
 					/*
 					 * mobileAction.FuncClick(BT_HamburgerMenu,
@@ -1172,7 +1174,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				clickFlyout(flyoutContactUsLink, "flyoutContactUsLink");
 
-				mobileAction.verifyElementIsDisplayed(lblContactUs, "lblContactUs");
+				//mobileAction.verifyElementIsDisplayed(lblContactUs, "lblContactUs");
 
 				/*
 				 * mobileAction.verifyElementIsDisplayed(contactusTD,
@@ -1209,7 +1211,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 			} else {
 				clickFlyout(flyoutContactUsLink, "flyoutContactUsLink");
 
-				mobileAction.verifyElementIsDisplayed(lblContactUs, "lblContactUs");
+				//mobileAction.verifyElementIsDisplayed(lblContactUs, "lblContactUs");
 				/*
 				 * mobileAction.verifyElementIsDisplayed(contactusTD,
 				 * "contactusTD");
@@ -1597,7 +1599,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 
 				clickFlyout(flyoutTrade, "flyoutTrade");
 
-				mobileAction.verifyElementIsDisplayed(lblTrade, "lblTrade");
+				//mobileAction.verifyElementIsDisplayed(lblTrade, "lblTrade");
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 
