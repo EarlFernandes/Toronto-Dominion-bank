@@ -33,11 +33,11 @@ public class AddPayee extends _CommonPage {
 	@FindBy(xpath = "//input[@ng-model='searchText']")
 	private WebElement searchPayeeField;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//td-switch//li[1]")
 	private WebElement tabCanada;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[2]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[2]")
 	@FindBy(xpath = "//td-switch//li[2]")
 	private WebElement tabUS;
 
@@ -46,7 +46,6 @@ public class AddPayee extends _CommonPage {
 	private WebElement firstPayeeFound;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeLink[1]/XCUIElementTypeLink[1]/XCUIElementTypeStaticText[1]")
-	// @AndroidFindBy(xpath = "//android.view.View[@resource-id='result0']")
 	@AndroidFindBy(xpath = "//android.view.View[@index='1' and contains(text(),'KOHLS')]")
 	private MobileElement firstUSAddressFound;
 
@@ -55,25 +54,23 @@ public class AddPayee extends _CommonPage {
 	@FindBy(name = "accountNumber")
 	private WebElement payeeAcctNumber;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[1]")
 	@FindBy(id = "btn")
 	private WebElement payeeContinueBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
-	// @FindBy(xpath = "//button[@ng-click='addPayee()' and @tabindex='0']")
-	// @FindBy(xpath = "//div[@class='button-row']")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[1]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement addPayeeBtn;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//button[contains(@ng-click,'continuePayee')]")
 	private WebElement addPayeeContinueBtn;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]") // TBD
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]")
 	@FindBy(xpath = "//div[contains(@class,'thank-you')]")
 	private WebElement addPayeeReceiptHeader;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//button[contains(@ng-click,'goHome')]")
 	private WebElement goHomeBtn;
 

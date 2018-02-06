@@ -1251,7 +1251,7 @@ public class OTPSetup extends _CommonPage {
 						"//XCUIElementTypeStaticText[contains(@label,'" + labelText + "')]",
 						"OTP Setup complete screen header");
 			}
-			mobileAction.verifyElementIsDisplayed(setupCompleteHeader, "OTP Update complete screen header");
+			mobileAction.verifyElementIsDisplayed(setupCompleteHeader, "OTP Setup complete screen header");
 			mobileAction.verifyElementTextContains(setupCompleteHeader,
 					getTextInCurrentLocale(StringArray.ARRAY_OTP_SETUP_SETUP_COMPLETE_HEADER));
 

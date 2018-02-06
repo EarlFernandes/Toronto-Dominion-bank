@@ -509,6 +509,17 @@ public class Receipt extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(ToAccountValue, "To Account Value");
 			mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
 
+			String confirmNum = mobileAction.FuncGetText(cnfrDetail).trim();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				confirmNum = confirmNum.substring(confirmNum.lastIndexOf(":") + 1).trim();
+			}
+
+			if (confirmNum.matches("[A-Z0-9]{5,10}")) {
+				mobileAction.GetReporting().FuncReport("Pass", "Confirmation Number: " + confirmNum);
+			} else {
+				mobileAction.GetReporting().FuncReport("Fail", "Incorrect Confirmation Number Format: " + confirmNum);
+			}
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -539,6 +550,17 @@ public class Receipt extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(payeeValue, "Payee Value");
 			mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
 			mobileAction.verifyElementIsDisplayed(dateValue, "Date Value");
+
+			String confirmNum = mobileAction.FuncGetText(cnfrDetail).trim();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				confirmNum = confirmNum.substring(confirmNum.lastIndexOf(":") + 1).trim();
+			}
+
+			if (confirmNum.matches("[A-Z0-9]{5,10}")) {
+				mobileAction.GetReporting().FuncReport("Pass", "Confirmation Number: " + confirmNum);
+			} else {
+				mobileAction.GetReporting().FuncReport("Fail", "Incorrect Confirmation Number Format: " + confirmNum);
+			}
 
 			// For bill payment, takes some time to update acct balance
 			String specificAccts = getTestdata("Description");
@@ -576,6 +598,17 @@ public class Receipt extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(fromAccountValueUS, "From Account Value US");
 			mobileAction.verifyElementIsDisplayed(payeeDetailsUS, "Payee Details US");
 			mobileAction.verifyElementIsDisplayed(amountValueUS, "Amount Value US");
+
+			String confirmNum = mobileAction.FuncGetText(confirmNumberUS).trim();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				confirmNum = confirmNum.substring(confirmNum.lastIndexOf(":") + 1).trim();
+			}
+
+			if (confirmNum.matches("[A-Z0-9]{5,10}")) {
+				mobileAction.GetReporting().FuncReport("Pass", "Confirmation Number: " + confirmNum);
+			} else {
+				mobileAction.GetReporting().FuncReport("Fail", "Incorrect Confirmation Number Format: " + confirmNum);
+			}
 
 			mobileAction.FunctionSwipe("up", 2000, 0);
 			mobileAction.verifyElementIsDisplayed(amountTotalValueUS, "Amount Total Value US");

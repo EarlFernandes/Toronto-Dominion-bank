@@ -58,23 +58,23 @@ public class Manage_Payee extends _CommonPage {
 
 	private WebElement payeeAcctNumber;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[1]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@index='0'] | //android.widget.TextView[contains(@content-desc, 'Delete')]")
 	private MobileElement deletePayeeBtn;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeButton[2]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeNavigationBar[1]/XCUIElementTypeButton[2]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@index='1'] | //android.widget.TextView[contains(@content-desc, 'Edit')]")
 	private MobileElement editPayeeBtn;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeAlert[1]/**/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@AndroidFindBy(id = "android:id/button1")
 	private MobileElement confirmYes;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]")
 	@FindBy(xpath = "//div[contains(@ng-repeat,'alerts.S')]")
 	private WebElement deleteMsg;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@class='column2']/span")
 	private WebElement viewDescriptionField;
 
