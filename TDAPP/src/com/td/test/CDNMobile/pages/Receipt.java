@@ -517,7 +517,10 @@ public class Receipt extends _CommonPage {
 			if (confirmNum.matches("[A-Z0-9]{5,10}")) {
 				mobileAction.GetReporting().FuncReport("Pass", "Confirmation Number: " + confirmNum);
 			} else {
-				mobileAction.GetReporting().FuncReport("Fail", "Incorrect Confirmation Number Format: " + confirmNum);
+				if (!currentLocale.toLowerCase().startsWith("zh")) {
+					mobileAction.GetReporting().FuncReport("Fail",
+							"Incorrect Confirmation Number Format: " + confirmNum);
+				}
 			}
 
 		} catch (Exception e) {
