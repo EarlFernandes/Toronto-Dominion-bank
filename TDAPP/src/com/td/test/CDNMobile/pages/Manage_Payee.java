@@ -757,6 +757,11 @@ public class Manage_Payee extends _CommonPage {
 				mobileAction.verifyElementTextContains(viewDescriptionUSField, payee);
 			} else {
 				// Cdn account
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					String descXpath = "//XCUIElementTypeStaticText[@label='" + payee + "']";
+					viewDescriptionField = mobileAction.verifyWebElementUsingXPath(descXpath, "CAD Payee Description");
+				}
+
 				mobileAction.verifyElementIsDisplayed(viewDescriptionField, "View Description field");
 				mobileAction.verifyElementTextContains(viewDescriptionField, payee);
 
