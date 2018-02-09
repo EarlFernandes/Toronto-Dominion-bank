@@ -22,6 +22,10 @@ public class BillDetails extends _CommonPage {
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/review_row_label']")
+	private List<MobileElement> bill_details_caption_list;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/review_row_primary_text']")
 	private List<MobileElement> bill_details_info_list;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]//XCUIElementTypeTable/following-sibling::XCUIElementTypeOther//XCUIElementTypeButton")
@@ -82,7 +86,7 @@ public class BillDetails extends _CommonPage {
 			mobileAction.Report_Pass_Verified("confirmation #:"+confirmationNum);
 			
 			String[] expectedReviewInfo = { getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT),
-					getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT),
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_FROM_ACCOUNT),
 					getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN),
 					getTextInCurrentLocale(StringArray.ARRAY_RBP_START_DATE),
 					getTextInCurrentLocale(StringArray.ARRAY_RBP_FREQUENCY),
@@ -90,14 +94,20 @@ public class BillDetails extends _CommonPage {
 					getTextInCurrentLocale(StringArray.ARRAY_RBP_END_DATE) };
 
 			mobileAction.FuncSwipeOnce("up");
-			int sizeOfInfo = bill_details_info_list.size();
+			
+			//check payment is once or ongoing
+			String paymentType = mobileAction.getValue(bill_details_info_list.get(2));
+			if(paymentType.equals(getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN_ONCE))) {
+				expectedReviewInfo[3] = getTextInCurrentLocale(StringArray.ARRAY_RBP_ONCE_DATE);
+			}
+			int sizeOfInfo = bill_details_caption_list.size();
 			if (sizeOfInfo > expectedReviewInfo.length) {
 				System.out.println("Failing........");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				return;
 			}
 			for (int i = 0; i < sizeOfInfo; i++) {
-				mobileAction.verifyElementTextIsDisplayed(bill_details_info_list.get(i), expectedReviewInfo[i]);
+				mobileAction.verifyElementTextIsDisplayed(bill_details_caption_list.get(i), expectedReviewInfo[i]);
 			}
 
 			mobileAction.verifyElementTextIsDisplayed(Cancel_Bill_Payment,

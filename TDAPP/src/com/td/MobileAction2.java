@@ -1779,7 +1779,7 @@ public class MobileAction2 extends CommonLib {
 			capturedText = capturedText.trim().replaceAll("\n ", "");
 			capturedText = capturedText.trim().replaceAll("\n", "");
 			for (int i = 0; i < expectedHeadertext.length; i++) {
-				if (capturedText.equalsIgnoreCase(expectedHeadertext[i].trim())) {
+				if (capturedText.contentEquals(expectedHeadertext[i].trim())) {
 					System.out.println("Expected matched:" + capturedText);
 					GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
 					verified = true;

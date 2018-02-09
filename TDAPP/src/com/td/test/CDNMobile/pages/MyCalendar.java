@@ -137,6 +137,38 @@ public class MyCalendar extends _CommonPage {
 
 		}
 	};
+	
+	static final HashMap<String, String> frenchmonthToEngMonth = new HashMap<String, String>() {
+		{
+			put("janvier", "January");
+			put("février", "February"); 
+			put("mars", "March");
+			put("avril", "April");
+			put("mai", "May");
+			put("juin", "June");
+			put("juillet", "July");
+			put("août", "August");
+			put("septembre", "September");
+			put("octobre", "October");
+			put("novembre", "November");
+			put("décembre", "December");
+
+			put("一", "January");
+			put("二", "February"); 
+			put("三", "March");
+			put("四", "April");
+			put("五", "May");
+			put("六", "June");
+			put("七", "July");
+			put("八", "August");
+			put("九", "September");
+			put("十", "October");
+			put("十一", "November");
+			put("十二", "December");
+		}
+	};
+	
+
 
 	static int[] holiday_array = { 20180101, 20180219, 20180223, 20180330, 20180402, 20180521, 20180621, 20180625,
 			20180702, 20180806, 20180903, 20181008, 20181112, 20181225, 20181226 };
@@ -181,7 +213,29 @@ public class MyCalendar extends _CommonPage {
 
 			String currentMonthYear = mobileAction.getValue(month_date);
 			System.out.println("currentMonthYear:" + currentMonthYear);
-
+			
+			if(currentLocale.equalsIgnoreCase("fr")) {
+				
+				String year = currentMonthYear.split(" ")[1];
+				String frenchMonth = currentMonthYear.split(" ")[0];
+				String engMonth = frenchmonthToEngMonth.get(frenchMonth);
+				currentMonthYear = engMonth + " " + year;
+				System.out.println("Converted currentMonthYear:"+currentMonthYear);
+			} else if(!currentLocale.equalsIgnoreCase("en")) {
+				//Chinese version
+				String[] yearMonth= currentMonthYear.split("月 ");
+				String chMonth = yearMonth[0];
+				String chYear = yearMonth[1];
+				if(chMonth.matches("\\d+")) {
+					String engMonth = DigitToStr[Integer.parseInt(chMonth)] + "abc";
+					currentMonthYear = engMonth + " " + chYear;
+				} else {
+					String engMonth = frenchmonthToEngMonth.get(chMonth);
+					currentMonthYear = engMonth + " " + chYear;
+				}
+				System.out.println("Converted currentMonthYear:"+currentMonthYear);
+			}
+			
 			return currentMonthYear;
 
 		} catch (Exception e) {

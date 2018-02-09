@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.AppiumDriver;
@@ -36,9 +37,9 @@ public class Popupwindow extends _CommonPage {
 	private MobileElement cancel_order_button;
 
 	@iOSFindBy(xpath = "//*[@name='alert_ok_button']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeTextView")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' or @resource-id='com.td:id/dialog_message']")
 	private MobileElement popup_message;
-	
+
 	@iOSFindBy(accessibility = "alert_ok_button")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/positive_button']")
 	private MobileElement bill_cancel_button;
@@ -98,14 +99,6 @@ public class Popupwindow extends _CommonPage {
 	public void VerifyCancelPopUpMessage() {
 		Decorator();
 		try {
-			// if
-			// (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS"))
-			// {
-			// popup_message =
-			// mobileAction.verifyElementUsingXPath("//XCUIElementTypeTextView[@label='"
-			// + mobileAction.getAppString(" str_cancel_order_button") + "']",
-			// "Cancel order prompt");
-			// }
 			String expectedMsg = "Are you sure you want to cancel this order? |Êtes-vous certain de vouloir annuler cet ordre? |您确定要取消该订单？ | 確定要取消此訂單？";
 			mobileAction.verifyElementTextIsDisplayed(popup_message, expectedMsg);
 		} catch (Exception e) {
@@ -114,7 +107,7 @@ public class Popupwindow extends _CommonPage {
 			return;
 		}
 	}
-	
+
 	public void ClickRBPPopupCancelButton() {
 		Decorator();
 		try {
@@ -125,11 +118,28 @@ public class Popupwindow extends _CommonPage {
 			return;
 		}
 	}
-	
+
 	public void ClickRBPPopupDontCancelButton() {
 		Decorator();
 		try {
 			mobileAction.FuncClick(bill_dont_cancel_button, "Don't Cancel Bill");
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+	}
+
+	public void verifyPopupCancelPayment() {
+		Decorator();
+		try {
+			String expectedMsg = getTextInCurrentLocale(StringArray.ARRAY_RBP_POPUP_CANCEL_PAYMENT);
+			mobileAction.verifyElementTextIsDisplayed(popup_message, expectedMsg);
+			mobileAction.verifyElementTextIsDisplayed(bill_cancel_button,
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_PAYEE_FILTER_CANCEL_BUTTON));
+			mobileAction.verifyElementTextIsDisplayed(bill_dont_cancel_button,
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_POPUP_DONT_CANCEL));
+
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

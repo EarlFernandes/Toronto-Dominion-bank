@@ -309,8 +309,8 @@ public class ScheduledPayments extends _CommonPage {
 			String expected_View_Payments = getTextInCurrentLocale(StringArray.ARRAY_RBP_PAYEE_FILTER_VIEW_PAYMENT_FOR);
 			String expected_cancel = getTextInCurrentLocale(StringArray.ARRAY_RBP_PAYEE_FILTER_CANCEL_BUTTON);
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				expected_View_Payments = expected_View_Payments.toUpperCase();
+			expected_View_Payments = expected_View_Payments.toUpperCase();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {				
 				expected_cancel = expected_cancel.toUpperCase();
 			}
 			mobileAction.verifyElementTextIsDisplayed(view_payments_for_title, expected_View_Payments);
@@ -566,7 +566,7 @@ public class ScheduledPayments extends _CommonPage {
 	public void verifyScheduledPaymentsContent() {
 
 		Decorator();
-		boolean isScheduledPaymentFound=false;
+		boolean isScheduledPaymentFound = false;
 		try {
 			for (int i = 0; i < scheduled_Payments_List.size(); i++) {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -613,9 +613,9 @@ public class ScheduledPayments extends _CommonPage {
 					}
 				}
 			}
-			if(isScheduledPaymentFound) {
-				int swipecount=0;
-				while (!mobileAction.verifyElementIsPresent(paymentlist_foot) && swipecount<20) {
+			if (isScheduledPaymentFound) {
+				int swipecount = 0;
+				while (!mobileAction.verifyElementIsPresent(paymentlist_foot) && swipecount < 20) {
 					mobileAction.FuncSwipeOneScreenWithInElement(payments_layout, "up");
 					swipecount++;
 				}
@@ -814,7 +814,7 @@ public class ScheduledPayments extends _CommonPage {
 							}
 							System.out.println("recurrence:" + frencytext);
 
-							if (!frencytext.equalsIgnoreCase("cancelled")) {
+							if (!frencytext.matches(getTextInCurrentLocale(StringArray.ARRAY_RBP_CANCELLED_BILL))) {
 								if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 									// MobileElement FirstActivePayment =
 									// scheduled_Payments_recurrence_List.get(i).findElement(By.xpath("/../"));
@@ -882,7 +882,7 @@ public class ScheduledPayments extends _CommonPage {
 							}
 							System.out.println("recurrence:" + frencytext);
 
-							if (frencytext.equalsIgnoreCase("cancelled")) {
+							if (frencytext.matches(getTextInCurrentLocale(StringArray.ARRAY_RBP_CANCELLED_BILL))) {
 								if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 									// MobileElement FirstActivePayment =
 									// scheduled_Payments_recurrence_List.get(i).findElement(By.xpath("/../"));

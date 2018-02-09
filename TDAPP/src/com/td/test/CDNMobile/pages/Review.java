@@ -24,13 +24,8 @@ public class Review extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement reviewHeader;
 
-	// @iOSXCUITFindBy(xpath =
-	// "//XCUIElementTypeNavigationBar/following-sibling::XCUIElementTypeOther[1]//XCUIElementTypeButton[1]")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.Button[@resource-id='com.td:id/btn_cancel']")
-
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/..//XCUIElementTypeButton[1]")
-	@AndroidFindBy(id = "com.td:id/btn_cancel")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel']")
 	private MobileElement cancelBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/..//XCUIElementTypeButton[2]")
@@ -179,7 +174,7 @@ public class Review extends _CommonPage {
 		Decorator();
 		String[] expectedReviewInfo = { getTextInCurrentLocale(StringArray.ARRAY_PAYEE_CAPTION),
 				getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT),
-				getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT),
+				getTextInCurrentLocale(StringArray.ARRAY_RBP_FROM_ACCOUNT),
 				getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN),
 				getTextInCurrentLocale(StringArray.ARRAY_RBP_START_DATE),
 				getTextInCurrentLocale(StringArray.ARRAY_RBP_FREQUENCY),
@@ -197,6 +192,11 @@ public class Review extends _CommonPage {
 			for (int i = 0; i < sizeOfInfo; i++) {
 				mobileAction.verifyElementTextIsDisplayed(review_info_list.get(i), expectedReviewInfo[i]);
 			}
+
+			mobileAction.verifyElementTextIsDisplayed(cancelBtn,
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_PAYEE_FILTER_CANCEL_BUTTON));
+			mobileAction.verifyElementTextIsDisplayed(payBillBtn,
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_PAYBILL_BTN));
 
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
@@ -221,7 +221,7 @@ public class Review extends _CommonPage {
 	public void verifyAndClickPayBillButton() {
 		Decorator();
 		try {
-			verifyReviewHeader();
+			//verifyReviewHeader();
 			mobileAction.FuncClick(payBillBtn, "Pay Bill Button Clicked");
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {

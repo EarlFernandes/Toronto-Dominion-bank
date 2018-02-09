@@ -187,6 +187,22 @@ public class Receipt extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]//XCUIElementTypeLink[1]")
 	@AndroidFindBy(xpath = "//android.webkit.WebView/android.view.View/android.view.View")
 	private MobileElement bannerImage;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther[1]//XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/thank_you']")
+	private MobileElement rbp_thankyou;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther[1]//XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/message']")
+	private MobileElement rbp_receipt_message;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther[1]//XCUIElementTypeStaticText[3]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation']")
+	private MobileElement confirmation_label;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther[2]//XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/custom_text']")
+	private MobileElement rbp_copy_text;
 
 	@iOSXCUITFindBy(accessibility = "RECEIPTHEADER_CONFIRM")
 	@AndroidFindBy(id = "com.td:id/confirmation_val")
@@ -518,6 +534,18 @@ public class Receipt extends _CommonPage {
 
 	public void verifyRBPReceiptContent() {
 		Decorator();
+		
+		//Verify Thank you message
+		mobileAction.verifyElementTextContains(rbp_thankyou,
+				getTextInCurrentLocale(StringArray.ARRAY_RBP_THANKYOU));
+		mobileAction.verifyElementTextContains(rbp_receipt_message,
+				getTextInCurrentLocale(StringArray.ARRAY_RBP_RECEIPT_MESSAGE));
+		mobileAction.verifyElementTextContains(confirmation_label,
+				getTextInCurrentLocale(StringArray.ARRAY_RBP_RECEIPT_CONFIRMATION));
+		mobileAction.verifyElementTextContains(rbp_copy_text,
+				getTextInCurrentLocale(StringArray.ARRAY_RBP_RECEIPT_COPY));
+		
+		mobileAction.FuncSwipeOnce("up");
 		int caption_size = rbp_receipt_caption_list.size();
 
 		if (caption_size != 5 && caption_size != 6 && caption_size != 8) {
@@ -526,14 +554,13 @@ public class Receipt extends _CommonPage {
 		}
 		String[] expectedInfo = { getTextInCurrentLocale(StringArray.ARRAY_PAYEE_CAPTION),
 				getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT),
-				getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT),
+				getTextInCurrentLocale(StringArray.ARRAY_RBP_FROM_ACCOUNT),
 				getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN),
 				getTextInCurrentLocale(StringArray.ARRAY_RBP_START_DATE),
 				getTextInCurrentLocale(StringArray.ARRAY_RBP_FREQUENCY),
 				getTextInCurrentLocale(StringArray.ARRAY_RBP_NUMBER_OF_PAYMENTS),
 				getTextInCurrentLocale(StringArray.ARRAY_RBP_END_DATE) };
-
-		mobileAction.FuncSwipeOnce("up");
+		
 		for (int i = 0; i < caption_size; i++) {
 			try {
 				mobileAction.verifyElementTextIsDisplayed(rbp_receipt_caption_list.get(i), expectedInfo[i]);
