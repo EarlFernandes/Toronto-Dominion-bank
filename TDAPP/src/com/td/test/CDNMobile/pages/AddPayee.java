@@ -880,6 +880,7 @@ public class AddPayee extends _CommonPage {
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.sleep(5000);
+				System.out.println((CL.GetDriver()).getPageSource());
 				mobileAction.FuncClick(firstUSAddressFound, "First Payee Address found");
 				mobileAction.sleep(5000);
 
