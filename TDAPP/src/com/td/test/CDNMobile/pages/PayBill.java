@@ -245,7 +245,37 @@ public class PayBill extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Pay Bill");
 
 			mobileAction.FuncClick(fromAccountUS, "From Account field");
-			mobileAction.FuncClick(firstUSAcct, "1st Account in List");
+
+			String fromAccount = getTestdata("FromAccount");
+			String fromAccountXpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				fromAccountXpath = "//android.widget.ListView[@index='2']//android.widget.TextView[@index='0']";
+				List<MobileElement> accts = mobileAction.getElementsList(fromAccountXpath);
+
+				boolean found = false;
+				MobileElement matchedAcct = null;
+				for (MobileElement e : accts) {
+					String acctText = mobileAction.FuncGetElementText(e);
+
+					if (acctText.contains(fromAccount)) {
+						found = true;
+						matchedAcct = e;
+						break;
+					}
+				}
+
+				if (found) {
+					mobileAction.FuncClick(matchedAcct,
+							"Matched Pay Bill From Account in List: " + matchedAcct.getText());
+				} else {
+					mobileAction.GetReporting().FuncReport("Fail", "Did not find correct Pay Bill From Account");
+				}
+
+			} else {
+				fromAccountXpath = "//XCUIElementTypeStaticText[contains(@label,'" + fromAccount + "')]";
+				mobileAction.swipeAndSearchByxpath(fromAccountXpath, true, 5, "Up");
+				mobileAction.sleep(3000); // More load time
+			}
 
 			mobileAction.FuncClick(toAccountUS, "Select Payee field");
 			mobileAction.FuncClick(firstUSAcct, "1st Account in List");
