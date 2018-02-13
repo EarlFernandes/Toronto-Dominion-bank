@@ -1778,6 +1778,7 @@ public class MobileAction2 extends CommonLib {
 			String capturedText = getValue(mobileElement);
 			capturedText = capturedText.trim().replaceAll("\n ", "");
 			capturedText = capturedText.trim().replaceAll("\n", "");
+			capturedText = capturedText.replaceAll(" ", " "); //replace any french space with english space
 			for (int i = 0; i < expectedHeadertext.length; i++) {
 				if (capturedText.contentEquals(expectedHeadertext[i].trim())) {
 					System.out.println("Expected matched:" + capturedText);

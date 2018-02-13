@@ -606,16 +606,16 @@ public final class StringArray {
 	// End of CLIP
 
 	// RBP
-	public static final String[] ARRAY_RBP_ACESS_CARD = { "Access Card", "Type De Paiement", "添加美国收款人", "新增美國收款人" };
+	public static final String[] ARRAY_RBP_ACESS_CARD = { "Access Card", "Carte Accès", "易通卡", "易通卡" };
 	public static final String[] ARRAY_RBP_HOWOFTEN = { "How Often", "Type de paiement", "次数", "次數" };
-//	public static final String[] ARRAY_RBP_HOWOFTEN = { "How Often", "Type De Paiement", "次数", "次數" };
 	public static final String[] ARRAY_RBP_HOWOFTEN_ONCE = { "Once", "Unique", "一次", "一次" };
 	public static final String[] ARRAY_RBP_HOWOFTEN_ONGOING = { "Ongoing", "Récurrent", "持续", "持續" };
 	public static final String[] ARRAY_RBP_FREQUENCY = { "Frequency", "Fréquence", "频次", "頻次" };
-	public static final String[] ARRAY_RBP_PAYMENT_END = { "Payment Will End", "Arrêter les paiements", "付款结束於",
+	public static final String[] ARRAY_RBP_PAYMENT_END = { "Payment Will End", "Arrêter les paiements…", "付款结束於",
 			"付款結束於" };
 	public static final String[] ARRAY_RBP_START_DATE = { "Start Date", "Date de début", "起始日期", "開始日期" };
 	public static final String[] ARRAY_RBP_ONCE_DATE = { "Date", "Date", "日期", "日期" };
+	public static final String[] ARRAY_RBP_VIEW_ALL = { "View All", "Tout afficher", "查看全部", "查看全部" };
 	public static final String[] ARRAY_RBP_END_DATE = { "End Date", "Date de fin", "结束日期", "結束日期" };
 	public static final String[] ARRAY_RBP_NUMBER_OF_PAYMENTS = { "Number of Payments", "Nombre de paiements", "付款次数",
 			"付款次數" };
@@ -625,13 +625,6 @@ public final class StringArray {
 			"Après plusieurs paiements", "付款一定次数后", "付款一定次數後" };
 	public static final String[] ARRAY_RBP_DECIDE_CANCEL = { "When I decide to cancel", "Lorsque je le déciderai",
 			"我决定取消时", "我決定取消時" };
-	// public static final String[][] ARRAY_RBP_FREQUENCY_OPTION = { { "Weekly",
-	// "", "", "" }, { "Bi-Weekly", "", "", "" },
-	// { "Month-end", "", "", "" }, { "Monthly", "", "", "" }, { "Semi-Monthly",
-	// "", "", "" },
-	// { "Quarterly", "", "", "" }
-	//
-	// };
 
 	public static final String[] ARRAY_REVIEW_HEADER = { "Review", "Vérification", "检查", "檢查" };
 	public static final String[][] ARRAY_RBP_FREQUENCY_OPTION = { { "Weekly", "Hebdomadaire", "每周", "每週" },
@@ -673,8 +666,6 @@ public final class StringArray {
 			"請檢查詳情並確認賬單付款。" };
 	public static final String[] ARRAY_SCHEDULED_PAYMENTS_TITLE = { "Scheduled Payments", "Paiements prévus", "定期付款",
 			"定期付款" };
-//	public static final String[] ARRAY_SCHEDULED_PAYMENTS_TITLE = { "Scheduled Payments", "Paiements prévus", "预定付款",
-//	"定期付款" };
 	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG_WEEKLY = {
 			"You're not able to schedule more than 260 payments within a 5-year period. Please type in a lower number of payments.",
 			"Vous ne pouvez pas planifier plus de 260 paiements sur une période de 5 ans. Veuillez entrer un nombre moins élevé de paiements.",
@@ -699,12 +690,9 @@ public final class StringArray {
 			"You're not able to schedule more than 20 payments within a 5-year period. Please type in a lower number of payments.",
 			"Vous ne pouvez pas planifier plus de 20 paiements sur une période de 5 ans. Veuillez entrer un nombre moins élevé de paiements.",
 			"不允许在 5 年内安排超过\\s*20\\s* 次付款。请输入较少付款次数。", "不允許在 5 年內安排超過 \\s*20\\s*次付款。請輸入較少付款次數。" };
-	// public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG = {
-	// "You're not able to schedule that many payments within a 5-year period.
-	// Please type in a lower number of payments.",
-	// "", "不允许在 5 年内安排太多次数的付款。请输入较少付款次数", "" };
-	public static final String[] ARRAY_RBP_1_NUM_PAYMENT_ERROR_MSG = { "Please select a number higher than 1.", "Entrez un nombre supérieur à 1.",
-			"请选择一个高于1的数字。", "請選擇一個高於1的數字。" };
+
+	public static final String[] ARRAY_RBP_1_NUM_PAYMENT_ERROR_MSG = { "Please select a number higher than 1.",
+			"Entrez un nombre supérieur à 1.", "请选择一个高于1的数字。", "請選擇一個高於1的數字。" };
 	public static final String[] ARRAY_RBP_PAYEE_FILTER_VIEW_PAYMENT_FOR = { "View Payments For",
 			"Afficher les paiements pour", "查看针对下列收款人的付款：", "查看對以下收款人的付款：" };
 	public static final String[] ARRAY_RBP_DATE_TODYA = { "Today", "", "", "" };
@@ -730,15 +718,9 @@ public final class StringArray {
 	public static final String[][] ARRAY_PAYBILL_DEFAULT = {
 			{ "Select payee", "Sélectionnez le preneur", "选择收款人", "選擇收款人" },
 			{ "Select from account", "Sélectionnez le compte de provenance", "选择付款账户", "選擇付款賬戶" },
-			{ "Select a date after today", "Sélectionnez une date future",
-					"选择今天之后的日期", "選擇今日之後的日期" },
+			{ "Select a date after today", "Sélectionnez une date future", "选择今天之后的日期", "選擇今日之後的日期" },
 			{ "Select frequency", "Sélectionnez la fréquence", "选择频次", "選擇頻次" } };
-//	public static final String[][] ARRAY_PAYBILL_DEFAULT = {
-//			{ "Select Payee", "Bénéficiaire", "选择收款人", "選擇收款人" },
-//			{ "Select from account", "Sélectionnez le compte d’origine", "选择转出账户", "選擇轉出賬戶" },
-//			{ "Select a start date", "Sélectionnez la date de début",
-//					"起始日期须于今天之后。", "開始日期必須在今日之後。" },
-//			{ "Select frequency", "Sélectionnez la fréquence", "选择频次", "選擇頻次" } };
+
 	public static final String[] ARRAY_RBP_CONTINUE_BUTTON = { "Continue", "Continuer", "继续", "繼續" };
 	public static final String[] ARRAY_RBP_CANCELLED_BILL = { "Cancelled", "Annulé", "已取消", "已取消" };
 

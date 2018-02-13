@@ -36,7 +36,7 @@ public class Review extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/btn_continue")
 	private MobileElement payNowBtn;
 
-	@iOSFindBy(accessibility = "TDVIEW_MESSAGE")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
 	private MobileElement review_banner_info;
 
@@ -184,13 +184,23 @@ public class Review extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(review_banner_info,
 					getTextInCurrentLocale(StringArray.ARRAY_RBP_REVIEW_BANNER));
 			int sizeOfInfo = review_info_list.size();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				sizeOfInfo = sizeOfInfo - 1; // for IOS, the first one is the
+												// banner info, so remove it.
+			}
+
 			if (sizeOfInfo > expectedReviewInfo.length) {
 				System.out.println("Failing........");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 				return;
 			}
 			for (int i = 0; i < sizeOfInfo; i++) {
-				mobileAction.verifyElementTextIsDisplayed(review_info_list.get(i), expectedReviewInfo[i]);
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					mobileAction.verifyElementTextIsDisplayed(review_info_list.get(i + 1), expectedReviewInfo[i]);
+				} else {
+					mobileAction.verifyElementTextIsDisplayed(review_info_list.get(i), expectedReviewInfo[i]);
+				}
+
 			}
 
 			mobileAction.verifyElementTextIsDisplayed(cancelBtn,
@@ -209,6 +219,7 @@ public class Review extends _CommonPage {
 		Decorator();
 		try {
 			verifyReviewHeader();
+			// saveBalance();
 			mobileAction.FuncClick(cancelBtn, "Cancel Button Clicked");
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -221,10 +232,46 @@ public class Review extends _CommonPage {
 	public void verifyAndClickPayBillButton() {
 		Decorator();
 		try {
-			//verifyReviewHeader();
+			// verifyReviewHeader();
 			mobileAction.FuncClick(payBillBtn, "Pay Bill Button Clicked");
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+
+		}
+	}
+
+	public void saveBalance() {
+		Decorator();
+		try {
+			String amountPath, fromAccountPath;
+			String amountText = getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT);
+			String fromAccountText = getTextInCurrentLocale(StringArray.ARRAY_RBP_FROM_ACCOUNT);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
+				amountPath = "//XCUIElementTypeStaticText[@label='" + amountText
+						+ "']/following-sibling::XCUIElementTypeStaticText";
+				fromAccountPath = "//XCUIElementTypeStaticText[@label='" + fromAccountText
+						+ "']/following-sibling::XCUIElementTypeStaticText[3]";
+			} else {
+				amountPath = "//android.widget.TextView[@text='" + amountText
+						+ "']/following-sibling::android.widget.RelativeLayout/android.widget.TextView";
+				fromAccountPath = "//android.widget.TextView[@text='" + fromAccountText
+						+ "']/following-sibling::android.widget.RelativeLayout/android.widget.TextView[@resource-id='com.td:id/review_row_tertiary_text']";
+			}
+			MobileElement amountItem = mobileAction.verifyElementUsingXPath(amountPath, "Amount$");
+			MobileElement fromAccountItem = mobileAction.verifyElementUsingXPath(fromAccountPath, "Fromaccount$");
+
+			String amountVal = mobileAction.getValue(amountItem);
+			String fromAccountValue = mobileAction.getValue(fromAccountItem);
+			double d_amountVal = mobileAction.convertStringAmountTodouble(amountVal);
+			double d_fromAccountValue = mobileAction.convertStringAmountTodouble(fromAccountValue);
+			double d_balance = d_fromAccountValue - d_amountVal;
+			CL.getTestDataInstance().TCParameters.put("Dividend", Double.toString(d_balance));
+			String receivedBalance = CL.getTestDataInstance().TCParameters.get("Dividend");
+			System.out.println("receivedBalance:" + receivedBalance);
+		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 

@@ -950,11 +950,11 @@ public class Bills extends _CommonPage {
 		Decorator();
 		try {
 
-//			String allScheduledPayments = mobileAction.getValue(scheduledPayments_link);
-//			String number_allScheduledPayments = mobileAction.FuncGetValByRegx(allScheduledPayments, "\\d+");
-//			CL.getTestDataInstance().TCParameters.put("Amount", number_allScheduledPayments);
-			mobileAction.FuncSwipeWhileElementNotFound(view_all_link, true, 5, "up");
-			//mobileAction.FuncClick(view_all_link, "'View All' is clicked");
+			mobileAction.FuncSwipeWhileElementNotFound(view_all_link, false, 5, "up");
+//			mobileAction.verifyElementTextIsDisplayed(view_all_link,
+//					getTextInCurrentLocale(StringArray.ARRAY_RBP_VIEW_ALL));
+//			
+			mobileAction.FuncClick(view_all_link, "'View All' is clicked");
 			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {

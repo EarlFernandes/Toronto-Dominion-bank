@@ -250,10 +250,15 @@ public class Bill_PayCanada extends _CommonPage {
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='How Often' OR label=='Type de paiement' OR label='次数' OR label='次數'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/orderDropdownCaption' and (@text='How Often' or @text='Type de paiement' or @text='次数' or @text='次數')]")
 	private MobileElement howOften;
-	
-//	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='How Often' OR label=='Type de paiement' OR label='次数' OR label='次數'`]")
-//	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/orderDropdownCaption' and (@text='How Often' or @text='Type de Paiement' or @text='次数' or @text='次數')]")
-//	private MobileElement howOften;
+
+	// @iOSXCUITFindBy(iOSClassChain =
+	// "**/XCUIElementTypeStaticText[`label=='How Often' OR label=='Type de
+	// paiement' OR label='次数' OR label='次數'`]")
+	// @AndroidFindBy(xpath =
+	// "//android.widget.TextView[@resource-id='com.td:id/orderDropdownCaption'
+	// and (@text='How Often' or @text='Type de Paiement' or @text='次数' or
+	// @text='次數')]")
+	// private MobileElement howOften;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable//XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title']")
@@ -1563,6 +1568,9 @@ public class Bill_PayCanada extends _CommonPage {
 			// verify default text
 			int defaultSize = StringArray.ARRAY_PAYBILL_DEFAULT.length;
 			for (int i = 0; i < defaultSize; i++) {
+				if (i == 3) {
+					mobileAction.FuncSwipeOnce("up");
+				}
 				String defaultText = getTextInCurrentLocale(StringArray.ARRAY_PAYBILL_DEFAULT[i]);
 				String xpath = "";
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -1577,50 +1585,53 @@ public class Bill_PayCanada extends _CommonPage {
 					mobileAction.Report_Fail("Failed to find:" + defaultText);
 				}
 			}
-			int capturedListSize = paybill_caption_list.size();
-			System.out.println("Caption list size:" + capturedListSize);
+			// swipe to the top again
+			mobileAction.FuncSwipeOnce("down");
+
+			int expectedSize = expectedCaption.length;
 			boolean isAccessFound = false;
 			String thefirstCaption = mobileAction.getValue(paybill_caption_list.get(0));
 			if (thefirstCaption.equals(expectedCaption[0])) {
 				isAccessFound = true;
+			} else {
+				expectedSize = expectedSize - 1; // no access card displayed
 			}
-
+			String xpath = "";
 			if (!isAccessFound) {
-				for (int i = 0; i < capturedListSize; i++) {
-					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-						String xpath = "//XCUIElementTypeStaticText[@label='" + expectedCaption[i + 1] + "']";
-						mobileAction.verifyElementUsingXPath(xpath, expectedCaption[i + 1]);
-					} else {
-						mobileAction.verifyElementTextIsDisplayed(paybill_caption_list.get(i), expectedCaption[i + 1]);
+				for (int i = 0; i < expectedSize; i++) {
+					if (i == 5) {
+						mobileAction.FuncSwipeOnce("up");
 					}
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+						xpath = "//XCUIElementTypeStaticText[@label='" + expectedCaption[i + 1] + "']";
+						// mobileAction.verifyElementUsingXPath(xpath,
+						// expectedCaption[i + 1]);
+					} else {
+						xpath = "//android.widget.TextView[@text='" + expectedCaption[i + 1] + "']";
+						// mobileAction.verifyElementTextIsDisplayed(paybill_caption_list.get(i),
+						// expectedCaption[i + 1]);
+					}
+					mobileAction.verifyElementUsingXPath(xpath, expectedCaption[i + 1]);
 
 				}
 			} else {
-				for (int i = 0; i < capturedListSize; i++) {
-					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-						String xpath = "//XCUIElementTypeStaticText[@label='" + expectedCaption[i] + "']";
-						mobileAction.verifyElementUsingXPath(xpath, expectedCaption[i]);
-					} else {
-						mobileAction.verifyElementTextIsDisplayed(paybill_caption_list.get(i), expectedCaption[i]);
+				for (int i = 0; i < expectedSize; i++) {
+					if (i == 5) {
+						mobileAction.FuncSwipeOnce("up");
 					}
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+						xpath = "//XCUIElementTypeStaticText[@label='" + expectedCaption[i] + "']";
+						// mobileAction.verifyElementUsingXPath(xpath,
+						// expectedCaption[i]);
+					} else {
+						xpath = "//android.widget.TextView[@text='" + expectedCaption[i] + "']";
+						// mobileAction.verifyElementTextIsDisplayed(paybill_caption_list.get(i),
+						// expectedCaption[i]);
+					}
+					mobileAction.verifyElementUsingXPath(xpath, expectedCaption[i]);
 				}
 
-				if (capturedListSize < expectedCaption.length) {
-					mobileAction.FuncSwipeOnce("up");
-					for (int i = capturedListSize; i < expectedCaption.length; i++) {
-						if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-							String xpath = "//XCUIElementTypeStaticText[@label='" + expectedCaption[i] + "']";
-							mobileAction.verifyElementUsingXPath(xpath, expectedCaption[i]);
-						} else {
-							String xpath = "//android.widget.TextView[@text='" + expectedCaption[i] + "']";
-							mobileAction.verifyElementUsingXPath(xpath, expectedCaption[i]);
-						}
-					}
-				}
 			}
-			// else {
-			// System.out.println("Something wrong......");
-			// }
 
 			init_Payment_End_Item();
 
@@ -2343,6 +2354,7 @@ public class Bill_PayCanada extends _CommonPage {
 				mobileAction.Report_Fail("Failed to verify error message since data sheet is not correct");
 				return;
 			}
+
 			mobileAction.verifyElementTextIsDisplayed(rbp_error_message, expectedError);
 
 		} catch (Exception e) {
