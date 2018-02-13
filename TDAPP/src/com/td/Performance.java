@@ -54,23 +54,23 @@ public class Performance extends CommonLib {
 		}
 	}
 
-	public void verifyElementIsDisplayed(MobileElement mobileElement, String expectedText) throws Exception {
+	public void verifyElementIsDisplayed(MobileElement mobileElement, String metricName) throws Exception {
 		try {
 
 			WebDriverWait wait = new WebDriverWait(GetDriver(), MaxTimeoutInSec);
 			wait.until(ExpectedConditions.visibilityOf(mobileElement));
 			endTime = Instant.now().toEpochMilli();
 
-			System.out.println("The element <b> " + expectedText + " </b> is displayed at time: " + endTime);
+			System.out.println("The element <b> " + metricName + " </b> is displayed at time: " + endTime);
 			GetReporting().FuncReport("Pass",
-					"The element <b>" + expectedText + " </b> is displayed at time: " + endTime);
+					"The element <b>" + metricName + " </b> is displayed at time: " + endTime);
 
-			double dur = this.getDuration(expectedText);
+			double dur = this.getDuration(metricName);
 			System.out.println("processing took: " + dur);
 			GetReporting().FuncReport("Pass", "Duration is: " + dur);
 
 		} catch (Exception e) {
-			GetReporting().FuncReport("Fail", "Exception for Verify Visibility on element <b>" + expectedText + "</b>");
+			GetReporting().FuncReport("Fail", "Exception for Verify Visibility on element <b>" + metricName + "</b>");
 		}
 	}
 
@@ -114,7 +114,12 @@ public class Performance extends CommonLib {
 			MongoCollection<Document> coll_performance = database.getCollection(COLLECTION_PEFORMANCE);
 			MongoCollection<Document> coll_executions = database.getCollection(COLLECTION_EXECUTIONS);
 
+			System.out.println("Device name: " + this.getTestDataInstance().getDeviceName());
+			System.out.println("Debice udid: " + this.getTestDataInstance().getDeviceUdid());
+			
 			Document doc = new Document("Testcase ID", getTestDataInstance().TestCaseID);
+			doc.append("Device Name", this.getTestDataInstance().getDeviceName());
+			doc.append("Device UDID", this.getTestDataInstance().getDeviceUdid());
 			doc.append("Timestamp", new java.util.Date(Instant.now().toEpochMilli()));
 			String[] durations = getTestDataInstance().TCParameters.get("Timeout").split(";");
 			for (String dur : durations) {
@@ -348,8 +353,10 @@ public class Performance extends CommonLib {
 			break;
 
 		case "Test7 My Accounts with/out Login":
-			result = new String[] { "Metric - Login with authentication My Accounts screen",
-					"Metric - Login without authentication My Accounts screen" };
+			// result = new String[] { "Metric - Login with authentication My
+			// Accounts screen",
+			// "Metric - Login without authentication My Accounts screen" };
+			result = new String[] { "Metric - Login without authentication My Accounts screen" };
 			break;
 
 		case "Test8 MIT Stock Sell":
