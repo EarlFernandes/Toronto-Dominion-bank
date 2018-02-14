@@ -170,7 +170,7 @@ public class MyCalendar extends _CommonPage {
 	
 
 
-	static int[] holiday_array = { 20180101, 20180219, 20180223, 20180330, 20180402, 20180521, 20180621, 20180625,
+	static int[] holiday_array = { 20180101, 20180219, 20180223, 20180330, 20180521, 20180621, 20180625,
 			20180702, 20180806, 20180903, 20181008, 20181112, 20181225, 20181226 };
 
 	static Integer[] DigitTorNumber = { 0, // 0 mapping empty

@@ -450,6 +450,7 @@ public class ScheduledPayments extends _CommonPage {
 
 		String iosXpath = "//XCUIElementTypeStaticText[@label='" + payeeNameExpected + "']";
 		System.out.println("payeeNameExpected:" + payeeNameExpected);
+		int iCount=0;
 		try {
 			do {
 				for (int i = 0; i < payee_name_List.size(); i++) {
@@ -477,8 +478,9 @@ public class ScheduledPayments extends _CommonPage {
 					break;
 				} else {
 					mobileAction.FuncSwipeOnce("up");
+					iCount++;
 				}
-			} while (true);
+			} while (iCount <20);
 
 			mobileAction.Report_Pass_Verified("All payee are:" + payeeNameExpected);
 
