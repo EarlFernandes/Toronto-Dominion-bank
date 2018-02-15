@@ -2661,6 +2661,7 @@ public class Trade extends _CommonPage {
 
 			mobileAction.FuncClick(share_holder, "Shareholder Type");
 			mobileAction.swipeAndSearchByxpath(shareHolderValue, true, 1, "Up");
+			mobileAction.sleep(2000);
 
 			mobileAction.FunctionSwipe("up", 1000, 0);
 			mobileAction.sleep(2000);
