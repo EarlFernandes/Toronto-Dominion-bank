@@ -150,6 +150,11 @@ public class Performance extends CommonLib {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			try {
+				GetReporting().FuncReport("Fail", "Failed to transmit results: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 		} finally {
 			mongoClient.close();
 		}
@@ -331,9 +336,9 @@ public class Performance extends CommonLib {
 
 	private String[] getTestcaseList() {
 		String[] list = new String[] { "Test1 Transfer", "Test2 Pay Bill", "Test3 Account Activity",
-				"Test4 Quick Access", "Test5 Credit card", "Test6 P2P", "Test7 My Accounts with/out Login",
+				"Test4 Quick Access", "Test5 Credit card", "Test6 P2P", "Test7 My Accounts without Login",
 				"Test8 MIT Stock Sell", "Test9 MIT Stock Buy", "Test10 MIT Mutual Funds Buy", "Test11 MIT Options",
-				"Test12 MIT Order Details", "Test13 MIT Watchlists", "Test14 MIT Trade with/out Login" };
+				"Test12 MIT Order Details", "Test13 MIT Watchlists", "Test14 MIT Trade without Login" };
 
 		return list;
 	}
@@ -370,7 +375,7 @@ public class Performance extends CommonLib {
 					"Metric - P2P Receipt screen" };
 			break;
 
-		case "Test7 My Accounts with/out Login":
+		case "Test7 My Accounts without Login":
 			// result = new String[] { "Metric - Login with authentication My
 			// Accounts screen",
 			// "Metric - Login without authentication My Accounts screen" };
@@ -409,7 +414,7 @@ public class Performance extends CommonLib {
 			result = new String[] { "Metric - Watchlists screen" };
 			break;
 
-		case "Test14 MIT Trade with/out Login":
+		case "Test14 MIT Trade without Login":
 			result = new String[] { "Metric - Login with authentication Trade screen",
 					"Metric - Login without authentication Trade screen" };
 			break;
