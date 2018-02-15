@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.td.StringArray;
 import com.td._CommonPage;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -881,7 +883,14 @@ public class AddPayee extends _CommonPage {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.sleep(5000);
 				System.out.println((CL.GetDriver()).getPageSource());
-				mobileAction.FuncClick(firstUSAddressFound, "First Payee Address found");
+				if (mobileAction.verifyElementIsPresent(firstUSAddressFound)) {
+					mobileAction.FuncClick(firstUSAddressFound, "First Payee Address found");
+				} else {
+					Dimension size = ((AppiumDriver) CL.GetDriver()).manage().window().getSize();
+					int pointX = size.width / 2;
+					int pointY = size.height / 3;
+					mobileAction.TapCoOrdinates(pointX, pointY, "1st US Address");
+				}
 				mobileAction.sleep(5000);
 
 				mobileAction.switchToWebView();
