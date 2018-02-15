@@ -1,11 +1,13 @@
 package com.td;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.Date;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,7 +25,10 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Projections;
 import com.mongodb.util.JSON;
 import com.td.test.framework.CommonLib;
+
+import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 
 public class Performance extends CommonLib {
 
@@ -51,6 +56,19 @@ public class Performance extends CommonLib {
 		} catch (Exception e) {
 			GetReporting().FuncReport("Fail", "Exception for Click on element <b>" + text + " </b>");
 
+		}
+	}
+
+	public void tapCoordinates(int x, int y, String element) throws Exception {
+		try {
+
+			TouchAction action = new TouchAction(((MobileDriver) GetDriver()));
+			action.tap(x, y).perform();
+			startTime = Instant.now().toEpochMilli();
+
+			GetReporting().FuncReport("Pass", "The element <b>  " + element + " </b> Clicked");
+		} catch (Exception e) {
+			GetReporting().FuncReport("Fail", "Exception for Tap on co-ordinates for <b>" + element + " </b>");
 		}
 	}
 
@@ -115,8 +133,8 @@ public class Performance extends CommonLib {
 			MongoCollection<Document> coll_executions = database.getCollection(COLLECTION_EXECUTIONS);
 
 			System.out.println("Device name: " + this.getTestDataInstance().getDeviceName());
-			System.out.println("Debice udid: " + this.getTestDataInstance().getDeviceUdid());
-			
+			System.out.println("Device udid: " + this.getTestDataInstance().getDeviceUdid());
+
 			Document doc = new Document("Testcase ID", getTestDataInstance().TestCaseID);
 			doc.append("Device Name", this.getTestDataInstance().getDeviceName());
 			doc.append("Device UDID", this.getTestDataInstance().getDeviceUdid());
