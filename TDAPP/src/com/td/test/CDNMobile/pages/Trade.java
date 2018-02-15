@@ -2633,11 +2633,12 @@ public class Trade extends _CommonPage {
 			mobileAction.sleep(3000);
 			mobileAction.FuncClick(selectSymbolValue, "1st Symbol");
 			mobileAction.waitProgressBarVanish();
+			mobileAction.sleep(5000);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				performance.click(firstAskCallOption, "1st Ask Call Option in Symbol Quotes");
 			} else {
 				// Android cannot read Stock Option webview page
-				// Tab middle of south-east quadrant for any Option cell
+				// Tab middle of south-west quadrant for any Option cell
 				Dimension size = ((AppiumDriver) CL.GetDriver()).manage().window().getSize();
 				int pointX = size.width / 4;
 				int pointY = size.height / 5 * 4;

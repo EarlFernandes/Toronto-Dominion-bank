@@ -88,7 +88,8 @@ public class Performance extends CommonLib {
 			GetReporting().FuncReport("Pass", "Duration is: " + dur);
 
 		} catch (Exception e) {
-			GetReporting().FuncReport("Fail", "Exception for Verify Visibility on element <b>" + metricName + "</b>");
+			GetReporting().FuncReport("Fail", "Exception for Verify Visibility on element <b>" + metricName
+					+ "</b><br/>" + e.getLocalizedMessage());
 		}
 	}
 
