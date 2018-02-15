@@ -2428,6 +2428,7 @@ public class Trade extends _CommonPage {
 			performance.click(selectAccount, "Account");
 			performance.verifyElementIsDisplayed(acctListHeaderPerf, "Metric - From Account list");
 			mobileAction.swipeAndSearchByxpath(accountno, true, 10, "Up");
+			mobileAction.sleep(2000);
 
 			mobileAction.FuncClick(selectOrderType, "Order Type");
 			mobileAction.swipeAndSearchByxpath(orderValue, true, 1, "Up");
@@ -2447,6 +2448,8 @@ public class Trade extends _CommonPage {
 			performance.verifyElementIsDisplayed(symbolTradePricePerf, "Metric - Stock Symbol Selected screen");
 
 			mobileAction.FunctionSwipe("up", 500, 0);
+			mobileAction.sleep(2000);
+
 			mobileAction.FuncClick(selectAction, "Action");
 			mobileAction.swipeAndSearchByxpath(actionValue, true, 1, "Up");
 
@@ -2464,6 +2467,7 @@ public class Trade extends _CommonPage {
 
 			mobileAction.FuncClick(share_holder, "Shareholder Type");
 			mobileAction.swipeAndSearchByxpath(shareHolderValue, true, 1, "Up");
+			mobileAction.sleep(2000);
 
 			mobileAction.FunctionSwipe("up", 500, 0);
 			mobileAction.sleep(3000);
@@ -2521,6 +2525,7 @@ public class Trade extends _CommonPage {
 			performance.click(selectAccount, "Account");
 			performance.verifyElementIsDisplayed(acctListHeaderPerf, "Metric - From Account list");
 			mobileAction.swipeAndSearchByxpath(accountno, true, 10, "Up");
+			mobileAction.sleep(2000);
 
 			mobileAction.FuncClick(selectOrderType, "Order Type");
 			mobileAction.swipeAndSearchByxpath(orderValue, true, 1, "Up");
@@ -2543,6 +2548,8 @@ public class Trade extends _CommonPage {
 			performance.verifyElementIsDisplayed(symbolLastPricePerf, "Metric - Stock Symbol Selected screen");
 
 			mobileAction.FunctionSwipe("up", 500, 0);
+			mobileAction.sleep(2000);
+
 			mobileAction.FuncClick(quantityTypeMF, "Quantity Type Selected");
 			mobileAction.swipeAndSearchByxpath(priceValue, true, 1, "Up");
 
@@ -2643,6 +2650,8 @@ public class Trade extends _CommonPage {
 			mobileAction.swipeAndSearchByxpath(actionValue, true, 1, "Up");
 
 			mobileAction.FunctionSwipe("up", 500, 0);
+			mobileAction.sleep(2000);
+
 			String quantity = getTestdata("Quantity");
 			mobileAction.FuncClick(selectQuantity, "Quantity");
 			mobileAction.FuncSendKeys(selectQuantity, quantity);
@@ -2652,6 +2661,8 @@ public class Trade extends _CommonPage {
 			mobileAction.swipeAndSearchByxpath(shareHolderValue, true, 1, "Up");
 
 			mobileAction.FunctionSwipe("up", 500, 0);
+			mobileAction.sleep(2000);
+
 			mobileAction.FuncClick(trading_pwd, "Trading Password");
 			mobileAction.FuncSendKeys(trading_pwd, trading_pwd_XL);
 			mobileAction.FuncHideKeyboard();
