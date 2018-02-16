@@ -388,9 +388,7 @@ public class Trade extends _CommonPage {
 	private MobileElement bidLotsPerf;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[12]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
-	// @AndroidFindBy(xpath = "(//android.view.View[contains(text(),'In The
-	// Money')])[2]")
-	@AndroidFindBy(xpath = "(//android.view.View[@text='$2.47 In The Money'])")
+	@AndroidFindBy(xpath = "(//android.view.View[contains(text(),'In The Money')])[2]")
 	private MobileElement firstAskCallOption;
 
 	public synchronized static Trade get() {
@@ -2570,7 +2568,9 @@ public class Trade extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.FunctionSwipe("up", 500, 0);
-				mobileAction.FuncClick(consentMF, "Consent in Confirm Order");
+				if (mobileAction.verifyElementIsPresent(consentMF)) {
+					mobileAction.FuncClick(consentMF, "Consent in Confirm Order");
+				}
 			}
 			performance.click(send_order, "Send Order");
 			performance.verifyElementIsDisplayed(tradeConfirmationNumberPerf, "Metric - Trade Receipt screen");
@@ -2637,12 +2637,16 @@ public class Trade extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				performance.click(firstAskCallOption, "1st Ask Call Option in Symbol Quotes");
 			} else {
-				// Android cannot read Stock Option webview page
-				// Tab middle of south-west quadrant for any Option cell
-				Dimension size = ((AppiumDriver) CL.GetDriver()).manage().window().getSize();
-				int pointX = size.width / 4;
-				int pointY = size.height / 5 * 4;
-				performance.tapCoordinates(pointX, pointY, "Any Option cell");
+				if (mobileAction.verifyElementIsPresent(firstAskCallOption)) {
+					performance.click(firstAskCallOption, "1st Ask Call Option in Symbol Quotes");
+				} else {
+					// Android cannot read Stock Option webview page
+					// Tab middle of south-west quadrant for any Option cell
+					Dimension size = ((AppiumDriver) CL.GetDriver()).manage().window().getSize();
+					int pointX = size.width / 4;
+					int pointY = size.height / 5 * 4;
+					performance.tapCoordinates(pointX, pointY, "Any Option cell");
+				}
 			}
 			performance.verifyElementIsDisplayed(bidLotsPerf, "Metric - Option Selected screen");
 
