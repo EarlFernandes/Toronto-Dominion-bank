@@ -1,6 +1,8 @@
 package com.td;
 
 import java.io.IOException;
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.ScreenOrientation;
@@ -17,6 +19,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.td.test.CDNMobile.pages.Login;
 import com.td.test.framework.CommonLib;
+import com.td.test.framework.MobileAction;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy.ByIosClassChain;
 import io.appium.java_client.MobileDriver;
@@ -63,8 +67,7 @@ public class MobileAction2 extends CommonLib {
 			wait.until(ExpectedConditions.visibilityOf(objElement));
 
 			objElement.click();
-			Thread.sleep(1000); // sleep 1s so that screenshot is that after
-								// element clicked
+
 			GetReporting().FuncReport("Pass", "The element <b>  " + text + " </b> Clicked");
 		} catch (Exception e) {
 			try {
@@ -1778,7 +1781,10 @@ public class MobileAction2 extends CommonLib {
 			String capturedText = getValue(mobileElement);
 			capturedText = capturedText.trim().replaceAll("\n ", "");
 			capturedText = capturedText.trim().replaceAll("\n", "");
-			capturedText = capturedText.replaceAll("Â ", " "); //replace any french space with english space
+			capturedText = capturedText.replaceAll(" ", " "); // replace any
+																// french space
+																// with english
+																// space
 			for (int i = 0; i < expectedHeadertext.length; i++) {
 				if (capturedText.contentEquals(expectedHeadertext[i].trim())) {
 					System.out.println("Expected matched:" + capturedText);
@@ -3048,6 +3054,7 @@ public class MobileAction2 extends CommonLib {
 				HideKeyBoard_IOS();
 				GetReporting().FuncReport("Pass", "The Key board was hidden");
 			} else {
+
 				String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @name='Toolbar Done Button' or @label='Toolbar Done Button' or @label='"
 						+ getAppString("secureLoginEditButtonDone") + "']";
 				MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
@@ -3510,7 +3517,8 @@ public class MobileAction2 extends CommonLib {
 
 	public void runAppInBackGround() {
 		try {
-			((MobileDriver) GetAppiumDriver()).runAppInBackground(10);
+			// ((MobileDriver) GetAppiumDriver()).runrunAppInBackground(10);
+			((MobileDriver) GetAppiumDriver()).runAppInBackground(Duration.ofSeconds(MaxTimeoutInSec));
 			GetReporting().FuncReport("Pass", "App pushed to background");
 
 		} catch (Exception e) {
@@ -3705,9 +3713,9 @@ public class MobileAction2 extends CommonLib {
 		}
 
 	}
-	
-	public void FuncSwipeOneScreenWithInElement(MobileElement swipeWithinElement,String sDirection) {
-		
+
+	public void FuncSwipeOneScreenWithInElement(MobileElement swipeWithinElement, String sDirection) {
+
 		Point elementWithinLocation = swipeWithinElement.getLocation();
 		Dimension elementWithinDimension = swipeWithinElement.getSize();
 		int locationX = elementWithinLocation.getX();
@@ -3719,43 +3727,17 @@ public class MobileAction2 extends CommonLib {
 		if (sDirection.equalsIgnoreCase("up")) {
 			startx = locationX + dimensionX / 2;
 			endx = startx;
-			starty = locationY + (int) (dimensionY*0.95);
-			endy = locationY + (int) (dimensionY*0.083);
+			starty = locationY + (int) (dimensionY * 0.95);
+			endy = locationY + (int) (dimensionY * 0.083);
 		} else {
 			startx = locationX + dimensionX / 2;
 			endx = startx;
-			starty = locationY + (int) (dimensionY*0.08);
-			endy = locationY + (int) (dimensionY*0.95);
+			starty = locationY + (int) (dimensionY * 0.08);
+			endy = locationY + (int) (dimensionY * 0.95);
 		}
 		try {
-//			Dimension size = (GetDriver()).manage().window().getSize();
-//			int startx = size.width;
-//			int starty = size.height;
-//			int endy = size.height;
-//			int endx = size.width;
-//			int heightPer = (endy * 25 / 100);
 
-//			if (sDirection.equalsIgnoreCase("up")) {
-//				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, (int)(starty*0.95), startx / 2,
-//						(int) (endy * 0.05), 2000);
-//				GetReporting().FuncReport("Pass", "Swipe Up one screen.");
-//			} else if (sDirection.equalsIgnoreCase("down")) {
-//				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx / 2, (int)(endy*0.05), startx / 2,
-//						(int) (endy*0.95), 2000);
-//				GetReporting().FuncReport("Pass", "Swipe Down one screen.");
-//			} else if (sDirection.equalsIgnoreCase("left")) {
-//				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.90),
-//						(int) (starty * 0.50), (int) (endx * 0.15), (int) (endy * 0.50), 200);
-//				GetReporting().FuncReport("Pass", "Swiped extreme Left.");
-//			} else if (sDirection.equalsIgnoreCase("right")) {
-//				((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe((int) (startx * 0.15),
-//						(int) (starty * 0.50), (int) (endx * 0.90), (int) (endy * 0.50), 200);
-//				GetReporting().FuncReport("Pass", "Swiped extreme Right.");
-//			} else
-//				GetReporting().FuncReport("Fail", "Invalid direction given.");
-			
-			((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx , starty, endx,
-					endy , 2000);
+			((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 2000);
 		} catch (Exception e) {
 			try {
 				GetReporting().FuncReport("Fail", "Exception occurred.Swiped failed.");

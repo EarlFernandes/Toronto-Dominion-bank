@@ -51,9 +51,10 @@ public class Logout extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/success' and @text='Terminé']")
 	private MobileElement logoutHeaderFrench;
 
-	// @iOSXCUITFindBy(iOSClassChain = "//*[@label='Logout' or @label='Fermer la
-	// session' or @label='退出' or @label='登出']")
-	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Logout' OR label CONTAINS[cd] 'Fermer la session' OR label CONTAINS[cd] '退出'` OR label CONTAINS[cd] '登出'`]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Logout' or @label='Fermer la session' or @label='退出' or @label='登出']")
+	// @iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Logout' OR
+	// label CONTAINS[cd] 'Fermer la session' OR label CONTAINS[cd] '退出'` OR
+	// label CONTAINS[cd] '登出'`]")
 	@AndroidFindBy(xpath = "//*[(@text='Logout' or @text='Fermer la session' or @text='退出' or @text='登出') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement FLY_Logout;
 
@@ -188,13 +189,16 @@ public class Logout extends _CommonPage {
 			mobileAction.clickMenuButton();
 			mobileAction.sleep(1000);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				logout = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='"
-								+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOGOUT) + "']",
-						"Logout");
+				logout = mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.TextView[(@resource-id='com.td:id/navText' or @resource-id='com.td:id/textview_flyout_menu_item') and @text='"
+										+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOGOUT) + "']",
+								"Logout");
 			}
 
 			mobileAction.FuncClick(logout, "Logout");
+			mobileAction.waitP2PProgressBarVanish();
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -270,11 +274,20 @@ public class Logout extends _CommonPage {
 	public void logoutFromDashboard() {
 		Decorator();
 		try {
-			// mobileAction.FuncClick(BT_Home_HamburgerMenu,
-			// "BT_Home_HamburgerMenu");
-			mobileAction.FuncClick(FLY_Logout, "Logout");
-			mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
-			mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+
+			mobileAction.FuncSwipeWhileElementNotFound(FLY_Logout, true, 10, "down");
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
+
+				mobileAction.FuncSwipeWhileElementNotFound(FLY_Home, true, 10, "down");
+			}
+
+			else {
+
+				mobileAction.ClickBackButton();
+
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

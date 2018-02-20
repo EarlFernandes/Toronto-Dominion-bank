@@ -3,7 +3,7 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import com.gargoylesoftware.htmlunit.javascript.host.geo.Coordinates;
+//import com.gargoylesoftware.htmlunit.javascript.host.geo.Coordinates;
 import com.td.StringArray;
 
 import org.openqa.selenium.Dimension;
@@ -55,7 +55,7 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='TRANSFER' or @text='VIREMENT' or @text='转账' or @text='轉賬']")
 	private MobileElement transfer_button_dashboard;
 
-	@iOSFindBy(xpath = "//*[@name='NAVIGATION_ITEM_QUICK_ACCESS' or @name='QuickLinkRightNavButton']")
+	@iOSXCUITFindBy(xpath = "//*[@name='NAVIGATION_ITEM_QUICK_ACCESS' or @name='QuickLinkRightNavButton']")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']")
 	private MobileElement quickAccess;
 
@@ -137,7 +137,7 @@ public class HomeScreen extends _CommonPage {
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeStaticText[(@label='TD Talk to Me' or @label='TD Talk to Me(FR)' or @label='TD Talk to Me' or @label='TD Talk to Me')]")
 	private MobileElement chatBotDashboard;
-	
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCell[@name='QuickLink 3']")
 	@AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/recycler_view_quick_link']/android.widget.LinearLayout[@index='3']")
 	private MobileElement PayBill_Dashboard;
@@ -309,6 +309,7 @@ public class HomeScreen extends _CommonPage {
 		try {
 			Decorator();
 			mobileAction.FuncClick(quickAccess, "Quick Access");
+			mobileAction.sleep(10000);
 			mobileAction.waitProgressBarVanish();
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1097,9 +1098,8 @@ public class HomeScreen extends _CommonPage {
 			 * (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
 			 * "android")) {
 			 * 
-			 * mobileAction.FuncScrollIntoView(pay_now_button,
-			 * "Pay Now button");
-			 * mobileAction.verifyElementIsDisplayed(pay_now_button,
+			 * mobileAction.FuncScrollIntoView(pay_now_button, "Pay Now button"
+			 * ); mobileAction.verifyElementIsDisplayed(pay_now_button,
 			 * "Pay Now button");
 			 * mobileAction.verifyElementTextContains(pay_now_button,
 			 * getTextInCurrentLocale(StringArray.
@@ -1381,9 +1381,7 @@ public class HomeScreen extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
-	
-	
+
 	/**
 	 * This method will verify
 	 * 
@@ -1397,13 +1395,11 @@ public class HomeScreen extends _CommonPage {
 		Decorator();
 		try {
 
-			
 			mobileAction.SwipeQuickLinksInDirection("right", 200, 200);
 			mobileAction.SwipeQuickLinksInDirection("left", 2000, 200);
-			
-		
+
 			mobileAction.FuncClick(quote, "Quote quick link");
-			
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -1415,7 +1411,6 @@ public class HomeScreen extends _CommonPage {
 		} finally {
 		}
 	}
-	
 
 	public void clickChatBotQuickLink() {
 		Decorator();
@@ -1453,7 +1448,7 @@ public class HomeScreen extends _CommonPage {
 		} finally {
 		}
 	}
-	
+
 	public void clickPayBillDashboard() {
 		Decorator();
 		try {

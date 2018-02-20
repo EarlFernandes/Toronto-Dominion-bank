@@ -248,14 +248,16 @@ public class Interac_Send_Money extends _CommonPage {
 			if (platformName.equalsIgnoreCase("Android")) {
 
 				mobileAction.FuncClick(fromAccount, "from Account");
+				mobileAction.sleep(2000);
 				String fromAccountNumXL = "//android.widget.TextView[@text='" + getTestdata("FromAccount") + "']";
 				MobileElement fromAccountNumber = mobileAction.mobileElementUsingXPath(fromAccountNumXL);
 				mobileAction.FuncClick(fromAccountNumber, "Account Number: " + getTestdata("FromAccount"));
 
 				mobileAction.FuncClick(selectRecipient, "Select Recipient");
+				mobileAction.sleep(2000);
 				String recipientXpath = "//android.widget.TextView[@text='" + getTestdata("ToAccount") + "']";
 				MobileElement recipient = mobileAction.mobileElementUsingXPath(recipientXpath);
-				mobileAction.FuncClick(recipient, "Recipient " + recipient.getText());
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(recipientXpath, true, 1, "up");  
 				mobileAction.FunctionSwipe("up", 200, 200);
 				mobileAction.FuncClick(securityQuestion, "Security Question");
 				mobileAction.FuncSendKeys(securityQuestion, getTestdata("SecurityQuestion"));
@@ -419,6 +421,10 @@ public class Interac_Send_Money extends _CommonPage {
 			mobileAction.FuncClick(continueButton, "Continue Button");
 			mobileAction.waitP2PProgressBarVanish();
 			mobileAction.waitP2PProgressBarVanish();
+
+			// Need to delay till interac trxn is processed and shown in History
+			mobileAction.sleep(60000);
+
 			Interac_e_Registration.get().clickGoBackHome();
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

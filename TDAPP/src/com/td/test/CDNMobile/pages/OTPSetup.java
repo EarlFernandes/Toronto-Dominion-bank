@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -33,7 +34,8 @@ public class OTPSetup extends _CommonPage {
 
 	private static OTPSetup OneTimePasswordSetup;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[3]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1] | "
+			+ "//XCUIElementTypeOther[3]/XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")
 	@AndroidFindBy(id = "com.td:id/btn_primary")
 	private MobileElement getStartedNewButton;
 
@@ -225,6 +227,12 @@ public class OTPSetup extends _CommonPage {
 	@FindBy(id = "TBD")
 	private WebElement passwordGoButton;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[6]")
+	private MobileElement hideKeyboardIpad1;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[5]")
+	private MobileElement hideKeyboardIpad2;
+
 	private String GOOGLE_VOICE_URL = "https://voice.google.com";
 	private String GOOGLE_VOICE_login = "tdmobileqa1@gmail.com";
 	private String GOOGLE_VOICE_password = "mobileqa1234";
@@ -256,6 +264,7 @@ public class OTPSetup extends _CommonPage {
 
 			mobileAction.FuncClick(agreeButton, "AGREE/Accept button");
 			mobileAction.waitProgressBarVanish();
+			mobileAction.sleep(5000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -385,16 +394,17 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.sleep(5000); // Wait for page to fully load
 				mobileAction.FuncClick(editPhoneField, "Edit Phone Number");
 				mobileAction.FuncSendKeys(editPhoneField, phoneNumber);
-				mobileAction.FuncClickDone(); // hide iOS keyboard
+				this.hideIOSKeyboardOTP(); // hide iOS keyboard
 
 				mobileAction.FuncClick(editNicknameField, "Edit Nickname");
 				mobileAction.FuncSendKeys(editNicknameField, nickname);
-				mobileAction.FuncClickDone(); // hide iOS keyboard
+				this.hideIOSKeyboardOTP(); // hide iOS keyboard
 				mobileAction.sleep(2000);
 
 				mobileAction.FuncClick(addPhoneButton, "Add Phone button");
 
 			}
+			mobileAction.sleep(5000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -436,8 +446,14 @@ public class OTPSetup extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
+				mobileAction.sleep(3000);
+				mobileAction.FuncClick(deletePhone1Button, "Delete first phone number");
+			} else {
+				// Appium cannot recognize button object in iOS, so use
+				// coordinates for click
+				Point deleteButton = deletePhone1Button.getLocation();
+				mobileAction.TapCoOrdinates(deleteButton.getX(), deleteButton.getY(), "Delete button midpoint");
 			}
-			mobileAction.FuncClick(deletePhone1Button, "Delete first phone number");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -457,9 +473,17 @@ public class OTPSetup extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
+				mobileAction.sleep(3000);
+				mobileAction.FuncClick(firstPhoneNumber, "First phone number");
+			} else {
+				// Appium cannot recognize button object where visible=false in
+				// iOS, so use coordinates for click
+				Point verifyButton = firstPhoneNumber.getLocation();
+				mobileAction.TapCoOrdinates(verifyButton.getX(), verifyButton.getY(), "verifyButton button midpoint");
+
 			}
 
-			mobileAction.FuncClick(firstPhoneNumber, "First phone number");
+			mobileAction.sleep(5000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -714,7 +738,7 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.FuncClick(securityEmailField, "Enter Security Email");
 				mobileAction.FuncSendKeys(securityEmailField, email);
 
-				mobileAction.FuncClickDone(); // hide iOS keyboard
+				this.hideIOSKeyboardOTP(); // hide iOS keyboard
 
 				mobileAction.FuncClick(emailContinueButton, "Email Continue button");
 
@@ -779,6 +803,7 @@ public class OTPSetup extends _CommonPage {
 				mobileAction.switchToWebView();
 			}
 			mobileAction.FuncClick(this.codeFrequencyContinueButton, "Passcode Frequency Continue button");
+			mobileAction.sleep(5000);
 			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
@@ -1243,4 +1268,29 @@ public class OTPSetup extends _CommonPage {
 		}
 	}
 
+	private void hideIOSKeyboardOTP() {
+		Decorator();
+		try {
+
+			if (mobileAction.FuncIsDisplayed(hideKeyboardIpad1)) {
+				// Only to dismiss iPad keyboard because Go button is a submit
+				// button
+				mobileAction.FuncClick(hideKeyboardIpad1, "Hide iPad keyboard");
+			} else if (mobileAction.FuncIsDisplayed(hideKeyboardIpad2)) {
+				// Only to dismiss iPad keyboard because Go button is a submit
+				// button
+				mobileAction.FuncClick(hideKeyboardIpad2, "Hide iPad keyboard");
+			} else {
+				mobileAction.FuncClickDone();
+			}
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
 }

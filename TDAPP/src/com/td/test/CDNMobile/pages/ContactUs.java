@@ -246,6 +246,7 @@ public class ContactUs extends _CommonPage {
 			}
 			mobileAction.FuncSwipeWhileElementNotFound(appointment_booking, false, 5, "up");
 			mobileAction.FuncClick(appointment_booking, contentText);
+			mobileAction.sleep(3000);
 
 		} catch (NoSuchElementException | IOException | InterruptedException e) {
 			try {

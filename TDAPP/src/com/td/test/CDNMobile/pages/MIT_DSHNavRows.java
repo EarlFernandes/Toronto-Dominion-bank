@@ -46,7 +46,7 @@ public class MIT_DSHNavRows extends _CommonPage {
 	private MobileElement NR_Accounts;
 
 	@iOSFindBy(xpath = "//*[@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬']")
-	@AndroidFindBy(xpath = "//*[@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬']")
+	@AndroidFindBy(xpath = "//*[(@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬') and @resource-id='com.td:id/text_view_menu_title']")
 	private MobileElement NR_Transfers;
 
 	@iOSFindBy(xpath = "//*[@label='Bills' or @label='Factures' or @label='账单' or @label='賬單']")
@@ -65,7 +65,7 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Markets' or @text='Marchés' or @text='市场' or @text='市場']")
 	private MobileElement NR_Markets;
 
-	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='Comptes' or @label='我的账户' or @label='我的賬戶']")
+	@iOSFindBy(xpath = "//*[@label='Accounts' or @label='Comptes' or @label='账户' or @label='賬戶']")
 	@AndroidFindBy(xpath = "//*[@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶']")
 	private MobileElement HDR_MyAccounts;
 
@@ -85,8 +85,8 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Bills' or @text='Factures' or @text='账单' or @text='賬單']")
 	private MobileElement HDR_Bills;
 
-	@iOSFindBy(xpath = "//*[@label='Open a Direct Investing Account' or @label='Ouvrir un compte Placements directs TD' or @label='投资账户' or @label='投資賬戶']")
-	@AndroidFindBy(xpath = "//*[@text='Open a TD Direct Investing Account' or @text='Ouvrir un compte Placements directs TD' or @text='投资账户' or @text='投資賬戶']")
+	@iOSFindBy(xpath = "//*[@label='Open a TD Direct Investing Account' or @label='Ouvrir un compte Placements directs TD' or @label='开设道明自管投资账户' or @label='開設道明自管投資賬戶']")
+	@AndroidFindBy(xpath = "//*[@text='Open a TD Direct Investing Account' or @text='Ouvrir un compte Placements directs TD' or @text='开设道明自管投资账户' or @text='開設道明自管投資賬戶']")
 	private MobileElement NR_TDDirectInvestingAccounts;
 
 	@iOSFindBy(xpath = "//*[@label='Investing' or @label='Placements' or @label='投资' or @label='投資']")
@@ -101,8 +101,8 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Alerts' or @text='Alertes' or @text='提醒' or @text='提醒']")
 	private MobileElement NR_Alerts;
 
-	@iOSFindBy(xpath = "//*[@label='Open a Bank Account' or @label='Ouvrir un compte bancaire' or @label='开设银行账户' or @label='開設銀行賬戶']")
-	@AndroidFindBy(xpath = "//*[@text='Open a Bank Account' or @text='Ouvrir un compte bancaire' or @text='开设银行账户' or @text='開設銀行賬戶']")
+	@iOSFindBy(xpath = "//*[@label='Open a Bank Account' or @label='Ouvrir un compte bancaire' or @label='开立银行账户' or @label='開設銀行賬戶']")
+	@AndroidFindBy(xpath = "//*[@text='Open a Bank Account' or @text='Ouvrir un compte bancaire' or @text='开立银行账户' or @text='開設銀行賬戶']")
 	private MobileElement NR_OpenBankAccount;
 
 	@iOSFindBy(xpath = "//*[@label='Banking' or @label='Services bancaires' or @label='理财' or @label='理財']")
@@ -113,11 +113,14 @@ public class MIT_DSHNavRows extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Alerts' or @text='Alertes' or @text='提醒' or @text='提醒']")
 	private MobileElement HDR_Alerts;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter name or symbol' or @value='Entrez un nom ou un symbole' or @value='输入名称或代号' or @value='輸入名稱或代號']")
+	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@value='Enter name or symbol' or contains(@value,'symbole') or @value='输入名称或代号' or @value='輸入名稱或代號']")
 	private MobileElement ED_Quote_Search_Symbol_iOS;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel' or @label='Listes' or @label='自选股观察名单' or @label='自選股觀察名單']")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel' or @label='Annuler' or @label='取消' or @label='取消']")
 	private MobileElement BT_Cancel_QuoteSearchSymbolScreen;
+
+	@iOSFindBy(xpath = "//*[@label='Back' or @label='Retour' or @name='NAVIGATION_ITEM_BACK']")
+	private MobileElement BT_Back_QuoteSearchSymbolScreen_Markets;
 
 	private By ED_Markets_symbolSearch = By.id("symbol-search");
 
@@ -183,6 +186,8 @@ public class MIT_DSHNavRows extends _CommonPage {
 			// from Nav Rows as per new requirement
 
 			verifyNR_Accounts(true);
+			
+			mobileAction.FuncSwipeOnce("up");
 
 			verifyNR_Alerts(true);
 
@@ -287,6 +292,10 @@ public class MIT_DSHNavRows extends _CommonPage {
 						mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
 					} else {
 						mobileAction.FuncClick(BT_Back, "< Button");
+
+						if (mobileAction.isObjExists(BT_Back)) {
+							mobileAction.FuncClick(BT_Back, "< Button");
+						}
 					}
 				}
 			}
@@ -465,7 +474,7 @@ public class MIT_DSHNavRows extends _CommonPage {
 
 				clickNavRow(NR_Markets, "Markets");
 
-				Thread.sleep(10000);
+				Thread.sleep(20000);
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 					// Quote page WEBVIEW
@@ -477,8 +486,10 @@ public class MIT_DSHNavRows extends _CommonPage {
 					MIT_PNSAccessAlerts.get().FuncSwitchContext("NATIVE_APP");
 				} else {
 					mobileAction.verifyElementIsDisplayed(ED_Quote_Search_Symbol_iOS, "ED_Quote_Search_Symbol_iOS");
-					mobileAction.FuncClick(BT_Cancel_QuoteSearchSymbolScreen, "BT_Cancel_QuoteSearchSymbolScreen");
-
+					// mobileAction.FuncClick(BT_Back_QuoteSearchSymbolScreen_Markets,
+					// "BT_Back_QuoteSearchSymbolScreen_Markets");
+					mobileAction.FuncClickElementCoordinates(BT_Back_QuoteSearchSymbolScreen_Markets,
+							"BT_Back_QuoteSearchSymbolScreen_Markets");
 				}
 
 				mobileAction.switchAppiumContext("NATIVE_APP");

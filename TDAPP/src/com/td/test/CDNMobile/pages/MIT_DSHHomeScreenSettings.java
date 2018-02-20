@@ -42,8 +42,8 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Profile & Settings' or @text='Profil et paramètres' or @text='个人资料和设置' or @text='個人資料和設定']")
 	private MobileElement lblProfileSettings;
 
-	@iOSFindBy(xpath = "//*[@label='Home Screen Settings' or @label='Paramètres de l’écran d’accueil' or @label='主屏幕设置' or @label='主屏幕設置']")
-	@AndroidFindBy(xpath = "//*[@text='Home Screen Settings' or @text='Paramètres de l’écran d’accueil' or @text='主屏幕设置' or @text='主屏幕設置']")
+	@iOSFindBy(xpath = "//*[@label='Home Screen Settings' or @label='Paramètres de l’écran d’accueil' or @label='主页设置' or @label='首頁設定']")
+	@AndroidFindBy(xpath = "//*[@text='Home Screen Settings' or @text='Paramètres de l’écran d’accueil' or @text='主页设置' or @text='首頁設定']")
 	private MobileElement LBL_HomeScreenSettings;
 
 	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
@@ -255,7 +255,25 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 	public void verifyHomeScreenSettingsBlendedInvestingFocusUser() {
 		Decorator();
 		try {
+
 			mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
+
+			//
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				if (BT_EnableInvestingViewSwitch.getAttribute("checked").equalsIgnoreCase("true")) {
+					// Do nothing
+				} else {
+					mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
+				}
+			} else {
+				if (BT_EnableInvestingViewSwitch.getAttribute("value").equalsIgnoreCase("true")) {
+					// Do nothing
+				} else {
+					mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
+				}
+
+			}
+			//
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				if (BT_EnableInvestingViewSwitch.getAttribute("checked").equalsIgnoreCase("true")) {
@@ -280,7 +298,9 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 
 			mobileAction.FuncClick(BT_Back, "< Button");
 
-			mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
+			}
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
@@ -315,7 +335,9 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 
 			mobileAction.FuncClick(BT_Back, "< Button");
 
-			mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.verifyElementIsDisplayed(lblProfileSettings, "Profile & Settings");
+			}
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
@@ -339,6 +361,59 @@ public class MIT_DSHHomeScreenSettings extends _CommonPage {
 		try {
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "Home HamburgerMenu");
 			mobileAction.FuncSwipeWhileElementNotFound(flyoutProfileSettings, true, 5, "up");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void turnInvestingfocusONfromProfilePreference() {
+		Decorator();
+		try {
+			goToProfileAndSettings();
+			mobileAction.FuncClick(LBL_HomeScreenSettings, "Home Screen Settings");
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				if (BT_EnableInvestingViewSwitch.getAttribute("checked").equalsIgnoreCase("true")) {
+					CL.GetReporting().FuncReport(PASS,
+							"Enable Investing View is bydefault ON for investing focus user.");
+					goToDashboardHomeFromHomeScreenSettings();
+
+				} else {
+					mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
+
+					goToDashboardHomeFromHomeScreenSettings();
+				}
+			} else {
+				if (BT_EnableInvestingViewSwitch.getAttribute("value").equalsIgnoreCase("true")) {
+					CL.GetReporting().FuncReport(PASS,
+							"Enable Investing View is bydefault ON for investing focus user.");
+					goToDashboardHomeFromHomeScreenSettings();
+				} else {
+					mobileAction.FuncClick(BT_EnableInvestingViewSwitch, "BT_EnableInvestingViewSwitch");
+
+					goToDashboardHomeFromHomeScreenSettings();
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void goToDashboardHomeFromHomeScreenSettings() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(BT_Back, "< Button");
+
+			// mobileAction.verifyElementIsDisplayed(lblProfileSettings,
+			// "Profile & Settings");
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncClick(BT_HamburgerMenu, "Hamburger Menu");
+				mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
+			} else {
+				mobileAction.FuncClick(BT_Back, "< Button");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

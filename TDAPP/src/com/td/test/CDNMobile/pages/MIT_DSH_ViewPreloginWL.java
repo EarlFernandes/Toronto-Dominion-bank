@@ -66,10 +66,8 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 	@AndroidFindBy(xpath = "(//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button'])[1]")
 	private MobileElement btn_home;
 
-	
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'List 06')]")
-	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 06']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_watchlist_name_header' and @text='List 06']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'06')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/tv_watchlist_name_header' and contains(@text,'06')]")
 	private MobileElement FilledListCollapse;
 
 	@iOSXCUITFindBy(accessibility = "expandButton")
@@ -80,28 +78,31 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id= 'com.td:id/loginBtnText']")
 	private MobileElement login;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='List 06']")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/watchlist_name_drop_down' and @text='List 06']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'List 06')]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/watchlist_name_drop_down' and contains(@text,'List 06')]")
 	private MobileElement FilledListExpand;
 
 	@iOSFindBy(xpath = "//*[@label='Home' or @label='Accueil' or @label='主页' or @label='首頁']")
 	@AndroidFindBy(xpath = "//*[@text='Home' or @text='Accueil' or @text='主页' or @text='首頁']")
 	private MobileElement FLY_Home;
-	
+
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_HamburgerMenu;
-	
 
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
 	
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
+	@AndroidFindBy(id = "com.td:id/toolbar_back_button")
+	private MobileElement BT_WLBack;
+
 	public void verifyViewPreloginWL() {
 		Decorator();
 		try {
 
-			 MIT_DSHQuickLinks.get().goToDashboardHome();
+			MIT_DSHQuickLinks.get().goToDashboardHome();
 
 			if (mobileAction.isObjExists(btnSwitchNow, 2)) {
 				mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
@@ -151,21 +152,28 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 
 			mobileAction.FuncClick(btn_home, "Home Button");
 
-			mobileAction.FuncSwipeWhileElementNotFound(btnMore, true, 3, "up");
+			mobileAction.FuncSwipeWhileElementNotFound(btnMore, false, 3, "up");
 
 			mobileAction.verifyElementIsDisplayed(btnMore, "btnMore");
 
 			mobileAction.FuncClick(btnMore, "btnMore");
 
-			mobileAction.verifyElementIsDisplayed(login, "Login");
+			// mobileAction.verifyElementIsDisplayed(login, "Login"); As per new
+			// requirement In Pre-logined when tap on More it will go to
+			// Expanded mode
 
-			LoginMIT.get().MITLogin();
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			//mobileAction.FuncClick(BT_WLBack, "< Button");
+
+			// LoginMIT.get().MITLogin();
+
+			//MIT_DSHQuickLinks.get().goToDashboardHome();
+			
+			/*if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
 				mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
 			} else {
 				mobileAction.FuncClick(BT_Back, "< Button");
-			}
+			}*/
 			mobileAction.verifyElementIsDisplayed(FilledListExpand, "FilledListExpand");
 
 		} catch (Exception e) {
@@ -173,6 +181,5 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 		}
 
 	}
-	
 
 }

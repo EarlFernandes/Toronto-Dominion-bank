@@ -37,7 +37,7 @@ public class Interac_e_Registration extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/auto_deposit_account_selection']")
 	private MobileElement autodepositDropDown;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable/following::XCUIElementTypeCell/XCUIElementTypeStaticText[1]") 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txt_sub_heading']")
 	private MobileElement autodepositAcc;
 

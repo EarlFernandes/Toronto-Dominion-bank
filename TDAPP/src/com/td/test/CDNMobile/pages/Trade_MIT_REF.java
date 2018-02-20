@@ -3,11 +3,15 @@ package com.td.test.CDNMobile.pages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.pdfbox.util.StringUtil;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td.StringArray;
 import com.td._CommonPage;
+import org.openqa.selenium.By;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -54,7 +58,6 @@ public class Trade_MIT_REF extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/txtSearchTitle")
 	private MobileElement trade_enter_Name_or_symbol;
 
-	// @iOSXCUITFindBy(accessibility = "SYMBOL_SEARCH_CELL_1")
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField")
 	@AndroidFindBy(id = "symbol-search")
 	private MobileElement quote_enter_Name_or_symbol;
@@ -185,7 +188,8 @@ public class Trade_MIT_REF extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/positiveButton")
 	private MobileElement acceptBtn;
 
-	@iOSXCUITFindBy(accessibility = "alert_cancel_button")
+	@iOSFindBy(xpath = "//*[@name='alert_cancel_button' or @name='Cancel']")
+	// @iOSXCUITFindBy(accessibility = "alert_cancel_button")
 	@AndroidFindBy(id = "com.td:id/btn_cancel")
 	private MobileElement cancelbtn;
 
@@ -197,17 +201,61 @@ public class Trade_MIT_REF extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Accounts' or @text='Comptes' or @text='汇款' or @text='匯款']")
 	private MobileElement my_accounts;
 
-	@iOSXCUITFindBy(xpath = "//*[@name='Back']")
+	@iOSXCUITFindBy(xpath = "//*[@name='Back' or @label='Back' or @value='Back' or @label='Retour' or @name='NAVIGATION_ITEM_BACK']")
 	private MobileElement quoteBackBtn;
 
-	@AndroidFindBy(id = "android:id/button1")
+	@iOSXCUITFindBy(accessibility = "error-circle")
+	@AndroidFindBy(id = "com.td:id/error_text")
 	private MobileElement exchangeAgreementError;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Buy']")
 	@AndroidFindBy(id = "Buy_Entity_Button")
 	private MobileElement buyMarket;
 
 	int quoteCounter = 0;
 
+	@iOSFindBy(xpath = "//*[@label='Strike']/../../following-sibling::*/*/*[1]")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/textview_info' and @index=0]")
+	private MobileElement firstBidCALLS;
+
+	@iOSFindBy(xpath = "//*[@name='inputTextField']/*[1]")
+	@AndroidFindBy(id = "com.td:id/amountEditText")
+	private MobileElement quantityOptions;
+
+	@iOSFindBy(xpath = "(//*[@name='inputTextField'])[1]")
+	@AndroidFindBy(id = "com.td:id/amountEditText")
+	private MobileElement quantityOptions1;
+
+	@iOSXCUITFindBy(xpath = "//*[@name='PRICE_ACTION_CELL_1']/*[@name='valueLeftLabel']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Price' or @text='Cours' or @text='价格' or @text='價格']/../android.widget.TextView[@index=1]")
+	private MobileElement VAL_Price;
+
+	@iOSXCUITFindBy(xpath = "//*[@name='MARKET']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Price' or @text='Cours' or @text='价格' or @text='價格']/../android.widget.TextView[@index=1]")
+	private MobileElement VAL_PriceMarket;
+
+	@iOSXCUITFindBy(xpath = "//*[@name='GOOD_TIL_CELL_2']/*[@name='valueLeftLabel']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Good') or @text='Échéance' or @text='有效期' or @text='有效期']/../android.widget.TextView[@index=1]")
+	private MobileElement VAL_GoodTill;
+
+	@iOSFindBy(xpath = "//*[contains(@label,'Stocks') or contains(@label,'Actions et FNB')] ")
+	@AndroidFindBy(xpath = "//*[contains(@text,'Stocks') or contains(@text,'Actions et FNB')]")
+	private MobileElement stocks_ETFs;
+
+	String xpathSymbolFlag_And_US = "//android.widget.ImageView[@resource-id='com.td:id/market_symbol' and @content-desc='U S']";
+	String xpathSymbolFlag_ios_US = "//XCUIElementTypeCell[contains(@label,'US')]";
+	String xpathSymbolFlag_And_CAD = "//android.widget.ImageView[@resource-id='com.td:id/market_symbol' and (@content-desc='CAD' or @content-desc='CAN' or @content-desc='CA' or @content-desc='C A')]";
+	String xpathSymbolFlag_ios_CAD = "//XCUIElementTypeCell[contains(@label,'CA') or @label='Comptant CAN']";
+
+	By firstBidCALLSWeb = By.xpath("//tr[@class='expire-date open']/following-sibling::tr[1]/td[1]");
+
+	By quote_enter_Name_or_symbolWeb = By.xpath("//*[@id='symbol-search']");
+
+	By symListCA = By.xpath("//*[@class='sprite flag flag-ca']");
+
+	By symListUS = By.xpath("//*[@class='sprite flag flag-us']");
+
+	// *[@class='sprite flag flag-ca']
 	/**
 	 * This method will verify
 	 * 
@@ -428,17 +476,17 @@ public class Trade_MIT_REF extends _CommonPage {
 
 					symbol = mobileAction.mobileElementUsingXPath("//android.widget.ImageView[@content-desc='"
 							+ nxtSymbolImage[quoteCounter] + "']/following-sibling::android.widget.TextView[@text='"
-							+ getTestdata("nxtSymbol") + "']");
+							+ getTestdata("NxtSymbol") + "']");
 				} else {
 
 					symbolImgStr = nxtSymbolImage[quoteCounter].replaceAll("\\s+", "");
 					symbol = mobileAction.mobileElementUsingXPath("//XCUIElementTypeCell[contains(@name,'"
-							+ getTestdata("nxtSymbol") + "') and contains(@name,'" + symbolImgStr + "')]");
+							+ getTestdata("NxtSymbol") + "') and contains(@name,'" + symbolImgStr + "')]");
 				}
 
-				mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("nxtSymbol"));
+				mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("NxtSymbol"));
 
-				mobileAction.FuncClick(symbol, "Symbol: " + getTestdata("nxtSymbol"));
+				mobileAction.FuncClick(symbol, "Symbol: " + getTestdata("NxtSymbol"));
 
 				HomeScreen.get().back_button();
 
@@ -501,6 +549,35 @@ public class Trade_MIT_REF extends _CommonPage {
 	 *             If there is problem while reporting. In case the element is
 	 *             not found over the screen.
 	 */
+	public void verifyMultiQuoteDetails() {
+
+		Decorator();
+		try {
+
+			mobileAction.verifyElementIsDisplayed(symbol, "Symbol " + symbol.getText());
+			mobileAction.verifyElementIsDisplayed(companyName, "Company name " + companyName.getText());
+			mobileAction.verifyElementIsDisplayed(lastPrice, "Last Price " + lastPrice.getText());
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	/**
+	 * This method will verify
+	 * 
+	 * @throws Exception
+	 *             In case an exception occurs while clicking over the element.
+	 *             If there is problem while reporting. In case the element is
+	 *             not found over the screen.
+	 */
 	public void sendStockOrder() {
 
 		Decorator();
@@ -511,9 +588,11 @@ public class Trade_MIT_REF extends _CommonPage {
 			String actionToPerform = null;
 			MobileElement priceElement = null;
 			MobileElement goodTillElement = null;
+			String accountType = getTestdata("AccountType");
 
 			if (platform.equalsIgnoreCase("Android")) {
 
+				mobileAction.FunctionSwipe("down", 200, 200);
 				mobileAction.FuncClick(accountFieldTxt, "Account drop down");
 
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(
@@ -539,7 +618,7 @@ public class Trade_MIT_REF extends _CommonPage {
 				mobileAction.FuncClick(amountField, "Amount");
 				mobileAction.FuncSendKeys(amountField, getTestdata("Amount"));
 				mobileAction.FuncHideKeyboard();
-
+				mobileAction.FunctionSwipe("up", 2000, 200);
 				mobileAction.FuncClick(price, "price");
 
 				priceElement = mobileAction.mobileElementUsingXPath("//android.widget.TextView[@text='"
@@ -556,14 +635,18 @@ public class Trade_MIT_REF extends _CommonPage {
 
 				mobileAction.FunctionSwipe("up", 200, 200);
 
-				mobileAction.FuncClick(tradingPassword, "Trading Password");
-				mobileAction.FuncSendKeys(tradingPassword, getTestdata("Trading_Pwd"));
-				mobileAction.FuncHideKeyboard();
+				if (StringUtils.isEmpty(accountType)) {
+					System.err.println("Inside Trading Password");
+					mobileAction.FuncClick(tradingPassword, "Trading Password");
+					mobileAction.FuncSendKeys(tradingPassword, getTestdata("Trading_Pwd"));
+					mobileAction.FuncHideKeyboard();
+				}
 
 				mobileAction.FuncClick(previewOrder, "Preview Order Button");
 
 			} else {
 
+				mobileAction.FunctionSwipe("down", 200, 200);
 				mobileAction.FuncClick(accountFieldTxt, "Account drop down");
 
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(
@@ -608,9 +691,11 @@ public class Trade_MIT_REF extends _CommonPage {
 
 				mobileAction.FunctionSwipe("up", 200, 200);
 
-				mobileAction.FuncClick(tradingPassword, "Trading Password");
-				mobileAction.FuncSendKeys(tradingPassword, getTestdata("Trading_Pwd"));
-				mobileAction.FuncClickDone();
+				if (StringUtils.isEmpty(accountType)) {
+					mobileAction.FuncClick(tradingPassword, "Trading Password");
+					mobileAction.FuncSendKeys(tradingPassword, getTestdata("Trading_Pwd"));
+					mobileAction.FuncClickDone();
+				}
 
 				mobileAction.FuncClick(previewOrder, "Preview Order Button");
 
@@ -784,10 +869,11 @@ public class Trade_MIT_REF extends _CommonPage {
 			String thisDate = Integer.toString(GetDate.get().getTodaysDate());
 			String thisMonth = GetDate.get().getCurrentMonthShort();
 
-			mobileAction.verifyElementTextContains(timestamp, thisDate);
+			// mobileAction.verifyElementTextContains(timestamp, thisDate);
 			mobileAction.verifyElementTextContains(timestamp, thisMonth);
 
 			mobileAction.FuncClick(sendOrder, "Send Order Button");
+
 			mobileAction.waitP2PProgressBarVanish();
 
 		} catch (Exception e) {
@@ -973,7 +1059,7 @@ public class Trade_MIT_REF extends _CommonPage {
 			mobileAction.waitP2PProgressBarVanish();
 
 			mobileAction.FuncClick(sendOrder, "Send Order");
-
+			mobileAction.waitP2PProgressBarVanish();
 			verify_StockOrderSent_Msg();
 
 		} catch (Exception e) {
@@ -1076,7 +1162,7 @@ public class Trade_MIT_REF extends _CommonPage {
 								+ nxtSymbol + "']");
 			}
 
-			mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("nxtSymbol"));
+			mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("NxtSymbol"));
 
 			quoteCounter++;
 			if (quoteCounter >= nxtSymbolImage.length)
@@ -1135,43 +1221,93 @@ public class Trade_MIT_REF extends _CommonPage {
 
 			nxtSymbol = nxtSymbol + " ";
 
-			for (int i = 0; i < symbolImgStr.length(); i++) {
+			for (int i = 0; i < nxtSymbolImage.length; i++) {
 				// Entering second symbol
-				mobileAction.FuncClick(quote_enter_Name_or_symbol, "Search symbol field");
 
-				mobileAction.FuncSendKeys(quote_enter_Name_or_symbol, nxtSymbol);
+				if (platform.equalsIgnoreCase("Android"))
+
+				{
+
+					((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+
+					// clickFirstSymbolCADWeb(getTestdata("NxtSymbol"));
+
+					mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(quote_enter_Name_or_symbolWeb),
+							"quote_enter_Name_or_symbolWeb");
+
+					mobileAction.FuncSendKeys((MobileElement) CL.GetDriver().findElement(quote_enter_Name_or_symbolWeb),
+							nxtSymbol);
+
+					mobileAction.FuncHideKeyboard();
+
+					((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+
+				}
+
+				else {
+
+					mobileAction.FuncClick(quote_enter_Name_or_symbol, "Search symbol field");
+
+					mobileAction.FuncSendKeys(quote_enter_Name_or_symbol, nxtSymbol);
+					mobileAction.FuncHideKeyboard();
+
+				}
 
 				if (platform.equalsIgnoreCase("Android")) {
 
-					symbol = mobileAction.mobileElementUsingXPath("//android.view.View[contains(@text,'"
-							+ quoteNameSaver + "')]/following-sibling::android.view.View[@text='"
-							+ getTestdata("NxtSymbol") + "']");
+					if (i > 0)
+					// Entering second symbol
+					{
+						symbol = mobileAction.mobileElementUsingXPath("//android.view.View[contains(@text,'"
+								+ nxtSymbolImage[i].replaceAll("\\s+", "")
+								+ "')]/following-sibling::android.view.View[@text='" + getTestdata("NxtSymbol") + "']");
+
+						String sXPathAnd = "//*[@class='text-prominent symbol']";
+
+						((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+
+						mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(symListUS), "symListUS");
+
+						((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+
+					}
+
+					else {
+
+						symbol = mobileAction.mobileElementUsingXPath("//android.view.View[contains(@text,'"
+								+ nxtSymbolImage[i].replaceAll("\\s+", "")
+								+ "')]/following-sibling::android.view.View[@text='" + getTestdata("NxtSymbol") + "']");
+
+						String sXPathAnd = "//*[@class='text-prominent symbol']";
+
+						((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+
+						mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(symListCA), "symListCA");
+
+						((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+
+					}
+
 				} else {
 
-					symbol = mobileAction.mobileElementUsingXPath(
-							"//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@name,'" + quoteNameSaver
+					symbol = mobileAction
+							.mobileElementUsingXPath("//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@name,'"
+									+ nxtSymbolImage[i].replaceAll("\\s+", "")
 									+ "')]/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[@name='"
 									+ getTestdata("NxtSymbol") + "']");
 				}
 
-				mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("nxtSymbol"));
+				mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("NxtSymbol"));
 
-				mobileAction.FuncClick(symbol, "Symbol: " + getTestdata("nxtSymbol"));
+				mobileAction.FuncClick(symbol, "Symbol: " + getTestdata("NxtSymbol"));
 
 				if (platform.equalsIgnoreCase("Android")) {
 					HomeScreen.get().back_button();
 				} else {
-					mobileAction.FuncClick(quoteBackBtn, "Back Button");// TODO::Back
-																		// button
-																		// is
-																		// not
-																		// working
-																		// on
-																		// quotes
-																		// pages
-																		// its a
-																		// webview
-																		// part
+					System.err.println("Context :" + CL.GetAppiumDriver().getContextHandles());
+
+					mobileAction.FuncClickElementCoordinates(quoteBackBtn, "Back Button");
+
 				}
 				verifyQuoteSymbol();
 			}
@@ -1236,11 +1372,11 @@ public class Trade_MIT_REF extends _CommonPage {
 				} else {
 
 					symbolImgStr = nxtSymbolImage[quoteCounter].replaceAll("\\s+", "");
-					symbol = mobileAction.mobileElementUsingXPath("//XCUIElementTypeCell[contains(@name,'" + nxtSymbol
-							+ "') and contains(@name,'" + symbolImgStr + "')]");
+					symbol = mobileAction.mobileElementUsingXPath("//XCUIElementTypeCell[contains(@name,'"
+							+ nxtSymbolImage[quoteCounter] + "') and contains(@name,'" + nxtSymbol + "')]");
 				}
 
-				mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("nxtSymbol"));
+				mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + getTestdata("NxtSymbol"));
 
 				quoteCounter++;
 				if (quoteCounter >= nxtSymbolImage.length)
@@ -1274,43 +1410,33 @@ public class Trade_MIT_REF extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(exchangeAgreementError, "Exchange Agreement Error message");
 
-			if (lastPrice.getText().equalsIgnoreCase(null)) {
+			mobileAction.FunctionSwipe("up", 2000, 200);
+
+			if (lastPrice.getText().equalsIgnoreCase("–") || lastPrice.getText().equalsIgnoreCase("-")) {
 				mobileAction.stringToReport("Pass", "Last Price is null");
 			} else {
 				mobileAction.stringToReport("Fail", "Last Price is not null: " + lastPrice.getText());
 			}
 
-			if (dollarChange.getText().equalsIgnoreCase(null)) {
-				mobileAction.stringToReport("Pass", "Dollar Change is null");
-			} else {
-				mobileAction.stringToReport("Fail", "Dollar Change is not null: " + dollarChange.getText());
-			}
-
-			if (dollarChangePercent.getText().equalsIgnoreCase(null)) {
-				mobileAction.stringToReport("Pass", "Dollar Change % is null");
-			} else {
-				mobileAction.stringToReport("Fail", "Dollar Change % is not null: " + dollarChangePercent.getText());
-			}
-
-			if (bidPrice.getText().equalsIgnoreCase(null)) {
+			if (bidPrice.getText().equalsIgnoreCase("–") || bidPrice.getText().equalsIgnoreCase("- (-)")) {
 				mobileAction.stringToReport("Pass", "Bid Price is null");
 			} else {
 				mobileAction.stringToReport("Fail", "Bid Price is not null: " + bidPrice.getText());
 			}
 
-			if (askPrice.getText().equalsIgnoreCase(null)) {
+			if (askPrice.getText().equalsIgnoreCase("–") || askPrice.getText().equalsIgnoreCase("- (-)")) {
 				mobileAction.stringToReport("Pass", "Ask Price is null");
 			} else {
 				mobileAction.stringToReport("Fail", "Ask Price is not null: " + askPrice.getText());
 			}
 
-			if (bidSize.getText().equalsIgnoreCase(null)) {
+			if (bidSize.getText().equalsIgnoreCase("(–)") || bidSize.getText().equalsIgnoreCase("- (-)")) {
 				mobileAction.stringToReport("Pass", "Bid Size is null");
 			} else {
 				mobileAction.stringToReport("Fail", "Bid Size is not null: " + bidSize.getText());
 			}
 
-			if (askSize.getText().equalsIgnoreCase(null)) {
+			if (askSize.getText().equalsIgnoreCase("(–)") || askSize.getText().equalsIgnoreCase("- (-)")) {
 				mobileAction.stringToReport("Pass", "Ask Size is null");
 			} else {
 				mobileAction.stringToReport("Fail", "Ask Size is not null: " + askSize.getText());
@@ -1347,26 +1473,41 @@ public class Trade_MIT_REF extends _CommonPage {
 			MobileElement symbol = null;
 			String symbolImgStr = getTestdata("SymbolImage").replaceAll("\\s+", "");
 			String exlSymbol = getTestdata("Symbol");
+			String exlSymbolShortName = getTestdata("SymbolShortName");
+
+			CL.GetDriver().getPageSource();
 
 			mobileAction.FuncClick(quote_enter_Name_or_symbol, "Search symbol field");
 
-			mobileAction.FuncSendKeys(quote_enter_Name_or_symbol, exlSymbol);
-
 			if (platform.equalsIgnoreCase("Android")) {
+
+				mobileAction.FuncSendKeys(quote_enter_Name_or_symbol, exlSymbolShortName);
 
 				symbol = mobileAction.mobileElementUsingXPath("//android.view.View[contains(@text,'" + symbolImgStr
 						+ "')]/following-sibling::android.view.View[@text='" + exlSymbol + "']");
 			} else {
+				exlSymbolShortName = exlSymbolShortName + " ";
+				mobileAction.FuncSendKeys(quote_enter_Name_or_symbol, exlSymbolShortName);
+
+				/*
+				 * symbol = mobileAction.mobileElementUsingXPath(
+				 * "//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@name,'"
+				 * + symbolImgStr +
+				 * "')]/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[@name='"
+				 * + exlSymbol + "']");
+				 */
+
+				CL.GetDriver().getPageSource();
 
 				symbol = mobileAction.mobileElementUsingXPath(
-						"//XCUIElementTypeOther/XCUIElementTypeStaticText[contains(@name,'" + symbolImgStr
-								+ "')]/../following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText[@name='"
-								+ exlSymbol + "']");
+						"//XCUIElementTypeOther/XCUIElementTypeStaticText[@label='" + exlSymbol + "']");
 			}
 
 			mobileAction.verifyElementIsDisplayed(symbol, "Symbol: " + exlSymbol);
 
 			mobileAction.FuncClick(symbol, "Symbol: " + exlSymbol);
+
+			CL.GetDriver().getPageSource();
 
 			mobileAction.FuncClick(buyMarket, "Buy");
 
@@ -1379,6 +1520,507 @@ public class Trade_MIT_REF extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
+		}
+	}
+
+	public void Trade_MIT_REF_sendOptionsOrder() {
+
+		Decorator();
+		try {
+
+			MobileElement actionElement = null;
+			String arrayStr[] = null;
+			String actionToPerform = null;
+			MobileElement priceElement = null;
+			MobileElement goodTillElement = null;
+			String accountType = getTestdata("AccountType");
+
+			if (platform.equalsIgnoreCase("Android")) {
+
+				// mobileAction.FunctionSwipe("down", 200, 200);
+				mobileAction.FuncClick(accountFieldTxt, "Account drop down");
+
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(
+						"//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
+								+ getTestdata("AccountNumber") + "']",
+						true, 60, "up");
+
+				mobileAction.selectItemFromList(stocks_ETFs, getTestdata("OrderType", "UserIDs"));
+
+				mobileAction.FunctionSwipe("up", 2000, 200);
+
+				ClickEnterNameOrSymbol();
+
+				clickFirstSymbolUS(getTestdata("Symbol", "UserIDs"));
+
+				Thread.sleep(10000);
+				((AppiumDriver) CL.GetDriver()).context("WEBVIEW_com.td");
+
+				mobileAction.FuncClick((MobileElement) CL.GetDriver().findElement(firstBidCALLSWeb),
+						"firstBidCALLSWeb");
+
+				((AppiumDriver) CL.GetDriver()).context("NATIVE_APP");
+
+				mobileAction.FunctionSwipe("up", 2000, 200);
+
+				mobileAction.FuncClick(actionDropDown, "Action Drop Down");
+
+				actionToPerform = getTestdata("Action");
+
+				if (actionToPerform.equalsIgnoreCase("Buy To Open"))
+					arrayStr = StringArray.ARRAY_DASHBOARD_ACTIONBUYTOOPEN;
+				else
+					arrayStr = StringArray.ARRAY_DASHBOARD_ACTIONSELL;
+
+				actionElement = mobileAction.mobileElementUsingXPath(
+						"//android.widget.TextView[@text='" + getTextInCurrentLocale(arrayStr) + "']");
+
+				mobileAction.FuncClick(actionElement, "Action " + actionElement.getText());
+
+				mobileAction.FuncClick(quantityOptions1, "Quantity");
+
+				mobileAction.FuncSendKeys(quantityOptions1, getTestdata("Quantity"));
+				// mobileAction.FuncClickDone();
+				mobileAction.FuncHideKeyboard();
+
+				mobileAction.FunctionSwipe("up", 2000, 200);
+
+				mobileAction.FuncClick(price, "price");
+
+				priceElement = mobileAction.mobileElementUsingXPath("//android.widget.TextView[@text='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_PRICEMARKET) + "']");
+
+				mobileAction.FuncClick(priceElement, priceElement.getText());
+
+				mobileAction.FuncClick(goodTill, "Good Till");
+
+				goodTillElement = mobileAction.mobileElementUsingXPath("//android.widget.TextView[@text='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_GOODTILLDAY) + "']");
+
+				mobileAction.FuncClick(goodTillElement, goodTillElement.getText());
+
+				mobileAction.FunctionSwipe("up", 200, 200);
+
+				if (StringUtils.isEmpty(accountType)) {
+					System.err.println("Inside Trading Password");
+					mobileAction.FuncClick(tradingPassword, "Trading Password");
+					mobileAction.FuncSendKeys(tradingPassword, getTestdata("Trading_Pwd"));
+					mobileAction.FuncHideKeyboard();
+				}
+				Thread.sleep(2000);
+
+				mobileAction.FuncClick(previewOrder, "Preview Order Button");
+
+				Thread.sleep(2000);
+
+				if (mobileAction.verifyElementIsPresent(previewOrder)) {
+
+					mobileAction.FuncClick(previewOrder, "previewOrder");
+				}
+
+				/*
+				 * if (mobileAction.isObjExists(previewOrder, 2)) {
+				 * 
+				 * mobileAction.FuncClick(previewOrder, "previewOrder");
+				 * 
+				 * }
+				 */
+
+				if (mobileAction.verifyElementIsPresent(acceptBtn)) {
+
+					mobileAction.FuncClick(acceptBtn, "Agree Button");
+				}
+
+				mobileAction.waitP2PProgressBarVanish();
+
+				clickSendOrder();
+
+				click_Orders_Link();
+
+				click_RecentOrder();
+
+				mobileAction.FuncClick(changeOrderBtn, "Change Order");
+				mobileAction.waitP2PProgressBarVanish();
+				mobileAction.FuncSwipeWhileElementNotFound(quantityOptions1, false, 4, "up");
+				// mobileAction.FunctionSwipe("up", 200, 200);
+				mobileAction.FuncClick(quantityOptions1, "Quantity Field");
+
+				// TradeMultiLeg.get().enterQuantity(quantityOptions1, "1");
+
+				mobileAction.FuncSendKeys(quantityOptions1, "1");
+				mobileAction.FuncHideKeyboard();
+
+				mobileAction.FunctionSwipe("up", 200, 200);
+
+				mobileAction.FuncClick(tradingPassword, "Trading Password");
+				mobileAction.FuncSendKeys(tradingPassword, getTestdata("Trading_Pwd"));
+				mobileAction.FuncHideKeyboard();
+				Thread.sleep(3000);
+				mobileAction.FuncClick(previewOrder, "Preview Order Button");
+				Thread.sleep(3000);
+				/*
+				 * if (mobileAction.verifyElementIsPresent(previewOrder)) {
+				 * 
+				 * mobileAction.FuncClick(previewOrder,
+				 * "Preview Order Buttonfdfdfdsfdsfdafdaf"); }
+				 */
+
+				if (mobileAction.verifyElementIsPresent(acceptBtn))
+					mobileAction.FuncClick(acceptBtn, "Agree Button");
+
+				mobileAction.waitP2PProgressBarVanish();
+
+				mobileAction.FuncClick(sendOrder, "Send Order");
+
+				click_Orders_Link();
+
+				click_RecentOrder();
+
+				mobileAction.FuncClick(cancelOrder, "Cancel Order");
+				mobileAction.waitP2PProgressBarVanish();
+				mobileAction.FunctionSwipe("up", 200, 200);
+
+				mobileAction.FuncClick(tradingPasswordCancelPage, "Trading Password");
+				mobileAction.FuncSendKeys(tradingPasswordCancelPage, getTestdata("Trading_Pwd"));
+				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncClick(cancelOrderConfirm, "Cancel Order Confirm");
+				mobileAction.waitP2PProgressBarVanish();
+				mobileAction.verifyElementIsDisplayed(thankYou, "Thank You");
+
+			} else {
+
+				// mobileAction.FunctionSwipe("down", 200, 200);
+
+				mobileAction.FuncClick(accountFieldTxt, "Account drop down");
+
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(
+						"//XCUIElementTypeStaticText[contains(@value,'" + getTestdata("AccountNumber") + "')]", true,
+						60, "up");
+
+				mobileAction.selectItemFromList(stocks_ETFs, getTestdata("OrderType", "UserIDs"));
+
+				mobileAction.FunctionSwipe("up", 2000, 200);
+
+				ClickEnterNameOrSymbol();
+
+				/*
+				 * EnterNameOrSymbol();
+				 * SearchPageMIT.get().enterSymbol(searchSymbolField,
+				 * getTestdata("SymbolShortName"));
+				 * SearchPageMIT.get().enterSymbol(searchSymbolField,getTestdata
+				 * ("SymbolShortName"));
+				 */
+
+				clickFirstSymbolUS(getTestdata("Symbol", "UserIDs"));
+
+				mobileAction.FuncClick(firstBidCALLS, "First Bid Calls");
+				mobileAction.FunctionSwipe("up", 2000, 200);
+
+				mobileAction.FuncClick(actionDropDown, "Action Drop Down");
+
+				actionToPerform = getTestdata("Action");
+
+				if (actionToPerform.equalsIgnoreCase("Buy to Open"))
+					arrayStr = StringArray.ARRAY_DASHBOARD_ACTIONBUYTOOPEN;
+				else
+					arrayStr = StringArray.ARRAY_DASHBOARD_ACTIONSELL;
+
+				actionElement = mobileAction
+						.mobileElementUsingXPath("//XCUIElementTypeCell/XCUIElementTypeStaticText[@value='"
+								+ getTextInCurrentLocale(arrayStr) + "']");
+
+				mobileAction.FuncClick(actionElement, "Action " + actionElement.getText());
+
+				mobileAction.FuncClick(quantityOptions1, "Quantity");
+
+				mobileAction.FuncSendKeys(quantityOptions1, getTestdata("Quantity"));
+				mobileAction.FuncClickDone();
+
+				mobileAction.FuncClick(price, "price");
+
+				priceElement = mobileAction
+						.mobileElementUsingXPath("//XCUIElementTypeCell/XCUIElementTypeStaticText[@value='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_PRICEMARKET) + "']");
+
+				mobileAction.FuncClick(priceElement, priceElement.getText());
+
+				mobileAction.FuncSwipeWhileElementNotFound(goodTill, false, 4, "up");
+
+				mobileAction.FuncClick(goodTill, "Good Till");
+
+				goodTillElement = mobileAction
+						.mobileElementUsingXPath("//XCUIElementTypeCell/XCUIElementTypeStaticText[@value='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_GOODTILLDAY) + "']");
+
+				mobileAction.FuncClick(goodTillElement, goodTillElement.getText());
+
+				mobileAction.FunctionSwipe("up", 200, 200);
+
+				if (StringUtils.isEmpty(accountType)) {
+					mobileAction.FuncClick(tradingPassword, "Trading Password");
+					mobileAction.FuncSendKeys(tradingPassword, getTestdata("Trading_Pwd"));
+					mobileAction.FuncClickDone();
+				}
+
+				mobileAction.FuncClick(previewOrder, "Preview Order Button");
+
+				if (mobileAction.isObjExists(previewOrder, 2)) {
+
+					mobileAction.FuncClick(previewOrder, "previewOrder");
+
+				}
+
+			}
+
+			if (mobileAction.verifyElementIsPresent(acceptBtn)) {
+
+				mobileAction.FuncClick(acceptBtn, "Agree Button");
+			}
+
+			mobileAction.waitP2PProgressBarVanish();
+
+			clickSendOrder();
+
+			click_Orders_Link();
+
+			click_RecentOrder();
+
+			mobileAction.FuncClick(changeOrderBtn, "Change Order");
+			mobileAction.waitP2PProgressBarVanish();
+			mobileAction.FuncSwipeWhileElementNotFound(quantityOptions1, false, 4, "up");
+			// mobileAction.FunctionSwipe("up", 200, 200);
+			mobileAction.FuncClick(quantityOptions1, "Quantity Field");
+			mobileAction.FuncSendKeys(quantityOptions1, "1");
+			mobileAction.FuncHideKeyboard();
+
+			mobileAction.FunctionSwipe("up", 200, 200);
+
+			mobileAction.FuncClick(tradingPassword, "Trading Password");
+			mobileAction.FuncSendKeys(tradingPassword, getTestdata("Trading_Pwd"));
+			mobileAction.FuncHideKeyboard();
+
+			mobileAction.FuncClick(previewOrder, "Preview Order Button");
+			Thread.sleep(3000);
+			/*
+			 * if (mobileAction.verifyElementIsPresent(previewOrder)) {
+			 * 
+			 * mobileAction.FuncClick(previewOrder, "Preview Order"); }
+			 */
+
+			if (mobileAction.isObjExists(previewOrder, 2)) {
+
+				mobileAction.FuncClick(previewOrder, "previewOrder");
+
+			}
+
+			if (mobileAction.verifyElementIsPresent(acceptBtn))
+				mobileAction.FuncClick(acceptBtn, "Agree Button");
+
+			mobileAction.waitP2PProgressBarVanish();
+
+			mobileAction.FuncClick(sendOrder, "Send Order");
+
+			click_Orders_Link();
+
+			click_RecentOrder();
+
+			mobileAction.FuncClick(cancelOrder, "Cancel Order");
+			mobileAction.waitP2PProgressBarVanish();
+			mobileAction.FunctionSwipe("up", 200, 200);
+
+			mobileAction.FuncClick(tradingPasswordCancelPage, "Trading Password");
+			mobileAction.FuncSendKeys(tradingPasswordCancelPage, getTestdata("Trading_Pwd"));
+			mobileAction.FuncHideKeyboard();
+			mobileAction.FuncClick(cancelOrderConfirm, "Cancel Order Confirm");
+			mobileAction.waitP2PProgressBarVanish();
+			mobileAction.verifyElementIsDisplayed(thankYou, "Thank You");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void clickFirstSymbolUS(String sSymbolName) {
+		Decorator();
+		try {
+			String xpathFlag = "";
+			int temp = 0;
+			// String sSymbol = getTestdata("Symbol", XLSheetUserIDs).trim();
+			boolean bFound = false;
+			String sProperty = "";
+			// String sSymbolName = "";
+			boolean bSymbolText = false;
+
+			/*
+			 * mobileAction.FuncClick(search_symbol, "search_symbol");
+			 * enterSymbol(search_symbol, sSymbolName); //
+			 * mobileAction.verifyElement(txt_results,getTestdata("RESULTS", //
+			 * XLSheetUserIDs));
+			 */
+			// enterSymbol(search_symbol, sSymbolName);
+			SearchPageMIT.get().enterSymbol(searchSymbolField, sSymbolName);
+
+			TradeMultiLeg.get().handleKeyboard();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				xpathFlag = xpathSymbolFlag_And_US;
+				sProperty = "text";
+				// sSymbolName =
+				// CL.GetDriver().findElements(By.xpath("//*[@resource-id='com.td:id/market_name']")).get(i).getText();
+				try {
+					CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
+					CL.GetReporting().FuncReport("Pass", "Symbol <b> " + sSymbolName + "</b> Clicked.");
+				} catch (Exception e) {
+					e.printStackTrace();
+					CL.GetReporting().FuncReport("Fail", "Symbol <b> " + sSymbolName + "</b> not Clicked.");
+				}
+			} else {
+				xpathFlag = xpathSymbolFlag_ios_US;
+				// temp =0;
+				sProperty = "label";
+				do {
+					try {
+						if (CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).isDisplayed()
+								&& CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).getAttribute(sProperty)
+										.contains(sSymbolName)) {
+							bFound = true;
+							CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
+							CL.GetReporting().FuncReport("Pass", "Symbol <b> " + sSymbolName + "</b> Clicked.");
+						} else
+							temp++;
+					} catch (Exception e) {
+						temp++;
+					}
+				} while (!bFound && temp < CL.GetDriver().findElements(By.xpath(xpathFlag)).size());
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void clickFirstSymbolCADWeb(String sSymbolName)
+
+	{
+		Decorator();
+		try {
+			String xpathFlag = "";
+			int temp = 0;
+			// String sSymbol = getTestdata("Symbol", XLSheetUserIDs).trim();
+			boolean bFound = false;
+			String sProperty = "";
+			// String sSymbolName = "";
+			boolean bSymbolText = false;
+
+			// mobileAction.FuncClick(search_symbol, "search_symbol");
+			// enterSymbol(enter_symbol, sSymbolName);
+			// mobileAction.verifyElement(txt_results,getTestdata("RESULTS",
+			// XLSheetUserIDs));
+			// SearchPageMIT.get().enterSymbol(searchSymbolField, sSymbolName);
+			SearchPageMIT.get().enterSymbol((MobileElement) CL.GetDriver().findElement(quote_enter_Name_or_symbolWeb),
+					sSymbolName);
+
+			TradeMultiLeg.get().handleKeyboard();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				xpathFlag = xpathSymbolFlag_And_CAD;
+				sProperty = "text";
+				// sSymbolName =
+				// CL.GetDriver().findElements(By.xpath("//*[@resource-id='com.td:id/market_name']")).get(i).getText();
+				try {
+					CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
+					CL.GetReporting().FuncReport("Pass", "Symbol <b> " + sSymbolName + "</b> Clicked.");
+				} catch (Exception e) {
+					e.printStackTrace();
+					CL.GetReporting().FuncReport("Fail", "Symbol <b> " + sSymbolName + "</b> not Clicked.");
+				}
+			} else {
+				xpathFlag = xpathSymbolFlag_ios_CAD;
+				// temp =0;
+				sProperty = "label";
+				do {
+					try {
+						if (CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).isDisplayed()
+								&& CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).getAttribute(sProperty)
+										.contains(sSymbolName)) {
+							bFound = true;
+							CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
+							CL.GetReporting().FuncReport("Pass", "Symbol <b> " + sSymbolName + "</b> Clicked.");
+						} else
+							temp++;
+					} catch (Exception e) {
+						temp++;
+					}
+				} while (!bFound && temp < CL.GetDriver().findElements(By.xpath(xpathFlag)).size());
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void clickFirstSymbolCAD(String sSymbolName)
+
+	{
+		Decorator();
+		try {
+			String xpathFlag = "";
+			int temp = 0;
+			// String sSymbol = getTestdata("Symbol", XLSheetUserIDs).trim();
+			boolean bFound = false;
+			String sProperty = "";
+			// String sSymbolName = "";
+			boolean bSymbolText = false;
+
+			// mobileAction.FuncClick(search_symbol, "search_symbol");
+			// enterSymbol(enter_symbol, sSymbolName);
+			// mobileAction.verifyElement(txt_results,getTestdata("RESULTS",
+			// XLSheetUserIDs));
+			SearchPageMIT.get().enterSymbol(searchSymbolField, sSymbolName);
+			// SearchPageMIT.get().enterSymbol((MobileElement)
+			// CL.GetDriver().findElement(quote_enter_Name_or_symbolWeb),
+			// sSymbolName);
+
+			TradeMultiLeg.get().handleKeyboard();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				xpathFlag = xpathSymbolFlag_And_CAD;
+				sProperty = "text";
+				// sSymbolName =
+				// CL.GetDriver().findElements(By.xpath("//*[@resource-id='com.td:id/market_name']")).get(i).getText();
+				try {
+					CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
+					CL.GetReporting().FuncReport("Pass", "Symbol <b> " + sSymbolName + "</b> Clicked.");
+				} catch (Exception e) {
+					e.printStackTrace();
+					CL.GetReporting().FuncReport("Fail", "Symbol <b> " + sSymbolName + "</b> not Clicked.");
+				}
+			} else {
+				xpathFlag = xpathSymbolFlag_ios_CAD;
+				// temp =0;
+				sProperty = "label";
+				do {
+					try {
+						if (CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).isDisplayed()
+								&& CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).getAttribute(sProperty)
+										.contains(sSymbolName)) {
+							bFound = true;
+							CL.GetDriver().findElements(By.xpath(xpathFlag)).get(temp).click();
+							CL.GetReporting().FuncReport("Pass", "Symbol <b> " + sSymbolName + "</b> Clicked.");
+						} else
+							temp++;
+					} catch (Exception e) {
+						temp++;
+					}
+				} while (!bFound && temp < CL.GetDriver().findElements(By.xpath(xpathFlag)).size());
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

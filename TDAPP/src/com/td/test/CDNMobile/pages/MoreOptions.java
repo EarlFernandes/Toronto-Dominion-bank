@@ -14,6 +14,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class MoreOptions extends _CommonPage {
 
@@ -68,7 +69,8 @@ public class MoreOptions extends _CommonPage {
 		Decorator();
 		String moreOptionsText = getTextInCurrentLocale(StringArray.ARRAY_MORE_OPTION_HEADER);
 		try {
-			mobileAction.verifyTextEquality(mobileAction.getValue(moreOptions_header), moreOptionsText);
+			mobileAction.verifyTextEquality(mobileAction.getValue(PageHeader.get().getHeaderTextElement()),
+					moreOptionsText);
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());

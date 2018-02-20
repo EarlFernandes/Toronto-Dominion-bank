@@ -102,7 +102,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	String phoneReg = "\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
 	String emailReg = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/../XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/../XCUIElementTypeOther[1]//XCUIElementTypeButton")
 	@AndroidFindBy(id = "com.td:id/purchasePreviewButton")
 	private MobileElement preview_purchase_button;
 
@@ -236,7 +236,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(page_title,
+			mobileAction.verifyElementTextIsDisplayed(PageHeader.get().getHeaderTextElement(),
 					getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_HEADER));
 
 		} catch (NoSuchElementException | IOException e) {
@@ -474,7 +474,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 				}
 				FundInListText = FundInListText + "]";
 			} else {
-				FundInListText = "//XCUIElementTypeStaticText[@label='";
+				FundInListText = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[@label='";
 				for (int i = 0; i < lengthOfArray; i++) {
 					FundInListText = FundInListText + selectedFundArray[i].trim() + "'";
 					if (i < lengthOfArray - 1) {
@@ -534,7 +534,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			} else {
 				System.out.println("Phone populated:" + ori_phone);
 			}
-			//mobileAction.FuncSwipeOnce("up");
+			// mobileAction.FuncSwipeOnce("up");
 			if (!mobileAction.verifyElementIsPresent(consent_checkbox)) {
 				mobileAction.FuncSwipeWhileElementNotFound(consent_checkbox, false, 5, "up");
 			}
@@ -643,7 +643,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			enterAmount(MIN_AMOUNT);
 			clickpreview();
 
-			String pageTitle = mobileAction.getValue(page_title);
+			String pageTitle = mobileAction.getValue(PageHeader.get().getHeaderTextElement());
 			String expectedTitle = getTextInCurrentLocale(StringArray.ARRAY_MF_PREVIEW_PURCHASE_HEADER);
 
 			if (!expectedTitle.contains(pageTitle)) {
@@ -699,7 +699,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			mobileAction.Report_Fail("Exception for VerifyMaxmumAmount");
 		}
 	}
-	
+
 	public void VerifyMaximumAmountError() {
 		Decorator();
 		try {
@@ -728,6 +728,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			mobileAction.Report_Fail("Exception for VerifyMaxmumAmount");
 		}
 	}
+
 	public void VerifyFromCADAccountToUSDMFAccountIsNotAllowed() {
 		Decorator();
 		try {

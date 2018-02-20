@@ -96,6 +96,9 @@ public class MIT_DSH_TermsOfUse extends _CommonPage {
 	public void verifyTermsOfUse() {
 		Decorator();
 		try {
+
+			MIT_DSHQuickLinks.get().goToDashboardHome();
+
 			Thread.sleep(1000);
 
 			mobileAction.FuncSwipeWhileElementNotFound(btnTermsofUse, false, 10, "up");

@@ -90,7 +90,7 @@ public class PageHeader extends _CommonPage {
 					} else {
 						mobileAction.FuncClick(backButton, "Back button clicked");
 					}
-					mobileAction.sleep(500);
+					mobileAction.sleep(2000);
 					count++;
 				}
 			}
