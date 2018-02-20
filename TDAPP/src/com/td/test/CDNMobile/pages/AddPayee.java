@@ -86,6 +86,30 @@ public class AddPayee extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[4]")
 	private MobileElement keyboardGoBtn;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[6]/XCUIElementTypeTextField[1]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[text()='Payee Address' or @index='3']")
+	private MobileElement payeeAddressUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[8]/XCUIElementTypeTextField[1]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[text()='City' or @index='5']")
+	private MobileElement payeeCityUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[11]/XCUIElementTypeTextField[1]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[text()='State' or @index='7']")
+	private MobileElement payeeStateUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[14]/XCUIElementTypeTextField[1]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[text()='Zip code' or @index='9']")
+	private MobileElement payeeZipCodeUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[18]/XCUIElementTypeTextField[1]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='accountNumber1']")
+	private MobileElement payeeAcctNumberUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='btn']")
+	private MobileElement payeeContinueBtnUS;
+
 	public synchronized static AddPayee get() {
 		if (AddPayee == null) {
 			AddPayee = new AddPayee();
@@ -1127,4 +1151,77 @@ public class AddPayee extends _CommonPage {
 		} finally {
 		}
 	}
+
+	public void enterUSPayeeDetailsPAT() {
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(payeeAddressUS, "US Payee Address");
+			mobileAction.FuncSendKeys(payeeAddressUS, "123 Main St");
+			mobileAction.FuncHideKeyboard();
+
+			mobileAction.FuncClick(payeeCityUS, "US Payee City");
+			mobileAction.FuncSendKeys(payeeCityUS, "New York");
+			mobileAction.FuncHideKeyboard();
+
+			mobileAction.FuncClick(payeeStateUS, "US Payee State");
+			mobileAction.FuncSendKeys(payeeStateUS, "NY");
+			mobileAction.FuncHideKeyboard();
+
+			mobileAction.FuncClick(payeeZipCodeUS, "US Payee Zip Code");
+			mobileAction.FuncSendKeys(payeeZipCodeUS, "90210");
+			mobileAction.FuncHideKeyboard();
+
+			mobileAction.FunctionSwipe("up", 2000, 0);
+
+			String acctNum = getRandomAccountNumber("FromAccount");
+			mobileAction.FuncClick(payeeAcctNumberUS, "Payee Acct Number");
+			mobileAction.FuncSendKeys(payeeAcctNumberUS, acctNum);
+			mobileAction.FuncHideKeyboard();
+
+			mobileAction.FuncClick(payeeContinueBtnUS, "Payee Continue button");
+			mobileAction.sleep(3000);
+			mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+			mobileAction.sleep(5000);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void clickFirstUSPayeeFoundPAT() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchToWebView();
+				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.sleep(5000);
+			} else {
+				mobileAction.sleep(3000);
+				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
+				mobileAction.sleep(3000);
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+
+	}
+
 }
