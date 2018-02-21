@@ -519,14 +519,12 @@ public class Receipt extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				confirmNum = confirmNum.substring(confirmNum.lastIndexOf(":") + 1).trim();
 			}
+			confirmNum = confirmNum.replaceAll("[^a-zA-Z0-9]", "");
 
 			if (confirmNum.matches("[A-Z0-9]{5,10}")) {
 				mobileAction.GetReporting().FuncReport("Pass", "Confirmation Number: " + confirmNum);
 			} else {
-				if (!currentLocale.toLowerCase().startsWith("zh")) {
-					mobileAction.GetReporting().FuncReport("Fail",
-							"Incorrect Confirmation Number Format: " + confirmNum);
-				}
+				mobileAction.GetReporting().FuncReport("Fail", "Incorrect Confirmation Number Format: " + confirmNum);
 			}
 
 		} catch (Exception e) {
@@ -564,6 +562,7 @@ public class Receipt extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				confirmNum = confirmNum.substring(confirmNum.lastIndexOf(":") + 1).trim();
 			}
+			confirmNum = confirmNum.replaceAll("[^a-zA-Z0-9]", "");
 
 			if (confirmNum.matches("[A-Z0-9]{5,10}")) {
 				mobileAction.GetReporting().FuncReport("Pass", "Confirmation Number: " + confirmNum);
