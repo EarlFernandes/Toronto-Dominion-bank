@@ -260,6 +260,7 @@ public class LoginMIT extends _CommonPage {
 					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 						mobileAction.FuncClick(securityLogin, "Login");
 					}
+					Thread.sleep(10000);
 
 				}
 			}
