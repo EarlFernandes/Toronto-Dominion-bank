@@ -1135,10 +1135,12 @@ public class AddPayee extends _CommonPage {
 	private void switchToEnglishKeyboard() {
 		try {
 			// Switch to English keyboard for correct text input
-			String keyboardGoBtnText = keyboardGoBtn.getAttribute("label");
-			if (keyboardGoBtnText.contains("确认")) {
-				mobileAction.FuncClick(keyboardTypeBtn, "Switch to English keyboard");
-				mobileAction.sleep(500);
+			if (mobileAction.verifyElementIsPresent(keyboardGoBtn)) {
+				String keyboardGoBtnText = keyboardGoBtn.getAttribute("label");
+				if (keyboardGoBtnText.contains("确认")) {
+					mobileAction.FuncClick(keyboardTypeBtn, "Switch to English keyboard");
+					mobileAction.sleep(500);
+				}
 			}
 
 		} catch (Exception e) {
