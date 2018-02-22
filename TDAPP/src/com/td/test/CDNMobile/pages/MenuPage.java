@@ -822,7 +822,8 @@ public class MenuPage extends _CommonPage {
 			verifyMenuItem(mobile_Deposit_button,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDMOBILEDEPOSIT));
 			// Location app blocked by TD OLC in Android8
-			verifyMenuItem(tdForMe, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDFORME));
+			// verifyMenuItem(tdForMe,
+			// getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDFORME));
 			verifyMenuItem(profile_and_settings,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PROFILESETTINGS));
 			verifyMenuItem(locations, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOCATIONS));
