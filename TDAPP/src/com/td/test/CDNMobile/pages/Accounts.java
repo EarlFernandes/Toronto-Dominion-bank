@@ -1138,14 +1138,43 @@ public class Accounts extends _CommonPage {
 		try {
 
 			String account = getTestdata("ToAccount");
+			System.out.println("To account:"+account);
 			String acctXpath = "";
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				acctXpath = "//XCUIElementTypeStaticText[contains(@label,'" + account + "')]";
 			} else {
-				acctXpath = "//android.widget.TextView[contains(@text,'" + account + "')]";
+				acctXpath = "//android.widget.TextView[@text='" + account + "']";
 			}
 
-			mobileAction.swipeAndSearchByxpath(acctXpath, true, 30, "Up");
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(acctXpath, true, 30, "Up");
+			mobileAction.waitProgressBarVanish();
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+	
+	public void selectFromAccount() {
+		Decorator();
+		try {
+
+			String account = getTestdata("FromAccount");
+			System.out.println("From account:"+account);
+			String acctXpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				acctXpath = "//XCUIElementTypeStaticText[contains(@label,'" + account + "')]";
+			} else {
+				acctXpath = "//android.widget.TextView[@text='" + account + "']";
+			}
+
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(acctXpath, true, 30, "Up");
 			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {

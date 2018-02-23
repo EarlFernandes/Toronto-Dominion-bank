@@ -2279,5 +2279,59 @@ public class Between_My_accounts extends _CommonPage {
 		}
 
 	}
+	
+	public void Transfer_in_between_account() {
+		Decorator();
+		
+		String from_AccountNo = getTestdata("FromAccount");
+		String to_AccountNo = getTestdata("ToAccount");
+		String amountVal = getTestdata("Amount");
+		System.out.println("From account:" + from_AccountNo);
+		System.out.println("To account:" + to_AccountNo);
+		System.out.println("Amount:" + amountVal);
+		String from_account_value ="";
+		String to_account_value ="";
+		
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				from_account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
+				to_account_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_AccountNo + "')]";
+				
+			} else {
+				from_account_value = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
+						+ from_AccountNo + "']";
+				to_account_value = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
+						+ to_AccountNo + "']";
+			}
+			mobileAction.FuncClick(txtFrom_acnt, "From Account");		
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(from_account_value, true, 25, "up");
+			mobileAction.waitProgressBarVanish();
+			mobileAction.FuncClick(txtto_Acnt, "To Account");
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(to_account_value, true, 25, "Up");
+			mobileAction.waitProgressBarVanish();
+			
+			mobileAction.FuncClick(txtAmount, "Amount");
+			mobileAction.FuncSendKeys(txtAmount, amountVal);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.FuncClickDone();
+			} else {
+				mobileAction.FuncHideKeyboard();
+			}
+			
+			continueButton();
+			
+		}catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+		
+	}
+
+	
 
 }

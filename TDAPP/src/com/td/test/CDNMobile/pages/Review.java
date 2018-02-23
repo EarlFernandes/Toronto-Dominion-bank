@@ -63,6 +63,14 @@ public class Review extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/item_row_value_main'])[4]")
 	private MobileElement dateValue;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar/following-sibling::XCUIElementTypeOther[1]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
+	private MobileElement rbp_error_message;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='How Often' or @label='Type de paiement' or @label='次数' or @label='次數']/following-sibling::XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='How Often' or @text='Type de paiement' or @text='次数' or @text='次數']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
+	private MobileElement rbp_howoften_selection;
 
 	public synchronized static Review get() {
 		if (Review == null) {
@@ -181,8 +189,17 @@ public class Review extends _CommonPage {
 				getTextInCurrentLocale(StringArray.ARRAY_RBP_END_DATE) + "|"
 						+ getTextInCurrentLocale(StringArray.ARRAY_RBP_NUMBER_OF_PAYMENTS) };
 		try {
+			
+			//check payment is once or ongoing
+			String paymentType = mobileAction.getValue(rbp_howoften_selection);
+			if(paymentType.equals(getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN_ONCE))) {
+				expectedReviewInfo[4] = getTextInCurrentLocale(StringArray.ARRAY_RBP_ONCE_DATE);
+			}
+			
 			mobileAction.verifyElementTextIsDisplayed(review_banner_info,
 					getTextInCurrentLocale(StringArray.ARRAY_RBP_REVIEW_BANNER));
+
+			
 			int sizeOfInfo = review_info_list.size();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				sizeOfInfo = sizeOfInfo - 1; // for IOS, the first one is the
@@ -219,7 +236,7 @@ public class Review extends _CommonPage {
 		Decorator();
 		try {
 			verifyReviewHeader();
-			// saveBalance();
+			
 			mobileAction.FuncClick(cancelBtn, "Cancel Button Clicked");
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -233,8 +250,12 @@ public class Review extends _CommonPage {
 		Decorator();
 		try {
 			// verifyReviewHeader();
+			if(currentLocale.contentEquals("en")) {
+				saveBalance(); // only for english
+			}
 			mobileAction.FuncClick(payBillBtn, "Pay Bill Button Clicked");
-
+			mobileAction.waitProgressBarVanish();
+			
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -269,13 +290,45 @@ public class Review extends _CommonPage {
 			double d_fromAccountValue = mobileAction.convertStringAmountTodouble(fromAccountValue);
 			double d_balance = d_fromAccountValue - d_amountVal;
 			CL.getTestDataInstance().TCParameters.put("Dividend", Double.toString(d_balance));
-			String receivedBalance = CL.getTestDataInstance().TCParameters.get("Dividend");
-			System.out.println("receivedBalance:" + receivedBalance);
+//			String receivedBalance = CL.getTestDataInstance().TCParameters.get("Dividend");
+//			System.out.println("receivedBalance:" + receivedBalance);
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 
 		}
+	}
+	
+	private String getErrorMapping(String errorSheet) {
+
+		switch (errorSheet) {
+		case "Max Amount Error":
+			return getTextInCurrentLocale(StringArray.ARRAY_RBP_MAX_AMOUNT_ERROR);
+		case "Amount Greater Than Balance Error":
+			return getTextInCurrentLocale(StringArray.ARRAY_RBP_ERROR_AMOUNT_GREATER_BALANCE);
+		}
+		return "";
+	}
+
+		
+	public void VerifyRBPErrorMessageInReviewPage() {
+		Decorator();
+		String errorSheet = getTestdata("Security_Question");
+
+		try {
+			String expectedError = getErrorMapping(errorSheet);
+			if (expectedError.isEmpty()) {
+				mobileAction.Report_Fail("Failed to verify error message since data sheet is not correct");
+				return;
+			}
+
+			mobileAction.verifyElementTextIsDisplayed(rbp_error_message, expectedError);
+
+		} catch (Exception e) {
+			mobileAction.Report_Fail("Failed to verify error message");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+		
 	}
 
 }

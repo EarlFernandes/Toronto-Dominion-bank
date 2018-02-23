@@ -12,6 +12,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -137,11 +138,11 @@ public class MyCalendar extends _CommonPage {
 
 		}
 	};
-	
+
 	static final HashMap<String, String> frenchmonthToEngMonth = new HashMap<String, String>() {
 		{
 			put("janvier", "January");
-			put("février", "February"); 
+			put("février", "February");
 			put("mars", "March");
 			put("avril", "April");
 			put("mai", "May");
@@ -154,7 +155,7 @@ public class MyCalendar extends _CommonPage {
 			put("décembre", "December");
 
 			put("一", "January");
-			put("二", "February"); 
+			put("二", "February");
 			put("三", "March");
 			put("四", "April");
 			put("五", "May");
@@ -167,20 +168,19 @@ public class MyCalendar extends _CommonPage {
 			put("十二", "December");
 		}
 	};
-	
 
-
-	static int[] holiday_array = { 20180101, 20180219, 20180223, 20180330, 20180521, 20180621, 20180625,
-			20180702, 20180806, 20180903, 20181008, 20181112, 20181225, 20181226 };
+	static int[] holiday_array = { 20180101, 20180219, 20180223, 20180330, 20180521, 20180621, 20180625, 20180702,
+			20180806, 20180903, 20181008, 20181112, 20181225, 20181226 };
 
 	static Integer[] DigitTorNumber = { 0, // 0 mapping empty
 			31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
 	final String[] DigitToStr = { "", // 0 mapping empty
 			"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-	
-	Set<String> monthSet = new HashSet<String> (Arrays.asList("january", "february", "march", "april", "may", "june", "july", 
-			"august", "september", "october", "november", "december","jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"));
+
+	Set<String> monthSet = new HashSet<String>(Arrays.asList("january", "february", "march", "april", "may", "june",
+			"july", "august", "september", "october", "november", "december", "jan", "feb", "mar", "apr", "may", "jun",
+			"jul", "aug", "sep", "oct", "nov", "dec"));
 
 	public synchronized static MyCalendar get() {
 		if (myCalendar == null) {
@@ -213,29 +213,29 @@ public class MyCalendar extends _CommonPage {
 
 			String currentMonthYear = mobileAction.getValue(month_date);
 			System.out.println("currentMonthYear:" + currentMonthYear);
-			
-			if(currentLocale.equalsIgnoreCase("fr")) {
-				
+
+			if (currentLocale.equalsIgnoreCase("fr")) {
+
 				String year = currentMonthYear.split(" ")[1];
 				String frenchMonth = currentMonthYear.split(" ")[0];
 				String engMonth = frenchmonthToEngMonth.get(frenchMonth);
 				currentMonthYear = engMonth + " " + year;
-				System.out.println("Converted currentMonthYear:"+currentMonthYear);
-			} else if(!currentLocale.equalsIgnoreCase("en")) {
-				//Chinese version
-				String[] yearMonth= currentMonthYear.split("月 ");
+				System.out.println("Converted currentMonthYear:" + currentMonthYear);
+			} else if (!currentLocale.equalsIgnoreCase("en")) {
+				// Chinese version
+				String[] yearMonth = currentMonthYear.split("月 ");
 				String chMonth = yearMonth[0];
 				String chYear = yearMonth[1];
-				if(chMonth.matches("\\d+")) {
+				if (chMonth.matches("\\d+")) {
 					String engMonth = DigitToStr[Integer.parseInt(chMonth)] + "abc";
 					currentMonthYear = engMonth + " " + chYear;
 				} else {
 					String engMonth = frenchmonthToEngMonth.get(chMonth);
 					currentMonthYear = engMonth + " " + chYear;
 				}
-				System.out.println("Converted currentMonthYear:"+currentMonthYear);
+				System.out.println("Converted currentMonthYear:" + currentMonthYear);
 			}
-			
+
 			return currentMonthYear;
 
 		} catch (Exception e) {
@@ -405,8 +405,8 @@ public class MyCalendar extends _CommonPage {
 			String sHolidayMonth = sHoliday.substring(4, 6);
 			String sHolidayDay = sHoliday.substring(6, 8);
 
-			return DigitToStr[Integer.parseInt(sHolidayMonth)] + " "
-					+ Integer.parseInt(sHolidayDay) +  ", " + sHolidayYear ;
+			return DigitToStr[Integer.parseInt(sHolidayMonth)] + " " + Integer.parseInt(sHolidayDay) + ", "
+					+ sHolidayYear;
 		}
 		return "";
 	}
@@ -448,7 +448,8 @@ public class MyCalendar extends _CommonPage {
 			expectedMonth = expectedMonth % 12;
 			expectedYear = expectedYear + 1;
 		}
-//		String expected = expectedYear + " " + DigitToStr[expectedMonth] + " " + expectedDay;
+		// String expected = expectedYear + " " + DigitToStr[expectedMonth] + "
+		// " + expectedDay;
 		return selectFollowingWorkDayIfGivenDayisNot(expectedYear, expectedMonth, expectedDay);
 	}
 
@@ -1243,7 +1244,7 @@ public class MyCalendar extends _CommonPage {
 			String currentYear = currentMonthYear_Array[1].trim();
 
 			String currentMonth_Abbr = currentMonth.substring(0, 3);
-			//String requiredMonth_Abbr = requiredMonth.substring(0, 3);
+			// String requiredMonth_Abbr = requiredMonth.substring(0, 3);
 			int monthGap = getMonthGap(currentYear, currentMonth_Abbr, requiredYear, requiredMonth);
 			if (monthGap == -1) {
 				mobileAction.Report_Fail("Selected year is not correct");
@@ -1320,8 +1321,8 @@ public class MyCalendar extends _CommonPage {
 
 		}
 	}
-	
-	//originalDate is Today, Tomorrow, Due in x days, or February 01, 2018
+
+	// originalDate is Today, Tomorrow, Due in x days, or February 01, 2018
 	public String dateConversion(String originalDate) {
 		LocalDate localDate = LocalDate.now();
 		String currentDate = DateTimeFormatter.ofPattern("MMM dd, yyyy").format(localDate);
@@ -1332,57 +1333,94 @@ public class MyCalendar extends _CommonPage {
 		String yearOfToday = todayStr[2];
 		String monthOfToday = todayStr[0];
 		String dayOfToday = todayStr[1];
-		
+
 		int yearOfToday_int = Integer.parseInt(yearOfToday);
 		int monthOfToday_int = stringToMonthMap.get(monthOfToday);
 		int dayOfToday_int = Integer.parseInt(dayOfToday);
-		
-		String expectedStr ="";
-		if(originalDate.equalsIgnoreCase("Today")) {
-			expectedStr = yearOfToday + add0iflengthOfStrIs1(Integer.toString(monthOfToday_int)) + add0iflengthOfStrIs1(dayOfToday);
+
+		String expectedStr = "";
+		String s_Today = getTextInCurrentLocale(StringArray.ARRAY_RBP_DATE_TODYA);
+		if (originalDate.matches(s_Today)) {
+			expectedStr = yearOfToday + add0iflengthOfStrIs1(Integer.toString(monthOfToday_int))
+					+ add0iflengthOfStrIs1(dayOfToday);
 			return expectedStr;
 		}
-		
-		if(originalDate.equalsIgnoreCase("Tomorrow")) {
+
+		String tomorrowStr = getTextInCurrentLocale(StringArray.ARRAY_RBP_DATE_TOMORROW);
+		if (originalDate.matches(tomorrowStr)) {
 			int targetDay = dayOfToday_int + 1;
 			int MaxMonthDay = getMonthDays(monthOfToday_int, yearOfToday_int);
-			if(targetDay> MaxMonthDay) {
-				targetDay =1;
-				monthOfToday_int = monthOfToday_int +1;
-				if(monthOfToday_int>12) {
-					monthOfToday_int =1;
-					yearOfToday_int = yearOfToday_int +1;
+			if (targetDay > MaxMonthDay) {
+				targetDay = 1;
+				monthOfToday_int = monthOfToday_int + 1;
+				if (monthOfToday_int > 12) {
+					monthOfToday_int = 1;
+					yearOfToday_int = yearOfToday_int + 1;
 				}
 			}
-			expectedStr = yearOfToday_int + add0iflengthOfStrIs1(Integer.toString(monthOfToday_int)) + add0iflengthOfStrIs1(Integer.toString(targetDay));
+			expectedStr = yearOfToday_int + add0iflengthOfStrIs1(Integer.toString(monthOfToday_int))
+					+ add0iflengthOfStrIs1(Integer.toString(targetDay));
 			return expectedStr;
 		}
-		
-		if(originalDate.matches("Due in \\d+ days")) {
+
+		String dueInDate = getTextInCurrentLocale(StringArray.ARRAY_RBP_DATE_DUE_IN_X_DAYS);
+		if (originalDate.matches(dueInDate)) {
 			String days = mobileAction.FuncGetValByRegx(originalDate, "\\d+");
 			int targetDay = dayOfToday_int + Integer.parseInt(days);
-			int MaxMonthDay = getMonthDays(monthOfToday_int,yearOfToday_int);
-			if(targetDay> MaxMonthDay) {
+			int MaxMonthDay = getMonthDays(monthOfToday_int, yearOfToday_int);
+			if (targetDay > MaxMonthDay) {
 				targetDay = targetDay % MaxMonthDay;
-				monthOfToday_int = monthOfToday_int +1;
-				if(monthOfToday_int>12) {
-					monthOfToday_int =1;
-					yearOfToday_int = yearOfToday_int +1;
+				monthOfToday_int = monthOfToday_int + 1;
+				if (monthOfToday_int > 12) {
+					monthOfToday_int = 1;
+					yearOfToday_int = yearOfToday_int + 1;
 				}
 			}
-			expectedStr = yearOfToday_int + add0iflengthOfStrIs1(Integer.toString(monthOfToday_int)) + add0iflengthOfStrIs1(Integer.toString(targetDay));
+			expectedStr = yearOfToday_int + add0iflengthOfStrIs1(Integer.toString(monthOfToday_int))
+					+ add0iflengthOfStrIs1(Integer.toString(targetDay));
 			return expectedStr;
 		}
-		
-		//originalDate must be format like February 01, 2018
-		String[] capturedDateStr = originalDate.replace(",", "").split(" ");
-		String capturedYear = capturedDateStr[2];
-		String capturedMonth = capturedDateStr[0];
-		String capturedDay = capturedDateStr[1];
-		int capturedMonth_int = stringToMonthMap.get(capturedMonth.substring(0, 3));
-		
-		expectedStr = capturedYear + add0iflengthOfStrIs1(Integer.toString(capturedMonth_int)) + add0iflengthOfStrIs1(capturedDay);
-		return expectedStr;
+
+		String noralDateFormat = getTextInCurrentLocale(StringArray.ARRAY_RBP_DATE_NORMAL_FORMAT);
+		if (originalDate.matches(noralDateFormat)) {
+			String capturedYear = "";
+			String capturedMonth = "";
+			String capturedDay = "";
+			int capturedMonth_int = 0;
+
+			if (currentLocale.equalsIgnoreCase("en")) {
+				// originalDate must be format like February 01, 2018
+				String[] capturedDateStr = originalDate.replace(",", "").split(" ");
+				capturedYear = capturedDateStr[2];
+				capturedMonth = capturedDateStr[0];
+				capturedDay = capturedDateStr[1];
+				capturedMonth_int = stringToMonthMap.get(capturedMonth.substring(0, 3));
+			} else if (currentLocale.equalsIgnoreCase("fr")) {
+				// originalDate must be format like 7 mai 2018
+				String[] capturedDateStr = originalDate.replace(",", "").split(" ");
+				capturedYear = capturedDateStr[2];
+				capturedMonth = capturedDateStr[1];
+				capturedDay = capturedDateStr[0];
+				capturedMonth = frenchmonthToEngMonth.get(capturedMonth);
+				capturedMonth_int = stringToMonthMap.get(capturedMonth.substring(0, 3));
+			} else {
+				// for Chinese, it's format is 2018年3月2日
+				String origDate_en = originalDate.replace("年", " ");
+				origDate_en = origDate_en.replace("月", " ");
+				origDate_en = origDate_en.replace("日", "");
+				String[] capturedDateStr = origDate_en.split(" ");
+				capturedYear = capturedDateStr[0];
+				capturedMonth = capturedDateStr[1];
+				capturedDay = capturedDateStr[2];
+				capturedMonth_int = Integer.parseInt(capturedMonth);
+			}
+			expectedStr = capturedYear + add0iflengthOfStrIs1(Integer.toString(capturedMonth_int))
+					+ add0iflengthOfStrIs1(capturedDay);
+			return expectedStr;
+		} else {
+			System.out.println("Format not correct:" + originalDate);
+			return "Format not correct";
+		}
 	}
 
 }

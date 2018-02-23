@@ -374,15 +374,15 @@ public final class StringArray {
 			"Paramètres de l’écran d’accueil", "主页设置", "首頁設定" };
 
 	public static final String[] ARRAY_DASHBOARD_HOMESCREENSETTINGSHEADERDESCRIPTION = {
-			"Choose what view to show on your home screen", "Choisir l’affichage de votre écran d’accueil", "选择主页要显示的视图",
-			"選擇首頁要顯示的視圖" };
+			"Choose what view to show on your home screen", "Choisir l’affichage de votre écran d’accueil",
+			"选择主页要显示的视图", "選擇首頁要顯示的視圖" };
 	public static final String[] ARRAY_DASHBOARD_ENABLEINVESTINGVIEW = { "Enable Investing View",
 			"Activer l’affichage de Placements", "启用投资视图", "啟用投資視圖" };
 	public static final String[] ARRAY_DASHBOARD_ENABLEINVESTINGVIEWDESCRIPTION = {
 			"Add a Watchlist, symbol search box and investing Quick Links.",
 			"Ajouter une liste de surveillance, une boîte de recherche de symboles et des liens rapides sur les placements",
 			"添加自选股观察名单、股票代码搜索框和投资快速连接。", "新增自選股觀察名單、股票代號搜尋框和投資快速連結。" };
-	
+
 	public static final String[] ARRAY_DASHBOARD_INVESTINGVIEWISON = { "Investing view is now on",
 			"Affichage Placements activé", "投资视图已开启", "投資視圖已開啟" };
 	public static final String[] ARRAY_DASHBOARD_GOHOME = { "Go home", "Aller à l’accueil", "回到主页", "回到首頁" };
@@ -633,9 +633,7 @@ public final class StringArray {
 	public static final String[][] ARRAY_RBP_FREQUENCY_OPTION = { { "Weekly", "Hebdomadaire", "每周", "每週" },
 			{ "Bi-weekly", "Aux deux semaines", "每两周", "每兩星期" }, { "Month-end", "À la fin du mois", "月尾", "月底" },
 			{ "Monthly", "Mensuel", "每月", "每月" }, { "Semi-monthly", "Bimensuel", "每半月", "每半月" },
-			{ "Quarterly", "Trimestriel", "每季度", "每季" }
-
-	};
+			{ "Quarterly", "Trimestriel", "每季度", "每季" } };
 	public static final String[] ARRAY_RBP_PAYBILL_BTN = { "Pay Bill", "Payer", "支付账单", "支付賬單" };
 	public static final String[] ARRAY_RBP_FROM_ACCOUNT = { "From Account", "Du compte", "转出账户", "轉出賬戶" };
 	public static final String[] ARRAY_RBP_POPUP_CANCEL_PAYMENT = { "Are you sure you want to cancel this payment?",
@@ -669,6 +667,15 @@ public final class StringArray {
 			"請檢查詳情並確認賬單付款。" };
 	public static final String[] ARRAY_SCHEDULED_PAYMENTS_TITLE = { "Scheduled Payments", "Paiements prévus", "定期付款",
 			"定期付款" };
+
+	public static final String[] ARRAY_RBP_MAX_AMOUNT_ERROR = { "Please enter an amount that is less than $500,000.",
+			"Veuillez inscrire un montant inférieur à 500 000 $.", "请输入 $500,000 以下的金额。", "請輸入 $500,000 以下的金額。" };
+
+	public static final String[] ARRAY_RBP_ERROR_AMOUNT_GREATER_BALANCE = {
+			"You don't have enough funds in the account you selected. Please try a lower amount or use a different account.",
+			"Le compte sélectionné ne contient pas les fonds requis. Entrez un montant inférieur ou utilisez un autre compte.",
+			"您所选账户中没有足够的资金。请尝试较低的金额或者使用其他账户。", "您所選的賬戶中沒有足夠的資金。請輸入較低的金額或使用不同的賬戶。" };
+
 	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG_WEEKLY = {
 			"You're not able to schedule more than 260 payments within a 5-year period. Please type in a lower number of payments.",
 			"Vous ne pouvez pas planifier plus de 260 paiements sur une période de 5 ans. Veuillez entrer un nombre moins élevé de paiements.",
@@ -698,8 +705,12 @@ public final class StringArray {
 			"Entrez un nombre supérieur à 1.", "请选择一个高于1的数字。", "請選擇一個高於1的數字。" };
 	public static final String[] ARRAY_RBP_PAYEE_FILTER_VIEW_PAYMENT_FOR = { "View Payments For",
 			"Afficher les paiements pour", "查看针对下列收款人的付款：", "查看對以下收款人的付款：" };
-	public static final String[] ARRAY_RBP_DATE_TODYA = { "Today", "", "", "" };
+	public static final String[] ARRAY_RBP_DATE_TODYA = { "Today", "Aujourd'hui", "今天", "今日" };
 	public static final String[] ARRAY_RBP_DATE_TOMORROW = { "Tomorrow", "Demain", "明日", "明天" };
+	public static final String[] ARRAY_RBP_DATE_DUE_IN_X_DAYS = { "Due in \\d+ days", "Échéance dans \\d+ jours",
+			"\\d+天后到期", "\\d+天內到期" };
+	public static final String[] ARRAY_RBP_DATE_NORMAL_FORMAT = { ".*\\s{1}\\d{1,2},\\s{1}\\d{4}", "\\d{1,2}.*\\d{4}",
+			"\\d{4}年\\d{1,2}月\\d{1,2}日", "\\d{4}年\\d{1,2}月\\d{1,2}日" };
 	public static final String[] ARRAY_RBP_PAYMENT_CANCELLED = { "Cancelled", "Annulé", "已取消", "已取消" };
 
 	public static final String[] ARRAY_RBP_PAYEE_FILTER_ALL_PAYEE = { "All Payees", "Tous les preneurs", "全部收款人",
@@ -809,4 +820,3 @@ public final class StringArray {
 	public static final String[] CANCEL_MONEY_RECEIPT_HEADER = { "Request Cancelled", "Demande annulée", "", "" };
 	public static final String[] SETUP_AUTODEPOSIT_STR = { "Set up Autodeposit", "Établir Autodépôt", "", "" };
 }
-

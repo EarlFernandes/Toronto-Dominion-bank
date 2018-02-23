@@ -231,6 +231,10 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='Select From Account']")
 	private MobileElement from_account_dropdown;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtDescriptionValue']")
+	private List<MobileElement> from_account_dropdown_list;
+
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label=='From Account'`]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/orderDropdownCaption' and @text='From Account']")
 	private MobileElement from_account_caption;
@@ -481,9 +485,27 @@ public class Bill_PayCanada extends _CommonPage {
 		// select from account
 		String from_Account = getTestdata("FromAccount");
 		// in case from account include account name
-		if (!from_Account.matches(".*\\d+")) {
+		if (isFromAccountPrefilled && !from_Account.matches(".*\\d+")) {
 			System.out.println("From account is re-used. must be prefilled");
 			return from_Account;
+		} else if (!isFromAccountPrefilled && !from_Account.matches(".*\\d+")) {
+			// randomly select the first one from account
+			try {
+				mobileAction.FuncClick(from_account_dropdown, "From Account clicked");
+				from_Account = mobileAction.getValue(from_account_dropdown_list.get(0));
+				mobileAction.FuncClick(from_account_dropdown_list.get(0), "First From Account");
+				if (from_Account.matches(".*\\d+")) {
+					String AccountNum = mobileAction.FuncGetValByRegx(from_Account, "\\d+");
+					String accountName = from_Account.replaceAll(AccountNum, "").trim();
+					return accountName;
+				} else {
+					return from_Account;
+				}
+			} catch (Exception e) {
+				System.out.println("Failed to select first from account");
+				return "";
+			}
+
 		}
 		String AccountNum = mobileAction.FuncGetValByRegx(from_Account, "\\d+");
 
@@ -510,7 +532,12 @@ public class Bill_PayCanada extends _CommonPage {
 							+ AccountNum + "']";
 				}
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(fromAccountxPath, true, 5, "up");
-				return accountName;
+				if (!accountName.isEmpty()) {
+					return accountName;
+				} else {
+					return AccountNum;
+				}
+
 			} else {
 				System.out.println("From Account is prefilled");
 				return accountName;

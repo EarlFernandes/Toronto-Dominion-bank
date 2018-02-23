@@ -675,15 +675,18 @@ public class ScheduledPayments extends _CommonPage {
 	}
 
 	private boolean checkDayFormat(String oriDate) {
-		if (oriDate.matches("Today")) {
+		String todayStr = getTextInCurrentLocale(StringArray.ARRAY_RBP_DATE_TODYA);
+		
+		if (oriDate.matches(todayStr)) {
+			return true;
+		}
+		String tomorrowStr = getTextInCurrentLocale(StringArray.ARRAY_RBP_DATE_TOMORROW);
+		if (oriDate.matches(tomorrowStr)) {
 			return true;
 		}
 
-		if (oriDate.matches("Tomorrow")) {
-			return true;
-		}
-
-		if (oriDate.matches("Due in \\d+ days")) {
+		String dueInDate = getTextInCurrentLocale(StringArray.ARRAY_RBP_DATE_DUE_IN_X_DAYS);
+		if (oriDate.matches(dueInDate)) {
 			System.out.println("Date:" + oriDate);
 			String days = mobileAction.FuncGetValByRegx(oriDate, "\\d+");
 			int days_int = Integer.parseInt(days);
@@ -695,7 +698,8 @@ public class ScheduledPayments extends _CommonPage {
 			}
 		}
 
-		if (oriDate.matches(".*\\s{1}\\d{1,2},\\s{1}\\d{4}")) {
+		String noralDateFormat = getTextInCurrentLocale(StringArray.ARRAY_RBP_DATE_NORMAL_FORMAT);
+		if (oriDate.matches(noralDateFormat)) {
 			return true;
 		} else {
 			System.out.print("Failed to verify format:" + oriDate);
