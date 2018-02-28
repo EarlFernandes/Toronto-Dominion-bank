@@ -291,8 +291,9 @@ public class Interac_Send_Money extends _CommonPage {
 				String fromAccountNumXL = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@value,'"
 						+ getTestdata("FromAccount") + "')]"; // changed by
 																// vishal
-				MobileElement fromAccountNumber = mobileAction.mobileElementUsingXPath(fromAccountNumXL);
-				mobileAction.FuncClick(fromAccountNumber, "Account Number: " + getTestdata("FromAccount"));
+				//MobileElement fromAccountNumber = mobileAction.mobileElementUsingXPath(fromAccountNumXL);
+				//mobileAction.FuncClick(fromAccountNumber, "Account Number: " + getTestdata("FromAccount"));
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(fromAccountNumXL, true, 5, "up");
 				mobileAction.FuncClick(selectRecipient, "Select Recipient");
 
 				// String recipientXpath = "**/*[`label CONTAINS[cd]
@@ -494,7 +495,7 @@ public class Interac_Send_Money extends _CommonPage {
 			String fromAccountTitle = mobileAction.getValue(fromAccountName);
 			System.out.println("fromAccountTitle:"+fromAccountTitle);
 			Boolean isFromAccountLOC = false;
-			if (fromAccountTitle.contains("Line of credit")) {
+			if (fromAccountTitle.contains("LINE OF CREDIT")) {
 				isFromAccountLOC = true;
 			}
 			String fromAccountValue = mobileAction.getValue(fromAccountVal);
@@ -510,6 +511,7 @@ public class Interac_Send_Money extends _CommonPage {
 			} else {
 				d_balance = d_fromAccountValue - d_amountVal;
 			}
+			d_balance = mobileAction.RoundTo2Decimals(d_balance);
 			CL.getTestDataInstance().TCParameters.put("Dividend", Double.toString(d_balance));
 
 			mobileAction.FuncClick(continueButton, "Continue Button");
@@ -536,6 +538,14 @@ public class Interac_Send_Money extends _CommonPage {
 		
 		try {
 			String fromBalanceValue = mobileAction.getValue(fromAccountVal_Confirmation);
+			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				if(fromBalanceValue.matches(".*\\$.*")) {
+					fromBalanceValue = mobileAction.FuncGetValByRegx(fromBalanceValue, "\\$.*");
+				} else {
+					mobileAction.Report_Fail("Faile to get from account balance");
+					return;
+				}
+			}
 			System.out.println(fromBalanceValue);
 			double fromaccountCaptured = mobileAction.convertStringAmountTodouble(fromBalanceValue);
 			double fromAccountExpected = Double.parseDouble(CL.getTestDataInstance().TCParameters.get("Dividend"));

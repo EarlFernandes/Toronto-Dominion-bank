@@ -1,6 +1,7 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -28,10 +29,11 @@ public class Review extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_cancel']")
 	private MobileElement cancelBtn;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/..//XCUIElementTypeButton[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Pay Bill' or @label='Payer' or @label='支付账单' or @label='支付賬單']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue']")
 	private MobileElement payBillBtn;
 
+	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[2]")
 	@AndroidFindBy(id = "com.td:id/btn_continue")
 	private MobileElement payNowBtn;
@@ -250,7 +252,7 @@ public class Review extends _CommonPage {
 		Decorator();
 		try {
 			// verifyReviewHeader();
-			if(currentLocale.contentEquals("en")) {
+			if(currentLocale.equalsIgnoreCase("en")) {
 				saveBalance(); // only for english
 			}
 			mobileAction.FuncClick(payBillBtn, "Pay Bill Button Clicked");
@@ -262,11 +264,13 @@ public class Review extends _CommonPage {
 
 		}
 	}
+	
+
 
 	public void saveBalance() {
 		Decorator();
 		try {
-			String amountPath, fromAccountPath;
+			String amountPath, fromAccountPath, fromAccountNamePath;
 			String amountText = getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT);
 			String fromAccountText = getTextInCurrentLocale(StringArray.ARRAY_RBP_FROM_ACCOUNT);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -275,20 +279,38 @@ public class Review extends _CommonPage {
 						+ "']/following-sibling::XCUIElementTypeStaticText";
 				fromAccountPath = "//XCUIElementTypeStaticText[@label='" + fromAccountText
 						+ "']/following-sibling::XCUIElementTypeStaticText[3]";
+				fromAccountNamePath = "//XCUIElementTypeStaticText[@label='" + fromAccountText
+						+ "']/following-sibling::XCUIElementTypeStaticText[1]";
 			} else {
 				amountPath = "//android.widget.TextView[@text='" + amountText
 						+ "']/following-sibling::android.widget.RelativeLayout/android.widget.TextView";
 				fromAccountPath = "//android.widget.TextView[@text='" + fromAccountText
 						+ "']/following-sibling::android.widget.RelativeLayout/android.widget.TextView[@resource-id='com.td:id/review_row_tertiary_text']";
+				fromAccountNamePath = "//android.widget.TextView[@text='" + fromAccountText
+						+ "']/following-sibling::android.widget.RelativeLayout/android.widget.TextView[@resource-id='com.td:id/review_row_primary_text']";
 			}
 			MobileElement amountItem = mobileAction.verifyElementUsingXPath(amountPath, "Amount$");
 			MobileElement fromAccountItem = mobileAction.verifyElementUsingXPath(fromAccountPath, "Fromaccount$");
+			MobileElement fromAccountName = mobileAction.verifyElementUsingXPath(fromAccountNamePath, "Fromaccount name");
 
 			String amountVal = mobileAction.getValue(amountItem);
 			String fromAccountValue = mobileAction.getValue(fromAccountItem);
+			String fromAccountNameText = mobileAction.getValue(fromAccountName);
+			boolean isFromAccountLOC = false;
+			if(fromAccountNameText.contains("LINE OF CREDIT")) {
+				isFromAccountLOC = true;
+			}
+			
 			double d_amountVal = mobileAction.convertStringAmountTodouble(amountVal);
 			double d_fromAccountValue = mobileAction.convertStringAmountTodouble(fromAccountValue);
-			double d_balance = d_fromAccountValue - d_amountVal;
+			double d_balance =0;
+			if(isFromAccountLOC ) {
+				d_balance = d_fromAccountValue + d_amountVal;
+			} else {
+				d_balance = d_fromAccountValue - d_amountVal;
+			}
+			d_balance = mobileAction.RoundTo2Decimals(d_balance);
+			
 			CL.getTestDataInstance().TCParameters.put("Dividend", Double.toString(d_balance));
 //			String receivedBalance = CL.getTestDataInstance().TCParameters.get("Dividend");
 //			System.out.println("receivedBalance:" + receivedBalance);

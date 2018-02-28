@@ -310,7 +310,7 @@ public class ScheduledPayments extends _CommonPage {
 			String expected_cancel = getTextInCurrentLocale(StringArray.ARRAY_RBP_PAYEE_FILTER_CANCEL_BUTTON);
 
 			expected_View_Payments = expected_View_Payments.toUpperCase();
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {				
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				expected_cancel = expected_cancel.toUpperCase();
 			}
 			mobileAction.verifyElementTextIsDisplayed(view_payments_for_title, expected_View_Payments);
@@ -450,7 +450,7 @@ public class ScheduledPayments extends _CommonPage {
 
 		String iosXpath = "//XCUIElementTypeStaticText[@label='" + payeeNameExpected + "']";
 		System.out.println("payeeNameExpected:" + payeeNameExpected);
-		int iCount=0;
+		int iCount = 0;
 		try {
 			do {
 				for (int i = 0; i < payee_name_List.size(); i++) {
@@ -480,7 +480,7 @@ public class ScheduledPayments extends _CommonPage {
 					mobileAction.FuncSwipeOnce("up");
 					iCount++;
 				}
-			} while (iCount <20);
+			} while (iCount < 20);
 
 			mobileAction.Report_Pass_Verified("All payee are:" + payeeNameExpected);
 
@@ -570,19 +570,23 @@ public class ScheduledPayments extends _CommonPage {
 		Decorator();
 		boolean isScheduledPaymentFound = false;
 		try {
+			String paymentDate = "";
+			String frequencyText = "";
 			for (int i = 0; i < scheduled_Payments_List.size(); i++) {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					List<MobileElement> staticTextItem = scheduled_Payments_List.get(i)
 							.findElements(By.xpath("//XCUIElementTypeStaticText"));
 					if (staticTextItem.size() == 5) {
-						String paymentDate = staticTextItem.get(0).getText();
-						mobileAction.Report_Pass_Verified("Payment date:" + paymentDate);
+						paymentDate = staticTextItem.get(0).getText();
+						// mobileAction.Report_Pass_Verified("Payment date:" +
+						// paymentDate);
 
 						String fromAccount = staticTextItem.get(1).getText();
 						mobileAction.Report_Pass_Verified("From account:" + fromAccount);
 
-						String frequency = staticTextItem.get(2).getText();
-						mobileAction.Report_Pass_Verified("Recurring:" + frequency);
+						frequencyText = staticTextItem.get(2).getText();
+						// mobileAction.Report_Pass_Verified("Recurring:" +
+						// frequencyText);
 
 						String payeeAccount = staticTextItem.get(3).getText();
 						mobileAction.Report_Pass_Verified("Payee:" + payeeAccount);
@@ -596,14 +600,16 @@ public class ScheduledPayments extends _CommonPage {
 					List<MobileElement> staticTextItem = scheduled_Payments_List.get(i)
 							.findElements(By.xpath("//android.widget.TextView"));
 					if (staticTextItem.size() == 5) {
-						String paymentDate = staticTextItem.get(3).getText();
-						mobileAction.Report_Pass_Verified("Payment date:" + paymentDate);
+						paymentDate = staticTextItem.get(3).getText();
+						// mobileAction.Report_Pass_Verified("Payment date:" +
+						// paymentDate);
 
 						String fromAccount = staticTextItem.get(1).getText();
 						mobileAction.Report_Pass_Verified("From account:" + fromAccount);
 
-						String frequency = staticTextItem.get(4).getText();
-						mobileAction.Report_Pass_Verified("Recurring:" + frequency);
+						frequencyText = staticTextItem.get(4).getText();
+						// mobileAction.Report_Pass_Verified("Recurring:" +
+						// frequencyText);
 
 						String payeeAccount = staticTextItem.get(0).getText();
 						mobileAction.Report_Pass_Verified("Payee:" + payeeAccount);
@@ -616,6 +622,27 @@ public class ScheduledPayments extends _CommonPage {
 				}
 			}
 			if (isScheduledPaymentFound) {
+				// verify paymentdate and frequency are correct
+				if (checkDayFormat(paymentDate)) {
+					mobileAction.Report_Pass_Verified("Payment date:" + paymentDate);
+				} else {
+					mobileAction.Report_Fail("Failed to verify payment date:" + paymentDate);
+				}
+
+				int frequencySize = StringArray.ARRAY_RBP_FREQUENCY_OPTION.length;
+				boolean freMatched = false;
+				for (int i = 0; i < frequencySize; i++) {
+					if (frequencyText.equals(getTextInCurrentLocale(StringArray.ARRAY_RBP_FREQUENCY_OPTION[i]))) {
+						freMatched = true;
+						break;
+					}
+				}
+				if (freMatched) {
+					mobileAction.Report_Pass_Verified("Recurring:" + frequencyText);
+				} else {
+					mobileAction.Report_Fail("Failed to verify frequency:" + frequencyText);
+				}
+
 				int swipecount = 0;
 				while (!mobileAction.verifyElementIsPresent(paymentlist_foot) && swipecount < 20) {
 					mobileAction.FuncSwipeOneScreenWithInElement(payments_layout, "up");
@@ -676,7 +703,7 @@ public class ScheduledPayments extends _CommonPage {
 
 	private boolean checkDayFormat(String oriDate) {
 		String todayStr = getTextInCurrentLocale(StringArray.ARRAY_RBP_DATE_TODYA);
-		
+
 		if (oriDate.matches(todayStr)) {
 			return true;
 		}

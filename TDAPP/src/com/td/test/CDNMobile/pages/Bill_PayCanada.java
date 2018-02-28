@@ -531,7 +531,7 @@ public class Bill_PayCanada extends _CommonPage {
 					fromAccountxPath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNoValue' and @text='"
 							+ AccountNum + "']";
 				}
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(fromAccountxPath, true, 5, "up");
+				mobileAction.FuncSwipeWhileElementNotFoundByxpath(fromAccountxPath, true, 10, "up");
 				if (!accountName.isEmpty()) {
 					return accountName;
 				} else {

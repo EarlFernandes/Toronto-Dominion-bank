@@ -1,6 +1,7 @@
 package com.td;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -1177,6 +1178,8 @@ public class MobileAction2 extends CommonLib {
 																				// Modified
 		try {
 			String sEleText = FuncGetElementText(objElement);
+			//for French, sometimes the captured text contains french space, need to replace it to English space
+			sEleText = sEleText.replace("Â ", " "); //they looks like the same, but they are different
 			if (sEleText != null) {
 				if (sEleText.contains(text))
 					GetReporting().FuncReport("Pass",
@@ -1781,7 +1784,7 @@ public class MobileAction2 extends CommonLib {
 			String capturedText = getValue(mobileElement);
 			capturedText = capturedText.trim().replaceAll("\n ", "");
 			capturedText = capturedText.trim().replaceAll("\n", "");
-			capturedText = capturedText.replaceAll(" ", " "); // replace any
+			capturedText = capturedText.replaceAll("ï¿½", " "); // replace any
 																// french space
 																// with english
 																// space
@@ -3747,6 +3750,11 @@ public class MobileAction2 extends CommonLib {
 			}
 		}
 
+	}
+	
+	public double RoundTo2Decimals(double val) {
+        DecimalFormat df2 = new DecimalFormat("###.##");
+        return Double.valueOf(df2.format(val));
 	}
 
 }

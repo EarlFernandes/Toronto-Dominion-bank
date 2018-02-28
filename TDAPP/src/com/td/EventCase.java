@@ -225,9 +225,9 @@ public class EventCase {
 
 		// Trade
 		Trade_VerifyTradePage,
-		
-		//balance regression
-		Transfer_in_between_account, verifyConfirmPageAndTransfer, verifyBalanceInReceipt,selectFromAccount,verifyFromAccountBankingBalance,verifyFromAccountSummaryBalance,verifyToAccountBankingBalance,verifyToAccountSummaryBalance,GoBackToAccountPage,payMoneyAndSaveBalance,verifyBalanceInConfirmationPage,
+
+		// balance regression
+		Transfer_in_between_account, verifyConfirmPageAndTransfer, verifyBalanceInReceipt, selectFromAccount, verifyFromAccountBankingBalance, verifyFromAccountSummaryBalance, verifyToAccountBankingBalance, verifyToAccountSummaryBalance, GoBackToAccountPage, payMoneyAndSaveBalance, verifyBalanceInConfirmationPage, payUS_Bill, verifyReviewAndPayBill, verifyPayUsBillBalance,
 
 		// CLIP
 		VerifyMoreLinkPresent, ClickMoreLink, verifyMoreOptionHeader, ClickCardlimitIncreaseBtn, verifyCreditLimitIncreaseHeader, verifyMoreOptionsDirectionalCopy, verifyCreditCardContent, Click_GetStarted, verifyLimitIncreaseForm,
@@ -239,14 +239,14 @@ public class EventCase {
 		verifyReplaceDamagedCardHeader, ClickReplaceDamagedCardBtn, verifyReplaceDamagedCardDirectionalCopy, verifyDamagedCardForm,
 
 		// RBP
-		clickStartDate, selectDate, verifyPayCanadianBillContent, verifyHowOftenDropdownDefault, verifyStartDateDefaultToToday, verifyFieldsArePrefilledAfterBackFromAddPayee, verifyFrequencyOptions, verifyRBPFootNoteContent, selectOngoingFromHowOftenDropDown, verifyAndClickRewardBanner, FillPayBillWithOnce, continuePayBill, verifyReviewContent, FillPayBillWithOngoing, verifyAndClickCancelButton, verifyAndClickPayBillButton, verifyRBPReceiptContent, verifyPayee_FromAccountMaskedInReceipt, verifyPayBillHeader, ClickPayAnotherBillBtn, ClickSchedulePaymentsBtn, ClickQuickLinkBillsBtn, verifyScheduledPaymentsHeader, VerifyRBPReceipt, VerifyRBPErrorMessage, VerifyRBP1NumberOfPaymentErrorMessage, verifyPayeeFilterContents, clickViewpaymentFor, clickScheduledPayment_Link, selectStartdateAgain, VerifyEndOfDateIsBlank, VerifyEndOfDateReamins, FillPayBillWithOngoingWithoutStartDate,clickPayBillDashboard,verifyRBPScreen,verifyBankingHeader,clickPayBillQuickLink,confirmAddPayeeAndPayThisPayee,verifyPayeeOrder,verifyDefaultPayeeFilter,verifyListOfPaymentsAreWithSamePayee,clickViewpaymentForSelectPayee,verifyPaymentListByDate, clickViewAll_Link,verifyScheduledPaymentsContent,verifyMonthGrouping,verifyPaymentDue7Date,verifyBillDetailsPageHeader,selectFirstPayment,verifyBillDetailsContent,verifyCancelButtonDisplayed,selectFirstActivePayment,verifyCancelButtonNotDisplayed,selectFirstCancelledPayment,clickRBPCancelButton,ClickRBPPopupCancelButton,ClickRBPPopupDontCancelButton,verifyPopupCancelPayment,VerifyRBPErrorMessageInReviewPage,
+		clickStartDate, selectDate, verifyPayCanadianBillContent, verifyHowOftenDropdownDefault, verifyStartDateDefaultToToday, verifyFieldsArePrefilledAfterBackFromAddPayee, verifyFrequencyOptions, verifyRBPFootNoteContent, selectOngoingFromHowOftenDropDown, verifyAndClickRewardBanner, FillPayBillWithOnce, continuePayBill, verifyReviewContent, FillPayBillWithOngoing, verifyAndClickCancelButton, verifyAndClickPayBillButton, verifyRBPReceiptContent, verifyPayee_FromAccountMaskedInReceipt, verifyPayBillHeader, ClickPayAnotherBillBtn, ClickSchedulePaymentsBtn, ClickQuickLinkBillsBtn, verifyScheduledPaymentsHeader, VerifyRBPReceipt, VerifyRBPErrorMessage, VerifyRBP1NumberOfPaymentErrorMessage, verifyPayeeFilterContents, clickViewpaymentFor, clickScheduledPayment_Link, selectStartdateAgain, VerifyEndOfDateIsBlank, VerifyEndOfDateReamins, FillPayBillWithOngoingWithoutStartDate, clickPayBillDashboard, verifyRBPScreen, verifyBankingHeader, clickPayBillQuickLink, confirmAddPayeeAndPayThisPayee, verifyPayeeOrder, verifyDefaultPayeeFilter, verifyListOfPaymentsAreWithSamePayee, clickViewpaymentForSelectPayee, verifyPaymentListByDate, clickViewAll_Link, verifyScheduledPaymentsContent, verifyMonthGrouping, verifyPaymentDue7Date, verifyBillDetailsPageHeader, selectFirstPayment, verifyBillDetailsContent, verifyCancelButtonDisplayed, selectFirstActivePayment, verifyCancelButtonNotDisplayed, selectFirstCancelledPayment, clickRBPCancelButton, ClickRBPPopupCancelButton, ClickRBPPopupDontCancelButton, verifyPopupCancelPayment, VerifyRBPErrorMessageInReviewPage,
 
 		// myspend
 		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_changeCategory, DailyDigest_verifyCategoryMessage, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, MySpendPreferences_clickActiveAccounts, MySpendTransfers_clickBetweenMyAccounts, MySpendTransfers_PerformTransfer, MySpendPrefernces_disableAccounts, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, Preferences_verifyHomePage, TourPage_clickConnectTDApp, TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SideMenu_verifyNavigationWithinMySpend, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SpendingInsight_verifyAccountsSelected, TransactionHistory_verifySelectedAccounts, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickTransfers, SideMenu_clickGetTDAppButton, click_PreferencesLink,
 
 		// MIT Refactor
 
-		HomeScreen_click_Markets, Trade_MIT_REF_searchAndClickMarketSymbol, Trade_MIT_REF_verifyTradeSymbols, Trade_MIT_REF_QuoteverifyRecentSearchSymbol, Investing_MIT_REF_verifyHoldingsDetails, Investing_MIT_REF_clickHoldingsTab, Trade_MIT_REF_verifyExchangeAgreementErrorDetails, Investing_MIT_REF_clickTradeQuickLink, Trade_MIT_REF_ClickEnterNameOrSymbol, Trade_MIT_REF_verifyFirstOrderPlaced, Trade_MIT_REF_verifyQuoteSymbol, HomeScreen_clickQuoteQuickLink, Trade_MIT_REF_goBack, Trade_MIT_REF_verifyRecentSearchSymbol, Trade_MIT_REF_goBackToHome, Investing_MIT_REF_buyHoldingsETF, Investing_MIT_REF_sendETFOrder, Investing_MIT_REF_clickHoldingsETF, Investing_MIT_REF_clickAccount_Multiple, Investing_MIT_REF_verifyTabs, Trade_MIT_REF_cancelOrder, Trade_MIT_REF_changeOrder, Trade_MIT_REF_click_RecentOrder, Trade_MIT_REF_click_Orders_Link, Trade_MIT_REF_verify_StockOrderSent_Msg, Trade_MIT_REF_clickSendOrder, Trade_MIT_REF_sendStockOrder, Trade_MIT_REF_verifyTradeHeader, Trade_MIT_REF_verifyTradeElements, Trade_MIT_REF_EnterNameOrSymbol, Trade_MIT_REF_verifyQuoteDetails,Trade_MIT_REF_sendOptionsOrder,
+		HomeScreen_click_Markets, Trade_MIT_REF_searchAndClickMarketSymbol, Trade_MIT_REF_verifyTradeSymbols, Trade_MIT_REF_QuoteverifyRecentSearchSymbol, Investing_MIT_REF_verifyHoldingsDetails, Investing_MIT_REF_clickHoldingsTab, Trade_MIT_REF_verifyExchangeAgreementErrorDetails, Investing_MIT_REF_clickTradeQuickLink, Trade_MIT_REF_ClickEnterNameOrSymbol, Trade_MIT_REF_verifyFirstOrderPlaced, Trade_MIT_REF_verifyQuoteSymbol, HomeScreen_clickQuoteQuickLink, Trade_MIT_REF_goBack, Trade_MIT_REF_verifyRecentSearchSymbol, Trade_MIT_REF_goBackToHome, Investing_MIT_REF_buyHoldingsETF, Investing_MIT_REF_sendETFOrder, Investing_MIT_REF_clickHoldingsETF, Investing_MIT_REF_clickAccount_Multiple, Investing_MIT_REF_verifyTabs, Trade_MIT_REF_cancelOrder, Trade_MIT_REF_changeOrder, Trade_MIT_REF_click_RecentOrder, Trade_MIT_REF_click_Orders_Link, Trade_MIT_REF_verify_StockOrderSent_Msg, Trade_MIT_REF_clickSendOrder, Trade_MIT_REF_sendStockOrder, Trade_MIT_REF_verifyTradeHeader, Trade_MIT_REF_verifyTradeElements, Trade_MIT_REF_EnterNameOrSymbol, Trade_MIT_REF_verifyQuoteDetails, Trade_MIT_REF_sendOptionsOrder,
 
 	}
 
@@ -394,7 +394,7 @@ public class EventCase {
 		case Trade_MIT_REF_sendOptionsOrder:
 			Trade_MIT_REF.get().Trade_MIT_REF_sendOptionsOrder();
 			break;
-			
+
 		// Trade_MIT_REF_goBack TODO::
 
 		case TransfersHistory_clickUpdateRequestOnActivity:
@@ -1113,11 +1113,11 @@ public class EventCase {
 		case ConfirmPayee:
 			Confirm_Payee.get().verifyConfirmPage();
 			break;
-			
+
 		case confirmAddPayeeAndPayThisPayee:
 			Confirm_Payee.get().confirmAddPayeeAndPayThisPayee();
 			break;
-			
+
 		case PayCanadaBill_Post_Dated:
 			Bill_PayCanada.get().pay_candadian_bill_post_dated();
 			break;
@@ -3420,43 +3420,43 @@ public class EventCase {
 			break;
 
 		// end of profile and preference
-			
+
 		// for balance
 		case Transfer_in_between_account:
 			Between_My_accounts.get().Transfer_in_between_account();
 			break;
-			
+
 		case verifyConfirmPageAndTransfer:
 			Confirm.get().verifyConfirmPageAndTransfer();
 			break;
-			
+
 		case verifyBalanceInReceipt:
 			Receipt.get().verifyBalanceInReceipt();
-			break;			
+			break;
 
 		case selectFromAccount:
 			Accounts.get().selectFromAccount();
-			break;	
-		
+			break;
+
 		case verifyFromAccountBankingBalance:
 			Banking.get().verifyFromAccountBankingBalance();
-			break;	
-			
+			break;
+
 		case verifyFromAccountSummaryBalance:
 			Banking.get().verifyFromAccountSummaryBalance();
-			break;	
-			
+			break;
+
 		case verifyToAccountBankingBalance:
 			Banking.get().verifyToAccountBankingBalance();
-			break;	
-			
+			break;
+
 		case verifyToAccountSummaryBalance:
 			Banking.get().verifyToAccountSummaryBalance();
 			break;
-				
+
 		case GoBackToAccountPage:
 			Banking.get().GoBackToAccountPage();
-			break;	
+			break;
 
 		case payMoneyAndSaveBalance:
 			Interac_Send_Money.get().payMoneyAndSaveBalance();
@@ -3874,11 +3874,11 @@ public class EventCase {
 		case VerifyRBPErrorMessage:
 			Bill_PayCanada.get().VerifyRBPErrorMessage();
 			break;
-			
+
 		case VerifyRBPErrorMessageInReviewPage:
 			Review.get().VerifyRBPErrorMessageInReviewPage();
 			break;
-			
+
 		case verifyScheduledPaymentsHeader:
 			ScheduledPayments.get().verifyScheduledPaymentsHeader();
 			break;
@@ -4002,7 +4002,7 @@ public class EventCase {
 		case clickPayBillDashboard:
 			HomeScreen.get().clickPayBillDashboard();
 			break;
-			
+
 		case verifyRBPScreen:
 			Bill_PayCanada.get().verifyRBPScreen();
 			break;
@@ -4010,90 +4010,102 @@ public class EventCase {
 		case verifyBankingHeader:
 			Banking.get().verifyBankingHeader();
 			break;
-			
+
 		case clickPayBillQuickLink:
 			Banking.get().clickPayBillQuickLink();
 			break;
-			
+
 		case verifyPayeeOrder:
 			ScheduledPayments.get().verifyPayeeOrder();
 			break;
-			
+
 		case verifyDefaultPayeeFilter:
 			ScheduledPayments.get().verifyDefaultPayeeFilter();
 			break;
-			
+
 		case verifyListOfPaymentsAreWithSamePayee:
 			ScheduledPayments.get().verifyListOfPaymentsAreWithSamePayee();
 			break;
-			
+
 		case clickViewpaymentForSelectPayee:
 			ScheduledPayments.get().clickViewpaymentForSelectPayee();
 			break;
 
 		case verifyPaymentListByDate:
 			ScheduledPayments.get().verifyPaymentListByDate();
-			break;			
-			
+			break;
+
 		case clickViewAll_Link:
 			Bills.get().clickViewAll_Link();
 			break;
-			
+
 		case verifyScheduledPaymentsContent:
 			ScheduledPayments.get().verifyScheduledPaymentsContent();
 			break;
-			
+
 		case verifyMonthGrouping:
 			ScheduledPayments.get().verifyMonthGrouping();
 			break;
-			
+
 		case verifyPaymentDue7Date:
 			ScheduledPayments.get().verifyPaymentDue7Date();
-			break;	
-			
+			break;
+
 		case selectFirstPayment:
 			ScheduledPayments.get().selectFirstPayment();
-			break;	
-			
+			break;
+
 		case verifyBillDetailsPageHeader:
 			BillDetails.get().verifyBillDetailsPageHeader();
 			break;
-			
+
 		case verifyBillDetailsContent:
 			BillDetails.get().verifyBillDetailsContent();
 			break;
-			
+
 		case verifyCancelButtonDisplayed:
 			BillDetails.get().verifyCancelButtonDisplayed();
 			break;
-			
+
 		case selectFirstActivePayment:
 			ScheduledPayments.get().selectFirstActivePayment();
-			break;	
+			break;
 
 		case verifyCancelButtonNotDisplayed:
 			BillDetails.get().verifyCancelButtonNotDisplayed();
 			break;
-			
+
 		case selectFirstCancelledPayment:
 			ScheduledPayments.get().selectFirstCancelledPayment();
 			break;
-			
+
 		case clickRBPCancelButton:
 			BillDetails.get().clickRBPCancelButton();
 			break;
-			
+
 		case ClickRBPPopupCancelButton:
 			Popupwindow.get().ClickRBPPopupCancelButton();
 			break;
-			
+
 		case ClickRBPPopupDontCancelButton:
 			Popupwindow.get().ClickRBPPopupDontCancelButton();
 			break;
-			
+
 		case verifyPopupCancelPayment:
 			Popupwindow.get().verifyPopupCancelPayment();
-			break;			
+			break;
+
+		case payUS_Bill:
+			Pay_US_Bill.get().payUS_Bill();
+			break;
+
+		case verifyReviewAndPayBill:
+			Pay_US_Bill.get().verifyReviewAndPayBill();
+			break;
+
+		case verifyPayUsBillBalance:
+			Pay_US_Bill.get().verifyPayUsBillBalance();
+			break;
 		// End of RBP
 
 		case VerifyStatementBalanceHeader:
