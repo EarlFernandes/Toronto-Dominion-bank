@@ -88,6 +88,10 @@ public class Manage_Payee extends _CommonPage {
 	@FindBy(name = "description")
 	private WebElement payeeDescriptionField;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[22]/XCUIElementTypeTextField[1]")
+	@FindBy(name = "description")
+	private WebElement payeeDescriptionFieldPAT;
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeButton[2]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@index='0'] | //android.widget.TextView[contains(@content-desc, 'Done')]")
 	private MobileElement editPayeeCheckButton;
@@ -803,4 +807,70 @@ public class Manage_Payee extends _CommonPage {
 		}
 	}
 
+	public void editPayeeDescriptionPAT() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchToWebView();
+				mobileAction.sleep(3000);
+				// To scroll screen up
+				mobileAction.FuncClick(payeeDescriptionField, "City Field");
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.FuncHideKeyboard();
+			} else {
+				// To scroll screen up
+				mobileAction.FuncClick(payeeDescriptionField, "City Field");
+				mobileAction.HideKeyBoard_IOS();
+				mobileAction.sleep(2000);
+			}
+
+			String payee = getTestdata("Payee");
+			mobileAction.FuncClick(payeeDescriptionFieldPAT, "Payee Description Field");
+			mobileAction.FuncSendKeys(payeeDescriptionFieldPAT, payee);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.FuncHideKeyboard();
+			} else {
+				if (currentLocale.toLowerCase().startsWith("zh")) {
+					switchToEnglishKeyboard();
+				}
+				mobileAction.HideKeyBoard_IOS();
+			}
+
+			String acctNum = getTestdata("Accounts");
+			String usAccount = getTestdata("USAccount");
+			if (acctNum == null && usAccount != null) {
+				// US account, click Check button twice
+				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					mobileAction.sleep(3000);
+				}
+
+				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					mobileAction.sleep(5000);
+				}
+
+			} else {
+				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					mobileAction.sleep(5000);
+				}
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+			mobileAction.switchAppiumContext("NATIVE_APP");
+		}
+
+	}
 }

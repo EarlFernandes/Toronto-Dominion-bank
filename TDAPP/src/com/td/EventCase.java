@@ -185,7 +185,7 @@ public class EventCase {
 		Logout_GoBackHome,
 
 		// Manage Payee
-		ManagePayee_ClickNewPayee, ManagePayees_Button, ManagePayee_AddCanadianPayee, ManagePayee_ClickPayeeByAcctNumber, ManagePayee_DeletePayee, ManagePayee_EditPayee, ManagePayee_VerifyCanadianPayeeDeleted, ManagePayee_VerifyPayeeEdited, ManagePayee_VerifyUSPayeeDeleted, ManagePayee_EditPayeeDescription,
+		ManagePayee_ClickNewPayee, ManagePayees_Button, ManagePayee_AddCanadianPayee, ManagePayee_ClickPayeeByAcctNumber, ManagePayee_DeletePayee, ManagePayee_EditPayee, ManagePayee_VerifyCanadianPayeeDeleted, ManagePayee_VerifyPayeeEdited, ManagePayee_VerifyUSPayeeDeleted, ManagePayee_EditPayeeDescription, ManagePayee_EditPayeeDescriptionPAT,
 
 		// Menu
 		Menu_VerifyAllMenuItems, Menu_ClickChatBot, Menu_ClickFAQ,
@@ -4903,6 +4903,10 @@ public class EventCase {
 
 		case ManagePayee_EditPayeeDescription:
 			Manage_Payee.get().editPayeeDescription();
+			break;
+
+		case ManagePayee_EditPayeeDescriptionPAT:
+			Manage_Payee.get().editPayeeDescriptionPAT();
 			break;
 
 		// Menu
