@@ -732,7 +732,7 @@ public class MIT_DSH_FlyoutMenu extends _CommonPage {
 				// true, 10, "down");
 			} else {
 				String UserRole = getTestdata("UserRole", XLSheetUserIDs);
-				if (!UserRole.equalsIgnoreCase("Investing")) {
+				if (UserRole.equalsIgnoreCase("Investing")) {
 
 					clickFlyout(flyoutBillsLink, "flyoutBillsLink");
 
