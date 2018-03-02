@@ -954,5 +954,51 @@ public class ScheduledPayments extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
+	
+	public void verifypayeeFilterContainsMultiAccessCardPayees() {
+		Decorator();
+		String muliPayee = getTestdata("Payee");
+		String [] payeeArray = muliPayee.split("\\|");
+		if(payeeArray.length < 2) {
+			mobileAction.Report_Fail("Payee data is not correct");
+			return;
+		}
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			for (int i=0; i< payeeArray.length; i++) {
+				String payeeXpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable//XCUIElementTypeStaticText[@label='"
+						+ payeeArray[i].trim() + "']";
+
+				try {
+					mobileAction.verifyElementUsingXPath(payeeXpath, payeeArray[i].trim());
+				} catch (IOException e) {
+					
+					mobileAction.Report_Fail_Not_Verified(payeeArray[i].trim());
+				}
+			}
+		} else {
+			for (int i=0; i< payeeArray.length; i++) {
+				String payeeNo="";
+				String payeeName="";
+				if (payeeArray[i].trim().matches(".*\\•{4}\\s{1}\\d{4}")) {
+					payeeNo = mobileAction.FuncGetValByRegx(payeeArray[i].trim(), "\\•{4}\\s{1}\\d{4}");
+					payeeName = payeeArray[i].trim().replace(payeeNo, "").trim();
+				} else if (payeeArray[i].trim().matches(".*\\d{4}")) {
+					payeeNo = mobileAction.FuncGetValByRegx(payeeArray[i].trim(), "\\d{4}");
+					payeeName = payeeArray[i].trim().replace(payeeNo, "").trim();
+				}
+			
+				String payeeXpath = "//android.widget.TextView[@text='" + payeeName
+						+ "']/../android.widget.TextView[@text='" + payeeNo + "']";				
+				try {
+					mobileAction.verifyElementUsingXPath(payeeXpath, payeeArray[i].trim());
+				} catch (IOException e) {
+					
+					mobileAction.Report_Fail_Not_Verified(payeeArray[i]);
+				}
+			}
+			
+		}
+		
+	}
 
 }

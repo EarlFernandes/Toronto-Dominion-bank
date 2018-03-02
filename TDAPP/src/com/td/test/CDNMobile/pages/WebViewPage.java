@@ -11,6 +11,12 @@ import org.openqa.selenium.support.PageFactory;
 import com.td.StringArray;
 import com.td._CommonPage;
 
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.pagefactory.TimeOutDuration;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+
 //import io.appium.java_client.MobileElement;
 //import io.appium.java_client.pagefactory.AndroidFindBy;
 //import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -23,6 +29,17 @@ public class WebViewPage extends _CommonPage {
 
 	String webViewContext = "NATIVE_APP";
 
+	// @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD Credit
+	// Card Limit Increase Request']")
+	// @AndroidFindBy(xpath =
+	// "//android.widget.EditText[@resource-id='com.td:id/amountEditText' or
+	// (@resource-id='com.td:id/edtAmt' and @index='1')]")
+	// private MobileElement TD_CLI_Request;
+	//
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeLink[@label='Yes, I want to cancel']/XCUIElementTypeStaticText[@label='Yes, I want to cancel']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText' or (@resource-id='com.td:id/edtAmt' and @index='1')]")
+	private MobileElement TD_Web_Confirm_Cancel;
+
 	public synchronized static WebViewPage get() {
 		if (webViewpage == null) {
 			webViewpage = new WebViewPage();
@@ -30,17 +47,14 @@ public class WebViewPage extends _CommonPage {
 		return webViewpage;
 	}
 
-	// private void Decorator() {
-	//
-	// PageFactory.initElements(
-	// new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15,
-	// TimeUnit.SECONDS)), this);
-	//
-	// }
+	private void Decorator() {
+		PageFactory.initElements(
+				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(8, TimeUnit.SECONDS)), this);
+	}
 
 	public boolean setWebViewContext() {
 		try {
-			Thread.sleep(10000); // Wait 10 second for web page to load
+			Thread.sleep(20000); // Wait 20 second for web page to load
 		} catch (Exception e) {
 
 		}
@@ -189,6 +203,50 @@ public class WebViewPage extends _CommonPage {
 		} else {
 			mobileAction.Report_Fail_Not_Verified("DC prefilled Form");
 		}
+	}
+
+	public void verifyCreditLimitIncreaseWebpageAndCancel() {
+
+		if (setWebViewContext()) {
+			try {
+
+				final WebElement form_Title = CL.GetDriver().findElement(By.xpath("//h1[@translate='FORM_TITLE']"));
+				String capturedText = form_Title.getText();
+				// CL.GetAppiumDriver().context("NATIVE_APP");
+				mobileAction.verifyTextEquality(capturedText,
+						getTextInCurrentLocale(StringArray.ARRAY_CLIP_FORM_TITLE));
+				WebElement cancel_btn = CL.GetDriver().findElement(By.id("cancel-app"));
+				Actions action = new Actions(CL.GetDriver());
+				action.moveToElement(cancel_btn).build().perform();
+				// CL.GetDriver().findElement(By.linkText("Cancel")).click();
+				//System.out.println(CL.GetDriver().getPageSource());
+				action.contextClick(cancel_btn);
+				//action.dragAndDrop(cancel_btn, cancel_btn);
+				//CL.GetAppiumDriver().context("NATIVE_APP");
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				CL.GetAppiumDriver().context("NATIVE_APP");
+				mobileAction.Report_Fail("Failed to find Form Title");
+				return;
+			}
+		} else {
+			mobileAction.Report_Fail("Failed to set context");
+		}
+	}
+
+	public void confirmCancel() {
+		
+		if (setWebViewContext()) {
+			WebElement cancelApp = CL.GetDriver().findElement(By.id("cancelApp"));
+			Actions action = new Actions(CL.GetDriver());
+			action.moveToElement(cancelApp).build().perform();
+			cancelApp.click();
+			CL.GetAppiumDriver().context("NATIVE_APP");
+		} else {
+			mobileAction.Report_Fail("Failed to set context");
+		}
+
 	}
 
 }

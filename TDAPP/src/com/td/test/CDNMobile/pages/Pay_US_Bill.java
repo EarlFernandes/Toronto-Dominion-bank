@@ -17,6 +17,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Pay_US_Bill extends _CommonPage {
 
@@ -52,6 +53,7 @@ public class Pay_US_Bill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.RadioButton[@resource-id='com.td:id/button_left' and @text='USD']")
 	private MobileElement select_Usd;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='PAYUSBILL_VIEW_REASON']/../XCUIElementTypeTextField[1]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/reason_for_payment']")
 	private MobileElement reasonForPayment;
 
@@ -82,7 +84,7 @@ public class Pay_US_Bill extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='PAYUSBILL_CONFIRM_FROM']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_label']/following-sibling::android.widget.TextView[@resource-id='com.td:id/amount']")
 	private MobileElement fromAccountValue_Confirm;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='-From Account']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_label']/following-sibling::android.widget.TextView[@resource-id='com.td:id/amount']")
 	private MobileElement fromAccountValue_Receipt;
@@ -695,23 +697,17 @@ public class Pay_US_Bill extends _CommonPage {
 				mobileAction.FuncClick(amount, "Amount button clicked");
 				mobileAction.FuncSendKeys(amount, amountConfig);
 				mobileAction.FuncClickDone();
-				MobileElement memo = (MobileElement) (CL.GetAppiumDriver())
-						.findElement(By.xpath("//*[@name='PAYUSBILL_VIEW_REASON']/../XCUIElementTypeTextField[1]"));
-				mobileAction.FuncClick(memo, "US memo clicked");
-				mobileAction.FuncSendKeys(memo, "us test bill pay");
+				mobileAction.FuncClick(reasonForPayment, "reason for payment clicked");
+				mobileAction.FuncSendKeys(reasonForPayment, getTestdata("Reason"));
 				mobileAction.FuncClickDone();
 				mobileAction.FuncClick(Continue, "Continue_pay");
 				mobileAction.waitProgressBarVanish();
 
 			} else {
-				// Seems like selector for from account/payee do not work here
-				// We just need to get to confirmation page, so select default
-				// fields
+
 				mobileAction.FuncClick(from_account, "From Account");
 				String from_accountNo = "//android.widget.TextView[contains(@text, '" + fromAccountConfig + "')]";
-				// mobileAction.FuncElementSwipeWhileNotFound(acntList,
-				// "//android.widget.TextView[@resource-id='com.td:id/name' and
-				// @index='0']", 1, "down", true);
+
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(from_accountNo, true, 5, "up");
 				mobileAction.FuncClick(select_payee_account, "Select Payee");
 				mobileAction.FuncElementSwipeWhileNotFound(payeeList,
@@ -740,10 +736,10 @@ public class Pay_US_Bill extends _CommonPage {
 
 	private void calculateBalance() {
 		String fromAccountValueBefore = mobileAction.getValue(fromAccountValue_Confirm);
-		if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-			if(fromAccountValueBefore.matches(".*USD \\$.*")) {
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			if (fromAccountValueBefore.matches(".*USD \\$.*")) {
 				fromAccountValueBefore = mobileAction.FuncGetValByRegx(fromAccountValueBefore, "USD \\$.*");
-			} else if(fromAccountValueBefore.matches(".*\\$.*")) {
+			} else if (fromAccountValueBefore.matches(".*\\$.*")) {
 				fromAccountValueBefore = mobileAction.FuncGetValByRegx(fromAccountValueBefore, "\\$.*");
 			} else {
 				System.out.println("Faile to find from Account value");
@@ -751,9 +747,9 @@ public class Pay_US_Bill extends _CommonPage {
 				return;
 			}
 		}
-		System.out.println("Captured From account:"+fromAccountValueBefore);
-		if(!mobileAction.verifyElementIsPresent(totalAmountValue)) {
-			mobileAction.FuncSwipeWhileElementNotFound(totalAmountValue, false, 5, "up");
+		System.out.println("Captured From account:" + fromAccountValueBefore);
+		if (!mobileAction.verifyElementIsPresent(totalAmountValue)) {
+			mobileAction.FuncSwipeWhileElementNotFound(totalAmountValue, false, 6, "up");
 		}
 		String transferValueMain = mobileAction.getValue(totalAmountValue);
 		String transferValueUS = "";
@@ -786,6 +782,7 @@ public class Pay_US_Bill extends _CommonPage {
 			System.out.println("transfer amount USD:" + transferValueUS_d);
 			fromAccountBalance = fromAccountValueBefore_d - transferValueUS_d;
 		}
+		fromAccountBalance = mobileAction.RoundTo2Decimals(fromAccountBalance);
 
 		if (is_fromaccount_usd) {
 			System.out.println("From account balance USD$:" + fromAccountBalance);
@@ -812,10 +809,10 @@ public class Pay_US_Bill extends _CommonPage {
 			String expectedBalance = CL.getTestDataInstance().TCParameters.get("Dividend");
 
 			String capturedBalance = mobileAction.getValue(fromAccountValue_Receipt);
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				if(capturedBalance.matches(".*USD \\$.*")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				if (capturedBalance.matches(".*USD \\$.*")) {
 					capturedBalance = mobileAction.FuncGetValByRegx(capturedBalance, "USD \\$.*");
-				} else if(capturedBalance.matches(".*\\$.*")) {
+				} else if (capturedBalance.matches(".*\\$.*")) {
 					capturedBalance = mobileAction.FuncGetValByRegx(capturedBalance, "\\$.*");
 				} else {
 					System.out.println("Faile to find from Account value");
@@ -823,7 +820,7 @@ public class Pay_US_Bill extends _CommonPage {
 					return;
 				}
 			}
-			System.out.println("Captured Balance:"+capturedBalance);
+			System.out.println("Captured Balance:" + capturedBalance);
 			double fromaccountCaptured = mobileAction.convertStringAmountTodouble(capturedBalance);
 			double expectedBalance_d = Double.parseDouble(expectedBalance);
 			if (fromaccountCaptured == expectedBalance_d) {

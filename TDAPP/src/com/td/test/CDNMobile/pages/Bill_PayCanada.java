@@ -2463,5 +2463,7 @@ public class Bill_PayCanada extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
+	
+
 
 }
