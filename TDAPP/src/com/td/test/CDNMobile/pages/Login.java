@@ -590,10 +590,14 @@ public class Login extends _CommonPage {
 
 				mobileAction.FuncSendKeys(getTestdata("UserID"));
 			}
-			mobileAction.FuncHideKeyboard();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+			}
 
 			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-			mobileAction.FuncHideKeyboard();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+			}
 
 			String toRemember = getTestdata("Search");
 			if (toRemember != null && toRemember.equalsIgnoreCase("rememberOff")) {
