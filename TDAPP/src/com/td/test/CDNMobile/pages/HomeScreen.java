@@ -154,6 +154,10 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/watchlist_name_drop_down_button")
 	private MobileElement watchlistDropDownPerf;
 
+	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@AndroidFindBy(id = "com.td:id/logo")
+	private MobileElement TDLogo;
+
 	int i = 1;
 	String Firstpart = "//XCUIElementTypeCell[";
 	String Secondpart = "]/XCUIElementTypeButton[1]";
@@ -1515,6 +1519,24 @@ public class HomeScreen extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+	}
+
+	public void verifyHomescreenPERF() {
+		try {
+			Decorator();
+
+			performance.verifyElementIsDisplayed(TDLogo, "Metric - Launch App");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
 	}
 
 }
