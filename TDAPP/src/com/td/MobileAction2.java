@@ -3756,5 +3756,12 @@ public class MobileAction2 extends CommonLib {
         DecimalFormat df2 = new DecimalFormat("###.##");
         return Double.valueOf(df2.format(val));
 	}
+	
+    public void javaScriptClick(WebDriver driver, WebElement item)
+    {
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("arguments[0].click();", item);
+		
+    }
 
 }

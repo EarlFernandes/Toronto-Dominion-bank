@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import io.appium.java_client.MobileElement;
@@ -29,6 +30,7 @@ public class _CommonPage {
 	protected static Map appStringMap;
 	protected static String currentLocale;
 	protected static String orientation;
+	protected static WebDriver webDriver;
 
 	// public Reporting report;// = CL.GetReporting();
 	// calculated or discovered values

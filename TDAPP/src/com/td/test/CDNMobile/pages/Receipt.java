@@ -554,7 +554,9 @@ public class Receipt extends _CommonPage {
 					getTextInCurrentLocale(StringArray.ARRAY_RBP_RECEIPT_COPY));
 		}
 
-		mobileAction.FuncSwipeOnce("up");
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			mobileAction.FuncSwipeOnce("up");
+		}
 		int caption_size = rbp_receipt_caption_list.size();
 
 		if (caption_size != 5 && caption_size != 6 && caption_size != 8) {
@@ -578,6 +580,9 @@ public class Receipt extends _CommonPage {
 
 		for (int i = 0; i < caption_size; i++) {
 			try {
+				if(!mobileAction.verifyElementIsPresent(rbp_receipt_caption_list.get(i))) {
+					mobileAction.FuncSwipeOnce("up");
+				}
 				mobileAction.verifyElementTextIsDisplayed(rbp_receipt_caption_list.get(i), expectedInfo[i]);
 			} catch (Exception e) {
 				System.err.println("TestCase has failed.");
@@ -589,7 +594,10 @@ public class Receipt extends _CommonPage {
 	public void VerifyRBPReceipt() {
 		Decorator();
 		try {
-			mobileAction.FuncSwipeOnce("up");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncSwipeOnce("up");
+			}
+			
 		} catch (Exception e) {
 
 		}
@@ -622,6 +630,9 @@ public class Receipt extends _CommonPage {
 
 			for (int i = 0; i < info_size; i++) {
 				try {
+					if(!mobileAction.verifyElementIsPresent(rbp_receipt_info_list.get(i))) {
+						mobileAction.FuncSwipeOnce("up");
+					}
 					mobileAction.verifyElementTextIsDisplayed(rbp_receipt_info_list.get(i), expectedInfo[i]);
 				} catch (Exception e) {
 
@@ -636,6 +647,9 @@ public class Receipt extends _CommonPage {
 			expectedInfo[4] = expectedStartOfDate;
 			for (int i = 0; i < info_size; i++) {
 				try {
+					if(!mobileAction.verifyElementIsPresent(rbp_receipt_info_list.get(i))) {
+						mobileAction.FuncSwipeOnce("up");
+					}
 					mobileAction.verifyElementTextIsDisplayed(rbp_receipt_info_list.get(i), expectedInfo[i]);
 				} catch (Exception e) {
 
@@ -669,6 +683,9 @@ public class Receipt extends _CommonPage {
 			expectedInfo[7] = expectedEndOfDate;
 			for (int i = 0; i < info_size; i++) {
 				try {
+					if(!mobileAction.verifyElementIsPresent(rbp_receipt_info_list.get(i))) {
+						mobileAction.FuncSwipeOnce("up");
+					}
 					mobileAction.verifyElementTextIsDisplayed(rbp_receipt_info_list.get(i), expectedInfo[i]);
 				} catch (Exception e) {
 					System.err.println("TestCase has failed.");
