@@ -76,6 +76,8 @@ public class Performance extends CommonLib {
 			GetReporting().FuncReport("Pass", "Duration is: " + dur);
 
 		} catch (Exception e) {
+			getGlobalVarriablesInstance().bStopNextFunction = false;
+
 			GetReporting().FuncReport("Fail", "Exception for Verify Visibility on element <b>" + metricName
 					+ "</b><br/>" + e.getLocalizedMessage());
 		}

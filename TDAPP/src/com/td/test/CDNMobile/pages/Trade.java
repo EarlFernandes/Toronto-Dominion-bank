@@ -57,14 +57,10 @@ public class Trade extends _CommonPage {
 	String Secondpart = "]/XCUIElementTypeStaticText[1]";
 	String Finalpart = Firstpart + i + Secondpart;
 
-	// @iOSXCUITFindBy(xpath =
-	// "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[5]/XCUIElementTypeStaticText[1]")
 	@iOSXCUITFindBy(accessibility = "ACTION_CELL_1")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/orderDropdownCaption' and @text='Action']")
 	private MobileElement selectAction;
 
-	// @iOSXCUITFindBy(xpath =
-	// "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[1]")
 	@iOSXCUITFindBy(accessibility = "ACTION_CELL_0")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/orderDropdownCaption' and @text='Action']")
 	private MobileElement selectActionMF;
@@ -77,14 +73,10 @@ public class Trade extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='Choisissez']")
 	private MobileElement selectActionFRE;
 
-	// @iOSXCUITFindBy(xpath =
-	// "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@iOSXCUITFindBy(accessibility = "FROM_ACCOUNT_CELL_0")
 	@AndroidFindBy(id = "com.td:id/accountCaption")
 	private MobileElement selectAccount;
 
-	// @iOSXCUITFindBy(xpath =
-	// "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
 	@iOSXCUITFindBy(accessibility = "SELECT_ORDER_TYPE_0")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/orderDropdownCaption' and (contains(@text,'ordre') or @text='Order Type')]")
 	private MobileElement selectOrderType;
@@ -99,8 +91,6 @@ public class Trade extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title' and (@text='Trade' or @text='Négociation')]")
 	private MobileElement trade_header;
 
-	// @iOSXCUITFindBy(xpath =
-	// "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[1]")
 	@iOSXCUITFindBy(accessibility = "SYMBOL_SEARCH_CELL_1")
 	@AndroidFindBy(id = "com.td:id/txtSearchTitle")
 	private MobileElement symbol;
@@ -133,22 +123,13 @@ public class Trade extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[contains(@text,'Limit Price') or contains(@text,'Cours limite')]") // /../*[1]
 	private MobileElement limitPriceEditTextWithTrigger;
 
-	// @iOSXCUITFindBy(xpath =
-	// "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[8]/XCUIElementTypeStaticText[1]")
 	@iOSXCUITFindBy(accessibility = "GOOD_TIL_CELL_2")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and (@text='Day' or @text='Jour')]")
 	private MobileElement btngood;
 
-	// @iOSXCUITFindBy(xpath =
-	// "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[9]/XCUIElementTypeSecureTextField[1]")
 	@iOSXCUITFindBy(accessibility = "passwordTextField")
 	@AndroidFindBy(id = "com.td:id/editTextPassword")
 	private MobileElement trading_pwd;
-
-	// @iOSXCUITFindBy(xpath =
-	// "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[11]/XCUIElementTypeSecureTextField[1]")
-	// @AndroidFindBy(id = "com.td:id/editTextPassword")
-	// private MobileElement trading_pwdOptions;
 
 	// for french
 	@iOSXCUITFindBy(accessibility = "SHAREHOLDER_TYPE_CELL_2")
