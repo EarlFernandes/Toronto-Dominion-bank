@@ -169,8 +169,8 @@ public class MyCalendar extends _CommonPage {
 		}
 	};
 
-	static int[] holiday_array = { 20180101, 20180219, 20180223, 20180330, 20180521, 20180702,
-			20180806, 20180903, 20181008, 20181112, 20181225, 20181226 };
+	static int[] holiday_array = { 20180101, 20180219, 20180223, 20180330, 20180521, 20180702, 20180806, 20180903,
+			20181008, 20181112, 20181225, 20181226 };
 
 	static Integer[] DigitTorNumber = { 0, // 0 mapping empty
 			31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -1147,8 +1147,14 @@ public class MyCalendar extends _CommonPage {
 				}
 				return selectFollowingWorkDayIfGivenDayisNot(expectedYear, expectedMonth, expectedDay);
 			} else {
-				return (DigitToStr[expectedMonth] + " " + add0iflengthOfStrIs1(Integer.toString(expectedDay)) + ", "
-						+ expectedYear);
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					return (DigitToStr[expectedMonth] + " " + Integer.toString(expectedDay) + ", "
+							+ expectedYear);
+				} else {
+					return (DigitToStr[expectedMonth] + " " + add0iflengthOfStrIs1(Integer.toString(expectedDay)) + ", "
+							+ expectedYear);
+				}
+				
 			}
 		}
 
@@ -1183,10 +1189,18 @@ public class MyCalendar extends _CommonPage {
 
 			return selectFollowingWorkDayIfGivenDayisNot(expectedYear, expectedMonth, expectedDay);
 		}
+		
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			return (DigitToStr[expectedMonth] + " " + Integer.toString(expectedDay) + ", "
+					+ expectedYear);
+		} else {
+			return (DigitToStr[expectedMonth] + " " + add0iflengthOfStrIs1(Integer.toString(expectedDay)) + ", "
+					+ expectedYear);
+		}
 
-		String expected = DigitToStr[expectedMonth] + " " + add0iflengthOfStrIs1(Integer.toString(expectedDay)) + ", "
-				+ expectedYear;
-		return expected;
+//		String expected = DigitToStr[expectedMonth] + " " + add0iflengthOfStrIs1(Integer.toString(expectedDay)) + ", "
+//				+ expectedYear;
+//		return expected;
 	}
 
 	// return day: 2018 Mar 2; input has the same format
@@ -1260,11 +1274,6 @@ public class MyCalendar extends _CommonPage {
 			String currentMonthYearAfter = getCurrentMonthYear();
 			if (currentMonthYearAfter.contains(requiredMonth) && currentMonthYearAfter.contains(requiredYear)) {
 				// Select Date
-
-				// if
-				// (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios"))
-				// {
-
 				Point checkPoint = getPositionInCalendar(requiredYear, requiredMonth, requireddate);
 				mobileAction.TapCoOrdinates(checkPoint.getX(), checkPoint.getY(),
 						"Calendar date:" + requiredMonth + "-" + requireddate + " clicked");
@@ -1272,35 +1281,7 @@ public class MyCalendar extends _CommonPage {
 					mobileAction.FuncClick(calendar_confirm_btn, "Confirm");
 				}
 				mobileAction.Report_Pass_Verified("Date selected:" + requireddate);
-				// } else {
-				// String dateXpath = "//android.widget.CheckedTextView[@text
-				// ='" +
-				// requireddate + "']";
-				// try {
-				// List<MobileElement> textItem = ((AppiumDriver)
-				// CL.GetDriver()).findElements(By.xpath(dateXpath));
-				// if(textItem.size() ==1 ) {
-				// System.out.println("Only 1 text found in calendar");
-				// textItem.get(0).click();
-				// } else if (textItem.size()>1 ){
-				// if(Integer.parseInt(requireddate) > 15) {
-				// System.out.println("Big day");
-				// textItem.get(1).click();
-				// } else {
-				// System.out.println("Small day");
-				// textItem.get(0).click();
-				// }
-				// } else {
-				// System.out.println("Something wrong");
-				// return;
-				// }
-				// Thread.sleep(2000);
-				// mobileAction.Report_Pass_Verified("Date selected:" +
-				// requiredMonth + " " + requireddate);
-				// } catch (Exception e1) {
-				// System.out.println("date cannot be clicked");
-				// }
-				// }
+
 			} else {
 				System.err.println("Failed to check the month, year");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;

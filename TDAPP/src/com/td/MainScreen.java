@@ -173,14 +173,14 @@ public class MainScreen extends _CommonPage {
 			mobileAction.FuncSetLandscapeOrientation();
 	}
 	
-	public void openChromeBrowser() throws IOException {
+	public void openChromeBrowserForAndroid() throws IOException {
 		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
 		readSheet();
 		readP2PSheet();
 		currentLocale ="en";
 		
 		DesiredCapabilities  capabilities = new DesiredCapabilities();
-		capabilities.setCapability("deviceName", "Samsung Galaxy S4");
+		capabilities.setCapability("deviceName", "Samsung");
 		capabilities.setCapability("platformName", "Android");
 	    capabilities.setCapability(CapabilityType.BROWSER_NAME, "Chrome");
 	    capabilities.setCapability(CapabilityType.VERSION, "4.3");
@@ -189,7 +189,7 @@ public class MainScreen extends _CommonPage {
 	    webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	    String urlStr = getTestdata("Accounts");
 	    webDriver.get(urlStr);
-	    //CL.SetDriver(webdriver);
+	    
 	}
 
 	// Singleton object of self

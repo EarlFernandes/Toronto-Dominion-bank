@@ -931,6 +931,7 @@ public class Bills extends _CommonPage {
 		try {
 
 			mobileAction.FuncClick(scheduledPayments_link, "'Scheduled Payments Link' is clicked");
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

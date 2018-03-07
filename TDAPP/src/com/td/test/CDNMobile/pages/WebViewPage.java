@@ -268,5 +268,42 @@ public class WebViewPage extends _CommonPage {
 		}
 
 	}
+	
+	public void verifyDamageCardWebpageAndCancel() {
+		
+		WebDriver driver;
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				if(!setWebViewContext()) {
+					System.out.println("Failed to set web view context");
+					mobileAction.Report_Fail("Failed to set web view context");
+					return;
+				} else {
+					driver = CL.GetDriver();
+				}
+		} else {
+			driver = webDriver;
+		}
+		try {
+
+			final WebElement form_Title = driver.findElement(By.xpath("//h1[@translate='FORM_TITLE']"));
+			String capturedText = form_Title.getText();
+			// CL.GetAppiumDriver().context("NATIVE_APP");
+			mobileAction.verifyTextEquality(capturedText,
+					getTextInCurrentLocale(StringArray.ARRAY_DM_REQUEST_FORM_TITLE));
+			WebElement cancel_btn = driver.findElement(By.xpath("//div[@class='td-col-xs-12']/a[@id='cancel-app']"));
+			Actions action = new Actions(driver);
+			action.moveToElement(cancel_btn).build().perform();
+
+			mobileAction.javaScriptClick(driver,cancel_btn);
+			//CL.GetAppiumDriver().context("NATIVE_APP");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			CL.GetAppiumDriver().context("NATIVE_APP");
+			mobileAction.Report_Fail("Failed to click cancel");
+			return;
+		}
+		 
+	}
 
 }

@@ -93,6 +93,13 @@ public class ScheduledPayments extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer']/android.widget.TextView[@resource-id='com.td:id/custom_text']")
 	private MobileElement month_grouping;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Cancelled' or label='Annulé' or @label='已取消']/..")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/recurrence' and (@text='Cancelled' or @text='Annulé' or @text='已取消')]/..")
+	private List<MobileElement> cancelled_payments_List;
+	
+	String regAccount =".*\\•{4}\\s{1}\\d{4}";
+	String regMaskedNum ="\\•{4}\\s{1}\\d{4}";
+	
 	public synchronized static ScheduledPayments get() {
 		if (scheduledPayments == null) {
 			scheduledPayments = new ScheduledPayments();
@@ -339,7 +346,15 @@ public class ScheduledPayments extends _CommonPage {
 			int size = payee_filter_List.size();
 			String[] payeeName = new String[size - 1];
 			for (int i = 1; i < size; i++) {
-				payeeName[i - 1] = mobileAction.getValue(payee_filter_List.get(i));
+				String payeeStr = mobileAction.getValue(payee_filter_List.get(i));
+				if(payeeStr.matches(regAccount)) {
+					String num = mobileAction.FuncGetValByRegx(payeeStr, regMaskedNum);
+					String accoun = payeeStr.replaceAll(num, "").trim();
+					payeeName[i - 1] = accoun;
+				} else {
+					payeeName[i - 1] = mobileAction.getValue(payee_filter_List.get(i));
+				}
+				
 			}
 			String[] payeeName_clone = payeeName.clone();
 			Arrays.sort(payeeName_clone);
@@ -406,8 +421,8 @@ public class ScheduledPayments extends _CommonPage {
 				mobileAction.FuncClick(payee_filter_List.get(randNum), payeeSelected);
 				CL.getTestDataInstance().TCParameters.put("Payee", payeeSelected);
 			} else {
-				if (payeeSelected.matches(".*\\•{4}\\s{1}\\d{4}")) {
-					payeeNo = mobileAction.FuncGetValByRegx(payeeSelected, "\\•{4}\\s{1}\\d{4}");
+				if (payeeSelected.matches(regAccount)) {
+					payeeNo = mobileAction.FuncGetValByRegx(payeeSelected, regMaskedNum);
 					payeeName = payeeSelected.replace(payeeNo, "").trim();
 				} else if (payeeSelected.matches(".*\\d{4}")) {
 					payeeNo = mobileAction.FuncGetValByRegx(payeeSelected, "\\d{4}");
@@ -888,65 +903,53 @@ public class ScheduledPayments extends _CommonPage {
 
 	public void selectFirstCancelledPayment() {
 
-		Decorator();
+		int maxSwipeCount = 100;
+		int iCount = 0;
 		try {
-			while (true) {
-				int dateSize = scheduled_Payments_recurrence_List.size();
+			while (iCount < maxSwipeCount) {
+				Decorator();
+				int dateSize = cancelled_payments_List.size();
 				System.out.println("Date size:" + dateSize);
 				if (dateSize == 0) {
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+						// For IOS, that means there is no cancelled payments
+						mobileAction.Report_Fail("No Canncelled payment found");
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						return;
+					}
 
-					if (mobileAction.verifyElementIsPresent(paymentlist_foot)) {
-						mobileAction.Report_Fail("No active payment found");
+					if (mobileAction.verifyElementVisible(paymentlist_foot, "Payments foot")) {
+						mobileAction.Report_Fail("No Canncelled payment found");
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 						return;
 					} else {
 						mobileAction.FuncSwipeOnce("up");
+						iCount++;
 					}
 
 				} else {
-					for (int i = 0; i < dateSize; i++) {
-						try {
-							String frencytext = "";
-							if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-								frencytext = mobileAction.getValue(scheduled_Payments_List.get(i + 1)
-										.findElement(By.xpath("//XCUIElementTypeStaticText[3]")));
-							} else {
 
-								frencytext = mobileAction.getValue(scheduled_Payments_recurrence_List.get(i));
-							}
-							System.out.println("recurrence:" + frencytext);
-
-							if (frencytext.matches(getTextInCurrentLocale(StringArray.ARRAY_RBP_CANCELLED_BILL))) {
-								if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-									// MobileElement FirstActivePayment =
-									// scheduled_Payments_recurrence_List.get(i).findElement(By.xpath("/../"));
-									mobileAction.FuncClick(scheduled_Payments_List.get(i + 1),
-											"First Cancelled payment");
-									return;
-								} else {
-									mobileAction.FuncClick(scheduled_Payments_recurrence_List.get(i),
-											"First Cancelled payment");
-									return;
-								}
-
-							}
-						} catch (Exception e1) {
-							if (mobileAction.verifyElementIsPresent(paymentlist_foot)) {
-								mobileAction.Report_Fail("No active payment found");
-								return;
-							} else {
-								mobileAction.FuncSwipeOnce("up");
-							}
+					if (mobileAction.verifyElementVisible(cancelled_payments_List.get(0), "First Canncelled payment")) {
+						mobileAction.FuncClick(cancelled_payments_List.get(0), "First Canncelled payment");
+						return;
+					} else {
+						if (mobileAction.verifyElementVisible(paymentlist_foot, "Payment foot")) {
+							mobileAction.Report_Fail("No Canncelled payment found");
+							CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+							return;
+						} else {
+							mobileAction.FuncSwipeOnce("up");
+							iCount++;
 						}
+
 					}
 				}
 
-				if (mobileAction.verifyElementIsPresent(paymentlist_foot)) {
-					mobileAction.Report_Fail("No Cancelled payment found");
-					return;
-				} else {
-					mobileAction.FuncSwipeOnce("up");
-				}
+			}
 
+			if (iCount >= maxSwipeCount) {
+				mobileAction.Report_Fail("No Canncelled payment found");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			}
 
 		} catch (Exception e) {
@@ -954,51 +957,56 @@ public class ScheduledPayments extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	public void verifypayeeFilterContainsMultiAccessCardPayees() {
 		Decorator();
 		String muliPayee = getTestdata("Payee");
-		String [] payeeArray = muliPayee.split("\\|");
-		if(payeeArray.length < 2) {
+		if(muliPayee == null || muliPayee.isEmpty() || !muliPayee.contains("|")) {
+			System.out.println("Payee data is not correct");
+			mobileAction.Report_Fail("payee data is not correct");
+			return;
+		}
+		String[] payeeArray = muliPayee.split("\\|");
+		if (payeeArray.length < 2) {
 			mobileAction.Report_Fail("Payee data is not correct");
 			return;
 		}
 		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-			for (int i=0; i< payeeArray.length; i++) {
+			for (int i = 0; i < payeeArray.length; i++) {
 				String payeeXpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable//XCUIElementTypeStaticText[@label='"
 						+ payeeArray[i].trim() + "']";
 
 				try {
 					mobileAction.verifyElementUsingXPath(payeeXpath, payeeArray[i].trim());
 				} catch (IOException e) {
-					
+
 					mobileAction.Report_Fail_Not_Verified(payeeArray[i].trim());
 				}
 			}
 		} else {
-			for (int i=0; i< payeeArray.length; i++) {
-				String payeeNo="";
-				String payeeName="";
-				if (payeeArray[i].trim().matches(".*\\•{4}\\s{1}\\d{4}")) {
-					payeeNo = mobileAction.FuncGetValByRegx(payeeArray[i].trim(), "\\•{4}\\s{1}\\d{4}");
+			for (int i = 0; i < payeeArray.length; i++) {
+				String payeeNo = "";
+				String payeeName = "";
+				if (payeeArray[i].trim().matches(regAccount)) {
+					payeeNo = mobileAction.FuncGetValByRegx(payeeArray[i].trim(), regMaskedNum);
 					payeeName = payeeArray[i].trim().replace(payeeNo, "").trim();
 				} else if (payeeArray[i].trim().matches(".*\\d{4}")) {
 					payeeNo = mobileAction.FuncGetValByRegx(payeeArray[i].trim(), "\\d{4}");
 					payeeName = payeeArray[i].trim().replace(payeeNo, "").trim();
 				}
-			
+
 				String payeeXpath = "//android.widget.TextView[@text='" + payeeName
-						+ "']/../android.widget.TextView[@text='" + payeeNo + "']";				
+						+ "']/../android.widget.TextView[@text='" + payeeNo + "']";
 				try {
 					mobileAction.verifyElementUsingXPath(payeeXpath, payeeArray[i].trim());
 				} catch (IOException e) {
-					
+
 					mobileAction.Report_Fail_Not_Verified(payeeArray[i]);
 				}
 			}
-			
+
 		}
-		
+
 	}
 
 }
