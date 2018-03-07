@@ -39,16 +39,19 @@ public class PerformanceCMOB extends _CommonPage {
 	public void transmitDurationSummary() {
 		try {
 			performance.durationSummary();
+
 			MongoClient mongoClient = new MongoClient(MONGODB_IP, MONGODB_PORT);
 			MongoDatabase database = mongoClient.getDatabase(MONGODB_DB);
 			MongoCollection<Document> coll_performance = database.getCollection(COLLECTION_PEFORMANCE);
 
-			System.out.println("Device name: " + CL.getTestDataInstance().getDeviceName());
-			System.out.println("Device udid: " + CL.getTestDataInstance().getDeviceUdid());
+			System.out.println("Device name: " + getTestdata("AccessCard"));
+			System.out.println("Device udid: " + getTestdata("Description"));
+			System.out.println("App Version: " + getTestdata("Payee"));
 
 			Document doc = new Document("Testcase ID", CL.getTestDataInstance().TestCaseID);
-			doc.append("Device Name", CL.getTestDataInstance().getDeviceName());
-			doc.append("Device UDID", CL.getTestDataInstance().getDeviceUdid());
+			doc.append("Device Name", getTestdata("AccessCard"));
+			doc.append("Device UDID", getTestdata("Description"));
+			doc.append("App Version", getTestdata("Payee"));
 			doc.append("Timestamp", new java.util.Date(Instant.now().toEpochMilli()));
 			String[] durations = CL.getTestDataInstance().TCParameters.get("Timeout").split(";");
 			for (String dur : durations) {

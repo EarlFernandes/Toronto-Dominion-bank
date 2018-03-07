@@ -110,7 +110,7 @@ public class MenuPage extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//*[(@label='TD Talk to Me' or @label='TD Talk to Me(FR)' or @label='TD Talk to Me' or @label='TD Talk to Me') and @name='flyout_title']")
 	private MobileElement chatBot;
 
-	@iOSXCUITFindBy(accessibility = "BANKING")
+	@iOSXCUITFindBy(accessibility = "CREDIT")
 	@AndroidFindBy(id = "com.td:id/classificationTexView")
 	private MobileElement bankingTitlePerf;
 

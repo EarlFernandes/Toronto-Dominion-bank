@@ -48,8 +48,6 @@ public class Between_My_accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/second_amount_val']")
 	private MobileElement amountSent;
 
-	// @iOSXCUITFindBy(iOSClassChain =
-	// "**/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]")
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]")
 	@AndroidFindBy(id = "com.td:id/edtToAccount")
 	private MobileElement txtto_Acnt;
@@ -293,6 +291,10 @@ public class Between_My_accounts extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "COMMON_RECEIPT_CELL_TITLE_1")
 	@AndroidFindBy(id = "com.td:id/to_account_val")
 	private MobileElement toAccountReceiptPerf;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]")
+	@AndroidFindBy(id = "com.td:id/edtToAccount")
+	private MobileElement toAccountPerf_182;
 
 	private void Decorator() {
 		PageFactory.initElements(new AppiumFieldDecorator((CL.GetDriver()), new TimeOutDuration(10, TimeUnit.SECONDS)),
@@ -2293,7 +2295,11 @@ public class Between_My_accounts extends _CommonPage {
 			mobileAction.FuncClick(txtFrom_acnt, "From Account field");
 			mobileAction.FuncClick(firstAcct, "1st Account in List");
 
-			mobileAction.FuncClick(txtto_Acnt, "To Account field");
+			if (getTestdata("Payee").equals("18.2")) {
+				mobileAction.FuncClick(toAccountPerf_182, "To Account field");
+			} else {
+				mobileAction.FuncClick(txtto_Acnt, "To Account field");
+			}
 			mobileAction.FuncClick(firstAcct, "1st Account in List");
 
 			String amt = getTestdata("Amount");

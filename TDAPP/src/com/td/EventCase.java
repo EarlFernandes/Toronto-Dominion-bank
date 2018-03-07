@@ -176,7 +176,7 @@ public class EventCase {
 		FAQ_ClickChatbot,
 
 		// Homescreen
-		HomeScreen_QuickLink_Chatbot, HomeScreen_Dashboard_Chatbot, HomeScreen_QuickLink_ShowWatchlists,
+		HomeScreen_QuickLink_Chatbot, HomeScreen_Dashboard_Chatbot, HomeScreen_QuickLink_ShowWatchlists, HomeScreen_QuickLink_Trade,
 
 		// Login
 		Login_VerifyUserNotRemembered, Login_LoginUsingAccessCardNumber, Login_LoginUsingAlias, Login_DeleteAllRememberedIDs, Login_VerifyAllRememberedIDsDeleted, Login_VerifyRememberedIDs, Login_VerifyLoginMFA, Login_CloseApp,
@@ -4826,6 +4826,10 @@ public class EventCase {
 
 		case HomeScreen_QuickLink_ShowWatchlists:
 			HomeScreen.get().showWatchlistsQuickLink();
+			break;
+
+		case HomeScreen_QuickLink_Trade:
+			HomeScreen.get().clickTradeQuickLink();
 			break;
 
 		// Login

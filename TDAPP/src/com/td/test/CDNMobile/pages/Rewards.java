@@ -44,6 +44,10 @@ public class Rewards extends _CommonPage {
 	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/textview_action_title'])[2]")
 	private MobileElement txtpayWithRewards;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/textview_action_title'])[2]")
+	private MobileElement txtpayWithRewardsPerf_182;
+
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textview_action_description']")
 	private List<MobileElement> redeem_text_list;
@@ -319,8 +323,13 @@ public class Rewards extends _CommonPage {
 	public void clickPayWithRewardsPERF() {
 		Decorator();
 		try {
-			performance.click(txtpayWithRewards, "Pay with Rewards");
-			performance.verifyElementIsDisplayed(amountToRedeemPerf, "Metric - Pay with Rewards screen");
+			if (getTestdata("Payee").equals("18.2")) {
+				performance.click(txtpayWithRewardsPerf_182, "Pay with Rewards");
+				performance.verifyElementIsDisplayed(amountToRedeemPerf, "Metric - Pay with Rewards screen");
+			} else {
+				performance.click(txtpayWithRewards, "Pay with Rewards");
+				performance.verifyElementIsDisplayed(amountToRedeemPerf, "Metric - Pay with Rewards screen");
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -246,7 +246,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/accountCaption")
 	private MobileElement accountNameTradePerf;
 
-	@iOSXCUITFindBy(accessibility = "BANKING")
+	@iOSXCUITFindBy(accessibility = "CREDIT")
 	@AndroidFindBy(id = "com.td:id/classificationTexView")
 	private MobileElement bankingTitlePerf;
 
