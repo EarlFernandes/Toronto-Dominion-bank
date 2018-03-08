@@ -466,6 +466,7 @@ public class SideMenu extends com.td._CommonPage {
 			Spending_Insight.get().clickSideMenuButton();
 			clickMyAccounts();
 			mobileAction.FuncClick(quickLink, "Quick Link");
+			Thread.sleep(3000);
 			Spending_Insight.get().clickSideMenuButton();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				CL.GetAppiumDriver().context("NATIVE_APP");
@@ -473,6 +474,7 @@ public class SideMenu extends com.td._CommonPage {
 			}
 			clickTransfers();
 			mobileAction.FuncClick(quickLink, "Quick Link");
+			Thread.sleep(3000);
 			Spending_Insight.get().clickSideMenuButton();
 			clickBills();
 			mobileAction.FuncClick(quickLink, "Quick Link");
