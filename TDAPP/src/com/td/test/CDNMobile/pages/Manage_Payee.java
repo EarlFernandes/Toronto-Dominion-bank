@@ -47,9 +47,9 @@ public class Manage_Payee extends _CommonPage {
 	private MobileElement managePayees;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[2] | "
-			+ "//XCUIElementTypeNavigationBar/XCUIElementTypeOther[@name='PAYBILL_VIEW_ADD_PAYEE'] | "
-			+ "//XCUIElementTypeNavigationBar/XCUIElementTypeOther[@name='PAYUSBILL_VIEW_ADD_PAYEE']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
+			+ "//XCUIElementTypeNavigationBar/XCUIElementTypeOther[@name='PAYBILL_VIEW_ADD_PAYEE' or @name='PAYUSBILL_VIEW_ADD_PAYEE']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='0'] | //android.widget.TextView[not(@resource-id)] | "
+			+ "//android.widget.TextView[starts-with(@content-desc, 'Add') and contains(@content-desc, 'Payee')]")
 	private MobileElement addPayee;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeActivityIndicator[1]")
@@ -59,11 +59,11 @@ public class Manage_Payee extends _CommonPage {
 	private WebElement payeeAcctNumber;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='0'] | //android.widget.TextView[contains(@content-desc, 'Delete')]")
 	private MobileElement deletePayeeBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeButton[2]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@index='1']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='1'] | //android.widget.TextView[contains(@content-desc, 'Edit')]")
 	private MobileElement editPayeeBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
@@ -78,7 +78,8 @@ public class Manage_Payee extends _CommonPage {
 	@FindBy(xpath = "//div[@class='column2']/span")
 	private WebElement viewDescriptionField;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[8]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[8]/XCUIElementTypeStaticText[1] | "
+			+ "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[9]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "(//div[@class='column2'])[2]/span")
 	private WebElement viewDescriptionUSField;
 
@@ -88,7 +89,7 @@ public class Manage_Payee extends _CommonPage {
 	private WebElement payeeDescriptionField;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeButton[2]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='0'] | //android.widget.TextView[contains(@content-desc, 'Done')]")
 	private MobileElement editPayeeCheckButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[2]")
@@ -519,7 +520,7 @@ public class Manage_Payee extends _CommonPage {
 			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Manage Payees Header");
 			mobileAction.FuncClick(addPayee, "Add Payee");
-			mobileAction.sleep(3000);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -737,7 +738,7 @@ public class Manage_Payee extends _CommonPage {
 	public void verifyPayeeEdited() {
 		Decorator();
 		try {
-
+			mobileAction.sleep(10000);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
 			}
@@ -747,6 +748,11 @@ public class Manage_Payee extends _CommonPage {
 			String usAccount = getTestdata("USAccount");
 			if (acctNum == null && usAccount != null) {
 				// US account
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					String descXpath = "//XCUIElementTypeStaticText[@label='" + payee + "']";
+					viewDescriptionUSField = mobileAction.verifyWebElementUsingXPath(descXpath, "US Payee Description");
+				}
+
 				mobileAction.verifyElementIsDisplayed(viewDescriptionUSField, "View Description US field");
 				mobileAction.verifyElementTextContains(viewDescriptionUSField, payee);
 			} else {

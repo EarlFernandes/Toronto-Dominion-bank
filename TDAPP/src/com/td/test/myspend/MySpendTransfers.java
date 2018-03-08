@@ -137,7 +137,7 @@ public class MySpendTransfers extends _CommonPage {
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
 				String to_accountNo = getTestdata("ToAccount");
 				System.out.println("To account:" + to_accountNo);
-				account_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
+				account_value = "//XCUIElementTypeStaticText[contains(@label,'ACCOUNT "+ to_accountNo + "')]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 				if (mobileAction.verifyElementIsPresent(ios_account_dropdown_window)) {
 					mobileAction.FuncSwipeOnce("up");

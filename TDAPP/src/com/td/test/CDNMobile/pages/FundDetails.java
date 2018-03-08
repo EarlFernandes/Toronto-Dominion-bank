@@ -17,6 +17,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class FundDetails extends _CommonPage {
 	private static FundDetails fundDetails;
@@ -85,15 +86,21 @@ public class FundDetails extends _CommonPage {
 		PageFactory.initElements(
 				new AppiumFieldDecorator(((AppiumDriver) CL.GetDriver()), new TimeOutDuration(5, TimeUnit.SECONDS)),
 				this);
-		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				String investingTitle = mobileAction.getAppString("str_Holding_Detail");
-				FundDetails_header = mobileAction.verifyElementUsingXPath("//*[@label='" + investingTitle + "']",
-						"Investing");
-			}
-		} catch (Exception e) {
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		}
+		// try {
+		// if
+		// (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS"))
+		// {
+		// String investingTitle =
+		// mobileAction.getAppString("str_Holding_Detail");
+		// FundDetails_header =
+		// mobileAction.verifyElementUsingXPath("//*[@label='" + investingTitle
+		// + "']",
+		// "Investing");
+		// }
+		// } catch (Exception e) {
+		// System.out.println("Exception from Method " +
+		// this.getClass().toString() + " " + e.getCause());
+		// }
 	}
 
 	/**
@@ -131,7 +138,7 @@ public class FundDetails extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(FundDetails_header,
+			mobileAction.verifyElementTextIsDisplayed(PageHeader.get().getHeaderTextElement(),
 					getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_DETAIL_HEADER));
 
 		} catch (NoSuchElementException | IOException e) {

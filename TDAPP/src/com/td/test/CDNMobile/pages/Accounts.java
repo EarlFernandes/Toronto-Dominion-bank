@@ -1072,7 +1072,8 @@ public class Accounts extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 				String labelText = getTextInCurrentLocale(StringArray.ARRAY_MY_ACCOUNTS_BANKING_HEADER);
 				sectionHeader = mobileAction.verifyElementUsingXPath(
-						"//XCUIElementTypeStaticText[contains(@label,'" + labelText + "')]",
+						"//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeStaticText[contains(@label,'"
+								+ labelText + "')]",
 						"My Accounts Banking header");
 			}
 

@@ -1556,7 +1556,6 @@ public class Investing extends _CommonPage {
 			System.out.println("Fund:" + firstFundName);
 			mobileAction.FuncClick(first_fund, firstFundName);
 			mobileAction.waitProgressBarVanish();
-
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1936,7 +1935,7 @@ public class Investing extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	public void VerifyUSDConversionRate() {
 		try {
 			Decorator();
@@ -1947,7 +1946,7 @@ public class Investing extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				USD_MarketValue = "//android.widget.TextView[@resource-id='com.td:id/usd_market_value']";
 				CAN_MarketValue = "//android.widget.TextView[@resource-id='com.td:id/usd_market_value']/../*[@resource-id='com.td:id/market_value']";
-				
+
 			} else {
 				USD_MarketValue = "//XCUIElementTypeStaticText[@label='";
 				for (int i = 0; i < lengthOfArray; i++) {
@@ -1957,7 +1956,7 @@ public class Investing extends _CommonPage {
 					}
 				}
 				USD_MarketValue = USD_MarketValue + "]/../XCUIElementTypeStaticText[contains(@label, 'USD $')]";
-				
+
 				CAN_MarketValue = "//XCUIElementTypeStaticText[@label='";
 				for (int i = 0; i < lengthOfArray; i++) {
 					CAN_MarketValue = CAN_MarketValue + selectedFundArray[i].trim() + "'";
@@ -1967,12 +1966,10 @@ public class Investing extends _CommonPage {
 				}
 				CAN_MarketValue = CAN_MarketValue + "]/../XCUIElementTypeStaticText[1]";
 			}
-			
+
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(USD_MarketValue, false, 10, "up");
 			mobileAction.verifyElementUsingXPath(USD_MarketValue, "USD market value");
 			mobileAction.verifyElementUsingXPath(CAN_MarketValue, "CAN market value");
-			
-			
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

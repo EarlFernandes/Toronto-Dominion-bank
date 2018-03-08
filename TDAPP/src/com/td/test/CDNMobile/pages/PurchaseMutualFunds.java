@@ -102,7 +102,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 	String phoneReg = "\\(\\d{3}\\)\\s*\\d{3}\\s*-\\s*\\d{4}";
 	String emailReg = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
 
-	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/../XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton")
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/../XCUIElementTypeOther[1]//XCUIElementTypeButton")
 	@AndroidFindBy(id = "com.td:id/purchasePreviewButton")
 	private MobileElement preview_purchase_button;
 
@@ -236,7 +236,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementTextIsDisplayed(page_title,
+			mobileAction.verifyElementTextIsDisplayed(PageHeader.get().getHeaderTextElement(),
 					getTextInCurrentLocale(StringArray.ARRAY_MF_PURCHASE_HEADER));
 
 		} catch (NoSuchElementException | IOException e) {
@@ -643,7 +643,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 			enterAmount(MIN_AMOUNT);
 			clickpreview();
 
-			String pageTitle = mobileAction.getValue(page_title);
+			String pageTitle = mobileAction.getValue(PageHeader.get().getHeaderTextElement());
 			String expectedTitle = getTextInCurrentLocale(StringArray.ARRAY_MF_PREVIEW_PURCHASE_HEADER);
 
 			if (!expectedTitle.contains(pageTitle)) {
