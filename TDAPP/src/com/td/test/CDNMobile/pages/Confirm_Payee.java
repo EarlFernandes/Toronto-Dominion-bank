@@ -33,7 +33,7 @@ public class Confirm_Payee extends _CommonPage {
 	private MobileElement addPayee_Btn;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Pay This Payee']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='Pay This Payee']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Pay This Payee']")
 	private MobileElement payThisPayee;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Thank You!')]")
@@ -185,7 +185,7 @@ public class Confirm_Payee extends _CommonPage {
 		}
 
 	}
-	
+
 	public void confirmAddPayeeAndPayThisPayee() {
 		Decorator();
 		try {
@@ -196,8 +196,6 @@ public class Confirm_Payee extends _CommonPage {
 			// Card");
 			mobileAction.FuncClick(addPayee_Btn, "AddPayee");
 			mobileAction.waitProgressBarVanish();
-
-			// mobileAction.verifyElementIsDisplayed(successMsg, "Thank You!");
 
 			mobileAction.FuncSwipeWhileElementNotFound(payThisPayee, true, 5, "up");
 			mobileAction.waitProgressBarVanish();

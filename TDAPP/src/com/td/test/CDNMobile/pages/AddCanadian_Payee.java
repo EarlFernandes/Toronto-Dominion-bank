@@ -27,7 +27,7 @@ public class AddCanadian_Payee extends _CommonPage {
 	private MobileElement payee_AccountNum;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Description']")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@text='Description']")
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='description_label']/../android.widget.EditText")
 
 	private MobileElement description;
 
@@ -40,7 +40,7 @@ public class AddCanadian_Payee extends _CommonPage {
 	private MobileElement continue_Button;
 
 	@iOSFindBy(xpath = "//*[@label='Search for Canadian payees']")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@text='Search for Canadian payees']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[contains(@text,'Search for Canadian payees')]")
 	private MobileElement search_payee_editbox;
 
 	public synchronized static AddCanadian_Payee get() {

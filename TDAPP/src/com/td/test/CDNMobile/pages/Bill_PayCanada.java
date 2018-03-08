@@ -2062,7 +2062,7 @@ public class Bill_PayCanada extends _CommonPage {
 			switch (randFund) {
 			case 0:
 				mobileAction.FuncClick(start_end_Date_List.get(1), "End Date");
-				String endDate_day = MyCalendar.get().selectRandomDayInXmonthLater(yearOfDay, monthOfDay, dayOfDay, 2);
+				String endDate_day = MyCalendar.get().selectRandomDayInXmonthLater(yearOfDay, monthOfDay, dayOfDay, 4);
 				System.out.println("Random working day:" + endDate_day);
 				String[] endDate_day_Array = endDate_day.replaceAll(",", "").split(" ");
 				yearOfDay = endDate_day_Array[2];

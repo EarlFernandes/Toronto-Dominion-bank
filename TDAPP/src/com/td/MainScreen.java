@@ -1,16 +1,9 @@
 package com.td;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-
 import com.td.mainframe.Executor;
 
 public class MainScreen extends _CommonPage {
@@ -19,7 +12,7 @@ public class MainScreen extends _CommonPage {
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
 
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.140.121:4788/wd/hub/";
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://0.0.0.0:4723/wd/hub/";
 
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
@@ -39,7 +32,6 @@ public class MainScreen extends _CommonPage {
 	private static final String APP_IOS_ZH = "APP_IOS_ZH";
 
 	private static final String APP_IOS_ZH_TRAD = "APP_IOS_ZH_TRAD";
-	//private WebDriver webdriver;
 
 	public String fieldsArray[] = { "UserType", "UserID", "Password", "SecurityAnswer", "Reason", "Accounts", "Env",
 			"Amount", "Search", "Good'til", "Action", "Transfers", "USAccount", "FromAccount", "ToAccount",
@@ -171,25 +163,6 @@ public class MainScreen extends _CommonPage {
 		}
 		if (orientation.equalsIgnoreCase("Landscape"))
 			mobileAction.FuncSetLandscapeOrientation();
-	}
-	
-	public void openChromeBrowserForAndroid() throws IOException {
-		CL.getTestDataInstance().Initialize(CL.getTestDataInstance().getMasterTestData());
-		readSheet();
-		readP2PSheet();
-		currentLocale ="en";
-		
-		DesiredCapabilities  capabilities = new DesiredCapabilities();
-		capabilities.setCapability("deviceName", "Samsung");
-		capabilities.setCapability("platformName", "Android");
-	    capabilities.setCapability(CapabilityType.BROWSER_NAME, "Chrome");
-	    capabilities.setCapability(CapabilityType.VERSION, "4.3");
-
-	    webDriver = new RemoteWebDriver(new URL(LOCAL_EXECUTION_APPIUM_SERVER), capabilities);
-	    webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-	    String urlStr = getTestdata("Accounts");
-	    webDriver.get(urlStr);
-	    
 	}
 
 	// Singleton object of self

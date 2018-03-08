@@ -679,36 +679,18 @@ public class ScheduledPayments extends _CommonPage {
 		Decorator();
 		try {
 			String monthGroupText = mobileAction.getValue(month_grouping);
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				if (monthGroupText.matches(".*\\s{1}\\d{4}")) {
-					String monthInGroup = monthGroupText.split(" ")[0];
-					if (MyCalendar.get().monthSet.contains(monthInGroup.toLowerCase())) {
-						mobileAction.Report_Pass_Verified("Month grouped in " + monthInGroup);
-					} else {
-						mobileAction.Report_Fail("Failed to month group:" + monthInGroup);
-					}
+			
+			if (monthGroupText.matches(".*\\s{1}\\d{4}")) {
+				String monthInGroup = monthGroupText.split(" ")[0];
+				if (MyCalendar.get().monthSet.contains(monthInGroup.toLowerCase())) {
+					mobileAction.Report_Pass_Verified("Month grouped in " + monthInGroup);
 				} else {
-					mobileAction.Report_Fail("Wrong format of month group:" + monthGroupText);
+					mobileAction.Report_Fail("Failed to month group:" + monthInGroup);
 				}
 			} else {
-				if (monthGroupText.matches("\\d{4}\\-\\d{2}")) {
-					String monthInGroup = monthGroupText.split("\\-")[1];
-					int month_int = Integer.parseInt(monthInGroup);
-					if (month_int > 0 && month_int < 13) {
-						monthInGroup = MyCalendar.get().DigitToStr[month_int];
-						if (MyCalendar.get().monthSet.contains(monthInGroup.toLowerCase())) {
-							mobileAction.Report_Pass_Verified("Month grouped in " + monthInGroup);
-						} else {
-							mobileAction.Report_Fail("Failed to month group:" + monthInGroup);
-						}
-					} else {
-						mobileAction.Report_Fail("Wrong format of month group:" + month_int);
-					}
-
-				} else {
-					mobileAction.Report_Fail("Wrong format of month group:" + monthGroupText);
-				}
+				mobileAction.Report_Fail("Wrong format of month group:" + monthGroupText);
 			}
+			
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -854,10 +836,13 @@ public class ScheduledPayments extends _CommonPage {
 						try {
 							String frencytext = "";
 							if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+								if(!mobileAction.verifyElementIsPresent(scheduled_Payments_List.get(i + 1))) {
+									mobileAction.FuncSwipeOnce("up");
+								}
 								frencytext = mobileAction.getValue(scheduled_Payments_List.get(i + 1)
 										.findElement(By.xpath("//XCUIElementTypeStaticText[3]")));
 							} else {
-
+								
 								frencytext = mobileAction.getValue(scheduled_Payments_recurrence_List.get(i));
 							}
 							System.out.println("recurrence:" + frencytext);
@@ -884,6 +869,7 @@ public class ScheduledPayments extends _CommonPage {
 							}
 						}
 					}
+					//mobileAction.FuncSwipeOnce("up");
 				}
 
 				if (mobileAction.verifyElementIsPresent(paymentlist_foot)) {

@@ -30,7 +30,6 @@ public class _CommonPage {
 	protected static Map appStringMap;
 	protected static String currentLocale;
 	protected static String orientation;
-	protected static WebDriver webDriver;
 
 	// public Reporting report;// = CL.GetReporting();
 	// calculated or discovered values
@@ -175,7 +174,7 @@ public class _CommonPage {
 
 		return text;
 	}
-	
+
 	public int getRandomInRange(int min, int max) {
 		Random rand = new Random();
 		int randomNum = rand.nextInt((max - min) + 1) + min;

@@ -737,6 +737,7 @@ public final class StringArray {
 
 	public static final String[] ARRAY_RBP_CONTINUE_BUTTON = { "Continue", "Continuer", "继续", "繼續" };
 	public static final String[] ARRAY_RBP_CANCELLED_BILL = { "Cancelled", "Annulé", "已取消", "已取消" };
+	public static final String[] ARRAY_RBP_BILL_CANCELLED_DONE = { "All done!", "C’est fait!", "全部完成！", "全部完成！" };
 
 	// End of RBP
 	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",

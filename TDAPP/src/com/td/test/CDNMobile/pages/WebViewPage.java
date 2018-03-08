@@ -30,27 +30,11 @@ public class WebViewPage extends _CommonPage {
 
 	String webViewContext = "NATIVE_APP";
 
-	// @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD Credit
-	// Card Limit Increase Request']")
-	// @AndroidFindBy(xpath =
-	// "//android.widget.EditText[@resource-id='com.td:id/amountEditText' or
-	// (@resource-id='com.td:id/edtAmt' and @index='1')]")
-	// private MobileElement TD_CLI_Request;
-	//
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeLink[@label='Yes, I want to cancel']/XCUIElementTypeStaticText[@label='Yes, I want to cancel']")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/amountEditText' or (@resource-id='com.td:id/edtAmt' and @index='1')]")
-	private MobileElement TD_Web_Confirm_Cancel;
-
 	public synchronized static WebViewPage get() {
 		if (webViewpage == null) {
 			webViewpage = new WebViewPage();
 		}
 		return webViewpage;
-	}
-
-	private void Decorator() {
-		PageFactory.initElements(
-				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(8, TimeUnit.SECONDS)), this);
 	}
 
 	public boolean setWebViewContext() {
@@ -207,32 +191,31 @@ public class WebViewPage extends _CommonPage {
 	}
 
 	public void verifyCreditLimitIncreaseWebpageAndCancel() {
-		
+
 		WebDriver driver;
 		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				if(!setWebViewContext()) {
-					System.out.println("Failed to set web view context");
-					mobileAction.Report_Fail("Failed to set web view context");
-					return;
-				} else {
-					driver = CL.GetDriver();
-				}
+			if (!setWebViewContext()) {
+				System.out.println("Failed to set web view context");
+				mobileAction.Report_Fail("Failed to set web view context");
+				return;
+			} else {
+				driver = CL.GetDriver();
+			}
 		} else {
-			driver = webDriver;
+			driver = CL.GetDriver();
 		}
 		try {
 
 			final WebElement form_Title = driver.findElement(By.xpath("//h1[@translate='FORM_TITLE']"));
 			String capturedText = form_Title.getText();
 			// CL.GetAppiumDriver().context("NATIVE_APP");
-			mobileAction.verifyTextEquality(capturedText,
-					getTextInCurrentLocale(StringArray.ARRAY_CLIP_FORM_TITLE));
+			mobileAction.verifyTextEquality(capturedText, getTextInCurrentLocale(StringArray.ARRAY_CLIP_FORM_TITLE));
 			WebElement cancel_btn = driver.findElement(By.xpath("//div[@class='td-col-xs-12']/a[@id='cancel-app']"));
 			Actions action = new Actions(driver);
 			action.moveToElement(cancel_btn).build().perform();
 
-			mobileAction.javaScriptClick(driver,cancel_btn);
-			//CL.GetAppiumDriver().context("NATIVE_APP");
+			mobileAction.javaScriptClick(driver, cancel_btn);
+			// CL.GetAppiumDriver().context("NATIVE_APP");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -240,7 +223,7 @@ public class WebViewPage extends _CommonPage {
 			mobileAction.Report_Fail("Failed to click cancel");
 			return;
 		}
-		 
+
 	}
 
 	public void confirmCancel() {
@@ -248,40 +231,40 @@ public class WebViewPage extends _CommonPage {
 		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 			driver = CL.GetDriver();
 		} else {
-			driver = webDriver;
+			driver = CL.GetDriver();
 		}
 
 		WebElement cancelApp = driver.findElement(By.id("cancelApp"));
 		Actions action = new Actions(driver);
 		action.moveToElement(cancelApp).build().perform();
-		mobileAction.javaScriptClick(driver,cancelApp);
+		mobileAction.javaScriptClick(driver, cancelApp);
 
 		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 			WebElement returnToTDApp = driver.findElement(By.linkText("Return to TD app"));
 			action = new Actions(driver);
 			action.moveToElement(returnToTDApp).build().perform();
-			mobileAction.javaScriptClick(driver,returnToTDApp);
+			mobileAction.javaScriptClick(driver, returnToTDApp);
 		} else {
 			WebElement yesTolaunchTDApp = driver.findElement(By.linkText("Yes"));
 			WebElement noTolaunchTDApp = driver.findElement(By.linkText("No thanks"));
-			mobileAction.javaScriptClick(driver,yesTolaunchTDApp);
+			mobileAction.javaScriptClick(driver, yesTolaunchTDApp);
 		}
 
 	}
-	
+
 	public void verifyDamageCardWebpageAndCancel() {
-		
+
 		WebDriver driver;
 		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				if(!setWebViewContext()) {
-					System.out.println("Failed to set web view context");
-					mobileAction.Report_Fail("Failed to set web view context");
-					return;
-				} else {
-					driver = CL.GetDriver();
-				}
+			if (!setWebViewContext()) {
+				System.out.println("Failed to set web view context");
+				mobileAction.Report_Fail("Failed to set web view context");
+				return;
+			} else {
+				driver = CL.GetDriver();
+			}
 		} else {
-			driver = webDriver;
+			driver = CL.GetDriver();
 		}
 		try {
 
@@ -294,8 +277,8 @@ public class WebViewPage extends _CommonPage {
 			Actions action = new Actions(driver);
 			action.moveToElement(cancel_btn).build().perform();
 
-			mobileAction.javaScriptClick(driver,cancel_btn);
-			//CL.GetAppiumDriver().context("NATIVE_APP");
+			mobileAction.javaScriptClick(driver, cancel_btn);
+			// CL.GetAppiumDriver().context("NATIVE_APP");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -303,7 +286,7 @@ public class WebViewPage extends _CommonPage {
 			mobileAction.Report_Fail("Failed to click cancel");
 			return;
 		}
-		 
+
 	}
 
 }

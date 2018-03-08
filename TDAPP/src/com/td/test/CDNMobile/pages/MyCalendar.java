@@ -924,7 +924,7 @@ public class MyCalendar extends _CommonPage {
 																// include
 																// start-Month
 
-		if (monthGap == 0 || (monthGap == 1 && endD_int < startD_int)) {
+		if (monthGap == 0 || (monthGap == 1 && startD_int > 15 && endD_int < startD_int)) {
 			System.out.println("Wrong...end date is too short");
 			return "";
 		}
@@ -959,7 +959,7 @@ public class MyCalendar extends _CommonPage {
 
 		int endDateOfMonth = getMonthDays(endM_int, endY_int);
 
-		if (monthGap == 0 || (monthGap == 1 && endD_int < endDateOfMonth)) {
+		if (monthGap == 0 || (monthGap == 1 && startD_int > 15 && endD_int < endDateOfMonth)) {
 			System.out.println("Wrong...end date is too short");
 			return "";
 		}

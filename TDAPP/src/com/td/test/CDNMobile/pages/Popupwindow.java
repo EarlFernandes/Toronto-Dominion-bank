@@ -36,15 +36,19 @@ public class Popupwindow extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
 	private MobileElement cancel_order_button;
 
-	@iOSFindBy(xpath = "//*[@name='alert_ok_button']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeTextView")
+	@iOSFindBy(xpath = "//*[@name='alert_ok_button']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' or @resource-id='com.td:id/dialog_message']")
 	private MobileElement popup_message;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' or @resource-id='com.td:id/dialog_message']")
+	private MobileElement rbp_popup_message;
 
-	@iOSFindBy(accessibility = "alert_ok_button")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel' or @label='Annuler' or @label='取消']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/positive_button']")
 	private MobileElement bill_cancel_button;
 
-	@iOSFindBy(accessibility = "alert_cancel_button")
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label=\"Don't Cancel\" or @label='Ne pas annuler' or @label='不取消']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/negative_button']")
 	private MobileElement bill_dont_cancel_button;
 
@@ -134,7 +138,7 @@ public class Popupwindow extends _CommonPage {
 		Decorator();
 		try {
 			String expectedMsg = getTextInCurrentLocale(StringArray.ARRAY_RBP_POPUP_CANCEL_PAYMENT);
-			mobileAction.verifyElementTextIsDisplayed(popup_message, expectedMsg);
+			mobileAction.verifyElementTextIsDisplayed(rbp_popup_message, expectedMsg);
 			mobileAction.verifyElementTextIsDisplayed(bill_cancel_button,
 					getTextInCurrentLocale(StringArray.ARRAY_RBP_PAYEE_FILTER_CANCEL_BUTTON));
 			mobileAction.verifyElementTextIsDisplayed(bill_dont_cancel_button,

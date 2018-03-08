@@ -399,6 +399,32 @@ public class Receipt extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
+	
+	public void verifyBillCancelledReceipt() {
+		Decorator();
+		try {
+			mobileAction.verifyElementTextIsDisplayed(PageHeader.get().getHeaderTextElement(),
+					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_RBP_BILL_CANCELLED_DONE);
+				thankYouTitle = mobileAction.verifyElementUsingXPath("//*[@label='" + labelText + "']",
+						"All Done!");
+			}
+			mobileAction.verifyElementIsDisplayed(thankYouTitle, "All Done!");
+			mobileAction.verifyElementTextIsDisplayed(thankYouTitle,
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_BILL_CANCELLED_DONE));
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
 
 	public void VerifyReceiptDetailChineseContent() {
 		Decorator();
