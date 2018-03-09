@@ -33,7 +33,7 @@ public class SpendingHistory extends _CommonPage {
 	String platform = null;
 
 	@iOSXCUITFindBy(xpath = "//*[contains(@value,'There is no spending history to display') or contains(@label,'There is no spending history to display')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'no spending history')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'no spending history') or contains(@text,'no spending history')]")
 	private MobileElement noSpendingHistory;
 
 	@iOSXCUITFindBy(xpath = "//*[@label='Spending History' or @label='Historique de dépenses']")
@@ -55,14 +55,14 @@ public class SpendingHistory extends _CommonPage {
 	private MobileElement RightArrow;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Spending History Dashboard' or @label='Historique de dépenses']")
-	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Spending History Dashboard') or contains(@content-desc,'Historique de dépenses')]")
+	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Spending History Dashboard') or contains(@content-desc,'Historique de dépenses') or contains(@text,'Spending History Dashboard')]")
 	private MobileElement spendingHistoryBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Home' or @label='Accueil']")
-	@AndroidFindBy(xpath = "//android.widget.Button[contains(@content-desc,'Home') or contains(@content-desc,'Accueil')]")
+	@AndroidFindBy(xpath = "(//android.widget.Button[contains(@content-desc,'Home') or contains(@content-desc,'Accueil') or contains(@text,'Home')])[1]")
 	private MobileElement homeBtn;
 
-	@iOSFindBy(xpath = "//*[@name='NAVIGATION_ITEM_QUICK_ACCESS' or @name='QuickLinkRightNavButton']")
+	@iOSXCUITFindBy(xpath = "//*[@name='NAVIGATION_ITEM_QUICK_ACCESS' or @name='QuickLinkRightNavButton']")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']")
 	private MobileElement TDAppHomePage;
 
