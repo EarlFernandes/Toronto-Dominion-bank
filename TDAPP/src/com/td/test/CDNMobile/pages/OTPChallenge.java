@@ -301,9 +301,8 @@ public class OTPChallenge extends _CommonPage {
 					clickResendCode();
 				}
 
-				// Doesn't allow immediate code requests, needs to wait some
-				// time
-				Thread.sleep(30000);
+				// Doesn't allow immediate code requests, wait some time
+				Thread.sleep(60000);
 
 			}
 

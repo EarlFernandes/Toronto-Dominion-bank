@@ -155,7 +155,7 @@ public class EventCase {
 		Accounts_VerifyCreditHeader, Accounts_SelectFirstAccount, Accounts_SelectToAccount,
 
 		// Add Payee
-		AddPayee_SearchCdnPayees, AddPayee_SearchUSPayees, AddPayee_ClickFirstPayeeFound, AddPayee_EnterPayeeDetails, AddPayee_EnterUSPayeeDetails, AddPayee_ClickGoBackHomeBtn, AddPayee_ClickFirstUSPayeeFound, AddPayee_ClickAddAnotherPayeeBtn, AddPayee_VerifyAddPayeeReceipt,
+		AddPayee_SearchCdnPayees, AddPayee_SearchUSPayees, AddPayee_ClickFirstPayeeFound, AddPayee_EnterPayeeDetails, AddPayee_EnterUSPayeeDetails, AddPayee_ClickGoBackHomeBtn, AddPayee_ClickFirstUSPayeeFound, AddPayee_ClickAddAnotherPayeeBtn, AddPayee_VerifyAddPayeeReceipt, AddPayee_EnterUSPayeeDetailsPAT, AddPayee_ClickFirstUSPayeeFoundPAT,
 
 		// Between My Accounts
 		BetweenMyAccounts_SpecifiedAccountsTransfer, Transfers_Click_Between_My_Accounts, BetweenMyAccounts_1stAccountsTransfer,
@@ -185,7 +185,7 @@ public class EventCase {
 		Logout_GoBackHome,
 
 		// Manage Payee
-		ManagePayee_ClickNewPayee, ManagePayees_Button, ManagePayee_AddCanadianPayee, ManagePayee_ClickPayeeByAcctNumber, ManagePayee_DeletePayee, ManagePayee_EditPayee, ManagePayee_VerifyCanadianPayeeDeleted, ManagePayee_VerifyPayeeEdited, ManagePayee_VerifyUSPayeeDeleted, ManagePayee_EditPayeeDescription,
+		ManagePayee_ClickNewPayee, ManagePayees_Button, ManagePayee_AddCanadianPayee, ManagePayee_ClickPayeeByAcctNumber, ManagePayee_DeletePayee, ManagePayee_EditPayee, ManagePayee_VerifyCanadianPayeeDeleted, ManagePayee_VerifyPayeeEdited, ManagePayee_VerifyUSPayeeDeleted, ManagePayee_EditPayeeDescription, ManagePayee_EditPayeeDescriptionPAT,
 
 		// Menu
 		Menu_VerifyAllMenuItems, Menu_ClickChatBot, Menu_ClickFAQ,
@@ -4715,12 +4715,20 @@ public class EventCase {
 			AddPayee.get().clickFirstUSPayeeFound();
 			break;
 
+		case AddPayee_ClickFirstUSPayeeFoundPAT:
+			AddPayee.get().clickFirstUSPayeeFoundPAT();
+			break;
+
 		case AddPayee_EnterPayeeDetails:
 			AddPayee.get().enterPayeeDetails();
 			break;
 
 		case AddPayee_EnterUSPayeeDetails:
 			AddPayee.get().enterUSPayeeDetails();
+			break;
+
+		case AddPayee_EnterUSPayeeDetailsPAT:
+			AddPayee.get().enterUSPayeeDetailsPAT();
 			break;
 
 		case AddPayee_ClickGoBackHomeBtn:
@@ -4899,6 +4907,10 @@ public class EventCase {
 
 		case ManagePayee_EditPayeeDescription:
 			Manage_Payee.get().editPayeeDescription();
+			break;
+
+		case ManagePayee_EditPayeeDescriptionPAT:
+			Manage_Payee.get().editPayeeDescriptionPAT();
 			break;
 
 		// Menu
