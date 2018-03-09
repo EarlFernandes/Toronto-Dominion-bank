@@ -252,7 +252,7 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@text='Text Me' or @text='Textez-moi' or @text='短信' or @text='短訊']")
 	private MobileElement textOption;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='getCode']")
 	private MobileElement getCodeButton;
 
@@ -260,13 +260,10 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='secretCode']")
 	private MobileElement securityCodeField;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='enter']")
 	private MobileElement submitCodeButton;
 
-	final String OTP_LAST4DIGITS = "2677";
-
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label CONTAINS '" + OTP_LAST4DIGITS + "'`]")
 	private MobileElement phoneListCell;
 
 	final int REPEAT_TIMES = 4;
@@ -498,8 +495,8 @@ public class Login extends _CommonPage {
 			} else if (screenheader.getText()
 					.contains(getTextInCurrentLocale(StringArray.ARRAY_OTP_CHALLENGE_HEADER_TEXT))) {
 				// OTP Challenge page
-				// Uncomment when default OTP passcode is in effect
-				// this.enterOTPPasscode();
+				// Uncomment when OTP passcode is in effect
+				this.enterOTPPasscode();
 				return false;
 			} else if (screenheader.getText()
 					.contains(getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_SECURITY_SETTINGS))) {
@@ -2041,6 +2038,8 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 			boolean onlyOnePhone = mobileAction.verifyElementIsPresent(textOption);
+			String otpLast4Digits = getTestdata("PhoneProfile");
+
 			if (!onlyOnePhone) {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 					// Cannot read phone cell text for correct phone#
@@ -2048,11 +2047,15 @@ public class Login extends _CommonPage {
 					List<MobileElement> phoneList = mobileAction.getElementsList(phoneListXpath);
 					for (MobileElement cell : phoneList) {
 						String text = mobileAction.FuncGetText(cell);
-						if (text.contains(OTP_LAST4DIGITS)) {
+						if (text.contains(otpLast4Digits)) {
 							phoneListCell = cell;
 							break;
 						}
 					}
+				} else {
+					phoneListCell = mobileAction.verifyElementUsingXPath(
+							"//XCUIElementTypeStaticText[contains(@label,'" + otpLast4Digits + "')]",
+							"OTP Phone Number");
 				}
 				mobileAction.FuncClick(phoneListCell, "OTP Phone number");
 				mobileAction.sleep(5000);
