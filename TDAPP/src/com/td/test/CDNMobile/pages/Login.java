@@ -2038,7 +2038,8 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 			boolean onlyOnePhone = mobileAction.verifyElementIsPresent(textOption);
-			String otpLast4Digits = getTestdata("PhoneProfile");
+			// For now, only 1 phone number is associated with any ConnectIDs
+			String otpLast4Digits = "2677";
 
 			if (!onlyOnePhone) {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
@@ -2065,7 +2066,7 @@ public class Login extends _CommonPage {
 			mobileAction.FuncClick(getCodeButton, "Get Code Button");
 
 			// Use passcode in xls when default passcode in effect
-			OTPChallenge.get().enterSecurityCode();
+			OTPChallenge.get().enterLoginSecurityCode();
 			// String securityCode = getTestdata("SecurityAnswer");
 			// mobileAction.FuncClick(securityCodeField, "Security Code Field");
 			// mobileAction.FuncSendKeys(securityCodeField, securityCode);

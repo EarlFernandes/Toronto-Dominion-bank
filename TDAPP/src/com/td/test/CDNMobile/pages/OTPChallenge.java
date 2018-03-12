@@ -491,4 +491,35 @@ public class OTPChallenge extends _CommonPage {
 		}
 	}
 
+	public void enterLoginSecurityCode() {
+		Decorator();
+
+		try {
+			String securityCode = this.retrievePasscode();
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchToWebView();
+				mobileAction.sleep(5000);
+			}
+
+			mobileAction.FuncClick(securityCodeField, "Security Code Field");
+			mobileAction.FuncSendKeys(securityCodeField, securityCode);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.FuncClickDone(); // hide iOS keyboard
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+			mobileAction.switchAppiumContext("NATIVE_APP");
+		}
+	}
+
 }
