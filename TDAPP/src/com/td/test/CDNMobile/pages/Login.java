@@ -244,6 +244,14 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/image")
 	private MobileElement otpWelcomeImageExisting;
 
+	@iOSXCUITFindBy(accessibility = "descriptionLabel")
+	@AndroidFindBy(id = "com.td:id/accountCaption")
+	private MobileElement accountNameTradePerf;
+
+	@iOSXCUITFindBy(accessibility = "CREDIT")
+	@AndroidFindBy(id = "com.td:id/classificationTexView")
+	private MobileElement bankingTitlePerf;
+
 	String session = "//XCUIElementTypeStaticText[@label='Session Expired']";
 	String session1 = "//android.widget.TextView[contains(@text,'Session Expired')]";
 	String message = "Session Expired";
@@ -2034,6 +2042,56 @@ public class Login extends _CommonPage {
 
 	}
 
+	public void loginTradePERF() {
+
+		Decorator();
+		try {
+			Thread.sleep(2000);
+			verifyAccessCard();
+
+			mobileAction.FuncSendKeys(getTestdata("UserID"));
+			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+			}
+
+			// Even in Landscape mode, the login button is visible
+			performance.click(login, "Login");
+			performance.verifyElementIsDisplayed(accountNameTradePerf,
+					"Metric - Login with authentication Trade screen");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void loginAccountPERF() {
+
+		Decorator();
+		try {
+			Thread.sleep(2000);
+			verifyAccessCard();
+
+			mobileAction.FuncSendKeys(getTestdata("UserID"));
+			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+			}
+
+			// Even in Landscape mode, the login button is visible
+			performance.click(login, "Login");
+			performance.verifyElementIsDisplayed(bankingTitlePerf,
+					"Metric - Login with authentication My Accounts screen");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
 	public void enterOTPPasscode() {
 		Decorator();
 		try {
@@ -2084,7 +2142,6 @@ public class Login extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-
 	}
 
 }
