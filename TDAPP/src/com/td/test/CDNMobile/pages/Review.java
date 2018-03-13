@@ -328,6 +328,9 @@ public class Review extends _CommonPage {
 			return getTextInCurrentLocale(StringArray.ARRAY_RBP_MAX_AMOUNT_ERROR);
 		case "Amount Greater Than Balance Error":
 			return getTextInCurrentLocale(StringArray.ARRAY_RBP_ERROR_AMOUNT_GREATER_BALANCE);
+		case "Date Range Not Pass One Number of Payment Error":
+			return getTextInCurrentLocale(StringArray.ARRAY_RBP_ERROR_DATE_RANGE_NOT_PASS_ONE_PAYMENT);			
+			
 		}
 		return "";
 	}

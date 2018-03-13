@@ -675,6 +675,10 @@ public final class StringArray {
 			"You don't have enough funds in the account you selected. Please try a lower amount or use a different account.",
 			"Le compte sélectionné ne contient pas les fonds requis. Entrez un montant inférieur ou utilisez un autre compte.",
 			"您所选账户中没有足够的资金。请尝试较低的金额或者使用其他账户。", "您所選的賬戶中沒有足夠的資金。請輸入較低的金額或使用不同的賬戶。" };
+	public static final String[]  ARRAY_RBP_ERROR_DATE_RANGE_NOT_PASS_ONE_PAYMENT= {
+			"Please select an end date that is after your first scheduled payment.",
+			"Veuillez sélectionner une date de fin ultérieure à la date du premier paiement prévu.",
+			"结束日期必须是在首次预定付款之后。", "結束日期必須是在首次預定付款之後。" };
 
 	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG_WEEKLY = {
 			"You're not able to schedule more than 260 payments within a 5-year period. Please type in a lower number of payments.",
