@@ -40,16 +40,19 @@ public class WebViewPage extends _CommonPage {
 	
 	String webViewContext = "NATIVE_APP";
 	
-	@AndroidFindBy(xpath = "//android.view.View[@text='Cancel' and @resource-id='cancel-app']")
+	@AndroidFindBy(xpath = "//android.view.View[@text='Cancel' and @resource-id='cancel-app']") // and @resource-id='cancel-app'
 	private MobileElement cancelWebViewBtn;
 	
 	@AndroidFindBy(xpath = "//android.view.View[@text='TD Credit Card Limit Increase Request']")
-	private MobileElement requestTitle;
+	private MobileElement requestCLITitle;
+	
+	@AndroidFindBy(xpath = "//android.view.View[@text='Damaged TD Credit Card Replacement Request']")
+	private MobileElement requestCCRTitle;
 	
 	@AndroidFindBy(xpath = "//android.view.View[@text='Yes, I want to cancel' and @resource-id='cancelApp']")
 	private MobileElement confirmToCancel;
 	
-	@AndroidFindBy(xpath = "//android.view.View[@text='Return to TD app' and @resource-id='mobile_return']")
+	@AndroidFindBy(xpath = "//android.view.View[@text='Return to TD app' and @resource-id='mobile_return']") // and @resource-id='mobile_return'
 	private MobileElement returnToApp;
 	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='SBFolderScalingView']/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeIcon[@name='Safari']")
@@ -323,10 +326,10 @@ public class WebViewPage extends _CommonPage {
 
 			}
 			Decorator();
-			driver = CL.GetAppiumDriver();
+			//driver = CL.GetAppiumDriver();
 			
 			try {
-				mobileAction.verifyElementTextIsDisplayed(requestTitle, getTextInCurrentLocale(StringArray.ARRAY_CLIP_FORM_TITLE));
+				mobileAction.verifyElementTextIsDisplayed(requestCLITitle, getTextInCurrentLocale(StringArray.ARRAY_CLIP_FORM_TITLE));
 				if(!mobileAction.verifyElementIsPresent(cancelWebViewBtn)) {
 					mobileAction.FuncSwipeWhileElementNotFound(cancelWebViewBtn, false,10, "up");
 				}
@@ -396,30 +399,57 @@ public class WebViewPage extends _CommonPage {
 				return;
 			} else {
 				driver = CL.GetDriver();
+				try {
+
+					final WebElement form_Title = driver.findElement(By.xpath("//h1[@translate='FORM_TITLE']"));
+					String capturedText = form_Title.getText();
+					// CL.GetAppiumDriver().context("NATIVE_APP");
+					mobileAction.verifyTextEquality(capturedText,
+							getTextInCurrentLocale(StringArray.ARRAY_DM_REQUEST_FORM_TITLE));
+					WebElement cancel_btn = driver.findElement(By.xpath("//div[@class='td-col-xs-12']/a[@id='cancel-app']"));
+					Actions action = new Actions(driver);
+					action.moveToElement(cancel_btn).build().perform();
+
+					mobileAction.javaScriptClick(driver, cancel_btn);
+					// CL.GetAppiumDriver().context("NATIVE_APP");
+
+				} catch (Exception e) {
+					e.printStackTrace();
+					CL.GetAppiumDriver().context("NATIVE_APP");
+					mobileAction.Report_Fail("Failed to click cancel");
+					return;
+				}
 			}
 		} else {
-			driver = CL.GetDriver();
+			//driver = CL.GetDriver();
+			try {
+				Thread.sleep(20000); // Wait 20 second for web page to load
+			} catch (Exception e) {
+
+			}
+			Decorator();
+			//driver = CL.GetAppiumDriver();
+			
+			try {
+				mobileAction.verifyElementTextIsDisplayed(requestCCRTitle, getTextInCurrentLocale(StringArray.ARRAY_DM_REQUEST_FORM_TITLE));
+//				if(!mobileAction.verifyElementIsPresent(cancelWebViewBtn)) {
+//					mobileAction.FuncSwipeWhileElementNotFound(cancelWebViewBtn, false,10, "up");
+//				}
+//				for (int i=0; i<6; i++) {
+//					mobileAction.FuncSwipeOnce("up");
+//				}
+				Decorator();
+				mobileAction.FuncClick(cancelWebViewBtn, "Cancel");
+				
+//				if(mobileAction.verifyElementIsPresent(cancelWebViewBtn)) {
+//					mobileAction.javaScriptClick(CL.GetAppiumDriver(), cancelWebViewBtn);
+//				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		try {
-
-			final WebElement form_Title = driver.findElement(By.xpath("//h1[@translate='FORM_TITLE']"));
-			String capturedText = form_Title.getText();
-			// CL.GetAppiumDriver().context("NATIVE_APP");
-			mobileAction.verifyTextEquality(capturedText,
-					getTextInCurrentLocale(StringArray.ARRAY_DM_REQUEST_FORM_TITLE));
-			WebElement cancel_btn = driver.findElement(By.xpath("//div[@class='td-col-xs-12']/a[@id='cancel-app']"));
-			Actions action = new Actions(driver);
-			action.moveToElement(cancel_btn).build().perform();
-
-			mobileAction.javaScriptClick(driver, cancel_btn);
-			// CL.GetAppiumDriver().context("NATIVE_APP");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			CL.GetAppiumDriver().context("NATIVE_APP");
-			mobileAction.Report_Fail("Failed to click cancel");
-			return;
-		}
+		
 
 	}
 

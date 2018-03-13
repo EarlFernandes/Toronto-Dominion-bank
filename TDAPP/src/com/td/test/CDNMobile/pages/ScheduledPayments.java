@@ -26,6 +26,7 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class ScheduledPayments extends _CommonPage {
 	private static ScheduledPayments scheduledPayments;
+	private int iMaxPaymentsSwipt = 80;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/mainText'][1]")
 	private MobileElement firstPayment;
@@ -669,22 +670,14 @@ public class ScheduledPayments extends _CommonPage {
 					mobileAction.Report_Fail("Failed to verify payment date:" + paymentDate);
 				}
 
-				int frequencySize = StringArray.ARRAY_RBP_FREQUENCY_OPTION.length;
-				boolean freMatched = false;
-				for (int i = 0; i < frequencySize; i++) {
-					if (frequencyText.equals(getTextInCurrentLocale(StringArray.ARRAY_RBP_FREQUENCY_OPTION[i]))) {
-						freMatched = true;
-						break;
-					}
-				}
-				if (freMatched) {
+				if (isFrequencyMatch(frequencyText)) {
 					mobileAction.Report_Pass_Verified("Recurring:" + frequencyText);
 				} else {
 					mobileAction.Report_Fail("Failed to verify frequency:" + frequencyText);
 				}
 
 				int swipecount = 0;
-				while (!mobileAction.verifyElementIsPresent(paymentlist_foot) && swipecount < 80) {
+				while (!mobileAction.verifyElementIsPresent(paymentlist_foot) && swipecount < iMaxPaymentsSwipt) {
 					mobileAction.FuncSwipeOneScreenWithInElement(payments_layout, "up");
 					swipecount++;
 				}
@@ -697,6 +690,18 @@ public class ScheduledPayments extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+	}
+
+	private boolean isFrequencyMatch(String expectedfrequency) {
+		int frequencySize = StringArray.ARRAY_RBP_FREQUENCY_OPTION.length;
+		boolean freMatched = false;
+		for (int i = 0; i < frequencySize; i++) {
+			if (expectedfrequency.equals(getTextInCurrentLocale(StringArray.ARRAY_RBP_FREQUENCY_OPTION[i]))) {
+				freMatched = true;
+				break;
+			}
+		}
+		return freMatched;
 	}
 
 	public void verifyMonthGrouping() {
@@ -842,8 +847,9 @@ public class ScheduledPayments extends _CommonPage {
 	public void selectFirstActivePayment() {
 
 		Decorator();
+		int iCount = 0;
 		try {
-			while (true) {
+			while (iCount < iMaxPaymentsSwipt) {
 				int dateSize = scheduled_Payments_recurrence_List.size();
 				System.out.println("Date size:" + dateSize);
 				if (dateSize == 0) {
@@ -853,6 +859,7 @@ public class ScheduledPayments extends _CommonPage {
 						return;
 					} else {
 						mobileAction.FuncSwipeOnce("up");
+						iCount++;
 					}
 
 				} else {
@@ -869,20 +876,27 @@ public class ScheduledPayments extends _CommonPage {
 
 								frencytext = mobileAction.getValue(scheduled_Payments_recurrence_List.get(i));
 							}
-							System.out.println("recurrence:" + frencytext);
 
-							if (!frencytext.matches(getTextInCurrentLocale(StringArray.ARRAY_RBP_CANCELLED_BILL))) {
-								if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-									// MobileElement FirstActivePayment =
-									// scheduled_Payments_recurrence_List.get(i).findElement(By.xpath("/../"));
-									mobileAction.FuncClick(scheduled_Payments_List.get(i + 1), "First Active payment");
-									return;
-								} else {
-									mobileAction.FuncClick(scheduled_Payments_recurrence_List.get(i),
-											"First Active payment");
-									return;
+							if (!frencytext.matches(getTextInCurrentLocale(StringArray.ARRAY_RBP_CANCELLED_BILL))
+									&& !isFrequencyMatch(frencytext)) {
+								System.out.println("recurrence:" + frencytext + " not matched, continue...");
+								continue;
+							} else {
+								System.out.println("recurrence:" + frencytext);
+								if (!frencytext.matches(getTextInCurrentLocale(StringArray.ARRAY_RBP_CANCELLED_BILL))) {
+									if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+										// MobileElement FirstActivePayment =
+										// scheduled_Payments_recurrence_List.get(i).findElement(By.xpath("/../"));
+										mobileAction.FuncClick(scheduled_Payments_List.get(i + 1),
+												"First Active payment");
+										return;
+									} else {
+										mobileAction.FuncClick(scheduled_Payments_recurrence_List.get(i),
+												"First Active payment");
+										return;
+									}
+
 								}
-
 							}
 						} catch (Exception e1) {
 							if (mobileAction.verifyElementIsPresent(paymentlist_foot)) {
@@ -890,6 +904,7 @@ public class ScheduledPayments extends _CommonPage {
 								return;
 							} else {
 								mobileAction.FuncSwipeOnce("up");
+								iCount++;
 							}
 						}
 					}
@@ -901,6 +916,7 @@ public class ScheduledPayments extends _CommonPage {
 					return;
 				} else {
 					mobileAction.FuncSwipeOnce("up");
+					iCount++;
 				}
 
 			}
@@ -913,10 +929,9 @@ public class ScheduledPayments extends _CommonPage {
 
 	public void selectFirstCancelledPayment() {
 
-		int maxSwipeCount = 100;
 		int iCount = 0;
 		try {
-			while (iCount < maxSwipeCount) {
+			while (iCount < iMaxPaymentsSwipt) {
 				Decorator();
 				int dateSize = cancelled_payments_List.size();
 				System.out.println("Date size:" + dateSize);
@@ -957,7 +972,7 @@ public class ScheduledPayments extends _CommonPage {
 
 			}
 
-			if (iCount >= maxSwipeCount) {
+			if (iCount >= iMaxPaymentsSwipt) {
 				mobileAction.Report_Fail("No Canncelled payment found");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			}
