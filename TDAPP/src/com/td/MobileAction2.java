@@ -1178,8 +1178,10 @@ public class MobileAction2 extends CommonLib {
 																				// Modified
 		try {
 			String sEleText = FuncGetElementText(objElement);
-			//for French, sometimes the captured text contains french space, need to replace it to English space
-			sEleText = sEleText.replace(" ", " "); //they looks like the same, but they are different
+			// for French, sometimes the captured text contains french space,
+			// need to replace it to English space
+			sEleText = sEleText.replace(" ", " "); // they looks like the same,
+													// but they are different
 			if (sEleText != null) {
 				if (sEleText.contains(text))
 					GetReporting().FuncReport("Pass",
@@ -3751,30 +3753,28 @@ public class MobileAction2 extends CommonLib {
 		}
 
 	}
-	
+
 	public double RoundTo2Decimals(double val) {
-        DecimalFormat df2 = new DecimalFormat("###.##");
-        return Double.valueOf(df2.format(val));
+		DecimalFormat df2 = new DecimalFormat("###.##");
+		return Double.valueOf(df2.format(val));
 	}
-	
-    public void javaScriptClick(WebDriver driver, WebElement item)
-    {
-		JavascriptExecutor js = (JavascriptExecutor)driver;
+
+	public void javaScriptClick(WebDriver driver, WebElement item) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", item);
-		
-    }
-    
-    public void FuncClickCoordinatesInElement(MobileElement ElementToBeClicked) throws Exception {
+
+	}
+
+	public void FuncClickCoordinatesInElement(MobileElement ElementToBeClicked) throws Exception {
 		Point elementWithinLocation = ElementToBeClicked.getLocation();
 		Dimension elementWithinDimension = ElementToBeClicked.getSize();
 		int locationX = elementWithinLocation.getX();
 		int locationY = elementWithinLocation.getY();
 		int dimensionX = elementWithinDimension.width;
 		int dimensionY = elementWithinDimension.height;
-		
-		FuncClickCoordinates(locationX+dimensionX/2,locationY + dimensionY/2, 1);
-//		TouchAction action = new TouchAction(((MobileDriver) GetDriver()));
-//		action.press(ElementToBeClicked);
-    }
+
+		FuncClickCoordinates(locationX + dimensionX / 2, locationY + dimensionY / 2, 1);
+
+	}
 
 }

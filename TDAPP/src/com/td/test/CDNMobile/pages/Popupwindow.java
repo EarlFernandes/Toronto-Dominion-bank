@@ -39,7 +39,7 @@ public class Popupwindow extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@name='alert_ok_button']/../preceding-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' or @resource-id='com.td:id/dialog_message']")
 	private MobileElement popup_message;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message' or @resource-id='com.td:id/dialog_message']")
 	private MobileElement rbp_popup_message;

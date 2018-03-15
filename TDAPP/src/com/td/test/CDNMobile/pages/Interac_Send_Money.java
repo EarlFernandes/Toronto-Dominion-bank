@@ -128,7 +128,7 @@ public class Interac_Send_Money extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account' or @label='Compte de provenance']/following-sibling::XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_value_item3']")
 	private MobileElement fromAccountVal;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='From Account' or @label='Compte de provenance']/../XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_row_value_item3']")
 	private MobileElement fromAccountVal_Confirmation;
@@ -291,8 +291,10 @@ public class Interac_Send_Money extends _CommonPage {
 				String fromAccountNumXL = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@value,'"
 						+ getTestdata("FromAccount") + "')]"; // changed by
 																// vishal
-				//MobileElement fromAccountNumber = mobileAction.mobileElementUsingXPath(fromAccountNumXL);
-				//mobileAction.FuncClick(fromAccountNumber, "Account Number: " + getTestdata("FromAccount"));
+				// MobileElement fromAccountNumber =
+				// mobileAction.mobileElementUsingXPath(fromAccountNumXL);
+				// mobileAction.FuncClick(fromAccountNumber, "Account Number: "
+				// + getTestdata("FromAccount"));
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(fromAccountNumXL, true, 5, "up");
 				mobileAction.FuncClick(selectRecipient, "Select Recipient");
 
@@ -493,13 +495,13 @@ public class Interac_Send_Money extends _CommonPage {
 		Decorator();
 		try {
 			String fromAccountTitle = mobileAction.getValue(fromAccountName);
-			System.out.println("fromAccountTitle:"+fromAccountTitle);
+			System.out.println("fromAccountTitle:" + fromAccountTitle);
 			Boolean isFromAccountLOC = false;
 			if (fromAccountTitle.contains("LINE OF CREDIT")) {
 				isFromAccountLOC = true;
 			}
 			String fromAccountValue = mobileAction.getValue(fromAccountVal);
-			if(!mobileAction.verifyElementIsPresent(amountVal)) {
+			if (!mobileAction.verifyElementIsPresent(amountVal)) {
 				mobileAction.FuncSwipeOnce("up");
 			}
 			String amountValue = mobileAction.getValue(amountVal);
@@ -531,15 +533,15 @@ public class Interac_Send_Money extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	public void verifyBalanceInConfirmationPage() {
-		
+
 		Decorator();
-		
+
 		try {
 			String fromBalanceValue = mobileAction.getValue(fromAccountVal_Confirmation);
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				if(fromBalanceValue.matches(".*\\$.*")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				if (fromBalanceValue.matches(".*\\$.*")) {
 					fromBalanceValue = mobileAction.FuncGetValByRegx(fromBalanceValue, "\\$.*");
 				} else {
 					mobileAction.Report_Fail("Faile to get from account balance");
@@ -551,20 +553,19 @@ public class Interac_Send_Money extends _CommonPage {
 			double fromAccountExpected = Double.parseDouble(CL.getTestDataInstance().TCParameters.get("Dividend"));
 			double fromaccountCaptured_1 = fromaccountCaptured + 1.5;
 			double fromaccountCaptured_2 = fromaccountCaptured + 0.5;
-			if(fromaccountCaptured == fromAccountExpected) {
+			if (fromaccountCaptured == fromAccountExpected) {
 				mobileAction.Report_Pass_Verified("From Account balance");
-			} else if(fromaccountCaptured_1 == fromAccountExpected) {
+			} else if (fromaccountCaptured_1 == fromAccountExpected) {
 				mobileAction.Report_Pass_Verified("From Account balance with IET fee 1.5");
-			} else if(fromaccountCaptured_2 == fromAccountExpected) {
+			} else if (fromaccountCaptured_2 == fromAccountExpected) {
 				mobileAction.Report_Pass_Verified("From Account balance with IET fee 0.5");
-			}
-			else {
+			} else {
 				mobileAction.Report_Fail("Failed to verify from account balance");
 			}
-			
+
 			return;
-			
-		}catch (NoSuchElementException e) {
+
+		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {

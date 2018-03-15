@@ -2,15 +2,11 @@ package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -23,14 +19,9 @@ import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
-import io.appium.java_client.pagefactory.iOSXCUITFindBy;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.InteractsWithApps;
-import io.appium.java_client.MobileDriver;
 
 public class WebViewPage extends _CommonPage {
 
@@ -39,27 +30,20 @@ public class WebViewPage extends _CommonPage {
 
 	String webViewContext = "NATIVE_APP";
 
-	@AndroidFindBy(xpath = "//android.view.View[@resource-id='cancel-app']") // and
-																				// @resource-id='cancel-app'
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='cancel-app']")
 	private MobileElement cancelWebViewBtn;
-
-	// @AndroidFindBy(xpath = "//android.view.View[@text='TD Credit Card Limit
-	// Increase Request']")
-	// private MobileElement requestCLITitle;
-	//
-	// @AndroidFindBy(xpath = "//android.view.View[@text='Damaged TD Credit Card
-	// Replacement Request']")
-	// private MobileElement requestCCRTitle;
 
 	@AndroidFindBy(xpath = "//android.view.View[@resource-id='cancelApp']")
 	private MobileElement confirmToCancel;
 
-	@AndroidFindBy(xpath = "//android.view.View[@resource-id='mobile_return']") // and
-																				// @resource-id='mobile_return'
-	private MobileElement returnToApp;
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='cancelApp']")
+	private MobileElement confirmNotCancel;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='SBFolderScalingView']/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeIcon[@name='Safari']")
-	private MobileElement iosSafari;
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='before-app-btn']")
+	private MobileElement get_Started;
+
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='mobile_return']")
+	private MobileElement returnToApp;
 
 	public synchronized static WebViewPage get() {
 		if (webViewpage == null) {
@@ -470,16 +454,33 @@ public class WebViewPage extends _CommonPage {
 
 				mobileAction.FuncClickCoordinatesInElement(cancelWebViewBtn);
 
-				// if(mobileAction.verifyElementIsPresent(cancelWebViewBtn)) {
-				// mobileAction.javaScriptClick(CL.GetAppiumDriver(),
-				// cancelWebViewBtn);
-				// }
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 
+	}
+
+	public void verifyCancelPromptYesorNo() {
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			WebDriver driver = CL.GetDriver();
+			try {
+				WebElement cancelApp = driver.findElement(By.id("cancelApp"));
+				mobileAction.Report_Pass_Verified("Yes to Cancel");
+			} catch (Exception e1) {
+				mobileAction.Report_Fail("Yes to Cancel not found");
+			}
+
+			try {
+				WebElement nocancelApp = driver.findElement(By.id("cancelApp"));
+				mobileAction.Report_Pass_Verified("No to Cancel");
+			} catch (Exception e1) {
+				mobileAction.Report_Fail("No to Cancel not found");
+			}
+		} else {
+			Decorator();
+
+		}
 	}
 
 }

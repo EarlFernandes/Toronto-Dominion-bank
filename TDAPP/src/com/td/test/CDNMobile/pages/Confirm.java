@@ -22,7 +22,7 @@ public class Confirm extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='--From']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/myaccounts_from_account_bal']")
 	private MobileElement fromAccountValue_review;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='-From']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/myaccounts_from_account_name']")
 	private MobileElement fromAccountName_review;
@@ -30,7 +30,7 @@ public class Confirm extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='-To']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/myaccounts_to_account_name']")
 	private MobileElement toAccountName_review;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='--To']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/myaccounts_to_account_bal']")
 	private MobileElement toAccountValue_review;
@@ -42,7 +42,7 @@ public class Confirm extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='--Amount']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/myaccounts_amount_second_value']")
 	private MobileElement amount_review_second;
-	
+
 	@iOSXCUITFindBy(accessibility = "BETWEEN_ACCOUNTS__CONFIRM_FINISH_BUTTON")
 	@AndroidFindBy(id = "com.td:id/myaccounts_entry_btn_confirm")
 	private MobileElement btnFinish_transfer;
@@ -61,22 +61,19 @@ public class Confirm extends _CommonPage {
 
 	}
 
-	
-
 	public void verifyConfirmPage() {
 		Decorator();
 		try {
 
 			mobileAction.verifyElementIsDisplayed(PageHeader.get().getHeaderTextElement(), "Confirm");
 
-
-
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
-//		} catch (InterruptedException e) {
-//			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-//			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+			// } catch (InterruptedException e) {
+			// CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			// System.out.println("InterruptedException from Method " +
+			// this.getClass().toString() + " " + e.getCause());
 		} catch (IOException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -91,22 +88,22 @@ public class Confirm extends _CommonPage {
 		String fromAccountValueBefore = mobileAction.getValue(fromAccountValue_review);
 		String toAccountValueBefore = mobileAction.getValue(toAccountValue_review);
 		String transferValueMain = mobileAction.getValue(amount_review_main);
-		
+
 		String fromAccountName = mobileAction.getValue(fromAccountName_review);
 		String toAccountName = mobileAction.getValue(toAccountName_review);
 		boolean isFromAccountLOC = false;
 		boolean isToAccountLOC = false;
-		if(fromAccountName.contains("LINE OF CREDIT")) {
+		if (fromAccountName.contains("LINE OF CREDIT")) {
 			isFromAccountLOC = true;
 		}
-		if(toAccountName.contains("LINE OF CREDIT")) {
+		if (toAccountName.contains("LINE OF CREDIT")) {
 			isToAccountLOC = true;
 		}
-		
+
 		String transferValueUS = "";
 		String transferValueCAD = "";
-		double fromAccountBalance =0.00;
-		double toAccountBalance =0.00;
+		double fromAccountBalance = 0.00;
+		double toAccountBalance = 0.00;
 
 		boolean is_fromaccount_usd = false;
 		boolean is_toaccount_usd = false;
@@ -139,47 +136,46 @@ public class Confirm extends _CommonPage {
 		if (!transferValueCAD.isEmpty()) {
 			transferValueCAN_d = mobileAction.convertStringAmountTodouble(transferValueCAD);
 			System.out.println("transfer amount CAN:" + transferValueCAN_d);
-			if(isFromAccountLOC) {
+			if (isFromAccountLOC) {
 				fromAccountBalance = fromAccountValueBefore_d + transferValueCAN_d;
 			} else {
 				fromAccountBalance = fromAccountValueBefore_d - transferValueCAN_d;
 			}
-			
-			if(isToAccountLOC) {
+
+			if (isToAccountLOC) {
 				toAccountBalance = toAccountValueBefore_d - transferValueCAN_d;
 			} else {
 				toAccountBalance = toAccountValueBefore_d + transferValueCAN_d;
 			}
-			
+
 		}
 
 		if (!transferValueUS.isEmpty()) {
 			transferValueUS_d = mobileAction.convertStringAmountTodouble(transferValueUS);
 			System.out.println("transfer amount USA:" + transferValueUS_d);
-			
-			if(isFromAccountLOC) {
+
+			if (isFromAccountLOC) {
 				fromAccountBalance = fromAccountValueBefore_d + transferValueUS_d;
 			} else {
 				fromAccountBalance = fromAccountValueBefore_d - transferValueUS_d;
 			}
-			
-			if(isToAccountLOC) {
+
+			if (isToAccountLOC) {
 				toAccountBalance = toAccountValueBefore_d - transferValueUS_d;
 			} else {
 				toAccountBalance = toAccountValueBefore_d + transferValueUS_d;
 			}
-			
+
 		}
-		///Need to round 
+		/// Need to round
 		fromAccountBalance = mobileAction.RoundTo2Decimals(fromAccountBalance);
 		toAccountBalance = mobileAction.RoundTo2Decimals(toAccountBalance);
-		
+
 		System.out.println("From account balance:" + fromAccountBalance);
 		System.out.println("To account balance:" + toAccountBalance);
 		CL.getTestDataInstance().TCParameters.put("Dividend", Double.toString(fromAccountBalance));
 		CL.getTestDataInstance().TCParameters.put("Quantity", Double.toString(toAccountBalance));
 	}
-
 
 	public void verifyConfirmPageAndTransfer() {
 
@@ -187,12 +183,12 @@ public class Confirm extends _CommonPage {
 			Decorator();
 
 			verifyConfirmPage();
-			
-			//calculate the balance:
+
+			// calculate the balance:
 			calculateBalance();
-			
+
 			mobileAction.FuncClick(btnFinish_transfer, "Finish Transfer");
-			
+
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
@@ -210,4 +206,3 @@ public class Confirm extends _CommonPage {
 	}
 
 }
-

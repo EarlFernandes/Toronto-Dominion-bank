@@ -33,7 +33,6 @@ public class Review extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue']")
 	private MobileElement payBillBtn;
 
-	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[2]")
 	@AndroidFindBy(id = "com.td:id/btn_continue")
 	private MobileElement payNowBtn;
@@ -65,11 +64,11 @@ public class Review extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/item_row_value_main'])[4]")
 	private MobileElement dateValue;
-	
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar/following-sibling::XCUIElementTypeOther[1]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
 	private MobileElement rbp_error_message;
-	
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='How Often' or @label='Type de paiement' or @label='次数' or @label='次數']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='How Often' or @text='Type de paiement' or @text='次数' or @text='次數']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement rbp_howoften_selection;
@@ -191,17 +190,16 @@ public class Review extends _CommonPage {
 				getTextInCurrentLocale(StringArray.ARRAY_RBP_END_DATE) + "|"
 						+ getTextInCurrentLocale(StringArray.ARRAY_RBP_NUMBER_OF_PAYMENTS) };
 		try {
-			
-			//check payment is once or ongoing
+
+			// check payment is once or ongoing
 			String paymentType = mobileAction.getValue(rbp_howoften_selection);
-			if(paymentType.equals(getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN_ONCE))) {
+			if (paymentType.equals(getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN_ONCE))) {
 				expectedReviewInfo[4] = getTextInCurrentLocale(StringArray.ARRAY_RBP_ONCE_DATE);
 			}
-			
+
 			mobileAction.verifyElementTextIsDisplayed(review_banner_info,
 					getTextInCurrentLocale(StringArray.ARRAY_RBP_REVIEW_BANNER));
 
-			
 			int sizeOfInfo = review_info_list.size();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				sizeOfInfo = sizeOfInfo - 1; // for IOS, the first one is the
@@ -238,7 +236,7 @@ public class Review extends _CommonPage {
 		Decorator();
 		try {
 			verifyReviewHeader();
-			
+
 			mobileAction.FuncClick(cancelBtn, "Cancel Button Clicked");
 
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
@@ -252,20 +250,18 @@ public class Review extends _CommonPage {
 		Decorator();
 		try {
 			// verifyReviewHeader();
-			if(currentLocale.equalsIgnoreCase("en")) {
+			if (currentLocale.equalsIgnoreCase("en")) {
 				saveBalance(); // only for english
 			}
 			mobileAction.FuncClick(payBillBtn, "Pay Bill Button Clicked");
 			mobileAction.waitProgressBarVanish();
-			
+
 		} catch (NoSuchElementException | InterruptedException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 
 		}
 	}
-	
-
 
 	public void saveBalance() {
 		Decorator();
@@ -291,36 +287,38 @@ public class Review extends _CommonPage {
 			}
 			MobileElement amountItem = mobileAction.verifyElementUsingXPath(amountPath, "Amount$");
 			MobileElement fromAccountItem = mobileAction.verifyElementUsingXPath(fromAccountPath, "Fromaccount$");
-			MobileElement fromAccountName = mobileAction.verifyElementUsingXPath(fromAccountNamePath, "Fromaccount name");
+			MobileElement fromAccountName = mobileAction.verifyElementUsingXPath(fromAccountNamePath,
+					"Fromaccount name");
 
 			String amountVal = mobileAction.getValue(amountItem);
 			String fromAccountValue = mobileAction.getValue(fromAccountItem);
 			String fromAccountNameText = mobileAction.getValue(fromAccountName);
 			boolean isFromAccountLOC = false;
-			if(fromAccountNameText.contains("LINE OF CREDIT")) {
+			if (fromAccountNameText.contains("LINE OF CREDIT")) {
 				isFromAccountLOC = true;
 			}
-			
+
 			double d_amountVal = mobileAction.convertStringAmountTodouble(amountVal);
 			double d_fromAccountValue = mobileAction.convertStringAmountTodouble(fromAccountValue);
-			double d_balance =0;
-			if(isFromAccountLOC ) {
+			double d_balance = 0;
+			if (isFromAccountLOC) {
 				d_balance = d_fromAccountValue + d_amountVal;
 			} else {
 				d_balance = d_fromAccountValue - d_amountVal;
 			}
 			d_balance = mobileAction.RoundTo2Decimals(d_balance);
-			
+
 			CL.getTestDataInstance().TCParameters.put("Dividend", Double.toString(d_balance));
-//			String receivedBalance = CL.getTestDataInstance().TCParameters.get("Dividend");
-//			System.out.println("receivedBalance:" + receivedBalance);
+			// String receivedBalance =
+			// CL.getTestDataInstance().TCParameters.get("Dividend");
+			// System.out.println("receivedBalance:" + receivedBalance);
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 
 		}
 	}
-	
+
 	private String getErrorMapping(String errorSheet) {
 
 		switch (errorSheet) {
@@ -329,13 +327,12 @@ public class Review extends _CommonPage {
 		case "Amount Greater Than Balance Error":
 			return getTextInCurrentLocale(StringArray.ARRAY_RBP_ERROR_AMOUNT_GREATER_BALANCE);
 		case "Date Range Not Pass One Number of Payment Error":
-			return getTextInCurrentLocale(StringArray.ARRAY_RBP_ERROR_DATE_RANGE_NOT_PASS_ONE_PAYMENT);			
-			
+			return getTextInCurrentLocale(StringArray.ARRAY_RBP_ERROR_DATE_RANGE_NOT_PASS_ONE_PAYMENT);
+
 		}
 		return "";
 	}
 
-		
 	public void VerifyRBPErrorMessageInReviewPage() {
 		Decorator();
 		String errorSheet = getTestdata("Security_Question");
@@ -353,7 +350,7 @@ public class Review extends _CommonPage {
 			mobileAction.Report_Fail("Failed to verify error message");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
-		
+
 	}
 
 }

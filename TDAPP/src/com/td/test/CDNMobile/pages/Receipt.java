@@ -167,7 +167,7 @@ public class Receipt extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_account_bal' or @resource-id='com.td:id/review_row_tertiary_text']")
 	private MobileElement fromBankAccountValueUS;
-	
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[4]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_account_bal' or @resource-id='com.td:id/review_row_tertiary_text']")
 	private MobileElement fromAccountValue_Receipt;
@@ -399,7 +399,7 @@ public class Receipt extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	public void verifyBillCancelledReceipt() {
 		Decorator();
 		try {
@@ -408,8 +408,7 @@ public class Receipt extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 				String labelText = getTextInCurrentLocale(StringArray.ARRAY_RBP_BILL_CANCELLED_DONE);
-				thankYouTitle = mobileAction.verifyElementUsingXPath("//*[@label='" + labelText + "']",
-						"All Done!");
+				thankYouTitle = mobileAction.verifyElementUsingXPath("//*[@label='" + labelText + "']", "All Done!");
 			}
 			mobileAction.verifyElementIsDisplayed(thankYouTitle, "All Done!");
 			mobileAction.verifyElementTextIsDisplayed(thankYouTitle,
@@ -606,7 +605,7 @@ public class Receipt extends _CommonPage {
 
 		for (int i = 0; i < caption_size; i++) {
 			try {
-				if(!mobileAction.verifyElementIsPresent(rbp_receipt_caption_list.get(i))) {
+				if (!mobileAction.verifyElementIsPresent(rbp_receipt_caption_list.get(i))) {
 					mobileAction.FuncSwipeOnce("up");
 				}
 				mobileAction.verifyElementTextIsDisplayed(rbp_receipt_caption_list.get(i), expectedInfo[i]);
@@ -623,7 +622,7 @@ public class Receipt extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncSwipeOnce("up");
 			}
-			
+
 		} catch (Exception e) {
 
 		}
@@ -656,7 +655,7 @@ public class Receipt extends _CommonPage {
 
 			for (int i = 0; i < info_size; i++) {
 				try {
-					if(!mobileAction.verifyElementIsPresent(rbp_receipt_info_list.get(i))) {
+					if (!mobileAction.verifyElementIsPresent(rbp_receipt_info_list.get(i))) {
 						mobileAction.FuncSwipeOnce("up");
 					}
 					mobileAction.verifyElementTextIsDisplayed(rbp_receipt_info_list.get(i), expectedInfo[i]);
@@ -673,7 +672,7 @@ public class Receipt extends _CommonPage {
 			expectedInfo[4] = expectedStartOfDate;
 			for (int i = 0; i < info_size; i++) {
 				try {
-					if(!mobileAction.verifyElementIsPresent(rbp_receipt_info_list.get(i))) {
+					if (!mobileAction.verifyElementIsPresent(rbp_receipt_info_list.get(i))) {
 						mobileAction.FuncSwipeOnce("up");
 					}
 					mobileAction.verifyElementTextIsDisplayed(rbp_receipt_info_list.get(i), expectedInfo[i]);
@@ -709,7 +708,7 @@ public class Receipt extends _CommonPage {
 			expectedInfo[7] = expectedEndOfDate;
 			for (int i = 0; i < info_size; i++) {
 				try {
-					if(!mobileAction.verifyElementIsPresent(rbp_receipt_info_list.get(i))) {
+					if (!mobileAction.verifyElementIsPresent(rbp_receipt_info_list.get(i))) {
 						mobileAction.FuncSwipeOnce("up");
 					}
 					mobileAction.verifyElementTextIsDisplayed(rbp_receipt_info_list.get(i), expectedInfo[i]);

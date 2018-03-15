@@ -2012,17 +2012,23 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
 						+ mobileAction.getAppString("transfersFXExchangeRate") + "']", "Exchange Rate");
 
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value, '"
-						+ mobileAction.getAppString("transfersBetweenMyAccountsConfirmFXTransferFeeValidStart") + "')]",
-						"Exchange Rate is valid for message");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[contains(@value, '"
-						+ mobileAction.getAppString("transfersBetweenMyAccountsConfirmFXTransferFeeValidEnd") + "')]",
-						"Minutes message");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//XCUIElementTypeStaticText[contains(@value, '" + mobileAction.getAppString(
+										"transfersBetweenMyAccountsConfirmFXTransferFeeValidStart") + "')]",
+								"Exchange Rate is valid for message");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//XCUIElementTypeStaticText[contains(@value, '" + mobileAction
+										.getAppString("transfersBetweenMyAccountsConfirmFXTransferFeeValidEnd") + "')]",
+								"Minutes message");
 				mobileAction.verifyElementUsingXPath(
 						"//XCUIElementTypeButton[@label='" + mobileAction.getAppString("btn_cancel") + "']", "Cancel");
-				mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
-						+ mobileAction.getAppString("transfersBetweenMyAccountsConfirmButtonFinishTransfer") + "']",
-						"Finish Transfer");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//XCUIElementTypeButton[@label='" + mobileAction
+										.getAppString("transfersBetweenMyAccountsConfirmButtonFinishTransfer") + "']",
+								"Finish Transfer");
 
 			} else {
 				mobileAction
@@ -2045,20 +2051,28 @@ public class Between_My_accounts extends _CommonPage {
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("transfersFXExchangeRate") + "']", "Exchange Rate");
 
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("transfersBetweenMyAccountsConfirmFXTransferFeeValidStart") + "']",
-						"Exchange Rate is valid for message");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("transfersBetweenMyAccountsConfirmFXTransferFeeValidStart") + "']",
-						"Exchange Rate is valid for message");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[contains(@text, '"
-						+ mobileAction.getAppString("transfersBetweenMyAccountsConfirmFXTransferFeeValidEnd") + "')]",
-						"Minutes message");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.TextView[@text='" + mobileAction.getAppString(
+										"transfersBetweenMyAccountsConfirmFXTransferFeeValidStart") + "']",
+								"Exchange Rate is valid for message");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.TextView[@text='" + mobileAction.getAppString(
+										"transfersBetweenMyAccountsConfirmFXTransferFeeValidStart") + "']",
+								"Exchange Rate is valid for message");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.TextView[contains(@text, '" + mobileAction
+										.getAppString("transfersBetweenMyAccountsConfirmFXTransferFeeValidEnd") + "')]",
+								"Minutes message");
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.Button[@text='" + mobileAction.getAppString("btn_cancel") + "']", "Cancel");
-				mobileAction.verifyElementUsingXPath("//android.widget.Button[@text='"
-						+ mobileAction.getAppString("transfersBetweenMyAccountsConfirmButtonFinishTransfer") + "']",
-						"Finish Transfer");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.Button[@text='" + mobileAction
+										.getAppString("transfersBetweenMyAccountsConfirmButtonFinishTransfer") + "']",
+								"Finish Transfer");
 
 			}
 		} catch (NoSuchElementException | IOException e) {
@@ -2279,37 +2293,37 @@ public class Between_My_accounts extends _CommonPage {
 		}
 
 	}
-	
+
 	public void Transfer_in_between_account() {
 		Decorator();
-		
+
 		String from_AccountNo = getTestdata("FromAccount");
 		String to_AccountNo = getTestdata("ToAccount");
 		String amountVal = getTestdata("Amount");
 		System.out.println("From account:" + from_AccountNo);
 		System.out.println("To account:" + to_AccountNo);
 		System.out.println("Amount:" + amountVal);
-		String from_account_value ="";
-		String to_account_value ="";
-		
+		String from_account_value = "";
+		String to_account_value = "";
+
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				from_account_value = "//XCUIElementTypeStaticText[contains(@label,'" + from_AccountNo + "')]";
 				to_account_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_AccountNo + "')]";
-				
+
 			} else {
 				from_account_value = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
 						+ from_AccountNo + "']";
 				to_account_value = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNumber' and @text='"
 						+ to_AccountNo + "']";
 			}
-			mobileAction.FuncClick(txtFrom_acnt, "From Account");		
+			mobileAction.FuncClick(txtFrom_acnt, "From Account");
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(from_account_value, true, 25, "up");
 			mobileAction.waitProgressBarVanish();
 			mobileAction.FuncClick(txtto_Acnt, "To Account");
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(to_account_value, true, 25, "Up");
 			mobileAction.waitProgressBarVanish();
-			
+
 			mobileAction.FuncClick(txtAmount, "Amount");
 			mobileAction.FuncSendKeys(txtAmount, amountVal);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
@@ -2317,10 +2331,10 @@ public class Between_My_accounts extends _CommonPage {
 			} else {
 				mobileAction.FuncHideKeyboard();
 			}
-			
+
 			continueButton();
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
@@ -2329,9 +2343,7 @@ public class Between_My_accounts extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-		
-	}
 
-	
+	}
 
 }

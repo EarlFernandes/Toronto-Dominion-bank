@@ -1148,13 +1148,12 @@ public class MyCalendar extends _CommonPage {
 				return selectFollowingWorkDayIfGivenDayisNot(expectedYear, expectedMonth, expectedDay);
 			} else {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					return (DigitToStr[expectedMonth] + " " + Integer.toString(expectedDay) + ", "
-							+ expectedYear);
+					return (DigitToStr[expectedMonth] + " " + Integer.toString(expectedDay) + ", " + expectedYear);
 				} else {
 					return (DigitToStr[expectedMonth] + " " + add0iflengthOfStrIs1(Integer.toString(expectedDay)) + ", "
 							+ expectedYear);
 				}
-				
+
 			}
 		}
 
@@ -1189,18 +1188,18 @@ public class MyCalendar extends _CommonPage {
 
 			return selectFollowingWorkDayIfGivenDayisNot(expectedYear, expectedMonth, expectedDay);
 		}
-		
+
 		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-			return (DigitToStr[expectedMonth] + " " + Integer.toString(expectedDay) + ", "
-					+ expectedYear);
+			return (DigitToStr[expectedMonth] + " " + Integer.toString(expectedDay) + ", " + expectedYear);
 		} else {
 			return (DigitToStr[expectedMonth] + " " + add0iflengthOfStrIs1(Integer.toString(expectedDay)) + ", "
 					+ expectedYear);
 		}
 
-//		String expected = DigitToStr[expectedMonth] + " " + add0iflengthOfStrIs1(Integer.toString(expectedDay)) + ", "
-//				+ expectedYear;
-//		return expected;
+		// String expected = DigitToStr[expectedMonth] + " " +
+		// add0iflengthOfStrIs1(Integer.toString(expectedDay)) + ", "
+		// + expectedYear;
+		// return expected;
 	}
 
 	// return day: 2018 Mar 2; input has the same format
