@@ -498,8 +498,6 @@ public class OTPChallenge extends _CommonPage {
 			String securityCode = this.retrievePasscode();
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				// mobileAction.switchToWebView();
-				// mobileAction.sleep(5000);
 				securityCodeField = mobileAction.verifyWebElementUsingXPath(
 						"//android.widget.EditText[@resource-id='secretCode']", "Passcode field");
 			}
