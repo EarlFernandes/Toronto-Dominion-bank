@@ -118,9 +118,16 @@ public class Credit extends _CommonPage {
 	public void credit_Header() {
 		Decorator();
 		try {
-
-			mobileAction.verifyElementTextIsDisplayed(creditHeader,
-					getTextInCurrentLocale(StringArray.ARRAY_CREDIT_HEADER));
+			String expectedheader = getTextInCurrentLocale(StringArray.ARRAY_CREDIT_HEADER);
+			if (expectedheader.contains("\\|")) {
+				String[] expectedheaderStr = expectedheader.split("\\|");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+					expectedheader = expectedheaderStr[1].trim();
+				} else {
+					expectedheader = expectedheaderStr[0].trim();
+				}
+			}
+			mobileAction.verifyElementTextIsDisplayed(creditHeader, expectedheader);
 
 		} catch (NoSuchElementException e) {
 

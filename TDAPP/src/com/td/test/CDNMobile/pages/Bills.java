@@ -51,13 +51,13 @@ public class Bills extends _CommonPage {
 	@iOSFindBy(accessibility = "BILLVIEW_SCHEDULE")
 	@AndroidFindBy(xpath = "//*[@text='Scheduled Payments']")
 	private MobileElement scheduledPayments;
-	
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[4]/XCUIElementTypeButton[1]")
-	@AndroidFindBy(id= "com.td:id/payments_card_header")
+	@AndroidFindBy(id = "com.td:id/payments_card_header")
 	private MobileElement scheduledPayments_link;
-	
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[4]/XCUIElementTypeButton[2]")
-	@AndroidFindBy(id= "com.td:id/payments_card_action")
+	@AndroidFindBy(id = "com.td:id/payments_card_action")
 	private MobileElement view_all_link;
 
 	@iOSFindBy(accessibility = "BILLVIEW_SCHEDULE_DES")
@@ -109,6 +109,10 @@ public class Bills extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/headerDate']")
 	private List<MobileElement> dateHeaders;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable//XCUIElementTypeTable/XCUIElementTypeCell")
+	@AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/scheduledPaymentsListView']/android.widget.RelativeLayout")
+	private List<MobileElement> scheduled_Payments_List;
 
 	public synchronized static Bills get() {
 		if (Bills == null) {
@@ -924,7 +928,7 @@ public class Bills extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
+
 	public void clickScheduledPayment_Link() {
 
 		Decorator();
@@ -945,16 +949,16 @@ public class Bills extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	public void clickViewAll_Link() {
 
 		Decorator();
 		try {
 
 			mobileAction.FuncSwipeWhileElementNotFound(view_all_link, false, 5, "up");
-//			mobileAction.verifyElementTextIsDisplayed(view_all_link,
-//					getTextInCurrentLocale(StringArray.ARRAY_RBP_VIEW_ALL));
-//			
+			// mobileAction.verifyElementTextIsDisplayed(view_all_link,
+			// getTextInCurrentLocale(StringArray.ARRAY_RBP_VIEW_ALL));
+			//
 			mobileAction.FuncClick(view_all_link, "'View All' is clicked");
 			mobileAction.waitProgressBarVanish();
 
@@ -967,6 +971,22 @@ public class Bills extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
-	
+
+	public void selectFirstActivePayment() {
+
+		Decorator();
+		try {
+			int listSize = scheduled_Payments_List.size();
+			if (listSize == 0) {
+				mobileAction.Report_Fail("No scheduled payments");
+			} else {
+				mobileAction.FuncClick(scheduled_Payments_List.get(0), "First Active Payment clicked");
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
 }

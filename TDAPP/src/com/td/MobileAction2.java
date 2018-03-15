@@ -3763,5 +3763,18 @@ public class MobileAction2 extends CommonLib {
 		js.executeScript("arguments[0].click();", item);
 		
     }
+    
+    public void FuncClickCoordinatesInElement(MobileElement ElementToBeClicked) throws Exception {
+		Point elementWithinLocation = ElementToBeClicked.getLocation();
+		Dimension elementWithinDimension = ElementToBeClicked.getSize();
+		int locationX = elementWithinLocation.getX();
+		int locationY = elementWithinLocation.getY();
+		int dimensionX = elementWithinDimension.width;
+		int dimensionY = elementWithinDimension.height;
+		
+		FuncClickCoordinates(locationX+dimensionX/2,locationY + dimensionY/2, 1);
+//		TouchAction action = new TouchAction(((MobileDriver) GetDriver()));
+//		action.press(ElementToBeClicked);
+    }
 
 }

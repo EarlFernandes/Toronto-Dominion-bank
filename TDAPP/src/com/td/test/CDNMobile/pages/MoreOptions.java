@@ -188,4 +188,24 @@ public class MoreOptions extends _CommonPage {
 			return;
 		}
 	}
+
+	public void verifyReturnToApp() {
+		Decorator();
+		try {
+
+			if (mobileAction.verifyElementIsPresent(PageHeader.get().getHeaderTextElement())) {
+				String headerText = mobileAction.getValue(PageHeader.get().getHeaderTextElement());
+				mobileAction.Report_Pass_Verified("Return to Page:" + headerText);
+			} else {
+				HomeScreen.get().VerifyHomePageDashBoard();
+			}
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
 }
