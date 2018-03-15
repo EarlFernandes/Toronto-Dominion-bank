@@ -31,16 +31,16 @@ public class DailyDigest extends _CommonPage{
 	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[contains(@name,'Home') or contains(@name,'Accueil')])[2]")
 	private MobileElement homeBtn;
 	
-	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access'] | //android.widget.TextView[@resource-id='com.td:id/easy_access']")
+	@iOSXCUITFindBy(xpath = "//*[@name='NAVIGATION_ITEM_QUICK_ACCESS' or @name='QuickLinkRightNavButton']")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']")
 	private MobileElement quickAccess;
 	
-	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_MENU")
-	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up' and @index='0']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name ='NAVIGATION_ITEM_MENU' or @name='QuickLinkLeftNavButton']")
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='android:id/up' or @resource-id='com.td:id/hamburger']")
 	private MobileElement menu;
 	
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD MySpend' or @label='Dépense TD']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='TD MySpend' or @text='Dépense TD')]")
+	@iOSXCUITFindBy(xpath = "//*[(@label='TD MySpend' or @label='Dépense TD') and @name='flyout_title'] | //*[@name='NAV_DRAWER_ITEMS_MOVEN']")
+	@AndroidFindBy(xpath = "//*[(@text='TD MySpend' or @text='Dépense TD') and (@resource-id='com.td:id/textview_flyout_menu_item' or @resource-id='com.td:id/navText')]")
 	private MobileElement TDMySpend;
 	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeMenuItem[contains(@name,'Daily Digest') or contains(@label,'Sommaire quotidien')]")
@@ -213,7 +213,7 @@ public class DailyDigest extends _CommonPage{
 				mobileAction.verifyElementIsDisplayed(homeBtn, "HomePage");
 				mobileAction.FuncClick(homeBtn, "Home Button");
 				mobileAction.verifyElementIsDisplayed(quickAccess, "Home Page");
-				mobileAction.FuncClick(menu, "Menu");
+				HomeScreen.get().clickMenu();
 				mobileAction.FuncClick(TDMySpend, "TD My Spend");
 				
 			}
@@ -300,16 +300,16 @@ public class DailyDigest extends _CommonPage{
 				for(int i=0;i<categoryTab.size();i++){
 					String categoryName=categoryTab.get(i).getText();
 					String[] category=categoryName.split("-");
-					//mobileAction.FunctionSwipe("Left", 200, 200);
+					mobileAction.FunctionSwipe("Left", 200, 200);
 					count++;
 					mobileAction.verifyElementIsDisplayed(categoryTab.get(i),"Category: "+category[0]);
 				}
-				/*for(int i=0;i<count;i++){
+				for(int i=0;i<count;i++){
 					mobileAction.FunctionSwipe("Right", 200, 200);
 				}
 				if(!mobileAction.verifyElementIsPresent(categorySpike)){
 					mobileAction.FunctionSwipe("Right", 200, 200);
-				}*/
+				}
 				if(mobileAction.verifyElementIsPresent(categorySpike)){
 					mobileAction.verifyElementIsDisplayed(categorySpike, "Category Spike");
 					mobileAction.FuncClick(spendingByCategory, "Spending By Category");

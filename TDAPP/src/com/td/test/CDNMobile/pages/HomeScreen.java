@@ -138,6 +138,46 @@ public class HomeScreen extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeStaticText[(@label='TD Talk to Me' or @label='TD Talk to Me(FR)' or @label='TD Talk to Me' or @label='TD Talk to Me')]")
 	private MobileElement chatBotDashboard;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='QuickLink 6' or @name='QUICKLINKS_TRADE']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/text_view' and @text='TRADE') or @resource-id='com.td:id/trade_dashboard']")
+	private MobileElement tradeQuickLink;
+
+	@iOSXCUITFindBy(accessibility = "QuickLink 7")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/text_view' and @text='WATCHLISTS']")
+	private MobileElement watchlistQuickLinkPerf;
+
+	@iOSXCUITFindBy(accessibility = "QUICKLINKS_WATCHLISTS")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_dashboard']")
+	private MobileElement watchlistQuickLinkPerf_182;
+
+	@iOSXCUITFindBy(accessibility = "QuickLinkRightNavButton")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']")
+	private MobileElement quickAccessPerf;
+
+	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']")
+	private MobileElement quickAccessPerf_182;
+
+	@iOSXCUITFindBy(accessibility = "d0***701")
+	@AndroidFindBy(id = "com.td:id/easy_access_account_description")
+	private MobileElement acctNamePerf;
+
+	@iOSXCUITFindBy(accessibility = "dropdownButton")
+	@AndroidFindBy(id = "com.td:id/watchlist_name_drop_down_button")
+	private MobileElement watchlistDropDownPerf;
+
+	@iOSXCUITFindBy(accessibility = "Select Watchlist")
+	@AndroidFindBy(id = "com.td:id/selectedText")
+	private MobileElement watchlistDropDownPerf_182;
+
+	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@AndroidFindBy(id = "com.td:id/logo")
+	private MobileElement TDLogo;
+
+	@iOSXCUITFindBy(accessibility = "logo_home.png")
+	@AndroidFindBy(id = "android:id/home")
+	private MobileElement TDLogo_182;
+
 	int i = 1;
 	String Firstpart = "//XCUIElementTypeCell[";
 	String Secondpart = "]/XCUIElementTypeButton[1]";
@@ -1378,29 +1418,12 @@ public class HomeScreen extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
-	
-	
-	/**
-	 * This method will verify
-	 * 
-	 * @throws Exception
-	 *             In case an exception occurs while clicking over the element.
-	 *             If there is problem while reporting. In case the element is
-	 *             not found over the screen.
-	 */
-	public void clickQuoteQuickLink() {
 
+	public void clickTradeQuickLink() {
 		Decorator();
 		try {
+			mobileAction.SwipeWhileQuickLinkNotFound(tradeQuickLink, true, 5, "left");
 
-			
-			mobileAction.SwipeQuickLinksInDirection("right", 200, 200);
-			mobileAction.SwipeQuickLinksInDirection("left", 2000, 200);
-			
-		
-			mobileAction.FuncClick(quote, "Quote quick link");
-			
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -1412,7 +1435,28 @@ public class HomeScreen extends _CommonPage {
 		} finally {
 		}
 	}
-	
+
+	public void clickQuoteQuickLink() {
+
+		Decorator();
+		try {
+
+			mobileAction.SwipeQuickLinksInDirection("right", 200, 200);
+			mobileAction.SwipeQuickLinksInDirection("left", 2000, 200);
+
+			mobileAction.FuncClick(quote, "Quote quick link");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
 
 	public void clickChatBotQuickLink() {
 		Decorator();
@@ -1451,4 +1495,91 @@ public class HomeScreen extends _CommonPage {
 		}
 	}
 
+	public void clickQuickAccessPERF() {
+		Decorator();
+
+		try {
+			if (getTestdata("Payee").equals("18.2")) {
+				performance.click(quickAccessPerf_182, "Quick Access");
+				performance.verifyElementIsDisplayed(acctNamePerf, "Metric - Quick Access screen");
+			} else {
+				performance.click(quickAccessPerf, "Quick Access");
+				performance.verifyElementIsDisplayed(acctNamePerf, "Metric - Quick Access screen");
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void showWatchlistsQuickLink() {
+		Decorator();
+
+		try {
+			if (getTestdata("Payee").equals("18.2")) {
+				mobileAction.SwipeWhileQuickLinkNotFound(watchlistQuickLinkPerf_182, false, 5, "left");
+			} else {
+				mobileAction.SwipeWhileQuickLinkNotFound(watchlistQuickLinkPerf, false, 5, "left");
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void clickWatchlistsQuickLinkPERF() {
+		Decorator();
+
+		try {
+			if (getTestdata("Payee").equals("18.2")) {
+				performance.click(watchlistQuickLinkPerf_182, "Watchlists quicklink");
+				performance.verifyElementIsDisplayed(watchlistDropDownPerf_182, "Metric - Watchlists screen");
+			} else {
+				performance.click(watchlistQuickLinkPerf, "Watchlists quicklink");
+				performance.verifyElementIsDisplayed(watchlistDropDownPerf, "Metric - Watchlists screen");
+			}
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void verifyHomescreenPERF() {
+		try {
+			Decorator();
+
+			if (getTestdata("Payee").equals("18.2")) {
+				performance.verifyElementIsDisplayed(TDLogo_182, "Metric - Launch App");
+			} else {
+				performance.verifyElementIsDisplayed(TDLogo, "Metric - Launch App");
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
 }

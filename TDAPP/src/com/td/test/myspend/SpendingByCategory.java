@@ -61,7 +61,7 @@ public class SpendingByCategory extends _CommonPage {
 	private MobileElement allCategories;
 
 	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Wants') or contains(@label,'Souhaits')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Wants') or contains(@content-desc,'Souhaits') or contains(@text,'Wants') or contains(@text'Souhaits')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Wants') or contains(@content-desc,'Souhaits') or contains(@text,'Wants') or contains(@text,'Souhaits')]")
 	private MobileElement wantsCategories;
 
 	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Needs') or contains(@label,'Besoins')]")
@@ -92,10 +92,11 @@ public class SpendingByCategory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie') or contains(@text,'change category') or contains(@text,'changer de catégorie')]/following-sibling::android.view.View/android.view.View[contains(@content-desc,'$') or contains(@text,'$')]")
 	private MobileElement amount;
 
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'category')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'category') or contains(@text,'category')]")
 	private List<MobileElement> categories;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Spending History') or contains(@label,'Historique de dépenses')]")
+	@AndroidFindBy(xpath = "//android.widget.Button[contains(@text,'Spending History') or contains(@content-desc,'Spending History')]")
 	private MobileElement historicalInsightBtn;
 
 	@FindBy(id = "categoriesHeader")
@@ -125,7 +126,7 @@ public class SpendingByCategory extends _CommonPage {
 	@FindBy(xpath = "//*[text()='Needs' or text()='Besoins']")
 	private WebElement needsCategoriesAndroid;
 
-	@FindBy(id = "homeButton")
+	@FindBy(xpath = "(//*[@id='homeButton'])[1]")
 	private WebElement historicalInsightBtnAndroid;
 
 	/**
@@ -524,10 +525,9 @@ public class SpendingByCategory extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 
-				mobileAction.FuncClick(historicalInsightBtnAndroid, "Historical Insight Button");
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
-				}
+				mobileAction.FuncClick(historicalInsightBtn, "Historical Insight Button");
+				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
+			
 			} else {
 
 				mobileAction.FuncClick(historicalInsightBtn, "Historical Insight Button");
@@ -583,12 +583,12 @@ public class SpendingByCategory extends _CommonPage {
 					String[] catArr = category.split(". ");
 					mobileAction.verifyElementIsDisplayed(transactionCategory, "Transaction Category: " + catArr[0]);
 					
-					spendingDetailsTransacName="//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie')]/following-sibling::android.view.View[1]";
+					spendingDetailsTransacName="//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie') or contains(@text,'change category')]/following-sibling::android.view.View[1]";
 					MobileElement transacName=mobileAction.mobileElementUsingXPath(spendingDetailsTransacName);
 					String TransName = transacName.getAttribute("name");
 					mobileAction.verifyElementIsDisplayed(transacName, "Transaction: " + TransName);
 
-					spendingDetailsTransacAmount="//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie')]/following-sibling::android.view.View[2]/android.view.View";
+					spendingDetailsTransacAmount="//android.view.View[contains(@content-desc,'change category') or contains(@content-desc,'changer de catégorie') or contains(@text,'change category')]/following-sibling::android.view.View[2]/android.view.View";
 					MobileElement transacAmount=mobileAction.mobileElementUsingXPath(spendingDetailsTransacAmount);
 					String amountText = transacAmount.getAttribute("name");
 					mobileAction.verifyElementIsDisplayed(transacAmount, "Amount: " + amountText);
