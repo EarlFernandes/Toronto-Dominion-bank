@@ -32,7 +32,7 @@ public class Bills extends _CommonPage {
 	@iOSFindBy(accessibility = "BILLVIEW_PAYUSBILL_DES")
 	private MobileElement pay_us_bills_desc;
 
-	@iOSFindBy(accessibility = "BILLVIEW_PAYBILL")
+	@iOSXCUITFindBy(accessibility = "BILLVIEW_PAYBILL")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Pay a Canadian bill' and @index='1']")
 	private MobileElement pay_Cananda_Bill;
 
@@ -113,6 +113,10 @@ public class Bills extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable//XCUIElementTypeTable/XCUIElementTypeCell")
 	@AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/scheduledPaymentsListView']/android.widget.RelativeLayout")
 	private List<MobileElement> scheduled_Payments_List;
+
+	@iOSFindBy(accessibility = "PAYBILL_VIEW_PAYEE")
+	@AndroidFindBy(id = "com.td:id/payeeLabel")
+	private MobileElement payeePerf;
 
 	public synchronized static Bills get() {
 		if (Bills == null) {
@@ -985,6 +989,30 @@ public class Bills extends _CommonPage {
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void clickPayCanadianBillPERF() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				pay_Cananda_Bill = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + mobileAction.getAppString("billsNavRowPayBill") + "']",
+						"Pay Canada bill");
+			}
+
+			performance.click(pay_Cananda_Bill, "Pay Canada Bill");
+			performance.verifyElementIsDisplayed(payeePerf, "Metric - Pay Canadian Bill screen");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}

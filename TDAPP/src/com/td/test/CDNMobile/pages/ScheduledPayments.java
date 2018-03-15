@@ -101,6 +101,10 @@ public class ScheduledPayments extends _CommonPage {
 	String regAccount = ".*\\•{4}\\s{1}\\d{4}";
 	String regMaskedNum = "\\•{4}\\s{1}\\d{4}";
 
+	@iOSXCUITFindBy(accessibility = "ENHANCED_RECEIPT_MESSAGE")
+	@AndroidFindBy(id = "com.td:id/upcomingbill_status_value")
+	private MobileElement billStatusCB;
+
 	public synchronized static ScheduledPayments get() {
 		if (scheduledPayments == null) {
 			scheduledPayments = new ScheduledPayments();
@@ -161,6 +165,10 @@ public class ScheduledPayments extends _CommonPage {
 
 						boolean notCancelled = mobileAction.verifyElementIsPresent(cancelPaymentBtn);
 						if (notCancelled) {
+							mobileAction.verifyElementIsDisplayed(billStatusCB, "Bill Status");
+							mobileAction.verifyElementTextContains(billStatusCB,
+									this.getTextInCurrentLocale(StringArray.ARRAY_PENDINGBILL));
+
 							mobileAction.FuncClick(cancelPaymentBtn, "Cancel Payment Button");
 							canCancel = true;
 							break;
@@ -184,6 +192,11 @@ public class ScheduledPayments extends _CommonPage {
 					mobileAction.swipeAndSearchByxpath(lastPaymentTitleXpath, true, 5, "Up");
 					boolean notCancelled = mobileAction.verifyElementIsPresent(cancelPaymentBtn);
 					if (notCancelled) {
+
+						mobileAction.verifyElementIsDisplayed(billStatusCB, "Bill Status");
+						mobileAction.verifyElementTextContains(billStatusCB,
+								this.getTextInCurrentLocale(StringArray.ARRAY_ACTIVEBILL));
+
 						mobileAction.FuncClick(cancelPaymentBtn, "Cancel Payment Button");
 						canCancel = true;
 						break;

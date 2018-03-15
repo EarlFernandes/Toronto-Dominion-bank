@@ -110,6 +110,14 @@ public class MenuPage extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//*[(@label='TD Talk to Me' or @label='TD Talk to Me(FR)' or @label='TD Talk to Me' or @label='TD Talk to Me') and @name='flyout_title']")
 	private MobileElement chatBot;
 
+	@iOSXCUITFindBy(accessibility = "CREDIT")
+	@AndroidFindBy(id = "com.td:id/classificationTexView")
+	private MobileElement bankingTitlePerf;
+
+	@iOSXCUITFindBy(accessibility = "descriptionLabel")
+	@AndroidFindBy(id = "com.td:id/accountCaption")
+	private MobileElement accountNameTradePerf;
+
 	public synchronized static MenuPage get() {
 		if (MenuPage == null) {
 			MenuPage = new MenuPage();
@@ -752,7 +760,7 @@ public class MenuPage extends _CommonPage {
 
 	}
 
-	private void verifyMenuItem(MobileElement menuItem, String headerText) {
+	private void verifyMenuItem(MobileElement menuItem, String menuText) {
 
 		Decorator();
 
@@ -763,19 +771,36 @@ public class MenuPage extends _CommonPage {
 			mobileAction.sleep(5000);
 			mobileAction.waitProgressBarVanish();
 
-			if (headerText.equals(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_GIVEFEEDBACK))) {
+			if (menuText.equals(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_GIVEFEEDBACK))) {
 				// Feedback screen has no header
 				Feedback.get().verifyTitle();
 			} else {
 				MobileElement header = PageHeader.get().getHeaderTextElement();
-				mobileAction.verifyElementIsDisplayed(header, headerText);
+				mobileAction.verifyElementIsDisplayed(header, menuText);
 
-				if (headerText.contains(header.getText()) || header.getText().contains(headerText)
-						|| header.getText().toLowerCase().contains(headerText.toLowerCase())) {
+				if (menuText.contains(header.getText()) || header.getText().contains(menuText)
+						|| header.getText().toLowerCase().contains(menuText.toLowerCase())) {
 					mobileAction.GetReporting().FuncReport("Pass", "Header text: " + header.getText());
+				} else if (currentLocale.toLowerCase().startsWith("zh")) {
+					char[] chars = menuText.toCharArray();
+					boolean matched = false;
+					for (char c : chars) {
+						if (header.getText().contains(String.valueOf(c))) {
+							matched = true;
+							break;
+						}
+					}
+
+					if (matched) {
+						mobileAction.GetReporting().FuncReport("Pass", "Header text: " + header.getText());
+					} else {
+						mobileAction.GetReporting().FuncReport("Fail",
+								"Header text: " + header.getText() + " Menu text: " + menuText);
+					}
+
 				} else {
 					mobileAction.GetReporting().FuncReport("Fail",
-							"Header text: " + header.getText() + " Menu text: " + headerText);
+							"Header text: " + header.getText() + " Menu text: " + menuText);
 				}
 			}
 
@@ -805,7 +830,8 @@ public class MenuPage extends _CommonPage {
 			verifyMenuItem(mobile_Deposit_button,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDMOBILEDEPOSIT));
 			// Location app blocked by TD OLC in Android8
-			verifyMenuItem(tdForMe, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDFORME));
+			// verifyMenuItem(tdForMe,
+			// getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDFORME));
 			verifyMenuItem(profile_and_settings,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PROFILESETTINGS));
 			verifyMenuItem(locations, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOCATIONS));
@@ -859,6 +885,46 @@ public class MenuPage extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
 		}
+	}
+
+	public void clickMenuAccountsPERF() {
+
+		Decorator();
+		try {
+			performance.click(accounts_button, "Menu Accounts");
+			performance.verifyElementIsDisplayed(bankingTitlePerf,
+					"Metric - Login without authentication My Accounts screen");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void clickMenuTradePERF() {
+
+		Decorator();
+		try {
+			performance.click(trade, "Menu Trade");
+			performance.verifyElementIsDisplayed(accountNameTradePerf,
+					"Metric - Login without authentication Trade screen");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
 	}
 
 }

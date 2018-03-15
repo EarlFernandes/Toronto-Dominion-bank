@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.td.StringArray;
 import com.td._CommonPage;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -33,11 +35,11 @@ public class AddPayee extends _CommonPage {
 	@FindBy(xpath = "//input[@ng-model='searchText']")
 	private WebElement searchPayeeField;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//td-switch//li[1]")
 	private WebElement tabCanada;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[2]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[2]")
 	@FindBy(xpath = "//td-switch//li[2]")
 	private WebElement tabUS;
 
@@ -46,8 +48,7 @@ public class AddPayee extends _CommonPage {
 	private WebElement firstPayeeFound;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeLink[1]/XCUIElementTypeLink[1]/XCUIElementTypeStaticText[1]")
-	// @AndroidFindBy(xpath = "//android.view.View[@resource-id='result0']")
-	@AndroidFindBy(xpath = "//android.view.View[@index='1' and contains(text(),'KOHLS')]")
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='result0' or contains(text(),'KOHLS')]")
 	private MobileElement firstUSAddressFound;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[5]/XCUIElementTypeTextField[1] | "
@@ -55,25 +56,23 @@ public class AddPayee extends _CommonPage {
 	@FindBy(name = "accountNumber")
 	private WebElement payeeAcctNumber;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[1]")
 	@FindBy(id = "btn")
 	private WebElement payeeContinueBtn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
-	// @FindBy(xpath = "//button[@ng-click='addPayee()' and @tabindex='0']")
-	// @FindBy(xpath = "//div[@class='button-row']")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[1]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement addPayeeBtn;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//button[contains(@ng-click,'continuePayee')]")
 	private WebElement addPayeeContinueBtn;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]") // TBD
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]")
 	@FindBy(xpath = "//div[contains(@class,'thank-you')]")
 	private WebElement addPayeeReceiptHeader;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//button[contains(@ng-click,'goHome')]")
 	private WebElement goHomeBtn;
 
@@ -86,6 +85,30 @@ public class AddPayee extends _CommonPage {
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[4]")
 	private MobileElement keyboardGoBtn;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[6]/XCUIElementTypeTextField[1]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[text()='Payee Address' or @index='3']")
+	private MobileElement payeeAddressUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[8]/XCUIElementTypeTextField[1]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[text()='City' or @index='5']")
+	private MobileElement payeeCityUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[11]/XCUIElementTypeTextField[1]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[text()='State' or @index='7']")
+	private MobileElement payeeStateUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[14]/XCUIElementTypeTextField[1]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[text()='Zip code' or @index='9']")
+	private MobileElement payeeZipCodeUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[18]/XCUIElementTypeTextField[1]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='accountNumber1']")
+	private MobileElement payeeAcctNumberUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='btn']")
+	private MobileElement payeeContinueBtnUS;
 
 	public synchronized static AddPayee get() {
 		if (AddPayee == null) {
@@ -883,7 +906,15 @@ public class AddPayee extends _CommonPage {
 
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.sleep(5000);
-				mobileAction.FuncClick(firstUSAddressFound, "First Payee Address found");
+				System.out.println((CL.GetDriver()).getPageSource());
+				if (mobileAction.verifyElementIsPresent(firstUSAddressFound)) {
+					mobileAction.FuncClick(firstUSAddressFound, "First Payee Address found");
+				} else {
+					Dimension size = ((AppiumDriver) CL.GetDriver()).manage().window().getSize();
+					int pointX = size.width / 2;
+					int pointY = size.height / 3;
+					mobileAction.TapCoOrdinates(pointX, pointY, "1st US Address");
+				}
 				mobileAction.sleep(5000);
 
 				mobileAction.switchToWebView();
@@ -1104,10 +1135,12 @@ public class AddPayee extends _CommonPage {
 	private void switchToEnglishKeyboard() {
 		try {
 			// Switch to English keyboard for correct text input
-			String keyboardGoBtnText = keyboardGoBtn.getAttribute("label");
-			if (keyboardGoBtnText.contains("确认")) {
-				mobileAction.FuncClick(keyboardTypeBtn, "Switch to English keyboard");
-				mobileAction.sleep(500);
+			if (mobileAction.verifyElementIsPresent(keyboardGoBtn)) {
+				String keyboardGoBtnText = keyboardGoBtn.getAttribute("label");
+				if (keyboardGoBtnText.contains("确认")) {
+					mobileAction.FuncClick(keyboardTypeBtn, "Switch to English keyboard");
+					mobileAction.sleep(500);
+				}
 			}
 
 		} catch (Exception e) {
@@ -1120,4 +1153,77 @@ public class AddPayee extends _CommonPage {
 		} finally {
 		}
 	}
+
+	public void enterUSPayeeDetailsPAT() {
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(payeeAddressUS, "US Payee Address");
+			mobileAction.FuncSendKeys(payeeAddressUS, "123 Main St");
+			mobileAction.FuncHideKeyboard();
+
+			mobileAction.FuncClick(payeeCityUS, "US Payee City");
+			mobileAction.FuncSendKeys(payeeCityUS, "New York");
+			mobileAction.FuncHideKeyboard();
+
+			mobileAction.FuncClick(payeeStateUS, "US Payee State");
+			mobileAction.FuncSendKeys(payeeStateUS, "NY");
+			mobileAction.FuncHideKeyboard();
+
+			mobileAction.FuncClick(payeeZipCodeUS, "US Payee Zip Code");
+			mobileAction.FuncSendKeys(payeeZipCodeUS, "90210");
+			mobileAction.FuncHideKeyboard();
+
+			mobileAction.FunctionSwipe("up", 2000, 0);
+
+			String acctNum = getRandomAccountNumber("FromAccount");
+			mobileAction.FuncClick(payeeAcctNumberUS, "Payee Acct Number");
+			mobileAction.FuncSendKeys(payeeAcctNumberUS, acctNum);
+			mobileAction.FuncHideKeyboard();
+
+			mobileAction.FuncClick(payeeContinueBtnUS, "Payee Continue button");
+			mobileAction.sleep(3000);
+			mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
+			mobileAction.sleep(5000);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void clickFirstUSPayeeFoundPAT() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchToWebView();
+				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.sleep(5000);
+			} else {
+				mobileAction.sleep(3000);
+				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
+				mobileAction.sleep(3000);
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+
+	}
+
 }

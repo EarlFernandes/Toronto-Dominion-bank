@@ -146,6 +146,18 @@ public class Accounts extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/summaryContent']/android.widget.LinearLayout[2]")
 	private MobileElement firstAcct;
 
+	@iOSXCUITFindBy(accessibility = "ACCOUNT_DETAIL_DATE_CELL_0")
+	@AndroidFindBy(id = "com.td:id/date")
+	private MobileElement todayLabel;
+
+	@iOSXCUITFindBy(accessibility = "Balances")
+	@AndroidFindBy(id = "com.td:id/balancesTab")
+	private MobileElement balancesTab;
+
+	@iOSXCUITFindBy(accessibility = "RVB_DETAIL_ACTIVITY_CELL_TITLE_1")
+	@AndroidFindBy(id = "com.td:id/quick_link_item_layout_button")
+	private MobileElement postedTrxnLabel;
+
 	private MobileElement total_accounts_and_cad;
 	private MobileElement total_accounts_and_usd;
 
@@ -1176,6 +1188,96 @@ public class Accounts extends _CommonPage {
 
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(acctXpath, true, 30, "Up");
 			mobileAction.waitProgressBarVanish();
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void selectToAccountPERF() {
+		Decorator();
+		try {
+
+			String account = getTestdata("ToAccount");
+			String acctXpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				acctXpath = "//XCUIElementTypeStaticText[contains(@label,'" + account + "')]";
+			} else {
+				acctXpath = "//android.widget.TextView[contains(@text,'" + account + "')]";
+			}
+
+			mobileAction.swipeAndSearchByxpath(acctXpath, false, 30, "Up");
+			mobileAction.sleep(2000);
+			MobileElement e = mobileAction.verifyElementUsingXPath(acctXpath, "To Account element");
+			performance.click(e, "To Account element");
+			performance.verifyElementIsDisplayed(todayLabel, "Metric - Account Activity tab");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void selectToCreditPERF() {
+		Decorator();
+		try {
+
+			String account = getTestdata("ToAccount");
+			String acctXpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				acctXpath = "//XCUIElementTypeStaticText[contains(@label,'" + account + "')]";
+			} else {
+				acctXpath = "//android.widget.TextView[contains(@text,'" + account + "')]";
+			}
+
+			mobileAction.swipeAndSearchByxpath(acctXpath, false, 30, "Up");
+			mobileAction.sleep(5000);
+			MobileElement e = mobileAction.verifyElementUsingXPath(acctXpath, "To Credit Account");
+			performance.click(e, "To Credit Account");
+			performance.verifyElementIsDisplayed(postedTrxnLabel, "Metric - Credit Account screen");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void selectToInvestPERF() {
+		Decorator();
+		try {
+
+			String account = getTestdata("ToAccount");
+			String acctXpath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				acctXpath = "//XCUIElementTypeStaticText[contains(@label,'" + account + "')]";
+			} else {
+				acctXpath = "//android.widget.TextView[contains(@text,'" + account + "')]";
+			}
+
+			mobileAction.swipeAndSearchByxpath(acctXpath, false, 30, "Up");
+			mobileAction.sleep(2000);
+			MobileElement e = mobileAction.verifyElementUsingXPath(acctXpath, "To Account element");
+			performance.click(e, "To Account element");
+			performance.verifyElementIsDisplayed(balancesTab, "Metric - Investing Account screen");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

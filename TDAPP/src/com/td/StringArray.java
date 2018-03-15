@@ -290,6 +290,9 @@ public final class StringArray {
 
 	// Pay Bill
 	public static final String[] ARRAY_PAYBILL = { "Pay Bill", "Paiement de Factures", "支付账单", "支付賬單" };
+	public static final String[] ARRAY_CANCELLEDBILL = { "Cancelled", "Annulé", "已取消", "已取消" };
+	public static final String[] ARRAY_PENDINGBILL = { "Pending", "En attente", "待处理", "尚待處理" };
+	public static final String[] ARRAY_ACTIVEBILL = { "Active", "Actif", "启用中", "啟用中" };
 
 	// Quick Access
 	public static final String[] ARRAY_QUICK_ACCESS_VISIT_SETTINGS = { "visit Settings to activate Accounts",
@@ -563,7 +566,7 @@ public final class StringArray {
 			"You must be the Primary cardholder on the card to make a credit limit increase request. Requests take only a few minutes to complete.",
 			"Vous n’aurez besoin que de quelques minutes pour remplir une demande et vous recevrez une réponse peu de temps après.",
 			"申请只需几分钟即可完成，很快您将收到答复。", "申請只需幾分鐘即可完成，您很快會收到回覆。" };
-	public static final String[] ARRAY_CREDIT_HEADER = { "Credit", "Crédit", "贷项|信用", "信用" };
+	public static final String[] ARRAY_CREDIT_HEADER = { "Credit", "Crédit", "贷项|信用", "信貸|信用" };
 	public static final String[] ARRAY_CLIP_FORM_TITLE = { "TD Credit Card Limit Increase Request",
 			"Demande d’augmentation de la limite d’une carte de crédit TD", "TD Credit Card Limit Increase Request",
 			"TD Credit Card Limit Increase Request" };
