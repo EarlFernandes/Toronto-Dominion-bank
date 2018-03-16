@@ -504,7 +504,7 @@ public class OTPChallenge extends _CommonPage {
 
 			mobileAction.FuncClick(securityCodeField, "Security Code Field");
 			mobileAction.FuncSendKeys(securityCodeField, securityCode);
-
+			mobileAction.sleep(3000);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClickDone(); // hide iOS keyboard
 			}
