@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.td._CommonPage;
@@ -41,8 +42,8 @@ public class MySpendTransfers extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation_val']")
 	private MobileElement confirmation_Val;
 	
-	@iOSXCUITFindBy(xpath = "//*[@label='TD MySpend' or @label='Dépense TD']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='TD MySpend' or @text='Dépense TD')]")
+	@iOSXCUITFindBy(xpath = "//*[(@label='TD MySpend' or @label='Dépense TD') and @name='flyout_title'] | //*[@name='NAV_DRAWER_ITEMS_MOVEN']")
+	@AndroidFindBy(xpath = "//*[(@text='TD MySpend' or @text='Dépense TD') and (@resource-id='com.td:id/textview_flyout_menu_item' or @resource-id='com.td:id/navText')]")
 	private MobileElement TDMySpend;
 	
 	@iOSXCUITFindBy(accessibility = "BETWEENMYACCOUNTS_FROM0")
@@ -66,6 +67,9 @@ public class MySpendTransfers extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//*[@name='Go' or @label='Done' or @label='OK']")
 	private MobileElement doneBtn;
 	
+	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Spending Insights') or contains(@label,'Aperçu des dépenses')]")
+	@FindBy(xpath = "(//*[text()='Spending Insights' or text()='Aperçu des dépenses'])[2]")
+	private WebElement spendingInsightHeader;
 	
 	private void Decorator() {
 		PageFactory.initElements(
@@ -137,7 +141,7 @@ public class MySpendTransfers extends _CommonPage {
 				mobileAction.FuncClick(txtto_Acnt, "To Account");
 				String to_accountNo = getTestdata("ToAccount");
 				System.out.println("To account:" + to_accountNo);
-				account_value = "//XCUIElementTypeStaticText[contains(@label,'" + to_accountNo + "')]";
+				account_value = "//XCUIElementTypeStaticText[contains(@label,'ACCOUNT "+ to_accountNo + "')]";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(account_value, true, 25, "Up");
 				if (mobileAction.verifyElementIsPresent(ios_account_dropdown_window)) {
 					mobileAction.FuncSwipeOnce("up");
@@ -175,7 +179,13 @@ public class MySpendTransfers extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(confirmation_Val, "Confirmation Value");
 			HomeScreen.get().clickMenu();
 			mobileAction.FuncClick(TDMySpend, "TD My Spend");
-			Thread.sleep(3000);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				CL.GetAppiumDriver().context("WEBVIEW_com.td.myspend");
+				mobileAction.verifyElementIsDisplayed(spendingInsightHeader, "Spending Insight Header");
+				CL.GetAppiumDriver().context("NATIVE_APP");
+			}else{
+				mobileAction.verifyElementIsDisplayed(spendingInsightHeader, "Spending Insight Header");
+			}
 			
 		}catch (Exception e) {
 			try {

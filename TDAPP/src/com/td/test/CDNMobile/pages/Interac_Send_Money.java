@@ -39,7 +39,7 @@ public class Interac_Send_Money extends _CommonPage {
 	private MobileElement sendMoneyHeader;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'Select Recipient' or label CONTAINS[cd] 'Sélectionnez le destinataire'`]")
-	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/recipient_view']")
+	@AndroidFindBy(id = "com.td:id/recipient_view")
 	private MobileElement selectRecipient;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_done' or @text='Done']")
@@ -47,7 +47,7 @@ public class Interac_Send_Money extends _CommonPage {
 	private MobileElement done;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount' or @label='Montant']/following-sibling::XCUIElementTypeTextField")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/send_money_amount_value_view']")
+	@AndroidFindBy(id = "com.td:id/send_money_amount_value_view")
 	private MobileElement amount;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label=='Continue' or label=='Send Money' or label=='Continuer' or label=='Envoyer ces fonds' or label=='Virer des fonds'`]")
@@ -58,15 +58,15 @@ public class Interac_Send_Money extends _CommonPage {
 	private MobileElement errorMessage;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Security Question' or @label='Question de sécurité']/following-sibling::XCUIElementTypeTextField")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/send_money_security_question_edit_text']")
+	@AndroidFindBy(id = "com.td:id/send_money_security_question_edit_text")
 	private MobileElement securityQuestion;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Answer' or @label='Réponse']/following-sibling::XCUIElementTypeTextField")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/send_money_security_answer_edit_text']")
+	@AndroidFindBy(id = "com.td:id/send_money_security_answer_edit_text")
 	private MobileElement securityAnswer;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Confirm Answer' or @label='Confirmation de la réponse']/following-sibling::XCUIElementTypeTextField")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/send_money_security_confirm_answer_edit_text']")
+	@AndroidFindBy(id = "com.td:id/send_money_security_confirm_answer_edit_text")
 	private MobileElement confirmAnswer;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/*[`label=='Sender' or label=='Expéditeur'`]")
@@ -78,7 +78,7 @@ public class Interac_Send_Money extends _CommonPage {
 	private MobileElement senderName;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'From Account' or label CONTAINS[cd] 'Compte de provenance'`]")
-	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.td:id/account_view']")
+	@AndroidFindBy(id = "com.td:id/account_view")
 	private MobileElement fromAccount;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/*[`label CONTAINS[cd] 'From Account' or label CONTAINS[cd] 'Compte de provenance'`]")
@@ -138,6 +138,22 @@ public class Interac_Send_Money extends _CommonPage {
 
 	@iOSFindBy(xpath = "//*[@label='背面' or @label='返回' or @label='Back' or @label='p2p header caret']")
 	private MobileElement back_button;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
+	@AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='com.td:id/lv_action_sheet']/android.widget.RelativeLayout[@index='0']")
+	private MobileElement firstAcct;
+
+	@iOSXCUITFindBy(accessibility = "Security Question")
+	@AndroidFindBy(id = "com.td:id/send_money_security_question")
+	private MobileElement securityQuestionPerf;
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label=='Send Money'`]")
+	@AndroidFindBy(id = "com.td:id/continue_button")
+	private MobileElement sendMoney;
+
+	@iOSXCUITFindBy(accessibility = "From Account")
+	@AndroidFindBy(id = "com.td:id/receipt_subSubHeader")
+	private MobileElement fromAcctReceiptPerf;
 
 	private void Decorator() {
 		PageFactory.initElements(
@@ -273,8 +289,10 @@ public class Interac_Send_Money extends _CommonPage {
 			} else {
 
 				mobileAction.FuncClick(fromAccount, "from Account");
-				
-				String fromAccountNumXL = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@value,'"+getTestdata("FromAccount")+"')]"; // changed by vishal
+
+				String fromAccountNumXL = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@value,'"
+						+ getTestdata("FromAccount") + "')]"; // changed by
+																// vishal
 				MobileElement fromAccountNumber = mobileAction.mobileElementUsingXPath(fromAccountNumXL);
 				mobileAction.FuncClick(fromAccountNumber, "Account Number: " + getTestdata("FromAccount"));
 				mobileAction.FuncClick(selectRecipient, "Select Recipient");
@@ -464,6 +482,54 @@ public class Interac_Send_Money extends _CommonPage {
 			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void sendMoneyPERF() {
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(fromAccount, "From Account");
+			mobileAction.FuncClick(firstAcct, "1st Account in List");
+
+			mobileAction.FuncClick(selectRecipient, "Select Recipient");
+			performance.click(firstAcct, "1st Account in List");
+			performance.verifyElementIsDisplayed(securityQuestionPerf, "Metric - Recipient Selected screen");
+
+			mobileAction.FuncClick(securityQuestion, "Security Question");
+			String question = getTestdata("Security_Question");
+			mobileAction.FuncSendKeys(securityQuestion, question);
+			mobileAction.FuncHideKeyboard();
+
+			String answer = getTestdata("SecurityAnswer");
+			mobileAction.FuncClick(securityAnswer, "Enter A security answer");
+			mobileAction.FuncSendKeys(securityAnswer, answer);
+			mobileAction.FuncHideKeyboard();
+
+			mobileAction.FuncClick(confirmAnswer, "Confirm security answer");
+			mobileAction.FuncSendKeys(confirmAnswer, answer);
+			mobileAction.FuncHideKeyboard();
+
+			String amt = getTestdata("Amount");
+			mobileAction.FuncClick(amount, "Amount");
+			mobileAction.FuncSendKeys(amount, amt);
+			mobileAction.FuncHideKeyboard();
+
+			mobileAction.FuncClick(continueButton, "Continue button");
+			mobileAction.waitProgressBarVanish();
+
+			performance.click(sendMoney, "Send Money button");
+			mobileAction.sleep(5000);
+			performance.verifyElementIsDisplayed(fromAcctReceiptPerf, "Metric - P2P Receipt screen");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}

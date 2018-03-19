@@ -44,9 +44,17 @@ public class Rewards extends _CommonPage {
 	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/textview_action_title'])[2]")
 	private MobileElement txtpayWithRewards;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/textview_action_title'])[2]")
+	private MobileElement txtpayWithRewardsPerf_182;
+
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/textview_action_description']")
 	private List<MobileElement> redeem_text_list;
+
+	@iOSXCUITFindBy(accessibility = "Amount to Redeem")
+	@AndroidFindBy(id = "com.td:id/amount_label")
+	private MobileElement amountToRedeemPerf;
 
 	By iosRedemptValue = By.xpath("//XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]");
 
@@ -298,6 +306,29 @@ public class Rewards extends _CommonPage {
 				CL.GetReporting().FuncReport("Pass", "TDRewards.com loaded in browser");
 			} else {
 				CL.GetReporting().FuncReport("Fail", "TDRewards.com not loaded in browser");
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
+	}
+
+	public void clickPayWithRewardsPERF() {
+		Decorator();
+		try {
+			if (getTestdata("Payee").equals("18.2")) {
+				performance.click(txtpayWithRewardsPerf_182, "Pay with Rewards");
+				performance.verifyElementIsDisplayed(amountToRedeemPerf, "Metric - Pay with Rewards screen");
+			} else {
+				performance.click(txtpayWithRewards, "Pay with Rewards");
+				performance.verifyElementIsDisplayed(amountToRedeemPerf, "Metric - Pay with Rewards screen");
 			}
 
 		} catch (Exception e) {

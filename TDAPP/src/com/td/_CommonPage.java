@@ -24,6 +24,7 @@ public class _CommonPage {
 	protected com.td.test.framework.CommonLib CL = new com.td.test.framework.CommonLib();
 	protected com.td.test.framework.PerformAction PerformAction = new com.td.test.framework.PerformAction();
 	protected com.td.MobileAction2 mobileAction = new com.td.MobileAction2();
+	protected com.td.Performance performance = new com.td.Performance();
 
 	protected static Map appStringMap;
 	protected static String currentLocale;

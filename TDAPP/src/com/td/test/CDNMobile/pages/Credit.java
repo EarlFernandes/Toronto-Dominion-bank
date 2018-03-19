@@ -92,6 +92,10 @@ public class Credit extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/three_statements_ago")
 	private MobileElement statementTitle3;
 
+	@iOSXCUITFindBy(accessibility = "Cash Back Dollars")
+	@AndroidFindBy(id = "com.td:id/rewards_currency_description")
+	private MobileElement cashBackDollarsPerf;
+
 	private MobileElement more_link;
 
 	public synchronized static Credit get() {
@@ -646,6 +650,24 @@ public class Credit extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+	}
+
+	public void clickRewardPERF() {
+		Decorator();
+		try {
+			performance.click(rewardBtn, "Rewards");
+			performance.verifyElementIsDisplayed(cashBackDollarsPerf, "Metric - Rewards screen");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
 	}
 
 }

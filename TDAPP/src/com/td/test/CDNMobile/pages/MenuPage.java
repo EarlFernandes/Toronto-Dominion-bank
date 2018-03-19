@@ -59,7 +59,7 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='Give Feedback' or @text='Fournir des commentaires' or @text='提供意见反馈' or @text='提供意見回饋']")
 	private MobileElement feedback;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Mobile Deposit' or @label='Dépôt mobile' or @label='移动存款服务' or @label='流動存款']")
+	@iOSXCUITFindBy(xpath = "//*[(@label='Mobile Deposit' or @label='Dépôt mobile' or @label='移动存款服务' or @label='流動存款') and @name='flyout_title']")
 	@AndroidFindBy(xpath = "//*[@text='Mobile Deposit' or @text='Dépôt mobile' or @text='移动存款服务' or @text='流動存款']")
 	private MobileElement mobile_Deposit_button;
 
@@ -67,7 +67,7 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[@text='My Accounts' or @text='Mes comptes' or @text='我的账户' or @text='我的賬戶']")
 	private MobileElement accounts_button;
 
-	@iOSXCUITFindBy(xpath = "//*[@label='Contact Us' or @label='Contactez-nous' or @label='联系我们' or @label='聯絡我們']")
+	@iOSXCUITFindBy(xpath = "//*[(@label='Contact Us' or @label='Contactez-nous' or @label='联系我们' or @label='聯絡我們') and @name='flyout_title']")
 	@AndroidFindBy(xpath = "//*[@text='Contact Us' or @text='Contactez-nous' or @text='联系我们' or @text='聯絡我們']")
 	private MobileElement contactUs;
 
@@ -109,6 +109,14 @@ public class MenuPage extends _CommonPage {
 
 	@iOSXCUITFindBy(xpath = "//*[(@label='TD Talk to Me' or @label='TD Talk to Me(FR)' or @label='TD Talk to Me' or @label='TD Talk to Me') and @name='flyout_title']")
 	private MobileElement chatBot;
+
+	@iOSXCUITFindBy(accessibility = "CREDIT")
+	@AndroidFindBy(id = "com.td:id/classificationTexView")
+	private MobileElement bankingTitlePerf;
+
+	@iOSXCUITFindBy(accessibility = "descriptionLabel")
+	@AndroidFindBy(id = "com.td:id/accountCaption")
+	private MobileElement accountNameTradePerf;
 
 	public synchronized static MenuPage get() {
 		if (MenuPage == null) {
@@ -555,6 +563,7 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 		try {
 			mobileAction.FuncSwipeWhileElementNotFound(profile_and_settings, true, 10, "up");
+			mobileAction.sleep(5000);
 			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
@@ -751,17 +760,49 @@ public class MenuPage extends _CommonPage {
 
 	}
 
-	private void verifyMenuItem(MobileElement menuItem, String headerText) {
+	private void verifyMenuItem(MobileElement menuItem, String menuText) {
 
 		Decorator();
 
 		try {
 			mobileAction.clickMenuButton();
+			mobileAction.sleep(3000);
 			mobileAction.FuncSwipeWhileElementNotFound(menuItem, true, 5, "up");
 			mobileAction.sleep(5000);
+			mobileAction.waitProgressBarVanish();
 
-			MobileElement header = PageHeader.get().getHeaderTextElement();
-			mobileAction.verifyElementIsDisplayed(header, headerText);
+			if (menuText.equals(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_GIVEFEEDBACK))) {
+				// Feedback screen has no header
+				Feedback.get().verifyTitle();
+			} else {
+				MobileElement header = PageHeader.get().getHeaderTextElement();
+				mobileAction.verifyElementIsDisplayed(header, menuText);
+
+				if (menuText.contains(header.getText()) || header.getText().contains(menuText)
+						|| header.getText().toLowerCase().contains(menuText.toLowerCase())) {
+					mobileAction.GetReporting().FuncReport("Pass", "Header text: " + header.getText());
+				} else if (currentLocale.toLowerCase().startsWith("zh")) {
+					char[] chars = menuText.toCharArray();
+					boolean matched = false;
+					for (char c : chars) {
+						if (header.getText().contains(String.valueOf(c))) {
+							matched = true;
+							break;
+						}
+					}
+
+					if (matched) {
+						mobileAction.GetReporting().FuncReport("Pass", "Header text: " + header.getText());
+					} else {
+						mobileAction.GetReporting().FuncReport("Fail",
+								"Header text: " + header.getText() + " Menu text: " + menuText);
+					}
+
+				} else {
+					mobileAction.GetReporting().FuncReport("Fail",
+							"Header text: " + header.getText() + " Menu text: " + menuText);
+				}
+			}
 
 			PageHeader.get().goHome();
 			mobileAction.sleep(3000);
@@ -783,16 +824,18 @@ public class MenuPage extends _CommonPage {
 		Decorator();
 
 		try {
-
 			verifyMenuItem(accounts_button, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_NAVROW_ACCOUNTS));
 			verifyMenuItem(transfers, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TRANSFERS));
 			verifyMenuItem(bills, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_BILLS));
 			verifyMenuItem(mobile_Deposit_button,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDMOBILEDEPOSIT));
-			verifyMenuItem(tdForMe, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDFORME));
+			// Location app blocked by TD OLC in Android8
+			// verifyMenuItem(tdForMe,
+			// getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_TDFORME));
 			verifyMenuItem(profile_and_settings,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PROFILESETTINGS));
 			verifyMenuItem(locations, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_LOCATIONS));
+			verifyMenuItem(give_feedback, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_GIVEFEEDBACK));
 			verifyMenuItem(contactUs, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_CONTACTUS));
 			verifyMenuItem(faq, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_FAQ));
 			verifyMenuItem(privacy, getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_PRIVACYSECURITY));
@@ -842,6 +885,46 @@ public class MenuPage extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
 		}
+	}
+
+	public void clickMenuAccountsPERF() {
+
+		Decorator();
+		try {
+			performance.click(accounts_button, "Menu Accounts");
+			performance.verifyElementIsDisplayed(bankingTitlePerf,
+					"Metric - Login without authentication My Accounts screen");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void clickMenuTradePERF() {
+
+		Decorator();
+		try {
+			performance.click(trade, "Menu Trade");
+			performance.verifyElementIsDisplayed(accountNameTradePerf,
+					"Metric - Login without authentication Trade screen");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
 	}
 
 }

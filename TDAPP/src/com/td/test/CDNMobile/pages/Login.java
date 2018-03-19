@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.td.StringArray;
 import com.td._CommonPage;
@@ -242,9 +244,38 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/image")
 	private MobileElement otpWelcomeImageExisting;
 
+	@iOSXCUITFindBy(accessibility = "descriptionLabel")
+	@AndroidFindBy(id = "com.td:id/accountCaption")
+	private MobileElement accountNameTradePerf;
+
+	@iOSXCUITFindBy(accessibility = "CREDIT")
+	@AndroidFindBy(id = "com.td:id/classificationTexView")
+	private MobileElement bankingTitlePerf;
+
 	String session = "//XCUIElementTypeStaticText[@label='Session Expired']";
 	String session1 = "//android.widget.TextView[contains(@text,'Session Expired')]";
 	String message = "Session Expired";
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeButton[`label CONTAINS[cd] 'Text Me' or label CONTAINS[cd] 'Textez-moi' or label CONTAINS[cd] '短信' or label CONTAINS[cd] '短訊'`]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='Text Me' or @text='Textez-moi' or @text='短信' or @text='短訊']")
+	private MobileElement textOption;
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='getCode']")
+	private MobileElement getCodeButton;
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeTextField[1] | //XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeTextField[1]")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='secretCode']")
+	private MobileElement securityCodeField;
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='enter']")
+	private MobileElement submitCodeButton;
+
+	final String OTP_LAST4DIGITS = "2677";
+
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label CONTAINS '" + OTP_LAST4DIGITS + "'`]")
+	private MobileElement phoneListCell;
 
 	final int REPEAT_TIMES = 4;
 
@@ -475,6 +506,8 @@ public class Login extends _CommonPage {
 			} else if (screenheader.getText()
 					.contains(getTextInCurrentLocale(StringArray.ARRAY_OTP_CHALLENGE_HEADER_TEXT))) {
 				// OTP Challenge page
+				// Uncomment when default OTP passcode is in effect
+				// this.enterOTPPasscode();
 				return false;
 			} else if (screenheader.getText()
 					.contains(getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_SECURITY_SETTINGS))) {
@@ -563,12 +596,13 @@ public class Login extends _CommonPage {
 				}
 			} else {
 
-				// mobileAction.FuncSendKeys(username,
-				// CL.getTestDataInstance().Userid);
 				mobileAction.FuncSendKeys(getTestdata("UserID"));
 			}
-			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+			}
 
+			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 			}
@@ -2005,6 +2039,101 @@ public class Login extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
+	}
+
+	public void loginTradePERF() {
+
+		Decorator();
+		try {
+			Thread.sleep(2000);
+			verifyAccessCard();
+
+			mobileAction.FuncSendKeys(getTestdata("UserID"));
+			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+			}
+
+			// Even in Landscape mode, the login button is visible
+			performance.click(login, "Login");
+			performance.verifyElementIsDisplayed(accountNameTradePerf,
+					"Metric - Login with authentication Trade screen");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void loginAccountPERF() {
+
+		Decorator();
+		try {
+			Thread.sleep(2000);
+			verifyAccessCard();
+
+			mobileAction.FuncSendKeys(getTestdata("UserID"));
+			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+			}
+
+			// Even in Landscape mode, the login button is visible
+			performance.click(login, "Login");
+			performance.verifyElementIsDisplayed(bankingTitlePerf,
+					"Metric - Login with authentication My Accounts screen");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void enterOTPPasscode() {
+		Decorator();
+		try {
+			boolean onlyOnePhone = mobileAction.verifyElementIsPresent(textOption);
+			if (!onlyOnePhone) {
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+					// Cannot read phone cell text for correct phone#
+					String phoneListXpath = "//android.widget.Button[contains(@resource-id,'phone')]";
+					List<MobileElement> phoneList = mobileAction.getElementsList(phoneListXpath);
+					for (MobileElement cell : phoneList) {
+						String text = mobileAction.FuncGetText(cell);
+						if (text.contains(OTP_LAST4DIGITS)) {
+							phoneListCell = cell;
+							break;
+						}
+					}
+				}
+				mobileAction.FuncClick(phoneListCell, "OTP Phone number");
+				mobileAction.sleep(5000);
+			}
+
+			mobileAction.FuncClick(textOption, "Text option");
+			mobileAction.FuncClick(getCodeButton, "Get Code Button");
+
+			// Use passcode in xls when default passcode in effect
+			OTPChallenge.get().enterSecurityCode();
+			// String securityCode = getTestdata("SecurityAnswer");
+			// mobileAction.FuncClick(securityCodeField, "Security Code Field");
+			// mobileAction.FuncSendKeys(securityCodeField, securityCode);
+			// mobileAction.FuncHideKeyboard();
+
+			mobileAction.FuncClick(submitCodeButton, "submit code button");
+			mobileAction.waitProgressBarVanish();
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
 	}
 
 }

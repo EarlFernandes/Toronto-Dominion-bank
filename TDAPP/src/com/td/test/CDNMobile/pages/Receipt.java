@@ -152,6 +152,12 @@ public class Receipt extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/reason_for_payment")
 	private MobileElement paymentReasonUS;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[6]/XCUIElementTypeStaticText[2]")
+	private MobileElement amountTotalValueUSFromUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[7]/XCUIElementTypeStaticText[2]")
+	private MobileElement paymentReasonUSFromUS;
+
 	@iOSXCUITFindBy(accessibility = "automation_title_0")
 	@AndroidFindBy(id = "com.td:id/thank_you_label")
 	private MobileElement thankYouTitleUS;
@@ -505,6 +511,18 @@ public class Receipt extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(ToAccountValue, "To Account Value");
 			mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
 
+			String confirmNum = mobileAction.FuncGetText(cnfrDetail).trim();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				confirmNum = confirmNum.substring(confirmNum.lastIndexOf(":") + 1).trim();
+			}
+			confirmNum = confirmNum.replaceAll("[^a-zA-Z0-9]", "");
+
+			if (confirmNum.matches("[A-Z0-9]{5,10}")) {
+				mobileAction.GetReporting().FuncReport("Pass", "Confirmation Number: " + confirmNum);
+			} else {
+				mobileAction.GetReporting().FuncReport("Fail", "Incorrect Confirmation Number Format: " + confirmNum);
+			}
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -535,6 +553,18 @@ public class Receipt extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(payeeValue, "Payee Value");
 			mobileAction.verifyElementIsDisplayed(amountValue, "Amount Value");
 			mobileAction.verifyElementIsDisplayed(dateValue, "Date Value");
+
+			String confirmNum = mobileAction.FuncGetText(cnfrDetail).trim();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				confirmNum = confirmNum.substring(confirmNum.lastIndexOf(":") + 1).trim();
+			}
+			confirmNum = confirmNum.replaceAll("[^a-zA-Z0-9]", "");
+
+			if (confirmNum.matches("[A-Z0-9]{5,10}")) {
+				mobileAction.GetReporting().FuncReport("Pass", "Confirmation Number: " + confirmNum);
+			} else {
+				mobileAction.GetReporting().FuncReport("Fail", "Incorrect Confirmation Number Format: " + confirmNum);
+			}
 
 			// For bill payment, takes some time to update acct balance
 			String specificAccts = getTestdata("Description");
@@ -574,8 +604,19 @@ public class Receipt extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(amountValueUS, "Amount Value US");
 
 			mobileAction.FunctionSwipe("up", 2000, 0);
-			mobileAction.verifyElementIsDisplayed(amountTotalValueUS, "Amount Total Value US");
-			mobileAction.verifyElementIsDisplayed(paymentReasonUS, "Payment Reason US");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				String reason = getTestdata("Reason");
+				if (reason.contains("CAD")) {
+					mobileAction.verifyElementIsDisplayed(amountTotalValueUS, "Amount Total Value US");
+					mobileAction.verifyElementIsDisplayed(paymentReasonUS, "Payment Reason US");
+				} else {
+					mobileAction.verifyElementIsDisplayed(amountTotalValueUSFromUS, "Amount Total Value US");
+					mobileAction.verifyElementIsDisplayed(paymentReasonUSFromUS, "Payment Reason US");
+				}
+			} else {
+				mobileAction.verifyElementIsDisplayed(amountTotalValueUS, "Amount Total Value US");
+				mobileAction.verifyElementIsDisplayed(paymentReasonUS, "Payment Reason US");
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

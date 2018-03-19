@@ -59,7 +59,7 @@ public class SideMenu extends com.td._CommonPage {
 	private MobileElement spendingInsights;
 
 	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Go back to TD MySpend') or contains(@label,'Go back') or contains(@label,'Retourner à Dépense TD')]")
-	@AndroidFindBy(xpath = "//*[contains(@content-desc,'Go back to TD MySpend') or contains(@content-desc,'Retourner à Dépense TD')]")
+	@AndroidFindBy(xpath = "//*[contains(@content-desc,'Go back to TD MySpend') or contains(@content-desc,'Retourner à Dépense TD') or contains(@text,'Go back to TD MySpend')]")
 	private MobileElement quickLink;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Get the TD app' or contains(@label,'Obtenir l')]")
@@ -466,6 +466,7 @@ public class SideMenu extends com.td._CommonPage {
 			Spending_Insight.get().clickSideMenuButton();
 			clickMyAccounts();
 			mobileAction.FuncClick(quickLink, "Quick Link");
+			Thread.sleep(3000);
 			Spending_Insight.get().clickSideMenuButton();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				CL.GetAppiumDriver().context("NATIVE_APP");
@@ -473,6 +474,7 @@ public class SideMenu extends com.td._CommonPage {
 			}
 			clickTransfers();
 			mobileAction.FuncClick(quickLink, "Quick Link");
+			Thread.sleep(3000);
 			Spending_Insight.get().clickSideMenuButton();
 			clickBills();
 			mobileAction.FuncClick(quickLink, "Quick Link");

@@ -47,9 +47,9 @@ public class Manage_Payee extends _CommonPage {
 	private MobileElement managePayees;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeButton[2] | "
-			+ "//XCUIElementTypeNavigationBar/XCUIElementTypeOther[@name='PAYBILL_VIEW_ADD_PAYEE'] | "
-			+ "//XCUIElementTypeNavigationBar/XCUIElementTypeOther[@name='PAYUSBILL_VIEW_ADD_PAYEE']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
+			+ "//XCUIElementTypeNavigationBar/XCUIElementTypeOther[@name='PAYBILL_VIEW_ADD_PAYEE' or @name='PAYUSBILL_VIEW_ADD_PAYEE']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='0'] | //android.widget.TextView[not(@resource-id)] | "
+			+ "//android.widget.TextView[starts-with(@content-desc, 'Add') and contains(@content-desc, 'Payee')]")
 	private MobileElement addPayee;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeActivityIndicator[1]")
@@ -58,15 +58,15 @@ public class Manage_Payee extends _CommonPage {
 
 	private WebElement payeeAcctNumber;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeButton[1]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[1]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='0'] | //android.widget.TextView[contains(@content-desc, 'Delete')]")
 	private MobileElement deletePayeeBtn;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeButton[2]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@index='1']")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeNavigationBar[1]/XCUIElementTypeButton[2]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='1'] | //android.widget.TextView[contains(@content-desc, 'Edit')]")
 	private MobileElement editPayeeBtn;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeAlert[1]//XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeAlert[1]/**/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@AndroidFindBy(id = "android:id/button1")
 	private MobileElement confirmYes;
 
@@ -74,11 +74,12 @@ public class Manage_Payee extends _CommonPage {
 	@FindBy(xpath = "//div[contains(@ng-repeat,'alerts.S')]")
 	private WebElement deleteMsg;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "//div[@class='column2']/span")
 	private WebElement viewDescriptionField;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[8]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[8]/XCUIElementTypeStaticText[1] | "
+			+ "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[9]/XCUIElementTypeStaticText[1]")
 	@FindBy(xpath = "(//div[@class='column2'])[2]/span")
 	private WebElement viewDescriptionUSField;
 
@@ -87,8 +88,12 @@ public class Manage_Payee extends _CommonPage {
 	@FindBy(name = "description")
 	private WebElement payeeDescriptionField;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[22]/XCUIElementTypeTextField[1]")
+	@FindBy(name = "description")
+	private WebElement payeeDescriptionFieldPAT;
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeButton[2]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='0'] | //android.widget.TextView[contains(@content-desc, 'Done')]")
 	private MobileElement editPayeeCheckButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[2]")
@@ -519,7 +524,7 @@ public class Manage_Payee extends _CommonPage {
 			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Manage Payees Header");
 			mobileAction.FuncClick(addPayee, "Add Payee");
-			mobileAction.sleep(3000);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -737,7 +742,7 @@ public class Manage_Payee extends _CommonPage {
 	public void verifyPayeeEdited() {
 		Decorator();
 		try {
-
+			mobileAction.sleep(10000);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
 			}
@@ -747,10 +752,20 @@ public class Manage_Payee extends _CommonPage {
 			String usAccount = getTestdata("USAccount");
 			if (acctNum == null && usAccount != null) {
 				// US account
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					String descXpath = "//XCUIElementTypeStaticText[@label='" + payee + "']";
+					viewDescriptionUSField = mobileAction.verifyWebElementUsingXPath(descXpath, "US Payee Description");
+				}
+
 				mobileAction.verifyElementIsDisplayed(viewDescriptionUSField, "View Description US field");
 				mobileAction.verifyElementTextContains(viewDescriptionUSField, payee);
 			} else {
 				// Cdn account
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					String descXpath = "//XCUIElementTypeStaticText[@label='" + payee + "']";
+					viewDescriptionField = mobileAction.verifyWebElementUsingXPath(descXpath, "CAD Payee Description");
+				}
+
 				mobileAction.verifyElementIsDisplayed(viewDescriptionField, "View Description field");
 				mobileAction.verifyElementTextContains(viewDescriptionField, payee);
 
@@ -773,10 +788,12 @@ public class Manage_Payee extends _CommonPage {
 	private void switchToEnglishKeyboard() {
 		try {
 			// Switch to English keyboard for correct text input
-			String keyboardGoBtnText = keyboardGoBtn.getAttribute("label");
-			if (keyboardGoBtnText.contains("确认")) {
-				mobileAction.FuncClick(keyboardTypeBtn, "Switch to English keyboard");
-				mobileAction.sleep(500);
+			if (mobileAction.verifyElementIsPresent(keyboardGoBtn)) {
+				String keyboardGoBtnText = keyboardGoBtn.getAttribute("label");
+				if (keyboardGoBtnText.contains("确认")) {
+					mobileAction.FuncClick(keyboardTypeBtn, "Switch to English keyboard");
+					mobileAction.sleep(500);
+				}
 			}
 
 		} catch (Exception e) {
@@ -790,4 +807,70 @@ public class Manage_Payee extends _CommonPage {
 		}
 	}
 
+	public void editPayeeDescriptionPAT() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchToWebView();
+				mobileAction.sleep(3000);
+				// To scroll screen up
+				mobileAction.FuncClick(payeeDescriptionField, "City Field");
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.FuncHideKeyboard();
+			} else {
+				// To scroll screen up
+				mobileAction.FuncClick(payeeDescriptionField, "City Field");
+				mobileAction.HideKeyBoard_IOS();
+				mobileAction.sleep(2000);
+			}
+
+			String payee = getTestdata("Payee");
+			mobileAction.FuncClick(payeeDescriptionFieldPAT, "Payee Description Field");
+			mobileAction.FuncSendKeys(payeeDescriptionFieldPAT, payee);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.switchAppiumContext("NATIVE_APP");
+				mobileAction.FuncHideKeyboard();
+			} else {
+				if (currentLocale.toLowerCase().startsWith("zh")) {
+					switchToEnglishKeyboard();
+				}
+				mobileAction.HideKeyBoard_IOS();
+			}
+
+			String acctNum = getTestdata("Accounts");
+			String usAccount = getTestdata("USAccount");
+			if (acctNum == null && usAccount != null) {
+				// US account, click Check button twice
+				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					mobileAction.sleep(3000);
+				}
+
+				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					mobileAction.sleep(5000);
+				}
+
+			} else {
+				mobileAction.FuncClick(editPayeeCheckButton, "Edit Payee check button");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					mobileAction.sleep(5000);
+				}
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+			mobileAction.switchAppiumContext("NATIVE_APP");
+		}
+
+	}
 }
