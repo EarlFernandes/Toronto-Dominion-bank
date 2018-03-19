@@ -259,8 +259,8 @@ public final class StringArray {
 	public static final String[] ARRAY_TD_POINTS = { "TD Points", "Points TD", "TD Points", "TD Points" };
 	public static final String[] ARRAY_CASH_BACK_DOLLARS = { "Cash Back Dollars", "dollars de remise",
 			"Cash Back Dollars", "Cash Back Dollars" };
-	public static final String[] ARRAY_TD_REWARDS_POINTS = { "TD Rewards Points", "", "TD Rewards Points",
-			"TD Rewards Points" };
+	public static final String[] ARRAY_TD_REWARDS_POINTS = { "TD Rewards Points", "points Primes TD",
+			"TD Rewards Points", "TD Rewards Points" };
 
 	// Homescreen
 	public static final String[] ARRAY_HOMESCREEN_DASHBOARD_PAYNOW = { "PAY NOW", "PAYER MAINTENANT", "现在付款", "立即付款" };
