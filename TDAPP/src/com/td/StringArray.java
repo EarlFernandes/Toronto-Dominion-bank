@@ -176,7 +176,7 @@ public final class StringArray {
 	public static final String[] ARRAY_CUSTOMER_FEEDBACK = { "Give Feedback", "Fournir des commentaires", "发送意见回馈",
 			"發送意見" };
 	public static final String[] ARRAY_QUICK_ACCESS_SETTINGS = { "Quick Access Settings", "Paramètres Accès rapide",
-			"特快结余查询设定", "特快結餘查詢設定" };
+			"特快结余查询设置", "特快結餘查詢設定" };
 	public static final String[] ARRAY_QUICK_ACCESS_SWITCH_AND = { "Quick Access", "Accès rapide", "特快结余查询", "特快結餘查詢" };
 
 	public static final String[] ARRAY_OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE = {
