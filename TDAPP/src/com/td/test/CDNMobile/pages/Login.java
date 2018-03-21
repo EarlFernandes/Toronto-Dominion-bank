@@ -594,9 +594,10 @@ public class Login extends _CommonPage {
 			} else {
 
 				mobileAction.FuncSendKeys(getTestdata("UserID"));
-				mobileAction.sleep(5000); // Delay to test other call
-											// completions
-				CL.GetReporting().FuncReport("Pass", "Waited 5secs after entering LoginID");
+				// mobileAction.sleep(5000); // Delay to test other call
+				// completions
+				// CL.GetReporting().FuncReport("Pass", "Waited 5secs after
+				// entering LoginID");
 
 			}
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -604,8 +605,9 @@ public class Login extends _CommonPage {
 			}
 
 			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
-			mobileAction.sleep(5000); // Delay to test other call completions
-			CL.GetReporting().FuncReport("Pass", "Waited 5secs after entering password");
+			// mobileAction.sleep(5000); // Delay to test other call completions
+			// CL.GetReporting().FuncReport("Pass", "Waited 5secs after entering
+			// password");
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
