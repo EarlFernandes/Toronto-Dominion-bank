@@ -15,6 +15,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class QuickAccessPage extends _CommonPage {
 
@@ -43,6 +44,10 @@ public class QuickAccessPage extends _CommonPage {
 	@iOSFindBy(xpath = "//*[@label='Quick Access Settings']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Quick Access Settings']")
 	private MobileElement quickAccessSettings;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@AndroidFindBy(id = "com.td:id/easy_access_image")
+	private MobileElement quickAccessClose;
 
 	By androidRewardstxt = By
 			.xpath("//android.widget.TextView[@resource-id='com.td:id/easy_access_rewards_balance_currency_name']");
@@ -344,5 +349,25 @@ public class QuickAccessPage extends _CommonPage {
 		}
 
 	}
+	
+	public void closeQuickAccess() {
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(quickAccessClose, "Quick Access Close button");
+			mobileAction.sleep(5000);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
 
 }
