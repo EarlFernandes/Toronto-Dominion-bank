@@ -108,7 +108,7 @@ public class TransactionDetails extends _CommonPage {
 	public void verifyTransactionHeader() {
 		Decorator();
 		try {
-			mobileAction.verifyElementTextIsDisplayed(transactionDetailsHeader,
+			mobileAction.verifyElementTextIsDisplayed(PageHeader.get().getHeaderTextElement(),
 					getTextInCurrentLocale(StringArray.ARRAY_MF_TRANSACTION_DETAIL));
 
 		} catch (NoSuchElementException | IOException e) {

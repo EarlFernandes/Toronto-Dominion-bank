@@ -42,7 +42,8 @@ public class OTPChallenge extends _CommonPage {
 	@FindBy(xpath = "//button[@ng-click=\"sp.changeOptions('voice')\"]")
 	private WebElement voiceOption;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1] | "
+			+ "//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")
 	@FindBy(id = "getCode")
 	private WebElement getCodeButton;
 
@@ -54,7 +55,8 @@ public class OTPChallenge extends _CommonPage {
 	@FindBy(id = "secretCode")
 	private WebElement securityCodeField;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1] | "
+			+ "//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")
 	@FindBy(id = "enter")
 	private WebElement submitCodeButton;
 
@@ -148,6 +150,7 @@ public class OTPChallenge extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
+				mobileAction.sleep(5000);
 			}
 			mobileAction.FuncClick(getCodeButton, "Get Code Button");
 
@@ -175,6 +178,7 @@ public class OTPChallenge extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
+				mobileAction.sleep(5000);
 			}
 
 			mobileAction.FuncClick(securityCodeField, "Security Code Field");
@@ -281,6 +285,7 @@ public class OTPChallenge extends _CommonPage {
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 					mobileAction.switchToWebView();
+					mobileAction.sleep(3000);
 				}
 
 				boolean hasMsg = mobileAction.verifyElementIsPresent(tooManySecurityCodesRequestedMsg);
@@ -319,12 +324,16 @@ public class OTPChallenge extends _CommonPage {
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
+				mobileAction.sleep(3000);
 			}
 			mobileAction.FuncClick(resendCodeLink, "Resend Code button");
+			mobileAction.sleep(5000);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				clickTextOption();
 				clickGetCodeButton();
+				mobileAction.sleep(5000);
+
 			} else {
 				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncClick(resendCodeText, "Resend Code Dialog, Text button");
