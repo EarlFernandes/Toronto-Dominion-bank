@@ -101,6 +101,8 @@ public class MIT_DSH_TermsOfUse extends _CommonPage {
 
 			Thread.sleep(1000);
 
+			mobileAction.FuncSwipeOnce("up");
+
 			mobileAction.FuncSwipeWhileElementNotFound(btnTermsofUse, false, 10, "up");
 			mobileAction.FuncVerifyTextEquals(btnTermsofUse,
 					getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_TERMS_TERMSOFUSE));

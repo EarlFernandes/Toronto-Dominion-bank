@@ -33,6 +33,9 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 				this);
 	}
 
+	String sPlatform = CL.getTestDataInstance().getMobilePlatForm();
+	String sDeviceType = CL.getTestDataInstance().getMobileDeviceType();
+
 	@iOSXCUITFindBy(accessibility = "dropdownButton")
 	@AndroidFindBy(id = "com.td:id/tv_watchlist_name_header")
 	private MobileElement LT_Watchlist;
@@ -112,8 +115,10 @@ public class MIT_DSHWLCollapsedView extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(LT_Watchlist, "Watchlist Dropdown");
 			mobileAction.verifyElementIsDisplayed(BT_MoreOptions, "More Options button");
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")
+					&& sDeviceType.equalsIgnoreCase("Smartphone")) {
 				mobileAction.FuncSwipeOnce("up");
+
 				if (CL.GetAppiumDriver().findElements(By.id("com.td:id/tv_item_watchlist_name")).size() == 3) {
 					CL.GetReporting().FuncReport(PASS, "Max 3 symbols are displayed in watchlist collapsed view.");
 				} else if (CL.GetAppiumDriver().findElements(By.id("com.td:id/tv_item_watchlist_name")).size() < 3)

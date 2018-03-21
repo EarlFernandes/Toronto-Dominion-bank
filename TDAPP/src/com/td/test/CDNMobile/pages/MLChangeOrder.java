@@ -587,7 +587,8 @@ public class MLChangeOrder extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(refreshButton, "Refresh Button");
 
-			mobileAction.verifyElement(messageWarning, getTestdata("WarningMessage", XLSheetUserIDs));
+			//mobileAction.verifyElement(messageWarning, getTestdata("WarningMessage", XLSheetUserIDs));
+			mobileAction.FuncVerifyTextEquals(messageWarning, getTestdata("WarningMessage", XLSheetUserIDs));
 
 			mobileAction.verifyElementTextContains(timestamp, sCurrentDate);
 
@@ -614,14 +615,14 @@ public class MLChangeOrder extends _CommonPage {
 			mobileAction.verifyElementTextContains(leg1Option, getTestdata("Symbol", XLSheetUserIDs));
 			mobileAction.verifyElement(leg1Action, sLeg1Action2);
 			// mobileAction.selectItemFromList(leg1Action, sLeg1Action21);
-			mobileAction.verifyElement(leg1Quantity, sLeg1Qunatity);
+			mobileAction.verifyTextContains(leg1Quantity, sLeg1Qunatity);
 			TradeMultiLeg.get().enterQuantity(leg1Quantity, sLeg1Qunatity1);
 			mobileAction.FuncVerifyNonBlankValue(leg1QuantityFilled, "leg1QuantityFilled");
 
 			mobileAction.FuncSwipeWhileElementNotFound(leg2QuantityFilled, false, 7, "up");
 			mobileAction.verifyElementTextContains(leg2Option, getTestdata("Symbol", XLSheetUserIDs));
 			mobileAction.verifyElement(leg2Action, sLeg2Action2);
-			mobileAction.verifyElement(leg2Quantity, sLeg2Qunatity);
+			mobileAction.verifyTextContains(leg2Quantity, sLeg2Qunatity);
 			TradeMultiLeg.get().enterQuantity(leg2Quantity, sLeg2Qunatity1);
 			mobileAction.FuncVerifyNonBlankValue(leg2QuantityFilled, "leg2QuantityFilled");
 
