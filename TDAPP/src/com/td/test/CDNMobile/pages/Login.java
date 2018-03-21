@@ -594,12 +594,16 @@ public class Login extends _CommonPage {
 			} else {
 
 				mobileAction.FuncSendKeys(getTestdata("UserID"));
+				mobileAction.sleep(2000); // Delay to test other call
+											// completions
 			}
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 			}
 
 			mobileAction.FuncSendKeys(password, CL.getTestDataInstance().UserPassword);
+			mobileAction.sleep(2000); // Delay to test other call completions
+
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 			}
