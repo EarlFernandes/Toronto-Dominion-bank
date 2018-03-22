@@ -412,6 +412,7 @@ public class HomeScreen extends _CommonPage {
 			// FIXED removed back button
 			mobileAction.clickMenuButton();
 			mobileAction.sleep(3000); // Test delay for rememberme & tmx calls
+			CL.GetReporting().FuncReport("Pass", "Waited 3secs after opening menu");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
