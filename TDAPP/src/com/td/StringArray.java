@@ -745,8 +745,8 @@ public final class StringArray {
 	public static final String[] ARRAY_RBP_CONTINUE_BUTTON = { "Continue", "Continuer", "继续", "繼續" };
 	public static final String[] ARRAY_RBP_CANCELLED_BILL = { "Cancelled", "Annulé", "已取消", "已取消" };
 	public static final String[] ARRAY_RBP_BILL_CANCELLED_DONE = { "All done!", "C’est fait!", "全部完成！", "全部完成！" };
-	public static final String[] ARRAY_PRODUCT_LANDING_PAGE_HEADER = { "Explore Products", "Voir nos produits",
-			"查看服务与产品", "查看服務與產品" };
+	public static final String[] ARRAY_PRODUCT_LANDING_PAGE_HEADER = { "Get An Account", "Obtenir un compte", "开立账户",
+			"開設賬戶" };
 	// End of RBP
 
 	// Start of Product page
@@ -823,11 +823,12 @@ public final class StringArray {
 			"https://www.zh.td.com/ca/en/personal-banking/products/borrowing/",
 			"https://www.zt.td.com/ca/en/personal-banking/products/borrowing/" };
 
-//	public static final String[] ARRAY_PRODUCT_PERSONAL_INVESTING_SYS_URL = {
-//			"https://www1.sys.tdcanadatrust.com/products-services/investing/goals_index.jsp",
-//			"https://www1.sys.tdcanadatrust.com/francais/produits-et-services/investissements/objectif_depargne_index.jsp",
-//			"https://www1.sys.tdcanadatrust.com/products-services/investing/goals_index.jsp",
-//			"https://www1.sys.tdcanadatrust.com/products-services/investing/goals_index.jsp" };
+	// public static final String[] ARRAY_PRODUCT_PERSONAL_INVESTING_SYS_URL = {
+	// "https://www1.sys.tdcanadatrust.com/products-services/investing/goals_index.jsp",
+	// "https://www1.sys.tdcanadatrust.com/francais/produits-et-services/investissements/objectif_depargne_index.jsp",
+	// "https://www1.sys.tdcanadatrust.com/products-services/investing/goals_index.jsp",
+	// "https://www1.sys.tdcanadatrust.com/products-services/investing/goals_index.jsp"
+	// };
 	public static final String[] ARRAY_PRODUCT_PERSONAL_INVESTING_SYS_URL = {
 			"https://www1.sys.tdcanadatrust.com/m/products-services/investing/goal_main.jsp",
 			"https://www1.sys.tdcanadatrust.com/francais/m/produits-et-services/investissements/objectif_depargne_main.jsp",

@@ -118,12 +118,12 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/accountCaption")
 	private MobileElement accountNameTradePerf;
 
-	@iOSXCUITFindBy(xpath = "//*[(@label='Explore Products' or @label='Voir nos produits' or @label='查看服务与产品' or @label='查看服務與產品') and @name='flyout_title']")
-	@AndroidFindBy(xpath = "//*[(@text='Explore Products' or @text='Voir nos produits' or @text='查看服务与产品' or @text='查看服務與產品') and @resource-id='com.td:id/textview_flyout_menu_item']")
+	@iOSXCUITFindBy(xpath = "//*[(@label='Get An Account' or @label='Obtenir un compte' or @label='开立账户' or @label='開設賬戶') and @name='flyout_title']")
+	@AndroidFindBy(xpath = "//*[(@text='Get An Account' or @text='Obtenir un compte' or @text='开立账户' or @text='開設賬戶') and @resource-id='com.td:id/textview_flyout_menu_item']")
 	private MobileElement Explore_Products;
 
-	@iOSXCUITFindBy(xpath = "//*[(@label='Explore Products' or @label='Voir nos produits' or @label='查看服务与产品' or @label='查看服務與產品') and @name='flyout_title']/../preceding-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
-	@AndroidFindBy(xpath = "//*[(@text='Explore Products' or @text='Voir nos produits' or @text='查看服务与产品' or @text='查看服務與產品') and @resource-id='com.td:id/textview_flyout_menu_item']/../preceding-sibling::android.widget.LinearLayout[1]/android.widget.TextView")
+	@iOSXCUITFindBy(xpath = "//*[(@label='Get An Account' or @label='Obtenir un compte' or @label='开立账户' or @label='開設賬戶') and @name='flyout_title']/../preceding-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//*[(@text='Get An Account' or @text='Obtenir un compte' or @text='开立账户' or @text='開設賬戶') and @resource-id='com.td:id/textview_flyout_menu_item']/../preceding-sibling::android.widget.LinearLayout[1]/android.widget.TextView")
 	private MobileElement Explore_Products_preceeding_item;
 
 	public synchronized static MenuPage get() {

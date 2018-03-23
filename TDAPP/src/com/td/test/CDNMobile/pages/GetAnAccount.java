@@ -17,9 +17,9 @@ import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
-public class ExploreProducts extends _CommonPage {
+public class GetAnAccount extends _CommonPage {
 
-	private static ExploreProducts productPage;
+	private static GetAnAccount getAnAccount;
 
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText")
@@ -29,11 +29,11 @@ public class ExploreProducts extends _CommonPage {
 
 
 
-	public synchronized static ExploreProducts get() {
-		if (productPage == null) {
-			productPage = new ExploreProducts();
+	public synchronized static GetAnAccount get() {
+		if (getAnAccount == null) {
+			getAnAccount = new GetAnAccount();
 		}
-		return productPage;
+		return getAnAccount;
 	}
 
 	private void Decorator() {

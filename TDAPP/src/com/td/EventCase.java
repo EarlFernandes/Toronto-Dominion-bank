@@ -4160,7 +4160,7 @@ public class EventCase {
 			break;
 
 		case VerifyProductlandingPageHeader:
-			ExploreProducts.get().VerifyProductlandingPageHeader();
+			GetAnAccount.get().VerifyProductlandingPageHeader();
 			break;
 
 		case verifyProductPagePlacement:
@@ -4168,7 +4168,7 @@ public class EventCase {
 			break;
 
 		case VerifyProductlandingPageContent:
-			ExploreProducts.get().VerifyProductlandingPageContent();
+			GetAnAccount.get().VerifyProductlandingPageContent();
 			break;
 
 		case verifyBankAccountsSysURL:
@@ -4244,27 +4244,27 @@ public class EventCase {
 			break;
 
 		case clickCreditCardslink:
-			ExploreProducts.get().clickCreditCardslink();
+			GetAnAccount.get().clickCreditCardslink();
 			break;
 
 		case clickMortgageslink:
-			ExploreProducts.get().clickMortgageslink();
+			GetAnAccount.get().clickMortgageslink();
 			break;
 
 		case clickBorrowinglink:
-			ExploreProducts.get().clickBorrowinglink();
+			GetAnAccount.get().clickBorrowinglink();
 			break;
 
 		case clickPersonalInvestinglink:
-			ExploreProducts.get().clickPersonalInvestinglink();
+			GetAnAccount.get().clickPersonalInvestinglink();
 			break;
 
 		case clickTravelMedicalInsurancelink:
-			ExploreProducts.get().clickTravelMedicalInsurancelink();
+			GetAnAccount.get().clickTravelMedicalInsurancelink();
 			break;
 
 		case clickBankAccountslink:
-			ExploreProducts.get().clickBankAccountslink();
+			GetAnAccount.get().clickBankAccountslink();
 			break;
 		// End of RBP
 
