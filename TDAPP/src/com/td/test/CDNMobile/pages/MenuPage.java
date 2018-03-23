@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.support.PageFactory;
@@ -24,7 +25,6 @@ public class MenuPage extends _CommonPage {
 
 	@iOSXCUITFindBy(xpath = "//*[(@label='Transfers' or @label='Virements' or @label='转账' or @label='轉賬') and @name='flyout_title'] | //*[@name='NAV_DRAWER_ITEMS_TRANSFERS']")
 	@AndroidFindBy(xpath = "//*[(@text='Transfers' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='com.td:id/textview_flyout_menu_item' or @resource-id='com.td:id/navText')]")
-
 	private MobileElement transfers;
 
 	@iOSXCUITFindBy(xpath = "//*[(@label='Bills' or @label='Factures' or @label='账单' or @label='賬單')  and @name='flyout_title'] | //*[@name='NAV_DRAWER_ITEMS_BILLS']")
@@ -117,6 +117,14 @@ public class MenuPage extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "descriptionLabel")
 	@AndroidFindBy(id = "com.td:id/accountCaption")
 	private MobileElement accountNameTradePerf;
+
+	@iOSXCUITFindBy(xpath = "//*[(@label='Explore Products' or @label='Voir nos produits' or @label='查看服务与产品' or @label='查看服務與產品') and @name='flyout_title']")
+	@AndroidFindBy(xpath = "//*[(@text='Explore Products' or @text='Voir nos produits' or @text='查看服务与产品' or @text='查看服務與產品') and @resource-id='com.td:id/textview_flyout_menu_item']")
+	private MobileElement Explore_Products;
+
+	@iOSXCUITFindBy(xpath = "//*[(@label='Explore Products' or @label='Voir nos produits' or @label='查看服务与产品' or @label='查看服務與產品') and @name='flyout_title']/../preceding-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//*[(@text='Explore Products' or @text='Voir nos produits' or @text='查看服务与产品' or @text='查看服務與產品') and @resource-id='com.td:id/textview_flyout_menu_item']/../preceding-sibling::android.widget.LinearLayout[1]/android.widget.TextView")
+	private MobileElement Explore_Products_preceeding_item;
 
 	public synchronized static MenuPage get() {
 		if (MenuPage == null) {
@@ -914,6 +922,53 @@ public class MenuPage extends _CommonPage {
 			performance.click(trade, "Menu Trade");
 			performance.verifyElementIsDisplayed(accountNameTradePerf,
 					"Metric - Login without authentication Trade screen");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void clickMenuExploreProducts() {
+
+		Decorator();
+		try {
+
+			mobileAction.FuncSwipeWhileElementNotFound(Explore_Products, true, 5, "up");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyProductPagePlacement() {
+
+		Decorator();
+		try {
+
+			mobileAction.FuncSwipeWhileElementNotFound(Explore_Products, false, 5, "up");
+
+			String preceddingSiblingText = mobileAction.getValue(Explore_Products_preceeding_item);
+
+			if (preceddingSiblingText
+					.contentEquals(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_FLYOUT_CROSSBORDERBANKING))) {
+				mobileAction.Report_Pass_Verified("'Explore Proudcts' is right after 'Cross-Border Banking'");
+			} else {
+				mobileAction.Report_Fail("Failed to verify 'Explore Proudcts' is right after 'Cross-Border Banking'");
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

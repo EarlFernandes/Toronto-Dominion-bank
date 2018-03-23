@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -960,9 +961,6 @@ public class Bills extends _CommonPage {
 		try {
 
 			mobileAction.FuncSwipeWhileElementNotFound(view_all_link, false, 5, "up");
-			// mobileAction.verifyElementTextIsDisplayed(view_all_link,
-			// getTextInCurrentLocale(StringArray.ARRAY_RBP_VIEW_ALL));
-			//
 			mobileAction.FuncClick(view_all_link, "'View All' is clicked");
 			mobileAction.waitProgressBarVanish();
 
@@ -979,12 +977,40 @@ public class Bills extends _CommonPage {
 	public void selectFirstActivePayment() {
 
 		Decorator();
+		boolean isActivePaymentFound = false;
 		try {
 			int listSize = scheduled_Payments_List.size();
 			if (listSize == 0) {
 				mobileAction.Report_Fail("No scheduled payments");
 			} else {
-				mobileAction.FuncClick(scheduled_Payments_List.get(0), "First Active Payment clicked");
+
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					for (int i = 0; i < listSize; i++) {
+						List<MobileElement> textViewList = scheduled_Payments_List.get(i)
+								.findElements(By.xpath("//XCUIElementTypeStaticText"));
+						if (textViewList.size() == 5) {
+							System.out.println("Found Active Scheduled payments");
+							mobileAction.FuncClick(scheduled_Payments_List.get(i), "First Active Payment clicked");
+							isActivePaymentFound = true;
+							break;
+						}
+					}
+				} else {
+					for (int i = 0; i < listSize; i++) {
+						List<MobileElement> textViewList = scheduled_Payments_List.get(i)
+								.findElements(By.xpath("//android.widget.TextView"));
+						if (textViewList.size() == 5) {
+							System.out.println("Found Active Scheduled payments");
+							mobileAction.FuncClick(scheduled_Payments_List.get(i), "First Active Payment clicked");
+							isActivePaymentFound = true;
+							break;
+						}
+					}
+				}
+				if (!isActivePaymentFound) {
+					mobileAction.Report_Fail("No Active scheduled payments");
+				}
+
 			}
 
 		} catch (Exception e) {

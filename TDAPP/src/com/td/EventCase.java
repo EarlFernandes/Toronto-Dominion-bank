@@ -242,7 +242,10 @@ public class EventCase {
 		clickStartDate, selectDate, verifyPayCanadianBillContent, verifyHowOftenDropdownDefault, verifyStartDateDefaultToToday, verifyFieldsArePrefilledAfterBackFromAddPayee, verifyFrequencyOptions, verifyRBPFootNoteContent, selectOngoingFromHowOftenDropDown, verifyAndClickRewardBanner, FillPayBillWithOnce, continuePayBill, verifyReviewContent, FillPayBillWithOngoing, verifyAndClickCancelButton, verifyAndClickPayBillButton, verifyRBPReceiptContent, verifyPayee_FromAccountMaskedInReceipt, verifyPayBillHeader, ClickPayAnotherBillBtn, ClickSchedulePaymentsBtn, ClickQuickLinkBillsBtn, verifyScheduledPaymentsHeader, VerifyRBPReceipt, VerifyRBPErrorMessage, VerifyRBP1NumberOfPaymentErrorMessage, verifyPayeeFilterContents, clickViewpaymentFor, clickScheduledPayment_Link, selectStartdateAgain, VerifyEndOfDateIsBlank, VerifyEndOfDateReamins, FillPayBillWithOngoingWithoutStartDate, clickPayBillDashboard, verifyRBPScreen, verifyBankingHeader, clickPayBillQuickLink, confirmAddPayeeAndPayThisPayee, verifyPayeeOrder, verifyDefaultPayeeFilter, verifyListOfPaymentsAreWithSamePayee, clickViewpaymentForSelectPayee, verifyPaymentListByDate, clickViewAll_Link, verifyScheduledPaymentsContent, verifyMonthGrouping, verifyPaymentDue7Date, verifyBillDetailsPageHeader, selectFirstPayment, verifyBillDetailsContent, verifyCancelButtonDisplayed, selectFirstActivePayment, verifyCancelButtonNotDisplayed, selectFirstCancelledPayment, clickRBPCancelButton, ClickRBPPopupCancelButton, ClickRBPPopupDontCancelButton, verifyPopupCancelPayment, VerifyRBPErrorMessageInReviewPage, verifypayeeFilterContainsMultiAccessCardPayees, verifyBillCancelledReceipt,
 
 		// Deeplink
-		verifyCreditLimitIncreaseAndCancel, confirmCancel, openChromeBrowser, verifyDamageCardWebpageAndCancel, verifyReturnToApp,
+		verifyCreditLimitIncreaseAndCancel, confirmCancel, openChromeBrowser, verifyDamageCardWebpageAndCancel, verifyReturnToApp, verifyCancelPromptYesorNo, VerifyGetStartButton, ClickNoForCancelPrompt, waitSessionExpiredAndCancel,
+
+		// Product page
+		clickMenuExploreProducts, VerifyProductlandingPageHeader, verifyProductPagePlacement, VerifyProductlandingPageContent, verifyBankAccountsSysURL, clickCreditCardslink, clickMortgageslink, clickBorrowinglink, clickPersonalInvestinglink, clickTravelMedicalInsurancelink, clickBankAccountslink, verifyBankAccountsPatURL, verifyBankAccountsProdURL, verifyCreditCardsSysURL, verifyCreditCardsPatURL, verifyCreditCardsProdURL, verifyMortgagesSysURL, verifyMortgagesPatURL, verifyMortgagesProdURL, verifyBorrowingSysURL, verifyBorrowingPatURL, verifyBorrowingProdURL, verifyPersonalInvestingSysURL, verifyPersonalInvestingPatURL, verifyPersonalInvestingProdURL, verifyTravelInsuranceSysURL, verifyTravelInsurancePatURL, verifyTravelInsuranceProdURL,
 
 		// myspend
 		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_changeCategory, DailyDigest_verifyCategoryMessage, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, MySpendPreferences_clickActiveAccounts, MySpendTransfers_clickBetweenMyAccounts, MySpendTransfers_PerformTransfer, MySpendPrefernces_disableAccounts, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, Preferences_verifyHomePage, TourPage_clickConnectTDApp, TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SideMenu_verifyNavigationWithinMySpend, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SpendingInsight_verifyAccountsSelected, TransactionHistory_verifySelectedAccounts, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickTransfers, SideMenu_clickGetTDAppButton, click_PreferencesLink,
@@ -4136,6 +4139,133 @@ public class EventCase {
 			MoreOptions.get().verifyReturnToApp();
 			break;
 
+		case verifyCancelPromptYesorNo:
+			WebViewPage.get().verifyCancelPromptYesorNo();
+			break;
+
+		case ClickNoForCancelPrompt:
+			WebViewPage.get().ClickNoForCancelPrompt();
+			break;
+
+		case VerifyGetStartButton:
+			WebViewPage.get().VerifyGetStartButton();
+			break;
+
+		case waitSessionExpiredAndCancel:
+			WebViewPage.get().waitSessionExpiredAndCancel();
+			break;
+
+		case clickMenuExploreProducts:
+			MenuPage.get().clickMenuExploreProducts();
+			break;
+
+		case VerifyProductlandingPageHeader:
+			ExploreProducts.get().VerifyProductlandingPageHeader();
+			break;
+
+		case verifyProductPagePlacement:
+			MenuPage.get().verifyProductPagePlacement();
+			break;
+
+		case VerifyProductlandingPageContent:
+			ExploreProducts.get().VerifyProductlandingPageContent();
+			break;
+
+		case verifyBankAccountsSysURL:
+			WebViewPage.get().verifyBankAccountsSysURL();
+			break;
+
+		case verifyBankAccountsPatURL:
+			WebViewPage.get().verifyBankAccountsPatURL();
+			break;
+
+		case verifyBankAccountsProdURL:
+			WebViewPage.get().verifyBankAccountsProdURL();
+			break;
+
+		case verifyCreditCardsSysURL:
+			WebViewPage.get().verifyCreditCardsSysURL();
+			break;
+
+		case verifyCreditCardsPatURL:
+			WebViewPage.get().verifyCreditCardsPatURL();
+			break;
+
+		case verifyCreditCardsProdURL:
+			WebViewPage.get().verifyCreditCardsProdURL();
+			break;
+
+		case verifyMortgagesSysURL:
+			WebViewPage.get().verifyMortgagesSysURL();
+			break;
+
+		case verifyMortgagesPatURL:
+			WebViewPage.get().verifyMortgagesPatURL();
+			break;
+
+		case verifyMortgagesProdURL:
+			WebViewPage.get().verifyMortgagesProdURL();
+			break;
+
+		case verifyBorrowingSysURL:
+			WebViewPage.get().verifyBorrowingSysURL();
+			break;
+
+		case verifyBorrowingPatURL:
+			WebViewPage.get().verifyBorrowingPatURL();
+			break;
+
+		case verifyBorrowingProdURL:
+			WebViewPage.get().verifyBorrowingProdURL();
+			break;
+
+		case verifyPersonalInvestingSysURL:
+			WebViewPage.get().verifyPersonalInvestingSysURL();
+			break;
+
+		case verifyPersonalInvestingPatURL:
+			WebViewPage.get().verifyPersonalInvestingPatURL();
+			break;
+
+		case verifyPersonalInvestingProdURL:
+			WebViewPage.get().verifyPersonalInvestingProdURL();
+			break;
+
+		case verifyTravelInsuranceSysURL:
+			WebViewPage.get().verifyTravelInsuranceSysURL();
+			break;
+
+		case verifyTravelInsurancePatURL:
+			WebViewPage.get().verifyTravelInsurancePatURL();
+			break;
+
+		case verifyTravelInsuranceProdURL:
+			WebViewPage.get().verifyTravelInsuranceProdURL();
+			break;
+
+		case clickCreditCardslink:
+			ExploreProducts.get().clickCreditCardslink();
+			break;
+
+		case clickMortgageslink:
+			ExploreProducts.get().clickMortgageslink();
+			break;
+
+		case clickBorrowinglink:
+			ExploreProducts.get().clickBorrowinglink();
+			break;
+
+		case clickPersonalInvestinglink:
+			ExploreProducts.get().clickPersonalInvestinglink();
+			break;
+
+		case clickTravelMedicalInsurancelink:
+			ExploreProducts.get().clickTravelMedicalInsurancelink();
+			break;
+
+		case clickBankAccountslink:
+			ExploreProducts.get().clickBankAccountslink();
+			break;
 		// End of RBP
 
 		case VerifyStatementBalanceHeader:

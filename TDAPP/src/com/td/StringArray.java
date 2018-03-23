@@ -678,7 +678,7 @@ public final class StringArray {
 			"You don't have enough funds in the account you selected. Please try a lower amount or use a different account.",
 			"Le compte sélectionné ne contient pas les fonds requis. Entrez un montant inférieur ou utilisez un autre compte.",
 			"您所选账户中没有足够的资金。请尝试较低的金额或者使用其他账户。", "您所選的賬戶中沒有足夠的資金。請輸入較低的金額或使用不同的賬戶。" };
-	public static final String[]  ARRAY_RBP_ERROR_DATE_RANGE_NOT_PASS_ONE_PAYMENT= {
+	public static final String[] ARRAY_RBP_ERROR_DATE_RANGE_NOT_PASS_ONE_PAYMENT = {
 			"Please select an end date that is after your first scheduled payment.",
 			"Veuillez sélectionner une date de fin ultérieure à la date du premier paiement prévu.",
 			"结束日期必须是在首次预定付款之后。", "結束日期必須是在首次預定付款之後。" };
@@ -745,8 +745,122 @@ public final class StringArray {
 	public static final String[] ARRAY_RBP_CONTINUE_BUTTON = { "Continue", "Continuer", "继续", "繼續" };
 	public static final String[] ARRAY_RBP_CANCELLED_BILL = { "Cancelled", "Annulé", "已取消", "已取消" };
 	public static final String[] ARRAY_RBP_BILL_CANCELLED_DONE = { "All done!", "C’est fait!", "全部完成！", "全部完成！" };
-
+	public static final String[] ARRAY_PRODUCT_LANDING_PAGE_HEADER = { "Explore Products", "Voir nos produits",
+			"查看服务与产品", "查看服務與產品" };
 	// End of RBP
+
+	// Start of Product page
+	public static final String[] ARRAY_EXPLORE_BANK_ACCOUNT = { "Bank Accounts", "Comptes bancaires", "银行账户", "銀行賬戶" };
+	public static final String[] ARRAY_EXPLORE_CREDIT_CARD = { "Credit Cards", "Cartes de crédit", "信用卡", "信用卡" };
+	public static final String[] ARRAY_EXPLORE_MORTGAGES = { "Mortgages", "Prêts hypothécaires", "房屋贷款", "房屋貸款" };
+	public static final String[] ARRAY_EXPLORE_BORROWING = { "Borrowing", "Emprunts", "借贷", "借貸" };
+	public static final String[] ARRAY_EXPLORE_PERSONAL_INVESTING = { "Personal Investing", "Placements personnels",
+			"个人投资", "個人投資" };
+	public static final String[] ARRAY_EXPLORE_TRAVEL_INSURANCET = { "Travel Medical Insurance",
+			"Assurance médicale de voyage", "旅行医疗保险", "旅行醫療保險" };
+
+	public static final String[] ARRAY_PRODUCT_PERSONAL_BANK_SYS_URL = {
+			"https://www1.new.sys.td.com/ca/en/personal-banking/products/bank-accounts/",
+			"https://www1.new.sys.td.com/ca/fr/services-bancaires-personnels/produits/comptes-bancaires/",
+			"https://www1.new.sys.td.com/ca/en/personal-banking/products/bank-accounts/",
+			"https://www1.new.sys.td.com/ca/en/personal-banking/products/bank-accounts/" };
+	public static final String[] ARRAY_PRODUCT_PERSONAL_BANK_PAT_URL = {
+			"https://www1.pat.td.com/ca/en/personal-banking/products/bank-accounts/",
+			"https://www1.pat.td.com/ca/fr/services-bancaires-personnels/produits/comptes-bancaires/",
+			"https://www1.pat.td.com/ca/en/personal-banking/products/bank-accounts/",
+			"https://www1.pat.td.com/ca/en/personal-banking/products/bank-accounts/" };
+	public static final String[] ARRAY_PRODUCT_PERSONAL_BANK_PROD_URL = {
+			"https://www.td.com/ca/en/personal-banking/products/bank-accounts/",
+			"https://www.td.com/ca/fr/services-bancaires-personnels/produits/comptes-bancaires/",
+			"https://www.zh.td.com/ca/en/personal-banking/products/bank-accounts/",
+			"https://www.zt.td.com/ca/en/personal-banking/products/bank-accounts/" };
+
+	public static final String[] ARRAY_PRODUCT_CREDIT_CARDS_SYS_URL = {
+			"https://www1.new.sys.td.com/ca/en/personal-banking/products/credit-cards/",
+			"https://www1.new.sys.td.com/ca/fr/services-bancaires-personnels/produits/cartes-de-credit/",
+			"https://www1.new.sys.td.com/ca/en/personal-banking/products/credit-cards/",
+			"https://www1.new.sys.td.com/ca/en/personal-banking/products/credit-cards/" };
+	public static final String[] ARRAY_PRODUCT_CREDIT_CARDS_PAT_URL = {
+			"https://www1.pat.td.com/ca/en/personal-banking/products/credit-cards/",
+			"https://www1.pat.td.com/ca/fr/services-bancaires-personnels/produits/cartes-de-credit/",
+			"https://www1.pat.td.com/ca/en/personal-banking/products/credit-cards/",
+			"https://www1.pat.td.com/ca/en/personal-banking/products/credit-cards/" };
+	public static final String[] ARRAY_PRODUCT_CREDIT_CARDS_PROD_URL = {
+			"https://www.td.com/ca/en/personal-banking/products/credit-cards/",
+			"https://www.td.com/ca/fr/services-bancaires-personnels/produits/cartes-de-credit/",
+			"https://www.zh.td.com/ca/en/personal-banking/products/credit-cards/",
+			"https://www.zt.td.com/ca/en/personal-banking/products/credit-cards/" };
+
+	public static final String[] ARRAY_PRODUCT_MORTGAGES_SYS_URL = {
+			"https://www1.sys.tdcanadatrust.com/products-services/banking/mortgages/td-mortgages-resl.jsp",
+			"https://www1.sys.tdcanadatrust.com/francais/produits-et-services/operations-bancaires/prets-hypothecaires/td-prets-hypothecaires-resl.jsp",
+			"https://www1.sys.tdcanadatrust.com/products-services/banking/mortgages/td-mortgages-resl.jsp",
+			"https://www1.sys.tdcanadatrust.com/products-services/banking/mortgages/td-mortgages-resl.jsp" };
+	public static final String[] ARRAY_PRODUCT_MORTGAGES_PAT_URL = {
+			"https://stg1.pat.td.com/ca/en/personal-banking/products/mortgages/",
+			"https://stg1.pat.td.com/ca/fr/services-bancaires-personnels/produits/prets-hypothecaires/",
+			"https://stg1.pat.td.com/ca/en/personal-banking/products/mortgages/",
+			"https://stg1.pat.td.com/ca/en/personal-banking/products/mortgages/" };
+	public static final String[] ARRAY_PRODUCT_MORTGAGES_PROD_URL = {
+			"https://www.td.com/ca/en/personal-banking/products/mortgages/",
+			"https://www.td.com/ca/fr/services-bancaires-personnels/produits/prets-hypothecaires/",
+			"https://www.zh.td.com/ca/en/personal-banking/products/mortgages/",
+			"https://www.zt.td.com/ca/en/personal-banking/products/mortgages/" };
+
+	public static final String[] ARRAY_PRODUCT_BORROWING_SYS_URL = {
+			"https://www1.sys.tdcanadatrust.com/products-services/borrowing/loans-lines-of-credit/index.jsp",
+			"https://www1.sys.tdcanadatrust.com/francais/produits-et-services/emprunt/prets-et-lignes-de-credit/index.jsp",
+			"https://www1.sys.tdcanadatrust.com/products-services/borrowing/loans-lines-of-credit/index.jsp",
+			"https://www1.sys.tdcanadatrust.com/products-services/borrowing/loans-lines-of-credit/index.jsp" };
+	public static final String[] ARRAY_PRODUCT_BORROWING_PAT_URL = {
+			"https://www1.pat.td.com/ca/en/personal-banking/products/borrowing/",
+			"https://www1.pat.td.com/ca/fr/services-bancaires-personnels/produits/borrowing/",
+			"https://www1.pat.td.com/ca/en/personal-banking/products/borrowing/",
+			"https://www1.pat.td.com/ca/en/personal-banking/products/borrowing/" };
+	public static final String[] ARRAY_PRODUCT_BORROWING_PROD_URL = {
+			"https://www.td.com/ca/en/personal-banking/products/borrowing/",
+			"https://www.td.com/ca/fr/services-bancaires-personnels/produits/emprunts/",
+			"https://www.zh.td.com/ca/en/personal-banking/products/borrowing/",
+			"https://www.zt.td.com/ca/en/personal-banking/products/borrowing/" };
+
+//	public static final String[] ARRAY_PRODUCT_PERSONAL_INVESTING_SYS_URL = {
+//			"https://www1.sys.tdcanadatrust.com/products-services/investing/goals_index.jsp",
+//			"https://www1.sys.tdcanadatrust.com/francais/produits-et-services/investissements/objectif_depargne_index.jsp",
+//			"https://www1.sys.tdcanadatrust.com/products-services/investing/goals_index.jsp",
+//			"https://www1.sys.tdcanadatrust.com/products-services/investing/goals_index.jsp" };
+	public static final String[] ARRAY_PRODUCT_PERSONAL_INVESTING_SYS_URL = {
+			"https://www1.sys.tdcanadatrust.com/m/products-services/investing/goal_main.jsp",
+			"https://www1.sys.tdcanadatrust.com/francais/m/produits-et-services/investissements/objectif_depargne_main.jsp",
+			"https://www1.sys.tdcanadatrust.com/m/products-services/investing/goal_main.jsp",
+			"https://www1.sys.tdcanadatrust.com/m/products-services/investing/goal_main.jsp" };
+	public static final String[] ARRAY_PRODUCT_PERSONAL_INVESTING_PAT_URL = {
+			"https://stg1.pat.td.com/ca/en/personal-banking/products/savings-investing/",
+			"https://stg1.pat.td.com/ca/fr/services-bancaires-personnels/produits/epargne-placements/",
+			"https://stg1.pat.td.com/ca/en/personal-banking/products/savings-investing/",
+			"https://stg1.pat.td.com/ca/en/personal-banking/products/savings-investing/" };
+	public static final String[] ARRAY_PRODUCT_PERSONAL_INVESTING_PROD_URL = {
+			"https://www.td.com/ca/en/personal-banking/products/savings-investing/",
+			"https://www.td.com/ca/fr/services-bancaires-personnels/produits/epargne-placements/",
+			"https://www.zh.td.com/ca/en/personal-banking/products/savings-investing/",
+			"https://www.zt.td.com/ca/en/personal-banking/products/savings-investing/" };
+
+	public static final String[] ARRAY_PRODUCT_TRAVEL_INSURANCE_SYS_URL = {
+			"https://www1.sys.tdcanadatrust.com/products-services/banking/travel-medical-insurance/index.jsp",
+			"https://www1.sys.tdcanadatrust.com/francais/produits-et-services/operations-bancaires/assurance-medicale-de-voyage/index.jsp",
+			"https://www1.sys.tdcanadatrust.com/products-services/banking/travel-medical-insurance/index.jsp",
+			"https://www1.sys.tdcanadatrust.com/products-services/banking/travel-medical-insurance/index.jsp" };
+	public static final String[] ARRAY_PRODUCT_TRAVEL_INSURANCE_PAT_URL = {
+			"https://www1.pat.td.com/ca/en/personal-banking/products/insurance/travel-medical-insurance/",
+			"https://www1.pat.td.com/ca/fr/services-bancaires-personnels/produits/insurance/travel-medical-insurance/",
+			"https://www1.pat.td.com/ca/en/personal-banking/products/insurance/travel-medical-insurance/",
+			"https://www1.pat.td.com/ca/en/personal-banking/products/insurance/travel-medical-insurance/" };
+	public static final String[] ARRAY_PRODUCT_TRAVEL_INSURANCE_PROD_URL = {
+			"https://www.td.com/ca/en/personal-banking/products/insurance/travel-medical-insurance/",
+			"https://www.td.com/ca/fr/services-bancaires-personnels/produits/assurance/assurance-medicale-de-voyage/",
+			"https://www.zh.td.com/ca/en/personal-banking/products/insurance/travel-medical-insurance/",
+			"https://www.zt.td.com/ca/en/personal-banking/products/insurance/travel-medical-insurance/" };
+	// End of Product page
+
 	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",
 			"安全問題" };
 	public static final String[] ARRAY_SECURITY_LOGIN = { "Login", "Ouvrir une session", "登录", "登入" };
