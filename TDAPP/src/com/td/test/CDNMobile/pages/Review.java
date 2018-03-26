@@ -34,7 +34,8 @@ public class Review extends _CommonPage {
 	private MobileElement payBillBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[2]")
-	@AndroidFindBy(id = "com.td:id/btn_continue")
+	// for Samsung Tabs, need index to identify the button
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/btn_continue' and @index='1']")
 	private MobileElement payNowBtn;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
