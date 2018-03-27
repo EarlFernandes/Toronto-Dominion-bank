@@ -43,6 +43,10 @@ public class AccountDetails extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/amount']")
 	private MobileElement lastTransactionAmt;
 
+	@iOSXCUITFindBy(id = "RVB_DETAIL_ACTIVITY_CELL_TITLE_2")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/date'])[1]")
+	private MobileElement todayTrxns;
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/amount'])[1]")
 	private MobileElement lastBankTransactionAmt;
@@ -194,6 +198,10 @@ public class AccountDetails extends _CommonPage {
 	public void verifyTransactionPosted() {
 		Decorator();
 		try {
+
+			// Check for real time updated trxns
+			mobileAction.verifyElementIsDisplayed(todayTrxns, "Today trxns header");
+			mobileAction.verifyElementTextContains(todayTrxns, "Today");
 
 			String amt = getTestdata("Amount");
 			String lastTrxnXpath = "";

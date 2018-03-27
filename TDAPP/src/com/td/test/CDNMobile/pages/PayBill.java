@@ -95,10 +95,18 @@ public class PayBill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']/android.widget.LinearLayout[@index='0']")
 	private MobileElement firstAcct;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1] | "
+			+ "//XCUIElementTypeOther[3]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1[]")
+	private MobileElement firstAcctName;
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1] | "
 			+ "//XCUIElementTypeOther[3]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='2']//android.widget.TextView[@index='0']")
 	private MobileElement firstUSAcct;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='PAYBILL_VIEW_PAYEE']/following-sibling:::XCUIElementTypeStaticText")
+	@AndroidFindBy(id = "com.td:id/edtPayee")
+	private MobileElement payeeSelected;
 
 	@AndroidFindBy(id = "com.td:id/textview_action_title")
 	private MobileElement payWithRewards;
@@ -209,8 +217,12 @@ public class PayBill extends _CommonPage {
 				} else {
 					// Use first acct
 					mobileAction.FuncClick(to_account_post, "Select Payee field");
+					mobileAction.sleep(1000);
+					String payeeName = mobileAction.FuncGetText(firstAcctName);
+					payeeName = payeeName.substring(0, payeeName.lastIndexOf(" "));
 					mobileAction.FuncClick(firstAcct, "1st Account in List");
 					mobileAction.sleep(2000);
+					mobileAction.verifyElementTextContains(payeeSelected, payeeName);
 
 				}
 			}
