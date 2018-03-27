@@ -95,8 +95,9 @@ public class PayBill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']/android.widget.LinearLayout[@index='0']")
 	private MobileElement firstAcct;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1] | "
-			+ "//XCUIElementTypeOther[3]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1[]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1] | "
+			+ "//XCUIElementTypeOther[3]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/txtPayee'])[1]")
 	private MobileElement firstAcctName;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1] | "
@@ -104,7 +105,7 @@ public class PayBill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='2']//android.widget.TextView[@index='0']")
 	private MobileElement firstUSAcct;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='PAYBILL_VIEW_PAYEE']/following-sibling:::XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='PAYBILL_VIEW_PAYEE']/following-sibling::XCUIElementTypeStaticText")
 	@AndroidFindBy(id = "com.td:id/edtPayee")
 	private MobileElement payeeSelected;
 
@@ -217,9 +218,12 @@ public class PayBill extends _CommonPage {
 				} else {
 					// Use first acct
 					mobileAction.FuncClick(to_account_post, "Select Payee field");
-					mobileAction.sleep(1000);
-					String payeeName = mobileAction.FuncGetText(firstAcctName);
-					payeeName = payeeName.substring(0, payeeName.lastIndexOf(" "));
+					mobileAction.sleep(2000);
+
+					String payeeName = mobileAction.FuncGetElementText(firstAcctName);
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+						payeeName = payeeName.substring(0, payeeName.lastIndexOf(" "));
+					}
 					mobileAction.FuncClick(firstAcct, "1st Account in List");
 					mobileAction.sleep(2000);
 					mobileAction.verifyElementTextContains(payeeSelected, payeeName);
