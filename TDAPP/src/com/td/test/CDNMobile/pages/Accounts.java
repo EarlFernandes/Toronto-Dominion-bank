@@ -822,22 +822,22 @@ public class Accounts extends _CommonPage {
 
 			if (lengthOfArray == 0) {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					Acnt_Description = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and @text='"
-							+ from_Account_num + "']";
+					Acnt_Description = "//android.widget.TextView[@resource-id='com.td:id/accntNumberSum' and contains(@text,'"
+							+ from_Account_num + "')]";
 				} else {
 					Acnt_Description = "//*[@label='" + from_Account_num + "']";
 				}
 			} else {
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-					Acnt_Description = "//android.widget.TextView[@text='";
+					Acnt_Description = "//android.widget.TextView[contains(@text,'";
 					for (int i = 0; i < lengthOfArray; i++) {
-						Acnt_Description = Acnt_Description + from_Account_des_option[i].trim() + "'";
+						Acnt_Description = Acnt_Description + from_Account_des_option[i].trim() + "')";
 						if (i < lengthOfArray - 1) {
-							Acnt_Description = Acnt_Description + " or @text='";
+							Acnt_Description = Acnt_Description + " or contains(@text, '";
 						}
 					}
-					Acnt_Description = Acnt_Description + "]/../../android.widget.TextView[@text='" + from_Account_num
-							+ "']";
+					Acnt_Description = Acnt_Description + "]/following-sibling::android.widget.TextView[@text='"
+							+ from_Account_num + "']";
 				} else {
 					Acnt_Description = "//XCUIElementTypeStaticText[@label='";
 					for (int i = 0; i < lengthOfArray; i++) {
@@ -1019,13 +1019,13 @@ public class Accounts extends _CommonPage {
 				total_xpath = "//android.widget.TextView[@text='" + totalStr + "']";
 				mobileAction.FuncSwipeWhileElementNotFoundByxpath(total_xpath, false, 20, "up");
 
-				total_accounts_and_cad = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ totalStr
-						+ "']/../following-sibling::android.widget.LinearLayout/*[@resource-id='com.td:id/canTotal']",
+				total_accounts_and_cad = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + totalStr
+								+ "']/../following-sibling::android.widget.LinearLayout/*[@resource-id='com.td:id/canTotal']",
 						"Total Account CAD");
-				total_accounts_and_usd = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ totalStr
-						+ "']/../following-sibling::android.widget.LinearLayout/*[@resource-id='com.td:id/usTotal']",
+				total_accounts_and_usd = mobileAction.verifyElementUsingXPath(
+						"//android.widget.TextView[@text='" + totalStr
+								+ "']/../following-sibling::android.widget.LinearLayout/*[@resource-id='com.td:id/usTotal']",
 						"Total Account USD");
 				total_Account_value_cad = mobileAction.getValue(total_accounts_and_cad);
 				total_Account_value_usd = mobileAction.getValue(total_accounts_and_usd);
@@ -1150,7 +1150,7 @@ public class Accounts extends _CommonPage {
 		try {
 
 			String account = getTestdata("ToAccount");
-			System.out.println("To account:"+account);
+			System.out.println("To account:" + account);
 			String acctXpath = "";
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				acctXpath = "//XCUIElementTypeStaticText[contains(@label,'" + account + "')]";
@@ -1172,13 +1172,13 @@ public class Accounts extends _CommonPage {
 		} finally {
 		}
 	}
-	
+
 	public void selectFromAccount() {
 		Decorator();
 		try {
 
 			String account = getTestdata("FromAccount");
-			System.out.println("From account:"+account);
+			System.out.println("From account:" + account);
 			String acctXpath = "";
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				acctXpath = "//XCUIElementTypeStaticText[contains(@label,'" + account + "')]";
