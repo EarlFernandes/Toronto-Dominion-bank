@@ -284,8 +284,16 @@ public class AccountDetails extends _CommonPage {
 			String receiptBalance = getTestdata("SecondTimeout");
 			String receiptValue = getTestdata("MerchantName");
 
-			mobileAction.verifyElementTextContains(acctBankBalance, receiptBalance);
-			mobileAction.verifyElementTextContains(lastBankTransactionAmt, receiptValue);
+			String balanceText = acctBankBalance.getText();
+			String trxnText = lastBankTransactionAmt.getText();
+			String compare = "Balance text: " + balanceText + " Expected Balance: " + receiptBalance + "</b>"
+					+ "Trxn amt text: " + trxnText + " Expected Trxn amt: " + receiptValue;
+
+			if (receiptBalance.contains(balanceText) && receiptValue.contains(trxnText)) {
+				mobileAction.GetReporting().FuncReport("Pass", "Test passed: " + compare);
+			} else {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + compare);
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

@@ -62,7 +62,7 @@ public class Manage_Payee extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@index='0'] | //android.widget.TextView[contains(@content-desc, 'Delete')]")
 	private MobileElement deletePayeeBtn;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeNavigationBar[1]/XCUIElementTypeButton[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeButton[2]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@index='1'] | //android.widget.TextView[contains(@content-desc, 'Edit')]")
 	private MobileElement editPayeeBtn;
 

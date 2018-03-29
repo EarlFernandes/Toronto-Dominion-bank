@@ -799,7 +799,7 @@ public class Receipt extends _CommonPage {
 				toBalance = toBalance.substring(toBalance.lastIndexOf(" ") + 1);
 				fxamt = fxamt.substring(fxamt.lastIndexOf(" ") + 1);
 			} else {
-				fxamt = fxamt.substring(0, fxamt.lastIndexOf(" "));
+				// fxamt = fxamt.substring(0, fxamt.lastIndexOf(" "));
 			}
 
 			System.out.println(fromBalance + " " + toBalance + " " + fxamt);
