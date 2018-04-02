@@ -107,7 +107,7 @@ public class WebViewPage extends _CommonPage {
 
 	public boolean setWebViewContext() {
 		try {
-			Thread.sleep(5000); // Wait 20 second for web page to load
+			Thread.sleep(20000); // Wait 20 second for web page to load
 		} catch (Exception e) {
 
 		}

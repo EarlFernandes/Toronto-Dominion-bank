@@ -264,7 +264,7 @@ public class Bill_PayCanada extends _CommonPage {
 	// @text='次數')]")
 	// private MobileElement howOften;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable//XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable//XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title']")
 	private MobileElement howOften_dropdown_title;
 
@@ -1569,8 +1569,11 @@ public class Bill_PayCanada extends _CommonPage {
 
 			mobileAction.verifyElementTextIsDisplayed(howOften_dropdown_title, expectedHowOften);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.verifyElementTextIsDisplayed(howOften_dropdown_cancel_button,
-						expectedCancelButton.toUpperCase());
+				if (mobileAction.verifyElementIsPresent(howOften_dropdown_cancel_button)) {
+					mobileAction.verifyElementTextIsDisplayed(howOften_dropdown_cancel_button,
+							expectedCancelButton.toUpperCase());
+				}
+
 			} else {
 				mobileAction.verifyElementTextIsDisplayed(howOften_dropdown_cancel_button, expectedCancelButton);
 			}
