@@ -231,7 +231,7 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='Select From Account']")
 	private MobileElement from_account_dropdown;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtDescriptionValue']")
 	private List<MobileElement> from_account_dropdown_list;
 
@@ -268,11 +268,15 @@ public class Bill_PayCanada extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title']")
 	private MobileElement howOften_dropdown_title;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable//XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable//XCUIElementTypeButton[1]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/dialog_button']")
 	private MobileElement howOften_dropdown_cancel_button;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable//XCUIElementTypeStaticText[@label='Once' or @label='Unique' or @label='一次']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Once' or @text='Unique' or @text='一次']")
+	private MobileElement howOften_dropdown_once_option;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtItemValue']")
 	private List<MobileElement> howOften_dropdown_option_List;
 
@@ -1583,7 +1587,8 @@ public class Bill_PayCanada extends _CommonPage {
 			for (int i = 0; i < howOften_dropdown_option_List.size(); i++) {
 				mobileAction.verifyElementTextIsDisplayed(howOften_dropdown_option_List.get(i), expectedOption[i]);
 			}
-			mobileAction.FuncClick(howOften_dropdown_cancel_button, "CANCEL button");
+			//for iPad, there is no Cancel Button
+			mobileAction.FuncClick(howOften_dropdown_once_option, "Once");
 
 			String[] expectedCaption = { getTextInCurrentLocale(StringArray.ARRAY_RBP_ACESS_CARD),
 					getTextInCurrentLocale(StringArray.ARRAY_PAYEE_CAPTION),

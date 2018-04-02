@@ -474,7 +474,7 @@ public class PurchaseMutualFunds extends _CommonPage {
 				}
 				FundInListText = FundInListText + "]";
 			} else {
-				FundInListText = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[@label='";
+				FundInListText = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[@label='";
 				for (int i = 0; i < lengthOfArray; i++) {
 					FundInListText = FundInListText + selectedFundArray[i].trim() + "'";
 					if (i < lengthOfArray - 1) {

@@ -54,7 +54,7 @@ public class ScheduledPayments extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/dialog_title")
 	private MobileElement view_payments_for_title;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/imgActionCheckMark']/..//android.widget.TextView[@resource-id='com.td:id/txtDescriptionValue']")
 	private MobileElement all_payee_title;
 
@@ -66,7 +66,7 @@ public class ScheduledPayments extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/recurrence']")
 	private List<MobileElement> scheduled_Payments_recurrence_List;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtDescriptionValue']")
 	private List<MobileElement> payee_filter_List;
 
@@ -444,7 +444,7 @@ public class ScheduledPayments extends _CommonPage {
 				}
 
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					String payeeXpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable//XCUIElementTypeStaticText[@label='"
+					String payeeXpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable//XCUIElementTypeStaticText[@label='"
 							+ payeeSelected + "']";
 					mobileAction.FuncSwipeWhileElementNotFoundByxpath(payeeXpath, true, 3, "up");
 				} else {
@@ -928,7 +928,7 @@ public class ScheduledPayments extends _CommonPage {
 		}
 		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 			for (int i = 0; i < payeeArray.length; i++) {
-				String payeeXpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable//XCUIElementTypeStaticText[@label='"
+				String payeeXpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable//XCUIElementTypeStaticText[@label='"
 						+ payeeArray[i].trim() + "']";
 
 				try {
