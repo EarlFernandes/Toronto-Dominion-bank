@@ -373,7 +373,7 @@ public class WebViewPage extends _CommonPage {
 					mobileAction.FuncSwipeOnce("up");
 				}
 				Decorator();
-				mobileAction.FuncClick(cancelWebViewBtn, "Cancel");
+				mobileAction.FuncClickCoordinatesInElement(cancelWebViewBtn);
 
 			} catch (Exception e) {
 				e.printStackTrace();
