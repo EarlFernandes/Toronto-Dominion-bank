@@ -188,7 +188,7 @@ public class EventCase {
 		ManagePayee_ClickNewPayee, ManagePayees_Button, ManagePayee_AddCanadianPayee, ManagePayee_ClickPayeeByAcctNumber, ManagePayee_DeletePayee, ManagePayee_EditPayee, ManagePayee_VerifyCanadianPayeeDeleted, ManagePayee_VerifyPayeeEdited, ManagePayee_VerifyUSPayeeDeleted, ManagePayee_EditPayeeDescription,
 
 		// Menu
-		Menu_VerifyAllMenuItems, Menu_ClickChatBot, Menu_ClickFAQ,
+		Menu_VerifyAllMenuItems, Menu_ClickChatBot, Menu_ClickFAQ,clickPrivacySecurityAndLegal,
 
 		// Mobile Payment
 		MobilePayment_AcceptIntroAndValidate,
@@ -241,7 +241,9 @@ public class EventCase {
 		// MIT Refactor
 
 		HomeScreen_click_Markets, Trade_MIT_REF_searchAndClickMarketSymbol, Trade_MIT_REF_verifyTradeSymbols, Trade_MIT_REF_QuoteverifyRecentSearchSymbol, Investing_MIT_REF_verifyHoldingsDetails, Investing_MIT_REF_clickHoldingsTab, Trade_MIT_REF_verifyExchangeAgreementErrorDetails, Investing_MIT_REF_clickTradeQuickLink, Trade_MIT_REF_ClickEnterNameOrSymbol, Trade_MIT_REF_verifyFirstOrderPlaced, Trade_MIT_REF_verifyQuoteSymbol, HomeScreen_clickQuoteQuickLink, Trade_MIT_REF_goBack, Trade_MIT_REF_verifyRecentSearchSymbol, Trade_MIT_REF_goBackToHome, Investing_MIT_REF_buyHoldingsETF, Investing_MIT_REF_sendETFOrder, Investing_MIT_REF_clickHoldingsETF, Investing_MIT_REF_clickAccount_Multiple, Investing_MIT_REF_verifyTabs, Trade_MIT_REF_cancelOrder, Trade_MIT_REF_changeOrder, Trade_MIT_REF_click_RecentOrder, Trade_MIT_REF_click_Orders_Link, Trade_MIT_REF_verify_StockOrderSent_Msg, Trade_MIT_REF_clickSendOrder, Trade_MIT_REF_sendStockOrder, Trade_MIT_REF_verifyTradeHeader, Trade_MIT_REF_verifyTradeElements, Trade_MIT_REF_EnterNameOrSymbol, Trade_MIT_REF_verifyQuoteDetails,Trade_MIT_REF_sendOptionsOrder,
-
+		
+		// Privacy Security and Legal
+		verifyPrivacySecurityLegal,verifyMobilePrivacy,verifyPrivacyAndSecurity,verifyLegal,verify_Terms_Of_Use,
 	}
 
 	public void FuncCOREEventCase(String sFunctionname)
@@ -5413,7 +5415,28 @@ public class EventCase {
 		case verifyFlyoutBlendedyUser:
 			MIT_DSH_FlyoutMenu.get().verifyFlyoutBlendedyUser();
 			break;
-
+		
+		case clickPrivacySecurityAndLegal:
+			MenuPage.get().clickPrivacySecurityAndLegal();
+			break;
+		case verifyPrivacySecurityLegal:
+			Privacy_Security_Legal.get().verifyPrivacySecurityLegal();
+			break;
+		case verifyMobilePrivacy:
+			Privacy_Security_Legal.get().verifyMobilePrivacy();
+			break;
+		case verifyPrivacyAndSecurity:
+			Privacy_Security_Legal.get().verifyPrivacyAndSecurity();
+			break;
+		case verifyLegal:
+			Privacy_Security_Legal.get().verifyLegal();
+			break;
+		case verify_Terms_Of_Use:
+			Privacy_Security_Legal.get().verify_Terms_Of_Use();
+			break;
+		
+		
+		
 		}
 	}
 
