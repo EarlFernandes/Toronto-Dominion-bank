@@ -50,7 +50,7 @@ public class ScheduledPayments extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/dialog_button")
 	private MobileElement cancel_button;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='actionSheetCancelButton']/../XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther/XCUIElementTypeStaticText")
 	@AndroidFindBy(id = "com.td:id/dialog_title")
 	private MobileElement view_payments_for_title;
 
@@ -337,7 +337,9 @@ public class ScheduledPayments extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(view_payments_for_title, expected_View_Payments);
 			mobileAction.verifyElementTextIsDisplayed(all_payee_title,
 					getTextInCurrentLocale(StringArray.ARRAY_RBP_PAYEE_FILTER_ALL_PAYEE));
-			mobileAction.verifyElementTextIsDisplayed(cancel_button, expected_cancel);
+			if(mobileAction.verifyElementIsPresent(cancel_button)) {
+				mobileAction.verifyElementTextIsDisplayed(cancel_button, expected_cancel);
+			}
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
