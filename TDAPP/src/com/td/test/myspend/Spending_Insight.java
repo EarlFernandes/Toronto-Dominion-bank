@@ -48,7 +48,7 @@ public class Spending_Insight extends _CommonPage {
 	private MobileElement dailyDigest;
 
 	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Accounts Selected')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Accounts Selected')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Accounts Selected') or contains(@text,'Accounts Selected')]")
 	private MobileElement accountSelected;
 
 	@iOSXCUITFindBy(xpath = "//*[contains(@label,'MONEY PATH') or contains(@label,'Trajectoire financière') or contains(@label,'Money Path')]")
@@ -56,7 +56,7 @@ public class Spending_Insight extends _CommonPage {
 	private MobileElement moneyPathButton;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeLink[contains(@label,'Logout') or contains(@label,'Fermer la session')]")
-	@AndroidFindBy(xpath = "(//android.view.View[contains(@content-desc,'Logout')])[2]")
+	@AndroidFindBy(xpath = "(//android.view.View[contains(@content-desc,'Logout') or contains(@text,'Logout')])[2]")
 	private MobileElement logout;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Spending by Category') or contains(@label,'Dépenses par catégorie')]")
@@ -71,12 +71,12 @@ public class Spending_Insight extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'Home') or contains(@label,'Accueil')]")
 	private MobileElement homeBtn;
 	
-	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_QUICK_ACCESS")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/easy_access'] | //android.widget.TextView[@resource-id='com.td:id/easy_access']")
+	@iOSXCUITFindBy(xpath = "//*[@name='NAVIGATION_ITEM_QUICK_ACCESS' or @name='QuickLinkRightNavButton']")
+	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/easy_access' or @resource-id='com.td:id/easy_access_button']")
 	private MobileElement quickAccess;
 	
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD MySpend' or @label='Dépense TD']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/navText' and (@text='TD MySpend' or @text='Dépense TD')]")
+	@iOSXCUITFindBy(xpath = "//*[(@label='TD MySpend' or @label='Dépense TD') and @name='flyout_title'] | //*[@name='NAV_DRAWER_ITEMS_MOVEN']")
+	@AndroidFindBy(xpath = "//*[(@text='TD MySpend' or @text='Dépense TD') and (@resource-id='com.td:id/textview_flyout_menu_item' or @resource-id='com.td:id/navText')]")
 	private MobileElement TDMySpend;
 	
 	@iOSXCUITFindBy(xpath = "//*[contains(@label,'Session Expired')]")
@@ -90,7 +90,7 @@ public class Spending_Insight extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@name,'Accounts Selected') or contains(@name,'Comptes sélectionnés')]")
 	private MobileElement accountsSelected;
 
-	@FindBy(xpath = "//*[text()='Spending Insights' or text()='Aperçu des dépenses']")
+	@FindBy(xpath = "(//*[text()='Spending Insights' or text()='Aperçu des dépenses'])[1]")
 	private WebElement spendingInsightHeaderAndroid;
 
 	@FindBy(id = "homeButton")

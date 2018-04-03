@@ -150,9 +150,13 @@ public class MIT_DSH_ActivityTab extends _CommonPage {
 				String sbuy = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIVITYTAB_ACTIONBUY);
 				String ssell = getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIVITYTAB_ACTIONSELL);
 
-				if ((mobileAction
+				/*if ((mobileAction
 						.FuncGetValByRegx(saction, "(([" + sbuy + "]+)|([" + ssell + "]+))([' ']+)([0-9]+)([' ']+)")
-						.length() >= 1) && (sprice.contains("$")))
+						.length() >= 1) && (sprice.contains("$")))*/
+
+					if ((mobileAction
+							.FuncGetValByRegx(saction, "(([" + sbuy + "]+)|([" + ssell + "]+))([' ']+)([0-9]+)")
+							.length() >= 1) && (sprice.contains("$")))
 				// if((saction.contains(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONBUY))||saction.contains(getTextInCurrentLocale(StringArray.ARRAY_DASHBOARD_ACTIONSELL)))&&((mobileAction.FuncGetValByRegx(saction,
 				// "(([' ']+)([0-9]+)(['
 				// ']+))").length()>=1))&&(sprice.contains("$")))

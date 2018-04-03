@@ -36,7 +36,7 @@ public class TransactionHistory extends _CommonPage {
 	private MobileElement noTransactionFound;
 
 	@iOSXCUITFindBy(xpath = "//*[contains(@value,'All Accounts') or contains(@label,'All Accounts')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'All Accounts')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'All Accounts') or contains(@text,'All Accounts')]")
 	private MobileElement allAccounts;
 
 	@iOSXCUITFindBy(xpath = "//*[contains(@value,'Account Transfers') or contains(@label,'Account Transfers')]")
@@ -71,7 +71,7 @@ public class TransactionHistory extends _CommonPage {
 	private MobileElement filterCategory;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@name,'No transactions found') or contains(@label,'No transactions found')]")
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'No transactions found')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'No transactions found') or contains(@text,'No transactions found')]")
 	private MobileElement noTransac;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@name,'Home') or contains(@label,'Home')]")
@@ -81,7 +81,7 @@ public class TransactionHistory extends _CommonPage {
 	@AndroidFindBy(xpath ="(//android.view.View[contains(@text,'All Accounts') or contains(@text,'Tous les comptes')])[2]/following-sibling::android.view.View")
 	private List<MobileElement> selectedAccounts;
 
-	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Filter by Accounts')]/../following-sibling::android.view.View[contains(@content-desc,'ON')]")
+	@AndroidFindBy(xpath = "//android.view.View[contains(@content-desc,'Filter by Accounts') or contains(@text,'Filter by Accounts')]/../following-sibling::android.view.View[contains(@content-desc,'ON') or contains(@text,'ON')]")
 	private List<MobileElement> filteredAccountss;
 
 	@FindBy(xpath = "//*[text()='Transaction History' or text()='Historique des opérations']")

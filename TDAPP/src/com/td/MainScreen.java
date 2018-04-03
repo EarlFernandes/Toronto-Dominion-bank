@@ -1,10 +1,19 @@
 package com.td;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.HashMap;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import com.td.mainframe.Executor;
+
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class MainScreen extends _CommonPage {
 
@@ -12,7 +21,7 @@ public class MainScreen extends _CommonPage {
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
 
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.201:4794/wd/hub/";
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://0.0.0.0:4723/wd/hub/";
 
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
@@ -41,8 +50,8 @@ public class MainScreen extends _CommonPage {
 			"ConnectID", "Sender", "Ordervalue", "LimitDelta", "TriggerPrice", "Language", "Commission", "CardName",
 			"Passcode", "NewPasscode", "Email", "Name", "EmailProfile", "PhoneProfile", "PostSurveyText", "Response",
 			"ProfileType", "SecurityQuestion", "OTPSecurityCode", "UserProfileType", "SecurityQuestion", "Category",
-			"TransactionStatus", "Message", "Nickname", "AccountNumber", "SymbolImage", "NxtSymbol", "NxtSymbolImage","SymbolShortName",
-			"Time","AccountType" };
+			"TransactionStatus", "Message", "Nickname", "AccountNumber", "SymbolImage", "NxtSymbol", "NxtSymbolImage",
+			"SymbolShortName", "Time", "AccountType" };
 
 	public void readSheet() {
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
@@ -163,6 +172,19 @@ public class MainScreen extends _CommonPage {
 		}
 		if (orientation.equalsIgnoreCase("Landscape"))
 			mobileAction.FuncSetLandscapeOrientation();
+
+	}
+
+	public void openAppPERF() {
+		try {
+			this.Splash_Conitnue();
+			performance.startClock("Open App");
+
+		} catch (Exception e) {
+			System.err.println("Unable to load APP file Path Exiting");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+
 	}
 
 	// Singleton object of self
