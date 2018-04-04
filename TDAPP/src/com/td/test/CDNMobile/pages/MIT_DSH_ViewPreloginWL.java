@@ -93,7 +93,7 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "android:id/up")
 	MobileElement BT_Back;
-	
+
 	@iOSXCUITFindBy(accessibility = "NAVIGATION_ITEM_BACK")
 	@AndroidFindBy(id = "com.td:id/toolbar_back_button")
 	private MobileElement BT_WLBack;
@@ -104,14 +104,18 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
 
-			if (mobileAction.isObjExists(btnSwitchNow, 2)) {
-				mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+			/*
+			 * if (mobileAction.isObjExists(btnSwitchNow, 2)) {
+			 * mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+			 * 
+			 * mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
+			 * 
+			 * mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+			 * 
+			 * }
+			 */
 
-				mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
-
-				mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
-
-			}
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
 
@@ -135,14 +139,17 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 
 			MIT_DSHQuickLinks.get().goToDashboardHome();
 
-			if (mobileAction.isObjExists(btnSwitchNow, 2)) {
-				mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
-
-				mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
-
-				mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
-
-			}
+			/*
+			 * if (mobileAction.isObjExists(btnSwitchNow, 2)) {
+			 * mobileAction.FuncClick(btnSwitchNow, "btnSwitchNow");
+			 * 
+			 * mobileAction.FuncClick(InvestingToggle, "InvestingToggle");
+			 * 
+			 * mobileAction.FuncClick(AccessoryGoHome, "AccessoryGoHome");
+			 * 
+			 * }
+			 */
+			MIT_DSHQuickLinks.get().turnInvestingFocusOn();
 
 			mobileAction.FuncClick(BT_Home_HamburgerMenu, "BT_Home_HamburgerMenu");
 
@@ -162,18 +169,20 @@ public class MIT_DSH_ViewPreloginWL extends _CommonPage {
 			// requirement In Pre-logined when tap on More it will go to
 			// Expanded mode
 
-			//mobileAction.FuncClick(BT_WLBack, "< Button");
+			// mobileAction.FuncClick(BT_WLBack, "< Button");
 
 			// LoginMIT.get().MITLogin();
 
-			//MIT_DSHQuickLinks.get().goToDashboardHome();
-			
-			/*if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.FuncClick(BT_HamburgerMenu, "BT_HamburgerMenu");
-				mobileAction.FuncClick(FLY_Home, "Home Flyout Menu");
-			} else {
-				mobileAction.FuncClick(BT_Back, "< Button");
-			}*/
+			// MIT_DSHQuickLinks.get().goToDashboardHome();
+
+			/*
+			 * if
+			 * (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
+			 * "Android")) { mobileAction.FuncClick(BT_HamburgerMenu,
+			 * "BT_HamburgerMenu"); mobileAction.FuncClick(FLY_Home,
+			 * "Home Flyout Menu"); } else { mobileAction.FuncClick(BT_Back,
+			 * "< Button"); }
+			 */
 			mobileAction.verifyElementIsDisplayed(FilledListExpand, "FilledListExpand");
 
 		} catch (Exception e) {

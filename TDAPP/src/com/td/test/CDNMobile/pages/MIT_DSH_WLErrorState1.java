@@ -61,12 +61,12 @@ public class MIT_DSH_WLErrorState1 extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and contains(@text,'02')]")
 	private MobileElement ListExpiredCollapse;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='List 09']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and @text='List 09']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'List 09')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and contains(@text,'09')]")
 	private MobileElement ListEACollapse;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='List 10']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and @text='List 10']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'List 10')]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/watchlist_name' and contains(@text,'10')]")
 	private MobileElement ListEACollapseView;
 
 	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name='errorButton'])[1]")
