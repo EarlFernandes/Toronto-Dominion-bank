@@ -504,7 +504,7 @@ public class Login extends _CommonPage {
 					.contains(getTextInCurrentLocale(StringArray.ARRAY_OTP_CHALLENGE_HEADER_TEXT))) {
 				// OTP Challenge page
 				// Uncomment when OTP passcode is in effect
-				this.enterOTPPasscode();
+				// this.enterOTPPasscode();
 				return false;
 			} else if (screenheader.getText()
 					.contains(getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_SECURITY_SETTINGS))) {
