@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.NoSuchElementException;
@@ -286,8 +288,15 @@ public class AccountDetails extends _CommonPage {
 
 			String balanceText = acctBankBalance.getText();
 			String trxnText = lastBankTransactionAmt.getText();
-			String compare = "Balance text: " + balanceText + " Expected Balance: " + receiptBalance + "</b>"
+			String compare = "Balance text: " + balanceText + " Expected Balance: " + receiptBalance + "<br>"
 					+ "Trxn amt text: " + trxnText + " Expected Trxn amt: " + receiptValue;
+
+			// Extract just numbers from text for comparison
+			// French $ made it difficult for .contains method
+			receiptBalance = this.extractNumbers(receiptBalance);
+			balanceText = this.extractNumbers(balanceText);
+			receiptValue = this.extractNumbers(receiptValue);
+			trxnText = this.extractNumbers(trxnText);
 
 			if (receiptBalance.contains(balanceText) && receiptValue.contains(trxnText)) {
 				mobileAction.GetReporting().FuncReport("Pass", "Test passed: " + compare);
@@ -326,4 +335,17 @@ public class AccountDetails extends _CommonPage {
 		}
 	}
 
+	// Extract all numbers and return string of numbers
+	private String extractNumbers(String input) {
+		String result = "";
+
+		Pattern p = Pattern.compile("[0-9]+");
+		Matcher m = p.matcher(input);
+		while (m.find()) {
+			result += m.group();
+		}
+
+		return result;
+
+	}
 }

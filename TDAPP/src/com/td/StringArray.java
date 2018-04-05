@@ -248,7 +248,7 @@ public final class StringArray {
 
 	// Between My Accounts
 	public static final String[] ARRAY_BETWEEN_MY_ACCOUNTS_HEADER = { "Between My Accounts", "Entre mes comptes",
-			"在我的账户间转账", "在賬戶之間轉賬" };
+			"在我的账户间转账", "我的賬戶之間" };
 
 	// Chatbot
 	public static final String[] ARRAY_CHATBOT_HEADER = { "TD ChatBot", "TBD", "TBD", "TBD" };
