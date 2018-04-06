@@ -646,6 +646,7 @@ public class MenuPage extends _CommonPage {
 
 		Decorator();
 		try {
+			mobileAction.FuncSwipeUpTillScreenBottom(faq);
 			mobileAction.FuncClick(faq, "FAQ menu button");
 
 		} catch (Exception e) {
@@ -886,7 +887,7 @@ public class MenuPage extends _CommonPage {
 		} finally {
 		}
 	}
-	
+
 	public void clickPrivacySecurityAndLegal() {
 
 		Decorator();

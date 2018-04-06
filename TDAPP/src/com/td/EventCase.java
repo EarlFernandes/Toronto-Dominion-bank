@@ -247,6 +247,9 @@ public class EventCase {
 
 		// Performance Metrics
 		Transfers_ClickBetweenMyAccountsPERF, BetweenMyAccounts_TransferFirstAccountsPERF, Bills_ClickPayCanadianBillPERF, PayBill_PayBillPERF, Homescreen_ClickQuickAccessPERF, MenuPage_ClickMenuAccountsPERF, Performance_Summary, Trade_EnterTradePERF, Investing_ClickOrdersPERF, MenuPage_ClickMenuTradePERF, Trade_EnterTradeMFPERF, Homescreen_ClickWatchlistsQuickLinkPERF, Trade_EnterTradeOptionsPERF, Login_LoginTradePERF, Login_LoginAccountPERF, AccountDetails_SelectToAccountPERF, AccountDetails_SelectToCreditPERF, Credit_ClickRewardPERF, Rewards_ClickPayWithRewardsPERF, AccountDetails_SelectToInvestPERF, Transfers_ClickSendMoneyPERF, SendMoney_SendMoneyPERF, Performance_GenerateReport, Performance_SetStartTime, Performance_SetEndTime, Homescreen_VerifyHomescreenPERF, OpenAppPERF,
+
+		// Faq's
+		VerirfyFAQPage, VerirfyQuestionsPage, verifyAnswerPage,
 	}
 
 	public void FuncCOREEventCase(String sFunctionname)
@@ -5569,6 +5572,16 @@ public class EventCase {
 		case Performance_SetEndTime:
 			PerformanceCMOB.get().setEndTime();
 			break;
+		case VerirfyFAQPage:
+			FAQ.get().VerirfyFAQPage();
+			break;
+		case VerirfyQuestionsPage:
+			FAQ.get().VerirfyQuestionsPage();
+			break;
+		case verifyAnswerPage:
+			FAQ.get().verifyAnswerPage();
+			break;
+
 		}
 
 	}
