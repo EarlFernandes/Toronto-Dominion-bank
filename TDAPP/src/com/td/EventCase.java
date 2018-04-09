@@ -155,7 +155,7 @@ public class EventCase {
 		Accounts_VerifyCreditHeader, Accounts_SelectFirstAccount, Accounts_SelectToAccount,
 
 		// Add Payee
-		AddPayee_SearchCdnPayees, AddPayee_SearchUSPayees, AddPayee_ClickFirstPayeeFound, AddPayee_EnterPayeeDetails, AddPayee_EnterUSPayeeDetails, AddPayee_ClickGoBackHomeBtn, AddPayee_ClickFirstUSPayeeFound, AddPayee_ClickAddAnotherPayeeBtn, AddPayee_VerifyAddPayeeReceipt, AddPayee_EnterUSPayeeDetailsPAT, AddPayee_ClickFirstUSPayeeFoundPAT,
+		AddPayee_SearchCdnPayees, AddPayee_SearchUSPayees, AddPayee_ClickFirstPayeeFound, AddPayee_EnterPayeeDetails, AddPayee_EnterUSPayeeDetails, AddPayee_ClickGoBackHomeBtn, AddPayee_ClickFirstUSPayeeFound, AddPayee_ClickAddAnotherPayeeBtn, AddPayee_VerifyAddPayeeReceipt, AddPayee_EnterUSPayeeDetailsPAT, AddPayee_ClickFirstUSPayeeFoundPAT, AddPayee_ClickPayThisPayeeBtn,
 
 		// Between My Accounts
 		BetweenMyAccounts_SpecifiedAccountsTransfer, Transfers_Click_Between_My_Accounts, BetweenMyAccounts_1stAccountsTransfer,
@@ -197,7 +197,7 @@ public class EventCase {
 		PageHeader_ClickBackButton, PageHeader_GoHome, PageHeader_ClickBackButtonIfIOS,
 
 		// Pay Bill
-		PayBill_PayBill, PayBill_PayFutureBill, PayBill_PayUSBill, PayBill_VerifyNoPayWithRewardsLink, PayBill_VerifyPayWithRewardsLink, PayBill_VerifyPayBillScreen,
+		PayBill_PayBill, PayBill_PayFutureBill, PayBill_PayUSBill, PayBill_VerifyNoPayWithRewardsLink, PayBill_VerifyPayWithRewardsLink, PayBill_VerifyPayBillScreen, PayBill_VerifyPayUSBillScreen,
 
 		// Pay With Rewards
 		PayWithRewards_EnterRedemptionAmount,
@@ -240,7 +240,7 @@ public class EventCase {
 
 		// MIT Refactor
 
-		HomeScreen_click_Markets, Trade_MIT_REF_searchAndClickMarketSymbol, Trade_MIT_REF_verifyTradeSymbols, Trade_MIT_REF_QuoteverifyRecentSearchSymbol, Investing_MIT_REF_verifyHoldingsDetails, Investing_MIT_REF_clickHoldingsTab, Trade_MIT_REF_verifyExchangeAgreementErrorDetails, Investing_MIT_REF_clickTradeQuickLink, Trade_MIT_REF_ClickEnterNameOrSymbol, Trade_MIT_REF_verifyFirstOrderPlaced, Trade_MIT_REF_verifyQuoteSymbol, HomeScreen_clickQuoteQuickLink, Trade_MIT_REF_goBack, Trade_MIT_REF_verifyRecentSearchSymbol, Trade_MIT_REF_goBackToHome, Investing_MIT_REF_buyHoldingsETF, Investing_MIT_REF_sendETFOrder, Investing_MIT_REF_clickHoldingsETF, Investing_MIT_REF_clickAccount_Multiple, Investing_MIT_REF_verifyTabs, Trade_MIT_REF_cancelOrder, Trade_MIT_REF_changeOrder, Trade_MIT_REF_click_RecentOrder, Trade_MIT_REF_click_Orders_Link, Trade_MIT_REF_verify_StockOrderSent_Msg, Trade_MIT_REF_clickSendOrder, Trade_MIT_REF_sendStockOrder, Trade_MIT_REF_verifyTradeHeader, Trade_MIT_REF_verifyTradeElements, Trade_MIT_REF_EnterNameOrSymbol, Trade_MIT_REF_verifyQuoteDetails,Trade_MIT_REF_sendOptionsOrder,
+		HomeScreen_click_Markets, Trade_MIT_REF_searchAndClickMarketSymbol, Trade_MIT_REF_verifyTradeSymbols, Trade_MIT_REF_QuoteverifyRecentSearchSymbol, Investing_MIT_REF_verifyHoldingsDetails, Investing_MIT_REF_clickHoldingsTab, Trade_MIT_REF_verifyExchangeAgreementErrorDetails, Investing_MIT_REF_clickTradeQuickLink, Trade_MIT_REF_ClickEnterNameOrSymbol, Trade_MIT_REF_verifyFirstOrderPlaced, Trade_MIT_REF_verifyQuoteSymbol, HomeScreen_clickQuoteQuickLink, Trade_MIT_REF_goBack, Trade_MIT_REF_verifyRecentSearchSymbol, Trade_MIT_REF_goBackToHome, Investing_MIT_REF_buyHoldingsETF, Investing_MIT_REF_sendETFOrder, Investing_MIT_REF_clickHoldingsETF, Investing_MIT_REF_clickAccount_Multiple, Investing_MIT_REF_verifyTabs, Trade_MIT_REF_cancelOrder, Trade_MIT_REF_changeOrder, Trade_MIT_REF_click_RecentOrder, Trade_MIT_REF_click_Orders_Link, Trade_MIT_REF_verify_StockOrderSent_Msg, Trade_MIT_REF_clickSendOrder, Trade_MIT_REF_sendStockOrder, Trade_MIT_REF_verifyTradeHeader, Trade_MIT_REF_verifyTradeElements, Trade_MIT_REF_EnterNameOrSymbol, Trade_MIT_REF_verifyQuoteDetails, Trade_MIT_REF_sendOptionsOrder,
 
 		// Performance Metrics
 		Transfers_ClickBetweenMyAccountsPERF, BetweenMyAccounts_TransferFirstAccountsPERF, Bills_ClickPayCanadianBillPERF, PayBill_PayBillPERF, Homescreen_ClickQuickAccessPERF, MenuPage_ClickMenuAccountsPERF, Performance_Summary, Trade_EnterTradePERF, Investing_ClickOrdersPERF, MenuPage_ClickMenuTradePERF, Trade_EnterTradeMFPERF, Homescreen_ClickWatchlistsQuickLinkPERF, Trade_EnterTradeOptionsPERF, Login_LoginTradePERF, Login_LoginAccountPERF, AccountDetails_SelectToAccountPERF, AccountDetails_SelectToCreditPERF, Credit_ClickRewardPERF, Rewards_ClickPayWithRewardsPERF, AccountDetails_SelectToInvestPERF, Transfers_ClickSendMoneyPERF, SendMoney_SendMoneyPERF, Performance_GenerateReport, Performance_SetStartTime, Performance_SetEndTime, Homescreen_VerifyHomescreenPERF, OpenAppPERF,
@@ -390,7 +390,7 @@ public class EventCase {
 		case Trade_MIT_REF_sendOptionsOrder:
 			Trade_MIT_REF.get().Trade_MIT_REF_sendOptionsOrder();
 			break;
-			
+
 		// Trade_MIT_REF_goBack TODO::
 
 		case TransfersHistory_clickUpdateRequestOnActivity:
@@ -4749,6 +4749,10 @@ public class EventCase {
 			AddPayee.get().verifyAddPayeeReceipt();
 			break;
 
+		case AddPayee_ClickPayThisPayeeBtn:
+			AddPayee.get().clickPayThisPayeeBtn();
+			break;
+
 		// Bills
 		case PayBill_Canada_Button:
 			Bills.get().clickPayCanadianBill();
@@ -4984,6 +4988,10 @@ public class EventCase {
 
 		case PayBill_VerifyPayBillScreen:
 			PayBill.get().verifyPayBillScreen();
+			break;
+
+		case PayBill_VerifyPayUSBillScreen:
+			PayBill.get().verifyPayUSBillScreen();
 			break;
 
 		// Pay With Rewards

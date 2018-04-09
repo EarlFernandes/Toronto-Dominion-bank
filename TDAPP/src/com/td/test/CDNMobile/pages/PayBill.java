@@ -154,6 +154,27 @@ public class PayBill extends _CommonPage {
 
 	}
 
+	public void verifyPayUSBillScreen() {
+		Decorator();
+		try {
+
+			mobileAction.verifyElementIsDisplayed(fromAccountUS, "From Account field");
+			mobileAction.verifyElementIsDisplayed(toAccountUS, "To Account field");
+			mobileAction.verifyElementIsDisplayed(amount, "Amount field");
+			mobileAction.verifyElementIsDisplayed(payUSbillButton, "Continue button");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
 	public void payBill() {
 		Decorator();
 		try {
