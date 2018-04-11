@@ -195,10 +195,6 @@ public class ScheduledPayments extends _CommonPage {
 				MobileElement lastPaymentAmt = mobileAction.verifyElementUsingXPath(lastPaymentAmtXpath,
 						"Last Payment Amt");
 
-				mobileAction.verifyElementIsDisplayed(lastPaymentTitle, "Last Payment Title");
-				mobileAction.verifyElementIsDisplayed(lastPaymentDesc, "Last Payment Description");
-				mobileAction.verifyElementIsDisplayed(lastPaymentAmt, "Last Payment Amt");
-
 				String payeeName = getTestdata("USAccount").toUpperCase();
 				mobileAction.verifyElementTextContains(lastPaymentTitle, payeeName);
 				mobileAction.verifyElementTextContains(lastPaymentTitle, toAccount);

@@ -81,7 +81,7 @@ public class AddPayee extends _CommonPage {
 	private WebElement addAnotherPayeeBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[3]/XCUIElementTypeButton[1]")
-	@FindBy(xpath = "//button[contains(@ng-click,'TBD')]")
+	@FindBy(xpath = "//button[contains(@ng-click,'payToPayee')]")
 	private WebElement payThisPayeeBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[2]")
