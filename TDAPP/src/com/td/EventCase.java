@@ -188,7 +188,7 @@ public class EventCase {
 		ManagePayee_ClickNewPayee, ManagePayees_Button, ManagePayee_AddCanadianPayee, ManagePayee_ClickPayeeByAcctNumber, ManagePayee_DeletePayee, ManagePayee_EditPayee, ManagePayee_VerifyCanadianPayeeDeleted, ManagePayee_VerifyPayeeEdited, ManagePayee_VerifyUSPayeeDeleted, ManagePayee_EditPayeeDescription, ManagePayee_EditPayeeDescriptionPAT,
 
 		// Menu
-		Menu_VerifyAllMenuItems, Menu_ClickChatBot, Menu_ClickFAQ, clickPrivacySecurityAndLegal,
+		Menu_VerifyAllMenuItems, Menu_ClickChatBot, Menu_ClickFAQ, clickPrivacySecurityAndLegal,clickLocations,
 
 		// Mobile Payment
 		MobilePayment_AcceptIntroAndValidate,
@@ -250,6 +250,9 @@ public class EventCase {
 
 		// Faq's
 		VerirfyFAQPage, VerirfyQuestionsPage, verifyAnswerPage,
+		
+		// Locations
+		verifyLocationsPage,
 	}
 
 	public void FuncCOREEventCase(String sFunctionname)
@@ -5463,7 +5466,14 @@ public class EventCase {
 		case verify_Terms_Of_Use:
 			Privacy_Security_Legal.get().verify_Terms_Of_Use();
 			break;
-
+		// Locations
+		case clickLocations:
+			MenuPage.get().clickLocations();
+			break;
+		case verifyLocationsPage:
+			Locations.get().verifyLocationsPage();
+			break;
+		
 		// Performance metrics
 		case Transfers_ClickBetweenMyAccountsPERF:
 			Transfers.get().clickBetweenMyAccountsPERF();

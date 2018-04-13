@@ -39,31 +39,35 @@ public class Privacy_Security_Legal extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/tvPrivacy")
 	private MobileElement mobilePrivacy;
 
+	// Not checking for this element.
+	/*
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='How we handle the information we collect when you use our mobile apps']")
 	@AndroidFindBy(id = "com.td:id/tvPrivacyDesc")
-	private MobileElement mobilePrivacyText;
+	private MobileElement mobilePrivacyText;*/
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name='TD Canada']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]")
 	@AndroidFindBy(id = "com.td:id/tvSecurity")
 	private MobileElement privacyAndSecurity;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Bank & invest with confidence']")
+	// Not checking for this element. 
+	/*@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Bank & invest with confidence']")
 	@AndroidFindBy(id = "com.td:id/tvSecurityDesc")
-	private MobileElement privacyAndSecurityText;
+	private MobileElement privacyAndSecurityText;*/
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name='TD Canada']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[3]")
 	@AndroidFindBy(id = "com.td:id/tvLegal")
 	private MobileElement legal;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Terms & Conditions']")
+	// Not Checking for this element.
+	/*@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Terms & Conditions']")
 	@AndroidFindBy(id = "com.td:id/tvLegalDesc")
-	private MobileElement legalText;
+	private MobileElement legalText;*/
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Manage Cookies']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Manage Cookies' or @name='Gérer les cookies' or @name='管理Cookies' or @name='管理Cookies']")
 	@AndroidFindBy(id = "com.td:id/managecookieTitle")
 	private MobileElement manageCookies;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"TD Canada\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeTextView")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name='TD Canada']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeTextView")
 	@AndroidFindBy(id = "com.td:id/managecookieDesc")
 	private MobileElement textData;
 
@@ -71,16 +75,18 @@ public class Privacy_Security_Legal extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Terms of Use']")
 	private MobileElement termsOfUse;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='The terms of use you agree to by using EasyWeb or the TD app.']")
+	// Not checking for this
+	/*@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='The terms of use you agree to by using EasyWeb or the TD app.']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='The terms of use you agree to by using EasyWeb or the TD app']")
-	private MobileElement termsOfUseText;
+	private MobileElement termsOfUseText;*/
 
 	// Elements of Mobile Privacy Page
 
 	@AndroidFindBy(id = "com.td:id/webVeiw")
 	private MobileElement mobilePrivacyWebView;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='TD Online Privacy | TD Bank Group' or @name = 'Confidentialité en ligne de TD | Groupe Banque TD']")
+	//@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='banner' or @name='bannière' or @name='旗幟' or @name='旗帜']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='TD Online Privacy | TD Bank Group' or @name = 'Confidentialité en ligne de TD | Groupe Banque TD' or @name='TD在线隐私| TD银行集团' or @name='TD在線隱私| TD銀行集團']")
 	@AndroidFindBy(id = "android:id/content")
 	private MobileElement mobilePrivacyContent;
 
@@ -249,20 +255,20 @@ public class Privacy_Security_Legal extends _CommonPage {
 	 * private MobileElement mobilePrivacycollapseButton13;
 	 */
 	// Menu Button in Mobile Privacy Page
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Menu']")
-	private MobileElement mobilePrivacyPageMenuButton;
+	/*@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Menu']")
+	private MobileElement mobilePrivacyPageMenuButton;*/
 
 	// // Mobile Privacy Page Header
 	// @iOSXCUITFindBy(accessibility = "Mobile Privacy")
 	// private MobileElement mobilePrivacyPageHeader;
 
 	// page header of the page loaded when clicked on Menu
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Other TD Sites']")
-	private MobileElement mobilePrivacyMenuPageTitle;
+	/*@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Other TD Sites']")
+	private MobileElement mobilePrivacyMenuPageTitle;*/
 
 	// Mobile Privacy menu page close menu button
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Close Menu']")
-	private MobileElement mobilePrivacyCloseMenu;
+	/*@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Close Menu']")
+	private MobileElement mobilePrivacyCloseMenu;*/
 
 	// Elements of Privacy and Security Page
 
@@ -270,7 +276,7 @@ public class Privacy_Security_Legal extends _CommonPage {
 	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement titlePrivacyAndSecurity;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='Our Online Banking Security Guarantee | TD Bank Group' or @name = 'Notre garantie de sécurité bancaire en ligne | Groupe Banque TD']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='Our Online Banking Security Guarantee | TD Bank Group' or @name = 'Notre garantie de sécurité bancaire en ligne | Groupe Banque TD' or @name='我们的网上银行安全保证| TD银行集团' or @name='我們的網上銀行安全保證| TD銀行集團']")
 	@AndroidFindBy(id = "android:id/content")
 	private MobileElement privacyAndSecurityView;
 
@@ -279,7 +285,7 @@ public class Privacy_Security_Legal extends _CommonPage {
 	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement titleLegalPage;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='TD Bank Group - Legal Notices and Disclaimers of Liability' or @name = 'Groupe Banque TD - Mentions légales et clauses de non-responsabilité']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='TD Bank Group - Legal Notices and Disclaimers of Liability' or @name = 'Groupe Banque TD - Mentions légales et clauses de non-responsabilité' or @name='道明銀行集團 - 法律聲明和免責聲明' or @name='道明银行集团 - 法律声明和免责声明']")
 	@AndroidFindBy(id = "android:id/content")
 	private MobileElement legalView;
 
@@ -344,7 +350,7 @@ public class Privacy_Security_Legal extends _CommonPage {
 	@AndroidFindBy(id = "com.google.android.apps.docs:id/pdf_view")
 	private MobileElement EFSContent;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='TD Canada Trust - EasyWeb - Help']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='TD Canada Trust - EasyWeb - Help' or @name='TD Canada Trust - EasyWeb - Aide' or @name='道明加拿大信托 -  EasyWeb  - 帮助' or @name='道明加拿大信託 -  EasyWeb  - 幫助']")
 	@AndroidFindBy(id = "android:id/content")
 	private MobileElement BASCContent;
 

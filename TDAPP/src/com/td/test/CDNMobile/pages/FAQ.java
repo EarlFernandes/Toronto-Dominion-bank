@@ -60,10 +60,11 @@ public class FAQ extends _CommonPage {
 
 	// Elements of Apple Pay Screen
 
+	// Element is not present in IOS
 	@AndroidFindBy(id = "com.td:id/tdmoneyfit")
 	private MobileElement tdMySpendSymbol;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"TD Canada\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[10]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name='TD Canada']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[10]")
 	@AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.ListView/android.widget.LinearLayout[7]")
 	private MobileElement lastQuestion;
 
@@ -82,30 +83,33 @@ public class FAQ extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/faq_rating_fragment")
 	private MobileElement RatingFragment;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Please rate this answer']")
-	@AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.support.v4.widget.DrawerLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.TextView[1]")
-	private MobileElement RatingFragmentText;
+	// @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Please rate this
+	// answer' or @name='S\'il vous plaît noter cette réponse' or @name = '请评价这个答案'
+	// or @name='請評價這個答案']")
+	// @AndroidFindBy(xpath =
+	// "/hierarchy/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.support.v4.widget.DrawerLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.TextView[1]")
+	// private MobileElement RatingFragmentText;
 
 	@AndroidFindBy(id = "com.td:id/faq_rating_description_textview")
 	private MobileElement RatingText;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='1 star' or @name='1 étoile']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='1 star' or @name='1 étoile' or @name='一星级' or @name='一星級']")
 	@AndroidFindBy(id = "com.td:id/faq_ratingbar_poor")
 	private MobileElement Rating1Stars;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='2 stars' or @name='2 étoiles']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='2 stars' or @name='2 étoiles' or @name='2星' or @name='2星']")
 	@AndroidFindBy(id = "com.td:id/faq_ratingbar_belowaverage")
 	private MobileElement Rating2Stars;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='3 stars' or @name='3 étoiles']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='3 stars' or @name='3 étoiles' or @name='3颗星' or @name='3顆星']")
 	@AndroidFindBy(id = "com.td:id/faq_ratingbar_average")
 	private MobileElement Rating3Stars;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='4 stars' or @name='4 étoiles']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='4 stars' or @name='4 étoiles' or @name='4星' or @name='4星']")
 	@AndroidFindBy(id = "com.td:id/faq_ratingbar_aboveaverage")
 	private MobileElement Rating4Stars;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='5 stars' or @name='5 étoiles']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='5 stars' or @name='5 étoiles' or @name='5星' or @name='5星']")
 	@AndroidFindBy(id = "com.td:id/faq_ratingbar_excellent")
 	private MobileElement Rating5Stars;
 
@@ -228,17 +232,20 @@ public class FAQ extends _CommonPage {
 				mobileAction.verifyElementIsDisplayed(QuestionInAnswerPage, "Verifying Question In Answer Page");
 			}
 			mobileAction.verifyElementIsDisplayed(AnswerWebView, "Verifying  Answer web Page");
-			mobileAction.FuncSwipeUpTillScreenBottom(RatingFragment);
-			mobileAction.FuncSwipeUpTillScreenBottom(RatingFragment);
+			mobileAction.FuncSwipeUpTillScreenBottom(Rating1Stars);
+			// mobileAction.FuncSwipeUpTillScreenBottom(RatingFragment);
+			mobileAction.FuncSwipeWhileElementNotFound(Rating1Stars, false, 4, "UP");
 			// mobileAction.verifyElementIsDisplayed(RatingFragment, "Verifying rating
 			// Fragment");
-			mobileAction.verifyElementIsDisplayed(RatingFragmentText, "Verifying  rating Fragment text");
+			// mobileAction.verifyElementIsDisplayed(RatingFragmentText, "Verifying rating
+			// Fragment text");
 			mobileAction.verifyElementIsDisplayed(Rating1Stars, "Verifying 1 star");
 			mobileAction.verifyElementIsDisplayed(Rating2Stars, "Verifying 2 stars");
 			mobileAction.verifyElementIsDisplayed(Rating3Stars, "Verifying 3 stars");
 			mobileAction.verifyElementIsDisplayed(Rating4Stars, "Verifying 4 stars");
 			mobileAction.verifyElementIsDisplayed(Rating5Stars, "Verifying 5 stars");
 			mobileAction.FuncClick(Rating3Stars, "Clicking on 3rd Star");
+
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.verifyElementIsDisplayed(RatingText, "Verifying  rating text");
 			}
