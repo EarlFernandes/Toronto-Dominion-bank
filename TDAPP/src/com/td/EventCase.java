@@ -188,7 +188,7 @@ public class EventCase {
 		ManagePayee_ClickNewPayee, ManagePayees_Button, ManagePayee_AddCanadianPayee, ManagePayee_ClickPayeeByAcctNumber, ManagePayee_DeletePayee, ManagePayee_EditPayee, ManagePayee_VerifyCanadianPayeeDeleted, ManagePayee_VerifyPayeeEdited, ManagePayee_VerifyUSPayeeDeleted, ManagePayee_EditPayeeDescription, ManagePayee_EditPayeeDescriptionPAT,
 
 		// Menu
-		Menu_VerifyAllMenuItems, Menu_ClickChatBot, Menu_ClickFAQ,
+		Menu_VerifyAllMenuItems, Menu_ClickChatBot, Menu_ClickFAQ, clickPrivacySecurityAndLegal,clickLocations,
 
 		// Mobile Payment
 		MobilePayment_AcceptIntroAndValidate,
@@ -240,10 +240,19 @@ public class EventCase {
 
 		// MIT Refactor
 
-		HomeScreen_click_Markets, Trade_MIT_REF_searchAndClickMarketSymbol, Trade_MIT_REF_verifyTradeSymbols, Trade_MIT_REF_QuoteverifyRecentSearchSymbol, Investing_MIT_REF_verifyHoldingsDetails, Investing_MIT_REF_clickHoldingsTab, Trade_MIT_REF_verifyExchangeAgreementErrorDetails, Investing_MIT_REF_clickTradeQuickLink, Trade_MIT_REF_ClickEnterNameOrSymbol, Trade_MIT_REF_verifyFirstOrderPlaced, Trade_MIT_REF_verifyQuoteSymbol, HomeScreen_clickQuoteQuickLink, Trade_MIT_REF_goBack, Trade_MIT_REF_verifyRecentSearchSymbol, Trade_MIT_REF_goBackToHome, Investing_MIT_REF_buyHoldingsETF, Investing_MIT_REF_sendETFOrder, Investing_MIT_REF_clickHoldingsETF, Investing_MIT_REF_clickAccount_Multiple, Investing_MIT_REF_verifyTabs, Trade_MIT_REF_cancelOrder, Trade_MIT_REF_changeOrder, Trade_MIT_REF_click_RecentOrder, Trade_MIT_REF_click_Orders_Link, Trade_MIT_REF_verify_StockOrderSent_Msg, Trade_MIT_REF_clickSendOrder, Trade_MIT_REF_sendStockOrder, Trade_MIT_REF_verifyTradeHeader, Trade_MIT_REF_verifyTradeElements, Trade_MIT_REF_EnterNameOrSymbol, Trade_MIT_REF_verifyQuoteDetails,Trade_MIT_REF_sendOptionsOrder,
+		HomeScreen_click_Markets, Trade_MIT_REF_searchAndClickMarketSymbol, Trade_MIT_REF_verifyTradeSymbols, Trade_MIT_REF_QuoteverifyRecentSearchSymbol, Investing_MIT_REF_verifyHoldingsDetails, Investing_MIT_REF_clickHoldingsTab, Trade_MIT_REF_verifyExchangeAgreementErrorDetails, Investing_MIT_REF_clickTradeQuickLink, Trade_MIT_REF_ClickEnterNameOrSymbol, Trade_MIT_REF_verifyFirstOrderPlaced, Trade_MIT_REF_verifyQuoteSymbol, HomeScreen_clickQuoteQuickLink, Trade_MIT_REF_goBack, Trade_MIT_REF_verifyRecentSearchSymbol, Trade_MIT_REF_goBackToHome, Investing_MIT_REF_buyHoldingsETF, Investing_MIT_REF_sendETFOrder, Investing_MIT_REF_clickHoldingsETF, Investing_MIT_REF_clickAccount_Multiple, Investing_MIT_REF_verifyTabs, Trade_MIT_REF_cancelOrder, Trade_MIT_REF_changeOrder, Trade_MIT_REF_click_RecentOrder, Trade_MIT_REF_click_Orders_Link, Trade_MIT_REF_verify_StockOrderSent_Msg, Trade_MIT_REF_clickSendOrder, Trade_MIT_REF_sendStockOrder, Trade_MIT_REF_verifyTradeHeader, Trade_MIT_REF_verifyTradeElements, Trade_MIT_REF_EnterNameOrSymbol, Trade_MIT_REF_verifyQuoteDetails, Trade_MIT_REF_sendOptionsOrder,
+
+		// Privacy Security and Legal
+		verifyPrivacySecurityLegal, verifyMobilePrivacy, verifyPrivacyAndSecurity, verifyLegal, verify_Terms_Of_Use,
 
 		// Performance Metrics
 		Transfers_ClickBetweenMyAccountsPERF, BetweenMyAccounts_TransferFirstAccountsPERF, Bills_ClickPayCanadianBillPERF, PayBill_PayBillPERF, Homescreen_ClickQuickAccessPERF, MenuPage_ClickMenuAccountsPERF, Performance_Summary, Trade_EnterTradePERF, Investing_ClickOrdersPERF, MenuPage_ClickMenuTradePERF, Trade_EnterTradeMFPERF, Homescreen_ClickWatchlistsQuickLinkPERF, Trade_EnterTradeOptionsPERF, Login_LoginTradePERF, Login_LoginAccountPERF, AccountDetails_SelectToAccountPERF, AccountDetails_SelectToCreditPERF, Credit_ClickRewardPERF, Rewards_ClickPayWithRewardsPERF, AccountDetails_SelectToInvestPERF, Transfers_ClickSendMoneyPERF, SendMoney_SendMoneyPERF, Performance_GenerateReport, Performance_SetStartTime, Performance_SetEndTime, Homescreen_VerifyHomescreenPERF, OpenAppPERF,
+
+		// Faq's
+		VerirfyFAQPage, VerirfyQuestionsPage, verifyAnswerPage,
+		
+		// Locations
+		verifyLocationsPage,
 	}
 
 	public void FuncCOREEventCase(String sFunctionname)
@@ -390,7 +399,7 @@ public class EventCase {
 		case Trade_MIT_REF_sendOptionsOrder:
 			Trade_MIT_REF.get().Trade_MIT_REF_sendOptionsOrder();
 			break;
-			
+
 		// Trade_MIT_REF_goBack TODO::
 
 		case TransfersHistory_clickUpdateRequestOnActivity:
@@ -1066,8 +1075,8 @@ public class EventCase {
 			break;
 
 		/*
-		 * case OrderDetails_clickChangeorder:
-		 * OrderDetails.get().performChangeorder(); break;
+		 * case OrderDetails_clickChangeorder: OrderDetails.get().performChangeorder();
+		 * break;
 		 */
 
 		case OrderDetailsLimitPrice:
@@ -1491,8 +1500,8 @@ public class EventCase {
 			break;
 
 		/*
-		 * case OrderDetails_CancelOrder:
-		 * OrderDetails.get().performCancelOrder(); break;
+		 * case OrderDetails_CancelOrder: OrderDetails.get().performCancelOrder();
+		 * break;
 		 */
 
 		case ConfirmOrderReciept:
@@ -2082,8 +2091,7 @@ public class EventCase {
 			break;
 
 		/*
-		 * case verifyEmptyWatchList: Investing.get().verifyEmptyWatchLists();
-		 * break;
+		 * case verifyEmptyWatchList: Investing.get().verifyEmptyWatchLists(); break;
 		 */
 
 		case stocksVerifyWatchlists:
@@ -5440,6 +5448,32 @@ public class EventCase {
 			MIT_DSH_FlyoutMenu.get().verifyFlyoutBlendedyUser();
 			break;
 
+		case clickPrivacySecurityAndLegal:
+			MenuPage.get().clickPrivacySecurityAndLegal();
+			break;
+		case verifyPrivacySecurityLegal:
+			Privacy_Security_Legal.get().verifyPrivacySecurityLegal();
+			break;
+		case verifyMobilePrivacy:
+			Privacy_Security_Legal.get().verifyMobilePrivacy();
+			break;
+		case verifyPrivacyAndSecurity:
+			Privacy_Security_Legal.get().verifyPrivacyAndSecurity();
+			break;
+		case verifyLegal:
+			Privacy_Security_Legal.get().verifyLegal();
+			break;
+		case verify_Terms_Of_Use:
+			Privacy_Security_Legal.get().verify_Terms_Of_Use();
+			break;
+		// Locations
+		case clickLocations:
+			MenuPage.get().clickLocations();
+			break;
+		case verifyLocationsPage:
+			Locations.get().verifyLocationsPage();
+			break;
+		
 		// Performance metrics
 		case Transfers_ClickBetweenMyAccountsPERF:
 			Transfers.get().clickBetweenMyAccountsPERF();
@@ -5548,6 +5582,16 @@ public class EventCase {
 		case Performance_SetEndTime:
 			PerformanceCMOB.get().setEndTime();
 			break;
+		case VerirfyFAQPage:
+			FAQ.get().VerirfyFAQPage();
+			break;
+		case VerirfyQuestionsPage:
+			FAQ.get().VerirfyQuestionsPage();
+			break;
+		case verifyAnswerPage:
+			FAQ.get().verifyAnswerPage();
+			break;
+
 		}
 
 	}
