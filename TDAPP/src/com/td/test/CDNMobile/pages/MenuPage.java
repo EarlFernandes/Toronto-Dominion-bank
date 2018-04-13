@@ -126,6 +126,10 @@ public class MenuPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Get An Account' or @text='Obtenir un compte' or @text='开立账户' or @text='開設賬戶') and @resource-id='com.td:id/textview_flyout_menu_item']/../preceding-sibling::android.widget.LinearLayout[1]/android.widget.TextView")
 	private MobileElement Explore_Products_preceeding_item;
 
+	@iOSXCUITFindBy(xpath = "//*[(@label='Get An Account' or @label='Obtenir un compte' or @label='开立账户' or @label='開設賬戶') and @name='flyout_title']")
+	@AndroidFindBy(xpath = "//*[(@text='Get An Account' or @text='Obtenir un compte' or @text='开立账户' or @text='開設賬戶') and @resource-id='com.td:id/textview_flyout_menu_item']")
+	private MobileElement credit_Banking_services;
+
 	public synchronized static MenuPage get() {
 		if (MenuPage == null) {
 			MenuPage = new MenuPage();
@@ -980,6 +984,32 @@ public class MenuPage extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
+	}
+
+	public void clickFlyout_CreditBankingServices() {
+		Decorator();
+
+		String menuXpath = "";
+
+		String creditBanking = getTextInCurrentLocale(StringArray.ARRAY_OFX_TITLE);
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			menuXpath = "//*[@name='flyout_title' and @label='" + creditBanking + "']";
+		} else {
+			menuXpath = "//*[@resource-id='com.td:id/textview_flyout_menu_item' and @text='" + creditBanking + "']";
+		}
+
+		try {
+
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(menuXpath, true, 5, "up");
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
 	}
 
 }

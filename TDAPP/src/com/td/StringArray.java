@@ -823,12 +823,6 @@ public final class StringArray {
 			"https://www.zh.td.com/ca/en/personal-banking/products/borrowing/",
 			"https://www.zt.td.com/ca/en/personal-banking/products/borrowing/" };
 
-	// public static final String[] ARRAY_PRODUCT_PERSONAL_INVESTING_SYS_URL = {
-	// "https://www1.sys.tdcanadatrust.com/products-services/investing/goals_index.jsp",
-	// "https://www1.sys.tdcanadatrust.com/francais/produits-et-services/investissements/objectif_depargne_index.jsp",
-	// "https://www1.sys.tdcanadatrust.com/products-services/investing/goals_index.jsp",
-	// "https://www1.sys.tdcanadatrust.com/products-services/investing/goals_index.jsp"
-	// };
 	public static final String[] ARRAY_PRODUCT_PERSONAL_INVESTING_SYS_URL = {
 			"https://www1.sys.tdcanadatrust.com/m/products-services/investing/goal_main.jsp",
 			"https://www1.sys.tdcanadatrust.com/francais/m/produits-et-services/investissements/objectif_depargne_main.jsp",
@@ -840,10 +834,10 @@ public final class StringArray {
 			"https://stg1.pat.td.com/ca/en/personal-banking/products/savings-investing/",
 			"https://stg1.pat.td.com/ca/en/personal-banking/products/savings-investing/" };
 	public static final String[] ARRAY_PRODUCT_PERSONAL_INVESTING_PROD_URL = {
-			"https://www.td.com/ca/en/personal-banking/products/savings-investing/",
-			"https://www.td.com/ca/fr/services-bancaires-personnels/produits/epargne-placements/",
-			"https://www.zh.td.com/ca/en/personal-banking/products/savings-investing/",
-			"https://www.zt.td.com/ca/en/personal-banking/products/savings-investing/" };
+			"https://staging.td.com/ca/en/personal-banking/products/saving-investing/",
+			"https://staging.td.com/ca/fr/services-bancaires-personnels/produits/epargne-placements/",
+			"https://zh.staging.td.com/ca/en/personal-banking/products/saving-investing/",
+			"https://zt.staging.td.com/ca/en/personal-banking/products/saving-investing/" };
 
 	public static final String[] ARRAY_PRODUCT_TRAVEL_INSURANCE_SYS_URL = {
 			"https://www1.sys.tdcanadatrust.com/products-services/banking/travel-medical-insurance/index.jsp",
@@ -861,6 +855,56 @@ public final class StringArray {
 			"https://www.zh.td.com/ca/en/personal-banking/products/insurance/travel-medical-insurance/",
 			"https://www.zt.td.com/ca/en/personal-banking/products/insurance/travel-medical-insurance/" };
 	// End of Product page
+
+	// Start of OFX
+	public static final String[] ARRAY_OFX_TITLE = { "Credit and Banking Services", "Crédit et services bancaires",
+			"信贷与理财服务", "信貸與理財服務" };
+	public static final String[] ARRAY_ORDER_FOREIGN_CURRENCY = { "Order Foreign Currency", "Commander des devises",
+			"订购外币", "訂購外幣" };
+	// public static final String[] ARRAY_OFX_COPY_TEXT = {
+	// "Order cash in over 60 foreign currencies. Ready for in-branch pickup
+	// within 3-5 business days.",
+	// "Vous avez le choix de plus de 60 devises. Votre commande sera prête pour
+	// le ramassage dans un délai de 3 à 5 jours ouvrables.",
+	// "订购 60 多种外币现钞。3 至 5 个工作日内即可在分行提取。", "訂購 60 多種外幣現鈔。3 至 5 個工作日內即可在分行領取。" };
+	public static final String[] ARRAY_OFX_COPY_TEXT = {
+			"Order currency for over 60 foreign currencies. Ready for in-branch pickup within 3-5 business days.",
+			"Vous avez le choix de plus de 60 devises. Votre commande sera prête pour le ramassage dans un délai de 3 à 5 jours ouvrables.",
+			"订购 60 多种外币现钞。3 至 5 个工作日内即可在分行提取。", "訂購 60 多種外幣現鈔。3 至 5 個工作日內即可在分行領取。" };
+	public static final String[] ARRAY_OFX_WARNING_MSG = {
+			"Need foreign currency in less than 5 days? We suggest you visit a branch. Call first to make sure the currency you need is available.",
+			"Il vous faut les devises dans moins de cinq jours? Vous pouvez passer à une succursale. Appelez à l’avance pour vous assurer que la devise voulue est bien disponible.",
+			"需要在 5 天内获得外币？我们建议您亲临分行。请提前致电，确认分行备有您需要的货币。", "需要在 5 天內領取外幣？建議您親臨分行購買。請提前致電，確認分行備有您需要的貨幣。" };
+	public static final String[] ARRAY_OFX_CONTACT_INFO = { "CONTACT INFORMATION", "COORDONNÉES", "联系信息", "聯絡資料" };
+	public static final String[] ARRAY_OFX_EMAIL = { "Email", "Courriel", "电子邮箱", "電子郵件" };
+	public static final String[] ARRAY_OFX_PHONE = { "Phone Number", "Numéro de téléphone", "电话号码", "電話號碼" };
+	public static final String[] ARRAY_OFX_CONTACT_COPY_TEXT = {
+			"We only use your information to contact you about your request.",
+			"Vos renseignements seront uniquement utilisés pour communiquer avec vous au sujet de votre demande.",
+			"我们仅会使用您的联系信息向您查询订单。", "我們只會使用您的聯絡資料來向您查詢訂單。" };
+	public static final String[] ARRAY_OFX_PREVIEW_CURRENCY_ORDER = { "Preview Currency Order",
+			"Visualiser la commande de devises", "预览货币订单", "預覽貨幣訂單" };
+	public static final String[] ARRAY_OFX_CURRENCY_TITLE = { "Currency", "Devise", "货币", "貨幣" };
+	public static final String[] ARRAY_OFX_CURRENCY_TITLE_IOS = { "Select a Currency", "Devise", "货币", "貨幣" };
+	public static final String[] ARRAY_OFX_CURRENCY_DROPDOWN_SEARCH = { "Search", "Recherche", "搜索", "搜尋" };
+	public static final String[] ARRAY_OFX_FORM_I_HAVE = { "I have", "J’ai", "现有货币", "現有貨幣" };
+	public static final String[] ARRAY_OFX_FORM_I_WANT = { "I want", "Je veux", "我要兑换", "我要兌換" };
+	public static final String[] ARRAY_OFX_PICKUP_LOCATION = { "Pickup Location", "Lieu de ramassa", "提取地点", "領取地點" };
+	public static final String[] ARRAY_OFX_PICKUP_DEFAULT = { "Select a branch", "Sélectionnez une succursale", "选择分行",
+			"選擇分行" };
+	public static final String[] ARRAY_OFX_INVALID_EMAIL_ERROR = { "Please type in a valid email address.",
+			"Veuillez entrer une adresse courriel valide.", "请输入有效的电子邮箱地址。", "請輸入有效的電子郵箱地址。" };
+	public static final String[] ARRAY_OFX_INVALID_PHONE_ERROR = { "Please enter a 10-digit phone number.",
+			"Veuillez entrer une adresse courriel valide.", "请输入有效的电子邮箱地址。", "請輸入有效的電子郵箱地址。" };
+	public static final String[] ARRAY_OFX_MIN_AMOUNT_ERROR = {
+			"You must order a minimum of \\d+(\\.\\d+)*.*. Please type in a higher amount.",
+			"Votre commande doit être d’au moins \\d+(\\.\\d+)*.*. Veuillez entrer un montant plus élevé.",
+			"您必须至少订购 \\d+(\\.\\d+)*.*。请输入更高的金额。", "您必須至少訂購 \\d+(\\.\\d+)*.*。請輸入較高金額。 " };
+	public static final String[] ARRAY_OFX_MAX_AMOUNT_ERROR = {
+			"You're not able to order more than the maximum amount of \\d+(\\.\\d+)*.*. Please type in a lower amount.",
+			"Votre commande ne peut pas être supérieure au montant maximal de \\d+(\\.\\d+)*.*. Veuillez entrer un nombre moins élevé.",
+			"您订购的金额不能超过最高金额 \\d+(\\.\\d+)*.*。请输入较低的金额。", "您訂購的金額不能超過最高金額 \\d+(\\.\\d+)*.*。請輸入較低金額。 " };
+	// End of OFX
 
 	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",
 			"安全問題" };
