@@ -1967,7 +1967,7 @@ public class Investing extends _CommonPage {
 				CAN_MarketValue = CAN_MarketValue + "]/../XCUIElementTypeStaticText[1]";
 			}
 
-			mobileAction.FuncSwipeWhileElementNotFoundByxpath(USD_MarketValue, false, 10, "up");
+			mobileAction.FuncSwipeWhileElementNotFoundByxpathOnActivityTab(USD_MarketValue, false, 10, "up");
 			mobileAction.verifyElementUsingXPath(USD_MarketValue, "USD market value");
 			mobileAction.verifyElementUsingXPath(CAN_MarketValue, "CAN market value");
 
