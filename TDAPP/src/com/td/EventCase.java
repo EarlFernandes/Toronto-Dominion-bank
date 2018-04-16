@@ -253,6 +253,9 @@ public class EventCase {
 		
 		// Locations
 		verifyLocationsPage,
+		
+		//TDI Regression - vishal
+		TDI_ClickMenu,TDI_HomeStartClaim,TDI_HomeManagePolicies,TDI_HomeQuote,TDI_HomeAdvantage,TDI_HomeAutoShops,TDI_HomeInsuranceCard,TDI_HomeAccidentReport,TDI_HomeFAQ,TDI_HomeContactUs,TDI_Dummy,TDI_ATVQuote,TDI_motorCycleQuote,TDI_CollisionRepair,TDI_StartClaimHeader,TDI_StartClaimAccident,TDI_StartClaimhitRun,TDI_StartClaimCarStolen,TDI_StartClaimIncident,TDI_StartClaimInsuranceCard,TDI_StartClaimEmergencyCall,TDI_StartClaimAccountHistory,TDI_ContactUsHeader,TDI_Login,TDI_Logout,TDI_menuHomepag,TDI_menuStartClaim,TDI_menuManagePolicies,TDI_menuGetQuote,TDI_menuTDAdvantage,TDI_menuAccidentReport,TDI_menuAutoShops,TDI_menuInsuranceCard,TDI_menuFAQ,TDI_menuContactUS,TDI_myPolicies,TDI_myBilling,TDI_myClaims,TDI_Inbox,TDI_myProfile,TDI_infoCenter,TDI_giveFeedback,
 	}
 
 	public void FuncCOREEventCase(String sFunctionname)
@@ -5590,6 +5593,172 @@ public class EventCase {
 			break;
 		case verifyAnswerPage:
 			FAQ.get().verifyAnswerPage();
+			break;
+			
+	//TDI - Vishal
+			
+		case TDI_ClickMenu:
+			TDIHomescreen.get().clickMenu();
+			break;
+						
+		case TDI_HomeStartClaim:
+			TDIHomescreen.get().clickStartClaim();
+			break;
+			
+		case TDI_HomeManagePolicies:
+			TDIHomescreen.get().clickManagePolicies();
+			break;	
+						
+		case TDI_HomeQuote:
+			TDIHomescreen.get().getQuote();
+			break;
+						
+		case TDI_HomeAdvantage:
+			TDIHomescreen.get().TDMyAdvantage();
+			break;
+						
+		case TDI_HomeAutoShops:
+			TDIHomescreen.get().preAutoShops();
+			break;
+						
+		case TDI_HomeInsuranceCard:
+			TDIHomescreen.get().insuranceCard();
+			break;
+						
+		case TDI_HomeAccidentReport:
+			TDIHomescreen.get().accidentReport();
+			break;
+						
+		case TDI_HomeFAQ:
+	    	TDIHomescreen.get().homeFAQ();
+			break;
+						
+		case TDI_HomeContactUs:
+			TDIHomescreen.get().homeContactUs();
+			break;
+		
+		case TDI_ATVQuote:
+			TDIGetQuote.get().getATVQuote();
+			break;
+			
+		case TDI_motorCycleQuote:
+			TDIGetQuote.get().getMotorCycleQuote();
+			break;	
+			
+		case TDI_CollisionRepair:
+			TDIPreferredAutoShops.get().collisionRepair();
+			break;
+			
+		case TDI_StartClaimHeader:
+			TDIStartClaim.get().verifyHeader();
+			break;
+			
+		case TDI_StartClaimAccident:
+			TDIStartClaim.get().accident();
+			break;
+			
+		case TDI_StartClaimhitRun:
+			TDIStartClaim.get().hitRun();
+			break;
+			
+		case TDI_StartClaimCarStolen:
+			TDIStartClaim.get().carStolen();
+			break;	
+			
+		case TDI_StartClaimIncident:
+			TDIStartClaim.get().anotherIncident();
+			break;
+			
+		case TDI_StartClaimInsuranceCard:
+			TDIStartClaim.get().insuranceCard();
+			break;
+			
+		case TDI_StartClaimEmergencyCall:
+			TDIStartClaim.get().callEmergency();
+			break;
+			
+		case TDI_StartClaimAccountHistory:
+			TDIStartClaim.get().accountHistory();
+			break;
+			
+		case TDI_ContactUsHeader:
+			TDIContactUs.get().UnivStudents();
+			break;	
+			
+		case TDI_Login:
+			TDILogin.get().login();
+			break;	
+			
+		case TDI_Logout:
+			TDILogin.get().logout();
+			break;	
+
+		case TDI_menuHomepag:
+			TDIMenu.get().menuHomeScreen();
+			break;
+			
+		case TDI_menuStartClaim:
+			TDIMenu.get().menuStartclaim();;
+			break;
+			
+		case TDI_menuManagePolicies:
+			TDIMenu.get().menuManagePolicies();
+			break;	
+			
+		case TDI_menuGetQuote:
+			TDIMenu.get().menuGetQuote();
+			break;	
+			
+		case TDI_menuTDAdvantage:
+			TDIMenu.get().menuTDAdvantage();
+			break;
+			
+		case TDI_menuAccidentReport:
+			TDIMenu.get().menuAccidentReport();
+			break;
+			
+		case TDI_menuAutoShops:
+			TDIMenu.get().menuAutoShops();
+			break;
+			
+		case TDI_menuInsuranceCard:
+			TDIMenu.get().menuInsuranceCard();
+			break;
+			
+		case TDI_menuFAQ:
+			TDIMenu.get().menuFAQ();
+			break;	
+			
+		case TDI_menuContactUS:
+			TDIMenu.get().menuContactUs();
+			break;	
+			
+		case TDI_myPolicies:
+			TDIMenu.get().myPolicies();
+			break;
+			
+		case TDI_myBilling:
+			TDIMenu.get().myBilling();
+			break;
+			
+		case TDI_myClaims:
+			TDIMenu.get().myClaims();
+			break;
+			
+		case TDI_Inbox:
+			TDIMenu.get().inbox();
+			break;
+		
+		case TDI_myProfile:
+			TDIMenu.get().myProfile();
+			break;
+			
+		case TDI_infoCenter:
+			TDIMenu.get().infoCenter();
+			break;
+			
+		case TDI_giveFeedback:
+			TDIMenu.get().giveFeedback();
 			break;
 
 		}
