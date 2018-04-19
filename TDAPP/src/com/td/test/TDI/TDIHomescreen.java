@@ -83,13 +83,21 @@ public class TDIHomescreen extends _CommonPage {
 	@AndroidFindBy(id = "com.td.insurance:id/txt_contactUs")
 	private MobileElement contactUs;
 
-	// TODO@iOSXCUITFindBy(xpath="")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'start a claim online')]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@content-desc='start a claim online.']")
 	private MobileElement claimLink;
 
-	// TODO@iOSXCUITFindBy(xpath="")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@label,'accident assistance')]")
 	@AndroidFindBy(id = "com.td.insurance:id/cta_button_text")
 	private MobileElement accAssist;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
+	private MobileElement cancelBtn;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Call']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
+	private MobileElement CallBtn;
 
 	public synchronized static TDIHomescreen get() {
 		if (TDIHomescreen == null) {
@@ -486,7 +494,34 @@ public class TDIHomescreen extends _CommonPage {
 		try {
 			mobileAction.waitTDIProgressBarVanish();
 			mobileAction.verifyElementIsDisplayed(claimLink, "Start a claim link");
-			mobileAction.FuncClick(claimLink, "Start a claim link");
+			if (CL.GetAppiumDriver().getPlatformName().equalsIgnoreCase("iOS")) {
+				int leftX = claimLink.getLocation().getX();
+				int rightX = leftX + claimLink.getSize().getWidth();
+				int upperY = claimLink.getLocation().getY();
+				int lowerY = upperY + claimLink.getSize().getHeight();
+				mobileAction.TapCoOrdinates(rightX, lowerY, "Start a claim link");
+			} else
+				mobileAction.FuncClick(claimLink, "Start a claim link");
+			String pin = getTestdata("PIN", "UserIDs");
+			if (mobileAction.verifyElementIsPresent(enterPIN)) {
+				if (CL.GetAppiumDriver().getPlatformName().equalsIgnoreCase("Android")) {
+					((MobileElement) CL.GetDriver().findElement(By.id("com.td.insurance:id/textView_pin_header")))
+							.setValue(pin);
+				} else {
+					mobileAction.FuncSendKeys(pin);
+				}
+			} else {
+				mobileAction.FuncClick(createPIN, "create a PIN");
+				if (CL.GetAppiumDriver().getPlatformName().equalsIgnoreCase("Android")) {
+					((MobileElement) CL.GetDriver().findElement(By.id("com.td.insurance:id/textView_pin_header")))
+							.setValue(pin);
+					((MobileElement) CL.GetDriver().findElement(By.id("com.td.insurance:id/textView_pin_header")))
+							.setValue(pin);
+				} else {
+					mobileAction.FuncSendKeys(pin);
+					mobileAction.FuncSendKeys(pin);
+				}
+			}
 		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
@@ -518,6 +553,18 @@ public class TDIHomescreen extends _CommonPage {
 			mobileAction.waitTDIProgressBarVanish();
 			mobileAction.verifyElementIsDisplayed(accAssist, "call accident assistance");
 			mobileAction.FuncClick(accAssist, "call accident assistance");
+			String callingOption = getTestdata("CallingOption", "UserIDs");
+			System.out.println(callingOption);
+			if (callingOption.equalsIgnoreCase("Call")) {
+				mobileAction.verifyElementIsDisplayed(CallBtn, "call button is displayed");
+				if (CL.GetAppiumDriver().getPlatformName().equalsIgnoreCase("Android"))
+					mobileAction.FuncClick(CallBtn, "call button clicked");
+				else
+					mobileAction.FuncClick(cancelBtn, "");
+			} else {
+				mobileAction.verifyElementIsDisplayed(cancelBtn, "cancel button is displayed");
+				mobileAction.FuncClick(cancelBtn, "cancel button clicked");
+			}
 		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",

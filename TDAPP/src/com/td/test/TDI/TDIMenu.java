@@ -106,84 +106,83 @@ public class TDIMenu extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Manage Policies' or @label='TBD' or @label='TBD' or @label='TBD']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Policies' or @text='TBD' or @text='TBD' or @text='TBD']")
 	private MobileElement managePolicies;
-	
-	//vishal------
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='Homepage']")
+
+	// vishal------
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Homepage']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='Homepage']")
 	private MobileElement homePage;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='Start a Claim']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Start a Claim']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='Start a Claim']")
 	private MobileElement startClaim;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='Get a Quote']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Get a Quote']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='Get A Quote']")
 	private MobileElement getQuote;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='TD MyAdvantage']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD MyAdvantage']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='TD MyAdvantage']")
 	private MobileElement advantage;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='My Accident Reports']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Accident Reports']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='My Accident Reports']")
 	private MobileElement ac_report;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='Preferred Auto Shops']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Preferred Auto Shops']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='Preferred Auto Shops']")
 	private MobileElement autoShops;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='Insurance Card']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Insurance Card']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='Insurance Card']")
 	private MobileElement insuranceCard;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='Insurance FAQs']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Insurance FAQs']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='Insurance FAQs']")
 	private MobileElement menu_faq;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='Contact Us']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Contact Us']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='Contact Us']")
 	private MobileElement contactUS;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label= 'Logout']")
-	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='Logout']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label= 'Logout']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='Logout']")
 	private MobileElement logout;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='My Policies']")
-	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='My Policies']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Policies']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='My Policies']")
 	private MobileElement policies;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='My Billing']")
-	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='My Billing']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Billing']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='My Billing']")
 	private MobileElement billing;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='My Claims']")
-	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='My Claims']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Claims']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='My Claims']")
 	private MobileElement claims;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='Inbox']")
-	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='Inbox']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Inbox']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='Inbox']")
 	private MobileElement inbox;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='My Profile']")
-	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='My Profile']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Profile']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='My Profile']")
 	private MobileElement profile;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='Info Centre']")
-	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='Info Centre']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Info Centre']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='Info Centre']")
 	private MobileElement infoCenter;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeStaticText[@label='Give Feedback']")
-	@AndroidFindBy(xpath="//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='Give Feedback']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Give Feedback']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='Give Feedback']")
 	private MobileElement giveFeedback;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeButton[contains(@value,'Toronto-Dominion Bank') and @label='Address' and @name='URL']")
-	//TODO@AndroidFindBy(xpath="")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@value,'Toronto-Dominion Bank') and @label='Address' and @name='URL']")
+	// TODO@AndroidFindBy(xpath="")
 	private MobileElement webPage;
-	
-	@iOSXCUITFindBy(xpath="//XCUIElementTypeButton[@label='Return to TD Insurance']")
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Return to TD Insurance']")
 	private MobileElement returntoQuote;
-	
 
 	public synchronized static TDIMenu get() {
 		if (TDIMenu == null) {
@@ -214,8 +213,8 @@ public class TDIMenu extends _CommonPage {
 		} finally {
 		}
 	}
-	
-	//vishal------
+
+	// vishal------
 	/**
 	 * This method will click on the home screen in the menu.
 	 * 
@@ -228,7 +227,7 @@ public class TDIMenu extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void menuHomeScreen(){
+	public void menuHomeScreen() {
 		Decorator();
 		try {
 			mobileAction.waitTDIProgressBarVanish();
@@ -243,9 +242,10 @@ public class TDIMenu extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		
+
 		}
 	}
+
 	/**
 	 * This method will click on start a claim in the menu bar.
 	 * 
@@ -258,7 +258,7 @@ public class TDIMenu extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void menuStartclaim(){
+	public void menuStartclaim() {
 		Decorator();
 		try {
 			mobileAction.waitTDIProgressBarVanish();
@@ -273,9 +273,10 @@ public class TDIMenu extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		
+
 		}
 	}
+
 	/**
 	 * This method will click on manage policies in the menu bar.
 	 * 
@@ -288,7 +289,7 @@ public class TDIMenu extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void menuManagePolicies(){
+	public void menuManagePolicies() {
 		Decorator();
 		try {
 			mobileAction.waitTDIProgressBarVanish();
@@ -302,9 +303,10 @@ public class TDIMenu extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		
+
 		}
 	}
+
 	/**
 	 * This method will click on the get a quote in the menu bar.
 	 * 
@@ -317,7 +319,7 @@ public class TDIMenu extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void menuGetQuote(){
+	public void menuGetQuote() {
 		Decorator();
 		try {
 			mobileAction.waitTDIProgressBarVanish();
@@ -331,9 +333,10 @@ public class TDIMenu extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		
+
 		}
 	}
+
 	/**
 	 * This method will click on the TD Advantage on the menu bar.
 	 * 
@@ -346,7 +349,7 @@ public class TDIMenu extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void menuTDAdvantage(){
+	public void menuTDAdvantage() {
 		Decorator();
 		try {
 			mobileAction.waitTDIProgressBarVanish();
@@ -361,9 +364,10 @@ public class TDIMenu extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		
+
 		}
 	}
+
 	/**
 	 * This method will click on the accident report on the menu bar.
 	 * 
@@ -376,7 +380,7 @@ public class TDIMenu extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void menuAccidentReport(){
+	public void menuAccidentReport() {
 		Decorator();
 		try {
 			mobileAction.waitTDIProgressBarVanish();
@@ -391,9 +395,10 @@ public class TDIMenu extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		
+
 		}
 	}
+
 	/**
 	 * This method will click on the auto shops in the menu bar.
 	 * 
@@ -406,7 +411,7 @@ public class TDIMenu extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void menuAutoShops(){
+	public void menuAutoShops() {
 		Decorator();
 		try {
 			mobileAction.waitTDIProgressBarVanish();
@@ -421,9 +426,10 @@ public class TDIMenu extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		
+
 		}
 	}
+
 	/**
 	 * This method will click on the insurance card in the menu bar.
 	 * 
@@ -436,7 +442,7 @@ public class TDIMenu extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void menuInsuranceCard(){
+	public void menuInsuranceCard() {
 		Decorator();
 		try {
 			mobileAction.waitTDIProgressBarVanish();
@@ -451,9 +457,10 @@ public class TDIMenu extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		
+
 		}
 	}
+
 	/**
 	 * This method will click on the frequently asked questions in the menu bar.
 	 * 
@@ -466,7 +473,7 @@ public class TDIMenu extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void menuFAQ(){
+	public void menuFAQ() {
 		Decorator();
 		try {
 			mobileAction.waitTDIProgressBarVanish();
@@ -481,9 +488,10 @@ public class TDIMenu extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		
+
 		}
 	}
+
 	/**
 	 * This method will click on contact us in the menu bar.
 	 * 
@@ -496,7 +504,7 @@ public class TDIMenu extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void menuContactUs(){
+	public void menuContactUs() {
 		Decorator();
 		try {
 			mobileAction.waitTDIProgressBarVanish();
@@ -511,10 +519,10 @@ public class TDIMenu extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		
+
 		}
 	}
-	
+
 	/**
 	 * This method will click on My Policies in the menu bar.
 	 * 
@@ -527,12 +535,12 @@ public class TDIMenu extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void myPolicies(){
+	public void myPolicies() {
 		Decorator();
-		try{
+		try {
 			TDIHomescreen.get().clickMenu();
 			mobileAction.FuncClick(policies, "My Policies");
-		}catch (Exception e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -541,9 +549,10 @@ public class TDIMenu extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		
+
 		}
 	}
+
 	/**
 	 * This method will click on My Billing in the menu bar.
 	 * 
@@ -556,12 +565,12 @@ public class TDIMenu extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void myBilling(){
+	public void myBilling() {
 		Decorator();
-		try{
+		try {
 			TDIHomescreen.get().clickMenu();
 			mobileAction.FuncClick(billing, "My billing");
-		}catch (Exception e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -570,9 +579,10 @@ public class TDIMenu extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		
+
 		}
 	}
+
 	/**
 	 * This method will click on My claims in the menu bar.
 	 * 
@@ -585,12 +595,12 @@ public class TDIMenu extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void myClaims(){
+	public void myClaims() {
 		Decorator();
-		try{
+		try {
 			TDIHomescreen.get().clickMenu();
 			mobileAction.FuncClick(claims, "My Claims");
-		}catch (Exception e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -599,9 +609,10 @@ public class TDIMenu extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		
+
 		}
 	}
+
 	/**
 	 * This method will click on inbox in the menu bar.
 	 * 
@@ -614,12 +625,12 @@ public class TDIMenu extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void inbox(){
+	public void inbox() {
 		Decorator();
-		try{
+		try {
 			TDIHomescreen.get().clickMenu();
 			mobileAction.FuncClick(inbox, "Inbox");
-		}catch (Exception e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -628,9 +639,10 @@ public class TDIMenu extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		
+
 		}
 	}
+
 	/**
 	 * This method will click on My Profile in the menu bar.
 	 * 
@@ -643,12 +655,12 @@ public class TDIMenu extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void myProfile(){
+	public void myProfile() {
 		Decorator();
-		try{
+		try {
 			TDIHomescreen.get().clickMenu();
 			mobileAction.FuncClick(profile, "profile");
-		}catch (Exception e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -657,9 +669,10 @@ public class TDIMenu extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		
+
 		}
 	}
+
 	/**
 	 * This method will click on info center in the menu bar.
 	 * 
@@ -672,12 +685,12 @@ public class TDIMenu extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void infoCenter(){
+	public void infoCenter() {
 		Decorator();
-		try{
+		try {
 			TDIHomescreen.get().clickMenu();
 			mobileAction.FuncClick(infoCenter, "info center");
-		}catch (Exception e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -686,9 +699,10 @@ public class TDIMenu extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		
+
 		}
 	}
+
 	/**
 	 * This method will click on give feedback in the menu bar.
 	 * 
@@ -701,21 +715,20 @@ public class TDIMenu extends _CommonPage {
 	 * 
 	 * 
 	 */
-	public void giveFeedback(){
+	public void giveFeedback() {
 		Decorator();
-		try{
+		try {
 			TDIHomescreen.get().clickMenu();
 			mobileAction.FuncClick(giveFeedback, "give feedback");
-			if(CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")){
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
 				mobileAction.waitForElement(webPage);
-				mobileAction.verifyElementIsDisplayed(webPage,"URL header");
+				mobileAction.verifyElementIsDisplayed(webPage, "URL header");
 				mobileAction.FuncClick(returntoQuote, "return to quote page");
-			}
-			else
-				//TODO::Android verification
+			} else
+				// TODO::Android verification
 				mobileAction.FuncClickBackButton();
 
-		}catch (Exception e) {
+		} catch (Exception e) {
 			try {
 				CL.GetReporting().FuncReport("Fail",
 						"NoSuchElementException from Method " + this.getClass().toString());
@@ -724,7 +737,7 @@ public class TDIMenu extends _CommonPage {
 			}
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		
+
 		}
 	}
 }

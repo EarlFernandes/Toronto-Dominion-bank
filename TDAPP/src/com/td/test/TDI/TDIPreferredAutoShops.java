@@ -67,20 +67,17 @@ public class TDIPreferredAutoShops extends _CommonPage {
 				mobileAction.waitProgressBarVanish();
 				mobileAction.verifyElementIsDisplayed(autoheader,"Preferred auto shops");
 				mobileAction.FuncGetText(Callnos.get(0));
-				//for(int i = 0 ; i < Callnos.size() ; i++)
-				//	System.out.println(Callnos.get(i).getText().toString());
 				mobileAction.FuncClick(Callnos.get(0), "collision repair");
-				mobileAction.verifyElementIsDisplayed(cancelBtn, "cancel button");
-				mobileAction.verifyElementIsDisplayed(CallBtn, "call button");
 				String callingOption = getTestdata("CallingOption","UserIDs");
 				System.out.println(callingOption);
 				if(callingOption.equalsIgnoreCase("Call")){
-				mobileAction.FuncClick(CallBtn, "call collision repair");
-				//mobileAction.FuncClick(CallBtn, "call collision repair");
-				}
-				else
+					mobileAction.verifyElementIsDisplayed(CallBtn, "call button is displayed");
 					mobileAction.FuncClick(cancelBtn, "cancel button clicked");
-				
+				}
+				else{
+					mobileAction.verifyElementIsDisplayed(cancelBtn, "cancel button is displayed");
+					mobileAction.FuncClick(cancelBtn, "cancel button clicked");
+				}
 			}catch (Exception e) {
 				try {
 					CL.GetReporting().FuncReport("Fail",
