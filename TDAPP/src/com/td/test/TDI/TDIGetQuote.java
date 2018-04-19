@@ -48,7 +48,7 @@ private MobileElement continueBtn;
 private MobileElement returntoQuote;
 
 @iOSXCUITFindBy(xpath="//XCUIElementTypeButton[contains(@value,'Toronto-Dominion Bank') and @label='Address' and @name='URL']")
-@AndroidFindBy(xpath="//android.view.View[contains(@text,'recreational vehicle insurance')]")
+@AndroidFindBy(xpath="//android.view.View[contains(@text,'recreational vehicle insurance') or contains(@text,'Motorcycle insurance quote')]")
 private MobileElement webPage;
 
 	public synchronized static TDIGetQuote get(){

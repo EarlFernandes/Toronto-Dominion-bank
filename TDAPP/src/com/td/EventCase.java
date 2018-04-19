@@ -255,7 +255,7 @@ public class EventCase {
 		verifyLocationsPage,
 		
 		//TDI Regression - vishal
-		TDI_ClickMenu,TDI_HomeStartClaim,TDI_HomeManagePolicies,TDI_HomeQuote,TDI_HomeAdvantage,TDI_HomeAutoShops,TDI_HomeInsuranceCard,TDI_HomeAccidentReport,TDI_HomeFAQ,TDI_HomeContactUs,TDI_Dummy,TDI_ATVQuote,TDI_motorCycleQuote,TDI_CollisionRepair,TDI_StartClaimHeader,TDI_StartClaimAccident,TDI_StartClaimhitRun,TDI_StartClaimCarStolen,TDI_StartClaimIncident,TDI_StartClaimInsuranceCard,TDI_StartClaimEmergencyCall,TDI_StartClaimAccountHistory,TDI_ContactUsHeader,TDI_Login,TDI_Logout,TDI_menuHomepag,TDI_menuStartClaim,TDI_menuManagePolicies,TDI_menuGetQuote,TDI_menuTDAdvantage,TDI_menuAccidentReport,TDI_menuAutoShops,TDI_menuInsuranceCard,TDI_menuFAQ,TDI_menuContactUS,TDI_myPolicies,TDI_myBilling,TDI_myClaims,TDI_Inbox,TDI_myProfile,TDI_infoCenter,TDI_giveFeedback,
+		TDI_ClickMenu,TDI_HomeStartClaim,TDI_HomeManagePolicies,TDI_HomeQuote,TDI_HomeAdvantage,TDI_HomeAutoShops,TDI_HomeInsuranceCard,TDI_HomeAccidentReport,TDI_HomeFAQ,TDI_HomeContactUs,TDI_Dummy,TDI_ATVQuote,TDI_motorCycleQuote,TDI_CollisionRepair,TDI_StartClaimHeader,TDI_StartClaimAccident,TDI_StartClaimhitRun,TDI_StartClaimCarStolen,TDI_StartClaimIncident,TDI_StartClaimInsuranceCard,TDI_StartClaimEmergencyCall,TDI_StartClaimAccountHistory,TDI_ContactUsHeader,TDI_Login,TDI_Logout,TDI_menuHomepag,TDI_menuStartClaim,TDI_menuManagePolicies,TDI_menuGetQuote,TDI_menuTDAdvantage,TDI_menuAccidentReport,TDI_menuAutoShops,TDI_menuInsuranceCard,TDI_menuFAQ,TDI_menuContactUS,TDI_myPolicies,TDI_myBilling,TDI_myClaims,TDI_Inbox,TDI_myProfile,TDI_infoCenter,TDI_giveFeedback,TDI_HomeClaimLink,TDI_HomeAccidentAssistance,
 	}
 
 	public void FuncCOREEventCase(String sFunctionname)
@@ -5759,6 +5759,14 @@ public class EventCase {
 			
 		case TDI_giveFeedback:
 			TDIMenu.get().giveFeedback();
+			break;
+			
+		case TDI_HomeClaimLink:
+			TDIHomescreen.get().startClaimLink();
+			break;
+			
+		case TDI_HomeAccidentAssistance:
+			TDIHomescreen.get().accidentAssistance();
 			break;
 
 		}
